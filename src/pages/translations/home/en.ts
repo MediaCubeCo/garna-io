@@ -1,0 +1,336 @@
+export const homeEn = {
+	meta: {
+		title: 'Garna - Global Payroll Solutions',
+		description: 'One transfer — countless possibilities. Pay remunerations in over 150 countries with minimal effort',
+	},
+	images: {},
+	nav: {
+		brand: 'garna',
+		signUp: 'Sign Up',
+		getStarted: 'Get started',
+		bookDemo: 'Book a demo',
+	},
+	brand: {
+		name: 'Garna',
+	},
+	hero: {
+		title: 'Global Payroll Solutions',
+		tagline: 'for your business',
+		description: 'One transfer — countless possibilities. Pay remunerations in over 150 countries with minimal effort',
+		bookDemo: 'Book a demo',
+		cta: 'Book a demo',
+	},
+	dashboard: {
+		url: 'garna.io/dashboard',
+		balance: 'Balance',
+		company: 'Company',
+		notifications: 'Notifications',
+		support: 'Support',
+		internalAccount: 'Internal account USD',
+		accountNumber: 'Account number',
+		currencyUsd: 'USD',
+		currencyEur: 'EUR',
+		templates: 'Templates',
+		all: 'All',
+		transactions: 'Transactions',
+		confirmed: 'Confirmed',
+		companyName: 'Company name',
+		actions: {
+			send: 'Send',
+			withdraw: 'Withdraw',
+			addFunds: 'Add funds',
+			details: 'Details',
+		},
+	},
+	templates: {
+		transactionByEmail: 'Transaction by email',
+		csvPayment: 'CSV payment',
+		topUpUsdt: 'Top up with USDT',
+		topUpBank: 'Top up with Bank transfer',
+	},
+	transactions: {
+		transferTo: 'Transfer to',
+		confirmed: 'Confirmed',
+		item1: {
+			title: 'Transfer to Maria Rei',
+		},
+		item2: {
+			title: 'Transfer to Vlad Kolomensky',
+		},
+	},
+	stats: {
+		businessesUsing: 'businesses using Garna',
+		globalAvailability: 'global payroll availability',
+		successRate: 'payout success rate',
+	},
+	features: {
+		title: 'Modern platform for managing global payroll',
+		description:
+			'We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries',
+		automation: {
+			title: 'Automated payroll platform',
+			description: 'Automate global payout processes with a flexible, user-friendly platform',
+		},
+		business: 'Business',
+	},
+	advance: {
+		title: '$ 1,000,000.00 available for team payouts',
+		description: 'Pay your contractors now — repay later with flexible terms',
+		button: 'Request',
+	},
+	people: {
+		webDesigner: 'Web Designer',
+		developer: 'Developer',
+		opsManager: 'Ops Manager',
+	},
+	globalReach: {
+		title: 'Global Reach',
+		description: 'Pay in 150+ countries with local currencies and crypto',
+	},
+	noHiddenFees: {
+		title: 'No hidden fees',
+		description: 'Transparent pricing, zero setup cost',
+		paymentInfo: {
+			title: 'Payment Information',
+			recipientReceives: 'Recipient receives',
+			exchangeRate: 'Exchange rate',
+			fees: 'Fees',
+		},
+	},
+	whyGarna: {
+		title: 'Why Garna stands out',
+		description: 'Discover the key benefits that make payroll simple, global, and secure',
+		cards: {
+			adminTime: {
+				title: 'Cut admin time',
+				description: 'Automated contracts and payroll reduce admin work by up to 70%',
+			},
+			topUp: {
+				title: 'Top up via bank or crypto',
+				description: 'Fund payouts using bank transfers or crypto',
+			},
+			reporting: {
+				title: 'Perfect reporting',
+				description: 'Agreements, invoices, transactions, and exports in one place',
+			},
+			ip: {
+				title: 'Full ownership of IP',
+				description: 'All contractor work results belong entirely to you',
+			},
+			api: {
+				title: 'Scale with API',
+				description: 'Run mass payouts and workflows programmatically',
+			},
+		},
+		cta: {
+			title: 'Ready to get started?',
+			description: 'Join thousands of businesses streamlining their global payroll today',
+			button: 'Book a demo',
+		},
+	},
+	howTo: {
+		title: 'How to get started',
+		description: 'Start using Garna in a few simple steps',
+		steps: {
+			step1: {
+				title: 'Set up your account',
+				description: 'Create your company profile and verify your business details to get access to the platform',
+			},
+			step2: {
+				title: 'Invite your team',
+				description: 'Add employees and contractors to the dashboard and assign roles and permissions',
+			},
+			step3: {
+				title: 'Fund your balance',
+				description: 'Top up your corporate wallet using bank transfer, SWIFT, SEPA, or crypto assets',
+			},
+			step4: {
+				title: 'Send payouts',
+				description: 'Execute global payrolls in one click with automated tax handling and compliance',
+			},
+		},
+		panel: {
+			signup: {
+				title: 'Sign up in Garna',
+				companyNameLabel: 'Company name',
+				companyNameValue: 'Test Company Name',
+				registrationNumberLabel: 'Registration number',
+				registrationNumberValue: 'HE123456',
+				registrationDateLabel: 'Date of company registration',
+				registrationDateValue: '02.02.2022',
+				countryLabel: 'Country of registration',
+				countryValue: 'Cyprus',
+				emailLabel: 'Email',
+				emailValue: 'rulettequiddu-3309@yopmail.com',
+				nextButton: 'Next',
+			},
+			invite: {
+				title: 'Invitation by email',
+				subtitle: 'Select a position and enter the email addresses of employees to send invitations to',
+				positionLabel: 'Position',
+				positionValue: 'QA Engineering Services',
+				emailLabel: 'Email',
+				sampleEmail: 'emma.c17503@gmail.com',
+				emailPlaceholder: 'Enter email',
+				hint:
+					'Press Enter after entering each email or copy and paste a comma-separated list of emails to add them for sending',
+				submitButton: 'Submit',
+			},
+			fund: {
+				title: 'Balance',
+				internalAccount: 'Internal account USD',
+				currencyUsd: 'USD',
+				currencyEur: 'EUR',
+				accountNumber: 'Account number',
+				actions: {
+					send: 'Send',
+					withdraw: 'Withdraw',
+					addFunds: 'Add funds',
+					details: 'Details',
+				},
+				historyTitle: 'History',
+				transferTitle: 'Transfer to Alina Pashkina',
+				confirmed: 'Confirmed',
+			},
+			send: {
+				title: 'Transaction to user',
+				recipientLabel: 'Email or username',
+				recipientName: 'Maria Ban',
+				recipientEmail: '1mariatestova1@gmail.com',
+				amountLabel: 'Transfer amount, $',
+				purposeLabel: 'Purpose of payment',
+				purposePlaceholder: 'Enter description',
+				purposeValue: 'Sales bonus for October 2025',
+				counter: '28/255',
+				sendButton: 'Send',
+			},
+		},
+	},
+	contractorPayouts: {
+		title: 'Pay contractors now, settle later',
+		description:
+			'Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow',
+		items: {
+			item1: 'Immediate payouts, deferred settlement',
+			item2: 'Flexible terms: 30, 60, or 90 days',
+			item3: 'Facility limits from $10K to $1M',
+			item4: 'Instant allocation & processing',
+		},
+		panel: {
+			title: 'Post-Payment Balance',
+			subtitle: 'Revolving Facility',
+			status: 'Active',
+			outstanding: 'Outstanding',
+			availableLimit: 'Available Limit',
+			utilization: 'Utilization 12.4%',
+			payoutVolume: 'Payout Volume',
+			days: {
+				mon: 'Mon',
+				tue: 'Tue',
+				wed: 'Wed',
+				thu: 'Thu',
+				fri: 'Fri',
+				sat: 'Sat',
+				sun: 'Sun',
+			},
+			payoutProcessed: 'Payout Processed',
+			justNow: 'Just now',
+			teamName: 'Engineering Team',
+			teamSubtitle: 'Vendor payout',
+			paidLabel: 'Paid',
+		},
+	},
+	contractorBenefits: {
+		title: 'Benefits for your contractors',
+		description: 'Give your team the flexibility and convenience they deserve',
+		methods: {
+			title: 'Multiple payout methods',
+			description:
+				'Contractors receive payouts via bank transfers in 80+ currencies, cards, wallets, or cryptocurrencies',
+			items: {
+				bankTransfer: 'Bank transfer',
+				cardTransfer: 'Transfer to a card',
+				newBadge: 'New',
+				eWallets: 'Electronic wallets',
+				crypto: 'Cryptocurrencies',
+			},
+		},
+		mobile: {
+			title: 'Mobile first experience',
+			description: 'Get notified when your payout is credited and manage balances and payouts in one app',
+			lte: 'LTE',
+			date: 'Tuesday, January 10',
+			appName: 'Garna',
+			justNow: 'just now',
+			notificationTitle: 'Payout credited',
+			notificationBody: 'Your January payout has been credited to your balance',
+		},
+		earlyPayout: {
+			title: 'Early payout access',
+			description: 'Request early access to earned payouts through a simple and transparent approval flow',
+			employeeLabel: 'Employee',
+			employeeName: 'Sarah Lewis',
+			newBadge: 'New',
+			amountLabel: 'Amount requested',
+			reasonLabel: 'Reason',
+			reasonValue: 'Personal expenses',
+			statusLabel: 'Status',
+			statusPending: 'Pending',
+			approve: 'Approve',
+			decline: 'Decline',
+		},
+	},
+	talentMatching: {
+		title: 'Hire faster with smart talent matching',
+		description:
+			'Garna helps connect businesses with suitable candidates using intelligent matching technologies — speeding up hiring while also helping people find work more efficiently',
+		cta: 'Learn more',
+		profile: {
+			name: 'Ethan Brooks',
+			role: 'Logistics Specialist',
+		},
+		tags: {
+			supplyChain: 'Supply Chain',
+			operations: 'Operations',
+			inventory: 'Inventory',
+		},
+		skillMatch: 'Skill match',
+	},
+	faqHome: {
+		title: 'Frequently asked questions',
+		subtitle: "Got Questions? We've Got Answers",
+		items: {
+			q1: {
+				question: 'How do I get started with Garna?',
+				answer: 'Sign up on our platform, contact our sales team, and start processing payroll in just a few steps.',
+			},
+			q2: {
+				question: 'What payment methods does Garna support?',
+				answer: 'We offer bank transfers in USD, local currencies, e-wallets and crypto.',
+			},
+			q3: {
+				question: 'Can I pay contractors in multiple countries?',
+				answer: 'Yes, Garna supports payroll in over 150 countries worldwide.',
+			},
+			q4: {
+				question: 'Are there any minimum payment limits?',
+				answer: 'No, you can process payroll of any amount that fits your business needs.',
+			},
+		},
+	},
+	bottomCta: {
+		title: 'Start with Garna Today',
+		description: 'Optimize your payroll and focus on growing your business',
+		button: 'Book a free demo',
+	},
+	footer: {
+		brand: 'garna',
+		poweredBy: 'Powered by',
+		copyright: 'garna.io © 2026',
+		linkedIn: 'Garna',
+		email: 'hello@garna.io',
+		address: '134 Makariou III, Ground Floor, 3021 Limassol, Cyprus',
+		disclaimer:
+			'© 2026 GARNA LTD. Stasikratous, 20, 1st floor, Flat/Office 105, 1065, Nicosia, Cyprus. HE 478114. Garna is not a financial institution. All fintech services within the Garna app are provided by certified partners, including Payoneer and others. Payment services may be provided by affiliates MEDIACUBE PAY INC. (Office 29 - 18 King Street East, Suite 1400, Toronto, Ontario, M5C1C4, Canada, FINTRAC Registration Number: M24438190) as well as other non-affiliated companies.',
+	},
+};

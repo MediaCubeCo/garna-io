@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Target Missing - Garna</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Inter', sans-serif; }
+.font-manrope { font-family: 'Manrope', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+/* Background Noise Texture */
+.bg-noise {
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+}
+/* Radar Scanner Animation */
+.radar-sweep {
+background: conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(94, 165, 0, 0.1) 310deg, rgba(94, 165, 0, 0.4) 360deg);
+animation: radar-spin 4s linear infinite;
+border-radius: 50%;
+}
+@keyframes radar-spin {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+/* Pulsing Rings */
+.pulse-ring {
+border: 1px solid rgba(255, 255, 255, 0.03);
+border-radius: 50%;
+animation: ripple 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.pulse-ring-delay {
+animation-delay: 1s;
+}
+@keyframes ripple {
+0% { transform: scale(0.8); opacity: 0; }
+50% { opacity: 1; border-color: rgba(255, 255, 255, 0.08); }
+100% { transform: scale(1.2); opacity: 0; }
+}
+/* Blinking Cursor */
+.cursor-blink {
+animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50% { opacity: 0; }
+}
+/* Custom Button Hover Gradient */
+.btn-gradient:hover {
+background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+}
+</style><link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style><link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">.font-roboto { font-family: 'Roboto', sans-serif !important; }</style><link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">.font-montserrat { font-family: 'Montserrat', sans-serif !important; }</style><link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">.font-poppins { font-family: 'Poppins', sans-serif !important; }</style><link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">.font-playfair { font-family: 'Playfair Display', serif !important; }</style><link id="all-fonts-link-font-instrument-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-instrument-serif">.font-instrument-serif { font-family: 'Instrument Serif', serif !important; }</style><link id="all-fonts-link-font-merriweather" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap"><style id="all-fonts-style-font-merriweather">.font-merriweather { font-family: 'Merriweather', serif !important; }</style><link id="all-fonts-link-font-bricolage" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-bricolage">.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }</style><link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-jakarta">.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style><link id="all-fonts-link-font-space-grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-space-grotesk">.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }</style><link id="all-fonts-link-font-work-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-work-sans">.font-work-sans { font-family: 'Work Sans', sans-serif !important; }</style><link id="all-fonts-link-font-pt-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-pt-serif">.font-pt-serif { font-family: 'PT Serif', serif !important; }</style><link id="all-fonts-link-font-geist-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist-mono">.font-geist-mono { font-family: 'Geist Mono', monospace !important; }</style><link id="all-fonts-link-font-space-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-space-mono">.font-space-mono { font-family: 'Space Mono', monospace !important; }</style><link id="all-fonts-link-font-quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-quicksand">.font-quicksand { font-family: 'Quicksand', sans-serif !important; }</style><link id="all-fonts-link-font-nunito" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-nunito">.font-nunito { font-family: 'Nunito', sans-serif !important; }</style><link id="all-fonts-link-font-newsreader" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..800&amp;display=swap"><style id="all-fonts-style-font-newsreader">.font-newsreader { font-family: 'Newsreader', serif !important; }</style><link id="all-fonts-link-font-google-sans-flex" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-google-sans-flex">.font-google-sans-flex { font-family: 'Google Sans Flex', sans-serif !important; }</style><link id="all-fonts-link-font-oswald" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-oswald">.font-oswald { font-family: 'Oswald', sans-serif !important; }</style><link id="all-fonts-link-font-dm-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-dm-sans">.font-dm-sans { font-family: 'DM Sans', sans-serif !important; }</style><link id="all-fonts-link-font-cormorant" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-cormorant">.font-cormorant { font-family: 'Cormorant Garamond', serif !important; }</style><link id="all-fonts-link-font-inter" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"><style id="all-fonts-style-font-inter">.font-inter { font-family: 'Inter', sans-serif !important; }</style></head>
+<body class="flex flex-col items-center justify-center overflow-hidden selection:bg-[#5EA500] selection:text-black text-white bg-[#050505] w-full h-screen relative">
+
+    <!-- Ambient Background Lighting -->
+    <div class="absolute inset-0 bg-noise pointer-events-none z-0"></div>
+    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#5EA500] opacity-[0.03] blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-white opacity-[0.02] blur-[100px] rounded-full pointer-events-none"></div>
+
+    <!-- The Radar Visual Layer (Behind Content) -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        <!-- Static Rings -->
+        <div class="absolute w-[300px] h-[300px] border border-white/5 rounded-full"></div>
+        <div class="absolute w-[500px] h-[500px] border border-white/5 rounded-full opacity-50"></div>
+        <div class="absolute w-[800px] h-[800px] border border-white/5 rounded-full opacity-30"></div>
+        
+        <!-- Animated Rings -->
+        <div class="absolute w-[400px] h-[400px] pulse-ring"></div>
+        <div class="absolute w-[400px] h-[400px] pulse-ring pulse-ring-delay"></div>
+
+        <!-- Scanning Sweep -->
+        <div class="absolute w-[600px] h-[600px] radar-sweep mask-image-radial"></div>
+        
+        <!-- Axis Lines -->
+        <div class="absolute h-full w-[1px] bg-gradient-to-b from-transparent via-white/5 to-transparent"></div>
+        <div class="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex flex-col z-10 px-6 relative items-center">
+        
+        <!-- Central Icon / "Zero State" -->
+        <div class="mb-10 relative">
+            <div class="w-24 h-24 rounded-full bg-[#0A0A0A] border border-white/10 flex items-center justify-center shadow-2xl shadow-black/50 z-20 relative">
+                <iconify-icon icon="solar:radar-2-linear" width="40" class="text-white/80"></iconify-icon>
+            </div>
+            <!-- Alert Badge -->
+            <div class="-top-1 -right-1 z-30 bg-[#050505] rounded-full pt-1 pr-1 pb-1 pl-1 absolute">
+                <div class="text-[10px] flex leading-[0.9] font-bold text-black font-manrope bg-[#5EA500] rounded-full pt-1 pr-2 pb-1 pl-2 gap-x-1 gap-y-1 items-center">
+    <iconify-icon icon="solar:info-circle-bold" width="10" class=""></iconify-icon>
+    <span data-translate="hero.code">404</span>
+</div>
+            </div>
+        </div>
+
+        <!-- Typography -->
+        <div class="text-center mb-8 pr-4 pl-4 space-y-2">
+            <h1 class="md:text-5xl flex items-center justify-center gap-3 text-4xl font-semibold text-white tracking-tight font-manrope">
+                <span data-translate="hero.title">Signal lost</span>
+                <!-- Functional Failure Indicator -->
+                <span class="relative flex h-3 w-3" aria-hidden="true">
+                    <span class="animate-ping inline-flex bg-red-500 opacity-75 w-full h-full rounded-full absolute top-0.5"></span>
+                    <span class="inline-flex bg-red-600 w-3 h-3 rounded-full relative top-0.5"></span>
+                </span>
+            </h1>
+            <div class="flex items-center justify-center gap-2 text-gray-500 font-mono text-xs md:text-sm mt-3">
+                
+                
+            </div>
+            <p class="leading-relaxed text-base font-light text-gray-400 font-manrope max-w-sm mt-4 mr-auto ml-auto" data-translate="hero.description">The page you are looking for does not exist at this address. Please check the URL for typos or return to the homepage</p>
+        </div>
+
+        <!-- Search Bar Simulation -->
+        <div class="flex gap-3 bg-[#0A0A0A] w-full max-w-md border-white/10 border rounded-lg mb-10 pt-1.5 pr-1.5 pb-1.5 pl-1.5 shadow-lg gap-x-3 gap-y-3 items-center">
+            <div class="pl-3 text-gray-500 flex items-center">
+                <iconify-icon icon="solar:magnifer-linear" width="18" class=""></iconify-icon>
+            </div>
+            <div class="flex-1 font-mono text-xs text-gray-500 flex items-center">
+                <span class="text-gray-300" data-translate="search.query">/unknown-page</span>
+                <span class="w-1.5 cursor-blink bg-[#5EA500] w-0.5 h-4 ml-1"></span>
+            </div>
+            <div class="px-2 py-1 bg-white/5 rounded text-[10px] text-gray-400 font-mono border border-white/5" data-translate="search.results">
+                0 RESULTS
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col md:flex-row items-center gap-4 w-full justify-center">
+            <a href="/" class="group flex items-center justify-center gap-2 hover:bg-gray-200 transition-all duration-200 hover:shadow-[0_0_25px_-5px_rgba(255,255,255,0.6)] md:w-auto text-base font-normal text-black bg-white w-full rounded-lg pt-3 pr-6 pb-3 pl-6 shadow-[0_0_20px_-5px_rgba(255,255,255,0.4)]">
+    <span class="font-semibold font-manrope" data-translate="cta.home">Return Home</span>
+</a>
+            
+            
+        </div>
+
+        <!-- Footer Meta (Technical) -->
+        <div class="absolute bottom-[-15vh] md:bottom-[-20vh] font-mono text-[10px] text-gray-700 uppercase tracking-widest flex gap-8 opacity-50">
+            
+            
+        </div>
+
+    </div>
+
+
+</body></html>
