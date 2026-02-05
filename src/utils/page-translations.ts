@@ -1,5 +1,113 @@
 import { getPageTranslations } from '../pages/i18n';
 import { RouteInfo } from './routes';
+import { languages } from '../config/languages';
+
+const FOOTER_LANG_SELECT_PLACEHOLDER = '<!-- FOOTER_LANG_SELECT -->';
+
+/**
+ * Builds the same-page URL for a given language (worker-side).
+ * 404 page: switch to home in that language. Home: /lang. Offer: /lang/for-contractors.
+ */
+function getLanguagePagePath(pageName: string, lang: string): string {
+	const segment = lang.toLowerCase();
+	if (pageName === '404' || pageName === 'home') {
+		return `/${segment}`;
+	}
+	if (pageName === 'offer') {
+		return `/${segment}/for-contractors`;
+	}
+	return `/${segment}`;
+}
+
+/**
+ * Returns HTML for the footer language select.
+ * Custom dropdown with styles and animation copied entirely from SelectForm (selectForm.module.css).
+ * Injected server-side; on option click navigates to the same page in the selected language.
+ */
+function buildFooterLangSelectHtml(pageName: string, currentLanguage: string, languageLabel: string): string {
+	const currentLang = currentLanguage.toLowerCase();
+	const currentOption = languages.find((l) => l.value === currentLang);
+	const displayText = currentOption ? currentOption.label : currentLang;
+
+	const optionsHtml = languages
+		.map((lang) => {
+			const path = getLanguagePagePath(pageName, lang.value);
+			const selected = lang.value === currentLang;
+			const selectedClass = selected ? ' footer-lang-optionSelected' : '';
+			const ariaSelected = selected ? 'true' : 'false';
+			return `<li class="footer-lang-option${selectedClass}" role="option" aria-selected="${ariaSelected}" data-url="${escapeHtml(
+				path
+			)}">${escapeHtml(lang.label)}</li>`;
+		})
+		.join('');
+
+	// Styles: trigger + dropdown opening upward, no arrow
+	const style = `
+.footer-lang-label { position: relative; width: 100%; }
+.footer-lang-trigger {
+	display: flex; align-items: center;
+	width: 100%; border: none; border-bottom: 1px solid rgb(34, 34, 34);
+	background-color: transparent; color: #fff; padding: 10px 0;
+	cursor: pointer; font: inherit; transition: border-color 0.18s ease; outline: none;
+}
+.footer-lang-trigger:hover { border-bottom-color: rgba(255, 255, 255, 0.2); }
+.footer-lang-trigger:focus-visible { border-bottom-color: rgb(94, 165, 0); outline: none; }
+.footer-lang-label:hover .footer-lang-trigger { border-bottom-color: rgb(94, 165, 0); }
+.footer-lang-triggerText {
+	flex: 1; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.footer-lang-dropdown {
+	position: absolute; left: 0; right: 0; bottom: 100%; top: auto; z-index: 10;
+	opacity: 0; transform: translateY(6px);
+	transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+	pointer-events: none; visibility: hidden; will-change: transform, opacity;
+	padding-bottom: 6px;
+}
+.footer-lang-label:hover .footer-lang-dropdown {
+	opacity: 1; transform: translateY(0); pointer-events: auto; visibility: visible;
+}
+.footer-lang-list {
+	margin: 0; padding: 6px 0; list-style: none;
+	background-color: rgb(10, 10, 10); border: 1px solid rgb(34, 34, 34);
+	border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+	overflow-y: auto; max-height: 260px;
+}
+.footer-lang-option {
+	padding: 10px 14px; cursor: pointer; transition: background-color 0.1s ease-out;
+	color: rgba(255, 255, 255, 0.9); font-size: inherit;
+}
+.footer-lang-option:hover, .footer-lang-optionHighlighted {
+	background-color: rgba(255, 255, 255, 0.06); color: #fff;
+}
+.footer-lang-optionSelected { color: rgb(94, 165, 0); font-weight: 500; }
+.footer-lang-optionSelected.footer-lang-optionHighlighted,
+.footer-lang-optionSelected:hover { background-color: rgba(255, 255, 255, 0.08); color: rgb(94, 165, 0); }
+@media (min-width: 768px) { .footer-lang-label { max-width: 160px; } }
+@media (max-width: 767px) { .footer-lang-label { max-width: 100%; } }`;
+
+	const script = `
+(function(){
+	var c=document.getElementById('footer-lang-container');
+	var opts=c&&c.querySelectorAll('.footer-lang-option');
+	function go(url){ if(url) location.href=url; }
+	if(opts){ for(var i=0;i<opts.length;i++){ (function(el){ el.addEventListener('click',function(){ go(el.getAttribute('data-url')); }); })(opts[i]); } }
+})();`;
+
+	return (
+		`<style>${style}</style>` +
+		'<div class="footer-lang-select-block mt-4 md:mt-6">' +
+		'<div class="footer-lang-label" id="footer-lang-container">' +
+		`<div class="footer-lang-trigger" role="combobox" aria-haspopup="listbox" aria-label="${escapeHtml(
+			languageLabel
+		)}">` +
+		`<span class="footer-lang-triggerText">${escapeHtml(displayText)}</span>` +
+		'</div>' +
+		'<div class="footer-lang-dropdown">' +
+		`<ul class="footer-lang-list" role="listbox" aria-label="${escapeHtml(languageLabel)}">${optionsHtml}</ul>` +
+		'</div></div></div>' +
+		`<script>${script}</script>`
+	);
+}
 
 /**
  * Injects page translations into HTML as a JavaScript object
@@ -24,18 +132,44 @@ export function injectPageTranslations(
 		// Get current language and replace image src attributes in HTML directly on server
 		// This ensures images are correct before browser even starts loading them
 		const currentLanguage = routeInfo.language || 'en';
+
+		// 404 page: point "Return Home" link to the locale-prefixed home (e.g. /en, /ru)
+		if (pageName === '404') {
+			const homePath = `/${currentLanguage}`;
+			html = html.replace(/<a(?=[^>]*data-home-link)[^>]*\bhref="\/"[^>]*>/i, (match) =>
+				match.replace('href="/"', `href="${escapeHtml(homePath)}"`)
+			);
+		}
+
+		// Footer language select (worker-side): inject select with current language and same-page URLs
+		const currentTranslationsForLabel =
+			allTranslations[currentLanguage as keyof typeof allTranslations] || allTranslations.en;
+		const languageLabel = (currentTranslationsForLabel as any)?.footer?.language ?? 'Language';
+		const footerLangSelectHtml = buildFooterLangSelectHtml(pageName, currentLanguage, languageLabel);
+		if (html.includes(FOOTER_LANG_SELECT_PLACEHOLDER)) {
+			html = html.replace(FOOTER_LANG_SELECT_PLACEHOLDER, footerLangSelectHtml);
+		}
+
 		if (currentLanguage !== 'en') {
 			const currentTranslations =
 				allTranslations[currentLanguage as keyof typeof allTranslations] || allTranslations.en;
-			
+
 			// Update meta title if translation exists
-			if (currentTranslations.meta && typeof currentTranslations.meta === 'object' && 'title' in currentTranslations.meta) {
+			if (
+				currentTranslations.meta &&
+				typeof currentTranslations.meta === 'object' &&
+				'title' in currentTranslations.meta
+			) {
 				const title = (currentTranslations.meta as any).title as string;
 				html = html.replace(/<title>[^<]*<\/title>/i, `<title>${escapeHtml(title)}</title>`);
 			}
 
 			// Update meta description if translation exists
-			if (currentTranslations.meta && typeof currentTranslations.meta === 'object' && 'description' in currentTranslations.meta) {
+			if (
+				currentTranslations.meta &&
+				typeof currentTranslations.meta === 'object' &&
+				'description' in currentTranslations.meta
+			) {
 				const description = (currentTranslations.meta as any).description as string;
 				// Replace existing description meta tag
 				html = html.replace(
@@ -47,7 +181,39 @@ export function injectPageTranslations(
 					html = html.replace('</head>', `  <meta name="description" content="${escapeHtml(description)}">\n</head>`);
 				}
 			}
-			
+
+			// Update Open Graph and Twitter Card to match current locale
+			const metaTitle =
+				currentTranslations.meta && typeof currentTranslations.meta === 'object' && 'title' in currentTranslations.meta
+					? ((currentTranslations.meta as any).title as string)
+					: null;
+			const metaDescription =
+				currentTranslations.meta &&
+				typeof currentTranslations.meta === 'object' &&
+				'description' in currentTranslations.meta
+					? ((currentTranslations.meta as any).description as string)
+					: null;
+			if (metaTitle) {
+				html = html.replace(
+					/<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/i,
+					`<meta property="og:title" content="${escapeHtml(metaTitle)}">`
+				);
+				html = html.replace(
+					/<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/i,
+					`<meta name="twitter:title" content="${escapeHtml(metaTitle)}">`
+				);
+			}
+			if (metaDescription) {
+				html = html.replace(
+					/<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/i,
+					`<meta property="og:description" content="${escapeHtml(metaDescription)}">`
+				);
+				html = html.replace(
+					/<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/i,
+					`<meta name="twitter:description" content="${escapeHtml(metaDescription)}">`
+				);
+			}
+
 			const imageMappings = (currentTranslations.images || {}) as Record<string, string>;
 
 			// Find all img tags with data-image-src attribute
@@ -70,21 +236,24 @@ export function injectPageTranslations(
 					let newAttributes = attributes.replace(/\ssrc=["'][^"']*["']/i, ` src="${dir}${imagePath}"`);
 
 					// Replace srcset if present
-					newAttributes = newAttributes.replace(/srcset=["']([^"']+)["']/gi, (srcsetMatch: string, srcsetValue: string) => {
-						const escapedBaseName = originalBaseName.replace(/[.*+?^$()|[\]\\-]/g, '\\$&');
-						const escapedDir = dir.replace(/[.*+?^$()|[\]\\-]/g, '\\$&');
-						const newSrcset = srcsetValue.replace(
-							new RegExp(`${escapedDir}${escapedBaseName}(-p-\\d+)?\\.png`, 'gi'),
-							(entry: string) => {
-								const sizeMatch = entry.match(/-p-(\d+)\.png/i);
-								if (sizeMatch) {
-									return `${dir}${newImageBase}-p-${sizeMatch[1]}.png`;
+					newAttributes = newAttributes.replace(
+						/srcset=["']([^"']+)["']/gi,
+						(srcsetMatch: string, srcsetValue: string) => {
+							const escapedBaseName = originalBaseName.replace(/[.*+?^$()|[\]\\-]/g, '\\$&');
+							const escapedDir = dir.replace(/[.*+?^$()|[\]\\-]/g, '\\$&');
+							const newSrcset = srcsetValue.replace(
+								new RegExp(`${escapedDir}${escapedBaseName}(-p-\\d+)?\\.png`, 'gi'),
+								(entry: string) => {
+									const sizeMatch = entry.match(/-p-(\d+)\.png/i);
+									if (sizeMatch) {
+										return `${dir}${newImageBase}-p-${sizeMatch[1]}.png`;
+									}
+									return `${dir}${imagePath}`;
 								}
-								return `${dir}${imagePath}`;
-							}
-						);
-						return `srcset="${newSrcset}"`;
-					});
+							);
+							return `srcset="${newSrcset}"`;
+						}
+					);
 
 					return `<img${newAttributes}>`;
 				}
@@ -375,15 +544,6 @@ export function injectPageTranslations(
             element.value = String(value);
           }
         }
-        if (key && value === undefined) {
-          console.warn('[page-translations] Translation not found for key:', key);
-        }
-        if (placeholderKey && placeholderValue === undefined) {
-          console.warn('[page-translations] Translation not found for key:', placeholderKey);
-        }
-        if (valueKey && valueValue === undefined) {
-          console.warn('[page-translations] Translation not found for key:', valueKey);
-        }
         return;
       }
       if (value !== undefined && value !== null) {
@@ -393,8 +553,6 @@ export function injectPageTranslations(
         } else {
           element.textContent = valueStr;
         }
-      } else if (key) {
-        console.warn('[page-translations] Translation not found for key:', key);
       }
     });
   }
@@ -404,7 +562,6 @@ export function injectPageTranslations(
   
   function init() {
     if (initialized) {
-      console.warn('[page-translations] Already initialized, skipping');
       return;
     }
     initialized = true;
@@ -412,14 +569,12 @@ export function injectPageTranslations(
     var language = getCurrentLanguage();
     
     if (!window.pageTranslations) {
-      console.warn('[page-translations] window.pageTranslations not found, retrying...');
       setTimeout(init, 50);
       return;
     }
     
     var translations = window.pageTranslations[language] || window.pageTranslations.en;
     if (!translations) {
-      console.warn('[page-translations] No translations found for language:', language);
       return;
     }
     
@@ -474,8 +629,7 @@ export function injectPageTranslations(
 		}
 
 		return html;
-	} catch (error) {
-		console.error('[injectPageTranslations] Error:', error);
+	} catch {
 		return html; // Return original HTML on error
 	}
 }

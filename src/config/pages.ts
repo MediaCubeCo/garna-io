@@ -22,7 +22,7 @@ export const basePaths: PageConfig[] = [
 		searchable: true,
 	},
 	{
-		path: 'offer',
+		path: 'for-contractors',
 		mode: 'static',
 		searchable: true,
 	},

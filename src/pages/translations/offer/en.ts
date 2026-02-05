@@ -1,8 +1,7 @@
 export const offerEn = {
 	meta: {
 		title: 'Garna for Contractors - Get Paid Globally',
-		description:
-			'Receive payments from clients worldwide with transparent fees and instant withdrawals',
+		description: 'Receive payments from clients worldwide with transparent fees and instant withdrawals',
 	},
 	images: {},
 	nav: {
@@ -44,8 +43,7 @@ export const offerEn = {
 		steps: {
 			client: {
 				title: 'Client initiates payment',
-				description:
-					'Your client sends the payment to Garna through their bank account or other payment method',
+				description: 'Your client sends the payment to Garna through their bank account or other payment method',
 			},
 			processing: {
 				title: 'Garna processes instantly',
@@ -53,8 +51,7 @@ export const offerEn = {
 			},
 			receive: {
 				title: 'You receive funds',
-				description:
-					'Money lands in your account. Withdraw to your bank, card, e-wallets or crypto wallet instantly',
+				description: 'Money lands in your account. Withdraw to your bank, card, e-wallets or crypto wallet instantly',
 			},
 		},
 	},
@@ -141,8 +138,7 @@ export const offerEn = {
 		cards: {
 			privacy: {
 				title: 'Absolute Privacy',
-				description:
-					'We do not report your real-time location or transaction data to foreign tax authorities',
+				description: 'We do not report your real-time location or transaction data to foreign tax authorities',
 				secureTunnel: 'SECURE_TUNNEL',
 				encryptedConnection: 'ENCRYPTED CONNECTION',
 				aesLabel: 'AES-256',
@@ -155,8 +151,7 @@ export const offerEn = {
 			},
 			legal: {
 				title: 'Legal Support',
-				description:
-					'Auto-generated legal documentation for Visa and Residency (VZN) applications worldwide.',
+				description: 'Auto-generated legal documentation for Visa and Residency (VZN) applications worldwide.',
 				pdfLabel: 'PDF',
 				verifiedBadge: 'Verified',
 				signatureLabel: 'Authorized Signature',
@@ -205,8 +200,7 @@ export const offerEn = {
 			},
 			q5: {
 				question: 'Which payment methods from US clients are supported?',
-				answer:
-					'We support ACH and Wire transfers, which are the standard domestic payment methods for US companies.',
+				answer: 'We support ACH and Wire transfers, which are the standard domestic payment methods for US companies.',
 			},
 			q6: {
 				question: 'Can I work with clients who only pay US entities?',
@@ -237,14 +231,14 @@ export const offerEn = {
 	},
 	finalCta: {
 		title: 'Ready to get paid?',
-		description:
-			'Join thousands of contractors who trust Garna for fast, secure, and transparent global payments',
+		description: 'Join thousands of contractors who trust Garna for fast, secure, and transparent global payments',
 		button: 'Start getting paid with Garna',
 	},
 	footer: {
 		brand: 'garna',
 		poweredBy: 'Powered by ',
 		copyright: 'garna.io © 2026',
+		language: 'Language',
 		linkedIn: 'Garna',
 		email: 'hello@garna.io',
 		address: '134 Makariou III, Ground Floor, 3021 Limassol, Cyprus',

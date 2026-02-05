@@ -17,4 +17,7 @@ export const notFoundEs = {
 	cta: {
 		home: 'Volver al inicio',
 	},
+	footer: {
+		language: 'Idioma',
+	},
 };

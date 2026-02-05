@@ -34,11 +34,6 @@ export default {
 			// If we reach here, show 404
 			return await show404Page(request, url.pathname, country, env);
 		} catch (error: any) {
-			console.error('Worker exception:', error);
-			console.error('Error type:', typeof error);
-			console.error('Error constructor:', error?.constructor?.name);
-			console.error('Error message:', error?.message);
-			console.error('Error stack:', error?.stack);
 			const errorMessage = error?.message || String(error) || 'Unknown error';
 			const errorStack = error?.stack || 'No stack trace';
 			const errorDetails = `Worker exception: ${errorMessage}\n\nStack:\n${errorStack}\n\nError type: ${typeof error}\nError constructor: ${

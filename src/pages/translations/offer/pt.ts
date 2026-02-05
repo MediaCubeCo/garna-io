@@ -1,8 +1,7 @@
 export const offerPt = {
 	meta: {
 		title: 'Garna para contratados - Receba pagamentos globalmente',
-		description:
-			'Receba pagamentos de clientes no mundo todo com taxas transparentes e saques instantâneos',
+		description: 'Receba pagamentos de clientes no mundo todo com taxas transparentes e saques instantâneos',
 	},
 	images: {},
 	nav: {
@@ -44,8 +43,7 @@ export const offerPt = {
 		steps: {
 			client: {
 				title: 'O cliente inicia o pagamento',
-				description:
-					'Seu cliente envia o pagamento para a Garna por conta bancária ou outro método de pagamento',
+				description: 'Seu cliente envia o pagamento para a Garna por conta bancária ou outro método de pagamento',
 			},
 			processing: {
 				title: 'Garna processa instantaneamente',
@@ -85,8 +83,7 @@ export const offerPt = {
 			},
 			tax: {
 				title: 'Documentos fiscais e de reporte',
-				description:
-					'Automatizamos o chato. Formulários fiscais e faturas são gerados e armazenados automaticamente',
+				description: 'Automatizamos o chato. Formulários fiscais e faturas são gerados e armazenados automaticamente',
 			},
 		},
 	},
@@ -205,8 +202,7 @@ export const offerPt = {
 			},
 			q5: {
 				question: 'Quais métodos de pagamento de clientes dos EUA são suportados?',
-				answer:
-					'Suportamos transferências ACH e Wire, que são os métodos domésticos padrão para empresas dos EUA.',
+				answer: 'Suportamos transferências ACH e Wire, que são os métodos domésticos padrão para empresas dos EUA.',
 			},
 			q6: {
 				question: 'Posso trabalhar com clientes que só pagam entidades dos EUA?',
@@ -245,6 +241,7 @@ export const offerPt = {
 		brand: 'garna',
 		poweredBy: 'Impulsionado por ',
 		copyright: 'garna.io © 2026',
+		language: 'Idioma',
 		linkedIn: 'Garna',
 		email: 'hello@garna.io',
 		address: '134 Makariou III, Térreo, 3021 Limassol, Chipre',

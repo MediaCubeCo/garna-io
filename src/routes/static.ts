@@ -57,7 +57,10 @@ export async function generateLocaleSitemap(locale: string): Promise<string> {
 	urls.sort();
 
 	const sitemapEntries = urls
-		.map((url) => `  <url>\n    <loc>${url}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`)
+		.map(
+			(url) =>
+				`  <url>\n    <loc>${url}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`
+		)
 		.join('\n');
 
 	return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>`;
@@ -66,7 +69,8 @@ export async function generateLocaleSitemap(locale: string): Promise<string> {
 export function generateSitemapIndex(): string {
 	const today = new Date().toISOString().split('T')[0];
 	let sitemaps: string[] = getSupportedLanguageCodes().map(
-		(locale) => `  <sitemap>\n    <loc>${BASE_DOMAIN}/${locale}/sitemap.xml</loc>\n    <lastmod>${today}</lastmod>\n  </sitemap>`
+		(locale) =>
+			`  <sitemap>\n    <loc>${BASE_DOMAIN}/${locale}/sitemap.xml</loc>\n    <lastmod>${today}</lastmod>\n  </sitemap>`
 	);
 
 	return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemaps.join(
@@ -229,7 +233,11 @@ async function handlePagesAssets(request: Request, pathname: string, env?: any):
 				errorType: error?.constructor?.name,
 			};
 			console.error(`Error serving page asset from Static Assets (${pathname}):`, errorDetails);
-			const errorText = `Error loading page asset: ${errorDetails.message}\n\nDetails: ${JSON.stringify(errorDetails, null, 2)}`;
+			const errorText = `Error loading page asset: ${errorDetails.message}\n\nDetails: ${JSON.stringify(
+				errorDetails,
+				null,
+				2
+			)}`;
 			return new Response(errorText, {
 				status: 500,
 				headers: { 'Content-Type': 'text/plain; charset=utf-8' },
@@ -257,6 +265,48 @@ export async function handleStaticFile(request: Request, pathname: string, env?:
 	const pagesAssetResponse = await handlePagesAssets(request, pathname, env);
 	if (pagesAssetResponse) {
 		return pagesAssetResponse;
+	}
+
+	// Handle widget files from /widget/*
+	if (pathname.startsWith('/widget/')) {
+		const useStaticAssetsFlag = env?.USE_STATIC_ASSETS === 'true';
+		const hasAssetsBinding = env?.ASSETS !== undefined;
+
+		if (useStaticAssetsFlag && hasAssetsBinding && env?.ASSETS) {
+			try {
+				const assetUrl = new URL(pathname, request.url);
+				const assetRequest = new Request(assetUrl.toString(), {
+					method: request.method,
+					headers: request.headers,
+				});
+				const response = await env.ASSETS.fetch(assetRequest);
+
+				if (response.status === 404) {
+					console.warn(`Widget asset not found: ${pathname}`);
+					return new Response('Widget asset not found', {
+						status: 404,
+						headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+					});
+				}
+
+				// Clone response and add cache headers
+				const headers = new Headers(response.headers);
+				const mimeType = getMimeType(pathname);
+				headers.set('Content-Type', mimeType);
+				headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+
+				return new Response(response.body, {
+					status: response.status,
+					headers,
+				});
+			} catch (error: any) {
+				console.error(`Error serving widget asset (${pathname}):`, error);
+				return new Response(`Error loading widget asset: ${error?.message || 'Unknown error'}`, {
+					status: 500,
+					headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+				});
+			}
+		}
 	}
 
 	const headers = {

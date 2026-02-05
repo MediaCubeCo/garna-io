@@ -17,4 +17,7 @@ export const notFoundRu = {
 	cta: {
 		home: 'Вернуться на главную',
 	},
+	footer: {
+		language: 'Язык',
+	},
 };

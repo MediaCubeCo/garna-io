@@ -1,0 +1,28 @@
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	background-color: rgb(94, 165, 0);
+	border: 1px solid #fff3;
+	border-radius: 12px;
+	margin-top: auto;
+	padding: 12px 32px;
+	font-family: Manrope, sans-serif;
+	font-weight: 600;
+	line-height: 24px;
+	transition: all 0.555s;
+	box-shadow: 0 10px 40px #5ea50033;
+	color: white;
+	cursor: pointer;
+}
+
+.buttonIcon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+.button:hover {
+	background-color: #6ab901;
+	box-shadow: 0 10px 40px #6ab90180;
+}

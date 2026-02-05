@@ -1,7 +1,10 @@
+import { getSupportedLanguageCodes } from '../config/languages';
 import { getLanguageFromIP } from '../utils/locale';
+import { getPageTranslations } from '../pages/i18n';
 import { injectHtmlLangTag } from '../utils/htmlLang';
 import { injectCanonicalTag } from '../utils/canonical';
 import { injectHreflangTags } from '../utils/hreflang';
+import { injectSchemaOrg } from '../utils/schema';
 import { injectPageTranslations } from '../utils/page-translations';
 import { RouteInfo } from '../utils/routes';
 
@@ -13,16 +16,29 @@ const securityHeaders = {
 	'Permissions-Policy': 'geolocation=(self), microphone=()',
 };
 
+/** Supported language codes for path-based detection */
+const SUPPORTED_LANGS = new Set(getSupportedLanguageCodes());
+
 /**
- * Shows 404 page with proper locale detection
- * @param request Request object
- * @param pathname Requested path
- * @param country Country code from Cloudflare
- * @param env Worker environment
- * @returns 404 response with localized page
+ * Derives language from pathname when path starts with a supported locale (e.g. /en/..., /es/...).
+ * Falls back to null when path has no valid locale prefix.
+ */
+function getLanguageFromPathname(pathname: string): string | null {
+	const segments = pathname.split('/').filter(Boolean);
+	const first = segments[0];
+	if (!first) return null;
+	const localeMatch = first.match(/^([a-zA-Z]{2})(?:[-._]([a-zA-Z]{2}))?$/);
+	if (!localeMatch) return null;
+	const lang = localeMatch[1].toLowerCase();
+	return SUPPORTED_LANGS.has(lang) ? lang : null;
+}
+
+/**
+ * Shows 404 page with proper locale detection.
+ * Language is taken from the path (e.g. /en/...) when present, otherwise from geo (country).
  */
 export async function show404Page(request: Request, pathname: string, country: string, env?: any): Promise<Response> {
-	const language = getLanguageFromIP(country);
+	const language = getLanguageFromPathname(pathname) ?? getLanguageFromIP(country);
 
 	try {
 		// Try to fetch 404 page from static assets
@@ -60,6 +76,9 @@ export async function show404Page(request: Request, pathname: string, country: s
 				html = injectHtmlLangTag(html, language);
 				html = injectCanonicalTag(html, language, '404');
 				html = injectHreflangTags(html, '404');
+				const canonicalUrl404 = `${baseUrl}/${language}/404`;
+				const meta404 = (getPageTranslations('404', language) as any)?.meta;
+				html = injectSchemaOrg(html, canonicalUrl404, meta404?.title, meta404?.description);
 				html = injectPageTranslations(html, '404', routeInfo, baseUrl, env);
 
 				// Return response with modified HTML and security headers

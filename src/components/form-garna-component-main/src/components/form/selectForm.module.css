@@ -1,0 +1,130 @@
+.label {
+	position: relative;
+	width: 100%;
+}
+
+.trigger {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid rgb(34, 34, 34);
+	background-color: transparent;
+	color: #fff;
+	padding: 10px 0;
+	cursor: pointer;
+	font: inherit;
+	transition: border-color 0.18s ease;
+	outline: none;
+	gap: 8px;
+}
+
+.trigger:hover {
+	border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.trigger:focus-visible {
+	border-bottom-color: rgb(94, 165, 0);
+	outline: none;
+}
+
+.triggerOpen {
+	border-bottom-color: rgb(94, 165, 0);
+}
+
+.trigger.error {
+	border-bottom: 1px solid rgb(255, 3, 3);
+}
+
+.triggerText {
+	flex: 1;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.triggerPlaceholder {
+	color: #9ca3af;
+}
+
+.arrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	color: rgba(255, 255, 255, 0.7);
+	transition: transform 0.2s ease-out, color 0.18s ease;
+}
+
+.triggerOpen .arrow {
+	transform: rotate(180deg);
+	color: rgb(94, 165, 0);
+}
+
+.dropdown {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(100% + 6px);
+	z-index: 10;
+	opacity: 0;
+	transform: translateY(-6px);
+	transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+	pointer-events: none;
+	visibility: hidden;
+	will-change: transform, opacity;
+}
+
+.dropdownOpen {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+	visibility: visible;
+}
+
+.list {
+	margin: 0;
+	padding: 6px 0;
+	list-style: none;
+	background-color: rgb(10, 10, 10);
+	border: 1px solid rgb(34, 34, 34);
+	border-radius: 12px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+	overflow-y: auto;
+	max-height: 260px;
+}
+
+.option {
+	padding: 10px 14px;
+	cursor: pointer;
+	transition: background-color 0.1s ease-out;
+	color: rgba(255, 255, 255, 0.9);
+	font-size: inherit;
+}
+
+.option:hover,
+.optionHighlighted {
+	background-color: rgba(255, 255, 255, 0.06);
+	color: #fff;
+}
+
+.optionSelected {
+	color: rgb(94, 165, 0);
+	font-weight: 500;
+}
+
+.optionSelected.optionHighlighted,
+.optionSelected:hover {
+	background-color: rgba(255, 255, 255, 0.08);
+	color: rgb(94, 165, 0);
+}
+
+.errorMessage {
+	position: absolute;
+	bottom: -70%;
+	left: 0;
+	font-size: 11px;
+	color: rgb(255, 3, 3);
+}

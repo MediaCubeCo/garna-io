@@ -1,8 +1,7 @@
 export const offerEs = {
 	meta: {
 		title: 'Garna para contratistas - Recibe pagos globalmente',
-		description:
-			'Recibe pagos de clientes en todo el mundo con tarifas transparentes y retiros instantáneos',
+		description: 'Recibe pagos de clientes en todo el mundo con tarifas transparentes y retiros instantáneos',
 	},
 	images: {},
 	nav: {
@@ -44,8 +43,7 @@ export const offerEs = {
 		steps: {
 			client: {
 				title: 'El cliente inicia el pago',
-				description:
-					'Tu cliente envía el pago a Garna a través de su cuenta bancaria u otro método de pago',
+				description: 'Tu cliente envía el pago a Garna a través de su cuenta bancaria u otro método de pago',
 			},
 			processing: {
 				title: 'Garna procesa al instante',
@@ -206,8 +204,7 @@ export const offerEs = {
 			},
 			q5: {
 				question: '¿Qué métodos de pago de clientes en EE. UU. son compatibles?',
-				answer:
-					'Soportamos transferencias ACH y Wire, los métodos domésticos estándar para empresas de EE. UU.',
+				answer: 'Soportamos transferencias ACH y Wire, los métodos domésticos estándar para empresas de EE. UU.',
 			},
 			q6: {
 				question: '¿Puedo trabajar con clientes que solo pagan a entidades de EE. UU.?',
@@ -246,6 +243,7 @@ export const offerEs = {
 		brand: 'garna',
 		poweredBy: 'Con tecnología de ',
 		copyright: 'garna.io © 2026',
+		language: 'Idioma',
 		linkedIn: 'Garna',
 		email: 'hello@garna.io',
 		address: '134 Makariou III, Planta baja, 3021 Limassol, Chipre',

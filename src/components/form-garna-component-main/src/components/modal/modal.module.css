@@ -1,0 +1,146 @@
+.garna_demo_modal_overlay {
+	position: fixed;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000000b3;
+	z-index: 999999;
+	color: white;
+	overflow-x: hidden;
+	overflow-y: auto;
+	/* Scrollable content, scrollbar hidden */
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.garna_demo_modal_overlay::-webkit-scrollbar {
+	display: none;
+}
+.garna_garna_demo_modal {
+	position: absolute;
+	z-index: 1000000;
+	left: 50%;
+	top: 50%;
+	width: 100%;
+	max-width: 860px;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	background-color: rgb(10, 10, 10);
+	border-radius: 32px;
+	padding-bottom: 54px;
+	border: 1px solid rgb(34, 34, 34);
+}
+
+.garna_garna_demo_modal_step_2 {
+	position: absolute;
+	z-index: 1000000;
+	left: 50%;
+	/* top: 50%; */
+	width: 100%;
+
+	transform: translateX(-50%);
+	padding: 20px;
+
+	padding-bottom: 54px;
+}
+
+h2 {
+	text-align: center;
+	font-family: Manrope, sans-serif;
+	font-size: 32px;
+	font-weight: 700;
+}
+.subtitle {
+	font-size: 16px;
+	line-height: 120%;
+	text-align: center;
+}
+
+.btn_wrap {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	max-width: 1050px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+.garna_demo_modal_close {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+.garna_demo_modal_close img {
+	margin-left: auto;
+}
+.formFooter {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	margin-top: 6px;
+}
+
+.signUpPrompt {
+	margin: 0;
+	font-size: 12px;
+	line-height: 1.4;
+	color: rgba(255, 255, 255, 0.85);
+	font-family: Manrope, sans-serif;
+}
+
+.link {
+	color: rgb(94, 165, 0);
+	text-decoration: underline;
+	font-weight: 500;
+	transition: color 0.18s ease;
+}
+
+.link:hover {
+	color: rgb(114, 190, 0);
+}
+
+.buttonWrap {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.disclaimer {
+	margin: 0;
+	font-size: 11px;
+	line-height: 1.35;
+	color: rgba(255, 255, 255, 0.6);
+	font-family: Manrope, sans-serif;
+	max-width: 380px;
+	text-align: center;
+}
+
+@media screen and (max-width: 760px) {
+	.garna_garna_demo_modal {
+		position: fixed;
+		inset: 0; /* top/right/bottom/left = 0 */
+		width: 100vw;
+		height: 100dvh; /* лучше чем 100vh на мобилках */
+		max-width: none;
+
+		transform: none;
+		border-radius: 0;
+		border: none;
+
+		padding: 64px 24px 54px;
+		padding-top: 22px;
+		/* overflow-y: auto; 
+    overflow-x: hidden;  */
+		box-sizing: border-box;
+	}
+	h2 {
+		font-size: 24px;
+	}
+	.subtitle {
+		font-size: 14px;
+	}
+	.buttonWrap {
+		margin-top: 40px;
+	}
+}

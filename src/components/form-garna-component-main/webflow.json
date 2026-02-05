@@ -1,0 +1,17 @@
+{
+  "library": {
+    "name": "form-garna-component",
+    "components": [
+      "./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)"
+    ],
+    "description": "",
+    "id": "form-garna-component"
+  },
+  "telemetry": {
+    "global": {
+      "allowTelemetry": false,
+      "lastPrompted": 1766742616605,
+      "version": "1.10.0"
+    }
+  }
+}

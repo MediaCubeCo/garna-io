@@ -1,9 +1,11 @@
 import { basePaths, PageConfig } from '../config/pages';
 import { RouteInfo } from '../utils/routes';
 import { languages } from '../config/languages';
+import { getPageTranslations } from '../pages/i18n';
 import { injectHtmlLangTag } from '../utils/htmlLang';
 import { injectCanonicalTag } from '../utils/canonical';
 import { injectHreflangTags } from '../utils/hreflang';
+import { injectSchemaOrg } from '../utils/schema';
 import { injectPageTranslations } from '../utils/page-translations';
 
 const securityHeaders = {
@@ -44,7 +46,7 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 // Mapping of page paths to directory names
 const PAGE_PATH_TO_DIR: Record<string, string> = {
 	'': 'home',
-	offer: 'offer',
+	'for-contractors': 'offer',
 };
 
 async function serveStaticPage(
@@ -110,7 +112,14 @@ async function serveStaticPage(
 		// 3. Inject hreflang tags
 		html = injectHreflangTags(html, path);
 
-		// 4. Inject page translations
+		// 4. Inject Schema.org JSON-LD
+		const canonicalUrl = `${baseUrl}/${language}${path ? `/${path}` : ''}`;
+		const currentMeta = (getPageTranslations(pageDir, language) as any)?.meta;
+		const pageTitle = currentMeta?.title;
+		const pageDescription = currentMeta?.description;
+		html = injectSchemaOrg(html, canonicalUrl, pageTitle, pageDescription);
+
+		// 5. Inject page translations
 		html = injectPageTranslations(html, pageDir, routeInfo, baseUrl, env);
 
 		// Return response with modified HTML and security headers

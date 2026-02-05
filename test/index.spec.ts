@@ -13,11 +13,11 @@ describe('Route Resolution', () => {
 	});
 
 	it('should resolve valid English route with path', () => {
-		const result = resolveRoute('/en/offer');
+		const result = resolveRoute('/en/for-contractors');
 		expect(result.isValid).toBe(true);
 		expect(result.locale).toBe('en');
 		expect(result.language).toBe('en');
-		expect(result.pathSegments).toEqual(['offer']);
+		expect(result.pathSegments).toEqual(['for-contractors']);
 	});
 
 	it('should resolve all supported languages', () => {
@@ -31,17 +31,17 @@ describe('Route Resolution', () => {
 	});
 
 	it('should handle double slashes', () => {
-		const result = resolveRoute('/en//offer');
+		const result = resolveRoute('/en//for-contractors');
 		expect(result.error).toBe('Path contains double slashes');
 	});
 
 	it('should handle trailing slashes', () => {
-		const result = resolveRoute('/en/offer/');
+		const result = resolveRoute('/en/for-contractors/');
 		expect(result.error).toBe('Path contains trailing slash');
 	});
 
 	it('should handle invalid locale case', () => {
-		const result = resolveRoute('/EN/offer');
+		const result = resolveRoute('/EN/for-contractors');
 		expect(result.error).toBe('Invalid locale case');
 		expect(result.locale).toBe('en');
 	});
@@ -52,12 +52,12 @@ describe('Route Resolution', () => {
 	});
 
 	it('should handle invalid locale format', () => {
-		const result = resolveRoute('/invalid/offer');
+		const result = resolveRoute('/invalid/for-contractors');
 		expect(result.error).toBe('Invalid locale format in path');
 	});
 
 	it('should preserve query and hash', () => {
-		const result = resolveRoute('/en/offer?param=value#section');
+		const result = resolveRoute('/en/for-contractors?param=value#section');
 		expect(result.query).toBe('param=value');
 		expect(result.hash).toBe('section');
 	});

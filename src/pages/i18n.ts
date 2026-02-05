@@ -2,9 +2,13 @@ import { homeTranslations } from './translations/home';
 import { offerTranslations } from './translations/offer';
 import { notFoundTranslations } from './translations/404';
 
+/** Home page translation shape (full structure). */
 export type PageTranslations = typeof homeTranslations.en;
 
-const translations: Record<string, Record<string, PageTranslations>> = {
+/** Union of all page translation shapes — each page has its own structure. */
+type AnyPageTranslations = typeof homeTranslations.en | typeof offerTranslations.en | typeof notFoundTranslations.en;
+
+const translations: Record<string, Record<string, AnyPageTranslations>> = {
 	home: homeTranslations,
 	offer: offerTranslations,
 	'404': notFoundTranslations,
@@ -16,13 +20,12 @@ const translations: Record<string, Record<string, PageTranslations>> = {
  * @param locale - locale (e.g., 'en', 'es', 'pt', 'ru')
  * @returns object with translations or English translations as default
  */
-export function getPageTranslations(pageName: string, locale: string): PageTranslations {
+export function getPageTranslations(pageName: string, locale: string): AnyPageTranslations {
 	// Extract language from locale (e.g., 'en-US' -> 'en')
 	const lang = locale.split('-')[0].toLowerCase();
 
 	const pageTranslations = translations[pageName];
 	if (!pageTranslations) {
-		console.warn(`[getPageTranslations] No translations found for page: ${pageName}`);
 		return translations.home.en;
 	}
 
