@@ -69,14 +69,14 @@ describe('Locale Detection', () => {
 		expect(language).toBe('en');
 	});
 
-	it('should detect Spanish for Spain', () => {
+	it('should detect English for Spain (only en/ru supported)', () => {
 		const language = getLanguageFromIP('ES');
-		expect(language).toBe('es');
+		expect(language).toBe('en');
 	});
 
-	it('should detect Portuguese for Brazil', () => {
+	it('should detect English for Brazil (only en/ru supported)', () => {
 		const language = getLanguageFromIP('BR');
-		expect(language).toBe('pt');
+		expect(language).toBe('en');
 	});
 
 	it('should detect Russian for Russia', () => {
@@ -89,14 +89,14 @@ describe('Locale Detection', () => {
 		expect(language).toBe('en');
 	});
 
-	it('should validate correct locales', () => {
+	it('should validate correct locales (en and ru only)', () => {
 		expect(isValidLocale('en-US')).toBe(true);
-		expect(isValidLocale('es-ES')).toBe(true);
-		expect(isValidLocale('pt-BR')).toBe(true);
 		expect(isValidLocale('ru-RU')).toBe(true);
 	});
 
-	it('should reject invalid locales', () => {
+	it('should reject unsupported or invalid locales', () => {
+		expect(isValidLocale('es-ES')).toBe(false);
+		expect(isValidLocale('pt-BR')).toBe(false);
 		expect(isValidLocale('en-XX')).toBe(false);
 		expect(isValidLocale('fr-FR')).toBe(false);
 		expect(isValidLocale('invalid')).toBe(false);
@@ -104,16 +104,15 @@ describe('Locale Detection', () => {
 });
 
 describe('Language Support', () => {
-	it('should support exactly 4 languages', () => {
+	it('should support exactly 2 languages', () => {
 		const languages = getSupportedLanguageCodes();
-		expect(languages).toHaveLength(4);
+		expect(languages).toHaveLength(2);
 	});
 
-	it('should include en, es, pt, ru', () => {
+	it('should include en and ru', () => {
 		const languages = getSupportedLanguageCodes();
 		expect(languages).toContain('en');
-		expect(languages).toContain('es');
-		expect(languages).toContain('pt');
 		expect(languages).toContain('ru');
+		expect(languages).toEqual(['en', 'ru']);
 	});
 });

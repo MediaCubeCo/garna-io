@@ -4,14 +4,6 @@ export const languages = [
 		value: 'en',
 	},
 	{
-		label: 'Español',
-		value: 'es',
-	},
-	{
-		label: 'Português',
-		value: 'pt',
-	},
-	{
 		label: 'Русский',
 		value: 'ru',
 	},
@@ -19,7 +11,7 @@ export const languages = [
 
 /**
  * Returns array of supported language codes
- * @returns Array of language codes: ['en', 'es', 'pt', 'ru']
+ * @returns Array of language codes: ['en', 'ru']
  */
 export function getSupportedLanguageCodes(): string[] {
 	return languages.map((l) => l.value);

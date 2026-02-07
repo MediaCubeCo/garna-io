@@ -1,5 +1,6 @@
 import { RouteInfo } from '../utils/routes';
 import { getLanguageFromIP } from '../utils/locale';
+import { getSupportedLanguageCodes } from '../config/languages';
 
 /**
  * Handles URL redirects for normalization and locale detection
@@ -21,6 +22,17 @@ export async function handleRedirect(
 		const queryString = routeInfo.query ? `?${routeInfo.query}` : '';
 		const hashString = routeInfo.hash ? `#${routeInfo.hash}` : '';
 		const targetUrl = `${url.origin}/${language}${queryString}${hashString}`;
+		return Response.redirect(targetUrl, 302);
+	}
+
+	// Handle valid path but unsupported locale (e.g. /es/..., /pt/...) - redirect to detected language
+	if (routeInfo.isValid && routeInfo.language && !getSupportedLanguageCodes().includes(routeInfo.language)) {
+		const language = getLanguageFromIP(country);
+		const pathSegments = routeInfo.pathSegments.join('/');
+		const newPath = pathSegments ? `/${language}/${pathSegments}` : `/${language}`;
+		const queryString = routeInfo.query ? `?${routeInfo.query}` : '';
+		const hashString = routeInfo.hash ? `#${routeInfo.hash}` : '';
+		const targetUrl = `${url.origin}${newPath}${queryString}${hashString}`;
 		return Response.redirect(targetUrl, 302);
 	}
 

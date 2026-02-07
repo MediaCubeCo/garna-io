@@ -6,6 +6,7 @@ import { useForm } from '../../hooks/useForm';
 import formValidation from '../../utils/validtionForm';
 import { getCalApi } from '@calcom/embed-react';
 import { sendGtagEvent } from '../../utils/gtag';
+import { hashEmail } from '../../utils/hashEmail';
 import { sendFormCompletedWebhook } from '../../utils/webhook';
 
 export interface IForm {
@@ -126,7 +127,7 @@ export default function Modal({
 			: DEFAULT_TRANSLATIONS.companySizeOptions
 	) as string[];
 	const signUpUrl = `https://app.garna.io/${locale}/auth/sign-up`;
-	const privacyUrl = `https://garna.io/${locale}/privacy-policy`;
+	const privacyUrl = `https://app.garna.io/api/privacy?lang=${locale}`;
 	// Use external state if provided, otherwise use internal state
 	const [internalIsModalVis, setIsModalVisible] = useState(false);
 	const isModalVis = externalIsModalVis !== undefined ? externalIsModalVis : internalIsModalVis;
@@ -174,12 +175,21 @@ export default function Modal({
 		}
 	};
 
-	// Send webhook when user completes the form and moves to step 2 (calendar)
+	// Send webhook + gtag when user completes the form and moves to step 2 (calendar)
 	useEffect(() => {
-		if (validInfo.isFormValid && !webhookSentRef.current) {
-			webhookSentRef.current = true;
-			sendFormCompletedWebhook(values);
-		}
+		if (!validInfo.isFormValid || webhookSentRef.current) return;
+		webhookSentRef.current = true;
+
+		(async () => {
+			const emailHash = await hashEmail(values.email);
+			sendFormCompletedWebhook({ ...values, emailHash });
+			sendGtagEvent('form_step1_completed', {
+				first_name: values.firstName,
+				last_name: values.lastName,
+				num_employees: values.numEmployes,
+				email_hash: emailHash,
+			});
+		})();
 	}, [validInfo.isFormValid, values.firstName, values.lastName, values.email, values.numEmployes]);
 
 	// Lock body scroll when modal is open
@@ -262,20 +272,37 @@ export default function Modal({
 				end_time: data?.endTime,
 				event_type_id: data?.eventTypeId,
 				status: data?.status,
+				payment_required: data?.paymentRequired,
 				is_recurring: data?.isRecurring,
+				all_bookings: data?.allBookings,
+				video_call_url: data?.videoCallUrl,
 				cal_link: calComLink,
 			});
+
+			const sendBookingGtagWithApplicant = (
+				eventName: string,
+				calData: Record<string, unknown>
+			) => {
+				hashEmail(values.email).then((applicantEmailHash) => {
+					sendGtagEvent(eventName, {
+						...toBookingParams(calData),
+						applicant_first_name: values.firstName,
+						applicant_last_name: values.lastName,
+						applicant_email_hash: applicantEmailHash,
+					});
+				});
+			};
 
 			cal('on', {
 				action: 'bookingSuccessfulV2',
 				callback: (e: { detail: { data?: Record<string, unknown> } }) => {
-					sendGtagEvent('cal_booking_success', toBookingParams(e.detail?.data ?? {}));
+					sendBookingGtagWithApplicant('cal_booking_success', e.detail?.data ?? {});
 				},
 			});
 			cal('on', {
 				action: 'rescheduleBookingSuccessfulV2',
 				callback: (e: { detail: { data?: Record<string, unknown> } }) => {
-					sendGtagEvent('cal_reschedule_success', toBookingParams(e.detail?.data ?? {}));
+					sendBookingGtagWithApplicant('cal_reschedule_success', e.detail?.data ?? {});
 				},
 			});
 			cal('on', {

@@ -49,7 +49,7 @@
 }
 .errorMessage {
 	position: absolute;
-	bottom: -70%;
+	bottom: -40%;
 	font-size: 11px;
 	color: rgb(255, 3, 3);
 }

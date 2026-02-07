@@ -19,6 +19,10 @@
     <meta name="twitter:description" content="Page not found">
     <meta name="twitter:image"
         content="https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_180.png" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon_32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_32.png" />
     <script>
         (function () { var o = console.warn; console.warn = function (m) { if (typeof m === 'string' && m.indexOf('cdn.tailwindcss.com') !== -1) return; return o.apply(console, arguments); }; })();
     </script>
@@ -362,7 +366,7 @@
 
         <!-- Actions -->
         <div class="flex flex-col md:flex-row items-center gap-4 w-full justify-center">
-            <a href="/" data-home-link
+            <a href="/" data-garna-home
                 class="group flex items-center justify-center gap-2 hover:bg-gray-200 transition-all duration-200 hover:shadow-[0_0_25px_-5px_rgba(255,255,255,0.6)] md:w-auto text-base font-normal text-black bg-white w-full rounded-lg pt-3 pr-6 pb-3 pl-6 shadow-[0_0_20px_-5px_rgba(255,255,255,0.4)]">
                 <span class="font-semibold font-manrope" data-translate="cta.home">Return Home</span>
             </a>
@@ -371,12 +375,29 @@
         <!-- Footer Meta (Technical) -->
         <div
             class="absolute bottom-[-15vh] md:bottom-[-20vh] font-mono text-[10px] text-gray-700 uppercase tracking-widest flex gap-8 opacity-50">
-
-
         </div>
 
     </div>
 
+    <script>
+        (function () {
+            function applyHomeLinks() {
+                var locale = 'en';
+                var htmlLang = document.documentElement.getAttribute('lang');
+                if (htmlLang) {
+                    var lang = htmlLang.split('-')[0].toLowerCase();
+                    if (['en', 'ru'].indexOf(lang) !== -1) locale = lang;
+                }
+                var homePath = '/' + locale;
+                document.querySelectorAll('[data-garna-home]').forEach(function (a) { a.href = homePath; });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', applyHomeLinks);
+            } else {
+                applyHomeLinks();
+            }
+        })();
+    </script>
 
 </body>
 

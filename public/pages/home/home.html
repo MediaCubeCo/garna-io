@@ -24,6 +24,10 @@
         content="One transfer — countless possibilities. Pay remunerations in over 150 countries with minimal effort">
     <meta name="twitter:image"
         content="https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_180.png" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon_32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_32.png" />
     <script>
         (function () { var o = console.warn; console.warn = function (m) { if (typeof m === 'string' && m.indexOf('cdn.tailwindcss.com') !== -1) return; return o.apply(console, arguments); }; })();
     </script>
@@ -85,7 +89,7 @@
         }
 
         .mockup-input:focus-within {
-            border-color: rgba(94, 165, 0, 0.3);
+            border-color: white;
         }
 
         .perspective-1000 {
@@ -417,7 +421,7 @@ scaleY(var(--tw-scale-y, 1))
 <body class="antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden z-10 text-gray-300 bg-[#050505]">
 
     <!-- Background (component) added by Aura -->
-    <div class="aura-background-component top-0 w-full h-screen -z-20 fixed mix-blend-normal invert hue-rotate-90"
+    <!-- <div class="aura-background-component top-0 w-full h-screen -z-20 fixed mix-blend-normal invert hue-rotate-90"
         data-alpha-mask="82"
         style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 82%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 82%, transparent)">
         <div class="aura-background-component top-0 w-full -z-10 absolute h-full">
@@ -430,21 +434,20 @@ scaleY(var(--tw-scale-y, 1))
                 !function () { if (!window.UnicornStudio) { window.UnicornStudio = { isInitialized: !1 }; var i = document.createElement("script"); i.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js", i.onload = function () { window.UnicornStudio.isInitialized || (UnicornStudio.init(), window.UnicornStudio.isInitialized = !0) }, (document.head || document.body).appendChild(i) } }();
             </script>
         </div>
-    </div>
+    </div> -->
 
     <!-- Navbar -->
     <nav class="fixed z-50 glass-high w-full top-0">
         <div class="flex h-16 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
             <div class="flex items-center gap-2 pt-3">
-                <img src="/assets/garna_logo.svg" alt="Garna" class="h-10 w-auto object-contain"
-                    data-translate-alt="nav.brand" />
+                <a href="/" data-garna-home class="hover:opacity-80 transition-opacity inline-block"><img
+                        src="/assets/garna_logo.svg" alt="Garna" class="h-10 w-auto object-contain"
+                        data-translate-alt="nav.brand" /></a>
             </div>
             <div class="flex items-center gap-4 md:gap-6">
-                <a href="#"
+                <a href="https://app.garna.io/en/auth/sign-up" data-garna-signup
                     class="hover:text-white transition-colors text-base font-normal font-manrope flex items-center">
-                    <span class="hidden md:inline font-manrope"
-                        onclick="window.location.href='https://app.garna.io/auth/sign-up'" role="button"
-                        data-translate="nav.signUp">Sign Up</span>
+                    <span class="hidden md:inline font-manrope" data-translate="nav.signUp">Sign Up</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-log-in w-6 h-6 md:hidden">
@@ -808,8 +811,8 @@ scaleY(var(--tw-scale-y, 1))
                         <div class="col-span-9 bg-[#050505] pt-6 pr-8 pb-6 pl-8 relative">
                             <!-- Header -->
                             <div class="flex anim-fade-up mb-6 items-center justify-between">
-                                <h2 class="text-xl font-normal text-white tracking-tight font-sans"
-                                    data-translate="dashboard.balance">Balance</h2>
+                                <div class="text-xl font-normal text-white tracking-tight font-sans"
+                                    data-translate="dashboard.balance">Balance</div>
                                 <div
                                     class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors cursor-pointer text-gray-400 hover:text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -909,8 +912,8 @@ scaleY(var(--tw-scale-y, 1))
                             <!-- Templates -->
                             <div class="anim-fade-up anim-delay-2">
                                 <div class="flex mb-4 items-end justify-between">
-                                    <h3 class="text-sm font-normal text-white font-sans"
-                                        data-translate="dashboard.templates">Templates</h3>
+                                    <div class="text-sm font-normal text-white font-sans"
+                                        data-translate="dashboard.templates">Templates</div>
                                     <a href="#"
                                         class="text-[10px] text-[#5EA500] hover:text-[#4d8a00] font-medium flex items-center gap-0.5 font-sans"><span
                                             data-translate="dashboard.all">All</span> <svg
@@ -1011,8 +1014,8 @@ scaleY(var(--tw-scale-y, 1))
 
                             <!-- Transactions (Left Aligned Title) -->
                             <div class="anim-fade-up anim-delay-3 text-left mb-0 space-y-3">
-                                <h3 class="text-sm font-normal text-white text-left mt-6 mb-4 font-sans"
-                                    data-translate="dashboard.transactions">Transactions</h3>
+                                <div class="text-sm font-normal text-white text-left mt-6 mb-4 font-sans"
+                                    data-translate="dashboard.transactions">Transactions</div>
                                 <div class="space-y-4">
                                     <!-- Transaction Item 1: Modified -->
                                     <div
@@ -1768,19 +1771,19 @@ scaleY(var(--tw-scale-y, 1))
                 </div>
 
                 <div class="relative h-[480px] w-full perspective-1000">
-                    <div class="step-content transition-all duration-500 ease-out flex opacity-100 z-10 rounded-2xl absolute top-0 right-0 bottom-0 left-0 translate-y-0 scale-100 items-center"
+                    <div class="step-content pointer-events-none transition-all duration-500 ease-out flex opacity-100 z-10 rounded-2xl absolute top-0 right-0 bottom-0 left-0 translate-y-0 scale-100 items-center"
                         data-index="0">
                         <div
                             class="w-full bg-[#131313] rounded-2xl border border-white/10 p-8 flex flex-col shadow-2xl">
-                            <h3 class="text-xl text-center text-white font-medium mb-6 tracking-tight font-sans"
-                                data-translate="howTo.panel.signup.title">Sign up in Garna</h3>
+                            <span class="text-xl text-center text-white font-medium mb-6 tracking-tight font-sans"
+                                data-translate="howTo.panel.signup.title">Sign up in Garna</span>
                             <div class="space-y-4">
                                 <div class="">
                                     <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
                                         data-translate="howTo.panel.signup.companyNameLabel">Company name</label>
                                     <input type="text" value="Test Company Name"
                                         data-translate-value="howTo.panel.signup.companyNameValue"
-                                        class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-[#5EA500] transition-colors">
+                                        class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-white transition-colors">
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div class="">
@@ -1789,7 +1792,7 @@ scaleY(var(--tw-scale-y, 1))
                                             number</label>
                                         <input type="text" value="HE123456"
                                             data-translate-value="howTo.panel.signup.registrationNumberValue"
-                                            class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-[#5EA500] transition-colors">
+                                            class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-white transition-colors">
                                     </div>
                                     <div class="">
                                         <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
@@ -1798,7 +1801,7 @@ scaleY(var(--tw-scale-y, 1))
                                         <div class="relative">
                                             <input type="text" value="02.02.2022"
                                                 data-translate-value="howTo.panel.signup.registrationDateValue"
-                                                class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-[#5EA500] pl-9 transition-colors">
+                                                class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-white pl-9 transition-colors">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                                                 stroke-linecap="round" stroke-linejoin="round" data-lucide="calendar"
@@ -1817,7 +1820,7 @@ scaleY(var(--tw-scale-y, 1))
                                         data-translate="howTo.panel.signup.countryLabel">Country of registration</label>
                                     <div class="relative">
                                         <div tabindex="0"
-                                            class="flex cursor-pointer transition-colors text-xs text-gray-300 bg-[#1A1A1A] w-full border-transparent border rounded-lg pt-2 pr-3 pb-2 pl-3 items-center justify-between focus:border-[#5EA500] focus:outline-none">
+                                            class="flex cursor-pointer transition-colors text-xs text-gray-300 bg-[#1A1A1A] w-full border-transparent border rounded-lg pt-2 pr-3 pb-2 pl-3 items-center justify-between focus:border-white focus:outline-none">
                                             <span class="font-sans"
                                                 data-translate="howTo.panel.signup.countryValue">Cyprus</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -1835,10 +1838,10 @@ scaleY(var(--tw-scale-y, 1))
                                         data-translate="howTo.panel.signup.emailLabel">Email</label>
                                     <input type="text" value="rulettequiddu-3309@yopmail.com"
                                         data-translate-value="howTo.panel.signup.emailValue"
-                                        class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-[#5EA500] transition-colors">
+                                        class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-white transition-colors">
                                 </div>
                                 <button
-                                    class="w-full bg-[#5EA500] hover:bg-[#4d8a00] text-white font-semibold py-2.5 rounded-lg text-xs mt-4 transition-colors font-sans"
+                                    class="w-full bg-white hover:bg-[#D2D2D2] text-black font-semibold py-2.5 rounded-lg text-xs mt-4 transition-colors font-sans"
                                     data-translate="howTo.panel.signup.nextButton">Next</button>
                             </div>
                         </div>
@@ -1860,7 +1863,7 @@ scaleY(var(--tw-scale-y, 1))
                                         data-translate="howTo.panel.invite.positionLabel">Position</label>
                                     <div class="relative">
                                         <div tabindex="0"
-                                            class="mockup-input border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 flex justify-between items-center cursor-pointer focus:border-[#5EA500] focus:outline-none transition-colors">
+                                            class="mockup-input border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 flex justify-between items-center cursor-pointer focus:border-white focus:outline-none transition-colors">
                                             <span class="font-sans" data-translate="howTo.panel.invite.positionValue">QA
                                                 Engineering Services</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -1878,7 +1881,7 @@ scaleY(var(--tw-scale-y, 1))
                                     <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
                                         data-translate="howTo.panel.invite.emailLabel">Email</label>
                                     <div
-                                        class="mockup-input border-transparent w-full rounded-lg p-2 min-h-[100px] flex flex-col focus-within:border-[#5EA500] transition-colors">
+                                        class="mockup-input border-transparent w-full rounded-lg p-2 min-h-[100px] flex flex-col focus-within:border-white transition-colors">
                                         <div
                                             class="inline-flex items-center gap-1.5 bg-[#5EA500]/10 border border-[#5EA500]/20 rounded px-2 py-1 mb-2 self-start">
                                             <span class="text-[11px] text-[#5EA500] font-sans"
@@ -1905,7 +1908,7 @@ scaleY(var(--tw-scale-y, 1))
                                 </div>
 
                                 <button
-                                    class="w-full bg-[#5EA500] hover:bg-[#4d8a00] text-white font-semibold py-2.5 rounded-lg text-xs mt-4 transition-colors font-sans"
+                                    class="w-full bg-white hover:bg-[#D2D2D2] text-black font-semibold py-2.5 rounded-lg text-xs mt-4 transition-colors font-sans"
                                     data-translate="howTo.panel.invite.submitButton">Submit</button>
                             </div>
                         </div>
@@ -1998,8 +2001,8 @@ scaleY(var(--tw-scale-y, 1))
                             </div>
 
                             <div class="flex flex-col">
-                                <h4 class="text-[11px] font-medium text-gray-400 mb-2 font-sans"
-                                    data-translate="howTo.panel.fund.historyTitle">History</h4>
+                                <div class="text-[11px] font-medium text-gray-400 mb-2 font-sans"
+                                    data-translate="howTo.panel.fund.historyTitle">History</div>
                                 <div
                                     class="bg-[#1A1A1A] rounded-xl p-3 border border-white/5 flex items-center justify-between hover:bg-white/[0.02] transition-colors cursor-pointer mb-2">
                                     <div class="flex items-center gap-3">
@@ -2042,7 +2045,7 @@ scaleY(var(--tw-scale-y, 1))
                                     <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
                                         data-translate="howTo.panel.send.recipientLabel">Email or username</label>
                                     <div tabindex="0"
-                                        class="mockup-input border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 flex justify-between items-center cursor-pointer focus:border-[#5EA500] focus:outline-none transition-colors">
+                                        class="mockup-input border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 flex justify-between items-center cursor-pointer focus:border-white focus:outline-none transition-colors">
                                         <div>
                                             <div class="text-white font-medium mb-0.5 font-sans"
                                                 data-translate="howTo.panel.send.recipientName">Maria Ban</div>
@@ -2064,7 +2067,7 @@ scaleY(var(--tw-scale-y, 1))
                                     <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
                                         data-translate="howTo.panel.send.amountLabel">Transfer amount, $</label>
                                     <input type="text" value="100"
-                                        class="mockup-input border-transparent w-full rounded-lg px-3 py-2.5 text-xs text-white font-medium focus:outline-none focus:border-[#5EA500] transition-colors">
+                                        class="mockup-input border-transparent w-full rounded-lg px-3 py-2.5 text-xs text-white font-medium focus:outline-none focus:border-white transition-colors">
                                 </div>
 
                                 <div>
@@ -2072,7 +2075,7 @@ scaleY(var(--tw-scale-y, 1))
                                         data-translate="howTo.panel.send.purposeLabel">Purpose of payment</label>
                                     <div class="relative">
                                         <textarea
-                                            class="mockup-input border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none h-20 resize-none pt-2 font-sans focus:border-[#5EA500] transition-colors"
+                                            class="mockup-input border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none h-20 resize-none pt-2 font-sans focus:border-white transition-colors"
                                             placeholder="Enter description"
                                             data-translate-placeholder="howTo.panel.send.purposePlaceholder"
                                             data-translate-value="howTo.panel.send.purposeValue">Sales bonus for October 2025</textarea>
@@ -2082,7 +2085,7 @@ scaleY(var(--tw-scale-y, 1))
                                 </div>
 
                                 <button
-                                    class="w-full bg-[#5EA500] hover:bg-[#4d8a00] text-white font-semibold py-2.5 rounded-lg text-xs mt-2 transition-colors font-sans"
+                                    class="w-full bg-white hover:bg-[#D2D2D2] text-black font-semibold py-2.5 rounded-lg text-xs mt-2 transition-colors font-sans"
                                     data-translate="howTo.panel.send.sendButton">Send</button>
                             </div>
                         </div>
@@ -2634,9 +2637,9 @@ scaleY(var(--tw-scale-y, 1))
 
                             <!-- Time & Date -->
                             <div class="flex flex-col mb-6 items-center">
-                                <h1
+                                <span
                                     class="leading-none text-5xl font-semibold text-white tracking-tighter font-sans mb-1.5">
-                                    9:41</h1>
+                                    9:41</span>
                                 <p class="text-[13px] font-normal text-gray-300 tracking-normal font-sans"
                                     data-translate="contractorBenefits.mobile.date">Tuesday, January 10</p>
                             </div>
@@ -2659,9 +2662,9 @@ scaleY(var(--tw-scale-y, 1))
                                         data-translate="contractorBenefits.mobile.justNow">just now</span>
                                 </div>
                                 <div class="space-y-0.5">
-                                    <h4 class="text-[13px] font-semibold text-white tracking-tight font-sans text-left"
+                                    <div class="text-[13px] font-semibold text-white tracking-tight font-sans text-left"
                                         data-translate="contractorBenefits.mobile.notificationTitle">Payout credited
-                                    </h4>
+                                    </div>
                                     <p class="text-[13px] leading-snug text-white/80 font-sans text-left"
                                         data-translate="contractorBenefits.mobile.notificationBody">Your January payout
                                         has been credited to your balance</p>
@@ -2733,7 +2736,7 @@ scaleY(var(--tw-scale-y, 1))
                         <!-- Buttons -->
                         <div class="flex gap-2">
                             <button
-                                class="flex-1 bg-[#5EA500] hover:bg-[#4d8a00] text-white text-[11px] font-medium py-2 rounded-lg transition-colors font-sans"
+                                class="flex-1 bg-white hover:bg-[#D2D2D2] text-black text-[11px] font-medium py-2 rounded-lg transition-colors font-sans"
                                 data-translate="contractorBenefits.earlyPayout.approve">Approve</button>
                             <button
                                 class="flex-1 bg-transparent hover:bg-white/5 text-gray-400 text-[11px] font-medium py-2 rounded-lg border border-white/10 transition-colors font-sans"
@@ -2820,8 +2823,8 @@ scaleY(var(--tw-scale-y, 1))
                                 class="w-full h-full object-cover">
                         </div>
                         <div class="">
-                            <h3 class="text-white font-normal text-xl font-sans"
-                                data-translate="talentMatching.profile.name">Ethan Brooks</h3>
+                            <div class="text-white font-normal text-xl font-sans"
+                                data-translate="talentMatching.profile.name">Ethan Brooks</div>
                             <p class="text-[#5EA500] text-base font-sans" data-translate="talentMatching.profile.role">
                                 Logistics Specialist</p>
                         </div>
@@ -3336,11 +3339,11 @@ scaleY(var(--tw-scale-y, 1))
             const contents = document.querySelectorAll('.step-content');
             contents.forEach((content, i) => {
                 if (i === index) {
-                    content.classList.remove('opacity-0', 'translate-y-8', 'scale-95', '-z-10', 'pointer-events-none');
-                    content.classList.add('opacity-100', 'translate-y-0', 'scale-100', 'z-10', 'pointer-events-auto');
+                    content.classList.remove('opacity-0', 'translate-y-8', 'scale-95', '-z-10');
+                    content.classList.add('opacity-100', 'translate-y-0', 'scale-100', 'z-10');
                 } else {
                     content.classList.add('opacity-0', 'translate-y-8', 'scale-95', '-z-10', 'pointer-events-none');
-                    content.classList.remove('opacity-100', 'translate-y-0', 'scale-100', 'z-10', 'pointer-events-auto');
+                    content.classList.remove('opacity-100', 'translate-y-0', 'scale-100', 'z-10');
                 }
             });
 
@@ -3363,7 +3366,7 @@ scaleY(var(--tw-scale-y, 1))
                 var htmlLang = document.documentElement.getAttribute('lang');
                 if (htmlLang) {
                     var lang = htmlLang.split('-')[0].toLowerCase();
-                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) {
+                    if (['en', 'ru'].indexOf(lang) !== -1) {
                         return lang;
                     }
                 }
@@ -3437,6 +3440,44 @@ scaleY(var(--tw-scale-y, 1))
                 document.addEventListener('DOMContentLoaded', initWidget);
             } else {
                 initWidget();
+            }
+        })();
+    </script>
+    <script>
+        (function () {
+            function applySignUpLinks() {
+                var locale = 'en';
+                var htmlLang = document.documentElement.getAttribute('lang');
+                if (htmlLang) {
+                    var lang = htmlLang.split('-')[0].toLowerCase();
+                    if (['en', 'ru'].indexOf(lang) !== -1) locale = lang;
+                }
+                var url = 'https://app.garna.io/' + locale + '/auth/sign-up';
+                document.querySelectorAll('[data-garna-signup]').forEach(function (a) { a.href = url; });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', applySignUpLinks);
+            } else {
+                applySignUpLinks();
+            }
+        })();
+    </script>
+    <script>
+        (function () {
+            function applyHomeLinks() {
+                var locale = 'en';
+                var htmlLang = document.documentElement.getAttribute('lang');
+                if (htmlLang) {
+                    var lang = htmlLang.split('-')[0].toLowerCase();
+                    if (['en', 'ru'].indexOf(lang) !== -1) locale = lang;
+                }
+                var homePath = '/' + locale;
+                document.querySelectorAll('[data-garna-home]').forEach(function (a) { a.href = homePath; });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', applyHomeLinks);
+            } else {
+                applyHomeLinks();
             }
         })();
     </script>

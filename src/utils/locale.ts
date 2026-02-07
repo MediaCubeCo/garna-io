@@ -15,19 +15,10 @@ export function getLangRegionFromIP(cfCountry: string): string {
 		return 'en-US';
 	}
 
-	const defaultLocale = `${country.defaultLanguage}-${countryCode}`;
-
-	// Check if default locale is valid
-	if (isValidLocale(defaultLocale)) {
-		return defaultLocale;
+	// Only en and ru are supported: Russian countries get ru-RU, others get en-US
+	if (country.defaultLanguage === 'ru') {
+		return 'ru-RU';
 	}
-
-	// Try English for this country
-	const enLocale = `en-${countryCode}`;
-	if (isValidLocale(enLocale)) {
-		return enLocale;
-	}
-
 	return 'en-US';
 }
 
@@ -45,13 +36,10 @@ export function getLanguageFromIP(cfCountry: string): string {
 		return 'en';
 	}
 
-	// Check if default language is supported
-	const supportedLanguages = getSupportedLanguageCodes();
-	if (supportedLanguages.includes(country.defaultLanguage)) {
-		return country.defaultLanguage;
+	// Only Russian (by country default) gets Russian; all others get English
+	if (country.defaultLanguage === 'ru') {
+		return 'ru';
 	}
-
-	// Fallback to English
 	return 'en';
 }
 
@@ -90,15 +78,13 @@ export function getLanguageFromInvalidLocale(locale: string, fallbackCountry: st
 			return fallbackLocale;
 		}
 
-		// Last resort: try with common countries for this language
-		const commonCountries = {
+		// Last resort: try with common countries for this language (en/ru only)
+		const commonCountries: Record<string, string[]> = {
 			en: ['US', 'GB'],
-			es: ['ES', 'MX'],
-			pt: ['PT', 'BR'],
 			ru: ['RU'],
 		};
 
-		for (const country of commonCountries[lang as keyof typeof commonCountries] || []) {
+		for (const country of commonCountries[lang] || []) {
 			const testLocale = `${lang}-${country}`;
 			if (isValidLocale(testLocale)) {
 				return testLocale;

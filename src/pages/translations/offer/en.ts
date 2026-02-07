@@ -40,6 +40,8 @@ export const offerEn = {
 	howItWorks: {
 		title: 'Simple, streamlined payments',
 		description: 'We handle the complexity so you can focus on your work',
+		pocketTitle: 'Your finances, right in your pocket',
+		pocketDescription: 'The Garna app is your all-in-one freelance hub. Create offers, automate compliance, and withdraw earnings globally in a few taps',
 		steps: {
 			client: {
 				title: 'Client initiates payment',
@@ -52,6 +54,18 @@ export const offerEn = {
 			receive: {
 				title: 'You receive funds',
 				description: 'Money lands in your account. Withdraw to your bank, card, e-wallets or crypto wallet instantly',
+			},
+			sendOffer: {
+				title: 'Send an offer',
+				description: 'Create a professional service offer in seconds. Your client pays instantly via their preferred corporate method',
+			},
+			automated: {
+				title: 'Automated processing',
+				description: 'We handle the compliance and currency exchange in the background while you track the status in real-time',
+			},
+			instantWithdraw: {
+				title: 'Instant withdrawal',
+				description: 'Move your funds anywhere — to your bank, card, or crypto wallet with a single swipe in the app',
 			},
 		},
 	},
@@ -86,6 +100,7 @@ export const offerEn = {
 					'We automate the boring stuff. Properly formatted tax forms and invoices are generated and stored for you automatically',
 			},
 		},
+		getStartedNow: 'Get started now',
 	},
 	fees: {
 		title: 'Zero tolerance to hidden fees.',
@@ -109,6 +124,9 @@ export const offerEn = {
 	},
 	testimonials: {
 		badge: 'JOIN 15,654+ FREELANCERS',
+		badgeBefore: 'JOIN ',
+		badgeAfter: '+ FREELANCERS',
+		joinCta: 'Join Garna',
 		title: 'Trusted by talent worldwide',
 		description: 'See why independent professionals are switching to Garna',
 		items: {
@@ -138,7 +156,7 @@ export const offerEn = {
 		cards: {
 			privacy: {
 				title: 'Absolute Privacy',
-				description: 'We do not report your real-time location or transaction data to foreign tax authorities',
+				description: 'Garna is not a financial institution and is not obliged to report your data to foreign tax authorities. We ensure your location and transactions remain strictly confidential.',
 				secureTunnel: 'SECURE_TUNNEL',
 				encryptedConnection: 'ENCRYPTED CONNECTION',
 				aesLabel: 'AES-256',
@@ -151,10 +169,12 @@ export const offerEn = {
 			},
 			legal: {
 				title: 'Legal Support',
-				description: 'Auto-generated legal documentation for Visa and Residency (VZN) applications worldwide.',
+				description: 'Auto-generate legal documents for Visa and Residency (VZN) applications worldwide. All paperwork is compliant, verified, and ready for submission.',
 				pdfLabel: 'PDF',
 				verifiedBadge: 'Verified',
-				signatureLabel: 'Authorized Signature',
+				signatureLabel: 'Signature',
+				docUserName: 'Sarah Jenkins',
+				docUserRole: 'Product Designer',
 			},
 		},
 	},
