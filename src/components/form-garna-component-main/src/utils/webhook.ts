@@ -16,6 +16,8 @@ export interface IWebhookPayload {
  */
 export type IFormWithHash = IForm & { emailHash?: string };
 
+const LOG_PREFIX = '[garna widget] webhook';
+
 export async function sendFormCompletedWebhook(form: IFormWithHash): Promise<void> {
 	const payload: IWebhookPayload = {
 		firstName: form.firstName,
@@ -25,16 +27,44 @@ export async function sendFormCompletedWebhook(form: IFormWithHash): Promise<voi
 		...(form.emailHash != null && form.emailHash !== '' ? { emailHash: form.emailHash } : {}),
 	};
 
+	console.log(`${LOG_PREFIX} sending form_completed:`, {
+		url: N8N_WEBHOOK_URL,
+		payload: {
+			firstName: payload.firstName,
+			lastName: payload.lastName,
+			email: payload.email,
+			numEmployes: payload.numEmployes,
+			hasEmailHash: Boolean(payload.emailHash),
+		},
+		timestamp: new Date().toISOString(),
+	});
+
 	try {
 		const res = await fetch(N8N_WEBHOOK_URL, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(payload),
 		});
-		if (!res.ok) {
-			console.warn('[garna widget] Webhook POST failed:', res.status, res.statusText);
+
+		if (res.ok) {
+			console.log(`${LOG_PREFIX} form_completed success:`, {
+				status: res.status,
+				statusText: res.statusText,
+				url: res.url,
+			});
+		} else {
+			const text = await res.text();
+			console.warn(`${LOG_PREFIX} form_completed failed:`, {
+				status: res.status,
+				statusText: res.statusText,
+				url: res.url,
+				bodyPreview: text.slice(0, 200),
+			});
 		}
 	} catch (err) {
-		console.warn('[garna widget] Webhook POST error:', err);
+		console.warn(`${LOG_PREFIX} form_completed error:`, {
+			error: err instanceof Error ? err.message : String(err),
+			stack: err instanceof Error ? err.stack : undefined,
+		});
 	}
 }
