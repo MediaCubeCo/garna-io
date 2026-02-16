@@ -34,10 +34,10 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 	const isOffer = currentPath === 'for-contractors';
 
 	const homeLinkClass =
-		'hover:opacity-80 transition-opacity lg:text-lg text-base font-medium font-manrope ' +
+		'hover:opacity-80 transition-opacity text-base font-medium font-manrope ' +
 		(isHome ? 'text-[#5ea500]' : 'text-white');
 	const offerLinkClass =
-		'lg:text-lg text-base font-medium font-manrope ' +
+		'text-base font-medium font-manrope ' +
 		(isOffer ? 'text-[#5ea500]' : 'hover:opacity-80 transition-opacity text-white');
 	const aiHiringLinkClass =
 		'hidden hover:opacity-80 transition-opacity text-base lg:text-lg font-medium font-manrope ' + 'text-white';
@@ -58,7 +58,11 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 		'<nav class="fixed z-50 glass-high w-full top-0">' +
 		'<div class="flex h-16 max-w-7xl mr-auto ml-auto pr-6 pl-6 relative items-center justify-between">' +
 		'<div class="flex items-center gap-2">' +
-		`<a href="${escapeHtml(homeHref)}" class="hover:opacity-80 transition-opacity text-4xl font-medium text-white tracking-tighter">${brand}</a>` +
+		`<div class="flex items-center gap-2 pt-3">
+                <a href="/" data-garna-home class="hover:opacity-80 transition-opacity inline-block"><img
+                        src="/assets/garna_logo.svg" alt="Garna" class="h-10 w-auto object-contain"
+                        data-translate-alt="nav.brand" /></a>
+            </div>` +
 		'</div>' +
 		'<div class="hidden -translate-x-1/2 md:flex md:gap-x-5 lg:gap-x-8 absolute left-1/2 gap-x-8 gap-y-[60px] items-center">' +
 		`<a href="${escapeHtml(homeHref)}" class="${homeLinkClass}">${payrollSolution}</a>` +
