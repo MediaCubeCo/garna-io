@@ -386,7 +386,7 @@
                 var htmlLang = document.documentElement.getAttribute('lang');
                 if (htmlLang) {
                     var lang = htmlLang.split('-')[0].toLowerCase();
-                    if (['en', 'ru'].indexOf(lang) !== -1) locale = lang;
+                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) locale = lang;
                 }
                 var homePath = '/' + locale;
                 document.querySelectorAll('[data-garna-home]').forEach(function (a) { a.href = homePath; });

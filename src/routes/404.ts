@@ -1,5 +1,4 @@
 import { getSupportedLanguageCodes } from '../config/languages';
-import { getLanguageFromIP } from '../utils/locale';
 import { getPageTranslations } from '../pages/i18n';
 import { injectHtmlLangTag } from '../utils/htmlLang';
 import { injectCanonicalTag } from '../utils/canonical';
@@ -34,11 +33,10 @@ function getLanguageFromPathname(pathname: string): string | null {
 }
 
 /**
- * Shows 404 page with proper locale detection.
- * Language is taken from the path (e.g. /en/...) when present, otherwise from geo (country).
+ * Shows 404 page. Language is taken from the path (e.g. /en/...) when present, otherwise default is English.
  */
-export async function show404Page(request: Request, pathname: string, country: string, env?: any): Promise<Response> {
-	const language = getLanguageFromPathname(pathname) ?? getLanguageFromIP(country);
+export async function show404Page(request: Request, pathname: string, _country: string, env?: any): Promise<Response> {
+	const language = getLanguageFromPathname(pathname) ?? 'en';
 
 	try {
 		// Try to fetch 404 page from static assets

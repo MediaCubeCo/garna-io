@@ -1,45 +1,13 @@
-import { countries } from '../config/countries';
 import { getSupportedLanguageCodes } from '../config/languages';
+import { countries } from '../config/countries';
 
-export function getLangRegionFromIP(cfCountry: string): string {
-	const countryCode = cfCountry.toUpperCase();
-
-	// Handle special Cloudflare codes
-	if (countryCode === 'XX' || countryCode === 'T1') {
-		return 'en-US';
-	}
-
-	// Find country in configuration
-	const country = countries.find((c) => c.value === countryCode);
-	if (!country) {
-		return 'en-US';
-	}
-
-	// Only en and ru are supported: Russian countries get ru-RU, others get en-US
-	if (country.defaultLanguage === 'ru') {
-		return 'ru-RU';
-	}
+/** @deprecated Locale is no longer detected by IP. Always returns 'en-US'. */
+export function getLangRegionFromIP(_cfCountry: string): string {
 	return 'en-US';
 }
 
-export function getLanguageFromIP(cfCountry: string): string {
-	const countryCode = cfCountry.toUpperCase();
-
-	// Handle special Cloudflare codes
-	if (countryCode === 'XX' || countryCode === 'T1') {
-		return 'en';
-	}
-
-	// Find country in configuration
-	const country = countries.find((c) => c.value === countryCode);
-	if (!country) {
-		return 'en';
-	}
-
-	// Only Russian (by country default) gets Russian; all others get English
-	if (country.defaultLanguage === 'ru') {
-		return 'ru';
-	}
+/** @deprecated Language is no longer detected by IP. Always returns 'en'. */
+export function getLanguageFromIP(_cfCountry: string): string {
 	return 'en';
 }
 

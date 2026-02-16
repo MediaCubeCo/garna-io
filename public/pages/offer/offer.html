@@ -501,7 +501,7 @@ scaleY(var(--tw-scale-y, 1))
 
 <body class="antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden text-gray-300 bg-[#050505] z-10">
     <!-- Background (component) added by Aura -->
-    <div class="aura-background-component fixed top-0 w-full h-screen -z-10 invert-0 hue-rotate-180 mix-blend-luminosity opacity-80"
+    <!-- <div class="aura-background-component fixed top-0 w-full h-screen -z-10 invert-0 hue-rotate-180 mix-blend-luminosity opacity-80"
         data-alpha-mask="82" style="
 				mask-image: linear-gradient(to bottom, transparent, black 0%, black 82%, transparent);
 				-webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 82%, transparent);
@@ -524,7 +524,7 @@ scaleY(var(--tw-scale-y, 1))
                 })();
             </script>
         </div>
-    </div>
+    </div> -->
 
     <!-- Global Animated Background Component -->
     <div class="fixed inset-0 -z-50 h-full w-full bg-[#050505] overflow-hidden pointer-events-none">
@@ -545,37 +545,7 @@ scaleY(var(--tw-scale-y, 1))
         </div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="fixed z-50 glass-high w-full top-0">
-        <div class="flex h-16 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
-            <div class="flex items-center gap-2">
-                <a href="/" data-garna-home
-                    class="hover:opacity-80 transition-opacity text-4xl font-medium text-white tracking-tighter">
-                    garna
-                </a>
-            </div>
-            <div class="flex items-center gap-4 md:gap-6">
-                <a href="https://app.garna.io/en/auth/sign-in" data-garna-signin
-                    class="hidden hover:text-white transition-colors md:inline font-manrope" data-translate="nav.login">
-                    Log In
-                </a>
-                <a href="https://app.garna.io/en/auth/sign-in" data-garna-signin
-                    class="md:hidden text-white hover:text-white transition-colors" aria-label="Log In">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-log-in">
-                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                        <polyline points="10 17 15 12 10 7"></polyline>
-                        <line x1="15" x2="3" y1="12" y2="12"></line>
-                    </svg>
-                </a>
-                <a href="https://app.garna.io/en/auth/sign-up" data-garna-signup
-                    class="group inline-flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95 text-base font-normal text-white font-manrope bg-[#5EA500] h-11 rounded-xl pr-7 pl-7 shadow-[0_0_20px_-5px_rgba(94,165,0,0.5)]">
-                    <span data-translate="nav.signup">Sign Up</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <!-- HEADER_PLACEHOLDER -->
 
     <!-- Hero Section -->
     <section class="overflow-visible lg:pt-48 lg:pb-32 pt-32 pb-24 relative">
@@ -2698,7 +2668,7 @@ scaleY(var(--tw-scale-y, 1))
                 var htmlLang = document.documentElement.getAttribute('lang');
                 if (htmlLang) {
                     var lang = htmlLang.split('-')[0].toLowerCase();
-                    if (['en', 'ru'].indexOf(lang) !== -1) locale = lang;
+                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) locale = lang;
                 }
                 var url = 'https://app.garna.io/' + locale + '/auth/sign-up';
                 document.querySelectorAll('[data-garna-signup]').forEach(function (a) {
@@ -2719,7 +2689,7 @@ scaleY(var(--tw-scale-y, 1))
                 var htmlLang = document.documentElement.getAttribute('lang');
                 if (htmlLang) {
                     var lang = htmlLang.split('-')[0].toLowerCase();
-                    if (['en', 'ru'].indexOf(lang) !== -1) locale = lang;
+                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) locale = lang;
                 }
                 var homePath = '/' + locale;
                 document.querySelectorAll('[data-garna-home]').forEach(function (a) {
@@ -2741,7 +2711,7 @@ scaleY(var(--tw-scale-y, 1))
                 var htmlLang = document.documentElement.getAttribute('lang');
                 if (htmlLang) {
                     var lang = htmlLang.split('-')[0].toLowerCase();
-                    if (['en', 'ru'].indexOf(lang) !== -1) locale = lang;
+                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) locale = lang;
                 }
                 var url = 'https://app.garna.io/' + locale + '/auth/sign-in';
                 document.querySelectorAll('[data-garna-signin]').forEach(function (a) {

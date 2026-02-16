@@ -88,6 +88,7 @@ export const offerEs = {
 					'Automatizamos lo aburrido. Los formularios fiscales y facturas se generan y almacenan automáticamente',
 			},
 		},
+		getStartedNow: 'Comenzar ahora',
 	},
 	fees: {
 		title: 'Tolerancia cero a las comisiones ocultas.',
@@ -111,6 +112,9 @@ export const offerEs = {
 	},
 	testimonials: {
 		badge: 'ÚNETE A 15,654+ FREELANCERS',
+		badgeBefore: 'ÚNETE A ',
+		badgeAfter: '+ FREELANCERS',
+		joinCta: 'Unirse a Garna',
 		title: 'Con la confianza de talento en todo el mundo',
 		description: 'Descubre por qué los profesionales independientes se cambian a Garna',
 		items: {

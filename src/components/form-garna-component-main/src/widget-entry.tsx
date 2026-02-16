@@ -2,7 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { WidgetWrapper } from './widget-wrapper';
 import { IModalProps } from './components/modal/modal';
+import { persistUtmFromUrl } from './utils/collectUtm';
 import './index.css';
+
+// Persist UTM from URL to cookies and localStorage as soon as the user lands on the site
+persistUtmFromUrl();
 
 interface WidgetConfig extends Partial<IModalProps> {
 	containerId?: string;

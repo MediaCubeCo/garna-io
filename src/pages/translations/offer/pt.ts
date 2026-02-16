@@ -86,6 +86,7 @@ export const offerPt = {
 				description: 'Automatizamos o chato. Formulários fiscais e faturas são gerados e armazenados automaticamente',
 			},
 		},
+		getStartedNow: 'Comece agora',
 	},
 	fees: {
 		title: 'Tolerância zero a taxas ocultas.',
@@ -109,6 +110,9 @@ export const offerPt = {
 	},
 	testimonials: {
 		badge: 'JUNTE-SE A 15.654+ FREELANCERS',
+		badgeBefore: 'JUNTE-SE A ',
+		badgeAfter: '+ FREELANCERS',
+		joinCta: 'Entrar na Garna',
 		title: 'Confiado por talentos no mundo todo',
 		description: 'Veja por que profissionais independentes estão migrando para a Garna',
 		items: {

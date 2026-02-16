@@ -181,13 +181,13 @@ export default function Modal({
 		webhookSentRef.current = true;
 
 		(async () => {
-			const emailHash = await hashEmail(values.email);
-			sendFormCompletedWebhook({ ...values, emailHash });
+			const garnaClientID = await hashEmail(values.email);
+			sendFormCompletedWebhook({ ...values, garnaClientID });
 			sendGtagEvent('form_step1_completed', {
 				first_name: values.firstName,
 				last_name: values.lastName,
 				num_employees: values.numEmployes,
-				email_hash: emailHash,
+				garna_client_id: garnaClientID,
 			});
 		})();
 	}, [validInfo.isFormValid, values.firstName, values.lastName, values.email, values.numEmployes]);
@@ -283,12 +283,12 @@ export default function Modal({
 				eventName: string,
 				calData: Record<string, unknown>
 			) => {
-				hashEmail(values.email).then((applicantEmailHash) => {
+				hashEmail(values.email).then((applicantGarnaClientID) => {
 					sendGtagEvent(eventName, {
 						...toBookingParams(calData),
 						applicant_first_name: values.firstName,
 						applicant_last_name: values.lastName,
-						applicant_email_hash: applicantEmailHash,
+						applicant_garna_client_id: applicantGarnaClientID,
 					});
 				});
 			};

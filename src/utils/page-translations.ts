@@ -121,9 +121,11 @@ export function injectPageTranslations(
 	env?: any
 ): string {
 	try {
-		// Get translations for all languages (en and ru only)
+		// Get translations for all languages (en, es, pt, ru)
 		const allTranslations = {
 			en: getPageTranslations(pageName, 'en'),
+			es: getPageTranslations(pageName, 'es'),
+			pt: getPageTranslations(pageName, 'pt'),
 			ru: getPageTranslations(pageName, 'ru'),
 		};
 
@@ -370,7 +372,7 @@ export function injectPageTranslations(
     var htmlLang = document.documentElement.getAttribute('lang');
     if (htmlLang) {
       var lang = htmlLang.split('-')[0].toLowerCase();
-      if (['en', 'ru'].indexOf(lang) !== -1) {
+      if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) {
         return lang;
       }
     }
@@ -498,7 +500,7 @@ export function injectPageTranslations(
     var htmlLang = document.documentElement.getAttribute('lang');
     if (htmlLang) {
       var lang = htmlLang.split('-')[0].toLowerCase();
-      if (['en', 'ru'].indexOf(lang) !== -1) {
+      if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) {
         return lang;
       }
     }

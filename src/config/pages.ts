@@ -13,6 +13,10 @@ export interface PageConfig {
 	 * Whether the page is indexable by search engines
 	 */
 	searchable?: boolean;
+	/**
+	 * Whether to inject the shared header component (navbar) into this page
+	 */
+	showHeader?: boolean;
 }
 
 export const basePaths: PageConfig[] = [
@@ -20,10 +24,12 @@ export const basePaths: PageConfig[] = [
 		path: '',
 		mode: 'static',
 		searchable: true,
+		showHeader: true,
 	},
 	{
 		path: 'for-contractors',
 		mode: 'static',
 		searchable: true,
+		showHeader: true,
 	},
 ];

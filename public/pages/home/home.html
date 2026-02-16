@@ -421,7 +421,7 @@ scaleY(var(--tw-scale-y, 1))
 <body class="antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden z-10 text-gray-300 bg-[#050505]">
 
     <!-- Background (component) added by Aura -->
-    <div class="aura-background-component top-0 w-full h-screen -z-20 fixed mix-blend-normal invert hue-rotate-90"
+    <!-- <div class="aura-background-component top-0 w-full h-screen -z-20 fixed mix-blend-normal invert hue-rotate-90"
         data-alpha-mask="82"
         style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 82%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 82%, transparent)">
         <div class="aura-background-component top-0 w-full -z-10 absolute h-full">
@@ -430,36 +430,9 @@ scaleY(var(--tw-scale-y, 1))
                 !function () { if (!window.UnicornStudio) { window.UnicornStudio = { isInitialized: !1 }; var i = document.createElement("script"); i.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js", i.onload = function () { window.UnicornStudio.isInitialized || (UnicornStudio.init(), window.UnicornStudio.isInitialized = !0) }, (document.head || document.body).appendChild(i) } }();
             </script>
         </div>
-    </div>
+    </div> -->
 
-    <!-- Navbar -->
-    <nav class="fixed z-50 glass-high w-full top-0">
-        <div class="flex h-16 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
-            <div class="flex items-center gap-2 pt-3">
-                <a href="/" data-garna-home class="hover:opacity-80 transition-opacity inline-block"><img
-                        src="/assets/garna_logo.svg" alt="Garna" class="h-10 w-auto object-contain"
-                        data-translate-alt="nav.brand" /></a>
-            </div>
-            <div class="flex items-center gap-4 md:gap-6">
-                <a href="https://app.garna.io/en/auth/sign-up" data-garna-signup
-                    class="hover:text-white transition-colors text-base font-normal font-manrope flex items-center">
-                    <span class="hidden md:inline font-manrope" data-translate="nav.signUp">Sign Up</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-log-in w-6 h-6 md:hidden">
-                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                        <polyline points="10 17 15 12 10 7"></polyline>
-                        <line x1="15" x2="3" y1="12" y2="12"></line>
-                    </svg>
-                </a>
-                <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open();"
-                    class="group inline-flex items-center justify-center gap-2 transition-all hover:scale-105 transform-gpu leading-none text-base font-normal text-white font-manrope bg-[#5EA500] h-11 rounded-xl pr-7 pl-7 shadow-[0_0_20px_-5px_rgba(94,165,0,0.5)]">
-                    <span class="md:hidden" data-translate="nav.getStarted">Get started</span>
-                    <span class="hidden md:inline font-manrope" data-translate="nav.bookDemo">Book a demo</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <!-- HEADER_PLACEHOLDER -->
 
     <!-- Hero Section -->
     <section class="overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative">
@@ -3362,7 +3335,7 @@ scaleY(var(--tw-scale-y, 1))
                 var htmlLang = document.documentElement.getAttribute('lang');
                 if (htmlLang) {
                     var lang = htmlLang.split('-')[0].toLowerCase();
-                    if (['en', 'ru'].indexOf(lang) !== -1) {
+                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) {
                         return lang;
                     }
                 }
@@ -3446,7 +3419,7 @@ scaleY(var(--tw-scale-y, 1))
                 var htmlLang = document.documentElement.getAttribute('lang');
                 if (htmlLang) {
                     var lang = htmlLang.split('-')[0].toLowerCase();
-                    if (['en', 'ru'].indexOf(lang) !== -1) locale = lang;
+                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) locale = lang;
                 }
                 var url = 'https://app.garna.io/' + locale + '/auth/sign-up';
                 document.querySelectorAll('[data-garna-signup]').forEach(function (a) { a.href = url; });
@@ -3465,7 +3438,7 @@ scaleY(var(--tw-scale-y, 1))
                 var htmlLang = document.documentElement.getAttribute('lang');
                 if (htmlLang) {
                     var lang = htmlLang.split('-')[0].toLowerCase();
-                    if (['en', 'ru'].indexOf(lang) !== -1) locale = lang;
+                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) locale = lang;
                 }
                 var homePath = '/' + locale;
                 document.querySelectorAll('[data-garna-home]').forEach(function (a) { a.href = homePath; });

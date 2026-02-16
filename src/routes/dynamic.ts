@@ -7,6 +7,7 @@ import { injectCanonicalTag } from '../utils/canonical';
 import { injectHreflangTags } from '../utils/hreflang';
 import { injectSchemaOrg } from '../utils/schema';
 import { injectPageTranslations } from '../utils/page-translations';
+import { HEADER_PLACEHOLDER, buildHeaderHtml } from '../utils/header';
 
 const securityHeaders = {
 	'Content-Security-Policy': "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'",
@@ -97,6 +98,11 @@ async function serveStaticPage(
 
 		// Read HTML content
 		let html = await response.text();
+
+		// Inject shared header when enabled for this page
+		if (pageConfig.showHeader === true) {
+			html = html.replace(HEADER_PLACEHOLDER, buildHeaderHtml(routeInfo.language ?? 'en', pageConfig.path));
+		}
 
 		// Apply HTML modifications
 		const language = routeInfo.language || 'en';

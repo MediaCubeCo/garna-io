@@ -1,35 +1,30 @@
 import { RouteInfo } from '../utils/routes';
-import { getLanguageFromIP } from '../utils/locale';
 import { getSupportedLanguageCodes } from '../config/languages';
 
+const DEFAULT_LANGUAGE = 'en';
+
 /**
- * Handles URL redirects for normalization and locale detection
- * @param routeInfo Parsed route information
- * @param country Country code from Cloudflare (e.g., 'US', 'BR', 'ES')
- * @param requestUrl Full request URL
- * @returns Redirect response if needed, null otherwise
+ * Handles URL redirects for normalization. Default language is always English (no locale detection).
  */
 export async function handleRedirect(
 	routeInfo: RouteInfo,
-	country: string,
+	_country: string,
 	requestUrl: string
 ): Promise<Response | null> {
 	const url = new URL(requestUrl);
 
-	// Handle root path - redirect to locale-prefixed path
+	// Handle root path - redirect to English (default)
 	if (url.pathname === '/' || url.pathname === '') {
-		const language = getLanguageFromIP(country);
 		const queryString = routeInfo.query ? `?${routeInfo.query}` : '';
 		const hashString = routeInfo.hash ? `#${routeInfo.hash}` : '';
-		const targetUrl = `${url.origin}/${language}${queryString}${hashString}`;
+		const targetUrl = `${url.origin}/${DEFAULT_LANGUAGE}${queryString}${hashString}`;
 		return Response.redirect(targetUrl, 302);
 	}
 
-	// Handle valid path but unsupported locale (e.g. /es/..., /pt/...) - redirect to detected language
+	// Handle valid path but unsupported locale - redirect to default (English)
 	if (routeInfo.isValid && routeInfo.language && !getSupportedLanguageCodes().includes(routeInfo.language)) {
-		const language = getLanguageFromIP(country);
 		const pathSegments = routeInfo.pathSegments.join('/');
-		const newPath = pathSegments ? `/${language}/${pathSegments}` : `/${language}`;
+		const newPath = pathSegments ? `/${DEFAULT_LANGUAGE}/${pathSegments}` : `/${DEFAULT_LANGUAGE}`;
 		const queryString = routeInfo.query ? `?${routeInfo.query}` : '';
 		const hashString = routeInfo.hash ? `#${routeInfo.hash}` : '';
 		const targetUrl = `${url.origin}${newPath}${queryString}${hashString}`;
@@ -64,11 +59,10 @@ export async function handleRedirect(
 		return Response.redirect(targetUrl, 301);
 	}
 
-	// Handle invalid locale format - detect language from IP and redirect
+	// Handle invalid locale format - redirect to default (English)
 	if (routeInfo.error === 'Invalid locale format in path') {
-		const language = getLanguageFromIP(country);
 		const pathSegments = routeInfo.pathSegments.join('/');
-		const newPath = pathSegments ? `/${language}/${pathSegments}` : `/${language}`;
+		const newPath = pathSegments ? `/${DEFAULT_LANGUAGE}/${pathSegments}` : `/${DEFAULT_LANGUAGE}`;
 		const queryString = routeInfo.query ? `?${routeInfo.query}` : '';
 		const hashString = routeInfo.hash ? `#${routeInfo.hash}` : '';
 		const targetUrl = `${url.origin}${newPath}${queryString}${hashString}`;
