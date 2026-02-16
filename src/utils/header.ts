@@ -60,7 +60,7 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 		'<div class="flex items-center gap-2">' +
 		`<div class="flex items-center gap-2 pt-3">
                 <a href="/" data-garna-home class="hover:opacity-80 transition-opacity inline-block"><img
-                        src="/assets/garna_logo.svg" alt="Garna" class="h-10 w-auto object-contain"
+                        src="/garna_logo.svg" alt="Garna" class="h-10 w-auto object-contain"
                         data-translate-alt="nav.brand" /></a>
             </div>` +
 		'</div>' +
