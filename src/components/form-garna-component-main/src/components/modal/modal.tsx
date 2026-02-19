@@ -182,7 +182,8 @@ export default function Modal({
 
 		(async () => {
 			const garnaClientID = await hashEmail(values.email);
-			sendFormCompletedWebhook({ ...values, garnaClientID });
+			const language = (locale?.split('-')[0] || 'en').toLowerCase();
+			sendFormCompletedWebhook({ ...values, garnaClientID, language });
 			sendGtagEvent('form_step1_completed', {
 				first_name: values.firstName,
 				last_name: values.lastName,
