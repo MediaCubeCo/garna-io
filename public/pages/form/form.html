@@ -1,0 +1,325 @@
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garna - AI Recruitment Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_180.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon_32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.png" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #a1a1aa;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-heading {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #404040;
+        }
+
+        /* Glassmorphism utilities */
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Grid Pattern Background */
+        .bg-grid {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Hide details marker */
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+    <link id="all-fonts-link-font-manrope" rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap">
+    <style id="all-fonts-style-font-manrope">
+        .font-manrope {
+            font-family: 'Manrope', sans-serif !important;
+        }
+    </style>
+</head>
+
+<body class="antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 font-manrope relative">
+    <section class="lg:pb-32 lg:pt-16 bg-[#050505] pt-16 pb-24">
+        <div class="lg:mb-20 text-center max-w-3xl mr-auto mb-16 ml-auto pr-6 pl-6">
+            <img src="/garna_logo.svg" alt="Garna" class="block h-10 w-auto object-contain mx-auto mb-8"
+                data-translate-alt="footer.brand" />
+            <h2 class="md:text-5xl text-3xl font-normal text-white tracking-tight font-manrope mb-6"
+                data-translate="form.heading">Start your journey with Garna</h2>
+            <p class="text-xl font-light text-gray-400 font-manrope" data-translate="form.subtitle">Fill in your details
+                to book a demo</p>
+        </div>
+        <div class="max-w-[900px] mr-auto ml-auto pr-6 pl-6">
+            <div id="garna-widget-root"></div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-[#020202] border-white/5 border-t pt-16 pb-16">
+        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+            <div
+                class="flex flex-col md:flex-row md:justify-between md:items-start md:space-y-0 w-full mb-24 space-y-6">
+                <!-- Left Side: Logo & Info -->
+                <div class="flex flex-col max-w-fit items-start">
+                    <img src="/garna_logo.svg" alt="Garna" class="block h-10 w-auto object-contain mb-6"
+                        data-translate-alt="footer.brand" />
+                    <div class="flex flex-col gap-1.5 gap-x-1.5 gap-y-1.5">
+                        <p class="flex items-center gap-1.5 text-sm font-medium text-white flex-nowrap">
+                            <span data-translate="footer.poweredBy" class="shrink-0">Powered by</span>
+                            <img src="/mediacube-logo-white.svg" alt="mediacube"
+                                class="h-[14px] w-auto mb-0.5 object-contain shrink-0">
+                        </p>
+                        <p class="text-sm text-gray-500 font-manrope" data-translate="footer.copyright">garna.io © 2026
+                        </p>
+                        <!-- FOOTER_LANG_SELECT -->
+                        <!-- FOOTER_LEGAL_LINKS -->
+                    </div>
+                </div>
+
+                <!-- Right Side: Contacts & Address -->
+                <div class="flex flex-col md:items-end max-w-xs">
+                    <div class="flex flex-col text-left max-w-fit space-y-3 justify-between">
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/company/garna-io" target="_blank"
+                            class="group flex items-center gap-3 transition-colors hover:text-[#4d8a00] text-[#5EA500]">
+                            <div
+                                class="flex transition-colors group-hover:bg-[#5EA500]/10 bg-[#1A1A1A] w-8 h-8 border-white/10 border rounded-lg items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-linkedin w-[16px] h-[16px]">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                    </path>
+                                    <rect width="4" height="12" x="2" y="9"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-medium font-manrope" data-translate="footer.linkedIn">Garna</span>
+                        </a>
+
+                        <!-- Email -->
+                        <a href="mailto:hello@garna.io"
+                            class="group flex items-center gap-3 transition-colors hover:text-[#4d8a00] text-[#5EA500]">
+                            <div
+                                class="flex transition-colors group-hover:bg-[#5EA500]/10 bg-[#1A1A1A] w-8 h-8 border-white/10 border rounded-lg items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-mail w-[16px] h-[16px]">
+                                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-medium font-manrope"
+                                data-translate="footer.email">hello@garna.io</span>
+                        </a>
+
+                        <!-- Address -->
+                        <div class="leading-relaxed text-sm text-gray-500 font-manrope" data-translate="footer.address">
+                            134 Makariou III, Ground Floor,
+                            3021 Limassol, Cyprus</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legal Disclaimer -->
+            <div class="text-[10px] md:text-xs leading-relaxed text-xs text-gray-600 font-manrope text-justify"
+                data-translate="footer.disclaimer">© 2026 GARNA LTD. Stasikratous, 20, 1st floor, Flat/Office 105, 1065,
+                Nicosia, Cyprus. HE 478114. Garna is not a financial institution. All fintech services within the Garna
+                app are provided by certified partners, including Payoneer and others. Payment services may be provided
+                by affiliates MEDIACUBE PAY INC. (Office 29 - 18 King Street East, Suite 1400, Toronto, Ontario, M5C1C4,
+                Canada, FINTRAC Registration Number: M24438190) as well as other non-affiliated companies.</div>
+        </div>
+    </footer>
+
+    <!-- Garna Booking Widget: embedded inline in the card above (no modal, no overlay) -->
+    <script src="/widget/garna-widget.js"></script>
+    <script>
+        (function () {
+            'use strict';
+            function getCurrentLanguage() {
+                var htmlLang = document.documentElement.getAttribute('lang');
+                if (htmlLang) {
+                    var lang = htmlLang.split('-')[0].toLowerCase();
+                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) return lang;
+                }
+                return 'en';
+            }
+            function initWidget() {
+                if (typeof window.GarnaWidget === 'undefined' || typeof window.pageTranslations === 'undefined') {
+                    setTimeout(initWidget, 100);
+                    return;
+                }
+                var language = getCurrentLanguage();
+                var translations = window.pageTranslations[language] || window.pageTranslations.en;
+                var widgetTrans = translations.bookingWidget || {};
+                var signUp = widgetTrans.signUp || {};
+                var disclaimer = widgetTrans.disclaimer || {};
+                var form = widgetTrans.form || {};
+                var errors = widgetTrans.errors || {};
+                var widgetTranslations = {
+                    buttonChooseDate: widgetTrans.buttonChooseDate,
+                    signUpPromptPrefix: signUp.promptPrefix,
+                    signUpLinkText: signUp.linkText,
+                    signUpPromptSuffix: signUp.promptSuffix,
+                    disclaimerPrefix: disclaimer.prefix,
+                    privacyLinkText: disclaimer.privacyLink,
+                    disclaimerSuffix: disclaimer.suffix,
+                    form: {
+                        firstName: form.firstName,
+                        lastName: form.lastName,
+                        email: form.email,
+                        employees: form.employees
+                    },
+                    companySizeOptions: widgetTrans.companySizeOptions,
+                    errors: {
+                        required: errors.required,
+                        invalidEmail: errors.invalidEmail,
+                        workEmail: errors.workEmail,
+                        invalidPhone: errors.invalidPhone
+                    }
+                };
+                window.GarnaWidget.init({
+                    containerId: 'garna-widget-root',
+                    embedInline: true,
+                    calComLink: 'garna/demo',
+                    locale: language,
+                    title: widgetTrans.title || 'Start your journey with Garna',
+                    subtitle: widgetTrans.subtitle || 'Fill in your details to book a demo',
+                    titleButtonForm: widgetTrans.buttonContinue || 'Continue',
+                    translations: widgetTranslations,
+                    colorBrandBg: '#5EA500',
+                    colorBrandText: '#ffffff',
+                    bgColorCal: '#000',
+                    colorBorder: 'transparent',
+                    thicknessBorder: '0px',
+                    radiusBorder: '32px',
+                    colorTextMain: '#ffffff',
+                    colorTextCalendar: '#a4a4a4',
+                    colorTextError: '#ff6b9d',
+                    colorBorderTimeCalendar: '#ffffff9a',
+                    colorBorderVerticalLine: 'rgb(34, 34, 34)',
+                    colorTextLogo: '#5d5d5d'
+                });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initWidget);
+            } else {
+                initWidget();
+            }
+        })();
+    </script>
+    <script>
+        (function () {
+            function applySignUpLinks() {
+                var locale = 'en';
+                var htmlLang = document.documentElement.getAttribute('lang');
+                if (htmlLang) {
+                    var lang = htmlLang.split('-')[0].toLowerCase();
+                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) locale = lang;
+                }
+                var url = 'https://app.garna.io/' + locale + '/auth/sign-up';
+                document.querySelectorAll('[data-garna-signup]').forEach(function (a) { a.href = url; });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', applySignUpLinks);
+            } else {
+                applySignUpLinks();
+            }
+        })();
+    </script>
+    <script>
+        (function () {
+            function applyHomeLinks() {
+                var locale = 'en';
+                var htmlLang = document.documentElement.getAttribute('lang');
+                if (htmlLang) {
+                    var lang = htmlLang.split('-')[0].toLowerCase();
+                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) locale = lang;
+                }
+                var homePath = '/' + locale;
+                document.querySelectorAll('[data-garna-home]').forEach(function (a) { a.href = homePath; });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', applyHomeLinks);
+            } else {
+                applyHomeLinks();
+            }
+        })();
+    </script>
+
+
+
+</body>
+
+</html>

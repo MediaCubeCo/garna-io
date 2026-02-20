@@ -32,4 +32,10 @@ export const basePaths: PageConfig[] = [
 		searchable: true,
 		showHeader: true,
 	},
+	{
+		path: 'form',
+		mode: 'static',
+		searchable: false,
+		showHeader: false,
+	},
 ];

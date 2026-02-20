@@ -260,7 +260,52 @@ async function handlePagesAssets(request: Request, pathname: string, env?: any):
 	}
 }
 
+/**
+ * Handles root-level static assets like /favicon*.png, /*.svg, /*.ico
+ * These files live at the top of the public/ directory and must be served via ASSETS binding.
+ */
+async function handleRootStaticAssets(request: Request, pathname: string, env?: any): Promise<Response | null> {
+	const staticExtensions = /\.(png|jpg|jpeg|gif|svg|ico|webp|avif|woff|woff2|ttf|otf|eot|json|pdf)$/i;
+	if (!staticExtensions.test(pathname) || pathname.includes('/pages/') || pathname.includes('/widget/')) {
+		return null;
+	}
+
+	const hasAssetsBinding = env?.ASSETS !== undefined;
+	if (!hasAssetsBinding || typeof env.ASSETS.fetch !== 'function') {
+		return null;
+	}
+
+	try {
+		const assetUrl = new URL(pathname, request.url);
+		const assetRequest = new Request(assetUrl.toString(), {
+			method: request.method,
+			headers: request.headers,
+		});
+		const response = await env.ASSETS.fetch(assetRequest);
+
+		if (response.status === 404) {
+			return null;
+		}
+
+		const headers = new Headers(response.headers);
+		const mimeType = getMimeType(pathname);
+		if (mimeType) headers.set('Content-Type', mimeType);
+		headers.set('Cache-Control', 'public, max-age=86400');
+
+		return new Response(response.body, { status: response.status, headers });
+	} catch (error: any) {
+		console.error(`[handleRootStaticAssets] Error serving ${pathname}:`, error);
+		return null;
+	}
+}
+
 export async function handleStaticFile(request: Request, pathname: string, env?: any): Promise<Response | null> {
+	// Handle root-level static assets (favicons, logos, etc.) before other handlers
+	const rootAssetResponse = await handleRootStaticAssets(request, pathname, env);
+	if (rootAssetResponse) {
+		return rootAssetResponse;
+	}
+
 	// Check for pages assets
 	const pagesAssetResponse = await handlePagesAssets(request, pathname, env);
 	if (pagesAssetResponse) {

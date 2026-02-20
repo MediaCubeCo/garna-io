@@ -1,6 +1,6 @@
 export const headerRu = {
 	brand: 'garna',
-	payrollSolution: 'Зарплатное решение',
+	payrollSolution: 'Для компаний',
 	forContractors: 'Для подрядчиков',
 	aiHiring: 'ИИ-подбор',
 	logIn: 'Войти',

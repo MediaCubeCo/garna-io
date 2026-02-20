@@ -61,7 +61,7 @@ export const homeEn = {
 	stats: {
 		businessesUsing: 'businesses using Garna',
 		globalAvailability: 'global payroll availability',
-		successRate: 'payout success rate',
+		successRate: 'faster payout processing',
 	},
 	features: {
 		title: 'Modern platform for managing global payroll',
@@ -138,7 +138,7 @@ export const homeEn = {
 			},
 			step2: {
 				title: 'Invite your team',
-				description: 'Add employees and contractors to the dashboard and assign roles and permissions',
+				description: 'Add team members and contractors to your dashboard and assign roles and access permissions',
 			},
 			step3: {
 				title: 'Fund your balance',
@@ -281,7 +281,7 @@ export const homeEn = {
 	talentMatching: {
 		title: 'Hire faster with smart talent matching',
 		description:
-			'Garna helps connect businesses with suitable candidates using intelligent matching technologies — speeding up hiring while also helping people find work more efficiently',
+			'Garna connects businesses with suitable contractors using intelligent matching technology – streamlining the onboarding process and helping specialists find opportunities faster',
 		cta: 'Learn more',
 		profile: {
 			name: 'Ethan Brooks',
@@ -326,6 +326,8 @@ export const homeEn = {
 		poweredBy: 'Powered by',
 		copyright: 'garna.io © 2026',
 		language: 'Language',
+		privacyPolicy: 'Privacy Policy',
+		termsOfService: 'Terms of Service',
 		linkedIn: 'Garna',
 		email: 'hello@garna.io',
 		address: '134 Makariou III, Ground Floor, 3021 Limassol, Cyprus',

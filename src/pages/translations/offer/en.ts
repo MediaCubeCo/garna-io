@@ -14,7 +14,7 @@ export const offerEn = {
 		titleMain: 'Get paid globally,',
 		titleAccent: 'hassle-free',
 		description:
-			'Receives payments from clients in the US, Europe or anywhere else in the world in seconds. With total transparency and complete legal support',
+			'Receive payments from clients in the US, Europe, and worldwide – with full transparency and built-in compliance support',
 		cta: 'Get paid with Garna',
 	},
 	mockup: {
@@ -72,7 +72,7 @@ export const offerEn = {
 	benefits: {
 		title: 'Built for your freedom',
 		description:
-			'We designed Garna to give independent workers the stability and flexibility of a corporate payroll, without the strings attached',
+			'We designed Garna to give independent workers the stability and flexibility of a payroll, no strings attached',
 		items: {
 			payments: {
 				title: 'Payments from clients worldwide',
@@ -259,6 +259,8 @@ export const offerEn = {
 		poweredBy: 'Powered by ',
 		copyright: 'garna.io © 2026',
 		language: 'Language',
+		privacyPolicy: 'Privacy Policy',
+		termsOfService: 'Terms of Service',
 		linkedIn: 'Garna',
 		email: 'hello@garna.io',
 		address: '134 Makariou III, Ground Floor, 3021 Limassol, Cyprus',

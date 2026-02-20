@@ -48,6 +48,7 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 const PAGE_PATH_TO_DIR: Record<string, string> = {
 	'': 'home',
 	'for-contractors': 'offer',
+	form: 'form',
 };
 
 async function serveStaticPage(

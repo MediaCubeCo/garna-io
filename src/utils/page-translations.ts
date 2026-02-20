@@ -3,6 +3,7 @@ import { RouteInfo } from './routes';
 import { languages } from '../config/languages';
 
 const FOOTER_LANG_SELECT_PLACEHOLDER = '<!-- FOOTER_LANG_SELECT -->';
+const FOOTER_LEGAL_LINKS_PLACEHOLDER = '<!-- FOOTER_LEGAL_LINKS -->';
 
 /**
  * Builds the same-page URL for a given language (worker-side).
@@ -15,6 +16,9 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	}
 	if (pageName === 'offer') {
 		return `/${segment}/for-contractors`;
+	}
+	if (pageName === 'form') {
+		return `/${segment}/form`;
 	}
 	return `/${segment}`;
 }
@@ -148,6 +152,19 @@ export function injectPageTranslations(
 		const footerLangSelectHtml = buildFooterLangSelectHtml(pageName, currentLanguage, languageLabel);
 		if (html.includes(FOOTER_LANG_SELECT_PLACEHOLDER)) {
 			html = html.replace(FOOTER_LANG_SELECT_PLACEHOLDER, footerLangSelectHtml);
+		}
+
+		// Footer legal links (Privacy Policy, Terms of Service) with current lang in URL
+		const langParam = currentLanguage.toLowerCase();
+		const agreementUrl = `https://app.garna.io/api/documents/agreement?lang=${escapeHtml(langParam)}`;
+		const privacyUrl = `https://app.garna.io/api/documents/privacy?lang=${escapeHtml(langParam)}`;
+		const footerLegalLinksHtml =
+			'<nav class="footer-legal-links flex flex-wrap items-center gap-x-3 gap-y-1 mt-3 md:mt-4 text-sm text-gray-500 font-manrope" aria-label="Legal">' +
+			`<a href="${agreementUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#5EA500] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5EA500]" data-translate="footer.termsOfService">Terms of Service</a>` +
+			`<a href="${privacyUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#5EA500] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5EA500]" data-translate="footer.privacyPolicy">Privacy Policy</a>` +
+			'</nav>';
+		if (html.includes(FOOTER_LEGAL_LINKS_PLACEHOLDER)) {
+			html = html.replace(FOOTER_LEGAL_LINKS_PLACEHOLDER, footerLegalLinksHtml);
 		}
 
 		if (currentLanguage !== 'en') {

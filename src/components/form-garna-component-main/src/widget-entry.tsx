@@ -10,6 +10,8 @@ persistUtmFromUrl();
 
 interface WidgetConfig extends Partial<IModalProps> {
 	containerId?: string;
+	/** When true, render form inline (no overlay, no close). Widget stays open and mounts in container. */
+	embedInline?: boolean;
 }
 
 type ReactRoot = ReturnType<typeof ReactDOM.createRoot>;
@@ -20,6 +22,7 @@ class GarnaWidgetClass {
 	private isOpen: boolean = false;
 	private config: WidgetConfig = {};
 	private isInitialized: boolean = false;
+	private embedInline: boolean = false;
 
 	/**
 	 * Initialize the widget with configuration
@@ -30,7 +33,13 @@ class GarnaWidgetClass {
 		}
 
 		this.config = config;
+		this.embedInline = config.embedInline === true;
 		this.isInitialized = true;
+
+		// When embedInline, start open and stay open
+		if (this.embedInline) {
+			this.isOpen = true;
+		}
 
 		// Create or get container
 		const containerId = config.containerId || 'garna-widget-root';
@@ -122,9 +131,18 @@ class GarnaWidgetClass {
 			return;
 		}
 
+		const configWithEmbedded = this.embedInline
+			? { ...this.config, embedded: true as const }
+			: this.config;
+		const isOpen = this.embedInline ? true : this.isOpen;
+
 		this.root.render(
 			<React.StrictMode>
-				<WidgetWrapper isOpen={this.isOpen} onClose={() => this.close()} config={this.config} />
+				<WidgetWrapper
+					isOpen={isOpen}
+					onClose={() => this.close()}
+					config={configWithEmbedded}
+				/>
 			</React.StrictMode>
 		);
 	}

@@ -19,5 +19,7 @@ export const notFoundEn = {
 	},
 	footer: {
 		language: 'Language',
+		privacyPolicy: 'Privacy Policy',
+		termsOfService: 'Terms of Service',
 	},
 };

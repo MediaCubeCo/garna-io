@@ -30,5 +30,12 @@ export function WidgetWrapper({ isOpen, onClose, config }: WidgetWrapperProps): 
 		...config,
 	};
 
-	return <Modal {...defaultConfig} isModalVis={isOpen} onCloseModal={onClose} />;
+	return (
+		<Modal
+			{...defaultConfig}
+			isModalVis={isOpen}
+			onCloseModal={onClose}
+			embedded={defaultConfig.embedded}
+		/>
+	);
 }

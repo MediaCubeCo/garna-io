@@ -70,6 +70,8 @@ export interface IModalProps {
 	// Optional props for external control
 	isModalVis?: boolean;
 	onCloseModal?: () => void;
+	/** When true, render as inline form (no overlay, no close button, not dismissible). */
+	embedded?: boolean;
 }
 const DEFAULT_TRANSLATIONS: Required<IModalTranslations> = {
 	buttonChooseDate: 'Choose a date & time',
@@ -117,6 +119,7 @@ export default function Modal({
 	translations: translationsOverride,
 	isModalVis: externalIsModalVis,
 	onCloseModal: externalOnCloseModal,
+	embedded = false,
 }: IModalProps): React.JSX.Element {
 	const t = { ...DEFAULT_TRANSLATIONS, ...translationsOverride };
 	const formLabels = { ...DEFAULT_TRANSLATIONS.form, ...translationsOverride?.form };
@@ -193,18 +196,20 @@ export default function Modal({
 		})();
 	}, [validInfo.isFormValid, values.firstName, values.lastName, values.email, values.numEmployes]);
 
-	// Lock body scroll when modal is open
+	// Lock body scroll when modal is open (skip when embedded)
 	useEffect(() => {
-		if (isModalVis) {
+		if (!embedded && isModalVis) {
 			const prevOverflow = document.body.style.overflow;
 			document.body.style.overflow = 'hidden';
 			return () => {
 				document.body.style.overflow = prevOverflow;
 			};
 		}
-	}, [isModalVis]);
+	}, [isModalVis, embedded]);
 
+	// Escape to close (skip when embedded)
 	useEffect(() => {
+		if (embedded) return;
 		const closeModal = (event: KeyboardEvent): void => {
 			if (event.key === 'Escape') {
 				onCloseModal();
@@ -212,7 +217,7 @@ export default function Modal({
 		};
 		document.addEventListener('keydown', closeModal);
 		return () => document.removeEventListener('keydown', closeModal);
-	}, [onCloseModal]);
+	}, [onCloseModal, embedded]);
 
 	//Инициализация CalCom после успешной валидации формы
 	useEffect(() => {
@@ -224,6 +229,43 @@ export default function Modal({
 
 		let cancelled = false;
 		const namespace = calComLink.replace('/', '-');
+
+		// When embedded, stamp border-radius directly on Cal.com's iframe.
+		// CSS alone can't reliably clip cross-origin iframes — Cal.com resets inline styles on resize.
+		// We observe both childList (iframe injection) and attribute changes (style resets).
+		let iframeObserver: MutationObserver | null = null;
+		let iframeAttrObserver: MutationObserver | null = null;
+		let iframePolls: ReturnType<typeof setTimeout>[] = [];
+		if (embedded) {
+			const stampRadius = (iframe: HTMLIFrameElement) => {
+				// Guard: only set if not already applied to avoid observer loops
+				if (iframe.style.borderRadius !== '32px') {
+					iframe.style.borderRadius = '32px';
+				}
+				if (iframe.style.border !== 'none') {
+					iframe.style.border = 'none';
+				}
+			};
+
+			const applyRadius = () => {
+				const iframe = container.querySelector('iframe');
+				if (!iframe) return;
+				stampRadius(iframe as HTMLIFrameElement);
+				// Also watch the iframe's own style attribute for Cal.com resize resets
+				if (!iframeAttrObserver) {
+					iframeAttrObserver = new MutationObserver(() => {
+						stampRadius(iframe as HTMLIFrameElement);
+					});
+					iframeAttrObserver.observe(iframe, { attributes: true, attributeFilter: ['style'] });
+				}
+			};
+
+			// Watch for iframe being added to the container
+			iframeObserver = new MutationObserver(applyRadius);
+			iframeObserver.observe(container, { childList: true, subtree: true });
+			// Fallback polling — catches cases where iframe exists before observer attaches
+			iframePolls = [50, 200, 500, 1000, 2000, 4000].map((ms) => setTimeout(applyRadius, ms));
+		}
 
 		(async () => {
 			const cal = await getCalApi({ namespace: namespace });
@@ -326,6 +368,9 @@ export default function Modal({
 
 		return () => {
 			cancelled = true;
+			iframeObserver?.disconnect();
+			iframeAttrObserver?.disconnect();
+			iframePolls.forEach(clearTimeout);
 		};
 	}, [
 		isModalVis,
@@ -354,85 +399,118 @@ export default function Modal({
 		}
 	};
 
+	const contentClass =
+		!validInfo.isFormValid ? styles.garna_garna_demo_modal : styles.garna_garna_demo_modal_step_2;
+	const wrapperClass = embedded ? styles.garna_demo_embedded_wrapper : styles.garna_demo_modal_overlay;
+	const contentBoxClass = embedded ? `${contentClass} ${styles.garna_demo_embedded_content}` : contentClass;
+
+	const step1Form = (
+		<div className={styles.garna_demo_form_wrapper} hidden={validInfo.isFormValid}>
+			{!embedded && (
+				<div className={styles.title_block}>
+					<h2 className={styles.h2}>{title}</h2>
+					<p className={styles.subtitle}>{subtitle}</p>
+				</div>
+			)}
+			<Form
+				values={values}
+				handleChange={handleChange}
+				errorsMessages={validInfo.errorsMessage}
+				placeholders={formLabels}
+				companySizeOptions={companySizeOptions}
+			/>
+			<div className={styles.formFooter}>
+				<p className={styles.signUpPrompt}>
+					{t.signUpPromptPrefix}
+					<a className={styles.link} href={signUpUrl} target="_blank" rel="noopener noreferrer">
+						{t.signUpLinkText}
+					</a>
+					{t.signUpPromptSuffix}
+				</p>
+				<div className={styles.buttonWrap}>
+					<Button
+						label={t.buttonChooseDate}
+						icon={
+							<svg
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden
+							>
+								<path
+									d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path d="M9 14h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+							</svg>
+						}
+						onClick={() => formValidation(values, validInfo, setValidInfo, errorMessages)}
+					/>
+				</div>
+				<p className={styles.disclaimer}>
+					{t.disclaimerPrefix}
+					<a className={styles.link} href={privacyUrl} target="_blank" rel="noopener noreferrer">
+						{t.privacyLinkText}
+					</a>
+					{t.disclaimerSuffix}
+				</p>
+			</div>
+		</div>
+	);
+
+	const calContent = (
+		<div className={styles.garna_demo_cal_wrapper} hidden={!validInfo.isFormValid}>
+			<div
+				ref={calContainerRef}
+				className={embedded ? styles.garna_demo_cal_inner : undefined}
+			/>
+		</div>
+	);
+
+	const formContent = embedded ? (
+		<>
+			{/* Step 1: wrapped in card; steps 2/3: no wrapper */}
+			<div className={styles.embedded_form_card} hidden={validInfo.isFormValid}>
+				{step1Form}
+			</div>
+			{calContent}
+		</>
+	) : (
+		<>
+			{step1Form}
+			{calContent}
+		</>
+	);
+
 	return (
 		<div className="garna-demo-component">
-			{/* Button removed - external buttons will trigger the widget */}
-			<div className={styles.garna_demo_modal_overlay} hidden={!isModalVis} onMouseDown={handleOverlayMouseDown}>
-				<div
-					className={!validInfo.isFormValid ? styles.garna_garna_demo_modal : styles.garna_garna_demo_modal_step_2}
-					onMouseDown={(e) => e.stopPropagation()}
-				>
-					<div className={styles.btn_wrap}>
-						<button className={styles.garna_demo_modal_close} onClick={onToogleModal}>
-							<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path
-									d="M5.18164 5.18164C5.53314 4.83047 6.10371 4.83027 6.45508 5.18164L16 14.7266L25.5459 5.18164C25.8973 4.83077 26.467 4.83061 26.8184 5.18164C27.1697 5.53301 27.1695 6.10358 26.8184 6.45508L17.2725 16L26.8184 25.5459C27.1697 25.8973 27.1695 26.4669 26.8184 26.8184C26.4669 27.1698 25.8974 27.1698 25.5459 26.8184L16 17.2725L6.45508 26.8184C6.10361 27.1698 5.53311 27.1698 5.18164 26.8184C4.83051 26.4669 4.83047 25.8973 5.18164 25.5459L14.7266 16L5.18164 6.45508C4.83017 6.10361 4.83017 5.53311 5.18164 5.18164Z"
-									fill="white"
-								/>
-							</svg>
-						</button>
-					</div>
-
-					<div className={styles.garna_demo_form_wrapper} hidden={validInfo.isFormValid}>
-						<div className={styles.title_block}>
-							<h2 className={styles.h2}>{title}</h2>
-							<p className={styles.subtitle}>{subtitle}</p>
+			<div
+				className={wrapperClass}
+				hidden={!embedded && !isModalVis}
+				onMouseDown={embedded ? undefined : handleOverlayMouseDown}
+			>
+				{embedded ? (
+					formContent
+				) : (
+					<div className={contentBoxClass} onMouseDown={(e) => e.stopPropagation()}>
+						<div className={styles.btn_wrap}>
+							<button className={styles.garna_demo_modal_close} onClick={onToogleModal}>
+								<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path
+										d="M5.18164 5.18164C5.53314 4.83047 6.10371 4.83027 6.45508 5.18164L16 14.7266L25.5459 5.18164C25.8973 4.83077 26.467 4.83061 26.8184 5.18164C27.1697 5.53301 27.1695 6.10358 26.8184 6.45508L17.2725 16L26.8184 25.5459C27.1697 25.8973 27.1695 26.4669 26.8184 26.8184C26.4669 27.1698 25.8974 27.1698 25.5459 26.8184L16 17.2725L6.45508 26.8184C6.10361 27.1698 5.53311 27.1698 5.18164 26.8184C4.83051 26.4669 4.83047 25.8973 5.18164 25.5459L14.7266 16L5.18164 6.45508C4.83017 6.10361 4.83017 5.53311 5.18164 5.18164Z"
+										fill="white"
+									/>
+								</svg>
+							</button>
 						</div>
-						<Form
-							values={values}
-							handleChange={handleChange}
-							errorsMessages={validInfo.errorsMessage}
-							placeholders={formLabels}
-							companySizeOptions={companySizeOptions}
-						/>
-						<div className={styles.formFooter}>
-							<p className={styles.signUpPrompt}>
-								{t.signUpPromptPrefix}
-								<a className={styles.link} href={signUpUrl} target="_blank" rel="noopener noreferrer">
-									{t.signUpLinkText}
-								</a>
-								{t.signUpPromptSuffix}
-							</p>
-							<div className={styles.buttonWrap}>
-								<Button
-									label={t.buttonChooseDate}
-									icon={
-										<svg
-											width="20"
-											height="20"
-											viewBox="0 0 24 24"
-											fill="none"
-											xmlns="http://www.w3.org/2000/svg"
-											aria-hidden
-										>
-											<path
-												d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"
-												stroke="currentColor"
-												strokeWidth="2"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											/>
-											<path d="M9 14h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-										</svg>
-									}
-									onClick={() => formValidation(values, validInfo, setValidInfo, errorMessages)}
-								/>
-							</div>
-							<p className={styles.disclaimer}>
-								{t.disclaimerPrefix}
-								<a className={styles.link} href={privacyUrl} target="_blank" rel="noopener noreferrer">
-									{t.privacyLinkText}
-								</a>
-								{t.disclaimerSuffix}
-							</p>
-						</div>
+						{formContent}
 					</div>
-
-					<div className={styles.garna_demo_cal_wrapper} hidden={!validInfo.isFormValid}>
-						{/* <!-- Контейнер для Cal.com --> */}
-						<div ref={calContainerRef} />
-					</div>
-				</div>
+				)}
 			</div>
 		</div>
 	);

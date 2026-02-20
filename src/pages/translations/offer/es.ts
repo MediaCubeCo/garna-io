@@ -250,6 +250,8 @@ export const offerEs = {
 		poweredBy: 'Con tecnología de ',
 		copyright: 'garna.io © 2026',
 		language: 'Idioma',
+		privacyPolicy: 'Política de privacidad',
+		termsOfService: 'Términos de servicio',
 		linkedIn: 'Garna',
 		email: 'hello@garna.io',
 		address: '134 Makariou III, Planta baja, 3021 Limassol, Chipre',

@@ -1,17 +1,23 @@
 import { homeTranslations } from './translations/home';
 import { offerTranslations } from './translations/offer';
 import { notFoundTranslations } from './translations/404';
+import { formTranslations } from './translations/form';
 
 /** Home page translation shape (full structure). */
 export type PageTranslations = typeof homeTranslations.en;
 
 /** Union of all page translation shapes — each page has its own structure. */
-type AnyPageTranslations = typeof homeTranslations.en | typeof offerTranslations.en | typeof notFoundTranslations.en;
+type AnyPageTranslations =
+	| typeof homeTranslations.en
+	| typeof offerTranslations.en
+	| typeof notFoundTranslations.en
+	| typeof formTranslations.en;
 
 const translations: Record<string, Record<string, AnyPageTranslations>> = {
 	home: homeTranslations,
 	offer: offerTranslations,
 	'404': notFoundTranslations,
+	form: formTranslations,
 };
 
 /**

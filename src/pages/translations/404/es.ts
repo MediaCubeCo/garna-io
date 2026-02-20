@@ -19,5 +19,7 @@ export const notFoundEs = {
 	},
 	footer: {
 		language: 'Idioma',
+		privacyPolicy: 'Política de privacidad',
+		termsOfService: 'Términos de servicio',
 	},
 };

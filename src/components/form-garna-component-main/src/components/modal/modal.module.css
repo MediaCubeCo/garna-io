@@ -8,9 +8,86 @@
 	color: white;
 	overflow-x: hidden;
 	overflow-y: auto;
-	/* Scrollable content, scrollbar hidden */
 	scrollbar-width: none;
 	-ms-overflow-style: none;
+}
+
+/* Inline/embedded form: no overlay, no wrapper box, black background */
+.garna_demo_embedded_wrapper {
+	position: relative;
+	width: 100%;
+	color: white;
+}
+
+/* Embedded only: keep inputs black on autofill/suggestions (do not affect home modal) */
+.garna_demo_embedded_wrapper input:-webkit-autofill,
+.garna_demo_embedded_wrapper input:-webkit-autofill:hover,
+.garna_demo_embedded_wrapper input:-webkit-autofill:focus,
+.garna_demo_embedded_wrapper input:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0 100vmax #000 inset;
+	box-shadow: 0 0 0 100vmax #000 inset;
+	-webkit-text-fill-color: #fff;
+	caret-color: #fff;
+	transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Calendar step 2 (and Cal.com step 3): base */
+.garna_demo_cal_wrapper {
+	width: 100%;
+}
+
+/* Embedded only: round the Cal.com iframe container and the iframe itself.
+   clip-path works at compositing level and can't be escaped by iframe resize.
+   Direct iframe border-radius is the most reliable approach across browsers.
+   Does not affect home modal. */
+.garna_demo_embedded_wrapper .garna_demo_cal_wrapper {
+	border-radius: 32px;
+	overflow: hidden;
+	isolation: isolate;
+	transform: translateZ(0);
+	clip-path: inset(0 round 32px);
+}
+
+.garna_demo_cal_inner {
+	border-radius: 32px;
+	overflow: hidden;
+	isolation: isolate;
+	transform: translateZ(0);
+	clip-path: inset(0 round 32px);
+}
+
+/* Target the iframe element directly — most reliable cross-browser rounded iframe approach */
+.garna_demo_embedded_wrapper .garna_demo_cal_wrapper iframe,
+.garna_demo_cal_inner iframe {
+	border-radius: 32px !important;
+	border: none !important;
+}
+
+/* Embedded step 1 card: same look as the old full-page card */
+.embedded_form_card {
+	background-color: #000;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 1.5rem;
+	padding: 2rem;
+}
+
+@media (min-width: 768px) {
+	.embedded_form_card {
+		padding: 3.5rem;
+	}
+}
+
+.garna_demo_embedded_content {
+	position: relative !important;
+	left: auto !important;
+	top: auto !important;
+	transform: none !important;
+	max-width: 100%;
+	background-color: #000 !important;
+	border: none !important;
+	border-radius: 0 !important;
+	padding: 0 !important;
+	box-shadow: none !important;
 }
 
 .garna_demo_modal_overlay::-webkit-scrollbar {

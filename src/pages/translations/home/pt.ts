@@ -330,6 +330,8 @@ export const homePt = {
 		poweredBy: 'Impulsionado por',
 		copyright: 'garna.io © 2026',
 		language: 'Idioma',
+		privacyPolicy: 'Política de privacidade',
+		termsOfService: 'Termos de serviço',
 		linkedIn: 'Garna',
 		email: 'hello@garna.io',
 		address: '134 Makariou III, Térreo, 3021 Limassol, Chipre',

@@ -19,5 +19,7 @@ export const notFoundRu = {
 	},
 	footer: {
 		language: 'Язык',
+		privacyPolicy: 'Политика конфиденциальности',
+		termsOfService: 'Условия использования',
 	},
 };
