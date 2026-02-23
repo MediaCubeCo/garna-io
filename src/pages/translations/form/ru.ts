@@ -5,8 +5,8 @@ export const formRu = {
 	},
 	images: {},
 	form: {
-		heading: 'Начните свой путь с Garna',
-		subtitle: 'Заполните данные для записи на демо',
+		heading: 'Запишитесь на бесплатную 30-минутную демонстрацию продукта',
+		subtitle: 'Получите ответы на все вопросы от наших экспертов',
 	},
 	footer: {
 		brand: 'garna',
@@ -22,8 +22,8 @@ export const formRu = {
 			'© 2026 GARNA LTD. Stasikratous, 20, 1-й этаж, Flat/Office 105, 1065, Никосия, Кипр. HE 478114. Garna не является финансовым учреждением. Все финтех‑услуги в приложении Garna предоставляются сертифицированными партнерами, включая Payoneer и других. Платежные услуги могут предоставляться аффилированными MEDIACUBE PAY INC. (Office 29 - 18 King Street East, Suite 1400, Toronto, Ontario, M5C1C4, Canada, FINTRAC Registration Number: M24438190) а также другими неаффилированными компаниями.',
 	},
 	bookingWidget: {
-		title: 'Начните свой путь с Garna',
-		subtitle: 'Заполните данные для записи на демо',
+		title: 'Запишитесь на бесплатную 30-минутную демонстрацию продукта',
+		subtitle: 'Получите ответы на все вопросы от наших экспертов',
 		buttonContinue: 'Продолжить',
 		buttonChooseDate: 'Выбрать дату и время',
 		form: {

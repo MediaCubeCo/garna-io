@@ -5,8 +5,8 @@ export const formEn = {
 	},
 	images: {},
 	form: {
-		heading: 'Start your journey with Garna',
-		subtitle: 'Fill in your details to book a demo',
+		heading: 'Book a free 30-minute product demo',
+		subtitle: 'Get all your questions answered by our experts',
 	},
 	footer: {
 		brand: 'garna',
@@ -22,8 +22,8 @@ export const formEn = {
 			'© 2026 GARNA LTD. Stasikratous, 20, 1st floor, Flat/Office 105, 1065, Nicosia, Cyprus. HE 478114. Garna is not a financial institution. All fintech services within the Garna app are provided by certified partners, including Payoneer and others. Payment services may be provided by affiliates MEDIACUBE PAY INC. (Office 29 - 18 King Street East, Suite 1400, Toronto, Ontario, M5C1C4, Canada, FINTRAC Registration Number: M24438190) as well as other non-affiliated companies.',
 	},
 	bookingWidget: {
-		title: 'Start your journey with Garna',
-		subtitle: 'Fill in your details to book a demo',
+		title: 'Book a free 30-minute product demo',
+		subtitle: 'Get all your questions answered by our experts',
 		buttonContinue: 'Continue',
 		buttonChooseDate: 'Choose a date & time',
 		form: {

@@ -5,8 +5,8 @@ export const formEs = {
 	},
 	images: {},
 	form: {
-		heading: 'Comienza tu viaje con Garna',
-		subtitle: 'Completa tus datos para reservar una demo',
+		heading: 'Reserva una demo de producto gratuita de 30 minutos',
+		subtitle: 'Resuelve todas tus dudas con nuestros expertos',
 	},
 	footer: {
 		brand: 'garna',
@@ -22,8 +22,8 @@ export const formEs = {
 			'© 2026 GARNA LTD. Stasikratous, 20, 1er piso, Flat/Office 105, 1065, Nicosia, Chipre. HE 478114. Garna no es una institución financiera. Todos los servicios fintech dentro de la app de Garna son proporcionados por socios certificados, incluyendo Payoneer y otros. Los servicios de pago pueden ser proporcionados por afiliadas MEDIACUBE PAY INC. (Office 29 - 18 King Street East, Suite 1400, Toronto, Ontario, M5C1C4, Canadá, FINTRAC Registration Number: M24438190) así como otras compañías no afiliadas.',
 	},
 	bookingWidget: {
-		title: 'Comienza tu viaje con Garna',
-		subtitle: 'Completa tus datos para reservar una demo',
+		title: 'Reserva una demo de producto gratuita de 30 minutos',
+		subtitle: 'Resuelve todas tus dudas con nuestros expertos',
 		buttonContinue: 'Continuar',
 		buttonChooseDate: 'Elegir fecha y hora',
 		form: {
