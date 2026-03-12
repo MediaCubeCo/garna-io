@@ -38,4 +38,10 @@ export const basePaths: PageConfig[] = [
 		searchable: false,
 		showHeader: false,
 	},
+	{
+		path: 'ai-hiring',
+		mode: 'static',
+		searchable: true,
+		showHeader: true,
+	},
 ];

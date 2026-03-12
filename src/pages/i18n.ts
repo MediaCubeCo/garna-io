@@ -2,6 +2,7 @@ import { homeTranslations } from './translations/home';
 import { offerTranslations } from './translations/offer';
 import { notFoundTranslations } from './translations/404';
 import { formTranslations } from './translations/form';
+import { aiHiringTranslations } from './translations/ai-hiring';
 
 /** Home page translation shape (full structure). */
 export type PageTranslations = typeof homeTranslations.en;
@@ -11,14 +12,16 @@ type AnyPageTranslations =
 	| typeof homeTranslations.en
 	| typeof offerTranslations.en
 	| typeof notFoundTranslations.en
-	| typeof formTranslations.en;
+	| typeof formTranslations.en
+	| typeof aiHiringTranslations.en;
 
-const translations: Record<string, Record<string, AnyPageTranslations>> = {
+const translations = {
 	home: homeTranslations,
 	offer: offerTranslations,
 	'404': notFoundTranslations,
 	form: formTranslations,
-};
+	'ai-hiring': aiHiringTranslations,
+} as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
 /**
  * Gets page translations based on page name and locale

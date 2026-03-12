@@ -49,6 +49,7 @@ const PAGE_PATH_TO_DIR: Record<string, string> = {
 	'': 'home',
 	'for-contractors': 'offer',
 	form: 'form',
+	'ai-hiring': 'ai-hiring',
 };
 
 async function serveStaticPage(

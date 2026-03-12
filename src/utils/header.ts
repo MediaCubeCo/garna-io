@@ -32,6 +32,7 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 
 	const isHome = currentPath === '';
 	const isOffer = currentPath === 'for-contractors';
+	const isAiHiring = currentPath === 'ai-hiring';
 
 	const homeLinkClass =
 		'hover:opacity-80 transition-opacity text-base font-medium font-manrope ' +
@@ -40,7 +41,8 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 		'text-base font-medium font-manrope ' +
 		(isOffer ? 'text-[#5ea500]' : 'hover:opacity-80 transition-opacity text-white');
 	const aiHiringLinkClass =
-		'hidden hover:opacity-80 transition-opacity text-base lg:text-lg font-medium font-manrope ' + 'text-white';
+		'text-base lg:text-lg font-medium font-manrope ' +
+		(isAiHiring ? 'text-[#5ea500]' : 'hover:opacity-80 transition-opacity text-white');
 
 	const mobileHomeClass =
 		'block text-2xl font-medium font-manrope transition-colors ' +
@@ -49,7 +51,8 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 		'block text-2xl font-medium font-manrope transition-colors ' +
 		(isOffer ? 'text-[#5EA500] hover:text-[#7CFF00]' : 'text-white hover:opacity-80');
 	const mobileAiHiringClass =
-		'hidden block text-2xl font-medium text-white font-manrope transition-colors hover:opacity-80';
+		'block text-2xl font-medium font-manrope transition-colors ' +
+		(isAiHiring ? 'text-[#5EA500] hover:text-[#7CFF00]' : 'text-white hover:opacity-80');
 
 	const signUpUrl = 'https://app.garna.io/auth/sign-up';
 	const logInUrl = 'https://app.garna.io/auth/sign-in';

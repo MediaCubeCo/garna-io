@@ -4,11 +4,20 @@ import { show404Page } from './routes/404';
 import { handleStaticFile } from './routes/static';
 import { resolveRoute } from './utils/routes';
 
+const CANONICAL_ORIGIN = 'https://garna.io';
+const DEFAULT_LANGUAGE = 'en';
+
 export default {
 	async fetch(request: Request, env: any, ctx: ExecutionContext): Promise<Response> {
 		try {
 			const url = new URL(request.url);
 			const country = (request as any).cf?.country || 'US';
+
+			// 0. Redirect www (http/https) to canonical https://garna.io/en
+			if (url.hostname === 'www.garna.io') {
+				const targetUrl = `${CANONICAL_ORIGIN}/${DEFAULT_LANGUAGE}`;
+				return Response.redirect(targetUrl, 301);
+			}
 
 			// 1. Handle static files first (sitemap, robots.txt, assets)
 			const staticResponse = await handleStaticFile(request, url.pathname, env);

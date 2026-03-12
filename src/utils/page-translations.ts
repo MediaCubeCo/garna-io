@@ -20,6 +20,9 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'form') {
 		return `/${segment}/form`;
 	}
+	if (pageName === 'ai-hiring') {
+		return `/${segment}/ai-hiring`;
+	}
 	return `/${segment}`;
 }
 
