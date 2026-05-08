@@ -50,6 +50,7 @@ const PAGE_PATH_TO_DIR: Record<string, string> = {
 	'for-contractors': 'offer',
 	form: 'form',
 	'ai-hiring': 'ai-hiring',
+	'white-label': 'white-label',
 };
 
 async function serveStaticPage(

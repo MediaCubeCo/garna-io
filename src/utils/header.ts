@@ -22,6 +22,7 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 	const payrollSolution = escapeHtml(t.payrollSolution);
 	const forContractors = escapeHtml(t.forContractors);
 	const aiHiring = escapeHtml(t.aiHiring);
+	const whiteLabel = escapeHtml(t.whiteLabel);
 	const logIn = escapeHtml(t.logIn);
 	const signUp = escapeHtml(t.signUp);
 
@@ -29,10 +30,12 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 	const homeHref = base;
 	const offerHref = `${base}/for-contractors`;
 	const aiHiringHref = `${base}/ai-hiring`;
+	const whiteLabelHref = `${base}/white-label`;
 
 	const isHome = currentPath === '';
 	const isOffer = currentPath === 'for-contractors';
 	const isAiHiring = currentPath === 'ai-hiring';
+	const isWhiteLabel = currentPath === 'white-label';
 
 	const homeLinkClass =
 		'hover:opacity-80 transition-opacity text-base font-medium font-manrope ' +
@@ -43,6 +46,9 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 	const aiHiringLinkClass =
 		'text-base lg:text-lg font-medium font-manrope ' +
 		(isAiHiring ? 'text-[#5ea500]' : 'hover:opacity-80 transition-opacity text-white');
+	const whiteLabelLinkClass =
+		'text-base lg:text-lg font-medium font-manrope ' +
+		(isWhiteLabel ? 'text-[#5ea500]' : 'hover:opacity-80 transition-opacity text-white');
 
 	const mobileHomeClass =
 		'block text-2xl font-medium font-manrope transition-colors ' +
@@ -53,6 +59,9 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 	const mobileAiHiringClass =
 		'block text-2xl font-medium font-manrope transition-colors ' +
 		(isAiHiring ? 'text-[#5EA500] hover:text-[#7CFF00]' : 'text-white hover:opacity-80');
+	const mobileWhiteLabelClass =
+		'block text-2xl font-medium font-manrope transition-colors ' +
+		(isWhiteLabel ? 'text-[#5EA500] hover:text-[#7CFF00]' : 'text-white hover:opacity-80');
 
 	const signUpUrl = 'https://app.garna.io/auth/sign-up';
 	const logInUrl = 'https://app.garna.io/auth/sign-in';
@@ -71,6 +80,7 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 		`<a href="${escapeHtml(homeHref)}" class="${homeLinkClass}">${payrollSolution}</a>` +
 		`<a href="${escapeHtml(offerHref)}" class="${offerLinkClass}">${forContractors}</a>` +
 		`<a href="${escapeHtml(aiHiringHref)}" class="${aiHiringLinkClass}">${aiHiring}</a>` +
+		`<a href="${escapeHtml(whiteLabelHref)}" class="${whiteLabelLinkClass}">${whiteLabel}</a>` +
 		'</div>' +
 		'<div class="flex gap-y-4 items-center gap-x-5 md:gap-4 lg:gap-6">' +
 		`<a href="${escapeHtml(logInUrl)}" class="hidden hover:opacity-80 transition-opacity md:inline-flex items-center text-white font-manrope">` +
@@ -92,6 +102,7 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 		`<a href="${escapeHtml(homeHref)}" class="${mobileHomeClass}">${payrollSolution}</a>` +
 		`<a href="${escapeHtml(offerHref)}" class="${mobileOfferClass}">${forContractors}</a>` +
 		`<a href="${escapeHtml(aiHiringHref)}" class="${mobileAiHiringClass}">${aiHiring}</a>` +
+		`<a href="${escapeHtml(whiteLabelHref)}" class="${mobileWhiteLabelClass}">${whiteLabel}</a>` +
 		'</div>' +
 		'<div class="mt-auto flex flex-col gap-4"><div class="h-px bg-white/10 w-full mb-2"></div>' +
 		'<div class="flex flex-col gap-3">' +

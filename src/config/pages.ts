@@ -44,4 +44,10 @@ export const basePaths: PageConfig[] = [
 		searchable: true,
 		showHeader: true,
 	},
+	{
+		path: 'white-label',
+		mode: 'static',
+		searchable: true,
+		showHeader: true,
+	},
 ];

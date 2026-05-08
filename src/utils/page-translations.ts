@@ -23,6 +23,9 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'ai-hiring') {
 		return `/${segment}/ai-hiring`;
 	}
+	if (pageName === 'white-label') {
+		return `/${segment}/white-label`;
+	}
 	return `/${segment}`;
 }
 
