@@ -501,7 +501,7 @@ scaleY(var(--tw-scale-y, 1))
                 countries with minimal effort</p>
 
             <div class="flex md:mb-24 mb-24 justify-center">
-                <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open();"
+                <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'hero_demo' });"
                     class="group flex items-center gap-2 transition-all hover:scale-105 accent-glow text-base font-normal text-white font-manrope rounded-xl relative"
                     style="padding: 12px 32px; --gradient-angle: 0deg; --gradient-angle-offset: 0deg; --gradient-percent: 20%; --gradient-shine: #ffffff; --bg-color: #5EA500; background: linear-gradient(var(--bg-color), var(--bg-color)) padding-box, conic-gradient(from calc(var(--gradient-angle) - var(--gradient-angle-offset)), transparent 0%, #4d8a00 5%, var(--gradient-shine) 15%, #4d8a00 30%, transparent 40%, transparent 100%) border-box; border: 2px solid transparent; box-shadow: rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; animation: 2.5s linear 0s infinite normal none running border-spin; overflow: hidden; isolation: isolate">
                     <style>
@@ -1713,7 +1713,7 @@ scaleY(var(--tw-scale-y, 1))
                         data-translate="whyGarna.cta.description">Join thousands of businesses streamlining their global
                         payroll today</p>
 
-                    <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open();"
+                    <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'why_garna_demo' });"
                         class="group inline-flex items-center gap-2 transition-all hover:scale-105 text-base font-normal text-white font-manrope bg-[#5EA500] z-10 rounded-xl pt-3 pr-8 pb-3 pl-8 relative shadow-[0_0_20px_-5px_rgba(94,165,0,0.5)]"
                         data-translate="whyGarna.cta.button">Book a demo</a>
                 </div>
@@ -3113,7 +3113,7 @@ scaleY(var(--tw-scale-y, 1))
                 data-translate="bottomCta.title">Start with Garna Today</h2>
             <p class="md:text-xl lg:text-2xl text-lg font-light text-gray-400 font-manrope mb-12"
                 data-translate="bottomCta.description">Optimize your payroll and focus on growing your business</p>
-            <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open();"
+            <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'bottom_demo' });"
                 class="group relative inline-flex items-center justify-center transition-all hover:scale-105 accent-glow text-base font-normal text-white font-manrope rounded-xl"
                 style="padding: 12px 32px; --gradient-angle: 0deg; --gradient-angle-offset: 0deg; --gradient-percent: 20%; --gradient-shine: #ffffff; --bg-color: #5EA500; background: linear-gradient(var(--bg-color), var(--bg-color)) padding-box, conic-gradient(from calc(var(--gradient-angle) - var(--gradient-angle-offset)), transparent 0%, #4d8a00 5%, var(--gradient-shine) 15%, #4d8a00 30%, transparent 40%, transparent 100%) border-box; border: 2px solid transparent; box-shadow: rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; animation: 2.5s linear 0s infinite normal none running border-spin; overflow: hidden; isolation: isolate;">
                 <style>
@@ -3436,6 +3436,8 @@ scaleY(var(--tw-scale-y, 1))
                 window.GarnaWidget.init({
                     calComLink: 'garna/demo',
                     locale: language,
+                    trackingSource: 'payroll-solution',
+                    trackingPage: 'payroll-solution',
                     title: widgetTrans.title || 'Start your journey with Garna',
                     subtitle: widgetTrans.subtitle || 'Fill in your details to book a demo',
                     titleButtonForm: widgetTrans.buttonContinue || 'Continue',
