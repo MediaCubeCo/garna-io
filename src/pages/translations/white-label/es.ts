@@ -201,6 +201,43 @@ export const whiteLabelEs = {
 		"whiteLabelSync": "SINCRONIZACIÓN WHITE LABEL",
 		"readyToLaunch": "Listo para lanzar operaciones globales"
 	},
+	"bookingWidget": {
+		"title": "Comienza tu proyecto White Label con Garna",
+		"subtitle": "Completa tus datos para reservar una demo",
+		"buttonContinue": "Continuar",
+		"buttonChooseDate": "Elegir fecha y hora",
+		"form": {
+			"fullName": "Nombre completo*",
+			"firstName": "Nombre*",
+			"lastName": "Apellido*",
+			"email": "Correo de trabajo*",
+			"phone": "N?mero de tel?fono*",
+			"employees": "N?mero de empleados*"
+		},
+		"companySizeOptions": [
+			"1-20 personas",
+			"21-200 personas",
+			"201-1000 personas",
+			"1001-2000 personas",
+			"2001+ personas"
+		],
+		"errors": {
+			"required": "Este campo es obligatorio",
+			"invalidEmail": "Por favor introduce una direcci?n de correo v?lida",
+			"workEmail": "Por favor usa tu correo de trabajo (no proveedores gratuitos como Gmail, Yahoo, etc.)",
+			"invalidPhone": "Por favor introduce un n?mero de tel?fono v?lido"
+		},
+		"signUp": {
+			"promptPrefix": "?Contratista o empleado? ",
+			"linkText": "Reg?strate",
+			"promptSuffix": " aqu?"
+		},
+		"disclaimer": {
+			"prefix": "Respetamos tus datos. Al enviar este formulario, aceptas que nos pondremos en contacto contigo en relaci?n con nuestros productos y servicios, de acuerdo con nuestra ",
+			"privacyLink": "pol?tica de privacidad",
+			"suffix": "."
+		}
+	},
 	"footer": {
 		"brand": "garna",
 		"poweredBy": "Impulsado por",

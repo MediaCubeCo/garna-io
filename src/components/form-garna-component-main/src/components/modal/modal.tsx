@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styles from './modal.module.css';
 import Button from '../button/button';
 import Form from '../form/form';
@@ -65,6 +65,10 @@ export interface IModalProps {
 	colorTextLogo: string;
 	/** Current language/locale for sign-up and privacy links (e.g. 'en', 'es'). Defaults to 'en'. */
 	locale?: string;
+	/** Optional attribution fields propagated to webhook, analytics, and Cal.com booking metadata. */
+	trackingSource?: string;
+	trackingPage?: string;
+	trackingCta?: string;
 	/** Optional translations for all widget copy; keys match page bookingWidget. */
 	translations?: IModalTranslations;
 	// Optional props for external control
@@ -116,6 +120,9 @@ export default function Modal({
 	colorBorderVerticalLine = 'rgb(34, 34, 34)',
 	colorTextLogo = '#5d5d5dff',
 	locale = 'en',
+	trackingSource,
+	trackingPage,
+	trackingCta,
 	translations: translationsOverride,
 	isModalVis: externalIsModalVis,
 	onCloseModal: externalOnCloseModal,
@@ -131,6 +138,11 @@ export default function Modal({
 	) as string[];
 	const signUpUrl = `https://app.garna.io/${locale}/auth/sign-up`;
 	const privacyUrl = `https://app.garna.io/api/privacy?lang=${locale}`;
+	const trackingFields = useMemo(() => ({
+		...(trackingSource ? { source: trackingSource } : {}),
+		...(trackingPage ? { page: trackingPage } : {}),
+		...(trackingCta ? { cta: trackingCta } : {}),
+	}), [trackingSource, trackingPage, trackingCta]);
 	// Use external state if provided, otherwise use internal state
 	const [internalIsModalVis, setIsModalVisible] = useState(false);
 	const isModalVis = externalIsModalVis !== undefined ? externalIsModalVis : internalIsModalVis;
@@ -159,11 +171,12 @@ export default function Modal({
 		email: '',
 		numEmployes: '',
 	});
+	const { firstName, lastName, email, numEmployes } = values;
 	//Контейнр для встраивания calCom
 	const calContainerRef = useRef<HTMLDivElement | null>(null);
 	const webhookSentRef = useRef(false);
 
-	const onCloseModal = () => {
+	const onCloseModal = useCallback(() => {
 		if (externalOnCloseModal) {
 			externalOnCloseModal();
 		} else {
@@ -176,7 +189,7 @@ export default function Modal({
 		if (calContainerRef.current) {
 			calContainerRef.current.innerHTML = '';
 		}
-	};
+	}, [externalOnCloseModal]);
 
 	// Send webhook + gtag when user completes the form and moves to step 2 (calendar)
 	useEffect(() => {
@@ -184,17 +197,26 @@ export default function Modal({
 		webhookSentRef.current = true;
 
 		(async () => {
-			const garnaClientID = await hashEmail(values.email);
+			const garnaClientID = await hashEmail(email);
 			const language = (locale?.split('-')[0] || 'en').toLowerCase();
-			sendFormCompletedWebhook({ ...values, garnaClientID, language });
+			sendFormCompletedWebhook({ firstName, lastName, email, numEmployes, garnaClientID, language, ...trackingFields });
 			sendGtagEvent('form_step1_completed', {
-				first_name: values.firstName,
-				last_name: values.lastName,
-				num_employees: values.numEmployes,
+				...trackingFields,
+				first_name: firstName,
+				last_name: lastName,
+				num_employees: numEmployes,
 				garna_client_id: garnaClientID,
 			});
 		})();
-	}, [validInfo.isFormValid, values.firstName, values.lastName, values.email, values.numEmployes]);
+	}, [
+		validInfo.isFormValid,
+		firstName,
+		lastName,
+		email,
+		numEmployes,
+		locale,
+		trackingFields,
+	]);
 
 	// Lock body scroll when modal is open (skip when embedded)
 	useEffect(() => {
@@ -272,7 +294,7 @@ export default function Modal({
 			if (cancelled) return;
 
 			// Inline embed + prefill. Steps 2 & 3 (calendar, booking) stay in Cal.com default language.
-			const fullName = [values.firstName, values.lastName].filter(Boolean).join(' ').trim();
+			const fullName = [firstName, lastName].filter(Boolean).join(' ').trim();
 			cal('inline', {
 				elementOrSelector: container,
 				calLink: calComLink,
@@ -280,7 +302,10 @@ export default function Modal({
 					layout: 'month_view',
 					theme: 'dark',
 					name: fullName,
-					email: values.email,
+					email,
+					...(trackingSource ? { 'metadata[source]': trackingSource } : {}),
+					...(trackingPage ? { 'metadata[page]': trackingPage } : {}),
+					...(trackingCta ? { 'metadata[cta]': trackingCta } : {}),
 				},
 			});
 			// 🔽 UI и стилизация под garna.io
@@ -326,11 +351,12 @@ export default function Modal({
 				eventName: string,
 				calData: Record<string, unknown>
 			) => {
-				hashEmail(values.email).then((applicantGarnaClientID) => {
+				hashEmail(email).then((applicantGarnaClientID) => {
 					sendGtagEvent(eventName, {
+						...trackingFields,
 						...toBookingParams(calData),
-						applicant_first_name: values.firstName,
-						applicant_last_name: values.lastName,
+						applicant_first_name: firstName,
+						applicant_last_name: lastName,
 						applicant_garna_client_id: applicantGarnaClientID,
 					});
 				});
@@ -356,6 +382,7 @@ export default function Modal({
 					const organizer = (data.organizer as Record<string, unknown>) ?? {};
 					const eventType = (data.eventType as Record<string, unknown>) ?? {};
 					sendGtagEvent('cal_booking_cancelled', {
+						...trackingFields,
 						cancellation_reason: booking?.cancellationReason,
 						organizer_name: organizer?.name,
 						organizer_email: organizer?.email,
@@ -375,9 +402,9 @@ export default function Modal({
 	}, [
 		isModalVis,
 		validInfo.isFormValid,
-		values.firstName,
-		values.lastName,
-		values.email,
+		firstName,
+		lastName,
+		email,
 		calComLink,
 		colorBrandBg,
 		colorBrandText,
@@ -391,6 +418,11 @@ export default function Modal({
 		colorBorderTimeCalendar,
 		colorBorderVerticalLine,
 		colorTextLogo,
+		embedded,
+		trackingSource,
+		trackingPage,
+		trackingCta,
+		trackingFields,
 	]);
 
 	const handleOverlayMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {

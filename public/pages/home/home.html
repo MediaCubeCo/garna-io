@@ -70,6 +70,24 @@
             box-shadow: 0 0 60px -20px rgba(94, 165, 0, 0.4);
         }
 
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #404040;
+        }
+
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }

@@ -18,6 +18,9 @@ export interface IWebhookPayload {
 	utm_campaign?: string;
 	utm_term?: string;
 	utm_content?: string;
+	source?: string;
+	page?: string;
+	cta?: string;
 	[key: string]: string | undefined;
 }
 
@@ -32,7 +35,13 @@ function employeesNumberOnly(value: string): string {
  * Sends form data to the n8n webhook when the user completes step 1 and moves to step 2.
  * Fires once per transition; does not throw (failures are logged only).
  */
-export type IFormWithGarnaClientID = IForm & { garnaClientID?: string; language?: string };
+export type IFormWithGarnaClientID = IForm & {
+	garnaClientID?: string;
+	language?: string;
+	source?: string;
+	page?: string;
+	cta?: string;
+};
 
 const LOG_PREFIX = '[garna widget] webhook';
 
@@ -55,6 +64,9 @@ export async function sendFormCompletedWebhook(form: IFormWithGarnaClientID): Pr
 		numEmployes: employeesNumberOnly(form.numEmployes),
 		language,
 		...(form.garnaClientID != null && form.garnaClientID !== '' ? { garnaClientID: form.garnaClientID } : {}),
+		...(form.source != null && form.source !== '' ? { source: form.source } : {}),
+		...(form.page != null && form.page !== '' ? { page: form.page } : {}),
+		...(form.cta != null && form.cta !== '' ? { cta: form.cta } : {}),
 		...utmFields,
 	};
 
@@ -66,6 +78,9 @@ export async function sendFormCompletedWebhook(form: IFormWithGarnaClientID): Pr
 			email: payload.email,
 			numEmployes: payload.numEmployes,
 			language: payload.language,
+			source: payload.source,
+			page: payload.page,
+			cta: payload.cta,
 			hasGarnaClientID: Boolean(payload.garnaClientID),
 		},
 		timestamp: new Date().toISOString(),

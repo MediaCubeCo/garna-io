@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { WidgetWrapper } from './widget-wrapper';
 import { IModalProps } from './components/modal/modal';
 import { persistUtmFromUrl } from './utils/collectUtm';
+import { sendGtagEvent } from './utils/gtag';
 import './index.css';
 
 // Persist UTM from URL to cookies and localStorage as soon as the user lands on the site
@@ -15,6 +16,7 @@ interface WidgetConfig extends Partial<IModalProps> {
 }
 
 type ReactRoot = ReturnType<typeof ReactDOM.createRoot>;
+type WidgetOpenOptions = Pick<IModalProps, 'trackingSource' | 'trackingPage' | 'trackingCta'>;
 
 class GarnaWidgetClass {
 	private root: ReactRoot | null = null;
@@ -61,12 +63,18 @@ class GarnaWidgetClass {
 	/**
 	 * Open the modal
 	 */
-	open(): void {
+	open(options: Partial<WidgetOpenOptions> = {}): void {
 		if (!this.isInitialized) {
 			return;
 		}
 
+		this.config = { ...this.config, ...options };
 		this.isOpen = true;
+		sendGtagEvent('booking_widget_opened', {
+			...(this.config.trackingSource ? { source: this.config.trackingSource } : {}),
+			...(this.config.trackingPage ? { page: this.config.trackingPage } : {}),
+			...(this.config.trackingCta ? { cta: this.config.trackingCta } : {}),
+		});
 		this.render();
 	}
 

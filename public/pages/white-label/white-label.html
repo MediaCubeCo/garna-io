@@ -66,6 +66,112 @@ details > summary::-webkit-details-marker { display: none; }
 100% { transform: translateY(0px); }
 }
 .animate-float { animation: float 6s ease-in-out infinite; }
+@property --gradient-angle {
+syntax: "<angle>";
+initial-value: 0deg;
+inherits: false;
+}
+@property --gradient-angle-offset {
+syntax: "<angle>";
+initial-value: 0deg;
+inherits: false;
+}
+@property --gradient-percent {
+syntax: "<percentage>";
+initial-value: 20%;
+inherits: false;
+}
+@property --gradient-shine {
+syntax: "<color>";
+initial-value: #ffffff;
+inherits: false;
+}
+@keyframes border-spin {
+to { --gradient-angle: 360deg; }
+}
+@keyframes shimmer {
+to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes breathe {
+0%, 100% { transform: translate(-50%, -50%) scale(1); }
+50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+.garna-demo-cta {
+position: relative;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+padding: 12px 32px;
+--gradient-angle: 0deg;
+--gradient-angle-offset: 0deg;
+--gradient-percent: 20%;
+--gradient-shine: #ffffff;
+--bg-color: #5EA500;
+background: linear-gradient(var(--bg-color), var(--bg-color)) padding-box, conic-gradient(from calc(var(--gradient-angle) - var(--gradient-angle-offset)), transparent 0%, #4d8a00 5%, var(--gradient-shine) 15%, #4d8a00 30%, transparent 40%, transparent 100%) border-box;
+border: 2px solid transparent;
+box-shadow: rgba(255, 255, 255, 0.1) 0 0 0 1px inset;
+animation: border-spin 2.5s linear infinite;
+overflow: hidden;
+isolation: isolate;
+}
+.garna-demo-cta::before {
+content: '';
+pointer-events: none;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+z-index: 0;
+width: 100%;
+height: 100%;
+background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px) padding-box;
+background-size: 8px 8px;
+mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+opacity: 0.3;
+}
+.garna-demo-cta::after {
+content: '';
+pointer-events: none;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+z-index: 1;
+width: 100%;
+aspect-ratio: 1;
+background: linear-gradient(-50deg, transparent, rgba(163, 230, 53, 0.4), transparent);
+mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+opacity: 0.5;
+animation: shimmer 4s linear infinite;
+}
+.garna-demo-cta .inner {
+position: relative;
+z-index: 2;
+}
+.garna-demo-cta .inner::before {
+content: '';
+pointer-events: none;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+z-index: -1;
+width: 120%;
+height: 200%;
+box-shadow: inset 0 0 2rem 4px rgba(163, 230, 53, 0.3);
+opacity: 0.5;
+border-radius: inherit;
+animation: breathe 4s linear infinite;
+}
+.garna-demo-cta:hover .icon path {
+animation: dash 0.8s linear forwards;
+}
+@keyframes dash {
+0% { stroke-dasharray: 0, 20; stroke-dashoffset: 0; }
+50% { stroke-dasharray: 10, 10; stroke-dashoffset: -5; }
+100% { stroke-dasharray: 20, 0; stroke-dashoffset: -10; }
+}
 </style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style></head>
 <body class="antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative">
 
@@ -122,7 +228,9 @@ details > summary::-webkit-details-marker { display: none; }
         <p class="md:text-xl leading-relaxed text-lg font-light text-gray-400 font-manrope max-w-xl"><span data-translate="hero.description">Scale your business
             without operational chaos: automate compliance and global contractor payments under your own brand</span></p>
 
-        <button class="group inline-flex items-center gap-2 transition-all hover:scale-105 active:scale-95 text-base font-medium text-[#ffffff] font-manrope bg-[#5ea500] rounded-xl pt-3 pr-8 pb-3 pl-8 shadow-[0_0_20px_-5px_rgba(94,165,0,0.5)]"><span data-translate="hero.cta">Try Demo Version</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right transition-transform group-hover:translate-x-1"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button>
+        <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'hero_demo' });" class="garna-demo-cta group transition-all hover:scale-105 text-base font-medium text-white font-manrope rounded-xl">
+            <span class="inner flex items-center gap-2 font-manrope"><span data-translate="hero.cta">Try Demo Version</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-right" aria-hidden="true" class="lucide lucide-arrow-up-right icon w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span>
+        </a>
     </div>
 
     <!-- Right Visual (Dashboard UI) -->
@@ -1527,10 +1635,10 @@ details > summary::-webkit-details-marker { display: none; }
             <div class="w-full">
                 <h2 class="leading-[1.1] md:text-6xl text-5xl font-normal text-white tracking-tight font-manrope mb-8"><span data-translate="finalCta.title">Become a Market Leader with Garna White Label Solution</span></h2>
                 <p class="text-xl font-light text-gray-400 max-w-lg mb-10"><span data-translate="finalCta.description">Launch a global contractor management service under your own brand today</span></p>
-                <button class="group flex transition-all hover:scale-105 accent-glow overflow-hidden text-base font-medium text-white font-manrope bg-[#5EA500] rounded-xl pt-3 pr-8 pb-3 pl-8 relative gap-x-2 gap-y-2 items-center">
-  <span data-translate="finalCta.button">Request Demo Version</span>
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right transition-transform group-hover:translate-x-1"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-</button>
+                <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'final_demo' });" class="garna-demo-cta group transition-all hover:scale-105 text-base font-medium text-white font-manrope rounded-xl">
+  <span class="inner flex items-center gap-2 font-manrope"><span data-translate="finalCta.button">Request Demo Version</span>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-right" aria-hidden="true" class="lucide lucide-arrow-up-right icon w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span>
+</a>
             </div>
             
             <!-- Dashboard Collage -->
@@ -1751,4 +1859,91 @@ details > summary::-webkit-details-marker { display: none; }
                     Canada, FINTRAC Registration Number: M24438190) as well as other non-affiliated companies.</div>
             </div>
         </footer>
+    <!-- Garna Booking Widget -->
+    <div id="garna-widget-root"></div>
+    <script src="/widget/garna-widget.js"></script>
+    <script>
+        // Initialize Garna booking widget with white-label attribution defaults.
+        (function () {
+            'use strict';
+
+            function getCurrentLanguage() {
+                var htmlLang = document.documentElement.getAttribute('lang');
+                if (htmlLang) {
+                    var lang = htmlLang.split('-')[0].toLowerCase();
+                    if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) {
+                        return lang;
+                    }
+                }
+                return 'en';
+            }
+
+            function initWidget() {
+                if (typeof window.GarnaWidget === 'undefined' || typeof window.pageTranslations === 'undefined') {
+                    setTimeout(initWidget, 100);
+                    return;
+                }
+
+                var language = getCurrentLanguage();
+                var translations = window.pageTranslations[language] || window.pageTranslations.en;
+                var widgetTrans = translations.bookingWidget || {};
+                var signUp = widgetTrans.signUp || {};
+                var disclaimer = widgetTrans.disclaimer || {};
+                var form = widgetTrans.form || {};
+                var errors = widgetTrans.errors || {};
+
+                var widgetTranslations = {
+                    buttonChooseDate: widgetTrans.buttonChooseDate,
+                    signUpPromptPrefix: signUp.promptPrefix,
+                    signUpLinkText: signUp.linkText,
+                    signUpPromptSuffix: signUp.promptSuffix,
+                    disclaimerPrefix: disclaimer.prefix,
+                    privacyLinkText: disclaimer.privacyLink,
+                    disclaimerSuffix: disclaimer.suffix,
+                    form: {
+                        firstName: form.firstName,
+                        lastName: form.lastName,
+                        email: form.email,
+                        employees: form.employees
+                    },
+                    companySizeOptions: widgetTrans.companySizeOptions,
+                    errors: {
+                        required: errors.required,
+                        invalidEmail: errors.invalidEmail,
+                        workEmail: errors.workEmail,
+                        invalidPhone: errors.invalidPhone
+                    }
+                };
+
+                window.GarnaWidget.init({
+                    calComLink: 'garna/demo',
+                    locale: language,
+                    trackingSource: 'white-label',
+                    trackingPage: 'white-label',
+                    title: widgetTrans.title || 'Start your white-label journey with Garna',
+                    subtitle: widgetTrans.subtitle || 'Fill in your details to book a demo',
+                    titleButtonForm: widgetTrans.buttonContinue || 'Continue',
+                    translations: widgetTranslations,
+                    colorBrandBg: '#5EA500',
+                    colorBrandText: '#ffffff',
+                    bgColorCal: '#0a0a0a',
+                    colorBorder: 'rgb(34, 34, 34)',
+                    thicknessBorder: '1px',
+                    radiusBorder: '32px',
+                    colorTextMain: '#ffffff',
+                    colorTextCalendar: '#a4a4a4',
+                    colorTextError: '#ff6b9d',
+                    colorBorderTimeCalendar: '#ffffff9a',
+                    colorBorderVerticalLine: 'rgb(34, 34, 34)',
+                    colorTextLogo: '#5d5d5d'
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initWidget);
+            } else {
+                initWidget();
+            }
+        })();
+    </script>
 </body></html>
