@@ -114,6 +114,116 @@
         .perspective-1000 {
             perspective: 1000px;
         }
+
+        .contractor-payouts-list.is-ready [data-reveal-item] {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translate3d(-24px, 22px, 0) scale(0.97);
+            transition:
+                opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+                filter 700ms ease,
+                transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: var(--reveal-delay, 0ms);
+            will-change: opacity, filter, transform;
+        }
+
+        .contractor-payouts-list.is-ready.is-visible [data-reveal-item] {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        .contractor-payouts-list.is-ready [data-reveal-badge] {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            transform: scale(0.86);
+            transition:
+                border-color 700ms ease,
+                box-shadow 700ms ease,
+                transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: var(--reveal-delay, 0ms);
+        }
+
+        .contractor-payouts-list.is-ready.is-visible [data-reveal-badge] {
+            border-color: rgba(94, 165, 0, 0.45);
+            box-shadow: 0 0 28px -10px rgba(94, 165, 0, 0.85);
+            transform: scale(1);
+        }
+
+        .contractor-payouts-list.is-ready [data-reveal-badge]::after {
+            content: "";
+            position: absolute;
+            inset: -55%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(115deg, transparent 35%, rgba(94, 165, 0, 0.48) 50%, transparent 65%);
+            transform: translateX(-140%) rotate(12deg);
+        }
+
+        .contractor-payouts-list.is-ready.is-visible [data-reveal-badge]::after {
+            animation: contractorBadgeSweep 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
+            animation-delay: var(--badge-delay, 160ms);
+        }
+
+        .contractor-payouts-list.is-ready.is-visible [data-reveal-text] {
+            animation: contractorTextSettle 700ms ease-out both;
+            animation-delay: var(--badge-delay, 160ms);
+        }
+
+        @keyframes contractorBadgeSweep {
+            0% {
+                opacity: 0;
+                transform: translateX(-140%) rotate(12deg);
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(140%) rotate(12deg);
+            }
+        }
+
+        @keyframes contractorTextSettle {
+            0% {
+                color: rgb(156 163 175);
+                text-shadow: 0 0 0 rgba(94, 165, 0, 0);
+            }
+
+            45% {
+                color: rgb(243 244 246);
+                text-shadow: 0 0 22px rgba(94, 165, 0, 0.32);
+            }
+
+            100% {
+                color: rgb(209 213 219);
+                text-shadow: 0 0 0 rgba(94, 165, 0, 0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .contractor-payouts-list.is-ready [data-reveal-item] {
+                opacity: 1;
+                filter: none;
+                transform: none;
+                transition: none;
+            }
+
+            .contractor-payouts-list.is-ready [data-reveal-badge],
+            .contractor-payouts-list.is-ready.is-visible [data-reveal-badge] {
+                transform: none;
+                transition: none;
+            }
+
+            .contractor-payouts-list.is-ready.is-visible [data-reveal-badge]::after,
+            .contractor-payouts-list.is-ready.is-visible [data-reveal-text] {
+                animation: none;
+            }
+        }
     </style>
     <script>
         // Configure Tailwind to include our custom 3D transform utilities
@@ -2128,38 +2238,78 @@ scaleY(var(--tw-scale-y, 1))
                         data-translate="contractorPayouts.description">Execute global payouts immediately and repay
                         Garna on a schedule that suits your business cash flow</p>
 
-                    <ul class="space-y-8">
-                        <li class="flex items-center gap-5">
+                    <ul class="contractor-payouts-list space-y-8" data-contractor-payouts-list>
+                        <li class="flex items-center gap-5" data-reveal-item
+                            style="--reveal-delay: 0ms; --badge-delay: 160ms;">
                             <div
-                                class="flex text-sm text-[#5EA500] font-mono bg-[#1A1A1A] w-9 h-8 border-white/10 border rounded-lg items-center justify-center">
+                                class="flex text-sm text-[#5EA500] font-mono bg-[#1A1A1A] w-9 h-8 border-white/10 border rounded-lg items-center justify-center"
+                                data-reveal-badge>
                                 1</div>
-                            <span class="text-lg text-gray-300 font-manrope w-full"
+                            <span class="text-lg text-gray-300 font-manrope w-full" data-reveal-text
                                 data-translate="contractorPayouts.items.item1">Immediate payouts, deferred
                                 settlement</span>
                         </li>
-                        <li class="flex items-center gap-5">
+                        <li class="flex items-center gap-5" data-reveal-item
+                            style="--reveal-delay: 120ms; --badge-delay: 280ms;">
                             <div
-                                class="flex text-sm text-[#5EA500] font-mono bg-[#1A1A1A] w-9 h-8 border-white/10 border rounded-lg items-center justify-center">
+                                class="flex text-sm text-[#5EA500] font-mono bg-[#1A1A1A] w-9 h-8 border-white/10 border rounded-lg items-center justify-center"
+                                data-reveal-badge>
                                 2</div>
-                            <span class="text-lg text-gray-300 font-manrope w-full"
+                            <span class="text-lg text-gray-300 font-manrope w-full" data-reveal-text
                                 data-translate="contractorPayouts.items.item2">Flexible terms: 30, 60, or 90 days</span>
                         </li>
-                        <li class="flex items-center gap-5">
+                        <li class="flex items-center gap-5" data-reveal-item
+                            style="--reveal-delay: 240ms; --badge-delay: 400ms;">
                             <div
-                                class="flex text-sm text-[#5EA500] font-mono bg-[#1A1A1A] w-9 h-8 border-white/10 border rounded-lg items-center justify-center">
+                                class="flex text-sm text-[#5EA500] font-mono bg-[#1A1A1A] w-9 h-8 border-white/10 border rounded-lg items-center justify-center"
+                                data-reveal-badge>
                                 3</div>
-                            <span class="text-lg text-gray-300 font-manrope w-full"
+                            <span class="text-lg text-gray-300 font-manrope w-full" data-reveal-text
                                 data-translate="contractorPayouts.items.item3">Facility limits from $10K to $1M</span>
                         </li>
-                        <li class="flex items-center gap-5">
+                        <li class="flex items-center gap-5" data-reveal-item
+                            style="--reveal-delay: 360ms; --badge-delay: 520ms;">
                             <div
-                                class="flex text-sm text-[#5EA500] font-mono bg-[#1A1A1A] w-9 h-8 border-white/10 border rounded-lg items-center justify-center">
+                                class="flex text-sm text-[#5EA500] font-mono bg-[#1A1A1A] w-9 h-8 border-white/10 border rounded-lg items-center justify-center"
+                                data-reveal-badge>
                                 4</div>
-                            <span class="text-lg text-gray-300 font-manrope w-full"
+                            <span class="text-lg text-gray-300 font-manrope w-full" data-reveal-text
                                 data-translate="contractorPayouts.items.item4">Instant allocation &amp;
                                 processing</span>
                         </li>
                     </ul>
+                    <script>
+                        (function () {
+                            const list = document.querySelector('[data-contractor-payouts-list]');
+
+                            if (!list) return;
+
+                            const revealList = () => {
+                                list.classList.add('is-visible');
+                            };
+
+                            if (!('IntersectionObserver' in window)) {
+                                revealList();
+                                return;
+                            }
+
+                            list.classList.add('is-ready');
+
+                            const observer = new IntersectionObserver((entries) => {
+                                entries.forEach((entry) => {
+                                    if (entry.isIntersecting) {
+                                        revealList();
+                                        observer.unobserve(entry.target);
+                                    }
+                                });
+                            }, {
+                                threshold: 0.35,
+                                rootMargin: '0px 0px -8% 0px',
+                            });
+
+                            observer.observe(list);
+                        })();
+                    </script>
 
                 </div>
 

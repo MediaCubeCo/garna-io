@@ -32,7 +32,7 @@ export function buildHeaderHtml(lang: string, currentPath: string): string {
 	const aiHiringHref = `${base}/ai-hiring`;
 	const whiteLabelHref = `${base}/white-label`;
 
-	const isHome = currentPath === '';
+	const isHome = currentPath === '' || currentPath === 'payroll-small-business';
 	const isOffer = currentPath === 'for-contractors';
 	const isAiHiring = currentPath === 'ai-hiring';
 	const isWhiteLabel = currentPath === 'white-label';

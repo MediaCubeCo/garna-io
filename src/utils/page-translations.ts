@@ -26,6 +26,9 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'white-label') {
 		return `/${segment}/white-label`;
 	}
+	if (pageName === 'payroll-small-business') {
+		return `/${segment}/payroll-small-business`;
+	}
 	return `/${segment}`;
 }
 
@@ -34,12 +37,20 @@ function getLanguagePagePath(pageName: string, lang: string): string {
  * Custom dropdown with styles and animation copied entirely from SelectForm (selectForm.module.css).
  * Injected server-side; on option click navigates to the same page in the selected language.
  */
-function buildFooterLangSelectHtml(pageName: string, currentLanguage: string, languageLabel: string): string {
+function buildFooterLangSelectHtml(
+	pageName: string,
+	currentLanguage: string,
+	languageLabel: string,
+	pageLanguages?: string[]
+): string {
 	const currentLang = currentLanguage.toLowerCase();
 	const currentOption = languages.find((l) => l.value === currentLang);
 	const displayText = currentOption ? currentOption.label : currentLang;
+	const availableLanguages = pageLanguages
+		? languages.filter((lang) => pageLanguages.includes(lang.value))
+		: languages;
 
-	const optionsHtml = languages
+	const optionsHtml = availableLanguages
 		.map((lang) => {
 			const path = getLanguagePagePath(pageName, lang.value);
 			const selected = lang.value === currentLang;
@@ -128,7 +139,8 @@ export function injectPageTranslations(
 	pageName: string,
 	routeInfo: RouteInfo,
 	baseUrl: string,
-	env?: any
+	env?: any,
+	pageLanguages?: string[]
 ): string {
 	try {
 		// Get translations for all languages (en, es, pt, ru)
@@ -155,7 +167,7 @@ export function injectPageTranslations(
 		const currentTranslationsForLabel =
 			allTranslations[currentLanguage as keyof typeof allTranslations] || allTranslations.en;
 		const languageLabel = (currentTranslationsForLabel as any)?.footer?.language ?? 'Language';
-		const footerLangSelectHtml = buildFooterLangSelectHtml(pageName, currentLanguage, languageLabel);
+		const footerLangSelectHtml = buildFooterLangSelectHtml(pageName, currentLanguage, languageLabel, pageLanguages);
 		if (html.includes(FOOTER_LANG_SELECT_PLACEHOLDER)) {
 			html = html.replace(FOOTER_LANG_SELECT_PLACEHOLDER, footerLangSelectHtml);
 		}
