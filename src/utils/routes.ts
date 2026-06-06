@@ -91,7 +91,11 @@ export function resolveRoute(fullPath: string): RouteInfo {
 
 export const routes: Record<string, string | { mode: string }> = Object.fromEntries(
 	getSupportedLanguageCodes().flatMap((locale: string) =>
-		basePaths.map((config: PageConfig) => {
+		basePaths.flatMap((config: PageConfig) => {
+			if (config.languages && !config.languages.includes(locale)) {
+				return [];
+			}
+
 			const path = config.path === '' ? '' : `/${config.path}`;
 
 			const langOnlyLocale = (locale.split('-')[0] || locale).toLowerCase();
@@ -99,7 +103,7 @@ export const routes: Record<string, string | { mode: string }> = Object.fromEntr
 			const routePath = `/${langOnlyLocale}${path}`;
 
 			// Handle static mode
-			return [routePath, { mode: 'static' }];
+			return [[routePath, { mode: 'static' }]];
 		})
 	)
 );

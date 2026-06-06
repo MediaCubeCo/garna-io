@@ -4,6 +4,7 @@ import { notFoundTranslations } from './translations/404';
 import { formTranslations } from './translations/form';
 import { aiHiringTranslations } from './translations/ai-hiring';
 import { whiteLabelTranslations } from './translations/white-label';
+import { eorTranslations } from './translations/eor';
 
 /** Home page translation shape (full structure). */
 export type PageTranslations = typeof homeTranslations.en;
@@ -15,7 +16,8 @@ type AnyPageTranslations =
 	| typeof notFoundTranslations.en
 	| typeof formTranslations.en
 	| typeof aiHiringTranslations.en
-	| typeof whiteLabelTranslations.en;
+	| typeof whiteLabelTranslations.en
+	| typeof eorTranslations.en;
 
 const translations = {
 	home: homeTranslations,
@@ -24,6 +26,7 @@ const translations = {
 	form: formTranslations,
 	'ai-hiring': aiHiringTranslations,
 	'white-label': whiteLabelTranslations,
+	eor: eorTranslations,
 } as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
 /**

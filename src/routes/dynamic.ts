@@ -35,6 +35,7 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 
 	const allowedLangs = languages.map((l) => l.value);
 	if (!allowedLangs.includes(routeInfo.language)) return null;
+	if (pageConfig.languages && !pageConfig.languages.includes(routeInfo.language)) return null;
 
 	switch (pageConfig.mode) {
 		case 'static':
@@ -51,6 +52,7 @@ const PAGE_PATH_TO_DIR: Record<string, string> = {
 	form: 'form',
 	'ai-hiring': 'ai-hiring',
 	'white-label': 'white-label',
+	eor: 'eor',
 };
 
 async function serveStaticPage(
@@ -119,7 +121,7 @@ async function serveStaticPage(
 		html = injectCanonicalTag(html, routeInfo.locale || 'en', path);
 
 		// 3. Inject hreflang tags
-		html = injectHreflangTags(html, path);
+		html = injectHreflangTags(html, path, pageConfig.languages);
 
 		// 4. Inject Schema.org JSON-LD
 		const canonicalUrl = `${baseUrl}/${language}${path ? `/${path}` : ''}`;
@@ -129,7 +131,7 @@ async function serveStaticPage(
 		html = injectSchemaOrg(html, canonicalUrl, pageTitle, pageDescription);
 
 		// 5. Inject page translations
-		html = injectPageTranslations(html, pageDir, routeInfo, baseUrl, env);
+		html = injectPageTranslations(html, pageDir, routeInfo, baseUrl, env, pageConfig.languages);
 
 		// Return response with modified HTML and security headers
 		const responseHeaders = new Headers();

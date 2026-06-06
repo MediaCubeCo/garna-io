@@ -17,6 +17,11 @@ export interface PageConfig {
 	 * Whether to inject the shared header component (navbar) into this page
 	 */
 	showHeader?: boolean;
+	/**
+	 * Optional list of languages this page is published in.
+	 * When omitted, the page is available in every supported language.
+	 */
+	languages?: string[];
 }
 
 export const basePaths: PageConfig[] = [
@@ -49,5 +54,12 @@ export const basePaths: PageConfig[] = [
 		mode: 'static',
 		searchable: true,
 		showHeader: true,
+	},
+	{
+		path: 'eor',
+		mode: 'static',
+		searchable: true,
+		showHeader: true,
+		languages: ['en'],
 	},
 ];
