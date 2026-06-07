@@ -2944,165 +2944,97 @@ scaleY(var(--tw-scale-y, 1))
 
             </div>
 
-            <div class="space-y-5" id="faq-accordion-container">
-                <details
-                    class="group glass rounded-xl border border-white/5 data-[state=open]:bg-[#0c0c0c] transition-colors duration-500 overflow-hidden"
-                    data-state="closed">
-                    <summary
-                        class="flex cursor-pointer bg-[#0c0c0c] px-6 py-6 items-center justify-between list-none [&amp;::-webkit-details-marker]:hidden outline-none">
-                        <span class="text-base font-normal text-white font-manrope"
-                            data-translate="faqHome.items.q1.question">How do I get started with Garna?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                            data-lucide="chevron-down" aria-hidden="true"
-                            class="lucide lucide-chevron-down w-5 h-5 text-gray-500 transition-transform duration-500 group-data-[state=open]:rotate-180">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </summary>
-                    <div
-                        class="accordion-content h-0 opacity-0 translate-y-2 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                        <div class="px-6 pb-6 text-base text-gray-400 leading-relaxed font-sans">
-                            <span data-translate="faqHome.items.q1.answer">Sign up on our platform, contact our sales
-                                team, and start processing payroll in just a few steps.</span>
+            <div class="space-y-4">
+                <div class="group bg-[#0A0A0A] rounded-xl border border-white/5 overflow-hidden has-[:checked]:bg-[#0E0E0E] transition-all duration-300">
+                    <input type="checkbox" id="faq-home-1" class="peer hidden">
+                    <label for="faq-home-1" class="flex cursor-pointer select-none text-base font-medium text-white font-manrope w-full">
+                        <div class="flex items-center justify-between w-full pt-6 pr-6 pb-6 pl-6">
+                            <span data-translate="faqHome.items.q1.question">How do I get started with Garna?</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                class="text-gray-500 transition-transform duration-300 group-has-[:checked]:rotate-180 shrink-0">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="grid grid-rows-[0fr] transition-all duration-300 ease-in-out peer-checked:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed font-normal">
+                                <span data-translate="faqHome.items.q1.answer">Sign up on our platform, contact our sales
+                                    team, and start processing payroll in just a few steps.</span>
+                            </div>
                         </div>
                     </div>
-                </details>
+                </div>
 
-                <details
-                    class="group glass rounded-xl border border-white/5 data-[state=open]:bg-[#0c0c0c] transition-colors duration-500 overflow-hidden"
-                    data-state="closed">
-                    <summary
-                        class="flex cursor-pointer bg-[#0c0c0c] px-6 py-6 items-center justify-between list-none [&amp;::-webkit-details-marker]:hidden outline-none">
-                        <span class="text-base font-normal text-white font-manrope"
-                            data-translate="faqHome.items.q2.question">What payment methods does Garna support?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                            data-lucide="chevron-down" aria-hidden="true"
-                            class="lucide lucide-chevron-down w-5 h-5 text-gray-500 transition-transform duration-500 group-data-[state=open]:rotate-180">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </summary>
-                    <div
-                        class="accordion-content h-0 opacity-0 translate-y-2 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                        <div class="px-6 pb-6 text-base text-gray-400 leading-relaxed font-sans">
-                            <span data-translate="faqHome.items.q2.answer">We offer bank transfers in USD, local
-                                currencies, e-wallets and crypto.</span>
+                <div class="group bg-[#0A0A0A] rounded-xl border border-white/5 overflow-hidden has-[:checked]:bg-[#0E0E0E] transition-all duration-300">
+                    <input type="checkbox" id="faq-home-2" class="peer hidden">
+                    <label for="faq-home-2" class="flex cursor-pointer select-none text-base font-medium text-white font-manrope w-full">
+                        <div class="flex items-center justify-between w-full pt-6 pr-6 pb-6 pl-6">
+                            <span data-translate="faqHome.items.q2.question">What payment methods does Garna support?</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                class="text-gray-500 transition-transform duration-300 group-has-[:checked]:rotate-180 shrink-0">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="grid grid-rows-[0fr] transition-all duration-300 ease-in-out peer-checked:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed font-normal">
+                                <span data-translate="faqHome.items.q2.answer">We offer bank transfers in USD, local
+                                    currencies, e-wallets and crypto.</span>
+                            </div>
                         </div>
                     </div>
-                </details>
+                </div>
 
-                <details
-                    class="group glass rounded-xl border border-white/5 data-[state=open]:bg-[#0c0c0c] transition-colors duration-500 overflow-hidden"
-                    data-state="closed">
-                    <summary
-                        class="flex cursor-pointer list-none [&amp;::-webkit-details-marker]:hidden outline-none bg-[#0c0c0c] pt-6 pr-6 pb-6 pl-6 items-center justify-between">
-                        <span class="text-base font-normal text-white font-manrope"
-                            data-translate="faqHome.items.q3.question">Can I pay contractors in multiple
-                            countries?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                            data-lucide="chevron-down" aria-hidden="true"
-                            class="lucide lucide-chevron-down w-5 h-5 text-gray-500 transition-transform duration-500 group-data-[state=open]:rotate-180">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </summary>
-                    <div
-                        class="accordion-content h-0 opacity-0 translate-y-2 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                        <div class="px-6 pb-6 text-base text-gray-400 leading-relaxed font-sans">
-                            <span data-translate="faqHome.items.q3.answer">Yes, Garna supports payroll in over 150
-                                countries worldwide.</span>
+                <div class="group bg-[#0A0A0A] rounded-xl border border-white/5 overflow-hidden has-[:checked]:bg-[#0E0E0E] transition-all duration-300">
+                    <input type="checkbox" id="faq-home-3" class="peer hidden">
+                    <label for="faq-home-3" class="flex cursor-pointer select-none text-base font-medium text-white font-manrope w-full">
+                        <div class="flex items-center justify-between w-full pt-6 pr-6 pb-6 pl-6">
+                            <span data-translate="faqHome.items.q3.question">Can I pay contractors in multiple
+                                countries?</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                class="text-gray-500 transition-transform duration-300 group-has-[:checked]:rotate-180 shrink-0">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="grid grid-rows-[0fr] transition-all duration-300 ease-in-out peer-checked:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed font-normal">
+                                <span data-translate="faqHome.items.q3.answer">Yes, Garna supports payroll in over 150
+                                    countries worldwide.</span>
+                            </div>
                         </div>
                     </div>
-                </details>
+                </div>
 
-                <details
-                    class="group glass rounded-xl border border-white/5 data-[state=open]:bg-[#0c0c0c] transition-colors duration-500 overflow-hidden"
-                    data-state="closed">
-                    <summary
-                        class="flex cursor-pointer bg-[#0c0c0c] px-6 py-6 items-center justify-between list-none [&amp;::-webkit-details-marker]:hidden outline-none">
-                        <span class="text-base font-normal text-white font-manrope"
-                            data-translate="faqHome.items.q4.question">Are there any minimum payment limits?</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                            data-lucide="chevron-down" aria-hidden="true"
-                            class="lucide lucide-chevron-down w-5 h-5 text-gray-500 transition-transform duration-500 group-data-[state=open]:rotate-180">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </summary>
-                    <div
-                        class="accordion-content h-0 opacity-0 translate-y-2 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                        <div class="px-6 pb-6 text-base text-gray-400 leading-relaxed font-sans">
-                            <span data-translate="faqHome.items.q4.answer">No, you can process payroll of any amount
-                                that fits your business needs.</span>
+                <div class="group bg-[#0A0A0A] rounded-xl border border-white/5 overflow-hidden has-[:checked]:bg-[#0E0E0E] transition-all duration-300">
+                    <input type="checkbox" id="faq-home-4" class="peer hidden">
+                    <label for="faq-home-4" class="flex cursor-pointer select-none text-base font-medium text-white font-manrope w-full">
+                        <div class="flex items-center justify-between w-full pt-6 pr-6 pb-6 pl-6">
+                            <span data-translate="faqHome.items.q4.question">Are there any minimum payment limits?</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                class="text-gray-500 transition-transform duration-300 group-has-[:checked]:rotate-180 shrink-0">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="grid grid-rows-[0fr] transition-all duration-300 ease-in-out peer-checked:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed font-normal">
+                                <span data-translate="faqHome.items.q4.answer">No, you can process payroll of any amount
+                                    that fits your business needs.</span>
+                            </div>
                         </div>
                     </div>
-                </details>
+                </div>
             </div>
 
-            <script class="">
-                (function () {
-                    const container = document.getElementById('faq-accordion-container');
-                    if (!container) return;
-
-                    container.querySelectorAll('details').forEach(detail => {
-                        const summary = detail.querySelector('summary');
-                        const content = detail.querySelector('.accordion-content');
-
-                        // Prevent default behavior to handle animation manually
-                        summary.addEventListener('click', (e) => {
-                            e.preventDefault();
-
-                            const isOpen = detail.dataset.state === 'open';
-
-                            if (isOpen) {
-                                // Close Animation
-                                detail.dataset.state = 'closed';
-
-                                // Set specific height for transition (from auto to pixel)
-                                content.style.height = content.scrollHeight + 'px';
-                                // Force reflow
-                                content.offsetHeight;
-
-                                // Animate to closed state
-                                content.style.height = '0px';
-                                content.style.opacity = '0';
-                                content.style.transform = 'translateY(8px)';
-
-                                // Remove open attribute after transition finishes
-                                setTimeout(() => {
-                                    if (detail.dataset.state === 'closed') {
-                                        detail.removeAttribute('open');
-                                    }
-                                }, 500);
-                            } else {
-                                // Open Animation
-                                detail.setAttribute('open', '');
-                                detail.dataset.state = 'open';
-
-                                // Set initial state for animation
-                                content.style.height = '0px';
-                                content.style.opacity = '0';
-                                content.style.transform = 'translateY(8px)';
-
-                                // Force reflow
-                                content.offsetHeight;
-
-                                // Animate to open state
-                                content.style.height = content.scrollHeight + 'px';
-                                content.style.opacity = '1';
-                                content.style.transform = 'translateY(0)';
-
-                                // Set height to auto after transition for responsiveness
-                                setTimeout(() => {
-                                    if (detail.dataset.state === 'open') {
-                                        content.style.height = 'auto';
-                                    }
-                                }, 500);
-                            }
-                        });
-                    });
-                })();
-            </script>
         </div>
     </section>
 

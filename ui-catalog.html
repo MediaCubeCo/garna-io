@@ -1,0 +1,1710 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Garna UI Catalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --bg-deep: #020202;
+      --surface: #0a0a0a;
+      --surface-2: #0c0c0c;
+      --surface-3: #111111;
+      --surface-soft: rgba(255, 255, 255, 0.035);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-soft: rgba(255, 255, 255, 0.05);
+      --text: #ffffff;
+      --muted: #a1a1aa;
+      --soft: #71717a;
+      --faint: #52525b;
+      --green: #5EA500;
+      --green-hover: #6ab901;
+      --green-dark: #4d8700;
+      --error: rgb(255, 3, 3);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-modal: 32px;
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(94, 165, 0, 0.18), transparent 32rem),
+        radial-gradient(circle at 100% 15%, rgba(0, 165, 77, 0.09), transparent 28rem),
+        var(--bg);
+      color: var(--muted);
+      font-family: Inter, sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.36;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 70% 40% at 50% 0%, #000 40%, transparent 100%);
+    }
+
+    h1, h2, h3, .font-heading {
+      font-family: Manrope, sans-serif;
+      color: var(--text);
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    p { margin: 0; line-height: 1.65; }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1240px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 40px 0 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      margin: -40px 0 56px;
+      padding: 14px 0;
+      background: rgba(5, 5, 5, 0.72);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      border-radius: 0 0 16px 16px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      width: min(1240px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: Manrope, sans-serif;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--green);
+      display: grid;
+      place-items: center;
+      color: white;
+      box-shadow: 0 0 20px -5px rgba(94,165,0,0.65);
+    }
+
+    .nav-note {
+      font-size: 13px;
+      color: var(--soft);
+      text-align: right;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 1.06;
+      font-weight: 400;
+      max-width: 920px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      font-size: 18px;
+      color: #b7b7bf;
+    }
+
+    .section {
+      margin-top: 34px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(26px, 3vw, 42px);
+      font-weight: 500;
+    }
+
+    .caption {
+      font-size: 13px;
+      color: var(--soft);
+      max-width: 520px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+
+    .sample {
+      min-height: 160px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: rgba(12, 12, 12, 0.78);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sample-label {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: #d4d4d8;
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 11px;
+      font-weight: 600;
+      font-family: Manrope, sans-serif;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.025);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    }
+
+    .surface-soft {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+    }
+
+    .surface-demo {
+      position: relative;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.07);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(94,165,0,0.18), transparent 22rem),
+        radial-gradient(circle at 84% 62%, rgba(94,165,0,0.09), transparent 18rem),
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 12px),
+        linear-gradient(to right, rgba(255,255,255,0.055) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.055) 1px, transparent 1px),
+        #070707;
+      background-size: auto, auto, auto, 48px 48px, 48px 48px, auto;
+    }
+
+    .surface-demo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(94,165,0,0.08), transparent 28%, transparent 72%, rgba(255,255,255,0.04));
+      mix-blend-mode: screen;
+    }
+
+    .surface-demo .grid {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-inventory-divider {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 22px 0 14px;
+      color: #a1a1aa;
+      font-family: Manrope, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .card-inventory-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.14), transparent);
+    }
+
+    .card-inventory {
+      align-items: stretch;
+    }
+
+    .catalog-card {
+      display: flex;
+      min-height: 270px;
+      flex-direction: column;
+      gap: 12px;
+      border-radius: 22px;
+      transition:
+        transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    .catalog-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .card-source {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(94,165,0,0.22);
+      background: rgba(94,165,0,0.09);
+      color: var(--green);
+      padding: 5px 9px;
+      font-family: Manrope, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .mini-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border-radius: 13px;
+      border: 1px solid rgba(94,165,0,0.22);
+      background: rgba(94,165,0,0.1);
+      color: var(--green);
+      font-family: Manrope, sans-serif;
+      font-weight: 800;
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .catalog-card:hover .mini-icon {
+      transform: scale(1.1);
+    }
+
+    .hover-note {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      color: #71717a;
+      font-family: Manrope, sans-serif;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .demo-lines {
+      display: grid;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .demo-line {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .demo-line.short { width: 48%; }
+    .demo-line.mid { width: 68%; }
+
+    .catalog-card:hover .demo-line {
+      background: rgba(255,255,255,0.14);
+    }
+
+    .home-bento-card {
+      background: rgba(12,12,12,0.92);
+      border-color: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .home-bento-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% 28px -20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(94,165,0,0.75), transparent);
+      transform: translateX(-55%);
+      animation: catalog-flow-line 2.4s linear infinite;
+    }
+
+    .home-bento-card:hover {
+      border-color: rgba(255,255,255,0.14);
+      box-shadow: 0 24px 48px -36px rgba(0,0,0,0.95);
+    }
+
+    .home-why-card {
+      background: rgba(12,12,12,0.9);
+      border-color: rgba(255,255,255,0.06);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    }
+
+    .home-why-card:hover {
+      background: #0c0c0c;
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .home-cta-card {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #0c0c0c;
+      border-color: rgba(94,165,0,0.2);
+      box-shadow: 0 0 30px -10px rgba(94,165,0,0.1);
+    }
+
+    .home-cta-card:hover {
+      border-color: rgba(94,165,0,0.4);
+      box-shadow: 0 0 34px -12px rgba(94,165,0,0.34);
+    }
+
+    .eor-tile-card,
+    .eor-row-card {
+      background: #0e0e0e;
+      border-color: rgba(255,255,255,0.05);
+      box-shadow: 0 12px 22px -18px rgba(0,0,0,0.95);
+    }
+
+    .eor-tile-card:hover,
+    .eor-row-card:hover {
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .eor-row-card {
+      min-height: 210px;
+      justify-content: center;
+    }
+
+    .row-preview {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.025);
+      padding: 12px;
+    }
+
+    .row-preview strong {
+      color: #f4f4f5;
+      font-family: Manrope, sans-serif;
+      font-size: 13px;
+    }
+
+    .eor-content-card {
+      background: rgba(255,255,255,0.03);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .eor-content-card:hover {
+      background: rgba(255,255,255,0.045);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .eor-photo-badge-card {
+      min-height: 210px;
+      background: #111;
+      border-color: rgba(255,255,255,0.1);
+      box-shadow: 0 25px 50px -18px rgba(0,0,0,0.72);
+    }
+
+    .eor-photo-badge-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.16);
+      box-shadow: 0 32px 58px -20px rgba(0,0,0,0.85);
+    }
+
+    .white-product-card {
+      background: #0a0a0a;
+      border-color: rgba(255,255,255,0.05);
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    .white-product-card::before,
+    .white-compare-card::before,
+    .white-floating-card::before {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      background: rgba(94,165,0,0.04);
+      filter: blur(28px);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .white-product-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(94,165,0,0.3);
+      box-shadow: 0 0 30px rgba(94,165,0,0.15);
+    }
+
+    .white-product-card:hover::before,
+    .white-compare-card:hover::before,
+    .white-floating-card:hover::before {
+      background: rgba(94,165,0,0.12);
+      transform: scale(1.1);
+    }
+
+    .white-reveal-card {
+      opacity: 0;
+      background: #0a0a0a;
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.35);
+      animation: catalog-reveal-card 0.8s cubic-bezier(0.2,0.8,0.2,1) forwards;
+    }
+
+    .white-reveal-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(59,130,246,0.3);
+      box-shadow: 0 0 30px rgba(59,130,246,0.15);
+    }
+
+    .white-reveal-card .mini-icon {
+      border-color: rgba(59,130,246,0.18);
+      background: rgba(59,130,246,0.08);
+      color: #60a5fa;
+    }
+
+    .white-reveal-card:hover .mini-icon {
+      background: rgba(59,130,246,0.16);
+    }
+
+    .white-compare-card {
+      background: #050505;
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .white-compare-card:hover {
+      border-color: var(--green);
+      box-shadow: 0 0 25px rgba(94,165,0,0.15);
+    }
+
+    .white-review-card {
+      background: #0a0a0a;
+      border-color: rgba(255,255,255,0.06);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    }
+
+    .white-review-card:hover {
+      border-color: rgba(255,255,255,0.12);
+      background: #0c0c0c;
+    }
+
+    .white-floating-card {
+      min-height: 210px;
+      transform: rotate(-2deg);
+      background: rgba(10,10,10,0.82);
+      border-color: rgba(255,255,255,0.1);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 25px 50px -22px rgba(0,0,0,0.85);
+    }
+
+    .white-floating-card:hover {
+      transform: rotate(0deg) translateY(-3px);
+      border-color: rgba(94,165,0,0.26);
+      box-shadow: 0 28px 54px -22px rgba(94,165,0,0.24);
+    }
+
+    .offer-mockup-card {
+      background: #0a0a0a;
+      border-color: rgba(255,255,255,0.08);
+      transform: perspective(900px) rotateX(10deg);
+      animation: catalog-float 5.8s ease-in-out infinite;
+    }
+
+    .offer-mockup-card:hover {
+      border-color: rgba(94,165,0,0.26);
+      box-shadow: 0 26px 54px -28px rgba(94,165,0,0.34);
+    }
+
+    .offer-row-card {
+      min-height: 210px;
+      background: #141414;
+      border-color: rgba(255,255,255,0.05);
+    }
+
+    .offer-row-card:hover {
+      border-color: rgba(94,165,0,0.3);
+    }
+
+    .ai-feature-card {
+      background: #0a0a0a;
+      border-color: rgba(94,165,0,0.2);
+    }
+
+    .ai-feature-card:hover {
+      background: #0e0e0e;
+      border-color: rgba(94,165,0,0.4);
+      box-shadow: 0 0 26px -16px rgba(94,165,0,0.45);
+    }
+
+    .mini-metric {
+      display: inline-flex;
+      width: fit-content;
+      align-items: baseline;
+      gap: 7px;
+      color: #f4f4f5;
+      font-family: Manrope, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .mini-metric span {
+      color: #71717a;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    @keyframes catalog-flow-line {
+      from { transform: translateX(-55%); }
+      to { transform: translateX(55%); }
+    }
+
+    @keyframes catalog-reveal-card {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes catalog-float {
+      0%, 100% { transform: perspective(900px) rotateX(10deg) translateY(0); }
+      50% { transform: perspective(900px) rotateX(10deg) translateY(-8px); }
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .swatch {
+      min-height: 112px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      color: white;
+      font-size: 12px;
+      font-family: Manrope, sans-serif;
+    }
+
+    .type-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(94, 165, 0, 0.1);
+      border: 1px solid rgba(94, 165, 0, 0.2);
+      color: var(--green);
+      text-transform: uppercase;
+      font-family: Manrope, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(94,165,0,0.13);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 12px 28px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: var(--green);
+      color: white;
+      font-family: Manrope, sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow:
+        0 10px 24px -18px rgba(94,165,0,0.85),
+        0 0 26px -12px rgba(94,165,0,0.72),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, filter 0.28s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 18px 34px -22px rgba(94,165,0,1),
+        0 0 34px -8px rgba(94,165,0,0.92),
+        inset 0 1px 0 rgba(255,255,255,0.28);
+      filter: saturate(1.06);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      border-color: var(--border);
+      color: white;
+      box-shadow:
+        0 10px 24px -18px rgba(94,165,0,0),
+        0 0 26px -12px rgba(94,165,0,0),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .btn-secondary:hover {
+      box-shadow:
+        0 18px 34px -22px rgba(94,165,0,1),
+        0 0 34px -8px rgba(94,165,0,0.92),
+        inset 0 1px 0 rgba(255,255,255,0.28);
+    }
+
+    .btn-icon {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border-radius: 999px;
+    }
+
+    .animated-cta {
+      --cta-angle: 0deg;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border: 2px solid transparent;
+      background:
+        linear-gradient(var(--green), var(--green)) padding-box,
+        conic-gradient(from var(--cta-angle), transparent 0 58%, #4d8a00 64%, #ffffff 72%, #4d8a00 80%, transparent 88% 100%) border-box;
+      animation: cta-border-spin 2.5s linear infinite;
+    }
+
+    .animated-cta span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .animated-cta::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      z-index: 0;
+      border-radius: 10px;
+      pointer-events: none;
+      background: linear-gradient(110deg, transparent 0 36%, rgba(255,255,255,0.22) 48%, transparent 60% 100%);
+      transform: translateX(-130%);
+      animation: cta-sheen 3.4s ease-in-out infinite;
+    }
+
+    @property --cta-angle {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @keyframes cta-border-spin {
+      to { --cta-angle: 360deg; }
+    }
+
+    @keyframes cta-sheen {
+      0%, 42% { transform: translateX(-130%); opacity: 0; }
+      55% { opacity: 1; }
+      72%, 100% { transform: translateX(130%); opacity: 0; }
+    }
+
+    .card-title {
+      font-family: Manrope, sans-serif;
+      color: white;
+      font-weight: 600;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .icon-box {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(94,165,0,0.12);
+      border: 1px solid rgba(94,165,0,0.22);
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      color: white;
+      font-family: Manrope, sans-serif;
+      font-size: 28px;
+      margin-top: 6px;
+    }
+
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border-radius: 999px;
+      padding: 7px 11px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      font-size: 12px;
+      color: #d4d4d8;
+      font-family: Manrope, sans-serif;
+    }
+
+    .chip.green {
+      color: var(--green);
+      background: rgba(94,165,0,0.1);
+      border-color: rgba(94,165,0,0.22);
+    }
+
+    .browser {
+      border-radius: 18px;
+      background: linear-gradient(180deg, #111, #050505);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
+    }
+
+    .browser-bar {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      background: #0a0a0a;
+    }
+
+    .dots { display: flex; gap: 7px; }
+    .dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.13); }
+    .dots .red { background: #ef4444; }
+    .dots .yellow { background: #eab308; }
+    .dots .green-dot { background: #22c55e; }
+
+    .dash {
+      display: grid;
+      grid-template-columns: 148px 1fr;
+      min-height: 330px;
+    }
+
+    .sidebar {
+      background: #080808;
+      border-right: 1px solid var(--border);
+      padding: 16px;
+    }
+
+    .side-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 12px;
+      color: #d4d4d8;
+      font-size: 13px;
+      font-family: Manrope, sans-serif;
+    }
+
+    .side-item.active {
+      background: rgba(94,165,0,0.12);
+      color: var(--green);
+    }
+
+    .dash-main { padding: 18px; }
+
+    .balance-card {
+      padding: 20px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 20% 0%, rgba(94,165,0,0.32), transparent 40%), #101010;
+      border: 1px solid rgba(94,165,0,0.22);
+    }
+
+    .balance-card .value {
+      margin-top: 10px;
+      color: white;
+      font-size: 34px;
+      font-family: Manrope, sans-serif;
+      font-weight: 700;
+    }
+
+    .progress {
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 72%;
+      border-radius: inherit;
+      background: var(--green);
+    }
+
+    .transaction {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(94,165,0,0.16);
+      color: var(--green);
+      font-family: Manrope, sans-serif;
+      font-weight: 700;
+    }
+
+    .form-card {
+      border-radius: var(--radius-modal);
+      background: #0a0a0a;
+      border: 1px solid rgb(34,34,34);
+      padding: 28px;
+      max-width: 520px;
+    }
+
+    .field {
+      position: relative;
+      padding-bottom: 18px;
+    }
+
+    .input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid rgb(34,34,34);
+      color: white;
+      background: transparent;
+      padding: 10px 0;
+      font: inherit;
+      outline: none;
+    }
+
+    .input:focus {
+      border-bottom-color: var(--green);
+    }
+
+    .input.error {
+      border-bottom-color: var(--error);
+    }
+
+    .error-text {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      font-size: 11px;
+      color: var(--error);
+    }
+
+    .select-trigger {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid var(--green);
+      padding: 10px 0;
+      color: white;
+    }
+
+    .dropdown {
+      margin-top: 8px;
+      border: 1px solid rgb(34,34,34);
+      background: #0a0a0a;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .option {
+      padding: 10px 14px;
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
+    }
+
+    .option:hover { background: rgba(255,255,255,0.06); }
+    .option.selected { color: var(--green); font-weight: 600; }
+
+    .faq-card {
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      background: #0A0A0A;
+      overflow: hidden;
+      transition: background 0.3s ease;
+    }
+
+    .faq-card:has(input:checked) {
+      background: #0E0E0E;
+    }
+
+    .faq-card input {
+      display: none;
+    }
+
+    .faq-card label {
+      cursor: pointer;
+      padding: 18px 20px;
+      color: white;
+      font-family: Manrope, sans-serif;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .faq-icon {
+      color: var(--soft);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-card:has(input:checked) .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s ease;
+    }
+
+    .faq-card input:checked ~ .faq-panel {
+      grid-template-rows: 1fr;
+    }
+
+    .faq-body {
+      overflow: hidden;
+      padding: 0 20px 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 24px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding-bottom: 13px;
+      color: var(--soft);
+      font-family: Manrope, sans-serif;
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+    }
+
+    .tab.active {
+      color: white;
+      border-color: var(--green);
+    }
+
+    .photo-card {
+      min-height: 280px;
+      border-radius: 18px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(94,165,0,0.12), transparent 44%),
+        linear-gradient(180deg, #1a1a1a, #080808);
+      border: 1px solid var(--border);
+      position: relative;
+      padding: 18px;
+    }
+
+    .photo-badge {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: #111;
+      padding: 12px 14px;
+      box-shadow: 0 22px 44px rgba(0,0,0,0.4);
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+    }
+
+    .toggle {
+      width: 42px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(94,165,0,0.25);
+      border: 1px solid rgba(94,165,0,0.35);
+      padding: 2px;
+    }
+
+    .toggle::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin-left: auto;
+      background: var(--green);
+    }
+
+    .modal-preview {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,0.7);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 24px;
+    }
+
+    .footer-preview {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      background: #020202;
+      border-top: 1px solid var(--border-soft);
+      padding: 28px;
+      border-radius: 16px;
+    }
+
+    .small-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      font-family: Manrope, sans-serif;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .icon-square {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+    }
+
+    .radar {
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(94,165,0,0.12) 310deg, rgba(94,165,0,0.45) 360deg),
+        radial-gradient(circle, transparent 0 28%, rgba(255,255,255,0.04) 29% 30%, transparent 31% 58%, rgba(255,255,255,0.04) 59% 60%, transparent 61%);
+      animation: radar-spin 4s linear infinite;
+    }
+
+    @keyframes radar-spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 920px) {
+      .span-3, .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 12; }
+      .swatches { grid-template-columns: repeat(2, 1fr); }
+      .dash { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .footer-preview { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-head .caption { margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><span class="brand-mark">G</span> Garna UI Catalog</div>
+      <div class="nav-note">Visual inventory of current site UI elements</div>
+    </div>
+  </div>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow"><span class="dot"></span> Design system snapshot</div>
+      <h1>Dark fintech surfaces, green action language, product mockups.</h1>
+      <p>This standalone page shows the UI objects currently used across Garna pages: global layout, buttons, cards, badges, dashboard mockups, forms, accordions, tabs, footer and special states.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Color Tokens</h2>
+        <p class="caption">Primary palette extracted from page CSS, widget CSS modules and repeated Tailwind arbitrary values.</p>
+      </div>
+      <div class="swatches">
+        <div class="swatch" style="background:#050505">Background<br>#050505</div>
+        <div class="swatch" style="background:#020202">Deep section<br>#020202</div>
+        <div class="swatch" style="background:#0A0A0A">Surface<br>#0A0A0A</div>
+        <div class="swatch" style="background:#0c0c0c">Card<br>#0c0c0c</div>
+        <div class="swatch" style="background:#111111">Raised<br>#111111</div>
+        <div class="swatch" style="background:#5EA500">Primary<br>#5EA500</div>
+        <div class="swatch" style="background:#6ab901">Primary hover<br>#6ab901</div>
+        <div class="swatch" style="background:#a1a1aa; color:#050505">Muted text<br>#a1a1aa</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Typography</h2>
+        <p class="caption">Inter is the default body face. Manrope is used for headings, nav, CTAs and product UI labels.</p>
+      </div>
+      <div class="grid">
+        <div class="sample span-7">
+          <span class="sample-label">Hero and section type</span>
+          <div class="type-stack">
+            <h2 style="font-size: clamp(36px, 5vw, 64px); font-weight:400; line-height:1.08">One transfer, countless possibilities.</h2>
+            <p style="font-size:20px; color:#a1a1aa">Pay remunerations in over 150 countries with minimal effort.</p>
+          </div>
+        </div>
+        <div class="sample span-5">
+          <span class="sample-label">Labels and body</span>
+          <div class="eyebrow">Payroll infrastructure</div>
+          <h3 style="font-size:28px; margin-top:18px">Automated global payments</h3>
+          <p style="margin-top:8px">Compact body copy uses relaxed line height, gray text and clear contrast against black panels.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Buttons and Links</h2>
+        <p class="caption">The system uses green primary CTAs, dark secondary buttons, icon buttons and animated demo CTAs.</p>
+      </div>
+      <div class="grid">
+        <div class="sample span-4">
+          <span class="sample-label">Primary CTA</span><br>
+          <button class="btn">Start now <span>-></span></button>
+        </div>
+        <div class="sample span-4">
+          <span class="sample-label">Animated demo CTA</span><br>
+          <button class="btn animated-cta">Try Demo Version <span>↗</span></button>
+        </div>
+        <div class="sample span-4">
+          <span class="sample-label">Secondary and icon</span><br>
+          <button class="btn btn-secondary">Log in</button>
+          <button class="btn btn-icon" aria-label="Menu" style="margin-left:8px">☰</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Badges, Chips, Status</h2>
+        <p class="caption">Small UI states carry a lot of brand: green dots, transparent pills and compact product labels.</p>
+      </div>
+      <div class="grid">
+        <div class="sample span-6">
+          <span class="sample-label">Hero badge</span>
+          <div class="eyebrow"><span class="dot"></span> AI-powered recruitment</div>
+        </div>
+        <div class="sample span-6">
+          <span class="sample-label">Data chips</span>
+          <div class="chip-row">
+            <span class="chip green"><span class="dot"></span> Active</span>
+            <span class="chip">ACH</span>
+            <span class="chip">Wire</span>
+            <span class="chip">150+ countries</span>
+            <span class="chip green">92% match</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Cards and Surfaces</h2>
+        <p class="caption">Reusable card language: glass borders, dark fills, green icon cells and restrained hover effects.</p>
+      </div>
+      <div class="surface-demo">
+        <div class="grid">
+          <article class="sample glass span-4">
+            <span class="sample-label">Glass card</span>
+            <div class="icon-box">✓</div>
+            <div class="card-title">Transparent payments</div>
+            <p>No hidden exchange rate markups, only clear payout terms.</p>
+          </article>
+          <article class="sample glass-card span-4">
+            <span class="sample-label">Feature card</span>
+            <div class="icon-box">◎</div>
+            <div class="card-title">Global payroll</div>
+            <p>Operational panels use dark cards with subtle borders and low glow.</p>
+          </article>
+          <article class="sample surface-soft span-4">
+            <span class="sample-label">Surface soft</span>
+            <div class="icon-box">↗</div>
+            <div class="card-title">Compliance ready</div>
+            <p>Useful for dense repeated lists and EOR content cards.</p>
+          </article>
+        </div>
+
+        <div class="card-inventory-divider">Page card variants with hover behavior</div>
+        <div class="grid card-inventory">
+          <article class="sample catalog-card home-bento-card span-4">
+            <span class="card-source">Home</span>
+            <div class="mini-icon">▦</div>
+            <div class="card-title">Bento glass panel</div>
+            <p>Large rounded-3xl glass blocks used in the home page product/value grid.</p>
+            <div class="demo-lines">
+              <span class="demo-line"></span>
+              <span class="demo-line mid"></span>
+              <span class="demo-line short"></span>
+            </div>
+            <div class="hover-note">Hover: brighter border, deeper black shadow, animated green line remains active.</div>
+          </article>
+
+          <article class="sample catalog-card home-why-card span-4">
+            <span class="card-source">Home</span>
+            <div class="mini-icon">✓</div>
+            <div class="card-title">Why Garna feature</div>
+            <p>Reusable glass-card feature block with green icon cell and muted copy.</p>
+            <div class="demo-lines">
+              <span class="demo-line mid"></span>
+              <span class="demo-line"></span>
+            </div>
+            <div class="hover-note">Hover: background resolves to solid black; icon scales up.</div>
+          </article>
+
+          <article class="sample catalog-card home-cta-card span-4">
+            <span class="card-source">Home</span>
+            <div class="mini-icon">↗</div>
+            <div class="card-title">Centered CTA card</div>
+            <p>Conversion block with green border emphasis and restrained glow.</p>
+            <button class="btn" style="margin-top:2px">Start now <span>→</span></button>
+            <div class="hover-note">Hover: green border increases, glow strengthens, inner CTA keeps its own hover.</div>
+          </article>
+
+          <article class="sample catalog-card eor-tile-card span-4">
+            <span class="card-source">EOR / Dashboard</span>
+            <div class="mini-icon">◎</div>
+            <div class="card-title">Template action tile</div>
+            <p>Small dashboard action cards used in payroll and contract mockups.</p>
+            <div class="demo-lines">
+              <span class="demo-line short"></span>
+              <span class="demo-line mid"></span>
+            </div>
+            <div class="hover-note">Hover: white border lift, transparent white fill, icon scales.</div>
+          </article>
+
+          <article class="sample catalog-card eor-row-card span-4">
+            <span class="card-source">EOR / Home mockups</span>
+            <div class="row-preview">
+              <div style="display:flex; align-items:center; gap:10px">
+                <span class="mini-icon" style="margin:0; width:38px; height:38px; color:#ef4444; background:rgba(239,68,68,0.1); border-color:rgba(239,68,68,0.2)">!</span>
+                <div>
+                  <strong>Contract alert</strong>
+                  <p style="font-size:12px">Review needed</p>
+                </div>
+              </div>
+              <span class="chip">Open</span>
+            </div>
+            <div class="card-title">Transaction row card</div>
+            <p>Horizontal row surface for dashboard lists and operational events.</p>
+            <div class="hover-note">Hover: row background becomes white/[0.02], border becomes white/10, status icon scales.</div>
+          </article>
+
+          <article class="sample catalog-card eor-content-card span-4">
+            <span class="card-source">EOR</span>
+            <div class="mini-icon">□</div>
+            <div class="card-title">Surface-soft content</div>
+            <p>Quiet repeated content cards for lists of EOR benefits, countries and compliance details.</p>
+            <div class="demo-lines">
+              <span class="demo-line"></span>
+              <span class="demo-line mid"></span>
+            </div>
+            <div class="hover-note">Hover: only subtle border and fill changes, no green glow.</div>
+          </article>
+
+          <article class="sample catalog-card eor-photo-badge-card span-4">
+            <span class="card-source">EOR / Photo sections</span>
+            <div style="display:flex; align-items:center; gap:12px">
+              <span class="avatar">A</span>
+              <div>
+                <div class="card-title" style="font-size:16px; margin:0">Photo badge overlay</div>
+                <p style="font-size:12px">Country payroll status</p>
+              </div>
+            </div>
+            <div class="demo-lines">
+              <span class="demo-line mid"></span>
+              <span class="demo-line short"></span>
+            </div>
+            <div class="hover-note">Hover: slight vertical lift and stronger black shadow.</div>
+          </article>
+
+          <article class="sample catalog-card white-product-card span-4">
+            <span class="card-source">White Label</span>
+            <div class="mini-icon">✦</div>
+            <div class="card-title">Product module card</div>
+            <p>Primary White Label product cards with green hover border, glow and lifted surface.</p>
+            <div class="demo-lines">
+              <span class="demo-line"></span>
+              <span class="demo-line mid"></span>
+            </div>
+            <div class="hover-note">Hover: -4px translateY, green border, green shadow, blurred corner orb intensifies.</div>
+          </article>
+
+          <article class="sample catalog-card white-reveal-card span-4">
+            <span class="card-source">White Label</span>
+            <div class="mini-icon">⚡</div>
+            <div class="card-title">Reveal advantage card</div>
+            <p>Animated-entry advantage card; variants use blue, yellow, green and purple accent themes.</p>
+            <div class="demo-lines">
+              <span class="demo-line mid"></span>
+              <span class="demo-line"></span>
+            </div>
+            <div class="hover-note">Animation: reveal from 20px down. Hover: -8px lift, colored border and colored glow.</div>
+          </article>
+
+          <article class="sample catalog-card white-compare-card span-4">
+            <span class="card-source">White Label</span>
+            <div class="mini-metric">92% <span>match</span></div>
+            <div class="card-title">Comparison / mobile card</div>
+            <p>Dense comparison panels and mobile table replacements with strong border feedback.</p>
+            <div class="chip-row">
+              <span class="chip green">Garna</span>
+              <span class="chip">Vendor</span>
+            </div>
+            <div class="hover-note">Hover: border snaps to brand green and adds a 25px green glow.</div>
+          </article>
+
+          <article class="sample catalog-card white-review-card span-4">
+            <span class="card-source">White Label</span>
+            <div class="chip-row">
+              <span class="chip green">Review</span>
+              <span class="chip">★★★★★</span>
+            </div>
+            <div class="card-title">Social proof card</div>
+            <p>Review/testimonial card language: black fill, glass-card border and low static shadow.</p>
+            <div class="demo-lines">
+              <span class="demo-line"></span>
+              <span class="demo-line mid"></span>
+              <span class="demo-line short"></span>
+            </div>
+            <div class="hover-note">Hover: slightly brighter black background and white border, no movement.</div>
+          </article>
+
+          <article class="sample catalog-card white-floating-card span-4">
+            <span class="card-source">White Label</span>
+            <div class="mini-icon">↻</div>
+            <div class="card-title">Floating overlay card</div>
+            <p>Decorative layered card used around final CTA compositions.</p>
+            <div class="demo-lines">
+              <span class="demo-line mid"></span>
+              <span class="demo-line short"></span>
+            </div>
+            <div class="hover-note">Hover: rotation returns to 0deg, card lifts, green border and shadow appear.</div>
+          </article>
+
+          <article class="sample catalog-card offer-mockup-card span-4">
+            <span class="card-source">Offer</span>
+            <div class="mini-icon">▣</div>
+            <div class="card-title">Floating mockup card</div>
+            <p>Hero mockup shell with perspective tilt and continuous float animation.</p>
+            <div class="demo-lines">
+              <span class="demo-line"></span>
+              <span class="demo-line mid"></span>
+            </div>
+            <div class="hover-note">Animation: slow vertical float. Hover: green border and softer brand shadow.</div>
+          </article>
+
+          <article class="sample catalog-card offer-row-card span-4">
+            <span class="card-source">Offer</span>
+            <div class="row-preview">
+              <strong>Payroll method</strong>
+              <span class="chip green">Selected</span>
+            </div>
+            <div class="card-title">Selectable row card</div>
+            <p>Compact row option used in the offer product mockup and step content.</p>
+            <div class="hover-note">Hover: border color changes to green; selected rows keep higher opacity.</div>
+          </article>
+
+          <article class="sample catalog-card ai-feature-card span-4">
+            <span class="card-source">AI Hiring</span>
+            <div class="mini-icon">AI</div>
+            <div class="card-title">AI feature card</div>
+            <p>Recruiting feature surface with persistent green border tint and darker hover fill.</p>
+            <div class="demo-lines">
+              <span class="demo-line"></span>
+              <span class="demo-line mid"></span>
+            </div>
+            <div class="hover-note">Hover: background moves to #0E0E0E, green border doubles in opacity, low glow appears.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Data Display</h2>
+        <p class="caption">Stats, progress bars, transaction rows and KPI cards appear across dashboard mockups.</p>
+      </div>
+      <div class="grid">
+        <div class="sample span-5">
+          <span class="sample-label">Stats</span>
+          <div class="stat-row">
+            <div class="stat">Countries<strong>150+</strong></div>
+            <div class="stat">Match<strong>92%</strong></div>
+            <div class="stat">Time<strong>24h</strong></div>
+          </div>
+        </div>
+        <div class="sample span-7">
+          <span class="sample-label">Progress and transactions</span>
+          <div class="progress"><span></span></div>
+          <div style="display:grid; gap:10px; margin-top:16px">
+            <div class="transaction"><div style="display:flex; align-items:center; gap:10px"><span class="avatar">M</span><div><strong style="color:white">Maya R.</strong><br><small>Contract payout</small></div></div><strong style="color:white">$2,840</strong></div>
+            <div class="transaction"><div style="display:flex; align-items:center; gap:10px"><span class="avatar">A</span><div><strong style="color:white">Alex T.</strong><br><small>Payroll run</small></div></div><span class="chip green">Ready</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Product Mockup Shell</h2>
+        <p class="caption">Marketing pages repeatedly use fake browser/app dashboards to show Garna product scenarios.</p>
+      </div>
+      <div class="browser">
+        <div class="browser-bar">
+          <div class="dots"><span class="red"></span><span class="yellow"></span><span class="green-dot"></span></div>
+          <div class="chip">app.garna.io/dashboard</div>
+        </div>
+        <div class="dash">
+          <aside class="sidebar">
+            <div class="side-item active">▣ Dashboard</div>
+            <div class="side-item">◌ People</div>
+            <div class="side-item">□ Documents</div>
+            <div class="side-item">◇ Payroll</div>
+            <div class="side-item">⚙ Settings</div>
+          </aside>
+          <div class="dash-main">
+            <div class="balance-card">
+              <span class="chip green">Available balance</span>
+              <div class="value">$84,250.00</div>
+              <p>Account number •••• 4382</p>
+            </div>
+            <div class="grid" style="margin-top:16px">
+              <div class="stat span-4">Templates<strong>18</strong></div>
+              <div class="stat span-4">Countries<strong>42</strong></div>
+              <div class="stat span-4">Compliance<strong>99%</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Forms and Modal</h2>
+        <p class="caption">Booking widget uses a custom React modal, bottom-border inputs, custom select and Cal.com embed step.</p>
+      </div>
+      <div class="grid">
+        <div class="sample span-6">
+          <span class="sample-label">Form controls</span>
+          <div class="form-card">
+            <h3 style="font-size:28px; text-align:center">Book a free demo</h3>
+            <p style="text-align:center; margin:8px 0 22px">Get all your questions answered by our experts.</p>
+            <div class="field"><input class="input" value="Eugene" aria-label="First name"></div>
+            <div class="field"><input class="input error" value="personal@gmail.com" aria-label="Email"><span class="error-text">Please use your work email</span></div>
+            <div class="field">
+              <div class="select-trigger">21-200 people <span>⌄</span></div>
+              <div class="dropdown">
+                <div class="option">1-20 people</div>
+                <div class="option selected">21-200 people</div>
+                <div class="option">201-1000 people</div>
+              </div>
+            </div>
+            <button class="btn" style="width:100%; margin-top:8px">Choose a date & time</button>
+          </div>
+        </div>
+        <div class="sample span-6 modal-preview">
+          <div class="form-card" style="position:relative">
+            <button class="btn btn-icon btn-secondary" style="position:absolute; right:18px; top:18px">×</button>
+            <span class="sample-label">Modal card</span>
+            <h3 style="font-size:30px; margin-top:20px">Demo modal</h3>
+            <p style="margin-top:8px">Overlay uses black translucency; card uses 32px radius and dark border.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Accordions and Tabs</h2>
+        <p class="caption">FAQ appears in three variants. Tabs are implemented on the EOR page with hidden radio inputs and active labels.</p>
+      </div>
+      <div class="grid">
+        <div class="sample span-6">
+          <span class="sample-label">FAQ accordion</span>
+          <div class="faq-card">
+            <input id="catalog-faq-1" type="checkbox" checked>
+            <label for="catalog-faq-1">How quickly do I receive my money? <span class="faq-icon">⌄</span></label>
+            <div class="faq-panel"><div class="faq-body"><p>Most domestic payments are processed within 24 hours, then can be withdrawn to a local account.</p></div></div>
+          </div>
+          <div class="faq-card" style="margin-top:10px">
+            <input id="catalog-faq-2" type="checkbox">
+            <label for="catalog-faq-2">Is there a fee? <span class="faq-icon">⌄</span></label>
+            <div class="faq-panel"><div class="faq-body"><p>Fees are transparent and shown before withdrawal.</p></div></div>
+          </div>
+        </div>
+        <div class="sample span-6">
+          <span class="sample-label">Tabs</span>
+          <div class="tabs">
+            <div class="tab active">Sourcing</div>
+            <div class="tab">Onboarding</div>
+            <div class="tab">Documents</div>
+            <div class="tab">Payroll</div>
+          </div>
+          <div style="margin-top:18px" class="surface-soft sample">
+            <div class="card-title">Finding the right talent, quickly</div>
+            <p>Active panels use two-column content with a text block and a photo/product visual block.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Media, Badges, Toggles</h2>
+        <p class="caption">EOR and white-label pages use photo badges, settings toggles and product-control rows.</p>
+      </div>
+      <div class="grid">
+        <div class="photo-card span-6">
+          <span class="sample-label">Photo panel placeholder</span>
+          <div class="photo-badge">
+            <span class="icon-box" style="margin:0">✦</span>
+            <div><strong style="color:white">Talent search</strong><br><small style="color:var(--green)">Global matching</small></div>
+          </div>
+        </div>
+        <div class="sample span-6">
+          <span class="sample-label">Toggle rows</span>
+          <div style="display:grid; gap:12px">
+            <div class="toggle-row"><span>Brand controls</span><span class="toggle"></span></div>
+            <div class="toggle-row"><span>Compliance automation</span><span class="toggle"></span></div>
+            <div class="toggle-row"><span>Payroll notifications</span><span class="toggle"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Footer and Special State</h2>
+        <p class="caption">Footer is a dense legal/contact block. The 404 page has a radar/search visual language.</p>
+      </div>
+      <div class="grid">
+        <div class="footer-preview span-7">
+          <div>
+            <div class="brand"><span class="brand-mark">G</span> Garna</div>
+            <p style="margin-top:14px">Powered by mediacube</p>
+            <p style="font-size:12px; color:var(--faint); margin-top:4px">garna.io © 2026</p>
+          </div>
+          <div>
+            <div class="small-link"><span class="icon-square">in</span> Garna</div>
+            <div class="small-link"><span class="icon-square">@</span> hello@garna.io</div>
+            <p style="font-size:13px; color:var(--soft)">134 Makariou III, Ground Floor, 3021 Limassol, Cyprus</p>
+          </div>
+        </div>
+        <div class="sample span-5" style="text-align:center">
+          <span class="sample-label">404 radar visual</span>
+          <div class="radar"></div>
+          <h3 style="margin-top:18px">Target Missing</h3>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

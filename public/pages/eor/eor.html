@@ -178,13 +178,12 @@
 
         .eor-faq-item {
             overflow: hidden;
-            transition: border-color 0.28s ease, background 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+            background: #0A0A0A;
+            transition: background 0.28s ease;
         }
 
         .eor-faq-item[open] {
-            background: rgba(94, 165, 0, 0.045);
-            border-color: rgba(94, 165, 0, 0.28);
-            box-shadow: 0 22px 54px -42px rgba(94, 165, 0, 0.75);
+            background: #0E0E0E;
         }
 
         .eor-faq-item summary:focus-visible {
@@ -211,7 +210,6 @@
         }
 
         .eor-faq-item[data-state="open"] .eor-faq-icon {
-            color: #5EA500;
             transform: rotate(180deg);
         }
 
@@ -1533,26 +1531,26 @@
                         <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">FAQ</p>
                         <h2 class="font-manrope text-4xl font-normal leading-tight text-white md:text-5xl">FAQ on Employer of Record</h2>
                     </div>
-                    <div class="eor-faq mx-auto w-full max-w-3xl space-y-3 lg:max-w-none" id="eor-faq-accordion">
-                        <details class="eor-faq-item rounded-2xl border border-white/10 p-5" data-state="closed">
-                            <summary class="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">What is an Employer of Record (EoR)? <iconify-icon icon="lucide:chevron-down" width="18" class="eor-faq-icon shrink-0"></iconify-icon></summary>
-                            <div class="eor-faq-panel"><p class="pt-4 text-sm leading-relaxed text-gray-400">An EoR is a third-party company that legally employs workers on behalf of another business and handles payroll, taxes, compliance, contracts, and local employment rules.</p></div>
+                    <div class="eor-faq mx-auto w-full max-w-3xl space-y-4 lg:max-w-none" id="eor-faq-accordion">
+                        <details class="eor-faq-item rounded-xl border border-white/5" data-state="closed">
+                            <summary class="flex cursor-pointer items-center justify-between gap-4 pt-6 pr-6 pb-6 pl-6 text-base font-medium text-white font-manrope">What is an Employer of Record (EoR)? <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="eor-faq-icon shrink-0 text-gray-500"></iconify-icon></summary>
+                            <div class="eor-faq-panel"><p class="px-6 pb-6 text-sm leading-relaxed text-gray-400 font-normal">An EoR is a third-party company that legally employs workers on behalf of another business and handles payroll, taxes, compliance, contracts, and local employment rules.</p></div>
                         </details>
-                        <details class="eor-faq-item rounded-2xl border border-white/10 p-5" data-state="closed">
-                            <summary class="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">How is an EoR different from a PEO? <iconify-icon icon="lucide:chevron-down" width="18" class="eor-faq-icon shrink-0"></iconify-icon></summary>
-                            <div class="eor-faq-panel"><p class="pt-4 text-sm leading-relaxed text-gray-400">A PEO usually works through a co-employment model and often needs the client company to have a local setup. An EoR acts as the official employer so you do not need to set up a business in every country.</p></div>
+                        <details class="eor-faq-item rounded-xl border border-white/5" data-state="closed">
+                            <summary class="flex cursor-pointer items-center justify-between gap-4 pt-6 pr-6 pb-6 pl-6 text-base font-medium text-white font-manrope">How is an EoR different from a PEO? <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="eor-faq-icon shrink-0 text-gray-500"></iconify-icon></summary>
+                            <div class="eor-faq-panel"><p class="px-6 pb-6 text-sm leading-relaxed text-gray-400 font-normal">A PEO usually works through a co-employment model and often needs the client company to have a local setup. An EoR acts as the official employer so you do not need to set up a business in every country.</p></div>
                         </details>
-                        <details class="eor-faq-item rounded-2xl border border-white/10 p-5" data-state="closed">
-                            <summary class="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">When should you use an EoR? <iconify-icon icon="lucide:chevron-down" width="18" class="eor-faq-icon shrink-0"></iconify-icon></summary>
-                            <div class="eor-faq-panel"><p class="pt-4 text-sm leading-relaxed text-gray-400">Use an EoR when you want to hire people in countries where your company is not already set up to do business.</p></div>
+                        <details class="eor-faq-item rounded-xl border border-white/5" data-state="closed">
+                            <summary class="flex cursor-pointer items-center justify-between gap-4 pt-6 pr-6 pb-6 pl-6 text-base font-medium text-white font-manrope">When should you use an EoR? <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="eor-faq-icon shrink-0 text-gray-500"></iconify-icon></summary>
+                            <div class="eor-faq-panel"><p class="px-6 pb-6 text-sm leading-relaxed text-gray-400 font-normal">Use an EoR when you want to hire people in countries where your company is not already set up to do business.</p></div>
                         </details>
-                        <details class="eor-faq-item rounded-2xl border border-white/10 p-5" data-state="closed">
-                            <summary class="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">EoR vs own international entity setup: which is better? <iconify-icon icon="lucide:chevron-down" width="18" class="eor-faq-icon shrink-0"></iconify-icon></summary>
-                            <div class="eor-faq-panel"><p class="pt-4 text-sm leading-relaxed text-gray-400">A local entity can be expensive and slow. An EoR is usually faster and more flexible when you need to test new regions and scale a global team without unnecessary complexity.</p></div>
+                        <details class="eor-faq-item rounded-xl border border-white/5" data-state="closed">
+                            <summary class="flex cursor-pointer items-center justify-between gap-4 pt-6 pr-6 pb-6 pl-6 text-base font-medium text-white font-manrope">EoR vs own international entity setup: which is better? <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="eor-faq-icon shrink-0 text-gray-500"></iconify-icon></summary>
+                            <div class="eor-faq-panel"><p class="px-6 pb-6 text-sm leading-relaxed text-gray-400 font-normal">A local entity can be expensive and slow. An EoR is usually faster and more flexible when you need to test new regions and scale a global team without unnecessary complexity.</p></div>
                         </details>
-                        <details class="eor-faq-item rounded-2xl border border-white/10 p-5" data-state="closed">
-                            <summary class="flex cursor-pointer items-center justify-between gap-4 text-lg font-semibold text-white">What EoR model does Garna have? <iconify-icon icon="lucide:chevron-down" width="18" class="eor-faq-icon shrink-0"></iconify-icon></summary>
-                            <div class="eor-faq-panel"><p class="pt-4 text-sm leading-relaxed text-gray-400">Garna provides a flexible global EoR solution with payroll, compliance, onboarding, API integrations, white-label options, and support for multi-country teams.</p></div>
+                        <details class="eor-faq-item rounded-xl border border-white/5" data-state="closed">
+                            <summary class="flex cursor-pointer items-center justify-between gap-4 pt-6 pr-6 pb-6 pl-6 text-base font-medium text-white font-manrope">What EoR model does Garna have? <iconify-icon icon="solar:alt-arrow-down-linear" width="20" height="20" class="eor-faq-icon shrink-0 text-gray-500"></iconify-icon></summary>
+                            <div class="eor-faq-panel"><p class="px-6 pb-6 text-sm leading-relaxed text-gray-400 font-normal">Garna provides a flexible global EoR solution with payroll, compliance, onboarding, API integrations, white-label options, and support for multi-country teams.</p></div>
                         </details>
                     </div>
                 </div>
