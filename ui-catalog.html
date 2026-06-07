@@ -33,7 +33,11 @@
       color-scheme: dark;
     }
 
-    * { box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -675,53 +679,70 @@
       box-shadow: 0 0 0 6px rgba(94,165,0,0.13);
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      min-height: 46px;
-      padding: 12px 28px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: var(--green);
-      color: white;
-      font-family: Manrope, sans-serif;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow:
-        0 10px 24px -18px rgba(94,165,0,0.85),
-        0 0 26px -12px rgba(94,165,0,0.72),
-        inset 0 1px 0 rgba(255,255,255,0.2);
-      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, filter 0.28s ease;
-      cursor: pointer;
-    }
+	    .btn {
+	      display: inline-flex;
+	      align-items: center;
+	      justify-content: center;
+	      gap: 9px;
+	      min-height: 46px;
+	      padding: 12px 28px;
+	      border-radius: 12px;
+	      border: 1px solid rgba(255,255,255,0.2);
+	      background: var(--green);
+	      color: white;
+	      font-family: Manrope, sans-serif;
+	      font-size: 16px;
+	      font-weight: 600;
+	      line-height: 1.2;
+	      text-decoration: none;
+	      white-space: nowrap;
+	      box-shadow:
+	        0 10px 24px -18px rgba(94,165,0,0.85),
+	        0 0 26px -12px rgba(94,165,0,0.72),
+	        inset 0 2px 0 rgba(255,255,255,0.2);
+	      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, filter 0.28s ease;
+	      cursor: pointer;
+	    }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        0 18px 34px -22px rgba(94,165,0,1),
-        0 0 34px -8px rgba(94,165,0,0.92),
-        inset 0 1px 0 rgba(255,255,255,0.28);
-      filter: saturate(1.06);
-    }
+	    .btn:hover {
+	      transform: translateY(-3px);
+	      box-shadow:
+	        0 18px 34px -22px rgba(94,165,0,1),
+	        0 0 34px -8px rgba(94,165,0,0.92),
+	        inset 0 2px 0 rgba(255,255,255,0.28);
+	      filter: saturate(1.06);
+	    }
 
-    .btn-secondary {
-      background: rgba(255,255,255,0.04);
-      border-color: var(--border);
-      color: white;
-      box-shadow:
-        0 10px 24px -18px rgba(94,165,0,0),
-        0 0 26px -12px rgba(94,165,0,0),
-        inset 0 1px 0 rgba(255,255,255,0.06);
-    }
+	    .btn:active {
+	      transform: translateY(-1px) scale(0.99);
+	    }
 
-    .btn-secondary:hover {
-      box-shadow:
-        0 18px 34px -22px rgba(94,165,0,1),
-        0 0 34px -8px rgba(94,165,0,0.92),
-        inset 0 1px 0 rgba(255,255,255,0.28);
-    }
+	    .btn svg {
+	      width: 19px;
+	      height: 19px;
+	      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+	    }
+
+	    .btn:hover svg {
+	      transform: translate(3px, -3px);
+	    }
+
+	    .btn-secondary {
+	      background: rgba(255,255,255,0.04);
+	      border-color: var(--border);
+	      color: white;
+	      box-shadow:
+	        0 10px 24px -18px rgba(94,165,0,0),
+	        0 0 26px -12px rgba(94,165,0,0),
+	        inset 0 2px 0 rgba(255,255,255,0.06);
+	    }
+
+	    .btn-secondary:hover {
+	      box-shadow:
+	        0 18px 34px -22px rgba(94,165,0,1),
+	        0 0 34px -8px rgba(94,165,0,0.92),
+	        inset 0 2px 0 rgba(255,255,255,0.28);
+	    }
 
     .btn-icon {
       width: 44px;
@@ -730,54 +751,178 @@
       border-radius: 999px;
     }
 
-    .animated-cta {
-      --cta-angle: 0deg;
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      border: 2px solid transparent;
-      background:
-        linear-gradient(var(--green), var(--green)) padding-box,
-        conic-gradient(from var(--cta-angle), transparent 0 58%, #4d8a00 64%, #ffffff 72%, #4d8a00 80%, transparent 88% 100%) border-box;
-      animation: cta-border-spin 2.5s linear infinite;
-    }
+	    .animated-cta {
+	      --cta-angle: 0deg;
+	      position: relative;
+	      isolation: isolate;
+	      overflow: hidden;
+	      border: 0;
+	      background: var(--green);
+	      box-shadow:
+	        inset 0 0 0 1px rgba(255,255,255,0.22),
+	        inset 0 2px 0 rgba(255,255,255,0.3),
+	        0 10px 24px -18px rgba(94,165,0,0.85),
+	        0 0 26px -12px rgba(94,165,0,0.72);
+	    }
 
-    .animated-cta span {
-      position: relative;
-      z-index: 1;
-    }
+	    .animated-cta::before {
+	      content: "";
+	      position: absolute;
+	      inset: 0;
+	      z-index: 0;
+	      width: 100%;
+	      height: 100%;
+	      padding: 3px 2px 2px;
+	      border-radius: inherit;
+	      pointer-events: none;
+	      background: conic-gradient(
+	        from var(--cta-angle),
+	        transparent 0%,
+	        rgba(77, 138, 0, 0.45) 5%,
+	        #ffffff 15%,
+	        rgba(77, 138, 0, 0.45) 30%,
+	        transparent 42%,
+	        transparent 100%
+	      );
+	      -webkit-mask:
+	        linear-gradient(#000 0 0) content-box,
+	        linear-gradient(#000 0 0);
+	      -webkit-mask-composite: xor;
+	      mask:
+	        linear-gradient(#000 0 0) content-box,
+	        linear-gradient(#000 0 0);
+	      mask-composite: exclude;
+	      animation: cta-border-spin 2.5s linear infinite;
+	    }
 
-    .animated-cta::after {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      z-index: 0;
-      border-radius: 10px;
-      pointer-events: none;
-      background: linear-gradient(110deg, transparent 0 36%, rgba(255,255,255,0.22) 48%, transparent 60% 100%);
-      transform: translateX(-130%);
-      animation: cta-sheen 3.4s ease-in-out infinite;
-    }
+	    .animated-cta::after {
+	      content: "";
+	      position: absolute;
+	      inset: 3px 2px 2px;
+	      z-index: 1;
+	      border-radius: calc(12px - 3px) calc(12px - 2px) calc(12px - 2px) calc(12px - 2px);
+	      pointer-events: none;
+	      background: var(--green);
+	    }
 
-    @property --cta-angle {
+	    .animated-cta span {
+	      position: relative;
+	      z-index: 2;
+	    }
+
+	    .animated-cta > span {
+	      display: inline-flex;
+	      align-items: center;
+	      gap: 9px;
+	    }
+
+	    .animated-cta:hover {
+	      box-shadow:
+	        inset 0 0 0 1px rgba(255,255,255,0.26),
+	        inset 0 2px 0 rgba(255,255,255,0.34),
+	        0 18px 34px -22px rgba(94,165,0,1),
+	        0 0 34px -8px rgba(94,165,0,0.92);
+	    }
+
+	    @property --cta-angle {
       syntax: "<angle>";
       initial-value: 0deg;
       inherits: false;
     }
 
-    @keyframes cta-border-spin {
-      to { --cta-angle: 360deg; }
-    }
+	    @keyframes cta-border-spin {
+	      to { --cta-angle: 360deg; }
+	    }
 
-    @keyframes cta-sheen {
-      0%, 42% { transform: translateX(-130%); opacity: 0; }
-      55% { opacity: 1; }
-      72%, 100% { transform: translateX(130%); opacity: 0; }
-    }
+	    .eor-demo-button {
+	      position: relative;
+	      display: inline-flex;
+	      align-items: center;
+	      justify-content: center;
+	      gap: 8px;
+	      isolation: isolate;
+	      overflow: hidden;
+	      min-height: 48px;
+	      padding: 13px 26px;
+	      border: 0;
+	      border-radius: 12px;
+	      color: #fff;
+	      background: var(--green);
+	      font-family: Manrope, sans-serif;
+	      font-size: 16px;
+	      font-weight: 600;
+	      line-height: 1.2;
+	      white-space: nowrap;
+	      box-shadow:
+	        0 0 26px -10px rgba(94, 165, 0, 0.9),
+	        inset 0 2px 0 rgba(255, 255, 255, 0.2);
+	      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, filter 0.28s ease;
+	      cursor: pointer;
+	    }
 
-    .card-title {
-      font-family: Manrope, sans-serif;
-      color: white;
+	    .eor-demo-button::before {
+	      content: "";
+	      position: absolute;
+	      inset: -120% -45%;
+	      z-index: -1;
+	      background: linear-gradient(115deg, transparent 34%, rgba(255, 255, 255, 0.34) 48%, transparent 62%);
+	      transform: translateX(-70%) rotate(8deg);
+	      transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+	    }
+
+	    .eor-demo-button::after {
+	      content: "";
+	      position: absolute;
+	      inset: 0;
+	      z-index: -2;
+	      background: radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.28), transparent 34%);
+	      opacity: 0.6;
+	      transition: opacity 0.28s ease;
+	    }
+
+	    .eor-demo-button svg {
+	      width: 19px;
+	      height: 19px;
+	      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+	    }
+
+	    .eor-demo-button:hover {
+	      transform: translateY(-3px);
+	      filter: saturate(1.08);
+	      box-shadow:
+	        0 18px 34px -22px rgba(94, 165, 0, 1),
+	        0 0 34px -8px rgba(94, 165, 0, 0.92),
+	        inset 0 2px 0 rgba(255, 255, 255, 0.28);
+	    }
+
+	    .eor-demo-button:hover::before {
+	      transform: translateX(70%) rotate(8deg);
+	    }
+
+	    .eor-demo-button:hover::after {
+	      opacity: 0.85;
+	    }
+
+	    .eor-demo-button:hover svg {
+	      transform: translate(3px, -3px);
+	    }
+
+	    .eor-demo-button:active {
+	      transform: translateY(-1px) scale(0.99);
+	    }
+
+	    @media (prefers-reduced-motion: reduce) {
+	      .eor-demo-button,
+	      .eor-demo-button::before,
+	      .eor-demo-button::after,
+	      .eor-demo-button svg {
+	        transition: none;
+	      }
+	    }
+
+	    .card-title {
+	      font-family: Manrope, sans-serif;
+	      color: white;
       font-weight: 600;
       font-size: 19px;
       margin-bottom: 8px;
@@ -1266,17 +1411,41 @@
         <p class="caption">The system uses green primary CTAs, dark secondary buttons, icon buttons and animated demo CTAs.</p>
       </div>
       <div class="grid">
-        <div class="sample span-4">
-          <span class="sample-label">Primary CTA</span><br>
-          <button class="btn">Start now <span>-></span></button>
-        </div>
-        <div class="sample span-4">
-          <span class="sample-label">Animated demo CTA</span><br>
-          <button class="btn animated-cta">Try Demo Version <span>↗</span></button>
-        </div>
-        <div class="sample span-4">
-          <span class="sample-label">Secondary and icon</span><br>
-          <button class="btn btn-secondary">Log in</button>
+	        <div class="sample span-4">
+	          <span class="sample-label">Primary CTA</span><br>
+	          <button class="btn">
+	            Start now
+	            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+	              <path d="M7 7h10v10"></path>
+	              <path d="M7 17 17 7"></path>
+	            </svg>
+	          </button>
+	        </div>
+	        <div class="sample span-4">
+	          <span class="sample-label">Animated demo CTA</span><br>
+	          <button class="btn animated-cta">
+	            <span>
+	              Try Demo Version
+	              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+	                <path d="M7 7h10v10"></path>
+	                <path d="M7 17 17 7"></path>
+	              </svg>
+	            </span>
+	          </button>
+	        </div>
+	        <div class="sample span-4">
+	          <span class="sample-label">EOR hero demo CTA</span><br>
+	          <button class="eor-demo-button">
+	            Book a demo
+	            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+	              <path d="M7 7h10v10"></path>
+	              <path d="M7 17 17 7"></path>
+	            </svg>
+	          </button>
+	        </div>
+	        <div class="sample span-4">
+	          <span class="sample-label">Secondary and icon</span><br>
+	          <button class="btn btn-secondary">Log in</button>
           <button class="btn btn-icon" aria-label="Menu" style="margin-left:8px">☰</button>
         </div>
       </div>
@@ -1364,7 +1533,13 @@
             <div class="mini-icon">↗</div>
             <div class="card-title">Centered CTA card</div>
             <p>Conversion block with green border emphasis and restrained glow.</p>
-            <button class="btn" style="margin-top:2px">Start now <span>→</span></button>
+	            <button class="btn" style="margin-top:2px">
+	              Start now
+	              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+	                <path d="M7 7h10v10"></path>
+	                <path d="M7 17 17 7"></path>
+	              </svg>
+	            </button>
             <div class="hover-note">Hover: green border increases, glow strengthens, inner CTA keeps its own hover.</div>
           </article>
 

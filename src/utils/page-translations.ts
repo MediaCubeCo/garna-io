@@ -1,6 +1,7 @@
-import { getPageTranslations } from '../pages/i18n';
+import { getPageTranslations } from '../i18n';
 import { RouteInfo } from './routes';
 import { languages } from '../config/languages';
+import { getHeaderTranslations } from '../i18n/translations/header';
 
 const FOOTER_LANG_SELECT_PLACEHOLDER = '<!-- FOOTER_LANG_SELECT -->';
 const FOOTER_LEGAL_LINKS_PLACEHOLDER = '<!-- FOOTER_LEGAL_LINKS -->';
@@ -56,9 +57,9 @@ function buildFooterLangSelectHtml(
 			const selected = lang.value === currentLang;
 			const selectedClass = selected ? ' footer-lang-optionSelected' : '';
 			const ariaSelected = selected ? 'true' : 'false';
-			return `<li class="footer-lang-option${selectedClass}" role="option" aria-selected="${ariaSelected}" data-url="${escapeHtml(
+			return `<li role="none"><a class="footer-lang-option${selectedClass}" role="option" aria-selected="${ariaSelected}" href="${escapeHtml(
 				path
-			)}">${escapeHtml(lang.label)}</li>`;
+			)}" data-footer-lang-link>${escapeHtml(lang.label)}</a></li>`;
 		})
 		.join('');
 
@@ -87,6 +88,9 @@ function buildFooterLangSelectHtml(
 .footer-lang-label:hover .footer-lang-dropdown {
 	opacity: 1; transform: translateY(0); pointer-events: auto; visibility: visible;
 }
+.footer-lang-label.is-open .footer-lang-dropdown {
+	opacity: 1; transform: translateY(0); pointer-events: auto; visibility: visible;
+}
 .footer-lang-list {
 	margin: 0; padding: 6px 0; list-style: none;
 	background-color: rgb(10, 10, 10); border: 1px solid rgb(34, 34, 34);
@@ -94,8 +98,10 @@ function buildFooterLangSelectHtml(
 	overflow-y: auto; max-height: 260px;
 }
 .footer-lang-option {
+	display: block;
 	padding: 10px 14px; cursor: pointer; transition: background-color 0.1s ease-out;
 	color: rgba(255, 255, 255, 0.9); font-size: inherit;
+	text-decoration: none;
 }
 .footer-lang-option:hover, .footer-lang-optionHighlighted {
 	background-color: rgba(255, 255, 255, 0.06); color: #fff;
@@ -106,27 +112,18 @@ function buildFooterLangSelectHtml(
 @media (min-width: 768px) { .footer-lang-label { max-width: 160px; } }
 @media (max-width: 767px) { .footer-lang-label { max-width: 100%; } }`;
 
-	const script = `
-(function(){
-	var c=document.getElementById('footer-lang-container');
-	var opts=c&&c.querySelectorAll('.footer-lang-option');
-	function go(url){ if(url) location.href=url; }
-	if(opts){ for(var i=0;i<opts.length;i++){ (function(el){ el.addEventListener('click',function(){ go(el.getAttribute('data-url')); }); })(opts[i]); } }
-})();`;
-
 	return (
 		`<style>${style}</style>` +
 		'<div class="footer-lang-select-block mt-4 md:mt-6">' +
 		'<div class="footer-lang-label" id="footer-lang-container">' +
-		`<div class="footer-lang-trigger" role="combobox" aria-haspopup="listbox" aria-label="${escapeHtml(
+		`<button type="button" class="footer-lang-trigger" data-footer-lang-trigger role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="${escapeHtml(
 			languageLabel
 		)}">` +
 		`<span class="footer-lang-triggerText">${escapeHtml(displayText)}</span>` +
-		'</div>' +
+		'</button>' +
 		'<div class="footer-lang-dropdown">' +
 		`<ul class="footer-lang-list" role="listbox" aria-label="${escapeHtml(languageLabel)}">${optionsHtml}</ul>` +
-		'</div></div></div>' +
-		`<script>${script}</script>`
+		'</div></div></div>'
 	);
 }
 
@@ -145,15 +142,36 @@ export function injectPageTranslations(
 	try {
 		// Get translations for all languages (en, es, pt, ru)
 		const allTranslations = {
-			en: getPageTranslations(pageName, 'en'),
-			es: getPageTranslations(pageName, 'es'),
-			pt: getPageTranslations(pageName, 'pt'),
-			ru: getPageTranslations(pageName, 'ru'),
+			en: { ...(getPageTranslations(pageName, 'en') as any), header: getHeaderTranslations('en') },
+			es: { ...(getPageTranslations(pageName, 'es') as any), header: getHeaderTranslations('es') },
+			pt: { ...(getPageTranslations(pageName, 'pt') as any), header: getHeaderTranslations('pt') },
+			ru: { ...(getPageTranslations(pageName, 'ru') as any), header: getHeaderTranslations('ru') },
 		};
 
 		// Get current language and replace image src attributes in HTML directly on server
 		// This ensures images are correct before browser even starts loading them
 		const currentLanguage = routeInfo.language || 'en';
+		html = html.replace(
+			/<a\b([^>]*\sdata-localized-path=["']([^"']*)["'][^>]*)>/gi,
+			(match: string, attributes: string, path: string) => {
+				const href = path ? `/${currentLanguage}/${path}` : `/${currentLanguage}`;
+				const nextAttributes = /\shref=["'][^"']*["']/i.test(attributes)
+					? attributes.replace(/\shref=["'][^"']*["']/i, ` href="${escapeHtml(href)}"`)
+					: ` href="${escapeHtml(href)}"${attributes}`;
+
+				return `<a${nextAttributes}>`;
+			}
+		);
+		html = localizeLinkHref(html, 'data-garna-home', `/${currentLanguage}`);
+		html = localizeLinkHref(html, 'data-garna-signup', `https://app.garna.io/${currentLanguage}/auth/sign-up`);
+		html = localizeLinkHref(html, 'data-garna-signin', `https://app.garna.io/${currentLanguage}/auth/sign-in`);
+
+		const currentTranslations =
+			allTranslations[currentLanguage as keyof typeof allTranslations] || allTranslations.en;
+		const bookingWidgetTranslations = (currentTranslations as any).bookingWidget || {};
+		html = html
+			.replaceAll('__GARNA_LOCALE__', serializeJsonForScript(currentLanguage))
+			.replaceAll('__GARNA_WIDGET_TRANSLATIONS__', serializeJsonForScript(bookingWidgetTranslations));
 
 		// 404 page: point "Return Home" link to the locale-prefixed home (e.g. /en, /ru)
 		if (pageName === '404') {
@@ -190,10 +208,7 @@ export function injectPageTranslations(
 			html = html.replace(FOOTER_LEGAL_LINKS_PLACEHOLDER, footerLegalLinksHtml);
 		}
 
-		if (currentLanguage !== 'en') {
-			const currentTranslations =
-				allTranslations[currentLanguage as keyof typeof allTranslations] || allTranslations.en;
-
+		{
 			// Update meta title if translation exists
 			if (
 				currentTranslations.meta &&
@@ -314,6 +329,33 @@ export function injectPageTranslations(
 				return value;
 			};
 
+			html = html.replace(
+				/<([a-zA-Z][a-zA-Z0-9:-]*)([^>]*\sdata-translate-(alt|placeholder|value)=["']([^"']+)["'][^>]*)>/gi,
+				(match: string, tagName: string, attributes: string, target: string, key: string) => {
+					const translation = getNestedValue(currentTranslations, key);
+					if (translation === undefined || translation === null) return match;
+
+					const targetAttribute = target === 'alt' ? 'alt' : target;
+					const escapedTranslation = escapeHtml(String(translation));
+					const attributePattern = new RegExp(`\\s${targetAttribute}=["'][^"']*["']`, 'i');
+					const nextAttributes = attributePattern.test(attributes)
+						? attributes.replace(attributePattern, ` ${targetAttribute}="${escapedTranslation}"`)
+						: `${attributes} ${targetAttribute}="${escapedTranslation}"`;
+
+					return `<${tagName}${nextAttributes}>`;
+				}
+			);
+
+			html = html.replace(
+				/(<textarea\b[^>]*\sdata-translate-value=["']([^"']+)["'][^>]*>)([\s\S]*?)(<\/textarea>)/gi,
+				(match: string, openTag: string, key: string, content: string, closeTag: string) => {
+					const translation = getNestedValue(currentTranslations, key);
+					if (translation === undefined || translation === null) return match;
+
+					return `${openTag}${escapeHtml(String(translation))}${closeTag}`;
+				}
+			);
+
 			// Replace text in elements with data-translate (server-side)
 			// Match patterns like: <div data-translate="key">English text</div>
 			// This handles text content between opening and closing tags, including nested tags
@@ -398,276 +440,6 @@ export function injectPageTranslations(
 			}
 		}
 
-		// Create JavaScript object with translations for all languages
-		// Inject translations directly and load script inline to avoid async issues
-		// Split into two scripts: one in <head> for immediate image replacement, one before </body> for text translations
-
-		// Script for right after <body> - replaces images SYNCHRONOUSLY before browser loads them
-		const headScript = `
-<script>
-(function() {
-  'use strict';
-  
-  function getCurrentLanguage() {
-    var htmlLang = document.documentElement.getAttribute('lang');
-    if (htmlLang) {
-      var lang = htmlLang.split('-')[0].toLowerCase();
-      if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) {
-        return lang;
-      }
-    }
-    return 'en';
-  }
-  
-  // Replace images IMMEDIATELY and SYNCHRONOUSLY - before browser starts loading them
-  function replaceImagesSync() {
-    var language = getCurrentLanguage();
-    if (language === 'en') return; // English uses default images
-    
-    var translations = window.pageTranslations[language] || window.pageTranslations.en;
-    var imageMappings = translations && translations.images ? translations.images : null;
-    if (!imageMappings) return;
-    
-    // Process images immediately - use multiple strategies to catch them as early as possible
-    function processImages() {
-      var imgs = document.querySelectorAll('img[data-image-src]');
-      for (var i = 0; i < imgs.length; i++) {
-        replaceImageSrc(imgs[i], imageMappings);
-      }
-      return imgs.length;
-    }
-    
-    // Strategy 1: Try immediately (script runs right after <body>)
-    var processedCount = 0;
-    if (document.body) {
-      processedCount = processImages();
-    }
-    
-    // Strategy 2: Use DOMContentLoaded for earliest possible execution
-    if (processedCount === 0 || document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function() {
-        processImages();
-      }, { once: true, passive: true });
-    }
-    
-    // Strategy 3: Use MutationObserver to catch images as they're parsed and added to DOM
-    if (typeof MutationObserver !== 'undefined') {
-      var observer = new MutationObserver(function(mutations) {
-        var foundNew = false;
-        mutations.forEach(function(mutation) {
-          mutation.addedNodes.forEach(function(node) {
-            if (node.nodeType === 1) {
-              if (node.tagName === 'IMG' && node.getAttribute('data-image-src')) {
-                foundNew = true;
-                replaceImageSrc(node, imageMappings);
-              } else if (node.querySelectorAll) {
-                var childImgs = node.querySelectorAll('img[data-image-src]');
-                if (childImgs.length > 0) {
-                  foundNew = true;
-                  for (var j = 0; j < childImgs.length; j++) {
-                    replaceImageSrc(childImgs[j], imageMappings);
-                  }
-                }
-              }
-            }
-          });
-        });
-      });
-      
-      // Start observing immediately
-      observer.observe(document.documentElement, {
-        childList: true,
-        subtree: true
-      });
-      
-      // Disconnect after a short delay to avoid performance issues
-      setTimeout(function() {
-        observer.disconnect();
-        // Final processing
-        processImages();
-      }, 1000);
-    }
-  }
-  
-  function replaceImageSrc(img, imageMappings) {
-    var key = img.getAttribute('data-image-src');
-    if (!key) return;
-    
-    var cleanKey = key.replace(/^images\./, '');
-    var imagePath = imageMappings[cleanKey];
-    if (!imagePath) return;
-    
-    var currentSrc = img.getAttribute('src');
-    if (!currentSrc) return;
-    
-    var dir = currentSrc.substring(0, currentSrc.lastIndexOf('/') + 1);
-    var newSrc = dir + imagePath;
-    
-    if (currentSrc !== newSrc) {
-      img.setAttribute('src', newSrc);
-      
-      // Update srcset
-      var srcset = img.getAttribute('srcset');
-      if (srcset) {
-        var newImageBase = imagePath.replace(/\\.png$/i, '');
-        var originalFilename = currentSrc.substring(currentSrc.lastIndexOf('/') + 1);
-        var originalBaseName = originalFilename.replace(/-p-\\d+\\.png$/i, '').replace(/\\.png$/i, '');
-        
-        var newSrcset = srcset.replace(new RegExp(originalBaseName.replace(/[.*+?^$()|[\\]\\\\-]/g, '\\\\$&') + '(-p-\\\\d+)?\\\\.png', 'gi'), function(match) {
-          var sizeMatch = match.match(/-p-(\\d+)\\.png$/i);
-          if (sizeMatch) {
-            return newImageBase + '-p-' + sizeMatch[1] + '.png';
-          }
-          return imagePath;
-        });
-        img.setAttribute('srcset', newSrcset);
-      }
-    }
-  }
-  
-  // Execute immediately
-  replaceImagesSync();
-})();
-</script>`;
-
-		// Script for </body> - applies text translations
-		const bodyScript = `
-<script>
-(function() {
-  'use strict';
-  
-  function getCurrentLanguage() {
-    var htmlLang = document.documentElement.getAttribute('lang');
-    if (htmlLang) {
-      var lang = htmlLang.split('-')[0].toLowerCase();
-      if (['en', 'es', 'pt', 'ru'].indexOf(lang) !== -1) {
-        return lang;
-      }
-    }
-    return 'en';
-  }
-  
-  function getNestedValue(obj, path) {
-    var keys = path.split('.');
-    var value = obj;
-    for (var i = 0; i < keys.length; i++) {
-      if (value && typeof value === 'object' && keys[i] in value) {
-        value = value[keys[i]];
-      } else {
-        return undefined;
-      }
-    }
-    return value;
-  }
-  
-  function applyTranslations(translations) {
-    if (!translations) return;
-    var elements = document.querySelectorAll('[data-translate]');
-    elements.forEach(function(element) {
-      var key = element.getAttribute('data-translate');
-      var value = key ? getNestedValue(translations, key) : undefined;
-      var tagName = element.tagName ? element.tagName.toUpperCase() : '';
-      if (tagName === 'INPUT' || tagName === 'TEXTAREA') {
-        var placeholderKey = element.getAttribute('data-translate-placeholder');
-        var valueKey = element.getAttribute('data-translate-value');
-        var placeholderValue = placeholderKey ? getNestedValue(translations, placeholderKey) : undefined;
-        var valueValue = valueKey ? getNestedValue(translations, valueKey) : undefined;
-        if (placeholderValue !== undefined && placeholderValue !== null) {
-          element.setAttribute('placeholder', String(placeholderValue));
-        } else if (value !== undefined && value !== null && element.hasAttribute('placeholder')) {
-          element.setAttribute('placeholder', String(value));
-        }
-        if (valueValue !== undefined && valueValue !== null) {
-          element.value = String(valueValue);
-        } else if (value !== undefined && value !== null) {
-          if (element.value || element.hasAttribute('value')) {
-            element.value = String(value);
-          }
-        }
-        return;
-      }
-      if (value !== undefined && value !== null) {
-        var valueStr = String(value);
-        if (valueStr.indexOf('<') !== -1 || valueStr.indexOf('&') !== -1) {
-          element.innerHTML = valueStr;
-        } else {
-          element.textContent = valueStr;
-        }
-      }
-    });
-  }
-  
-  // Prevent multiple initializations
-  var initialized = false;
-  
-  function init() {
-    if (initialized) {
-      return;
-    }
-    initialized = true;
-    
-    var language = getCurrentLanguage();
-    
-    if (!window.pageTranslations) {
-      setTimeout(init, 50);
-      return;
-    }
-    
-    var translations = window.pageTranslations[language] || window.pageTranslations.en;
-    if (!translations) {
-      return;
-    }
-    
-    applyTranslations(translations);
-  }
-  
-  // Try to initialize immediately if DOM is ready
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    init();
-  } else {
-    document.addEventListener('DOMContentLoaded', init, { once: true });
-  }
-  
-  // Also try after a short delay as fallback
-  setTimeout(function() {
-    if (!initialized) {
-      init();
-    }
-  }, 100);
-})();
-</script>`;
-
-		// Insert translations data into <head>
-		const headCloseIndex = html.toLowerCase().indexOf('</head>');
-		if (headCloseIndex !== -1) {
-			const translationsDataScript = `<script>window.pageTranslations = ${JSON.stringify(allTranslations)};</script>`;
-			html = html.slice(0, headCloseIndex) + translationsDataScript + '\n' + html.slice(headCloseIndex);
-		}
-
-		// Insert headScript right after <body> tag for immediate image replacement
-		const bodyOpenMatch = html.match(/<body[^>]*>/i);
-		if (bodyOpenMatch && bodyOpenMatch.index !== undefined) {
-			const bodyEndIndex = bodyOpenMatch.index + bodyOpenMatch[0].length;
-			html = html.slice(0, bodyEndIndex) + '\n' + headScript + html.slice(bodyEndIndex);
-		} else {
-			// Fallback: insert before </body>
-			const bodyCloseIndex = html.lastIndexOf('</body>');
-			if (bodyCloseIndex !== -1) {
-				html = html.slice(0, bodyCloseIndex) + headScript + '\n' + html.slice(bodyCloseIndex);
-			} else {
-				html = headScript + '\n' + html;
-			}
-		}
-
-		// Insert bodyScript before </body> for text translations
-		const bodyCloseIndex = html.lastIndexOf('</body>');
-		if (bodyCloseIndex !== -1) {
-			html = html.slice(0, bodyCloseIndex) + bodyScript + '\n' + html.slice(bodyCloseIndex);
-		} else {
-			// If no </body> tag, append at the end
-			html += bodyScript;
-		}
-
 		return html;
 	} catch {
 		return html; // Return original HTML on error
@@ -688,4 +460,22 @@ function escapeHtml(text: string): string {
 		"'": '&#039;',
 	};
 	return text.replace(/[&<>"']/g, (char) => map[char] || char);
+}
+
+function serializeJsonForScript(value: unknown): string {
+	return JSON.stringify(value).replace(/</g, '\\u003c');
+}
+
+function localizeLinkHref(html: string, markerAttribute: string, href: string): string {
+	const markerPattern = markerAttribute.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	return html.replace(
+		new RegExp(`<a\\b([^>]*\\s${markerPattern}(?:=["'][^"']*["'])?[^>]*)>`, 'gi'),
+		(match: string, attributes: string) => {
+			const nextAttributes = /\shref=["'][^"']*["']/i.test(attributes)
+				? attributes.replace(/\shref=["'][^"']*["']/i, ` href="${escapeHtml(href)}"`)
+				: ` href="${escapeHtml(href)}"${attributes}`;
+
+			return `<a${nextAttributes}>`;
+		}
+	);
 }

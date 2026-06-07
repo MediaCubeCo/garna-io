@@ -1,0 +1,153 @@
+---
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'icon' | 'glow';
+type ButtonSize = 'header' | 'mobile' | 'icon' | 'hero';
+type ButtonEffect = 'none' | 'rotating-flare' | 'hover-sweep';
+type ButtonIcon = 'none' | 'arrow-up-right' | 'arrow-right';
+
+interface Props {
+	href?: string;
+	type?: 'button' | 'submit' | 'reset';
+	variant?: ButtonVariant;
+	size?: ButtonSize;
+	effect?: ButtonEffect;
+	icon?: ButtonIcon;
+	class?: string;
+}
+
+const {
+	href,
+	type = 'button',
+	variant = 'primary',
+	size = 'header',
+	effect,
+	icon = 'none',
+	class: className = '',
+	...attrs
+} = Astro.props;
+
+const resolvedVariant = variant === 'glow' ? 'primary' : variant;
+const resolvedEffect = effect || (variant === 'glow' ? 'rotating-flare' : 'none');
+const hasIcon = icon !== 'none';
+
+const baseClass =
+	'garna-button inline-flex items-center justify-center font-manrope focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5EA500]';
+
+const variantClasses: Record<Exclude<ButtonVariant, 'glow'>, string> = {
+	primary:
+		'garna-button-primary text-white',
+	secondary:
+		'garna-button-secondary text-white',
+	ghost: 'garna-button-ghost text-white',
+	icon: 'garna-button-icon text-white',
+};
+
+const sizeClasses: Record<ButtonSize, string> = {
+	header: 'h-11 rounded-xl px-7',
+	mobile: 'w-full rounded-xl p-4 text-base',
+	icon: 'rounded-lg p-1',
+	hero: 'min-h-12 rounded-xl px-8 py-3',
+};
+
+const effectClass = resolvedEffect === 'none' ? '' : `garna-button-${resolvedEffect}`;
+const buttonClass = [
+	baseClass,
+	variantClasses[resolvedVariant],
+	sizeClasses[size],
+	effectClass,
+	hasIcon ? 'garna-button-has-icon' : '',
+	className,
+].filter(Boolean).join(' ');
+
+const contentClass = [
+	'garna-button-inner',
+	hasIcon ? 'gap-2' : '',
+].filter(Boolean).join(' ');
+---
+
+{
+	href ? (
+		<a href={href} class={buttonClass} {...attrs}>
+			<span class={contentClass}>
+				<slot />
+				{icon === 'arrow-up-right' && (
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="19"
+						height="19"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="garna-button-icon-svg"
+						aria-hidden="true"
+					>
+						<path d="M7 7h10v10"></path>
+						<path d="M7 17 17 7"></path>
+					</svg>
+				)}
+				{icon === 'arrow-right' && (
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="19"
+						height="19"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.75"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="garna-button-icon-svg"
+						aria-hidden="true"
+					>
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				)}
+			</span>
+		</a>
+	) : (
+		<button type={type} class={buttonClass} {...attrs}>
+			<span class={contentClass}>
+				<slot />
+				{icon === 'arrow-up-right' && (
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="19"
+						height="19"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="garna-button-icon-svg"
+						aria-hidden="true"
+					>
+						<path d="M7 7h10v10"></path>
+						<path d="M7 17 17 7"></path>
+					</svg>
+				)}
+				{icon === 'arrow-right' && (
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="19"
+						height="19"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.75"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="garna-button-icon-svg"
+						aria-hidden="true"
+					>
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				)}
+			</span>
+		</button>
+	)
+}

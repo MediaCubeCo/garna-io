@@ -1,0 +1,209 @@
+---
+import type { FAQSectionConfig } from '../types/faq-section';
+
+interface Props extends FAQSectionConfig {}
+
+const {
+	id,
+	kicker,
+	title,
+	subtitle,
+	items,
+	variant = 'standard',
+	class: className = 'pt-16 pb-16 lg:pt-32 lg:pb-32',
+	containerClass = 'garna-container',
+} = Astro.props;
+
+const titleClass =
+	variant === 'eor'
+		? 'font-manrope text-4xl font-normal leading-tight text-white md:text-5xl'
+		: 'md:text-4xl lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope mb-6';
+---
+
+<section id={id} class={className} data-faq-section data-faq-variant={variant}>
+	<div class={containerClass}>
+		{variant === 'eor' ? (
+			<div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+				<div class="mx-auto max-w-3xl text-center lg:mx-0 lg:text-left">
+					{kicker && (
+						<p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]" data-translate={kicker.translateKey}>
+							{kicker.text}
+						</p>
+					)}
+					<h2 class={titleClass} data-translate={title.translateKey}>{title.text}</h2>
+				</div>
+				<div class="eor-faq mx-auto w-full max-w-3xl space-y-4 lg:max-w-none" id="eor-faq-accordion" data-faq-accordion>
+					{items.map((item) => (
+						<details class="eor-faq-item rounded-xl border border-white/5" data-faq-item data-state="closed">
+							<summary class="flex cursor-pointer items-center justify-between gap-4 pt-6 pr-6 pb-6 pl-6 text-base font-medium text-white font-manrope">
+								<span data-translate={item.questionTranslateKey}>{item.question}</span>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.75"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="garna-faq-icon eor-faq-icon shrink-0 text-gray-500"
+									aria-hidden="true"
+								>
+									<path d="m6 9 6 6 6-6"></path>
+								</svg>
+							</summary>
+							<div class="garna-faq-panel eor-faq-panel">
+								<p class="px-6 pb-6 text-sm leading-relaxed text-gray-400 font-normal" data-translate={item.answerTranslateKey}>{item.answer}</p>
+							</div>
+						</details>
+					))}
+				</div>
+			</div>
+		) : (
+			<>
+				<div class="lg:mb-20 text-center mb-16">
+					<h2 class={titleClass} data-translate={title.translateKey}>{title.text}</h2>
+					{subtitle && (
+						<p class="text-xl font-light text-gray-400 font-manrope" data-translate={subtitle.translateKey}>{subtitle.text}</p>
+					)}
+				</div>
+
+				<div class="max-w-3xl mx-auto space-y-4" data-faq-accordion>
+					{items.map((item) => (
+						<details class="group bg-[#0A0A0A] rounded-xl border border-white/5 overflow-hidden transition-all duration-300 open:bg-[#0E0E0E]" data-faq-item data-state="closed">
+							<summary class="flex cursor-pointer select-none items-center justify-between gap-4 pt-6 pr-6 pb-6 pl-6 text-base font-medium text-white font-manrope">
+								<span data-translate={item.questionTranslateKey}>{item.question}</span>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="garna-faq-icon text-gray-500 shrink-0"
+									aria-hidden="true"
+								>
+									<path d="m6 9 6 6 6-6"></path>
+								</svg>
+							</summary>
+							<div class="garna-faq-panel">
+								<div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed font-normal">
+									<p data-translate={item.answerTranslateKey}>{item.answer}</p>
+								</div>
+							</div>
+						</details>
+					))}
+				</div>
+			</>
+		)}
+	</div>
+</section>
+
+<script>
+	function initializeGarnaFaqAccordions() {
+		const accordions = document.querySelectorAll('[data-faq-accordion]');
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		function setExpanded(detail, expanded) {
+			const summary = detail.querySelector('summary');
+			const panel = detail.querySelector('.garna-faq-panel');
+			detail.dataset.state = expanded ? 'open' : 'closed';
+			if (summary) summary.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+			if (panel && expanded && prefersReducedMotion) panel.style.height = 'auto';
+		}
+
+		function openDetail(detail) {
+			const accordion = detail.closest('[data-faq-accordion]');
+			const panel = detail.querySelector('.garna-faq-panel');
+			if (!accordion || !panel) return;
+
+			accordion.querySelectorAll('details[data-faq-item]').forEach((item) => {
+				if (item !== detail) closeDetail(item);
+			});
+
+			detail.open = true;
+			setExpanded(detail, true);
+
+			if (prefersReducedMotion) {
+				panel.style.height = 'auto';
+				return;
+			}
+
+			panel.style.height = `${panel.getBoundingClientRect().height}px`;
+			window.requestAnimationFrame(() => {
+				panel.style.height = `${panel.scrollHeight}px`;
+			});
+
+			const onEnd = (event) => {
+				if (event.propertyName !== 'height') return;
+				panel.style.height = 'auto';
+				panel.removeEventListener('transitionend', onEnd);
+			};
+
+			panel.addEventListener('transitionend', onEnd);
+		}
+
+		function closeDetail(detail) {
+			const panel = detail.querySelector('.garna-faq-panel');
+			setExpanded(detail, false);
+			if (!panel) {
+				detail.open = false;
+				return;
+			}
+
+			if (!detail.open) {
+				panel.style.height = '0px';
+				return;
+			}
+
+			if (prefersReducedMotion) {
+				panel.style.height = '0px';
+				detail.open = false;
+				return;
+			}
+
+			panel.style.height = `${panel.getBoundingClientRect().height}px`;
+			window.requestAnimationFrame(() => {
+				panel.style.height = '0px';
+			});
+
+			const onEnd = (event) => {
+				if (event.propertyName !== 'height') return;
+				detail.open = false;
+				panel.removeEventListener('transitionend', onEnd);
+			};
+
+			panel.addEventListener('transitionend', onEnd);
+		}
+
+		accordions.forEach((accordion) => {
+			if (accordion.dataset.faqInitialized === 'true') return;
+			accordion.dataset.faqInitialized = 'true';
+
+			accordion.querySelectorAll('details[data-faq-item]').forEach((detail) => {
+				const summary = detail.querySelector('summary');
+				const panel = detail.querySelector('.garna-faq-panel');
+				setExpanded(detail, detail.open);
+				if (panel) panel.style.height = detail.open ? 'auto' : '0px';
+
+				if (!summary) return;
+				summary.addEventListener('click', (event) => {
+					event.preventDefault();
+					if (detail.open && detail.dataset.state === 'open') {
+						closeDetail(detail);
+					} else {
+						openDetail(detail);
+					}
+				});
+			});
+		});
+	}
+
+	initializeGarnaFaqAccordions();
+	document.addEventListener('astro:page-load', initializeGarnaFaqAccordions);
+	window.addEventListener('garna:page-content-updated', initializeGarnaFaqAccordions);
+</script>

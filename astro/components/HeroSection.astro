@@ -1,0 +1,102 @@
+---
+import Button from './Button.astro';
+import Section from './Section.astro';
+import type { HeroSectionConfig as Props } from '../types/hero-section';
+
+const {
+	class: className = 'overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
+	containerClass = 'garna-container overflow-visible z-10 text-center relative',
+	contentClass = '',
+	titleClass = 'garna-hero-title-gradient leading-[1.1] lg:text-8xl lg:mb-12 md:mb-8 md:text-7xl text-6xl font-normal tracking-tight font-manrope mb-8',
+	descriptionClass = 'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-lg font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
+	badge,
+	title,
+	description,
+	descriptionTranslateKey,
+	cta,
+	tone = 'green',
+	align = 'center',
+} = Astro.props;
+
+const badgeClass =
+	tone === 'green'
+		? 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#5EA500]/10 border border-[#5EA500]/20 mb-8 backdrop-blur-sm'
+		: 'inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 shadow-sm mb-8 backdrop-blur-sm';
+
+const badgeTextClass =
+	tone === 'green'
+		? 'uppercase text-xs font-medium text-[#5EA500] tracking-wide font-manrope'
+		: 'uppercase text-xs font-medium text-gray-300 tracking-wide font-manrope';
+
+const ctaHref = cta?.href || '#';
+const ctaAttributes =
+	cta?.kind === 'signup'
+		? { 'data-garna-signup': true }
+		: {};
+const ctaOnclick =
+	cta?.kind === 'demo'
+		? `event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: '${cta.trackingCta || 'hero_demo'}' });`
+		: undefined;
+const ctaClass = cta?.class || '';
+const ctaVariant = cta?.variant || 'primary';
+const ctaEffect = cta?.effect || (cta?.kind === 'demo' ? 'rotating-flare' : 'none');
+const ctaIcon = cta?.icon || (cta?.kind === 'signup' || cta?.kind === 'external' ? 'arrow-up-right' : 'arrow-up-right');
+const ctaWrapperClass =
+	cta?.wrapperClass ||
+	(align === 'center'
+		? 'flex md:mb-24 mb-24 justify-center'
+		: 'flex flex-col sm:flex-row items-center gap-4');
+---
+
+<Section class={className} kind="hero">
+	{tone === 'green' && align === 'center' && (
+		<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#5EA500] opacity-[0.08] blur-[120px] rounded-full pointer-events-none" />
+	)}
+	{align === 'split' && (
+		<>
+			<div class="z-0 absolute top-0 right-0 bottom-0 left-0" />
+			<div class="-translate-x-1/2 blur-[120px] -z-10 bg-[#5EA500]/20 w-[800px] h-[500px] rounded-full absolute top-0 left-1/2" />
+			<div class="blur-[120px] -z-10 bg-[#5EA500]/10 w-[600px] h-[600px] rounded-full absolute right-0 bottom-0" />
+		</>
+	)}
+	<div class={containerClass}>
+		<div class={contentClass}>
+			{badge && (
+				<div class={badgeClass}>
+					<span class="relative flex h-2 w-2">
+						<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#5EA500] opacity-75" />
+						<span class="relative inline-flex rounded-full h-2 w-2 bg-[#5EA500]" />
+					</span>
+					<span class={badgeTextClass} data-translate={badge.translateKey}>{badge.text}</span>
+				</div>
+			)}
+
+			<slot name="before-title" />
+
+			<h1 class={titleClass}>
+				{title.map((part) => (
+					<>
+						{part.breakBefore && <br class={part.breakClass || ''} />}
+						<span class={part.class} data-translate={part.translateKey}>{part.text}</span>
+						{' '}
+					</>
+				))}
+			</h1>
+
+			{description && (
+				<p class={descriptionClass} data-translate={descriptionTranslateKey}>
+					{description}
+				</p>
+			)}
+
+			{cta && (
+				<div class={ctaWrapperClass}>
+					<Button href={ctaHref} onclick={ctaOnclick} variant={ctaVariant} effect={ctaEffect} icon={ctaIcon} size="hero" class={ctaClass} {...ctaAttributes}>
+						<span data-translate={cta.translateKey}>{cta.label}</span>
+					</Button>
+				</div>
+			)}
+		</div>
+		<slot />
+	</div>
+</Section>

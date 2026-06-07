@@ -250,7 +250,7 @@ async function handlePagesAssets(request: Request, pathname: string, env?: any):
 			`Page assets can only be served via Static Assets.\n\n` +
 			`Please ensure:\n` +
 			`1. USE_STATIC_ASSETS is set to "true" in wrangler.toml\n` +
-			`2. [assets] section is configured with directory = "./public" and binding = "ASSETS"\n` +
+			`2. [assets] section is configured with directory = "./dist" and binding = "ASSETS"\n` +
 			`3. Restart dev server after configuration changes`;
 		console.error(errorMsg);
 		return new Response(errorMsg, {
@@ -262,7 +262,7 @@ async function handlePagesAssets(request: Request, pathname: string, env?: any):
 
 /**
  * Handles root-level static assets like /favicon*.png, /*.svg, /*.ico
- * These files live at the top of the public/ directory and must be served via ASSETS binding.
+ * These files are copied by Astro from static/ into dist/ and served via ASSETS binding.
  */
 async function handleRootStaticAssets(request: Request, pathname: string, env?: any): Promise<Response | null> {
 	const staticExtensions = /\.(png|jpg|jpeg|gif|svg|ico|webp|avif|woff|woff2|ttf|otf|eot|json|pdf)$/i;

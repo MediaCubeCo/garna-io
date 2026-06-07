@@ -1,5 +1,5 @@
 import { getSupportedLanguageCodes } from '../config/languages';
-import { getPageTranslations } from '../pages/i18n';
+import { getPageTranslations } from '../i18n';
 import { injectHtmlLangTag } from '../utils/htmlLang';
 import { injectCanonicalTag } from '../utils/canonical';
 import { injectHreflangTags } from '../utils/hreflang';
@@ -44,8 +44,8 @@ export async function show404Page(request: Request, pathname: string, _country: 
 		const hasAssetsBinding = env?.ASSETS !== undefined;
 
 		if (useStaticAssetsFlag && hasAssetsBinding && env?.ASSETS) {
-			// Fetch 404.html from /pages/404/404.html
-			const assetPath = '/pages/404/404.html';
+			// Fetch Astro-generated 404 page from static assets.
+			const assetPath = '/404.html';
 			const assetUrl = new URL(assetPath, request.url);
 			const assetRequest = new Request(assetUrl.toString(), {
 				method: 'GET',

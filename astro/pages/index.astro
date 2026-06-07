@@ -1,0 +1,70 @@
+---
+import HeroSection from '../components/HeroSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
+import type { FAQItem } from '../types/faq-section';
+import rawContentHtml from '../content/site-pages/home.html?raw';
+import scriptsHtml from '../content/site-scripts/home.html?raw';
+import { splitLegacyPageSections } from '../utils/legacy-html';
+
+const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
+	heroVisualMarker: '<!-- Dashboard Mockup with Dynamic Sizing -->',
+});
+
+const homeFaqItems = [
+	{
+		question: 'How do I get started with Garna?',
+		answer: 'Sign up on our platform, contact our sales team, and start processing payroll in just a few steps.',
+		questionTranslateKey: 'faqHome.items.q1.question',
+		answerTranslateKey: 'faqHome.items.q1.answer',
+	},
+	{
+		question: 'What payment methods does Garna support?',
+		answer: 'We offer bank transfers in USD, local currencies, e-wallets and crypto.',
+		questionTranslateKey: 'faqHome.items.q2.question',
+		answerTranslateKey: 'faqHome.items.q2.answer',
+	},
+	{
+		question: 'Can I pay contractors in multiple countries?',
+		answer: 'Yes, Garna supports payroll in over 150 countries worldwide.',
+		questionTranslateKey: 'faqHome.items.q3.question',
+		answerTranslateKey: 'faqHome.items.q3.answer',
+	},
+	{
+		question: 'Are there any minimum payment limits?',
+		answer: 'No, you can process payroll of any amount that fits your business needs.',
+		questionTranslateKey: 'faqHome.items.q4.question',
+		answerTranslateKey: 'faqHome.items.q4.answer',
+	},
+] satisfies FAQItem[];
+---
+
+<BaseLayout shell={pageShells.home} scriptsHtml={scriptsHtml} currentPath="">
+	<main id="astro-page-content" data-astro-page-content data-current-path="">
+		<HeroSection {...pageHeroes.home}>
+			<Fragment set:html={heroVisualHtml} />
+		</HeroSection>
+		<Fragment set:html={contentHtml} />
+		<FAQSection
+				title={{ text: 'Frequently asked questions', translateKey: 'faqHome.title' }}
+				subtitle={{ text: "Got Questions? We've Got Answers", translateKey: 'faqHome.subtitle' }}
+				items={homeFaqItems}
+				class="pt-16 pb-16 lg:pt-32 lg:pb-32"
+				containerClass="garna-container"
+			/>
+		<FinalCTASection {...pageFinalCtas.home} />
+	</main>
+	<Fragment slot="widgets">
+		<GarnaBookingWidget
+			trackingSource="payroll-solution"
+			trackingPage="payroll-solution"
+			titleFallback="Start your journey with Garna"
+			subtitleFallback="Fill in your details to book a demo"
+		/>
+	</Fragment>
+</BaseLayout>

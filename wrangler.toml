@@ -10,5 +10,5 @@ port = 8788
 USE_STATIC_ASSETS = "true"
 
 [assets]
-directory = "./public"
+directory = "./dist"
 binding = "ASSETS"

@@ -1,0 +1,95 @@
+---
+import '../styles/global.css';
+import '../styles/faq.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import RainbowBackground from '../components/RainbowBackground.astro';
+import type { PageShellConfig } from '../types/page-shell';
+
+interface Props {
+	shell: PageShellConfig;
+	currentPath?: string;
+	showHeader?: boolean;
+	showFooter?: boolean;
+	scriptsHtml?: string;
+}
+
+const {
+	shell,
+	currentPath = '',
+	showHeader = true,
+	showFooter = true,
+	scriptsHtml = '',
+} = Astro.props;
+
+const {
+	title,
+	description = '',
+	keywords = '',
+	ogImage = 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
+	htmlClass = 'scroll-smooth',
+	bodyClass = 'antialiased overflow-x-hidden bg-[#050505]',
+	iconLibrary = 'iconify',
+	headExtra = '',
+} = shell;
+---
+
+<!doctype html>
+<html lang="en" class={htmlClass}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		{description && <meta name="description" content={description} />}
+		{keywords && <meta name="keywords" content={keywords} />}
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Garna" />
+		<meta property="og:title" content={title} />
+		{description && <meta property="og:description" content={description} />}
+		{ogImage && <meta property="og:image" content={ogImage} />}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		{description && <meta name="twitter:description" content={description} />}
+		{ogImage && <meta name="twitter:image" content={ogImage} />}
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon_180.png" />
+		<link rel="icon" type="image/x-icon" href="/favicon_32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon_16.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.png" />
+		<link rel="stylesheet" href="/rainbow-bg.css" />
+		<script is:inline>
+			(function () {
+				var originalWarn = console.warn;
+				console.warn = function (message) {
+					if (typeof message === 'string' && message.indexOf('cdn.tailwindcss.com') !== -1) return;
+					return originalWarn.apply(console, arguments);
+				};
+			})();
+		</script>
+		<script is:inline src="https://cdn.tailwindcss.com"></script>
+		{
+			iconLibrary === 'lucide' ? (
+				<script is:inline src="https://unpkg.com/lucide@latest"></script>
+			) : (
+				<script
+					is:inline
+					src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"
+				></script>
+			)
+		}
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<Fragment set:html={headExtra} />
+	</head>
+	<body class={bodyClass}>
+		<RainbowBackground />
+		{showHeader && <Header currentPath={currentPath} />}
+		<slot />
+		{showFooter && <Footer />}
+		<div id="astro-page-scripts" data-astro-page-scripts>
+			<slot name="widgets" />
+			<Fragment set:html={scriptsHtml} />
+		</div>
+	</body>
+</html>
