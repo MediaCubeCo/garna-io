@@ -52,13 +52,6 @@ const ctaWrapperClass =
 	{tone === 'green' && align === 'center' && (
 		<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#5EA500] opacity-[0.08] blur-[120px] rounded-full pointer-events-none" />
 	)}
-	{align === 'split' && (
-		<>
-			<div class="z-0 absolute top-0 right-0 bottom-0 left-0" />
-			<div class="-translate-x-1/2 blur-[120px] -z-10 bg-[#5EA500]/20 w-[800px] h-[500px] rounded-full absolute top-0 left-1/2" />
-			<div class="blur-[120px] -z-10 bg-[#5EA500]/10 w-[600px] h-[600px] rounded-full absolute right-0 bottom-0" />
-		</>
-	)}
 	<div class={containerClass}>
 		<div class={contentClass}>
 			{badge && (

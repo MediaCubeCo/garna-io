@@ -284,22 +284,65 @@ const mobileLinkClass = (path: string) =>
 			});
 		};
 
-		const appendMissingHeadResources = (targetDoc) => {
+		const isScriptRuntimeReady = (src) => {
+			if (src.includes('iconify-icon')) return Boolean(window.customElements?.get?.('iconify-icon'));
+			if (src.includes('lucide')) return Boolean(window.lucide);
+			return false;
+		};
+
+		const needsScriptRuntimeCheck = (src) => src.includes('iconify-icon') || src.includes('lucide');
+
+		const loadHeadScript = (sourceScript) => {
+			const src = sourceScript.getAttribute('src');
+			if (!src) return Promise.resolve();
+
+			const absoluteSrc = new URL(src, window.location.origin).href;
+			const existingScript = document.head.querySelector(`script[src="${absoluteSrc}"], script[src="${src}"]`);
+			if (existingScript && (!needsScriptRuntimeCheck(absoluteSrc) || isScriptRuntimeReady(absoluteSrc))) return Promise.resolve();
+
+			return new Promise((resolve) => {
+				const freshScript = document.createElement('script');
+				Array.from(sourceScript.attributes).forEach((attribute) => {
+					if (attribute.name === 'is:inline') return;
+					freshScript.setAttribute(attribute.name, attribute.value);
+				});
+				freshScript.src = absoluteSrc;
+				freshScript.async = false;
+				freshScript.addEventListener('load', resolve, { once: true });
+				freshScript.addEventListener('error', resolve, { once: true });
+				document.head.appendChild(freshScript);
+			});
+		};
+
+		const appendMissingHeadResources = async (targetDoc) => {
+			const pendingScripts = [];
+
 			targetDoc.querySelectorAll('head script[src], head link[rel="stylesheet"]').forEach((resource) => {
 				if (!(resource instanceof HTMLScriptElement) && !(resource instanceof HTMLLinkElement)) return;
 				const attr = resource instanceof HTMLScriptElement ? 'src' : 'href';
 				const value = resource.getAttribute(attr);
 				if (!value) return;
 				const absoluteValue = new URL(value, window.location.origin).href;
+
+				if (resource instanceof HTMLScriptElement) {
+					const existingScript = document.head.querySelector(`script[src="${absoluteValue}"], script[src="${value}"]`);
+					if (!existingScript || (needsScriptRuntimeCheck(absoluteValue) && !isScriptRuntimeReady(absoluteValue))) {
+						pendingScripts.push(loadHeadScript(resource));
+					}
+					return;
+				}
+
 				const selector = resource instanceof HTMLScriptElement
 					? `script[src="${absoluteValue}"], script[src="${value}"]`
 					: `link[rel="stylesheet"][href="${absoluteValue}"], link[rel="stylesheet"][href="${value}"]`;
 				if (document.head.querySelector(selector)) return;
 				document.head.appendChild(resource.cloneNode(true));
 			});
+
+			await Promise.all(pendingScripts);
 		};
 
-		const syncHead = (targetDoc) => {
+		const syncHead = async (targetDoc) => {
 			document.title = targetDoc.title || document.title;
 			document.documentElement.lang = targetDoc.documentElement.lang || document.documentElement.lang;
 
@@ -318,7 +361,13 @@ const mobileLinkClass = (path: string) =>
 				});
 			});
 
-			appendMissingHeadResources(targetDoc);
+			await appendMissingHeadResources(targetDoc);
+		};
+
+		const refreshPageIcons = () => {
+			if (window.lucide && typeof window.lucide.createIcons === 'function') {
+				window.lucide.createIcons();
+			}
 		};
 
 		const syncFooterDynamicBlocks = (targetDoc) => {
@@ -399,8 +448,16 @@ const mobileLinkClass = (path: string) =>
 			}
 
 			try {
-				const response = await fetch(url.href, {
-					headers: { 'X-Requested-With': 'astro-spa-navigation' },
+				const fetchUrl = new URL(url.href);
+				fetchUrl.searchParams.set('__garna_spa', String(Date.now()));
+
+				const response = await fetch(fetchUrl.href, {
+					cache: 'no-store',
+					headers: {
+						'X-Requested-With': 'astro-spa-navigation',
+						'Cache-Control': 'no-cache',
+						'Pragma': 'no-cache',
+					},
 				});
 				if (!response.ok) throw new Error(`Navigation failed with ${response.status}`);
 
@@ -413,7 +470,7 @@ const mobileLinkClass = (path: string) =>
 				if (shouldPushState) history.pushState({}, '', url.href);
 				localizeHeaderLinks();
 				setNavActiveState();
-				syncHead(targetDoc);
+				await syncHead(targetDoc);
 				syncFooterDynamicBlocks(targetDoc);
 				resetPageWidget();
 
@@ -421,6 +478,7 @@ const mobileLinkClass = (path: string) =>
 				currentScripts.replaceWith(targetScripts);
 				await runScripts(targetContent);
 				await runScripts(targetScripts);
+				refreshPageIcons();
 				window.dispatchEvent(new CustomEvent('garna:page-content-updated'));
 
 				localizeHeaderLinks();
