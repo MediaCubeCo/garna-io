@@ -24,7 +24,7 @@
 }
 
 .garna-hero-title-gradient {
-	color: transparent;
+	color: transparent !important;
 	background: linear-gradient(175deg, #ffffff 0%, rgba(255, 255, 255, 0.86) 42%, rgba(255, 255, 255, 0.38) 100%);
 	background-clip: text;
 	-webkit-background-clip: text;

@@ -33,19 +33,19 @@ const mobileLinkClass = (path: string) =>
 <nav class="garna-header fixed z-50 w-full top-0">
 	<div class="garna-container flex h-16 relative items-center justify-between">
 		<div class="flex items-center gap-2">
-			<div class="flex items-center gap-2 pt-3">
+			<div class="flex items-center gap-2 pt-2.5">
 				<a href={homeHref} data-garna-home data-localized-path="" class="hover:opacity-80 transition-opacity inline-block">
 					<img
 						src="/garna_logo.svg"
 						alt="Garna"
-						class="h-10 w-auto object-contain"
+						class="h-8 w-auto object-contain"
 						data-translate-alt="nav.brand"
 					/>
 				</a>
 			</div>
 		</div>
 
-		<div class="hidden -translate-x-1/2 md:flex md:gap-x-2 lg:gap-x-3 absolute left-1/2 gap-y-[60px] items-center">
+		<div class="hidden md:ml-6 lg:ml-10 md:flex md:gap-x-2 lg:gap-x-3 gap-y-[60px] items-center">
 			<a href={homeHref} data-localized-path="" data-nav-link class={navLinkClass('')} data-translate="header.payrollSolution">
 				Payroll Solution
 			</a>
@@ -78,7 +78,7 @@ const mobileLinkClass = (path: string) =>
 			</a>
 		</div>
 
-		<div class="flex gap-y-4 items-center gap-x-5 md:gap-4 lg:gap-6">
+		<div class="ml-auto flex gap-y-4 items-center gap-x-2">
 			<Button href={logInUrl} variant="secondary" size="header" class="hidden md:inline-flex">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

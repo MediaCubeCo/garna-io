@@ -27,13 +27,16 @@ const resolvedContentClass = contentClass || (isSplit ? 'w-full text-left' : 'mx
 const resolvedTitleClass =
 	titleClass ||
 	(isSplit
-		? 'leading-[1.1] md:text-6xl text-5xl font-normal text-white tracking-tight font-manrope mb-8'
-		: 'md:text-6xl text-4xl font-normal text-white tracking-tight font-manrope mb-8');
+		? 'garna-hero-title-gradient text-left leading-[1.1] md:text-6xl text-5xl font-normal tracking-tight font-manrope mb-8'
+		: 'garna-hero-title-gradient text-center md:text-6xl text-4xl font-normal tracking-tight font-manrope mb-8');
 const resolvedDescriptionClass =
 	descriptionClass ||
 	(isSplit
 		? 'text-xl font-light text-gray-400 max-w-lg mb-10'
 		: 'text-xl font-light text-gray-400 font-manrope max-w-2xl mr-auto mb-12 ml-auto');
+const titleClassWithGradient = resolvedTitleClass.includes('garna-hero-title-gradient')
+	? resolvedTitleClass
+	: `garna-hero-title-gradient ${resolvedTitleClass}`;
 
 const buttonHref =
 	button.href || (button.kind === 'signup' ? 'https://app.garna.io/en/auth/sign-up' : '#');
@@ -53,7 +56,7 @@ const buttonIcon = button.icon || 'arrow-up-right';
 <section class={className} data-final-cta-section data-final-cta-layout={layout}>
 	<div class={resolvedContainerClass}>
 		<div class={resolvedContentClass}>
-			<h2 class={resolvedTitleClass}>
+			<h2 class={titleClassWithGradient}>
 				{title.map((part, index) => (
 					<>
 						{index > 0 && <br />}
