@@ -11,7 +11,7 @@ Garna использует темную fintech/SaaS эстетику: черн�
 - Темная база: единый фон сайта `#050505`; секционные фоновые плашки больше не используются как системный паттерн.
 - Основной бренд-акцент: Garna green `#5EA500`.
 - Поверхности: glassmorphism через низкую белую прозрачность, blur и тонкую белую границу.
-- Визуальные демо: browser chrome, app dashboard, account balance cards, transaction rows, KPI cards, mobile app mockup, AI interview mockup.
+- Visual product mockups and dashboard examples are pending; they are not approved card rules yet.
 - Тон коммуникации: технологичный, деловой, уверенный. Интерфейс выглядит как продуктовая инфраструктура, а не как маркетинговая открытка.
 
 ## 2. Технологический слой UI
@@ -48,7 +48,7 @@ Deprecated as default page-section/card tokens:
 - `#0A0A0A` generic card fill.
 - `#111111` generic raised card fill.
 
-These colors may still appear inside the footer, product mockups or special embedded UI illustrations, but they should not define normal page sections or default content cards.
+These colors may still appear inside the footer or special embedded UI illustrations, but they should not define normal page sections or default content cards.
 
 ### Accent Usage
 
@@ -74,7 +74,7 @@ Green CTA color rule:
 ### Семейства
 
 - `Inter`: базовый текст, body, вторичные описания.
-- `Manrope`: заголовки, navigation, CTA, карточки, продуктовые mockup labels.
+- `Manrope`: заголовки, navigation, CTA and approved card typography.
 - В 404 есть дополнительные подключенные шрифты, но это локальный эксперимент. Для системы сайта основные шрифты: Inter + Manrope.
 
 ### Иерархия
@@ -88,6 +88,29 @@ Green CTA color rule:
 | Label / eyebrow | `text-xs` or `text-sm`, uppercase, `tracking-wide` / `tracking-[0.18em]` | Зеленый или серый |
 | Fine print | `text-[10px]`, `text-xs`, `text-gray-600` | Footer legal, disclaimer |
 
+### Section eyebrow / tag
+
+Use this only for the optional small text tag placed above a section H2.
+
+Reference: For Contractors testimonials section, `JOIN 15,654+ FREELANCERS` above `Trusted by talent worldwide`.
+
+Approved style:
+
+- Font family: Manrope.
+- Size: `text-sm`, roughly `14px`.
+- Weight: `font-medium` / `500`.
+- Color: primary green `#5EA500`.
+- Text transform: uppercase.
+- Tracking: `tracking-wider`, around `0.05em`.
+- Spacing: `mb-4`, roughly `16px` below the tag before the H2.
+
+Rules:
+
+- This is plain text, not a pill, chip or outlined badge.
+- Do not add the hero badge dot or ping animation here.
+- If the tag includes a number, count animation is optional and not part of the typography rule.
+- Use only when a section needs an extra contextual label above the H2; do not force it onto every section.
+
 ### Section H2
 
 Use this for main headings inside page sections, for example `Modern Platform for Managing Global Payroll`.
@@ -97,7 +120,7 @@ Approved style:
 - Font family: Manrope.
 - Size: `text-4xl lg:text-5xl`, roughly `36px` on mobile and `48px` on desktop.
 - Weight: `font-normal` / `400`.
-- Line height: `leading-tight`, around `1.15`.
+- Line height: Tailwind default for `text-4xl lg:text-5xl`, roughly `40px` on mobile and `48px` on desktop.
 - Tracking: `tracking-tight` or `0` letter spacing.
 - Color: white `#ffffff`.
 - Max width: around `max-w-4xl` for centered headings.
@@ -112,14 +135,14 @@ Rules:
 
 Use this for the short paragraph directly under a section H2.
 
-Reference: White Label social/section subtitle, `That’s why our partners have been choosing Garna for years`.
+Reference: Payroll Solution / `Why Garna stands out`, especially `Discover the key benefits that make payroll simple, global, and secure`.
 
 Approved style:
 
 - Font family: Manrope, with the `300` font weight loaded.
 - Size: `text-xl`, roughly `20px`.
 - Weight: `font-light` / `300`.
-- Line height: `leading-relaxed`, around `1.625`.
+- Line height: Tailwind default for `text-xl`, roughly `28px` / `1.4`.
 - Color: muted gray `#A1A1A1`.
 - Max width: `max-w-2xl` or `max-w-3xl`, centered when the section heading is centered.
 
@@ -245,17 +268,51 @@ Rules:
 - Do not alternate sections with `#020202`, `#0A0A0A`, `#080808`, or other dark bands.
 - Footer is the exception: keep the existing footer background `#020202`.
 - Visual separation between sections should come from spacing, typography, layout, cards, media and subtle dividers when needed.
-- Background colors may still be used inside product mockups, modal/dialog surfaces or special embedded UI illustrations.
+- Background colors may still be used inside modal/dialog surfaces or special embedded UI illustrations.
+
+### Standard section layout
+
+Use the For Contractors testimonials block, `Trusted by talent worldwide`, as the reference layout for normal content sections.
+
+Section shell:
+
+- Section padding: `pt-16 pb-16 lg:pt-32 lg:pb-32`, roughly `64px` on mobile and `128px` on desktop.
+- Inner container: `max-w-7xl mx-auto px-6`, roughly `1280px` max width with `24px` side padding.
+- Keep the section on the global page background `#050505`; do not add a section background.
+
+Header stack:
+
+- Alignment: centered by default.
+- Header stack bottom margin: `mb-16`, roughly `64px` before content begins.
+- Header max width: around `max-w-4xl` for the heading area.
+- Optional section tag to H2: `mb-4`, roughly `16px`.
+- H2 to subtitle: `mb-6`, roughly `24px`.
+- Subtitle max width: `max-w-2xl`, or `max-w-3xl` for longer explanatory copy.
+- If the section has no tag, the H2 starts the header stack directly.
+- If the section has no subtitle, keep the `64px` header-to-content gap after the H2.
+- UI catalog examples that show a section header must reuse this same tag/H2/subtitle spacing.
+
+Content grid:
+
+- Content uses the same `max-w-7xl px-6` section container.
+- Three-card layout: `grid-cols-1 md:grid-cols-3 gap-6`.
+- Two-card layout: `grid-cols-1 md:grid-cols-2 gap-6`.
+- Card gap: `gap-6`, roughly `24px`, for both rows and columns.
+- Do not manually tighten card gaps below `24px` in standard sections.
+
+Optional bottom CTA:
+
+- CTA row: centered.
+- Content to CTA distance: `mt-12`, roughly `48px`.
+- If there is no CTA, the section ends after the content grid.
 
 ### Grids
 
 Используются:
 
-- 2-column hero: text + dashboard mockup.
-- Bento grids для feature cards.
-- KPI card grids.
-- Horizontal scroll cards on mobile для EOR cards.
-- Tabs + panel grid для EOR why-Garna секции.
+- Standard content sections use the section layout rules above.
+- Two-card and three-card content grids use `gap-6` / `24px`.
+- Specialized dashboard, bento, KPI and mobile scroller grids are pending and should not be treated as catalog rules yet.
 
 ### Spacing
 
@@ -315,7 +372,7 @@ border-bottom: 1px solid rgba(255,255,255,0.08);
 These older utilities should no longer create new default card colors.
 
 - If used for a reusable content card, normalize to `#0C0C0C` + `border-white/5`.
-- Keep darker/lighter nested surfaces only inside product mockups, dashboards, form widgets or special illustrations.
+- Keep darker/lighter nested surfaces only inside form widgets or special illustrations.
 
 ## 7. Border Radius
 
@@ -335,8 +392,6 @@ Main shadow language:
 - Primary glow: `0 0 20px -5px rgba(94,165,0,0.5)` for header signup.
 - Strong CTA glow: `0 0 26px -10px rgba(94,165,0,0.9)`.
 - Ambient hero blur: large green blurred circles `blur-[120px]` with `#5EA500/10-20`.
-- Product mockups: `shadow-2xl`, `shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)]`.
-
 Use green glow only for primary emphasis. Most cards should rely on border and dark layering.
 
 ## 9. Buttons
@@ -362,6 +417,7 @@ Approved green CTA patterns:
 - Animated CTA: `garna-button-rotating-flare` on the shared `Button.astro` component.
 - Primary CTA with icon: static green fill, shared lift/glow hover, `arrow-up-right`.
 - Primary CTA without icon: same static green fill and hover, no icon.
+- Learn More text CTA: green inline text link with `arrow-right`; no fill, border, radius or shadow.
 
 Usage rules:
 
@@ -370,12 +426,27 @@ Usage rules:
 - Animated CTA hover includes the rotating border flare and the arrow path draw animation.
 - Use Primary CTA for all other green buttons on the page.
 - Primary CTA may be used with `arrow-up-right` or with no icon.
+- Use Learn More text CTA for secondary section-level links such as the Talent Matching block.
 - Do not add page-specific green CTA effects such as EOR-specific or local shine/sweep variants without updating this system.
 
 Supporting variants:
 
 - Header signup: compact `h-11`, `rounded-xl`.
 - Widget continue button: CSS module `.button`, `padding: 12px 32px`, `box-shadow: 0 10px 40px #5ea50033`.
+
+### Learn More Text CTA
+
+Reference: Payroll Solution / Talent Matching block, `Hire faster with smart talent matching`.
+
+Core anatomy:
+
+- Use for low-emphasis `Learn more` style actions inside content sections.
+- `inline-flex`, vertically centered, `gap: 8px`.
+- Text: Manrope, `18px`, normal weight, green `#5EA500`.
+- Icon: horizontal `arrow-right`, `20px`, stroke `1.5`.
+- No background, border, radius, padding, shadow or glow.
+- Hover: text and icon change to white with a simple color transition.
+- This is a text-link CTA, not a filled green Primary CTA; the horizontal arrow is allowed only for this link pattern.
 
 ### Secondary / Text Links
 
@@ -409,54 +480,41 @@ Elements:
 
 ## 11. Cards
 
-### Feature Cards
+### Base card rule
 
-Pattern:
+This is the shared base for approved content cards. Right now only the Contractor benefit card is approved as a complete card type.
 
 - Default fill `#0C0C0C`.
 - Default border `border-white/5` / `rgba(255,255,255,0.05)`.
-- Radius `rounded-2xl` or `rounded-3xl`.
-- Padding `p-6` to `p-8`.
-- Optional hover border/translate will be defined separately.
-- Icon cell: green icon on green translucent background.
+- Radius, padding, typography and hover are defined by each approved card type.
 
 Rules:
 
 - Use the Payroll Solutions / Benefits for your contractors card color and border as the base card reference.
 - Do not use `#0A0A0A`, `#111111`, `#141414`, transparent white fills or green borders as default card styling.
 - Green-border cards are allowed only as a separate named variant that will be defined later.
-- Product mockup internals can still use nested darker/lighter surfaces when needed to create UI depth.
+- Do not add extra card types to the catalog until their typography, spacing, border, icon and hover rules are agreed.
 
-Types found:
+### Contractor benefit card
 
-- Bento feature card.
-- Why Garna card.
-- EOR capability card.
-- White-label benefit card with color-specific hover border.
-- Fit-check list item with check icon.
+Use the For Contractors / `Built for your freedom` cards as the reference for this card type.
 
-### Product Mockup Cards
+Anatomy:
 
-Pattern:
+- Card: `#0C0C0C` fill, `border-white/5`, `rounded-2xl`, `p-8`.
+- Icon cell: `48px` square, `rounded-xl`, `#5EA500/10` background, `#5EA500/20` border.
+- Icon: green `#5EA500`, `24px`, stroke style.
+- Title: Manrope, `text-xl` / `20px`, `font-medium` / `500`, white, `mb-3`.
+- Description: Manrope, `text-base` / `16px`, `font-normal` / `400`, `leading-relaxed`, muted gray `#A1A1A1`.
+- Hover: card border becomes green `#5EA500/40`, a light green glow appears, and the icon cell scales up slightly.
 
-- Browser/app outer shell with top control dots.
-- Inner dashboard sections.
-- Sidebar, topbar, metric cards, transaction rows.
-- Small labels, skeleton bars, avatars, currency/action chips.
+Rules:
 
-These are marketing illustrations, not reusable form components, but they define the product visual language.
+- Use this pattern for simple benefit/value cards with one icon, one title and one description.
+- Do not reuse hero or section subtitle typography for card descriptions; card descriptions are smaller and closer to normal weight.
+- Keep the hover subtle: no large movement, no background color swap, no heavy glow.
 
-### Photo Badge Cards
-
-EOR panels use photo blocks with overlay badges:
-
-- `rounded-2xl`
-- `border-white/5`
-- `bg-[#0C0C0C]`
-- icon circle green
-- title white + status green
-
-## 12. Badges, Pills, Chips
+## 12. Badges
 
 ### Hero Badge
 
@@ -468,15 +526,7 @@ Anatomy:
 - Hero badge border: `white/10`.
 - Status dot: 2px/8px green dot with optional ping.
 - Uppercase label, `text-xs`, medium.
-
-### Data Chips
-
-Used in mockups:
-
-- Rounded pills with dark fill.
-- Green text for active/highlighted values.
-- Thin border.
-- Often combined with icons or avatars.
+- Data chips/status pills are not approved as a catalog rule yet.
 
 ## 13. Forms and Booking Widget
 
@@ -492,7 +542,7 @@ Files:
 Anatomy:
 
 - Overlay: fixed, black `#000000b3`, z-index `999999`.
-- Modal card: max-width `860px`, background `rgb(10,10,10)`, border `rgb(34,34,34)`, radius `32px`.
+- Modal container: max-width `860px`, background `rgb(10,10,10)`, border `rgb(34,34,34)`, radius `32px`.
 - Mobile: full-screen fixed modal, no radius.
 - Close button: transparent button with white X SVG.
 - Step 1: form.
@@ -618,7 +668,6 @@ Common motion:
 
 - Hover scale on primary CTAs.
 - Arrow icon translation.
-- Float animation for mockups: `translateY(-10px)` over 6-7s.
 - Accordion expand/collapse.
 - Rainbow background continuous slide.
 - White-label CTA animated conic border.
@@ -660,36 +709,17 @@ Content primitives:
 
 Cards:
 
-- Glass card.
-- Surface-soft card.
-- Feature card.
-- Bento card.
-- KPI/stat card.
-- Product dashboard shell.
-- Browser mockup shell.
-- Transaction row.
-- Account/balance card.
-- Template card.
-- Photo badge overlay.
-- Fit-check list item.
-- Promotional mini-card.
+- Contractor benefit card.
+- Other card types are pending and should not be treated as approved rules yet.
 
 Data display:
 
-- Metric value.
-- Progress bar.
-- Bar chart.
-- Line chart mockup.
-- Avatar row.
-- Status pill.
-- Country/payment chip.
-- Toggle row.
-- Timeline/step row.
+- Pending. Do not add KPI, dashboard, chip, chart or toggle examples to the catalog until their rules are defined.
 
 Forms:
 
 - Modal overlay.
-- Modal card.
+- Modal container.
 - Close button.
 - Text input.
 - Email input.
@@ -722,8 +752,7 @@ To make the design system maintainable:
    - Header
    - Footer
    - CTA
-   - Feature card
    - FAQ item
    - Hero badge
-   - Product mockup shell
+   - Contractor benefit card
 5. Keep `#5EA500` as the single primary brand color and use green glow sparingly.

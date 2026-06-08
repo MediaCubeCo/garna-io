@@ -171,9 +171,9 @@
       max-width: 820px;
       color: var(--text);
       font-family: Manrope, sans-serif;
-      font-size: clamp(36px, 4vw, 48px);
+      font-size: 36px;
       font-weight: 400;
-      line-height: 1.15;
+      line-height: 40px;
       letter-spacing: 0;
     }
 
@@ -183,7 +183,18 @@
       font-family: Manrope, sans-serif;
       font-size: 20px;
       font-weight: 300;
-      line-height: 1.625;
+      line-height: 28px;
+    }
+
+    .section-eyebrow-sample {
+      margin: 0 0 16px;
+      color: var(--green);
+      font-family: Manrope, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .type-rule-list {
@@ -201,6 +212,91 @@
     .type-rule-list strong {
       color: var(--text);
       font-weight: 500;
+    }
+
+    .section-layout-demo {
+      border-radius: 20px;
+      border: 1px solid var(--border-soft);
+      background: var(--bg);
+      padding: 128px 0;
+      overflow: hidden;
+    }
+
+    .section-layout-container {
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-header-stack,
+    .section-layout-header {
+      max-width: 896px;
+      margin: 0 auto 64px;
+      text-align: center;
+    }
+
+    .section-header-stack .section-eyebrow-sample,
+    .section-layout-header .section-eyebrow-sample {
+      margin-bottom: 16px;
+    }
+
+    .section-header-stack .section-title-sample,
+    .section-layout-header .section-title-sample {
+      margin: 0 auto 24px;
+    }
+
+    .section-header-stack .section-subtitle-sample,
+    .section-layout-header .section-subtitle-sample {
+      max-width: 672px;
+      margin: 0 auto;
+    }
+
+    .section-header-stack.is-left {
+      margin: 0;
+      text-align: left;
+    }
+
+    .section-header-stack.is-left .section-title-sample,
+    .section-header-stack.is-left .section-subtitle-sample {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    .section-layout-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .section-layout-card {
+      min-height: 132px;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      padding: 24px;
+    }
+
+    .section-layout-card h3 {
+      margin: 0 0 10px;
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .section-layout-card p {
+      margin: 0;
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .section-layout-action {
+      display: flex;
+      justify-content: center;
+      margin-top: 48px;
     }
 
     .section {
@@ -265,24 +361,6 @@
       font-family: Manrope, sans-serif;
     }
 
-    .glass {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-    }
-
-    .glass-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--card-border);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-    }
-
-    .surface-soft {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-    }
-
     .surface-demo {
       position: relative;
       padding: 18px;
@@ -313,389 +391,65 @@
       z-index: 1;
     }
 
-    .card-inventory-divider {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 22px 0 14px;
-      color: var(--muted);
-      font-family: Manrope, sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .card-inventory-divider::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(255,255,255,0.14), transparent);
-    }
-
-    .card-inventory {
-      align-items: stretch;
-    }
-
-    .catalog-card {
+    .contractor-benefit-card {
       display: flex;
       min-height: 270px;
       flex-direction: column;
-      gap: 12px;
-      border-radius: 22px;
-      background: var(--card-bg);
+      align-items: flex-start;
+      border-radius: 16px;
       border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      padding: 32px;
       transition:
-        transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
         border-color 0.3s ease,
-        background 0.3s ease,
-        box-shadow 0.3s ease,
-        opacity 0.3s ease;
+        box-shadow 0.3s ease;
     }
 
-    .catalog-card p {
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .catalog-card .final-cta-subtitle {
-      max-width: 576px;
-      color: var(--muted);
-      font-family: Manrope, sans-serif;
-      font-size: clamp(18px, 2vw, 20px);
-      font-weight: 300;
-      line-height: 1.625;
-      text-align: center;
-    }
-
-    .card-source {
-      display: inline-flex;
-      width: fit-content;
-      align-items: center;
-      gap: 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(94,165,0,0.22);
-      background: rgba(94,165,0,0.09);
-      color: var(--green);
-      padding: 5px 9px;
-      font-family: Manrope, sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .mini-icon {
-      display: grid;
-      width: 42px;
-      height: 42px;
-      place-items: center;
-      border-radius: 13px;
-      border: 1px solid rgba(94,165,0,0.22);
-      background: rgba(94,165,0,0.1);
-      color: var(--green);
-      font-family: Manrope, sans-serif;
-      font-weight: 800;
-      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-    }
-
-    .catalog-card:hover .mini-icon {
-      transform: scale(1.1);
-    }
-
-    .hover-note {
-      margin-top: auto;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      color: #71717a;
-      font-family: Manrope, sans-serif;
-      font-size: 11px;
-      line-height: 1.45;
-    }
-
-    .demo-lines {
-      display: grid;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    .demo-line {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-
-    .demo-line.short { width: 48%; }
-    .demo-line.mid { width: 68%; }
-
-    .catalog-card:hover .demo-line {
-      background: rgba(255,255,255,0.14);
-    }
-
-    .home-bento-card {
-      background: var(--card-bg);
-      border-color: var(--card-border);
-      backdrop-filter: blur(12px);
-    }
-
-    .home-bento-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -20% 28px -20%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(94,165,0,0.75), transparent);
-      transform: translateX(-55%);
-      animation: catalog-flow-line 2.4s linear infinite;
-    }
-
-    .home-bento-card:hover {
-      border-color: rgba(255,255,255,0.14);
-      box-shadow: 0 24px 48px -36px rgba(0,0,0,0.95);
-    }
-
-    .home-why-card {
-      background: var(--card-bg);
-      border-color: var(--card-border);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-    }
-
-    .home-why-card:hover {
-      background: #0c0c0c;
-      border-color: rgba(255,255,255,0.12);
-    }
-
-    .home-cta-card {
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: var(--card-bg);
-      border-color: var(--card-border);
-      box-shadow: none;
-    }
-
-    .home-cta-card:hover {
+    .contractor-benefit-card:hover {
       border-color: rgba(94,165,0,0.4);
       box-shadow: 0 0 34px -12px rgba(94,165,0,0.34);
     }
 
-    .eor-tile-card,
-    .eor-row-card {
-      background: var(--card-bg);
-      border-color: var(--card-border);
-      box-shadow: 0 12px 22px -18px rgba(0,0,0,0.95);
+    .contractor-benefit-icon {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(94,165,0,0.2);
+      background: rgba(94,165,0,0.1);
+      color: var(--green);
+      transition: transform 0.3s ease;
     }
 
-    .eor-tile-card:hover,
-    .eor-row-card:hover {
-      background: rgba(255,255,255,0.02);
-      border-color: rgba(255,255,255,0.1);
-    }
-
-    .eor-row-card {
-      min-height: 210px;
-      justify-content: center;
-    }
-
-    .row-preview {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.025);
-      padding: 12px;
-    }
-
-    .row-preview strong {
-      color: #f4f4f5;
-      font-family: Manrope, sans-serif;
-      font-size: 13px;
-    }
-
-    .eor-content-card {
-      background: var(--card-bg);
-      border-color: var(--card-border);
-    }
-
-    .eor-content-card:hover {
-      background: rgba(255,255,255,0.045);
-      border-color: rgba(255,255,255,0.14);
-    }
-
-    .eor-photo-badge-card {
-      min-height: 210px;
-      background: var(--card-bg);
-      border-color: var(--card-border);
-      box-shadow: 0 25px 50px -18px rgba(0,0,0,0.72);
-    }
-
-    .eor-photo-badge-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.16);
-      box-shadow: 0 32px 58px -20px rgba(0,0,0,0.85);
-    }
-
-    .white-product-card {
-      background: var(--card-bg);
-      border-color: var(--card-border);
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-
-    .white-product-card::before,
-    .white-compare-card::before,
-    .white-floating-card::before {
-      content: "";
-      position: absolute;
-      right: -40px;
-      top: -40px;
-      width: 120px;
-      height: 120px;
-      border-radius: 999px;
-      background: rgba(94,165,0,0.04);
-      filter: blur(28px);
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-
-    .white-product-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(94,165,0,0.3);
-      box-shadow: 0 0 30px rgba(94,165,0,0.15);
-    }
-
-    .white-product-card:hover::before,
-    .white-compare-card:hover::before,
-    .white-floating-card:hover::before {
-      background: rgba(94,165,0,0.12);
+    .contractor-benefit-card:hover .contractor-benefit-icon {
       transform: scale(1.1);
     }
 
-    .white-reveal-card {
-      opacity: 0;
-      background: var(--card-bg);
-      border-color: var(--card-border);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.35);
-      animation: catalog-reveal-card 0.8s cubic-bezier(0.2,0.8,0.2,1) forwards;
+    .contractor-benefit-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke-width: 1.5;
     }
 
-    .white-reveal-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(59,130,246,0.3);
-      box-shadow: 0 0 30px rgba(59,130,246,0.15);
-    }
-
-    .white-reveal-card .mini-icon {
-      border-color: rgba(59,130,246,0.18);
-      background: rgba(59,130,246,0.08);
-      color: #60a5fa;
-    }
-
-    .white-reveal-card:hover .mini-icon {
-      background: rgba(59,130,246,0.16);
-    }
-
-    .white-compare-card {
-      background: var(--card-bg);
-      border-color: var(--card-border);
-    }
-
-    .white-compare-card:hover {
-      border-color: var(--green);
-      box-shadow: 0 0 25px rgba(94,165,0,0.15);
-    }
-
-    .white-review-card {
-      background: var(--card-bg);
-      border-color: var(--card-border);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-    }
-
-    .white-review-card:hover {
-      border-color: rgba(255,255,255,0.12);
-      background: #0c0c0c;
-    }
-
-    .white-floating-card {
-      min-height: 210px;
-      transform: rotate(-2deg);
-      background: var(--card-bg);
-      border-color: var(--card-border);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 25px 50px -22px rgba(0,0,0,0.85);
-    }
-
-    .white-floating-card:hover {
-      transform: rotate(0deg) translateY(-3px);
-      border-color: rgba(94,165,0,0.26);
-      box-shadow: 0 28px 54px -22px rgba(94,165,0,0.24);
-    }
-
-    .offer-mockup-card {
-      background: var(--card-bg);
-      border-color: var(--card-border);
-      transform: perspective(900px) rotateX(10deg);
-      animation: catalog-float 5.8s ease-in-out infinite;
-    }
-
-    .offer-mockup-card:hover {
-      border-color: rgba(94,165,0,0.26);
-      box-shadow: 0 26px 54px -28px rgba(94,165,0,0.34);
-    }
-
-    .offer-row-card {
-      min-height: 210px;
-      background: var(--card-bg);
-      border-color: var(--card-border);
-    }
-
-    .offer-row-card:hover {
-      border-color: rgba(94,165,0,0.3);
-    }
-
-    .ai-feature-card {
-      background: var(--card-bg);
-      border-color: var(--card-border);
-    }
-
-    .ai-feature-card:hover {
-      background: #0e0e0e;
-      border-color: rgba(94,165,0,0.4);
-      box-shadow: 0 0 26px -16px rgba(94,165,0,0.45);
-    }
-
-    .mini-metric {
-      display: inline-flex;
-      width: fit-content;
-      align-items: baseline;
-      gap: 7px;
-      color: #f4f4f5;
+    .contractor-benefit-title {
+      margin: 0 0 12px;
+      color: var(--text);
       font-family: Manrope, sans-serif;
-      font-size: 28px;
-      font-weight: 700;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: 0;
     }
 
-    .mini-metric span {
-      color: #71717a;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    @keyframes catalog-flow-line {
-      from { transform: translateX(-55%); }
-      to { transform: translateX(55%); }
-    }
-
-    @keyframes catalog-reveal-card {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes catalog-float {
-      0%, 100% { transform: perspective(900px) rotateX(10deg) translateY(0); }
-      50% { transform: perspective(900px) rotateX(10deg) translateY(-8px); }
+    .contractor-benefit-description {
+      margin: 0;
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.625;
     }
 
     .swatches {
@@ -837,9 +591,32 @@
 	      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
 	    }
 
-	    .btn:hover svg {
-	      transform: translate(3px, -3px);
-	    }
+    .btn:hover svg {
+      transform: translate(3px, -3px);
+    }
+
+    .learn-more-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-family: Manrope, sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.5;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .learn-more-cta:hover {
+      color: white;
+    }
+
+    .learn-more-cta svg {
+      width: 20px;
+      height: 20px;
+      flex: none;
+    }
 
 	    .btn-secondary {
 	      background: rgba(255,255,255,0.04);
@@ -980,175 +757,6 @@
 	        opacity: 0;
 	      }
 	    }
-
-	    .card-title {
-	      font-family: Manrope, sans-serif;
-	      color: white;
-      font-weight: 600;
-      font-size: 19px;
-      margin-bottom: 8px;
-    }
-
-    .icon-box {
-      width: 40px;
-      height: 40px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: rgba(94,165,0,0.12);
-      border: 1px solid rgba(94,165,0,0.22);
-      color: var(--green);
-      margin-bottom: 16px;
-    }
-
-    .stat-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .stat {
-      padding: 16px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-    }
-
-    .stat strong {
-      display: block;
-      color: white;
-      font-family: Manrope, sans-serif;
-      font-size: 28px;
-      margin-top: 6px;
-    }
-
-    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      border-radius: 999px;
-      padding: 7px 11px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      font-size: 12px;
-      color: #d4d4d8;
-      font-family: Manrope, sans-serif;
-    }
-
-    .chip.green {
-      color: var(--green);
-      background: rgba(94,165,0,0.1);
-      border-color: rgba(94,165,0,0.22);
-    }
-
-    .browser {
-      border-radius: 18px;
-      background: linear-gradient(180deg, #111, #050505);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
-    }
-
-    .browser-bar {
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-      border-bottom: 1px solid var(--border);
-      background: #0a0a0a;
-    }
-
-    .dots { display: flex; gap: 7px; }
-    .dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.13); }
-    .dots .red { background: #ef4444; }
-    .dots .yellow { background: #eab308; }
-    .dots .green-dot { background: #22c55e; }
-
-    .dash {
-      display: grid;
-      grid-template-columns: 148px 1fr;
-      min-height: 330px;
-    }
-
-    .sidebar {
-      background: #080808;
-      border-right: 1px solid var(--border);
-      padding: 16px;
-    }
-
-    .side-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px;
-      border-radius: 12px;
-      color: #d4d4d8;
-      font-size: 13px;
-      font-family: Manrope, sans-serif;
-    }
-
-    .side-item.active {
-      background: rgba(94,165,0,0.12);
-      color: var(--green);
-    }
-
-    .dash-main { padding: 18px; }
-
-    .balance-card {
-      padding: 20px;
-      border-radius: 18px;
-      background: radial-gradient(circle at 20% 0%, rgba(94,165,0,0.32), transparent 40%), #101010;
-      border: 1px solid rgba(94,165,0,0.22);
-    }
-
-    .balance-card .value {
-      margin-top: 10px;
-      color: white;
-      font-size: 34px;
-      font-family: Manrope, sans-serif;
-      font-weight: 700;
-    }
-
-    .progress {
-      height: 9px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      overflow: hidden;
-    }
-
-    .progress span {
-      display: block;
-      height: 100%;
-      width: 72%;
-      border-radius: inherit;
-      background: var(--green);
-    }
-
-    .transaction {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid var(--border-soft);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .avatar {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: rgba(94,165,0,0.16);
-      color: var(--green);
-      font-family: Manrope, sans-serif;
-      font-weight: 700;
-    }
 
     .form-card {
       border-radius: var(--radius-modal);
@@ -1291,72 +899,6 @@
       border-color: var(--green);
     }
 
-    .photo-card {
-      min-height: 280px;
-      border-radius: 18px;
-      overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(94,165,0,0.12), transparent 44%),
-        linear-gradient(180deg, #1a1a1a, #080808);
-      border: 1px solid var(--border);
-      position: relative;
-      padding: 18px;
-    }
-
-    .photo-badge {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: #111;
-      padding: 12px 14px;
-      box-shadow: 0 22px 44px rgba(0,0,0,0.4);
-    }
-
-    .toggle-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-    }
-
-    .toggle {
-      width: 42px;
-      height: 24px;
-      border-radius: 999px;
-      background: rgba(94,165,0,0.25);
-      border: 1px solid rgba(94,165,0,0.35);
-      padding: 2px;
-    }
-
-    .toggle::after {
-      content: "";
-      display: block;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      margin-left: auto;
-      background: var(--green);
-    }
-
-    .modal-preview {
-      min-height: 420px;
-      display: grid;
-      place-items: center;
-      background: rgba(0,0,0,0.7);
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      padding: 24px;
-    }
-
     .footer-preview {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1401,12 +943,19 @@
 
     @keyframes radar-spin { to { transform: rotate(360deg); } }
 
+    @media (min-width: 1024px) {
+      .section-title-sample {
+        font-size: 48px;
+        line-height: 48px;
+      }
+    }
+
     @media (max-width: 920px) {
       .span-3, .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 12; }
       .swatches { grid-template-columns: repeat(2, 1fr); }
-      .dash { grid-template-columns: 1fr; }
-      .sidebar { display: none; }
       .footer-preview { grid-template-columns: 1fr; }
+      .section-layout-demo { padding: 64px 0; }
+      .section-layout-grid { grid-template-columns: 1fr; }
       .section-head { display: block; }
       .section-head .caption { margin-top: 8px; }
     }
@@ -1429,8 +978,8 @@
         </span>
         Design system snapshot
       </div>
-      <h1><span>Dark fintech surfaces,</span> <span class="hero-title-muted">green action language, product mockups.</span></h1>
-      <p>This standalone page shows the UI objects currently used across Garna pages: global layout, buttons, cards, badges, dashboard mockups, forms, accordions, tabs, footer and special states.</p>
+      <h1><span>Dark fintech surfaces,</span> <span class="hero-title-muted">green action language, approved components.</span></h1>
+      <p>This standalone page shows the UI rules currently being normalized across Garna pages: layout, typography, buttons, hero badge, the approved card pattern, forms, accordions, tabs, footer and special states.</p>
     </section>
 
     <section class="section">
@@ -1457,7 +1006,8 @@
       <div class="grid">
         <div class="sample span-8">
           <span class="sample-label">Section H2 + subtitle</span>
-          <div class="type-stack">
+          <div class="section-header-stack is-left">
+            <p class="section-eyebrow-sample">JOIN 15,654+ FREELANCERS</p>
             <h2 class="section-title-sample">Modern Platform for Managing Global Payroll</h2>
             <p class="section-subtitle-sample">That’s why our partners have been choosing Garna for years</p>
           </div>
@@ -1465,8 +1015,9 @@
         <div class="sample span-4">
           <span class="sample-label">Rules shown here</span>
           <ul class="type-rule-list">
-            <li><strong>Section H2:</strong> Manrope, 36-48px, normal weight, white.</li>
-            <li><strong>Section subtitle:</strong> Manrope 300, 20px, relaxed, muted gray.</li>
+            <li><strong>Section tag:</strong> Manrope 14px, uppercase, medium, green.</li>
+            <li><strong>Section H2:</strong> Manrope, 36px mobile / 48px desktop, normal weight, white.</li>
+            <li><strong>Section subtitle:</strong> Manrope 300, 20px / 28px line, muted gray.</li>
             <li><strong>Card text:</strong> pending separate card typography pass.</li>
           </ul>
         </div>
@@ -1475,8 +1026,41 @@
 
     <section class="section">
       <div class="section-head">
+        <h2>Section Layout</h2>
+        <p class="caption">Reference layout from For Contractors testimonials: optional section tag, H2, subtitle, content grid and optional CTA.</p>
+      </div>
+      <div class="section-layout-demo">
+        <div class="section-layout-container">
+          <div class="section-layout-header section-header-stack">
+            <p class="section-eyebrow-sample">JOIN 15,654+ FREELANCERS</p>
+            <h2 class="section-title-sample">Trusted by talent worldwide</h2>
+            <p class="section-subtitle-sample">See why independent professionals are switching to Garna</p>
+          </div>
+          <div class="section-layout-grid">
+            <article class="section-layout-card">
+              <h3>Review card</h3>
+              <p>Three-card grids use 24px gaps and share the full max-w-7xl section container.</p>
+            </article>
+            <article class="section-layout-card">
+              <h3>Review card</h3>
+              <p>Two-card grids keep the same 24px gap and use two equal columns on desktop.</p>
+            </article>
+            <article class="section-layout-card">
+              <h3>Review card</h3>
+              <p>Content starts 64px below the header stack; the CTA starts 48px below content.</p>
+            </article>
+          </div>
+          <div class="section-layout-action">
+            <button class="btn">Join Garna</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
         <h2>Buttons and Links</h2>
-        <p class="caption">Hero and final CTA placements use Animated CTA. Standard page actions use Primary CTA with either an up-right arrow or no icon.</p>
+        <p class="caption">Hero and final CTA placements use Animated CTA. Standard page actions use Primary CTA. Section-level Learn more actions use the green text CTA.</p>
       </div>
       <div class="grid">
 	        <div class="sample span-3">
@@ -1495,21 +1079,31 @@
 	            Start now
 	          </button>
 	        </div>
-	        <div class="sample span-3">
-	          <span class="sample-label">Animated CTA</span><br>
-	          <button class="btn animated-cta">
-	            <span>
-	              Try Demo Version
+        <div class="sample span-3">
+          <span class="sample-label">Animated CTA</span><br>
+          <button class="btn animated-cta">
+            <span>
+              Try Demo Version
 	              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 	                <path d="M7 7h10v10"></path>
 	                <path d="M7 17 17 7"></path>
 	              </svg>
-	            </span>
-	          </button>
-	        </div>
-	        <div class="sample span-3">
-	          <span class="sample-label">Secondary and icon</span><br>
-	          <button class="btn btn-secondary">Log in</button>
+            </span>
+          </button>
+        </div>
+        <div class="sample span-3">
+          <span class="sample-label">Learn more text CTA</span><br>
+          <a class="learn-more-cta" href="#">
+            <span>Learn more</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="sample span-3">
+          <span class="sample-label">Secondary and icon</span><br>
+          <button class="btn btn-secondary">Log in</button>
           <button class="btn btn-icon" aria-label="Menu" style="margin-left:8px">☰</button>
         </div>
       </div>
@@ -1517,11 +1111,11 @@
 
     <section class="section">
       <div class="section-head">
-        <h2>Badges, Chips, Status</h2>
-        <p class="caption">Small UI states carry a lot of brand: green dots, transparent pills and compact product labels.</p>
+        <h2>Hero Badge</h2>
+        <p class="caption">Approved badge style for the small tag above a hero H1: transparent pill, subtle white border, uppercase text and animated green dot.</p>
       </div>
       <div class="grid">
-        <div class="sample span-6">
+        <div class="sample span-12">
           <span class="sample-label">Hero badge</span>
           <div class="hero-badge">
             <span class="hero-badge-dot-shell" aria-hidden="true">
@@ -1531,242 +1125,27 @@
             AI-powered recruitment
           </div>
         </div>
-        <div class="sample span-6">
-          <span class="sample-label">Data chips</span>
-          <div class="chip-row">
-            <span class="chip green"><span class="dot"></span> Active</span>
-            <span class="chip">ACH</span>
-            <span class="chip">Wire</span>
-            <span class="chip">150+ countries</span>
-            <span class="chip green">92% match</span>
-          </div>
-        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="section-head">
-        <h2>Cards and Surfaces</h2>
-        <p class="caption">Default cards use the Payroll Benefits reference: #0C0C0C fill with a white/5 border. Green-border card variants will be defined separately.</p>
+        <h2>Contractor Benefit Card</h2>
+        <p class="caption">Approved card pattern: dark #0C0C0C fill, white/5 border, green icon cell, title, description and subtle green hover.</p>
       </div>
       <div class="surface-demo">
         <div class="grid">
-          <article class="sample glass span-4">
-            <span class="sample-label">Glass card</span>
-            <div class="icon-box">✓</div>
-            <div class="card-title">Transparent payments</div>
-            <p>No hidden exchange rate markups, only clear payout terms.</p>
-          </article>
-          <article class="sample glass-card span-4">
-            <span class="sample-label">Feature card</span>
-            <div class="icon-box">◎</div>
-            <div class="card-title">Global payroll</div>
-            <p>Operational panels use dark cards with subtle borders and low glow.</p>
-          </article>
-          <article class="sample surface-soft span-4">
-            <span class="sample-label">Surface soft</span>
-            <div class="icon-box">↗</div>
-            <div class="card-title">Compliance ready</div>
-            <p>Useful for dense repeated lists and EOR content cards.</p>
-          </article>
-        </div>
-
-        <div class="card-inventory-divider">Card examples normalized to the base fill and border</div>
-        <div class="grid card-inventory">
-          <article class="sample catalog-card home-bento-card span-4">
-            <span class="card-source">Home</span>
-            <div class="mini-icon">▦</div>
-            <div class="card-title">Bento glass panel</div>
-            <p>Large rounded-3xl glass blocks used in the home page product/value grid.</p>
-            <div class="demo-lines">
-              <span class="demo-line"></span>
-              <span class="demo-line mid"></span>
-              <span class="demo-line short"></span>
+          <article class="contractor-benefit-card span-4">
+            <div class="contractor-benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M2 12h20"></path>
+                <path d="M12 2a15.3 15.3 0 0 1 0 20"></path>
+                <path d="M12 2a15.3 15.3 0 0 0 0 20"></path>
+              </svg>
             </div>
-            <div class="hover-note">Hover: brighter border, deeper black shadow, animated green line remains active.</div>
-          </article>
-
-          <article class="sample catalog-card home-why-card span-4">
-            <span class="card-source">Home</span>
-            <div class="mini-icon">✓</div>
-            <div class="card-title">Why Garna feature</div>
-            <p>Reusable glass-card feature block with green icon cell and muted copy.</p>
-            <div class="demo-lines">
-              <span class="demo-line mid"></span>
-              <span class="demo-line"></span>
-            </div>
-            <div class="hover-note">Hover: background resolves to solid black; icon scales up.</div>
-          </article>
-
-          <article class="sample catalog-card home-cta-card span-4">
-            <span class="card-source">Home</span>
-            <div class="mini-icon">↗</div>
-            <div class="card-title">Centered CTA card</div>
-            <p class="final-cta-subtitle">Final CTA subtitles use the same light Manrope style as hero subtitles.</p>
-	            <button class="btn" style="margin-top:2px">
-	              Start now
-	              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-	                <path d="M7 7h10v10"></path>
-	                <path d="M7 17 17 7"></path>
-	              </svg>
-	            </button>
-            <div class="hover-note">Hover: green border increases, glow strengthens, inner CTA keeps its own hover.</div>
-          </article>
-
-          <article class="sample catalog-card eor-tile-card span-4">
-            <span class="card-source">EOR / Dashboard</span>
-            <div class="mini-icon">◎</div>
-            <div class="card-title">Template action tile</div>
-            <p>Small dashboard action cards used in payroll and contract mockups.</p>
-            <div class="demo-lines">
-              <span class="demo-line short"></span>
-              <span class="demo-line mid"></span>
-            </div>
-            <div class="hover-note">Hover: white border lift, transparent white fill, icon scales.</div>
-          </article>
-
-          <article class="sample catalog-card eor-row-card span-4">
-            <span class="card-source">EOR / Home mockups</span>
-            <div class="row-preview">
-              <div style="display:flex; align-items:center; gap:10px">
-                <span class="mini-icon" style="margin:0; width:38px; height:38px; color:#ef4444; background:rgba(239,68,68,0.1); border-color:rgba(239,68,68,0.2)">!</span>
-                <div>
-                  <strong>Contract alert</strong>
-                  <p style="font-size:12px">Review needed</p>
-                </div>
-              </div>
-              <span class="chip">Open</span>
-            </div>
-            <div class="card-title">Transaction row card</div>
-            <p>Horizontal row surface for dashboard lists and operational events.</p>
-            <div class="hover-note">Hover: row background becomes white/[0.02], border becomes white/10, status icon scales.</div>
-          </article>
-
-          <article class="sample catalog-card eor-content-card span-4">
-            <span class="card-source">EOR</span>
-            <div class="mini-icon">□</div>
-            <div class="card-title">Surface-soft content</div>
-            <p>Quiet repeated content cards for lists of EOR benefits, countries and compliance details.</p>
-            <div class="demo-lines">
-              <span class="demo-line"></span>
-              <span class="demo-line mid"></span>
-            </div>
-            <div class="hover-note">Hover: only subtle border and fill changes, no green glow.</div>
-          </article>
-
-          <article class="sample catalog-card eor-photo-badge-card span-4">
-            <span class="card-source">EOR / Photo sections</span>
-            <div style="display:flex; align-items:center; gap:12px">
-              <span class="avatar">A</span>
-              <div>
-                <div class="card-title" style="font-size:16px; margin:0">Photo badge overlay</div>
-                <p style="font-size:12px">Country payroll status</p>
-              </div>
-            </div>
-            <div class="demo-lines">
-              <span class="demo-line mid"></span>
-              <span class="demo-line short"></span>
-            </div>
-            <div class="hover-note">Hover: slight vertical lift and stronger black shadow.</div>
-          </article>
-
-          <article class="sample catalog-card white-product-card span-4">
-            <span class="card-source">White Label</span>
-            <div class="mini-icon">✦</div>
-            <div class="card-title">Product module card</div>
-            <p>Primary White Label product cards with green hover border, glow and lifted surface.</p>
-            <div class="demo-lines">
-              <span class="demo-line"></span>
-              <span class="demo-line mid"></span>
-            </div>
-            <div class="hover-note">Hover: -4px translateY, green border, green shadow, blurred corner orb intensifies.</div>
-          </article>
-
-          <article class="sample catalog-card white-reveal-card span-4">
-            <span class="card-source">White Label</span>
-            <div class="mini-icon">⚡</div>
-            <div class="card-title">Reveal advantage card</div>
-            <p>Animated-entry advantage card; variants use blue, yellow, green and purple accent themes.</p>
-            <div class="demo-lines">
-              <span class="demo-line mid"></span>
-              <span class="demo-line"></span>
-            </div>
-            <div class="hover-note">Animation: reveal from 20px down. Hover: -8px lift, colored border and colored glow.</div>
-          </article>
-
-          <article class="sample catalog-card white-compare-card span-4">
-            <span class="card-source">White Label</span>
-            <div class="mini-metric">92% <span>match</span></div>
-            <div class="card-title">Comparison / mobile card</div>
-            <p>Dense comparison panels and mobile table replacements with strong border feedback.</p>
-            <div class="chip-row">
-              <span class="chip green">Garna</span>
-              <span class="chip">Vendor</span>
-            </div>
-            <div class="hover-note">Hover: border snaps to brand green and adds a 25px green glow.</div>
-          </article>
-
-          <article class="sample catalog-card white-review-card span-4">
-            <span class="card-source">White Label</span>
-            <div class="chip-row">
-              <span class="chip green">Review</span>
-              <span class="chip">★★★★★</span>
-            </div>
-            <div class="card-title">Social proof card</div>
-            <p>Review/testimonial card language: black fill, glass-card border and low static shadow.</p>
-            <div class="demo-lines">
-              <span class="demo-line"></span>
-              <span class="demo-line mid"></span>
-              <span class="demo-line short"></span>
-            </div>
-            <div class="hover-note">Hover: slightly brighter black background and white border, no movement.</div>
-          </article>
-
-          <article class="sample catalog-card white-floating-card span-4">
-            <span class="card-source">White Label</span>
-            <div class="mini-icon">↻</div>
-            <div class="card-title">Floating overlay card</div>
-            <p>Decorative layered card used around final CTA compositions.</p>
-            <div class="demo-lines">
-              <span class="demo-line mid"></span>
-              <span class="demo-line short"></span>
-            </div>
-            <div class="hover-note">Hover: rotation returns to 0deg, card lifts, green border and shadow appear.</div>
-          </article>
-
-          <article class="sample catalog-card offer-mockup-card span-4">
-            <span class="card-source">Offer</span>
-            <div class="mini-icon">▣</div>
-            <div class="card-title">Floating mockup card</div>
-            <p>Hero mockup shell with perspective tilt and continuous float animation.</p>
-            <div class="demo-lines">
-              <span class="demo-line"></span>
-              <span class="demo-line mid"></span>
-            </div>
-            <div class="hover-note">Animation: slow vertical float. Hover: green border and softer brand shadow.</div>
-          </article>
-
-          <article class="sample catalog-card offer-row-card span-4">
-            <span class="card-source">Offer</span>
-            <div class="row-preview">
-              <strong>Payroll method</strong>
-              <span class="chip green">Selected</span>
-            </div>
-            <div class="card-title">Selectable row card</div>
-            <p>Compact row option used in the offer product mockup and step content.</p>
-            <div class="hover-note">Hover: border color changes to green; selected rows keep higher opacity.</div>
-          </article>
-
-          <article class="sample catalog-card ai-feature-card span-4">
-            <span class="card-source">AI Hiring</span>
-            <div class="mini-icon">AI</div>
-            <div class="card-title">AI feature card</div>
-            <p>Recruiting feature surface with persistent green border tint and darker hover fill.</p>
-            <div class="demo-lines">
-              <span class="demo-line"></span>
-              <span class="demo-line mid"></span>
-            </div>
-            <div class="hover-note">Hover: background moves to #0E0E0E, green border doubles in opacity, low glow appears.</div>
+            <h3 class="contractor-benefit-title">Payments from clients worldwide</h3>
+            <p class="contractor-benefit-description">Accept transfers from international clients in their preferred currency without worrying about borders or complex banking rules.</p>
           </article>
         </div>
       </div>
@@ -1774,70 +1153,11 @@
 
     <section class="section">
       <div class="section-head">
-        <h2>Data Display</h2>
-        <p class="caption">Stats, progress bars, transaction rows and KPI cards appear across dashboard mockups.</p>
+        <h2>Form Controls</h2>
+        <p class="caption">Booking widget controls: bottom-border inputs, custom select and submit button.</p>
       </div>
       <div class="grid">
-        <div class="sample span-5">
-          <span class="sample-label">Stats</span>
-          <div class="stat-row">
-            <div class="stat">Countries<strong>150+</strong></div>
-            <div class="stat">Match<strong>92%</strong></div>
-            <div class="stat">Time<strong>24h</strong></div>
-          </div>
-        </div>
-        <div class="sample span-7">
-          <span class="sample-label">Progress and transactions</span>
-          <div class="progress"><span></span></div>
-          <div style="display:grid; gap:10px; margin-top:16px">
-            <div class="transaction"><div style="display:flex; align-items:center; gap:10px"><span class="avatar">M</span><div><strong style="color:white">Maya R.</strong><br><small>Contract payout</small></div></div><strong style="color:white">$2,840</strong></div>
-            <div class="transaction"><div style="display:flex; align-items:center; gap:10px"><span class="avatar">A</span><div><strong style="color:white">Alex T.</strong><br><small>Payroll run</small></div></div><span class="chip green">Ready</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <h2>Product Mockup Shell</h2>
-        <p class="caption">Marketing pages repeatedly use fake browser/app dashboards to show Garna product scenarios.</p>
-      </div>
-      <div class="browser">
-        <div class="browser-bar">
-          <div class="dots"><span class="red"></span><span class="yellow"></span><span class="green-dot"></span></div>
-          <div class="chip">app.garna.io/dashboard</div>
-        </div>
-        <div class="dash">
-          <aside class="sidebar">
-            <div class="side-item active">▣ Dashboard</div>
-            <div class="side-item">◌ People</div>
-            <div class="side-item">□ Documents</div>
-            <div class="side-item">◇ Payroll</div>
-            <div class="side-item">⚙ Settings</div>
-          </aside>
-          <div class="dash-main">
-            <div class="balance-card">
-              <span class="chip green">Available balance</span>
-              <div class="value">$84,250.00</div>
-              <p>Account number •••• 4382</p>
-            </div>
-            <div class="grid" style="margin-top:16px">
-              <div class="stat span-4">Templates<strong>18</strong></div>
-              <div class="stat span-4">Countries<strong>42</strong></div>
-              <div class="stat span-4">Compliance<strong>99%</strong></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <h2>Forms and Modal</h2>
-        <p class="caption">Booking widget uses a custom React modal, bottom-border inputs, custom select and Cal.com embed step.</p>
-      </div>
-      <div class="grid">
-        <div class="sample span-6">
+        <div class="sample span-12">
           <span class="sample-label">Form controls</span>
           <div class="form-card">
             <h3 style="font-size:28px; text-align:center">Book a free demo</h3>
@@ -1855,21 +1175,13 @@
             <button class="btn" style="width:100%; margin-top:8px">Choose a date & time</button>
           </div>
         </div>
-        <div class="sample span-6 modal-preview">
-          <div class="form-card" style="position:relative">
-            <button class="btn btn-icon btn-secondary" style="position:absolute; right:18px; top:18px">×</button>
-            <span class="sample-label">Modal card</span>
-            <h3 style="font-size:30px; margin-top:20px">Demo modal</h3>
-            <p style="margin-top:8px">Overlay uses black translucency; card uses 32px radius and dark border.</p>
-          </div>
-        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="section-head">
         <h2>Accordions and Tabs</h2>
-        <p class="caption">FAQ appears in three variants. Tabs are implemented on the EOR page with hidden radio inputs and active labels.</p>
+        <p class="caption">FAQ and tabs remain as separate controls; their final visual rules can be tightened in a later pass.</p>
       </div>
       <div class="grid">
         <div class="sample span-6">
@@ -1892,34 +1204,6 @@
             <div class="tab">Onboarding</div>
             <div class="tab">Documents</div>
             <div class="tab">Payroll</div>
-          </div>
-          <div style="margin-top:18px" class="surface-soft sample">
-            <div class="card-title">Finding the right talent, quickly</div>
-            <p>Active panels use two-column content with a text block and a photo/product visual block.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <h2>Media, Badges, Toggles</h2>
-        <p class="caption">EOR and white-label pages use photo badges, settings toggles and product-control rows.</p>
-      </div>
-      <div class="grid">
-        <div class="photo-card span-6">
-          <span class="sample-label">Photo panel placeholder</span>
-          <div class="photo-badge">
-            <span class="icon-box" style="margin:0">✦</span>
-            <div><strong style="color:white">Talent search</strong><br><small style="color:var(--green)">Global matching</small></div>
-          </div>
-        </div>
-        <div class="sample span-6">
-          <span class="sample-label">Toggle rows</span>
-          <div style="display:grid; gap:12px">
-            <div class="toggle-row"><span>Brand controls</span><span class="toggle"></span></div>
-            <div class="toggle-row"><span>Compliance automation</span><span class="toggle"></span></div>
-            <div class="toggle-row"><span>Payroll notifications</span><span class="toggle"></span></div>
           </div>
         </div>
       </div>
