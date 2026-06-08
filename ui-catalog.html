@@ -6,23 +6,21 @@
   <title>Garna UI Catalog</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #050505;
-      --bg-deep: #020202;
-      --surface: #0a0a0a;
-      --surface-2: #0c0c0c;
-      --surface-3: #111111;
-      --surface-soft: rgba(255, 255, 255, 0.035);
+      --footer-bg: #020202;
+      --card-bg: #0c0c0c;
+      --card-border: rgba(255, 255, 255, 0.05);
       --border: rgba(255, 255, 255, 0.08);
       --border-soft: rgba(255, 255, 255, 0.05);
       --text: #ffffff;
-      --muted: #a1a1aa;
+      --muted: #a1a1a1;
       --soft: #71717a;
       --faint: #52525b;
       --green: #5EA500;
-      --green-hover: #6ab901;
+      --green-hover: #6AB901;
       --green-dark: #4d8700;
       --error: rgb(255, 3, 3);
       --radius-sm: 8px;
@@ -136,16 +134,73 @@
     }
 
     .hero h1 {
-      font-size: clamp(42px, 7vw, 86px);
-      line-height: 1.06;
+      font-size: clamp(48px, 6vw, 72px);
+      line-height: 1.1;
       font-weight: 400;
-      max-width: 920px;
+      max-width: 896px;
     }
 
-    .hero p {
+    .hero-title-muted {
+      color: var(--muted);
+    }
+
+    .hero-title-gradient {
+      color: transparent;
+      background: linear-gradient(175deg, #ffffff 0%, rgba(255,255,255,0.86) 42%, rgba(255,255,255,0.38) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero p,
+    .hero-subtitle,
+    .final-cta-subtitle {
+      max-width: 576px;
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: clamp(18px, 2vw, 20px);
+      font-weight: 300;
+      line-height: 1.625;
+    }
+
+    .final-cta-subtitle {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .section-title-sample {
+      max-width: 820px;
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      font-size: clamp(36px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .section-subtitle-sample {
       max-width: 760px;
-      font-size: 18px;
-      color: #b7b7bf;
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1.625;
+    }
+
+    .type-rule-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .type-rule-list strong {
+      color: var(--text);
+      font-weight: 500;
     }
 
     .section {
@@ -190,8 +245,8 @@
     .sample {
       min-height: 160px;
       border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: rgba(12, 12, 12, 0.78);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
       padding: 18px;
       position: relative;
       overflow: hidden;
@@ -211,21 +266,21 @@
     }
 
     .glass {
-      background: rgba(255, 255, 255, 0.03);
+      background: var(--card-bg);
       backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
+      border: 1px solid var(--card-border);
     }
 
     .glass-card {
-      background: rgba(255, 255, 255, 0.025);
+      background: var(--card-bg);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid var(--card-border);
       box-shadow: 0 4px 30px rgba(0,0,0,0.1);
     }
 
     .surface-soft {
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
     }
 
     .surface-demo {
@@ -265,7 +320,7 @@
       align-items: center;
       gap: 12px;
       margin: 22px 0 14px;
-      color: #a1a1aa;
+      color: var(--muted);
       font-family: Manrope, sans-serif;
       font-size: 12px;
       font-weight: 700;
@@ -290,6 +345,8 @@
       flex-direction: column;
       gap: 12px;
       border-radius: 22px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       transition:
         transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
         border-color 0.3s ease,
@@ -302,6 +359,16 @@
       margin: 0;
       font-size: 14px;
       line-height: 1.55;
+    }
+
+    .catalog-card .final-cta-subtitle {
+      max-width: 576px;
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: clamp(18px, 2vw, 20px);
+      font-weight: 300;
+      line-height: 1.625;
+      text-align: center;
     }
 
     .card-source {
@@ -368,8 +435,8 @@
     }
 
     .home-bento-card {
-      background: rgba(12,12,12,0.92);
-      border-color: rgba(255,255,255,0.08);
+      background: var(--card-bg);
+      border-color: var(--card-border);
       backdrop-filter: blur(12px);
     }
 
@@ -389,8 +456,8 @@
     }
 
     .home-why-card {
-      background: rgba(12,12,12,0.9);
-      border-color: rgba(255,255,255,0.06);
+      background: var(--card-bg);
+      border-color: var(--card-border);
       backdrop-filter: blur(20px);
       box-shadow: 0 4px 30px rgba(0,0,0,0.1);
     }
@@ -404,9 +471,9 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: #0c0c0c;
-      border-color: rgba(94,165,0,0.2);
-      box-shadow: 0 0 30px -10px rgba(94,165,0,0.1);
+      background: var(--card-bg);
+      border-color: var(--card-border);
+      box-shadow: none;
     }
 
     .home-cta-card:hover {
@@ -416,8 +483,8 @@
 
     .eor-tile-card,
     .eor-row-card {
-      background: #0e0e0e;
-      border-color: rgba(255,255,255,0.05);
+      background: var(--card-bg);
+      border-color: var(--card-border);
       box-shadow: 0 12px 22px -18px rgba(0,0,0,0.95);
     }
 
@@ -450,8 +517,8 @@
     }
 
     .eor-content-card {
-      background: rgba(255,255,255,0.03);
-      border-color: rgba(255,255,255,0.08);
+      background: var(--card-bg);
+      border-color: var(--card-border);
     }
 
     .eor-content-card:hover {
@@ -461,8 +528,8 @@
 
     .eor-photo-badge-card {
       min-height: 210px;
-      background: #111;
-      border-color: rgba(255,255,255,0.1);
+      background: var(--card-bg);
+      border-color: var(--card-border);
       box-shadow: 0 25px 50px -18px rgba(0,0,0,0.72);
     }
 
@@ -473,8 +540,8 @@
     }
 
     .white-product-card {
-      background: #0a0a0a;
-      border-color: rgba(255,255,255,0.05);
+      background: var(--card-bg);
+      border-color: var(--card-border);
       box-shadow: 0 0 15px rgba(0,0,0,0.5);
     }
 
@@ -508,8 +575,8 @@
 
     .white-reveal-card {
       opacity: 0;
-      background: #0a0a0a;
-      border-color: rgba(255,255,255,0.08);
+      background: var(--card-bg);
+      border-color: var(--card-border);
       box-shadow: 0 1px 2px rgba(0,0,0,0.35);
       animation: catalog-reveal-card 0.8s cubic-bezier(0.2,0.8,0.2,1) forwards;
     }
@@ -531,8 +598,8 @@
     }
 
     .white-compare-card {
-      background: #050505;
-      border-color: rgba(255,255,255,0.1);
+      background: var(--card-bg);
+      border-color: var(--card-border);
     }
 
     .white-compare-card:hover {
@@ -541,8 +608,8 @@
     }
 
     .white-review-card {
-      background: #0a0a0a;
-      border-color: rgba(255,255,255,0.06);
+      background: var(--card-bg);
+      border-color: var(--card-border);
       box-shadow: 0 4px 30px rgba(0,0,0,0.1);
     }
 
@@ -554,8 +621,8 @@
     .white-floating-card {
       min-height: 210px;
       transform: rotate(-2deg);
-      background: rgba(10,10,10,0.82);
-      border-color: rgba(255,255,255,0.1);
+      background: var(--card-bg);
+      border-color: var(--card-border);
       backdrop-filter: blur(18px);
       box-shadow: 0 25px 50px -22px rgba(0,0,0,0.85);
     }
@@ -567,8 +634,8 @@
     }
 
     .offer-mockup-card {
-      background: #0a0a0a;
-      border-color: rgba(255,255,255,0.08);
+      background: var(--card-bg);
+      border-color: var(--card-border);
       transform: perspective(900px) rotateX(10deg);
       animation: catalog-float 5.8s ease-in-out infinite;
     }
@@ -580,8 +647,8 @@
 
     .offer-row-card {
       min-height: 210px;
-      background: #141414;
-      border-color: rgba(255,255,255,0.05);
+      background: var(--card-bg);
+      border-color: var(--card-border);
     }
 
     .offer-row-card:hover {
@@ -589,8 +656,8 @@
     }
 
     .ai-feature-card {
-      background: #0a0a0a;
-      border-color: rgba(94,165,0,0.2);
+      background: var(--card-bg);
+      border-color: var(--card-border);
     }
 
     .ai-feature-card:hover {
@@ -671,6 +738,52 @@
       font-weight: 600;
     }
 
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      backdrop-filter: blur(4px);
+      color: #d1d5db;
+      text-transform: uppercase;
+      font-family: Manrope, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 16px;
+      letter-spacing: 0.025em;
+    }
+
+    .hero-badge-dot-shell {
+      position: relative;
+      display: flex;
+      width: 8px;
+      height: 8px;
+    }
+
+    .hero-badge-dot,
+    .hero-badge-dot-ping {
+      display: inline-flex;
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .hero-badge-dot-ping {
+      position: absolute;
+      opacity: 0.75;
+      animation: hero-badge-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    .hero-badge-dot {
+      position: relative;
+    }
+
     .dot {
       width: 8px;
       height: 8px;
@@ -700,11 +813,12 @@
 	        0 10px 24px -18px rgba(94,165,0,0.85),
 	        0 0 26px -12px rgba(94,165,0,0.72),
 	        inset 0 2px 0 rgba(255,255,255,0.2);
-	      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, filter 0.28s ease;
+	      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
 	      cursor: pointer;
 	    }
 
 	    .btn:hover {
+	      background: var(--green-hover);
 	      transform: translateY(-3px);
 	      box-shadow:
 	        0 18px 34px -22px rgba(94,165,0,1),
@@ -738,6 +852,7 @@
 	    }
 
 	    .btn-secondary:hover {
+	      background: rgba(255,255,255,0.06);
 	      box-shadow:
 	        0 18px 34px -22px rgba(94,165,0,1),
 	        0 0 34px -8px rgba(94,165,0,0.92),
@@ -749,6 +864,16 @@
       height: 44px;
       padding: 0;
       border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border-color: var(--border);
+      box-shadow:
+        0 10px 24px -18px rgba(94,165,0,0),
+        0 0 26px -12px rgba(94,165,0,0),
+        inset 0 2px 0 rgba(255,255,255,0.06);
+    }
+
+    .btn-icon:hover {
+      background: rgba(255,255,255,0.06);
     }
 
 	    .animated-cta {
@@ -817,11 +942,20 @@
 	    }
 
 	    .animated-cta:hover {
+	      background: var(--green-hover);
 	      box-shadow:
 	        inset 0 0 0 1px rgba(255,255,255,0.26),
 	        inset 0 2px 0 rgba(255,255,255,0.34),
 	        0 18px 34px -22px rgba(94,165,0,1),
 	        0 0 34px -8px rgba(94,165,0,0.92);
+	    }
+
+	    .animated-cta:hover::after {
+	      background: var(--green-hover);
+	    }
+
+	    .animated-cta:hover svg path {
+	      animation: cta-icon-draw 0.8s linear forwards;
 	    }
 
 	    @property --cta-angle {
@@ -834,89 +968,16 @@
 	      to { --cta-angle: 360deg; }
 	    }
 
-	    .eor-demo-button {
-	      position: relative;
-	      display: inline-flex;
-	      align-items: center;
-	      justify-content: center;
-	      gap: 8px;
-	      isolation: isolate;
-	      overflow: hidden;
-	      min-height: 48px;
-	      padding: 13px 26px;
-	      border: 0;
-	      border-radius: 12px;
-	      color: #fff;
-	      background: var(--green);
-	      font-family: Manrope, sans-serif;
-	      font-size: 16px;
-	      font-weight: 600;
-	      line-height: 1.2;
-	      white-space: nowrap;
-	      box-shadow:
-	        0 0 26px -10px rgba(94, 165, 0, 0.9),
-	        inset 0 2px 0 rgba(255, 255, 255, 0.2);
-	      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, filter 0.28s ease;
-	      cursor: pointer;
+	    @keyframes cta-icon-draw {
+	      0% { stroke-dasharray: 0, 20; stroke-dashoffset: 0; }
+	      50% { stroke-dasharray: 10, 10; stroke-dashoffset: -5; }
+	      100% { stroke-dasharray: 20, 0; stroke-dashoffset: -10; }
 	    }
 
-	    .eor-demo-button::before {
-	      content: "";
-	      position: absolute;
-	      inset: -120% -45%;
-	      z-index: -1;
-	      background: linear-gradient(115deg, transparent 34%, rgba(255, 255, 255, 0.34) 48%, transparent 62%);
-	      transform: translateX(-70%) rotate(8deg);
-	      transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-	    }
-
-	    .eor-demo-button::after {
-	      content: "";
-	      position: absolute;
-	      inset: 0;
-	      z-index: -2;
-	      background: radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.28), transparent 34%);
-	      opacity: 0.6;
-	      transition: opacity 0.28s ease;
-	    }
-
-	    .eor-demo-button svg {
-	      width: 19px;
-	      height: 19px;
-	      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
-	    }
-
-	    .eor-demo-button:hover {
-	      transform: translateY(-3px);
-	      filter: saturate(1.08);
-	      box-shadow:
-	        0 18px 34px -22px rgba(94, 165, 0, 1),
-	        0 0 34px -8px rgba(94, 165, 0, 0.92),
-	        inset 0 2px 0 rgba(255, 255, 255, 0.28);
-	    }
-
-	    .eor-demo-button:hover::before {
-	      transform: translateX(70%) rotate(8deg);
-	    }
-
-	    .eor-demo-button:hover::after {
-	      opacity: 0.85;
-	    }
-
-	    .eor-demo-button:hover svg {
-	      transform: translate(3px, -3px);
-	    }
-
-	    .eor-demo-button:active {
-	      transform: translateY(-1px) scale(0.99);
-	    }
-
-	    @media (prefers-reduced-motion: reduce) {
-	      .eor-demo-button,
-	      .eor-demo-button::before,
-	      .eor-demo-button::after,
-	      .eor-demo-button svg {
-	        transition: none;
+	    @keyframes hero-badge-ping {
+	      75%, 100% {
+	        transform: scale(2);
+	        opacity: 0;
 	      }
 	    }
 
@@ -1160,7 +1221,7 @@
     .faq-card {
       border-radius: 12px;
       border: 1px solid var(--border-soft);
-      background: #0A0A0A;
+      background: var(--card-bg);
       overflow: hidden;
       transition: background 0.3s ease;
     }
@@ -1300,7 +1361,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
-      background: #020202;
+      background: var(--footer-bg);
       border-top: 1px solid var(--border-soft);
       padding: 28px;
       border-radius: 16px;
@@ -1361,46 +1422,53 @@
 
   <main class="shell">
     <section class="hero">
-      <div class="eyebrow"><span class="dot"></span> Design system snapshot</div>
-      <h1>Dark fintech surfaces, green action language, product mockups.</h1>
+      <div class="hero-badge">
+        <span class="hero-badge-dot-shell" aria-hidden="true">
+          <span class="hero-badge-dot-ping"></span>
+          <span class="hero-badge-dot"></span>
+        </span>
+        Design system snapshot
+      </div>
+      <h1><span>Dark fintech surfaces,</span> <span class="hero-title-muted">green action language, product mockups.</span></h1>
       <p>This standalone page shows the UI objects currently used across Garna pages: global layout, buttons, cards, badges, dashboard mockups, forms, accordions, tabs, footer and special states.</p>
     </section>
 
     <section class="section">
       <div class="section-head">
         <h2>Color Tokens</h2>
-        <p class="caption">Primary palette extracted from page CSS, widget CSS modules and repeated Tailwind arbitrary values.</p>
+        <p class="caption">Approved base palette: one page background, one default card fill, one default card border, one muted text color and two green CTA states.</p>
       </div>
       <div class="swatches">
-        <div class="swatch" style="background:#050505">Background<br>#050505</div>
-        <div class="swatch" style="background:#020202">Deep section<br>#020202</div>
-        <div class="swatch" style="background:#0A0A0A">Surface<br>#0A0A0A</div>
-        <div class="swatch" style="background:#0c0c0c">Card<br>#0c0c0c</div>
-        <div class="swatch" style="background:#111111">Raised<br>#111111</div>
+        <div class="swatch" style="background:#050505">Page background<br>#050505</div>
+        <div class="swatch" style="background:#020202">Footer background<br>#020202</div>
+        <div class="swatch" style="background:#0c0c0c">Card fill<br>#0C0C0C</div>
+        <div class="swatch" style="background:#0c0c0c; border-color:rgba(255,255,255,0.05)">Card border<br>white / 5%</div>
         <div class="swatch" style="background:#5EA500">Primary<br>#5EA500</div>
-        <div class="swatch" style="background:#6ab901">Primary hover<br>#6ab901</div>
-        <div class="swatch" style="background:#a1a1aa; color:#050505">Muted text<br>#a1a1aa</div>
+        <div class="swatch" style="background:#6AB901">Primary hover<br>#6AB901</div>
+        <div class="swatch" style="background:#A1A1A1; color:#050505">Muted text<br>#A1A1A1</div>
       </div>
     </section>
 
     <section class="section">
       <div class="section-head">
         <h2>Typography</h2>
-        <p class="caption">Inter is the default body face. Manrope is used for headings, nav, CTAs and product UI labels.</p>
+        <p class="caption">Current focus: reusable section heading and section subtitle typography. Card typography will be defined separately.</p>
       </div>
       <div class="grid">
-        <div class="sample span-7">
-          <span class="sample-label">Hero and section type</span>
+        <div class="sample span-8">
+          <span class="sample-label">Section H2 + subtitle</span>
           <div class="type-stack">
-            <h2 style="font-size: clamp(36px, 5vw, 64px); font-weight:400; line-height:1.08">One transfer, countless possibilities.</h2>
-            <p style="font-size:20px; color:#a1a1aa">Pay remunerations in over 150 countries with minimal effort.</p>
+            <h2 class="section-title-sample">Modern Platform for Managing Global Payroll</h2>
+            <p class="section-subtitle-sample">That’s why our partners have been choosing Garna for years</p>
           </div>
         </div>
-        <div class="sample span-5">
-          <span class="sample-label">Labels and body</span>
-          <div class="eyebrow">Payroll infrastructure</div>
-          <h3 style="font-size:28px; margin-top:18px">Automated global payments</h3>
-          <p style="margin-top:8px">Compact body copy uses relaxed line height, gray text and clear contrast against black panels.</p>
+        <div class="sample span-4">
+          <span class="sample-label">Rules shown here</span>
+          <ul class="type-rule-list">
+            <li><strong>Section H2:</strong> Manrope, 36-48px, normal weight, white.</li>
+            <li><strong>Section subtitle:</strong> Manrope 300, 20px, relaxed, muted gray.</li>
+            <li><strong>Card text:</strong> pending separate card typography pass.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -1408,11 +1476,11 @@
     <section class="section">
       <div class="section-head">
         <h2>Buttons and Links</h2>
-        <p class="caption">The system uses green primary CTAs, dark secondary buttons, icon buttons and animated demo CTAs.</p>
+        <p class="caption">Hero and final CTA placements use Animated CTA. Standard page actions use Primary CTA with either an up-right arrow or no icon.</p>
       </div>
       <div class="grid">
-	        <div class="sample span-4">
-	          <span class="sample-label">Primary CTA</span><br>
+	        <div class="sample span-3">
+	          <span class="sample-label">Primary CTA / icon</span><br>
 	          <button class="btn">
 	            Start now
 	            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1421,8 +1489,14 @@
 	            </svg>
 	          </button>
 	        </div>
-	        <div class="sample span-4">
-	          <span class="sample-label">Animated demo CTA</span><br>
+	        <div class="sample span-3">
+	          <span class="sample-label">Primary CTA / no icon</span><br>
+	          <button class="btn">
+	            Start now
+	          </button>
+	        </div>
+	        <div class="sample span-3">
+	          <span class="sample-label">Animated CTA</span><br>
 	          <button class="btn animated-cta">
 	            <span>
 	              Try Demo Version
@@ -1433,17 +1507,7 @@
 	            </span>
 	          </button>
 	        </div>
-	        <div class="sample span-4">
-	          <span class="sample-label">EOR hero demo CTA</span><br>
-	          <button class="eor-demo-button">
-	            Book a demo
-	            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-	              <path d="M7 7h10v10"></path>
-	              <path d="M7 17 17 7"></path>
-	            </svg>
-	          </button>
-	        </div>
-	        <div class="sample span-4">
+	        <div class="sample span-3">
 	          <span class="sample-label">Secondary and icon</span><br>
 	          <button class="btn btn-secondary">Log in</button>
           <button class="btn btn-icon" aria-label="Menu" style="margin-left:8px">☰</button>
@@ -1459,7 +1523,13 @@
       <div class="grid">
         <div class="sample span-6">
           <span class="sample-label">Hero badge</span>
-          <div class="eyebrow"><span class="dot"></span> AI-powered recruitment</div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot-shell" aria-hidden="true">
+              <span class="hero-badge-dot-ping"></span>
+              <span class="hero-badge-dot"></span>
+            </span>
+            AI-powered recruitment
+          </div>
         </div>
         <div class="sample span-6">
           <span class="sample-label">Data chips</span>
@@ -1477,7 +1547,7 @@
     <section class="section">
       <div class="section-head">
         <h2>Cards and Surfaces</h2>
-        <p class="caption">Reusable card language: glass borders, dark fills, green icon cells and restrained hover effects.</p>
+        <p class="caption">Default cards use the Payroll Benefits reference: #0C0C0C fill with a white/5 border. Green-border card variants will be defined separately.</p>
       </div>
       <div class="surface-demo">
         <div class="grid">
@@ -1501,7 +1571,7 @@
           </article>
         </div>
 
-        <div class="card-inventory-divider">Page card variants with hover behavior</div>
+        <div class="card-inventory-divider">Card examples normalized to the base fill and border</div>
         <div class="grid card-inventory">
           <article class="sample catalog-card home-bento-card span-4">
             <span class="card-source">Home</span>
@@ -1532,7 +1602,7 @@
             <span class="card-source">Home</span>
             <div class="mini-icon">↗</div>
             <div class="card-title">Centered CTA card</div>
-            <p>Conversion block with green border emphasis and restrained glow.</p>
+            <p class="final-cta-subtitle">Final CTA subtitles use the same light Manrope style as hero subtitles.</p>
 	            <button class="btn" style="margin-top:2px">
 	              Start now
 	              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
