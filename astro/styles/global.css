@@ -30,6 +30,13 @@
 	-webkit-background-clip: text;
 }
 
+.garna-instant-scroll,
+.garna-instant-scroll *,
+.garna-instant-scroll::before,
+.garna-instant-scroll::after {
+	scroll-behavior: auto !important;
+}
+
 @property --garna-button-gradient-angle {
 	syntax: "<angle>";
 	initial-value: 0deg;

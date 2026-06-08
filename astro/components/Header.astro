@@ -419,6 +419,59 @@ const mobileLinkClass = (path: string) =>
 			document.getElementById('garna-widget-root')?.remove();
 		};
 
+		const enableInstantScroll = () => {
+			const root = document.documentElement;
+			const body = document.body;
+			const previous = {
+				rootScrollBehavior: root.style.getPropertyValue('scroll-behavior'),
+				rootScrollBehaviorPriority: root.style.getPropertyPriority('scroll-behavior'),
+				bodyScrollBehavior: body.style.getPropertyValue('scroll-behavior'),
+				bodyScrollBehaviorPriority: body.style.getPropertyPriority('scroll-behavior'),
+				rootOverflowAnchor: root.style.getPropertyValue('overflow-anchor'),
+				bodyOverflowAnchor: body.style.getPropertyValue('overflow-anchor'),
+			};
+
+			root.classList.add('garna-instant-scroll');
+			root.style.setProperty('scroll-behavior', 'auto', 'important');
+			body.style.setProperty('scroll-behavior', 'auto', 'important');
+			root.style.setProperty('overflow-anchor', 'none');
+			body.style.setProperty('overflow-anchor', 'none');
+
+			return () => {
+				root.classList.remove('garna-instant-scroll');
+
+				if (previous.rootScrollBehavior) {
+					root.style.setProperty('scroll-behavior', previous.rootScrollBehavior, previous.rootScrollBehaviorPriority);
+				} else {
+					root.style.removeProperty('scroll-behavior');
+				}
+
+				if (previous.bodyScrollBehavior) {
+					body.style.setProperty('scroll-behavior', previous.bodyScrollBehavior, previous.bodyScrollBehaviorPriority);
+				} else {
+					body.style.removeProperty('scroll-behavior');
+				}
+
+				if (previous.rootOverflowAnchor) {
+					root.style.setProperty('overflow-anchor', previous.rootOverflowAnchor);
+				} else {
+					root.style.removeProperty('overflow-anchor');
+				}
+
+				if (previous.bodyOverflowAnchor) {
+					body.style.setProperty('overflow-anchor', previous.bodyOverflowAnchor);
+				} else {
+					body.style.removeProperty('overflow-anchor');
+				}
+			};
+		};
+
+		const jumpToPageTop = () => {
+			window.scrollTo(0, 0);
+			document.documentElement.scrollTop = 0;
+			document.body.scrollTop = 0;
+		};
+
 		const runScripts = async (scope) => {
 			const scripts = Array.from(scope.querySelectorAll('script'));
 			for (const script of scripts) {
@@ -467,25 +520,43 @@ const mobileLinkClass = (path: string) =>
 				const targetScripts = targetDoc.getElementById('astro-page-scripts');
 				if (!targetContent || !targetScripts) throw new Error('Target page is missing SPA containers');
 
-				if (shouldPushState) history.pushState({}, '', url.href);
-				localizeHeaderLinks();
-				setNavActiveState();
-				await syncHead(targetDoc);
-				syncFooterDynamicBlocks(targetDoc);
-				resetPageWidget();
+				const restoreScroll = enableInstantScroll();
+				jumpToPageTop();
+				try {
+					if (shouldPushState) history.pushState({}, '', url.href);
+					localizeHeaderLinks();
+					setNavActiveState();
+					await syncHead(targetDoc);
+					syncFooterDynamicBlocks(targetDoc);
+					resetPageWidget();
 
-				currentContent.replaceWith(targetContent);
-				currentScripts.replaceWith(targetScripts);
-				await runScripts(targetContent);
-				await runScripts(targetScripts);
-				refreshPageIcons();
-				window.dispatchEvent(new CustomEvent('garna:page-content-updated'));
+					jumpToPageTop();
+					currentContent.replaceWith(targetContent);
+					currentScripts.replaceWith(targetScripts);
+					jumpToPageTop();
+					await runScripts(targetContent);
+					await runScripts(targetScripts);
+					refreshPageIcons();
+					jumpToPageTop();
+					window.dispatchEvent(new CustomEvent('garna:page-content-updated'));
+					jumpToPageTop();
+
+					requestAnimationFrame(() => {
+						jumpToPageTop();
+						requestAnimationFrame(() => {
+							jumpToPageTop();
+							restoreScroll();
+						});
+					});
+				} catch (error) {
+					restoreScroll();
+					throw error;
+				}
 
 				localizeHeaderLinks();
 				setNavActiveState();
 				syncFooterLanguageState();
 				closeMobileMenu();
-				window.scrollTo({ top: 0, behavior: 'auto' });
 			} catch (error) {
 				console.warn('[garna navigation] Falling back to full page load:', error);
 				window.location.href = url.href;
@@ -537,6 +608,10 @@ const mobileLinkClass = (path: string) =>
 		window.addEventListener('popstate', () => {
 			navigate(new URL(window.location.href), false);
 		});
+
+		if ('scrollRestoration' in history) {
+			history.scrollRestoration = 'manual';
+		}
 
 		localizeHeaderLinks();
 		setNavActiveState();
