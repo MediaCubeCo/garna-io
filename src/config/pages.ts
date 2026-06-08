@@ -56,6 +56,13 @@ export const basePaths: PageConfig[] = [
 		showHeader: true,
 	},
 	{
+		path: 'payroll-small-business',
+		mode: 'static',
+		searchable: true,
+		showHeader: true,
+		languages: ['en'],
+	},
+	{
 		path: 'eor',
 		mode: 'static',
 		searchable: true,

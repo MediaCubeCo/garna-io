@@ -5,6 +5,7 @@ import { formTranslations } from './translations/form';
 import { aiHiringTranslations } from './translations/ai-hiring';
 import { whiteLabelTranslations } from './translations/white-label';
 import { eorTranslations } from './translations/eor';
+import { payrollSmallBusinessTranslations } from './translations/payroll-small-business';
 
 export type PageTranslations = typeof homeTranslations.en;
 
@@ -15,7 +16,8 @@ type AnyPageTranslations =
 	| typeof formTranslations.en
 	| typeof aiHiringTranslations.en
 	| typeof whiteLabelTranslations.en
-	| typeof eorTranslations.en;
+	| typeof eorTranslations.en
+	| typeof payrollSmallBusinessTranslations.en;
 
 const translations = {
 	home: homeTranslations,
@@ -25,6 +27,7 @@ const translations = {
 	'ai-hiring': aiHiringTranslations,
 	'white-label': whiteLabelTranslations,
 	eor: eorTranslations,
+	'payroll-small-business': payrollSmallBusinessTranslations,
 } as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
 export function getPageTranslations(pageName: string, locale: string): AnyPageTranslations {

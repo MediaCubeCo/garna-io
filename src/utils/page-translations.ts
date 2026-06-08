@@ -27,6 +27,9 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'white-label') {
 		return `/${segment}/white-label`;
 	}
+	if (pageName === 'payroll-small-business') {
+		return `/${segment}/payroll-small-business`;
+	}
 	if (pageName === 'eor') {
 		return `/${segment}/eor`;
 	}
@@ -127,10 +130,6 @@ function buildFooterLangSelectHtml(
 	);
 }
 
-/**
- * Injects page translations into HTML as a JavaScript object
- * and adds the translation script before </body>
- */
 export function injectPageTranslations(
 	html: string,
 	pageName: string,
