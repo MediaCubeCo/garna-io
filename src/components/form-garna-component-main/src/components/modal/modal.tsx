@@ -222,9 +222,30 @@ export default function Modal({
 	useEffect(() => {
 		if (!embedded && isModalVis) {
 			const prevOverflow = document.body.style.overflow;
+			const prevPaddingRight = document.body.style.paddingRight;
+			const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+			const currentPaddingRight = parseFloat(window.getComputedStyle(document.body).paddingRight) || 0;
+			const fixedElements = Array.from(document.querySelectorAll<HTMLElement>('.garna-header'));
+			const previousFixedElementPadding = fixedElements.map((element) => ({
+				element,
+				paddingRight: element.style.paddingRight,
+			}));
+
 			document.body.style.overflow = 'hidden';
+			if (scrollbarWidth > 0) {
+				document.body.style.paddingRight = `${currentPaddingRight + scrollbarWidth}px`;
+				fixedElements.forEach((element) => {
+					const elementPaddingRight = parseFloat(window.getComputedStyle(element).paddingRight) || 0;
+					element.style.paddingRight = `${elementPaddingRight + scrollbarWidth}px`;
+				});
+			}
+
 			return () => {
 				document.body.style.overflow = prevOverflow;
+				document.body.style.paddingRight = prevPaddingRight;
+				previousFixedElementPadding.forEach(({ element, paddingRight }) => {
+					element.style.paddingRight = paddingRight;
+				});
 			};
 		}
 	}, [isModalVis, embedded]);
