@@ -20,13 +20,17 @@ const logInUrl = 'https://app.garna.io/auth/sign-in';
 const navLinkClass = (path: string) =>
 	[
 		'inline-flex h-11 shrink-0 items-center justify-center rounded-xl px-2 text-base font-medium font-manrope whitespace-nowrap',
-		currentPath === path ? 'text-[#5ea500]' : 'hover:opacity-80 transition-opacity text-white',
+		currentPath === path || (path === '' && currentPath === 'payroll-small-business')
+			? 'text-[#5ea500]'
+			: 'hover:opacity-80 transition-opacity text-white',
 	].join(' ');
 
 const mobileLinkClass = (path: string) =>
 	[
 		'block text-2xl font-medium font-manrope transition-colors',
-		currentPath === path ? 'text-[#5EA500] hover:text-[#7CFF00]' : 'text-white hover:opacity-80',
+		currentPath === path || (path === '' && currentPath === 'payroll-small-business')
+			? 'text-[#5EA500] hover:text-[#7CFF00]'
+			: 'text-white hover:opacity-80',
 	].join(' ');
 ---
 
@@ -273,7 +277,8 @@ const mobileLinkClass = (path: string) =>
 			const currentPath = getPagePath();
 			document.querySelectorAll('[data-nav-link]').forEach((link) => {
 				if (!(link instanceof HTMLElement)) return;
-				const isActive = (link.dataset.localizedPath || '') === currentPath;
+				const linkPath = link.dataset.localizedPath || '';
+				const isActive = linkPath === currentPath || (linkPath === '' && currentPath === 'payroll-small-business');
 				const isMobile = link.hasAttribute('data-nav-mobile');
 				link.classList.toggle('text-[#5ea500]', isActive && !isMobile);
 				link.classList.toggle('text-[#5EA500]', isActive && isMobile);

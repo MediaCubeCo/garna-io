@@ -63,6 +63,23 @@ export const pageFinalCtas = {
 			trackingCta: 'final_demo',
 		},
 	},
+	payrollSmallBusiness: {
+		title: [{ text: 'Get Started With Garna Payroll Today', translateKey: 'finalCta.title' }],
+		description: {
+			text: 'Optimize your payroll and focus on business growth today. Join thousands of popular companies that have already automated their global payouts',
+			translateKey: 'finalCta.description',
+		},
+		button: {
+			label: 'Sign up for a free demo',
+			translateKey: 'finalCta.button',
+			href: 'https://app.garna.io/en/auth/sign-up',
+			kind: 'signup',
+			effect: 'hover-sweep',
+		},
+		class: 'relative overflow-hidden py-20 text-center lg:py-28',
+		titleClass: 'garna-hero-title-gradient text-4xl font-normal leading-tight text-white md:text-6xl font-manrope mb-8',
+		descriptionClass: 'mx-auto mt-6 max-w-2xl text-xl font-light leading-8 text-gray-400 font-manrope mb-12',
+	},
 	eor: {
 		title: [{ text: 'Global Employer of Record is a Modern Hiring Process Done Stress-Free', translateKey: 'finalCta.title' }],
 		description: {

@@ -132,6 +132,35 @@ export const pageHeroes = {
 		tone: 'green',
 		align: 'split',
 	},
+	payrollSmallBusiness: {
+		class: 'relative overflow-hidden pt-36 pb-20 lg:min-h-screen lg:pt-44 lg:pb-28',
+		containerClass: 'garna-container',
+		contentClass:
+			'relative z-10 flex max-w-3xl flex-col items-start justify-center pt-8 lg:min-h-[560px] lg:max-w-[520px] lg:pt-0 xl:max-w-[620px]',
+		titleClass:
+			'mt-7 max-w-3xl leading-[1.15] md:text-5xl lg:text-6xl text-4xl font-normal text-white tracking-tight font-manrope',
+		descriptionClass:
+			'mt-7 md:text-xl leading-relaxed text-lg font-light text-gray-400 font-manrope max-w-xl',
+		badge: {
+			text: 'Built for small global teams',
+			translateKey: 'hero.badge',
+		},
+		title: [{ text: 'Global Payroll Solution for Small Businesses', translateKey: 'hero.title' }],
+		description:
+			'Hire employees and pay contractors all over the world. Everything in one platform: from taxes and contracts to one-click bulk payments',
+		descriptionTranslateKey: 'hero.description',
+		cta: {
+			label: 'Try Garna',
+			translateKey: 'hero.cta',
+			href: 'https://app.garna.io/en/auth/sign-up',
+			kind: 'signup',
+			variant: 'primary',
+			effect: 'rotating-flare',
+			wrapperClass: 'mt-9 flex flex-col items-start gap-4 sm:flex-row sm:justify-start',
+		},
+		tone: 'green',
+		align: 'split',
+	},
 	eor: {
 		class: 'relative overflow-hidden pt-28 pb-20 md:pt-32 md:pb-24',
 		containerClass: 'garna-container flex flex-col items-center gap-12',
