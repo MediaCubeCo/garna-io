@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { payrollSmallBusinessShell } from '../content/payroll-small-business-shell';
+import rawContentHtml from '../content/site-pages/payroll-small-business.html?raw';
+import scriptsHtml from '../content/site-scripts/payroll-small-business.html?raw';
+---
+
+<BaseLayout shell={payrollSmallBusinessShell} scriptsHtml={scriptsHtml} currentPath="payroll-small-business">
+	<Fragment set:html={rawContentHtml} />
+</BaseLayout>

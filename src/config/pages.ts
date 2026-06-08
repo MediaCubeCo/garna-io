@@ -6,7 +6,7 @@ export interface PageConfig {
 	path: string;
 	/**
 	 * Page processing mode:
-	 * - "static": Serve static HTML files from public/pages
+	 * - "static": Serve Astro-generated HTML assets through the Worker
 	 */
 	mode: 'static';
 	/**
@@ -57,6 +57,13 @@ export const basePaths: PageConfig[] = [
 	},
 	{
 		path: 'payroll-small-business',
+		mode: 'static',
+		searchable: true,
+		showHeader: true,
+		languages: ['en'],
+	},
+	{
+		path: 'eor',
 		mode: 'static',
 		searchable: true,
 		showHeader: true,

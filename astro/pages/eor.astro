@@ -1,0 +1,77 @@
+---
+import HeroSection from '../components/HeroSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
+import type { FAQItem } from '../types/faq-section';
+import rawContentHtml from '../content/site-pages/eor.html?raw';
+import scriptsHtml from '../content/site-scripts/eor.html?raw';
+import { splitLegacyPageSections } from '../utils/legacy-html';
+
+const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
+	heroVisualMarker: '<!-- Dashboard Mockup with Dynamic Sizing -->',
+});
+
+const eorFaqItems = [
+	{
+		question: 'What is an Employer of Record (EoR)?',
+		answer: 'An EoR is a third-party company that legally employs workers on behalf of another business and handles payroll, taxes, compliance, contracts, and local employment rules.',
+		questionTranslateKey: 'faq.items.q1.question',
+		answerTranslateKey: 'faq.items.q1.answer',
+	},
+	{
+		question: 'How is an EoR different from a PEO?',
+		answer: 'A PEO usually works through a co-employment model and often needs the client company to have a local setup. An EoR acts as the official employer so you do not need to set up a business in every country.',
+		questionTranslateKey: 'faq.items.q2.question',
+		answerTranslateKey: 'faq.items.q2.answer',
+	},
+	{
+		question: 'When should you use an EoR?',
+		answer: 'Use an EoR when you want to hire people in countries where your company is not already set up to do business.',
+		questionTranslateKey: 'faq.items.q3.question',
+		answerTranslateKey: 'faq.items.q3.answer',
+	},
+	{
+		question: 'EoR vs own international entity setup: which is better?',
+		answer: 'A local entity can be expensive and slow. An EoR is usually faster and more flexible when you need to test new regions and scale a global team without unnecessary complexity.',
+		questionTranslateKey: 'faq.items.q4.question',
+		answerTranslateKey: 'faq.items.q4.answer',
+	},
+	{
+		question: 'What EoR model does Garna have?',
+		answer: 'Garna provides a flexible global EoR solution with payroll, compliance, onboarding, API integrations, white-label options, and support for multi-country teams.',
+		questionTranslateKey: 'faq.items.q5.question',
+		answerTranslateKey: 'faq.items.q5.answer',
+	},
+] satisfies FAQItem[];
+---
+
+<BaseLayout shell={pageShells.eor} scriptsHtml={scriptsHtml} currentPath="eor">
+	<main id="astro-page-content" data-astro-page-content data-current-path="eor">
+		<HeroSection {...pageHeroes.eor}>
+			<Fragment set:html={heroVisualHtml} />
+		</HeroSection>
+		<Fragment set:html={contentHtml} />
+		<FAQSection
+			kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
+			title={{ text: 'FAQ on Employer of Record', translateKey: 'faq.title' }}
+			items={eorFaqItems}
+			variant="eor"
+			class="bg-[#020202] py-24"
+			containerClass="garna-container"
+		/>
+		<FinalCTASection {...pageFinalCtas.eor} />
+	</main>
+	<Fragment slot="widgets">
+		<GarnaBookingWidget
+			trackingSource="eor"
+			trackingPage="eor"
+			titleFallback="Book a free 30-minute product demo"
+			subtitleFallback="Get all your questions answered by our experts"
+		/>
+	</Fragment>
+</BaseLayout>

@@ -8,8 +8,8 @@ const BASE_DOMAIN = 'https://garna.io';
  * @param path Path segments joined with '/' (e.g., '', 'offer')
  * @returns Modified HTML with hreflang tags
  */
-export function injectHreflangTags(html: string, path: string, pageLanguages?: string[]): string {
-	const languages = pageLanguages || getSupportedLanguageCodes();
+export function injectHreflangTags(html: string, path: string, availableLanguages?: string[]): string {
+	const languages = availableLanguages ?? getSupportedLanguageCodes();
 
 	// Build hreflang tags
 	const hreflangTags: string[] = [];
@@ -29,11 +29,14 @@ export function injectHreflangTags(html: string, path: string, pageLanguages?: s
 	// Check if there are already hreflang tags
 	if (html.includes('rel="alternate" hreflang=')) {
 		// Remove existing hreflang tags
-		html = html.replace(/<link\s+rel="alternate"\s+hreflang="[^"]*"[^>]*>\n?/gi, '');
+		html = html.replace(/<link\s+rel="alternate"\s+hreflang="[^"]*"[^>]*>
+?/gi, '');
 	}
 
 	// Insert hreflang tags before </head>
-	const hreflangBlock = hreflangTags.join('\n') + '\n';
+	const hreflangBlock = hreflangTags.join('
+') + '
+';
 	html = html.replace('</head>', `${hreflangBlock}</head>`);
 
 	return html;

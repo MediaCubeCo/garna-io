@@ -1,0 +1,136 @@
+---
+interface Props {
+	containerId?: string;
+	renderRoot?: boolean;
+	embedInline?: boolean;
+	trackingSource: string;
+	trackingPage: string;
+	trackingCta?: string;
+	titleFallback: string;
+	subtitleFallback: string;
+	bgColorCal?: string;
+	colorBorder?: string;
+	thicknessBorder?: string;
+}
+
+const {
+	containerId = 'garna-widget-root',
+	renderRoot = true,
+	embedInline = false,
+	trackingSource,
+	trackingPage,
+	trackingCta,
+	titleFallback,
+	subtitleFallback,
+	bgColorCal = '#0a0a0a',
+	colorBorder = 'rgb(34, 34, 34)',
+	thicknessBorder = '1px',
+} = Astro.props;
+
+const widgetConfig = {
+	containerId,
+	embedInline,
+	calComLink: 'garna/demo',
+	trackingSource,
+	trackingPage,
+	...(trackingCta ? { trackingCta } : {}),
+	titleFallback,
+	subtitleFallback,
+	colorBrandBg: '#5EA500',
+	colorBrandText: '#ffffff',
+	bgColorCal,
+	colorBorder,
+	thicknessBorder,
+	radiusBorder: '32px',
+	colorTextMain: '#ffffff',
+	colorTextCalendar: '#a4a4a4',
+	colorTextError: '#ff6b9d',
+	colorBorderTimeCalendar: '#ffffff9a',
+	colorBorderVerticalLine: 'rgb(34, 34, 34)',
+	colorTextLogo: '#5d5d5d',
+};
+---
+
+{renderRoot && <div id={containerId}></div>}
+<script is:inline src="/widget/garna-widget.js"></script>
+<script
+	is:inline
+	set:html={`
+(function () {
+	'use strict';
+
+	var widgetConfig = ${JSON.stringify(widgetConfig)};
+	var language = __GARNA_LOCALE__;
+	var widgetTrans = __GARNA_WIDGET_TRANSLATIONS__;
+
+	function buildWidgetTranslations() {
+		var signUp = widgetTrans.signUp || {};
+		var disclaimer = widgetTrans.disclaimer || {};
+		var form = widgetTrans.form || {};
+		var errors = widgetTrans.errors || {};
+
+		return {
+			buttonChooseDate: widgetTrans.buttonChooseDate,
+			signUpPromptPrefix: signUp.promptPrefix,
+			signUpLinkText: signUp.linkText,
+			signUpPromptSuffix: signUp.promptSuffix,
+			disclaimerPrefix: disclaimer.prefix,
+			privacyLinkText: disclaimer.privacyLink,
+			disclaimerSuffix: disclaimer.suffix,
+			form: {
+				firstName: form.firstName,
+				lastName: form.lastName,
+				email: form.email,
+				employees: form.employees
+			},
+			companySizeOptions: widgetTrans.companySizeOptions,
+			errors: {
+				required: errors.required,
+				invalidEmail: errors.invalidEmail,
+				workEmail: errors.workEmail,
+				invalidPhone: errors.invalidPhone
+			}
+		};
+	}
+
+	function initWidget() {
+		if (typeof window.GarnaWidget === 'undefined') {
+			setTimeout(initWidget, 100);
+			return;
+		}
+
+		window.GarnaWidget.init({
+			containerId: widgetConfig.containerId,
+			embedInline: widgetConfig.embedInline,
+			calComLink: widgetConfig.calComLink,
+			locale: language,
+			trackingSource: widgetConfig.trackingSource,
+			trackingPage: widgetConfig.trackingPage,
+			...(widgetConfig.trackingCta ? { trackingCta: widgetConfig.trackingCta } : {}),
+			title: widgetTrans.title || widgetConfig.titleFallback,
+			subtitle: widgetTrans.subtitle || widgetConfig.subtitleFallback,
+			titleButtonForm: widgetTrans.buttonContinue || 'Continue',
+			translations: buildWidgetTranslations(),
+			colorBrandBg: widgetConfig.colorBrandBg,
+			colorBrandText: widgetConfig.colorBrandText,
+			bgColorCal: widgetConfig.bgColorCal,
+			colorBorder: widgetConfig.colorBorder,
+			thicknessBorder: widgetConfig.thicknessBorder,
+			radiusBorder: widgetConfig.radiusBorder,
+			colorTextMain: widgetConfig.colorTextMain,
+			colorTextCalendar: widgetConfig.colorTextCalendar,
+			colorTextError: widgetConfig.colorTextError,
+			colorBorderTimeCalendar: widgetConfig.colorBorderTimeCalendar,
+			colorBorderVerticalLine: widgetConfig.colorBorderVerticalLine,
+			colorTextLogo: widgetConfig.colorTextLogo
+		});
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initWidget);
+	} else {
+		initWidget();
+	}
+})();
+`}
+/>

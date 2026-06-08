@@ -1,0 +1,224 @@
+---
+import Button from './Button.astro';
+import type { FinalCTASectionConfig } from '../types/final-cta-section';
+
+interface Props extends FinalCTASectionConfig {}
+
+const {
+	title,
+	description,
+	button,
+	layout = 'center',
+	visual,
+	class: className = 'overflow-hidden border-white/0 border-t pt-32 pb-32 relative',
+	containerClass,
+	contentClass,
+	titleClass,
+	descriptionClass,
+} = Astro.props;
+
+const isSplit = layout === 'split';
+const resolvedContainerClass =
+	containerClass ||
+	(isSplit
+		? 'garna-container flex flex-col md:flex-row z-10 relative gap-x-12 gap-y-12 items-center justify-between'
+		: 'garna-container relative z-10 text-center');
+const resolvedContentClass = contentClass || (isSplit ? 'w-full text-left' : 'mx-auto max-w-4xl');
+const resolvedTitleClass =
+	titleClass ||
+	(isSplit
+		? 'garna-hero-title-gradient text-left leading-[1.1] md:text-6xl text-5xl font-normal tracking-tight font-manrope mb-8'
+		: 'garna-hero-title-gradient text-center md:text-6xl text-4xl font-normal tracking-tight font-manrope mb-8');
+const resolvedDescriptionClass =
+	descriptionClass ||
+	(isSplit
+		? 'text-xl font-light text-gray-400 max-w-lg mb-10'
+		: 'text-xl font-light text-gray-400 font-manrope max-w-2xl mr-auto mb-12 ml-auto');
+const titleClassWithGradient = resolvedTitleClass.includes('garna-hero-title-gradient')
+	? resolvedTitleClass
+	: `garna-hero-title-gradient ${resolvedTitleClass}`;
+
+const buttonHref =
+	button.href || (button.kind === 'signup' ? 'https://app.garna.io/en/auth/sign-up' : '#');
+const buttonVariant = 'primary';
+const buttonAttributes =
+	button.kind === 'signup'
+		? { 'data-garna-signup': true }
+		: {};
+const buttonOnclick =
+	button.kind === 'demo'
+		? `event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: '${button.trackingCta || 'final_demo'}' });`
+		: undefined;
+const buttonEffect = button.effect || (button.kind === 'demo' ? 'rotating-flare' : 'none');
+const buttonIcon = button.icon || 'arrow-up-right';
+---
+
+<section class={className} data-final-cta-section data-final-cta-layout={layout}>
+	<div class={resolvedContainerClass}>
+		<div class={resolvedContentClass}>
+			<h2 class={titleClassWithGradient}>
+				{title.map((part, index) => (
+					<>
+						{index > 0 && <br />}
+						<span class={part.class} data-translate={part.translateKey}>{part.text}</span>
+						{' '}
+					</>
+				))}
+			</h2>
+			<p class={resolvedDescriptionClass} data-translate={description.translateKey}>{description.text}</p>
+			<Button href={buttonHref} onclick={buttonOnclick} variant={buttonVariant} effect={buttonEffect} icon={buttonIcon} size="hero" class="w-fit" {...buttonAttributes}>
+				<span data-translate={button.translateKey}>{button.label}</span>
+			</Button>
+		</div>
+
+		{visual === 'ai-hiring' && (
+			<div class="md:h-[415px] group md:scale-100 lg:scale-100 md:origin-center lg:origin-center transition-transform duration-300 w-full h-[360px] max-w-md relative scale-100 items-center justify-center">
+				<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#5EA500]/20 rounded-full blur-[100px] pointer-events-none -z-10" />
+				<div class="hover:rotate-0 transition-all duration-500 ease-out flex flex-col group md:top-4 md:bottom-4 z-10 bg-[#0A0A0A]/90 w-full max-h-fit border-white/10 border rounded-2xl pt-6 pr-6 pb-6 pl-6 absolute top-6 right-0 bottom-6 left-0 shadow-2xl backdrop-blur-xl -rotate-2">
+					<div class="flex items-center justify-between border-b border-white/5 pb-5 mb-5">
+						<div class="flex items-center gap-4">
+							<div class="overflow-hidden bg-gray-800 w-12 h-12 border-white/10 border rounded-full">
+								<img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fc257d3b-7bba-4257-9a9c-d6a27743b7e7_320w.webp" class="transition-opacity hover:opacity-100 opacity-90 w-full h-full object-cover" alt="Recruiter Avatar" />
+							</div>
+							<div>
+								<div class="text-base font-semibold text-white font-manrope" data-translate="finalCta.sophieChen">Sophie Chen</div>
+								<div class="text-[11px] text-[#5EA500] font-medium tracking-wide uppercase" data-translate="finalCta.activeHiring">Active Hiring</div>
+							</div>
+						</div>
+						<div class="w-9 h-9 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-white/40 group-hover:text-white transition-colors">
+							<iconify-icon icon="solar:users-group-rounded-linear" width="18"></iconify-icon>
+						</div>
+					</div>
+					<div class="flex items-center justify-between mb-3 px-1">
+						<span class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider" data-translate="finalCta.topMatchesSrFrontend">Top Matches: Sr. Frontend</span>
+						<span class="text-[10px] text-[#5EA500] font-medium bg-[#5EA500]/10 px-2 py-0.5 rounded border border-[#5EA500]/20" data-translate="finalCta.new24">24 new</span>
+					</div>
+					<div class="flex-1 overflow-hidden max-h-fit space-y-3">
+						<div class="flex items-center justify-between p-3 bg-white/[0.03] hover:bg-white/[0.06] rounded-xl border border-white/5 hover:border-[#5EA500]/30 transition-all cursor-pointer group/item">
+							<div class="flex items-center gap-3">
+								<div class="w-9 h-9 rounded-full overflow-hidden border border-[#5EA500]/30 group-hover/item:shadow-[0_0_10px_rgba(94,165,0,0.2)] transition-shadow">
+									<img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c4c6293b-26ff-4117-9a48-45d8311e3f1a_320w.webp" class="w-full h-full object-cover" alt="Candidate Avatar" />
+								</div>
+								<div>
+									<div class="text-sm font-medium text-white group-hover/item:text-[#5EA500] transition-colors" data-translate="finalCta.alexMorgan">Alex Morgan</div>
+									<div class="text-[11px] text-gray-500" data-translate="finalCta.reactNode">React - Node.js</div>
+								</div>
+							</div>
+							<div class="flex flex-col items-end">
+								<span class="text-sm font-semibold text-white">$165k</span>
+								<span class="text-[10px] text-[#5EA500] font-medium" data-translate="finalCta.ninetyNineMatch">99% Match</span>
+							</div>
+						</div>
+						<div class="flex items-center justify-between p-3 hover:bg-white/[0.06] hover:border-blue-500/30 transition-all cursor-pointer group/item border-white/5 border rounded-xl">
+							<div class="flex items-center gap-3">
+								<div class="w-9 h-9 rounded-full overflow-hidden border border-white/10 group-hover/item:border-blue-500/30 group-hover/item:shadow-[0_0_10px_rgba(59,130,246,0.2)] transition-all">
+									<img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a858baac-5596-4de9-8229-7a3c2cd9a05c_320w.webp" class="w-full h-full object-cover" alt="Candidate Avatar" />
+								</div>
+								<div>
+									<div class="text-sm font-medium text-white group-hover/item:text-blue-400 transition-colors">David Kim</div>
+									<div class="text-[11px] text-gray-500">Vue - Python</div>
+								</div>
+							</div>
+							<div class="flex flex-col items-end">
+								<span class="text-sm font-semibold text-white">$150k</span>
+								<span class="text-[10px] text-blue-400 font-medium">96% Match</span>
+							</div>
+						</div>
+						<div class="flex items-center justify-between p-3 hover:bg-white/[0.06] hover:border-rose-500/30 transition-all cursor-pointer group/item border-white/5 border rounded-xl">
+							<div class="flex items-center gap-3">
+								<div class="w-9 h-9 rounded-full overflow-hidden border border-white/10 group-hover/item:border-rose-500/30 group-hover/item:shadow-[0_0_10px_rgba(244,63,94,0.2)] transition-all">
+									<img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/282ac9c4-3b58-4269-ba86-cc4f23acc30d_320w.webp" class="w-full h-full object-cover" alt="Candidate Avatar" />
+								</div>
+								<div>
+									<div class="text-sm font-medium text-white group-hover/item:text-rose-400 transition-colors" data-translate="finalCta.elenaRostova">Elena Rostova</div>
+									<div class="text-[11px] text-gray-500" data-translate="finalCta.reactTypescript">React - TypeScript</div>
+								</div>
+							</div>
+							<div class="flex flex-col items-end">
+								<span class="text-sm font-semibold text-white">$170k</span>
+								<span class="text-[10px] text-rose-400 font-medium" data-translate="finalCta.ninetyFourMatch">94% Match</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="-right-2 md:-right-9 hover:rotate-3 transition-transform duration-300 group hover:border-[#5EA500]/30 hover:shadow-[0_10px_30px_-10px_rgba(94,165,0,0.2)] md:absolute md:w-64 md:pt-5 md:pr-5 md:pb-5 md:pl-5 md:top-0 md:scale-[0.78] lg:-right-2 lg:scale-100 z-20 bg-[#0E0E0E] w-52 border-white/10 border rounded-xl pt-3 pr-3 pb-3 pl-3 absolute top-3.5 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.8)] rotate-6 scale-[0.98]">
+					<div class="flex md:gap-3 gap-x-2 gap-y-2 items-start">
+						<div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#5EA500] flex items-center justify-center text-black shrink-0 shadow-[0_0_15px_rgba(94,165,0,0.4)] group-hover:scale-110 transition-transform">
+							<iconify-icon icon="lucide:calendar" width="18"></iconify-icon>
+						</div>
+						<div class="min-w-0 flex-1">
+							<div class="text-sm md:text-base font-semibold text-white mb-0.5 truncate" data-translate="notification.interviewAccepted">Interview Accepted</div>
+							<div class="text-[10px] md:text-xs text-gray-400 leading-tight" data-translate="notification.scheduledText">Alex Morgan scheduled for Tomorrow, 10 AM</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		)}
+
+		{visual === 'white-label' && (
+			<div class="md:h-[415px] group md:scale-100 lg:scale-100 md:origin-center lg:origin-center transition-transform duration-300 w-full h-[360px] max-w-md relative scale-100 items-center justify-center">
+				<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-tr from-[#3b82f6]/15 via-[#5ea500]/10 to-[#eab308]/15 rounded-full blur-[100px] pointer-events-none -z-10" />
+				<div class="hover:rotate-0 transition-all duration-500 ease-out flex flex-col group md:top-4 md:bottom-4 z-10 bg-[#0A0A0A]/95 w-full max-h-fit border-white/10 border rounded-2xl pt-6 pr-6 pb-6 pl-6 absolute top-6 right-0 bottom-6 left-0 shadow-2xl backdrop-blur-xl -rotate-2">
+					<div class="flex items-center justify-between border-b border-white/5 pb-5 mb-5">
+						<div class="flex items-center gap-4">
+							<div class="w-12 h-12 rounded-full bg-[#5ea500]/10 border border-[#5ea500]/20 flex items-center justify-center text-[#5ea500] shadow-[0_0_15px_rgba(94,165,0,0.15)]">
+								<iconify-icon icon="lucide:check-circle-2" width="24"></iconify-icon>
+							</div>
+							<div>
+								<div class="text-base font-medium text-white font-manrope" data-translate="status.globalStatus">GLOBAL STATUS</div>
+								<div class="text-[11px] text-[#5ea500] font-medium tracking-wide uppercase" data-translate="status.systemHealthy">System Healthy</div>
+							</div>
+						</div>
+						<div class="w-9 h-9 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-white/40 group-hover:text-[#5ea500] transition-colors">
+							<iconify-icon icon="lucide:globe" width="18"></iconify-icon>
+						</div>
+					</div>
+					<div class="flex items-center justify-between mb-3 px-1">
+						<span class="text-[11px] font-medium text-gray-400 uppercase tracking-wider" data-translate="status.marketExpansion">Market Expansion</span>
+						<span class="text-[10px] text-[#5ea500] font-medium bg-[#5ea500]/10 px-2 py-0.5 rounded border border-[#5ea500]/20" data-translate="status.online">Online</span>
+					</div>
+					<div class="flex-1 overflow-hidden max-h-fit space-y-3">
+						{[
+							['status.europe', 'Europe', 'status.sepaIntegrated', 'SEPA Integrated', 'status.europeCountries', '40+ Countries', '#a855f7'],
+							['status.asiaPacific', 'Asia-Pacific', 'status.crossBorder', 'Cross-Border', 'status.currencies', '15+ Currencies', '#eab308'],
+							['status.northAmerica', 'North America', 'status.achWire', 'ACH & Wire', 'status.volume', '$4.2M Volume', '#5ea500'],
+						].map(([regionKey, region, detailKey, detail, metricKey, metric, color]) => (
+							<div class="flex hover:bg-white/[0.04] transition-all cursor-pointer group/item border-white/5 border rounded-xl pt-3 pr-3 pb-3 pl-3 items-center justify-between">
+								<div class="flex w-[55%] md:w-[47%] gap-x-3 gap-y-3 items-center">
+									<div class="w-9 h-9 shrink-0 rounded-full overflow-hidden border border-white/10 bg-[#000000] flex items-center justify-center text-gray-300 transition-all">
+										<iconify-icon icon="lucide:map-pin" width="16" style={`color: ${color}`}></iconify-icon>
+									</div>
+									<div class="min-w-0">
+										<div class="truncate text-sm font-medium text-white" data-translate={regionKey}>{region}</div>
+										<div class="text-[10px] flex truncate text-gray-500 gap-x-1.5 gap-y-1.5 items-center">
+											<span data-translate={detailKey}>{detail}</span>
+											<span class="hidden md:flex items-center gap-1 shrink-0">
+												<span class="w-1 h-1 rounded-full animate-pulse" style={`background: ${color}`}></span>
+												<span class="text-[8px] font-medium" style={`color: ${color}`} data-translate="status.syncing">Syncing</span>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="flex flex-col shrink-0 items-end">
+									<span class="text-sm font-medium text-white" data-translate={metricKey}>{metric}</span>
+									<span class="text-[10px] font-medium" style={`color: ${color}`} data-translate="status.fullyActive">Fully Active</span>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+				<div class="hidden md:block -right-2 hover:rotate-2 transition-transform duration-300 group hover:border-[#3b82f6]/30 hover:shadow-[0_10px_30px_-10px_rgba(59,130,246,0.2)] md:-right-8 md:top-14 md:w-[260px] md:p-4 md:scale-[0.85] lg:scale-[0.9] lg:top-2 z-20 bg-[#0E0E0E] w-[220px] border-white/10 border rounded-xl pt-3 pr-3 pb-3 pl-3 absolute top-4 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.8)] rotate-6 scale-[0.85]">
+					<div class="flex md:gap-3 gap-2 items-center">
+						<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#3b82f6]/10 border border-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] shrink-0 shadow-[0_0_15px_rgba(59,130,246,0.2)] group-hover:scale-110 transition-transform">
+							<iconify-icon icon="lucide:rocket" width="18"></iconify-icon>
+						</div>
+						<div class="min-w-0 flex-1">
+							<div class="md:text-sm text-xs font-medium text-white tracking-tight mb-0.5 truncate" data-translate="status.whiteLabelSync">WHITE-LABEL SYNC</div>
+							<div class="text-[10px] md:text-[11px] leading-tight font-medium text-[#3b82f6]" data-translate="status.readyToLaunch">Ready to launch global operations</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		)}
+	</div>
+</section>

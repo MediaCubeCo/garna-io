@@ -1,0 +1,72 @@
+---
+import HeroSection from '../components/HeroSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
+import type { FAQItem } from '../types/faq-section';
+import rawContentHtml from '../content/site-pages/ai-hiring.html?raw';
+import { splitLegacyPageSections } from '../utils/legacy-html';
+
+const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
+	heroVisualMarker: '<!-- UI Mockup -->',
+});
+
+const aiHiringFaqItems = [
+	{
+		question: 'How are your candidates different from standard job boards?',
+		answer: "We don't just collect resumes. Every professional on our platform has already passed a rigorous, technical AI interview. You get instant access to pre-vetted talent with verified skills, entirely skipping the manual screening phase.",
+		questionTranslateKey: 'faq.q1',
+		answerTranslateKey: 'faq.a1',
+	},
+	{
+		question: 'What types of roles can I hire for on this platform?',
+		answer: 'Our active talent pool consists of highly skilled professionals across Engineering, Design, Product, Sales, and Marketing. We specialize in connecting you with top-tier remote and hybrid talent ready to make an immediate impact.',
+		questionTranslateKey: 'faq.q2',
+		answerTranslateKey: 'faq.a2a',
+	},
+	{
+		question: 'How fast can I expect to make a hire?',
+		answer: 'Because our candidates are pre-interviewed and actively looking, the hiring cycle is drastically reduced. Most of our partners connect with ideal matches instantly, schedule final team interviews within 48 hours, and make offers within days, not weeks.',
+		questionTranslateKey: 'faq.q3',
+		answerTranslateKey: 'faq.a3a',
+	},
+	{
+		question: 'Do you handle international compliance and payroll?',
+		answer: 'Yes. Beyond AI sourcing and vetting, our platform includes a built-in global payroll solution. You can compliantly hire and pay contractors in over 150 countries with transparent billing, all without setting up local legal entities.',
+		questionTranslateKey: 'faq.q4',
+		answerTranslateKey: 'faq.a4a',
+	},
+	{
+		question: 'What is the price to get access to the platform?',
+		answer: 'Access to the platform is completely free. You can browse and review an unlimited number of pre-vetted candidates without any upfront costs or subscription fees. You only pay when you decide to make a hire.',
+		questionTranslateKey: 'faq.q5',
+		answerTranslateKey: 'faq.a5a',
+	},
+	{
+		question: 'What is the fee for candidates hiring?',
+		answer: 'Our model is purely performance-based: you only pay for the actual hire. To make it even better, your first candidate hire is completely free, allowing you to experience the quality of our talent pool with zero financial risk.',
+		questionTranslateKey: 'faq.q6',
+		answerTranslateKey: 'faq.a6a',
+	},
+] satisfies FAQItem[];
+---
+
+<BaseLayout shell={pageShells.aiHiring} currentPath="ai-hiring">
+	<main id="astro-page-content" data-astro-page-content data-current-path="ai-hiring">
+		<HeroSection {...pageHeroes.aiHiring}>
+			<Fragment set:html={heroVisualHtml} />
+		</HeroSection>
+		<Fragment set:html={contentHtml} />
+		<FAQSection
+			title={{ text: 'Frequently asked questions', translateKey: 'faq.title' }}
+				subtitle={{ text: 'Have questions? We have answers', translateKey: 'faq.subtitle' }}
+				items={aiHiringFaqItems}
+				class="bg-[#050505] pt-16 pb-16 lg:pt-32 lg:pb-32"
+				containerClass="garna-container"
+			/>
+		<FinalCTASection {...pageFinalCtas.aiHiring} />
+	</main>
+</BaseLayout>
