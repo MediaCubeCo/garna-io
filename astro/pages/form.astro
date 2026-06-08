@@ -1,0 +1,37 @@
+---
+import HeroSection from '../components/HeroSection.astro';
+import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
+import rawContentHtml from '../content/site-pages/form.html?raw';
+import { splitLegacyPageSections } from '../utils/legacy-html';
+
+const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
+	heroVisualMarker: '<div class="max-w-[900px]',
+});
+---
+
+<BaseLayout shell={pageShells.form} currentPath="form" showHeader={false}>
+	<main id="astro-page-content" data-astro-page-content data-current-path="form">
+		<HeroSection {...pageHeroes.form}>
+			<img src="/garna_logo.svg" alt="Garna" class="block h-10 w-auto object-contain mx-auto mb-8" data-translate-alt="footer.brand" slot="before-title" />
+			<Fragment set:html={heroVisualHtml} />
+		</HeroSection>
+		<Fragment set:html={contentHtml} />
+	</main>
+	<Fragment slot="widgets">
+		<GarnaBookingWidget
+			renderRoot={false}
+			embedInline
+			trackingSource="payroll-solution"
+			trackingPage="payroll-solution"
+			trackingCta="embedded_form"
+			titleFallback="Book a free 30-minute product demo"
+			subtitleFallback="Get all your questions answered by our experts"
+			bgColorCal="#000"
+			colorBorder="transparent"
+			thicknessBorder="0px"
+		/>
+	</Fragment>
+</BaseLayout>

@@ -1,0 +1,44 @@
+details > summary {
+	list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+	display: none;
+}
+
+.garna-faq-panel {
+	height: 0;
+	overflow: hidden;
+	opacity: 0;
+	transform: translateY(-8px);
+	will-change: height, opacity, transform;
+	transition:
+		height 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+		opacity 0.24s ease,
+		transform 0.3s ease;
+}
+
+details[data-state="open"] > .garna-faq-panel {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.garna-faq-icon {
+	display: block;
+	flex: 0 0 auto;
+	transition:
+		transform 0.3s ease,
+		color 0.2s ease;
+}
+
+details[data-state="open"] > summary .garna-faq-icon {
+	transform: rotate(180deg);
+	color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.garna-faq-panel,
+	.garna-faq-icon {
+		transition: none;
+	}
+}
