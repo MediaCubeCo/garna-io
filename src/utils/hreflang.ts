@@ -29,14 +29,11 @@ export function injectHreflangTags(html: string, path: string, availableLanguage
 	// Check if there are already hreflang tags
 	if (html.includes('rel="alternate" hreflang=')) {
 		// Remove existing hreflang tags
-		html = html.replace(/<link\s+rel="alternate"\s+hreflang="[^"]*"[^>]*>
-?/gi, '');
+		html = html.replace(/<link\s+rel="alternate"\s+hreflang="[^"]*"[^>]*>\n?/gi, '');
 	}
 
 	// Insert hreflang tags before </head>
-	const hreflangBlock = hreflangTags.join('
-') + '
-';
+	const hreflangBlock = hreflangTags.join('\n') + '\n';
 	html = html.replace('</head>', `${hreflangBlock}</head>`);
 
 	return html;
