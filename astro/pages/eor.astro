@@ -50,22 +50,20 @@ const eorFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.eor} scriptsHtml={scriptsHtml} currentPath="eor">
-	<main id="astro-page-content" data-astro-page-content data-current-path="eor">
-		<HeroSection {...pageHeroes.eor}>
-			<Fragment set:html={heroVisualHtml} />
-		</HeroSection>
-		<Fragment set:html={contentHtml} />
-		<FAQSection
-			kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
-			title={{ text: 'FAQ on Employer of Record', translateKey: 'faq.title' }}
-			items={eorFaqItems}
-			variant="eor"
-			class="bg-[#020202] py-24"
-			containerClass="garna-container"
-		/>
-		<FinalCTASection {...pageFinalCtas.eor} />
-	</main>
+<BaseLayout shell={pageShells.eor} scriptsHtml={scriptsHtml}>
+	<HeroSection {...pageHeroes.eor}>
+		<Fragment set:html={heroVisualHtml} />
+	</HeroSection>
+	<Fragment set:html={contentHtml} />
+	<FAQSection
+		kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
+		title={{ text: 'FAQ on Employer of Record', translateKey: 'faq.title' }}
+		items={eorFaqItems}
+		variant="eor"
+		class="bg-[#020202] py-24"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...pageFinalCtas.eor} />
 	<Fragment slot="widgets">
 		<GarnaBookingWidget
 			trackingSource="eor"

@@ -54,19 +54,17 @@ const aiHiringFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.aiHiring} currentPath="ai-hiring">
-	<main id="astro-page-content" data-astro-page-content data-current-path="ai-hiring">
-		<HeroSection {...pageHeroes.aiHiring}>
-			<Fragment set:html={heroVisualHtml} />
-		</HeroSection>
-		<Fragment set:html={contentHtml} />
-		<FAQSection
-			title={{ text: 'Frequently asked questions', translateKey: 'faq.title' }}
-				subtitle={{ text: 'Have questions? We have answers', translateKey: 'faq.subtitle' }}
-				items={aiHiringFaqItems}
-				class="bg-[#050505] pt-16 pb-16 lg:pt-32 lg:pb-32"
-				containerClass="garna-container"
-			/>
-		<FinalCTASection {...pageFinalCtas.aiHiring} />
-	</main>
+<BaseLayout shell={pageShells.aiHiring}>
+	<HeroSection {...pageHeroes.aiHiring}>
+		<Fragment set:html={heroVisualHtml} />
+	</HeroSection>
+	<Fragment set:html={contentHtml} />
+	<FAQSection
+		title={{ text: 'Frequently asked questions', translateKey: 'faq.title' }}
+		subtitle={{ text: 'Have questions? We have answers', translateKey: 'faq.subtitle' }}
+		items={aiHiringFaqItems}
+		class="bg-[#050505] pt-16 pb-16 lg:pt-32 lg:pb-32"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...pageFinalCtas.aiHiring} />
 </BaseLayout>

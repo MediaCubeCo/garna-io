@@ -12,14 +12,12 @@ const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, 
 });
 ---
 
-<BaseLayout shell={pageShells.form} currentPath="form" showHeader={false}>
-	<main id="astro-page-content" data-astro-page-content data-current-path="form">
-		<HeroSection {...pageHeroes.form}>
-			<img src="/garna_logo.svg" alt="Garna" class="block h-10 w-auto object-contain mx-auto mb-8" data-translate-alt="footer.brand" slot="before-title" />
-			<Fragment set:html={heroVisualHtml} />
-		</HeroSection>
-		<Fragment set:html={contentHtml} />
-	</main>
+<BaseLayout shell={pageShells.form} showHeader={false}>
+	<HeroSection {...pageHeroes.form}>
+		<img src="/garna_logo.svg" alt="Garna" class="block h-10 w-auto object-contain mx-auto mb-8" data-translate-alt="footer.brand" slot="before-title" />
+		<Fragment set:html={heroVisualHtml} />
+	</HeroSection>
+	<Fragment set:html={contentHtml} />
 	<Fragment slot="widgets">
 		<GarnaBookingWidget
 			renderRoot={false}

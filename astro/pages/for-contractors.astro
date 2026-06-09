@@ -78,19 +78,17 @@ const contractorFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.offer} currentPath="for-contractors">
-	<main id="astro-page-content" data-astro-page-content data-current-path="for-contractors">
-		<HeroSection {...pageHeroes.offer}>
-			<Fragment set:html={heroVisualHtml} />
-		</HeroSection>
-		<Fragment set:html={contentHtml} />
-		<FAQSection
-			title={{ text: 'Common questions', translateKey: 'faq.title' }}
-				subtitle={{ text: 'Everything you need to know about getting paid', translateKey: 'faq.description' }}
-				items={contractorFaqItems}
-				class="md:pt-16 md:pb-16 lg:pt-32 lg:pb-32 bg-transparent border-white/0 border-t pt-16 pb-16"
-				containerClass="garna-container"
-			/>
-		<FinalCTASection {...pageFinalCtas.offer} />
-	</main>
+<BaseLayout shell={pageShells.offer}>
+	<HeroSection {...pageHeroes.offer}>
+		<Fragment set:html={heroVisualHtml} />
+	</HeroSection>
+	<Fragment set:html={contentHtml} />
+	<FAQSection
+		title={{ text: 'Common questions', translateKey: 'faq.title' }}
+		subtitle={{ text: 'Everything you need to know about getting paid', translateKey: 'faq.description' }}
+		items={contractorFaqItems}
+		class="md:pt-16 md:pb-16 lg:pt-32 lg:pb-32 bg-transparent border-white/0 border-t pt-16 pb-16"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...pageFinalCtas.offer} />
 </BaseLayout>

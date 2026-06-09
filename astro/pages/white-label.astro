@@ -61,21 +61,19 @@ const whiteLabelFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.whiteLabel} currentPath="white-label">
-	<main id="astro-page-content" data-astro-page-content data-current-path="white-label">
-		<HeroSection {...pageHeroes.whiteLabel}>
-			<Fragment set:html={heroVisualHtml} />
-		</HeroSection>
-		<Fragment set:html={contentHtml} />
-		<FAQSection
-			title={{ text: 'FAQ on Garna White Label Services', translateKey: 'faq.title' }}
-				subtitle={{ text: 'Have questions? We have answers', translateKey: 'faq.subtitle' }}
-				items={whiteLabelFaqItems}
-				class="lg:pt-32 lg:pb-32 pt-16 pb-16"
-				containerClass="garna-container"
-			/>
-		<FinalCTASection {...pageFinalCtas.whiteLabel} />
-	</main>
+<BaseLayout shell={pageShells.whiteLabel}>
+	<HeroSection {...pageHeroes.whiteLabel}>
+		<Fragment set:html={heroVisualHtml} />
+	</HeroSection>
+	<Fragment set:html={contentHtml} />
+	<FAQSection
+		title={{ text: 'FAQ on Garna White Label Services', translateKey: 'faq.title' }}
+		subtitle={{ text: 'Have questions? We have answers', translateKey: 'faq.subtitle' }}
+		items={whiteLabelFaqItems}
+		class="lg:pt-32 lg:pb-32 pt-16 pb-16"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...pageFinalCtas.whiteLabel} />
 	<Fragment slot="widgets">
 		<GarnaBookingWidget
 			trackingSource="white-label"

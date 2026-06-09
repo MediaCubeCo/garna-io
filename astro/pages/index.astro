@@ -44,21 +44,19 @@ const homeFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.home} scriptsHtml={scriptsHtml} currentPath="">
-	<main id="astro-page-content" data-astro-page-content data-current-path="">
-		<HeroSection {...pageHeroes.home}>
-			<Fragment set:html={heroVisualHtml} />
-		</HeroSection>
-		<Fragment set:html={contentHtml} />
-		<FAQSection
-				title={{ text: 'Frequently asked questions', translateKey: 'faqHome.title' }}
-				subtitle={{ text: "Got Questions? We've Got Answers", translateKey: 'faqHome.subtitle' }}
-				items={homeFaqItems}
-				class="pt-16 pb-16 lg:pt-32 lg:pb-32"
-				containerClass="garna-container"
-			/>
-		<FinalCTASection {...pageFinalCtas.home} />
-	</main>
+<BaseLayout shell={pageShells.home} scriptsHtml={scriptsHtml}>
+	<HeroSection {...pageHeroes.home}>
+		<Fragment set:html={heroVisualHtml} />
+	</HeroSection>
+	<Fragment set:html={contentHtml} />
+	<FAQSection
+		title={{ text: 'Frequently asked questions', translateKey: 'faqHome.title' }}
+		subtitle={{ text: "Got Questions? We've Got Answers", translateKey: 'faqHome.subtitle' }}
+		items={homeFaqItems}
+		class="pt-16 pb-16 lg:pt-32 lg:pb-32"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...pageFinalCtas.home} />
 	<Fragment slot="widgets">
 		<GarnaBookingWidget
 			trackingSource="payroll-solution"

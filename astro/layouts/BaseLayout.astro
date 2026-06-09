@@ -5,10 +5,10 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import RainbowBackground from '../components/RainbowBackground.astro';
 import type { PageShellConfig } from '../types/page-shell';
+import { getPagePathFromPathname } from '../utils/page-path';
 
 interface Props {
 	shell: PageShellConfig;
-	currentPath?: string;
 	showHeader?: boolean;
 	showFooter?: boolean;
 	scriptsHtml?: string;
@@ -16,11 +16,12 @@ interface Props {
 
 const {
 	shell,
-	currentPath = '',
 	showHeader = true,
 	showFooter = true,
 	scriptsHtml = '',
 } = Astro.props;
+
+const currentPath = getPagePathFromPathname(Astro.url.pathname);
 
 const {
 	title,
@@ -84,8 +85,10 @@ const {
 	</head>
 	<body class={bodyClass}>
 		<RainbowBackground />
-		{showHeader && <Header currentPath={currentPath} />}
-		<slot />
+		{showHeader && <Header />}
+		<main id="astro-page-content" data-astro-page-content data-current-path={currentPath}>
+			<slot />
+		</main>
 		{showFooter && <Footer />}
 		<div id="astro-page-scripts" data-astro-page-scripts>
 			<slot name="widgets" />

@@ -50,19 +50,17 @@ const payrollSmallBusinessFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.payrollSmallBusiness} scriptsHtml={scriptsHtml} currentPath="payroll-small-business">
-	<main id="astro-page-content" data-astro-page-content data-current-path="payroll-small-business">
-		<HeroSection {...pageHeroes.payrollSmallBusiness}>
-			<Fragment set:html={heroVisualHtml} />
-		</HeroSection>
-		<Fragment set:html={rawContentHtml} />
-		<FAQSection
-			kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
-			title={{ text: 'FAQ on Small Business Payroll', translateKey: 'faq.title' }}
-			items={payrollSmallBusinessFaqItems}
-			class="relative py-20 lg:py-28"
-			containerClass="garna-container"
-		/>
-		<FinalCTASection {...pageFinalCtas.payrollSmallBusiness} />
-	</main>
+<BaseLayout shell={pageShells.payrollSmallBusiness} scriptsHtml={scriptsHtml}>
+	<HeroSection {...pageHeroes.payrollSmallBusiness}>
+		<Fragment set:html={heroVisualHtml} />
+	</HeroSection>
+	<Fragment set:html={rawContentHtml} />
+	<FAQSection
+		kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
+		title={{ text: 'FAQ on Small Business Payroll', translateKey: 'faq.title' }}
+		items={payrollSmallBusinessFaqItems}
+		class="relative py-20 lg:py-28"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...pageFinalCtas.payrollSmallBusiness} />
 </BaseLayout>
