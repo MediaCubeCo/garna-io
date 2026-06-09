@@ -22,5 +22,31 @@ import { pageShells } from '../content/page-shells';
 			colorBorder="transparent"
 			thicknessBorder="0px"
 		/>
+		<script
+			is:inline
+			set:html={`
+(function () {
+	'use strict';
+
+	var params = new URLSearchParams(window.location.search);
+	var campaign = '';
+	params.forEach(function (value, key) {
+		if (key.toLowerCase() === 'utm_campaign') campaign = value;
+	});
+
+	if (campaign.trim().toLowerCase() !== 'linkedin_inmail') return;
+
+	var translations = __GARNA_WIDGET_TRANSLATIONS__;
+	var campaignCopy = translations && translations.campaigns && translations.campaigns.linkedinInmail;
+	if (!campaignCopy) return;
+
+	var heading = document.querySelector('[data-translate="form.heading"]');
+	var subtitle = document.querySelector('[data-translate="form.subtitle"]');
+
+	if (heading && campaignCopy.heading) heading.textContent = campaignCopy.heading;
+	if (subtitle && campaignCopy.subtitle) subtitle.textContent = campaignCopy.subtitle;
+})();
+`}
+		/>
 	</HeroSection>
 </BaseLayout>

@@ -191,7 +191,7 @@ export const pageHeroes = {
 		class: 'lg:pb-32 lg:pt-16 pt-16 pb-24',
 		containerClass: 'garna-container',
 		contentClass: 'lg:mb-20 text-center max-w-3xl mr-auto mb-16 ml-auto',
-		titleClass: 'garna-hero-title-gradient md:text-5xl text-3xl font-normal tracking-tight font-manrope mb-6',
+		titleClass: 'garna-hero-title-gradient md:text-5xl text-3xl leading-[1.15] pb-[0.08em] font-normal tracking-tight font-manrope mb-6',
 		descriptionClass: 'text-xl font-light text-gray-400 font-manrope',
 		title: [{ text: 'Book a free 30-minute product demo', translateKey: 'form.heading' }],
 		description: 'Get all your questions answered by our experts',

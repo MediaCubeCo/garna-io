@@ -62,6 +62,19 @@ const widgetConfig = {
 	var widgetConfig = ${JSON.stringify(widgetConfig)};
 	var language = __GARNA_LOCALE__;
 	var widgetTrans = __GARNA_WIDGET_TRANSLATIONS__;
+	var campaign = getCurrentCampaign();
+	var campaignTrans = campaign === 'linkedin_inmail' && widgetTrans.campaigns
+		? widgetTrans.campaigns.linkedinInmail || {}
+		: {};
+
+	function getCurrentCampaign() {
+		var value = '';
+		var params = new URLSearchParams(window.location.search);
+		params.forEach(function (paramValue, key) {
+			if (key.toLowerCase() === 'utm_campaign') value = paramValue;
+		});
+		return value.trim().toLowerCase();
+	}
 
 	function buildWidgetTranslations() {
 		var signUp = widgetTrans.signUp || {};
@@ -71,6 +84,7 @@ const widgetConfig = {
 
 		return {
 			buttonChooseDate: widgetTrans.buttonChooseDate,
+			promoBannerText: campaignTrans.promoBannerText,
 			signUpPromptPrefix: signUp.promptPrefix,
 			signUpLinkText: signUp.linkText,
 			signUpPromptSuffix: signUp.promptSuffix,
@@ -107,8 +121,8 @@ const widgetConfig = {
 			trackingSource: widgetConfig.trackingSource,
 			trackingPage: widgetConfig.trackingPage,
 			...(widgetConfig.trackingCta ? { trackingCta: widgetConfig.trackingCta } : {}),
-			title: widgetTrans.title || widgetConfig.titleFallback,
-			subtitle: widgetTrans.subtitle || widgetConfig.subtitleFallback,
+			title: campaignTrans.heading || widgetTrans.title || widgetConfig.titleFallback,
+			subtitle: campaignTrans.subtitle || widgetTrans.subtitle || widgetConfig.subtitleFallback,
 			titleButtonForm: widgetTrans.buttonContinue || 'Continue',
 			translations: buildWidgetTranslations(),
 			colorBrandBg: widgetConfig.colorBrandBg,

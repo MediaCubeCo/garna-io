@@ -24,6 +24,7 @@ export interface IValidInfo {
 /** Optional widget copy; when provided, overrides default English strings. */
 export interface IModalTranslations {
 	buttonChooseDate?: string;
+	promoBannerText?: string;
 	signUpPromptPrefix?: string;
 	signUpLinkText?: string;
 	signUpPromptSuffix?: string;
@@ -79,6 +80,7 @@ export interface IModalProps {
 }
 const DEFAULT_TRANSLATIONS: Required<IModalTranslations> = {
 	buttonChooseDate: 'Choose a date & time',
+	promoBannerText: '',
 	signUpPromptPrefix: 'Contractor or employee? ',
 	signUpLinkText: 'Sign up',
 	signUpPromptSuffix: ' here instead',
@@ -473,13 +475,22 @@ export default function Modal({
 				companySizeOptions={companySizeOptions}
 			/>
 			<div className={styles.formFooter}>
-				<p className={styles.signUpPrompt}>
-					{t.signUpPromptPrefix}
-					<a className={styles.link} href={signUpUrl} target="_blank" rel="noopener noreferrer">
-						{t.signUpLinkText}
-					</a>
-					{t.signUpPromptSuffix}
-				</p>
+				{t.promoBannerText ? (
+					<div className={styles.promoBanner}>
+						<span className={styles.promoBannerIcon} aria-hidden="true">
+							🎁
+						</span>
+						<p className={styles.promoBannerText}>{t.promoBannerText}</p>
+					</div>
+				) : (
+					<p className={styles.signUpPrompt}>
+						{t.signUpPromptPrefix}
+						<a className={styles.link} href={signUpUrl} target="_blank" rel="noopener noreferrer">
+							{t.signUpLinkText}
+						</a>
+						{t.signUpPromptSuffix}
+					</p>
+				)}
 				<div className={styles.buttonWrap}>
 					<Button
 						label={t.buttonChooseDate}

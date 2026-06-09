@@ -24,6 +24,15 @@ export const formPt = {
 	bookingWidget: {
 		title: 'Agende uma demo de produto gratuita de 30 minutos',
 		subtitle: 'Tire todas as suas dúvidas com nossos especialistas',
+		campaigns: {
+			linkedinInmail: {
+				heading: 'Demo gratuita sobre pagamentos internacionais',
+				subtitle:
+					'Contas bancárias, cartões, crypto e e-wallets em mais de 180 países, incluindo a CIS. Tire suas dúvidas com nossa equipe em 30 minutos.',
+				promoBannerText:
+					'Depois da demo, você receberá um guia para abrir contas em bancos europeus e americanos.',
+			},
+		},
 		buttonContinue: 'Continuar',
 		buttonChooseDate: 'Escolher data e hora',
 		form: {
