@@ -12,3 +12,19 @@ USE_STATIC_ASSETS = "true"
 [assets]
 directory = "./dist"
 binding = "ASSETS"
+run_worker_first = [
+	"/",
+	"/index.html",
+	"/for-contractors",
+	"/for-contractors.html",
+	"/form",
+	"/form.html",
+	"/ai-hiring",
+	"/ai-hiring.html",
+	"/white-label",
+	"/white-label.html",
+	"/payroll-small-business",
+	"/payroll-small-business.html",
+	"/eor",
+	"/eor.html",
+]
