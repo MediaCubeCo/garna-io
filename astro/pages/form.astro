@@ -4,21 +4,12 @@ import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
-import rawContentHtml from '../content/site-pages/form.html?raw';
-import { splitLegacyPageSections } from '../utils/legacy-html';
-
-const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
-	heroVisualMarker: '<div class="max-w-[900px]',
-});
 ---
 
 <BaseLayout shell={pageShells.form} showHeader={false}>
 	<HeroSection {...pageHeroes.form}>
 		<img src="/garna_logo.svg" alt="Garna" class="block h-10 w-auto object-contain mx-auto mb-8" data-translate-alt="footer.brand" slot="before-title" />
-		<Fragment set:html={heroVisualHtml} />
-	</HeroSection>
-	<Fragment set:html={contentHtml} />
-	<Fragment slot="widgets">
+		<div id="garna-widget-root" class="max-w-[900px] mr-auto ml-auto pr-6 pl-6"></div>
 		<GarnaBookingWidget
 			renderRoot={false}
 			embedInline
@@ -31,5 +22,5 @@ const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, 
 			colorBorder="transparent"
 			thicknessBorder="0px"
 		/>
-	</Fragment>
+	</HeroSection>
 </BaseLayout>
