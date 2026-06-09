@@ -23,12 +23,17 @@
       --green: #5EA500;
       --green-hover: #6AB901;
       --green-dark: #4d8700;
+      --red: #EF4444;
+      --yellow: #EAB308;
+      --blue: #3B82F6;
+      --purple: #A855F7;
       --error: rgb(255, 3, 3);
       --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 16px;
       --radius-xl: 24px;
       --radius-modal: 32px;
+      --card-grid-gap: 24px;
       color-scheme: dark;
     }
 
@@ -484,6 +489,51 @@
       line-height: 1.45;
     }
 
+    .comparison-list-type-sample {
+      display: grid;
+      gap: 16px;
+      max-width: 520px;
+    }
+
+    .comparison-list-type-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .comparison-list-type-icon {
+      display: grid;
+      width: 18px;
+      height: 18px;
+      flex: none;
+      place-items: center;
+      margin-top: 2px;
+      color: var(--soft);
+    }
+
+    .comparison-list-type-icon.is-positive {
+      width: 16px;
+      height: 16px;
+      margin-top: 3px;
+      border-radius: 999px;
+      background: var(--green);
+      color: #050505;
+      box-shadow: 0 0 8px rgba(94,165,0,0.4);
+    }
+
+    .comparison-list-type-text {
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.55;
+    }
+
+    .comparison-list-type-text.is-positive {
+      color: #d1d5db;
+      font-weight: 500;
+    }
+
     .section-layout-demo {
       border-radius: 20px;
       border: 1px solid var(--border-soft);
@@ -535,7 +585,7 @@
     .section-layout-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
+      gap: var(--card-grid-gap);
     }
 
     .section-layout-card {
@@ -724,6 +774,195 @@
     .step-switcher-panel.is-active {
       opacity: 1;
       transform: translateY(0) scale(1);
+    }
+
+    .how-it-works-demo {
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
+      background: rgba(12,12,12,0.35);
+      padding: 48px 32px;
+    }
+
+    .how-it-works-track {
+      position: relative;
+      display: grid;
+      width: min(1024px, 100%);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 48px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .how-it-works-line {
+      position: absolute;
+      z-index: 0;
+      top: 40px;
+      right: 12.5%;
+      left: 12.5%;
+      height: 3px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .how-it-works-line svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .how-it-works-flow-line {
+      animation: how-it-works-flow 1s linear infinite;
+    }
+
+    .how-it-works-node {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .how-it-works-icon {
+      position: relative;
+      display: grid;
+      width: 80px;
+      height: 80px;
+      place-items: center;
+      margin-bottom: 24px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #0a0a0a;
+      color: var(--text);
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition:
+        transform 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease,
+        color 0.5s ease;
+    }
+
+    .how-it-works-icon::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: rgba(94,165,0,0.05);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .how-it-works-node:hover .how-it-works-icon {
+      transform: translateY(-8px);
+      border-color: rgba(94,165,0,0.5);
+      color: var(--green);
+      box-shadow: 0 0 30px rgba(94,165,0,0.3);
+    }
+
+    .how-it-works-node:hover .how-it-works-icon::before {
+      opacity: 1;
+    }
+
+    .how-it-works-node.is-final .how-it-works-icon {
+      border-color: rgba(94,165,0,0.4);
+      color: var(--green);
+      animation: how-it-works-pulse 3s ease-in-out infinite;
+    }
+
+    .how-it-works-node.is-final .how-it-works-icon::before {
+      opacity: 0.5;
+      background: rgba(94,165,0,0.1);
+    }
+
+    .how-it-works-node.is-final:hover .how-it-works-icon {
+      transform: translateY(0);
+      border-color: var(--green);
+      box-shadow: 0 0 30px rgba(94,165,0,0.3);
+    }
+
+    .how-it-works-icon svg {
+      position: relative;
+      z-index: 1;
+      width: 32px;
+      height: 32px;
+      stroke-width: 1.5;
+    }
+
+    .how-it-works-index {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #111111;
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.28);
+      transition:
+        border-color 0.3s ease,
+        color 0.3s ease;
+    }
+
+    .how-it-works-node:hover .how-it-works-index,
+    .how-it-works-node.is-final .how-it-works-index {
+      border-color: rgba(94,165,0,0.3);
+      color: var(--green);
+    }
+
+    .how-it-works-node.is-final .how-it-works-index {
+      box-shadow: 0 0 10px rgba(94,165,0,0.3);
+    }
+
+    .how-it-works-title {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: 0;
+      transition: color 0.3s ease;
+    }
+
+    .how-it-works-node:hover .how-it-works-title,
+    .how-it-works-node.is-final .how-it-works-title {
+      color: var(--green);
+    }
+
+    .how-it-works-description {
+      max-width: 220px;
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    @keyframes how-it-works-flow {
+      from { stroke-dashoffset: 20; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes how-it-works-pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      }
+
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(94,165,0,0.5);
+      }
     }
 
     .final-cta-layout-demo {
@@ -920,6 +1159,7 @@
     .surface-demo .grid {
       position: relative;
       z-index: 1;
+      gap: var(--card-grid-gap);
     }
 
     .contractor-benefit-card {
@@ -983,6 +1223,41 @@
       line-height: 1.625;
     }
 
+    .plain-icon-card {
+      align-self: start;
+      min-height: 270px;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      padding: 32px;
+    }
+
+    .plain-icon-card-icon {
+      display: block;
+      width: 24px;
+      height: 24px;
+      color: var(--green);
+      font-size: 24px;
+    }
+
+    .plain-icon-card-title {
+      margin: 20px 0 12px;
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .plain-icon-card-description {
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.625;
+    }
+
     .testimonial-card {
       position: relative;
       display: flex;
@@ -1024,7 +1299,7 @@
     .testimonial-rating {
       display: flex;
       gap: 2px;
-      color: #eab308;
+      color: var(--yellow);
     }
 
     .testimonial-rating iconify-icon {
@@ -1408,18 +1683,130 @@
       text-transform: uppercase;
     }
 
+    .top-visual-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      padding: 20px;
+    }
+
+    .top-visual-card-media {
+      display: grid;
+      min-height: 160px;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
+        #050505;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+      color: var(--soft);
+      font-family: Manrope, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.025em;
+      text-transform: uppercase;
+    }
+
+    .top-visual-card-title {
+      margin: 24px 0 12px;
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .top-visual-card-description {
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.625;
+    }
+
     .white-label-model-layout {
       display: grid;
       width: min(1024px, 100%);
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 32px;
+      gap: var(--card-grid-gap);
       margin: 8px auto 0;
+    }
+
+    .photo-badge-sample {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .photo-overlay-badge {
+      z-index: 1;
+      display: flex;
+      max-width: 256px;
+      align-items: center;
+      gap: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #111111;
+      padding: 12px 16px;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+    }
+
+    .photo-overlay-badge.is-overlay {
+      position: absolute;
+    }
+
+    .photo-overlay-badge.is-top-left {
+      top: 20px;
+      left: 20px;
+    }
+
+    .photo-overlay-badge.is-bottom-right {
+      right: 20px;
+      bottom: 20px;
+    }
+
+    .photo-overlay-badge-icon {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      flex: none;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(94,165,0,0.2);
+      color: var(--green);
+    }
+
+    .photo-overlay-badge-icon iconify-icon {
+      width: 19px;
+      height: 19px;
+    }
+
+    .photo-overlay-badge-title {
+      margin: 0;
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .photo-overlay-badge-text {
+      margin: 3px 0 0;
+      color: var(--green);
+      font-family: Manrope, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.35;
     }
 
     .white-label-model-card {
       position: relative;
       display: flex;
-      min-height: 240px;
       flex-direction: column;
       align-items: stretch;
       overflow: hidden;
@@ -1437,19 +1824,6 @@
       transform: translateY(-4px);
       border-color: rgba(94,165,0,0.4);
       box-shadow: 0 0 34px -12px rgba(94,165,0,0.34);
-    }
-
-    .white-label-model-card::before {
-      content: "";
-      position: absolute;
-      top: -80px;
-      right: -80px;
-      width: 160px;
-      height: 160px;
-      border-radius: 999px;
-      background: rgba(94,165,0,0.05);
-      filter: blur(36px);
-      pointer-events: none;
     }
 
     .white-label-model-head {
@@ -1506,6 +1880,194 @@
       line-height: 1.625;
     }
 
+    .before-after-layout {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--card-grid-gap);
+      margin-top: 8px;
+    }
+
+    .before-after-card {
+      position: relative;
+      display: flex;
+      min-height: 520px;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      padding: 32px;
+    }
+
+    .before-after-card.is-after {
+      border-color: rgba(94,165,0,0.2);
+      background:
+        radial-gradient(circle at 86% 8%, rgba(94,165,0,0.16), transparent 34%),
+        var(--card-bg);
+    }
+
+    .before-after-card.is-after::before {
+      content: "";
+      position: absolute;
+      top: -72px;
+      right: -72px;
+      width: 256px;
+      height: 256px;
+      border-radius: 999px;
+      background: rgba(94,165,0,0.1);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .before-after-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .before-after-icon {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      flex: none;
+      place-items: center;
+      border-radius: 8px;
+      border: 1px solid rgba(107,114,128,0.2);
+      background: rgba(107,114,128,0.1);
+      color: var(--soft);
+    }
+
+    .before-after-icon.is-red {
+      border-color: rgba(239,68,68,0.2);
+      background: rgba(239,68,68,0.1);
+      color: var(--red);
+    }
+
+    .before-after-icon.is-green {
+      border-color: rgba(94,165,0,0.2);
+      background: rgba(94,165,0,0.1);
+      color: var(--green);
+    }
+
+    .before-after-icon iconify-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .before-after-title {
+      margin: 0;
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .before-after-list {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .before-after-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.55;
+    }
+
+    .before-after-card.is-after .before-after-list-item {
+      color: #d1d5db;
+      font-weight: 500;
+    }
+
+    .before-after-list-icon {
+      display: grid;
+      width: 18px;
+      height: 18px;
+      flex: none;
+      place-items: center;
+      margin-top: 2px;
+      color: var(--soft);
+    }
+
+    .before-after-list-icon.is-positive {
+      width: 16px;
+      height: 16px;
+      margin-top: 3px;
+      border-radius: 999px;
+      background: var(--green);
+      color: #050505;
+      box-shadow: 0 0 8px rgba(94,165,0,0.4);
+    }
+
+    .before-after-visual {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+      margin-top: auto;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: #0a0a0a;
+      padding: 20px;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .before-after-card.is-after .before-after-visual {
+      border-color: rgba(255,255,255,0.1);
+      box-shadow: 0 25px 50px -24px rgba(0,0,0,0.9);
+    }
+
+    .before-after-visual-row,
+    .before-after-visual-line,
+    .before-after-visual-pill {
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .before-after-visual-row {
+      height: 42px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .before-after-card.is-after .before-after-visual-row {
+      background: rgba(94,165,0,0.08);
+      border-color: rgba(94,165,0,0.14);
+    }
+
+    .before-after-visual-line {
+      height: 10px;
+      width: 72%;
+    }
+
+    .before-after-visual-line:nth-child(2) { width: 52%; }
+    .before-after-visual-line:nth-child(3) { width: 86%; }
+
+    .before-after-visual-pill {
+      width: 118px;
+      height: 28px;
+      border: 1px solid var(--card-border);
+    }
+
+    .before-after-card.is-after .before-after-visual-pill {
+      border-color: rgba(94,165,0,0.2);
+      background: rgba(94,165,0,0.12);
+    }
+
     .browser-window-demo-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.24fr) minmax(320px, 0.76fr);
@@ -1556,7 +2118,7 @@
     }
 
     .browser-window-dot.is-red { background: #ef4444; }
-    .browser-window-dot.is-yellow { background: #eab308; }
+    .browser-window-dot.is-yellow { background: var(--yellow); }
     .browser-window-dot.is-green { background: #22c55e; }
 
     .browser-window-url {
@@ -2147,7 +2709,7 @@
     }
 
     .browser-window-real-dot.is-red { background: #ef4444; }
-    .browser-window-real-dot.is-yellow { background: #eab308; }
+    .browser-window-real-dot.is-yellow { background: var(--yellow); }
     .browser-window-real-dot.is-green { background: #22c55e; }
 
     .browser-window-real-url {
@@ -3056,9 +3618,9 @@
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       width: fit-content;
-      padding: 4px 12px;
+      padding: 2px 10px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.1);
       background: rgba(255,255,255,0.05);
@@ -3067,17 +3629,17 @@
       color: #d1d5db;
       text-transform: uppercase;
       font-family: Manrope, sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
-      line-height: 16px;
+      line-height: 14px;
       letter-spacing: 0.025em;
     }
 
     .hero-badge-dot-shell {
       position: relative;
       display: flex;
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
     }
 
     .hero-badge-dot,
@@ -3498,6 +4060,173 @@
       position: relative;
     }
 
+    .segmented-switcher-demo {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      border-radius: 20px;
+      border: 1px solid var(--card-border);
+      background: rgba(12,12,12,0.35);
+      padding: 40px 24px 24px;
+    }
+
+    .segmented-switcher-demo input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .segmented-switcher-header {
+      max-width: 680px;
+      text-align: center;
+    }
+
+    .segmented-switcher-title {
+      margin: 0;
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .segmented-switcher-subtitle {
+      max-width: 560px;
+      margin: 14px auto 0;
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.65;
+    }
+
+    .segmented-switcher-control {
+      display: inline-flex;
+      width: auto;
+      max-width: 100%;
+      flex-direction: row;
+      gap: 4px;
+      margin-top: 28px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: #0a0a0a;
+      padding: 6px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.32);
+    }
+
+    .segmented-switcher-option {
+      display: flex;
+      min-height: 40px;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 24px;
+      border-radius: 10px;
+      color: #9ca3af;
+      font-family: Manrope, sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.2;
+      text-align: center;
+      cursor: pointer;
+      transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .segmented-switcher-option:hover {
+      color: var(--text);
+    }
+
+    .segmented-switcher-option:focus-visible {
+      outline: 2px solid rgba(94,165,0,0.7);
+      outline-offset: 2px;
+    }
+
+    #catalog-segment-cor:checked ~ .segmented-switcher-control label[for="catalog-segment-cor"],
+    #catalog-segment-eor:checked ~ .segmented-switcher-control label[for="catalog-segment-eor"] {
+      background: var(--green);
+      color: var(--text);
+      box-shadow: 0 8px 18px rgba(94,165,0,0.24);
+    }
+
+    #catalog-segment-cor:focus-visible ~ .segmented-switcher-control label[for="catalog-segment-cor"],
+    #catalog-segment-eor:focus-visible ~ .segmented-switcher-control label[for="catalog-segment-eor"] {
+      outline: 2px solid rgba(94,165,0,0.7);
+      outline-offset: 2px;
+    }
+
+    .segmented-switcher-panels {
+      width: min(760px, 100%);
+      margin-top: 28px;
+    }
+
+    .segmented-switcher-panel {
+      display: none;
+      min-height: 152px;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      padding: 24px;
+    }
+
+    .segmented-switcher-panel h3 {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .segmented-switcher-panel p {
+      max-width: 560px;
+      color: var(--muted);
+      font-family: Manrope, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.65;
+    }
+
+    .segmented-switcher-skeleton {
+      display: grid;
+      grid-template-columns: 1fr 120px;
+      gap: 16px;
+      margin-top: 18px;
+      align-items: end;
+    }
+
+    .segmented-switcher-lines {
+      display: grid;
+      gap: 10px;
+    }
+
+    .segmented-switcher-lines span,
+    .segmented-switcher-chip {
+      display: block;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .segmented-switcher-lines span:nth-child(1) { width: 82%; }
+    .segmented-switcher-lines span:nth-child(2) { width: 58%; }
+    .segmented-switcher-lines span:nth-child(3) { width: 72%; }
+
+    .segmented-switcher-chip {
+      height: 34px;
+      border: 1px solid rgba(94,165,0,0.18);
+      background: rgba(94,165,0,0.12);
+    }
+
+    #catalog-segment-cor:checked ~ .segmented-switcher-panels [data-segment-panel="cor"],
+    #catalog-segment-eor:checked ~ .segmented-switcher-panels [data-segment-panel="eor"] {
+      display: block;
+      animation: tabPanelIn 0.24s ease both;
+    }
+
     .catalog-tabs input[type="radio"] {
       position: absolute;
       opacity: 0;
@@ -3593,6 +4322,13 @@
       .step-switcher-index,
       .step-switcher-title,
       .step-switcher-panel,
+      .how-it-works-flow-line,
+      .how-it-works-icon,
+      .how-it-works-icon::before,
+      .how-it-works-index,
+      .how-it-works-title,
+      .segmented-switcher-option,
+      .segmented-switcher-panel,
       .tab-panel {
         transition: none;
         animation: none;
@@ -3601,11 +4337,13 @@
 
     .footer-preview {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) auto;
       gap: 24px;
+      align-items: start;
+      width: 100%;
       background: var(--footer-bg);
       border-top: 1px solid var(--border-soft);
-      padding: 28px;
+      padding: 32px 40px;
       border-radius: 16px;
     }
 
@@ -3648,20 +4386,6 @@
       stroke-width: 1.5;
     }
 
-    .radar {
-      width: 230px;
-      height: 230px;
-      border-radius: 50%;
-      margin: 0 auto;
-      border: 1px solid rgba(255,255,255,0.08);
-      background:
-        conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(94,165,0,0.12) 310deg, rgba(94,165,0,0.45) 360deg),
-        radial-gradient(circle, transparent 0 28%, rgba(255,255,255,0.04) 29% 30%, transparent 31% 58%, rgba(255,255,255,0.04) 59% 60%, transparent 61%);
-      animation: radar-spin 4s linear infinite;
-    }
-
-    @keyframes radar-spin { to { transform: rotate(360deg); } }
-
     @media (min-width: 1024px) {
       .section-title-sample {
         font-size: 48px;
@@ -3700,6 +4424,48 @@
       .step-switcher-visual {
         min-height: 320px;
       }
+      .how-it-works-track {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .how-it-works-line {
+        top: 40px;
+        bottom: 116px;
+        right: auto;
+        left: 50%;
+        width: 3px;
+        height: auto;
+        transform: translateX(-50%);
+      }
+      .how-it-works-line svg line {
+        display: none;
+      }
+      .how-it-works-line::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 999px;
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.05) 0 3px,
+          transparent 3px 20px
+        );
+      }
+      .how-it-works-description {
+        max-width: 360px;
+      }
+      .segmented-switcher-control {
+        flex-direction: column;
+        width: 100%;
+      }
+      .segmented-switcher-option {
+        width: 100%;
+        min-height: 40px;
+        font-size: 14px;
+      }
+      .segmented-switcher-skeleton {
+        grid-template-columns: 1fr;
+      }
       .final-cta-split {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -3715,6 +4481,9 @@
         grid-template-columns: 1fr;
       }
       .white-label-model-layout {
+        grid-template-columns: 1fr;
+      }
+      .before-after-layout {
         grid-template-columns: 1fr;
       }
       .payroll-browser-real,
@@ -4028,6 +4797,10 @@
         <div class="swatch" style="background:#0c0c0c; border-color:rgba(255,255,255,0.05)">Card border<br>white / 5%</div>
         <div class="swatch" style="background:#5EA500">Primary<br>#5EA500</div>
         <div class="swatch" style="background:#6AB901">Primary hover<br>#6AB901</div>
+        <div class="swatch" style="background:#EF4444">Negative red<br>#EF4444</div>
+        <div class="swatch" style="background:#EAB308; color:#050505">Status yellow<br>#EAB308</div>
+        <div class="swatch" style="background:#3B82F6">Utility blue<br>#3B82F6</div>
+        <div class="swatch" style="background:#A855F7">Utility purple<br>#A855F7</div>
         <div class="swatch" style="background:#A1A1A1; color:#050505">Muted text<br>#A1A1A1</div>
       </div>
     </section>
@@ -4081,6 +4854,21 @@
             </div>
           </div>
         </div>
+        <div class="sample span-6">
+          <span class="sample-label">Before / after comparison list</span>
+          <div class="comparison-list-type-sample">
+            <div class="comparison-list-type-item">
+              <iconify-icon class="comparison-list-type-icon" icon="solar:phone-calling-linear" width="18" height="18" aria-hidden="true"></iconify-icon>
+              <span class="comparison-list-type-text">80% of recruiter time wasted on first-round calls</span>
+            </div>
+            <div class="comparison-list-type-item">
+              <span class="comparison-list-type-icon is-positive" aria-hidden="true">
+                <iconify-icon icon="solar:check-read-bold" width="10" height="10"></iconify-icon>
+              </span>
+              <span class="comparison-list-type-text is-positive">Unbiased, independent evaluation of every candidate</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -4113,6 +4901,78 @@
           <div class="section-layout-action">
             <button class="btn">Join Garna</button>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>How It Works Diagram</h2>
+        <p class="caption">Reference from AI Hiring How it works: four connected process points with animated flow and equal hover lift on every point.</p>
+      </div>
+      <div class="how-it-works-demo">
+        <div class="how-it-works-track">
+          <div class="how-it-works-line" aria-hidden="true">
+            <svg preserveAspectRatio="none">
+              <line x1="0" y1="1.5" x2="100%" y2="1.5" stroke="rgba(255,255,255,0.05)" stroke-width="3" stroke-dasharray="0 20" stroke-linecap="round"></line>
+              <line class="how-it-works-flow-line" x1="0" y1="1.5" x2="100%" y2="1.5" stroke="#5EA500" stroke-width="3" stroke-dasharray="0 20" stroke-linecap="round"></line>
+            </svg>
+          </div>
+          <article class="how-it-works-node">
+            <div class="how-it-works-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <line x1="19" x2="19" y1="8" y2="14"></line>
+                <line x1="22" x2="16" y1="11" y2="11"></line>
+              </svg>
+              <span class="how-it-works-index">01</span>
+            </div>
+            <h3 class="how-it-works-title">Candidate Entry</h3>
+            <p class="how-it-works-description">Candidates enter the funnel and provide initial background.</p>
+          </article>
+          <article class="how-it-works-node">
+            <div class="how-it-works-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 8V4H8"></path>
+                <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+                <path d="M2 14h2"></path>
+                <path d="M20 14h2"></path>
+                <path d="M15 13v2"></path>
+                <path d="M9 13v2"></path>
+              </svg>
+              <span class="how-it-works-index">02</span>
+            </div>
+            <h3 class="how-it-works-title">AI Deep Interview</h3>
+            <p class="how-it-works-description">AI conducts a comprehensive interview by domain.</p>
+          </article>
+          <article class="how-it-works-node">
+            <div class="how-it-works-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="8" height="8" x="2" y="2" rx="2"></rect>
+                <path d="M14 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2"></path>
+                <path d="M20 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2"></path>
+                <path d="M10 18H5c-1.7 0-3-1.3-3-3v-1"></path>
+                <polyline points="7 21 10 18 7 15"></polyline>
+                <rect width="8" height="8" x="14" y="14" rx="2"></rect>
+              </svg>
+              <span class="how-it-works-index">03</span>
+            </div>
+            <h3 class="how-it-works-title">Automated Matching</h3>
+            <p class="how-it-works-description">Matching runs against results and open roles.</p>
+          </article>
+          <article class="how-it-works-node is-final">
+            <div class="how-it-works-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <polyline points="16 11 18 13 22 9"></polyline>
+              </svg>
+              <span class="how-it-works-index">04</span>
+            </div>
+            <h3 class="how-it-works-title">Perfect Match</h3>
+            <p class="how-it-works-description">A curated shortlist is ready for the final decision.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -4484,6 +5344,11 @@
               </a>
             </div>
           </article>
+          <article class="plain-icon-card span-4">
+            <iconify-icon class="plain-icon-card-icon" icon="lucide:rocket" width="24" height="24" aria-hidden="true"></iconify-icon>
+            <h3 class="plain-icon-card-title">Hire Globally Faster</h3>
+            <p class="plain-icon-card-description">Bring in talented people from all over the world and make hiring faster than before.</p>
+          </article>
           <article class="feature-visual-card span-4">
             <div class="feature-visual-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -4502,6 +5367,25 @@
             <p class="visual-content-description">Use this version when the card needs title, supporting copy and a visual preview without an icon.</p>
             <div class="visual-content-placeholder" aria-hidden="true">Visual</div>
           </article>
+          <article class="top-visual-card span-4">
+            <div class="top-visual-card-media" aria-hidden="true">Visual</div>
+            <h3 class="top-visual-card-title">Hire globally without entities</h3>
+            <p class="top-visual-card-description">Use this card when the visual preview introduces the feature before the title and supporting copy.</p>
+          </article>
+          <div class="sample span-4">
+            <span class="sample-label">Photo overlay badge</span>
+            <div class="photo-badge-sample">
+              <div class="photo-overlay-badge">
+                <span class="photo-overlay-badge-icon" aria-hidden="true">
+                  <iconify-icon icon="lucide:sparkles"></iconify-icon>
+                </span>
+                <div>
+                  <p class="photo-overlay-badge-title">Talent search</p>
+                  <p class="photo-overlay-badge-text">Global matching</p>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="sample span-12">
             <span class="sample-label">White Label two-card layout</span>
             <div class="white-label-model-layout">
@@ -4533,6 +5417,83 @@
                 </div>
                 <div class="white-label-model-copy">
                   <p class="white-label-model-description">The trust in your brand, enhanced by Powered by Garna technology.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="sample span-12">
+            <span class="sample-label">Before / after comparison cards</span>
+            <div class="before-after-layout">
+              <article class="before-after-card">
+                <div class="before-after-head">
+                  <div class="before-after-icon is-red" aria-hidden="true">
+                    <iconify-icon icon="solar:clock-circle-linear" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h3 class="before-after-title">Traditional Hiring</h3>
+                </div>
+                <div class="before-after-list">
+                  <div class="before-after-list-item">
+                    <iconify-icon class="before-after-list-icon" icon="solar:phone-calling-linear" width="18" height="18" aria-hidden="true"></iconify-icon>
+                    <span>80% of recruiter time wasted on first-round calls</span>
+                  </div>
+                  <div class="before-after-list-item">
+                    <iconify-icon class="before-after-list-icon" icon="lucide:pie-chart" width="18" height="18" aria-hidden="true"></iconify-icon>
+                    <span>Speaking only with 40% of candidates with potential fit</span>
+                  </div>
+                  <div class="before-after-list-item">
+                    <iconify-icon class="before-after-list-icon" icon="solar:user-id-linear" width="18" height="18" aria-hidden="true"></iconify-icon>
+                    <span>Endless manual resume screening and human bias</span>
+                  </div>
+                  <div class="before-after-list-item">
+                    <iconify-icon class="before-after-list-icon" icon="solar:calendar-linear" width="18" height="18" aria-hidden="true"></iconify-icon>
+                    <span>Long, drawn-out hiring cycles</span>
+                  </div>
+                </div>
+                <div class="before-after-visual" aria-hidden="true">
+                  <span class="before-after-visual-row"></span>
+                  <span class="before-after-visual-line"></span>
+                  <span class="before-after-visual-line"></span>
+                  <span class="before-after-visual-pill"></span>
+                </div>
+              </article>
+              <article class="before-after-card is-after">
+                <div class="before-after-head">
+                  <div class="before-after-icon is-green" aria-hidden="true">
+                    <iconify-icon icon="solar:stars-minimalistic-bold" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h3 class="before-after-title">AI-Powered Advantage</h3>
+                </div>
+                <div class="before-after-list">
+                  <div class="before-after-list-item">
+                    <span class="before-after-list-icon is-positive" aria-hidden="true">
+                      <iconify-icon icon="solar:check-read-bold" width="10" height="10"></iconify-icon>
+                    </span>
+                    <span>Unbiased, independent evaluation of every candidate</span>
+                  </div>
+                  <div class="before-after-list-item">
+                    <span class="before-after-list-icon is-positive" aria-hidden="true">
+                      <iconify-icon icon="solar:check-read-bold" width="10" height="10"></iconify-icon>
+                    </span>
+                    <span>Honest identification of red flags and technical gaps</span>
+                  </div>
+                  <div class="before-after-list-item">
+                    <span class="before-after-list-icon is-positive" aria-hidden="true">
+                      <iconify-icon icon="solar:check-read-bold" width="10" height="10"></iconify-icon>
+                    </span>
+                    <span>Deep, data-driven analysis free from human bias</span>
+                  </div>
+                  <div class="before-after-list-item">
+                    <span class="before-after-list-icon is-positive" aria-hidden="true">
+                      <iconify-icon icon="solar:check-read-bold" width="10" height="10"></iconify-icon>
+                    </span>
+                    <span>Transparent scoring based on proven domain skills</span>
+                  </div>
+                </div>
+                <div class="before-after-visual" aria-hidden="true">
+                  <span class="before-after-visual-row"></span>
+                  <span class="before-after-visual-line"></span>
+                  <span class="before-after-visual-line"></span>
+                  <span class="before-after-visual-pill"></span>
                 </div>
               </article>
             </div>
@@ -4637,16 +5598,57 @@
             </div>
           </div>
         </div>
+        <div class="sample span-12">
+          <span class="sample-label">Segmented content switcher</span>
+          <div class="segmented-switcher-demo">
+            <input id="catalog-segment-cor" type="radio" name="catalog-segmented-switcher" checked>
+            <input id="catalog-segment-eor" type="radio" name="catalog-segmented-switcher">
+            <div class="segmented-switcher-header">
+              <h3 class="segmented-switcher-title">Choose the right employment model</h3>
+              <p class="segmented-switcher-subtitle">A centered two-option switcher sits directly below the section heading and changes the content shown underneath.</p>
+            </div>
+            <div class="segmented-switcher-control" role="radiogroup" aria-label="Employment model switcher">
+              <label class="segmented-switcher-option" for="catalog-segment-cor">Contractor of Record</label>
+              <label class="segmented-switcher-option" for="catalog-segment-eor">Employer of Record</label>
+            </div>
+            <div class="segmented-switcher-panels">
+              <article class="segmented-switcher-panel" data-segment-panel="cor" role="tabpanel">
+                <h3>Contractor of Record</h3>
+                <p>The selected model controls the content below the switcher while the section heading and control remain fixed.</p>
+                <div class="segmented-switcher-skeleton" aria-hidden="true">
+                  <div class="segmented-switcher-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <span class="segmented-switcher-chip"></span>
+                </div>
+              </article>
+              <article class="segmented-switcher-panel" data-segment-panel="eor" role="tabpanel">
+                <h3>Employer of Record</h3>
+                <p>The inactive option stays muted; the active option uses the approved primary green fill and white label.</p>
+                <div class="segmented-switcher-skeleton" aria-hidden="true">
+                  <div class="segmented-switcher-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <span class="segmented-switcher-chip"></span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="section-head">
-        <h2>Footer and Special State</h2>
-        <p class="caption">Footer is a dense legal/contact block. The 404 page has a radar/search visual language.</p>
+        <h2>Footer</h2>
+        <p class="caption">Footer is a dense legal/contact block with brand, contacts, address and legal text.</p>
       </div>
       <div class="grid">
-        <div class="footer-preview span-7">
+        <div class="footer-preview span-12">
           <div>
             <div class="brand"><span class="brand-mark">G</span> Garna</div>
             <p style="margin-top:14px">Powered by mediacube</p>
@@ -4674,11 +5676,6 @@
             </a>
             <p style="font-size:13px; color:var(--soft)">134 Makariou III, Ground Floor, 3021 Limassol, Cyprus</p>
           </div>
-        </div>
-        <div class="sample span-5" style="text-align:center">
-          <span class="sample-label">404 radar visual</span>
-          <div class="radar"></div>
-          <h3 style="margin-top:18px">Target Missing</h3>
         </div>
       </div>
     </section>
