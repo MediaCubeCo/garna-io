@@ -1,0 +1,13 @@
+---
+interface Props {
+	id?: string;
+	class?: string;
+	kind?: 'hero' | 'content';
+}
+
+const { id, class: className = '', kind = 'content' } = Astro.props;
+---
+
+<section id={id} class={className} data-section-kind={kind}>
+	<slot />
+</section>

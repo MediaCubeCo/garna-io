@@ -1,0 +1,96 @@
+---
+import HeroSection from '../components/HeroSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
+import type { FAQItem } from '../types/faq-section';
+import rawContentHtml from '../content/site-pages/offer.html?raw';
+import { splitLegacyPageSections } from '../utils/legacy-html';
+
+const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
+	heroVisualMarker: '<!-- Hero Visual: Contractor Wallet Mockup -->',
+});
+
+const contractorFaqItems = [
+	{
+		question: 'How quickly do I receive my money?',
+		answer: 'Most US domestic payments are processed within 24 hours, and you can withdraw them to your local bank account instantly.',
+		questionTranslateKey: 'faq.items.q1.question',
+		answerTranslateKey: 'faq.items.q1.answer',
+	},
+	{
+		question: 'Is there a fee for receiving payments?',
+		answer: 'We charge a transparent fee with no hidden exchange rate markups, so you see exactly what you get before you withdraw.',
+		questionTranslateKey: 'faq.items.q2.question',
+		answerTranslateKey: 'faq.items.q2.answer',
+	},
+	{
+		question: 'Do I need a registered company to use Garna?',
+		answer: 'No, Garna is built for international individuals and contractors to accept payments from US clients without needing a US entity or SSN.',
+		questionTranslateKey: 'faq.items.q3.question',
+		answerTranslateKey: 'faq.items.q3.answer',
+	},
+	{
+		question: 'Is my money safe?',
+		answer: 'Yes, we use bank-grade security and fully compliant payment rails to ensure your funds and data are protected at every step.',
+		questionTranslateKey: 'faq.items.q4.question',
+		answerTranslateKey: 'faq.items.q4.answer',
+	},
+	{
+		question: 'Which payment methods from US clients are supported?',
+		answer: 'We support ACH and Wire transfers, which are the standard domestic payment methods for US companies.',
+		questionTranslateKey: 'faq.items.q5.question',
+		answerTranslateKey: 'faq.items.q5.answer',
+	},
+	{
+		question: 'Can I work with clients who only pay US entities?',
+		answer: 'Yes, Garna provides you with the necessary details to receive payments from clients who strictly require a US-based recipient.',
+		questionTranslateKey: 'faq.items.q6.question',
+		answerTranslateKey: 'faq.items.q6.answer',
+	},
+	{
+		question: 'Do you provide tax documentation for my local authorities?',
+		answer: 'Yes, Garna generates the required documents to help you easily report your income to your local tax office.',
+		questionTranslateKey: 'faq.items.q7.question',
+		answerTranslateKey: 'faq.items.q7.answer',
+	},
+	{
+		question: 'Are there any monthly subscription costs?',
+		answer: 'No, Garna follows a pay-as-you-go model with no monthly fees. You only pay a small commission when you receive a payment.',
+		questionTranslateKey: 'faq.items.q8.question',
+		answerTranslateKey: 'faq.items.q8.answer',
+	},
+	{
+		question: 'Is Garna available for freelancers from my country?',
+		answer: 'Garna is designed for international contractors and freelancers worldwide who want to scale their business with US-based clients.',
+		questionTranslateKey: 'faq.items.q9.question',
+		answerTranslateKey: 'faq.items.q9.answer',
+	},
+	{
+		question: 'What if my client requires a W-9 form?',
+		answer: 'Garna simplifies the compliance process by handling the necessary documentation required by US clients for domestic payments.',
+		questionTranslateKey: 'faq.items.q10.question',
+		answerTranslateKey: 'faq.items.q10.answer',
+	},
+] satisfies FAQItem[];
+---
+
+<BaseLayout shell={pageShells.offer} currentPath="for-contractors">
+	<main id="astro-page-content" data-astro-page-content data-current-path="for-contractors">
+		<HeroSection {...pageHeroes.offer}>
+			<Fragment set:html={heroVisualHtml} />
+		</HeroSection>
+		<Fragment set:html={contentHtml} />
+		<FAQSection
+			title={{ text: 'Common questions', translateKey: 'faq.title' }}
+				subtitle={{ text: 'Everything you need to know about getting paid', translateKey: 'faq.description' }}
+				items={contractorFaqItems}
+				class="md:pt-16 md:pb-16 lg:pt-32 lg:pb-32 bg-transparent border-white/0 border-t pt-16 pb-16"
+				containerClass="garna-container"
+			/>
+		<FinalCTASection {...pageFinalCtas.offer} />
+	</main>
+</BaseLayout>

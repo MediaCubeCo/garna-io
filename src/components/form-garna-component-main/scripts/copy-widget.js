@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const buildDir = path.join(__dirname, '..', 'build');
-const outDir = path.join(__dirname, '..', '..', '..', '..', 'public', 'widget');
+const outDir = path.join(__dirname, '..', '..', '..', '..', 'static', 'widget');
 const fileName = 'garna-widget.js';
 const src = path.join(buildDir, fileName);
 const dest = path.join(outDir, fileName);
@@ -16,4 +16,5 @@ if (!fs.existsSync(outDir)) {
 	fs.mkdirSync(outDir, { recursive: true });
 }
 
-fs.copyFileSync(src, dest);
+const bundle = fs.readFileSync(src, 'utf8').replace(/\n?\/\/# sourceMappingURL=garna-widget\.js\.map\s*$/u, '');
+fs.writeFileSync(dest, bundle);

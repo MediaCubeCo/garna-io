@@ -1,0 +1,16 @@
+---
+interface Props {
+	count?: number;
+}
+
+const { count = 25 } = Astro.props;
+const rainbows = Array.from({ length: count });
+---
+
+<div class="rainbow-bg" data-rainbow-bg aria-hidden="true">
+	<div class="rainbow-bg__parallax">
+		{rainbows.map(() => <div class="rainbow"></div>)}
+		<div class="h"></div>
+		<div class="v"></div>
+	</div>
+</div>

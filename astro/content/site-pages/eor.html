@@ -1,0 +1,1131 @@
+<main>
+        <section class="relative overflow-hidden pt-28 pb-20 md:pt-32 md:pb-24">
+            <div class="mx-auto flex max-w-7xl flex-col items-center gap-12 px-6">
+                <div class="mx-auto flex max-w-4xl flex-col items-center text-center">
+                    <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-[#5EA500]/25 bg-[#5EA500]/10 px-3 py-1.5 text-xs font-medium uppercase tracking-wide text-[#5EA500]">
+                        <span class="relative flex h-2 w-2">
+                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#5EA500] opacity-70"></span>
+                            <span class="relative inline-flex h-2 w-2 rounded-full bg-[#5EA500]"></span>
+                        </span>
+                        Employer of Record for global teams
+                    </div>
+                    <h1 class="font-manrope text-5xl font-normal leading-[1.05] tracking-tight text-white md:text-[64px]">
+                        Worldwide Employment Made Simple, Quick &amp; Flawless
+                    </h1>
+                    <p class="mx-auto mt-7 max-w-3xl text-lg font-light leading-relaxed text-gray-400 md:text-xl">
+                        Hiring the best talent from around the globe does not have to mean complex compliance rules,
+                        separate payroll systems, or new legal entities in every country. Garna gives companies a
+                        simple, modern Employer of Record solution for global hiring without operational hassle
+                    </p>
+                    <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                        <a href="#"
+                            onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'eor_hero_book_demo' });"
+                            class="button-primary font-manrope text-base font-semibold">
+                            Book a demo
+                            <iconify-icon icon="lucide:arrow-up-right" width="19" height="19"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+
+            <!-- Dashboard Mockup with Dynamic Sizing -->
+            <div class="overflow-visible max-w-6xl mr-auto ml-auto relative perspective-1000"
+                >
+                <div
+                    class="glass overflow-visible origin-top -translate-x-1/2 md:w-[160%] md:scale-[0.625] lg:w-full lg:scale-[0.85] bg-[#0A0A0A] w-[320%] border-white/10 border rounded-xl pt-2 pr-2 pb-2 pl-2 relative left-1/2 shadow-2xl scale-[0.3125]">
+                    <style class="">
+                        @keyframes fadeInMove {
+                            0% {
+                                opacity: 0;
+                                transform: translateY(10px);
+                            }
+
+                            100% {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+
+                        @keyframes growBar {
+                            0% {
+                                width: 0;
+                            }
+
+                            100% {
+                                width: var(--w);
+                            }
+                        }
+
+                        .anim-fade-up {
+                            animation: fadeInMove 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                            opacity: 0;
+                        }
+
+                        .anim-delay-1 {
+                            animation-delay: 0.1s;
+                        }
+
+                        .anim-delay-2 {
+                            animation-delay: 0.2s;
+                        }
+
+                        .anim-delay-3 {
+                            animation-delay: 0.3s;
+                        }
+
+                        .anim-bar {
+                            animation: growBar 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                        }
+                    </style>
+                    <!-- Script for number counting -->
+                    <script class="">
+                        (function () {
+                            const elements = document.querySelectorAll('.counter-anim');
+                            elements.forEach(el => {
+                                const target = parseFloat(el.getAttribute('data-target'));
+                                const prefix = el.getAttribute('data-prefix') || '';
+                                const suffix = el.getAttribute('data-suffix') || '';
+                                const decimals = parseInt(el.getAttribute('data-decimals') || 0);
+
+                                let start = 0;
+                                const duration = 2000;
+                                const startTime = performance.now();
+
+                                function update(currentTime) {
+                                    const elapsed = currentTime - startTime;
+                                    const progress = Math.min(elapsed / duration, 1);
+                                    const ease = 1 - Math.pow(1 - progress, 4); // Ease out quart
+
+                                    const current = start + (target - start) * ease;
+
+                                    // Format: 100 000.00
+                                    const formatted = current.toLocaleString('en-US', {
+                                        minimumFractionDigits: decimals,
+                                        maximumFractionDigits: decimals
+                                    }).replace(/,/g, ' ');
+
+                                    el.innerText = prefix + formatted + suffix;
+
+                                    if (progress < 1) {
+                                        requestAnimationFrame(update);
+                                    }
+                                }
+                                requestAnimationFrame(update);
+                            });
+                        })();
+                    </script>
+
+                    <!-- Window Controls / Top Bar -->
+                    <div class="flex gap-2 h-10 border-white/5 border-b mb-0 pr-4 pl-4 gap-x-2 gap-y-2 items-center">
+                        <div class="flex gap-1.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                        </div>
+                        <div
+                            class="mx-auto w-64 h-5 bg-white/5 rounded-md flex items-center justify-center gap-2 group cursor-default">
+                            <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                            <span class="text-[10px] tracking-wide font-sans"
+                                data-translate="dashboard.url">garna.io/dashboard</span>
+                        </div>
+                        <div class="w-10"></div>
+                    </div>
+
+                    <!-- Dashboard Content -->
+                    <div class="grid grid-cols-12 h-auto bg-[#050505] text-white font-sans overflow-visible text-left">
+
+                        <!-- Sidebar -->
+                        <div
+                            class="col-span-3 flex flex-col bg-[#080808] border-white/5 border-r pt-4 pr-4 pb-4 pl-4 justify-between">
+                            <div class="">
+                                <div class="flex mb-6 px-2 gap-x-2 gap-y-2 items-center">
+                                    <img src="/garna_logo.svg" alt="Garna" class="h-6 w-auto object-contain"
+                                        data-translate-alt="nav.brand" />
+                                </div>
+
+                                <nav class="space-y-1.5">
+                                    <div
+                                        class="flex gap-3 cursor-pointer hover:bg-white/15 transition-colors text-white bg-white/10 border-white/5 border rounded-lg pt-2.5 pr-3 pb-2.5 pl-3 shadow-sm gap-x-3 gap-y-3 items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-circle-dollar-sign">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+                                            <path d="M12 18V6"></path>
+                                        </svg>
+                                        <span class="text-sm font-normal relative font-sans"
+                                            data-translate="dashboard.balance">Balance</span>
+                                    </div>
+                                    <div
+                                        class="flex gap-3 hover:text-white hover:bg-white/5 transition-colors cursor-pointer group text-gray-500 rounded-lg pt-2.5 pr-3 pb-2.5 pl-3 gap-x-3 gap-y-3 items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-building-2 group-hover:text-gray-300 transition-colors">
+                                            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
+                                            <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" class=""></path>
+                                            <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
+                                            <path d="M10 6h4"></path>
+                                            <path d="M10 10h4"></path>
+                                            <path d="M10 14h4"></path>
+                                            <path d="M10 18h4"></path>
+                                        </svg>
+                                        <span class="text-sm font-normal font-sans"
+                                            data-translate="dashboard.company">Company</span>
+                                    </div>
+                                    <div
+                                        class="flex hover:text-white hover:bg-white/5 transition-colors cursor-pointer group text-gray-500 rounded-lg pt-2.5 pr-3 pb-2.5 pl-3 items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-bell group-hover:text-gray-300 transition-colors">
+                                                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" class=""></path>
+                                                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                                            </svg>
+                                            <span class="text-sm font-normal font-sans"
+                                                data-translate="dashboard.notifications">Notifications</span>
+                                        </div>
+                                        <span
+                                            class="text-[10px] flex items-center justify-center animate-pulse font-bold text-[#050505] bg-[#5EA500] w-5 h-5 rounded-full shadow-[0_0_10px_rgba(94,165,0,0.4)] font-sans">6</span>
+                                    </div>
+                                    <div
+                                        class="flex hover:text-white hover:bg-white/5 transition-colors cursor-pointer group text-gray-500 rounded-lg pt-2.5 pr-3 pb-2.5 pl-3 items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-headphones group-hover:text-gray-300 transition-colors">
+                                                <path
+                                                    d="M3 14v3a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2Z">
+                                                </path>
+                                                <path
+                                                    d="M15 14v3a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2Z"
+                                                    class=""></path>
+                                                <path d="M21 14V9a9 9 0 1 0-18 0v5" class=""></path>
+                                            </svg>
+                                            <span class="text-sm font-normal font-sans"
+                                                data-translate="dashboard.support">Support</span>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+
+                        </div>
+
+                        <!-- Main Content -->
+                        <div class="col-span-9 bg-[#050505] pt-6 pr-8 pb-6 pl-8 relative">
+                            <div class="flex anim-fade-up mb-6 items-center justify-between">
+                                <div class="text-xl font-normal text-white tracking-tight font-sans"
+                                    data-translate="dashboard.balance">Balance</div>
+                                <div
+                                    class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors cursor-pointer text-gray-400 hover:text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-user">
+                                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4" class=""></circle>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- Balance Card -->
+                            <div
+                                class="overflow-hidden group anim-fade-up anim-delay-1 bg-[#0e0e0e] border-white/5 border rounded-2xl mb-6 pt-7 pr-7 pb-7 pl-7 relative shadow-2xl">
+
+                                <div class="flex z-10 mb-4 relative items-center justify-between">
+                                    <span class="text-sm font-medium text-white text-left font-sans"
+                                        data-translate="dashboard.internalAccount">Internal account USD</span>
+                                    <div class="flex bg-white/5 rounded-lg p-1 border border-white/10">
+                                        <button
+                                            class="px-3 py-1 rounded-md bg-[#5EA500] text-[10px] text-white font-bold font-sans shadow-sm leading-none"
+                                            data-translate="dashboard.currencyUsd">USD</button>
+                                        <button
+                                            class="px-3 py-1 rounded-md text-[10px] text-gray-500 hover:text-gray-300 transition-colors font-sans leading-none font-medium"
+                                            data-translate="dashboard.currencyEur">EUR</button>
+                                    </div>
+                                </div>
+
+                                <!-- Animated Balance with prefix -->
+                                <div class="z-10 counter-anim text-5xl font-semibold text-white tracking-tight text-left mb-6 relative font-manrope"
+                                    data-target="112272.31" data-prefix="$" data-suffix="" data-decimals="2">$112,272.31
+                                </div>
+
+                                <!-- Account Number Section -->
+                                <div class="mb-8 z-10 relative">
+                                    <div class="text-xs font-medium text-gray-500 mb-1.5 font-sans"
+                                        data-translate="dashboard.accountNumber">Account number</div>
+                                    <div class="text-sm text-gray-300 tracking-wide font-mono">4461 9571 3840 9821</div>
+                                </div>
+
+                                <div class="grid grid-cols-4 gap-3 relative z-10">
+                                    <!-- Send -->
+                                    <button
+                                        class="flex items-center justify-center gap-2 px-2 py-3 rounded-lg bg-[#5EA500]/5 text-[#5EA500] text-xs font-semibold border border-[#5EA500]/10 hover:bg-[#5EA500]/10 transition-all hover:scale-105 active:scale-95 font-sans">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-shuffle">
+                                            <path d="m18 14 4 4-4 4"></path>
+                                            <path d="m18 2 4 4-4 4"></path>
+                                            <path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22">
+                                            </path>
+                                            <path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"></path>
+                                            <path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"></path>
+                                        </svg> <span data-translate="dashboard.actions.send">Send</span>
+                                    </button>
+                                    <!-- Withdraw -->
+                                    <button
+                                        class="flex items-center justify-center gap-2 px-2 py-3 rounded-lg bg-[#5EA500]/5 text-[#5EA500] text-xs font-semibold border border-[#5EA500]/10 hover:bg-[#5EA500]/10 transition-all hover:scale-105 active:scale-95 font-sans">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-arrow-up">
+                                            <path d="m5 12 7-7 7 7"></path>
+                                            <path d="M12 19V5"></path>
+                                        </svg> <span data-translate="dashboard.actions.withdraw">Withdraw</span>
+                                    </button>
+                                    <!-- Add funds -->
+                                    <button
+                                        class="flex items-center justify-center gap-2 px-2 py-3 rounded-lg bg-[#5EA500]/5 text-[#5EA500] text-xs font-semibold border border-[#5EA500]/10 hover:bg-[#5EA500]/10 transition-all hover:scale-105 active:scale-95 font-sans">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg> <span data-translate="dashboard.actions.addFunds">Add funds</span>
+                                    </button>
+                                    <!-- Details -->
+                                    <button
+                                        class="flex items-center justify-center gap-2 px-2 py-3 rounded-lg bg-[#5EA500]/5 text-[#5EA500] text-xs font-semibold border border-[#5EA500]/10 hover:bg-[#5EA500]/10 transition-all hover:scale-105 active:scale-95 font-sans">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-file-text">
+                                            <path
+                                                d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z">
+                                            </path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="16" x2="8" y1="13" y2="13"></line>
+                                            <line x1="16" x2="8" y1="17" y2="17"></line>
+                                            <line x1="10" x2="8" y1="9" y2="9"></line>
+                                        </svg> <span data-translate="dashboard.actions.details">Details</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Templates -->
+                            <div class="anim-fade-up anim-delay-2">
+                                <div class="flex mb-4 items-end justify-between">
+                                    <div class="text-sm font-normal text-white font-sans"
+                                        data-translate="dashboard.templates">Templates</div>
+                                    <a href="#"
+                                        class="text-[10px] text-[#5EA500] hover:text-[#4d8a00] font-medium flex items-center gap-0.5 font-sans"><span
+                                            data-translate="dashboard.all">All</span> <svg
+                                            xmlns="http://www.w3.org/2000/svg" width="10" height="10"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-chevron-right">
+                                            <path d="m9 18 6-6-6-6"></path>
+                                        </svg></a>
+                                </div>
+                                <div class="grid grid-cols-4 gap-4">
+                                    <!-- Template Cards with Larger Skeletons -->
+                                    <div
+                                        class="hover:border-white/10 hover:bg-white/[0.02] transition-all cursor-pointer group flex flex-col text-left bg-[#0e0e0e] border-white/5 border rounded-xl pt-4 pr-4 pb-4 pl-4 shadow-lg items-start">
+                                        <div
+                                            class="flex group-hover:scale-110 transition-transform text-green-500 bg-green-500/10 w-9 h-9 border-green-500/20 border rounded-full mb-3 shadow-[0_0_10px_rgba(34,197,94,0.1)] items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-mail">
+                                                <rect width="20" height="16" x="2" y="4" rx="2" class=""></rect>
+                                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="text-xs font-medium text-white tracking-tight mb-2 font-sans"
+                                            data-translate="templates.transactionByEmail">Transaction by email</div>
+                                        <div
+                                            class="h-1.5 group-hover:bg-white/15 transition-colors bg-white/10 w-16 rounded-full">
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="hover:border-white/10 hover:bg-white/[0.02] transition-all cursor-pointer group flex flex-col text-left bg-[#0e0e0e] border-white/5 border rounded-xl pt-4 pr-4 pb-4 pl-4 shadow-lg items-start">
+                                        <div
+                                            class="w-9 h-9 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500 mb-3 border border-blue-500/20 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(59,130,246,0.1)]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-file-text">
+                                                <path
+                                                    d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                                                    class=""></path>
+                                                <polyline points="14 2 14 8 20 8"></polyline>
+                                                <line x1="16" x2="8" y1="13" y2="13"></line>
+                                                <line x1="16" x2="8" y1="17" y2="17"></line>
+                                                <line x1="10" x2="8" y1="9" y2="9"></line>
+                                            </svg>
+                                        </div>
+                                        <div class="text-xs font-medium text-white mb-2 tracking-tight font-sans"
+                                            data-translate="templates.csvPayment">CSV payment</div>
+                                        <div
+                                            class="w-16 h-1.5 bg-white/10 rounded-full group-hover:bg-white/15 transition-colors">
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="p-4 bg-[#0e0e0e] border border-white/5 rounded-xl hover:border-white/10 hover:bg-white/[0.02] transition-all cursor-pointer group shadow-lg flex flex-col items-start text-left">
+                                        <div
+                                            class="w-9 h-9 rounded-full bg-yellow-500/10 flex items-center justify-center text-yellow-500 mb-3 border border-yellow-500/20 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(234,179,8,0.1)]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-coins">
+                                                <circle cx="8" cy="8" r="6"></circle>
+                                                <path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path>
+                                                <path d="M7 6h1v4"></path>
+                                                <path d="m16.71 13.88.7.71-2.82 2.82"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="text-xs font-medium text-white mb-2 tracking-tight font-sans"
+                                            data-translate="templates.topUpUsdt">Top up with USDT</div>
+                                        <div
+                                            class="w-16 h-1.5 bg-white/10 rounded-full group-hover:bg-white/15 transition-colors">
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="p-4 bg-[#0e0e0e] border border-white/5 rounded-xl hover:border-white/10 hover:bg-white/[0.02] transition-all cursor-pointer group shadow-lg flex flex-col items-start text-left">
+                                        <div
+                                            class="w-9 h-9 rounded-full bg-[#5EA500]/10 flex items-center justify-center text-[#5EA500] mb-3 border border-[#5EA500]/20 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(94,165,0,0.1)]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-landmark">
+                                                <line x1="3" x2="21" y1="22" y2="22" class=""></line>
+                                                <line x1="6" x2="6" y1="18" y2="11"></line>
+                                                <line x1="10" x2="10" y1="18" y2="11"></line>
+                                                <line x1="14" x2="14" y1="18" y2="11" class=""></line>
+                                                <line x1="18" x2="18" y1="18" y2="11"></line>
+                                                <polygon points="12 2 20 7 4 7"></polygon>
+                                            </svg>
+                                        </div>
+                                        <div class="text-xs font-medium text-white mb-2 tracking-tight font-sans"
+                                            data-translate="templates.topUpBank">Top up with Bank transfer</div>
+                                        <div
+                                            class="w-16 h-1.5 bg-white/10 rounded-full group-hover:bg-white/15 transition-colors">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Transactions (Left Aligned Title) -->
+                            <div class="anim-fade-up anim-delay-3 text-left mb-0 space-y-3">
+                                <div class="text-sm font-normal text-white text-left mt-6 mb-4 font-sans"
+                                    data-translate="dashboard.transactions">Transactions</div>
+                                <div class="space-y-4">
+                                    <!-- Transaction Item 1: Modified -->
+                                    <div
+                                        class="flex hover:border-white/10 hover:bg-white/[0.02] transition-all group cursor-pointer bg-[#0e0e0e] w-full border-white/5 border rounded-xl pt-4 pr-4 pb-4 pl-4 shadow-md items-center justify-between">
+                                        <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
+                                            <div
+                                                class="flex group-hover:scale-105 transition-transform text-red-500 bg-red-500/10 w-10 h-10 border-red-500/20 border rounded-xl shadow-[0_0_15px_rgba(239,68,68,0.15)] items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-arrow-up-right">
+                                                    <path d="M7 7h10v10"></path>
+                                                    <path d="M7 17 17 7"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="">
+                                                <div class="text-sm font-normal text-white font-sans mb-1"
+                                                    data-translate="transactions.item1.title">Transfer to Maria Rei
+                                                </div>
+                                                <div class="text-[9px] text-[#5EA500] bg-[#5EA500]/10 border border-[#5EA500]/20 px-1.5 py-0.5 rounded inline-block font-sans leading-none"
+                                                    data-translate="transactions.confirmed">Confirmed</div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="text-sm font-normal text-white tracking-tight font-sans">
+                                                -$480.00</div>
+                                            <div class="text-[10px] text-gray-500 font-medium mt-0.5 font-sans">
+                                                10.01.2026, 18:58</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Transaction Item 2: Modified -->
+                                    <div
+                                        class="flex hover:border-white/10 hover:bg-white/[0.02] transition-all group cursor-pointer bg-[#0e0e0e] w-full border-white/5 border rounded-xl pt-4 pr-4 pb-4 pl-4 shadow-md items-center justify-between">
+                                        <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
+                                            <div
+                                                class="flex group-hover:scale-105 transition-transform text-red-500 bg-red-500/10 w-10 h-10 border-red-500/20 border rounded-xl shadow-[0_0_15px_rgba(239,68,68,0.15)] items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-arrow-up-right">
+                                                    <path d="M7 7h10v10"></path>
+                                                    <path d="M7 17 17 7" class=""></path>
+                                                </svg>
+                                            </div>
+                                            <div class="">
+                                                <div class="text-sm font-normal text-white font-sans mb-1"
+                                                    data-translate="transactions.item2.title">Transfer to Vlad
+                                                    Kolomensky</div>
+                                                <div class="text-[9px] text-[#5EA500] bg-[#5EA500]/10 border border-[#5EA500]/20 px-1.5 py-0.5 rounded inline-block font-sans leading-none"
+                                                    data-translate="transactions.confirmed">Confirmed</div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="text-sm font-normal text-white tracking-tight font-sans">
+                                                -$160.00</div>
+                                            <div class="text-[10px] text-gray-500 font-medium mt-0.5 font-sans">
+                                                10.01.2026, 18:54</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Transaction Item 3 (Promotional Card) -->
+                                    <div
+                                        class="flex hover:border-white/10 hover:bg-white/[0.02] transition-all group cursor-pointer bg-[#0e0e0e] w-full border-white/5 border rounded-xl pt-4 pr-4 pb-4 pl-4 shadow-md items-center justify-between">
+                                        <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
+                                            <div
+                                                class="flex group-hover:scale-105 transition-transform text-purple-500 bg-purple-500/10 w-10 h-10 border-purple-500/20 border rounded-xl shadow-[0_0_15px_rgba(168,85,247,0.15)] items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-calendar-days w-[20px] h-[20px]"
+                                                    data-icon-replaced="true"
+                                                    style="color: rgb(168, 85, 247); width: 20px; height: 20px;">
+                                                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" class="">
+                                                    </rect>
+                                                    <line x1="16" x2="16" y1="2" y2="6"></line>
+                                                    <line x1="8" x2="8" y1="2" y2="6"></line>
+                                                    <line x1="3" x2="21" y1="10" y2="10"></line>
+                                                    <path d="M8 14h.01"></path>
+                                                    <path d="M12 14h.01"></path>
+                                                    <path d="M16 14h.01"></path>
+                                                    <path d="M8 18h.01"></path>
+                                                    <path d="M12 18h.01"></path>
+                                                    <path d="M16 18h.01"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <div class="text-sm font-medium text-white mb-1 font-sans tracking-tight"
+                                                    data-translate="advance.title">$ 1,000,000.00 available for team
+                                                    payouts</div>
+                                                <div class="text-[11px] text-gray-500 font-normal font-sans"
+                                                    data-translate="advance.description">Pay your contractors now —
+                                                    repay later with flexible terms</div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right pl-4">
+                                            <button
+                                                class="bg-[#5EA500] hover:bg-[#4d8a00] text-white text-xs font-semibold px-4 py-1.5 rounded-lg transition-colors font-sans shadow-sm shrink-0"
+                                                data-translate="advance.button">Request</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Script to sync wrapper height with scaled content -->
+                <script class="">
+                    (function () {
+                        const wrapper = document.currentScript.parentElement;
+                        const content = wrapper.querySelector('.glass');
+
+                        if (wrapper && content) {
+                            const updateHeight = () => {
+                                const rect = content.getBoundingClientRect();
+                                // Set the wrapper height to match the exact visual height of the scaled child
+                                if (rect.height > 0) {
+                                    wrapper.style.height = rect.height + 'px';
+                                }
+                            };
+
+                            // Update immediately, on resize, and on load
+                            updateHeight();
+                            window.addEventListener('resize', updateHeight);
+                            new ResizeObserver(updateHeight).observe(content);
+                            window.addEventListener('load', updateHeight);
+
+                            // Fallback polling for slow loads
+                            setTimeout(updateHeight, 500);
+                            setTimeout(updateHeight, 1500);
+                        }
+                    })();
+                </script>
+            </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="border-y border-white/5 bg-[#020202]/80 py-8">
+            <div class="mx-auto grid max-w-7xl gap-4 px-6 sm:grid-cols-3">
+                <div class="flex items-center justify-between rounded-xl border border-white/10 px-5 py-4">
+                    <span class="text-3xl font-semibold text-white">400+</span>
+                    <span class="max-w-[9rem] text-right text-sm text-gray-400">businesses using Garna</span>
+                </div>
+                <div class="flex items-center justify-between rounded-xl border border-white/10 px-5 py-4">
+                    <span class="text-3xl font-semibold text-white">24/7</span>
+                    <span class="max-w-[10rem] text-right text-sm text-gray-400">global payroll service availability</span>
+                </div>
+                <div class="flex items-center justify-between rounded-xl border border-white/10 px-5 py-4">
+                    <span class="text-3xl font-semibold text-white">150+</span>
+                    <span class="max-w-[8rem] text-right text-sm text-gray-400">countries covered</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24">
+            <div class="mx-auto max-w-7xl px-6">
+                <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+                    <div class="max-w-xl text-left">
+                        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">Grow faster</p>
+                        <h2 class="font-manrope text-4xl font-normal leading-tight text-white text-left md:text-5xl">Grow Your Global Workforce Faster</h2>
+                        <p class="mt-6 text-lg leading-relaxed text-gray-400">
+                            An Employer of Record helps companies hire international employees without opening local
+                            entities. Garna legally employs the worker on your behalf while you manage their day-to-day
+                            work, responsibilities, and performance
+                        </p>
+                        <p class="mt-6 text-base font-medium text-gray-200">All of this means that you can:</p>
+                    </div>
+                    <div>
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <article class="surface-soft rounded-2xl p-6">
+                                <iconify-icon icon="lucide:rocket" width="28" class="text-[#5EA500]"></iconify-icon>
+                                <h3 class="mt-5 text-xl font-semibold text-white">Hire Globally Faster</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-gray-400">Bring in talented people from all over the world and make hiring faster than before</p>
+                            </article>
+                            <article class="surface-soft rounded-2xl p-6">
+                                <iconify-icon icon="lucide:map" width="28" class="text-[#5EA500]"></iconify-icon>
+                                <h3 class="mt-5 text-xl font-semibold text-white">Expand Into New Markets</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-gray-400">Test and enter new regions without operational overhead or local entity setup</p>
+                            </article>
+                            <article class="surface-soft rounded-2xl p-6">
+                                <iconify-icon icon="lucide:shield-check" width="28" class="text-[#5EA500]"></iconify-icon>
+                                <h3 class="mt-5 text-xl font-semibold text-white">Reduce the Risks</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-gray-400">Prevent mistakes that can arise during hiring and offboarding in different countries</p>
+                            </article>
+                            <article class="surface-soft rounded-2xl p-6">
+                                <iconify-icon icon="lucide:scale" width="28" class="text-[#5EA500]"></iconify-icon>
+                                <h3 class="mt-5 text-xl font-semibold text-white">Maintain Law Compliance</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-gray-400">Get global payroll sorted out without juggling a million rules and regulations</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24">
+            <div class="mx-auto max-w-7xl px-6">
+                <div class="max-w-4xl text-left">
+                    <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">One hiring system</p>
+                    <h2 class="font-manrope text-4xl font-normal leading-tight text-white text-left md:text-5xl">Everything You Need to Hire <br class="hidden md:block">and Pay Globally</h2>
+                    <p class="mt-6 text-lg leading-relaxed text-gray-400">
+                        Garna offers a flexible hiring system that helps companies hire international staff without
+                        walking the bureaucratic extra mile
+                    </p>
+                </div>
+                <div class="relative mt-12 -mr-6 md:mr-0" data-eor-card-scroll-shell data-eor-scroll-start="true" data-eor-scroll-end="false">
+                    <div class="eor-card-edge eor-card-edge--left md:hidden">
+                        <button type="button" data-eor-card-scroll-prev aria-label="Scroll cards left" class="eor-card-edge-button">
+                            <iconify-icon icon="lucide:arrow-left" width="20" height="20"></iconify-icon>
+                        </button>
+                    </div>
+                    <div class="eor-card-edge eor-card-edge--right md:hidden">
+                        <button type="button" data-eor-card-scroll-next aria-label="Scroll cards right" class="eor-card-edge-button">
+                            <iconify-icon icon="lucide:arrow-right" width="20" height="20"></iconify-icon>
+                        </button>
+                    </div>
+                    <div class="eor-card-scroll flex gap-4 overflow-x-auto pr-6 md:grid md:grid-cols-2 md:overflow-visible md:pr-0 lg:grid-cols-3">
+                    <article class="surface-soft min-w-[320px] rounded-2xl bg-[#0b0b0b] p-5 md:min-w-0">
+                        <div class="relative flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0b0b0b]">
+                            <div class="relative h-[8.75rem] w-[16.5rem] sm:w-[18rem]">
+                                <div class="absolute left-0 top-0 w-[12.25rem] rounded-xl border border-white/10 bg-[#141414] px-4 py-3 text-white">
+                                    <p class="text-[10px] text-gray-500">Entity</p>
+                                    <p class="text-lg font-semibold">$678,200</p>
+                                    <div class="mt-3 flex items-end gap-2">
+                                        <span class="h-5 w-6 rounded bg-[#5EA500]/35"></span>
+                                        <span class="h-7 w-6 rounded bg-[#5EA500]/50"></span>
+                                        <span class="h-9 w-6 rounded bg-[#5EA500]/70"></span>
+                                        <span class="h-11 w-6 rounded bg-[#5EA500]"></span>
+                                    </div>
+                                </div>
+                                <div class="absolute right-6 top-[3.15rem] rounded-xl border border-white/10 bg-[#191919] px-4 py-3 text-white">
+                                    <p class="text-[10px] text-gray-500">Employees</p>
+                                    <p class="mt-2 text-sm font-semibold text-[#5EA500]">+87 ready</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white">Hire globally without opening entities</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Hire employees around the globe without opening a local office or navigating its legal infrastructure</p>
+                    </article>
+                    <article id="eor-card-workforce" class="surface-soft min-w-[320px] scroll-ml-6 rounded-2xl bg-[#0b0b0b] p-5 md:min-w-0">
+                        <div class="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0b0b0b]">
+                            <div class="w-[82%] rounded-xl border border-white/10 bg-[#141414] p-4 text-white">
+                                <p class="text-sm font-semibold">Workforce mix</p>
+                                <div class="mt-4 space-y-3">
+                                    <div class="flex items-center justify-between text-xs"><span>Full-time</span><span class="font-semibold">42%</span></div>
+                                    <div class="h-2 rounded-full bg-white/10"><div class="h-2 w-[42%] rounded-full bg-[#5EA500]"></div></div>
+                                    <div class="flex items-center justify-between text-xs"><span>Contractors</span><span class="font-semibold">38%</span></div>
+                                    <div class="h-2 rounded-full bg-white/10"><div class="h-2 w-[38%] rounded-full bg-[#5EA500]"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white">Employ any type of workforce</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Manage full-timers, contractors, freelancers, and distributed staff from a single place</p>
+                    </article>
+                    <article class="surface-soft min-w-[320px] rounded-2xl bg-[#0b0b0b] p-5 md:min-w-0">
+                        <div class="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0b0b0b]">
+                            <div class="w-[82%] rounded-xl border border-white/10 bg-[#141414] p-4 text-white">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-semibold">Payroll run</p>
+                                        <p class="text-xs text-gray-500">This month</p>
+                                    </div>
+                                    <span class="rounded-full bg-[#5EA500]/15 px-3 py-1 text-xs font-semibold text-[#5EA500]">Ready</span>
+                                </div>
+                                <div class="mt-4 grid grid-cols-3 gap-3 text-xs">
+                                    <div><p class="text-gray-500">Salary</p><p class="font-semibold">$48.6k</p></div>
+                                    <div><p class="text-gray-500">Tax</p><p class="font-semibold">$8.2k</p></div>
+                                    <div><p class="text-gray-500">FX</p><p class="font-semibold">4</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white">Offer payroll that runs smoothly</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Pay staff, contractors, taxes, and multi-currency payouts automatically and without stress</p>
+                    </article>
+                    <article class="surface-soft min-w-[320px] rounded-2xl bg-[#0b0b0b] p-5 md:min-w-0">
+                        <div class="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0b0b0b]">
+                            <div class="w-[82%] rounded-xl border border-white/10 bg-[#141414] p-4 text-white">
+                                <div class="flex items-center gap-3">
+                                    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[#5EA500]/15 text-xl text-[#5EA500]">!</div>
+                                    <div>
+                                        <p class="text-sm font-semibold">Compliance alert</p>
+                                        <p class="text-xs text-gray-500">New minimum wage rule</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4 rounded-lg bg-[#5EA500]/10 px-3 py-2 text-xs text-[#5EA500]">Reviewed before payroll</div>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white">Ensure compliance in every market</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Stay aligned with local labor laws, tax regulations, and country-specific rules</p>
+                    </article>
+                    <article class="surface-soft min-w-[320px] rounded-2xl bg-[#0b0b0b] p-5 md:min-w-0">
+                        <div class="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0b0b0b]">
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#141414] px-5 py-3 text-white">
+                                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]">
+                                        <iconify-icon icon="lucide:users-round" width="16" height="16"></iconify-icon>
+                                    </span>
+                                    <span class="text-lg font-semibold">HRIS</span><span class="text-[#5EA500]">✓</span>
+                                </div>
+                                <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#191919] px-5 py-3 text-white opacity-90">
+                                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]">
+                                        <iconify-icon icon="lucide:wallet" width="16" height="16"></iconify-icon>
+                                    </span>
+                                    <span class="text-lg font-semibold">Finance</span><span class="text-[#5EA500]">✓</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white">Integrate EoR into your tools</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Connect with existing HR, finance, and workforce management tools without disrupting your processes</p>
+                    </article>
+                    <article class="surface-soft min-w-[320px] rounded-2xl bg-[#0b0b0b] p-5 md:min-w-0">
+                        <div class="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0b0b0b]">
+                            <div class="flex items-center gap-5 rounded-xl border border-white/10 bg-[#141414] px-6 py-5 text-white">
+                                <div class="rounded-full border-2 border-[#5EA500]/50 px-4 py-3 text-sm font-semibold text-[#5EA500]">SOC</div>
+                                <div class="text-2xl text-[#5EA500]">★ ★ ★</div>
+                                <div class="text-2xl font-black text-white">ISO</div>
+                            </div>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white">Built for fast-moving companies</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Support startups entering new markets and larger teams managing global workforce operations</p>
+                    </article>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section id="why-garna" class="bg-[#020202] py-24">
+            <div class="mx-auto max-w-7xl px-6">
+                <div class="mx-auto max-w-4xl text-center">
+                    <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">Why Garna</p>
+                    <h2 class="font-manrope text-4xl font-normal leading-tight text-white md:text-5xl">The Answer to Why Companies <br class="hidden md:block">Choose Garna</h2>
+                    <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-gray-400">
+                        Garna makes it easier to manage global employment from finding the right people to setting
+                        them up, paying them, and keeping paperwork organized
+                    </p>
+                </div>
+
+                <div class="why-garna mt-12">
+                    <input id="why-garna-sourcing" type="radio" name="why-garna-tab" checked>
+                    <input id="why-garna-onboarding" type="radio" name="why-garna-tab">
+                    <input id="why-garna-documents" type="radio" name="why-garna-tab">
+                    <input id="why-garna-payroll" type="radio" name="why-garna-tab">
+                    <input id="why-garna-reporting" type="radio" name="why-garna-tab">
+                    <input id="why-garna-termination" type="radio" name="why-garna-tab">
+
+                    <div class="why-garna-tabs overflow-visible border-b border-white/10 md:overflow-x-auto">
+                        <div class="flex flex-wrap justify-center gap-x-6 gap-y-4 md:min-w-max md:flex-nowrap md:gap-8 md:justify-center">
+                            <label for="why-garna-sourcing" class="why-garna-tab">Sourcing</label>
+                            <label for="why-garna-onboarding" class="why-garna-tab">Onboarding</label>
+                            <label for="why-garna-documents" class="why-garna-tab">Documents</label>
+                            <label for="why-garna-payroll" class="why-garna-tab">Payroll</label>
+                            <label for="why-garna-reporting" class="why-garna-tab">Reporting</label>
+                            <label for="why-garna-termination" class="why-garna-tab">Termination</label>
+                        </div>
+                    </div>
+
+                    <div class="why-garna-panels mt-12">
+                    <article data-eor-why-panel="sourcing" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">Sourcing</p>
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Finding the Right Talent, Quickly</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300">Find and hire global talent faster with tools that make cross-border hiring simple and compliant</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/4064072/pexels-photo-4064072.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professional woman working on a laptop" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 34%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute left-5 top-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]"><iconify-icon icon="lucide:sparkles" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Talent search</p>
+                                    <p class="text-xs text-[#5EA500]">Global matching</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 z-10 w-56 rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50">
+                                <div class="flex items-center justify-between gap-3">
+                                    <span class="text-sm text-gray-400">Talent search</span>
+                                    <span class="rounded-full bg-[#5EA500]/20 px-3 py-1 text-xs font-semibold text-[#5EA500]">Global</span>
+                                </div>
+                                <div class="hidden">
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/95 p-4">
+                                        <div class="flex items-center justify-between"><span class="text-sm font-semibold text-white">Maya R.</span><span class="text-xs text-[#5EA500]">92% match</span></div>
+                                        <p class="mt-2 text-xs text-gray-400">Product designer · Portugal</p>
+                                    </div>
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/85 p-4">
+                                        <div class="flex items-center justify-between"><span class="text-sm font-semibold text-white">Alex T.</span><span class="text-xs text-[#5EA500]">88% match</span></div>
+                                        <p class="mt-2 text-xs text-gray-400">Backend engineer · Poland</p>
+                                    </div>
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/80 p-4 md:col-span-2">
+                                        <div class="flex items-center gap-3">
+                                            <iconify-icon icon="lucide:sparkles" width="22" class="text-[#5EA500]"></iconify-icon>
+                                            <p class="text-sm font-semibold text-white">Cross-border hiring checks ready</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article data-eor-why-panel="onboarding" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">Onboarding</p>
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Automating International Employee Onboarding</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300">Country-aware workflows help new employees get started through one platform, with less manual HR work</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/5717893/pexels-photo-5717893.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professional person holding a laptop in a modern office" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 28%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute bottom-5 left-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]"><iconify-icon icon="lucide:user-round-check" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">New employee</p>
+                                    <p class="text-xs text-[#5EA500]">Invite sent</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 w-60 space-y-2">
+                                <div class="rounded-2xl border border-white/10 bg-[#141414]/90 p-5">
+                                    <p class="text-sm font-semibold text-white">New employee</p>
+                                    <div class="mt-5 flex items-center gap-3">
+                                        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]"><iconify-icon icon="lucide:user-round-check" width="24"></iconify-icon></span>
+                                        <div><p class="font-semibold text-white">Sara K.</p><p class="text-xs text-gray-400">Growth lead · UAE</p></div>
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/95 p-4"><span class="text-xs text-[#5EA500]">01</span><p class="mt-1 text-sm font-semibold text-white">Invite sent</p></div>
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/90 p-4"><span class="text-xs text-[#5EA500]">02</span><p class="mt-1 text-sm font-semibold text-white">Local contract prepared</p></div>
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/85 p-4"><span class="text-xs text-[#5EA500]">03</span><p class="mt-1 text-sm font-semibold text-white">Payroll profile ready</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article data-eor-why-panel="documents" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">Documents</p>
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Centralizing Contracts and Compliance Documentation</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300">Keep contracts, tax forms, payroll records, and compliance documents together in one secure platform</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/27086215/pexels-photo-27086215.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professional woman reviewing work documents" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 28%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute bottom-5 left-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]"><iconify-icon icon="lucide:shield-check" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Compliance vault</p>
+                                    <p class="text-xs text-[#5EA500]">Documents stored</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 w-64">
+                                <div class="w-full rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50">
+                                    <div class="mb-5 flex items-center justify-between">
+                                        <p class="font-semibold text-white">Compliance vault</p>
+                                        <iconify-icon icon="lucide:shield-check" width="24" class="text-[#5EA500]"></iconify-icon>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3"><span class="text-sm text-gray-300">EoR contract</span><span class="text-xs text-[#5EA500]">Signed</span></div>
+                                        <div class="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3"><span class="text-sm text-gray-300">Tax forms</span><span class="text-xs text-[#5EA500]">Stored</span></div>
+                                        <div class="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3"><span class="text-sm text-gray-300">Payroll records</span><span class="text-xs text-[#5EA500]">Synced</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article data-eor-why-panel="payroll" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">Payroll</p>
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Running Global Payroll Without All the Stress</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300">Automated workflows help companies pay people around the world while reducing payroll errors and extra work</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/31759726/pexels-photo-31759726.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professional working on payroll from a laptop" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 30%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute bottom-5 right-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]"><iconify-icon icon="lucide:wallet-cards" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Payroll run</p>
+                                    <p class="text-xs text-[#5EA500]">Ready to pay</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 w-64 rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50">
+                                <div class="flex items-start justify-between">
+                                    <div><p class="text-sm text-gray-400">Payroll run</p><p class="mt-1 text-3xl font-semibold text-white">$84,250</p></div>
+                                    <span class="rounded-full bg-[#5EA500]/20 px-3 py-1 text-xs font-semibold text-[#5EA500]">Ready</span>
+                                </div>
+                                <div class="mt-8 grid grid-cols-3 gap-3">
+                                    <div class="rounded-xl bg-white/5 p-4"><p class="text-xs text-gray-500">SWIFT</p><p class="mt-1 font-semibold text-white">42%</p></div>
+                                    <div class="rounded-xl bg-white/5 p-4"><p class="text-xs text-gray-500">SEPA</p><p class="mt-1 font-semibold text-white">36%</p></div>
+                                    <div class="rounded-xl bg-white/5 p-4"><p class="text-xs text-gray-500">Crypto</p><p class="mt-1 font-semibold text-white">22%</p></div>
+                                </div>
+                                <div class="mt-8 h-3 overflow-hidden rounded-full bg-white/10"><div class="h-full w-[82%] rounded-full bg-[#5EA500]"></div></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article data-eor-why-panel="reporting" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">Reporting</p>
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Getting a Clear View of Your Global Workforce</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300">See payroll, compliance, onboarding, and workforce costs in one reporting layer with API-first infrastructure</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professionals reviewing workforce reports" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 30%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute bottom-5 left-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]"><iconify-icon icon="lucide:chart-no-axes-column-increasing" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Workforce costs</p>
+                                    <p class="text-xs text-[#5EA500]">Live report</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 grid w-64 gap-3">
+                                <div class="rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50">
+                                    <p class="text-sm text-gray-400">Workforce costs</p>
+                                    <p class="mt-2 text-3xl font-semibold text-white">$678,200</p>
+                                    <div class="mt-8 flex h-28 items-end gap-3">
+                                        <span class="h-10 flex-1 rounded bg-[#5EA500]/35"></span><span class="h-16 flex-1 rounded bg-[#5EA500]/50"></span><span class="h-20 flex-1 rounded bg-[#5EA500]/70"></span><span class="h-28 flex-1 rounded bg-[#5EA500]"></span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/90 p-4"><p class="text-xs text-gray-500">Countries</p><p class="mt-1 text-2xl font-semibold text-white">150+</p></div>
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/85 p-4"><p class="text-xs text-gray-500">Compliance checks</p><p class="mt-1 text-2xl font-semibold text-white">24/7</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article data-eor-why-panel="termination" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">Termination</p>
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Offboarding Compliantly in a Global Market</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300">Country-specific termination workflows help teams offboard employees with confidence</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professionals managing global employment workflows" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 30%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute left-5 top-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]"><iconify-icon icon="lucide:file-check-2" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Offboarding</p>
+                                    <p class="text-xs text-[#5EA500]">Notice rules checked</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 flex w-64 flex-col space-y-2">
+                                <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#5EA500]/20 text-xs text-[#5EA500]">1</span><p class="text-sm font-semibold text-white">Notice rules checked</p></div>
+                                <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#5EA500]/20 text-xs text-[#5EA500]">2</span><p class="text-sm font-semibold text-white">Final payroll calculated</p></div>
+                                <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#5EA500]/20 text-xs text-[#5EA500]">3</span><p class="text-sm font-semibold text-white">Documents archived</p></div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24">
+            <div class="mx-auto max-w-7xl px-6">
+                <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+                    <div>
+                        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">Fit check</p>
+                        <h2 class="font-manrope text-4xl font-normal leading-tight text-left text-white md:text-5xl">Is Garna Employer of Record <br class="hidden md:block lg:hidden">the Right Fit for Your Business?</h2>
+                    </div>
+                    <div class="grid gap-3">
+                        <div class="flex gap-3 rounded-xl border border-white/10 p-4"><iconify-icon icon="lucide:check" width="20" class="mt-0.5 text-[#5EA500]"></iconify-icon><p>You want to bring on international staff without setting up an office in every country</p></div>
+                        <div class="flex gap-3 rounded-xl border border-white/10 p-4"><iconify-icon icon="lucide:check" width="20" class="mt-0.5 text-[#5EA500]"></iconify-icon><p>You want to automate global payroll, taxes, and compliance instead of juggling manual workflows</p></div>
+                        <div class="flex gap-3 rounded-xl border border-white/10 p-4"><iconify-icon icon="lucide:check" width="20" class="mt-0.5 text-[#5EA500]"></iconify-icon><p>You already have international talent to hire and need help with contracts, onboarding, and compliance</p></div>
+                        <div class="flex gap-3 rounded-xl border border-white/10 p-4"><iconify-icon icon="lucide:check" width="20" class="mt-0.5 text-[#5EA500]"></iconify-icon><p>You want to scale distributed teams fast without building internal HR and payroll infrastructure</p></div>
+                        <div class="flex gap-3 rounded-xl border border-white/10 p-4"><iconify-icon icon="lucide:check" width="20" class="mt-0.5 text-[#5EA500]"></iconify-icon><p>You need contractor management, bank transfers, cryptocurrency payouts, and multi-country payroll in one platform</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="bg-[#020202] py-24">
+            <div class="mx-auto max-w-7xl px-6">
+                <div class="mx-auto max-w-3xl text-center">
+                    <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]">How it works</p>
+                    <h2 class="font-manrope text-4xl font-normal leading-tight text-white md:text-5xl">Steps to take with Garna</h2>
+                </div>
+                <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-6">
+                    <article class="surface-soft rounded-2xl p-5 lg:col-span-2">
+                        <div data-eor-step-visual class="relative flex h-44 items-center justify-center overflow-hidden px-3">
+                            <div class="relative w-full max-w-[18rem] rounded-2xl border border-white/10 bg-[#111111] p-5">
+                                <div class="mb-4 flex items-center justify-between">
+                                    <span class="rounded-full bg-[#5EA500]/20 px-3 py-1 text-xs font-semibold text-[#5EA500]">Profile</span>
+                                    <span class="text-xs font-semibold text-gray-500">3 min</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-2.5 w-3/4 rounded-full bg-white/20"></div>
+                                    <div class="h-2.5 w-1/2 rounded-full bg-white/10"></div>
+                                </div>
+                                <div class="mt-5 flex items-center gap-3">
+                                    <div class="grid flex-1 grid-cols-3 gap-2">
+                                        <span class="inline-flex h-7 items-center justify-center rounded-lg bg-[#5EA500] text-xs font-semibold text-[#050505]">Start</span>
+                                        <span class="h-7 rounded-lg bg-white/12"></span>
+                                        <span class="h-7 rounded-lg bg-white/12"></span>
+                                    </div>
+                                    <span class="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-[#5EA500]">
+                                        <span class="h-1.5 w-1.5 rounded-full bg-[#5EA500]"></span>
+                                        Ready
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="mt-6 block text-sm font-semibold text-[#5EA500]">01</span>
+                        <h3 class="mt-3 text-xl font-semibold text-white">Set up your company account</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Complete a quick profile check, fill in the required fields, and get access to a customized service flow</p>
+                    </article>
+                    <article class="surface-soft rounded-2xl p-5 lg:col-span-2">
+                        <div data-eor-step-visual class="relative flex h-44 items-center justify-center overflow-hidden px-3">
+                            <div class="grid w-full max-w-[19rem] grid-cols-[auto_3rem_1fr] items-center gap-3">
+                                <div class="flex h-20 w-20 items-center justify-center rounded-full border border-[#5EA500]/30 bg-[#5EA500]/16 text-[#5EA500] shadow-2xl shadow-black/30">
+                                    <iconify-icon icon="lucide:user-round" width="34"></iconify-icon>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#5EA500] text-[#050505] shadow-xl shadow-black/30">
+                                        <iconify-icon icon="lucide:arrow-right" width="19"></iconify-icon>
+                                    </span>
+                                </div>
+                                <div class="grid gap-3">
+                                    <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111111] px-4 py-3 shadow-xl shadow-black/35">
+                                    <iconify-icon icon="lucide:wallet" width="18" class="text-[#5EA500]"></iconify-icon>
+                                    <span class="text-sm font-semibold text-white">Finance</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111111] px-4 py-3 shadow-xl shadow-black/35">
+                                    <iconify-icon icon="lucide:shield-check" width="18" class="text-[#5EA500]"></iconify-icon>
+                                    <span class="text-sm font-semibold text-white">Access</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="mt-6 block text-sm font-semibold text-[#5EA500]">02</span>
+                        <h3 class="mt-3 text-xl font-semibold text-white">Assign a financial contact</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Choose the person responsible for financial matters, from a finance director to yourself</p>
+                    </article>
+                    <article class="surface-soft rounded-2xl p-5 lg:col-span-2">
+                        <div data-eor-step-visual class="relative flex h-44 items-center justify-center overflow-visible px-3">
+                            <div class="grid w-full max-w-[18rem] gap-2 rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-[0_18px_34px_-30px_rgba(0,0,0,0.95)]">
+                                <div class="flex items-center justify-between">
+                                    <span class="rounded-xl border border-white/10 bg-[#111111] px-3 py-1.5 text-xs font-semibold text-gray-300 shadow-xl shadow-black/35">Portugal</span>
+                                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#5EA500] text-[#050505] shadow-xl shadow-black/30">
+                                        <iconify-icon icon="lucide:file-text" width="19"></iconify-icon>
+                                    </span>
+                                </div>
+                                <div class="space-y-1.5 px-1">
+                                    <p class="text-sm font-semibold text-white">EoR contract</p>
+                                    <div class="h-1.5 rounded-full bg-white/20"></div>
+                                    <div class="h-1.5 w-4/5 rounded-full bg-white/10"></div>
+                                    <div class="h-1.5 w-2/3 rounded-full bg-[#5EA500]"></div>
+                                </div>
+                                <div class="flex items-center justify-between rounded-xl border border-white/10 bg-[#111111] px-3 py-1.5 text-xs shadow-xl shadow-black/35">
+                                    <span class="text-gray-500">Salary</span>
+                                    <span class="font-semibold text-white">EUR 4,800</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="mt-6 block text-sm font-semibold text-[#5EA500]">03</span>
+                        <h3 class="mt-3 text-xl font-semibold text-white">Create your first EoR contract</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Add country, position, salary, start date, currency, and work visa requirements</p>
+                    </article>
+                    <article class="surface-soft rounded-2xl p-5 lg:col-span-3">
+                        <div data-eor-step-visual class="relative flex h-44 items-center justify-center overflow-hidden px-3">
+                            <div class="grid w-full max-w-md grid-cols-[1fr_auto_1fr] items-center gap-4">
+                                <div class="rounded-2xl border border-white/10 bg-[#111111] p-4 shadow-xl shadow-black/35">
+                                    <div class="mb-3 flex h-5 items-center text-[#5EA500]">
+                                        <iconify-icon icon="lucide:mail" width="18"></iconify-icon>
+                                    </div>
+                                    <p class="text-xs text-gray-500">Invite</p>
+                                    <p class="mt-2 text-sm font-semibold text-white">Employee email</p>
+                                </div>
+                                <span class="flex h-12 w-12 items-center justify-center rounded-full bg-[#5EA500] text-[#050505] shadow-xl shadow-black/30">
+                                    <iconify-icon icon="lucide:send" width="20"></iconify-icon>
+                                </span>
+                                <div class="rounded-2xl border border-white/10 bg-[#111111] p-4 shadow-xl shadow-black/35">
+                                    <div class="mb-3 flex h-5 items-center text-[#5EA500]">
+                                        <iconify-icon icon="lucide:badge-check" width="18"></iconify-icon>
+                                    </div>
+                                    <p class="text-xs text-gray-500">Account</p>
+                                    <p class="mt-2 text-sm font-semibold text-white">Ready to pay</p>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="mt-6 block text-sm font-semibold text-[#5EA500]">04</span>
+                        <h3 class="mt-3 text-xl font-semibold text-white">Invite an employee</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400">The employee receives an invitation by email and creates a Garna account to receive payments</p>
+                    </article>
+                    <article class="surface-soft rounded-2xl p-5 lg:col-span-3">
+                        <div data-eor-step-visual class="relative flex h-44 items-center justify-center overflow-hidden px-3">
+                            <div class="w-full max-w-sm">
+                                <div class="relative rounded-2xl border border-white/10 bg-[#111111] p-4 shadow-2xl shadow-black/45">
+                                    <div class="absolute -right-3 -top-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#5EA500] text-[#050505]">
+                                        <iconify-icon icon="lucide:circle-dollar-sign" width="22"></iconify-icon>
+                                    </div>
+                                    <p class="text-xs text-gray-500">Wallet balance</p>
+                                    <p class="mt-1 text-2xl font-semibold text-white">$84,250</p>
+                                    <div class="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
+                                        <div class="h-full w-[82%] rounded-full bg-[#5EA500]"></div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <span class="rounded-full bg-white/10 px-3 py-1 text-xs text-gray-300">SWIFT</span>
+                                    <span class="rounded-full bg-white/10 px-3 py-1 text-xs text-gray-300">SEPA</span>
+                                    <span class="rounded-full bg-[#5EA500]/20 px-3 py-1 text-xs text-[#5EA500]">Crypto</span>
+                                    <span class="rounded-full bg-[#5EA500]/20 px-3 py-1 text-xs font-semibold text-[#5EA500]">Funded</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="mt-6 block text-sm font-semibold text-[#5EA500]">05</span>
+                        <h3 class="mt-3 text-xl font-semibold text-white">Fund your wallet and run payroll</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Use SWIFT, SEPA, or crypto funding and start paying salary today</p>
+                    </article>
+                </div>
+            </div>
+        </section>

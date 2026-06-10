@@ -11,6 +11,8 @@ module.exports = {
 			webpackConfig.resolve = { ...resolve, extensions: [...tsExtensions, ...rest] };
 
 			// Modify output configuration for widget bundle
+			webpackConfig.devtool = false;
+
 			webpackConfig.output = {
 				...webpackConfig.output,
 				filename: 'garna-widget.js',

@@ -8,8 +8,8 @@ const BASE_DOMAIN = 'https://garna.io';
  * @param path Path segments joined with '/' (e.g., '', 'offer')
  * @returns Modified HTML with hreflang tags
  */
-export function injectHreflangTags(html: string, path: string, pageLanguages?: string[]): string {
-	const languages = pageLanguages || getSupportedLanguageCodes();
+export function injectHreflangTags(html: string, path: string, availableLanguages?: string[]): string {
+	const languages = availableLanguages ?? getSupportedLanguageCodes();
 
 	// Build hreflang tags
 	const hreflangTags: string[] = [];

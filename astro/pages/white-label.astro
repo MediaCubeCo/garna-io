@@ -1,0 +1,87 @@
+---
+import HeroSection from '../components/HeroSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
+import type { FAQItem } from '../types/faq-section';
+import rawContentHtml from '../content/site-pages/white-label.html?raw';
+import { splitLegacyPageSections } from '../utils/legacy-html';
+
+const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
+	heroVisualMarker: '<!-- Right Visual (Dashboard UI) -->',
+});
+
+const whiteLabelFaqItems = [
+	{
+		question: 'Who can use Garna white label?',
+		answer: 'Any business (SaaS, agency, platform, etc.) that needs reliable white-label payroll solutions to scale payments to international contractors.',
+		questionTranslateKey: 'faq.q1',
+		answerTranslateKey: 'faq.a1',
+	},
+	{
+		question: 'What products can be white labeled?',
+		answer: 'You can customize Contractor Management for onboarding and paying freelancers, as well as Contractor of Record to protect your business from misclassification risk. These white-label payroll solutions allow you to manage international clients and payments entirely under your own brand.',
+		questionTranslateKey: 'faq.q2',
+		answerTranslateKey: 'faq.a2',
+	},
+	{
+		question: 'Do we need to build APIs?',
+		answer: "You don't need to build APIs to use the Garna White Label solution. You can integrate the Garna White Label solution into your existing dashboards using our existing APIs.",
+		questionTranslateKey: 'faq.q3',
+		answerTranslateKey: 'faq.a3',
+	},
+	{
+		question: 'How long does setup take?',
+		answer: "The process usually takes about 7-14 days. That's dozens of times faster than trying to build a white-label payroll solution from scratch on your own.",
+		questionTranslateKey: 'faq.q4',
+		answerTranslateKey: 'faq.a4',
+	},
+	{
+		question: 'Can we customize the platform branding?',
+		answer: 'Of course. Our white-label system is designed for extensive customization. You can change logos, fonts, color schemes, and user interface (UX) elements so that the platform aligns 100% with your brand guidelines.',
+		questionTranslateKey: 'faq.q5',
+		answerTranslateKey: 'faq.a5',
+	},
+	{
+		question: 'Does Garna provide a support team?',
+		answer: "Yes. Our team of experts will handle tickets and answer your users' questions while representing your company. This allows you to offer top-notch services without having to hire your own support team. We will communicate with your contractors using the emails with your own domain, not the Garna domain.",
+		questionTranslateKey: 'faq.q6',
+		answerTranslateKey: 'faq.a6',
+	},
+	{
+		question: 'What type of domain does Garna offer?',
+		answer: 'The choice is yours. We can deploy the system on your own domain (e.g., contractors.yourbrand.com) or provide a dedicated subdomain hosted on Garna. Either way, to the end user, it will appear as a seamless process within your ecosystem.',
+		questionTranslateKey: 'faq.q7',
+		answerTranslateKey: 'faq.a7',
+	},
+] satisfies FAQItem[];
+---
+
+<BaseLayout shell={pageShells.whiteLabel} currentPath="white-label">
+	<main id="astro-page-content" data-astro-page-content data-current-path="white-label">
+		<HeroSection {...pageHeroes.whiteLabel}>
+			<Fragment set:html={heroVisualHtml} />
+		</HeroSection>
+		<Fragment set:html={contentHtml} />
+		<FAQSection
+			title={{ text: 'FAQ on Garna White Label Services', translateKey: 'faq.title' }}
+				subtitle={{ text: 'Have questions? We have answers', translateKey: 'faq.subtitle' }}
+				items={whiteLabelFaqItems}
+				class="lg:pt-32 lg:pb-32 pt-16 pb-16"
+				containerClass="garna-container"
+			/>
+		<FinalCTASection {...pageFinalCtas.whiteLabel} />
+	</main>
+	<Fragment slot="widgets">
+		<GarnaBookingWidget
+			trackingSource="white-label"
+			trackingPage="white-label"
+			titleFallback="Start your white-label journey with Garna"
+			subtitleFallback="Fill in your details to book a demo"
+		/>
+	</Fragment>
+</BaseLayout>

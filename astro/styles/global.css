@@ -1,0 +1,248 @@
+/* Shared site-level CSS entrypoint for Astro components and future page work. */
+
+:root {
+	--garna-container-content-max: 1152px;
+	--garna-container-gutter: clamp(16px, 5vw, 64px);
+}
+
+.garna-container {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: calc(var(--garna-container-content-max) + (var(--garna-container-gutter) * 2));
+	margin-inline: auto;
+	padding-inline: var(--garna-container-gutter);
+}
+
+[class~="max-w-7xl"] {
+	max-width: calc(var(--garna-container-content-max) + (var(--garna-container-gutter) * 2)) !important;
+}
+
+[class~="max-w-7xl"][class~="px-6"],
+[class~="max-w-7xl"][class~="pr-6"][class~="pl-6"] {
+	padding-left: var(--garna-container-gutter) !important;
+	padding-right: var(--garna-container-gutter) !important;
+}
+
+.garna-hero-title-gradient {
+	color: transparent !important;
+	background: linear-gradient(175deg, #ffffff 0%, rgba(255, 255, 255, 0.86) 42%, rgba(255, 255, 255, 0.38) 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+}
+
+.garna-instant-scroll,
+.garna-instant-scroll *,
+.garna-instant-scroll::before,
+.garna-instant-scroll::after {
+	scroll-behavior: auto !important;
+}
+
+@property --garna-button-gradient-angle {
+	syntax: "<angle>";
+	initial-value: 0deg;
+	inherits: false;
+}
+
+@keyframes garna-button-border-spin {
+	to {
+		--garna-button-gradient-angle: 360deg;
+	}
+}
+
+.garna-button {
+	--garna-button-bg: #5EA500;
+	--garna-button-shine: #ffffff;
+	box-sizing: border-box;
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+	gap: 0.5rem;
+	border: 0;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.2;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, filter 0.28s ease, color 0.28s ease, background 0.28s ease;
+}
+
+.garna-button::before,
+.garna-button::after {
+	box-sizing: border-box;
+}
+
+.garna-button:hover {
+	transform: translateY(-3px);
+	filter: saturate(1.06);
+}
+
+.garna-button:active {
+	transform: translateY(-1px) scale(0.99);
+}
+
+.garna-button-inner {
+	position: relative;
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.garna-button-icon-svg {
+	width: 19px;
+	height: 19px;
+	transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.garna-button:hover .garna-button-icon-svg {
+	transform: translate(3px, -3px);
+}
+
+.garna-button-primary {
+	background: var(--garna-button-bg);
+	box-shadow:
+		0 10px 24px -18px rgba(94, 165, 0, 0.85),
+		0 0 26px -12px rgba(94, 165, 0, 0.72),
+		inset 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.garna-button-primary:hover {
+	background: var(--garna-button-bg);
+	box-shadow:
+		0 18px 34px -22px rgba(94, 165, 0, 1),
+		0 0 34px -8px rgba(94, 165, 0, 0.92),
+		inset 0 2px 0 rgba(255, 255, 255, 0.28);
+}
+
+.garna-button-secondary {
+	background: rgba(255, 255, 255, 0.04);
+	box-shadow:
+		inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+		inset 0 2px 0 rgba(255, 255, 255, 0.06);
+}
+
+.garna-button-secondary:hover {
+	background: rgba(255, 255, 255, 0.06);
+	box-shadow:
+		0 18px 34px -22px rgba(94, 165, 0, 1),
+		0 0 34px -8px rgba(94, 165, 0, 0.92),
+		inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+		inset 0 2px 0 rgba(255, 255, 255, 0.28);
+}
+
+.garna-button-ghost {
+	background: transparent;
+}
+
+.garna-button-ghost:hover {
+	opacity: 0.8;
+}
+
+.garna-button-icon {
+	background: transparent;
+}
+
+.garna-button-icon:hover {
+	color: #5EA500;
+}
+
+.garna-button-rotating-flare {
+	box-shadow:
+		inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+		inset 0 2px 0 rgba(255, 255, 255, 0.3),
+		0 10px 24px -18px rgba(94, 165, 0, 0.85),
+		0 0 26px -12px rgba(94, 165, 0, 0.72);
+}
+
+.garna-button-rotating-flare:hover {
+	box-shadow:
+		inset 0 0 0 1px rgba(255, 255, 255, 0.26),
+		inset 0 2px 0 rgba(255, 255, 255, 0.34),
+		0 18px 34px -22px rgba(94, 165, 0, 1),
+		0 0 34px -8px rgba(94, 165, 0, 0.92);
+}
+
+.garna-button-rotating-flare::before {
+	content: '';
+	pointer-events: none;
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 0.75rem;
+	padding: 3px 2px 2px;
+	background: conic-gradient(
+		from var(--garna-button-gradient-angle),
+		transparent 0%,
+		rgba(77, 138, 0, 0.45) 5%,
+		var(--garna-button-shine) 15%,
+		rgba(77, 138, 0, 0.45) 30%,
+		transparent 42%,
+		transparent 100%
+	);
+	-webkit-mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0);
+	mask-composite: exclude;
+	animation: garna-button-border-spin 2.5s linear infinite;
+}
+
+.garna-button-rotating-flare::after {
+	content: '';
+	pointer-events: none;
+	position: absolute;
+	inset: 3px 2px 2px;
+	z-index: 1;
+	border-radius: calc(0.75rem - 3px) calc(0.75rem - 2px) calc(0.75rem - 2px) calc(0.75rem - 2px);
+	background: var(--garna-button-bg);
+}
+
+.garna-button-hover-sweep::before {
+	content: "";
+	position: absolute;
+	inset: -120% -45%;
+	z-index: 1;
+	background: linear-gradient(115deg, transparent 34%, rgba(255, 255, 255, 0.34) 48%, transparent 62%);
+	transform: translateX(-70%) rotate(8deg);
+	transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.garna-button-hover-sweep::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background: radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.28), transparent 34%);
+	opacity: 0.6;
+	transition: opacity 0.28s ease;
+}
+
+.garna-button-hover-sweep:hover {
+	filter: saturate(1.08);
+}
+
+.garna-button-hover-sweep:hover::before {
+	transform: translateX(70%) rotate(8deg);
+}
+
+.garna-button-hover-sweep:hover::after {
+	opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.garna-button,
+	.garna-button::before,
+	.garna-button::after,
+	.garna-button-icon-svg {
+		transition: none;
+	}
+
+	.garna-button-rotating-flare::before {
+		animation: none;
+	}
+}

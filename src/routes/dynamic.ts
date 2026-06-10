@@ -1,13 +1,12 @@
 import { basePaths, PageConfig } from '../config/pages';
 import { RouteInfo } from '../utils/routes';
 import { languages } from '../config/languages';
-import { getPageTranslations } from '../pages/i18n';
+import { getPageTranslations } from '../i18n';
 import { injectHtmlLangTag } from '../utils/htmlLang';
 import { injectCanonicalTag } from '../utils/canonical';
 import { injectHreflangTags } from '../utils/hreflang';
 import { injectSchemaOrg } from '../utils/schema';
 import { injectPageTranslations } from '../utils/page-translations';
-import { HEADER_PLACEHOLDER, buildHeaderHtml } from '../utils/header';
 
 const securityHeaders = {
 	'Content-Security-Policy': "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'",
@@ -45,14 +44,25 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 	}
 }
 
-// Mapping of page paths to directory names
-const PAGE_PATH_TO_DIR: Record<string, string> = {
+// Mapping of public route paths to Astro-generated asset files in dist/.
+const PAGE_PATH_TO_ASSET: Record<string, string> = {
+	'': '/index.html',
+	'for-contractors': '/for-contractors.html',
+	form: '/form.html',
+	'ai-hiring': '/ai-hiring.html',
+	'white-label': '/white-label.html',
+	'payroll-small-business': '/payroll-small-business.html',
+	eor: '/eor.html',
+};
+
+const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'': 'home',
 	'for-contractors': 'offer',
 	form: 'form',
 	'ai-hiring': 'ai-hiring',
 	'white-label': 'white-label',
 	'payroll-small-business': 'payroll-small-business',
+	eor: 'eor',
 };
 
 async function serveStaticPage(
@@ -78,16 +88,15 @@ async function serveStaticPage(
 	}
 
 	const pagePath = pageConfig.path;
-	const pageDir = PAGE_PATH_TO_DIR[pagePath];
+	const assetPath = PAGE_PATH_TO_ASSET[pagePath];
+	const translationKey = PAGE_PATH_TO_TRANSLATION_KEY[pagePath];
 
-	if (!pageDir) {
-		console.error(`[serveStaticPage] No directory mapping for page path: ${pagePath}`);
+	if (!assetPath || !translationKey) {
+		console.error(`[serveStaticPage] No asset mapping for page path: ${pagePath}`);
 		return null;
 	}
 
 	try {
-		// Construct asset path: /pages/{pageDir}/{pageDir}.html
-		const assetPath = `/pages/${pageDir}/${pageDir}.html`;
 		const assetUrl = new URL(assetPath, request.url);
 		const assetRequest = new Request(assetUrl.toString(), {
 			method: 'GET',
@@ -103,11 +112,6 @@ async function serveStaticPage(
 
 		// Read HTML content
 		let html = await response.text();
-
-		// Inject shared header when enabled for this page
-		if (pageConfig.showHeader === true) {
-			html = html.replace(HEADER_PLACEHOLDER, buildHeaderHtml(routeInfo.language ?? 'en', pageConfig.path));
-		}
 
 		// Apply HTML modifications
 		const language = routeInfo.language || 'en';
@@ -125,13 +129,20 @@ async function serveStaticPage(
 
 		// 4. Inject Schema.org JSON-LD
 		const canonicalUrl = `${baseUrl}/${language}${path ? `/${path}` : ''}`;
-		const currentMeta = (getPageTranslations(pageDir, language) as any)?.meta;
+		const currentMeta = (getPageTranslations(translationKey, language) as any)?.meta;
 		const pageTitle = currentMeta?.title;
 		const pageDescription = currentMeta?.description;
 		html = injectSchemaOrg(html, canonicalUrl, pageTitle, pageDescription);
 
 		// 5. Inject page translations
-		html = injectPageTranslations(html, pageDir, routeInfo, baseUrl, env, pageConfig.languages);
+		html = injectPageTranslations(
+			html,
+			translationKey,
+			routeInfo,
+			baseUrl,
+			env,
+			pageConfig.languages
+		);
 
 		// Return response with modified HTML and security headers
 		const responseHeaders = new Headers();

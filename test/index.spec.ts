@@ -79,9 +79,9 @@ describe('Locale Detection', () => {
 		expect(language).toBe('en');
 	});
 
-	it('should detect Russian for Russia', () => {
+	it('should default to English for Russia because IP language detection is disabled', () => {
 		const language = getLanguageFromIP('RU');
-		expect(language).toBe('ru');
+		expect(language).toBe('en');
 	});
 
 	it('should default to English for unknown countries', () => {
@@ -89,14 +89,14 @@ describe('Locale Detection', () => {
 		expect(language).toBe('en');
 	});
 
-	it('should validate correct locales (en and ru only)', () => {
+	it('should validate correct locales', () => {
 		expect(isValidLocale('en-US')).toBe(true);
 		expect(isValidLocale('ru-RU')).toBe(true);
+		expect(isValidLocale('es-ES')).toBe(true);
+		expect(isValidLocale('pt-BR')).toBe(true);
 	});
 
 	it('should reject unsupported or invalid locales', () => {
-		expect(isValidLocale('es-ES')).toBe(false);
-		expect(isValidLocale('pt-BR')).toBe(false);
 		expect(isValidLocale('en-XX')).toBe(false);
 		expect(isValidLocale('fr-FR')).toBe(false);
 		expect(isValidLocale('invalid')).toBe(false);
@@ -104,15 +104,13 @@ describe('Locale Detection', () => {
 });
 
 describe('Language Support', () => {
-	it('should support exactly 2 languages', () => {
+	it('should support exactly 4 languages', () => {
 		const languages = getSupportedLanguageCodes();
-		expect(languages).toHaveLength(2);
+		expect(languages).toHaveLength(4);
 	});
 
-	it('should include en and ru', () => {
+	it('should include all configured languages', () => {
 		const languages = getSupportedLanguageCodes();
-		expect(languages).toContain('en');
-		expect(languages).toContain('ru');
-		expect(languages).toEqual(['en', 'ru']);
+		expect(languages).toEqual(['en', 'es', 'pt', 'ru']);
 	});
 });

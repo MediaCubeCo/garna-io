@@ -1,0 +1,68 @@
+---
+import HeroSection from '../components/HeroSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
+import type { FAQItem } from '../types/faq-section';
+import rawContentHtml from '../content/site-pages/payroll-small-business.html?raw';
+import heroVisualHtml from '../content/site-hero-visuals/payroll-small-business.html?raw';
+import scriptsHtml from '../content/site-scripts/payroll-small-business.html?raw';
+
+const payrollSmallBusinessFaqItems = [
+	{
+		question: 'How can I hire an employee abroad without opening my own local legal entity?',
+		answer:
+			'To do this, we use the Employer of Record model. You delegate the legal side of hiring to us. Garna is an official employer in 150+ countries, so you do not have to spend months and thousands of dollars registering a company in another country.',
+		questionTranslateKey: 'faq.items.q1.question',
+		answerTranslateKey: 'faq.items.q1.answer',
+	},
+	{
+		question: 'How much does payroll cost for a small company?',
+		answer:
+			'Garna offers a transparent pay-as-you-go model. You only pay for the people you actually pay. It is convenient when your team is small.',
+		questionTranslateKey: 'faq.items.q2.question',
+		answerTranslateKey: 'faq.items.q2.answer',
+	},
+	{
+		question: 'Why is Garna payroll better than local legal entities?',
+		answer:
+			'When hiring 1-10 employees, opening a local entity and hiring legal or accounting specialists can be expensive. With Garna payroll, you pay per employee, keep costs lean, and reduce the risk of fines from incorrect taxes or missing documents.',
+		questionTranslateKey: 'faq.items.q3.question',
+		answerTranslateKey: 'faq.items.q3.answer',
+	},
+	{
+		question: 'What taxes do I need to file?',
+		answer:
+			'With Garna, you do not need to worry about taxes. When you use the Garna EoR solution, we calculate everything automatically.',
+		questionTranslateKey: 'faq.items.q4.question',
+		answerTranslateKey: 'faq.items.q4.answer',
+	},
+	{
+		question: 'Can I pay contractors and employees in one system?',
+		answer:
+			'Yes. This is the main advantage of Garna. You manage a global team in one interface and split payments into official salaries for staff and royalties for freelancers.',
+		questionTranslateKey: 'faq.items.q5.question',
+		answerTranslateKey: 'faq.items.q5.answer',
+	},
+] satisfies FAQItem[];
+---
+
+<BaseLayout shell={pageShells.payrollSmallBusiness} scriptsHtml={scriptsHtml} currentPath="payroll-small-business">
+	<main id="astro-page-content" data-astro-page-content data-current-path="payroll-small-business">
+		<HeroSection {...pageHeroes.payrollSmallBusiness}>
+			<Fragment set:html={heroVisualHtml} />
+		</HeroSection>
+		<Fragment set:html={rawContentHtml} />
+		<FAQSection
+			kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
+			title={{ text: 'FAQ on Small Business Payroll', translateKey: 'faq.title' }}
+			items={payrollSmallBusinessFaqItems}
+			class="relative py-20 lg:py-28"
+			containerClass="garna-container"
+		/>
+		<FinalCTASection {...pageFinalCtas.payrollSmallBusiness} />
+	</main>
+</BaseLayout>
