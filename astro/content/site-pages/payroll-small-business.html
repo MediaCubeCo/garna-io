@@ -1,29 +1,191 @@
+<style>
+    @keyframes flow-line {
+        from {
+            stroke-dashoffset: 20;
+        }
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    .steps-flow {
+        position: relative;
+        isolation: isolate;
+        overflow: visible;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .steps-flow::before,
+    .steps-flow::after,
+    .steps-flow-item::before,
+    .steps-flow-item:not(:last-child)::after {
+        display: none;
+    }
+
+    .steps-flow-grid {
+        position: relative;
+        z-index: 2;
+        overflow: visible;
+        align-items: flex-start;
+    }
+
+    .steps-flow-item {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex: 1 1 0%;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        min-height: auto;
+        overflow: visible;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(16px);
+        animation: routineCardIn 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        animation-delay: var(--step-delay, 0ms);
+    }
+
+    .steps-flow-marker {
+        position: relative;
+        display: grid;
+        width: 5rem;
+        height: 5rem;
+        place-items: center;
+        margin-bottom: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #0a0a0a;
+        color: #ffffff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        transition: border-color 500ms ease, box-shadow 500ms ease, color 500ms ease, transform 500ms ease;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+
+    .steps-flow-marker::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: rgba(94, 165, 0, 0.05);
+        opacity: 0;
+        transition: opacity 500ms ease;
+    }
+
+    .steps-flow-number {
+        position: absolute;
+        top: -0.75rem;
+        right: -0.75rem;
+        display: grid;
+        width: 2rem;
+        height: 2rem;
+        place-items: center;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #111111;
+        color: #9ca3af;
+        font-size: 0.75rem;
+        font-weight: 700;
+        box-shadow: 0 12px 28px -18px rgba(0, 0, 0, 0.85);
+        transition: border-color 500ms ease, color 500ms ease, box-shadow 500ms ease;
+    }
+
+    .steps-flow-item:hover .steps-flow-marker {
+        transform: translateY(-0.5rem);
+        border-color: rgba(94, 165, 0, 0.5);
+        color: #5ea500;
+        box-shadow: 0 0 30px rgba(94, 165, 0, 0.3);
+    }
+
+    .steps-flow-item:hover .steps-flow-marker::before {
+        opacity: 1;
+    }
+
+    .steps-flow-item:hover .steps-flow-number,
+    .steps-flow-item:hover h3,
+    .steps-flow-item:last-child .steps-flow-marker,
+    .steps-flow-item:last-child .steps-flow-number,
+    .steps-flow-item:last-child h3 {
+        color: #5ea500;
+    }
+
+    .steps-flow-item:last-child .steps-flow-marker {
+        border-color: rgba(94, 165, 0, 0.4);
+        animation: stepFinalPulse 3s ease-in-out infinite;
+    }
+
+    .steps-flow-item:last-child .steps-flow-marker::before {
+        background: rgba(94, 165, 0, 0.1);
+        opacity: 0.5;
+    }
+
+    .steps-flow-item:last-child .steps-flow-number {
+        border-color: rgba(94, 165, 0, 0.5);
+        box-shadow: 0 0 10px rgba(94, 165, 0, 0.3);
+    }
+
+    @media (max-width: 767px) {
+        .steps-flow {
+            padding: 0;
+        }
+
+        .steps-flow-item {
+            min-height: 10rem;
+            padding-bottom: 1.75rem;
+        }
+
+        .steps-flow-marker {
+            margin-bottom: 1.25rem;
+        }
+    }
+</style>
+
 <section class="relative bg-[#020202] py-20 lg:py-28">
             <div class="garna-container">
-                <div class="reveal mx-auto max-w-4xl space-y-6 text-center text-lg leading-8 text-gray-400 font-manrope">
+                <div class="reveal max-w-5xl font-manrope">
                         <p class="mb-3 text-sm font-semibold uppercase text-[#5EA500] font-manrope">Small business payroll</p>
-                        <h2 class="text-4xl font-normal leading-tight text-white md:text-5xl font-manrope">
-                            Payroll That Actually Works for Small Businesses
+                        <h2 class="max-w-4xl text-4xl font-normal leading-tight text-white md:text-5xl font-manrope">
+                            Payroll That Actually Works<br>for Small Businesses
                         </h2>
-                        <p class="text-2xl leading-9 text-gray-200">
-                            Forget about routine and mistakes. Pay your team without difficulty.
-                        </p>
-                        <p class="font-light">
-                            Payroll should not slow your business down. For small businesses, payroll can turn into
-                            chaos: endless tables, manual tax recalculation, and the fear of missing a deadline. Every
-                            hour spent on accounting and administration is an hour stolen from your growth
-                        </p>
-                        <p class="font-light">
-                            With Garna, payroll calculation takes minutes, not days. The system calculates salaries,
-                            deductions, and taxes automatically so you stay compliant without wasting time and effort
-                        </p>
-                        <p class="font-light">
-                            Save all essentials in one place. Hire new employees and pay them from a single platform,
-                            choose convenient payment options, and manage every process without switching tools
-                        </p>
                 </div>
 
-                <div class="reveal payroll-routine-visual mt-14 rounded-[24px] border border-white/10 p-4 md:p-6 lg:p-7"
+                <div class="reveal mx-auto mt-10 max-w-5xl border-y border-white/10 py-8" style="--delay: 80ms">
+                    <div class="grid gap-y-6">
+                        <div class="grid gap-4 md:grid-cols-[3.5rem_minmax(0,1fr)]">
+                            <span class="font-manrope text-sm font-semibold text-[#5EA500]">01</span>
+                            <div>
+                                <h3 class="text-base font-semibold text-white font-manrope">Payroll should not slow your business down</h3>
+                                <p class="mt-2 max-w-4xl text-sm leading-6 text-gray-400">
+                                    For small businesses, payroll can turn into chaos: endless tables, manual tax recalculation,
+                                    and the fear of missing a deadline. Every hour spent on accounting and administration is an
+                                    hour stolen from your growth
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid gap-4 md:grid-cols-[3.5rem_minmax(0,1fr)]">
+                            <span class="font-manrope text-sm font-semibold text-[#5EA500]">02</span>
+                            <div>
+                                <h3 class="text-base font-semibold text-white font-manrope">With Garna, payroll calculation takes minutes, not days</h3>
+                            </div>
+                        </div>
+                        <div class="grid gap-4 md:grid-cols-[3.5rem_minmax(0,1fr)]">
+                            <span class="font-manrope text-sm font-semibold text-[#5EA500]">03</span>
+                            <div>
+                                <h3 class="text-base font-semibold text-white font-manrope">Save all essentials in one place</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal payroll-routine-visual mt-12 rounded-[24px] border border-white/10 p-4 md:p-6 lg:p-7"
                         style="--delay: 140ms" aria-label="Payroll automation visual">
                         <div class="relative z-10 flex flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
                             <div>
@@ -291,25 +453,52 @@
                 </div>
 
                 <div class="reveal steps-flow mt-14" style="--delay: 120ms">
-                    <div class="steps-flow-grid grid gap-5 md:grid-cols-4">
+                    <div class="steps-flow-grid flex flex-col md:flex-row w-full max-w-5xl mr-auto ml-auto relative gap-x-12 gap-y-4 items-start justify-between">
+                        <div class="hidden md:block absolute left-[12.5%] right-[12.5%] top-[40px] h-[3px] z-0 pointer-events-none -translate-y-1/2">
+                            <svg class="w-full h-full overflow-visible" preserveAspectRatio="none">
+                                <line x1="0" y1="1.5" x2="100%" y2="1.5" stroke="rgba(255,255,255,0.05)" stroke-width="3"
+                                    stroke-dasharray="0 20" stroke-linecap="round"></line>
+                                <line x1="0" y1="1.5" x2="100%" y2="1.5" stroke="#5EA500" stroke-width="3"
+                                    stroke-dasharray="0 20" stroke-linecap="round"
+                                    style="animation: flow-line 1s linear infinite;"></line>
+                            </svg>
+                        </div>
+                        <div class="md:hidden absolute left-1/2 top-[40px] bottom-[15%] w-[3px] -translate-x-1/2 z-0 pointer-events-none">
+                            <svg class="w-full h-full overflow-visible" preserveAspectRatio="none">
+                                <line x1="1.5" y1="0" x2="1.5" y2="100%" stroke="rgba(255,255,255,0.05)" stroke-width="3"
+                                    stroke-dasharray="0 20" stroke-linecap="round"></line>
+                            </svg>
+                        </div>
                         <div class="steps-flow-item" style="--step-delay: 0ms">
-                            <div class="steps-flow-marker text-sm font-bold text-white font-manrope">1</div>
-                            <h3 class="mt-0 text-lg font-semibold text-white font-manrope md:mt-7">Set up an account</h3>
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:user-id-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">01</span>
+                            </div>
+                            <h3 class="mb-2 text-lg font-semibold text-white transition-colors font-manrope">Set up an account</h3>
                             <p class="mt-3 text-sm leading-6 text-gray-400">Create a company profile and go through a quick verification process</p>
                         </div>
                         <div class="steps-flow-item" style="--step-delay: 120ms">
-                            <div class="steps-flow-marker text-sm font-bold text-white font-manrope">2</div>
-                            <h3 class="mt-0 text-lg font-semibold text-white font-manrope md:mt-7">Add your team</h3>
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:users-group-rounded-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">02</span>
+                            </div>
+                            <h3 class="mb-2 text-lg font-semibold text-white transition-colors font-manrope">Add your team</h3>
                             <p class="mt-3 text-sm leading-6 text-gray-400">Invite employees (EoR) or contractors (CoR) and assign them roles</p>
                         </div>
                         <div class="steps-flow-item" style="--step-delay: 240ms">
-                            <div class="steps-flow-marker text-sm font-bold text-white font-manrope">3</div>
-                            <h3 class="mt-0 text-lg font-semibold text-white font-manrope md:mt-7">Top up your balance</h3>
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:wallet-money-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">03</span>
+                            </div>
+                            <h3 class="mb-2 text-lg font-semibold text-white transition-colors font-manrope">Top up your balance</h3>
                             <p class="mt-3 text-sm leading-6 text-gray-400">Transfer funds to your Garna account in a convenient way</p>
                         </div>
                         <div class="steps-flow-item" style="--step-delay: 360ms">
-                            <div class="steps-flow-marker text-sm font-bold text-white font-manrope">4</div>
-                            <h3 class="mt-0 text-lg font-semibold text-white font-manrope md:mt-7">Start making payments</h3>
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:check-circle-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">04</span>
+                            </div>
+                            <h3 class="mb-2 text-lg font-semibold text-white transition-colors font-manrope">Start making payments</h3>
                             <p class="mt-3 text-sm leading-6 text-gray-400">One click sends money to the whole team, including all taxes</p>
                         </div>
                     </div>
