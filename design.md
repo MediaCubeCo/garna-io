@@ -966,8 +966,12 @@ Anatomy:
 
 Hover:
 
-- No hover effect.
-- Do not move, scale, brighten, change the background, add green border or add glow.
+- Use the Feature visual card hover behavior.
+- Card border becomes green `#5EA500/40`.
+- The same soft green glow as the Contractor benefit card appears: `0 0 34px -12px rgba(94,165,0,0.34)`.
+- Card background does not change.
+- Card does not scale or jump.
+- Icon does not scale.
 
 Rules:
 
@@ -1118,8 +1122,11 @@ Anatomy:
 
 Hover:
 
-- No default hover effect.
-- Do not add green border, glow, lift, icon scaling or visual scaling unless a page-specific variant is documented later.
+- Use the Visual content card hover behavior.
+- Background changes from `#0C0C0C` to `#0F0F0F`.
+- Border becomes slightly brighter, around `white/10`.
+- Card moves up subtly: `translateY(-4px)`.
+- No green border, no green glow and no visual scaling.
 
 Rules:
 
