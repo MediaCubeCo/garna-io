@@ -136,7 +136,12 @@ async function serveStaticPage(
 		// Return response with modified HTML and security headers
 		const responseHeaders = new Headers();
 		responseHeaders.set('Content-Type', 'text/html; charset=utf-8');
-		responseHeaders.set('Cache-Control', 'public, max-age=3600');
+		const requestHost = new URL(request.url).hostname;
+		const isLocalRequest = requestHost === 'localhost' || requestHost === '127.0.0.1' || requestHost === '::1';
+		responseHeaders.set(
+			'Cache-Control',
+			isLocalRequest ? 'no-store, no-cache, must-revalidate' : 'public, max-age=3600'
+		);
 
 		// Add security headers
 		for (const [key, value] of Object.entries(securityHeaders)) {
