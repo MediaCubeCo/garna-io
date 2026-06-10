@@ -56,7 +56,7 @@ export const basePaths: PageConfig[] = [
 		showHeader: true,
 	},
 	{
-		path: 'eor',
+		path: 'employer-of-record',
 		mode: 'static',
 		searchable: true,
 		showHeader: true,

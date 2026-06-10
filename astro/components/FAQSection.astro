@@ -16,7 +16,7 @@ const {
 
 const titleClass =
 	variant === 'eor'
-		? 'font-manrope text-4xl font-normal leading-tight text-white md:text-5xl'
+		? 'font-manrope text-left text-4xl font-normal leading-tight text-white md:text-5xl'
 		: 'md:text-4xl lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope mb-6';
 ---
 
@@ -24,7 +24,7 @@ const titleClass =
 	<div class={containerClass}>
 		{variant === 'eor' ? (
 			<div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-				<div class="mx-auto max-w-3xl text-center lg:mx-0 lg:text-left">
+				<div class="max-w-3xl text-left">
 					{kicker && (
 						<p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#5EA500]" data-translate={kicker.translateKey}>
 							{kicker.text}
