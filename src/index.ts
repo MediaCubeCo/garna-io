@@ -15,7 +15,8 @@ export default {
 
 			// 0. Redirect www (http/https) to canonical https://garna.io/en
 			if (url.hostname === 'www.garna.io') {
-				const targetUrl = `${CANONICAL_ORIGIN}/${DEFAULT_LANGUAGE}`;
+				const pathname = url.pathname === '/' || url.pathname === '' ? `/${DEFAULT_LANGUAGE}` : url.pathname;
+				const targetUrl = `${CANONICAL_ORIGIN}${pathname}${url.search}`;
 				return Response.redirect(targetUrl, 301);
 			}
 

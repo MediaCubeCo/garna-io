@@ -1,7 +1,28 @@
 import { RouteInfo } from '../utils/routes';
 import { getSupportedLanguageCodes } from '../config/languages';
+import { basePaths } from '../config/pages';
 
 const DEFAULT_LANGUAGE = 'en';
+const pagePaths = new Set(basePaths.map((page) => page.path));
+
+function buildLocalizedTarget(
+	url: URL,
+	pathSegments: string[],
+	status: 301 | 302 = 302
+): Response {
+	const normalizedSegments = [...pathSegments];
+	const lastSegment = normalizedSegments[normalizedSegments.length - 1];
+	if (lastSegment?.endsWith('.html')) {
+		normalizedSegments[normalizedSegments.length - 1] = lastSegment.replace(/\.html$/u, '');
+	}
+
+	const normalizedPath = normalizedSegments.join('/');
+	const pagePath = normalizedPath === 'index' ? '' : normalizedPath;
+	const localizedPath = pagePath ? `/${DEFAULT_LANGUAGE}/${pagePath}` : `/${DEFAULT_LANGUAGE}`;
+	const targetUrl = `${url.origin}${localizedPath}${url.search}`;
+
+	return Response.redirect(targetUrl, status);
+}
 
 /**
  * Handles URL redirects for normalization. Default language is always English (no locale detection).
@@ -15,10 +36,7 @@ export async function handleRedirect(
 
 	// Handle root path - redirect to English (default)
 	if (url.pathname === '/' || url.pathname === '') {
-		const queryString = routeInfo.query ? `?${routeInfo.query}` : '';
-		const hashString = routeInfo.hash ? `#${routeInfo.hash}` : '';
-		const targetUrl = `${url.origin}/${DEFAULT_LANGUAGE}${queryString}${hashString}`;
-		return Response.redirect(targetUrl, 302);
+		return buildLocalizedTarget(url, [], 302);
 	}
 
 	// Handle valid path but unsupported locale - redirect to default (English)
@@ -61,12 +79,15 @@ export async function handleRedirect(
 
 	// Handle invalid locale format - redirect to default (English)
 	if (routeInfo.error === 'Invalid locale format in path') {
-		const pathSegments = routeInfo.pathSegments.join('/');
-		const newPath = pathSegments ? `/${DEFAULT_LANGUAGE}/${pathSegments}` : `/${DEFAULT_LANGUAGE}`;
-		const queryString = routeInfo.query ? `?${routeInfo.query}` : '';
-		const hashString = routeInfo.hash ? `#${routeInfo.hash}` : '';
-		const targetUrl = `${url.origin}${newPath}${queryString}${hashString}`;
-		return Response.redirect(targetUrl, 302);
+		const pathSegments = [...routeInfo.pathSegments];
+		const normalizedPath = pathSegments
+			.join('/')
+			.replace(/(^|\/)index\.html$/u, '')
+			.replace(/\.html$/u, '');
+
+		if (pagePaths.has(normalizedPath)) {
+			return buildLocalizedTarget(url, pathSegments, 302);
+		}
 	}
 
 	return null;

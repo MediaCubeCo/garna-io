@@ -4,23 +4,12 @@ import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
-import rawContentHtml from '../content/site-pages/form.html?raw';
-import { splitLegacyPageSections } from '../utils/legacy-html';
-
-const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
-	heroVisualMarker: '<div class="max-w-[900px]',
-});
 ---
 
-<BaseLayout shell={pageShells.form} currentPath="form" showHeader={false}>
-	<main id="astro-page-content" data-astro-page-content data-current-path="form">
-		<HeroSection {...pageHeroes.form}>
-			<img src="/garna_logo.svg" alt="Garna" class="block h-10 w-auto object-contain mx-auto mb-8" data-translate-alt="footer.brand" slot="before-title" />
-			<Fragment set:html={heroVisualHtml} />
-		</HeroSection>
-		<Fragment set:html={contentHtml} />
-	</main>
-	<Fragment slot="widgets">
+<BaseLayout shell={pageShells.form} showHeader={false}>
+	<HeroSection {...pageHeroes.form}>
+		<img src="/garna_logo.svg" alt="Garna" class="block h-10 w-auto object-contain mx-auto mb-8" data-translate-alt="footer.brand" slot="before-title" />
+		<div id="garna-widget-root" class="max-w-[900px] mr-auto ml-auto pr-6 pl-6"></div>
 		<GarnaBookingWidget
 			renderRoot={false}
 			embedInline
@@ -33,5 +22,31 @@ const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, 
 			colorBorder="transparent"
 			thicknessBorder="0px"
 		/>
-	</Fragment>
+		<script
+			is:inline
+			set:html={`
+(function () {
+	'use strict';
+
+	var params = new URLSearchParams(window.location.search);
+	var campaign = '';
+	params.forEach(function (value, key) {
+		if (key.toLowerCase() === 'utm_campaign') campaign = value;
+	});
+
+	if (campaign.trim().toLowerCase() !== 'linkedin_inmail') return;
+
+	var translations = __GARNA_WIDGET_TRANSLATIONS__;
+	var campaignCopy = translations && translations.campaigns && translations.campaigns.linkedinInmail;
+	if (!campaignCopy) return;
+
+	var heading = document.querySelector('[data-translate="form.heading"]');
+	var subtitle = document.querySelector('[data-translate="form.subtitle"]');
+
+	if (heading && campaignCopy.heading) heading.textContent = campaignCopy.heading;
+	if (subtitle && campaignCopy.subtitle) subtitle.textContent = campaignCopy.subtitle;
+})();
+`}
+		/>
+	</HeroSection>
 </BaseLayout>

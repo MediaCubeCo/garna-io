@@ -24,6 +24,7 @@ export interface IValidInfo {
 /** Optional widget copy; when provided, overrides default English strings. */
 export interface IModalTranslations {
 	buttonChooseDate?: string;
+	promoBannerText?: string;
 	signUpPromptPrefix?: string;
 	signUpLinkText?: string;
 	signUpPromptSuffix?: string;
@@ -79,6 +80,7 @@ export interface IModalProps {
 }
 const DEFAULT_TRANSLATIONS: Required<IModalTranslations> = {
 	buttonChooseDate: 'Choose a date & time',
+	promoBannerText: '',
 	signUpPromptPrefix: 'Contractor or employee? ',
 	signUpLinkText: 'Sign up',
 	signUpPromptSuffix: ' here instead',
@@ -222,9 +224,30 @@ export default function Modal({
 	useEffect(() => {
 		if (!embedded && isModalVis) {
 			const prevOverflow = document.body.style.overflow;
+			const prevPaddingRight = document.body.style.paddingRight;
+			const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+			const currentPaddingRight = parseFloat(window.getComputedStyle(document.body).paddingRight) || 0;
+			const fixedElements = Array.from(document.querySelectorAll<HTMLElement>('.garna-header'));
+			const previousFixedElementPadding = fixedElements.map((element) => ({
+				element,
+				paddingRight: element.style.paddingRight,
+			}));
+
 			document.body.style.overflow = 'hidden';
+			if (scrollbarWidth > 0) {
+				document.body.style.paddingRight = `${currentPaddingRight + scrollbarWidth}px`;
+				fixedElements.forEach((element) => {
+					const elementPaddingRight = parseFloat(window.getComputedStyle(element).paddingRight) || 0;
+					element.style.paddingRight = `${elementPaddingRight + scrollbarWidth}px`;
+				});
+			}
+
 			return () => {
 				document.body.style.overflow = prevOverflow;
+				document.body.style.paddingRight = prevPaddingRight;
+				previousFixedElementPadding.forEach(({ element, paddingRight }) => {
+					element.style.paddingRight = paddingRight;
+				});
 			};
 		}
 	}, [isModalVis, embedded]);
@@ -452,13 +475,22 @@ export default function Modal({
 				companySizeOptions={companySizeOptions}
 			/>
 			<div className={styles.formFooter}>
-				<p className={styles.signUpPrompt}>
-					{t.signUpPromptPrefix}
-					<a className={styles.link} href={signUpUrl} target="_blank" rel="noopener noreferrer">
-						{t.signUpLinkText}
-					</a>
-					{t.signUpPromptSuffix}
-				</p>
+				{t.promoBannerText ? (
+					<div className={styles.promoBanner}>
+						<span className={styles.promoBannerIcon} aria-hidden="true">
+							🎁
+						</span>
+						<p className={styles.promoBannerText}>{t.promoBannerText}</p>
+					</div>
+				) : (
+					<p className={styles.signUpPrompt}>
+						{t.signUpPromptPrefix}
+						<a className={styles.link} href={signUpUrl} target="_blank" rel="noopener noreferrer">
+							{t.signUpLinkText}
+						</a>
+						{t.signUpPromptSuffix}
+					</p>
+				)}
 				<div className={styles.buttonWrap}>
 					<Button
 						label={t.buttonChooseDate}

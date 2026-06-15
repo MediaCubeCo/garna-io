@@ -1,12 +1,9 @@
 ---
 import '../styles/header.css';
 import Button from './Button.astro';
+import { getPagePathFromPathname } from '../utils/page-path';
 
-interface Props {
-	currentPath?: string;
-}
-
-const { currentPath = '' } = Astro.props;
+const currentPath = getPagePathFromPathname(Astro.url.pathname);
 
 const base = '/en';
 const homeHref = base;

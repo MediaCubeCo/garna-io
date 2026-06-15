@@ -24,6 +24,14 @@ export const formEn = {
 	bookingWidget: {
 		title: 'Book a free 30-minute product demo',
 		subtitle: 'Get all your questions answered by our experts',
+		campaigns: {
+			linkedinInmail: {
+				heading: 'Free demo on international payouts',
+				subtitle:
+					'Bank accounts, cards, crypto, and e-wallets in 180+ countries, including the CIS. Get your questions answered by our team in 30 minutes.',
+				promoBannerText: 'After the demo, you will receive a guide to opening accounts with European and American banks.',
+			},
+		},
 		buttonContinue: 'Continue',
 		buttonChooseDate: 'Choose a date & time',
 		form: {
