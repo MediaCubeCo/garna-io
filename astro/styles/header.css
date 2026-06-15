@@ -1,4 +1,6 @@
 .garna-header {
+	--garna-header-dropdown-item-width: 320px;
+	--garna-header-feature-width: 280px;
 	background: rgba(5, 5, 5, 0.72);
 	backdrop-filter: blur(16px);
 	-webkit-backdrop-filter: blur(16px);
@@ -114,7 +116,7 @@
 .garna-header-dropdown-panel {
 	display: flex;
 	width: max-content;
-	max-width: min(92vw, 1120px);
+	max-width: min(96vw, 1120px);
 	padding: 8px;
 	border: 1px solid rgba(255, 255, 255, 0.08);
 	border-radius: 16px;
@@ -131,14 +133,18 @@
 }
 
 .garna-header-products-column {
-	width: 360px;
+	width: var(--garna-header-dropdown-item-width);
 }
 
 .garna-header-dropdown-column {
 	display: flex;
 	flex-direction: column;
-	width: 320px;
+	width: var(--garna-header-dropdown-item-width);
 	padding: 12px;
+}
+
+.garna-header-dropdown-column.garna-header-products-column {
+	width: calc(var(--garna-header-dropdown-item-width) + 24px);
 }
 
 .garna-header-dropdown-title {
@@ -234,11 +240,11 @@
 .garna-header-solutions-columns {
 	display: flex;
 	gap: 12px;
-	padding: 12px 8px 12px 12px;
+	padding: 12px;
 }
 
 .garna-header-solutions-columns .garna-header-dropdown-column {
-	width: 292px;
+	width: var(--garna-header-dropdown-item-width);
 	padding: 0;
 }
 
@@ -256,7 +262,7 @@
 .garna-header-dropdown-feature {
 	position: relative;
 	display: none;
-	width: 280px;
+	width: var(--garna-header-feature-width);
 	min-height: 240px;
 	margin-left: 0;
 	overflow: hidden;
@@ -269,15 +275,15 @@
 
 .garna-header-products-feature {
 	display: block;
-	width: 280px;
+	width: var(--garna-header-feature-width);
 	min-height: 258px;
-	flex: 0 0 280px;
+	flex: 0 0 var(--garna-header-feature-width);
 	pointer-events: none;
 }
 
 .garna-header-solutions-feature {
-	width: 280px;
-	flex: 0 0 280px;
+	width: var(--garna-header-feature-width);
+	flex: 0 0 var(--garna-header-feature-width);
 }
 
 .garna-header-dropdown-feature img {
@@ -573,17 +579,9 @@
 }
 
 @media (max-width: 1180px) and (min-width: 901px) {
-	.garna-header-products-column {
-		width: 336px;
-	}
-
-	.garna-header-solutions-columns .garna-header-dropdown-column {
-		width: 258px;
-	}
-
-	.garna-header-solutions-feature {
-		width: 224px;
-		flex-basis: 224px;
+	.garna-header {
+		--garna-header-dropdown-item-width: 280px;
+		--garna-header-feature-width: 220px;
 	}
 }
 
@@ -614,17 +612,14 @@
 		padding: 7px;
 	}
 
-	.garna-header-products-column {
-		width: 324px;
+	.garna-header {
+		--garna-header-dropdown-item-width: 240px;
+		--garna-header-feature-width: 180px;
 	}
 
 	.garna-header-solutions-columns {
 		gap: 8px;
-		padding: 10px 6px 10px 10px;
-	}
-
-	.garna-header-solutions-columns .garna-header-dropdown-column {
-		width: 226px;
+		padding: 10px 8px 10px 10px;
 	}
 
 	.garna-header-dropdown-link {
@@ -648,9 +643,7 @@
 	}
 
 	.garna-header-solutions-feature {
-		width: 180px;
 		min-height: 220px;
-		flex-basis: 180px;
 	}
 
 	.garna-header-feature-copy {
