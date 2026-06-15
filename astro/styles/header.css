@@ -4,3 +4,679 @@
 	-webkit-backdrop-filter: blur(16px);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+.garna-header.is-mobile-open {
+	background: #050505;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+.garna-header-container {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 64px;
+}
+
+.garna-header-brand {
+	display: inline-flex;
+	align-items: center;
+	text-decoration: none;
+	transition: opacity 0.2s ease;
+}
+
+.garna-header-brand:hover {
+	opacity: 0.8;
+}
+
+.garna-header-logo {
+	display: block;
+	width: auto;
+	height: 32px;
+	object-fit: contain;
+	transform: translateY(6px);
+}
+
+.garna-header-desktop-nav {
+	position: absolute;
+	left: 50%;
+	display: none;
+	align-items: center;
+	gap: clamp(20px, 2.3vw, 32px);
+	transform: translateX(-50%);
+}
+
+.garna-header-menu-group {
+	position: relative;
+}
+
+.garna-header-menu-trigger,
+.garna-header-nav-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	border: 0;
+	background: transparent;
+	color: #ffffff;
+	font-family: Manrope, sans-serif;
+	font-size: clamp(16px, 1.25vw, 18px);
+	font-weight: 200;
+	line-height: 1.2;
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: color 0.22s ease, opacity 0.22s ease;
+}
+
+.garna-header-menu-trigger:hover,
+.garna-header-nav-link:hover {
+	opacity: 0.8;
+}
+
+.garna-header-nav-link.is-active,
+.garna-header-dropdown-link.is-active,
+.garna-header-mobile-link.is-active {
+	color: #5EA500;
+}
+
+.garna-header-chevron {
+	width: 16px;
+	height: 16px;
+	transition: color 0.22s ease, transform 0.22s ease;
+}
+
+.garna-header-menu-group:hover .garna-header-chevron,
+.garna-header-menu-group:focus-within .garna-header-chevron {
+	color: #5EA500;
+	transform: rotate(180deg);
+}
+
+.garna-header-dropdown {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	z-index: 50;
+	padding-top: 24px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateX(-50%) translateY(8px);
+	transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+
+.garna-header-menu-group:hover .garna-header-dropdown,
+.garna-header-menu-group:focus-within .garna-header-dropdown {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(-50%) translateY(0);
+}
+
+.garna-header-dropdown-panel {
+	display: flex;
+	width: max-content;
+	max-width: min(92vw, 1120px);
+	padding: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 16px;
+	background: #050505;
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	box-shadow:
+		0 24px 56px -28px rgba(0, 0, 0, 0.9),
+		0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
+
+.garna-header-solutions-panel {
+	align-items: stretch;
+}
+
+.garna-header-products-column {
+	width: 360px;
+}
+
+.garna-header-dropdown-column {
+	display: flex;
+	flex-direction: column;
+	width: 320px;
+	padding: 12px;
+}
+
+.garna-header-dropdown-title {
+	margin: 0 12px 12px;
+	color: #5EA500;
+	font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 10px;
+	font-weight: 200;
+	letter-spacing: 0.14em;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+.garna-header-dropdown-link {
+	display: grid;
+	grid-template-columns: 40px minmax(0, 1fr);
+	grid-template-rows: auto auto;
+	align-items: start;
+	column-gap: 14px;
+	row-gap: 2px;
+	min-width: 0;
+	padding: 10px;
+	border: 1px solid rgba(255, 255, 255, 0);
+	border-radius: 12px;
+	color: #ffffff;
+	text-decoration: none;
+	transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.garna-header-dropdown-link:hover {
+	border-color: rgba(94, 165, 0, 0.26);
+	background: rgba(255, 255, 255, 0.035);
+	box-shadow: 0 0 22px -18px rgba(94, 165, 0, 0.9);
+}
+
+.garna-header-dropdown-icon {
+	box-sizing: border-box;
+	grid-row: 1 / span 2;
+	grid-column: 1;
+	width: 40px;
+	height: 40px;
+	flex: 0 0 auto;
+	padding: 9px;
+	border: 1px solid rgba(255, 255, 255, 0.06);
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.03);
+	color: rgba(255, 255, 255, 0.68);
+	transition: color 0.22s ease, background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+}
+
+.garna-header-dropdown-link:hover .garna-header-dropdown-icon {
+	border-color: rgba(94, 165, 0, 0.2);
+	background: rgba(94, 165, 0, 0.12);
+	color: #5EA500;
+	transform: scale(1.03);
+}
+
+.garna-header-link-main {
+	grid-column: 2;
+	grid-row: 1;
+	min-width: 0;
+	color: #ffffff;
+	font-family: Manrope, sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 1.25;
+	white-space: nowrap;
+}
+
+.garna-header-link-separator {
+	display: none;
+}
+
+.garna-header-link-kicker {
+	grid-column: 2;
+	grid-row: 2;
+	min-width: 0;
+	overflow: visible;
+	color: #a1a1aa;
+	font-family: Inter, sans-serif;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 1.35;
+	letter-spacing: 0;
+	white-space: normal;
+	transition: color 0.2s ease;
+}
+
+.garna-header-dropdown-link:hover .garna-header-link-kicker {
+	color: #a1a1aa;
+}
+
+.garna-header-solutions-columns {
+	display: flex;
+	gap: 12px;
+	padding: 12px 8px 12px 12px;
+}
+
+.garna-header-solutions-columns .garna-header-dropdown-column {
+	width: 292px;
+	padding: 0;
+}
+
+.garna-header-solutions-standalone {
+	justify-content: flex-start;
+	padding-top: 23px !important;
+}
+
+.garna-header-divider {
+	width: 1px;
+	margin-block: 8px;
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.garna-header-dropdown-feature {
+	position: relative;
+	display: none;
+	width: 280px;
+	min-height: 240px;
+	margin-left: 0;
+	overflow: hidden;
+	border: 1px solid rgba(255, 255, 255, 0.06);
+	border-radius: 12px;
+	background: #0c0c0c;
+	text-decoration: none;
+	align-self: stretch;
+}
+
+.garna-header-products-feature {
+	display: block;
+	width: 280px;
+	min-height: 258px;
+	flex: 0 0 280px;
+	pointer-events: none;
+}
+
+.garna-header-solutions-feature {
+	width: 280px;
+	flex: 0 0 280px;
+}
+
+.garna-header-dropdown-feature img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0.6;
+	transition: transform 0.7s ease;
+}
+
+.garna-header-dropdown-feature:hover img {
+	transform: scale(1.05);
+}
+
+.garna-header-dropdown-feature::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4), transparent);
+}
+
+.garna-header-feature-copy {
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+	left: 20px;
+	z-index: 1;
+}
+
+.garna-header-feature-copy h4 {
+	margin: 0 0 4px;
+	color: #ffffff;
+	font-family: Manrope, sans-serif;
+	font-size: 18px;
+	font-weight: 300;
+	line-height: 1.2;
+}
+
+.garna-header-feature-copy p {
+	margin: 0;
+	color: #a1a1aa;
+	font-family: Manrope, sans-serif;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 1.35;
+}
+
+.garna-header-feature-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 12px;
+	color: #5EA500;
+	font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 10px;
+	font-weight: 200;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	transition: color 0.2s ease;
+}
+
+.garna-header-dropdown-feature:hover .garna-header-feature-link {
+	color: #ffffff;
+}
+
+.garna-header-feature-link svg {
+	width: 12px;
+	height: 12px;
+}
+
+.garna-header-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-left: auto;
+}
+
+.garna-header-login-icon {
+	display: none;
+	width: 20px;
+	height: 20px;
+}
+
+.garna-header-login,
+.garna-header-signup {
+	display: none !important;
+	font-weight: 200;
+}
+
+.garna-header-mobile-menu {
+	position: fixed;
+	top: 64px;
+	left: 0;
+	z-index: 50;
+	display: flex;
+	width: 100%;
+	height: calc(100vh - 64px);
+	flex-direction: column;
+	gap: 0;
+	overflow: hidden;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	background: #050505;
+	padding: 0 24px 24px;
+}
+
+.garna-header-mobile-menu.hidden {
+	display: none;
+}
+
+.garna-header-mobile-scroll {
+	display: flex;
+	min-height: 0;
+	flex: 1 1 auto;
+	flex-direction: column;
+	gap: 18px;
+	overflow-y: auto;
+	padding: 24px 0 20px;
+	-webkit-overflow-scrolling: touch;
+}
+
+.garna-header-mobile-group {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.garna-header-mobile-group + .garna-header-mobile-group {
+	padding-top: 4px;
+}
+
+.garna-header-mobile-section {
+	color: #5EA500;
+	font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 10px;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.garna-header-mobile-subgroup {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.garna-header-mobile-subgroup + .garna-header-mobile-subgroup {
+	padding-top: 4px;
+}
+
+.garna-header-mobile-subsection {
+	color: rgba(255, 255, 255, 0.48);
+	font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 10px;
+	font-weight: 200;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.garna-header-mobile-link {
+	display: block;
+	color: #ffffff;
+	font-family: Manrope, sans-serif;
+	font-size: 24px;
+	font-weight: 300;
+	line-height: 1.1;
+	text-decoration: none;
+}
+
+.garna-header-mobile-card {
+	display: grid;
+	grid-template-columns: 36px minmax(0, 1fr);
+	grid-template-rows: auto auto;
+	align-items: start;
+	column-gap: 12px;
+	row-gap: 2px;
+	padding: 6px 4px;
+	border-radius: 12px;
+	font-size: 16px;
+	line-height: 1.25;
+}
+
+.garna-header-mobile-icon {
+	box-sizing: border-box;
+	grid-row: 1 / span 2;
+	grid-column: 1;
+	width: 36px;
+	height: 36px;
+	padding: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.06);
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.03);
+	color: rgba(255, 255, 255, 0.68);
+}
+
+.garna-header-mobile-card.is-active .garna-header-mobile-icon {
+	border-color: rgba(94, 165, 0, 0.2);
+	background: rgba(94, 165, 0, 0.12);
+	color: #5EA500;
+}
+
+.garna-header-mobile-link-main {
+	grid-column: 2;
+	grid-row: 1;
+	min-width: 0;
+	color: #ffffff;
+	font-family: Manrope, sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 1.25;
+}
+
+.garna-header-mobile-link-kicker {
+	grid-column: 2;
+	grid-row: 2;
+	min-width: 0;
+	color: #a1a1aa;
+	font-family: Inter, sans-serif;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 1.35;
+}
+
+.garna-header-mobile-actions {
+	display: flex;
+	flex: 0 0 auto;
+	flex-direction: column;
+	gap: 16px;
+	padding-top: 14px;
+	background: #050505;
+}
+
+.garna-header-mobile-divider {
+	width: 100%;
+	height: 1px;
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.garna-header-mobile-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+@media (min-width: 768px) {
+	.garna-header-desktop-nav {
+		display: flex;
+	}
+
+	.garna-header-login,
+	.garna-header-signup {
+		display: inline-flex !important;
+	}
+
+	.garna-header-mobile-menu {
+		display: none;
+	}
+}
+
+@media (max-width: 1180px) {
+	.garna-header-desktop-nav {
+		gap: 18px;
+	}
+
+	.garna-header-menu-trigger,
+	.garna-header-nav-link {
+		font-size: 16px;
+	}
+
+	.garna-header-login {
+		width: 44px;
+		padding-inline: 0;
+	}
+
+	.garna-header-login-icon {
+		display: block;
+	}
+
+	.garna-header-login span[data-translate] {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+	}
+}
+
+@media (min-width: 768px) {
+	.garna-header-solutions-feature {
+		display: block;
+	}
+}
+
+@media (max-width: 1180px) and (min-width: 901px) {
+	.garna-header-products-column {
+		width: 336px;
+	}
+
+	.garna-header-solutions-columns .garna-header-dropdown-column {
+		width: 258px;
+	}
+
+	.garna-header-solutions-feature {
+		width: 224px;
+		flex-basis: 224px;
+	}
+}
+
+@media (max-width: 900px) and (min-width: 768px) {
+	.garna-header-container {
+		padding-inline: 20px;
+	}
+
+	.garna-header-logo {
+		height: 30px;
+	}
+
+	.garna-header-desktop-nav {
+		gap: 14px;
+	}
+
+	.garna-header-menu-trigger,
+	.garna-header-nav-link {
+		font-size: 15px;
+	}
+
+	.garna-header-signup {
+		min-width: 92px;
+		padding-inline: 18px;
+	}
+
+	.garna-header-dropdown-panel {
+		padding: 7px;
+	}
+
+	.garna-header-products-column {
+		width: 324px;
+	}
+
+	.garna-header-solutions-columns {
+		gap: 8px;
+		padding: 10px 6px 10px 10px;
+	}
+
+	.garna-header-solutions-columns .garna-header-dropdown-column {
+		width: 226px;
+	}
+
+	.garna-header-dropdown-link {
+		grid-template-columns: 36px minmax(0, 1fr);
+		column-gap: 12px;
+		padding: 9px;
+	}
+
+	.garna-header-dropdown-icon {
+		width: 36px;
+		height: 36px;
+		padding: 8px;
+	}
+
+	.garna-header-link-main {
+		font-size: 15px;
+	}
+
+	.garna-header-link-kicker {
+		font-size: 13px;
+	}
+
+	.garna-header-solutions-feature {
+		width: 180px;
+		min-height: 220px;
+		flex-basis: 180px;
+	}
+
+	.garna-header-feature-copy {
+		right: 16px;
+		bottom: 16px;
+		left: 16px;
+	}
+}
+
+@media (max-width: 767px) {
+	.garna-header-logo {
+		height: 30px;
+	}
+
+	.garna-header-actions {
+		gap: 10px;
+	}
+
+	.garna-header-signup {
+		display: inline-flex !important;
+		height: 40px;
+		min-width: 92px;
+		padding-inline: 18px;
+	}
+
+	.garna-header-signup.hidden {
+		display: none !important;
+	}
+}
