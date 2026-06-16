@@ -63,7 +63,7 @@ export const basePaths: PageConfig[] = [
 		languages: ['en'],
 	},
 	{
-		path: 'eor',
+		path: 'employer-of-record',
 		mode: 'static',
 		searchable: true,
 		showHeader: true,

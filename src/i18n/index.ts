@@ -27,6 +27,7 @@ const translations = {
 	'ai-hiring': aiHiringTranslations,
 	'white-label': whiteLabelTranslations,
 	eor: eorTranslations,
+	'employer-of-record': eorTranslations,
 	'payroll-small-business': payrollSmallBusinessTranslations,
 } as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
