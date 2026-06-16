@@ -141,6 +141,7 @@
 	flex-direction: column;
 	width: var(--garna-header-dropdown-item-width);
 	padding: 12px;
+	gap: 6px;
 }
 
 .garna-header-dropdown-column.garna-header-products-column {
@@ -175,15 +176,15 @@
 }
 
 .garna-header-dropdown-link:hover {
-	border-color: rgba(94, 165, 0, 0.26);
-	background: rgba(255, 255, 255, 0.035);
-	box-shadow: 0 0 22px -18px rgba(94, 165, 0, 0.9);
+	border-color: rgba(255, 255, 255, 0.1);
+	background-color: rgba(255, 255, 255, 0.045);
+	box-shadow: none;
 }
 
 .garna-header-dropdown-link.is-active {
-	border-color: rgba(94, 165, 0, 0.34);
-	background: rgba(94, 165, 0, 0.08);
-	box-shadow: 0 0 24px -18px rgba(94, 165, 0, 0.95);
+	border-color: rgba(94, 165, 0, 0.3);
+	background-color: rgba(94, 165, 0, 0.08);
+	box-shadow: 0 0 24px -20px rgba(94, 165, 0, 0.95);
 }
 
 .garna-header-dropdown-icon {
@@ -202,19 +203,22 @@
 }
 
 .garna-header-dropdown-link:hover .garna-header-dropdown-icon {
-	border-color: rgba(94, 165, 0, 0.2);
-	background: rgba(94, 165, 0, 0.12);
-	color: #5EA500;
-	transform: scale(1.03);
+	border-color: rgba(255, 255, 255, 0.1);
+	background: rgba(255, 255, 255, 0.045);
+	color: rgba(255, 255, 255, 0.76);
+	transform: none;
 }
 
 .garna-header-dropdown-link.is-active .garna-header-dropdown-icon {
-	border-color: rgba(94, 165, 0, 0.24);
-	background: rgba(94, 165, 0, 0.14);
+	border-color: rgba(94, 165, 0, 0.28);
+	background: rgba(94, 165, 0, 0.13);
 	color: #5EA500;
 }
 
 .garna-header-link-main {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
 	grid-column: 2;
 	grid-row: 1;
 	min-width: 0;
@@ -224,6 +228,7 @@
 	font-weight: 300;
 	line-height: 1.25;
 	white-space: nowrap;
+	transition: color 0.22s ease;
 }
 
 .garna-header-dropdown-link.is-active .garna-header-link-main {
@@ -287,6 +292,15 @@
 	background: #0c0c0c;
 	text-decoration: none;
 	align-self: stretch;
+}
+
+.garna-header-dropdown-feature.is-active .garna-header-feature-copy h4 {
+	color: #5EA500;
+}
+
+.garna-header-dropdown-feature.is-active {
+	border-color: rgba(94, 165, 0, 0.3);
+	box-shadow: 0 0 24px -20px rgba(94, 165, 0, 0.95);
 }
 
 .garna-header-products-feature {
