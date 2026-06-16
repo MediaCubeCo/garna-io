@@ -52,7 +52,7 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 	'ai-hiring': '/ai-hiring.html',
 	'white-label': '/white-label.html',
 	'payroll-small-business': '/payroll-small-business.html',
-	eor: '/eor.html',
+	'employer-of-record': '/employer-of-record.html',
 };
 
 const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
@@ -62,7 +62,7 @@ const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'ai-hiring': 'ai-hiring',
 	'white-label': 'white-label',
 	'payroll-small-business': 'payroll-small-business',
-	eor: 'eor',
+	'employer-of-record': 'eor',
 };
 
 async function serveStaticPage(

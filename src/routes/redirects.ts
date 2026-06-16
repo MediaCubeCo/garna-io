@@ -39,6 +39,13 @@ export async function handleRedirect(
 		return buildLocalizedTarget(url, [], 302);
 	}
 
+	if (routeInfo.isValid && routeInfo.pathSegments.join('/') === 'eor') {
+		const queryString = routeInfo.query ? `?${routeInfo.query}` : '';
+		const hashString = routeInfo.hash ? `#${routeInfo.hash}` : '';
+		const targetUrl = `${url.origin}/${routeInfo.locale}/employer-of-record${queryString}${hashString}`;
+		return Response.redirect(targetUrl, 301);
+	}
+
 	// Handle valid path but unsupported locale - redirect to default (English)
 	if (routeInfo.isValid && routeInfo.language && !getSupportedLanguageCodes().includes(routeInfo.language)) {
 		const pathSegments = routeInfo.pathSegments.join('/');
