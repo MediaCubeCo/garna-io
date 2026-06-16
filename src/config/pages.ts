@@ -63,6 +63,13 @@ export const basePaths: PageConfig[] = [
 		languages: ['en'],
 	},
 	{
+		path: 'payroll-solution-new',
+		mode: 'static',
+		searchable: true,
+		showHeader: true,
+		languages: ['en'],
+	},
+	{
 		path: 'employer-of-record',
 		mode: 'static',
 		searchable: true,

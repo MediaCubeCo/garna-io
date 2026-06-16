@@ -1,0 +1,30 @@
+---
+import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageShells } from '../content/page-shells';
+import rawContentHtml from '../content/site-pages/payroll-solution-new.html?raw';
+---
+
+<BaseLayout shell={pageShells.payrollSolutionNew}>
+	<Fragment set:html={rawContentHtml} />
+	<script is:inline>
+		document.addEventListener('click', (event) => {
+			const link = event.target instanceof Element ? event.target.closest('a') : null;
+			if (!link || link.getAttribute('href') !== '#') return;
+			if (!link.textContent || !link.textContent.toLowerCase().includes('book a demo')) return;
+
+			event.preventDefault();
+			if (window.GarnaWidget) {
+				window.GarnaWidget.open({ trackingCta: 'payroll_solution_new_demo' });
+			}
+		});
+	</script>
+	<Fragment slot="widgets">
+		<GarnaBookingWidget
+			trackingSource="payroll-solution-new"
+			trackingPage="payroll-solution-new"
+			titleFallback="Start your journey with Garna"
+			subtitleFallback="Fill in your details to book a demo"
+		/>
+	</Fragment>
+</BaseLayout>
