@@ -1,5 +1,42 @@
 import type { PageShellConfig } from '../types/page-shell';
 
+const blogHeadExtra = `<style>
+body { font-family: 'Inter', sans-serif; background-color: #050505; color: #a1a1aa; }
+h1, h2, h3, h4, .font-heading { font-family: 'Manrope', sans-serif; }
+html { scroll-behavior: smooth; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #262626; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #404040; }
+.glass-nav {
+background: rgba(5, 5, 5, 0.7);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glass-card {
+background: rgba(255, 255, 255, 0.03);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.bg-grid {
+background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+background-size: 40px 40px;
+}
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+@keyframes float {
+0% { transform: translateY(0px); }
+50% { transform: translateY(-10px); }
+100% { transform: translateY(0px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+</style>
+<link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap">
+<style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style>`;
+
 export const pageShells = {
 	home: {
 		"title": "Garna - Global Payroll Solutions",
@@ -58,6 +95,37 @@ export const pageShells = {
 		"bodyClass": "antialiased overflow-x-hidden selection:bg-[#5EA500]/40 selection:text-white bg-[#050505]",
 		"iconLibrary": "iconify",
 		"headExtra": "<style>\n        body {\n            font-family: 'Inter', sans-serif;\n            background-color: #050505;\n            color: #a1a1aa;\n        }\n\n        h1,\n        h2,\n        h3,\n        h4,\n        .font-heading,\n        .font-manrope {\n            font-family: 'Manrope', sans-serif;\n        }\n\n        html {\n            scroll-behavior: smooth;\n        }\n\n        ::-webkit-scrollbar {\n            width: 6px;\n        }\n\n        ::-webkit-scrollbar-track {\n            background: #050505;\n        }\n\n        ::-webkit-scrollbar-thumb {\n            background: #262626;\n            border-radius: 10px;\n        }\n\n        ::-webkit-scrollbar-thumb:hover {\n            background: #404040;\n        }\n\n        .glass-high {\n            background: rgba(5, 5, 5, 0.72);\n            backdrop-filter: blur(16px);\n            -webkit-backdrop-filter: blur(16px);\n            border-bottom: 1px solid rgba(255, 255, 255, 0.08);\n        }\n\n        .glass {\n            background: rgba(255, 255, 255, 0.03);\n            backdrop-filter: blur(12px);\n            -webkit-backdrop-filter: blur(12px);\n            border: 1px solid rgba(255, 255, 255, 0.08);\n        }\n\n        .surface {\n            background: linear-gradient(180deg, rgba(18, 18, 18, 0.96), rgba(8, 8, 8, 0.96));\n            border: 1px solid rgba(255, 255, 255, 0.08);\n        }\n\n        .surface-soft {\n            background: rgba(255, 255, 255, 0.035);\n            border: 1px solid rgba(255, 255, 255, 0.08);\n        }\n\n        .green-glow {\n            box-shadow: 0 0 36px -16px rgba(94, 165, 0, 0.9);\n        }\n\n        .grid-backdrop {\n            background-image:\n                linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),\n                linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);\n            background-size: 34px 34px;\n        }\n\n        .button-primary {\n            position: relative;\n            display: inline-flex;\n            align-items: center;\n            justify-content: center;\n            gap: 0.5rem;\n            isolation: isolate;\n            overflow: hidden;\n            min-height: 3rem;\n            padding: 0.8rem 1.6rem;\n            border-radius: 0.75rem;\n            color: #fff;\n            background: #5EA500;\n            box-shadow:\n                0 0 26px -10px rgba(94, 165, 0, 0.9),\n                inset 0 1px 0 rgba(255, 255, 255, 0.2);\n            transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, filter 0.28s ease;\n        }\n\n        .button-primary::before {\n            content: \"\";\n            position: absolute;\n            inset: -120% -45%;\n            z-index: -1;\n            background: linear-gradient(115deg, transparent 34%, rgba(255, 255, 255, 0.34) 48%, transparent 62%);\n            transform: translateX(-70%) rotate(8deg);\n            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);\n        }\n\n        .button-primary::after {\n            content: \"\";\n            position: absolute;\n            inset: 0;\n            z-index: -2;\n            background: radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.28), transparent 34%);\n            opacity: 0.6;\n            transition: opacity 0.28s ease;\n        }\n\n        .button-primary iconify-icon {\n            transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);\n        }\n\n        .button-primary:hover {\n            transform: translateY(-3px);\n            background: #5EA500;\n            filter: saturate(1.08);\n            box-shadow:\n                0 18px 34px -22px rgba(94, 165, 0, 1),\n                0 0 34px -8px rgba(94, 165, 0, 0.92),\n                inset 0 1px 0 rgba(255, 255, 255, 0.28);\n        }\n\n        .button-primary:hover::before {\n            transform: translateX(70%) rotate(8deg);\n        }\n\n        .button-primary:hover::after {\n            opacity: 0.85;\n        }\n\n        .button-primary:hover iconify-icon {\n            transform: translate(3px, -3px);\n        }\n\n        .button-primary:active {\n            transform: translateY(-1px) scale(0.99);\n        }\n\n        details > summary {\n            list-style: none;\n        }\n\n        details > summary::-webkit-details-marker {\n            display: none;\n        }\n\n        .eor-faq-item {\n            overflow: hidden;\n            background: #0A0A0A;\n            transition: background 0.28s ease;\n        }\n\n        .eor-faq-item[open] {\n            background: #0E0E0E;\n        }\n\n        .eor-faq-item summary:focus-visible {\n            outline: 2px solid rgba(94, 165, 0, 0.7);\n            outline-offset: 6px;\n            border-radius: 0.875rem;\n        }\n\n        .eor-faq-panel {\n            height: 0;\n            overflow: hidden;\n            opacity: 0;\n            transform: translateY(-8px);\n            transition: height 0.46s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.26s ease, transform 0.34s ease;\n        }\n\n        .eor-faq-item[data-state=\"open\"] .eor-faq-panel {\n            opacity: 1;\n            transform: translateY(0);\n        }\n\n        .eor-faq-icon {\n            transition: transform 0.34s ease, color 0.24s ease;\n        }\n\n        .eor-faq-item[data-state=\"open\"] .eor-faq-icon {\n            transform: rotate(180deg);\n        }\n\n        @media (prefers-reduced-motion: reduce) {\n            .eor-faq-item,\n            .eor-faq-panel,\n            .eor-faq-icon {\n                transition: none;\n            }\n        }\n\n        @keyframes float {\n            0%, 100% { transform: translateY(0); }\n            50% { transform: translateY(-10px); }\n        }\n\n        .animate-float {\n            animation: float 7s ease-in-out infinite;\n        }\n\n        .eor-card-scroll {\n            -ms-overflow-style: none;\n            scrollbar-width: none;\n            scroll-behavior: smooth;\n            scroll-snap-type: x proximity;\n        }\n\n        .eor-card-scroll::-webkit-scrollbar {\n            display: none;\n        }\n\n        .eor-card-scroll > article {\n            scroll-snap-align: start;\n        }\n\n        .eor-card-edge {\n            position: absolute;\n            top: 0;\n            bottom: 0;\n            z-index: 20;\n            display: none;\n            width: 5.5rem;\n            align-items: center;\n            pointer-events: none;\n        }\n\n        .eor-card-edge::before {\n            content: \"\";\n            position: absolute;\n            inset: 0;\n            pointer-events: none;\n        }\n\n        .eor-card-edge--left {\n            left: 0;\n            justify-content: flex-start;\n            padding-left: 0.75rem;\n        }\n\n        .eor-card-edge--left::before {\n            background: linear-gradient(to right, #050505 0%, rgba(5, 5, 5, 0.9) 34%, rgba(5, 5, 5, 0));\n        }\n\n        .eor-card-edge--right {\n            right: 0;\n            justify-content: flex-end;\n            padding-right: 0.75rem;\n        }\n\n        .eor-card-edge--right::before {\n            background: linear-gradient(to left, #050505 0%, rgba(5, 5, 5, 0.9) 34%, rgba(5, 5, 5, 0));\n        }\n\n        .eor-card-edge-button {\n            position: relative;\n            display: flex;\n            height: 2.75rem;\n            width: 2.75rem;\n            align-items: center;\n            justify-content: center;\n            border-radius: 9999px;\n            border: 1px solid rgba(255, 255, 255, 0.1);\n            background: rgba(17, 17, 17, 0.96);\n            color: #5EA500;\n            pointer-events: auto;\n            transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;\n        }\n\n        .eor-card-edge-button:hover {\n            border-color: rgba(94, 165, 0, 0.4);\n            background: #171717;\n        }\n\n        .eor-card-edge-button:active {\n            transform: scale(0.95);\n        }\n\n        @media (max-width: 767px) {\n            [data-eor-card-scroll-shell][data-eor-scroll-start=\"false\"] {\n                margin-left: -1.5rem;\n            }\n\n            [data-eor-card-scroll-shell][data-eor-scroll-start=\"false\"] .eor-card-edge--left,\n            [data-eor-card-scroll-shell][data-eor-scroll-end=\"false\"] .eor-card-edge--right {\n                display: flex;\n            }\n        }\n\n        .why-garna input[type=\"radio\"] {\n            position: absolute;\n            opacity: 0;\n            pointer-events: none;\n        }\n\n        .why-garna-tab {\n            display: block;\n            cursor: pointer;\n            border-bottom: 2px solid transparent;\n            padding-bottom: 0.7rem;\n            color: #71717a;\n            font-size: 0.9rem;\n            font-weight: 600;\n            transition: color 0.18s ease, border-color 0.18s ease;\n            white-space: normal;\n        }\n\n        @media (min-width: 768px) {\n            .why-garna-tab {\n                padding-bottom: 1rem;\n                font-size: 1rem;\n                white-space: nowrap;\n            }\n        }\n\n        .why-garna-tab:hover {\n            color: #ffffff;\n        }\n\n        .why-garna .why-garna-panel {\n            display: none;\n        }\n\n        #why-garna-sourcing:checked ~ .why-garna-tabs label[for=\"why-garna-sourcing\"],\n        #why-garna-onboarding:checked ~ .why-garna-tabs label[for=\"why-garna-onboarding\"],\n        #why-garna-documents:checked ~ .why-garna-tabs label[for=\"why-garna-documents\"],\n        #why-garna-payroll:checked ~ .why-garna-tabs label[for=\"why-garna-payroll\"],\n        #why-garna-reporting:checked ~ .why-garna-tabs label[for=\"why-garna-reporting\"],\n        #why-garna-termination:checked ~ .why-garna-tabs label[for=\"why-garna-termination\"] {\n            border-color: #5EA500;\n            color: #ffffff;\n        }\n\n        #why-garna-sourcing:checked ~ .why-garna-panels [data-eor-why-panel=\"sourcing\"],\n        #why-garna-onboarding:checked ~ .why-garna-panels [data-eor-why-panel=\"onboarding\"],\n        #why-garna-documents:checked ~ .why-garna-panels [data-eor-why-panel=\"documents\"],\n        #why-garna-payroll:checked ~ .why-garna-panels [data-eor-why-panel=\"payroll\"],\n        #why-garna-reporting:checked ~ .why-garna-panels [data-eor-why-panel=\"reporting\"],\n        #why-garna-termination:checked ~ .why-garna-panels [data-eor-why-panel=\"termination\"] {\n            display: grid;\n        }\n    </style>",	},
+	blog: {
+		title: 'Garna Insights Hub',
+		description:
+			'Expert insights on global hiring, payroll, workforce management, practical guides, industry trends, and international employment updates.',
+		keywords: 'Garna blog, global hiring, payroll insights, workforce management, international employment',
+		ogImage: '/pages/blog/assets/01-1e96bbb7-a5c7-4597-987a-3a820daffbff_3840w.jpg',
+		htmlClass: 'scroll-smooth dark',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-[#050505]',
+		iconLibrary: 'iconify',
+		headExtra: blogHeadExtra,
+	},
+	blogAuthor: {
+		title: 'Garna Blog Author',
+		description: 'Author profile and articles from the Garna Insights Hub.',
+		keywords: 'Garna blog author, payroll articles, workforce insights',
+		ogImage: '/pages/blog/assets/12-photo-1438761681033-6461ffad8d80.jpg',
+		htmlClass: 'scroll-smooth dark',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-[#050505]',
+		iconLibrary: 'iconify',
+		headExtra: blogHeadExtra,
+	},
+	blogArticle: {
+		title: 'Garna Blog Article',
+		description: 'Article page from the Garna Insights Hub.',
+		keywords: 'Garna blog article, payroll, workforce management, global hiring',
+		ogImage: '/pages/blog/assets/11-fdb0cbaa-87f1-425d-b6a2-ad16a6de7cb7_3840w.jpg',
+		htmlClass: 'scroll-smooth dark',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-[#050505]',
+		iconLibrary: 'iconify',
+		headExtra: blogHeadExtra,
+	},
 	form: {
 		"title": "Garna - AI Recruitment Platform",
 		"description": "",

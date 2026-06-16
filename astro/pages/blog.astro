@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageShells } from '../content/page-shells';
+import rawContentHtml from '../content/site-pages/blog.html?raw';
+---
+
+<BaseLayout shell={pageShells.blog}>
+	<Fragment set:html={rawContentHtml} />
+</BaseLayout>
