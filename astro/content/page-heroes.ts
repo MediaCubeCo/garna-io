@@ -115,6 +115,7 @@ export const pageHeroes = {
 		badge: {
 			text: 'White Label contractor management & contractor of record platform',
 			translateKey: 'hero.badge',
+			class: 'garna-hero-badge-compact',
 		},
 		title: [{ text: 'White Label Payroll Solutions for Business', translateKey: 'hero.title' }],
 		description:

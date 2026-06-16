@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" class="dark"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garna - AI Recruitment Platform</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: {
+sans: ['Inter', 'sans-serif'],
+heading: ['Manrope', 'sans-serif'],
+},
+colors: {
+dark: {
+900: '#050505', // Main background
+800: '#0A0A0A', // Card background
+700: '#171717', // Hover/Border
+}
+}
+}
+}
+}
+</script>
+<style>
+body { font-family: 'Inter', sans-serif; background-color: #050505; color: #a1a1aa; }
+h1, h2, h3, h4, .font-heading { font-family: 'Manrope', sans-serif; }
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #262626; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #404040; }
+/* Glassmorphism utilities */
+.glass-nav {
+background: rgba(5, 5, 5, 0.7);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glass-card {
+background: rgba(255, 255, 255, 0.03);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+/* Grid Pattern Background */
+.bg-grid {
+background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+background-size: 40px 40px;
+}
+/* Hide details marker */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+/* Animations */
+@keyframes float {
+0% { transform: translateY(0px); }
+50% { transform: translateY(-10px); }
+100% { transform: translateY(0px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style></head>
+<body class="antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 font-manrope relative">
+
+    <!-- Navbar -->
+    
+
+    <!-- Hero Section -->
+    
+
+    <!-- AI Matching Feature -->
+    
+
+    <!-- Job Board -->
+    
+
+    <!-- Comparison Section -->
+    
+
+    <!-- Payout Advantages -->
+    
+
+    <!-- Social Proof -->
+    
+
+    <!-- FAQ -->
+    <section class="lg:pb-32 lg:pt-16 bg-[#050505] pt-16 pb-24">
+        <div class="lg:mb-20 text-center max-w-3xl mr-auto mb-16 ml-auto pr-6 pl-6">
+                <h2 class="md:text-5xl lg:text-5xl lg:mb-12 text-4xl font-normal text-white tracking-tight font-manrope mb-8">garna</h2><h2 class="md:text-5xl text-3xl font-normal text-white tracking-tight font-manrope mb-6">Start your journey with Garna</h2>
+                <p class="text-xl font-light text-gray-400 font-manrope">Fill in your details to book a demo</p>
+            </div><div class="max-w-3xl mr-auto ml-auto pr-6 pl-6">
+    <div class="md:p-14 overflow-hidden font-manrope bg-black w-full border-white/10 border rounded-3xl pt-8 pr-8 pb-8 pl-8 relative shadow-2xl">
+        <!-- Close Button -->
+        <button class="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors duration-200">
+            
+        </button>
+
+        <!-- Header -->
+        
+
+        <!-- Form -->
+        <form class="font-manrope max-w-xl mr-auto ml-auto space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="relative group">
+                    <input type="text" placeholder="First name*" class="placeholder-gray-500 focus:outline-none focus:border-white transition-colors duration-200 text-base font-light text-white font-manrope bg-transparent w-full border-white/10 border-b pt-3 pb-3">
+                </div>
+                <div class="relative group">
+                    <input type="text" placeholder="Last name*" class="placeholder-gray-500 focus:outline-none focus:border-white transition-colors duration-200 text-base font-light text-white font-manrope bg-transparent w-full border-white/10 border-b pt-3 pb-3">
+                </div>
+            </div>
+
+            <div class="relative group">
+                <input type="email" placeholder="Work email*" class="placeholder-gray-500 focus:outline-none focus:border-white transition-colors duration-200 text-base font-light text-white font-manrope bg-transparent w-full border-white/10 border-b pt-3 pb-3">
+            </div>
+
+            <div class="relative group">
+                <select class="focus:text-white focus:outline-none focus:border-white transition-colors duration-200 appearance-none cursor-pointer text-base font-light text-gray-500 font-manrope bg-transparent w-full border-white/10 border-b pt-3 pb-3">
+                    <option value="" disabled="" selected="">Number of employees*</option>
+                    <option value="1-10" class="bg-zinc-900 text-white">1-10</option>
+                    <option value="11-50" class="bg-zinc-900 text-white">11-50</option>
+                    <option value="51-200" class="bg-zinc-900 text-white">51-200</option>
+                    <option value="201+" class="bg-zinc-900 text-white">201+</option>
+                </select>
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col items-center space-y-6">
+                <p class="text-sm text-gray-400 font-manrope">
+                    Contractor or employee? <a href="#" class="text-[#65D01E] hover:text-[#55b018] transition-colors">Sign up</a> here instead
+                </p>
+
+                <button type="button" class="w-full md:w-auto min-w-[280px] bg-[#65D01E] hover:bg-[#55b018] text-white font-semibold py-4 px-8 rounded-xl flex items-center justify-center gap-2.5 transition-all duration-200 shadow-lg shadow-[#65D01E]/10 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2" class=""></rect><path d="M3 10h18" class=""></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg>
+                    <span class="text-lg font-manrope">Choose a date &amp; time</span>
+                </button>
+
+                <p class="leading-relaxed text-xs text-zinc-600 font-manrope text-center max-w-md">
+                    We respect your data. By submitting this form, you agree that we will contact you in relation to our products and services, in accordance with our <a href="#" class="text-[#65D01E] hover:underline">privacy policy</a>.
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+    </section><footer class="font-manrope bg-[#020202] w-full border-white/5 border-t pt-16 pb-16">
+    <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+        <div class="flex flex-col md:flex-row w-full mb-8 items-start justify-between">
+            <!-- Left Side: Logo & Info -->
+            <div class="flex flex-col md:w-auto md:pb-0 w-full pb-6 items-start">
+                <a href="#" class="hover:opacity-80 transition-opacity text-4xl font-medium text-white tracking-tighter mb-0">garna</a>
+                
+                
+                
+                
+            </div>
+
+            <!-- Right Side: Contacts & Address -->
+            
+        <p class="leading-relaxed text-sm text-gray-500 font-manrope max-w-none md:max-w-xs">134 Makariou III, Ground Floor, 3021 Limassol, Cyprus</p></div>
+
+        <!-- Bottom Disclaimer -->
+        <div class="text-xs w-full">
+            <p class="text-[11px] leading-[1.6] md:text-justify text-xs text-gray-600 font-manrope text-justify">© 2026 GARNA LTD. Stasikratous, 20, 1st floor, Flat/Office 105, 1065, Nicosia, Cyprus. HE 478114. Garna is not a financial institution. All fintech services within the Garna app are provided by certified partners, including Payoneer and others.
+Payment services may be provided by affiliates MEDIACUBE PAY INC. (Office 29 - 18 King Street East, Suite 1400, Toronto, Ontario, M5C1C4, Canada, FINTRAC Registration Number: M24438190) as well as other non-affiliated companies.</p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Final CTA -->
+    
+
+    <!-- Footer -->
+    
+
+
+</body></html>

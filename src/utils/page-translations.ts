@@ -30,7 +30,7 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'payroll-small-business') {
 		return `/${segment}/payroll-small-business`;
 	}
-	if (pageName === 'eor') {
+	if (pageName === 'eor' || pageName === 'employer-of-record') {
 		return `/${segment}/employer-of-record`;
 	}
 	return `/${segment}`;
