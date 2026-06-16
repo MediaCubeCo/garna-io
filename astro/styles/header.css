@@ -1,6 +1,6 @@
 .garna-header {
 	--garna-header-dropdown-item-width: 320px;
-	--garna-header-feature-width: 280px;
+	--garna-header-feature-width: 330px;
 	background: rgba(5, 5, 5, 0.72);
 	backdrop-filter: blur(16px);
 	-webkit-backdrop-filter: blur(16px);
@@ -63,7 +63,7 @@
 	color: #ffffff;
 	font-family: Manrope, sans-serif;
 	font-size: clamp(16px, 1.25vw, 18px);
-	font-weight: 200;
+	font-weight: 300;
 	line-height: 1.2;
 	text-decoration: none;
 	white-space: nowrap;
@@ -88,8 +88,8 @@
 	transition: color 0.22s ease, transform 0.22s ease;
 }
 
-.garna-header-menu-group:hover .garna-header-chevron,
-.garna-header-menu-group:focus-within .garna-header-chevron {
+.garna-header-menu-group:hover:not(.is-dropdown-suppressed) .garna-header-chevron,
+.garna-header-menu-group:has(.garna-header-menu-trigger:focus-visible) .garna-header-chevron {
 	color: #5EA500;
 	transform: rotate(180deg);
 }
@@ -106,8 +106,8 @@
 	transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
 }
 
-.garna-header-menu-group:hover .garna-header-dropdown,
-.garna-header-menu-group:focus-within .garna-header-dropdown {
+.garna-header-menu-group:hover:not(.is-dropdown-suppressed) .garna-header-dropdown,
+.garna-header-menu-group:has(.garna-header-menu-trigger:focus-visible) .garna-header-dropdown {
 	opacity: 1;
 	visibility: visible;
 	transform: translateX(-50%) translateY(0);
@@ -180,6 +180,12 @@
 	box-shadow: 0 0 22px -18px rgba(94, 165, 0, 0.9);
 }
 
+.garna-header-dropdown-link.is-active {
+	border-color: rgba(94, 165, 0, 0.34);
+	background: rgba(94, 165, 0, 0.08);
+	box-shadow: 0 0 24px -18px rgba(94, 165, 0, 0.95);
+}
+
 .garna-header-dropdown-icon {
 	box-sizing: border-box;
 	grid-row: 1 / span 2;
@@ -202,6 +208,12 @@
 	transform: scale(1.03);
 }
 
+.garna-header-dropdown-link.is-active .garna-header-dropdown-icon {
+	border-color: rgba(94, 165, 0, 0.24);
+	background: rgba(94, 165, 0, 0.14);
+	color: #5EA500;
+}
+
 .garna-header-link-main {
 	grid-column: 2;
 	grid-row: 1;
@@ -212,6 +224,10 @@
 	font-weight: 300;
 	line-height: 1.25;
 	white-space: nowrap;
+}
+
+.garna-header-dropdown-link.is-active .garna-header-link-main {
+	color: #5EA500;
 }
 
 .garna-header-link-separator {
@@ -372,7 +388,7 @@
 .garna-header-login,
 .garna-header-signup {
 	display: none !important;
-	font-weight: 200;
+	font-weight: 600;
 }
 
 .garna-header-mobile-menu {
@@ -485,6 +501,10 @@
 	color: #5EA500;
 }
 
+.garna-header-mobile-card.is-active .garna-header-mobile-link-main {
+	color: #5EA500;
+}
+
 .garna-header-mobile-link-main {
 	grid-column: 2;
 	grid-row: 1;
@@ -581,7 +601,7 @@
 @media (max-width: 1180px) and (min-width: 901px) {
 	.garna-header {
 		--garna-header-dropdown-item-width: 280px;
-		--garna-header-feature-width: 220px;
+		--garna-header-feature-width: 250px;
 	}
 }
 
@@ -614,7 +634,7 @@
 
 	.garna-header {
 		--garna-header-dropdown-item-width: 240px;
-		--garna-header-feature-width: 180px;
+		--garna-header-feature-width: 190px;
 	}
 
 	.garna-header-solutions-columns {

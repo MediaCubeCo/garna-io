@@ -29,6 +29,7 @@ export interface HeroCta {
 export interface HeroBadge {
 	text: string;
 	translateKey: string;
+	class?: string;
 }
 
 export interface HeroSectionConfig {

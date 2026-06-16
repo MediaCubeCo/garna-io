@@ -18,16 +18,6 @@ const {
 	align = 'center',
 } = Astro.props;
 
-const badgeClass =
-	tone === 'green'
-		? 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#5EA500]/10 border border-[#5EA500]/20 mb-8 backdrop-blur-sm'
-		: 'inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 shadow-sm mb-8 backdrop-blur-sm';
-
-const badgeTextClass =
-	tone === 'green'
-		? 'uppercase text-xs font-medium text-[#5EA500] tracking-wide font-manrope'
-		: 'uppercase text-xs font-medium text-gray-300 tracking-wide font-manrope';
-
 const ctaHref = cta?.href || '#';
 const ctaAttributes =
 	cta?.kind === 'signup'
@@ -46,6 +36,7 @@ const ctaWrapperClass =
 	(align === 'center'
 		? 'flex md:mb-24 mb-24 justify-center'
 		: 'flex flex-col sm:flex-row items-center gap-4');
+const badgeClass = ['garna-hero-badge', badge?.class || ''].filter(Boolean).join(' ');
 ---
 
 <Section class={className} kind="hero">
@@ -56,11 +47,11 @@ const ctaWrapperClass =
 		<div class={contentClass}>
 			{badge && (
 				<div class={badgeClass}>
-					<span class="relative flex h-2 w-2">
-						<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#5EA500] opacity-75" />
-						<span class="relative inline-flex rounded-full h-2 w-2 bg-[#5EA500]" />
+					<span class="garna-hero-badge-dot-shell" aria-hidden="true">
+						<span class="garna-hero-badge-dot-ping" />
+						<span class="garna-hero-badge-dot" />
 					</span>
-					<span class={badgeTextClass} data-translate={badge.translateKey}>{badge.text}</span>
+					<span data-translate={badge.translateKey}>{badge.text}</span>
 				</div>
 			)}
 
