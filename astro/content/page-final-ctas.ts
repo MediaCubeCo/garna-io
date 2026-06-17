@@ -80,6 +80,25 @@ export const pageFinalCtas = {
 		titleClass: 'garna-hero-title-gradient text-4xl font-normal leading-tight text-white md:text-6xl font-manrope mb-8',
 		descriptionClass: 'mx-auto mt-6 max-w-2xl text-xl font-light leading-8 text-gray-400 font-manrope mb-12',
 	},
+	payrollSolutionNew: {
+		title: [{ text: 'Launch Global Payroll Software on Autopilot Today', translateKey: 'finalCta.title' }],
+		description: {
+			text: 'Pay your team in 150+ countries with just a few clicks. No red tape, just fast payments',
+			translateKey: 'finalCta.description',
+		},
+		button: {
+			label: 'Book a demo',
+			translateKey: 'finalCta.button',
+			kind: 'demo',
+			trackingCta: 'payroll_solution_new_final_demo',
+		},
+		class: 'overflow-hidden lg:pt-40 lg:pb-40 text-center pt-32 pb-32 relative',
+		containerClass: 'z-10 max-w-4xl mr-auto ml-auto pr-6 pl-6 relative',
+		titleClass:
+			'garna-hero-title-gradient md:text-7xl lg:text-6xl text-5xl font-normal text-white tracking-tight font-manrope mb-8',
+		descriptionClass:
+			'md:text-xl lg:text-2xl text-lg font-light text-gray-400 font-manrope max-w-2xl mr-auto mb-12 ml-auto',
+	},
 	eor: {
 		title: [{ text: 'Global Employer of Record is a Modern Hiring Process Done Stress-Free', translateKey: 'finalCta.title' }],
 		description: {

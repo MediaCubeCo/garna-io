@@ -30,6 +30,9 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'payroll-small-business') {
 		return `/${segment}/payroll-small-business`;
 	}
+	if (pageName === 'payroll-solution-new') {
+		return `/${segment}/payroll-solution-new`;
+	}
 	if (pageName === 'eor' || pageName === 'employer-of-record') {
 		return `/${segment}/employer-of-record`;
 	}
@@ -208,6 +211,11 @@ export function injectPageTranslations(
 		}
 
 		{
+			const legacyTextMappings = (currentTranslations as any).legacyText;
+			if (legacyTextMappings && typeof legacyTextMappings === 'object') {
+				html = localizeExactTextNodes(html, legacyTextMappings as Record<string, string>);
+			}
+
 			// Update meta title if translation exists
 			if (
 				currentTranslations.meta &&
@@ -477,4 +485,33 @@ function localizeLinkHref(html: string, markerAttribute: string, href: string): 
 			return `<a${nextAttributes}>`;
 		}
 	);
+}
+
+function localizeExactTextNodes(html: string, mappings: Record<string, string>): string {
+	for (const [source, target] of Object.entries(mappings)) {
+		if (!source || target === undefined || target === null) continue;
+
+		const escapedSource = escapeHtml(source);
+		const escapedTarget = escapeHtml(String(target));
+		html = replaceExactTextNode(html, source, escapedTarget);
+		if (escapedSource !== source) {
+			html = replaceExactTextNode(html, escapedSource, escapedTarget);
+		}
+	}
+
+	return html;
+}
+
+function replaceExactTextNode(html: string, source: string, escapedTarget: string): string {
+	const sourcePattern = source
+		.trim()
+		.split(/\s+/)
+		.map((part) => escapeRegExp(part))
+		.join('\\s+');
+	const pattern = new RegExp(`>(\\s*)${sourcePattern}(\\s*)<`, 'g');
+	return html.replace(pattern, (_match, before, after) => `>${before}${escapedTarget}${after}<`);
+}
+
+function escapeRegExp(text: string): string {
+	return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

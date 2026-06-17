@@ -67,7 +67,7 @@ export const basePaths: PageConfig[] = [
 		mode: 'static',
 		searchable: true,
 		showHeader: true,
-		languages: ['en'],
+		languages: ['en', 'es', 'pt', 'ru'],
 	},
 	{
 		path: 'employer-of-record',

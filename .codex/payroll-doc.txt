@@ -1,0 +1,2131 @@
+﻿TA for Blog Post
+TA for Payroll Landing Page
+Прописать уникальные мета-теги:
+URL
+	https://garna.io/payroll-solution
+	ICP (Personas)
+	1. Enterprise Businesses 
+Profile:
+* Global or multi-country companies (50-5000+ employees)
+* SaaS, HR platforms, talent marketplaces, recruitment agencies
+* Already have internal dashboards or payroll tools, but want faster, compliant, and branded global payroll
+Pain Points / Challenges:
+* Complexity of international payroll, taxes, and compliance
+* Manual processes take time and cause errors
+* Integrating multiple systems is resource-intensive
+* Brand experience is lost when using external payroll providers
+Goals / Desired Outcomes:
+* Fully branded payroll experience for employees/contractors
+* Seamless integration with existing dashboards via API
+* Compliance across all countries without internal overhead
+* Quick, automated payouts and reporting
+Garna Solutions:
+* White Label payroll dashboard
+* API for integration with existing enterprise platforms
+* Contractor of Record functionality for legal compliance
+* Multi-currency, crypto, and bank transfer payouts
+* Centralized reporting and analytics
+2. Growing Companies
+Profile:
+* Companies with 10-500 employees
+* Tech startups, gaming companies, E-learning platforms, marketing agencie
+* Often hire international contractors or freelancers
+Pain Points / Challenges:
+* Manual payments and tax calculations are time-consuming
+* Lack of tools to manage contractors efficiently
+* Compliance and reporting are complex, especially across countries
+* Limited resources for internal payroll infrastructure
+Goals:
+* Automate payroll and taxes
+* Pay international contractors quickly and securely
+* Reduce admin overhead
+* Access reporting and analytics without complex tools
+Garna Solutions:
+* Full global payroll platform with easy onboarding
+* Contractor management and automated compliance
+* Mobile app
+* Multiple payout methods including crypto
+	SEO-Title (new)
+	 | Garna
+	Description (new)
+	
+
+Не более, чем на 155-160 символов. Смотреть пример, как будет выглядеть сниппет можно здесь: https://www.highervisibility.com/seo/tools/serp-snippet-optimizer/ (предварительно нажав галочку “Date”, так как будет выводится еще и дата статьи, поэтому весь текст может не поместиться в сниппет)
+	H1
+	
+
+	All Pages Report
+	
+
+	Persona
+	Role
+	Main Goals
+	Pain Points
+	Garna 
+	CFO / Finance Director
+	Finance
+	Reduce payroll errors, maintain compliance, save time
+	Manual payroll, multiple tools, risk of fines
+	Automated payroll, taxes, and compliance for global teams
+	HR Director
+	HR
+	Manage contractors efficiently, improve employee experience
+	Onboarding complexity, payroll errors
+	Contractor management, mobile payroll, seamless experience
+	Platform / Product Owner
+	SaaS / Marketplace
+	Offer payroll under their brand
+	Building infrastructure from scratch, slow integration
+	White Label solution, API integration, full branding
+	CTO / Head of Engineering
+	Tech
+	Integrate payroll into platform
+	Complex API integration, security risks
+	Garna API, secure and easy integration, scalable
+	
+
+Рекомендации по содержимому 
+* Объем должен быть около 1200-1500 слов.
+* В каждом пункте опираться на экспертизу. Приводить примеры из нашего опыта, давать перелинковку на релевантные страницы.
+* Текст должен быть уникальным.
+* В статье стоит использовать инфографику, статистические данные, видео, gif-изображения и другой графический контент, который визуально улучшит содержание статьи и поможет полностью раскрыть тему.
+* Давать четкие CTA
+* Обращаем внимание на ICP, там прописаны все цели, боли, страхи клиента
+* Придерживаться следующей логики: Problem - Solution - Product explanation - Use cases - Features - Proof - FAQ
+Ключевые слова:
+Используйте ключевые слова из ТЗ, но:
+* Не перегружайте текст (не более 1–2% от общего объема).
+* Если ключ с ошибкой, адаптируйте его под грамотный вариант.
+* Комбинированные ключи учитывайте 
+* Органично вписывайте их в заголовки, подзаголовки, ALT, URL, анкорные ссылки и основной текст.
+Читабельность и форматирование
+* Структура: H1 → H2 → H3 → H4
+H1 – заголовок (один на страницу).
+H2 – основные разделы.
+H3/H4 – подразделы, списки, разъяснения внутри разделов.
+Соблюдайте иерархию заголовков (не перескакивайте с H2 на H4).
+Изображения и ALT-тексты
+* Все изображения должны быть с уникальными ALT-атрибутами.
+* ALT должен описывать изображение по смыслу, при этом использовать ключ, если это возможно и логично.
+Пример качественных страниц из ТОПа выдачи:
+URL
+	Title
+	Wordcount
+	Domains>35
+	https://gusto.com/product/payroll
+	Payroll Software & Services for Small Businesses | Gusto Ranked #1 on G2 Fall 2025
+	
+
+	
+
+	https://www.deel.com/payroll/global/
+	Global Payroll Services | Payments & Compliance | Deel
+	
+
+	
+
+	https://www.adp.com/what-we-offer/payroll.aspx
+	Payroll Services Made Easy | 1.1 Million Clients Trust ADP
+	
+
+	
+
+	https://remote.com/global-hr/global-payroll
+	Global and International Payroll Made Easy | Remote
+	
+
+	
+
+	https://quickbooks.intuit.com/payroll/
+	Payroll Services for Small Businesses | QuickBooks
+	
+
+	
+
+	https://www.paycom.com/software/payroll/
+https://www.paycom.com/
+	Payroll Software | Online Payroll Services | Paycom
+	
+
+	
+
+	https://www.paychex.com/
+	Paychex: Payroll & HR Solutions
+	
+
+	
+
+	https://www.surepayroll.com/
+	SurePayroll By Paychex | Online Payroll & HR Services
+	
+
+	
+
+	Основные ключевые слова
+Используйте ключевые слова из этого списка. Ключевые слова вписать в прямом вхождении, допускается использования артиклей. Если ключ требует изменения, оставьте комментарий для специалиста. Слова отмеченные зеленым необходимо употребить не менее того, количества, что указано (стараться употребить прямое вхождение ключевых слов), слова отмеченные оранжевым цветом - употребить хотя бы 1 раз, слова отмеченные желтым цветом, употребить на странице хотя бы 1 раз (по возможности), но не допускать переспама ключевых слов на странице:
+Кол-во вхождений (указать в столбце “Кол-во вхождений”):
+Keywords
+	Volume (US)
+	Кол-во вхождений
+	
+
+	payroll
+	59000
+	20-40
+	
+
+	payroll software
+	
+
+	4-6
+	
+
+	global payroll
+	1100
+	4-6
+	
+
+	payroll services
+	18000
+	3-5
+	
+
+	global payroll providers
+	200
+	1-2
+	
+
+	payroll provider
+	
+
+	1-2
+	
+
+	online payroll services
+	2900
+	0-1
+	
+
+	payroll solution
+	1200
+	1-3
+	
+
+	international payroll
+	400
+	0-1
+	
+
+	global payroll payments
+	200
+	0-1
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	Дополнительные ключевые слова (LSI)
+Используйте как можно больше дополнительных слов в тексте:
+* payroll outsourcing services
+* outsourced payroll services
+* global payroll services
+* payroll processing services
+* corporate payroll services
+* outsource payroll services
+* payroll management services
+* managed payroll services
+* business payroll services
+* outsourcing payroll services
+* payroll services online
+* global payroll solutions
+* payroll online services
+* cloud based payroll solution
+* international payroll services
+* payroll services company
+* payroll services for one employee
+* global payroll service
+* payroll outsource services
+* payroll software services
+* payroll services software
+* global payroll software
+* payroll services for startups
+* company payroll services
+* payroll services companies
+* professional payroll services
+* international payroll providers
+* automated payroll services
+* free payroll services
+* payroll management solution
+* international payroll software
+* payroll consulting services
+* international payroll management
+* international payroll solution
+* international payroll processing
+* global payroll processing
+* global payroll provider
+* global payroll solution
+* international payroll service
+* global payroll systems
+* international payroll provider
+* international payroll service providers
+* global payroll outsourcing companies
+* solution payroll
+* payroll for international employees
+* payroll software solution
+* best payroll solution
+* global payroll service provider
+* international payroll processing companies
+* payroll processing solution
+* payroll service solution
+* payroll international
+* complete payroll solution
+* cloud payroll solution
+* global international payroll services
+Outline
+Title: Global Payroll Without Borders| Effortless Global Payroll for Teams Everywhere[a][b]
+Для копирайтеров: Тайтл нужно полностью переработать, посмотреть конкурентов и накидать идей
+Subheadline: Forget about scattered tools. Garna is a comprehensive payroll solution that streamlines payroll, taxes, and compliance for your team, no matter where they are.
+CTA: Get started
+  
+
+Trust block
+300+ businesses using Garna
+24/7 global payroll availability
+98% faster payout processing[c] (мб доступность 150+ стран? Как у Remote?[d] )
+  
+
+  
+
+  
+
+  
+
+Run and Manage Global Payroll Effortlessly 
+We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries
+  
+
+Employment of Record
+Hire employees anywhere in the world without setting up a local entity. Garna acts as the legal employer, handling payroll, taxes, benefits, and compliance
+* Effortless Global Employment
+[e][f]We take care of local entities and payroll, so your employees are onboarded and paid on time.
+* Flexible Worksite Coverage
+Hire for offices, retail, factories, or remote teams: wherever your business operates.
+* Support 24/7
+If something goes wrong, you can reach us anytime without waiting and delays.
+* Seamless Integration
+You don’t need to rebuild your systems. Garna works with your existing tools.
+* Enhanced Employee Experience
+Your team gets easy access to payslips, time off, expenses, and benefits from day one.
+  
+
+Вот хороший блок (но я бы делала в отдельной странице, так как идея, а то будет много инфы
+  
+
+Simplify global contractor payments
+Pay contractors worldwide with fast, accurate payouts in multiple currencies. Garna centralizes invoicing, approvals, and payments in one place
+  
+
+Effortless global payroll starts here
+Garna turns complex international payroll into a simple, unified dashboard. Manage contractors, staff, and payouts across borders without stress or manual calculations.
+  Блоки у конкурентов
+  
+  
+
+Оставляем этот блок как УТП
+  
+
+Advanced Payroll Solutions for Your Business
+Take your payroll to the next level. Launch it under your own brand or embed payouts directly into your product with Garna’s White Label and API solutions.
+   * API
+Embed payouts into your product and let users withdraw earnings with a single click.
+   * White Label Payroll
+Launch payroll under your brand with full control over the user experience.
+How It Works
+Переписать используя KWs в Title (Start Paying Contractors in 4 Simple Steps)
+  
+
+
+
+  Garna Payroll vs Other Payroll
+[g]
+Feature
+	Traditional Payroll
+	Garna Payroll
+	Global coverage
+	Limited to few countries
+	150+ countries
+	Tax compliance
+	Manual / regional expertise needed
+	Automated & compliant
+	Payout speed
+	Days
+	Minutes
+	Integration
+	Hard or custom-built
+	API ready / white label
+	Dashboard
+	Fragmented tools
+	Unified dashboard
+	Support
+	Standard business hours
+	24/7 global support
+	Funding options
+	Bank only
+	Bank, SWIFT, SEPA, Crypto
+	Contractor management
+	Limited
+	Integrated
+	Reporting
+	Manual & slow
+	Real-time, exportable
+	
+
+Case Studies/Testimonials
+H2 и описание
+  
+
+
+
+FAQs
+1. How quickly can I start using Garna Payroll?
+2. Can I brand the payroll dashboard under my company?
+3. What payment methods does Garna support?
+4. How does Garna handle taxes and compliance globally?
+5. Can I integrate Garna API into my platform?
+6. What currencies are supported for payouts?
+7. How does Garna handle contractor management?
+8. Is my data secure with Garna?
+9. Can I use Garna Payroll if my business already has its own dashboard?
+10. Do you offer support for global payroll issues?
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Это брак, не смотреть
+Your Brand, Our Payroll Solution
+Make payroll part of your brand experience. 
+Текст про White Label
+   * Customize the platform with your branding
+   * Seamless experience for your clients
+   * Integrate payroll into your existing workflow
++CTA со ссылкой на страницу[h]
+Your Product, Your Dashboard, Our API
+Turn payroll into a fully integrated part of your product.
+Текст про API
+   * Embed payroll into your app or platform
+   * Automate employee and contractor payments
+   * Build a fully integrated experience without complexity
+CTA: Explore API Integration
+Payroll You Can Trust 
+[i]
+Operating payroll globally requires managing documentation, payment records, and regulatory considerations
+[j][k]
+   * Automated tax filing and reporting for every country
+   * Fully adherent to local and international payroll regulations
+   * Reduce audit risk and ensure peace of mind for your business
+  
+  
+
+Pay contractors now, settle later
+[l]
+Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow
+   1. Immediate payouts, deferred settlement
+   2. Flexible terms: 30, 60, or 90 days
+   3. Facility limits from $10K to $1M
+   4. Instant allocation & processing
+  
+
+Expert Payroll, Always On
+Support that feels like an in-house team.
+   * Dedicated payroll experts for every customer
+   * 24/7 assistance for payroll questions or issues
+   * Guidance for complex payroll scenarios so you can focus on growth
+  
+
+
+
+
+
+
+ESP
+
+
+Title: Nómina global sin fronteras | Nómina global sin complicaciones para equipos de todo el mundo
+Для копирайтеров: Hay que reescribir el título por completo, analizar a la competencia y aportar ideas
+Subtitle: Olvídate de las herramientas dispersas. Garna es una solución integral de nóminas que optimiza la gestión de nóminas, impuestos y cumplimiento normativo para tu equipo, independientemente de dónde se encuentren.
+CTA: Empieza ya
+  
+
+Bloque de confianza
++300 empresas utilizan Garna
+Disponibilidad de nóminas a nivel mundial las 24 horas del día, los 7 días de la semana
+Procesamiento de pagos un 98 % más rápido   
+  
+
+  
+
+  
+
+Gestiona y administra nóminas globales sin esfuerzo 
+Optimizamos el procesamiento de nóminas, ofreciendo soluciones flexibles y fiables para empresas de todos los tamaños y sectores
+  
+
+Empleo oficial
+Contrata empleados en cualquier parte del mundo sin necesidad de crear una entidad local. Garna actúa como empleador legal, gestionando nóminas, impuestos, prestaciones y cumplimiento normativo
+      * Contratación global sin complicaciones
+Nos encargamos de las entidades locales y de la nómina, para que tus empleados se incorporen y cobren a tiempo.
+      * Cobertura flexible de lugares de trabajo
+Contrata personal para oficinas, comercios, fábricas o equipos remotos: dondequiera que opere tu empresa.
+      * Asistencia 24/7
+Si surge algún problema, puedes contactar con nosotros en cualquier momento sin esperas ni retrasos.
+      * Integración perfecta
+No necesitas reestructurar tus sistemas. Garna funciona con tus herramientas actuales.
+      * Mejor experiencia para los empleados
+Tu equipo tendrá fácil acceso a nóminas, vacaciones, gastos y prestaciones desde el primer día.
+  
+
+  
+
+Simplifica los pagos a contratistas internacionales
+Paga a contratistas de todo el mundo con pagos rápidos y precisos en múltiples divisas. Garna centraliza la facturación, las aprobaciones y los pagos en un solo lugar
+  
+
+La gestión global de nóminas sin complicaciones empieza aquí
+Garna convierte la compleja gestión de nóminas internacionales en un panel de control sencillo y unificado. Gestiona contratistas, personal y pagos transfronterizos sin estrés ni cálculos manuales.
+  
+
+  
+  
+
+
+
+  
+
+Soluciones avanzadas de nóminas para tu negocio
+Lleva tu gestión de nóminas al siguiente nivel. Lánzala bajo tu propia marca o integra los pagos directamente en tu producto con las soluciones de marca blanca y API de Garna.
+         * API
+Incorpora los pagos a tu producto y permite a los usuarios retirar sus ganancias con un solo clic.
+         * Nómina de marca blanca
+Lanza la gestión de nóminas bajo tu marca con control total sobre la experiencia del usuario.
+Cómo funciona
+  
+
+
+
+  Garna Payroll frente a otros servicios de nóminas
+Característica
+	Nómina tradicional
+	Garna Payroll
+	Cobertura global
+	Limitada a unos pocos países
+	+150 países
+	Cumplimiento fiscal
+	Se requiere experiencia manual/regional
+	Automatizado y conforme a la normativa
+	Rapidez de pago
+	Días
+	Minutos
+	Integración
+	Lista para API / marca blanca
+	Compatible con API / marca blanca
+	Panel de control
+	Herramientas fragmentadas
+	Panel de control unificado
+	Asistencia
+	Horario comercial estándar
+	Asistencia global 24/7
+	Opciones de financiación
+	Solo por transferencia bancaria
+	Banco, SWIFT, SEPA, criptomonedas
+	Gestión de contratistas
+	Limitada
+	Integrado
+	Informes
+	Manual y lento
+	En tiempo real, exportables
+	
+
+Casos prácticos/Testimonios
+  
+
+
+
+Preguntas frecuentes
+1. ¿En cuánto tiempo puedo empezar a utilizar Garna Payroll?
+2. ¿Puedo personalizar el panel de control de nóminas con la imagen de mi empresa?
+3. ¿Qué métodos de pago admite Garna?
+4. ¿Cómo gestiona Garna los impuestos y el cumplimiento normativo a nivel global?
+5. ¿Puedo integrar la API de Garna en mi plataforma?
+6. ¿Qué divisas se admiten para los pagos?
+7. ¿Cómo gestiona Garna la administración de los contratistas?
+8. ¿Están seguros mis datos con Garna?
+9. ¿Puedo utilizar Garna Payroll si mi empresa ya tiene su propio panel de control?
+10. ¿Ofrecéis asistencia para cuestiones relacionadas con la nómina a nivel internacional?
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Перевел на всякий случае
+Tu marca, nuestra solución de nóminas
+Haz que la gestión de nóminas forme parte de la experiencia de tu marca. 
+Texto sobre White Label
+         * Personaliza la plataforma con tu imagen de marca
+         * Una experiencia fluida para tus clientes
+         * Integra la gestión de nóminas en tu flujo de trabajo actual
+CTA 
+Tu producto, tu panel de control, nuestra API
+Convierte la gestión de nóminas en una parte totalmente integrada de tu producto.
+         * Incorpora la gestión de nóminas a tu aplicación o plataforma
+         * Automatiza los pagos a empleados y colaboradores
+         * Crea una experiencia totalmente integrada sin complicaciones
+CTA: Explora la integración de la API
+Nóminas en las que puedes confiar 
+Gestionar nóminas a nivel global requiere gestionar la documentación, los registros de pagos y los aspectos normativos
+         * Presentación y declaración de impuestos automatizadas para todos los países
+         * Total cumplimiento de las normativas locales e internacionales en materia de nóminas
+         * Reduzca el riesgo de auditoría y garantice la tranquilidad de su empresa
+  
+  
+
+Paga a los contratistas ahora y liquida más tarde
+Realiza pagos globales de forma inmediata y devuelve el importe a Garna según un calendario que se adapte al flujo de caja de tu empresa
+         1. Pagos inmediatos, liquidación diferida
+         2. Condiciones flexibles: 30, 60 o 90 días
+         3. Límites de crédito de 10 000 $ a 1 millón de $
+         4. Asignación y procesamiento instantáneos
+  
+
+Nómina gestionada por expertos, siempre disponible
+Asistencia que se siente como un equipo interno.
+         * Expertos en nóminas dedicados a cada cliente
+         * Asistencia 24/7 para preguntas o problemas relacionados con la nómina
+         * Asesoramiento para situaciones complejas de nóminas para que puedas centrarte en el crecimiento
+  
+
+
+Draft
+Title: Global Payroll Solution for International Businesses: Manage Employees and Contractors in 150+ Countries
+Subheadline: Save time and money while working with international contractors and hiring employees in any country. Full legal compliance without the extra costs — this and more, with Garna.
+CTA: Book a demo
+  
+
+Trust Block
+400+ businesses using Garna
+24/7 global payroll service availability
+150+ countries covered
+  
+
+Manage Global Payroll Effortlessly 
+We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries.
+  
+[m]
+Carry Out Employment of Record with More Perks
+[n]
+Simplify the hiring process for employees and freelancers with Garna. Unlike other companies, we will resolve not only the financial, but also legal side while you are looking for the right specialists.
+            * Quick Global Employment
+Hire employees anywhere in the world without setting up local legal entities. Garna acts as the legal employer, handling taxes, benefits, and full compliance with labor laws.
+            * Immigration Assistance
+We help you not only find talent, but also apply for a visa and permanent residence support so that your employees can work from any part of the world without unnecessary legal difficulties. 
+               * Flexible Worksite Coverage
+Hire for offices, retail, factories, or remote teams: wherever your business operates.
+               * 24/7 Support 
+Have questions? Our support team is available 24/7 to resolve any issue in just a few minutes.
+               * Seamless Integration
+You don’t need to overhaul your processes to accommodate us. Garna integrates seamlessly with your existing HR processes and accounting payroll software.
+               * Employee Benefits
+A user-friendly personal dashboard for every team member: access to payslips, vacation management, and expense tracking in real time.
+Simplify Global Contractor Management and Payments
+Centralize invoices, approvals, and payments in one place. Manage and pay freelancers worldwide in their preferred method and currency without unnecessary fees.
+  
+
+Effective Payroll For Your Team Starts Here
+Make payments to the contractor when you need to (without any hassle, delays, or additional fees) using CSV mass payments or stand alone transfers. Pay international contractors in just a few clicks or set up full automation.[o]
+  Оставляем этот блок 
+  
+[p]
+ Embedded Contractor of Record Solution for Your Business
+Scale your contractor operations globally. Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand. 
+                  * API contractor management and payments
+Integrate global contractor payments directly into your platform. Let your users withdraw their remunerations and receive payments with a single click on your platform — without having to visit external websites.
+                  * White-label contractor dashboard and payments
+Launch professional payment software under your own brand. Full control over UX/UI, reporting, and ready-to-use features for operations in over 150 countries.
+
+  
+
+Set up Garna Solution an International Payroll and Add Contractor of Record or Employer of Record Service 
+From quick registration and talent’s search to your first payout. Everything is clear and completely under your control in a few simple steps.
+Steps to take with Garna: 
+For Contractor of Record
+Set up your company profile 
+Complete a quick verification process and gain access to a full-featured payroll software solution. We’ll set up the platform to meet your business needs in a few minutes. 
+
+
+Add your team 
+Import data for employees and international contractors. Our unified dashboard lets you manage access and roles without the hassle of spreadsheets. 
+
+
+Fund your account 
+Garna is a flexible payroll provider. Fund your account at Garna via SWIFT, SEPA, bank transfer in local currencies, PayPal, or use crypto assets for instant deposits. 
+
+
+Send payout 
+Click “Send”, and funds will be transferred instantly to recipients in 150+ countries. Garna handles agreements, reporting and guarantees 100% compliance. 
+
+
+For Employer of Record
+Set up your company account 
+Make a quick profile check and verification, fill in the required fields and get access to the service. We will customize it to your needs and wishes in a couple of clicks. 
+
+
+Assign a financial contact person 
+Specify the person who will be responsible for financial matters. This may be the finance director, the head of the finance department, or yourself. 
+
+
+Create your first EoR contract 
+Enter the employee's details: country of employment, position, salary, start date, salary currency, and work visa requirements. 
+
+
+Invite an employee 
+After your request in the personal account, the employee receives a personal invitation by e-mail and creates an account in Garna to receive payments. 
+
+
+Fund your wallet and run first payroll 
+You can do this in any convenient way: from SWIFT and SEPA to PayPal and crypto. Start paying your salary today. 
+  
+
+Why Garna Stands Outthe Best for Global Payroll and Contractor Management
+Тоже будет хорошо визуально разделить CoR и EoR
+Why Garna? There are plenty of benefits we offer while handling every payment process on time and accurately. 
+Contractor of Record
+                  * Cut Admin Work by 70%
+Our contract and payment automation frees your HR and finance department from routine tasks. Spend your time solely on talent.
+                  * Flexible Funding: From Bank transfers to Crypto
+You can make payments via traditional banking or digital assets for maximum speed.
+                  * Flawless Reporting and Analytics
+All invoices, transactions, and tax reports are gathered in one place. Export data to accounting in seconds for complete transparency.
+                  * 100% Intellectual Property Protection
+We legally guarantee that all work produced by your contractors belongs exclusively to you.
+                  * Scale with the API
+An enterprise solution for those growing fast. Integrate bulk payments directly into your internal systems and automate workflows programmatically.
+Employment of Record
+                  * Access to the best specialists in 150+ countries
+Hunt the best specialists wherever they are without wasting time and money on registering legal entities.
+                  * 24/7 support
+We provide quick solutions to any issues both for the company and for each employee around the clock.
+                  * 100% compliance with the laws
+We assume full responsibility for compliance with the labor code of each country, from taxes to social benefits. Our team is monitoring any legal changes. 
+                  * Automated payments
+Make payments in one click in any currency. The system calculates taxes and other contributions immediately.
+                  * Shared dashboard
+Management of contracts, expenses, income, and vacations is available in one interface.
+Button: Book a demo
+Garna Payroll vs Other Payroll
+Everything is relative, right? Take a look at the comparison table, we believe our transparency speaks louder than words. We offer, and we offer a lot, because we want to be the best. 
+Feature
+	Other Payroll
+	Garna Payroll
+	Geography
+	Limited to few countries
+	150+ countries
+	Tax compliance
+	Manual / regional expertise needed
+	Automated & compliant
+	Payout speed
+	Up to a Few Days
+	Few Minutes
+	Integration
+	Hard or custom-built
+	API ready / White Label
+	Dashboard
+	Fragmented tools
+	Unified dashboard for contractors and employees management
+	Support
+	Standard business hours
+	24/7 global support
+	Funding options
+	Bank and SWIFT only
+	Bank transfers is USD and local currencies, SWIFT, SEPA, Crypto, PayPal, Payoneer
+	Contractor management
+	Limited
+	Integrated
+	Reporting
+	Manual & slow
+	Real-time, exportable
+	
+
+Trusted by Those Who Build the Future
+Find out why large companies and middle-sized businesses are switching to Garna. We set the standard for international payroll, trusted by professionals in over 150 countries.
+  
+
+FAQ on Payroll Solutions
+1. How quickly can I start using Garna Payroll?
+Average time from sign up to the first hire or contractor payment is less than 10 minutes. You can create an account, verify it, and start using it immediately after. Our team processes applications quickly and grants access to one of the best online payroll services and contractor management solutions. At this point we work as a payroll provider enabling you with the possibility to work with employees and contractors.
+2. Can I brand the contractor dashboard under my company?
+Of course! Our white-label solution allows you to fully customize the interface not only for your in-house contractors but also for your customers.
+3. What payment methods does Garna support?
+We support bank transfers (SWIFT, SEPA, bank transfers in local currencies), payments to cards in local currency, PayPal, Payoneer, and payments in cryptocurrency (USDT/USDC). 
+4. How does Garna handle taxes and compliance globally?
+You won’t have to worry about red tape. When working with our Employment of Record solution, we handle all local taxes, social contributions, insurance, and compliance. When working with our Contractor of Record solution, Garna ensures to avoid risk of worker misclassification. As your contractor of record agent, we take full responsibility for hiring so that you can focus on the growth of your company.
+5. Can I integrate the Garna API into my platform?
+Yes. With our API, you can automate payments to contractors within your product.
+6. What currencies are supported for payouts?
+We support 80+ local currencies, including USD, EUR, and GBP. At Garna, we believe that businesses should have best exchange rates without markups.
+7. How does Garna handle contractor management?
+Garna automates the entire process, from onboarding and compliance checks to instant invoice generation. You pay a single consolidated invoice, and we distribute the funds to contractors in their preferred payment method and currency. Garna takes the risk of misclassification and handles local compliance.
+8. Is my data secure with Garna?
+Of course. As top global payroll providers, Garna uses bank-level encryption and strictly adheres to GDPR protocols and financial data security standards. Plus, only you have access to your personal account. You can delete your personal account at any time.
+9. Can I use Garna Payroll if my business already has its own dashboard?
+Yes, we can integrate any of our tools into your workflows.
+10. Do you offer support for global payroll issues?
+Yes, of course. Our support team is always on call 24/7 to answer any questions you may have about the service, payments, etc.
+  
+
+Headline: Launch Global Payroll Software on Autopilot Today
+Text: Pay your team in 150+ countries with just a few clicks. No red tape, just fast payments.
+Button: Book a demo
+Title: Global Payroll and Payments in 150+ Countries | Garna
+Description: Reliable payroll software for international businesses. Automate international payroll, taxes, and compliance. Make fast payments to your team in any currency or cryptocurrency.
+
+
+RUS
+Название: Глобальное решение по оплате труда для международных компаний: управление персоналом и подрядчиками в более чем 150 странах
+Подзаголовок: Экономьте время и деньги при работе с международными подрядчиками и найме сотрудников в любой стране. Полное соблюдение законодательства без лишних затрат — это и многое другое с Garna.
+Призыв: Заказать пробную версию
+  
+
+Блок доверия
+Более 400 компаний используют Garna
+Круглосуточная доступность услуг по оплате труда по всему миру
+Более 150 стран
+  
+
+Управляйте расчетом заработной платы по всему миру без лишних усилий 
+Мы оптимизируем процесс оплаты труда, предлагая гибкие и надежные решения для компаний любого размера и из любых отраслей.
+  
+
+Осуществляйте официальное трудоустройство с дополнительными преимуществами
+Упростите процесс найма сотрудников и фрилансеров с помощью Garna. В отличие от других компаний, мы возьмем на себя не только финансовые, но и юридические вопросы, пока вы будете искать подходящих специалистов.
+                  * Быстрое глобальное трудоустройство
+нанимайте сотрудников в любой точке мира без необходимости создания местных юридических лиц. Garna выступает в качестве официального работодателя, занимаясь вопросами налогообложения, выплаты льгот и обеспечения полного соблюдения трудового законодательства.
+                  * Помощь в вопросах иммиграции
+Мы помогаем вам не только найти талантливых специалистов, но и оформить визу и получить поддержку в вопросах получения постоянного вида на жительство, чтобы ваши сотрудники могли работать из любой точки мира без лишних юридических сложностей. 
+                     * Гибкое страховое покрытие для рабочих мест
+оформляйте полисы для офисов, торговых точек, производственных предприятий или удаленных команд — везде, где работает ваша компания.
+                     * Круглосуточная поддержка
+Есть вопросы? Наша служба поддержки работает круглосуточно и без выходных, чтобы решить любую проблему всего за несколько минут.
+                     * Гладкая интеграция
+вам не нужно кардинально менять свои процессы, чтобы адаптироваться к нам. Garna легко интегрируется с вашими существующими кадровыми процессами и программами оплаты труда.
+                     * Льготы для сотрудников
+удобная личная панель управления для каждого члена команды, обеспечивающая доступ к расчетным листам, управлению отпусками и отслеживанию расходов в режиме реального времени.
+Упростите управление подрядчиками по всему миру и процесс расчетов с ними
+Управляйте счетами, утверждениями и платежами в одной системе. Управляйте работой фрилансеров по всему миру и выплачивайте им гонорары удобным способом и в выбранной ими валюте без лишних комиссий.
+  
+
+Эффективная оплата труда вашей команды начинается здесь
+Осуществляйте платежи подрядчикам в любое удобное для вас время (без лишних хлопот, задержек и дополнительных комиссий) с помощью массовых платежей по файлу CSV или отдельных переводов. Оплачивайте услуги международных подрядчиков всего в несколько кликов или настройте полную автоматизацию.
+  Оставляем этот блок 
+  
+
+ Решение по назначению официального подрядчика для вашего бизнеса
+Расширьте деятельность вашей подрядной организации на международный уровень. Используйте Garna в качестве поставщика бэкэнд-услуг: интегрируйте функции управления подрядчиками и расчетов в свой продукт или запустите полноценные услуги по оплате труда под собственным брендом. 
+                        * Управление подрядчиками и расчеты через API
+Интегрируйте платежи международным подрядчикам прямо в вашу платформу. Предоставьте пользователям возможность выводить средства и получать платежи на вашей платформе одним щелчком мыши — без необходимости переходить на сторонние сайты.
+                        * Панель управления подрядчиком и платежи в рамках модели White Label
+Запустите профессиональное программное обеспечение для оплаты под своим собственным брендом. Полный контроль над UX/UI, отчетностью и готовыми к использованию функциями для работы в более чем 150 странах.
+
+  
+
+Создайте международную систему оплаты труда и подключите услугу по назначению официального подрядчика или официального работодателя
+От быстрой регистрации и поиска талантов до вашей первой выплаты. Все прозрачно и полностью под вашим контролем — всего в несколько простых шагов.
+Необходимые шаги с Garna: 
+Для официального подрядчика
+Создайте профиль своей компании 
+Пройдите быструю процедуру верификации и получите доступ к полнофункциональному программному решению для оплаты труда. Мы настроим платформу в соответствии с потребностями вашего бизнеса всего за несколько минут. 
+
+
+Добавьте свою команду 
+Импортируйте данные о сотрудниках и международных подрядчиках. Наша унифицированная панель управления позволяет управлять доступом и ролями без необходимости работать с таблицами. 
+
+
+Пополните счет 
+Garna — это гибкий поставщик услуг по оплате труда. Пополните свой счет в Garna через SWIFT, SEPA, банковский перевод в местной валюте, PayPal или воспользуйтесь криптовалютой для мгновенного пополнения счета. 
+
+
+Отправляйте выплаты 
+Нажмите «Отправить», и средства будут мгновенно переведены получателям в более чем 150 странах. Garna занимается оформлением договоров, подготовкой отчетности и обеспечивает стопроцентное соблюдение всех требований. 
+
+
+Для официального работодателя
+Создайте аккаунт своей компании 
+Пройдите быструю проверку профиля, заполните обязательные поля и получите доступ к сервису. Мы адаптируем его под ваши потребности и пожелания всего за несколько кликов. 
+
+
+Назначьте ответственное лицо по финансовым вопросам 
+Укажите лицо, которое будет отвечать за финансовые вопросы. Это может быть финансовый директор, руководитель финансового отдела или вы сами. 
+
+
+Составьте свой первый договор о предоставлении услуг официального работодателя 
+Введите данные о сотруднике: страну работы, должность, заработную плату, дату начала работы, валюту выплаты заработной платы и требования к рабочей визе. 
+
+
+Пригласите сотрудника 
+После отправки запроса в личном кабинете сотрудник получает личное приглашение по электронной почте и создает аккаунт в Garna для получения выплат. 
+
+
+Пополните свой кошелек и проведите первую оплату труда 
+Вы можете сделать это любым удобным для вас способом: от SWIFT и SEPA до PayPal и криптовалюты. Начните выплачивать зарплату уже сегодня. 
+  
+
+Почему Garna — лучший выбор для управления оплатой труда и подрядчиками по всему миру
+Тоже будет хорошо визуально разделить CoR и EoR
+Почему Garna? Мы предлагаем множество преимуществ, своевременно и точно обрабатывая каждый платеж. 
+Официальный подрядчик
+                        * Сократите административную нагрузку на 70%
+Наша система автоматизации заключения договоров и расчетов освобождает ваши отделы кадров и финансов от рутинных задач. Посвящайте свое время исключительно поиску талантов.
+                        * Гибкие способы оплаты: от банковских переводов до криптовалюты
+Вы можете осуществлять платежи как через традиционные банковские системы, так и с помощью цифровых активов для максимальной оперативности.
+                        * Безупречная отчетность и аналитика
+Все инвойсы, транзакции и налоговые отчеты собраны в одном месте. Экспортируйте данные в бухгалтерскую систему за считанные секунды для обеспечения полной прозрачности.
+                        * Стопроцентная защита интеллектуальной собственности
+Мы юридически гарантируем, что все материалы, созданные вашими подрядчиками, принадлежат исключительно вам.
+                        * Масштабируйте с помощью API
+Корпоративное решение для быстрорастущих компаний. Интегрируйте массовые платежи непосредственно в ваши внутренние системы и автоматизируйте рабочие процессы с помощью программного обеспечения.
+Официальное трудоустройство
+                        * Доступ к лучшим специалистам в более чем 150 странах
+Найдите лучших специалистов, где бы они ни находились, не тратя время и деньги на регистрацию юридических лиц.
+                        * Круглосуточная поддержка
+Мы круглосуточно предоставляем оперативные решения любых вопросов как для компании, так и для каждого сотрудника.
+                        * Стопроцентное соблюдение законодательства
+Мы берем на себя полную ответственность за соблюдение трудового законодательства каждой страны, от уплаты налогов до выплаты социальных льгот. Наша команда отслеживает все изменения в законодательстве. 
+                        * Автоматические платежи
+Производите платежи в один клик в любой валюте. Система мгновенно рассчитывает налоги и другие отчисления.
+                        * Общая панель управления
+Управление контрактами, расходами, доходами и отпусками доступно в одном интерфейсе.
+Кнопка: Заказать пробную версию
+Garna и другие системы оплаты труда
+Всё относительно, верно? Взгляните на сравнительную таблицу — мы уверены, что факты говорят громче слов. Мы предоставляем множество услуг, потому что стремимся быть лучшими. 
+Функция
+	Другая система
+	Garna
+	География
+	Ограничена несколькими странами
+	Более 150 стран
+	Соблюдение налогового законодательства
+	Вручную / требуется региональная экспертиза
+	Автоматизировано и соответствует требованиям
+	Скорость выплат
+	До нескольких дней
+	Несколько минут
+	Интеграция
+	Сложная или индивидуальная
+	Поддержка API / White Label
+	Панель управления
+	Разрозненные инструменты
+	Единая панель управления для управления подрядчиками и сотрудниками
+	Поддержка
+	Обычные рабочие часы
+	Круглосуточная поддержка по всему миру
+	Варианты финансирования
+	Только банковские и SWIFT-переводы
+	Банковские переводы в долларах США и национальных валютах, SWIFT, SEPA, криптовалюта, PayPal, Payoneer
+	Управление подрядчиками
+	Ограниченное
+	Интегрированное
+	Отчетность
+	Вручную и медленно
+	В режиме реального времени, с возможностью экспорта
+	
+
+Нам доверяют те, кто строит будущее
+Узнайте, почему крупные и средние компании переходят на Garna. Мы устанавливаем стандарты в сфере оплаты труда на международном уровне, и нам доверяют специалисты в более чем 150 странах.
+  
+
+Часто задаваемые вопросы о решениях для оплаты труда
+1. Как быстро я смогу начать пользоваться Garna?
+В среднем время от регистрации до первого найма или выплаты вознаграждения подрядчику составляет менее 10 минут. Вы можете создать аккаунт, подтвердить его и сразу же начать им пользоваться. Наша команда оперативно рассматривает заявки и предоставляет доступ к одному из лучших онлайн-сервисов по расчету заработной платы и решений по управлению подрядчиками. На данный момент мы предоставляем услуги по оплате труда, что позволяет вам сотрудничать как с штатными сотрудниками, так и с подрядчиками.
+2. Могу ли я брендировать панель управления подрядчиками под логотипом своей компании?
+Конечно! Наше решение White Label позволяет полностью настроить интерфейс не только для ваших внутренних подрядчиков, но и для ваших клиентов.
+3. Какие способы оплаты поддерживает Garna?
+Мы поддерживаем банковские переводы (SWIFT, SEPA, банковские переводы в национальной валюте), оплату на карты в национальной валюте, PayPal, Payoneer, а также оплату в криптовалюте (USDT/USDC). 
+4. Как компания Garna решает вопросы налогообложения и соблюдения нормативных требований на международном уровне?
+Вам не придется беспокоиться о бюрократических проволочках. При использовании нашего решения по официальному трудоустройству мы берем на себя все вопросы, связанные с уплатой местных налогов, отчислений в социальные фонды, страхованием и соблюдением нормативных требований. При использовании нашего решения для официальных подрядчиков компания Garna гарантирует предотвращение риска неправильной классификации работников. Как ваш официальный агент по найму персонала, мы берем на себя всю ответственность за подбор сотрудников, чтобы вы могли сосредоточиться на развитии своей компании.
+5. Могу ли я интегрировать API Garna в свою платформу?
+Да. С помощью нашего API вы можете автоматизировать выплаты подрядчикам прямо в вашем продукте.
+6. Какие валюты поддерживаются для выплат?
+Мы поддерживаем более 80 национальных валют, включая доллар США, евро и фунт стерлингов. В Garna мы считаем, что компании должны получать самые выгодные курсы обмена валют без наценок.
+7. Как Garna управляет подрядчиками?
+Garna автоматизирует весь процесс — от регистрации новых клиентов и проверки соответствия нормативным требованиям до мгновенного формирования счетов. Вы оплачиваете один сводный счет, а мы распределяем средства между подрядчиками в соответствии с их предпочтениями относительно способа оплаты и валюты. Garna берет на себя риск неправильной классификации и обеспечивает соблюдение местных нормативных требований.
+8. Надежно ли хранятся мои данные в Garna?
+Конечно. Являясь одним из ведущих мировых поставщиков услуг по оплате труда, компания Garna использует шифрование банковского уровня и строго соблюдает протоколы GDPR и стандарты безопасности финансовых данных. Кроме того, доступ к вашему личному аккаунту есть только у вас. Вы можете удалить свой личный аккаунт в любое время.
+9. Могу ли я использовать Garna, если у моей компании уже есть собственная панель управления?
+Да, мы можем интегрировать любой из наших инструментов в ваши рабочие процессы.
+10. Оказываете ли вы поддержку по вопросам расчета заработной платы в разных странах?
+Да, конечно. Наша служба поддержки работает круглосуточно и без выходных, чтобы ответить на любые ваши вопросы, касающиеся услуг, оплаты и т. д.
+  
+
+Заголовок: Запустите глобальное программное обеспечение для оплаты труда автоматически уже сегодня
+Текст: Выплачивайте зарплату своим сотрудникам в более чем 150 странах всего за несколько кликов. Никакой бюрократии, только быстрые выплаты.
+Кнопка: Заказать пробную версию
+Название: Глобальная система оплаты труда и платежей в более чем 150 странах | Garna
+Описание: Надежное программное обеспечение для оплаты труда, предназначенное для международных компаний. Автоматизируйте оплату труда, уплату налогов и обеспечение соблюдения нормативных требований на международном уровне. Осуществляйте быстрые выплаты своим сотрудникам в любой валюте или криптовалюте.
+
+
+ESP
+
+
+Title: Solución global de gestión de nóminas para empresas internacionales: gestiona a empleados y colaboradores en más de 150 países
+Subheadline: Ahorra tiempo y dinero al trabajar con colaboradores externos internacionales y contratar empleados en cualquier país. Cumplimiento legal total sin costes adicionales: esto y mucho más, con Garna.
+CTA Solicita una demostracion
+  
+
+Bloque de confianza
++400 empresas utilizan Garna
+Servicio de nóminas global disponible las 24/7
++150 países cubiertos
+  
+
+Gestiona la nómina global sin esfuerzo 
+Optimizamos el procesamiento de nóminas, ofreciendo soluciones flexibles y fiables para empresas de todos los tamaños y sectores.
+  
+
+Realice contrataciones oficiales con más ventajas
+Simplifica el proceso de contratación de empleados y autónomos con Garna. A diferencia de otras empresas, nos encargamos no solo de los aspectos financieros, sino también de los legales, mientras tú buscas a los especialistas adecuados.
+                        * Contratación global rápida
+Contrate empleados en cualquier parte del mundo sin necesidad de constituir entidades jurídicas locales. Garna actúa como empleador legal, gestionando los impuestos, las prestaciones y el pleno cumplimiento de la legislación laboral.
+                        * Asistencia en materia de inmigración
+Le ayudamos no solo a encontrar talento, sino también a solicitar visados y a tramitar la residencia permanente, para que sus empleados puedan trabajar desde cualquier parte del mundo sin dificultades legales innecesarias. 
+                           * Cobertura flexible de lugares de trabajo
+Contrata personal para oficinas, comercios, fábricas o equipos remotos: dondequiera que opere tu empresa.
+                           * Asistencia 24/7 
+¿Tienes alguna pregunta? Nuestro equipo de asistencia está disponible las 24 horas del día, los 7 días de la semana, para resolver cualquier problema en solo unos minutos.
+                           * Integración perfecta
+No es necesario que reestructures tus procesos para adaptarte a nosotros. Garna se integra a la perfección con tus procesos de RR. HH. y tu software de contabilidad y nóminas existentes.
+                           * Beneficios para los empleados
+Un panel de control personal y fácil de usar para cada miembro del equipo: acceso a nóminas, gestión de vacaciones y seguimiento de gastos en tiempo real.
+Simplifica la gestión y los pagos de contratistas internacionales
+Centraliza las facturas, las aprobaciones y los pagos en un solo lugar. Gestiona y paga a autónomos de todo el mundo con su método y moneda preferidos sin comisiones innecesarias.
+  
+
+Una gestión eficaz de las nóminas para tu equipo empieza aquí
+Realiza pagos a los contratistas cuando lo necesites (sin complicaciones, retrasos ni comisiones adicionales) mediante pagos masivos en CSV o transferencias individuales. Paga a contratistas internacionales con solo unos clics o configura la automatización completa.
+  
+
+  
+
+ Solución integrada de contratista de referencia para tu negocio
+Amplía tus operaciones con contratistas a nivel global. Utiliza Garna como tu proveedor de backend: integra la gestión de contratistas y los pagos en tu producto o lanza servicios de nóminas completos bajo tu propia marca. 
+                              * Gestión de contratistas y pagos mediante API
+Integra los pagos a contratistas globales directamente en tu plataforma. Permite a tus usuarios retirar sus remuneraciones y recibir pagos con un solo clic en tu plataforma, sin tener que visitar sitios web externos.
+                              * Panel de control y pagos de contratistas de marca blanca
+Lanza un software de pagos profesional bajo tu propia marca. Control total sobre la experiencia de usuario (UX) y la interfaz de usuario (UI), la generación de informes y funciones listas para usar para operaciones en más de 150 países.
+
+  
+
+Configura una nómina internacional y añade un servicio de contratista de referencia o empleador de referencia
+Desde el registro rápido y la búsqueda de talento hasta tu primer pago. Todo es claro y está completamente bajo tu control en unos pocos y sencillos pasos.
+Pasos a seguir con Garna: 
+Para contratistas registrados
+Configura el perfil de tu empresa 
+Completa un rápido proceso de verificación y obtén acceso a una solución de software de nóminas con todas las funciones. Configuraremos la plataforma para satisfacer las necesidades de tu negocio en unos minutos. 
+
+
+Añade a tu equipo 
+Importa los datos de los empleados y los contratistas internacionales. Nuestro panel de control unificado te permite gestionar el acceso y las funciones sin la molestia de las hojas de cálculo. 
+
+
+Recarga tu cuenta 
+Garna es un proveedor de nóminas flexible. Recarga tu cuenta en Garna a través de SWIFT, SEPA, transferencia bancaria en moneda local, PayPal o utiliza criptoactivos para realizar depósitos instantáneos. 
+
+
+Envía el pago 
+Haz clic en «Enviar» y los fondos se transferirán al instante a los destinatarios en más de 150 países. Garna se encarga de los acuerdos, la presentación de informes y garantiza el cumplimiento al 100%. 
+
+
+Para el empleador oficial
+Configura la cuenta de ru empresa 
+Realiza una rápida comprobación y verificación de tu perfil, rellena los campos obligatorios y obten acceso al servicio. Lo personalizaremos según tus necesidades y deseos en un par de clics. 
+
+
+Designa a una persona de contacto para asuntos financieros 
+Especifica quién será la persona responsable de los asuntos financieros. Puede ser el director financiero, el jefe del departamento financiero o tu mismo. 
+
+
+Crea tu primer contrato EoR 
+Introduce los datos del empleado: país de trabajo, puesto, salario, fecha de inicio, moneda del salario y requisitos de visado de trabajo. 
+
+
+Invita a un empleado 
+Tras tu solicitud en la cuenta personal, el empleado recibe una invitación personal por correo electrónico y crea una cuenta en Garna para recibir los pagos. 
+
+
+Recarga tu monedero y procesa la primera nómina 
+Puedes hacerlo de la forma que te resulte más cómoda: desde SWIFT y SEPA hasta PayPal y criptomonedas. Empieza a pagar tu salario hoy mismo. 
+  
+
+Por qué Garna es la mejor opción para la gestión global de nóminas y contratistas
+¿Por qué Garna? Ofrecemos numerosas ventajas al gestionar todos los procesos de pago de forma puntual y precisa. 
+Contratista de referencia
+                              * Reduce el trabajo administrativo en un 70 %
+Nuestra automatización de contratos y pagos libera a tu departamento de RR. HH. y finanzas de las tareas rutinarias. Dedica tu tiempo exclusivamente al talento.
+                              * Financiación flexible: desde transferencias bancarias hasta criptomonedas
+Puedes realizar pagos a través de la banca tradicional o de activos digitales para obtener la máxima rapidez.
+                              * Informes y análisis impecables
+Todas las facturas, transacciones e informes fiscales se recopilan en un solo lugar. Exporta los datos a la contabilidad en segundos para una transparencia total.
+                              * Protección del 100% de la propiedad intelectual
+Garantizamos legalmente que todo el trabajo realizado por tus contratistas te pertenece en exclusiva.
+                              * Escalabilidad con la API
+Una solución empresarial para quienes crecen rápidamente. Integra los pagos masivos directamente en tus sistemas internos y automatiza los flujos de trabajo mediante programación.
+Contrato de trabajo
+                              * Acceso a los mejores especialistas en más de 150 países
+Busca a los mejores especialistas dondequiera que estén sin perder tiempo ni dinero en registrar entidades jurídicas.
+                              * Asistencia 24/7
+Ofrecemos soluciones rápidas a cualquier problema, tanto para la empresa como para cada empleado, las 24 horas del día.
+                              * Cumplimiento al 100 % de la legislación
+Asumimos toda la responsabilidad del cumplimiento del código laboral de cada país, desde los impuestos hasta las prestaciones sociales. Nuestro equipo supervisa cualquier cambio legal. 
+                              * Pagos automatizados
+Realiza pagos con un solo clic en cualquier moneda. El sistema calcula los impuestos y otras cotizaciones de forma inmediata.
+                              * Panel de control compartido
+La gestión de contratos, gastos, ingresos y vacaciones está disponible en una única interfaz.
+Botón: Solicita un demo
+Garna Payroll frente a otros sistemas de nóminas
+Todo es relativo, ¿verdad? Echa un vistazo a la tabla comparativa; creemos que nuestra transparencia habla por sí sola. Ofrecemos mucho, porque queremos ser los mejores. 
+Característica
+	Otros programas de nóminas
+	Garna Payroll
+	Ámbito geográfico
+	Limitada a unos pocos países
+	+150 países
+	Cumplimiento fiscal
+	Se requiere experiencia manual/regional
+	Automatizado y conforme a la normativa
+	Rapidez de pago
+	De unos minutos a varios días
+	Pocos minutos
+	Integración
+	Fija o personalizada
+	Compatible con API / Marca blanca
+	Panel de control
+	Herramientas fragmentadas
+	Panel de control unificado para la gestión de contratistas y empleados
+	Asistencia
+	Horario comercial estándar
+	Asistencia global 24/7
+	Opciones de financiación
+	Solo bancos y SWIFT
+	Transferencias bancarias en USD y monedas locales, SWIFT, SEPA, criptomonedas, PayPal, Payoneer
+	Gestión de contratistas
+	Limitada
+	Integrada
+	Informes
+	Manual y lento
+	En tiempo real, exportable
+	
+
+La confianza de quienes construyen el futuro
+Descubre por qué las grandes empresas y las medianas empresas se están pasando a Garna. Marcamos la pauta en la gestión internacional de nóminas, y contamos con la confianza de profesionales en más de 150 países.
+  
+
+Preguntas frecuentes sobre soluciones de nóminas
+1. ¿Cuánto tardaré en empezar a utilizar Garna Payroll?
+El tiempo medio desde el registro hasta la primera contratación o el primer pago a un colaborador externo es inferior a 10 minutos. Puedes crear una cuenta, verificarla y empezar a utilizarla inmediatamente después. Nuestro equipo procesa las solicitudes con rapidez y te da acceso a uno de los mejores servicios de nóminas online y soluciones de gestión de colaboradores externos. En este punto, actuamos como proveedor de nóminas, lo que te permite trabajar tanto con empleados como con colaboradores externos.
+2. ¿Puedo personalizar el panel de control de los contratistas con la imagen de mi empresa?
+¡Por supuesto! Nuestra solución de marca blanca te permite personalizar completamente la interfaz, no solo para tus contratistas internos, sino también para tus clientes.
+3. ¿Qué métodos de pago admite Garna?
+Admitimos transferencias bancarias (SWIFT, SEPA, transferencias bancarias en moneda local), pagos con tarjeta en moneda local, PayPal, Payoneer y pagos en criptomonedas (USDT/USDC). 
+4. ¿Cómo gestiona Garna los impuestos y el cumplimiento normativo a nivel global?
+No tendrás que preocuparte por los trámites burocráticos. Al trabajar con nuestra solución de Empleo Oficial, nos encargamos de todos los impuestos locales, las cotizaciones sociales, los seguros y el cumplimiento normativo. Al trabajar con nuestra solución de Contratista Oficial, Garna se asegura de evitar el riesgo de clasificación errónea de los trabajadores. Como tu agente de contratista oficial, asumimos toda la responsabilidad de la contratación para que puedas centrarte en el crecimiento de tu empresa.
+5. ¿Puedo integrar la API de Garna en mi plataforma?
+Sí. Con nuestra API, puedes automatizar los pagos a los contratistas desde tu propia plataforma.
+6. ¿Qué divisas se admiten para los pagos?
+Admitimos más de 80 divisas locales, incluyendo USD, EUR y GBP. En Garna, creemos que las empresas deben disponer de los mejores tipos de cambio sin recargos.
+7. ¿Cómo gestiona Garna la administración de los contratistas?
+Garna automatiza todo el proceso, desde la incorporación y las comprobaciones de cumplimiento normativo hasta la generación instantánea de facturas. Tú pagas una única factura consolidada y nosotros distribuimos los fondos a los colaboradores en su método de pago y moneda preferidos. Garna asume el riesgo de clasificación errónea y se encarga del cumplimiento normativo local.
+8. ¿Están seguros mis datos con Garna?
+Por supuesto. Como uno de los principales proveedores globales de nóminas, Garna utiliza cifrado de nivel bancario y cumple estrictamente con los protocolos del RGPD y las normas de seguridad de datos financieros. Además, solo tú tienes acceso a tu cuenta personal. Puedes eliminar tu cuenta personal en cualquier momento.
+9. ¿Puedo utilizar Garna Payroll si mi empresa ya tiene su propio panel de control?
+Sí, podemos integrar cualquiera de nuestras herramientas en tus flujos de trabajo.
+10. ¿Ofrecen asistencia para cuestiones relacionadas con la gestión de nóminas a nivel global?
+Sí, por supuesto. Nuestro equipo de asistencia está disponible las 24 horas del día, los 7 días de la semana, para responder a cualquier pregunta que puedas tener sobre el servicio, los pagos, etc.
+  
+
+Titular: Lanza hoy mismo un software de nóminas global en piloto automático
+Texto: Paga a tu equipo en más de 150 países con solo unos clics. Sin trámites burocráticos, solo pagos rápidos.
+Botón: Solicita una demostración
+Título: Nóminas y pagos internacionales en más de 150 países | Garna
+Descripción: Software de nóminas fiable para empresas internacionales. Automatiza las nóminas internacionales, los impuestos y el cumplimiento normativo. Realiza pagos rápidos a tu equipo en cualquier moneda o criptomoneda.
+
+
+PT
+
+Title: Solução Global de Payroll para Empresas Internacionais: Gestão de Funcionários e Contratados em mais de 150 Países
+Subheadline: Poupe tempo e dinheiro ao trabalhar com contratados internacionais e contratar funcionários em qualquer país. Total conformidade legal sem custos adicionais — tudo isto e muito mais com a Garna.
+CTA: Marcar uma demo
+  
+
+Bloco de confiança
+Mais de 400 empresas utilizam a Garna
+Disponibilidade global do serviço de payroll 24/7
+Mais de 150 países abrangidos
+  
+
+Faça a gestão global de payroll sem esforço
+Simplificamos o processamento de payroll, oferecendo soluções flexíveis e fiáveis para empresas de todos os tamanhos e setores.
+  
+[q]
+Realize Employment of Record com mais vantagens
+Simplifique o processo de contratação de funcionários e freelancers com a Garna. Ao contrário de outras empresas, resolvemos não apenas a parte financeira, mas também a jurídica, enquanto procura os especialistas certos.
+                              * Contratação global rápida
+Contrate funcionários em qualquer parte do mundo sem criar entidades jurídicas locais. A Garna atua como empregador legal, tratando de impostos, benefícios e total conformidade com as leis laborais.
+                              * Apoio à imigração
+Ajudamos não apenas a encontrar talentos, mas também no pedido de visto e apoio à residência permanente, para que os seus funcionários possam trabalhar a partir de qualquer parte do mundo sem dificuldades jurídicas desnecessárias. 
+                                 * Cobertura flexível de locais de trabalho
+Contrate para escritórios, lojas, fábricas ou equipas remotas — onde quer que a sua empresa opere.
+                                 * Suporte 24/7
+                                 * Tem dúvidas? A nossa equipa de suporte está disponível 24/7 para resolver qualquer questão em apenas alguns minutos.
+                                 * Integração perfeita
+                                 * Não precisa alterar os seus processos para trabalhar connosco. A Garna integra-se facilmente nos seus processos de RH e software de payroll existentes.
+                                 * Benefícios para funcionários
+                                 * Um painel pessoal intuitivo para cada membro da equipa: acesso a recibos salariais, gestão de férias e controlo de despesas em tempo real.
+Simplifique a gestão e pagamentos globais de contratados
+Centralize faturas, aprovações e pagamentos num único lugar. Faça a gestão e pagamentos de freelancers em todo o mundo no método e moeda preferidos, sem taxas desnecessárias.
+  
+
+Um payroll eficaz para a sua equipa começa aqui
+Efetue pagamentos aos contratados quando precisar (sem complicações, atrasos ou taxas adicionais) utilizando pagamentos em massa via CSV ou transferências individuais. Pague à contratados internacionais em apenas alguns cliques ou configure automação total.
+    
+[r]
+ Solução Embedded Contractor of Record para o seu negócio
+Escale as suas operações com contratados a nível global. Utilize a Garna como fornecedor backend: integre gestão e pagamentos de contratados no seu produto ou lance serviços completos de payroll sob a sua própria marca.
+                                    * API para gestão e pagamentos de contratados
+Integre pagamentos globais de contratados diretamente na sua plataforma. Permita que os seus utilizadores levantem remunerações e recebam pagamentos com um único clique — sem necessidade de visitar websites externos.
+                                    * Dashboard White Label e pagamentos para contratados
+Lance software profissional de pagamentos sob a sua própria marca. Controlo total sobre UX/UI, relatórios e funcionalidades prontas para utilização em operações em mais de 150 países.
+  
+
+Configure payroll internacional e adicione o serviço Contractor of Record ou Employer of Record
+Desde o registo rápido e procura de talentos até ao primeiro pagamento. Tudo é claro e totalmente sob o seu controlo em apenas alguns passos simples.
+Passos com a Garna: 
+Para Contractor of Record
+Configure o perfil da sua empresa 
+Conclua um rápido processo de verificação e obtenha acesso a uma solução completa de software de payroll. Configuraremos a plataforma de acordo com as necessidades do seu negócio em apenas alguns minutos.
+
+
+Adicione a sua equipa
+Importe dados de funcionários e contratados internacionais. O nosso dashboard unificado permite gerir acessos e funções sem complicações com folhas de cálculo.
+
+
+Adicione fundos à sua conta
+A Garna é um fornecedor de payroll flexível. Adicione fundos à sua conta através de SWIFT, SEPA, transferências bancárias em moedas locais, PayPal ou utilize criptoativos para depósitos instantâneos.
+
+
+Envie pagamentos
+Clique em “Enviar” e os fundos serão transferidos instantaneamente para destinatários em mais de 150 países. A Garna trata dos contratos, relatórios e garante 100% de conformidade.
+
+
+Para Employer of Record
+Configure a conta da sua empresa
+Faça uma rápida verificação do perfil, preencha os campos necessários e obtenha acesso ao serviço. Personalizaremos tudo de acordo com as suas necessidades e preferências em apenas alguns cliques.
+
+
+Defina um contacto financeiro responsável
+Indique a pessoa responsável pelas questões financeiras. Pode ser o diretor financeiro, o responsável do departamento financeiro ou si próprio.
+
+
+Crie o seu primeiro contrato EoR
+Introduza os dados do funcionário: país de contratação, cargo, salário, data de início, moeda salarial e requisitos de visto de trabalho.
+
+
+Convide um funcionário
+Após o pedido na conta pessoal, o funcionário recebe um convite individual por e-mail e cria uma conta na Garna para receber pagamentos.
+
+
+Adicione fundos à carteira e execute o primeiro payroll
+Pode fazê-lo da forma mais conveniente: desde SWIFT e SEPA até PayPal e criptomoedas. Comece hoje mesmo a pagar salários.
+  
+
+Porque a Garna é a melhor solução para Global Payroll e Contractor Management
+Porque a Garna? Oferecemos inúmeras vantagens enquanto tratamos de cada processo de pagamento com precisão e dentro do prazo.
+Contractor of Record
+                                    * Reduza o trabalho administrativo em 70%
+A nossa automação de contratos e pagamentos liberta os departamentos de RH e financeiro das tarefas rotineiras. Dedique o seu tempo apenas aos talentos.
+                                    * Financiamento flexível: de transferências bancárias a criptomoedas
+Pode efetuar pagamentos através de bancos tradicionais ou ativos digitais para máxima rapidez.
+                                    * Relatórios e analítica impecáveis
+Todas as faturas, transações e relatórios fiscais ficam reunidos num único lugar. Exporte os dados para a contabilidade em segundos e obtenha total transparência.
+                                    * 100% de proteção da propriedade intelectual
+Garantimos legalmente que todo o trabalho produzido pelos seus contratados pertence exclusivamente à sua empresa.
+                                    * Escale com a API
+Uma solução empresarial para quem cresce rapidamente. Integre pagamentos em massa diretamente nos seus sistemas internos e automatize fluxos de trabalho programaticamente.
+Employment of Record
+                                    * Acesso aos melhores especialistas em mais de 150 países
+Encontre os melhores especialistas onde quer que estejam, sem perder tempo e dinheiro a registar entidades legais.
+                                    * Suporte 24/7
+Fornecemos soluções rápidas para qualquer questão, tanto para a empresa como para cada funcionário, a qualquer hora do dia.
+                                    * 100% de conformidade legal
+Assumimos total responsabilidade pelo cumprimento da legislação laboral de cada país — desde impostos até benefícios sociais. A nossa equipa acompanha constantemente quaisquer alterações legais.
+                                    * Pagamentos automatizados
+Efetue pagamentos com um clique em qualquer moeda. O sistema calcula imediatamente impostos e outras contribuições.
+                                    * Dashboard partilhado
+A gestão de contratos, despesas, rendimentos e férias está disponível numa única interface.
+Button: Marcar uma demo
+Garna Payroll vs Outro Payroll
+Tudo é relativo, certo? Veja a tabela comparativa — acreditamos que a nossa transparência fala mais alto do que palavras. Oferecemos muito, porque queremos ser os melhores.
+Funcionalidade
+	Outro Payroll
+	Garna Payroll
+	Geografia
+	Limitado a poucos países
+	Mais de 150 países
+	Conformidade fiscal
+	Manual / requer conhecimento regional
+	Automatizada e em conformidade
+	Velocidade de pagamentos
+	Até alguns dias
+	Alguns minutos
+	Integração
+	Complexa ou personalizada
+	API ready / White Label
+	Dashboard
+	Ferramentas fragmentadas
+	Dashboard unificado para gestão de contratados e funcionários
+	Suporte
+	Horário comercial padrão
+	Suporte global 24/7
+	Opções de financiamento
+	Apenas banco e SWIFT
+	Transferências bancárias em USD e moedas locais, SWIFT, SEPA, Crypto, PayPal, Payoneer
+	Gestão de contratados
+	Limitada
+	Integrada
+	Relatórios
+	Manuais e lentos
+	Em tempo real, exportáveis
+	
+
+Escolhida por quem constrói o futuro
+Descubra porque grandes empresas e negócios de média dimensão estão a mudar para a Garna. Definimos o padrão para payroll internacional, com a confiança de profissionais em mais de 150 países.
+  
+
+FAQ sobre soluções de Payroll
+1. Com que rapidez posso começar a utilizar o Garna Payroll?
+O tempo médio desde o registo até à primeira contratação ou pagamento a contratados é inferior a 10 minutos. Pode criar uma conta, verificá-la e começar a utilizá-la imediatamente depois. A nossa equipa processa rapidamente os pedidos e concede acesso a um dos melhores serviços online de payroll e soluções de gestão de contratados. Neste momento, atuamos como fornecedor de payroll, permitindo-lhe trabalhar tanto com funcionários como com contratados.
+2. Posso personalizar o dashboard dos contratados com a marca da minha empresa?
+Claro! A nossa solução White Label permite personalizar totalmente a interface não apenas para os seus contratados internos, mas também para os seus clientes.
+3. Que métodos de pagamento a Garna suporta?
+Suportamos transferências bancárias (SWIFT, SEPA, transferências em moedas locais), pagamentos para cartões em moeda local, PayPal, Payoneer e pagamentos em criptomoedas (USDT/USDC).
+4. Como a Garna gere impostos e conformidade a nível global?
+Não terá de se preocupar com burocracia. Ao utilizar a nossa solução Employment of Record, tratamos de todos os impostos locais, contribuições sociais, seguros e conformidade. Ao trabalhar com a nossa solução Contractor of Record, a Garna ajuda a evitar riscos de classificação incorreta de trabalhadores. Como seu agente Contractor of Record, assumimos total responsabilidade pela contratação para que possa concentrar-se no crescimento da sua empresa.
+5. Posso integrar a API da Garna na minha plataforma?
+Sim. Com a nossa API, pode automatizar pagamentos a contratados diretamente no seu produto.
+6. Que moedas são suportadas para pagamentos?
+Suportamos mais de 80 moedas locais, incluindo USD, EUR e GBP. Na Garna, acreditamos que as empresas devem ter as melhores taxas de câmbio sem margens adicionais.
+7. Como a Garna gere contratados?
+A Garna automatiza todo o processo — desde onboarding e verificações de conformidade até geração instantânea de faturas. Paga uma única fatura consolidada, e nós distribuímos os fundos aos contratados no método de pagamento e moeda preferidos. A Garna assume o risco de classificação incorreta e gere toda a conformidade local.
+8. Os meus dados estão seguros com a Garna?
+Claro. Como um dos principais fornecedores globais de payroll, a Garna utiliza encriptação de nível bancário e segue rigorosamente protocolos GDPR e normas de segurança de dados financeiros. Além disso, apenas si tem acesso à sua conta pessoal. Pode eliminar a conta a qualquer momento.
+9. Posso utilizar o Garna Payroll se a minha empresa já tiver o seu próprio dashboard?
+Sim, podemos integrar qualquer uma das nossas ferramentas nos seus fluxos de trabalho.
+10. Oferecem suporte para questões globais de payroll?
+Sim, claro. A nossa equipa de suporte está disponível 24/7 para responder a quaisquer questões relacionadas com o serviço, pagamentos, etc.
+  
+
+Headline: Lance hoje software global de payroll em piloto automático
+Text: Pague à sua equipa em mais de 150 países em apenas alguns cliques. Sem burocracia — apenas pagamentos rápidos.
+Button: Marcar uma demo
+Title: Payroll Global e Pagamentos em mais de 150 Países | Garna
+Description: Software de payroll fiável para empresas internacionais. Automatize payroll internacional, impostos e conformidade. Efetue pagamentos rápidos à sua equipa em qualquer moeda ou criptomoeda.
+Сокращенная версия
+Title: Global Payroll Solution for International Businesses
+Subheadline: Save time and money while working with contractors and hiring employees in 150+ country. Full legal compliance without the extra costs — this and more, with Garna.
+[s]
+CTA: Book a demo
+  
+
+Trust Block
+400+ businesses using Garna
+24/7 global payroll service availability
+150+ countries covered
+  
+
+Manage Global Payroll Effortlessly 
+We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries.
+  
+
+Hire Employees Worldwide
+Simplify the hiring process for employees and freelancers with Garna. Unlike other companies, we will resolve not only the financial, but also legal side while you are looking for the right specialists.
+                                    * Quick Global Employment
+Hire employees anywhere in the world without setting up local legal entities.
+                                    * Immigration Assistance
+We help you not only find talent, but also apply for a visa and permanent residence support.
+                                       * Flexible Worksite Coverage
+Hire for offices, retail, factories, or remote teams: wherever your business operates.
+                                       * 24/7 Support 
+Our support team is available 24/7 to resolve any issue in just a few minutes.
+                                       * Seamless Integration
+Garna integrates seamlessly with your existing HR processes and accounting payroll software.
+                                       * Employee Benefits
+A user-friendly personal dashboard for every team member: access to payslips, vacation management, and expense tracking in real time.
+Если еще короче
+                                          * Quick Global Employment
+Hire globally without local entities.
+                                          * Immigration Assistance
+Visa and relocation support.
+                                             * Flexible Worksite Coverage
+Support for any work model.
+                                             * 24/7 Support 
+Our support team is available 24/7.
+                                             * Seamless Integration
+Easy HR and payroll integrations.
+                                             * Employee Benefits
+Self-service dashboard for employees.
+Simplify Global Contractor Payments
+Centralize invoices, approvals, and payments in one place. Manage and pay freelancers worldwide in their preferred method and currency without unnecessary fees.
+  
+
+Effective Payroll For Your Team Starts Here
+Make payments to the contractor when you need to (without any hassle, delays, or additional fees) using CSV mass payments or stand alone transfers. Pay international contractors in just a few clicks or set up full automation.
+  Оставляем этот блок 
+  
+
+Embedded Payroll Infrastructure
+Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand. 
+                                                * API contractor management and payments
+Integrate global contractor payments directly into your platform. 
+                                                * White-label contractor dashboard and payments
+Launch professional payment software under your own brand.
+
+  
+
+Start Paying Globally
+From quick registration and talent’s search to your first payout. Everything is clear and completely under your control in a few simple steps.
+Contractor of Record
+Set up your company profile 
+Complete a quick verification process and gain access to a full-featured payroll software solution. 
+Add your team 
+Import data for employees and international contractors. 
+Fund your account 
+Fund your account at Garna via SWIFT, SEPA, bank transfer in local currencies, PayPal, or use crypto assets for instant deposits. 
+Send payout 
+Pay recipients in 150+ countries with full compliance. 
+
+
+Employer of Record
+Set up your company account 
+Make a quick profile check and verification, fill in the required fields and get started.
+Assign a financial contact person 
+Specify the person who will be responsible for financial matters. 
+Create your first EoR contract 
+Enter the employee's details
+Invite an employee 
+Send an invitation and onboard your employee. 
+Fund your wallet and run first payroll 
+Top up your balance and start paying globally.
+  
+
+Why Companies Choose Garna
+Тоже будет хорошо визуально разделить CoR и EoR
+Why Garna? There are plenty of benefits we offer while handling every payment process on time and accurately. 
+Contractor of Record
+                                                * Cut Admin Work by 70%
+Our contract and payment automation frees your HR and finance department from routine tasks..
+                                                * Flexible Funding: From Bank transfers to Crypto
+You can make payments via traditional banking or digital assets for maximum speed.
+                                                * Flawless Reporting and Analytics
+All invoices, transactions, and tax reports are gathered in one place. 
+                                                * 100% Intellectual Property Protection
+We legally guarantee that all work produced by your contractors belongs exclusively to you.
+                                                * Scale with the API
+Integrate bulk payments directly into your internal systems and automate workflows programmatically.
+Employment of Record
+                                                * Access to the best specialists in 150+ countries
+Hunt the best specialists wherever they are without wasting time and money on registering legal entities.
+                                                * 24/7 support
+We provide quick solutions to any issues both for the company and for each employee around the clock.
+                                                * 100% compliance with the laws
+We assume full responsibility for compliance with the labor code of each country.
+                                                * Automated payments
+Make payments in one click in any currency. 
+                                                * Shared dashboard
+Management of contracts, expenses, income, and vacations is available in one interface.
+Button: Book a demo
+Garna Payroll vs Other Payroll
+Everything is relative, right? Take a look at the comparison table, we believe our transparency speaks louder than words. 
+Feature
+	Other Payroll
+	Garna Payroll
+	Geography
+	Limited to few countries
+	150+ countries
+	Tax compliance
+	Manual / regional expertise needed
+	Automated & compliant
+	Payout speed
+	Up to a Few Days
+	Few Minutes
+	Integration
+	Hard or custom-built
+	API ready / White Label
+	Dashboard
+	Fragmented tools
+	Unified dashboard for contractors and employees management
+	Support
+	Standard business hours
+	24/7 global support
+	Funding options
+	Bank and SWIFT only
+	Bank transfers is USD and local currencies, SWIFT, SEPA, Crypto, PayPal, Payoneer
+	Contractor management
+	Limited
+	Integrated
+	Reporting
+	Manual & slow
+	Real-time, exportable
+	
+
+Trusted by Those Who Build the Future
+Find out why large companies and middle-sized businesses are switching to Garna.   
+FAQ on Payroll Solutions
+1. How quickly can I start using Garna Payroll?
+Average time from sign up to the first hire or contractor payment is less than 10 minutes. You can create an account, verify it, and start using it immediately after. Our team processes applications quickly and grants access to one of the best online payroll services and contractor management solutions. At this point we work as a payroll provider enabling you with the possibility to work with employees and contractors.
+2. Can I brand the contractor dashboard under my company?
+Of course! Our white-label solution allows you to fully customize the interface not only for your in-house contractors but also for your customers.
+3. What payment methods does Garna support?
+We support bank transfers (SWIFT, SEPA, bank transfers in local currencies), payments to cards in local currency, PayPal, Payoneer, and payments in cryptocurrency (USDT/USDC). 
+4. How does Garna handle taxes and compliance globally?
+You won’t have to worry about red tape. When working with our Employment of Record solution, we handle all local taxes, social contributions, insurance, and compliance. When working with our Contractor of Record solution, Garna ensures to avoid risk of worker misclassification. As your contractor of record agent, we take full responsibility for hiring so that you can focus on the growth of your company.
+5. Can I integrate the Garna API into my platform?
+Yes. With our API, you can automate payments to contractors within your product.
+6. What currencies are supported for payouts?
+We support 80+ local currencies, including USD, EUR, and GBP. At Garna, we believe that businesses should have best exchange rates without markups.
+7. How does Garna handle contractor management?
+Garna automates the entire process, from onboarding and compliance checks to instant invoice generation. You pay a single consolidated invoice, and we distribute the funds to contractors in their preferred payment method and currency. Garna takes the risk of misclassification and handles local compliance.
+8. Is my data secure with Garna?
+Of course. As top global payroll providers, Garna uses bank-level encryption and strictly adheres to GDPR protocols and financial data security standards. Plus, only you have access to your personal account. You can delete your personal account at any time.
+9. Can I use Garna Payroll if my business already has its own dashboard?
+Yes, we can integrate any of our tools into your workflows.
+10. Do you offer support for global payroll issues?
+Yes, of course. Our support team is always on call 24/7 to answer any questions you may have about the service, payments, etc.
+  
+
+Headline: Launch Global Payroll Software on Autopilot Today
+Text: Pay your team in 150+ countries with just a few clicks. No red tape, just fast payments.
+Button: Book a demo
+Title: Global Payroll and Payments in 150+ Countries | Garna
+Description: Reliable payroll software for international businesses. Automate international payroll, taxes, and compliance. Make fast payments to your team in any currency or cryptocurrency.
+
+
+RUS
+Название: Глобальное решение по оплате труда для международных компаний: управление персоналом и подрядчиками в более чем 150 странах
+Подзаголовок: Экономьте время и деньги при работе с международными подрядчиками и найме сотрудников в любой стране. Полное соблюдение законодательства без лишних затрат — это и многое другое с Garna.
+Призыв: Заказать пробную версию
+  
+
+Блок доверия
+Более 400 компаний используют Garna
+Круглосуточная доступность услуг по оплате труда по всему миру
+Более 150 стран
+  
+
+Управляйте расчетом заработной платы по всему миру без лишних усилий 
+Мы оптимизируем процесс оплаты труда, предлагая гибкие и надежные решения для компаний любого размера и из любых отраслей.
+  
+
+Осуществляйте официальное трудоустройство с дополнительными преимуществами
+Упростите процесс найма сотрудников и фрилансеров с помощью Garna. В отличие от других компаний, мы возьмем на себя не только финансовые, но и юридические вопросы, пока вы будете искать подходящих специалистов.
+                                                * Быстрое глобальное трудоустройство
+нанимайте сотрудников в любой точке мира без необходимости создания местных юридических лиц. Garna выступает в качестве официального работодателя, занимаясь вопросами налогообложения, выплаты льгот и обеспечения полного соблюдения трудового законодательства.
+                                                * Помощь в вопросах иммиграции
+Мы помогаем вам не только найти талантливых специалистов, но и оформить визу и получить поддержку в вопросах получения постоянного вида на жительство, чтобы ваши сотрудники могли работать из любой точки мира без лишних юридических сложностей. 
+                                                   * Гибкое страховое покрытие для рабочих мест
+оформляйте полисы для офисов, торговых точек, производственных предприятий или удаленных команд — везде, где работает ваша компания.
+                                                   * Круглосуточная поддержка
+Есть вопросы? Наша служба поддержки работает круглосуточно и без выходных, чтобы решить любую проблему всего за несколько минут.
+                                                   * Гладкая интеграция
+вам не нужно кардинально менять свои процессы, чтобы адаптироваться к нам. Garna легко интегрируется с вашими существующими кадровыми процессами и программами оплаты труда.
+                                                   * Льготы для сотрудников
+удобная личная панель управления для каждого члена команды, обеспечивающая доступ к расчетным листам, управлению отпусками и отслеживанию расходов в режиме реального времени.
+Упростите управление подрядчиками по всему миру и процесс расчетов с ними
+Управляйте счетами, утверждениями и платежами в одной системе. Управляйте работой фрилансеров по всему миру и выплачивайте им гонорары удобным способом и в выбранной ими валюте без лишних комиссий.
+  
+
+Эффективная оплата труда вашей команды начинается здесь
+Осуществляйте платежи подрядчикам в любое удобное для вас время (без лишних хлопот, задержек и дополнительных комиссий) с помощью массовых платежей по файлу CSV или отдельных переводов. Оплачивайте услуги международных подрядчиков всего в несколько кликов или настройте полную автоматизацию.
+  Оставляем этот блок 
+  
+
+ Решение по назначению официального подрядчика для вашего бизнеса
+Расширьте деятельность вашей подрядной организации на международный уровень. Используйте Garna в качестве поставщика бэкэнд-услуг: интегрируйте функции управления подрядчиками и расчетов в свой продукт или запустите полноценные услуги по оплате труда под собственным брендом. 
+                                                      * Управление подрядчиками и расчеты через API
+Интегрируйте платежи международным подрядчикам прямо в вашу платформу. Предоставьте пользователям возможность выводить средства и получать платежи на вашей платформе одним щелчком мыши — без необходимости переходить на сторонние сайты.
+                                                      * Панель управления подрядчиком и платежи в рамках модели White Label
+Запустите профессиональное программное обеспечение для оплаты под своим собственным брендом. Полный контроль над UX/UI, отчетностью и готовыми к использованию функциями для работы в более чем 150 странах.
+
+  
+
+Создайте международную систему оплаты труда и подключите услугу по назначению официального подрядчика или официального работодателя
+От быстрой регистрации и поиска талантов до вашей первой выплаты. Все прозрачно и полностью под вашим контролем — всего в несколько простых шагов.
+Необходимые шаги с Garna: 
+Для официального подрядчика
+Создайте профиль своей компании 
+Пройдите быструю процедуру верификации и получите доступ к полнофункциональному программному решению для оплаты труда. Мы настроим платформу в соответствии с потребностями вашего бизнеса всего за несколько минут. 
+
+
+Добавьте свою команду 
+Импортируйте данные о сотрудниках и международных подрядчиках. Наша унифицированная панель управления позволяет управлять доступом и ролями без необходимости работать с таблицами. 
+
+
+Пополните счет 
+Garna — это гибкий поставщик услуг по оплате труда. Пополните свой счет в Garna через SWIFT, SEPA, банковский перевод в местной валюте, PayPal или воспользуйтесь криптовалютой для мгновенного пополнения счета. 
+
+
+Отправляйте выплаты 
+Нажмите «Отправить», и средства будут мгновенно переведены получателям в более чем 150 странах. Garna занимается оформлением договоров, подготовкой отчетности и обеспечивает стопроцентное соблюдение всех требований. 
+
+
+Для официального работодателя
+Создайте аккаунт своей компании 
+Пройдите быструю проверку профиля, заполните обязательные поля и получите доступ к сервису. Мы адаптируем его под ваши потребности и пожелания всего за несколько кликов. 
+
+
+Назначьте ответственное лицо по финансовым вопросам 
+Укажите лицо, которое будет отвечать за финансовые вопросы. Это может быть финансовый директор, руководитель финансового отдела или вы сами. 
+
+
+Составьте свой первый договор о предоставлении услуг официального работодателя 
+Введите данные о сотруднике: страну работы, должность, заработную плату, дату начала работы, валюту выплаты заработной платы и требования к рабочей визе. 
+
+
+Пригласите сотрудника 
+После отправки запроса в личном кабинете сотрудник получает личное приглашение по электронной почте и создает аккаунт в Garna для получения выплат. 
+
+
+Пополните свой кошелек и проведите первую оплату труда 
+Вы можете сделать это любым удобным для вас способом: от SWIFT и SEPA до PayPal и криптовалюты. Начните выплачивать зарплату уже сегодня. 
+  
+
+Почему Garna — лучший выбор для управления оплатой труда и подрядчиками по всему миру
+Тоже будет хорошо визуально разделить CoR и EoR
+Почему Garna? Мы предлагаем множество преимуществ, своевременно и точно обрабатывая каждый платеж. 
+Официальный подрядчик
+                                                      * Сократите административную нагрузку на 70%
+Наша система автоматизации заключения договоров и расчетов освобождает ваши отделы кадров и финансов от рутинных задач. Посвящайте свое время исключительно поиску талантов.
+                                                      * Гибкие способы оплаты: от банковских переводов до криптовалюты
+Вы можете осуществлять платежи как через традиционные банковские системы, так и с помощью цифровых активов для максимальной оперативности.
+                                                      * Безупречная отчетность и аналитика
+Все инвойсы, транзакции и налоговые отчеты собраны в одном месте. Экспортируйте данные в бухгалтерскую систему за считанные секунды для обеспечения полной прозрачности.
+                                                      * Стопроцентная защита интеллектуальной собственности
+Мы юридически гарантируем, что все материалы, созданные вашими подрядчиками, принадлежат исключительно вам.
+                                                      * Масштабируйте с помощью API
+Корпоративное решение для быстрорастущих компаний. Интегрируйте массовые платежи непосредственно в ваши внутренние системы и автоматизируйте рабочие процессы с помощью программного обеспечения.
+Официальное трудоустройство
+                                                      * Доступ к лучшим специалистам в более чем 150 странах
+Найдите лучших специалистов, где бы они ни находились, не тратя время и деньги на регистрацию юридических лиц.
+                                                      * Круглосуточная поддержка
+Мы круглосуточно предоставляем оперативные решения любых вопросов как для компании, так и для каждого сотрудника.
+                                                      * Стопроцентное соблюдение законодательства
+Мы берем на себя полную ответственность за соблюдение трудового законодательства каждой страны, от уплаты налогов до выплаты социальных льгот. Наша команда отслеживает все изменения в законодательстве. 
+                                                      * Автоматические платежи
+Производите платежи в один клик в любой валюте. Система мгновенно рассчитывает налоги и другие отчисления.
+                                                      * Общая панель управления
+Управление контрактами, расходами, доходами и отпусками доступно в одном интерфейсе.
+Кнопка: Заказать пробную версию
+Garna и другие системы оплаты труда
+Всё относительно, верно? Взгляните на сравнительную таблицу — мы уверены, что факты говорят громче слов. Мы предоставляем множество услуг, потому что стремимся быть лучшими. 
+Функция
+	Другая система
+	Garna
+	География
+	Ограничена несколькими странами
+	Более 150 стран
+	Соблюдение налогового законодательства
+	Вручную / требуется региональная экспертиза
+	Автоматизировано и соответствует требованиям
+	Скорость выплат
+	До нескольких дней
+	Несколько минут
+	Интеграция
+	Сложная или индивидуальная
+	Поддержка API / White Label
+	Панель управления
+	Разрозненные инструменты
+	Единая панель управления для управления подрядчиками и сотрудниками
+	Поддержка
+	Обычные рабочие часы
+	Круглосуточная поддержка по всему миру
+	Варианты финансирования
+	Только банковские и SWIFT-переводы
+	Банковские переводы в долларах США и национальных валютах, SWIFT, SEPA, криптовалюта, PayPal, Payoneer
+	Управление подрядчиками
+	Ограниченное
+	Интегрированное
+	Отчетность
+	Вручную и медленно
+	В режиме реального времени, с возможностью экспорта
+	
+
+Нам доверяют те, кто строит будущее
+Узнайте, почему крупные и средние компании переходят на Garna. Мы устанавливаем стандарты в сфере оплаты труда на международном уровне, и нам доверяют специалисты в более чем 150 странах.
+  
+
+Часто задаваемые вопросы о решениях для оплаты труда
+1. Как быстро я смогу начать пользоваться Garna?
+В среднем время от регистрации до первого найма или выплаты вознаграждения подрядчику составляет менее 10 минут. Вы можете создать аккаунт, подтвердить его и сразу же начать им пользоваться. Наша команда оперативно рассматривает заявки и предоставляет доступ к одному из лучших онлайн-сервисов по расчету заработной платы и решений по управлению подрядчиками. На данный момент мы предоставляем услуги по оплате труда, что позволяет вам сотрудничать как с штатными сотрудниками, так и с подрядчиками.
+2. Могу ли я брендировать панель управления подрядчиками под логотипом своей компании?
+Конечно! Наше решение White Label позволяет полностью настроить интерфейс не только для ваших внутренних подрядчиков, но и для ваших клиентов.
+3. Какие способы оплаты поддерживает Garna?
+Мы поддерживаем банковские переводы (SWIFT, SEPA, банковские переводы в национальной валюте), оплату на карты в национальной валюте, PayPal, Payoneer, а также оплату в криптовалюте (USDT/USDC). 
+4. Как компания Garna решает вопросы налогообложения и соблюдения нормативных требований на международном уровне?
+Вам не придется беспокоиться о бюрократических проволочках. При использовании нашего решения по официальному трудоустройству мы берем на себя все вопросы, связанные с уплатой местных налогов, отчислений в социальные фонды, страхованием и соблюдением нормативных требований. При использовании нашего решения для официальных подрядчиков компания Garna гарантирует предотвращение риска неправильной классификации работников. Как ваш официальный агент по найму персонала, мы берем на себя всю ответственность за подбор сотрудников, чтобы вы могли сосредоточиться на развитии своей компании.
+5. Могу ли я интегрировать API Garna в свою платформу?
+Да. С помощью нашего API вы можете автоматизировать выплаты подрядчикам прямо в вашем продукте.
+6. Какие валюты поддерживаются для выплат?
+Мы поддерживаем более 80 национальных валют, включая доллар США, евро и фунт стерлингов. В Garna мы считаем, что компании должны получать самые выгодные курсы обмена валют без наценок.
+7. Как Garna управляет подрядчиками?
+Garna автоматизирует весь процесс — от регистрации новых клиентов и проверки соответствия нормативным требованиям до мгновенного формирования счетов. Вы оплачиваете один сводный счет, а мы распределяем средства между подрядчиками в соответствии с их предпочтениями относительно способа оплаты и валюты. Garna берет на себя риск неправильной классификации и обеспечивает соблюдение местных нормативных требований.
+8. Надежно ли хранятся мои данные в Garna?
+Конечно. Являясь одним из ведущих мировых поставщиков услуг по оплате труда, компания Garna использует шифрование банковского уровня и строго соблюдает протоколы GDPR и стандарты безопасности финансовых данных. Кроме того, доступ к вашему личному аккаунту есть только у вас. Вы можете удалить свой личный аккаунт в любое время.
+9. Могу ли я использовать Garna, если у моей компании уже есть собственная панель управления?
+Да, мы можем интегрировать любой из наших инструментов в ваши рабочие процессы.
+10. Оказываете ли вы поддержку по вопросам расчета заработной платы в разных странах?
+Да, конечно. Наша служба поддержки работает круглосуточно и без выходных, чтобы ответить на любые ваши вопросы, касающиеся услуг, оплаты и т. д.
+  
+
+Заголовок: Запустите глобальное программное обеспечение для оплаты труда автоматически уже сегодня
+Текст: Выплачивайте зарплату своим сотрудникам в более чем 150 странах всего за несколько кликов. Никакой бюрократии, только быстрые выплаты.
+Кнопка: Заказать пробную версию
+Название: Глобальная система оплаты труда и платежей в более чем 150 странах | Garna
+Описание: Надежное программное обеспечение для оплаты труда, предназначенное для международных компаний. Автоматизируйте оплату труда, уплату налогов и обеспечение соблюдения нормативных требований на международном уровне. Осуществляйте быстрые выплаты своим сотрудникам в любой валюте или криптовалюте.
+
+
+ESP
+
+
+Title: Solución global de gestión de nóminas para empresas internacionales: gestiona a empleados y colaboradores en más de 150 países
+Subheadline: Ahorra tiempo y dinero al trabajar con colaboradores externos internacionales y contratar empleados en cualquier país. Cumplimiento legal total sin costes adicionales: esto y mucho más, con Garna.
+CTA Solicita una demostracion
+  
+
+Bloque de confianza
++400 empresas utilizan Garna
+Servicio de nóminas global disponible las 24/7
++150 países cubiertos
+  
+
+Gestiona la nómina global sin esfuerzo 
+Optimizamos el procesamiento de nóminas, ofreciendo soluciones flexibles y fiables para empresas de todos los tamaños y sectores.
+  
+
+Realice contrataciones oficiales con más ventajas
+Simplifica el proceso de contratación de empleados y autónomos con Garna. A diferencia de otras empresas, nos encargamos no solo de los aspectos financieros, sino también de los legales, mientras tú buscas a los especialistas adecuados.
+                                                      * Contratación global rápida
+Contrate empleados en cualquier parte del mundo sin necesidad de constituir entidades jurídicas locales. Garna actúa como empleador legal, gestionando los impuestos, las prestaciones y el pleno cumplimiento de la legislación laboral.
+                                                      * Asistencia en materia de inmigración
+Le ayudamos no solo a encontrar talento, sino también a solicitar visados y a tramitar la residencia permanente, para que sus empleados puedan trabajar desde cualquier parte del mundo sin dificultades legales innecesarias. 
+                                                         * Cobertura flexible de lugares de trabajo
+Contrata personal para oficinas, comercios, fábricas o equipos remotos: dondequiera que opere tu empresa.
+                                                         * Asistencia 24/7 
+¿Tienes alguna pregunta? Nuestro equipo de asistencia está disponible las 24 horas del día, los 7 días de la semana, para resolver cualquier problema en solo unos minutos.
+                                                         * Integración perfecta
+No es necesario que reestructures tus procesos para adaptarte a nosotros. Garna se integra a la perfección con tus procesos de RR. HH. y tu software de contabilidad y nóminas existentes.
+                                                         * Beneficios para los empleados
+Un panel de control personal y fácil de usar para cada miembro del equipo: acceso a nóminas, gestión de vacaciones y seguimiento de gastos en tiempo real.
+Simplifica la gestión y los pagos de contratistas internacionales
+Centraliza las facturas, las aprobaciones y los pagos en un solo lugar. Gestiona y paga a autónomos de todo el mundo con su método y moneda preferidos sin comisiones innecesarias.
+  
+
+Una gestión eficaz de las nóminas para tu equipo empieza aquí
+Realiza pagos a los contratistas cuando lo necesites (sin complicaciones, retrasos ni comisiones adicionales) mediante pagos masivos en CSV o transferencias individuales. Paga a contratistas internacionales con solo unos clics o configura la automatización completa.
+  
+
+  
+
+ Solución integrada de contratista de referencia para tu negocio
+Amplía tus operaciones con contratistas a nivel global. Utiliza Garna como tu proveedor de backend: integra la gestión de contratistas y los pagos en tu producto o lanza servicios de nóminas completos bajo tu propia marca. 
+                                                            * Gestión de contratistas y pagos mediante API
+Integra los pagos a contratistas globales directamente en tu plataforma. Permite a tus usuarios retirar sus remuneraciones y recibir pagos con un solo clic en tu plataforma, sin tener que visitar sitios web externos.
+                                                            * Panel de control y pagos de contratistas de marca blanca
+Lanza un software de pagos profesional bajo tu propia marca. Control total sobre la experiencia de usuario (UX) y la interfaz de usuario (UI), la generación de informes y funciones listas para usar para operaciones en más de 150 países.
+
+  
+
+Configura una nómina internacional y añade un servicio de contratista de referencia o empleador de referencia
+Desde el registro rápido y la búsqueda de talento hasta tu primer pago. Todo es claro y está completamente bajo tu control en unos pocos y sencillos pasos.
+Pasos a seguir con Garna: 
+Para contratistas registrados
+Configura el perfil de tu empresa 
+Completa un rápido proceso de verificación y obtén acceso a una solución de software de nóminas con todas las funciones. Configuraremos la plataforma para satisfacer las necesidades de tu negocio en unos minutos. 
+
+
+Añade a tu equipo 
+Importa los datos de los empleados y los contratistas internacionales. Nuestro panel de control unificado te permite gestionar el acceso y las funciones sin la molestia de las hojas de cálculo. 
+
+
+Recarga tu cuenta 
+Garna es un proveedor de nóminas flexible. Recarga tu cuenta en Garna a través de SWIFT, SEPA, transferencia bancaria en moneda local, PayPal o utiliza criptoactivos para realizar depósitos instantáneos. 
+
+
+Envía el pago 
+Haz clic en «Enviar» y los fondos se transferirán al instante a los destinatarios en más de 150 países. Garna se encarga de los acuerdos, la presentación de informes y garantiza el cumplimiento al 100%. 
+
+
+Para el empleador oficial
+Configura la cuenta de ru empresa 
+Realiza una rápida comprobación y verificación de tu perfil, rellena los campos obligatorios y obten acceso al servicio. Lo personalizaremos según tus necesidades y deseos en un par de clics. 
+
+
+Designa a una persona de contacto para asuntos financieros 
+Especifica quién será la persona responsable de los asuntos financieros. Puede ser el director financiero, el jefe del departamento financiero o tu mismo. 
+
+
+Crea tu primer contrato EoR 
+Introduce los datos del empleado: país de trabajo, puesto, salario, fecha de inicio, moneda del salario y requisitos de visado de trabajo. 
+
+
+Invita a un empleado 
+Tras tu solicitud en la cuenta personal, el empleado recibe una invitación personal por correo electrónico y crea una cuenta en Garna para recibir los pagos. 
+
+
+Recarga tu monedero y procesa la primera nómina 
+Puedes hacerlo de la forma que te resulte más cómoda: desde SWIFT y SEPA hasta PayPal y criptomonedas. Empieza a pagar tu salario hoy mismo. 
+  
+
+Por qué Garna es la mejor opción para la gestión global de nóminas y contratistas
+¿Por qué Garna? Ofrecemos numerosas ventajas al gestionar todos los procesos de pago de forma puntual y precisa. 
+Contratista de referencia
+                                                            * Reduce el trabajo administrativo en un 70 %
+Nuestra automatización de contratos y pagos libera a tu departamento de RR. HH. y finanzas de las tareas rutinarias. Dedica tu tiempo exclusivamente al talento.
+                                                            * Financiación flexible: desde transferencias bancarias hasta criptomonedas
+Puedes realizar pagos a través de la banca tradicional o de activos digitales para obtener la máxima rapidez.
+                                                            * Informes y análisis impecables
+Todas las facturas, transacciones e informes fiscales se recopilan en un solo lugar. Exporta los datos a la contabilidad en segundos para una transparencia total.
+                                                            * Protección del 100% de la propiedad intelectual
+Garantizamos legalmente que todo el trabajo realizado por tus contratistas te pertenece en exclusiva.
+                                                            * Escalabilidad con la API
+Una solución empresarial para quienes crecen rápidamente. Integra los pagos masivos directamente en tus sistemas internos y automatiza los flujos de trabajo mediante programación.
+Contrato de trabajo
+                                                            * Acceso a los mejores especialistas en más de 150 países
+Busca a los mejores especialistas dondequiera que estén sin perder tiempo ni dinero en registrar entidades jurídicas.
+                                                            * Asistencia 24/7
+Ofrecemos soluciones rápidas a cualquier problema, tanto para la empresa como para cada empleado, las 24 horas del día.
+                                                            * Cumplimiento al 100 % de la legislación
+Asumimos toda la responsabilidad del cumplimiento del código laboral de cada país, desde los impuestos hasta las prestaciones sociales. Nuestro equipo supervisa cualquier cambio legal. 
+                                                            * Pagos automatizados
+Realiza pagos con un solo clic en cualquier moneda. El sistema calcula los impuestos y otras cotizaciones de forma inmediata.
+                                                            * Panel de control compartido
+La gestión de contratos, gastos, ingresos y vacaciones está disponible en una única interfaz.
+Botón: Solicita un demo
+Garna Payroll frente a otros sistemas de nóminas
+Todo es relativo, ¿verdad? Echa un vistazo a la tabla comparativa; creemos que nuestra transparencia habla por sí sola. Ofrecemos mucho, porque queremos ser los mejores. 
+Característica
+	Otros programas de nóminas
+	Garna Payroll
+	Ámbito geográfico
+	Limitada a unos pocos países
+	+150 países
+	Cumplimiento fiscal
+	Se requiere experiencia manual/regional
+	Automatizado y conforme a la normativa
+	Rapidez de pago
+	De unos minutos a varios días
+	Pocos minutos
+	Integración
+	Fija o personalizada
+	Compatible con API / Marca blanca
+	Panel de control
+	Herramientas fragmentadas
+	Panel de control unificado para la gestión de contratistas y empleados
+	Asistencia
+	Horario comercial estándar
+	Asistencia global 24/7
+	Opciones de financiación
+	Solo bancos y SWIFT
+	Transferencias bancarias en USD y monedas locales, SWIFT, SEPA, criptomonedas, PayPal, Payoneer
+	Gestión de contratistas
+	Limitada
+	Integrada
+	Informes
+	Manual y lento
+	En tiempo real, exportable
+	
+
+La confianza de quienes construyen el futuro
+Descubre por qué las grandes empresas y las medianas empresas se están pasando a Garna. Marcamos la pauta en la gestión internacional de nóminas, y contamos con la confianza de profesionales en más de 150 países.
+  
+
+Preguntas frecuentes sobre soluciones de nóminas
+1. ¿Cuánto tardaré en empezar a utilizar Garna Payroll?
+El tiempo medio desde el registro hasta la primera contratación o el primer pago a un colaborador externo es inferior a 10 minutos. Puedes crear una cuenta, verificarla y empezar a utilizarla inmediatamente después. Nuestro equipo procesa las solicitudes con rapidez y te da acceso a uno de los mejores servicios de nóminas online y soluciones de gestión de colaboradores externos. En este punto, actuamos como proveedor de nóminas, lo que te permite trabajar tanto con empleados como con colaboradores externos.
+2. ¿Puedo personalizar el panel de control de los contratistas con la imagen de mi empresa?
+¡Por supuesto! Nuestra solución de marca blanca te permite personalizar completamente la interfaz, no solo para tus contratistas internos, sino también para tus clientes.
+3. ¿Qué métodos de pago admite Garna?
+Admitimos transferencias bancarias (SWIFT, SEPA, transferencias bancarias en moneda local), pagos con tarjeta en moneda local, PayPal, Payoneer y pagos en criptomonedas (USDT/USDC). 
+4. ¿Cómo gestiona Garna los impuestos y el cumplimiento normativo a nivel global?
+No tendrás que preocuparte por los trámites burocráticos. Al trabajar con nuestra solución de Empleo Oficial, nos encargamos de todos los impuestos locales, las cotizaciones sociales, los seguros y el cumplimiento normativo. Al trabajar con nuestra solución de Contratista Oficial, Garna se asegura de evitar el riesgo de clasificación errónea de los trabajadores. Como tu agente de contratista oficial, asumimos toda la responsabilidad de la contratación para que puedas centrarte en el crecimiento de tu empresa.
+5. ¿Puedo integrar la API de Garna en mi plataforma?
+Sí. Con nuestra API, puedes automatizar los pagos a los contratistas desde tu propia plataforma.
+6. ¿Qué divisas se admiten para los pagos?
+Admitimos más de 80 divisas locales, incluyendo USD, EUR y GBP. En Garna, creemos que las empresas deben disponer de los mejores tipos de cambio sin recargos.
+7. ¿Cómo gestiona Garna la administración de los contratistas?
+Garna automatiza todo el proceso, desde la incorporación y las comprobaciones de cumplimiento normativo hasta la generación instantánea de facturas. Tú pagas una única factura consolidada y nosotros distribuimos los fondos a los colaboradores en su método de pago y moneda preferidos. Garna asume el riesgo de clasificación errónea y se encarga del cumplimiento normativo local.
+8. ¿Están seguros mis datos con Garna?
+Por supuesto. Como uno de los principales proveedores globales de nóminas, Garna utiliza cifrado de nivel bancario y cumple estrictamente con los protocolos del RGPD y las normas de seguridad de datos financieros. Además, solo tú tienes acceso a tu cuenta personal. Puedes eliminar tu cuenta personal en cualquier momento.
+9. ¿Puedo utilizar Garna Payroll si mi empresa ya tiene su propio panel de control?
+Sí, podemos integrar cualquiera de nuestras herramientas en tus flujos de trabajo.
+10. ¿Ofrecen asistencia para cuestiones relacionadas con la gestión de nóminas a nivel global?
+Sí, por supuesto. Nuestro equipo de asistencia está disponible las 24 horas del día, los 7 días de la semana, para responder a cualquier pregunta que puedas tener sobre el servicio, los pagos, etc.
+  
+
+Titular: Lanza hoy mismo un software de nóminas global en piloto automático
+Texto: Paga a tu equipo en más de 150 países con solo unos clics. Sin trámites burocráticos, solo pagos rápidos.
+Botón: Solicita una demostración
+Título: Nóminas y pagos internacionales en más de 150 países | Garna
+Descripción: Software de nóminas fiable para empresas internacionales. Automatiza las nóminas internacionales, los impuestos y el cumplimiento normativo. Realiza pagos rápidos a tu equipo en cualquier moneda o criptomoneda.
+
+
+PT
+
+Title: Solução Global de Payroll para Empresas Internacionais: Gestão de Funcionários e Contratados em mais de 150 Países
+Subheadline: Poupe tempo e dinheiro ao trabalhar com contratados internacionais e contratar funcionários em qualquer país. Total conformidade legal sem custos adicionais — tudo isto e muito mais com a Garna.
+CTA: Marcar uma demo
+  
+
+Bloco de confiança
+Mais de 400 empresas utilizam a Garna
+Disponibilidade global do serviço de payroll 24/7
+Mais de 150 países abrangidos
+  
+
+Faça a gestão global de payroll sem esforço
+Simplificamos o processamento de payroll, oferecendo soluções flexíveis e fiáveis para empresas de todos os tamanhos e setores.
+  
+
+Realize Employment of Record com mais vantagens
+Simplifique o processo de contratação de funcionários e freelancers com a Garna. Ao contrário de outras empresas, resolvemos não apenas a parte financeira, mas também a jurídica, enquanto procura os especialistas certos.
+                                                            * Contratação global rápida
+Contrate funcionários em qualquer parte do mundo sem criar entidades jurídicas locais. A Garna atua como empregador legal, tratando de impostos, benefícios e total conformidade com as leis laborais.
+                                                            * Apoio à imigração
+Ajudamos não apenas a encontrar talentos, mas também no pedido de visto e apoio à residência permanente, para que os seus funcionários possam trabalhar a partir de qualquer parte do mundo sem dificuldades jurídicas desnecessárias. 
+                                                               * Cobertura flexível de locais de trabalho
+Contrate para escritórios, lojas, fábricas ou equipas remotas — onde quer que a sua empresa opere.
+                                                               * Suporte 24/7
+                                                               * Tem dúvidas? A nossa equipa de suporte está disponível 24/7 para resolver qualquer questão em apenas alguns minutos.
+                                                               * Integração perfeita
+                                                               * Não precisa alterar os seus processos para trabalhar connosco. A Garna integra-se facilmente nos seus processos de RH e software de payroll existentes.
+                                                               * Benefícios para funcionários
+                                                               * Um painel pessoal intuitivo para cada membro da equipa: acesso a recibos salariais, gestão de férias e controlo de despesas em tempo real.
+Simplifique a gestão e pagamentos globais de contratados
+Centralize faturas, aprovações e pagamentos num único lugar. Faça a gestão e pagamentos de freelancers em todo o mundo no método e moeda preferidos, sem taxas desnecessárias.
+  
+
+Um payroll eficaz para a sua equipa começa aqui
+Efetue pagamentos aos contratados quando precisar (sem complicações, atrasos ou taxas adicionais) utilizando pagamentos em massa via CSV ou transferências individuais. Pague à contratados internacionais em apenas alguns cliques ou configure automação total.
+    
+
+ Solução Embedded Contractor of Record para o seu negócio
+Escale as suas operações com contratados a nível global. Utilize a Garna como fornecedor backend: integre gestão e pagamentos de contratados no seu produto ou lance serviços completos de payroll sob a sua própria marca.
+                                                                  * API para gestão e pagamentos de contratados
+Integre pagamentos globais de contratados diretamente na sua plataforma. Permita que os seus utilizadores levantem remunerações e recebam pagamentos com um único clique — sem necessidade de visitar websites externos.
+                                                                  * Dashboard White Label e pagamentos para contratados
+Lance software profissional de pagamentos sob a sua própria marca. Controlo total sobre UX/UI, relatórios e funcionalidades prontas para utilização em operações em mais de 150 países.
+  
+
+Configure payroll internacional e adicione o serviço Contractor of Record ou Employer of Record
+Desde o registo rápido e procura de talentos até ao primeiro pagamento. Tudo é claro e totalmente sob o seu controlo em apenas alguns passos simples.
+Passos com a Garna: 
+Para Contractor of Record
+Configure o perfil da sua empresa 
+Conclua um rápido processo de verificação e obtenha acesso a uma solução completa de software de payroll. Configuraremos a plataforma de acordo com as necessidades do seu negócio em apenas alguns minutos.
+
+
+Adicione a sua equipa
+Importe dados de funcionários e contratados internacionais. O nosso dashboard unificado permite gerir acessos e funções sem complicações com folhas de cálculo.
+
+
+Adicione fundos à sua conta
+A Garna é um fornecedor de payroll flexível. Adicione fundos à sua conta através de SWIFT, SEPA, transferências bancárias em moedas locais, PayPal ou utilize criptoativos para depósitos instantâneos.
+
+
+Envie pagamentos
+Clique em “Enviar” e os fundos serão transferidos instantaneamente para destinatários em mais de 150 países. A Garna trata dos contratos, relatórios e garante 100% de conformidade.
+
+
+Para Employer of Record
+Configure a conta da sua empresa
+Faça uma rápida verificação do perfil, preencha os campos necessários e obtenha acesso ao serviço. Personalizaremos tudo de acordo com as suas necessidades e preferências em apenas alguns cliques.
+
+
+Defina um contacto financeiro responsável
+Indique a pessoa responsável pelas questões financeiras. Pode ser o diretor financeiro, o responsável do departamento financeiro ou si próprio.
+
+
+Crie o seu primeiro contrato EoR
+Introduza os dados do funcionário: país de contratação, cargo, salário, data de início, moeda salarial e requisitos de visto de trabalho.
+
+
+Convide um funcionário
+Após o pedido na conta pessoal, o funcionário recebe um convite individual por e-mail e cria uma conta na Garna para receber pagamentos.
+
+
+Adicione fundos à carteira e execute o primeiro payroll
+Pode fazê-lo da forma mais conveniente: desde SWIFT e SEPA até PayPal e criptomoedas. Comece hoje mesmo a pagar salários.
+  
+
+Porque a Garna é a melhor solução para Global Payroll e Contractor Management
+Porque a Garna? Oferecemos inúmeras vantagens enquanto tratamos de cada processo de pagamento com precisão e dentro do prazo.
+Contractor of Record
+                                                                  * Reduza o trabalho administrativo em 70%
+A nossa automação de contratos e pagamentos liberta os departamentos de RH e financeiro das tarefas rotineiras. Dedique o seu tempo apenas aos talentos.
+                                                                  * Financiamento flexível: de transferências bancárias a criptomoedas
+Pode efetuar pagamentos através de bancos tradicionais ou ativos digitais para máxima rapidez.
+                                                                  * Relatórios e analítica impecáveis
+Todas as faturas, transações e relatórios fiscais ficam reunidos num único lugar. Exporte os dados para a contabilidade em segundos e obtenha total transparência.
+                                                                  * 100% de proteção da propriedade intelectual
+Garantimos legalmente que todo o trabalho produzido pelos seus contratados pertence exclusivamente à sua empresa.
+                                                                  * Escale com a API
+Uma solução empresarial para quem cresce rapidamente. Integre pagamentos em massa diretamente nos seus sistemas internos e automatize fluxos de trabalho programaticamente.
+Employment of Record
+                                                                  * Acesso aos melhores especialistas em mais de 150 países
+Encontre os melhores especialistas onde quer que estejam, sem perder tempo e dinheiro a registar entidades legais.
+                                                                  * Suporte 24/7
+Fornecemos soluções rápidas para qualquer questão, tanto para a empresa como para cada funcionário, a qualquer hora do dia.
+                                                                  * 100% de conformidade legal
+Assumimos total responsabilidade pelo cumprimento da legislação laboral de cada país — desde impostos até benefícios sociais. A nossa equipa acompanha constantemente quaisquer alterações legais.
+                                                                  * Pagamentos automatizados
+Efetue pagamentos com um clique em qualquer moeda. O sistema calcula imediatamente impostos e outras contribuições.
+                                                                  * Dashboard partilhado
+A gestão de contratos, despesas, rendimentos e férias está disponível numa única interface.
+Button: Marcar uma demo
+Garna Payroll vs Outro Payroll
+Tudo é relativo, certo? Veja a tabela comparativa — acreditamos que a nossa transparência fala mais alto do que palavras. Oferecemos muito, porque queremos ser os melhores.
+Funcionalidade
+	Outro Payroll
+	Garna Payroll
+	Geografia
+	Limitado a poucos países
+	Mais de 150 países
+	Conformidade fiscal
+	Manual / requer conhecimento regional
+	Automatizada e em conformidade
+	Velocidade de pagamentos
+	Até alguns dias
+	Alguns minutos
+	Integração
+	Complexa ou personalizada
+	API ready / White Label
+	Dashboard
+	Ferramentas fragmentadas
+	Dashboard unificado para gestão de contratados e funcionários
+	Suporte
+	Horário comercial padrão
+	Suporte global 24/7
+	Opções de financiamento
+	Apenas banco e SWIFT
+	Transferências bancárias em USD e moedas locais, SWIFT, SEPA, Crypto, PayPal, Payoneer
+	Gestão de contratados
+	Limitada
+	Integrada
+	Relatórios
+	Manuais e lentos
+	Em tempo real, exportáveis
+	
+
+Escolhida por quem constrói o futuro
+Descubra porque grandes empresas e negócios de média dimensão estão a mudar para a Garna. Definimos o padrão para payroll internacional, com a confiança de profissionais em mais de 150 países.
+  
+
+FAQ sobre soluções de Payroll
+1. Com que rapidez posso começar a utilizar o Garna Payroll?
+O tempo médio desde o registo até à primeira contratação ou pagamento a contratados é inferior a 10 minutos. Pode criar uma conta, verificá-la e começar a utilizá-la imediatamente depois. A nossa equipa processa rapidamente os pedidos e concede acesso a um dos melhores serviços online de payroll e soluções de gestão de contratados. Neste momento, atuamos como fornecedor de payroll, permitindo-lhe trabalhar tanto com funcionários como com contratados.
+2. Posso personalizar o dashboard dos contratados com a marca da minha empresa?
+Claro! A nossa solução White Label permite personalizar totalmente a interface não apenas para os seus contratados internos, mas também para os seus clientes.
+3. Que métodos de pagamento a Garna suporta?
+Suportamos transferências bancárias (SWIFT, SEPA, transferências em moedas locais), pagamentos para cartões em moeda local, PayPal, Payoneer e pagamentos em criptomoedas (USDT/USDC).
+4. Como a Garna gere impostos e conformidade a nível global?
+Não terá de se preocupar com burocracia. Ao utilizar a nossa solução Employment of Record, tratamos de todos os impostos locais, contribuições sociais, seguros e conformidade. Ao trabalhar com a nossa solução Contractor of Record, a Garna ajuda a evitar riscos de classificação incorreta de trabalhadores. Como seu agente Contractor of Record, assumimos total responsabilidade pela contratação para que possa concentrar-se no crescimento da sua empresa.
+5. Posso integrar a API da Garna na minha plataforma?
+Sim. Com a nossa API, pode automatizar pagamentos a contratados diretamente no seu produto.
+6. Que moedas são suportadas para pagamentos?
+Suportamos mais de 80 moedas locais, incluindo USD, EUR e GBP. Na Garna, acreditamos que as empresas devem ter as melhores taxas de câmbio sem margens adicionais.
+7. Como a Garna gere contratados?
+A Garna automatiza todo o processo — desde onboarding e verificações de conformidade até geração instantânea de faturas. Paga uma única fatura consolidada, e nós distribuímos os fundos aos contratados no método de pagamento e moeda preferidos. A Garna assume o risco de classificação incorreta e gere toda a conformidade local.
+8. Os meus dados estão seguros com a Garna?
+Claro. Como um dos principais fornecedores globais de payroll, a Garna utiliza encriptação de nível bancário e segue rigorosamente protocolos GDPR e normas de segurança de dados financeiros. Além disso, apenas si tem acesso à sua conta pessoal. Pode eliminar a conta a qualquer momento.
+9. Posso utilizar o Garna Payroll se a minha empresa já tiver o seu próprio dashboard?
+Sim, podemos integrar qualquer uma das nossas ferramentas nos seus fluxos de trabalho.
+10. Oferecem suporte para questões globais de payroll?
+Sim, claro. A nossa equipa de suporte está disponível 24/7 para responder a quaisquer questões relacionadas com o serviço, pagamentos, etc.
+  
+
+Headline: Lance hoje software global de payroll em piloto automático
+Text: Pague à sua equipa em mais de 150 países em apenas alguns cliques. Sem burocracia — apenas pagamentos rápidos.
+Button: Marcar uma demo
+Title: Payroll Global e Pagamentos em mais de 150 Países | Garna
+Description: Software de payroll fiável para empresas internacionais. Automatize payroll internacional, impostos e conformidade. Efetue pagamentos rápidos à sua equipa em qualquer moeda ou criptomoeda.
+[a]Мы сейчас обсуждаем партнерство с Deel и Remote по Employment of Record, и, возможно, у нас будет доступно сразу практически 150 стран.
+
+
+Поэтому, если что, это можно было бы вынести в заголовок
+[b]Global Payroll Service | 3000+ Users in 150+ Countries
+[c]Тут вопрос: будем ли мы это оставлять, потому что в employment скорость платежей не так сильно важна, как в Contractor of Record. Возможно, здесь стоило бы заменить на что-то другое. Но я понимаю, что Trust Block у нас идет одинаково по всему сайту, поэтому не настаиваю
+[d]пока помню точно лучше сделать 150+ стран, это точно лучше
+[e]Перефразщировала (взяла) у Deel
+[f]Переписать
+[g]https://www.lano.io/why-lano
+Iš viso 1 reakcija
+Vlad Kolomensky sureagavo jaustuku 🔥 2026-03-28 07:58 priešpiet
+[h]Я бы не отводил так много места для white label, и если бы писал здесь для перелинковки, то писал бы об этом ниже.
+
+
+Потому что  white label как решение очень узкое, не то что продается в первую очередь. В EOR продается скорее найм на отдельное юрлицо как сотрудника с месседжем о том, что можно нанимать в штат сотрудников в тех странах, где тебе не выгодно открывать собственное юрлицо и нанимать собственную бухгалтерию, считать налоги и тд
+[i]Global Payroll Compliance Made Simpler
+[j]Этот блок нужно обсудить и писатьаккуратно без оверобещаний
+[k]Потому что тут могут нас натянуть
+[l]Есть на главной, оставляем
+[m]на картинке только бы поменять чтобы все названия были с большой буквы как Global Reach
+[n]Продумать какой то другой вид блока
+[o]Pay international contractors in just a few clicks or set up full automation (without any hassle, delays, or additional fees)
+[p]Facility limits from $50K to one million
+[q]на картинке только бы поменять чтобы все названия были с большой буквы как Global Reach
+[r]Facility limits from $50K to one million
+[s]Поместим в 2 строки? Если нет - пишите - сократим

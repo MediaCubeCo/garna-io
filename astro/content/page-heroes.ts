@@ -162,6 +162,38 @@ export const pageHeroes = {
 		tone: 'green',
 		align: 'split',
 	},
+	payrollSolutionNew: {
+		class: 'payroll-solution-new-hero overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
+		containerClass:
+			'overflow-visible md:px-12 md:pt-12 md:pb-0 text-center max-w-7xl z-10 mr-auto ml-auto pt-12 pr-6 pb-12 pl-6 relative',
+		titleClass:
+			'leading-[1.1] md:mb-8 md:text-6xl lg:mb-12 lg:text-7xl text-5xl font-light text-white tracking-tight font-extralight mb-8',
+		descriptionClass:
+			'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-xl font-light text-gray-400 font-manrope max-w-4xl mr-auto mb-12 ml-auto',
+		title: [
+			{ text: 'Global Payroll Solution', translateKey: 'hero.titleMain' },
+			{
+				text: 'for International Businesses',
+				translateKey: 'hero.titleAccent',
+				class: 'text-gray-400',
+				breakBefore: true,
+			},
+		],
+		description:
+			'Save time and money while working with contractors and hiring employees in 150+ country. Full legal compliance without the extra costs - this and more, with Garna',
+		descriptionTranslateKey: 'hero.description',
+		cta: {
+			label: 'Book a demo',
+			translateKey: 'hero.cta',
+			kind: 'demo',
+			trackingCta: 'payroll_solution_new_hero_demo',
+			variant: 'primary',
+			effect: 'rotating-flare',
+			wrapperClass: 'flex justify-center',
+		},
+		tone: 'green',
+		align: 'center',
+	},
 	eor: {
 		class: 'relative overflow-hidden pt-28 pb-20 md:pt-32 md:pb-24',
 		containerClass: 'garna-container flex flex-col items-center gap-12',

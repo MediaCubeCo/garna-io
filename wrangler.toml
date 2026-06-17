@@ -25,6 +25,8 @@ run_worker_first = [
 	"/white-label.html",
 	"/payroll-small-business",
 	"/payroll-small-business.html",
+	"/payroll-solution-new",
+	"/payroll-solution-new.html",
 	"/eor",
 	"/eor.html",
 ]

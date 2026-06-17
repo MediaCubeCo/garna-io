@@ -52,6 +52,7 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 	'ai-hiring': '/ai-hiring.html',
 	'white-label': '/white-label.html',
 	'payroll-small-business': '/payroll-small-business.html',
+	'payroll-solution-new': '/payroll-solution-new.html',
 	'employer-of-record': '/employer-of-record.html',
 };
 
@@ -62,6 +63,7 @@ const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'ai-hiring': 'ai-hiring',
 	'white-label': 'white-label',
 	'payroll-small-business': 'payroll-small-business',
+	'payroll-solution-new': 'payroll-solution-new',
 	'employer-of-record': 'eor',
 };
 
