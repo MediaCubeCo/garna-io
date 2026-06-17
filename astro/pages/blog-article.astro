@@ -1,9 +1,120 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQSection from '../components/FAQSection.astro';
+import HeroSection from '../components/HeroSection.astro';
 import { pageShells } from '../content/page-shells';
 import rawContentHtml from '../content/site-pages/blog-article.html?raw';
+import type { FAQItem } from '../types/faq-section';
+
+const articleContentHtml = rawContentHtml.replace(
+	/<!-- Hero Section -->[\s\S]*?<\/section>\s*(?=\s*<!-- AI Matching Feature -->)/,
+	''
+).replace(
+	/<section class="pt-16 pb-16">\s*<div class="max-w-7xl mx-auto pr-6 pl-6">[\s\S]*?<\/section>\s*(?=\s*<!-- Job Board -->)/,
+	''
+);
+
+const articleHero = {
+	class: 'flex flex-col md:pt-32 md:pb-16 w-full pt-6 pb-4 relative justify-center',
+	containerClass:
+		'flex flex-col md:pl-6 md:pr-6 md:pt-8 md:pb-0 w-full max-w-7xl z-10 mr-auto ml-auto pt-24 pb-8 pr-6 pl-6 relative items-center',
+	contentClass: 'flex flex-col text-center z-10 relative items-center w-full max-w-4xl mr-auto ml-auto',
+	titleClass: 'leading-tight text-4xl md:text-5xl text-white tracking-tight font-manrope mb-8',
+	descriptionClass: 'leading-relaxed text-lg font-extralight text-gray-400 font-manrope pb-12',
+	title: [
+		{
+			text: 'Breaking Down Complexity in Life Science Web Applications',
+			translateKey: 'blogArticle.hero.title',
+		},
+	],
+	description:
+		'Exploring architectural patterns and frontend strategies to build scalable, high-performance web tools for genomic data analysis and research collaboration',
+	descriptionTranslateKey: 'blogArticle.hero.description',
+	tone: 'neutral',
+};
+
+const articleFaqItems = [
+	{
+		question: 'What are the main features of the platform?',
+		answer:
+			'Our platform offers advanced analytics, seamless integrations with your favorite tools, real-time collaboration features, and enterprise-grade security. Everything is designed to help your team work more efficiently and scale without friction.',
+		questionTranslateKey: 'blogArticle.faq.items.q1.question',
+		answerTranslateKey: 'blogArticle.faq.items.q1.answer',
+	},
+	{
+		question: 'How does the pricing structure work?',
+		answer:
+			'We offer transparent, tiered pricing based on the number of active users and features required. There are no hidden fees, and you can switch plans or cancel at any time. Annual subscriptions come with a 20% discount.',
+		questionTranslateKey: 'blogArticle.faq.items.q2.question',
+		answerTranslateKey: 'blogArticle.faq.items.q2.answer',
+	},
+	{
+		question: 'Is it easy to migrate from another provider?',
+		answer:
+			'Yes! We provide dedicated migration specialists for all new accounts. We support automated imports from major platforms, and our team will handle the heavy lifting to ensure your historical data is transferred accurately and securely.',
+		questionTranslateKey: 'blogArticle.faq.items.q3.question',
+		answerTranslateKey: 'blogArticle.faq.items.q3.answer',
+	},
+	{
+		question: 'What level of support do you provide?',
+		answer:
+			'All plans include 24/7 email support and access to our comprehensive knowledge base. Pro and Enterprise plans include priority live chat, and Enterprise plans come with a dedicated Customer Success Manager and phone support.',
+		questionTranslateKey: 'blogArticle.faq.items.q4.question',
+		answerTranslateKey: 'blogArticle.faq.items.q4.answer',
+	},
+] satisfies FAQItem[];
 ---
 
 <BaseLayout shell={pageShells.blogArticle}>
-	<Fragment set:html={rawContentHtml} />
+	<HeroSection {...articleHero}>
+		<div slot="before-title" class="flex flex-wrap items-center justify-center gap-3 mb-6">
+			<span class="text-[#5ea500] text-xs font-light uppercase tracking-wider bg-[#5ea500]/10 px-3 py-1 rounded-full border border-[#5ea500]/20" data-translate="blogArticle.hero.category">payroll</span>
+			<span class="w-1 h-1 rounded-full bg-gray-600 hidden sm:block"></span>
+			<span class="text-gray-400 text-sm font-thin" data-translate="blogArticle.hero.date">October 24, 2023</span>
+			<span class="w-1 h-1 rounded-full bg-gray-600 hidden sm:block"></span>
+			<span class="text-gray-400 text-sm font-thin flex items-center gap-1.5">
+				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+				<span data-translate="blogArticle.hero.readTime">6 min read</span>
+			</span>
+		</div>
+
+		<div class="flex flex-col md:flex-row gap-6 w-full max-w-4xl border-white/10 border-t pt-8 gap-x-6 gap-y-6 items-center justify-between">
+			<div class="flex items-center gap-4 text-left">
+				<img src="/pages/blog/assets/12-photo-1438761681033-6461ffad8d80.jpg" alt="Dr. Emily Chen" class="w-14 h-14 rounded-full border border-white/20 object-cover" data-translate-alt="blogArticle.hero.authorAlt">
+				<div>
+					<p class="text-white text-base font-extralight font-manrope tracking-tight" data-translate="blogArticle.hero.authorName">Dr. Emily Chen</p>
+					<p class="text-gray-400 text-sm font-thin font-manrope" data-translate="blogArticle.hero.authorRole">Lead Software Architect</p>
+				</div>
+			</div>
+
+			<div class="flex gap-3 gap-x-3 gap-y-3 items-center">
+				<span class="text-gray-400 text-sm font-thin font-manrope" data-translate="blogArticle.hero.shareLabel">Share this article:</span>
+				<button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" aria-label="Share on X">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="w-4 h-4">
+						<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path>
+					</svg>
+				</button>
+				<button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" aria-label="Share on LinkedIn">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 lucide lucide-linkedin">
+						<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+						<rect width="4" height="12" x="2" y="9"></rect>
+						<circle cx="4" cy="4" r="2"></circle>
+					</svg>
+				</button>
+				<button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" aria-label="Copy article link">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 lucide lucide-link">
+						<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+						<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+					</svg>
+				</button>
+			</div>
+		</div>
+	</HeroSection>
+	<Fragment set:html={articleContentHtml} />
+	<FAQSection
+		title={{ text: 'Frequently Asked Questions', translateKey: 'blogArticle.faq.title' }}
+		subtitle={{ text: "Can't find the answer you're looking for? Reach out to our team.", translateKey: 'blogArticle.faq.subtitle' }}
+		items={articleFaqItems}
+		class="pt-16 pb-16"
+	/>
 </BaseLayout>

@@ -6,6 +6,7 @@ import { aiHiringTranslations } from './translations/ai-hiring';
 import { whiteLabelTranslations } from './translations/white-label';
 import { eorTranslations } from './translations/eor';
 import { payrollSmallBusinessTranslations } from './translations/payroll-small-business';
+import { blogArticleTranslations, blogAuthorTranslations, blogTranslations } from './translations/blog';
 
 export type PageTranslations = typeof homeTranslations.en;
 
@@ -17,7 +18,10 @@ type AnyPageTranslations =
 	| typeof aiHiringTranslations.en
 	| typeof whiteLabelTranslations.en
 	| typeof eorTranslations.en
-	| typeof payrollSmallBusinessTranslations.en;
+	| typeof payrollSmallBusinessTranslations.en
+	| typeof blogTranslations.en
+	| typeof blogAuthorTranslations.en
+	| typeof blogArticleTranslations.en;
 
 const translations = {
 	home: homeTranslations,
@@ -29,6 +33,9 @@ const translations = {
 	eor: eorTranslations,
 	'employer-of-record': eorTranslations,
 	'payroll-small-business': payrollSmallBusinessTranslations,
+	blog: blogTranslations,
+	'blog-author': blogAuthorTranslations,
+	'blog-article': blogArticleTranslations,
 } as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
 export function getPageTranslations(pageName: string, locale: string): AnyPageTranslations {

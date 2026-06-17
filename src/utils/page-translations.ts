@@ -30,6 +30,15 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'payroll-small-business') {
 		return `/${segment}/payroll-small-business`;
 	}
+	if (pageName === 'blog') {
+		return `/${segment}/blog`;
+	}
+	if (pageName === 'blog-author') {
+		return `/${segment}/blog-author`;
+	}
+	if (pageName === 'blog-article') {
+		return `/${segment}/blog-article`;
+	}
 	if (pageName === 'eor' || pageName === 'employer-of-record') {
 		return `/${segment}/employer-of-record`;
 	}
@@ -437,6 +446,19 @@ export function injectPageTranslations(
 					html = before + openTag + translationStr + closeTag + after;
 				}
 			}
+
+			const sourceTextTranslations = (currentTranslations as any).sourceText;
+			if (sourceTextTranslations && typeof sourceTextTranslations === 'object') {
+				html = replaceVisibleSourceText(html, sourceTextTranslations as Record<string, string>);
+			}
+
+			const sourceAttributeTranslations = (currentTranslations as any).sourceAttributes;
+			if (sourceAttributeTranslations && typeof sourceAttributeTranslations === 'object') {
+				html = replaceSourceAttributes(
+					html,
+					sourceAttributeTranslations as Record<string, Record<string, string>>
+				);
+			}
 		}
 
 		return html;
@@ -477,4 +499,85 @@ function localizeLinkHref(html: string, markerAttribute: string, href: string): 
 			return `<a${nextAttributes}>`;
 		}
 	);
+}
+
+function replaceVisibleSourceText(html: string, translations: Record<string, string>): string {
+	const normalizedTranslations = new Map<string, string>();
+	for (const [source, translation] of Object.entries(translations)) {
+		if (typeof translation !== 'string') continue;
+		const normalizedSource = normalizeVisibleText(source);
+		if (!normalizedSource) continue;
+		normalizedTranslations.set(normalizedSource, translation);
+	}
+
+	if (normalizedTranslations.size === 0) return html;
+
+	const parts = html.split(/(<[^>]+>)/g);
+	let skipTag: string | null = null;
+
+	return parts
+		.map((part) => {
+			if (part.startsWith('<')) {
+				const openTag = part.match(/^<\s*(script|style|svg|noscript)\b/i);
+				const closeTag = part.match(/^<\s*\/\s*(script|style|svg|noscript)\s*>/i);
+
+				if (openTag && !part.endsWith('/>')) {
+					skipTag = openTag[1].toLowerCase();
+				} else if (closeTag && skipTag === closeTag[1].toLowerCase()) {
+					skipTag = null;
+				}
+
+				return part;
+			}
+
+			if (skipTag) return part;
+
+			const normalizedText = normalizeVisibleText(part);
+			if (!normalizedText) return part;
+
+			const translation = normalizedTranslations.get(normalizedText);
+			if (translation === undefined) return part;
+
+			const leadingWhitespace = part.match(/^\s*/)?.[0] ?? '';
+			const trailingWhitespace = part.match(/\s*$/)?.[0] ?? '';
+			return `${leadingWhitespace}${escapeHtml(translation)}${trailingWhitespace}`;
+		})
+		.join('');
+}
+
+function normalizeVisibleText(text: string): string {
+	return text.replace(/\s+/g, ' ').trim();
+}
+
+function replaceSourceAttributes(
+	html: string,
+	translationsByAttribute: Record<string, Record<string, string>>
+): string {
+	const allowedAttributes = new Set(['alt', 'aria-label', 'title', 'placeholder', 'value']);
+
+	for (const [attributeName, translations] of Object.entries(translationsByAttribute)) {
+		if (!allowedAttributes.has(attributeName) || !translations || typeof translations !== 'object') continue;
+
+		const normalizedTranslations = new Map<string, string>();
+		for (const [source, translation] of Object.entries(translations)) {
+			if (typeof translation !== 'string') continue;
+			const normalizedSource = normalizeVisibleText(source);
+			if (!normalizedSource) continue;
+			normalizedTranslations.set(normalizedSource, translation);
+		}
+
+		if (normalizedTranslations.size === 0) continue;
+
+		const escapedAttributeName = attributeName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+		const attributePattern = new RegExp(`\\s(${escapedAttributeName})=(["'])(.*?)\\2`, 'gi');
+		html = html.replace(attributePattern, (match, name: string, quote: string, value: string) => {
+			const normalizedValue = normalizeVisibleText(value);
+			const translation = normalizedTranslations.get(normalizedValue);
+			if (translation === undefined) return match;
+
+			return ` ${name}=${quote}${escapeHtml(translation)}${quote}`;
+		});
+	}
+
+	return html;
 }
