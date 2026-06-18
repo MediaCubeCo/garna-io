@@ -265,7 +265,7 @@ export const offerRu = {
 		termsOfService: 'Условия использования',
 		linkedIn: 'Garna',
 		email: 'hello@garna.io',
-		address: '134 Makariou III, цокольный этаж, 3021 Лимассол, Кипр',
+		address: 'Никосия, Stasikratous, 20, 1-й этаж, Flat/Office 105, 1065, Кипр, Никосия',
 		disclaimer:
 			'© 2026 GARNA LTD. Stasikratous, 20, 1-й этаж, Flat/Office 105, 1065, Никосия, Кипр. HE 478114. Garna не является финансовым учреждением. Все финтех‑услуги в приложении Garna предоставляются сертифицированными партнерами, включая Payoneer и других.\nПлатежные услуги могут предоставляться аффилированными MEDIACUBE PAY INC. (Office 29 - 18 King Street East, Suite 1400, Toronto, Ontario, M5C1C4, Canada, FINTRAC Registration Number: M24438190) а также другими неаффилированными компаниями.',
 	},

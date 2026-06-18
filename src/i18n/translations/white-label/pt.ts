@@ -247,7 +247,7 @@ export const whiteLabelPt = {
 		"termsOfService": "Termos de serviço",
 		"linkedIn": "Garna",
 		"email": "hello@garna.io",
-		"address": "134 Makariou III, Térreo, 3021 Limassol, Chipre",
+		"address": "Nicosia, Stasikratous, 20, 1º andar, Flat/Office 105, 1065, Chipre, Nicosia",
 		"disclaimer": "© 2026 GARNA LTD. Stasikratous, 20, 1º andar, Flat/Office 105, 1065, Nicosia, Chipre. HE 478114. A Garna não é uma instituição financeira. Todos os serviços fintech dentro do app Garna são fornecidos por parceiros certificados, incluindo Payoneer e outros. Os serviços de pagamento podem ser fornecidos por afiliadas MEDIACUBE PAY INC. (Office 29 - 18 King Street East, Suite 1400, Toronto, Ontario, M5C1C4, Canadá, FINTRAC Registration Number: M24438190) bem como outras empresas não afiliadas."
 	}
 };
