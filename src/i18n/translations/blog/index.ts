@@ -45,6 +45,7 @@ const blogArticleContent = {
 		faq: {
 			title: 'Frequently Asked Questions',
 			subtitle: "Can't find the answer you're looking for? Reach out to our team.",
+			contactCta: 'Contact Team',
 			items: {
 				q1: {
 					question: 'What are the main features of the platform?',
