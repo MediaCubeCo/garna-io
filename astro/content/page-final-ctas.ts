@@ -74,7 +74,7 @@ export const pageFinalCtas = {
 			translateKey: 'finalCta.button',
 			href: 'https://app.garna.io/en/auth/sign-up',
 			kind: 'signup',
-			effect: 'hover-sweep',
+			effect: 'rotating-flare',
 		},
 		class: 'relative overflow-hidden py-20 text-center lg:py-28',
 		titleClass: 'garna-hero-title-gradient text-4xl font-normal leading-tight text-white md:text-6xl font-manrope mb-8',

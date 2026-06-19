@@ -1,0 +1,631 @@
+﻿TA for Blog Post
+TA for Payroll Landing Page
+Прописать уникальные мета-теги:
+URL
+	https://garna.io/payroll/small-business-payroll
+	ICP (Personas)
+	1. Small Business Owners
+Profile:
+* Founders / Owners of small businesses (1-25 employees)
+* Industries: agencies, local services, e-commerce, startups
+* Often manage payroll themselves or with minimal support
+Pain Points / Challenges:
+* Payroll takes too much time every month
+* Manual calculations lead to errors
+* Confusion around taxes and compliance
+* Using spreadsheets or outdated tools
+Goals / Desired Outcomes:
+* Run payroll quickly and easily
+* Automate tax calculations and filings
+* Avoid compliance risks
+* Focus on growing the business instead of admin work
+Garna Solutions:
+* Automated payroll processing (no manual work)
+* Simple, intuitive dashboard
+* All-in-one platform for employees and contractors
+2. Growing Small Teams
+Profile:
+* Companies with 10-50 employees
+* Startups, SaaS, marketing agencies, remote teams
+* Hiring both employees and contractors
+Pain Points / Challenges:
+* Payroll becomes more complex as team grows
+* Managing contractors and employees separately
+* Lack of visibility into payroll costs
+* Compliance across states or countries
+Goals:
+* Centralize payroll in one system
+* Automate workflows and reduce manual effort
+* Pay global teams without friction
+* Get real-time reporting and insights
+Garna Solutions:
+* Unified payroll for employees + contractors
+* Global payment capabilities
+* Real-time reporting and analytics
+* Scalable payroll infrastructure
+	SEO-Title (new)
+	 | Garna
+	Description (new)
+	
+
+Не более, чем на 155-160 символов. Смотреть пример, как будет выглядеть сниппет можно здесь: https://www.highervisibility.com/seo/tools/serp-snippet-optimizer/ (предварительно нажав галочку “Date”, так как будет выводится еще и дата статьи, поэтому весь текст может не поместиться в сниппет)
+	H1
+	
+
+	All Pages Report
+	
+
+	
+
+
+
+
+
+
+
+Persona
+	Role
+	Main Goals
+	Pain Points
+	Garna 
+	Small Business Owner
+	Founder / CEO
+	Save time, simplify payroll, stay compliant
+	Manual work, errors, tax confusion
+	Automated payroll, tax filing, simple dashboard
+	Operations Manager
+	Ops / HR
+	Streamline processes, reduce admin work
+	Disconnected tools, manual workflows
+	All-in-one platform, automation, employee management
+	Finance Manager / Accountant
+	Finance
+	Accuracy, compliance, efficiency
+	Manual calculations, reporting complexity
+	Automated taxes, accurate payroll, reporting
+	Growing Team Lead
+	Team / Startup Lead
+	Scale payroll as team grows
+	Managing employees + contractors, lack of visibility
+	Unified payroll system, global payments, analytics
+	
+
+Рекомендации по содержимому 
+* Объем должен быть около 1000 слов.
+* В каждом пункте опираться на экспертизу. Приводить примеры из нашего опыта, давать перелинковку на релевантные страницы.
+* Текст должен быть уникальным.
+* В статье стоит использовать инфографику, статистические данные, видео, gif-изображения и другой графический контент, который визуально улучшит содержание статьи и поможет полностью раскрыть тему.
+* Давать четкие CTA
+* Обращаем внимание на ICP, там прописаны все цели, боли, страхи клиента
+* Придерживаться следующей логики: Problem - Solution - Product explanation - Use cases - Features - Proof - FAQ
+Ключевые слова:
+Используйте ключевые слова из ТЗ, но:
+* Не перегружайте текст (не более 1–2% от общего объема).
+* Если ключ с ошибкой, адаптируйте его под грамотный вариант.
+* Комбинированные ключи учитывайте 
+* Органично вписывайте их в заголовки, подзаголовки, ALT, URL, анкорные ссылки и основной текст.
+Читабельность и форматирование
+* Структура: H1 → H2 → H3 → H4
+H1 – заголовок (один на страницу).
+H2 – основные разделы.
+H3/H4 – подразделы, списки, разъяснения внутри разделов.
+Соблюдайте иерархию заголовков (не перескакивайте с H2 на H4).
+Изображения и ALT-тексты
+* Все изображения должны быть с уникальными ALT-атрибутами.
+* ALT должен описывать изображение по смыслу, при этом использовать ключ, если это возможно и логично.
+Пример качественных страниц из ТОПа выдачи:
+URL
+	Title
+	Wordcount
+	Domains>35
+	https://www.paychex.com/payroll/small-business-payroll
+	Small Business Payroll Services | Paychex
+	1713
+	
+
+	https://www.adp.com/what-we-offer/payroll/payroll-for-1-49-employees.aspx
+	Small Business Payroll Services & Software | #1 G2 Rated | ADP
+	650
+	
+
+	https://gusto.com/product/solutions/size/small-business
+	Payroll Software for Small Business | Gusto
+	2505
+	
+
+	https://www.deel.com/segments/startups/
+	Global Payroll & HR Software for Startup Businesses | Deel
+	846
+	
+
+	https://www.surepayroll.com/solutions/small-business
+	Payroll Services for Small Businesses | SurePayroll By Paychex
+	990
+	
+
+	https://www.paylocity.com/who-we-serve/company-size/small/payroll/
+	Payroll Software for Small Business | Unified Payroll Solution | Paylocity
+	897
+	
+
+	https://www.taxbandits.com/payroll/small-business-payroll-software/
+	Payroll Software for Small Business & Accountants
+	1144
+	
+
+	https://squareup.com/us/en/payroll/small-business
+	Payroll software for small businesses | Square
+	686
+	
+
+	Основные ключевые слова
+Используйте ключевые слова из этого списка. Ключевые слова вписать в прямом вхождении, допускается использования артиклей. Если ключ требует изменения, оставьте комментарий для специалиста. Слова отмеченные зеленым необходимо употребить не менее того, количества, что указано (стараться употребить прямое вхождение ключевых слов), слова отмеченные оранжевым цветом - употребить хотя бы 1 раз, слова отмеченные желтым цветом, употребить на странице хотя бы 1 раз (по возможности), но не допускать переспама ключевых слов на странице:
+Кол-во вхождений (указать в столбце “Кол-во вхождений”):
+Keywords
+	Volume (US)
+	Кол-во вхождений
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	Дополнительные ключевые слова (LSI)
+Используйте как можно больше дополнительных слов в тексте:
+* small business payroll
+* small business payroll software
+* small business payroll services
+* free payroll software for small business
+* small business payroll processing
+* payroll software small business
+* small business payroll service
+* small business payroll solutions
+* payroll services small business
+* payroll systems for small business
+* payroll service small business
+* small business payroll companies
+* payroll processing for small business
+* small business payroll solution
+* managing payroll for small business
+* outsource payroll for small business
+* payroll small business
+* how to manage payroll for a small business
+* small business online payroll
+* payroll service providers for small business
+* small business payroll programs
+* simple payroll software for small business
+* payroll program for small business
+* small company payroll services
+* payroll services small businesses
+* payroll solution for small business
+* payroll services online small business
+Outline
+Global Payroll Solution for Small Businesses
+простота, автоматизация, масштабируемость
+H2: Payroll That Actually Works for Small Businesses[a]
+  
+
+  
+
+Pain-driven блок
+No manual work. No guesswork. Just payroll that works.
+* Payroll shouldn’t slow your business down
+For many small companies, it means juggling spreadsheets, double-checking calculations, and worrying about tax deadlines – all while trying to stay focused on growth.
+* With Garna, payroll takes minutes, not hours
+We automatically calculate salaries, deductions, and taxes — so you stay compliant without extra work.
+* Everything in One Place 
+Pay employees and contractors in one place, choose flexible payment options, and manage everything from a single, intuitive platform.
+H2: Everything You Need to Manage Small Business Payroll[b]
+From automation to payments, everything is designed to save your time, reduce errors, and help your business grow.
+   * Automated Payroll Processing
+   * Real-Time Reporting & Insights
+   * Flexible Payment Options
+   * 24/7 Support
+   * Mobile-First Experience
+   * Global Reach
+   * No Hidden Fees
+   * Early Payout Access
+How Payroll Works for Small Companies
+  
+
+Why Small Businesses Choose Our Payroll Solution
+Блок преимуществ
+  
+
+
+
+Trusted by Growing Small Businesses
+Отзывы
+Customer Success Stories
+Кейсы
+Small Business Payroll FAQs
+H3: How much does payroll cost for a small company?
+H3: why payroll with garna is better than self-service?
+H3: What taxes do I need to file?
+H3: How long does payroll processing take?
+H3: Is payroll software worth it for small businesses?
+H3: Can I pay contractors and employees in one system?[c]
+Get Started With Garna Payroll Today
+  
+
+✍️ Draft
+Global Payroll Solution for Small Businesses
+Hire employees and pay contractors all over the world. Everything in one platform: from taxes and contracts to one-click bulk payments.
+[Try Garna]
+Payroll That Actually Works for Small Businesses
+Forget about routine and mistakes. Pay your team without difficulty.
+
+
+Payroll shouldn’t slow your business down. For small businesses, payroll can turn into chaos: endless tables, manual recalculation of taxes, and the fear of missing a deadline. Every hour spent on accounting and administration is an hour stolen from your growth.
+
+
+With Garna, the calculation takes no time. We have automated this process. The system calculates salaries, deductions, and taxes by itself so that you stay in the legal field of wasting time and effort.
+Save all essentials in one place. Hire new employees and pay them in one place. Choose any payment options and manage the processes using a single platform.
+Everything You Need to Manage Small Business Payroll
+We have separated the important processes to make it easier for you to manage both full-time employees and freelancers.
+1. Hire and pay employees (EoR)
+Full-time recruitment without opening legal entities and hiring legal and accounting consultants abroad.
+   * Employer of Record: We become the official employer for your employees in 150+ countries.
+   * Taxes and benefits: We take care of the calculation of contributions, health insurance and pension contributions according to local laws.
+   * 100% Compliance: All employment contracts and reports are executed flawlessly and are available to you at any time.
+2. Pay contractors and freelancers (CoR)
+Scale payments to team members in one click wherever they are.
+   * Flexible payments: Pay via SWIFT, SEPA or in the crypto. Your performers can receive money in a convenient way.
+   * Auto-invoicing: No more billing. The system generates invoices automatically.
+   * IP protection: Automatic transfer of intellectual property rights to you with each payment.
+How Payroll Works for Small Companies
+Why does a small business choose us? The whole process takes 4 steps:
+
+
+   1. Set up an account. Create a company profile and go through a quick verification process.
+   2. Add your team. Invite employees (EoR) or contractors (CoR) and assign them roles.
+   3. Top up your balance. Transfer funds to your account in a convenient way.
+   4. Start making payments. One click, and the money is sent to the entire team, including all taxes.
+Why Small Businesses Choose Payroll Solution by Garna
+Our advantages that save you time and money.
+   * Reducing the admin by 70%: Automated contracts and calculations free you from working with documentation.
+   * Transparent reporting: All contracts, invoices, and transactions are available in one place within the service.
+   * No hidden fees: Clear and transparent pricing, adapted to your budget.
+   * Scalability via API: Launch mass payouts automatically as your business grows.
+   * 24/7 support: Our personal team of experts is always in touch with you and your team.
+Trusted by Growing Small Businesses
+Отзывы если есть
+Customer Success Stories
+Кейсы
+FAQ on Small Business Payroll 
+How can I hire an employee abroad without opening my own local legal entity?
+
+
+To do this, we use the Employer of Record model. You delegate the legal side of hiring to us. Garna is an official employer in 150+ countries, so you don't have to spend months and thousands of dollars to register a company in another country.
+How much does payroll cost for a small company?
+Garna offers a transparent pay-as-you-go model. You only pay those to whom you actually make payments. It's convenient if your team is small.
+Why is Garna payroll better than local legal entities?
+When hiring 1-10 employees opening a local legal entity, hiring legal and accounting specialists or firms can be expensive. With Garna payroll you pay only per employee, it helps you keep the cost lean while hiring anywhere in the world. You also mitigate the risk of running into fines for incorrect taxes or missing documents if you do everything on your own. Garna automates compliance, saving you time on documentation.
+What taxes do I need to file?
+With Garna, you don't need to worry about taxes. When using the Garna EoR solution, we calculate everything automatically.
+Can I pay contractors and employees in one system?
+Yes. This is the main advantage of Garna. You manage a global team in one interface and split payments into official salaries (for staff) and royalties (for freelancers).
+Get Started With Garna Payroll Today
+Optimize your payroll and focus on business growth today. Join thousands of popular companies that have already automated their global payouts.
+
+
+[Sign up for a free demo]
+
+
+
+
+
+
+
+
+RUS
+
+
+Глобальное решение по оплате труда для малого бизнеса
+Нанимайте сотрудников и оплачивайте услуги подрядчиков по всему миру. Все на одной платформе: от налогов и договоров до массовых платежей в один клик.
+[Попробуйте Garna]
+Система оплаты труда, которая действительно подходит для малого бизнеса
+Забудьте о рутине и ошибках. Оплачивайте работу своей команды без лишних хлопот.
+
+
+Расчет заработной платы не должен тормозить развитие вашего бизнеса. Для малого бизнеса расчет заработной платы может превратиться в настоящий хаос: бесконечные таблицы, ручной пересчет налогов и страх пропустить срок. Каждый час, потраченный на бухгалтерию и административную работу, — это час, отнятый у вашего развития.
+
+
+С Garna расчет занимает считанные секунды. Мы автоматизировали этот процесс. Система самостоятельно рассчитывает заработную плату, вычеты и налоги, чтобы вы не тратили на это время и силы.
+Храните все необходимое в одном месте. Нанимайте новых сотрудников и выплачивайте им заработную плату в одном месте. Выберите любой способ оплаты и управляйте процессами с помощью единой платформы.
+Все, что нужно для ведения расчетов по зарплате в малом бизнесе
+Мы разделили основные процессы, чтобы вам было проще управлять как штатными сотрудниками, так и внештатными специалистами.
+1. Принимайте на работу сотрудников и выплачивайте им зарплату (официальный работодатель)
+Подбор персонала на полную ставку без создания юридических лиц и привлечения юридических и бухгалтерских консультантов за рубежом.
+   * Официальный работодатель: Мы выступаем в качестве официального работодателя для ваших сотрудников в более чем 150 странах.
+   * Налоги и льготы: Мы берем на себя расчет взносов на медицинское страхование и пенсионное обеспечение в соответствии с местным законодательством.
+   * 100% соответствие требованиям: все трудовые договоры и отчеты оформлены безупречно и доступны вам в любое время.
+2. Оплата услуг подрядчиков и фрилансеров (официальный подрядчик)
+Управляйте выплатами членам команды одним щелчком мыши, где бы они ни находились.
+   * Гибкие способы оплаты: оплата через SWIFT, SEPA или в криптовалюте. Ваши исполнители могут получать деньги удобным для них способом.
+   * Автоматическое создание инвойсов: больше никаких ручных расчетов. Система автоматически формирует инвойсы.
+   * Защита интеллектуальной собственности: автоматическая передача прав на интеллектуальную собственность вам при каждом платеже.
+Как устроена система оплаты труда для малых компаний
+Почему малый бизнес выбирает нас? Весь процесс состоит из 4 этапов:
+
+
+   1. Создайте учетную запись. Создайте профиль компании и пройдите быструю процедуру верификации.
+   2. Добавьте свою команду. Пригласите сотрудников (официальный работодатель) или подрядчиков (официальный подрядчик) и назначьте им роли.
+   3. Пополните баланс. Пополняйте свой счет любым удобным способом.
+   4. Начните осуществлять выплаты. Один клик — и деньги отправляются всей команде с учетом всех налогов.
+Почему малые предприятия выбирают решение оплаты труда от Garna
+Наши преимущества, которые помогут вам сэкономить время и деньги.
+   * Сокращение административной нагрузки на 70 %: автоматизация составления договоров и расчетов избавит вас от необходимости заниматься бумажной работой.
+   * Прозрачная отчетность: все договоры, инвойсы и транзакции доступны в одном месте в рамках сервиса.
+   * Без скрытых комиссий: понятная и прозрачная ценовая политика, адаптированная к вашему бюджету.
+   * Масштабируемость через API: автоматически запускайте массовые выплаты по мере роста вашего бизнеса.
+   * Круглосуточная поддержка: наша команда специалистов всегда на связи с вами и вашей командой.
+Нам доверяют растущие малые предприятия
+Отзывы если есть
+Истории успеха наших клиентов
+Кейсы
+Часто задаваемые вопросы об оплате труда для малого бизнеса 
+Как я могу нанять сотрудника за рубежом, не открывая собственного юридического лица в этой стране?
+
+
+Для этого мы используем модель «официального работодателя». Вы поручаете нам решение юридических вопросов, связанных с наймом персонала. Garna является официальным работодателем в более чем 150 странах, поэтому вам не придется тратить месяцы и тысячи долларов на регистрацию компании в другой стране.
+Сколько стоит оплата труда для небольшой компании?
+Garna предлагает прозрачную модель с оплатой по факту использования. Вы платите только тем, кому действительно осуществляете платежи. Это удобно, если ваша команда небольшая.
+Почему оплата труда через Garna выгоднее, чем через местные юридические лица?
+При найме от 1 до 10 сотрудников и открытии местного юридического лица услуги юристов и бухгалтеров или соответствующих фирм могут обойтись дорого. С системой оплаты труда Garna вы платите за каждого сотрудника отдельно, что позволяет вам минимизировать расходы при найме сотрудников в любой точке мира. Кроме того, вы снижаете риск получить штрафы за неправильно рассчитанные налоги или отсутствующие документы, если будете действовать самостоятельно. Garna автоматизирует соблюдение требований, что позволяет сэкономить время на оформлении документов.
+Какие налоговые декларации мне нужно подать?
+С Garna вам не нужно беспокоиться о налогах. При использовании услуги Garna «Официальный работодатель» все расчеты производятся автоматически.
+Можно ли в одной системе выплачивать зарплату подрядчикам и сотрудникам?
+Да. В этом заключается главное преимущество Garna. Вы управляете международной командой через единый интерфейс и разделяете выплаты на официальную заработную плату (для штатных сотрудников) и гонорары (для фрилансеров).
+Начните пользоваться системой оплаты труда Garna уже сегодня
+Оптимизируйте расчет заработной платы и сосредоточьтесь на развитии бизнеса уже сегодня. Присоединяйтесь к тысячам известных компаний, которые уже автоматизировали свои международные выплаты.
+
+
+[Зарегистрируйтесь для пробной версии]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PT
+Solução Global de Payroll para Pequenas Empresas
+Contrate funcionários e pague contratados em todo o mundo. Tudo numa única plataforma: desde impostos e contratos até pagamentos em massa com um clique.
+[Experimentar Garna]
+Payroll que realmente funciona para pequenas empresas
+Esqueça a rotina e os erros. Pague à sua equipa sem dificuldades.
+
+
+O payroll não deve atrasar o crescimento do seu negócio. Para pequenas empresas, o payroll pode transformar-se em caos: tabelas intermináveis, recálculo manual de impostos e receio constante de perder prazos. Cada hora gasta em contabilidade e administração é uma hora retirada ao crescimento da empresa.
+
+
+Com a Garna, os cálculos não consomem tempo. Automatizámos todo este processo. O sistema calcula salários, deduções e impostos automaticamente para que permaneça em conformidade legal sem desperdiçar tempo e esforço.
+Guarde tudo o que é essencial num único lugar. Contrate novos funcionários e efetue pagamentos numa única plataforma. Escolha qualquer método de pagamento e gira todos os processos através de uma só interface.
+Tudo o que precisa para gerir payroll numa pequena empresa
+Separámos os processos importantes para facilitar a gestão tanto de funcionários permanentes como de freelancers.
+1. Contratar e pagar funcionários (EoR)
+Contratação full-time sem abrir entidades legais nem contratar consultores jurídicos e contabilísticos no estrangeiro.
+   * Employer of Record: tornamo-nos o empregador oficial dos seus funcionários em mais de 150 países.
+   * Impostos e benefícios: tratamos do cálculo de contribuições, seguros de saúde e contribuições para pensões de acordo com as leis locais.
+   * 100% de conformidade: todos os contratos e relatórios são executados corretamente e ficam disponíveis para si a qualquer momento.
+2.  Pagar contratados e freelancers (CoR)
+Escalone pagamentos para membros da equipa com um clique, independentemente de onde estejam.
+   * Pagamentos flexíveis: pague via SWIFT, SEPA ou criptomoedas. Os seus colaboradores podem receber da forma mais conveniente.
+   * Faturação automática: sem necessidade de criar faturas manualmente. O sistema gera-as automaticamente.
+   * Proteção de propriedade intelectual: transferência automática de direitos de propriedade intelectual para si em cada pagamento.
+Como funciona o payroll para pequenas empresas
+Porque escolhem pequenas empresas a Garna? Todo o processo demora apenas 4 passos:
+
+
+   5. Configure uma conta. Crie o perfil da empresa e conclua um rápido processo de verificação.
+   6. Adicione a sua equipa.Convide funcionários (EoR) ou contratados (CoR) e atribua funções.
+   7. Adicione fundos ao saldo. Transfira fundos para a conta da forma mais conveniente.
+   8. Comece a efetuar pagamentos. Um clique — e o dinheiro é enviado para toda a equipa, incluindo todos os impostos.
+Porque pequenas empresas escolhem a solução de payroll da Garna
+As nossas vantagens que ajudam a poupar tempo e dinheiro.
+   * Redução de 70% do trabalho administrativo: contratos e cálculos automatizados libertam-no do trabalho documental.
+   * Relatórios transparentes: todos os contratos, faturas e transações ficam disponíveis num único lugar.
+   * Sem taxas ocultas: preços claros e transparentes, adaptados ao seu orçamento.
+   * Escalabilidade através de API: lance pagamentos em massa automaticamente à medida que a empresa cresce.
+   * Suporte 24/7:  a nossa equipa pessoal de especialistas está sempre disponível para si e para a sua equipa.
+Escolhido por pequenas empresas em crescimento
+Отзывы если есть
+Histórias de sucesso dos clientes
+Кейсы
+FAQ sobre payroll para pequenas empresas
+Como posso contratar um funcionário no estrangeiro sem abrir uma entidade legal local?
+
+
+Para isso utilizamos o modelo Employer of Record. Delega toda a parte legal da contratação na Garna. Somos empregador oficial em mais de 150 países, pelo que não terá de gastar meses nem milhares de dólares a abrir empresas noutros países.
+Quanto custa payroll para uma pequena empresa?
+A Garna oferece um modelo transparente pay-as-you-go. Paga apenas pelas pessoas a quem realmente efetua pagamentos. É ideal para equipas pequenas.
+Porque é que o payroll da Garna é melhor do que entidades legais locais?
+Ao contratar entre 1 e 10 funcionários, abrir uma entidade legal local e contratar especialistas jurídicos e contabilísticos pode ser muito caro. Com a Garna, paga apenas por funcionário, mantendo os custos reduzidos enquanto contrata globalmente. Além disso, reduz o risco de multas relacionadas com impostos incorretos ou documentos em falta. A Garna automatiza a conformidade e poupa tempo com documentação.
+Que impostos preciso declarar?
+Com a Garna, não precisa preocupar-se com impostos. Ao utilizar a solução EoR, calculamos tudo automaticamente.
+Posso pagar contratados e funcionários no mesmo sistema?
+Sim. Esta é uma das principais vantagens da Garna. Gere equipas globais numa única interface e separa pagamentos entre salários oficiais e royalties para freelancers.
+Comece hoje com o Garna Payroll
+Otimize o seu payroll e concentre-se no crescimento do negócio. Junte-se a milhares de empresas que já automatizaram pagamentos globais.
+
+
+[Registar para uma demo gratuita]
+
+
+
+
+
+
+ESP
+
+
+
+
+Solución global de gestión de nóminas para pequeñas empresas
+Contrata a empleados y paga a autónomos en todo el mundo. Todo en una sola plataforma: desde impuestos y contratos hasta pagos masivos con un solo clic.
+[Prueba Garna]
+Una gestión de nóminas que realmente funciona para las pequeñas empresas
+Olvídate de la rutina y los errores. Paga a tu equipo sin dificultades.
+
+
+La nómina no debería ralentizar tu negocio. Para las pequeñas empresas, la nómina puede convertirse en un caos: tablas interminables, recálculos manuales de impuestos y el miedo a no cumplir un plazo. Cada hora dedicada a la contabilidad y la administración es una hora que le quitas a tu crecimiento.
+
+
+Con Garna, el cálculo no lleva nada de tiempo. Hemos automatizado este proceso. El sistema calcula los salarios, las deducciones y los impuestos por sí mismo para que no pierdas tiempo ni esfuerzo.
+Guarda todo lo esencial en un solo lugar. Contrata a nuevos empleados y págales en un solo lugar. Elige cualquier opción de pago y gestiona los procesos utilizando una única plataforma.
+Todo lo que necesitas para gestionar la nómina de una pequeña empresa
+Hemos separado los procesos importantes para que te resulte más fácil gestionar tanto a los empleados a tiempo completo como a los autónomos.
+1. Contrata y paga a los empleados (EoR)
+Contratación a tiempo completo sin necesidad de constituir entidades jurídicas ni contratar asesores legales y contables en el extranjero.
+   * Empleador de referencia: nos convertimos en el empleador oficial de tus empleados en más de 150 países.
+   * Impuestos y prestaciones: Nos encargamos del cálculo de las cotizaciones, el seguro médico y las aportaciones a la pensión de acuerdo con la legislación local.
+   * Cumplimiento al 100 %: Todos los contratos de trabajo y los informes se gestionan a la perfección y están a su disposición en cualquier momento.
+2. Pago a contratistas y autónomos (CoR)
+Realiza pagos a los miembros del equipo con un solo clic, estén donde estén.
+   * Pagos flexibles: Paga a través de SWIFT, SEPA o en criptomonedas. Tus colaboradores pueden recibir el dinero de forma cómoda.
+   * Facturación automática: Se acabó la facturación manual. El sistema genera las facturas automáticamente.
+   * Protección de la propiedad intelectual: transferencia automática de los derechos de propiedad intelectual a tu nombre con cada pago.
+Cómo funciona la gestión de nóminas para pequeñas empresas
+¿Por qué nos eligen las pequeñas empresas? El proceso completo consta de 4 pasos:
+
+
+   1. Crea una cuenta. Crea un perfil de empresa y sigue un rápido proceso de verificación.
+   2. Añade a tu equipo. Invita a empleados (EoR) o contratistas (CoR) y asígnales funciones.
+   3. Recarga tu saldo. Transfiere fondos a tu cuenta de forma cómoda.
+   4. Empieza a realizar pagos. Con un solo clic, el dinero se envía a todo el equipo, incluidos todos los impuestos.
+Por qué las pequeñas empresas eligen la solución de nóminas de Garna
+Nuestras ventajas que te ahorran tiempo y dinero.
+   * Reducción de la carga administrativa en un 70 %: los contratos y cálculos automatizados te liberan del trabajo con la documentación.
+   * Informes transparentes: todos los contratos, facturas y transacciones están disponibles en un solo lugar dentro del servicio.
+   * Sin comisiones ocultas: precios claros y transparentes, adaptados a tu presupuesto.
+   * Escalabilidad a través de API: Realiza pagos masivos de forma automática a medida que tu negocio crece.
+   * Asistencia 24/7: nuestro equipo personal de expertos está siempre en contacto contigo y con tu equipo.
+Cuenta con la confianza de pequeñas empresas en crecimiento
+Отзывы если есть
+Historias de éxito de clientes
+Кейсы
+
+
+Preguntas frecuentes sobre la nómina para pequeñas empresas 
+¿Cómo puedo contratar a un empleado en el extranjero sin crear mi propia entidad jurídica local?
+
+
+Para ello, utilizamos el modelo de «empleador oficial». Tu nos delegas los aspectos legales de la contratación. Garna es un empleador oficial en más de 150 países, por lo que no tienes que dedicar meses ni gastar miles de dólares para registrar una empresa en otro país.
+¿Cuánto cuesta la gestión de nóminas para una pequeña empresa?
+Garna ofrece un modelo transparente de pago por uso. Solo pagas a aquellos a quienes realmente realizas pagos. Es muy práctico si tu equipo es pequeño.
+¿Por qué la nómina de Garna es mejor que las entidades jurídicas locales?
+Al contratar de 1 a 10 empleados y abrir una entidad jurídica local, contratar a especialistas o despachos de abogados y contables puede resultar caro. Con la nómina de Garna, solo pagas por empleado, lo que te ayuda a mantener los costes bajos mientras contratas en cualquier parte del mundo. También reduces el riesgo de recibir multas por impuestos incorrectos o documentos que faltan si lo haces todo por tu cuenta. Garna automatiza el cumplimiento normativo, ahorrándote tiempo en la documentación.
+¿Qué impuestos tengo que declarar?
+Con Garna, no tienes que preocuparte por los impuestos. Al utilizar la solución EoR de Garna, lo calculamos todo automáticamente.
+¿Puedo pagar a contratistas y empleados en un mismo sistema?
+Sí. Esta es la principal ventaja de Garna. Gestionas un equipo global en una sola interfaz y divides los pagos en salarios oficiales (para el personal) y honorarios (para los autónomos).
+Empieza hoy mismo a utilizar Garna Payroll
+Optimiza tu gestión de nóminas y céntrate en el crecimiento de tu negocio hoy mismo. Únete a miles de empresas de renombre que ya han automatizado sus pagos internacionales.
+
+
+[Regístrate para obtener una demostración gratuita]
+
+
+[a]Financial Solution Made for Fast-Moving Business
+[b]What We Manage for Your Business
+[c]обавить или переделать

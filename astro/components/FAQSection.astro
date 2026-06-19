@@ -12,6 +12,7 @@ const {
 	variant = 'standard',
 	class: className = 'pt-16 pb-16 lg:pt-32 lg:pb-32',
 	containerClass = 'garna-container',
+	accordionClass = 'mx-auto w-full space-y-4 lg:max-w-3xl',
 } = Astro.props;
 
 const titleClass =
@@ -69,7 +70,7 @@ const titleClass =
 					)}
 				</div>
 
-				<div class="mx-auto w-full space-y-4 lg:max-w-3xl" data-faq-accordion>
+				<div class={accordionClass} data-faq-accordion>
 					{items.map((item) => (
 						<details class="group bg-[#0A0A0A] rounded-xl border border-white/5 overflow-hidden transition-all duration-300 open:bg-[#0E0E0E]" data-faq-item data-state="closed">
 							<summary class="flex cursor-pointer select-none items-center justify-between gap-4 pt-6 pr-6 pb-6 pl-6 text-base font-medium text-white font-manrope">

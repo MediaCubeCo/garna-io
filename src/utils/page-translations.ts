@@ -341,7 +341,7 @@ export function injectPageTranslations(
 			};
 
 			html = html.replace(
-				/<([a-zA-Z][a-zA-Z0-9:-]*)([^>]*\sdata-translate-(alt|placeholder|value)=["']([^"']+)["'][^>]*)>/gi,
+				/<([a-zA-Z][a-zA-Z0-9:-]*)([^>]*\sdata-translate-(alt|aria-label|placeholder|value)=["']([^"']+)["'][^>]*)>/gi,
 				(match: string, tagName: string, attributes: string, target: string, key: string) => {
 					const translation = getNestedValue(currentTranslations, key);
 					if (translation === undefined || translation === null) return match;
