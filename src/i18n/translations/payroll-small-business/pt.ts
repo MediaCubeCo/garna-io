@@ -130,8 +130,8 @@ export const payrollSmallBusinessPt = {
 			description: "Crie o perfil da empresa e conclua um rápido processo de verificação"
 		},
 		item2: {
-			title: "Adicione a sua equipa.Convide funcionários (EoR) ou contratados (CoR) e atribua funções.",
-			description: ""
+			title: "Adicione a sua equipa",
+			description: "Convide funcionários (EoR) ou contratados (CoR) e atribua funções"
 		},
 		item3: {
 			title: "Adicione fundos ao saldo",

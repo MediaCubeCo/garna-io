@@ -327,28 +327,12 @@
     }
 
     @media (min-width: 768px) {
-        .platform-card.glass-card h3 {
-            min-height: 5.25rem;
-        }
-
-        .platform-card.glass-card > p {
-            min-height: 5.25rem;
-        }
-
         .platform-card.glass-card ul {
             grid-template-rows: repeat(3, minmax(7.75rem, 1fr));
         }
     }
 
     @media (min-width: 1024px) {
-        .platform-card.glass-card h3 {
-            min-height: 6.5rem;
-        }
-
-        .platform-card.glass-card > p {
-            min-height: 5.25rem;
-        }
-
         .platform-card.glass-card ul {
             grid-template-rows: repeat(3, minmax(7.25rem, 1fr));
         }
@@ -694,19 +678,28 @@
         const schedulePlatformHeadingHeight = () => window.requestAnimationFrame(applyPlatformHeadingHeight);
         const schedulePlatformFeatureHeights = () => window.requestAnimationFrame(applyPlatformFeatureHeights);
 
-        window.addEventListener('load', scheduleRoutineLayout);
-        window.addEventListener('resize', scheduleRoutineLayout);
-        window.addEventListener('load', schedulePlatformHeadingHeight);
-        window.addEventListener('resize', schedulePlatformHeadingHeight);
-        window.addEventListener('load', schedulePlatformFeatureHeights);
-        window.addEventListener('resize', schedulePlatformFeatureHeights);
-        document.addEventListener('DOMContentLoaded', () => {
-            scheduleRoutineLayout();
+        const schedulePlatformAlignment = () => {
             schedulePlatformHeadingHeight();
             schedulePlatformFeatureHeights();
+        };
+
+        window.addEventListener('load', scheduleRoutineLayout);
+        window.addEventListener('resize', scheduleRoutineLayout);
+        window.addEventListener('load', schedulePlatformAlignment);
+        window.addEventListener('resize', schedulePlatformAlignment);
+        document.addEventListener('DOMContentLoaded', () => {
+            scheduleRoutineLayout();
+            schedulePlatformAlignment();
             window.setTimeout(applyRoutineLayout, 120);
-            window.setTimeout(applyPlatformHeadingHeight, 120);
-            window.setTimeout(applyPlatformFeatureHeights, 120);
+            window.setTimeout(schedulePlatformAlignment, 120);
+            window.setTimeout(schedulePlatformAlignment, 360);
+            document.fonts?.ready.then(schedulePlatformAlignment).catch(() => {});
+
+            const platformGrid = document.querySelector('.platform-card-grid');
+            if (platformGrid && 'ResizeObserver' in window) {
+                const platformResizeObserver = new ResizeObserver(schedulePlatformAlignment);
+                platformResizeObserver.observe(platformGrid);
+            }
         });
     })();
 </script>
