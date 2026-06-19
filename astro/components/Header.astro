@@ -233,58 +233,15 @@ const mobileLinkClass = (path: string) =>
 				</div>
 			</div>
 
-			<div class="garna-header-menu-group">
-				<button type="button" class="garna-header-menu-trigger">
-					<span data-translate="header.resources">Resources</span>
-					<svg class="garna-header-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<path d="m6 9 6 6 6-6"></path>
-					</svg>
-				</button>
-
-				<div class="garna-header-dropdown garna-header-resources-dropdown">
-					<div class="garna-header-dropdown-panel">
-						<div class="garna-header-dropdown-column garna-header-products-column">
-							<a href={blogHref} data-localized-path="blog" data-nav-link class="garna-header-dropdown-link">
-								<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-									<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-									<path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"></path>
-								</svg>
-								<span class="garna-header-link-main" data-translate="header.blog">Blog</span>
-								<span class="garna-header-link-separator">|</span>
-								<span class="garna-header-link-kicker" data-translate="header.blogKicker">Articles and company updates</span>
-							</a>
-							<a href={aboutUsHref} class="garna-header-dropdown-link">
-								<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-									<circle cx="12" cy="8" r="5"></circle>
-									<path d="M20 21a8 8 0 0 0-16 0"></path>
-								</svg>
-								<span class="garna-header-link-main" data-translate="header.aboutUs">About Us</span>
-								<span class="garna-header-link-separator">|</span>
-								<span class="garna-header-link-kicker" data-translate="header.aboutUsKicker">Meet Garna and our mission</span>
-							</a>
-							<a href={caseStudiesHref} class="garna-header-dropdown-link">
-								<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-									<path d="M4 19.5V4a2 2 0 0 1 2-2h11l3 3v14.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 19.5Z"></path>
-									<path d="M14 2v4h4"></path>
-									<path d="M8 10h8"></path>
-									<path d="M8 14h6"></path>
-								</svg>
-								<span class="garna-header-link-main" data-translate="header.caseStudies">Case Studies</span>
-								<span class="garna-header-link-separator">|</span>
-								<span class="garna-header-link-kicker" data-translate="header.caseStudiesKicker">Customer stories and outcomes</span>
-							</a>
-							<a href={reviewsHref} class="garna-header-dropdown-link">
-								<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-									<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-								</svg>
-								<span class="garna-header-link-main" data-translate="header.reviews">Reviews</span>
-								<span class="garna-header-link-separator">|</span>
-								<span class="garna-header-link-kicker" data-translate="header.reviewsKicker">What customers say</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<a
+				href={blogHref}
+				data-localized-path="blog"
+				data-nav-link
+				class={navLinkClass('blog')}
+				data-translate="header.blog"
+			>
+				Blog
+			</a>
 		</div>
 
 		<div class="garna-header-actions">

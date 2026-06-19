@@ -612,38 +612,77 @@
             <!-- Script for number counting -->
             <script class="">
                 (function() {
-                    const elements = document.querySelectorAll('.counter-anim');
-                    elements.forEach(el => {
-                        const target = parseFloat(el.getAttribute('data-target'));
-                        const prefix = el.getAttribute('data-prefix') || '';
-                        const suffix = el.getAttribute('data-suffix') || '';
-                        const decimals = parseInt(el.getAttribute('data-decimals') || 0);
-                        
-                        let start = 0;
-                        const duration = 2000;
-                        const startTime = performance.now();
-                        
-                        function update(currentTime) {
-                            const elapsed = currentTime - startTime;
-                            const progress = Math.min(elapsed / duration, 1);
-                            const ease = 1 - Math.pow(1 - progress, 4); // Ease out quart
-                            
-                            const current = start + (target - start) * ease;
-                            
-                            // Format: 100 000.00
-                            const formatted = current.toLocaleString('en-US', { 
-                                minimumFractionDigits: decimals, 
-                                maximumFractionDigits: decimals 
-                            }).replace(/,/g, ' ');
-                            
-                            el.innerText = prefix + formatted + suffix;
-                            
-                            if (progress < 1) {
+                    function formatValue(value, decimals) {
+                        return value.toLocaleString('en-US', {
+                            minimumFractionDigits: decimals,
+                            maximumFractionDigits: decimals
+                        });
+                    }
+
+                    function initCounterAnimation() {
+                        const elements = document.querySelectorAll('.counter-anim');
+                        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                        elements.forEach(el => {
+                            const target = parseFloat(el.getAttribute('data-target'));
+                            const prefix = el.getAttribute('data-prefix') || '';
+                            const suffix = el.getAttribute('data-suffix') || '';
+                            const decimals = parseInt(el.getAttribute('data-decimals') || 0);
+                            const finalValue = prefix + formatValue(target, decimals) + suffix;
+
+                            if (prefersReducedMotion) {
+                                el.innerText = finalValue;
+                                return;
+                            }
+
+                            function animate() {
+                                if (el.dataset.counterAnimated === 'true') return;
+                                el.dataset.counterAnimated = 'true';
+                                const start = 0;
+                                const duration = 2000;
+                                const startTime = performance.now();
+
+                                function update(currentTime) {
+                                    const elapsed = currentTime - startTime;
+                                    const progress = Math.min(elapsed / duration, 1);
+                                    const ease = 1 - Math.pow(1 - progress, 4); // Ease out quart
+
+                                    const current = start + (target - start) * ease;
+
+                                    el.innerText = prefix + formatValue(current, decimals) + suffix;
+
+                                    if (progress < 1) {
+                                        requestAnimationFrame(update);
+                                    } else {
+                                        el.innerText = finalValue;
+                                    }
+                                }
+
                                 requestAnimationFrame(update);
                             }
-                        }
-                        requestAnimationFrame(update);
-                    });
+
+                            if ('IntersectionObserver' in window) {
+                                const observer = new IntersectionObserver((entries) => {
+                                    entries.forEach(entry => {
+                                        if (entry.isIntersecting) {
+                                            animate();
+                                            observer.disconnect();
+                                        }
+                                    });
+                                }, { threshold: 0.1 });
+
+                                observer.observe(el);
+                            } else {
+                                animate();
+                            }
+                        });
+                    }
+
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', initCounterAnimation, { once: true });
+                    } else {
+                        initCounterAnimation();
+                    }
                 })();
             </script>
         

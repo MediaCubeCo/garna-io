@@ -228,7 +228,8 @@
 	font-size: 16px;
 	font-weight: 300;
 	line-height: 1.25;
-	white-space: nowrap;
+	white-space: normal;
+	overflow-wrap: anywhere;
 	transition: color 0.22s ease;
 }
 
@@ -685,6 +686,35 @@
 		right: 16px;
 		bottom: 16px;
 		left: 16px;
+	}
+}
+
+@media (max-width: 860px) {
+	.garna-header-desktop-nav {
+		display: none;
+	}
+
+	.garna-header-login {
+		display: none !important;
+	}
+
+	.garna-header-signup {
+		display: inline-flex !important;
+		height: 40px;
+		min-width: 92px;
+		padding-inline: 18px;
+	}
+
+	.garna-header-signup.hidden {
+		display: none !important;
+	}
+
+	.garna-header [data-mobile-nav-toggle] {
+		display: inline-flex !important;
+	}
+
+	.garna-header-mobile-menu:not(.hidden) {
+		display: flex;
 	}
 }
 

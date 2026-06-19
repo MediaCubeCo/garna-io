@@ -245,13 +245,19 @@
         background-image: none !important;
     }
 
-    @media (min-width: 1024px) and (max-width: 1199px) {
+    @media (min-width: 1024px) and (max-width: 1200px) {
         main > section:first-of-type .max-w-3xl {
             max-width: min(48vw, 30rem);
         }
 
         main > section:first-of-type .hero-console {
-            width: min(38vw, 430px);
+            width: min(42vw, 500px);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        main > section:first-of-type .hero-console {
+            right: max(var(--garna-container-gutter), calc((100vw - var(--garna-container-content-max)) / 2));
         }
     }
 
@@ -327,6 +333,13 @@
     }
 
     @media (max-width: 767px) {
+        main > section:first-of-type .hero-console {
+            width: 100% !important;
+            max-width: none !important;
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+
         .steps-flow {
             padding: 0;
         }

@@ -289,38 +289,6 @@ body {
 	background: var(--garna-button-bg);
 }
 
-.garna-button-hover-sweep::before {
-	content: "";
-	position: absolute;
-	inset: -120% -45%;
-	z-index: 1;
-	background: linear-gradient(115deg, transparent 34%, rgba(255, 255, 255, 0.34) 48%, transparent 62%);
-	transform: translateX(-70%) rotate(8deg);
-	transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.garna-button-hover-sweep::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	z-index: 0;
-	background: radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.28), transparent 34%);
-	opacity: 0.6;
-	transition: opacity 0.28s ease;
-}
-
-.garna-button-hover-sweep:hover {
-	filter: saturate(1.08);
-}
-
-.garna-button-hover-sweep:hover::before {
-	transform: translateX(70%) rotate(8deg);
-}
-
-.garna-button-hover-sweep:hover::after {
-	opacity: 0.85;
-}
-
 @media (prefers-reduced-motion: reduce) {
 	.garna-button,
 	.garna-button::before,

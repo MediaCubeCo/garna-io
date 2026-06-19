@@ -54,10 +54,10 @@ export const homeRu = {
 		transferTo: 'Перевести',
 		confirmed: 'Подтверждено',
 		item1: {
-			title: 'Перевести Марии Рей',
+			title: 'Перевести Maria Rei',
 		},
 		item2: {
-			title: 'Перевести Владу Коломенскому',
+			title: 'Перевести Vlad Kolomensky',
 		},
 	},
 	stats: {
@@ -190,7 +190,7 @@ export const homeRu = {
 					details: 'Детали',
 				},
 				historyTitle: 'История',
-				transferTitle: 'Перевод Алине Пашкиной',
+				transferTitle: 'Перевод Alina Pashkina',
 				confirmed: 'Подтверждено',
 			},
 			send: {

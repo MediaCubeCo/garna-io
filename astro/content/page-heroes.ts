@@ -183,15 +183,15 @@ export const pageHeroes = {
 		},
 		title: [{ text: 'Worldwide Employment Made Simple, Quick & Flawless', translateKey: 'hero.title' }],
 		description:
-			'Hiring the best talent from around the globe does not have to mean complex compliance rules, separate payroll systems, or new legal entities in every country. Garna gives companies a simple, modern Employer of Record solution for global hiring without operational hassle',
+			"Hiring the best talent from around the globe doesn't have to be a set of complex compliance rules, separate payroll systems where you have to create multiple legal entities in each country. At Garna, we provide a simple, modern employer of record solution designed to help businesses expand globally without getting stuck in operational hassles",
 		descriptionTranslateKey: 'hero.description',
 		cta: {
-			label: 'Book a demo',
+			label: 'Book demo',
 			translateKey: 'hero.cta',
 			kind: 'demo',
 			trackingCta: 'eor_hero_book_demo',
 			variant: 'primary',
-			effect: 'hover-sweep',
+			effect: 'rotating-flare',
 			wrapperClass: 'mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row',
 		},
 		tone: 'green',

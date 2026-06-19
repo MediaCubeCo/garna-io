@@ -100,9 +100,9 @@ export const pageFinalCtas = {
 			'md:text-xl lg:text-2xl text-lg font-light text-gray-400 font-manrope max-w-2xl mr-auto mb-12 ml-auto',
 	},
 	eor: {
-		title: [{ text: 'Global Employer of Record is a Modern Hiring Process Done Stress-Free', translateKey: 'finalCta.title' }],
+		title: [{ text: 'Global Employer of Record is A Modern Hiring Process Done Stress-Free', translateKey: 'finalCta.title' }],
 		description: {
-			text: 'Garna offers 24/7 expert support and the features needed to create smooth employee experiences around the world without unexpected operational crises',
+			text: 'Garna offers exceptional 24/7 expert support and all the necessary features that let you have employee experiences all over the world with no arising crises and unexpected issues on your way',
 			translateKey: 'finalCta.description',
 		},
 		button: {

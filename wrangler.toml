@@ -33,4 +33,8 @@ run_worker_first = [
 	"/pt/payroll-solution-new",
 	"/eor",
 	"/eor.html",
+	"/en/employer-of-record",
+	"/ru/employer-of-record",
+	"/es/employer-of-record",
+	"/pt/employer-of-record",
 ]
