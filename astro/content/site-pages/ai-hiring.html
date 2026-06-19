@@ -794,6 +794,50 @@
     <!-- Job Board -->
     <section class="lg:pt-32 lg:pb-32 bg-[#050505] pt-16 pb-16">
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+            <style>
+                .candidate-stack {
+                    isolation: isolate;
+                }
+
+                .candidate-stack > img {
+                    border-color: #0a0a0a !important;
+                    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+                }
+
+                .candidate-stack > * {
+                    position: relative;
+                }
+
+                .candidate-stack > *:nth-child(1) {
+                    z-index: 3;
+                }
+
+                .candidate-stack > *:nth-child(2) {
+                    z-index: 2;
+                }
+
+                .candidate-stack > *:nth-child(3) {
+                    z-index: 1;
+                }
+
+                .candidate-more {
+                    width: 2rem !important;
+                    height: 2rem !important;
+                    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+                    background: #111111 !important;
+                    color: rgba(255, 255, 255, 0.82) !important;
+                    box-shadow: 0 0 0 1px rgba(94, 165, 0, 0.12), 0 12px 28px rgba(0, 0, 0, 0.28);
+                    font-size: 0.75rem !important;
+                    font-weight: 600 !important;
+                    letter-spacing: 0;
+                }
+
+                .group:hover .candidate-more {
+                    border-color: rgba(94, 165, 0, 0.42) !important;
+                    color: #5EA500 !important;
+                    box-shadow: 0 0 0 1px rgba(94, 165, 0, 0.18), 0 0 18px rgba(94, 165, 0, 0.18);
+                }
+            </style>
             <div class="lg:mb-20 text-center mb-16">
                 <h2
                     class="md:text-4xl lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope max-w-4xl mr-auto mb-6 ml-auto"
@@ -824,13 +868,13 @@
                         <span class=""></span>
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg"
                             alt="Candidate" class="w-8 h-8 rounded-full border-2 border-black object-cover bg-gray-700">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e69e5f8e-07cd-4ef2-97e3-d4bcfccc3881_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <div
-                            class="text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
                             +4</div>
                     </div>
 
@@ -866,13 +910,13 @@
 
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/bd0dc97c-a094-49ac-8265-f47f1efa3939_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/af66ba5d-69b1-41c6-b463-40f48d0134da_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <div
-                            class="text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
                             +2</div>
                     </div>
 
@@ -908,7 +952,7 @@
 
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8003e855-7d21-4b11-ba40-2921946b8a25_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/65695f80-23f9-46ee-8487-cbb6c93cc48b_320w.webp"
@@ -947,13 +991,13 @@
 
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a1e31719-a86b-48bc-8913-670561250931_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e5cbf539-f61a-4c9d-aff7-ea01dc1ddcb9_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <div
-                            class="text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
                             +6</div>
                     </div>
 
@@ -988,7 +1032,7 @@
 
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/146e6ba9-12a4-43b3-a1a3-7b2340a34a70_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                     </div>
@@ -1024,13 +1068,13 @@
 
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5d0296a8-c467-44ef-9d51-ce4ee3a2c3c6_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d93fdd79-8748-45cc-bf20-725a75594265_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <div
-                            class="text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
                             +8</div>
                     </div>
 

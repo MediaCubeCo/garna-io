@@ -6,14 +6,14 @@ export const pageHeroes = {
 		containerClass:
 			'garna-container overflow-visible z-10 text-center relative',
 		titleClass:
-			'garna-hero-title-gradient leading-[1.1] md:mb-8 md:text-6xl lg:mb-12 lg:text-7xl text-5xl font-normal tracking-tight font-manrope mb-8',
+			'garna-hero-title-gradient leading-[1.1] md:text-6xl lg:text-7xl text-5xl font-normal tracking-tight font-manrope mb-6',
 		titleBreakAfterWords: {
 			en: 3,
 			es: 4,
 			pt: 6,
 		},
 		descriptionClass:
-			'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-lg font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
+			'leading-relaxed md:text-xl text-lg font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-10 ml-auto',
 		title: [{ text: 'Global Payroll Solutions for your business', translateKey: 'hero.title' }],
 		description:
 			'One transfer - countless possibilities. Pay remunerations in over 150 countries with minimal effort',
@@ -25,13 +25,13 @@ export const pageHeroes = {
 			trackingCta: 'hero_demo',
 			variant: 'primary',
 			effect: 'rotating-flare',
-			wrapperClass: 'flex md:mb-24 mb-24 justify-center',
+			wrapperClass: 'flex mb-16 justify-center',
 		},
 		tone: 'green',
 		align: 'center',
 	},
 	offer: {
-		class: 'overflow-visible lg:pt-48 lg:pb-32 pt-32 pb-24 relative',
+		class: 'overflow-visible pt-24 pb-24 md:pt-24 lg:pt-40 lg:pb-32 relative',
 		containerClass: 'garna-container relative z-10',
 		contentClass: 'flex flex-col text-center max-w-4xl mr-auto mb-16 ml-auto items-center',
 		titleClass:

@@ -27,8 +27,8 @@ const resolvedContentClass = contentClass || (isSplit ? 'w-full text-left' : 'mx
 const resolvedTitleClass =
 	titleClass ||
 	(isSplit
-		? 'garna-hero-title-gradient text-left leading-[1.1] md:text-6xl text-5xl font-normal tracking-tight font-manrope mb-8'
-		: 'garna-hero-title-gradient text-center md:text-6xl text-4xl font-normal tracking-tight font-manrope mb-8');
+		? 'garna-hero-title-gradient text-left leading-[1.1] text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight font-manrope mb-8'
+		: 'garna-hero-title-gradient text-center md:text-6xl text-4xl font-normal !leading-[1.18] tracking-tight font-manrope mb-8 pb-[0.16em]');
 const resolvedDescriptionClass =
 	descriptionClass ||
 	(isSplit
@@ -207,7 +207,7 @@ const buttonIcon = button.icon || 'arrow-up-right';
 						))}
 					</div>
 				</div>
-				<div class="hidden md:block -right-2 hover:rotate-2 transition-transform duration-300 group hover:border-[#3b82f6]/30 hover:shadow-[0_10px_30px_-10px_rgba(59,130,246,0.2)] md:-right-8 md:top-14 md:w-[260px] md:p-4 md:scale-[0.85] lg:scale-[0.9] lg:top-2 z-20 bg-[#0E0E0E] w-[220px] border-white/10 border rounded-xl pt-3 pr-3 pb-3 pl-3 absolute top-4 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.8)] rotate-6 scale-[0.85]">
+				<div class="hidden lg:block -right-2 hover:rotate-2 transition-transform duration-300 group hover:border-[#3b82f6]/30 hover:shadow-[0_10px_30px_-10px_rgba(59,130,246,0.2)] lg:-right-2 lg:top-2 lg:w-[260px] lg:p-4 lg:scale-[0.9] z-20 bg-[#0E0E0E] w-[220px] border-white/10 border rounded-xl pt-3 pr-3 pb-3 pl-3 absolute top-4 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.8)] rotate-6 scale-[0.85]">
 					<div class="flex md:gap-3 gap-2 items-center">
 						<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#3b82f6]/10 border border-[#3b82f6]/20 flex items-center justify-center text-[#3b82f6] shrink-0 shadow-[0_0_15px_rgba(59,130,246,0.2)] group-hover:scale-110 transition-transform">
 							<iconify-icon icon="lucide:rocket" width="18"></iconify-icon>
