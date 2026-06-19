@@ -2,22 +2,19 @@ import type { HeroSectionConfig } from '../types/hero-section';
 
 export const pageHeroes = {
 	home: {
-		class: 'overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
+		class: 'home-hero overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
 		containerClass:
 			'garna-container overflow-visible z-10 text-center relative',
 		titleClass:
-			'garna-hero-title-gradient leading-[1.1] lg:text-8xl lg:mb-12 md:mb-8 md:text-7xl text-6xl font-normal tracking-tight font-manrope mb-8',
+			'garna-hero-title-gradient leading-[1.1] md:mb-8 md:text-6xl lg:mb-12 lg:text-7xl text-5xl font-normal tracking-tight font-manrope mb-8',
+		titleBreakAfterWords: {
+			en: 3,
+			es: 4,
+			pt: 6,
+		},
 		descriptionClass:
 			'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-lg font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
-		title: [
-			{ text: 'Global Payroll Solutions', translateKey: 'hero.title' },
-			{
-				text: 'for your business',
-				translateKey: 'hero.tagline',
-				class: 'font-manrope',
-				breakBefore: true,
-			},
-		],
+		title: [{ text: 'Global Payroll Solutions for your business', translateKey: 'hero.title' }],
 		description:
 			'One transfer - countless possibilities. Pay remunerations in over 150 countries with minimal effort',
 		descriptionTranslateKey: 'hero.description',
@@ -39,21 +36,16 @@ export const pageHeroes = {
 		contentClass: 'flex flex-col text-center max-w-4xl mr-auto mb-16 ml-auto items-center',
 		titleClass:
 			'garna-hero-title-gradient text-5xl md:text-7xl font-normal tracking-tight font-manrope mb-6 leading-[1.1]',
+		titleBreakAfterWords: {
+			en: 3,
+		},
 		descriptionClass:
 			'md:text-xl leading-relaxed text-lg font-light text-gray-400 font-manrope max-w-2xl mr-auto mb-10 ml-auto',
 		badge: {
 			text: 'For contractors & freelancers',
 			translateKey: 'hero.badge',
 		},
-		title: [
-			{ text: 'Get paid globally,', translateKey: 'hero.titleMain' },
-			{
-				text: 'hassle-free',
-				translateKey: 'hero.titleAccent',
-				breakBefore: true,
-				breakClass: 'hidden md:block',
-			},
-		],
+		title: [{ text: 'Get paid globally, hassle-free', translateKey: 'hero.titleMain' }],
 		description:
 			'Receives payments from clients in the US, Europe or anywhere else in the world in seconds. With total transparency and complete legal support',
 		descriptionTranslateKey: 'hero.description',
@@ -80,14 +72,7 @@ export const pageHeroes = {
 			text: 'AI-Powered Recruitment',
 			translateKey: 'hero.badge',
 		},
-		title: [
-			{ text: 'Skip the pre-screens.', translateKey: 'hero.titleLine1' },
-			{
-				text: 'Hire proven talent instantly.',
-				translateKey: 'hero.titleLine2',
-				breakBefore: true,
-			},
-		],
+		title: [{ text: 'Skip the pre-screens. Hire proven talent instantly.', translateKey: 'hero.titleLine1' }],
 		description:
 			'Access pre-vetted talent. We conduct smart AI interviews and deliver verified reports, so you only meet the best',
 		descriptionTranslateKey: 'hero.description',
@@ -139,7 +124,7 @@ export const pageHeroes = {
 		contentClass:
 			'relative z-10 flex max-w-3xl flex-col items-start justify-center pt-8 lg:min-h-[560px] lg:max-w-[520px] lg:pt-0 xl:max-w-[620px]',
 		titleClass:
-			'mt-7 max-w-3xl leading-[1.15] md:text-5xl lg:text-6xl text-4xl font-normal text-white tracking-tight font-manrope',
+			'garna-hero-title-gradient max-w-3xl leading-[1.15] md:text-5xl lg:text-6xl text-4xl font-normal tracking-tight font-manrope',
 		descriptionClass:
 			'mt-7 md:text-xl leading-relaxed text-lg font-light text-gray-400 font-manrope max-w-xl',
 		badge: {
@@ -167,18 +152,10 @@ export const pageHeroes = {
 		containerClass:
 			'overflow-visible md:px-12 md:pt-12 md:pb-0 text-center max-w-7xl z-10 mr-auto ml-auto pt-12 pr-6 pb-12 pl-6 relative',
 		titleClass:
-			'leading-[1.1] md:mb-8 md:text-6xl lg:mb-12 lg:text-7xl text-5xl font-light text-white tracking-tight font-extralight mb-8',
+			'garna-hero-title-gradient leading-[1.1] lg:text-8xl lg:mb-12 md:mb-8 md:text-7xl text-6xl font-light tracking-tight font-extralight mb-8',
 		descriptionClass:
 			'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-xl font-light text-gray-400 font-manrope max-w-4xl mr-auto mb-12 ml-auto',
-		title: [
-			{ text: 'Global Payroll Solution', translateKey: 'hero.titleMain' },
-			{
-				text: 'for International Businesses',
-				translateKey: 'hero.titleAccent',
-				class: 'text-gray-400',
-				breakBefore: true,
-			},
-		],
+		title: [{ text: 'Global Payroll Solution for International Businesses', translateKey: 'hero.titleMain' }],
 		description:
 			'Save time and money while working with contractors and hiring employees in 150+ country. Full legal compliance without the extra costs - this and more, with Garna',
 		descriptionTranslateKey: 'hero.description',
@@ -195,7 +172,7 @@ export const pageHeroes = {
 		align: 'center',
 	},
 	eor: {
-		class: 'relative overflow-hidden pt-28 pb-20 md:pt-32 md:pb-24',
+		class: 'relative overflow-hidden pt-36 pb-20 md:pt-40 md:pb-24 lg:pt-44',
 		containerClass: 'garna-container flex flex-col items-center gap-12',
 		contentClass: 'mx-auto flex max-w-4xl flex-col items-center text-center',
 		titleClass: 'garna-hero-title-gradient font-manrope text-5xl font-normal leading-[1.05] tracking-tight md:text-[64px]',

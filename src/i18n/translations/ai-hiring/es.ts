@@ -7,7 +7,7 @@ export const aiHiringEs = {
 	images: {},
 	hero: {
 		badge: 'Reclutamiento con IA',
-		titleLine1: 'Olvida las pre-entrevistas.',
+		titleLine1: 'Olvida las pre-entrevistas. Contrata talento verificado al instante.',
 		titleLine2: 'Contrata talento verificado al instante.',
 		description:
 			'Accede a talento pre-evaluado. Realizamos entrevistas inteligentes con IA y entregamos informes verificados, para que solo conozcas a los mejores',

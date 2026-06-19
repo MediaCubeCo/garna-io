@@ -15,7 +15,7 @@ export const homePt = {
 		name: 'Garna',
 	},
 	hero: {
-		title: 'Soluções de Folha de Pagamento Global',
+		title: 'Soluções de Folha de Pagamento Global para o seu negócio',
 		tagline: 'para o seu negócio',
 		description:
 			'Uma transferência, infinitas possibilidades. Pague remunerações em mais de 150 países com o mínimo de esforço',

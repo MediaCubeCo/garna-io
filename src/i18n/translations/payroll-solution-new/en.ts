@@ -8,7 +8,7 @@ export const payrollSolutionNewEn = {
 	},
 	images: {},
 	hero: {
-		titleMain: 'Global Payroll Solution',
+		titleMain: 'Global Payroll Solution for International Businesses',
 		titleAccent: 'for International Businesses',
 		description:
 			'Save time and money while working with contractors and hiring employees in 150+ country. Full legal compliance without the extra costs — this and more, with Garna',

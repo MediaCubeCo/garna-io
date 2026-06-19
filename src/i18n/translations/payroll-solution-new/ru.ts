@@ -17,7 +17,7 @@ export const payrollSolutionNewRu = {
 		},
 	},
 	hero: {
-		titleMain: 'Глобальное решение по оплате труда для международных компаний:',
+		titleMain: 'Глобальное решение по оплате труда для международных компаний: управление персоналом и подрядчиками в более чем 150 странах',
 		titleAccent: 'управление персоналом и подрядчиками в более чем 150 странах',
 		description:
 			'Экономьте время и деньги при работе с международными подрядчиками и найме сотрудников в любой стране. Полное соблюдение законодательства без лишних затрат — это и многое другое с Garna',
@@ -147,7 +147,6 @@ export const payrollSolutionNewRu = {
 		'Make payments to the contractor when you need to (without any hassle, delays, or additional fees) using CSV mass payments or stand alone transfers. Pay international contractors in just a few clicks or set up full automation':
 			'Осуществляйте платежи подрядчикам в любое удобное для вас время (без лишних хлопот, задержек и дополнительных комиссий) с помощью массовых платежей по файлу CSV или отдельных переводов. Оплачивайте услуги международных подрядчиков всего в несколько кликов или настройте полную автоматизацию',
 		'Balance': 'Баланс',
-		'Company': 'Компания',
 		'Notifications': 'Уведомления',
 		'Support': 'Поддержка',
 		'Send': 'Отправить',
@@ -175,23 +174,12 @@ export const payrollSolutionNewRu = {
 		'Launch professional payment software under your own brand':
 			'Запустите профессиональное программное обеспечение для оплаты под своим собственным брендом. Полный контроль над UX/UI, отчетностью и готовыми к использованию функциями для работы в более чем 150 странах',
 		'Learn more': 'Узнать больше',
-		'Start Paying Globally': 'Создайте международную систему оплаты труда и подключите услугу по назначению официального подрядчика или официального работодателя',
 		'From quick registration and talent’s search to your first payout. Everything is clear and completely under your control in a few simple steps':
 			'От быстрой регистрации и поиска талантов до вашей первой выплаты. Все прозрачно и полностью под вашим контролем — всего в несколько простых шагов',
-		'Contractor of Record': 'Для официального подрядчика',
-		'Employer of Record': 'Для официального работодателя',
 		'Set up your company profile': 'Создайте профиль своей компании',
-		'Complete a quick verification process and gain access to a full-featured payroll software solution':
-			'Пройдите быструю процедуру верификации и получите доступ к полнофункциональному программному решению для оплаты труда. Мы настроим платформу в соответствии с потребностями вашего бизнеса всего за несколько минут',
 		'Add your team': 'Добавьте свою команду',
-		'Import data for employees and international contractors':
-			'Импортируйте данные о сотрудниках и международных подрядчиках. Наша унифицированная панель управления позволяет управлять доступом и ролями без необходимости работать с таблицами',
 		'Fund your account': 'Пополните счет',
-		'Fund your account at Garna via SWIFT, SEPA, bank transfer in local currencies, PayPal, or use crypto assets for instant deposits':
-			'Garna — это гибкий поставщик услуг по оплате труда. Пополните свой счет в Garna через SWIFT, SEPA, банковский перевод в местной валюте, PayPal или воспользуйтесь криптовалютой для мгновенного пополнения счета',
 		'Send payout': 'Отправляйте выплаты',
-		'Pay recipients in 150+ countries with full compliance':
-			'Нажмите «Отправить», и средства будут мгновенно переведены получателям в более чем 150 странах. Garna занимается оформлением договоров, подготовкой отчетности и обеспечивает стопроцентное соблюдение всех требований',
 		'Set up your company account': 'Создайте аккаунт своей компании',
 		'Make a quick profile check and verification, fill in the required fields and get started':
 			'Пройдите быструю проверку профиля, заполните обязательные поля и получите доступ к сервису. Мы адаптируем его под ваши потребности и пожелания всего за несколько кликов',
@@ -212,21 +200,13 @@ export const payrollSolutionNewRu = {
 		'Cut Admin Work by 70%': 'Сократите административную нагрузку на 70%',
 		'Our contract and payment automation frees your HR and finance department from routine tasks':
 			'Наша система автоматизации заключения договоров и расчетов освобождает ваши отделы кадров и финансов от рутинных задач. Посвящайте свое время исключительно поиску талантов',
-		'Flexible Funding: From Bank transfers to Crypto': 'Гибкие способы оплаты: от банковских переводов до криптовалюты',
-		'You can make payments via traditional banking or digital assets for maximum speed':
-			'Вы можете осуществлять платежи как через традиционные банковские системы, так и с помощью цифровых активов для максимальной оперативности',
 		'Flawless Reporting and Analytics': 'Безупречная отчетность и аналитика',
 		'All invoices, transactions, and tax reports are gathered in one place':
 			'Все инвойсы, транзакции и налоговые отчеты собраны в одном месте. Экспортируйте данные в бухгалтерскую систему за считанные секунды для обеспечения полной прозрачности',
 		'100% Intellectual Property Protection': 'Стопроцентная защита интеллектуальной собственности',
-		'We legally guarantee that all work produced by your contractors belongs exclusively to you':
-			'Мы юридически гарантируем, что все материалы, созданные вашими подрядчиками, принадлежат исключительно вам',
 		'Scale with the API': 'Масштабируйте с помощью API',
 		'Integrate bulk payments directly into your internal systems and automate workflows programmatically':
 			'Корпоративное решение для быстрорастущих компаний. Интегрируйте массовые платежи непосредственно в ваши внутренние системы и автоматизируйте рабочие процессы с помощью программного обеспечения',
-		'Access to the best specialists in 150+ countries': 'Доступ к лучшим специалистам в более чем 150 странах',
-		'Hunt the best specialists wherever they are without wasting time and money on registering legal entities':
-			'Найдите лучших специалистов, где бы они ни находились, не тратя время и деньги на регистрацию юридических лиц',
 		'100% compliance with the laws': 'Стопроцентное соблюдение законодательства',
 		'Automated payments': 'Автоматические платежи',
 		'Shared dashboard': 'Общая панель управления',
@@ -248,7 +228,6 @@ export const payrollSolutionNewRu = {
 		'Integration': 'Интеграция',
 		'Hard or custom-built': 'Сложная или индивидуальная',
 		'API ready / White label': 'Поддержка API / White Label',
-		'Dashboard': 'Панель управления',
 		'Fragmented tools': 'Разрозненные инструменты',
 		'Unified dashboard for contractors and employees management': 'Единая панель управления для управления подрядчиками и сотрудниками',
 		'Standard business hours': 'Обычные рабочие часы',
@@ -300,7 +279,6 @@ export const payrollSolutionNewRu = {
 		'Country of registration': 'Страна регистрации',
 		'Date of registration': 'Дата регистрации',
 		'Registration number': 'Регистрационный номер',
-		'Account number': 'Номер счета',
 		'Internal account USD': 'Внутренний счет USD',
 		'Company Profile': 'Профиль компании',
 		'Email': 'Email',

@@ -3,6 +3,22 @@
 :root {
 	--garna-container-content-max: 1152px;
 	--garna-container-gutter: clamp(16px, 5vw, 64px);
+	--garna-page-bg: #050505;
+	--garna-section-stats-bg: #080808;
+}
+
+html,
+body {
+	background: var(--garna-page-bg);
+}
+
+#astro-page-content > section:has([data-translate^="stats."]) {
+	background: var(--garna-section-stats-bg) !important;
+}
+
+.garna-clear-section-bg {
+	background-color: transparent !important;
+	background-image: none !important;
 }
 
 .garna-container {

@@ -8,7 +8,7 @@ export const payrollSolutionNewPt = {
 	},
 	images: {},
 	hero: {
-		titleMain: 'Solução Global de Payroll para Empresas Internacionais:',
+		titleMain: 'Solução Global de Payroll para Empresas Internacionais: Gestão de Funcionários e Contratados em mais de 150 Países',
 		titleAccent: 'Gestão de Funcionários e Contratados em mais de 150 Países',
 		description:
 			'Poupe tempo e dinheiro ao trabalhar com contratados internacionais e contratar funcionários em qualquer país. Total conformidade legal sem custos adicionais — tudo isto e muito mais com a Garna',

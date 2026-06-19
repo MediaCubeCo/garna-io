@@ -32,6 +32,13 @@ const translations = {
 	'employer-of-record': eorTranslations,
 	'payroll-small-business': payrollSmallBusinessTranslations,
 	'payroll-solution-new': payrollSolutionNewTranslations,
+	blog: {
+		en: {
+			meta: {},
+			footer: homeTranslations.en.footer,
+			bookingWidget: homeTranslations.en.bookingWidget,
+		},
+	},
 } as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
 export function getPageTranslations(pageName: string, locale: string): AnyPageTranslations {

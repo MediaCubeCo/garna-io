@@ -36,6 +36,18 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 	if (!allowedLangs.includes(routeInfo.language)) return null;
 	if (pageConfig.languages && !pageConfig.languages.includes(routeInfo.language)) return null;
 
+	const redirects: Record<string, string> = {
+		'payroll-solution-new': '',
+		'payroll-small-business': 'small-business-payroll',
+		'white-label': 'white-label-payroll',
+	};
+	const redirectPath = redirects[pageConfig.path];
+	if (redirectPath !== undefined) {
+		const url = new URL(request.url);
+		url.pathname = redirectPath ? `/${routeInfo.language}/${redirectPath}` : `/${routeInfo.language}`;
+		return Response.redirect(url.toString(), 308);
+	}
+
 	switch (pageConfig.mode) {
 		case 'static':
 			return serveStaticPage(request, routeInfo, pageConfig, env);
@@ -48,23 +60,31 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 const PAGE_PATH_TO_ASSET: Record<string, string> = {
 	'': '/index.html',
 	'for-contractors': '/for-contractors.html',
+	'contractor-of-record': '/contractor-of-record.html',
 	form: '/form.html',
 	'ai-hiring': '/ai-hiring.html',
-	'white-label': '/white-label.html',
-	'payroll-small-business': '/payroll-small-business.html',
+	'white-label-payroll': '/white-label.html',
+	'small-business-payroll': '/payroll-small-business.html',
 	'payroll-solution-new': '/payroll-solution-new.html',
 	'employer-of-record': '/employer-of-record.html',
+	blog: '/blog.html',
+	'blog-author': '/blog-author.html',
+	'blog-article': '/blog-article.html',
 };
 
 const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
-	'': 'home',
+	'': 'payroll-solution-new',
 	'for-contractors': 'offer',
+	'contractor-of-record': 'home',
 	form: 'form',
 	'ai-hiring': 'ai-hiring',
-	'white-label': 'white-label',
-	'payroll-small-business': 'payroll-small-business',
+	'white-label-payroll': 'white-label',
+	'small-business-payroll': 'payroll-small-business',
 	'payroll-solution-new': 'payroll-solution-new',
 	'employer-of-record': 'eor',
+	blog: 'blog',
+	'blog-author': 'blog',
+	'blog-article': 'blog',
 };
 
 async function serveStaticPage(

@@ -15,7 +15,7 @@ export const homeEs = {
 		name: 'Garna',
 	},
 	hero: {
-		title: 'Soluciones de Nómina Global',
+		title: 'Soluciones de Nómina Global para tu negocio',
 		tagline: 'para tu negocio',
 		description:
 			'Una transferencia, infinitas posibilidades. Pague remuneraciones en más de 150 países con un mínimo esfuerzo',

@@ -8,7 +8,7 @@ export const payrollSolutionNewEs = {
 	},
 	images: {},
 	hero: {
-		titleMain: 'Solución global de gestión de nóminas para empresas internacionales:',
+		titleMain: 'Solución global de gestión de nóminas para empresas internacionales: gestiona a empleados y colaboradores en más de 150 países',
 		titleAccent: 'gestiona a empleados y colaboradores en más de 150 países',
 		description:
 			'Ahorra tiempo y dinero al trabajar con colaboradores externos internacionales y contratar empleados en cualquier país. Cumplimiento legal total sin costes adicionales: esto y mucho más, con Garna',
@@ -151,7 +151,6 @@ export const payrollSolutionNewEs = {
 		'Balance': 'Saldo',
 		'Company': 'Empresa',
 		'Notifications': 'Notificaciones',
-		'Support': 'Asistencia',
 		'Send': 'Enviar',
 		'Withdraw': 'Retirar',
 		'Add funds': 'Añadir fondos',

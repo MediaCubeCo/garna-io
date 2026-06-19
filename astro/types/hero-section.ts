@@ -8,9 +8,6 @@ export type HeroCtaIcon = 'none' | 'arrow-up-right' | 'arrow-right';
 export interface HeroTextPart {
 	text: string;
 	translateKey: string;
-	class?: string;
-	breakBefore?: boolean;
-	breakClass?: string;
 }
 
 export interface HeroCta {
@@ -37,6 +34,7 @@ export interface HeroSectionConfig {
 	containerClass?: string;
 	contentClass?: string;
 	titleClass?: string;
+	titleBreakAfterWords?: number | Record<string, number>;
 	descriptionClass?: string;
 	badge?: HeroBadge;
 	title: HeroTextPart[];

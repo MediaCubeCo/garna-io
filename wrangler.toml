@@ -27,6 +27,10 @@ run_worker_first = [
 	"/payroll-small-business.html",
 	"/payroll-solution-new",
 	"/payroll-solution-new.html",
+	"/en/payroll-solution-new",
+	"/ru/payroll-solution-new",
+	"/es/payroll-solution-new",
+	"/pt/payroll-solution-new",
 	"/eor",
 	"/eor.html",
 ]

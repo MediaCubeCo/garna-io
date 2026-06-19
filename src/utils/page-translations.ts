@@ -8,12 +8,16 @@ const FOOTER_LEGAL_LINKS_PLACEHOLDER = '<!-- FOOTER_LEGAL_LINKS -->';
 
 /**
  * Builds the same-page URL for a given language (worker-side).
- * 404 page: switch to home in that language. Home: /lang. Offer: /lang/for-contractors.
+ * 404 page: switch to home in that language. Global Payroll lives at /lang.
+ * The former home page now lives at /lang/contractor-of-record.
  */
 function getLanguagePagePath(pageName: string, lang: string): string {
 	const segment = lang.toLowerCase();
-	if (pageName === '404' || pageName === 'home') {
+	if (pageName === '404' || pageName === 'payroll-solution-new') {
 		return `/${segment}`;
+	}
+	if (pageName === 'home') {
+		return `/${segment}/contractor-of-record`;
 	}
 	if (pageName === 'offer') {
 		return `/${segment}/for-contractors`;
@@ -25,16 +29,16 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 		return `/${segment}/ai-hiring`;
 	}
 	if (pageName === 'white-label') {
-		return `/${segment}/white-label`;
+		return `/${segment}/white-label-payroll`;
 	}
 	if (pageName === 'payroll-small-business') {
-		return `/${segment}/payroll-small-business`;
-	}
-	if (pageName === 'payroll-solution-new') {
-		return `/${segment}/payroll-solution-new`;
+		return `/${segment}/small-business-payroll`;
 	}
 	if (pageName === 'eor' || pageName === 'employer-of-record') {
 		return `/${segment}/employer-of-record`;
+	}
+	if (pageName === 'blog') {
+		return `/${segment}/blog`;
 	}
 	return `/${segment}`;
 }
@@ -438,11 +442,15 @@ export function injectPageTranslations(
 				const translation = getNestedValue(currentTranslations, key);
 				if (translation !== undefined && translation !== null) {
 					const translationStr = String(translation);
+					const titleBreakWords = getTitleBreakWords(attributes, currentLanguage);
+					const translatedHtml = titleBreakWords
+						? insertTitleBreak(translationStr, titleBreakWords)
+						: translationStr;
 					const before = html.substring(0, startIndex);
 					const after = html.substring(endIndex);
 					const openTag = `<${tagName}${attributes}>`;
 					const closeTag = `</${tagName}>`;
-					html = before + openTag + translationStr + closeTag + after;
+					html = before + openTag + translatedHtml + closeTag + after;
 				}
 			}
 		}
@@ -467,6 +475,32 @@ function escapeHtml(text: string): string {
 		"'": '&#039;',
 	};
 	return text.replace(/[&<>"']/g, (char) => map[char] || char);
+}
+
+function getTitleBreakWords(attributes: string, currentLanguage: string): number | null {
+	const match = attributes.match(/\sdata-title-break-after-words=["']([^"']+)["']/i);
+	if (!match) return null;
+
+	const value = match[1].trim();
+	if (/^\d+$/.test(value)) return Number(value);
+
+	for (const part of value.split(',')) {
+		const [lang, words] = part.split(':').map((item) => item.trim());
+		if (lang === currentLanguage && /^\d+$/.test(words)) {
+			return Number(words);
+		}
+	}
+
+	return null;
+}
+
+function insertTitleBreak(text: string, breakAfterWords: number): string {
+	const words = text.trim().split(/\s+/);
+	if (words.length <= breakAfterWords || breakAfterWords <= 0) {
+		return escapeHtml(text);
+	}
+
+	return `${escapeHtml(words.slice(0, breakAfterWords).join(' '))}<br>${escapeHtml(words.slice(breakAfterWords).join(' '))}`;
 }
 
 function serializeJsonForScript(value: unknown): string {

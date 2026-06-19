@@ -7,7 +7,7 @@ export const aiHiringEn = {
 	images: {},
 	hero: {
 		badge: 'AI-Powered Recruitment',
-		titleLine1: 'Skip the pre-screens.',
+		titleLine1: 'Skip the pre-screens. Hire proven talent instantly.',
 		titleLine2: 'Hire proven talent instantly.',
 		description:
 			'Access pre-vetted talent. We conduct smart AI interviews and deliver verified reports, so you only meet the best',

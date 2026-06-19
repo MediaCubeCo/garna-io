@@ -8,6 +8,7 @@ const {
 	containerClass = 'garna-container overflow-visible z-10 text-center relative',
 	contentClass = '',
 	titleClass = 'garna-hero-title-gradient leading-[1.1] lg:text-8xl lg:mb-12 md:mb-8 md:text-7xl text-6xl font-normal tracking-tight font-manrope mb-8',
+	titleBreakAfterWords,
 	descriptionClass = 'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-lg font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
 	badge,
 	title,
@@ -37,6 +38,27 @@ const ctaWrapperClass =
 		? 'flex md:mb-24 mb-24 justify-center'
 		: 'flex flex-col sm:flex-row items-center gap-4');
 const badgeClass = ['garna-hero-badge', badge?.class || ''].filter(Boolean).join(' ');
+const resolvedTitleClass = titleClass.includes('garna-hero-title-gradient')
+	? titleClass
+	: `garna-hero-title-gradient ${titleClass}`;
+const singleTitle = title.length === 1 ? title[0] : undefined;
+const titleBreakAttribute =
+	typeof titleBreakAfterWords === 'number'
+		? String(titleBreakAfterWords)
+		: titleBreakAfterWords
+			? Object.entries(titleBreakAfterWords).map(([lang, words]) => `${lang}:${words}`).join(',')
+			: undefined;
+const defaultTitleBreakWords =
+	typeof titleBreakAfterWords === 'number' ? titleBreakAfterWords : titleBreakAfterWords?.en;
+const singleTitleWords = singleTitle?.text.trim().split(/\s+/) || [];
+const shouldBreakSingleTitle =
+	!!defaultTitleBreakWords && defaultTitleBreakWords > 0 && singleTitleWords.length > defaultTitleBreakWords;
+const singleTitleFirstLine = shouldBreakSingleTitle
+	? singleTitleWords.slice(0, defaultTitleBreakWords).join(' ')
+	: singleTitle?.text;
+const singleTitleSecondLine = shouldBreakSingleTitle
+	? singleTitleWords.slice(defaultTitleBreakWords).join(' ')
+	: '';
 ---
 
 <Section class={className} kind="hero">
@@ -57,12 +79,21 @@ const badgeClass = ['garna-hero-badge', badge?.class || ''].filter(Boolean).join
 
 			<slot name="before-title" />
 
-			<h1 class={titleClass}>
-				{title.map((part) => (
+			<h1 class={resolvedTitleClass} data-translate={singleTitle?.translateKey} data-title-break-after-words={titleBreakAttribute}>
+				{singleTitle ? (
 					<>
-						{part.breakBefore && <br class={part.breakClass || ''} />}
-						<span class={part.class} data-translate={part.translateKey}>{part.text}</span>
-						{' '}
+						{singleTitleFirstLine}
+						{shouldBreakSingleTitle && (
+							<>
+								<br />
+								{singleTitleSecondLine}
+							</>
+						)}
+					</>
+				) : title.map((part, index) => (
+					<>
+						<span data-translate={part.translateKey}>{part.text}</span>
+						{index < title.length - 1 && ' '}
 					</>
 				))}
 			</h1>

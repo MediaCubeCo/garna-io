@@ -11,7 +11,7 @@ export const offerPt = {
 	},
 	hero: {
 		badge: 'Para contratados e freelancers',
-		titleMain: 'Receba pagamentos globalmente,',
+		titleMain: 'Receba pagamentos globalmente, sem complicações',
 		titleAccent: 'sem complicações',
 		description:
 			'Receba pagamentos de clientes nos EUA, Europa ou em qualquer lugar do mundo em segundos. Com total transparência e suporte jurídico completo',

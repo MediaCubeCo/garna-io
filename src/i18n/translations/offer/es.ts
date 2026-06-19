@@ -11,7 +11,7 @@ export const offerEs = {
 	},
 	hero: {
 		badge: 'Para contratistas y freelancers',
-		titleMain: 'Cobra globalmente,',
+		titleMain: 'Cobra globalmente, sin complicaciones',
 		titleAccent: 'sin complicaciones',
 		description:
 			'Recibe pagos de clientes en EE. UU., Europa o cualquier parte del mundo en segundos. Con total transparencia y soporte legal completo',
