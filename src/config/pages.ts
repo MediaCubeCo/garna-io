@@ -45,6 +45,13 @@ export const basePaths: PageConfig[] = [
 		languages: ['en', 'es', 'pt', 'ru'],
 	},
 	{
+		path: 'mid-size',
+		mode: 'static',
+		searchable: false,
+		showHeader: true,
+		languages: ['en', 'es', 'pt', 'ru'],
+	},
+	{
 		path: 'form',
 		mode: 'static',
 		searchable: false,

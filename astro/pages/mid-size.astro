@@ -1,0 +1,373 @@
+---
+import FAQSection from '../components/FAQSection.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
+import HeroSection from '../components/HeroSection.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
+import type { FAQItem } from '../types/faq-section';
+import rawContentHtml from '../content/site-pages/mid-size.html?raw';
+import scriptsHtml from '../content/site-scripts/mid-size.html?raw';
+import { splitLegacyPageSections } from '../utils/legacy-html';
+
+const { contentHtml } = splitLegacyPageSections(rawContentHtml, {
+	heroVisualMarker: '<!-- Dashboard Mockup with Dynamic Sizing -->',
+});
+
+const midSizeFaqItems = [
+	{
+		question: 'Can I manage employees and contractors in the same system?',
+		answer: 'Yes! Garna lets you manage your employees, freelancers, and contractors from the same single platform in our unified payroll system.',
+		questionTranslateKey: 'midSizeFaq.items.q1.question',
+		answerTranslateKey: 'midSizeFaq.items.q1.answer',
+	},
+	{
+		question: 'How do payroll tools help reduce manual work?',
+		answer: 'Payroll automation software saves time on doing repetitive tasks, such as manual calculations, writing invoices, sending in tax reports, and making the same payments over and over again.',
+		questionTranslateKey: 'midSizeFaq.items.q2.question',
+		answerTranslateKey: 'midSizeFaq.items.q2.answer',
+	},
+	{
+		question: 'How does payroll compliance work when hiring in multiple regions?',
+		answer: 'Garna makes payroll compliance very easy, thanks to the automated tax calculations, reporting tools and region-specific payroll processes designed to simplify making payroll in different countries.',
+		questionTranslateKey: 'midSizeFaq.items.q3.question',
+		answerTranslateKey: 'midSizeFaq.items.q3.answer',
+	},
+	{
+		question: 'What kind of reporting do I get?',
+		answer: 'You get access to payroll reporting and analytics including keeping track of your payroll costs and payments, and getting real-time insights into your payroll.',
+		questionTranslateKey: 'midSizeFaq.items.q4.question',
+		answerTranslateKey: 'midSizeFaq.items.q4.answer',
+	},
+	{
+		question: 'Do you support multi-currency payments?',
+		answer: 'Yes, Garna lets you make global payroll payments in multiple currencies using bank transfers, SWIFT, SEPA, PayPal, Payoneer, and cryptocurrency.',
+		questionTranslateKey: 'midSizeFaq.items.q5.question',
+		answerTranslateKey: 'midSizeFaq.items.q5.answer',
+	},
+	{
+		question: 'Can Garna integrate with our existing systems?',
+		answer: 'Yes! Garna can integrate with all your HR systems, accounting platforms, ERP tools, and other systems through our API integration capabilities.',
+		questionTranslateKey: 'midSizeFaq.items.q6.question',
+		answerTranslateKey: 'midSizeFaq.items.q6.answer',
+	},
+	{
+		question: 'Is payroll software secure for sensitive employee data?',
+		answer: 'Absolutely. Garna uses secure infrastructure, encrypts all data, and has compliance-focused security protocols to protect your payroll and employee information.',
+		questionTranslateKey: 'midSizeFaq.items.q7.question',
+		answerTranslateKey: 'midSizeFaq.items.q7.answer',
+	},
+] satisfies FAQItem[];
+---
+
+<BaseLayout shell={pageShells.home} scriptsHtml={scriptsHtml}>
+	<HeroSection {...pageHeroes.midSize}>
+		<div class="relative mx-auto mt-14 w-full max-w-4xl px-4 md:mt-16 md:px-0">
+			<div class="overflow-hidden rounded-2xl border border-white/10 bg-[#101010] shadow-2xl shadow-black/40">
+				<div class="flex h-10 items-center justify-between border-b border-white/[0.08] bg-[#0A0A0A] px-4">
+					<div class="flex gap-2">
+						<div class="h-2.5 w-2.5 rounded-full bg-[#ef4444] shadow-[inset_0_1px_0_rgba(255,255,255,0.24)]"></div>
+						<div class="h-2.5 w-2.5 rounded-full bg-[#EAB308] shadow-[inset_0_1px_0_rgba(255,255,255,0.24)]"></div>
+						<div class="h-2.5 w-2.5 rounded-full bg-[#22c55e] shadow-[inset_0_1px_0_rgba(255,255,255,0.24)]"></div>
+					</div>
+					<div class="mx-3 flex h-5 min-w-0 flex-1 items-center justify-center rounded-full border border-white/5 bg-white/[0.05] text-[10px] tracking-wide text-gray-500 md:mx-auto md:w-56 md:flex-none">
+						<span>garna.io/dashboard</span>
+					</div>
+					<div class="hidden w-[54px] md:block"></div>
+				</div>
+				<div class="m-2 grid items-stretch overflow-hidden rounded-xl border border-white/10 bg-[#101010] md:m-3 md:grid-cols-[0.95fr_1.05fr]">
+					<div class="flex h-full flex-col border-b border-white/10 p-5 text-left md:border-b-0 md:border-r md:p-6">
+						<div class="flex items-center justify-between gap-4">
+							<div>
+								<p class="text-sm font-semibold text-white">Payroll run</p>
+								<p class="mt-1 text-xs text-gray-400">This month</p>
+							</div>
+							<span class="mid-size-hero-pulse rounded-full bg-[#5EA500]/15 px-3 py-1 text-xs font-semibold text-[#5EA500]">Ready</span>
+						</div>
+						<div class="mt-6">
+							<div class="flex items-end justify-between gap-4">
+								<div>
+									<p class="text-xs text-gray-400">Total payroll</p>
+									<p class="mt-1 text-3xl font-semibold tracking-tight text-white">$112,272</p>
+								</div>
+								<div class="flex h-12 items-end gap-1.5">
+									<span class="mid-size-hero-bar h-5 w-3 rounded bg-[#5EA500]/30"></span>
+									<span class="mid-size-hero-bar h-8 w-3 rounded bg-[#5EA500]/45" style="animation-delay: 0.12s;"></span>
+									<span class="mid-size-hero-bar h-10 w-3 rounded bg-[#5EA500]/70" style="animation-delay: 0.24s;"></span>
+									<span class="mid-size-hero-bar h-12 w-3 rounded bg-[#5EA500]" style="animation-delay: 0.36s;"></span>
+								</div>
+							</div>
+							<div class="mt-5 h-1.5 overflow-hidden rounded-full bg-white/5">
+								<div class="mid-size-hero-progress h-full w-full rounded-full bg-[#5EA500] shadow-[0_0_12px_rgba(94,165,0,0.45)]"></div>
+							</div>
+						</div>
+						<div class="mt-6 grid grid-cols-3 gap-3 text-xs">
+							<div class="rounded-xl border border-white/10 bg-[#1A1A1A] p-3 text-left">
+								<p class="text-gray-400">Teams</p>
+								<p class="mt-1 font-semibold text-white">12</p>
+							</div>
+							<div class="rounded-xl border border-white/10 bg-[#1A1A1A] p-3 text-left">
+								<p class="text-gray-400">Countries</p>
+								<p class="mt-1 font-semibold text-white">18</p>
+							</div>
+							<div class="rounded-xl border border-white/10 bg-[#1A1A1A] p-3 text-left">
+								<p class="text-gray-400">FX</p>
+								<p class="mt-1 font-semibold text-white">6</p>
+							</div>
+						</div>
+						<div class="mt-4 rounded-xl border border-white/10 bg-[#1A1A1A] p-4 text-left">
+							<div class="flex items-center justify-between gap-4">
+								<div>
+									<p class="text-xs text-gray-400">Automation status</p>
+									<p class="mt-1 text-sm font-semibold text-white">Recurring payroll active</p>
+								</div>
+								<span class="mid-size-hero-pulse rounded-full bg-[#5EA500]/15 px-2.5 py-1 text-xs text-[#5EA500]">Live</span>
+							</div>
+							<div class="mt-3 grid grid-cols-3 gap-2 text-left text-[11px] text-gray-300">
+								<span class="rounded-lg bg-[#242424] px-2 py-1.5">Invoices</span>
+								<span class="rounded-lg bg-[#242424] px-2 py-1.5">Taxes</span>
+								<span class="rounded-lg bg-[#242424] px-2 py-1.5">Reports</span>
+							</div>
+						</div>
+					</div>
+					<div class="grid h-full gap-3 p-5 text-left md:grid-cols-2 md:grid-rows-[auto_auto_1fr] md:p-6">
+						<div class="rounded-xl border border-white/10 bg-[#1A1A1A] p-4">
+							<div class="flex items-start justify-between gap-4">
+								<div>
+									<p class="text-xs text-gray-400">Employees</p>
+									<p class="mt-2 text-2xl font-semibold leading-none text-white">84</p>
+								</div>
+								<div class="flex -space-x-2">
+									<img src="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg" alt="Employee avatar" class="h-8 w-8 rounded-full border-2 border-[#1A1A1A] object-cover" loading="lazy" decoding="async" />
+									<img src="/pages/payroll-solution-new/assets/08-photo-1534528741775-53994a69daeb.jpg" alt="Employee avatar" class="h-8 w-8 rounded-full border-2 border-[#1A1A1A] object-cover" loading="lazy" decoding="async" />
+								</div>
+							</div>
+							<div class="mt-4 flex items-center justify-between gap-3">
+								<p class="text-xs text-gray-400">salary + benefits</p>
+								<span class="mid-size-hero-pulse rounded-full bg-[#5EA500]/15 px-2.5 py-1 text-xs text-[#5EA500]">Synced</span>
+							</div>
+						</div>
+						<div class="rounded-xl border border-white/10 bg-[#1A1A1A] p-4">
+							<div class="flex items-start justify-between gap-4">
+								<div>
+									<p class="text-xs text-gray-400">Contractors</p>
+									<p class="mt-2 text-2xl font-semibold leading-none text-white">126</p>
+								</div>
+								<div class="flex -space-x-2">
+									<img src="/pages/payroll-solution-new/assets/03-83a1ae5f-c842-4ee9-a912-505fc66a1ee0_320w.webp" alt="Contractor avatar" class="h-8 w-8 rounded-full border-2 border-[#1A1A1A] object-cover" loading="lazy" decoding="async" />
+									<img src="/pages/payroll-solution-new/assets/05-f8322831-e2ba-4007-9960-8e7e82b00480_320w.webp" alt="Contractor avatar" class="h-8 w-8 rounded-full border-2 border-[#1A1A1A] object-cover" loading="lazy" decoding="async" />
+								</div>
+							</div>
+							<div class="mt-4 flex items-center justify-between gap-3">
+								<p class="text-xs text-gray-400">invoices prepared</p>
+								<span class="mid-size-hero-pulse rounded-full bg-[#5EA500]/15 px-2.5 py-1 text-xs text-[#5EA500]" style="animation-delay: 0.28s;">Ready</span>
+							</div>
+						</div>
+						<div class="flex items-center rounded-xl border border-white/10 bg-[#1A1A1A] p-4 md:col-span-2">
+							<div class="grid w-full grid-cols-3 items-center gap-2 text-left text-[10px] sm:text-xs md:text-[10px] lg:text-xs">
+								<span class="min-w-0 whitespace-nowrap rounded-full bg-[#5EA500]/15 px-2 py-1 text-center text-[#5EA500]">USD funded</span>
+								<span class="min-w-0 whitespace-nowrap rounded-full bg-[#242424] px-2 py-1 text-center text-gray-300">Tax workflows</span>
+								<span class="min-w-0 whitespace-nowrap rounded-full bg-[#242424] px-2 py-1 text-center text-gray-300">Approvals clear</span>
+							</div>
+						</div>
+						<div class="flex h-full flex-col rounded-xl border border-white/10 bg-[#1A1A1A] p-4 md:col-span-2">
+							<div class="flex items-center justify-between gap-4 text-xs">
+								<span class="text-gray-400">Upcoming payouts</span>
+								<span class="mid-size-hero-pulse text-[#5EA500]">24 scheduled</span>
+							</div>
+							<div class="mt-3 space-y-2">
+								<div class="flex items-center justify-between rounded-lg bg-[#242424] px-3 py-2 text-xs">
+									<div class="flex items-center gap-2">
+										<img src="/pages/payroll-solution-new/assets/02-4ea5c571-80d4-4ff4-8cf2-210e25af6262_320w.png" alt="Payroll recipient avatar" class="h-6 w-6 rounded-full object-cover" loading="lazy" decoding="async" />
+										<span class="text-gray-300">EU payroll batch</span>
+									</div>
+									<span class="text-gray-400">Tomorrow</span>
+								</div>
+								<div class="flex items-center justify-between rounded-lg bg-[#242424] px-3 py-2 text-xs">
+									<div class="flex items-center gap-2">
+										<img src="/pages/payroll-solution-new/assets/01-152b527e-f3bb-44db-98a8-e224a84a1318_320w.webp" alt="Contractor avatar" class="h-6 w-6 rounded-full object-cover" loading="lazy" decoding="async" />
+										<span class="text-gray-300">Contractor invoices</span>
+									</div>
+									<span class="text-gray-400">Friday</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</HeroSection>
+	<Fragment set:html={contentHtml} />
+	<FAQSection
+		title={{ text: 'Payroll FAQs for Growing Businesses' }}
+		items={midSizeFaqItems}
+		class="pt-16 pb-16 lg:pt-32 lg:pb-32"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...pageFinalCtas.midSize} />
+	<script is:inline>
+		(function () {
+			function formatValue(value, decimals) {
+				return value.toLocaleString('en-US', {
+					minimumFractionDigits: decimals,
+					maximumFractionDigits: decimals,
+				});
+			}
+
+			function initCounterAnimation() {
+				const elements = document.querySelectorAll('.counter-anim');
+				const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+				elements.forEach((el) => {
+					const target = parseFloat(el.getAttribute('data-target'));
+					const prefix = el.getAttribute('data-prefix') || '';
+					const suffix = el.getAttribute('data-suffix') || '';
+					const decimals = parseInt(el.getAttribute('data-decimals') || 0);
+					const finalValue = prefix + formatValue(target, decimals) + suffix;
+
+					if (prefersReducedMotion) {
+						el.innerText = finalValue;
+						return;
+					}
+
+					function animate() {
+						if (el.dataset.counterAnimated === 'true') return;
+						el.dataset.counterAnimated = 'true';
+						const start = 0;
+						const duration = 2000;
+						const startTime = performance.now();
+
+						function update(currentTime) {
+							const elapsed = currentTime - startTime;
+							const progress = Math.min(elapsed / duration, 1);
+							const ease = 1 - Math.pow(1 - progress, 4);
+							const current = start + (target - start) * ease;
+
+							el.innerText = prefix + formatValue(current, decimals) + suffix;
+
+							if (progress < 1) {
+								requestAnimationFrame(update);
+							} else {
+								el.innerText = finalValue;
+							}
+						}
+
+						requestAnimationFrame(update);
+					}
+
+					if ('IntersectionObserver' in window) {
+						const observer = new IntersectionObserver((entries) => {
+							entries.forEach((entry) => {
+								if (entry.isIntersecting) {
+									animate();
+									observer.disconnect();
+								}
+							});
+						}, { threshold: 0.1 });
+
+						observer.observe(el);
+					} else {
+						animate();
+					}
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', initCounterAnimation, { once: true });
+			} else {
+				initCounterAnimation();
+			}
+		})();
+	</script>
+	<Fragment slot="widgets">
+		<GarnaBookingWidget
+			trackingSource="mid-size"
+			trackingPage="mid-size"
+			titleFallback="Start your journey with Garna"
+			subtitleFallback="Fill in your details to book a demo"
+		/>
+	</Fragment>
+</BaseLayout>
+
+<style is:global>
+	.mid-size-hero-progress {
+		transform-origin: left;
+		animation: mid-size-hero-progress 5.2s ease-in-out infinite;
+	}
+
+	.mid-size-hero-bar {
+		transform-origin: bottom;
+		animation: mid-size-hero-bar 4.4s ease-in-out infinite;
+	}
+
+	.mid-size-hero-pulse {
+		animation: mid-size-hero-pulse 3.2s ease-in-out infinite;
+	}
+
+	@keyframes mid-size-hero-progress {
+		0%, 100% {
+			transform: scaleX(0.72);
+		}
+		50% {
+			transform: scaleX(0.88);
+		}
+	}
+
+	@keyframes mid-size-hero-bar {
+		0%, 100% {
+			transform: scaleY(0.78);
+			opacity: 0.72;
+		}
+		50% {
+			transform: scaleY(1);
+			opacity: 1;
+		}
+	}
+
+	@keyframes mid-size-hero-pulse {
+		0%, 100% {
+			opacity: 0.82;
+			filter: drop-shadow(0 0 0 rgba(94, 165, 0, 0));
+		}
+		50% {
+			opacity: 1;
+			filter: drop-shadow(0 0 8px rgba(94, 165, 0, 0.38));
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.mid-size-hero-progress,
+		.mid-size-hero-bar,
+		.mid-size-hero-pulse {
+			animation: none;
+		}
+	}
+
+	.home-hero h1 {
+		margin-left: auto;
+		margin-right: auto;
+		padding-bottom: 0.12em;
+	}
+
+	html[lang='en'] .home-hero h1 {
+		max-width: 50rem;
+	}
+
+	html[lang='es'] .home-hero h1,
+	html[lang='pt'] .home-hero h1 {
+		max-width: 64rem;
+		line-height: 1.14;
+	}
+
+	html[lang='es'] .home-hero h1 {
+		max-width: 58rem;
+	}
+
+	@media (min-width: 1024px) {
+		html[lang='pt'] .home-hero h1 {
+			font-size: 4rem;
+		}
+	}
+</style>

@@ -30,6 +30,29 @@ export const pageHeroes = {
 		tone: 'green',
 		align: 'center',
 	},
+	midSize: {
+		class: 'home-hero min-h-screen overflow-hidden pt-36 pb-20 md:pt-40 md:pb-24 lg:pt-44 relative',
+		containerClass:
+			'garna-container overflow-visible z-10 text-center relative w-full',
+		contentClass: 'mx-auto max-w-5xl',
+		titleClass:
+			'garna-hero-title-gradient leading-[1.1] md:text-6xl lg:text-7xl text-5xl font-normal tracking-tight font-manrope mb-6',
+		descriptionClass:
+			'leading-relaxed md:text-xl text-lg font-light text-gray-400 font-manrope max-w-4xl mr-auto mb-10 ml-auto',
+		title: [{ text: 'Payroll for Growing Companies' }],
+		description:
+			'A solution that keeps up with your growing business - a scalable platform that lets you put payroll on autopilot, manage employees and contractors from a single place',
+		cta: {
+			label: 'Try Garna',
+			href: 'https://app.garna.io/en/auth/sign-up',
+			kind: 'signup',
+			variant: 'primary',
+			effect: 'rotating-flare',
+			wrapperClass: 'flex justify-center',
+		},
+		tone: 'green',
+		align: 'center',
+	},
 	offer: {
 		class: 'overflow-visible pt-24 pb-24 md:pt-24 lg:pt-40 lg:pb-32 relative',
 		containerClass: 'garna-container relative z-10',
@@ -177,10 +200,6 @@ export const pageHeroes = {
 		contentClass: 'mx-auto flex max-w-4xl flex-col items-center text-center',
 		titleClass: 'garna-hero-title-gradient font-manrope text-5xl font-normal leading-[1.05] tracking-tight md:text-[64px]',
 		descriptionClass: 'mx-auto mt-7 max-w-3xl text-lg font-light leading-relaxed text-gray-400 md:text-xl',
-		badge: {
-			text: 'Employer of Record for global teams',
-			translateKey: 'hero.badge',
-		},
 		title: [{ text: 'Worldwide Employment Made Simple, Quick & Flawless', translateKey: 'hero.title' }],
 		description:
 			"Hiring the best talent from around the globe doesn't have to be a set of complex compliance rules, separate payroll systems where you have to create multiple legal entities in each country. At Garna, we provide a simple, modern employer of record solution designed to help businesses expand globally without getting stuck in operational hassles",

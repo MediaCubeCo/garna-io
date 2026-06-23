@@ -23,6 +23,7 @@ type AnyPageTranslations =
 
 const translations = {
 	home: homeTranslations,
+	'mid-size': homeTranslations,
 	offer: offerTranslations,
 	'404': notFoundTranslations,
 	form: formTranslations,

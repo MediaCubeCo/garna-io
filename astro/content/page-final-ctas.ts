@@ -14,6 +14,22 @@ export const pageFinalCtas = {
 			trackingCta: 'final_demo',
 		},
 	},
+	midSize: {
+		title: [
+			{ text: 'Get Started With', translateKey: 'midSizeFinalCta.titleLine1' },
+			{ text: 'Garna Payroll Today', translateKey: 'midSizeFinalCta.titleLine2' },
+		],
+		description: {
+			text: "Whether you're dealing with remote teams, contractors in far-off countries, or just expanding in general, Garna has the flexible infrastructure to grow with you",
+			translateKey: 'midSizeFinalCta.description',
+		},
+		button: {
+			label: 'Try now',
+			translateKey: 'midSizeFinalCta.button',
+			kind: 'demo',
+			trackingCta: 'mid_size_final_demo',
+		},
+	},
 	offer: {
 		title: [{ text: 'Ready to get paid?', translateKey: 'finalCta.title' }],
 		description: {

@@ -19,6 +19,9 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'home') {
 		return `/${segment}/contractor-of-record`;
 	}
+	if (pageName === 'mid-size') {
+		return `/${segment}/mid-size`;
+	}
 	if (pageName === 'offer') {
 		return `/${segment}/for-contractors`;
 	}
