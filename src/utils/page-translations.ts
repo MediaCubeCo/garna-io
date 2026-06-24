@@ -503,7 +503,7 @@ function insertTitleBreak(text: string, breakAfterWords: number): string {
 		return escapeHtml(text);
 	}
 
-	return `${escapeHtml(words.slice(0, breakAfterWords).join(' '))}<br>${escapeHtml(words.slice(breakAfterWords).join(' '))}`;
+	return `${escapeHtml(words.slice(0, breakAfterWords).join(' '))}<br> ${escapeHtml(words.slice(breakAfterWords).join(' '))}`;
 }
 
 function serializeJsonForScript(value: unknown): string {

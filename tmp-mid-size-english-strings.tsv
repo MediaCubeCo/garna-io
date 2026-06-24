@@ -1,0 +1,183 @@
+key	english	source	kind
+midSizeFinalCta.button	Try now	astro/content/page-final-ctas.ts	content
+midSizeFinalCta.description	Whether you're dealing with remote teams, contractors in far-off countries, or just expanding in general, Garna has the flexible infrastructure to grow with you	astro/content/page-final-ctas.ts	content
+midSizeFinalCta.titleLine1	Get Started With	astro/content/page-final-ctas.ts	content
+midSizeFinalCta.titleLine2	Garna Payroll Today	astro/content/page-final-ctas.ts	content
+hero.cta	Try Garna	astro/content/page-heroes.ts	content
+hero.description	A solution that keeps up with your growing business - a scalable platform that lets you put payroll on autopilot, manage employees and contractors from a single place	astro/content/page-heroes.ts	content
+hero.title	Payroll for Growing Companies	astro/content/page-heroes.ts	content
+brand.name	Garna	astro/content/site-pages/mid-size.html	content
+contractorBenefits.description	Give your team the flexibility and convenience they deserve	astro/content/site-pages/mid-size.html	content
+contractorBenefits.methods.description	Contractors receive payouts via bank transfers in 80+ currencies, cards, wallets, or cryptocurrencies	astro/content/site-pages/mid-size.html	content
+contractorBenefits.methods.title	Multiple payout methods	astro/content/site-pages/mid-size.html	content
+contractorBenefits.title	Benefits for your contractors	astro/content/site-pages/mid-size.html	content
+features.automation.description	Automate global payout processes with a flexible, user-friendly platform	astro/content/site-pages/mid-size.html	content
+features.automation.title	Automated payroll platform	astro/content/site-pages/mid-size.html	content
+features.business	Business	astro/content/site-pages/mid-size.html	content
+features.description	We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries	astro/content/site-pages/mid-size.html	content
+features.title	Modern platform for managing global payroll	astro/content/site-pages/mid-size.html	content
+globalReach.description	Pay in 150+ countries with local currencies and crypto	astro/content/site-pages/mid-size.html	content
+globalReach.title	Global Reach	astro/content/site-pages/mid-size.html	content
+howTo.description	Start using Garna in a few simple steps	astro/content/site-pages/mid-size.html	content
+howTo.steps.step1.description	Create your company profile and verify your business details to get access to the platform	astro/content/site-pages/mid-size.html	content
+howTo.steps.step1.title	Set up your account	astro/content/site-pages/mid-size.html	content
+howTo.steps.step2.description	Add employees and contractors to the dashboard and assign roles and permissions	astro/content/site-pages/mid-size.html	content
+howTo.steps.step2.title	Invite your team	astro/content/site-pages/mid-size.html	content
+howTo.steps.step3.description	Top up your corporate wallet using bank transfer, SWIFT, SEPA, or crypto assets	astro/content/site-pages/mid-size.html	content
+howTo.steps.step3.title	Fund your balance	astro/content/site-pages/mid-size.html	content
+howTo.steps.step4.description	Execute global payrolls in one click with automated tax handling and compliance	astro/content/site-pages/mid-size.html	content
+howTo.steps.step4.title	Send payouts	astro/content/site-pages/mid-size.html	content
+howTo.title	How to get started	astro/content/site-pages/mid-size.html	content
+midSizeTestimonials.amina.quote	"We manage teams across several regions now, and Garna keeps payout timing, documents, and reporting predictable enough for HR and finance to work from the same source"	astro/content/site-pages/mid-size.html	content
+midSizeTestimonials.amina.role	People Operations Lead, AtlasWorks	astro/content/site-pages/mid-size.html	content
+midSizeTestimonials.daniel.quote	"As headcount grew, approvals and contractor invoices became messy fast. Garna gave us a cleaner workflow without adding another layer of manual checks"	astro/content/site-pages/mid-size.html	content
+midSizeTestimonials.daniel.role	COO, MarketLoop	astro/content/site-pages/mid-size.html	content
+midSizeTestimonials.priya.quote	"Garna helped us move payroll out of spreadsheets. Employees and contractors now run through one process, and finance has one clear view of costs"	astro/content/site-pages/mid-size.html	content
+midSizeTestimonials.priya.role	Finance Director, CloudNest	astro/content/site-pages/mid-size.html	content
+nav.brand	garna	astro/content/site-pages/mid-size.html	content
+noHiddenFees.description	Transparent pricing, zero setup cost	astro/content/site-pages/mid-size.html	content
+noHiddenFees.paymentInfo.exchangeRate	Exchange rate	astro/content/site-pages/mid-size.html	content
+noHiddenFees.paymentInfo.fees	Fees	astro/content/site-pages/mid-size.html	content
+noHiddenFees.paymentInfo.recipientReceives	Recipient receives	astro/content/site-pages/mid-size.html	content
+noHiddenFees.paymentInfo.title	Payment Information	astro/content/site-pages/mid-size.html	content
+noHiddenFees.title	No hidden fees	astro/content/site-pages/mid-size.html	content
+people.developer	Developer	astro/content/site-pages/mid-size.html	content
+people.opsManager	Ops Manager	astro/content/site-pages/mid-size.html	content
+people.webDesigner	Web Designer	astro/content/site-pages/mid-size.html	content
+whyGarna.cards.adminTime.description	Automated contracts and payroll reduce admin work by up to 70%	astro/content/site-pages/mid-size.html	content
+whyGarna.cards.adminTime.title	Cut admin time	astro/content/site-pages/mid-size.html	content
+whyGarna.cards.api.description	Run mass payouts and workflows programmatically	astro/content/site-pages/mid-size.html	content
+whyGarna.cards.api.title	Scale with API	astro/content/site-pages/mid-size.html	content
+whyGarna.cards.ip.description	All contractor work results belong entirely to you	astro/content/site-pages/mid-size.html	content
+whyGarna.cards.ip.title	Full ownership of IP	astro/content/site-pages/mid-size.html	content
+whyGarna.cards.reporting.description	Agreements, invoices, transactions, and exports in one place	astro/content/site-pages/mid-size.html	content
+whyGarna.cards.reporting.title	Perfect reporting	astro/content/site-pages/mid-size.html	content
+whyGarna.cards.topUp.description	Fund payouts using bank transfers or crypto	astro/content/site-pages/mid-size.html	content
+whyGarna.cards.topUp.title	Top up via bank or crypto	astro/content/site-pages/mid-size.html	content
+whyGarna.cta.button	Book a demo	astro/content/site-pages/mid-size.html	content
+whyGarna.cta.description	Join thousands of businesses streamlining their global payroll today	astro/content/site-pages/mid-size.html	content
+whyGarna.cta.title	Ready to get started?	astro/content/site-pages/mid-size.html	content
+whyGarna.description	Discover the key benefits that make payroll simple, global, and secure	astro/content/site-pages/mid-size.html	content
+whyGarna.title	Why Garna stands out	astro/content/site-pages/mid-size.html	content
+choice.description	Growing teams need payroll software that won't collapse when things get busy and the team starts getting bigger	astro/content/site-pages/mid-size.html	content-unkeyed
+choice.item1.description	Garna is the solution for companies that are scaling up fast and need all those employees paid on time. It's for agencies, SaaS companies, and all sorts of distributed organisations who have people working all over the globe	astro/content/site-pages/mid-size.html	content-unkeyed
+choice.item1.title	...because your team is scaling	astro/content/site-pages/mid-size.html	content-unkeyed
+choice.item2.description	Launch payroll services under your own brand or integrate payroll functionality directly into your product through API-first infrastructure and white-label capabilities	astro/content/site-pages/mid-size.html	content-unkeyed
+choice.item2.title	...because white-label infrastructure is your choice	astro/content/site-pages/mid-size.html	content-unkeyed
+choice.item3.description	Automation allows you to cut down on payroll errors and all that routine, manual work that influences your finance and HR team's efficiency	astro/content/site-pages/mid-size.html	content-unkeyed
+choice.item3.title	...because you reduce admin work and payroll errors	astro/content/site-pages/mid-size.html	content-unkeyed
+choice.item4.description	If you need to keep track of payroll costs, make sure payments are going out on time, and keep an eye on all the reports and data, Garna has you covered with real-time visibility from a centralized dashboard	astro/content/site-pages/mid-size.html	content-unkeyed
+choice.item4.title	...because you prefer real-time visibility on every payroll operation	astro/content/site-pages/mid-size.html	content-unkeyed
+choice.title	Why Growing Companies Choose Garna	astro/content/site-pages/mid-size.html	content-unkeyed
+midSizeTestimonials.description	Companies across the SaaS sector, e-commerce, agencies, marketplaces and remote-first businesses put their trust in Garna	astro/content/site-pages/mid-size.html	content-unkeyed
+midSizeTestimonials.title	Trusted by Growing Teams	astro/content/site-pages/mid-size.html	content-unkeyed
+payrollWorks.description	With simple steps, we transformed the working process into a system that works seamlessly on autopilot	astro/content/site-pages/mid-size.html	content-unkeyed
+payrollWorks.title	Payroll works. But how?	astro/content/site-pages/mid-size.html	content-unkeyed
+solutions.contractors.description	Run payroll for all your employees, freelancers, and contractors from one single system. Garna simplifies payroll by automating all the key elements, like calculations, payments and compliance processes, so you can focus on growth without the stress of manual paperwork	astro/content/site-pages/mid-size.html	content-unkeyed
+solutions.contractors.title	Pay Global Contractors	astro/content/site-pages/mid-size.html	content-unkeyed
+solutions.employees.description	Need to hire and pay team members in loads of different countries? No need to build a separate payroll system for each one. Garna lets you automate your payroll, cut down on compliance risks and manage international staff from one easy-to-use hub	astro/content/site-pages/mid-size.html	content-unkeyed
+solutions.employees.title	Hire Employees Worldwide	astro/content/site-pages/mid-size.html	content-unkeyed
+solutions.title	Garna Solutions for Growing Businesses	astro/content/site-pages/mid-size.html	content-unkeyed
+contractorBenefits.earlyPayout.amountLabel	Amount requested	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.earlyPayout.approve	Approve	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.earlyPayout.decline	Decline	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.earlyPayout.description	Request early access to earned payouts through a simple and transparent approval flow	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.earlyPayout.employeeLabel	Employee	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.earlyPayout.employeeName	Sarah Lewis	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.earlyPayout.newBadge	New	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.earlyPayout.reasonLabel	Reason	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.earlyPayout.reasonValue	Personal expenses	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.earlyPayout.statusLabel	Status	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.earlyPayout.statusPending	Pending	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.earlyPayout.title	Early payout access	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.methods.items.bankTransfer	Bank transfer	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.methods.items.cardTransfer	Transfer to a card	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.methods.items.crypto	Cryptocurrencies	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.methods.items.eWallets	Electronic wallets	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.methods.items.newBadge	New	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.mobile.appName	Garna	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.mobile.date	Tuesday, January 10	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.mobile.description	Get notified when your payout is credited and manage balances and payouts in one app	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.mobile.justNow	just now	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.mobile.lte	LTE	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.mobile.notificationBody	Your January payout has been credited to your balance	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.mobile.notificationTitle	Payout credited	astro/content/site-pages/mid-size.html	visual-or-ui
+contractorBenefits.mobile.title	Mobile first experience	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.accountNumber	Account number	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.actions.addFunds	Add funds	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.actions.details	Details	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.actions.send	Send	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.actions.withdraw	Withdraw	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.confirmed	Confirmed	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.currencyEur	EUR	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.currencyUsd	USD	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.historyTitle	History	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.internalAccount	Internal account USD	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.title	Balance	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.fund.transferTitle	Transfer to Alina Pashkina	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.invite.emailLabel	Email	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.invite.hint	Press Enter after entering each email or copy and paste a comma-separated list of emails to add them for sending	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.invite.positionLabel	Position	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.invite.positionValue	QA Engineering Services	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.invite.sampleEmail	emma.c17503@gmail.com	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.invite.submitButton	Submit	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.invite.subtitle	Select a position and enter the email addressesof employees to send invitations to	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.invite.title	Invitation by email	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.send.amountLabel	Transfer amount, $	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.send.counter	28/255	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.send.purposeLabel	Purpose of payment	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.send.recipientEmail	1mariatestova1@gmail.com	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.send.recipientLabel	Email or username	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.send.recipientName	Maria Ban	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.send.sendButton	Send	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.send.title	Transaction to user	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.signup.companyNameLabel	Company name	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.signup.countryLabel	Country of registration	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.signup.countryValue	Cyprus	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.signup.emailLabel	Email	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.signup.nextButton	Next	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.signup.registrationDateLabel	Data of company registration	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.signup.registrationNumberLabel	Registration number	astro/content/site-pages/mid-size.html	visual-or-ui
+howTo.panel.signup.title	Sign up in Garna	astro/content/site-pages/mid-size.html	visual-or-ui
+midSizeFaq.items.q1.answer	Yes! Garna lets you manage your employees, freelancers, and contractors from the same single platform in our unified payroll system.	astro/pages/mid-size.astro	content
+midSizeFaq.items.q1.question	Can I manage employees and contractors in the same system?	astro/pages/mid-size.astro	content
+midSizeFaq.items.q2.answer	Payroll automation software saves time on doing repetitive tasks, such as manual calculations, writing invoices, sending in tax reports, and making the same payments over and over again.	astro/pages/mid-size.astro	content
+midSizeFaq.items.q2.question	How do payroll tools help reduce manual work?	astro/pages/mid-size.astro	content
+midSizeFaq.items.q3.answer	Garna makes payroll compliance very easy, thanks to the automated tax calculations, reporting tools and region-specific payroll processes designed to simplify making payroll in different countries.	astro/pages/mid-size.astro	content
+midSizeFaq.items.q3.question	How does payroll compliance work when hiring in multiple regions?	astro/pages/mid-size.astro	content
+midSizeFaq.items.q4.answer	You get access to payroll reporting and analytics including keeping track of your payroll costs and payments, and getting real-time insights into your payroll.	astro/pages/mid-size.astro	content
+midSizeFaq.items.q4.question	What kind of reporting do I get?	astro/pages/mid-size.astro	content
+midSizeFaq.items.q5.answer	Yes, Garna lets you make global payroll payments in multiple currencies using bank transfers, SWIFT, SEPA, PayPal, Payoneer, and cryptocurrency.	astro/pages/mid-size.astro	content
+midSizeFaq.items.q5.question	Do you support multi-currency payments?	astro/pages/mid-size.astro	content
+midSizeFaq.items.q6.answer	Yes! Garna can integrate with all your HR systems, accounting platforms, ERP tools, and other systems through our API integration capabilities.	astro/pages/mid-size.astro	content
+midSizeFaq.items.q6.question	Can Garna integrate with our existing systems?	astro/pages/mid-size.astro	content
+midSizeFaq.items.q7.answer	Absolutely. Garna uses secure infrastructure, encrypts all data, and has compliance-focused security protocols to protect your payroll and employee information.	astro/pages/mid-size.astro	content
+midSizeFaq.items.q7.question	Is payroll software secure for sensitive employee data?	astro/pages/mid-size.astro	content
+midSizeFaq.title	Payroll FAQs for Growing Businesses	astro/pages/mid-size.astro	content
+heroVisual.24.scheduled	24 scheduled	astro/pages/mid-size.astro	visual
+heroVisual.approvals.clear	Approvals clear	astro/pages/mid-size.astro	visual
+heroVisual.automation.status	Automation status	astro/pages/mid-size.astro	visual
+heroVisual.contractor.invoices	Contractor invoices	astro/pages/mid-size.astro	visual
+heroVisual.contractors	Contractors	astro/pages/mid-size.astro	visual
+heroVisual.countries	Countries	astro/pages/mid-size.astro	visual
+heroVisual.employees	Employees	astro/pages/mid-size.astro	visual
+heroVisual.eu.payroll.batch	EU payroll batch	astro/pages/mid-size.astro	visual
+heroVisual.friday	Friday	astro/pages/mid-size.astro	visual
+heroVisual.fx	FX	astro/pages/mid-size.astro	visual
+heroVisual.garna.io.dashboard	garna.io/dashboard	astro/pages/mid-size.astro	visual
+heroVisual.invoices	Invoices	astro/pages/mid-size.astro	visual
+heroVisual.invoices.prepared	invoices prepared	astro/pages/mid-size.astro	visual
+heroVisual.payroll.run	Payroll run	astro/pages/mid-size.astro	visual
+heroVisual.ready	Ready	astro/pages/mid-size.astro	visual
+heroVisual.recurring.payroll.active	Recurring payroll active	astro/pages/mid-size.astro	visual
+heroVisual.reports	Reports	astro/pages/mid-size.astro	visual
+heroVisual.salary.benefits	salary + benefits	astro/pages/mid-size.astro	visual
+heroVisual.synced	Synced	astro/pages/mid-size.astro	visual
+heroVisual.tax.workflows	Tax workflows	astro/pages/mid-size.astro	visual
+heroVisual.taxes	Taxes	astro/pages/mid-size.astro	visual
+heroVisual.teams	Teams	astro/pages/mid-size.astro	visual
+heroVisual.this.month	This month	astro/pages/mid-size.astro	visual
+heroVisual.tomorrow	Tomorrow	astro/pages/mid-size.astro	visual
+heroVisual.total.payroll	Total payroll	astro/pages/mid-size.astro	visual
+heroVisual.upcoming.payouts	Upcoming payouts	astro/pages/mid-size.astro	visual
+heroVisual.usd.funded	USD funded	astro/pages/mid-size.astro	visual

@@ -39,11 +39,13 @@ export const pageHeroes = {
 			'garna-hero-title-gradient leading-[1.1] md:text-6xl lg:text-7xl text-5xl font-normal tracking-tight font-manrope mb-6',
 		descriptionClass:
 			'leading-relaxed md:text-xl text-lg font-light text-gray-400 font-manrope max-w-4xl mr-auto mb-10 ml-auto',
-		title: [{ text: 'Payroll for Growing Companies' }],
+		title: [{ text: 'Payroll for Growing Companies', translateKey: 'hero.title' }],
 		description:
 			'A solution that keeps up with your growing business - a scalable platform that lets you put payroll on autopilot, manage employees and contractors from a single place',
+		descriptionTranslateKey: 'hero.description',
 		cta: {
 			label: 'Try Garna',
+			translateKey: 'hero.cta',
 			href: 'https://app.garna.io/en/auth/sign-up',
 			kind: 'signup',
 			variant: 'primary',

@@ -778,6 +778,55 @@
             }
         }
 
+        @media (min-width: 480px) {
+            .mid-size-payroll-run-header {
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 1rem;
+            }
+
+            .mid-size-payroll-run-header > div:last-child {
+                justify-self: end;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            html[lang='es'] #get-started h2[data-translate='payrollWorks.title'] {
+                max-width: 46rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            html[lang='es'] .mid-size-faq h2[data-translate='midSizeFaq.title'] {
+                max-width: 56rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            html[lang='pt'] .mid-size-faq h2[data-translate='midSizeFaq.title'] {
+                max-width: 56rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            html[lang='ru'] .mid-size-faq h2[data-translate='midSizeFaq.title'] {
+                max-width: 63rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1119px) {
+            html[lang='es'] .mid-size-payroll-side-grid,
+            html[lang='pt'] .mid-size-payroll-side-grid {
+                grid-template-rows: auto;
+            }
+
+            html[lang='es'] .mid-size-payroll-approval-card,
+            html[lang='pt'] .mid-size-payroll-approval-card {
+                display: none;
+            }
+        }
+
         @keyframes mid-size-visual-pulse {
             0%, 100% { opacity: 1; box-shadow: 0 0 0 rgba(94, 165, 0, 0); }
             50% { opacity: 0.86; box-shadow: 0 0 18px rgba(94, 165, 0, 0.22); }
@@ -840,12 +889,12 @@
     <section class="py-24">
         <div class="mx-auto max-w-7xl px-6">
             <div class="mx-auto max-w-4xl text-center">
-                <h2 class="font-manrope text-4xl font-normal leading-tight text-white md:text-5xl">
+                <h2 class="font-manrope text-4xl font-normal leading-tight text-white lg:text-5xl" data-translate="operations.title" data-title-break-after-words="en:4,pt:5,es:4">
                     Global Payroll Operations —<br>Under Your Full Control
                 </h2>
                 <div class="mx-auto mt-6 max-w-3xl space-y-5 text-lg leading-relaxed text-gray-400">
-                    <p>With growth comes operational complexity. Before you know it, you have more employees, more contractors, more global payments coming all at once</p>
-                    <p>Garna gives growing companies a solid foundation for their payroll infrastructure. It's built as a centralized system that keeps everything simple while still giving you visibility and control</p>
+                    <p data-translate="operations.intro1">With growth comes operational complexity. Before you know it, you have more employees, more contractors, more global payments coming all at once</p>
+                    <p data-translate="operations.intro2">Garna gives growing companies a solid foundation for their payroll infrastructure. It's built as a centralized system that keeps everything simple while still giving you visibility and control</p>
                 </div>
             </div>
 
@@ -853,81 +902,81 @@
                 <article class="min-w-[320px] rounded-2xl border border-white/10 bg-[#0b0b0b] p-5 md:min-w-0">
                     <div class="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0b0b0b]">
                         <div class="w-[88%] rounded-xl border border-white/10 bg-[#141414] p-4 text-white">
-                            <p class="text-sm font-semibold">Operations hub</p>
+                            <p class="min-w-0 truncate text-sm font-semibold" data-translate="operationsVisual.operationsHub">Operations hub</p>
                             <div class="mt-4 space-y-3">
-                                <div class="flex items-center justify-between text-xs"><span>Employee payroll</span><span class="font-semibold text-[#5EA500]">Live</span></div>
+                                <div class="flex items-center justify-between gap-3 text-xs"><span class="min-w-0 truncate" data-translate="operationsVisual.employeePayroll">Employee payroll</span><span class="shrink-0 font-semibold text-[#5EA500]" data-translate="operationsVisual.live">Live</span></div>
                                 <div class="h-2 rounded-full bg-white/10"><div class="mid-size-progress-a h-2 w-full rounded-full bg-[#5EA500]"></div></div>
-                                <div class="flex items-center justify-between text-xs"><span>Contractor payments</span><span class="font-semibold text-[#5EA500]">Synced</span></div>
+                                <div class="flex items-center justify-between gap-3 text-xs"><span class="min-w-0 truncate" data-translate="operationsVisual.contractorPayments">Contractor payments</span><span class="shrink-0 font-semibold text-[#5EA500]" data-translate="operationsVisual.synced">Synced</span></div>
                                 <div class="h-2 rounded-full bg-white/10"><div class="mid-size-progress-b h-2 w-full rounded-full bg-[#5EA500]"></div></div>
                             </div>
                         </div>
                     </div>
-                    <h3 class="mt-6 text-xl font-semibold text-white">One system to rule them all</h3>
-                    <p class="mt-3 text-sm leading-relaxed text-gray-400">Garna brings together every document and tool to one platform that scales with your team. Employee payroll, contractor payments, onboarding, approvals and reporting are at hand whenever you need them</p>
+                    <h3 class="mt-6 text-xl font-semibold text-white" data-translate="operations.system.title">One system to rule them all</h3>
+                    <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="operations.system.description">Garna brings together every document and tool to one platform that scales with your team. Employee payroll, contractor payments, onboarding, approvals and reporting are at hand whenever you need them</p>
                 </article>
 
                 <article class="min-w-[320px] rounded-2xl border border-white/10 bg-[#0b0b0b] p-5 md:min-w-0">
                     <div class="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0b0b0b]">
                         <div class="w-[82%] rounded-xl border border-white/10 bg-[#141414] p-4 text-white">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-sm font-semibold">Payroll spend</p>
-                                    <p class="text-xs text-gray-500">This month</p>
+                            <div class="flex items-center justify-between gap-3">
+                                <div class="min-w-0">
+                                    <p class="min-w-0 truncate text-sm font-semibold" data-translate="operationsVisual.payrollSpend">Payroll spend</p>
+                                    <p class="text-xs text-gray-500" data-translate="operationsVisual.thisMonth">This month</p>
                                 </div>
-                                <span class="mid-size-visual-pulse rounded-full bg-[#5EA500]/15 px-3 py-1 text-xs font-semibold text-[#5EA500]">Real time</span>
+                                <span class="mid-size-visual-pulse shrink-0 rounded-full bg-[#5EA500]/15 px-2 py-1 text-[10px] font-semibold text-[#5EA500] xl:px-3 xl:text-xs" data-translate="operationsVisual.realTime">Real time</span>
                             </div>
                             <div class="mt-5 grid grid-cols-3 gap-3 text-xs">
-                                <div><p class="text-gray-500">Teams</p><p class="font-semibold">$82k</p></div>
-                                <div><p class="text-gray-500">Countries</p><p class="font-semibold">14</p></div>
+                                <div><p class="min-w-0 truncate text-gray-500" data-translate="operationsVisual.teams">Teams</p><p class="font-semibold">$82k</p></div>
+                                <div><p class="min-w-0 truncate text-gray-500" data-translate="operationsVisual.countries">Countries</p><p class="font-semibold">14</p></div>
                                 <div><p class="text-gray-500">FX</p><p class="font-semibold">6</p></div>
                             </div>
                         </div>
                     </div>
-                    <h3 class="mt-6 text-xl font-semibold text-white">Total visibility for payroll costs</h3>
-                    <p class="mt-3 text-sm leading-relaxed text-gray-400">Within the platform, you can see how payroll spend goes across departments, countries, contractors, and teams in real time</p>
+                    <h3 class="mt-6 text-xl font-semibold text-white" data-translate="operations.visibility.title">Total visibility for payroll costs</h3>
+                    <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="operations.visibility.description">Within the platform, you can see how payroll spend goes across departments, countries, contractors, and teams in real time</p>
                 </article>
 
                 <article class="min-w-[320px] rounded-2xl border border-white/10 bg-[#0b0b0b] p-5 md:min-w-0">
                     <div class="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0b0b0b]">
                         <div class="w-full max-w-[14rem] space-y-1.5">
                             <div class="mid-size-row-step flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-[#141414] px-4 py-2.5 text-white">
-                                <span class="text-sm font-semibold">Invoices</span>
+                                <span class="min-w-0 truncate text-sm font-semibold" data-translate="operationsVisual.invoices">Invoices</span>
                                 <span class="flex h-5 w-5 items-center justify-center rounded-full bg-[#5EA500]/15 text-xs text-[#5EA500]">✓</span>
                             </div>
                             <div class="mid-size-row-step flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-[#191919] px-4 py-2.5 text-white" style="animation-delay: 0.28s;">
-                                <span class="text-sm font-semibold">Tax workflows</span>
+                                <span class="min-w-0 truncate text-sm font-semibold" data-translate="operationsVisual.taxWorkflows">Tax workflows</span>
                                 <span class="flex h-5 w-5 items-center justify-center rounded-full bg-[#5EA500]/15 text-xs text-[#5EA500]">✓</span>
                             </div>
                             <div class="mid-size-row-step flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-[#191919] px-4 py-2.5 text-white" style="animation-delay: 0.56s;">
-                                <span class="text-sm font-semibold">Approvals</span>
+                                <span class="min-w-0 truncate text-sm font-semibold" data-translate="operationsVisual.approvals">Approvals</span>
                                 <span class="flex h-5 w-5 items-center justify-center rounded-full bg-[#5EA500]/15 text-xs text-[#5EA500]">✓</span>
                             </div>
                         </div>
                     </div>
-                    <h3 class="mt-6 text-xl font-semibold text-white">Automation that saves from operational load</h3>
-                    <p class="mt-3 text-sm leading-relaxed text-gray-400">Payroll calculations, invoices, tax workflows, recurring payouts and approvals are automated, so your team spends less time on administrative tasks and more on earning</p>
+                    <h3 class="mt-6 text-xl font-semibold text-white" data-translate="operations.automation.title">Automation that saves from operational load</h3>
+                    <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="operations.automation.description">Payroll calculations, invoices, tax workflows, recurring payouts and approvals are automated, so your team spends less time on administrative tasks and more on earning</p>
                 </article>
 
                 <article class="min-w-[320px] rounded-2xl border border-white/10 bg-[#0b0b0b] p-5 md:min-w-0">
                     <div class="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0b0b0b]">
                         <div class="w-[82%] rounded-xl border border-white/10 bg-[#141414] p-4 text-white">
                             <div class="grid grid-cols-2 gap-3 text-xs">
-                                <div class="mid-size-chip-step rounded-lg bg-white/5 px-2 py-2 text-center">Local</div>
-                                <div class="mid-size-chip-step rounded-lg bg-white/5 px-2 py-2 text-center" style="animation-delay: 0.18s;">Hybrid</div>
-                                <div class="mid-size-chip-step rounded-lg bg-white/5 px-2 py-2 text-center text-[11px]" style="animation-delay: 0.36s;">International</div>
-                                <div class="mid-size-chip-step rounded-lg bg-[#5EA500]/15 px-2 py-2 text-center text-[#5EA500]" style="animation-delay: 0.54s;">Remote</div>
+                                <div class="mid-size-chip-step min-w-0 truncate rounded-lg bg-white/5 px-2 py-2 text-center" data-translate="operationsVisual.local">Local</div>
+                                <div class="mid-size-chip-step min-w-0 truncate rounded-lg bg-white/5 px-2 py-2 text-center" style="animation-delay: 0.18s;" data-translate="operationsVisual.hybrid">Hybrid</div>
+                                <div class="mid-size-chip-step min-w-0 truncate rounded-lg bg-white/5 px-2 py-2 text-center text-[11px]" style="animation-delay: 0.36s;" data-translate="operationsVisual.international">International</div>
+                                <div class="mid-size-chip-step min-w-0 truncate rounded-lg bg-[#5EA500]/15 px-2 py-2 text-center text-[#5EA500]" style="animation-delay: 0.54s;" data-translate="operationsVisual.remote">Remote</div>
                             </div>
                         </div>
                     </div>
-                    <h3 class="mt-6 text-xl font-semibold text-white">Built for teams all around the world</h3>
-                    <p class="mt-3 text-sm leading-relaxed text-gray-400">Your workforce might combine different formats — local, hybrid, international, completely remote. With Garna, your payroll operations go across different locations and payment structures</p>
+                    <h3 class="mt-6 text-xl font-semibold text-white" data-translate="operations.teams.title">Built for teams all around the world</h3>
+                    <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="operations.teams.description">Your workforce might combine different formats — local, hybrid, international, completely remote. With Garna, your payroll operations go across different locations and payment structures</p>
                 </article>
 
                 <article class="min-w-[320px] rounded-2xl border border-white/10 bg-[#0b0b0b] p-5 md:min-w-0">
                     <div class="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0b0b0b]">
                         <div class="w-[88%] rounded-xl border border-white/10 bg-[#141414] p-4 text-white">
                             <div class="flex items-center justify-between gap-4">
-                                <p class="text-sm font-semibold">Growth controls</p>
+                                <p class="min-w-0 truncate text-sm font-semibold" data-translate="operationsVisual.growthControls">Growth controls</p>
                                 <span class="rounded-full bg-[#5EA500]/15 px-2.5 py-1 text-xs font-semibold text-[#5EA500]">API</span>
                             </div>
                             <div class="mt-4 grid grid-cols-[minmax(0,1fr)_auto] gap-3">
@@ -939,14 +988,14 @@
                                     <span class="mid-size-bar h-12 w-full rounded bg-[#7ED321]" style="animation-delay: 0.48s;"></span>
                                 </div>
                                 <div class="space-y-1.5 text-[10px] text-gray-400">
-                                    <div class="rounded-lg bg-white/5 px-2 py-1">Teams</div>
-                                    <div class="rounded-lg bg-white/5 px-2 py-1">Markets</div>
+                                    <div class="min-w-0 truncate rounded-lg bg-white/5 px-2 py-1" data-translate="operationsVisual.teams">Teams</div>
+                                    <div class="min-w-0 truncate rounded-lg bg-white/5 px-2 py-1" data-translate="operationsVisual.markets">Markets</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <h3 class="mt-6 text-xl font-semibold text-white">Flexibility attuned to your growth</h3>
-                    <p class="mt-3 text-sm leading-relaxed text-gray-400">When a payroll system is truly yours, it scales with you and with API integrations, flexible payment infrastructure and workflows that expand as you grow</p>
+                    <h3 class="mt-6 text-xl font-semibold text-white" data-translate="operations.flexibility.title">Flexibility attuned to your growth</h3>
+                    <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="operations.flexibility.description">When a payroll system is truly yours, it scales with you and with API integrations, flexible payment infrastructure and workflows that expand as you grow</p>
                 </article>
 
                 <article class="min-w-[320px] rounded-2xl border border-white/10 bg-[#0b0b0b] p-5 md:min-w-0">
@@ -954,16 +1003,16 @@
                         <div class="w-[82%] rounded-xl border border-white/10 bg-[#141414] p-4 text-white">
                             <div class="flex items-center gap-3">
                                 <div class="mid-size-check-glow flex h-12 w-12 min-h-12 min-w-12 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/15 text-xl text-[#5EA500]">✓</div>
-                                <div>
-                                    <p class="text-sm font-semibold">Compliance check</p>
-                                    <p class="text-xs text-gray-500">Payroll controls enabled</p>
+                                <div class="min-w-0">
+                                    <p class="min-w-0 truncate text-sm font-semibold" data-translate="operationsVisual.complianceCheck">Compliance check</p>
+                                    <p class="min-w-0 truncate text-xs text-gray-500" data-translate="operationsVisual.controlsEnabled">Payroll controls enabled</p>
                                 </div>
                             </div>
-                            <div class="mt-4 rounded-lg bg-[#5EA500]/10 px-3 py-2 text-xs text-[#5EA500]">Reporting workflow ready</div>
+                            <div class="mt-4 min-w-0 truncate rounded-lg bg-[#5EA500]/10 px-3 py-2 text-xs text-[#5EA500]" data-translate="operationsVisual.reportingReady">Reporting workflow ready</div>
                         </div>
                     </div>
-                    <h3 class="mt-6 text-xl font-semibold text-white">No more manual oversight of compliance</h3>
-                    <p class="mt-3 text-sm leading-relaxed text-gray-400">To avoid possible compliance issues, the system uses built-in operational controls, automated payroll tax handling, and reporting workflows</p>
+                    <h3 class="mt-6 text-xl font-semibold text-white" data-translate="operations.compliance.title">No more manual oversight of compliance</h3>
+                    <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="operations.compliance.description">To avoid possible compliance issues, the system uses built-in operational controls, automated payroll tax handling, and reporting workflows</p>
                 </article>
             </div>
         </div>
@@ -973,7 +1022,7 @@
     <section class="hidden lg:pb-32 pb-16 relative">
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
             <div class="lg:mb-20 text-center max-w-3xl mr-auto mb-16 ml-auto">
-                <h2 class="lg:text-6xl text-4xl font-normal text-white tracking-tight font-manrope mb-6"
+                <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope mb-6"
                     data-translate="features.title">Modern platform for managing global payroll</h2>
                 <p class="leading-relaxed text-xl font-light text-gray-400 font-manrope"
                     data-translate="features.description">We streamline payroll processing, offering flexible, reliable
@@ -1331,69 +1380,69 @@
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
             <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
                 <div class="max-w-xl text-left">
-                    <h2 class="text-left text-4xl font-normal tracking-tight text-white font-manrope lg:text-5xl">Flexible and Easy Payroll Running</h2>
-                    <p class="mt-6 text-lg font-light leading-relaxed text-gray-400 font-manrope">Garna's goal is to take the unnecessary tasks off the shoulders of your team, so that you can keep growing without distractions</p>
+                    <h2 class="text-left text-4xl font-normal tracking-tight text-white font-manrope lg:text-5xl" data-translate="flexible.title">Flexible and Easy Payroll Running</h2>
+                    <p class="mt-6 text-lg font-light leading-relaxed text-gray-400 font-manrope" data-translate="flexible.description">Garna's goal is to take the unnecessary tasks off the shoulders of your team, so that you can keep growing without distractions</p>
                 </div>
 
                 <div class="grid gap-x-8 gap-y-7 md:grid-cols-2">
                     <div class="border-t border-white/10 pt-5">
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-start gap-3">
                             <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/10 text-[#5EA500]">
                                 <i data-lucide="refresh-cw" class="h-4.5 w-4.5"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-white">Automated Payroll Processing</h3>
+                            <h3 class="pt-1 text-lg font-semibold text-white" data-translate="flexible.items.automation.title">Automated Payroll Processing</h3>
                         </div>
-                        <p class="mt-3 text-sm leading-relaxed text-gray-400">All the routine tasks are automated now. Send out invoices to contractors, make regular payments and other repetitive work with a couple of clicks</p>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="flexible.items.automation.description">All the routine tasks are automated now. Send out invoices to contractors, make regular payments and other repetitive work with a couple of clicks</p>
                     </div>
 
                     <div class="border-t border-white/10 pt-5">
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-start gap-3">
                             <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/10 text-[#5EA500]">
                                 <i data-lucide="layout-dashboard" class="h-4.5 w-4.5"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-white">Centralized Control & Visibility</h3>
+                            <h3 class="pt-1 text-lg font-semibold text-white" data-translate="flexible.items.control.title">Centralized Control & Visibility</h3>
                         </div>
-                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Get a clear view of your payroll costs, payment status, employee pay, and contractor payouts all in one place with real-time insights and reporting</p>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="flexible.items.control.description">Get a clear view of your payroll costs, payment status, employee pay, and contractor payouts all in one place with real-time insights and reporting</p>
                     </div>
 
                     <div class="border-t border-white/10 pt-5">
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-start gap-3">
                             <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/10 text-[#5EA500]">
                                 <i data-lucide="headphones" class="h-4.5 w-4.5"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-white">24/7 Support</h3>
+                            <h3 class="pt-1 text-lg font-semibold text-white" data-translate="flexible.items.support.title">24/7 Support</h3>
                         </div>
-                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Garna offers global 24/7 support for your finance team, HR, contractors and employees</p>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="flexible.items.support.description">Garna offers global 24/7 support for your finance team, HR, contractors and employees</p>
                     </div>
 
                     <div class="border-t border-white/10 pt-5">
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-start gap-3">
                             <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/10 text-[#5EA500]">
                                 <i data-lucide="smartphone" class="h-4.5 w-4.5"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-white">Mobile-First Experience</h3>
+                            <h3 class="pt-1 text-lg font-semibold text-white" data-translate="flexible.items.mobile.title">Mobile-First Experience</h3>
                         </div>
-                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Do payroll on the go with a simple, user-friendly platform designed for teams that work from anywhere</p>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="flexible.items.mobile.description">Do payroll on the go with a simple, user-friendly platform designed for teams that work from anywhere</p>
                     </div>
 
                     <div class="border-t border-white/10 pt-5">
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-start gap-3">
                             <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/10 text-[#5EA500]">
                                 <i data-lucide="globe-2" class="h-4.5 w-4.5"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-white">Global Reach</h3>
+                            <h3 class="pt-1 text-lg font-semibold text-white" data-translate="flexible.items.reach.title">Global Reach</h3>
                         </div>
-                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Pay people all around the world with flexible payment options including bank transfers, local currencies, SWIFT, SEPA, PayPal, Payoneer, and crypto</p>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="flexible.items.reach.description">Pay people all around the world with flexible payment options including bank transfers, local currencies, SWIFT, SEPA, PayPal, Payoneer, and crypto</p>
                     </div>
 
                     <div class="border-t border-white/10 pt-5">
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-start gap-3">
                             <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/10 text-[#5EA500]">
                                 <i data-lucide="zap" class="h-4.5 w-4.5"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-white">Early Payout Access</h3>
+                            <h3 class="pt-1 text-lg font-semibold text-white" data-translate="flexible.items.earlyPayout.title">Early Payout Access</h3>
                         </div>
-                        <p class="mt-3 text-sm leading-relaxed text-gray-400">Give your contractors and employees faster payouts with flexible funding and payment options</p>
+                        <p class="mt-3 text-sm leading-relaxed text-gray-400" data-translate="flexible.items.earlyPayout.description">Give your contractors and employees faster payouts with flexible funding and payment options</p>
                     </div>
                 </div>
             </div>
@@ -1722,16 +1771,16 @@
     <section class="py-16 lg:py-28">
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
             <div class="mx-auto max-w-4xl text-center">
-                <h2 class="text-4xl font-normal tracking-tight text-white font-manrope lg:text-5xl">Garna Solutions for Growing Businesses</h2>
+                <h2 class="text-4xl font-normal tracking-tight text-white font-manrope lg:text-5xl" data-translate="solutions.title">Garna Solutions for Growing Businesses</h2>
             </div>
 
             <div class="mt-12 rounded-2xl border border-white/10 bg-[#0b0b0b] p-6 md:p-10 lg:p-12">
                 <div class="grid items-stretch gap-10 md:grid-cols-2 md:gap-0">
                     <div class="flex flex-col md:pr-10 lg:pr-14">
-                        <h3 class="text-2xl font-semibold text-white font-manrope">Pay Global Contractors</h3>
-                        <p class="mt-6 text-base leading-relaxed text-gray-400 font-manrope md:text-lg">Run payroll for all your employees, freelancers, and contractors from one single system. Garna simplifies payroll by automating all the key elements, like calculations, payments and compliance processes, so you can focus on growth without the stress of manual paperwork</p>
+                        <h3 class="text-2xl font-semibold text-white font-manrope" data-translate="solutions.contractors.title">Pay Global Contractors</h3>
+                        <p class="mt-6 text-base leading-relaxed text-gray-400 font-manrope md:text-lg" data-translate="solutions.contractors.description">Run payroll for all your employees, freelancers, and contractors from one single system. Garna simplifies payroll by automating all the key elements, like calculations, payments and compliance processes, so you can focus on growth without the stress of manual paperwork</p>
                         <a href="/en/contractor-of-record" class="group mt-auto inline-flex w-fit items-center gap-2 pt-8 font-manrope text-base font-normal text-[#5EA500] transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5EA500]">
-                            <span>Learn more</span>
+                            <span data-translate="common.learnMore">Learn more</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                                 class="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1">
@@ -1742,10 +1791,10 @@
                     </div>
 
                     <div class="flex flex-col border-t border-white/10 pt-10 md:border-l md:border-t-0 md:pl-10 md:pt-0 lg:pl-14">
-                        <h3 class="text-2xl font-semibold text-white font-manrope">Hire Employees Worldwide</h3>
-                        <p class="mt-6 text-base leading-relaxed text-gray-400 font-manrope md:text-lg">Need to hire and pay team members in loads of different countries? No need to build a separate payroll system for each one. Garna lets you automate your payroll, cut down on compliance risks and manage international staff from one easy-to-use hub</p>
+                        <h3 class="text-2xl font-semibold text-white font-manrope" data-translate="solutions.employees.title">Hire Employees Worldwide</h3>
+                        <p class="mt-6 text-base leading-relaxed text-gray-400 font-manrope md:text-lg" data-translate="solutions.employees.description">Need to hire and pay team members in loads of different countries? No need to build a separate payroll system for each one. Garna lets you automate your payroll, cut down on compliance risks and manage international staff from one easy-to-use hub</p>
                         <a href="/en/employer-of-record" class="group mt-auto inline-flex w-fit items-center gap-2 pt-8 font-manrope text-base font-normal text-[#5EA500] transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5EA500]">
-                            <span>Learn more</span>
+                            <span data-translate="common.learnMore">Learn more</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                                 class="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1">
@@ -1760,11 +1809,11 @@
     </section>
 
     <!-- Payroll Workflow -->
-    <section class="bg-[#020202] pt-16 pb-16 lg:pt-32 lg:pb-32" id="get-started">
+    <section class="pt-16 pb-16 lg:pt-32 lg:pb-32" id="get-started">
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
             <div class="mx-auto max-w-4xl text-center">
-                <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight mb-6 font-manrope">Payroll works. But how?</h2>
-                <p class="text-xl font-light text-gray-400 font-manrope">With simple steps, we transformed the working process into a system that works seamlessly on autopilot</p>
+                <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight mb-6 font-manrope" data-translate="payrollWorks.title">Payroll works. But how?</h2>
+                <p class="text-xl font-light text-gray-400 font-manrope" data-translate="payrollWorks.description">With simple steps, we transformed the working process into a system that works seamlessly on autopilot</p>
             </div>
 
             <div class="mt-16 grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
@@ -1772,28 +1821,28 @@
                     <div class="relative pl-14">
                         <div class="absolute left-5 top-11 bottom-[-2rem] w-px bg-white/10"></div>
                         <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-[#5EA500] bg-[#050505] text-sm font-semibold text-[#5EA500] shadow-[0_0_15px_rgba(94,165,0,0.3)]">1</div>
-                        <h3 class="text-2xl font-normal tracking-tight text-white font-manrope">Set Up Your Team and Payroll Structure</h3>
-                        <p class="mt-4 text-base leading-relaxed text-gray-400 font-manrope">Get your company set up, get your employees and contractors on board, sort out job roles and get your payroll workflows sorted out to suit your business</p>
+                        <h3 class="text-2xl font-normal tracking-tight text-white font-manrope" data-translate="payrollWorks.steps.setup.title">Set Up Your Team and Payroll Structure</h3>
+                        <p class="mt-4 text-base leading-relaxed text-gray-400 font-manrope" data-translate="payrollWorks.steps.setup.description">Get your company set up, get your employees and contractors on board, sort out job roles and get your payroll workflows sorted out to suit your business</p>
                     </div>
 
                     <div class="relative pl-14">
                         <div class="absolute left-5 top-11 bottom-[-2rem] w-px bg-white/10"></div>
                         <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-[#5EA500] bg-[#050505] text-sm font-semibold text-[#5EA500] shadow-[0_0_15px_rgba(94,165,0,0.3)]">2</div>
-                        <h3 class="text-2xl font-normal tracking-tight text-white font-manrope">Automate Calculations and Taxes</h3>
-                        <p class="mt-4 text-base leading-relaxed text-gray-400 font-manrope">Our platform does all the hard work: calculate payments, taxes, any deductions, and invoices, according to configured rules and law requirements</p>
+                        <h3 class="text-2xl font-normal tracking-tight text-white font-manrope" data-translate="payrollWorks.steps.automate.title">Automate Calculations and Taxes</h3>
+                        <p class="mt-4 text-base leading-relaxed text-gray-400 font-manrope" data-translate="payrollWorks.steps.automate.description">Our platform does all the hard work: calculate payments, taxes, any deductions, and invoices, according to configured rules and law requirements</p>
                     </div>
 
                     <div class="relative pl-14">
                         <div class="absolute left-5 top-11 bottom-[-2rem] w-px bg-white/10"></div>
                         <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-[#5EA500] bg-[#050505] text-sm font-semibold text-[#5EA500] shadow-[0_0_15px_rgba(94,165,0,0.3)]">3</div>
-                        <h3 class="text-2xl font-normal tracking-tight text-white font-manrope">Run Payroll and Payments</h3>
-                        <p class="mt-4 text-base leading-relaxed text-gray-400 font-manrope">Get your payroll sorted, fund your account, and send out payments to people in different countries with our flexible payment options in a few clicks</p>
+                        <h3 class="text-2xl font-normal tracking-tight text-white font-manrope" data-translate="payrollWorks.steps.run.title">Run Payroll and Payments</h3>
+                        <p class="mt-4 text-base leading-relaxed text-gray-400 font-manrope" data-translate="payrollWorks.steps.run.description">Get your payroll sorted, fund your account, and send out payments to people in different countries with our flexible payment options in a few clicks</p>
                     </div>
 
                     <div class="relative pl-14">
                         <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-[#5EA500] bg-[#050505] text-sm font-semibold text-[#5EA500] shadow-[0_0_15px_rgba(94,165,0,0.3)]">4</div>
-                        <h3 class="text-2xl font-normal tracking-tight text-white font-manrope">Track, Report, and Scale</h3>
-                        <p class="mt-4 text-base leading-relaxed text-gray-400 font-manrope">See how your payroll is going through the centralized dashboards, pull off reports in seconds, and increase your payroll infrastructure as your team grows and expands</p>
+                        <h3 class="text-2xl font-normal tracking-tight text-white font-manrope" data-translate="payrollWorks.steps.track.title">Track, Report, and Scale</h3>
+                        <p class="mt-4 text-base leading-relaxed text-gray-400 font-manrope" data-translate="payrollWorks.steps.track.description">See how your payroll is going through the centralized dashboards, pull off reports in seconds, and increase your payroll infrastructure as your team grows and expands</p>
                     </div>
                 </div>
 
@@ -1813,106 +1862,106 @@
                         </div>
 
                         <div class="grid gap-4 p-5">
-                            <div class="grid grid-cols-[1fr_auto] items-start gap-4 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-4">
-                                <div>
-                                    <p class="text-base font-semibold text-white">June payroll run</p>
-                                    <p class="mt-1 text-xs text-gray-500">Employees, contractors, taxes, and invoices in one batch</p>
+                            <div class="mid-size-payroll-run-header grid grid-cols-1 items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-4 min-[480px]:grid-cols-[minmax(0,1fr)_auto] min-[480px]:gap-4">
+                                <div class="min-w-0">
+                                    <p class="truncate text-base font-semibold text-white" data-translate="payrollWorksVisual.title">June payroll run</p>
+                                    <p class="mt-1 truncate text-xs text-gray-500" data-translate="payrollWorksVisual.subtitle">Employees, contractors, taxes, and invoices in one batch</p>
                                 </div>
-                                <div class="flex min-w-max items-center gap-2 justify-self-end rounded-full bg-[#5EA500]/12 px-3 py-1.5 text-xs text-[#5EA500]">
+                                <div class="flex min-w-0 max-w-48 items-center gap-2 justify-self-start rounded-full bg-[#5EA500]/12 px-3 py-1.5 text-xs text-[#5EA500] min-[480px]:justify-self-end">
                                     <span class="h-2 w-2 rounded-full bg-[#5EA500]"></span>
-                                    Ready to approve
+                                    <span class="min-w-0 truncate" data-translate="payrollWorksVisual.readyToApprove">Ready to approve</span>
                                 </div>
                             </div>
 
                             <div class="grid gap-4 xl:grid-cols-[1.35fr_0.8fr]">
                                 <div class="flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.04] p-4">
                                     <div class="mb-3 grid grid-cols-[1.45fr_0.65fr_0.65fr] gap-3 px-3 text-[10px] uppercase tracking-wide text-gray-500">
-                                        <span>Recipient</span>
-                                        <span>Type</span>
-                                        <span class="text-right">Net pay</span>
+                                        <span class="min-w-0 truncate" data-translate="payrollWorksVisual.recipient">Recipient</span>
+                                        <span class="min-w-0 truncate" data-translate="payrollWorksVisual.type">Type</span>
+                                        <span class="min-w-0 truncate text-right" data-translate="payrollWorksVisual.netPay">Net pay</span>
                                     </div>
 
                                     <div class="space-y-2">
                                         <div class="grid grid-cols-[1.45fr_0.65fr_0.65fr] items-center gap-3 rounded-lg bg-white/[0.06] px-3 py-2 text-xs">
-                                            <div class="flex items-center gap-2.5">
+                                            <div class="flex min-w-0 items-center gap-2.5">
                                                 <img src="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg" alt="Mia Johnson avatar" class="h-7 w-7 rounded-full object-cover" loading="lazy" decoding="async" />
-                                                <div>
-                                                    <p class="font-medium text-white">Mia Johnson</p>
-                                                    <p class="mt-0.5 text-[10px] text-gray-500">United States</p>
+                                                <div class="min-w-0">
+                                                    <p class="truncate font-medium text-white">Mia Johnson</p>
+                                                    <p class="mt-0.5 truncate text-[10px] text-gray-500" data-translate="payrollWorksVisual.unitedStates">United States</p>
                                                 </div>
                                             </div>
-                                            <span class="rounded-full bg-white/[0.07] px-2 py-1 text-center text-gray-300">Employee</span>
+                                            <span class="min-w-0 truncate rounded-full bg-white/[0.07] px-2 py-1 text-center text-gray-300" data-translate="payrollWorksVisual.employee">Employee</span>
                                             <span class="text-right font-semibold text-white">$6,420</span>
                                         </div>
                                         <div class="grid grid-cols-[1.45fr_0.65fr_0.65fr] items-center gap-3 rounded-lg bg-white/[0.06] px-3 py-2 text-xs">
-                                            <div class="flex items-center gap-2.5">
+                                            <div class="flex min-w-0 items-center gap-2.5">
                                                 <img src="/pages/payroll-solution-new/assets/03-83a1ae5f-c842-4ee9-a912-505fc66a1ee0_320w.webp" alt="Luis Ortega avatar" class="h-7 w-7 rounded-full object-cover" loading="lazy" decoding="async" />
-                                                <div>
-                                                    <p class="font-medium text-white">Luis Ortega</p>
-                                                    <p class="mt-0.5 text-[10px] text-gray-500">Spain</p>
+                                                <div class="min-w-0">
+                                                    <p class="truncate font-medium text-white">Luis Ortega</p>
+                                                    <p class="mt-0.5 truncate text-[10px] text-gray-500" data-translate="payrollWorksVisual.spain">Spain</p>
                                                 </div>
                                             </div>
-                                            <span class="rounded-full bg-white/[0.07] px-2 py-1 text-center text-gray-300">Contractor</span>
+                                            <span class="min-w-0 truncate rounded-full bg-white/[0.07] px-2 py-1 text-center text-gray-300" data-translate="payrollWorksVisual.contractor">Contractor</span>
                                             <span class="text-right font-semibold text-white">€4,850</span>
                                         </div>
                                         <div class="grid grid-cols-[1.45fr_0.65fr_0.65fr] items-center gap-3 rounded-lg bg-[#5EA500]/10 px-3 py-2 text-xs">
-                                            <div class="flex items-center gap-2.5">
+                                            <div class="flex min-w-0 items-center gap-2.5">
                                                 <img src="/pages/payroll-solution-new/assets/08-photo-1534528741775-53994a69daeb.jpg" alt="Ava Martins avatar" class="h-7 w-7 rounded-full object-cover" loading="lazy" decoding="async" />
-                                                <div>
-                                                    <p class="font-medium text-white">Ava Martins</p>
-                                                    <p class="mt-0.5 text-[10px] text-gray-500">Portugal</p>
+                                                <div class="min-w-0">
+                                                    <p class="truncate font-medium text-white">Ava Martins</p>
+                                                    <p class="mt-0.5 truncate text-[10px] text-gray-500" data-translate="payrollWorksVisual.portugal">Portugal</p>
                                                 </div>
                                             </div>
-                                            <span class="rounded-full bg-[#5EA500]/15 px-2 py-1 text-center text-[#A7E35D]">Employee</span>
+                                            <span class="min-w-0 truncate rounded-full bg-[#5EA500]/15 px-2 py-1 text-center text-[#A7E35D]" data-translate="payrollWorksVisual.employee">Employee</span>
                                             <span class="text-right font-semibold text-white">€5,100</span>
                                         </div>
                                     </div>
                                     <div class="mt-2 grid grid-cols-[1.45fr_0.65fr_0.65fr] items-center gap-3 rounded-lg bg-white/[0.06] px-3 py-2 text-xs">
-                                        <div class="flex items-center gap-2.5">
+                                        <div class="flex min-w-0 items-center gap-2.5">
                                             <img src="/pages/payroll-solution-new/assets/05-f8322831-e2ba-4007-9960-8e7e82b00480_320w.webp" alt="Nadia Lee avatar" class="h-7 w-7 rounded-full object-cover" loading="lazy" decoding="async" />
-                                            <div>
-                                                <p class="font-medium text-white">Nadia Lee</p>
-                                                <p class="mt-0.5 text-[10px] text-gray-500">Singapore</p>
+                                            <div class="min-w-0">
+                                                <p class="truncate font-medium text-white">Nadia Lee</p>
+                                                <p class="mt-0.5 truncate text-[10px] text-gray-500" data-translate="payrollWorksVisual.singapore">Singapore</p>
                                             </div>
                                         </div>
-                                        <span class="rounded-full bg-white/[0.07] px-2 py-1 text-center text-gray-300">Contractor</span>
+                                        <span class="min-w-0 truncate rounded-full bg-white/[0.07] px-2 py-1 text-center text-gray-300" data-translate="payrollWorksVisual.contractor">Contractor</span>
                                         <span class="text-right font-semibold text-white">$3,880</span>
                                     </div>
                                     <div class="mt-3 grid grid-cols-3 gap-2 text-xs">
                                         <div class="rounded-lg bg-white/[0.06] px-3 py-2">
-                                            <p class="text-[10px] uppercase tracking-wide text-gray-500">Recipients</p>
-                                            <p class="mt-1 font-semibold text-white">4 synced</p>
+                                            <p class="truncate text-[10px] uppercase tracking-wide text-gray-500" data-translate="payrollWorksVisual.recipients">Recipients</p>
+                                            <p class="mt-1 truncate font-semibold text-white" data-translate="payrollWorksVisual.synced4">4 synced</p>
                                         </div>
                                         <div class="rounded-lg bg-white/[0.06] px-3 py-2">
-                                            <p class="text-[10px] uppercase tracking-wide text-gray-500">Countries</p>
-                                            <p class="mt-1 font-semibold text-white">4 active</p>
+                                            <p class="truncate text-[10px] uppercase tracking-wide text-gray-500" data-translate="payrollWorksVisual.countries">Countries</p>
+                                            <p class="mt-1 truncate font-semibold text-white" data-translate="payrollWorksVisual.active4">4 active</p>
                                         </div>
                                         <div class="rounded-lg bg-white/[0.06] px-3 py-2">
-                                            <p class="text-[10px] uppercase tracking-wide text-gray-500">FX check</p>
-                                            <p class="mt-1 font-semibold text-white">Ready</p>
+                                            <p class="truncate text-[10px] uppercase tracking-wide text-gray-500" data-translate="payrollWorksVisual.fxCheck">FX check</p>
+                                            <p class="mt-1 truncate font-semibold text-white" data-translate="payrollWorksVisual.ready">Ready</p>
                                         </div>
                                     </div>
                                     <div class="mt-3 grid grid-cols-2 gap-2 text-xs">
                                         <div class="rounded-lg bg-white/[0.06] px-3 py-2.5">
-                                            <p class="text-[10px] uppercase tracking-wide text-gray-500">Payroll groups</p>
+                                            <p class="truncate text-[10px] uppercase tracking-wide text-gray-500" data-translate="payrollWorksVisual.payrollGroups">Payroll groups</p>
                                             <div class="mt-2 flex items-center justify-between gap-3">
-                                                <span class="text-gray-300">Employees</span>
+                                                <span class="min-w-0 truncate text-gray-300" data-translate="payrollWorksVisual.employees">Employees</span>
                                                 <span class="font-semibold text-white">2</span>
                                             </div>
                                             <div class="mt-1.5 flex items-center justify-between gap-3">
-                                                <span class="text-gray-300">Contractors</span>
+                                                <span class="min-w-0 truncate text-gray-300" data-translate="payrollWorksVisual.contractors">Contractors</span>
                                                 <span class="font-semibold text-white">2</span>
                                             </div>
                                         </div>
                                         <div class="rounded-lg bg-white/[0.06] px-3 py-2.5">
-                                            <p class="text-[10px] uppercase tracking-wide text-gray-500">Review queue</p>
+                                            <p class="truncate text-[10px] uppercase tracking-wide text-gray-500" data-translate="payrollWorksVisual.reviewQueue">Review queue</p>
                                             <div class="mt-2 flex items-center justify-between gap-3">
-                                                <span class="text-gray-300">Invoices</span>
-                                                <span class="font-semibold text-[#5EA500]">Clear</span>
+                                                <span class="min-w-0 truncate text-gray-300" data-translate="payrollWorksVisual.invoices">Invoices</span>
+                                                <span class="shrink-0 font-semibold text-[#5EA500]" data-translate="payrollWorksVisual.clear">Clear</span>
                                             </div>
                                             <div class="mt-1.5 flex items-center justify-between gap-3">
-                                                <span class="text-gray-300">Approvals</span>
-                                                <span class="font-semibold text-[#5EA500]">Ready</span>
+                                                <span class="min-w-0 truncate text-gray-300" data-translate="payrollWorksVisual.approvals">Approvals</span>
+                                                <span class="shrink-0 font-semibold text-[#5EA500]" data-translate="payrollWorksVisual.ready">Ready</span>
                                             </div>
                                         </div>
                                     </div>
@@ -1920,55 +1969,55 @@
 
                                 <div class="mid-size-payroll-side-grid grid h-full gap-4 lg:grid-cols-1 lg:grid-rows-[auto_1fr]">
                                     <div class="rounded-xl border border-white/10 bg-white/[0.04] p-4">
-                                        <p class="text-xs text-gray-500">Batch total</p>
+                                        <p class="truncate text-xs text-gray-500" data-translate="payrollWorksVisual.batchTotal">Batch total</p>
                                         <p class="mt-2 text-3xl font-semibold text-white">$112,272</p>
                                         <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
                                             <div class="mid-size-payroll-progress h-full w-full rounded-full bg-[#5EA500]"></div>
                                         </div>
                                         <div class="mt-3 flex justify-between text-[10px] text-gray-500">
-                                            <span>Funded</span>
+                                            <span class="truncate" data-translate="payrollWorksVisual.funded">Funded</span>
                                             <span class="text-[#5EA500]">86%</span>
                                         </div>
                                         <div class="mt-4 space-y-2 text-xs">
                                             <div class="flex items-center justify-between rounded-lg bg-white/[0.06] px-3 py-2">
                                                 <span class="flex items-center gap-2 text-gray-300">
                                                     <span class="h-1.5 w-1.5 rounded-full bg-[#5EA500]"></span>
-                                                    Employees
+                                                    <span class="min-w-0 truncate" data-translate="payrollWorksVisual.employees">Employees</span>
                                                 </span>
                                                 <span class="font-semibold text-white">$72.4k</span>
                                             </div>
                                             <div class="flex items-center justify-between rounded-lg bg-white/[0.06] px-3 py-2">
                                                 <span class="flex items-center gap-2 text-gray-300">
                                                     <span class="h-1.5 w-1.5 rounded-full bg-[#5EA500]"></span>
-                                                    Contractors
+                                                    <span class="min-w-0 truncate" data-translate="payrollWorksVisual.contractors">Contractors</span>
                                                 </span>
                                                 <span class="font-semibold text-white">$39.8k</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.04] p-4">
-                                        <p class="text-xs text-gray-500">Approval status</p>
+                                    <div class="mid-size-payroll-approval-card flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                                        <p class="truncate text-xs text-gray-500" data-translate="payrollWorksVisual.approvalStatus">Approval status</p>
                                         <div class="mt-3 space-y-2 text-xs">
                                             <div class="flex justify-between rounded-lg bg-white/[0.06] px-3 py-2">
-                                                <span class="text-gray-300">Payroll rules</span>
-                                                <span class="mid-size-payroll-status text-[#5EA500]">Checked</span>
+                                                <span class="min-w-0 truncate text-gray-300" data-translate="payrollWorksVisual.payrollRules">Payroll rules</span>
+                                                <span class="mid-size-payroll-status shrink-0 text-[#5EA500]" data-translate="payrollWorksVisual.checked">Checked</span>
                                             </div>
                                             <div class="flex justify-between rounded-lg bg-white/[0.06] px-3 py-2">
-                                                <span class="text-gray-300">Tax workflow</span>
-                                                <span class="mid-size-payroll-status text-[#5EA500]" style="animation-delay: 0.45s;">Ready</span>
+                                                <span class="min-w-0 truncate text-gray-300" data-translate="payrollWorksVisual.taxWorkflow">Tax workflow</span>
+                                                <span class="mid-size-payroll-status shrink-0 text-[#5EA500]" style="animation-delay: 0.45s;" data-translate="payrollWorksVisual.ready">Ready</span>
                                             </div>
                                             <div class="flex justify-between rounded-lg bg-white/[0.06] px-3 py-2">
-                                                <span class="text-gray-300">Invoices</span>
-                                                <span class="mid-size-payroll-status text-[#5EA500]" style="animation-delay: 0.9s;">Matched</span>
+                                                <span class="min-w-0 truncate text-gray-300" data-translate="payrollWorksVisual.invoices">Invoices</span>
+                                                <span class="mid-size-payroll-status shrink-0 text-[#5EA500]" style="animation-delay: 0.9s;" data-translate="payrollWorksVisual.matched">Matched</span>
                                             </div>
                                             <div class="flex justify-between rounded-lg bg-white/[0.06] px-3 py-2 xl:hidden">
-                                                <span class="text-gray-300">Documents</span>
-                                                <span class="mid-size-payroll-status text-[#5EA500]" style="animation-delay: 1.35s;">Signed</span>
+                                                <span class="min-w-0 truncate text-gray-300" data-translate="payrollWorksVisual.documents">Documents</span>
+                                                <span class="mid-size-payroll-status shrink-0 text-[#5EA500]" style="animation-delay: 1.35s;" data-translate="payrollWorksVisual.signed">Signed</span>
                                             </div>
                                             <div class="flex justify-between rounded-lg bg-white/[0.06] px-3 py-2 xl:hidden">
-                                                <span class="text-gray-300">Payouts</span>
-                                                <span class="mid-size-payroll-status text-[#5EA500]" style="animation-delay: 1.8s;">Queued</span>
+                                                <span class="min-w-0 truncate text-gray-300" data-translate="payrollWorksVisual.payouts">Payouts</span>
+                                                <span class="mid-size-payroll-status shrink-0 text-[#5EA500]" style="animation-delay: 1.8s;" data-translate="payrollWorksVisual.queued">Queued</span>
                                             </div>
                                         </div>
                                     </div>
@@ -1983,7 +2032,7 @@
     </section>
 
     <!-- How to get started (LEGACY HIDDEN) -->
-    <section class="hidden bg-[#020202] pt-16 pb-16 lg:pt-32 lg:pb-32" id="get-started-legacy">
+    <section class="hidden pt-16 pb-16 lg:pt-32 lg:pb-32" id="get-started-legacy">
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
             <div class="lg:mb-20 text-center mb-16">
                 <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight mb-6 font-manrope"
@@ -2381,10 +2430,10 @@
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
             <div class="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
                 <div class="lg:self-start">
-                    <h2 class="lg:text-5xl text-4xl font-normal text-left text-white tracking-tight font-manrope mb-6">
+                    <h2 class="lg:text-5xl text-4xl font-normal text-left text-white tracking-tight font-manrope mb-6" data-translate="choice.title">
                         Why Growing Companies Choose Garna
                     </h2>
-                    <p class="text-left text-xl font-light leading-relaxed text-gray-400 font-manrope">
+                    <p class="text-left text-xl font-light leading-relaxed text-gray-400 font-manrope" data-translate="choice.description">
                         Growing teams need payroll software that won't collapse when things get busy and the team starts getting bigger
                     </p>
                 </div>
@@ -2393,8 +2442,8 @@
                     <article class="grid gap-5 border-b border-white/10 py-8 md:grid-cols-[3.5rem_minmax(0,1fr)]">
                         <div class="font-manrope text-sm font-semibold text-[#5EA500]">01</div>
                         <div>
-                            <h3 class="text-2xl font-normal tracking-tight text-white font-manrope">...because your team is scaling</h3>
-                            <p class="mt-4 text-base font-light leading-relaxed text-gray-400 font-manrope">
+                            <h3 class="text-2xl font-normal tracking-tight text-white font-manrope" data-translate="choice.item1.title">...because your team is scaling</h3>
+                            <p class="mt-4 text-base font-light leading-relaxed text-gray-400 font-manrope" data-translate="choice.item1.description">
                                 Garna is the solution for companies that are scaling up fast and need all those employees paid on time. It's for agencies, SaaS companies, and all sorts of distributed organisations who have people working all over the globe
                             </p>
                         </div>
@@ -2403,8 +2452,8 @@
                     <article class="grid gap-5 border-b border-white/10 py-8 md:grid-cols-[3.5rem_minmax(0,1fr)]">
                         <div class="font-manrope text-sm font-semibold text-[#5EA500]">02</div>
                         <div>
-                            <h3 class="text-2xl font-normal tracking-tight text-white font-manrope">...because white-label infrastructure is your choice</h3>
-                            <p class="mt-4 text-base font-light leading-relaxed text-gray-400 font-manrope">
+                            <h3 class="text-2xl font-normal tracking-tight text-white font-manrope" data-translate="choice.item2.title">...because white-label infrastructure is your choice</h3>
+                            <p class="mt-4 text-base font-light leading-relaxed text-gray-400 font-manrope" data-translate="choice.item2.description">
                                 Launch payroll services under your own brand or integrate payroll functionality directly into your product through API-first infrastructure and white-label capabilities
                             </p>
                         </div>
@@ -2413,8 +2462,8 @@
                     <article class="grid gap-5 border-b border-white/10 py-8 md:grid-cols-[3.5rem_minmax(0,1fr)]">
                         <div class="font-manrope text-sm font-semibold text-[#5EA500]">03</div>
                         <div>
-                            <h3 class="text-2xl font-normal tracking-tight text-white font-manrope">...because you reduce admin work and payroll errors</h3>
-                            <p class="mt-4 text-base font-light leading-relaxed text-gray-400 font-manrope">
+                            <h3 class="text-2xl font-normal tracking-tight text-white font-manrope" data-translate="choice.item3.title">...because you reduce admin work and payroll errors</h3>
+                            <p class="mt-4 text-base font-light leading-relaxed text-gray-400 font-manrope" data-translate="choice.item3.description">
                                 Automation allows you to cut down on payroll errors and all that routine, manual work that influences your finance and HR team's efficiency
                             </p>
                         </div>
@@ -2423,8 +2472,8 @@
                     <article class="grid gap-5 border-b border-white/10 py-8 md:grid-cols-[3.5rem_minmax(0,1fr)]">
                         <div class="font-manrope text-sm font-semibold text-[#5EA500]">04</div>
                         <div>
-                            <h3 class="text-2xl font-normal tracking-tight text-white font-manrope">...because you prefer real-time visibility on every payroll operation</h3>
-                            <p class="mt-4 text-base font-light leading-relaxed text-gray-400 font-manrope">
+                            <h3 class="text-2xl font-normal tracking-tight text-white font-manrope" data-translate="choice.item4.title">...because you prefer real-time visibility on every payroll operation</h3>
+                            <p class="mt-4 text-base font-light leading-relaxed text-gray-400 font-manrope" data-translate="choice.item4.description">
                                 If you need to keep track of payroll costs, make sure payments are going out on time, and keep an eye on all the reports and data, Garna has you covered with real-time visibility from a centralized dashboard
                             </p>
                         </div>
@@ -2555,9 +2604,8 @@
                         payroll today</p>
 
                     <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'why_garna_demo' });"
-                        class="garna-button garna-button-primary relative z-10 inline-flex h-11 items-center justify-center rounded-xl px-7 font-manrope text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5EA500]"
-                        data-translate="whyGarna.cta.button">
-                        <span class="garna-button-inner">Book a demo</span>
+                        class="garna-button garna-button-primary relative z-10 inline-flex h-11 items-center justify-center rounded-xl px-7 font-manrope text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5EA500]">
+                        <span class="garna-button-inner" data-translate="whyGarna.cta.button">Book a demo</span>
                     </a>
                 </div>
             </div>
@@ -2568,17 +2616,17 @@
     <section class="relative py-20 lg:py-28">
         <div class="garna-container">
             <div class="mx-auto max-w-4xl text-center">
-                <h2 class="text-4xl font-normal leading-tight text-white md:text-5xl font-manrope">
+                <h2 class="text-4xl font-normal leading-tight text-white lg:text-5xl font-manrope" data-translate="midSizeTestimonials.title">
                     Trusted by Growing Teams
                 </h2>
-                <p class="mx-auto mt-6 max-w-4xl text-xl font-light leading-relaxed text-gray-400 font-manrope">
+                <p class="mx-auto mt-6 max-w-4xl text-xl font-light leading-relaxed text-gray-400 font-manrope" data-translate="midSizeTestimonials.description">
                     Companies across the SaaS sector, e-commerce, agencies, marketplaces and remote-first businesses put their trust in Garna
                 </p>
             </div>
 
-            <div class="mt-12 grid gap-8 md:grid-cols-3">
+            <div class="mt-12 grid gap-8 min-[883px]:grid-cols-3">
                 <article class="rounded-2xl border border-white/10 bg-[#0A0A0A] p-6 text-left">
-                    <div class="flex h-[4.75rem] items-start gap-4">
+                    <div class="flex min-h-[4.75rem] items-start gap-4">
                         <div class="h-14 w-14 shrink-0 overflow-hidden rounded-full border border-[#5EA500]/30 bg-[#0A0A0A] shadow-[0_0_32px_-16px_rgba(94,165,0,0.9)]">
                             <img src="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg" alt="Priya Raman" class="h-full w-full object-cover" loading="lazy" decoding="async" />
                         </div>
@@ -2587,13 +2635,13 @@
                             <p class="mt-1 text-sm leading-5 text-gray-500 font-manrope" data-translate="midSizeTestimonials.priya.role">Finance Director, CloudNest</p>
                         </div>
                     </div>
-                    <p class="mt-6 text-sm leading-7 text-gray-400 md:mt-4" data-translate="midSizeTestimonials.priya.quote">
+                    <p class="mt-6 text-sm leading-7 text-gray-400" data-translate="midSizeTestimonials.priya.quote">
                         "Garna helped us move payroll out of spreadsheets. Employees and contractors now run through one process, and finance has one clear view of costs"
                     </p>
                 </article>
 
                 <article class="rounded-2xl border border-white/10 bg-[#0A0A0A] p-6 text-left">
-                    <div class="flex h-[4.75rem] items-start gap-4">
+                    <div class="flex min-h-[4.75rem] items-start gap-4">
                         <div class="h-14 w-14 shrink-0 overflow-hidden rounded-full border border-white/15 bg-[#0A0A0A] shadow-[0_0_32px_-16px_rgba(255,255,255,0.55)]">
                             <img src="/pages/payroll-solution-new/assets/03-83a1ae5f-c842-4ee9-a912-505fc66a1ee0_320w.webp" alt="Daniel Kovacs" class="h-full w-full object-cover" loading="lazy" decoding="async" />
                         </div>
@@ -2602,13 +2650,13 @@
                             <p class="mt-1 text-sm leading-5 text-gray-500 font-manrope" data-translate="midSizeTestimonials.daniel.role">COO, MarketLoop</p>
                         </div>
                     </div>
-                    <p class="mt-6 text-sm leading-7 text-gray-400 md:mt-4" data-translate="midSizeTestimonials.daniel.quote">
+                    <p class="mt-6 text-sm leading-7 text-gray-400" data-translate="midSizeTestimonials.daniel.quote">
                         "As headcount grew, approvals and contractor invoices became messy fast. Garna gave us a cleaner workflow without adding another layer of manual checks"
                     </p>
                 </article>
 
                 <article class="rounded-2xl border border-white/10 bg-[#0A0A0A] p-6 text-left">
-                    <div class="flex h-[4.75rem] items-start gap-4">
+                    <div class="flex min-h-[4.75rem] items-start gap-4">
                         <div class="h-14 w-14 shrink-0 overflow-hidden rounded-full border border-[#5EA500]/30 bg-[#0A0A0A] shadow-[0_0_32px_-16px_rgba(94,165,0,0.7)]">
                             <img src="/pages/payroll-solution-new/assets/08-photo-1534528741775-53994a69daeb.jpg" alt="Amina Brooks" class="h-full w-full object-cover" loading="lazy" decoding="async" />
                         </div>
@@ -2617,7 +2665,7 @@
                             <p class="mt-1 text-sm leading-5 text-gray-500 font-manrope" data-translate="midSizeTestimonials.amina.role">People Operations Lead, AtlasWorks</p>
                         </div>
                     </div>
-                    <p class="mt-6 text-sm leading-7 text-gray-400 md:mt-4" data-translate="midSizeTestimonials.amina.quote">
+                    <p class="mt-6 text-sm leading-7 text-gray-400" data-translate="midSizeTestimonials.amina.quote">
                         "We manage teams across several regions now, and Garna keeps payout timing, documents, and reporting predictable enough for HR and finance to work from the same source"
                     </p>
                 </article>

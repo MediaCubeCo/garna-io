@@ -7,6 +7,7 @@ import { whiteLabelTranslations } from './translations/white-label';
 import { eorTranslations } from './translations/eor';
 import { payrollSmallBusinessTranslations } from './translations/payroll-small-business';
 import { payrollSolutionNewTranslations } from './translations/payroll-solution-new';
+import { midSizeTranslations } from './translations/mid-size';
 
 export type PageTranslations = typeof homeTranslations.en;
 
@@ -19,11 +20,12 @@ type AnyPageTranslations =
 	| typeof whiteLabelTranslations.en
 	| typeof eorTranslations.en
 	| typeof payrollSmallBusinessTranslations.en
-	| typeof payrollSolutionNewTranslations.en;
+	| typeof payrollSolutionNewTranslations.en
+	| typeof midSizeTranslations.en;
 
 const translations = {
 	home: homeTranslations,
-	'mid-size': homeTranslations,
+	'mid-size': midSizeTranslations,
 	offer: offerTranslations,
 	'404': notFoundTranslations,
 	form: formTranslations,
