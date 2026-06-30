@@ -1,7 +1,7 @@
 export const whiteLabelEn = {
 	"meta": {
-		"title": "Garna - White Label Payroll Solutions",
-		"description": "Launch white-label contractor management and global payroll under your own brand with Garna infrastructure."
+		"title": "White Label Payroll & Contractor Payments Platform | Garna",
+		"description": "Launch global contractor onboarding, management, and payments under your brand with Garna’s white label infrastructure."
 	},
 	"images": {},
 	"hero": {

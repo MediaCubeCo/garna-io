@@ -21,12 +21,14 @@ const employerOfRecordPath = 'employer-of-record';
 const eorHref = `${base}/${employerOfRecordPath}`;
 const smallBusinessPath = 'small-business-payroll';
 const smallBusinessHref = `${base}/${smallBusinessPath}`;
-const midSizePath = 'mid-size';
+const midSizePath = 'mid-size-business-payroll';
 const midSizeHref = `${base}/${midSizePath}`;
+const enterprisePayrollPath = 'enterprise-payroll';
+const enterprisePayrollHref = `${base}/${enterprisePayrollPath}`;
 const blogHref = `${base}/blog`;
 
-const signUpUrl = 'https://app.garna.io/auth/sign-up';
-const logInUrl = 'https://app.garna.io/auth/sign-in';
+const signUpUrl = 'https://app.garna.io/en/auth/sign-up';
+const logInUrl = 'https://app.garna.io/en/auth/sign-in';
 
 const navLinkClass = (path: string) =>
 	[
@@ -139,7 +141,7 @@ const mobileLinkClass = (path: string) =>
 									<span class="garna-header-link-separator">|</span>
 									<span class="garna-header-link-kicker" data-translate="header.midSizeBusinessKicker">Growing teams 50-500</span>
 								</a>
-								<a href="#" class="garna-header-dropdown-link">
+								<a href={enterprisePayrollHref} data-localized-path={enterprisePayrollPath} data-nav-link class="garna-header-dropdown-link">
 									<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 										<line x1="3" x2="21" y1="22" y2="22"></line>
 										<line x1="6" x2="6" y1="18" y2="11"></line>
@@ -247,7 +249,7 @@ const mobileLinkClass = (path: string) =>
 		</div>
 
 		<div class="garna-header-actions">
-			<Button href={logInUrl} variant="secondary" size="header" class="garna-header-login">
+			<Button href={logInUrl} variant="secondary" size="header" class="garna-header-login" data-garna-signin>
 				<svg
 					class="garna-header-login-icon"
 					xmlns="http://www.w3.org/2000/svg"
@@ -266,7 +268,7 @@ const mobileLinkClass = (path: string) =>
 				<span data-translate="header.logIn">Log In</span>
 			</Button>
 
-			<Button href={signUpUrl} id="header-signup-btn" class="garna-header-signup" data-translate="header.signUp">
+			<Button href={signUpUrl} id="header-signup-btn" class="garna-header-signup" data-garna-signup data-translate="header.signUp">
 				Sign Up
 			</Button>
 
@@ -407,9 +409,11 @@ const mobileLinkClass = (path: string) =>
 						<span class="garna-header-mobile-link-kicker" data-translate="header.midSizeBusinessKicker">Growing teams 50-500</span>
 					</a>
 					<a
-						href="#"
+						href={enterprisePayrollHref}
+						data-localized-path={enterprisePayrollPath}
+						data-nav-link
 						data-nav-mobile
-						class="garna-header-mobile-link garna-header-mobile-card"
+						class={`${mobileLinkClass(enterprisePayrollPath)} garna-header-mobile-card`}
 					>
 						<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 							<line x1="3" x2="21" y1="22" y2="22"></line>
@@ -556,6 +560,7 @@ const mobileLinkClass = (path: string) =>
 						href={logInUrl}
 						variant="secondary"
 						size="mobile"
+						data-garna-signin
 						data-translate="header.logIn"
 					>
 						Log In
@@ -563,6 +568,7 @@ const mobileLinkClass = (path: string) =>
 					<Button
 						href={signUpUrl}
 						size="mobile"
+						data-garna-signup
 						data-translate="header.signUp"
 					>
 						Sign Up
@@ -580,7 +586,18 @@ const mobileLinkClass = (path: string) =>
 		const signUpButton = document.getElementById('header-signup-btn');
 		const header = document.querySelector('.garna-header');
 
-		const getCurrentLang = () => document.documentElement.lang?.split('-')[0]?.toLowerCase() || 'en';
+		const supportedLangs = ['en', 'es', 'pt', 'ru'];
+
+		const getLangFromPath = (pathname = window.location.pathname) => {
+			const [firstSegment] = pathname.split('/').filter(Boolean);
+			const lang = firstSegment?.toLowerCase();
+			return supportedLangs.includes(lang) ? lang : 'en';
+		};
+
+		const getCurrentLang = () =>
+			getLangFromPath(window.location.pathname)
+			|| document.documentElement.lang?.split('-')[0]?.toLowerCase()
+			|| 'en';
 
 		const closeMobileMenu = () => {
 			if (!toggle || !menu) return;
@@ -629,6 +646,14 @@ const mobileLinkClass = (path: string) =>
 				const path = link.dataset.localizedPath;
 				link.href = path ? `/${currentLang}/${path}` : `/${currentLang}`;
 			});
+
+			document.querySelectorAll('[data-garna-signup]').forEach((link) => {
+				if (link instanceof HTMLAnchorElement) link.href = `https://app.garna.io/${currentLang}/auth/sign-up`;
+			});
+
+			document.querySelectorAll('[data-garna-signin]').forEach((link) => {
+				if (link instanceof HTMLAnchorElement) link.href = `https://app.garna.io/${currentLang}/auth/sign-in`;
+			});
 		};
 
 		const normalizePagePath = (path = '') => path.replace(/\/?index\.html$/, '').replace(/\.html$/, '');
@@ -639,12 +664,6 @@ const mobileLinkClass = (path: string) =>
 				? parts.slice(1).join('/')
 				: parts.join('/');
 			return normalizePagePath(pagePath);
-		};
-
-		const getLangFromPath = (pathname = window.location.pathname) => {
-			const [firstSegment] = pathname.split('/').filter(Boolean);
-			const lang = firstSegment?.toLowerCase();
-			return ['en', 'es', 'pt', 'ru'].includes(lang) ? lang : 'en';
 		};
 
 		const setNavActiveState = () => {
@@ -905,9 +924,9 @@ const mobileLinkClass = (path: string) =>
 				jumpToPageTop();
 				try {
 					if (shouldPushState) history.pushState({}, '', url.href);
+					await syncHead(targetDoc);
 					localizeHeaderLinks();
 					setNavActiveState();
-					await syncHead(targetDoc);
 					syncFooterDynamicBlocks(targetDoc);
 					resetPageWidget();
 
@@ -975,20 +994,9 @@ const mobileLinkClass = (path: string) =>
 				? event.target.closest('a[data-localized-path]')
 				: null;
 			if (!(link instanceof HTMLAnchorElement)) return;
-			if (link.target && link.target !== '_self') return;
 
-			const url = new URL(link.href, window.location.href);
 			if (link.closest('.garna-header-dropdown')) closeHeaderDropdowns(link);
-			if (url.origin !== window.location.origin) return;
-			if (url.pathname === window.location.pathname && url.search === window.location.search) return;
-			if (getLangFromPath(url.pathname) !== getLangFromPath(window.location.pathname)) return;
-
-			event.preventDefault();
-			navigate(url);
-		});
-
-		window.addEventListener('popstate', () => {
-			navigate(new URL(window.location.href), false);
+			closeMobileMenu();
 		});
 
 		if ('scrollRestoration' in history) {

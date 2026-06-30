@@ -2,7 +2,7 @@ export const aiHiringEs = {
 	meta: {
 		title: 'Garna - Plataforma de contratación con IA',
 		description:
-			'Olvida las pre-entrevistas. Contrata talento verificado al instante con reclutamiento impulsado por IA e informes de candidatos verificados',
+			'Olvida las pre-entrevistas. Contrata talento verificado al instante con reclutamiento impulsado por IA e informes de candidatos verificados.',
 	},
 	images: {},
 	hero: {

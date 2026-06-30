@@ -19,8 +19,11 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'home') {
 		return `/${segment}/contractor-of-record`;
 	}
+	if (pageName === 'enterprise-payroll') {
+		return `/${segment}/enterprise-payroll`;
+	}
 	if (pageName === 'mid-size') {
-		return `/${segment}/mid-size`;
+		return `/${segment}/mid-size-business-payroll`;
 	}
 	if (pageName === 'offer') {
 		return `/${segment}/for-contractors`;
@@ -42,6 +45,12 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	}
 	if (pageName === 'blog') {
 		return `/${segment}/blog`;
+	}
+	if (pageName === 'blog-author') {
+		return `/${segment}/blog-author`;
+	}
+	if (pageName === 'blog-article') {
+		return `/${segment}/blog-article`;
 	}
 	return `/${segment}`;
 }

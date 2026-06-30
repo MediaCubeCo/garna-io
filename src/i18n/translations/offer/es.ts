@@ -1,7 +1,7 @@
 export const offerEs = {
 	meta: {
 		title: 'Garna para contratistas - Recibe pagos globalmente',
-		description: 'Recibe pagos de clientes en todo el mundo con tarifas transparentes y retiros instantáneos',
+		description: 'Recibe pagos de clientes en todo el mundo con tarifas transparentes y retiros instantáneos.',
 	},
 	images: {},
 	nav: {

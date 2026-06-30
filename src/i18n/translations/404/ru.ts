@@ -1,7 +1,7 @@
 export const notFoundRu = {
 	meta: {
 		title: '404 - Цель Потеряна - Garna',
-		description: 'Страница не найдена',
+		description: 'Страница не найдена.',
 	},
 	images: {},
 	hero: {

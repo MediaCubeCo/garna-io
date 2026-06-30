@@ -262,9 +262,9 @@ body {
 	background: conic-gradient(
 		from var(--garna-button-gradient-angle),
 		transparent 0%,
-		rgba(77, 138, 0, 0.45) 5%,
+		rgba(94, 165, 0, 0.45) 5%,
 		var(--garna-button-shine) 15%,
-		rgba(77, 138, 0, 0.45) 30%,
+		rgba(94, 165, 0, 0.45) 30%,
 		transparent 42%,
 		transparent 100%
 	);

@@ -4,7 +4,7 @@ export const midSizeEn = {
 
 	meta: {
 		title: "Flexible Payroll Solutions for Growing Businesses | Garna",
-		description: "Automate payroll processing, handle employees and contractors from all over the world without headaches, but with Garna"
+		description: "Automate payroll processing, handle employees and contractors from all over the world without headaches, but with Garna."
 	},
 	common: {
 		learnMore: "Learn more"

@@ -1,7 +1,7 @@
 export const formEn = {
 	meta: {
 		title: 'Garna - Book a Demo',
-		description: 'Fill in your details to book a demo with Garna',
+		description: 'Fill in your details to book a demo with Garna.',
 	},
 	images: {},
 	form: {

@@ -4,7 +4,7 @@ export const midSizeEs = {
 
 	meta: {
 		title: "Soluciones flexibles de gestión de nóminas para empresas en crecimiento | Garna",
-		description: "Automatiza la gestión de nóminas y gestiona a empleados y contratistas de todo el mundo sin complicaciones, gracias a Garna"
+		description: "Automatiza la gestión de nóminas y gestiona a empleados y contratistas de todo el mundo sin complicaciones, gracias a Garna."
 	},
 	common: {
 		learnMore: "Más información"

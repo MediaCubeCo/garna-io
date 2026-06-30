@@ -2,7 +2,7 @@ export const eorEs = {
 	"images": {},
 	"meta": {
 		"title": "Empleador oficial: a distancia, sin complicaciones y eficaz | Garna",
-		"description": "Únete a Garna y descubre cómo una solución de empleo a distancia perfeccionada puede optimizar y simplificar la contratación de talentos a nivel mundial"
+		"description": "Únete a Garna y descubre cómo una solución de empleo a distancia perfeccionada puede optimizar y simplificar la contratación de talentos a nivel mundial."
 	},
 	"hero": {
 		"badge": "Empleador oficial para equipos globales",

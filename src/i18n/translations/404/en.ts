@@ -1,7 +1,7 @@
 export const notFoundEn = {
 	meta: {
 		title: '404 - Target Missing - Garna',
-		description: 'Page not found',
+		description: 'Page not found.',
 	},
 	images: {},
 	hero: {

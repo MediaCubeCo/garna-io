@@ -1,7 +1,7 @@
 export const formPt = {
 	meta: {
 		title: 'Garna - Agendar uma demo',
-		description: 'Preencha seus dados para agendar uma demo com a Garna',
+		description: 'Preencha seus dados para agendar uma demo com a Garna.',
 	},
 	images: {},
 	form: {

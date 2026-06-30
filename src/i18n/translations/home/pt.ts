@@ -1,8 +1,8 @@
-export const homePt = {
+﻿export const homePt = {
 	meta: {
-		title: 'Garna - Soluções de Folha de Pagamento Global',
+		title: 'Payroll Global e Pagamentos em mais de 150 Países | Garna',
 		description:
-			'Uma transferência, infinitas possibilidades. Pague remunerações em mais de 150 países com o mínimo de esforço',
+			'Software de payroll fiável para empresas internacionais. Automatize payroll internacional, impostos e conformidade. Efetue pagamentos rápidos à sua equipa em qualquer moeda ou criptomoeda.',
 	},
 	images: {},
 	nav: {

@@ -30,6 +30,33 @@ export const pageHeroes = {
 		tone: 'green',
 		align: 'center',
 	},
+	enterprisePayroll: {
+		class: 'home-hero overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
+		containerClass:
+			'garna-container overflow-visible z-10 text-center relative',
+		titleClass:
+			'garna-hero-title-gradient leading-[1.1] md:text-6xl lg:text-7xl text-5xl font-normal tracking-tight font-manrope mb-6',
+		titleBreakAfterWords: {
+			en: 5,
+		},
+		descriptionClass:
+			'leading-relaxed md:text-xl text-lg font-light text-gray-400 font-manrope max-w-4xl mr-auto mb-10 ml-auto',
+		title: [{ text: 'Scaling Payroll Infrastructure Made for Global Businesses', translateKey: 'hero.title' }],
+		description:
+			'A centralized global payroll system designed to handle operations across countries, different entities, contractors and employees without sacrificing any flexibility',
+		descriptionTranslateKey: 'hero.description',
+		cta: {
+			label: 'Try Garna',
+			translateKey: 'hero.cta',
+			href: 'https://app.garna.io/en/auth/sign-up',
+			kind: 'signup',
+			variant: 'primary',
+			effect: 'rotating-flare',
+			wrapperClass: 'flex mb-16 justify-center',
+		},
+		tone: 'green',
+		align: 'center',
+	},
 	midSize: {
 		class: 'home-hero min-h-screen overflow-hidden pt-36 pb-20 md:pt-40 md:pb-24 lg:pt-44 relative',
 		containerClass:

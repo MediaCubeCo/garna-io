@@ -2,7 +2,7 @@ export const eorEn = {
 	"images": {},
 	"meta": {
 		"title": "Employer of Record: Remote, Effortless & Effective | Garna",
-		"description": "Join Garna and experience how a refined remote employment solution can optimize and simplify hiring talents globally"
+		"description": "Join Garna and experience how a refined remote employment solution can optimize and simplify hiring talents globally."
 	},
 	"hero": {
 		"badge": "Employer of Record for global teams",

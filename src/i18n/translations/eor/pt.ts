@@ -2,7 +2,7 @@ export const eorPt = {
 	"images": {},
 	"meta": {
 		"title": "Employer of Record: Remoto, Simples e Eficaz | Garna",
-		"description": "Junte-se à Garna e descubra como uma solução moderna de emprego remoto pode otimizar e simplificar a contratação global de talentos"
+		"description": "Junte-se à Garna e descubra como uma solução moderna de emprego remoto pode otimizar e simplificar a contratação global de talentos."
 	},
 	"hero": {
 		"badge": "Employer of Record para equipas globais",

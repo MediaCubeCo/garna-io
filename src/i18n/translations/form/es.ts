@@ -1,7 +1,7 @@
 export const formEs = {
 	meta: {
 		title: 'Garna - Reservar una demo',
-		description: 'Completa tus datos para reservar una demo con Garna',
+		description: 'Completa tus datos para reservar una demo con Garna.',
 	},
 	images: {},
 	form: {

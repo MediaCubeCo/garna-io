@@ -2,7 +2,7 @@ export const aiHiringPt = {
 	meta: {
 		title: 'Garna - Plataforma de recrutamento com IA',
 		description:
-			'Pule as pré-seleções. Contrate talento comprovado instantaneamente com recrutamento com IA e relatórios de candidatos verificados',
+			'Pule as pré-seleções. Contrate talento comprovado instantaneamente com recrutamento com IA e relatórios de candidatos verificados.',
 	},
 	images: {},
 	hero: {

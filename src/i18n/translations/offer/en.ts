@@ -1,7 +1,7 @@
 export const offerEn = {
 	meta: {
 		title: 'Garna for Contractors - Get Paid Globally',
-		description: 'Receive payments from clients worldwide with transparent fees and instant withdrawals',
+		description: 'Receive payments from clients worldwide with transparent fees and instant withdrawals.',
 	},
 	images: {},
 	nav: {

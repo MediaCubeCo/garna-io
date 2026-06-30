@@ -157,31 +157,31 @@ const buttonIcon = button.icon || 'arrow-up-right';
 
 		{visual === 'white-label' && (
 			<div class="md:h-[415px] group md:scale-100 lg:scale-100 md:origin-center lg:origin-center transition-transform duration-300 w-full h-[360px] max-w-md relative scale-100 items-center justify-center">
-				<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-tr from-[#3b82f6]/15 via-[#5ea500]/10 to-[#eab308]/15 rounded-full blur-[100px] pointer-events-none -z-10" />
+				<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-tr from-[#3b82f6]/15 via-[#5EA500]/10 to-[#eab308]/15 rounded-full blur-[100px] pointer-events-none -z-10" />
 				<div class="hover:rotate-0 transition-all duration-500 ease-out flex flex-col group md:top-4 md:bottom-4 z-10 bg-[#0A0A0A]/95 w-full max-h-fit border-white/10 border rounded-2xl pt-6 pr-6 pb-6 pl-6 absolute top-6 right-0 bottom-6 left-0 shadow-2xl backdrop-blur-xl -rotate-2">
 					<div class="flex items-center justify-between border-b border-white/5 pb-5 mb-5">
 						<div class="flex items-center gap-4">
-							<div class="w-12 h-12 rounded-full bg-[#5ea500]/10 border border-[#5ea500]/20 flex items-center justify-center text-[#5ea500] shadow-[0_0_15px_rgba(94,165,0,0.15)]">
+							<div class="w-12 h-12 rounded-full bg-[#5EA500]/10 border border-[#5EA500]/20 flex items-center justify-center text-[#5EA500] shadow-[0_0_15px_rgba(94,165,0,0.15)]">
 								<iconify-icon icon="lucide:check-circle-2" width="24"></iconify-icon>
 							</div>
 							<div>
 								<div class="text-base font-medium text-white font-manrope" data-translate="status.globalStatus">GLOBAL STATUS</div>
-								<div class="text-[11px] text-[#5ea500] font-medium tracking-wide uppercase" data-translate="status.systemHealthy">System Healthy</div>
+								<div class="text-[11px] text-[#5EA500] font-medium tracking-wide uppercase" data-translate="status.systemHealthy">System Healthy</div>
 							</div>
 						</div>
-						<div class="w-9 h-9 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-white/40 group-hover:text-[#5ea500] transition-colors">
+						<div class="w-9 h-9 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-white/40 group-hover:text-[#5EA500] transition-colors">
 							<iconify-icon icon="lucide:globe" width="18"></iconify-icon>
 						</div>
 					</div>
 					<div class="flex items-center justify-between mb-3 px-1">
 						<span class="text-[11px] font-medium text-gray-400 uppercase tracking-wider" data-translate="status.marketExpansion">Market Expansion</span>
-						<span class="text-[10px] text-[#5ea500] font-medium bg-[#5ea500]/10 px-2 py-0.5 rounded border border-[#5ea500]/20" data-translate="status.online">Online</span>
+						<span class="text-[10px] text-[#5EA500] font-medium bg-[#5EA500]/10 px-2 py-0.5 rounded border border-[#5EA500]/20" data-translate="status.online">Online</span>
 					</div>
 					<div class="flex-1 overflow-hidden max-h-fit space-y-3">
 						{[
 							['status.europe', 'Europe', 'status.sepaIntegrated', 'SEPA Integrated', 'status.europeCountries', '40+ Countries', '#a855f7'],
 							['status.asiaPacific', 'Asia-Pacific', 'status.crossBorder', 'Cross-Border', 'status.currencies', '15+ Currencies', '#eab308'],
-							['status.northAmerica', 'North America', 'status.achWire', 'ACH & Wire', 'status.volume', '$4.2M Volume', '#5ea500'],
+							['status.northAmerica', 'North America', 'status.achWire', 'ACH & Wire', 'status.volume', '$4.2M Volume', '#5EA500'],
 						].map(([regionKey, region, detailKey, detail, metricKey, metric, color]) => (
 							<div class="flex hover:bg-white/[0.04] transition-all cursor-pointer group/item border-white/5 border rounded-xl pt-3 pr-3 pb-3 pl-3 items-center justify-between">
 								<div class="flex w-[55%] md:w-[47%] gap-x-3 gap-y-3 items-center">

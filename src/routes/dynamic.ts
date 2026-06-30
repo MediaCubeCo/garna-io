@@ -61,7 +61,8 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 	'': '/index.html',
 	'for-contractors': '/for-contractors.html',
 	'contractor-of-record': '/contractor-of-record.html',
-	'mid-size': '/mid-size.html',
+	'mid-size-business-payroll': '/mid-size-business-payroll.html',
+	'enterprise-payroll': '/enterprise-payroll.html',
 	form: '/form.html',
 	'ai-hiring': '/ai-hiring.html',
 	'white-label-payroll': '/white-label.html',
@@ -77,7 +78,8 @@ const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'': 'payroll-solution-new',
 	'for-contractors': 'offer',
 	'contractor-of-record': 'home',
-	'mid-size': 'mid-size',
+	'mid-size-business-payroll': 'mid-size',
+	'enterprise-payroll': 'enterprise-payroll',
 	form: 'form',
 	'ai-hiring': 'ai-hiring',
 	'white-label-payroll': 'white-label',
@@ -85,8 +87,8 @@ const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'payroll-solution-new': 'payroll-solution-new',
 	'employer-of-record': 'eor',
 	blog: 'blog',
-	'blog-author': 'blog',
-	'blog-article': 'blog',
+	'blog-author': 'blog-author',
+	'blog-article': 'blog-article',
 };
 
 async function serveStaticPage(

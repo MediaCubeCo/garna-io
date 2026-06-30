@@ -1,7 +1,7 @@
 export const offerPt = {
 	meta: {
 		title: 'Garna para contratados - Receba pagamentos globalmente',
-		description: 'Receba pagamentos de clientes no mundo todo com taxas transparentes e saques instantâneos',
+		description: 'Receba pagamentos de clientes no mundo todo com taxas transparentes e saques instantâneos.',
 	},
 	images: {},
 	nav: {

@@ -2,7 +2,7 @@ export const aiHiringEn = {
 	meta: {
 		title: 'Garna - AI Recruitment Platform',
 		description:
-			'Skip the pre-screens. Hire proven talent instantly with AI-powered recruitment and verified candidate reports',
+			'Skip the pre-screens. Hire proven talent instantly with AI-powered recruitment and verified candidate reports.',
 	},
 	images: {},
 	hero: {

@@ -4,7 +4,7 @@ export const midSizePt = {
 
 	meta: {
 		title: "Soluções Flexíveis de Payroll para Empresas em Crescimento | Garna",
-		description: "Automatize o processamento salarial e faça a gestão de colaboradores e prestadores de serviços em qualquer parte do mundo sem complicações — com a Garna"
+		description: "Automatize o processamento salarial e faça a gestão de colaboradores e prestadores de serviços em qualquer parte do mundo sem complicações — com a Garna."
 	},
 	common: {
 		learnMore: "Saber mais"

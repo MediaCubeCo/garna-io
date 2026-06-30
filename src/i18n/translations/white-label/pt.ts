@@ -1,7 +1,7 @@
 export const whiteLabelPt = {
 	"meta": {
-		"title": "Garna - Soluções White Label de folha de pagamento",
-		"description": "Lance gestão de contratados e pagamentos globais White Label sob sua marca com a infraestrutura da Garna."
+		"title": "Plataforma White Label para Pagamento de Salários e Contratados | Garna",
+		"description": "Lance uma plataforma global de onboarding, gestão e pagamentos de contratados sob a sua marca com a infraestrutura White Label da Garna."
 	},
 	"images": {},
 	"hero": {

@@ -1,7 +1,7 @@
 export const whiteLabelEs = {
 	"meta": {
-		"title": "Garna - Soluciones White Label de nómina",
-		"description": "Lanza gestión de contratistas y pagos globales White Label bajo tu propia marca con la infraestructura de Garna."
+		"title": "Plataforma de nóminas y pagos a contratistas de marca blanca | Garna",
+		"description": "Lanza servicios globales de incorporación, gestión y pagos a contratistas bajo tu marca con la infraestructura de marca blanca de Garna."
 	},
 	"images": {},
 	"hero": {
