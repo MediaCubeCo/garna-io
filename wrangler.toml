@@ -10,7 +10,7 @@ port = 8788
 USE_STATIC_ASSETS = "true"
 PUBLIC_ORIGIN = "https://garna.io"
 EMAIL_FROM = "noreply@garna.io"
-ADMIN_EMAILS = "info@mediacube.network"
+ADMIN_EMAILS = "info@mediacube.network,sol@mediacube.io,angelm@mediacube.io,dariab@mediacube.io"
 
 [[d1_databases]]
 binding = "DB"

@@ -7,7 +7,7 @@
 - D1 database id: `e76ba814-904b-4a34-b6ff-51f601b3a5ad`
 - R2 bucket: `garna-blog-media`
 - Email binding: `EMAIL`
-- Admin allowlist: `info@mediacube.network`
+- Admin allowlist: `info@mediacube.network`, `sol@mediacube.io`, `angelm@mediacube.io`, `dariab@mediacube.io`
 
 ## Secrets
 
