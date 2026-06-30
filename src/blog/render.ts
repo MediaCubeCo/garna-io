@@ -168,17 +168,33 @@ function pageShell(title: string, head: string, body: string, options: PageShell
 </html>`;
 }
 
-export function renderBlogIndex(env: BlogEnv, articles: BlogArticle[], categories: BlogCategory[], language = 'en'): Response {
+export async function renderBlogIndex(env: BlogEnv, articles: BlogArticle[], categories: BlogCategory[], language = 'en', activeCategorySlug?: string): Promise<Response> {
 	const origin = originFromEnv(env);
+	const activeCategory = activeCategorySlug ? categories.find((category) => category.slug === activeCategorySlug) : undefined;
+	const visibleArticles = activeCategory
+		? articles.filter((article) => article.categories?.some((category) => category.slug === activeCategory.slug))
+		: articles;
 	const head = metaTags({
 		title: 'Garna Insights Hub | Global payroll and hiring insights',
 		description: 'Practical guides, industry trends, and international employment updates from Garna.',
 		url: `${origin}/${language}/blog`,
 	});
+	const astroShell = await getBlogListAstroShell(env);
+	if (astroShell) {
+		const [featuredArticle, ...gridArticles] = visibleArticles;
+		return htmlResponse(fillBlogListAstroShell(astroShell, {
+			articles: activeCategory ? visibleArticles : (gridArticles.length ? gridArticles : visibleArticles),
+			categories,
+			featuredArticle: activeCategory ? undefined : featuredArticle,
+			headHtml: head,
+			language,
+			activeCategorySlug: activeCategory?.slug,
+		}));
+	}
 	const categoryHtml = categories
 		.map((category) => `<span class="garna-blog-chip">${escapeHtml(category.name)}</span>`)
 		.join('');
-	const cards = articles.map(renderArticleCard).join('');
+	const cards = visibleArticles.map(renderArticleCard).join('');
 	const body = `
 		<header class="garna-blog-header">
 			<div class="garna-blog-kicker">Garna Blog</div>
@@ -192,7 +208,7 @@ export function renderBlogIndex(env: BlogEnv, articles: BlogArticle[], categorie
 	return htmlResponse(pageShell('Garna Insights Hub', head, body));
 }
 
-export function renderAuthorPage(env: BlogEnv, author: BlogAuthor, articles: BlogArticle[], language = 'en'): Response {
+export async function renderAuthorPage(env: BlogEnv, author: BlogAuthor, articles: BlogArticle[], language = 'en'): Promise<Response> {
 	const origin = originFromEnv(env);
 	const url = `${origin}/${language}/blog/author/${author.slug}`;
 	const head = metaTags({
@@ -201,6 +217,15 @@ export function renderAuthorPage(env: BlogEnv, author: BlogAuthor, articles: Blo
 		url,
 		image: author.avatar_url,
 	}) + authorJsonLd(author, origin);
+	const astroShell = await getBlogAuthorAstroShell(env);
+	if (astroShell) {
+		return htmlResponse(fillBlogAuthorAstroShell(astroShell, {
+			articles,
+			author,
+			headHtml: head,
+			language,
+		}));
+	}
 	const body = `
 		<header class="garna-blog-header">
 			${author.avatar_url ? `<img class="garna-blog-avatar" src="${escapeAttribute(author.avatar_url)}" alt="${escapeAttribute(author.avatar_alt || author.name)}" />` : ''}
@@ -299,6 +324,84 @@ async function getArticleAstroShell(env: BlogEnv): Promise<string | null> {
 	return response.text();
 }
 
+async function getBlogListAstroShell(env: BlogEnv): Promise<string | null> {
+	if (!env.ASSETS) return null;
+	const response = await env.ASSETS.fetch(new Request('https://assets.local/blog-list-shell.html'));
+	if (!response.ok) return null;
+	return response.text();
+}
+
+async function getBlogAuthorAstroShell(env: BlogEnv): Promise<string | null> {
+	if (!env.ASSETS) return null;
+	const response = await env.ASSETS.fetch(new Request('https://assets.local/blog-author-shell.html'));
+	if (!response.ok) return null;
+	return response.text();
+}
+
+function fillBlogListAstroShell(
+	template: string,
+	input: {
+		articles: BlogArticle[];
+		categories: BlogCategory[];
+		featuredArticle?: BlogArticle;
+		headHtml: string;
+		language: string;
+		activeCategorySlug?: string;
+	}
+): string {
+	const hasActiveCategory = Boolean(input.activeCategorySlug);
+	const replacements: Record<string, string> = {
+		'%%BLOG_PAGE_TITLE%%': 'Garna Insights Hub | Global payroll and hiring insights',
+		'%%BLOG_PAGE_DESCRIPTION%%': 'Practical guides, industry trends, and international employment updates from Garna.',
+		'%%BLOG_OG_IMAGE%%': '/pages/blog/assets/01-1e96bbb7-a5c7-4597-987a-3a820daffbff_3840w.jpg',
+		'%%BLOG_DYNAMIC_HEAD%%': input.headHtml,
+		'%%BLOG_CATEGORY_FILTERS%%': renderBlogCategoryFilters(input.categories, input.language, input.activeCategorySlug),
+		'%%BLOG_FEATURED_ARTICLE%%': renderFeaturedArticle(input.featuredArticle, input.language),
+		'%%BLOG_CTA_BLOCK%%': hasActiveCategory ? '' : renderBlogListCta(),
+		'%%BLOG_ARTICLE_CARDS%%': renderArticleGridCards(input.articles),
+		'%%BLOG_PAGINATION%%': renderBlogPagination(input.articles.length),
+	};
+	return replaceShellTokens(template, replacements)
+		.replaceAll('data-current-path="blog-list-shell"', 'data-current-path="blog"')
+		.replaceAll('class="garna-header-nav-link" data-nav-parent="resources"', 'class="garna-header-nav-link is-active" data-nav-parent="resources"');
+}
+
+function fillBlogAuthorAstroShell(
+	template: string,
+	input: {
+		articles: BlogArticle[];
+		author: BlogAuthor;
+		headHtml: string;
+		language: string;
+	}
+): string {
+	const { author } = input;
+	const replacements: Record<string, string> = {
+		'%%BLOG_PAGE_TITLE%%': escapeHtml(`${author.name} | Garna Blog`),
+		'%%BLOG_PAGE_DESCRIPTION%%': escapeAttribute(author.bio || `Articles by ${author.name} on the Garna blog.`),
+		'%%BLOG_OG_IMAGE%%': escapeAttribute(author.avatar_url || '/pages/blog/assets/12-photo-1438761681033-6461ffad8d80.jpg'),
+		'%%BLOG_DYNAMIC_HEAD%%': input.headHtml,
+		'%%BLOG_AUTHOR_NAME%%': escapeHtml(author.name),
+		'%%BLOG_AUTHOR_BIO%%': escapeHtml(author.bio || ''),
+		'%%BLOG_AUTHOR_AVATAR%%': renderAuthorAvatar(author),
+		'%%BLOG_AUTHOR_ROLE%%': escapeHtml(author.role || ''),
+		'%%BLOG_AUTHOR_SOCIAL_SECTION%%': renderAuthorSocialSection(author),
+		'%%BLOG_ARTICLE_CARDS%%': renderArticleGridCards(input.articles),
+		'%%BLOG_PAGINATION%%': renderBlogPagination(input.articles.length),
+	};
+	return replaceShellTokens(template, replacements)
+		.replaceAll('data-current-path="blog-author-shell"', 'data-current-path="blog-author"')
+		.replaceAll('class="garna-header-nav-link" data-nav-parent="resources"', 'class="garna-header-nav-link is-active" data-nav-parent="resources"');
+}
+
+function replaceShellTokens(template: string, replacements: Record<string, string>): string {
+	let html = template;
+	for (const [token, value] of Object.entries(replacements)) {
+		html = html.replaceAll(token, value);
+	}
+	return html;
+}
+
 function fillArticleAstroShell(
 	template: string,
 	input: {
@@ -351,6 +454,131 @@ function fillArticleAstroShell(
 	return html;
 }
 
+function renderBlogCategoryFilters(categories: BlogCategory[], language: string, activeCategorySlug?: string): string {
+	const activeClass = 'flex-shrink-0 bg-[#5ea500] text-white px-5 py-2 rounded-full text-sm hover:bg-[#4a8300] transition-colors snap-start';
+	const inactiveClass = 'flex-shrink-0 text-gray-400 px-5 py-2 rounded-full text-sm hover:bg-[#5ea500]/10 hover:text-[#5ea500] transition-colors snap-start border border-transparent hover:border-[#5ea500]/20';
+	const allButtonClass = activeCategorySlug ? inactiveClass : activeClass;
+	const allButton = `<a href="/${escapeAttribute(language)}/blog" class="${allButtonClass}"><span>All categories</span></a>`;
+	const categoryButtons = categories.map((category) => {
+		const href = `/${language}/blog?category=${encodeURIComponent(category.slug)}`;
+		const buttonClass = category.slug === activeCategorySlug ? activeClass : inactiveClass;
+		return `<a href="${escapeAttribute(href)}" class="${buttonClass}"><span>${escapeHtml(category.name)}</span></a>`;
+	}).join('');
+	return allButton + categoryButtons;
+}
+
+function renderBlogListCta(): string {
+	return `<section class="overflow-hidden pt-4 pb-8 relative">
+		<div class="font-manrope max-w-7xl mx-auto pr-6 pl-6">
+			<div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-between rounded-3xl border border-white/10 bg-[#0a0a0a]/55 px-6 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.22)]">
+				<h2 class="md:text-3xl text-2xl leading-tight font-thin text-white tracking-tight" data-translate="blog.cta.title">Your Global Growth Starts Here</h2>
+				<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_demo' });" class="inline-flex min-h-12 shrink-0 items-center justify-center rounded-xl bg-[#5ea500] px-7 text-base font-normal text-white shadow-[0_0_24px_rgba(94,165,0,0.32)] transition-transform duration-300 hover:scale-[1.03] hover:bg-[#69b800]">
+					<span data-translate="blog.cta.button">Book a Demo</span>
+				</a>
+			</div>
+		</div>
+	</section>`;
+}
+
+function renderFeaturedArticle(article: BlogArticle | undefined, language: string): string {
+	if (!article) return '';
+	const category = article.categories?.[0]?.name || 'Insight';
+	const articleLanguage = article.language || language;
+	return `<section>
+		<div class="max-w-7xl mx-auto pr-6 pb-16 pl-6">
+			<a href="/${escapeAttribute(articleLanguage)}/blog/${escapeAttribute(article.slug)}" class="flex flex-col lg:flex-row bg-[#0A0A0A] border border-white/5 rounded-3xl overflow-hidden group hover:border-[#5ea500]/30 hover:-translate-y-1 transition-all duration-500 relative outline-none">
+				<div class="absolute -left-20 -top-20 w-60 h-60 bg-[#5ea500]/5 rounded-full blur-3xl duration-500 pointer-events-none z-0"></div>
+				<div class="p-8 lg:p-12 xl:p-16 flex flex-col justify-between w-full lg:w-[45%] relative z-10 shrink-0">
+					<div>
+						<span class="text-[#5ea500] text-sm font-light tracking-wide uppercase mb-6 inline-block font-manrope">${escapeHtml(category)}</span>
+						<h3 class="text-3xl lg:text-4xl font-light text-white tracking-tight mb-6 font-manrope transition-colors duration-300">${escapeHtml(article.title)}</h3>
+						<p class="leading-relaxed text-lg text-gray-400 font-extralight">${escapeHtml(article.excerpt)}</p>
+					</div>
+					<div class="mt-12 lg:mt-24">
+						<span class="text-gray-500 text-sm font-extralight font-manrope">${escapeHtml(formatDate(article.published_at))}</span>
+					</div>
+				</div>
+				<div class="w-full lg:w-[55%] relative min-h-[300px] sm:min-h-[400px] lg:min-h-0 overflow-hidden bg-[#0A0A0A]">
+					${article.cover_url ? `<img src="${escapeAttribute(article.cover_url)}" alt="${escapeAttribute(article.cover_alt || article.title)}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out opacity-90 group-hover:opacity-100" style="${cropStyle(article.cover_object_position, article.cover_crop_scale)}">` : ''}
+					<div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0A0A0A] to-transparent hidden lg:block z-10"></div>
+					<div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0A0A0A] to-transparent lg:hidden z-10"></div>
+				</div>
+			</a>
+		</div>
+	</section>`;
+}
+
+function renderArticleGridCards(articles: BlogArticle[]): string {
+	if (!articles.length) {
+		return `<div class="md:col-span-2 lg:col-span-3 rounded-[20px] border border-white/5 bg-[#0c0c0c] p-10 text-center text-gray-400 font-thin">No published articles yet.</div>`;
+	}
+	return articles.map(renderReferenceArticleCard).join('');
+}
+
+function renderReferenceArticleCard(article: BlogArticle): string {
+	const category = article.categories?.[0]?.name || 'Insight';
+	const language = article.language || 'en';
+	return `<a class="flex flex-col bg-[#0c0c0c] rounded-[20px] overflow-hidden border border-white/5 hover:border-[#5ea500]/50 transition-all duration-300 group cursor-pointer shadow-lg" href="/${escapeAttribute(language)}/blog/${escapeAttribute(article.slug)}">
+		<div class="p-2 pb-0">
+			<div class="h-56 w-full overflow-hidden bg-[#0A0A0A] rounded-2xl">
+				${article.cover_url ? `<img src="${escapeAttribute(article.cover_url)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100" alt="${escapeAttribute(article.cover_alt || article.title)}" loading="lazy" style="${cropStyle(article.related_object_position || article.cover_object_position, article.related_crop_scale || article.cover_crop_scale)}">` : ''}
+			</div>
+		</div>
+		<div class="p-8 flex flex-col flex-1">
+			<div class="text-sm font-thin text-gray-400 mb-4 flex items-center gap-2">
+				<span class="text-[#5ea500] font-thin">${escapeHtml(category)}</span>
+				<span class="w-1 h-1 rounded-full bg-[#5ea500]/50"></span>
+				<span>${escapeHtml(formatDate(article.published_at))}</span>
+			</div>
+			<h3 class="text-xl font-thin text-white tracking-tight mb-3 leading-[1.4] group-hover:text-[#5ea500] transition-colors duration-300">${escapeHtml(article.title)}</h3>
+			<p class="text-base text-gray-400 font-thin leading-relaxed">${escapeHtml(article.excerpt)}</p>
+		</div>
+	</a>`;
+}
+
+function renderBlogPagination(articleCount: number): string {
+	if (articleCount <= 9) return '';
+	return `<div class="lg:mt-16 flex gap-1.5 sm:gap-2 mt-12 gap-x-1.5 gap-y-1.5 items-center justify-center">
+		<button class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-white/5 bg-[#0c0c0c] text-gray-400 hover:text-[#5ea500] hover:border-[#5ea500]/50 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#5ea500]/10" aria-label="Previous Page">${chevronLeftIcon()}</button>
+		<button class="sm:w-10 sm:h-10 flex transition-all duration-300 shadow-[#5ea500]/20 text-sm font-thin text-[#5ea500] bg-[#0c0c0c] w-8 h-8 border-[#5ea500] border rounded-full items-center justify-center" aria-label="Page 1" aria-current="page">1</button>
+		<button class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-white/5 bg-[#0c0c0c] text-gray-400 hover:text-[#5ea500] hover:border-[#5ea500]/50 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#5ea500]/10" aria-label="Next Page">${chevronRightIcon()}</button>
+	</div>`;
+}
+
+function renderAuthorAvatar(author: BlogAuthor): string {
+	if (author.avatar_url) {
+		return `<img src="${escapeAttribute(author.avatar_url)}" alt="${escapeAttribute(author.avatar_alt || author.name)}" class="w-full h-full rounded-full object-cover" style="${cropStyle(author.avatar_object_position, author.avatar_crop_scale)}">`;
+	}
+	return `<span class="w-full h-full rounded-full flex items-center justify-center bg-[#0A0A0A] text-white text-4xl font-light">${escapeHtml(author.name.slice(0, 1).toUpperCase())}</span>`;
+}
+
+function renderAuthorSocialSection(author: BlogAuthor): string {
+	const links = renderAuthorSocialLinks(author);
+	if (!links) return '';
+	return `<div class="flex flex-col sm:flex-row sm:gap-12 w-full border-white/10 border-t pt-8 gap-x-8 gap-y-8 items-center justify-center">
+		<div class="flex items-center gap-4">${links}</div>
+	</div>`;
+}
+
+function renderAuthorSocialLinks(author: BlogAuthor): string {
+	const links = [
+		usableSocialValue(author.x_url) ? socialIconLink(author.x_url!, 'X Profile', xIcon(), true) : '',
+		usableSocialValue(author.linkedin_url) ? socialIconLink(author.linkedin_url!, 'LinkedIn Profile', linkedInIcon(), true) : '',
+		usableSocialValue(author.email) ? socialIconLink(`mailto:${author.email}`, 'Email', mailIcon()) : '',
+	];
+	return links.filter(Boolean).join('');
+}
+
+function usableSocialValue(value: string | null | undefined): boolean {
+	const normalized = value?.trim();
+	return Boolean(normalized && normalized !== '#');
+}
+
+function socialIconLink(href: string, label: string, icon: string, external = false): string {
+	const externalAttributes = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+	return `<a href="${escapeAttribute(href)}" aria-label="${escapeAttribute(label)}"${externalAttributes} class="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all duration-300">${icon}</a>`;
+}
+
 function renderHeroCategories(article: BlogArticle): string {
 	const categories = article.categories?.length ? article.categories : [];
 	const category = categories[0];
@@ -396,12 +624,12 @@ function renderArticleFooter(article: BlogArticle, url: string): string {
 	return `<div class="garna-blog-article-footer">
 		<div class="garna-blog-article-footer-meta">
 			<div>${calendarIcon()}<span>Last updated: ${escapeHtml(formatDate(article.updated_at || article.published_at))}</span></div>
-			<div>${userCheckIcon()}<span>Written by: ${escapeHtml(writtenBy)}${article.author?.role ? `, ${escapeHtml(article.author.role)}` : ''}</span></div>
+			<div>${userCheckIcon()}<span>Written by: ${escapeHtml(writtenBy)}</span></div>
 		</div>
 		<div class="garna-blog-article-footer-share">
 			<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="https://x.com/intent/tweet?url=${escapeAttribute(encodeURIComponent(url))}" target="_blank" rel="noopener noreferrer" aria-label="Share on X">${xIcon()}</a>
 			<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="https://www.linkedin.com/sharing/share-offsite/?url=${escapeAttribute(encodeURIComponent(url))}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">${linkedInIcon()}</a>
-			<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="${escapeAttribute(url)}" aria-label="Copy article link">${linkIcon()}</a>
+			<button type="button" class="garna-blog-copy-link w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" data-copy-url="${escapeAttribute(url)}" aria-label="Copy article link">${linkIcon()}</button>
 		</div>
 	</div>`;
 }
@@ -625,6 +853,18 @@ function linkedInIcon(): string {
 
 function linkIcon(): string {
 	return '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>';
+}
+
+function mailIcon(): string {
+	return '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>';
+}
+
+function chevronLeftIcon(): string {
+	return '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>';
+}
+
+function chevronRightIcon(): string {
+	return '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>';
 }
 
 function renderArticleCard(article: BlogArticle): string {

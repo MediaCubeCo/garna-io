@@ -1,6 +1,6 @@
 import { clearSessionCookie, consumeMagicLink, createMagicLink, createSession, getSession, isAllowedAdminEmail } from './auth';
-import { getArticleById, listArticlesForAdmin, listAuthors, listCategories, listMediaAssets, upsertArticle, upsertArticleTranslation, upsertAuthor, upsertCategory } from './data';
-import type { BlogArticleInput, BlogEnv } from './types';
+import { getArticleById, getArticleTranslationDraft, getAuthorById, getAuthorTranslationDraft, listArticlesForAdmin, listAuthors, listCategories, listMediaAssets, upsertArticle, upsertArticleTranslation, upsertAuthor, upsertAuthorTranslation, upsertCategory } from './data';
+import type { BlogArticle, BlogArticleInput, BlogAuthor, BlogEnv } from './types';
 import { escapeAttribute, escapeHtml, htmlResponse, jsonResponse, normalizePublicOrigin, redirect, slugify } from './utils';
 import { isSupportedLanguage, languages } from '../config/languages';
 
@@ -30,7 +30,7 @@ export async function handleBlogAdmin(request: Request, env: BlogEnv): Promise<R
 	if (url.pathname === '/admin/blog/design-preview' && request.method === 'GET') return renderDesignPreviewIndex(session.email);
 	if (url.pathname.startsWith('/admin/blog/design-preview/') && request.method === 'GET') return renderDesignPreview(request, env);
 	if (url.pathname === '/admin/blog/articles/new' && request.method === 'GET') return renderArticleForm(env, session.email);
-	if (url.pathname === '/admin/blog/authors/new' && request.method === 'GET') return renderAuthorForm(session.email);
+	if (url.pathname === '/admin/blog/authors/new' && request.method === 'GET') return renderAuthorForm(env, session.email);
 	if (url.pathname === '/admin/blog/categories/new' && request.method === 'GET') return renderCategoryForm(session.email);
 	if (url.pathname === '/admin/blog/media/new' && request.method === 'GET') return renderMediaForm(session.email);
 	if (url.pathname.match(/^\/admin\/blog\/articles\/\d+$/) && request.method === 'GET') {
@@ -39,12 +39,22 @@ export async function handleBlogAdmin(request: Request, env: BlogEnv): Promise<R
 		const article = await getArticleById(env, id, language);
 		return article ? renderArticleForm(env, session.email, article, { justSaved: url.searchParams.get('saved') === '1' }) : htmlResponse('Not found', { status: 404 });
 	}
+	if (url.pathname.match(/^\/admin\/blog\/authors\/\d+$/) && request.method === 'GET') {
+		const id = Number(url.pathname.split('/').pop());
+		const language = normalizeArticleLanguage(url.searchParams.get('lang') || 'en');
+		const author = await getAuthorById(env, id, language);
+		return author ? renderAuthorForm(env, session.email, author, { language, justSaved: url.searchParams.get('saved') === '1' }) : htmlResponse('Not found', { status: 404 });
+	}
 	if (url.pathname === '/admin/api/blog/articles' && request.method === 'POST') return saveArticle(request, env);
 	if (url.pathname.match(/^\/admin\/api\/blog\/articles\/\d+$/) && request.method === 'POST') {
 		const id = Number(url.pathname.split('/').pop());
 		return saveArticle(request, env, id);
 	}
 	if (url.pathname === '/admin/api/blog/authors' && request.method === 'POST') return saveAuthor(request, env);
+	if (url.pathname.match(/^\/admin\/api\/blog\/authors\/\d+$/) && request.method === 'POST') {
+		const id = Number(url.pathname.split('/').pop());
+		return saveAuthor(request, env, id);
+	}
 	if (url.pathname === '/admin/api/blog/categories' && request.method === 'POST') return saveCategory(request, env);
 	if (url.pathname === '/admin/api/blog/media' && request.method === 'POST') return uploadMedia(request, env);
 	if (url.pathname.match(/^\/admin\/api\/blog\/media\/\d+$/) && request.method === 'POST') {
@@ -104,6 +114,12 @@ function normalizeCropScale(value: string): number | null {
 	const scale = Number(value);
 	if (!Number.isFinite(scale)) return null;
 	return Math.min(3, Math.max(1, scale));
+}
+
+function cropStyle(position?: string | null, scale?: number | null): string {
+	const objectPosition = position || '50% 50%';
+	const cropScale = scale || 1;
+	return `object-position: ${escapeAttribute(objectPosition)}; transform: scale(${escapeAttribute(String(cropScale))}); transform-origin: ${escapeAttribute(objectPosition)};`;
 }
 
 async function requestMagicLink(request: Request, env: BlogEnv): Promise<Response> {
@@ -169,7 +185,7 @@ async function renderArticles(env: BlogEnv, email: string): Promise<Response> {
 async function renderAuthors(env: BlogEnv, email: string): Promise<Response> {
 	const authors = await listAuthors(env);
 	const rows = authors.map((author) => `<tr>
-		<td><strong>${escapeHtml(author.name)}</strong><span>${escapeHtml(author.slug)}</span></td>
+		<td><a class="row-link" href="/admin/blog/authors/${author.id}">${escapeHtml(author.name)}</a><span>${escapeHtml(author.slug)}</span></td>
 		<td>${escapeHtml(author.role || '')}</td>
 		<td>${escapeHtml(author.email || '')}</td>
 		<td><a class="text-link" href="/en/blog/author/${escapeAttribute(author.slug)}" target="_blank">View</a></td>
@@ -236,9 +252,39 @@ async function renderDesignPreview(request: Request, env: BlogEnv): Promise<Resp
 async function renderArticleForm(env: BlogEnv, email: string, article?: any, options: { justSaved?: boolean } = {}): Promise<Response> {
 	const [authors, categories, mediaAssets] = await Promise.all([listAuthors(env), listCategories(env), listMediaAssets(env)]);
 	const action = article ? `/admin/api/blog/articles/${article.id}` : '/admin/api/blog/articles';
+	const articleLanguage = normalizeArticleLanguage(article?.language || 'en');
+	const baseArticle = article?.id && articleLanguage !== 'en' ? await getArticleById(env, article.id, 'en') : article;
+	const translationDraftEntries = article?.id
+		? await Promise.all(languages
+			.filter((language) => language.value !== 'en')
+			.map(async (language) => [language.value, await getArticleTranslationDraft(env, article.id, language.value)] as const))
+		: [];
+	const translationDrafts = new Map(translationDraftEntries);
+	const activeTranslationDraft = article?.id && articleLanguage !== 'en' ? translationDrafts.get(articleLanguage) || null : null;
+	const placeholderArticle = baseArticle || article;
+	if (article && articleLanguage !== 'en') {
+		article = {
+			...article,
+			language: articleLanguage,
+			title: activeTranslationDraft?.title || '',
+			excerpt: activeTranslationDraft?.excerpt || '',
+			body_markdown: activeTranslationDraft?.body_markdown || '',
+			cover_url: activeTranslationDraft?.cover_url || null,
+			cover_alt: activeTranslationDraft?.cover_alt || null,
+			cover_object_position: activeTranslationDraft?.cover_object_position || placeholderArticle?.cover_object_position || null,
+			related_object_position: activeTranslationDraft?.related_object_position || placeholderArticle?.related_object_position || placeholderArticle?.cover_object_position || null,
+			cover_crop_scale: activeTranslationDraft?.cover_crop_scale || placeholderArticle?.cover_crop_scale || null,
+			related_crop_scale: activeTranslationDraft?.related_crop_scale || placeholderArticle?.related_crop_scale || placeholderArticle?.cover_crop_scale || null,
+			seo_title: activeTranslationDraft?.seo_title || null,
+			seo_description: activeTranslationDraft?.seo_description || null,
+			og_image_url: activeTranslationDraft?.og_image_url || null,
+			faqs: activeTranslationDraft?.faqs || [],
+		};
+	}
+	const isTranslationModeForForm = articleLanguage !== 'en';
 	const authorOptions = authors.map((author) => `<option value="${author.id}" ${article?.author_id === author.id ? 'selected' : ''}>${escapeHtml(author.name)}</option>`).join('');
 	const selectedCategories = new Set((article?.categories || []).map((category: any) => category.id));
-	const categoryChecks = categories.map((category) => `<label class="check"><input type="checkbox" name="category_ids" value="${category.id}" ${selectedCategories.has(category.id) ? 'checked' : ''} /> ${escapeHtml(category.name)}</label>`).join('');
+	const categoryChecks = categories.map((category) => `<label class="check"><input type="checkbox" name="category_ids" value="${category.id}" ${selectedCategories.has(category.id) ? 'checked' : ''} ${isTranslationModeForForm ? 'disabled' : ''} /> ${escapeHtml(category.name)}</label>`).join('');
 	const hasCurrentMedia = mediaAssets.some((asset) => asset.url === article?.cover_url);
 	const selectedCoverAsset = mediaAssets.find((asset) => asset.url === article?.cover_url);
 	const selectedOgAsset = mediaAssets.find((asset) => asset.url === article?.og_image_url);
@@ -257,25 +303,35 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 	const seoDescriptionEnabled = Boolean(article?.seo_description);
 	const ogImageEnabled = Boolean(article?.og_image_url);
 	const articleStatus = article?.status === 'published' ? 'published' : 'draft';
-	const articleLanguage = isSupportedLanguage(article?.language || '') ? article.language : 'en';
 	const languageSwitch = languages.map((language) => {
 		const active = language.value === articleLanguage;
-		return `<label class="language-option" title="${escapeAttribute(language.label)}"><input type="radio" name="language" value="${escapeAttribute(language.value)}" ${active ? 'checked' : ''} /><span>${escapeHtml(language.value.toUpperCase())}</span></label>`;
+		const href = article?.id ? `/admin/blog/articles/${article.id}${language.value === 'en' ? '' : `?lang=${encodeURIComponent(language.value)}`}` : '#';
+		const progress = language.value === 'en' || !placeholderArticle ? '' : `<small>${translationCompletionPercent(placeholderArticle, translationDrafts.get(language.value) || null)}%</small>`;
+		return `<a class="language-option ${active ? 'active' : ''} ${article?.id ? '' : 'is-disabled'}" title="${escapeAttribute(language.label)}" href="${escapeAttribute(href)}" ${active ? 'aria-current="true"' : ''}><span>${escapeHtml(language.value.toUpperCase())}</span>${progress}</a>`;
 	}).join('');
 	const viewHref = article?.slug ? `/${articleLanguage}/blog/${escapeAttribute(article.slug)}` : '#';
 	const publishAction = articleStatus === 'published' ? 'unpublish' : 'publish';
 	const publishLabel = articleStatus === 'published' ? 'Unpublish' : 'Publish';
+	const lockedAttribute = isTranslationModeForForm ? 'disabled' : '';
+	const lockedGroupClass = isTranslationModeForForm ? ' is-locked' : '';
+	const baseFaqs = placeholderArticle?.faqs || [];
 	const faqs = article?.faqs?.length ? article.faqs : [{ question: '', answer: '' }, { question: '', answer: '' }, { question: '', answer: '' }];
 	const faqFields = faqs.map((faq: any, index: number) => `<div class="faq-fields">
 		<div class="faq-fields-head"><strong>FAQ item ${index + 1}</strong><button type="button" class="secondary faq-remove" data-faq-remove>Remove</button></div>
-		<label>Question<input name="faq_question[]" value="${escapeAttribute(faq.question || '')}" /></label>
-		<label>Answer<textarea name="faq_answer[]">${escapeHtml(faq.answer || '')}</textarea></label>
+		<label>Question<input name="faq_question[]" value="${escapeAttribute(faq.question || '')}" placeholder="${escapeAttribute(isTranslationModeForForm ? baseFaqs[index]?.question || '' : '')}" /></label>
+		<label>Answer<textarea name="faq_answer[]" placeholder="${escapeAttribute(isTranslationModeForForm ? baseFaqs[index]?.answer || '' : '')}">${escapeHtml(faq.answer || '')}</textarea></label>
 	</div>`).join('');
 	return adminShell(article ? 'Edit article' : 'New article', 'articles', email, `<form id="article-form" class="article-compose" method="post" enctype="multipart/form-data" action="${action}">
+				<input type="hidden" name="language" value="${escapeAttribute(articleLanguage)}" />
+				${isTranslationModeForForm ? `<input type="hidden" name="slug" value="${escapeAttribute(article?.slug || '')}" />
+				<input type="hidden" name="author_id" value="${escapeAttribute(article?.author_id || '')}" />
+				<input type="hidden" name="published_at" value="${escapeAttribute(toDatetimeLocalValue(article?.published_at || ''))}" />
+				<input type="hidden" name="status" value="${articleStatus}" />
+				${Array.from(selectedCategories).map((categoryId) => `<input type="hidden" name="category_ids" value="${escapeAttribute(categoryId)}" />`).join('')}` : ''}
 				<section class="article-canvas">
-					<section class="page-head"><h1>${article ? 'Edit article' : 'New article'}</h1><div class="language-switcher" aria-label="Article language">${languageSwitch}</div></section>
-					<input class="title-input" name="title" required placeholder="Article title" value="${escapeAttribute(article?.title || '')}" />
-					<textarea class="excerpt-input" name="excerpt" required placeholder="Article excerpt">${escapeHtml(article?.excerpt || '')}</textarea>
+					<section class="page-head"><h1>${article ? 'Edit article' : 'New article'}</h1><div class="language-switcher" aria-label="Article language" data-current-language="${escapeAttribute(articleLanguage)}">${languageSwitch}</div></section>
+					<input class="title-input" name="title" ${isTranslationModeForForm ? '' : 'required'} placeholder="${escapeAttribute(isTranslationModeForForm ? placeholderArticle?.title || 'Article title' : 'Article title')}" value="${escapeAttribute(article?.title || '')}" />
+					<textarea class="excerpt-input" name="excerpt" ${isTranslationModeForForm ? '' : 'required'} placeholder="${escapeAttribute(isTranslationModeForForm ? placeholderArticle?.excerpt || 'Article excerpt' : 'Article excerpt')}">${escapeHtml(article?.excerpt || '')}</textarea>
 					<div class="cover-picker" data-cover-picker data-media-assets="${escapeAttribute(mediaPayload)}">
 						<input type="hidden" name="cover_media_id" data-cover-media-id value="${escapeAttribute(selectedCoverId)}" />
 						<input type="hidden" name="current_cover_url" value="${escapeAttribute(article?.cover_url || '')}" />
@@ -336,7 +392,7 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					<div class="editor-shell block-editor-shell">
 					<div class="editor-hint">Use the + button to add Image, YouTube, TLDR, CTA, headings, lists, quotes, and dividers.</div>
 						<div id="block-editor" class="block-editor"></div>
-						<textarea id="body-markdown" name="body_markdown">${escapeHtml(article?.body_markdown || '')}</textarea>
+						<textarea id="body-markdown" name="body_markdown" data-base-body="${escapeAttribute(isTranslationModeForForm ? placeholderArticle?.body_markdown || '' : '')}">${escapeHtml(article?.body_markdown || '')}</textarea>
 					</div>
 					<section class="article-faq-editor">
 						<div class="article-faq-head">
@@ -356,15 +412,17 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					<button class="button secondary" type="submit" form="article-form" name="article_action" value="${publishAction}">${publishLabel}</button>
 					<button class="button ${options.justSaved ? 'is-saved' : ''}" type="submit" form="article-form" name="article_action" value="save" data-save-button>${options.justSaved ? 'Saved' : 'Save'}</button>
 				</div>
-				<div class="settings-group">
+				<div class="settings-group${lockedGroupClass}">
 					<h2>Publishing</h2>
-					<label>Slug<input name="slug" value="${escapeAttribute(article?.slug || '')}" /></label>
-					<label>Author<select name="author_id" required>${authorOptions}</select></label>
-					<label>Published at<input name="published_at" type="datetime-local" value="${escapeAttribute(toDatetimeLocalValue(article?.published_at || ''))}" /></label>
-					<input type="hidden" name="status" value="${articleStatus}" />
+					${isTranslationModeForForm ? '<p class="locked-note">Locked for translations. Edit this in English.</p>' : ''}
+					<label>Slug<input name="slug" value="${escapeAttribute(article?.slug || '')}" ${lockedAttribute} /></label>
+					<label>Author<select name="author_id" required ${lockedAttribute}>${authorOptions}</select></label>
+					<label>Published at<input name="published_at" type="datetime-local" value="${escapeAttribute(toDatetimeLocalValue(article?.published_at || ''))}" ${lockedAttribute} /></label>
+					${isTranslationModeForForm ? '' : `<input type="hidden" name="status" value="${articleStatus}" />`}
 				</div>
-				<div class="settings-group">
+				<div class="settings-group${lockedGroupClass}">
 					<h2>Categories</h2>
+					${isTranslationModeForForm ? '<p class="locked-note">Categories belong to the article, not to one translation.</p>' : ''}
 					<div class="checks">${categoryChecks}</div>
 				</div>
 				<div class="settings-group">
@@ -414,31 +472,17 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					const editorHolder = document.getElementById('block-editor');
 					let isSubmitting = false;
 					const saveButton = document.querySelector('[data-save-button]');
-					const languageInputs = Array.from(document.querySelectorAll('.language-switcher input[name="language"]'));
-					const articleEditId = (() => {
-						try {
-							const id = new URL(form.action).pathname.split('/').pop() || '';
-							return /^\\d+$/.test(id) ? id : '';
-						} catch {
-							return '';
-						}
-					})();
-					const currentLanguage = () => languageInputs.find((input) => input.checked)?.value || 'en';
-					const isTranslationMode = () => currentLanguage() !== 'en';
+					const languageSwitcher = document.querySelector('.language-switcher');
+					const currentArticleLanguage = languageSwitcher?.dataset.currentLanguage || 'en';
+					const isTranslationMode = () => currentArticleLanguage !== 'en';
 					const syncLanguageMode = () => {
-						const language = currentLanguage();
-						form.classList.toggle('is-translation-mode', language !== 'en');
-						languageInputs.forEach((input) => {
-							input.closest('.language-option')?.classList.toggle('active', input.checked);
-						});
+						form.classList.toggle('is-translation-mode', isTranslationMode());
 					};
-					languageInputs.forEach((input) => input.addEventListener('change', () => {
-						syncLanguageMode();
-						if (!articleEditId) return;
-						const language = currentLanguage();
-						const nextPath = '/admin/blog/articles/' + articleEditId + (language === 'en' ? '' : '?lang=' + encodeURIComponent(language));
-						if (window.location.pathname + window.location.search !== nextPath) window.location.href = nextPath;
-					}));
+					languageSwitcher?.addEventListener('click', (event) => {
+						const link = event.target instanceof Element ? event.target.closest('a.language-option') : null;
+						if (!link || link.classList.contains('active') || link.classList.contains('is-disabled')) return;
+						link.classList.add('is-loading');
+					});
 					syncLanguageMode();
 					if (saveButton && new URLSearchParams(window.location.search).get('saved') === '1') {
 						saveButton.classList.add('is-saved');
@@ -972,6 +1016,19 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					version: '2.0.0',
 				});
 				const textWithBreaks = (value) => stripTags(String(value || '').replace(/<br\\s*\\/?\\>/g, '\\n')).trim();
+				const blankEditorDataFromStructure = (data) => ({
+					...data,
+					blocks: (data.blocks || []).map((block) => {
+						if (block.type === 'paragraph') return { ...block, data: { ...block.data, text: '' } };
+						if (block.type === 'header') return { ...block, data: { ...block.data, text: '' } };
+						if (block.type === 'list') return { ...block, data: { ...block.data, items: (block.data.items || []).map((item) => typeof item === 'string' ? '' : { ...item, content: '' }) } };
+						if (block.type === 'quote') return { ...block, data: { ...block.data, text: '', caption: '' } };
+						if (block.type === 'image') return { ...block, data: { ...block.data, caption: '' } };
+						if (block.type === 'cta') return { ...block, data: { ...block.data, title: '', text: '', button: '', url: block.data.url || '' } };
+						if (block.type === 'tldr') return { ...block, data: { ...block.data, title: '', items: (block.data.items || []).map(() => '') } };
+						return block;
+					}),
+				});
 				const editorToMarkdown = (data) => data.blocks.map((block) => {
 					if (block.type === 'header') return '#'.repeat(block.data.level || 2) + ' ' + stripTags(block.data.text || '').trim();
 					if (block.type === 'list') return (block.data.items || []).map((item) => '- ' + stripTags(typeof item === 'string' ? item : item.content || '').trim()).join('\\n');
@@ -1019,18 +1076,43 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					};
 				}
 				if (window.Embed) tools.embed = { class: window.Embed, inlineToolbar: true, config: { services: { youtube: true } } };
-				const initialEditorData = markdownToEditorData(source.value);
+				const initialEditorData = isTranslationMode() && !source.value.trim() && source.dataset.baseBody
+					? blankEditorDataFromStructure(markdownToEditorData(source.dataset.baseBody))
+					: markdownToEditorData(source.value);
 				const blockStructureSignature = (data) => (data.blocks || []).map((block) => block.type).join('|');
 				const initialBlockStructure = blockStructureSignature(initialEditorData);
+				const cloneEditorData = (data) => JSON.parse(JSON.stringify(data));
+				let lastValidEditorData = cloneEditorData(initialEditorData);
+				let isRestoringEditorStructure = false;
+				let structureGuardTimer = 0;
+				const restoreEditorStructure = async () => {
+					if (!isTranslationMode() || isRestoringEditorStructure) return;
+					const data = await editor.save();
+					if (blockStructureSignature(data) === initialBlockStructure) {
+						lastValidEditorData = cloneEditorData(data);
+						return;
+					}
+					isRestoringEditorStructure = true;
+					await editor.render(lastValidEditorData);
+					markEditorButtonsSafe();
+					window.setTimeout(() => { isRestoringEditorStructure = false; }, 0);
+				};
 				const editor = new EditorJS({
 					holder: 'block-editor',
 					placeholder: 'Write the article. Use the + button to add a block.',
 					data: initialEditorData,
 					tools,
+					onChange: () => {
+						if (!isTranslationMode() || isRestoringEditorStructure) return;
+						window.clearTimeout(structureGuardTimer);
+						structureGuardTimer = window.setTimeout(() => {
+							restoreEditorStructure().catch(() => {});
+						}, 180);
+					},
 					onReady: () => {
 						markEditorButtonsSafe();
 						new MutationObserver(markEditorButtonsSafe).observe(editorHolder, { childList: true, subtree: true });
-						new DragDrop(editor, '1px dashed #487c1f');
+						if (!isTranslationMode()) new DragDrop(editor, '1px dashed #487c1f');
 						syncLanguageMode();
 					},
 				});
@@ -1076,16 +1158,137 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 		</script>`);
 }
 
-function renderAuthorForm(email: string): Response {
-	return adminShell('New author', 'authors', email, `<section class="page-head"><div><p class="eyebrow">People</p><h1>New author</h1></div><a class="button secondary" href="/admin/blog/authors">Back</a></section>
-		<form class="surface form-grid" method="post" action="/admin/api/blog/authors">
-			<label>Name<input name="name" required /></label>
-			<label>Slug<input name="slug" /></label>
-			<label>Role<input name="role" /></label>
-			<label>Email<input name="email" type="email" /></label>
-			<label>Bio<textarea name="bio"></textarea></label>
-			<button>Save author</button>
-		</form>`);
+function authorTranslationCompletionPercent(baseAuthor: BlogAuthor, translation: Partial<BlogAuthor> | null): number {
+	const checks: Array<[string | null | undefined, string | null | undefined]> = [
+		[baseAuthor.name, translation?.name],
+		[baseAuthor.role, translation?.role],
+		[baseAuthor.bio, translation?.bio],
+	];
+	const required = checks.filter(([source]) => Boolean(source?.trim()));
+	if (!required.length) return 100;
+	const completed = required.filter(([, value]) => Boolean(value?.trim())).length;
+	return Math.round((completed / required.length) * 100);
+}
+
+async function renderAuthorForm(env: BlogEnv, email: string, author?: BlogAuthor, options: { language?: string; justSaved?: boolean } = {}): Promise<Response> {
+	const mediaAssets = await listMediaAssets(env);
+	const language = normalizeArticleLanguage(options.language || 'en');
+	const baseAuthor = author?.id && language !== 'en' ? await getAuthorById(env, author.id, 'en') : author;
+	const authorId = author?.id;
+	const translationEntries = authorId
+		? await Promise.all(languages
+			.filter((item) => item.value !== 'en')
+			.map(async (item) => [item.value, await getAuthorTranslationDraft(env, authorId, item.value)] as const))
+		: [];
+	const translations = new Map(translationEntries);
+	const activeTranslation = author?.id && language !== 'en' ? translations.get(language) || null : null;
+	const sourceAuthor = baseAuthor || author;
+	if (author && language !== 'en') {
+		author = {
+			...author,
+			name: activeTranslation?.name || '',
+			role: activeTranslation?.role || '',
+			bio: activeTranslation?.bio || '',
+		};
+	}
+	const isTranslationMode = language !== 'en';
+	const action = author ? `/admin/api/blog/authors/${author.id}` : '/admin/api/blog/authors';
+	const selectedAvatarAsset = mediaAssets.find((asset) => asset.url === author?.avatar_url);
+	const selectedAvatarId = selectedAvatarAsset ? String(selectedAvatarAsset.id) : author?.avatar_url ? 'current' : '';
+	const mediaPayload = safeJson(mediaAssets.map((asset) => ({
+		id: asset.id,
+		key: asset.key,
+		url: asset.url,
+		display_name: asset.display_name || '',
+		alt: asset.alt || '',
+		content_type: asset.content_type || '',
+	})));
+	const avatarName = selectedAvatarAsset?.display_name || selectedAvatarAsset?.alt || selectedAvatarAsset?.key || author?.avatar_alt || '';
+	const languageSwitch = languages.map((item) => {
+		const active = item.value === language;
+		const href = author?.id ? `/admin/blog/authors/${author.id}${item.value === 'en' ? '' : `?lang=${encodeURIComponent(item.value)}`}` : '#';
+		const progress = item.value === 'en' || !sourceAuthor ? '' : `<small>${authorTranslationCompletionPercent(sourceAuthor, translations.get(item.value) || null)}%</small>`;
+		return `<a class="language-option ${active ? 'active' : ''} ${author?.id ? '' : 'is-disabled'}" title="${escapeAttribute(item.label)}" href="${escapeAttribute(href)}" ${active ? 'aria-current="true"' : ''}><span>${escapeHtml(item.value.toUpperCase())}</span>${progress}</a>`;
+	}).join('');
+	const lockedClass = isTranslationMode ? ' is-locked' : '';
+	const lockedAttribute = isTranslationMode ? 'disabled' : '';
+	return adminShell(author ? 'Edit author' : 'New author', 'authors', email, `<form id="author-form" class="article-compose" method="post" action="${action}">
+			<input type="hidden" name="language" value="${escapeAttribute(language)}" />
+			${isTranslationMode ? `<input type="hidden" name="slug" value="${escapeAttribute(sourceAuthor?.slug || '')}" />
+			<input type="hidden" name="email" value="${escapeAttribute(sourceAuthor?.email || '')}" />
+			<input type="hidden" name="x_url" value="${escapeAttribute(sourceAuthor?.x_url || '')}" />
+			<input type="hidden" name="linkedin_url" value="${escapeAttribute(sourceAuthor?.linkedin_url || '')}" />
+			<input type="hidden" name="avatar_url" value="${escapeAttribute(sourceAuthor?.avatar_url || '')}" />
+			<input type="hidden" name="avatar_alt" value="${escapeAttribute(sourceAuthor?.avatar_alt || '')}" />
+			<input type="hidden" name="avatar_object_position" value="${escapeAttribute(sourceAuthor?.avatar_object_position || '50% 50%')}" />
+			<input type="hidden" name="avatar_crop_scale" value="${escapeAttribute(sourceAuthor?.avatar_crop_scale || 1)}" />` : ''}
+			<section class="article-canvas">
+				<section class="page-head"><h1>${author ? 'Edit author' : 'New author'}</h1><div class="language-switcher" aria-label="Author language" data-current-language="${escapeAttribute(language)}">${languageSwitch}</div></section>
+				<input class="title-input" name="name" ${isTranslationMode ? '' : 'required'} placeholder="${escapeAttribute(isTranslationMode ? sourceAuthor?.name || 'Author name' : 'Author name')}" value="${escapeAttribute(author?.name || '')}" />
+				<textarea class="excerpt-input" name="bio" placeholder="${escapeAttribute(isTranslationMode ? sourceAuthor?.bio || 'Author bio' : 'Author bio')}">${escapeHtml(author?.bio || '')}</textarea>
+				<label>Role<input name="role" placeholder="${escapeAttribute(isTranslationMode ? sourceAuthor?.role || 'Author role' : 'Author role')}" value="${escapeAttribute(author?.role || '')}" /></label>
+				<div class="cover-picker author-avatar-picker${isTranslationMode ? ' is-locked' : ''}" data-author-avatar-picker data-media-assets="${escapeAttribute(mediaPayload)}">
+					<input type="hidden" name="avatar_media_id" data-cover-media-id value="${escapeAttribute(selectedAvatarId)}" />
+					<input type="hidden" name="avatar_url" value="${escapeAttribute(author?.avatar_url || '')}" data-avatar-url />
+					<input type="hidden" name="avatar_alt" value="${escapeAttribute(author?.avatar_alt || '')}" data-avatar-alt />
+					<input type="hidden" name="avatar_object_position" data-cover-position value="${escapeAttribute(author?.avatar_object_position || '50% 50%')}" />
+					<input type="hidden" name="avatar_crop_scale" data-cover-scale value="${escapeAttribute(author?.avatar_crop_scale || 1)}" />
+					<input class="cover-upload-input" data-cover-upload type="file" accept="image/*" hidden ${lockedAttribute} />
+					<div class="cover-dropzone ${author?.avatar_url ? 'has-cover' : ''}" data-cover-dropzone tabindex="0">
+						<div class="cover-preview-frame avatar-preview-frame" data-cover-preview>
+							${author?.avatar_url ? `<img src="${escapeAttribute(author.avatar_url)}" alt="${escapeAttribute(author.avatar_alt || author.name || 'Author avatar')}" style="${cropStyle(author.avatar_object_position, author.avatar_crop_scale)}" />` : `<div class="cover-empty"><strong>Set up author avatar</strong><div><button type="button" class="secondary" data-cover-upload-button ${isTranslationMode ? 'is-disabled' : ''}">Upload</button><button type="button" class="secondary" data-cover-library-button ${isTranslationMode ? 'is-disabled' : ''}">Select from media</button></div><span>Drop file here</span></div>`}
+						</div>
+						<div class="cover-actions">
+							<button type="button" class="secondary" data-cover-upload-button ${isTranslationMode ? 'is-disabled' : ''}">Upload new</button>
+							<button type="button" class="secondary" data-cover-library-button ${isTranslationMode ? 'is-disabled' : ''}">Find media</button>
+							<button type="button" class="secondary" data-crop-mode="cover" ${author?.avatar_url ? '' : 'disabled'}>Crop avatar</button>
+							<button type="button" class="secondary" data-cover-edit-button ${selectedAvatarAsset ? '' : 'is-hidden'}">Edit details</button>
+							<button type="button" class="secondary icon-button" data-cover-remove-button ${author?.avatar_url ? '' : 'is-hidden'}" aria-label="Remove avatar">${trashIcon()}</button>
+						</div>
+						<p class="cover-caption" data-cover-caption>${avatarName ? escapeHtml(avatarName) : 'No avatar selected'}</p>
+						<p class="cover-alt-badge" data-cover-alt-badge>${author?.avatar_alt ? escapeHtml(author.avatar_alt) : ''}</p>
+					</div>
+					<dialog class="media-dialog" data-media-library-dialog>
+						<div class="media-dialog-panel media-library-panel">
+							<div class="media-dialog-head"><div><p class="eyebrow">Media library</p><h2>Choose avatar</h2></div><button type="button" class="secondary" data-dialog-close>Close</button></div>
+							<div class="media-grid" data-media-grid></div>
+						</div>
+					</dialog>
+					<dialog class="media-dialog" data-media-details-dialog>
+						<div class="media-dialog-panel">
+							<div class="media-dialog-head"><div><p class="eyebrow">Media details</p><h2>Author avatar</h2></div><button type="button" class="secondary" data-dialog-close>Close</button></div>
+							<img class="media-detail-preview" data-media-detail-preview alt="" />
+							<label>Name<input data-media-name placeholder="Image name" /></label>
+							<label>Alt text<textarea data-media-alt placeholder="Describe the author image"></textarea></label>
+							<div class="media-dialog-actions"><button type="button" class="secondary" data-dialog-close>Cancel</button><button type="button" data-media-save>Save and use</button></div>
+						</div>
+					</dialog>
+					<dialog class="media-dialog" data-crop-dialog>
+						<div class="media-dialog-panel crop-dialog-panel">
+							<div class="media-dialog-head"><div><p class="eyebrow">Avatar</p><h2 data-crop-title>Crop avatar</h2></div><button type="button" class="secondary" data-dialog-close>Close</button></div>
+							<div class="crop-stage" data-crop-stage><img class="crop-backdrop" data-crop-backdrop alt="" /><div class="crop-preview is-related" data-crop-preview><img data-crop-image alt="" /></div></div>
+							<p class="crop-help">Drag the image to choose the visible area. Scroll over the preview to zoom in or out.</p>
+							<div class="media-dialog-actions"><button type="button" class="secondary" data-dialog-close>Cancel</button><button type="button" data-crop-save>Save crop</button></div>
+						</div>
+					</dialog>
+				</div>
+			</section>
+			<aside class="settings-sidebar">
+				<div class="page-actions">
+					<a class="button secondary ${author?.slug ? '' : 'is-disabled'}" href="/en/blog/author/${escapeAttribute(sourceAuthor?.slug || author?.slug || '')}" target="_blank" rel="noopener noreferrer">View</a>
+					<button class="button ${options.justSaved ? 'is-saved' : ''}" type="submit" form="author-form" name="author_action" value="save" data-save-button>${options.justSaved ? 'Saved' : 'Save'}</button>
+				</div>
+				<div class="settings-group${lockedClass}">
+					<h2>Profile settings</h2>
+					${isTranslationMode ? '<p class="locked-note">Slug, contacts, and avatar belong to the author profile. Edit them in English.</p>' : ''}
+					<label>Slug<input name="slug" value="${escapeAttribute(sourceAuthor?.slug || author?.slug || '')}" ${lockedAttribute} /></label>
+					<label>Email<input name="email" type="email" value="${escapeAttribute(sourceAuthor?.email || author?.email || '')}" ${lockedAttribute} /></label>
+					<label>X profile URL<input name="x_url" type="url" placeholder="https://x.com/..." value="${escapeAttribute(sourceAuthor?.x_url || author?.x_url || '')}" ${lockedAttribute} /></label>
+					<label>LinkedIn profile URL<input name="linkedin_url" type="url" placeholder="https://www.linkedin.com/in/..." value="${escapeAttribute(sourceAuthor?.linkedin_url || author?.linkedin_url || '')}" ${lockedAttribute} /></label>
+				</div>
+			</aside>
+		</form>
+		<script>${authorAvatarEditorScript()}</script>`);
 }
 
 function renderCategoryForm(email: string): Response {
@@ -1211,17 +1414,46 @@ async function resolveArticleCover(form: FormData, env: BlogEnv): Promise<{ url:
 	return { url: null, alt: null };
 }
 
-async function saveAuthor(request: Request, env: BlogEnv): Promise<Response> {
+async function resolveAuthorAvatar(form: FormData, env: BlogEnv): Promise<{ url: string | null; alt: string | null }> {
+	const selectedMediaId = String(form.get('avatar_media_id') || '').trim();
+	if (selectedMediaId && selectedMediaId !== 'current' && env.DB) {
+		const media = await env.DB.prepare('SELECT url, alt FROM media_assets WHERE id = ?').bind(Number(selectedMediaId)).first<{ url: string; alt: string | null }>();
+		if (media) return { url: media.url, alt: media.alt || null };
+	}
+	return {
+		url: String(form.get('avatar_url') || '').trim() || null,
+		alt: String(form.get('avatar_alt') || '').trim() || null,
+	};
+}
+
+async function saveAuthor(request: Request, env: BlogEnv, id?: number): Promise<Response> {
 	const form = await request.formData();
+	const language = normalizeArticleLanguage(String(form.get('language') || 'en'));
 	const name = String(form.get('name') || '').trim();
-	await upsertAuthor(env, {
+	if (language !== 'en') {
+		if (!id) throw new Error('Save the English author profile before adding translations');
+		await upsertAuthorTranslation(env, id, language, {
+			name,
+			role: String(form.get('role') || '').trim() || null,
+			bio: String(form.get('bio') || '').trim() || null,
+		});
+		return redirect(`/admin/blog/authors/${id}?lang=${encodeURIComponent(language)}&saved=1`);
+	}
+	const avatar = await resolveAuthorAvatar(form, env);
+	const authorId = await upsertAuthor(env, {
 		name,
 		slug: String(form.get('slug') || slugify(name)).trim(),
 		role: String(form.get('role') || '').trim(),
 		email: String(form.get('email') || '').trim() || null,
+		x_url: String(form.get('x_url') || '').trim() || null,
+		linkedin_url: String(form.get('linkedin_url') || '').trim() || null,
 		bio: String(form.get('bio') || '').trim(),
-	});
-	return redirect('/admin/blog/authors');
+		avatar_url: avatar.url,
+		avatar_alt: avatar.alt,
+		avatar_object_position: normalizeObjectPosition(String(form.get('avatar_object_position') || '')),
+		avatar_crop_scale: normalizeCropScale(String(form.get('avatar_crop_scale') || '')),
+	}, id);
+	return redirect(`/admin/blog/authors/${authorId}?saved=1`);
 }
 
 async function saveCategory(request: Request, env: BlogEnv): Promise<Response> {
@@ -1286,6 +1518,260 @@ function mediaAssetJson(row: any): { id: number; key: string; url: string; displ
 	};
 }
 
+function authorAvatarEditorScript(): string {
+	return `
+		(() => {
+			const picker = document.querySelector('[data-author-avatar-picker]');
+			if (!picker || picker.classList.contains('is-locked')) return;
+			let mediaAssets = [];
+			let activeMedia = null;
+			try { mediaAssets = JSON.parse(picker.dataset.mediaAssets || '[]'); } catch {}
+			const mediaIdInput = picker.querySelector('[data-cover-media-id]');
+			const avatarUrlInput = picker.querySelector('[data-avatar-url]');
+			const avatarAltInput = picker.querySelector('[data-avatar-alt]');
+			const positionInput = picker.querySelector('[data-cover-position]');
+			const scaleInput = picker.querySelector('[data-cover-scale]');
+			const uploadInput = picker.querySelector('[data-cover-upload]');
+			const dropzone = picker.querySelector('[data-cover-dropzone]');
+			const preview = picker.querySelector('[data-cover-preview]');
+			const caption = picker.querySelector('[data-cover-caption]');
+			const altBadge = picker.querySelector('[data-cover-alt-badge]');
+			const editButton = picker.querySelector('[data-cover-edit-button]');
+			const removeButton = picker.querySelector('[data-cover-remove-button]');
+			const libraryDialog = picker.querySelector('[data-media-library-dialog]');
+			const detailsDialog = picker.querySelector('[data-media-details-dialog]');
+			const cropDialog = picker.querySelector('[data-crop-dialog]');
+			const mediaGrid = picker.querySelector('[data-media-grid]');
+			const detailPreview = picker.querySelector('[data-media-detail-preview]');
+			const nameInput = picker.querySelector('[data-media-name]');
+			const altInput = picker.querySelector('[data-media-alt]');
+			const cropStage = picker.querySelector('[data-crop-stage]');
+			const cropPreview = picker.querySelector('[data-crop-preview]');
+			const cropImage = picker.querySelector('[data-crop-image]');
+			const cropBackdrop = picker.querySelector('[data-crop-backdrop]');
+			let cropState = { x: 50, y: 50, scale: 1 };
+			let dragState = null;
+			const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+			const splitPosition = (value) => {
+				const match = String(value || '50% 50%').match(/(-?\\d+(?:\\.\\d+)?)%\\s+(-?\\d+(?:\\.\\d+)?)%/);
+				return match ? [Number(match[1]), Number(match[2])] : [50, 50];
+			};
+			const currentImage = () => preview.querySelector('img');
+			const applyImageStyle = (image, position = positionInput.value || '50% 50%', scale = scaleInput.value || '1') => {
+				image.style.objectPosition = position;
+				image.style.transform = 'scale(' + scale + ')';
+				image.style.transformOrigin = position;
+			};
+			const setAvatar = (asset) => {
+				activeMedia = asset;
+				mediaIdInput.value = asset ? String(asset.id) : '';
+				avatarUrlInput.value = asset?.url || '';
+				avatarAltInput.value = asset?.alt || '';
+				if (asset) {
+					preview.innerHTML = '';
+					const image = document.createElement('img');
+					image.src = asset.url;
+					image.alt = asset.alt || asset.display_name || 'Author avatar';
+					applyImageStyle(image);
+					preview.appendChild(image);
+					caption.textContent = asset.display_name || asset.alt || asset.key || 'Author avatar';
+					altBadge.textContent = asset.alt || '';
+					dropzone.classList.add('has-cover');
+					editButton.classList.toggle('is-hidden', !asset.id);
+					removeButton.classList.remove('is-hidden');
+				} else {
+					preview.innerHTML = '<div class="cover-empty"><strong>Set up author avatar</strong><div><button type="button" class="secondary" data-cover-upload-button>Upload</button><button type="button" class="secondary" data-cover-library-button>Select from media</button></div><span>Drop file here</span></div>';
+					caption.textContent = 'No avatar selected';
+					altBadge.textContent = '';
+					dropzone.classList.remove('has-cover');
+					editButton.classList.add('is-hidden');
+					removeButton.classList.add('is-hidden');
+				}
+			};
+			const renderLibrary = () => {
+				mediaGrid.innerHTML = '';
+				if (!mediaAssets.length) {
+					const empty = document.createElement('p');
+					empty.className = 'muted';
+					empty.textContent = 'No media files yet.';
+					mediaGrid.appendChild(empty);
+					return;
+				}
+				mediaAssets.forEach((asset) => {
+					const tile = document.createElement('button');
+					tile.type = 'button';
+					tile.className = 'media-tile';
+					tile.dataset.mediaId = String(asset.id);
+					const thumb = document.createElement('span');
+					const image = document.createElement('img');
+					image.src = asset.url;
+					image.alt = '';
+					thumb.appendChild(image);
+					const title = document.createElement('strong');
+					title.textContent = asset.display_name || asset.alt || asset.key;
+					tile.append(thumb, title);
+					mediaGrid.appendChild(tile);
+				});
+			};
+			const openDetails = (asset) => {
+				if (!asset) return;
+				activeMedia = asset;
+				detailPreview.src = asset.url;
+				detailPreview.alt = asset.alt || '';
+				nameInput.value = asset.display_name || asset.alt || asset.key || '';
+				altInput.value = asset.alt || '';
+				detailsDialog.showModal();
+			};
+			const uploadAvatar = async (file) => {
+				if (!file || !file.type.startsWith('image/')) return;
+				dropzone.classList.add('is-uploading');
+				const data = new FormData();
+				data.append('file', file);
+				data.append('display_name', file.name);
+				data.append('alt', file.name);
+				const response = await fetch('/admin/api/blog/media', { method: 'POST', body: data, credentials: 'same-origin' });
+				const result = await response.json();
+				dropzone.classList.remove('is-uploading');
+				if (!response.ok) throw new Error(result.error || 'Upload failed');
+				mediaAssets = [result, ...mediaAssets.filter((asset) => asset.id !== result.id)];
+				positionInput.value = '50% 50%';
+				scaleInput.value = '1';
+				setAvatar(result);
+				openDetails(result);
+			};
+			const cropGeometry = () => {
+				const stageRect = cropStage.getBoundingClientRect();
+				const previewRect = cropPreview.getBoundingClientRect();
+				const naturalWidth = cropImage.naturalWidth || previewRect.width || 1;
+				const naturalHeight = cropImage.naturalHeight || previewRect.height || 1;
+				const fitScale = Math.max(previewRect.width / naturalWidth, previewRect.height / naturalHeight) * cropState.scale;
+				const width = naturalWidth * fitScale;
+				const height = naturalHeight * fitScale;
+				const minLeft = Math.min(0, previewRect.width - width);
+				const minTop = Math.min(0, previewRect.height - height);
+				const left = minLeft ? minLeft * (clamp(cropState.x, 0, 100) / 100) : (previewRect.width - width) / 2;
+				const top = minTop ? minTop * (clamp(cropState.y, 0, 100) / 100) : (previewRect.height - height) / 2;
+				return { width, height, left, top, minLeft, minTop, previewLeft: previewRect.left - stageRect.left, previewTop: previewRect.top - stageRect.top };
+			};
+			const applyCropPreview = () => {
+				cropState.x = Math.round(clamp(cropState.x, 0, 100) * 100) / 100;
+				cropState.y = Math.round(clamp(cropState.y, 0, 100) * 100) / 100;
+				const geometry = cropGeometry();
+				for (const image of [cropImage, cropBackdrop]) {
+					image.style.width = geometry.width + 'px';
+					image.style.height = geometry.height + 'px';
+					image.style.objectPosition = '50% 50%';
+					image.style.transform = 'none';
+				}
+				cropImage.style.left = geometry.left + 'px';
+				cropImage.style.top = geometry.top + 'px';
+				cropBackdrop.style.left = (geometry.previewLeft + geometry.left) + 'px';
+				cropBackdrop.style.top = (geometry.previewTop + geometry.top) + 'px';
+			};
+			const openCrop = () => {
+				const image = currentImage();
+				if (!image) return;
+				const [x, y] = splitPosition(positionInput.value);
+				cropState = { x, y, scale: clamp(Number(scaleInput.value || 1), 1, 3) };
+				for (const layer of [cropImage, cropBackdrop]) {
+					layer.src = image.src;
+					layer.alt = image.alt || '';
+				}
+				cropDialog.showModal();
+				applyCropPreview();
+			};
+			picker.addEventListener('click', (event) => {
+				const target = event.target instanceof Element ? event.target : null;
+				if (target?.closest('[data-cover-upload-button]')) {
+					uploadInput.click();
+					return;
+				}
+				if (target?.closest('[data-cover-library-button]')) {
+					renderLibrary();
+					libraryDialog.showModal();
+					return;
+				}
+				if (target?.closest('[data-crop-mode]')) openCrop();
+			});
+			editButton.addEventListener('click', () => openDetails(activeMedia));
+			removeButton.addEventListener('click', () => setAvatar(null));
+			uploadInput.addEventListener('change', () => uploadAvatar(uploadInput.files?.[0]).catch((error) => window.alert(error.message || 'Upload failed')));
+			dropzone.addEventListener('dragover', (event) => {
+				event.preventDefault();
+				dropzone.classList.add('is-dragging');
+			});
+			dropzone.addEventListener('dragleave', () => dropzone.classList.remove('is-dragging'));
+			dropzone.addEventListener('drop', (event) => {
+				event.preventDefault();
+				dropzone.classList.remove('is-dragging');
+				uploadAvatar(event.dataTransfer?.files?.[0]).catch((error) => window.alert(error.message || 'Upload failed'));
+			});
+			mediaGrid.addEventListener('click', (event) => {
+				const target = event.target instanceof Element ? event.target : null;
+				const tile = target?.closest('[data-media-id]');
+				if (!tile) return;
+				const asset = mediaAssets.find((item) => String(item.id) === tile.dataset.mediaId);
+				if (!asset) return;
+				libraryDialog.close();
+				positionInput.value = '50% 50%';
+				scaleInput.value = '1';
+				setAvatar(asset);
+				openDetails(asset);
+			});
+			picker.querySelectorAll('[data-dialog-close]').forEach((button) => button.addEventListener('click', () => button.closest('dialog').close()));
+			picker.querySelector('[data-media-save]').addEventListener('click', async () => {
+				if (!activeMedia?.id) return;
+				const data = new FormData();
+				data.append('display_name', nameInput.value.trim());
+				data.append('alt', altInput.value.trim());
+				const response = await fetch('/admin/api/blog/media/' + activeMedia.id, { method: 'POST', body: data, credentials: 'same-origin' });
+				const result = await response.json();
+				if (!response.ok) throw new Error(result.error || 'Save failed');
+				mediaAssets = mediaAssets.map((asset) => asset.id === result.id ? result : asset);
+				setAvatar(result);
+				detailsDialog.close();
+			});
+			cropStage.addEventListener('pointerdown', (event) => {
+				event.preventDefault();
+				cropStage.setPointerCapture(event.pointerId);
+				const geometry = cropGeometry();
+				dragState = { pointerId: event.pointerId, left: geometry.left, top: geometry.top, startX: event.clientX, startY: event.clientY };
+			});
+			cropStage.addEventListener('pointermove', (event) => {
+				if (!dragState || dragState.pointerId !== event.pointerId) return;
+				const geometry = cropGeometry();
+				const nextLeft = clamp(dragState.left + event.clientX - dragState.startX, geometry.minLeft, 0);
+				const nextTop = clamp(dragState.top + event.clientY - dragState.startY, geometry.minTop, 0);
+				cropState.x = geometry.minLeft ? nextLeft / geometry.minLeft * 100 : 50;
+				cropState.y = geometry.minTop ? nextTop / geometry.minTop * 100 : 50;
+				applyCropPreview();
+			});
+			cropStage.addEventListener('pointerup', () => { dragState = null; });
+			cropStage.addEventListener('pointercancel', () => { dragState = null; });
+			cropStage.addEventListener('wheel', (event) => {
+				event.preventDefault();
+				const zoomStep = Math.min(.025, Math.max(.004, Math.abs(event.deltaY) * .00025));
+				const next = cropState.scale + (event.deltaY < 0 ? zoomStep : -zoomStep);
+				cropState.scale = Math.round(clamp(next, 1, 3) * 100) / 100;
+				applyCropPreview();
+			}, { passive: false });
+			window.addEventListener('resize', () => { if (cropDialog.open) applyCropPreview(); });
+			picker.querySelector('[data-crop-save]').addEventListener('click', () => {
+				const value = cropState.x + '% ' + cropState.y + '%';
+				positionInput.value = value;
+				scaleInput.value = String(cropState.scale);
+				const image = currentImage();
+				if (image) applyImageStyle(image, value, String(cropState.scale));
+				cropDialog.close();
+			});
+			const selected = mediaAssets.find((asset) => String(asset.id) === mediaIdInput.value);
+			if (selected) setAvatar(selected);
+			const image = currentImage();
+			if (image) applyImageStyle(image);
+		})();
+	`;
+}
+
 function validateArticle(input: BlogArticleInput): void {
 	const missing: Array<[string, string | number | null | undefined]> = [
 		['title', input.title],
@@ -1310,14 +1796,29 @@ function validateArticle(input: BlogArticleInput): void {
 
 function validateArticleTranslation(input: BlogArticleInput): void {
 	const missing: Array<[string, string | number | null | undefined]> = [
-		['title', input.title],
 		['language', input.language],
-		['excerpt', input.excerpt],
-		['body_markdown', input.body_markdown],
 	];
 	const missingFields = missing.filter(([, value]) => !value).map(([field]) => field);
-	if (input.status === 'published' && (input.faqs || []).length < 3) missingFields.push('faq_minimum_3');
 	if (missingFields.length) throw new Error(`Missing required article translation fields: ${missingFields.join(', ')}`);
+}
+
+function translationCompletionPercent(baseArticle: any, translation: Partial<BlogArticle> | null): number {
+	const checks: Array<[string | null | undefined, string | null | undefined]> = [
+		[baseArticle?.title, translation?.title],
+		[baseArticle?.excerpt, translation?.excerpt],
+		[baseArticle?.body_markdown, translation?.body_markdown],
+		[baseArticle?.cover_alt, translation?.cover_alt],
+		[baseArticle?.seo_title, translation?.seo_title],
+		[baseArticle?.seo_description, translation?.seo_description],
+	];
+	for (const [index, faq] of (baseArticle?.faqs || []).entries()) {
+		checks.push([faq.question, translation?.faqs?.[index]?.question]);
+		checks.push([faq.answer, translation?.faqs?.[index]?.answer]);
+	}
+	const required = checks.filter(([source]) => Boolean(source?.trim()));
+	if (!required.length) return 100;
+	const completed = required.filter(([, value]) => Boolean(value?.trim())).length;
+	return Math.round((completed / required.length) * 100);
 }
 
 function adminHtml(title: string, body: string): Response {
@@ -1377,11 +1878,13 @@ function adminHtml(title: string, body: string): Response {
 		.article-canvas > .page-head { position: sticky; top: 0; z-index: 5; margin: 0 0 var(--admin-sticky-gap); min-height: var(--admin-sticky-height); padding: 0; background: var(--wash); }
 		.article-canvas > .page-head h1 { font-size: 18px; line-height: 38px; font-weight: 720; }
 		.language-switcher { display: inline-flex; align-items: center; gap: 4px; min-height: 38px; padding: 4px; border: 1px solid var(--line); border-radius: 7px; background: #fff; box-shadow: 0 1px 0 rgba(28,24,18,.03); }
-		.language-option { display: inline-flex; align-items: center; justify-content: center; min-width: 42px; min-height: 28px; margin: 0; border-radius: 5px; color: #6b665d; cursor: pointer; font-size: 12px; font-weight: 680; letter-spacing: 0; user-select: none; }
-		.language-option input { position: absolute; width: 0; height: 0; margin: 0; padding: 0; border: 0; opacity: 0; pointer-events: none; }
-		.language-option span { display: inline-flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+		.language-option { display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-width: 42px; min-height: 28px; margin: 0; padding: 0 8px; border-radius: 5px; color: #6b665d; cursor: pointer; font-size: 12px; font-weight: 680; letter-spacing: 0; text-decoration: none; user-select: none; }
+		.language-option span { display: inline-flex; align-items: center; justify-content: center; height: 100%; }
+		.language-option small { color: #8f887d; font-size: 10px; font-weight: 650; line-height: 1; }
 		.language-option:hover { background: var(--wash); color: var(--ink); }
-		.language-option.active, .language-option:has(input:checked) { background: var(--accent); color: #fff; }
+		.language-option.active { background: var(--accent); color: #fff; }
+		.language-option.active small { color: rgba(255,255,255,.82); }
+		.language-option.is-loading { opacity: .72; pointer-events: none; }
 		.title-input { width: 100%; background: #fff; color: var(--ink); border: 1px solid #d9d6ce; border-radius: 7px; padding: 12px 14px; font: inherit; font-size: 34px; line-height: 1.15; font-weight: 760; letter-spacing: 0; }
 		.title-input:focus { outline: 2px solid rgba(72,124,31,.22); border-color: var(--accent); }
 		.excerpt-input { display: block; width: 100%; min-height: 94px; margin-top: 12px; background: #fff; color: var(--ink); border: 1px solid #d9d6ce; border-radius: 7px; padding: 10px 12px; font: inherit; line-height: 1.45; resize: vertical; }
@@ -1405,6 +1908,11 @@ function adminHtml(title: string, body: string): Response {
 		.cover-alt-badge { position: absolute; right: 14px; top: 14px; z-index: 2; margin: 0; max-width: min(48%, 360px); overflow: hidden; border-radius: 999px; padding: 6px 10px; background: rgba(255,255,255,.76); color: #5d584d; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; backdrop-filter: blur(10px); }
 		.cover-dropzone:not(.has-cover) .cover-caption { display: none; }
 		.cover-dropzone:not(.has-cover) .cover-alt-badge, .cover-alt-badge:empty { display: none; }
+		.author-avatar-picker { max-width: 420px; }
+		.author-avatar-picker .cover-dropzone.has-cover { aspect-ratio: 1 / 1; }
+		.author-avatar-picker .cover-preview-frame { aspect-ratio: 1 / 1; min-height: 320px; border-radius: 999px; }
+		.author-avatar-picker .cover-preview-frame img { max-height: none; }
+		.author-avatar-picker .cover-actions { bottom: 18px; }
 		.is-hidden { display: none !important; }
 		.media-dialog { width: min(920px, calc(100vw - 40px)); border: 0; border-radius: 10px; padding: 0; background: transparent; }
 		.media-dialog::backdrop { background: rgba(20, 18, 14, .42); backdrop-filter: blur(4px); }
@@ -1496,6 +2004,13 @@ function adminHtml(title: string, body: string): Response {
 		.settings-sidebar { display: grid; align-content: start; gap: var(--admin-sticky-gap); height: 100%; overflow-y: auto; padding-top: 0; padding-bottom: 56px; }
 		.settings-group { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
 		.settings-group h2 { margin: 0 0 14px; font-size: 13px; line-height: 1; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+		.settings-group.is-locked { background: #f4f1eb; color: #8f887d; }
+		.settings-group.is-locked input,
+		.settings-group.is-locked select,
+		.settings-group.is-locked textarea { background: #eeeae2; color: #6b665d; cursor: not-allowed; opacity: .86; }
+		.settings-group.is-locked .check { color: #8f887d; cursor: not-allowed; }
+		.settings-group.is-locked .check input { cursor: not-allowed; }
+		.locked-note { margin: -6px 0 10px; color: #8f887d; font-size: 12px; line-height: 1.35; }
 		label { display: grid; gap: 7px; color: #555; font-size: 14px; font-weight: 560; }
 		input, textarea, select { width: 100%; background: #fff; color: var(--ink); border: 1px solid #d9d6ce; border-radius: 7px; padding: 10px 12px; font: inherit; }
 		input:focus, textarea:focus, select:focus { outline: 2px solid rgba(72,124,31,.22); border-color: var(--accent); }

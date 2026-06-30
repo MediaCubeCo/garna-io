@@ -19,6 +19,8 @@ export interface BlogAuthor {
 	bio: string | null;
 	avatar_url: string | null;
 	avatar_alt: string | null;
+	avatar_object_position: string | null;
+	avatar_crop_scale: number | null;
 	email: string | null;
 	x_url: string | null;
 	linkedin_url: string | null;

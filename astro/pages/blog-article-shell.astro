@@ -33,7 +33,7 @@ const shell = {
 						<span class="text-gray-400 text-sm font-thin font-manrope">Share this article:</span>
 						<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="%%BLOG_X_SHARE_URL%%" target="_blank" rel="noopener noreferrer" aria-label="Share on X">%%BLOG_X_ICON%%</a>
 						<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="%%BLOG_LINKEDIN_SHARE_URL%%" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">%%BLOG_LINKEDIN_ICON%%</a>
-						<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="%%BLOG_CANONICAL_URL%%" aria-label="Copy article link">%%BLOG_LINK_ICON%%</a>
+						<button type="button" class="garna-blog-copy-link w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" data-copy-url="%%BLOG_CANONICAL_URL%%" aria-label="Copy article link">%%BLOG_LINK_ICON%%</button>
 					</div>
 				</div>
 			</div>
@@ -63,6 +63,38 @@ const shell = {
 	</section>
 
 	%%BLOG_ARTICLE_FAQ%%
+
+	<script is:inline>
+		document.addEventListener('click', async (event) => {
+			const button = event.target.closest('.garna-blog-copy-link');
+			if (!button) return;
+			const url = button.dataset.copyUrl || window.location.href;
+			const previousLabel = button.getAttribute('aria-label') || 'Copy article link';
+			try {
+				if (navigator.clipboard && window.isSecureContext) {
+					await navigator.clipboard.writeText(url);
+				} else {
+					const input = document.createElement('textarea');
+					input.value = url;
+					input.setAttribute('readonly', '');
+					input.style.position = 'fixed';
+					input.style.opacity = '0';
+					document.body.appendChild(input);
+					input.select();
+					document.execCommand('copy');
+					input.remove();
+				}
+				button.classList.add('bg-[#5ea500]', 'text-white', 'border-[#5ea500]');
+				button.setAttribute('aria-label', 'Article link copied');
+				window.setTimeout(() => {
+					button.classList.remove('bg-[#5ea500]', 'text-white', 'border-[#5ea500]');
+					button.setAttribute('aria-label', previousLabel);
+				}, 1400);
+			} catch (_error) {
+				window.location.href = url;
+			}
+		});
+	</script>
 
 	<style is:inline>
 		.garna-blog-article-layout {
@@ -267,6 +299,7 @@ const shell = {
 			display: flex;
 			flex-direction: column;
 			gap: 12px;
+			min-width: 0;
 			color: #9ca3af;
 			font-size: 16px;
 			font-weight: 200;
@@ -276,6 +309,16 @@ const shell = {
 			display: flex;
 			align-items: center;
 			gap: 8px;
+			min-width: 0;
+			max-width: 100%;
+			white-space: nowrap;
+		}
+
+		.garna-blog-article-footer-meta span {
+			display: block;
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 
 		.garna-blog-article-footer-share {

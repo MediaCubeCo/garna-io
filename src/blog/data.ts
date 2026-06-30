@@ -10,6 +10,8 @@ const articleSelect = `
 		authors.bio AS author_bio,
 		authors.avatar_url AS author_avatar_url,
 		authors.avatar_alt AS author_avatar_alt,
+		authors.avatar_object_position AS author_avatar_object_position,
+		authors.avatar_crop_scale AS author_avatar_crop_scale,
 		authors.email AS author_email,
 		authors.x_url AS author_x_url,
 		authors.linkedin_url AS author_linkedin_url
@@ -48,6 +50,8 @@ function rowToArticle(row: any): BlogArticle {
 			bio: row.author_bio,
 			avatar_url: row.author_avatar_url,
 			avatar_alt: row.author_avatar_alt,
+			avatar_object_position: row.author_avatar_object_position,
+			avatar_crop_scale: row.author_avatar_crop_scale,
 			email: row.author_email,
 			x_url: row.author_x_url,
 			linkedin_url: row.author_linkedin_url,
@@ -109,6 +113,7 @@ async function overlayArticleTranslation(env: BlogEnv, article: BlogArticle, lan
 		.bind(article.id, language)
 		.first<any>();
 	if (!translation) return null;
+	if (!translation.title?.trim() || !translation.excerpt?.trim() || !translation.body_markdown?.trim()) return null;
 	const translated: BlogArticle = {
 		...article,
 		language,
@@ -189,6 +194,43 @@ export async function getArticleById(env: BlogEnv, id: number, language = 'en'):
 	return overlayArticleTranslationForAdmin(env, article, language);
 }
 
+export async function getArticleTranslationDraft(env: BlogEnv, articleId: number, language: string): Promise<Partial<BlogArticle> | null> {
+	if (!env.DB || language === 'en') return null;
+	const translation = await env.DB.prepare(
+		`SELECT *
+		 FROM article_translations
+		 WHERE article_id = ? AND language = ?`
+	)
+		.bind(articleId, language)
+		.first<any>();
+	if (!translation) return null;
+	const { results } = await env.DB.prepare(
+		`SELECT id, article_id, question, answer, position
+		 FROM article_translation_faqs
+		 WHERE article_id = ? AND language = ?
+		 ORDER BY position ASC, id ASC`
+	)
+		.bind(articleId, language)
+		.all<BlogArticleFaq>();
+	return {
+		language,
+		title: translation.title || '',
+		excerpt: translation.excerpt || '',
+		body_markdown: translation.body_markdown || '',
+		cover_url: translation.cover_url || null,
+		cover_alt: translation.cover_alt || null,
+		cover_object_position: translation.cover_object_position || null,
+		related_object_position: translation.related_object_position || null,
+		cover_crop_scale: translation.cover_crop_scale || null,
+		related_crop_scale: translation.related_crop_scale || null,
+		seo_title: translation.seo_title || null,
+		seo_description: translation.seo_description || null,
+		og_image_url: translation.og_image_url || null,
+		updated_at: translation.updated_at || '',
+		faqs: results || [],
+	};
+}
+
 export async function listPublishedArticlesByAuthor(env: BlogEnv, authorSlug: string, language = 'en'): Promise<BlogArticle[]> {
 	if (!env.DB) return [];
 	const { results } = await env.DB.prepare(
@@ -214,10 +256,46 @@ export async function listAuthors(env: BlogEnv): Promise<BlogAuthor[]> {
 	return results || [];
 }
 
-export async function getAuthorBySlug(env: BlogEnv, slug: string): Promise<BlogAuthor | null> {
+export async function getAuthorBySlug(env: BlogEnv, slug: string, language = 'en'): Promise<BlogAuthor | null> {
 	if (!env.DB) return null;
 	const row = await env.DB.prepare('SELECT * FROM authors WHERE slug = ?').bind(slug).first<BlogAuthor>();
-	return row || null;
+	return row ? overlayAuthorTranslation(env, row, language) : null;
+}
+
+export async function getAuthorById(env: BlogEnv, id: number, language = 'en'): Promise<BlogAuthor | null> {
+	if (!env.DB) return null;
+	const row = await env.DB.prepare('SELECT * FROM authors WHERE id = ?').bind(id).first<BlogAuthor>();
+	if (!row) return null;
+	return overlayAuthorTranslation(env, row, language);
+}
+
+export async function getAuthorTranslationDraft(env: BlogEnv, authorId: number, language: string): Promise<Partial<BlogAuthor> | null> {
+	if (!env.DB || language === 'en') return null;
+	const row = await env.DB.prepare(
+		`SELECT name, role, bio, updated_at
+		 FROM author_translations
+		 WHERE author_id = ? AND language = ?`
+	)
+		.bind(authorId, language)
+		.first<any>();
+	if (!row) return null;
+	return {
+		name: row.name || '',
+		role: row.role || '',
+		bio: row.bio || '',
+	};
+}
+
+async function overlayAuthorTranslation(env: BlogEnv, author: BlogAuthor, language: string): Promise<BlogAuthor> {
+	if (!env.DB || language === 'en') return author;
+	const translation = await getAuthorTranslationDraft(env, author.id, language);
+	if (!translation) return author;
+	return {
+		...author,
+		name: translation.name || author.name,
+		role: translation.role || author.role,
+		bio: translation.bio || author.bio,
+	};
 }
 
 export async function listCategories(env: BlogEnv): Promise<BlogCategory[]> {
@@ -393,19 +471,35 @@ export async function upsertAuthor(env: BlogEnv, input: Partial<BlogAuthor> & { 
 	if (id) {
 		await env.DB.prepare(
 			`UPDATE authors SET slug = ?, name = ?, role = ?, bio = ?, avatar_url = ?, avatar_alt = ?,
-				email = ?, x_url = ?, linkedin_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`
+				avatar_object_position = ?, avatar_crop_scale = ?, email = ?, x_url = ?, linkedin_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`
 		)
-			.bind(input.slug, input.name, input.role || null, input.bio || null, input.avatar_url || null, input.avatar_alt || null, input.email || null, input.x_url || null, input.linkedin_url || null, id)
+			.bind(input.slug, input.name, input.role || null, input.bio || null, input.avatar_url || null, input.avatar_alt || null, input.avatar_object_position || null, input.avatar_crop_scale || null, input.email || null, input.x_url || null, input.linkedin_url || null, id)
 			.run();
 		return id;
 	}
 	const result = await env.DB.prepare(
-		`INSERT INTO authors (slug, name, role, bio, avatar_url, avatar_alt, email, x_url, linkedin_url)
-		 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+		`INSERT INTO authors (slug, name, role, bio, avatar_url, avatar_alt, avatar_object_position, avatar_crop_scale, email, x_url, linkedin_url)
+		 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 	)
-		.bind(input.slug, input.name, input.role || null, input.bio || null, input.avatar_url || null, input.avatar_alt || null, input.email || null, input.x_url || null, input.linkedin_url || null)
+		.bind(input.slug, input.name, input.role || null, input.bio || null, input.avatar_url || null, input.avatar_alt || null, input.avatar_object_position || null, input.avatar_crop_scale || null, input.email || null, input.x_url || null, input.linkedin_url || null)
 		.run();
 	return Number(result.meta.last_row_id);
+}
+
+export async function upsertAuthorTranslation(env: BlogEnv, authorId: number, language: string, input: Partial<BlogAuthor>): Promise<void> {
+	if (!env.DB) throw new Error('D1 DB binding is required');
+	if (language === 'en') throw new Error('English is the base author language');
+	await env.DB.prepare(
+		`INSERT INTO author_translations (author_id, language, name, role, bio)
+		 VALUES (?, ?, ?, ?, ?)
+		 ON CONFLICT(author_id, language) DO UPDATE SET
+			name = excluded.name,
+			role = excluded.role,
+			bio = excluded.bio,
+			updated_at = CURRENT_TIMESTAMP`
+	)
+		.bind(authorId, language, input.name || null, input.role || null, input.bio || null)
+		.run();
 }
 
 export async function upsertCategory(env: BlogEnv, input: Partial<BlogCategory> & { slug: string; name: string }, id?: number): Promise<number> {
