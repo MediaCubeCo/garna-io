@@ -458,11 +458,11 @@ function renderBlogCategoryFilters(categories: BlogCategory[], language: string,
 	const activeClass = 'flex-shrink-0 bg-[#5ea500] text-white px-5 py-2 rounded-full text-sm hover:bg-[#4a8300] transition-colors snap-start';
 	const inactiveClass = 'flex-shrink-0 text-gray-400 px-5 py-2 rounded-full text-sm hover:bg-[#5ea500]/10 hover:text-[#5ea500] transition-colors snap-start border border-transparent hover:border-[#5ea500]/20';
 	const allButtonClass = activeCategorySlug ? inactiveClass : activeClass;
-	const allButton = `<a href="/${escapeAttribute(language)}/blog" class="${allButtonClass}"><span>All categories</span></a>`;
+	const allButton = `<a href="/${escapeAttribute(language)}/blog" class="${allButtonClass}" data-blog-category-link><span>All categories</span></a>`;
 	const categoryButtons = categories.map((category) => {
 		const href = `/${language}/blog?category=${encodeURIComponent(category.slug)}`;
 		const buttonClass = category.slug === activeCategorySlug ? activeClass : inactiveClass;
-		return `<a href="${escapeAttribute(href)}" class="${buttonClass}"><span>${escapeHtml(category.name)}</span></a>`;
+		return `<a href="${escapeAttribute(href)}" class="${buttonClass}" data-blog-category-link><span>${escapeHtml(category.name)}</span></a>`;
 	}).join('');
 	return allButton + categoryButtons;
 }
