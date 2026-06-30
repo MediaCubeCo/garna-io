@@ -10,7 +10,7 @@ export const headerPt = {
 	solutions: 'Solutions',
 	resources: 'Blog',
 	resourcesKicker: 'Articles and company updates',
-	globalPayroll: 'Global Payroll',
+	globalPayroll: 'Global Payout',
 	globalPayrollKicker: 'Pay teams worldwide',
 	eor: 'Employer of Record (EOR)',
 	eorKicker: 'Hire without local entity',
