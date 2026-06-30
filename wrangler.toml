@@ -8,6 +8,22 @@ port = 8788
 
 [vars]
 USE_STATIC_ASSETS = "true"
+PUBLIC_ORIGIN = "https://garna.io"
+EMAIL_FROM = "noreply@garna.io"
+ADMIN_EMAILS = "info@mediacube.network"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "garna-blog"
+database_id = "e76ba814-904b-4a34-b6ff-51f601b3a5ad"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "BLOG_MEDIA"
+bucket_name = "garna-blog-media"
+
+[[send_email]]
+name = "EMAIL"
 
 [assets]
 directory = "./dist"
@@ -27,4 +43,22 @@ run_worker_first = [
 	"/payroll-small-business.html",
 	"/eor",
 	"/eor.html",
+	"/blog",
+	"/blog.html",
+	"/en/blog",
+	"/ru/blog",
+	"/es/blog",
+	"/pt/blog",
+	"/blog-author",
+	"/blog-author.html",
+	"/en/blog-author",
+	"/ru/blog-author",
+	"/es/blog-author",
+	"/pt/blog-author",
+	"/blog-article",
+	"/blog-article.html",
+	"/en/blog-article",
+	"/ru/blog-article",
+	"/es/blog-article",
+	"/pt/blog-article",
 ]

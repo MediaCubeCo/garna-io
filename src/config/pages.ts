@@ -69,4 +69,25 @@ export const basePaths: PageConfig[] = [
 		showHeader: true,
 		languages: ['en'],
 	},
+	{
+		path: 'blog',
+		mode: 'static',
+		searchable: true,
+		showHeader: true,
+		languages: ['en'],
+	},
+	{
+		path: 'blog-author',
+		mode: 'static',
+		searchable: false,
+		showHeader: true,
+		languages: ['en'],
+	},
+	{
+		path: 'blog-article',
+		mode: 'static',
+		searchable: false,
+		showHeader: true,
+		languages: ['en'],
+	},
 ];

@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en" class="dark"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garna - AI Recruitment Platform</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: {
+sans: ['Inter', 'sans-serif'],
+heading: ['Manrope', 'sans-serif'],
+},
+colors: {
+dark: {
+900: '#050505', // Main background
+800: '#0A0A0A', // Card background
+700: '#171717', // Hover/Border
+}
+}
+}
+}
+}
+</script>
+<style>
+body { font-family: 'Inter', sans-serif; background-color: #050505; color: #a1a1aa; }
+h1, h2, h3, h4, .font-heading { font-family: 'Manrope', sans-serif; }
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #262626; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #404040; }
+/* Glassmorphism utilities */
+.glass-nav {
+background: rgba(5, 5, 5, 0.7);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glass-card {
+background: rgba(255, 255, 255, 0.03);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+/* Grid Pattern Background */
+.bg-grid {
+background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+background-size: 40px 40px;
+}
+/* Hide details marker */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+/* Animations */
+@keyframes float {
+0% { transform: translateY(0px); }
+50% { transform: translateY(-10px); }
+100% { transform: translateY(0px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style><style id="border-gradient-shared-style">
+[style*="--border-gradient"]::before {
+content: "";
+position: absolute;
+inset: 0;
+padding: 1px;
+border-radius: var(--border-radius-before, inherit);
+-webkit-mask: linear-gradient(#fff 0 0) content-box,
+linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+background: var(--border-gradient);
+pointer-events: none;
+}</style></head>
+<body class="antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative">
+
+    <!-- Navbar -->
+    <nav class="fixed z-50 glass-nav w-full top-0">
+        <div class="flex h-16 max-w-7xl mr-auto ml-auto pr-6 pl-6 relative items-center justify-between">
+        <div class="flex items-center gap-2">
+            <a href="#" class="hover:opacity-80 transition-opacity text-4xl font-medium text-white tracking-tighter">garna</a>
+        </div>
+        
+        <div class="hidden -translate-x-1/2 md:flex md:gap-x-5 lg:gap-x-8 absolute left-1/2 gap-x-8 gap-y-[60px] items-center">
+            <a href="index.html" class="hover:opacity-80 transition-opacity lg:text-lg text-base font-medium text-white font-manrope">Payroll Solution</a>
+            <a href="/offer" class="hover:opacity-80 transition-opacity lg:text-lg text-base font-medium text-white font-manrope">For contractors</a>
+            <a href="ai-hiring.html" class="lg:text-lg text-base font-medium text-[#5ea500] font-manrope">AI-hiring</a>
+        </div>
+
+        <div class="flex gap-y-4 items-center gap-x-5 md:gap-4 lg:gap-6">
+    <a href="#" class="hidden hover:opacity-80 transition-opacity md:inline-flex items-center text-white font-manrope">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in w-6 h-6 lg:hidden">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" class=""></path>
+            <polyline points="10 17 15 12 10 7" class=""></polyline>
+            <line x1="15" x2="3" y1="12" y2="12" class=""></line>
+        </svg>
+        <span class="hidden lg:inline">Log In</span>
+    </a>
+            
+    <a href="https://app.garna.io/auth/sign-up" class="group inline-flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale--11 text-[#ffffff] font-manrope bg-[#5ea500] h-11 rounded-xl pr-7 pl-7 shadow-[0_0_20px_-5px_rgba(94,165,0,0.5)]" id="header-signup-btn">
+        Sign Up
+    </a>
+
+    <button onclick="document.getElementById('mobile-nav-menu').classList.toggle('hidden'); document.body.classList.toggle('overflow-hidden'); this.querySelector('.menu-icon').classList.toggle('hidden'); this.querySelector('.close-icon').classList.toggle('hidden'); document.getElementById('header-signup-btn').classList.toggle('hidden');" class="md:hidden text-white hover:text-[#5EA500] transition-colors p-1" aria-label="Toggle Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="menu-icon w-6 h-6 lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18" class=""></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="close-icon hidden w-8 h-8 lucide lucide-x"><path d="M18 6 6 18"></path><path d="M6 6 18 18"></path></svg>
+    </button>
+</div>
+
+        <div id="mobile-nav-menu" class="hidden fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-[#050505] border-t border-white/10 flex flex-col gap-2 md:hidden z-50 overflow-y-auto animate-fade-in px-6 pb-6 pt-8">
+            <div class="flex flex-col gap-5">
+                <a href="index.html" class="block text-2xl font-medium text-white font-manrope transition-colors hover:opacity-80">Payroll Solution</a>
+                <a href="/offer" class="block text-2xl font-medium text-[#5EA500] font-manrope transition-colors hover:text-[#7CFF00]">For contractors</a>
+                <a href="ai-hiring.html" class="block text-2xl font-medium text-white font-manrope transition-colors hover:opacity-80">AI-hiring</a>
+            </div>
+            
+            <div class="mt-auto flex flex-col gap-4">
+                <div class="h-px bg-white/10 w-full mb-2"></div>
+                
+                <div class="flex flex-col gap-3">
+                    <a href="#" class="flex items-center justify-center p-4 rounded-xl hover:bg-white/5 text-lg font-medium text-white font-manrope transition-colors border border-white/10 hover:border-white/20">
+                        Log In
+                    </a>
+                    <a href="https://app.garna.io/auth/sign-up" class="flex items-center justify-center p-4 rounded-xl text-lg font-medium text-white font-manrope transition-all bg-[#5EA500] hover:bg-[#4d8700] hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_-5px_rgba(94,165,0,0.5)]">
+                        Sign Up
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </nav><nav class="fixed z-50 glass-nav w-full top-0">
+        
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="overflow-hidden min-h-screen flex flex-col pt-32 pb-32 relative justify-center">
+        <!-- Background Effects -->
+        <div class="z-0 bg-[#050505] absolute top-0 right-0 bottom-0 left-0"></div>
+        <div class="-translate-x-1/2 blur-[120px] -z-10 bg-[#5EA500]/20 w-[800px] h-[500px] rounded-full absolute top-0 left-1/2"></div>
+        <div class="blur-[120px] -z-10 bg-[#5EA500]/10 w-[600px] h-[600px] rounded-full absolute right-0 bottom-0"></div>
+
+        <div class="md:mt-0 lg:mt-16 z-10 w-full max-w-7xl mt-0 mr-auto ml-auto pr-6 pl-6 relative">
+    <style>
+      @keyframes smoothFadeUp {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes smoothFadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @keyframes scaleUp {
+        0% { opacity: 0; transform: scale(0.95) translateY(15px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+      }
+      @keyframes floatUI {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      @keyframes progressFill {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      /* Typing Animation Keyframes */
+      @keyframes typeText {
+        0% { max-width: 0; border-right-color: transparent; }
+        1% { max-width: 0; border-right-color: #5EA500; }
+        99% { max-width: 100%; border-right-color: #5EA500; }
+        100% { max-width: 100%; border-right-color: transparent; }
+      }
+      @keyframes typeLast {
+        0% { max-width: 0; border-right-color: transparent; }
+        1% { max-width: 0; border-right-color: #5EA500; }
+        100% { max-width: 100%; border-right-color: #5EA500; }
+      }
+      @keyframes blink {
+        0%, 100% { border-right-color: #5EA500; }
+        50% { border-right-color: transparent; }
+      }
+      .reveal-up {
+        opacity: 0;
+        animation: smoothFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .reveal-fade {
+        opacity: 0;
+        animation: smoothFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .reveal-scale {
+        opacity: 0;
+        animation: scaleUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .animate-float-ui {
+        animation: floatUI 8s ease-in-out infinite;
+      }
+      .animate-progress {
+        transform-origin: left;
+        transform: scaleX(0);
+        animation: progressFill 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
+      }
+      .type-line {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 0;
+        border-right: 2px solid transparent;
+        vertical-align: bottom;
+        padding-right: 4px;
+      }
+      .delay-100 { animation-delay: 100ms; }
+      .delay-200 { animation-delay: 200ms; }
+      .delay-300 { animation-delay: 300ms; }
+      .delay-400 { animation-delay: 400ms; }
+      .delay-500 { animation-delay: 500ms; }
+      .delay-600 { animation-delay: 600ms; }
+      .delay-700 { animation-delay: 700ms; }
+    </style>
+
+    <div class="font-manrope text-center max-w-5xl mr-auto mb-16 ml-auto">
+        <div class="reveal-up inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 shadow-sm mb-8 backdrop-blur-sm">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span class="inline-flex bg-[#5ea500] w-2 h-2 rounded-full relative"></span>
+            </span>
+            <span class="uppercase text-xs font-medium text-gray-300 tracking-wide font-manrope">partner Success Story</span>
+        </div>
+        <h1 class="reveal-up delay-100 md:text-6xl leading-[1.1] text-5xl font-medium text-white tracking-tight font-manrope mb-8">Higgsfield AI: Scaling global creator <br> <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-500">payments through Garna</span></h1>
+        <p class="reveal-up delay-200 leading-relaxed md:text-xl text-xl font-light text-gray-400 font-manrope max-w-2xl mr-auto mb-10 ml-auto">How the fastest growing genAI company enabled compliant and fast payouts to contractors in 146 countries and paid out over $15M in just 4 months via Garna API</p>
+        <div class="reveal-up delay-300 flex flex-col sm:flex-row gap-4 gap-x-4 gap-y-4 items-center justify-center">
+            <button class="group flex transition-all hover:scale-105 shadow-[0_0_20px_-5px_rgba(94,165,0,0.5)] overflow-hidden text-base font-medium text-white font-manrope bg-[#5EA500] rounded-xl pt-3 pr-8 pb-3 pl-8 relative gap-x-2 gap-y-2 items-center">
+                Read the Case Study
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right transition-transform group-hover:translate-x-1"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- UI Mockup -->
+    <div class="reveal-up delay-400 relative max-w-5xl mx-auto mt-20 group">
+        <div class="animate-float-ui glass-card overflow-hidden bg-[#0A0A0A] rounded-2xl relative shadow-2xl border border-white/5">
+            <!-- Abstract Background -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1640906152676-dace6710d24b?w=2160&amp;q=80" alt="Abstract Tech Flow" class="w-full h-full object-cover opacity-20 grayscale transition-transform duration-1000 group-hover:scale-105 mix-blend-screen">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-black/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-transparent to-[#0A0A0A]"></div>
+            </div>
+
+            <!-- Fake Browser Header -->
+            <div class="relative z-10 flex items-center justify-between p-4 border-b border-white/5 bg-black/40 backdrop-blur-md">
+                <div class="flex gap-2">
+                    <div class="w-2.5 h-2.5 rounded-full bg-white/10 hover:bg-red-400 transition-colors"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-white/10 hover:bg-yellow-400 transition-colors"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-white/10 hover:bg-green-400 transition-colors"></div>
+                </div>
+                <div class="hidden md:flex text-[10px] text-gray-500 tracking-wider font-mono bg-white/5 h-6 border-white/5 border rounded-md mr-auto ml-auto pr-32 pl-32 items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    api.garna.io/v1/payouts
+                </div>
+                <div class="w-16"></div> <!-- spacer -->
+            </div>
+
+            <!-- Content Area -->
+            <div class="flex flex-col md:flex-row md:aspect-[21/9] bg-[#0b0b0b] z-10 pt-6 pr-6 pb-6 pl-6 relative gap-x-6 gap-y-6 items-center">
+                
+                <!-- Code Snippet / API View with Typing Effect -->
+                <div class="reveal-fade delay-500 w-full md:w-1/2 bg-[#050505]/80 rounded-xl border border-white/10 backdrop-blur-xl p-5 h-full flex flex-col shadow-xl">
+                    <div class="flex items-center justify-between mb-4 border-b border-white/5 pb-3">
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#5EA500]"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                            <span class="text-xs font-mono text-gray-400">create_payout.js</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="text-[10px] uppercase font-semibold text-[#5EA500] bg-[#5EA500]/10 border border-[#5EA500]/20 px-2 py-0.5 rounded">Live</span>
+                        </div>
+                    </div>
+                    <div class="font-mono text-[11px] sm:text-xs text-gray-300 leading-loose overflow-hidden flex flex-col">
+                        <div class=""><span class="type-line" style="animation: typeText 0.6s steps(40, end) 1.5s forwards;"><span class="text-[#c678dd]">const</span> <span class="text-[#e06c75]">garna</span> <span class="text-[#56b6c2]">=</span> <span class="text-[#e5c07b]">require</span>(<span class="text-[#98c379]">'garna-api'</span>);</span></div>
+                        <div class="h-2"></div>
+                        <div class=""><span class="type-line" style="animation: typeText 0.8s steps(40, end) 2.3s forwards;"><span class="text-[#c678dd]">const</span> <span class="text-[#e06c75]">client</span> <span class="text-[#56b6c2]">=</span> <span class="text-[#c678dd]">new</span> <span class="text-[#e5c07b]">Garna</span>(<span class="text-[#98c379]">'sk_live_higgsfield_...'</span>);</span></div>
+                        <div class="h-2"></div>
+                        <div class=""><span class="type-line" style="animation: typeText 0.5s steps(40, end) 3.3s forwards;"><span class="text-[#c678dd]">const</span> <span class="text-[#e06c75]">payout</span> <span class="text-[#56b6c2]">=</span> <span class="text-[#c678dd]">await</span> client.payouts.<span class="text-[#61afef]">create</span>({</span></div>
+                        <div class=""><span class="type-line" style="animation: typeText 0.3s steps(30, end) 3.9s forwards;">&nbsp;&nbsp;amount: <span class="text-[#d19a66]">13400000</span>,</span></div>
+                        <div class=""><span class="type-line" style="animation: typeText 0.3s steps(30, end) 4.3s forwards;">&nbsp;&nbsp;currency: <span class="text-[#98c379]">'USD'</span>,</span></div>
+                        <div class=""><span class="type-line" style="animation: typeText 0.5s steps(40, end) 4.7s forwards;">&nbsp;&nbsp;destination: <span class="text-[#98c379]">'global_network_146'</span>,</span></div>
+                        <div class=""><span class="type-line" style="animation: typeText 0.2s steps(20, end) 5.3s forwards;">&nbsp;&nbsp;metadata: {</span></div>
+                        <div class=""><span class="type-line" style="animation: typeText 0.4s steps(40, end) 5.6s forwards;">&nbsp;&nbsp;&nbsp;&nbsp;campaign: <span class="text-[#98c379]">'higgsfield_creators'</span>,</span></div>
+                        <div class=""><span class="type-line" style="animation: typeText 0.3s steps(30, end) 6.1s forwards;">&nbsp;&nbsp;&nbsp;&nbsp;speed: <span class="text-[#98c379]">'instant'</span></span></div>
+                        <div class=""><span class="type-line" style="animation: typeText 0.1s steps(10, end) 6.5s forwards;">&nbsp;&nbsp;}</span></div>
+                        <div class=""><span class="type-line" style="animation: typeText 0.1s steps(10, end) 6.7s forwards;">});</span></div>
+                        <div class="h-2"></div>
+                        <div class=""><span class="type-line" style="animation: typeText 0.6s steps(40, end) 7.3s forwards;"><span class="text-[#5c6370]">// Processing $13.4M across 146 countries...</span></span></div>
+                        <div class=""><span class="type-line" style="animation: typeLast 0.5s steps(40, end) 8.1s forwards, blink 1s step-end 8.6s infinite;"><span class="text-[#e5c07b]">console</span>.<span class="text-[#61afef]">log</span>(<span class="text-[#98c379]">\`Success: \${payout.status}\`</span>);</span></div>
+                    </div>
+                </div>
+
+                <!-- Metrics / Stats Cards -->
+                <div class="w-full md:w-1/2 flex flex-col gap-4 h-full justify-center">
+                    
+                    <!-- Metric 1 -->
+                    <div class="reveal-scale delay-600 bg-[#050505]/60 border border-white/10 rounded-xl p-6 backdrop-blur-xl shadow-[0_0_20px_rgba(94,165,0,0.15)] transition-transform hover:-translate-y-1 relative overflow-hidden group/card">
+                        <div class="absolute inset-0 bg-gradient-to-br from-[#5EA500]/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity"></div>
+                        <div class="relative z-10 flex justify-between items-start mb-4">
+                            <span class="text-sm font-medium text-gray-400">Total Volume Processed</span>
+                            <div class="w-10 h-10 rounded-full bg-[#5EA500]/10 flex items-center justify-center border border-[#5EA500]/20 text-[#5EA500] shadow-[0_0_10px_rgba(94,165,0,0.2)]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=""><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </div>
+                        </div>
+                        <div class="z-10 text-5xl font-semibold text-white tracking-tight font-manrope mb-2 relative">$15M</div>
+                        <div class="relative z-10 flex items-center gap-2 mt-3">
+                            <span class="flex items-center justify-center w-5 h-5 rounded-full bg-[#5EA500]/20 text-[#5EA500]">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <span class="text-sm text-[#5EA500] font-medium tracking-wide">Processed in 4 months</span>
+                        </div>
+                    </div>
+
+                    <!-- Metric 2 -->
+                    <div class="reveal-scale delay-700 bg-[#050505]/60 border border-white/10 rounded-xl p-6 backdrop-blur-xl transition-transform hover:-translate-y-1 relative overflow-hidden group/card">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity"></div>
+                        <div class="relative z-10 flex justify-between items-start mb-4">
+                            <span class="text-sm font-medium text-gray-400">Global Coverage</span>
+                            <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/20 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=""><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                            </div>
+                        </div>
+                        <div class="relative z-10 text-5xl font-semibold text-white tracking-tight mb-2 font-manrope">146 <span class="text-xl text-gray-500 font-normal">Countries</span></div>
+                        <div class="relative z-10 flex items-center gap-3 mt-4">
+                            <div class="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
+                                <div class="animate-progress bg-blue-400 h-1.5 rounded-full shadow-[0_0_10px_rgba(96,165,250,0.5)]" style="width: 85%"></div>
+                            </div>
+                            <span class="whitespace-nowrap text-xs font-medium text-blue-400">85% automated</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </section>
+
+    <!-- AI Matching Feature -->
+    <section class="lg:pt-32 lg:pb-32 pt-16 pb-16 relative">
+        <div class="z-0 -top-px bg-dark-900 absolute"></div>
+        <div class="font-manrope max-w-7xl z-10 mr-auto ml-auto pr-6 pl-6 relative">
+    <!-- Header Section -->
+    <div class="flex flex-col md:items-center lg:mb-20 text-center mb-16 gap-x-y-6 gap-y-6">
+        <h2 class="md:text-4xl lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope max-w-4xl">Deep dive into partnership metrics</h2>
+        <p class="text-xl font-light text-gray-400 font-manrope max-w-3xl">Key performance indicators from the first 4 months of the Higgsfield-Garna collaboration</p>
+    </div>
+
+    <!-- Metrics Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-6 gap-y-6">
+    <style>
+        @keyframes customFadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .card-animate {
+            opacity: 0;
+            animation: customFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+
+    <!-- Card 1 -->
+    <div class="hidden" style="display: none;"></div>
+
+    <!-- Card 2 -->
+    <div class="card-animate group overflow-hidden flex flex-col hover:border-[#5EA500]/30 transition-all duration-500 hover:-translate-y-2 min-h-[250px] hover:shadow-[0_0_30px_-10px_rgba(94,165,0,0.15)] bg-dark-800 border-white/5 border rounded-2xl p-8 relative" style="animation-delay: 150ms;">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#5EA500]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+        <div class="flex z-10 text-[#5EA500] bg-[#5EA500]/10 w-10 h-10 border-[#5EA500]/20 border rounded-lg mb-8 relative shadow-sm backdrop-blur-sm items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-left"><path d="m16 3 4 4-4 4" class=""></path><path d="M20 7H4"></path><path d="m8 21-4-4 4-4"></path><path d="M4 17h16"></path></svg>
+        </div>
+
+        <div class="mb-3 relative z-10">
+            <div class="flex items-baseline flex-wrap gap-x-2">
+                <span class="lg:text-4xl count-up text-3xl font-medium text-white tracking-tight" data-value="10650">10,650</span>
+                <span class="text-lg font-medium text-[#5EA500] tracking-tight">transactions</span>
+            </div>
+        </div>
+
+        <p class="leading-relaxed text-sm text-gray-400 font-manrope z-10 mt-auto relative">Peak volume recorded in January–February, confirming system resilience</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card-animate group overflow-hidden flex flex-col hover:border-[#5EA500]/30 transition-all duration-500 hover:-translate-y-2 min-h-[250px] hover:shadow-[0_0_30px_-10px_rgba(94,165,0,0.15)] bg-dark-800 border-white/5 border rounded-2xl pt-8 pr-8 pb-8 pl-8 relative" style="animation-delay: 300ms">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#5EA500]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+        <div class="flex z-10 text-[#5EA500] bg-[#5EA500]/10 w-10 h-10 border-[#5EA500]/20 border rounded-lg mb-8 relative shadow-sm backdrop-blur-sm items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dollar-sign"><circle cx="12" cy="12" r="10"></circle><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 18V6"></path></svg>
+        </div>
+
+        <div class="mb-3 relative z-10">
+            <div class="flex items-baseline flex-wrap gap-x-1">
+                <span class="text-3xl lg:text-4xl font-medium text-white tracking-tight">$</span>
+                <span class="lg:text-4xl count-up text-3xl font-medium text-white tracking-tight" data-value="2000000">2,000,000</span>
+                <span class="lg:text-4xl text-3xl font-medium text-[#5EA500] tracking-tight">+</span>
+            </div>
+        </div>
+
+        <p class="leading-relaxed text-sm text-gray-400 font-manrope z-10 mt-auto relative">Total rewards paid out through the Higgsfield Earn direct program</p>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card-animate group overflow-hidden flex flex-col hover:border-[#5EA500]/30 transition-all duration-500 hover:-translate-y-2 min-h-[250px] hover:shadow-[0_0_30px_-10px_rgba(94,165,0,0.15)] bg-dark-800 border-white/5 border rounded-2xl p-8 relative" style="animation-delay: 450ms;">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#5EA500]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+        <div class="flex z-10 text-[#5EA500] bg-[#5EA500]/10 w-10 h-10 border-[#5EA500]/20 border rounded-lg mb-8 relative shadow-sm backdrop-blur-sm items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-check"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg>
+        </div>
+
+        <div class="mb-3 relative z-10">
+            <div class="flex items-baseline flex-wrap gap-x-2">
+                <span class="lg:text-4xl count-up text-3xl font-medium text-white tracking-tight" data-value="10000">10,000+</span>
+                <span class="text-lg font-medium text-[#5EA500] tracking-tight">active users</span>
+            </div>
+        </div>
+
+        <p class="leading-relaxed text-sm text-gray-400 font-manrope z-10 mt-auto relative">Receive regular rewards through the integrated Garna platform</p>
+    </div>
+</div>
+
+    <script class="">
+        (function() {
+            const initCounters = () => {
+                const elements = document.querySelectorAll('[data-element-id="aura-emmukloy9n9l1a8s"] .count-up');
+                if (!elements.length) return;
+                
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const target = entry.target;
+                            const value = parseInt(target.getAttribute('data-value'), 10);
+                            const duration = 2000;
+                            const frameRate = 30;
+                            const totalFrames = Math.round(duration / frameRate);
+                            let frame = 0;
+                            
+                            const easeOutQuad = t => t * (2 - t);
+
+                            const counter = setInterval(() => {
+                                frame++;
+                                const progress = easeOutQuad(frame / totalFrames);
+                                const current = Math.round(value * progress);
+                                target.innerText = current.toLocaleString();
+
+                                if (frame >= totalFrames) {
+                                    clearInterval(counter);
+                                    target.innerText = value.toLocaleString();
+                                }
+                            }, frameRate);
+                            
+                            obs.unobserve(target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                elements.forEach(el => observer.observe(el));
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initCounters);
+            } else {
+                initCounters();
+            }
+        })();
+    </script>
+</div>
+    </section><section class="lg:pt-32 lg:pb-32 pt-16 pb-16 relative">
+        <div class="z-0 -top-px bg-dark-900 absolute"></div>
+        <div class="lg:pb-0 lg:pt-0 z-10 font-manrope max-w-7xl mr-auto ml-auto pt-16 pr-6 pb-16 pl-6 relative">
+    <style>
+        @keyframes float-card-1 {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-12px); }
+        }
+        @keyframes float-card-2 {
+            0%, 100% { transform: translate(50%, 50%) translateY(0); }
+            50% { transform: translate(50%, 50%) translateY(-12px); }
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        @keyframes dash-flow {
+            to { stroke-dashoffset: -20; }
+        }
+    </style>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 gap-x-10 gap-y-8 items-center">
+  <!-- Text Content -->
+  <div class="flex flex-col w-full gap-x-8 gap-y-8">
+    <h2 class="lg:text-5xl leading-[1.1] text-4xl font-normal text-white tracking-tight">
+      The challenge: Scaling amidst complexity
+    </h2>
+
+    <div class="flex flex-col gap-6 gap-x-6 gap-y-6">
+      <p class="leading-relaxed text-xl font-light text-gray-400">When Higgsfield launched its Earn program,
+        growth exploded: <span class="text-white font-normal">6,000 influencers</span> joined in just 72 hours
+      </p>
+      <p class="leading-relaxed text-xl font-light text-gray-400">Traditional banking couldn't keep up with this
+        pace while meeting global compliance. Higgsfield needed to automate financial complexity to focus on
+        their core mission: developing video generation technologies</p>
+    </div>
+  </div>
+
+  <!-- Visual Content: Mess of Traditional Banking -->
+
+  <div class="flex flex-col bg-dark-800 w-full h-full border-white/5 border rounded-2xl pt-6 pr-6 pb-6 pl-6 relative items-center justify-center">
+
+    <div class="flex z-20 mb-6 absolute top-6 left-6 gap-x-3 gap-y-3 items-center">
+      <div class="w-2.5 h-2.5 rounded-full bg-[#FF3333]"></div>
+      <div class="bg-[#0A0A0A] border-white/10 border rounded-md pt-0 pr-3 pb-1 pl-3 items-center justify-center">
+        <span class="text-[9px] md:text-[10px] uppercase font-medium text-gray-400 tracking-wider">Legacy Payment Route</span>
+      </div>
+    </div>
+
+    <!-- Visual UI -->
+    <div class="flex flex-col md:flex-row md:gap-y-0 md:mt-0 md:items-start w-full max-w-2xl z-10 mt-12 relative gap-x-y-8 gap-y-8 items-center justify-between">
+      <style>
+        @keyframes gradientShiftX {
+          0% {
+            background-position: 0% 50%;
+          }
+
+          50% {
+            background-position: 100% 50%;
+          }
+
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+
+        @keyframes gradientShiftY {
+          0% {
+            background-position: 50% 0%;
+          }
+
+          50% {
+            background-position: 50% 100%;
+          }
+
+          100% {
+            background-position: 50% 0%;
+          }
+        }
+
+        @keyframes popIn {
+          0% {
+            opacity: 0;
+            transform: scale(0.9) translateY(15px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+
+        @keyframes moveParticleX {
+          0% {
+            left: 3rem;
+            opacity: 0;
+            background-color: #5EA500;
+            box-shadow: 0 0 10px #5EA500;
+          }
+
+          10% {
+            opacity: 1;
+          }
+
+          50% {
+            background-color: #FF8C00;
+            box-shadow: 0 0 10px #FF8C00;
+          }
+
+          90% {
+            opacity: 1;
+          }
+
+          100% {
+            left: calc(100% - 3rem);
+            opacity: 0;
+            background-color: #FF3333;
+            box-shadow: 0 0 10px #FF3333;
+          }
+        }
+
+        @keyframes moveParticleY {
+          0% {
+            top: 3rem;
+            opacity: 0;
+            background-color: #5EA500;
+            box-shadow: 0 0 10px #5EA500;
+          }
+
+          10% {
+            opacity: 1;
+          }
+
+          50% {
+            background-color: #FF8C00;
+            box-shadow: 0 0 10px #FF8C00;
+          }
+
+          90% {
+            opacity: 1;
+          }
+
+          100% {
+            top: calc(100% - 3rem);
+            opacity: 0;
+            background-color: #FF3333;
+            box-shadow: 0 0 10px #FF3333;
+          }
+        }
+
+        .anim-gradient-x {
+          background-size: 200% 200%;
+          animation: gradientShiftX 3s ease infinite;
+        }
+
+        .anim-gradient-y {
+          background-size: 200% 200%;
+          animation: gradientShiftY 3s ease infinite;
+        }
+
+        .anim-step-1 {
+          animation: popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+        }
+
+        .anim-step-2 {
+          animation: popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+
+        .anim-step-3 {
+          animation: popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        .anim-step-4 {
+          animation: popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+        }
+
+        .anim-particle-x {
+          animation: moveParticleX 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .anim-particle-y {
+          animation: moveParticleY 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+      </style>
+
+      <!-- connecting line background (desktop) -->
+      <div class="hidden md:block absolute top-8 left-12 right-12 h-0.5 bg-gradient-to-r from-[#5EA500] via-[#FF8C00] to-[#FF3333] z-0 opacity-80 anim-gradient-x">
+      </div>
+      <!-- Animated Particle Desktop -->
+      <div class="hidden md:block absolute top-8 w-1.5 h-1.5 -mt-[2px] rounded-full z-0 anim-particle-x"></div>
+
+      <!-- connecting line background (mobile) -->
+      <div class="md:hidden absolute left-1/2 top-12 bottom-12 w-0.5 bg-gradient-to-b from-[#5EA500] via-[#FF8C00] to-[#FF3333] -translate-x-1/2 z-0 opacity-80 anim-gradient-y">
+      </div>
+      <!-- Animated Particle Mobile -->
+      <div class="md:hidden absolute left-1/2 w-1.5 h-1.5 -ml-[2px] rounded-full z-0 anim-particle-y"></div>
+
+      <!-- Step 1 -->
+      <div class="z-10 flex flex-row md:flex-col gap-4 md:gap-3 md:w-auto md:px-0 md:bg-transparent anim-step-1 group cursor-default bg-[#0A0A0A] w-full pr-4 pl-12 relative gap-x-4 gap-y-4 items-center">
+        <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-[#111] border border-[#5EA500]/40 flex items-center justify-center shadow-[0_0_15px_rgba(94,165,0,0.2)] shrink-0 group-hover:scale-105 group-hover:border-[#5EA500]/60 transition-all duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[#5EA500] md:w-6 md:h-6 w-5 h-5">
+            <rect width="16" height="20" x="4" y="2" rx="2" ry="2" class=""></rect>
+            <path d="M9 22v-4h6v4" class=""></path>
+            <path d="M8 6h.01"></path>
+            <path d="M16 6h.01"></path>
+            <path d="M12 6h.01"></path>
+            <path d="M12 10h.01"></path>
+            <path d="M12 14h.01"></path>
+            <path d="M16 10h.01" class=""></path>
+            <path d="M16 14h.01"></path>
+            <path d="M8 10h.01"></path>
+            <path d="M8 14h.01"></path>
+          </svg>
+        </div>
+        <div class="text-left md:text-center group-hover:-translate-y-0.5 transition-transform duration-300">
+          <div class="text-sm font-medium text-white">Platform</div>
+          <div class="text-[10px] text-[#5EA500] font-mono mt-0.5">Initiates Transfer</div>
+        </div>
+      </div>
+
+      <!-- Bottleneck 1 -->
+      <div class="z-10 flex flex-row md:flex-col gap-4 md:gap-3 md:w-auto md:px-0 anim-step-2 group cursor-default w-full pr-8 pl-12 relative gap-x-4 gap-y-4 items-center">
+        <div class="relative w-10 h-10 md:w-12 md:h-12 md:mt-2 shrink-0">
+          <div class="absolute inset-0 rounded-full border border-[#FF8C00]/40 animate-ping opacity-20"></div>
+          <div class="w-full h-full rounded-full bg-[#111] border border-[#FF8C00]/50 flex items-center justify-center shadow-[0_0_15px_rgba(255,140,0,0.2)] relative z-10 group-hover:scale-110 group-hover:border-[#FF8C00] transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[#FF8C00] md:w-5 md:h-5 w-4 h-4">
+              <circle cx="12" cy="12" r="10" class=""></circle>
+              <polyline points="12 6 12 12 16 14" class=""></polyline>
+            </svg>
+          </div>
+        </div>
+        <div class="text-left md:text-center bg-[#111] px-3 py-1.5 rounded border border-[#FF8C00]/20 group-hover:-translate-y-0.5 transition-transform duration-300">
+          <div class="text-[11px] font-medium text-[#FF8C00]">Local Bank</div>
+          <div class="text-[9px] text-gray-400 font-mono mt-0.5">2-3 Days Hold</div>
+        </div>
+      </div>
+
+      <!-- Bottleneck 2 -->
+      <div class="z-10 flex flex-row md:flex-col gap-4 md:gap-3 md:w-auto md:px-0 anim-step-3 group cursor-default w-full pr-8 pl-12 relative gap-x-4 gap-y-4 items-center">
+        <div class="relative w-10 h-10 md:w-12 md:h-12 md:mt-2 shrink-0">
+          <div class="absolute inset-0 rounded-full border border-[#FF3333]/40 animate-ping opacity-20" style="animation-delay: 1s;"></div>
+          <div class="w-full h-full rounded-full bg-[#111] border border-[#FF3333]/50 flex items-center justify-center shadow-[0_0_15px_rgba(255,51,51,0.2)] relative z-10 group-hover:scale-110 group-hover:border-[#FF3333] transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[#FF3333] md:w-5 md:h-5 w-4 h-4">
+              <path d="M12 2v20"></path>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="text-left md:text-center bg-[#111] px-3 py-1.5 rounded border border-[#FF3333]/20 group-hover:-translate-y-0.5 transition-transform duration-300">
+          <div class="text-[11px] font-medium text-[#FF3333]">Correspondent</div>
+          <div class="text-[9px] text-gray-400 font-mono mt-0.5">3-5% Hidden FX</div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="flex flex-row anim-step-4 group cursor-default md:flex-col md:gap-3 md:w-auto md:px-0 md:bg-transparent bg-[#0A0A0A] w-full z-10 pr-4 pl-12 relative gap-x-4 gap-y-4 items-center">
+        <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-[#111] border border-white/10 flex items-center justify-center shadow-lg shrink-0 group-hover:scale-105 group-hover:border-white/20 transition-all duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 md:w-6 md:h-6 w-5 h-5">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4" class=""></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div class="text-left md:text-center group-hover:-translate-y-0.5 transition-transform duration-300">
+          <div class="text-sm font-medium text-gray-300">Contractor</div>
+          <div class="text-[10px] text-gray-500 font-mono mt-0.5">Delayed Payment</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="md:bottom-6 flex flex-wrap md:gap-6 bg-[#0A0A0A] pt-2 pr-4 pb-2 pl-4 absolute bottom-4 gap-x-4 gap-y-4 justify-center">
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 rounded-full bg-[#5EA500] shadow-[0_0_5px_#5EA500]"></div>
+        <span class="text-[9px] md:text-[10px] text-gray-400 font-medium uppercase tracking-wider">Fast initiation</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 rounded-full bg-[#FF8C00] shadow-[0_0_5px_#FF8C00]"></div>
+        <span class="text-[9px] md:text-[10px] uppercase font-medium text-gray-400 tracking-wider">Processing Delay</span>
+      </div>
+      <div class="flex gap-2 gap-x-2 gap-y-2 items-center">
+        <div class="w-2 h-2 rounded-full bg-[#FF3333] shadow-[0_0_5px_#FF3333]"></div>
+        <span class="text-[9px] md:text-[10px] uppercase font-medium text-gray-400 tracking-wider">High Fees / Friction</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+    </section><section class="lg:pt-32 lg:pb-32 pt-16 pb-16 relative">
+        <div class="z-0 -top-px bg-dark-900 absolute"></div>
+        <div class="lg:pb-0 lg:pt-0 z-10 font-manrope max-w-7xl mr-auto ml-auto pt-16 pr-6 pb-16 pl-6 relative">
+    <style>
+        @keyframes float-card-1 {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-12px); }
+        }
+        @keyframes float-card-2 {
+            0%, 100% { transform: translate(50%, 50%) translateY(0); }
+            50% { transform: translate(50%, 50%) translateY(-12px); }
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        @keyframes dash-flow {
+            to { stroke-dashoffset: -20; }
+        }
+    </style>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 gap-x-0 gap-y-12 items-center">
+  <!-- Visual Content: Mess of Traditional Banking -->
+
+  <div class="flex flex-col bg-dark-800 w-full h-full border-white/5 border rounded-2xl pt-6 pr-6 pb-6 pl-6 relative items-center justify-center">
+
+    <div class="absolute top-6 left-6 flex items-center gap-3 z-20">
+      <div class="w-2.5 h-2.5 animate-pulse bg-[#5EA500] rounded-full shadow-[0_0_10px_#5EA500]"></div>
+      <div class="bg-[#0A0A0A] border-white/10 border rounded-md pt-0 pr-3 pb-1 pl-3 items-center justify-center">
+        <span class="text-[9px] md:text-[10px] uppercase font-medium text-gray-400 tracking-wider">Data Transformation Flow</span>
+      </div>
+    </div>
+
+    <!-- Visual UI -->
+
+
+    <div class="flex flex-col sm:flex-row w-full max-w-2xl z-10 mt-16 mb-16 relative items-center justify-center">
+
+      <!-- Left: Structured Input Stack -->
+      <div class="flex flex-col shrink-0 sm:w-[150px] sm:mb-0 max-w-fit mb-0 relative">
+        <div class="flex flex-col min-w-0 overflow-hidden hover:border-[#5ea500]/30 transition-colors duration-500 z-10 bg-[#0A0A0A] max-w-fit border-white/10 border rounded-xl pt-2 pr-2 pb-2 pl-2 relative shadow-lg gap-x-y-2.5 gap-y-2.5 items-center">
+          <!-- Source Label -->
+          <div class="text-[9px] uppercase font-medium text-gray-400 tracking-wider w-full text-center border-b border-white/10 pb-2">
+            HiggsField Platform
+          </div>
+
+          <div class="flex flex-col w-full max-w-fit gap-x-y-1.5 gap-y-1.5">
+            <!-- Database -->
+            <div class="flex min-w-0 z-30 bg-[#111] w-full border-[#60a5fa]/50 border rounded-md pt-1.5 pr-2.5 pb-1.5 pl-2.5 gap-x-2.5 gap-y-2.5 items-center" style="animation-delay: 0ms;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 w-[12px] h-[12px]" style="width: 12px; height: 12px; color: rgb(96, 165, 250)">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+                <path d="M3 12A9 3 0 0 0 21 12"></path>
+              </svg>
+              <span class="text-[10px] truncate min-w-0 text-[#60a5fa] tracking-wide font-mono">users_db.sql</span>
+            </div>
+            <!-- Document -->
+            <div class="flex min-w-0 z-30 bg-[#111] w-full border-[#60a5fa]/50 border rounded-md pt-1.5 pr-2.5 pb-1.5 pl-2.5 gap-x-2.5 gap-y-2.5 items-center" style="animation-delay: 200ms;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 w-[12px] h-[12px]" style="width: 12px; height: 12px; color: rgb(96, 165, 250)">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              <span class="text-[10px] truncate min-w-0 text-[#60a5fa] tracking-wide font-mono">contracts.pdf</span>
+            </div>
+            <!-- Code -->
+            <div class="flex min-w-0 bg-[#111] w-full z-30 border-[#60a5fa]/50 border rounded-md pt-1.5 pr-2.5 pb-1.5 pl-2.5 gap-x-2.5 gap-y-2.5 items-center" style="animation-delay: 400ms;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 w-[12px] h-[12px]" style="width: 12px; height: 12px; color: rgb(96, 165, 250)">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              <span class="text-[10px] truncate min-w-0 text-[#60a5fa] tracking-wide font-mono">api_data.json</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Left to Middle Connectors Desktop -->
+      <div class="hidden sm:block -mx-2 flex-1 h-[150px] z-0 relative">
+        <svg class="absolute inset-0 w-full h-full overflow-visible pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 220">
+          <!-- Forward Flow -->
+          <line x1="0" y1="110" x2="100" y2="110" stroke="#60a5fa" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke" style="filter: drop-shadow(0 0 3px rgba(96,165,250,0.8));">
+            <animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" calcMode="linear">
+            </animate>
+          </line>
+
+          <!-- Top Return Flow (High Arch) -->
+          <path d="M 100 105 C 70 -80, 30 -80, 0 105" fill="none" stroke="#5ea500" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke" style="filter: drop-shadow(0 0 3px rgba(94,165,0,0.8));">
+            <animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" calcMode="linear">
+            </animate>
+          </path>
+
+          <!-- Bottom Return Flow (Deep Arch) -->
+          <path d="M 100 115 C 70 300, 30 300, 0 115" fill="none" stroke="#5ea500" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke" style="filter: drop-shadow(0 0 3px rgba(94,165,0,0.8));">
+            <animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" calcMode="linear">
+            </animate>
+          </path>
+        </svg>
+
+        <!-- Feedback Labels -->
+        <div class="absolute top-[-38px] left-1/2 -translate-x-1/2 text-center pointer-events-none z-10">
+          <div class="text-[9px] uppercase font-medium text-gray-300 tracking-wider bg-black py-1 px-3 rounded-full border border-[#5ea500]/50 shadow-[0_0_10px_rgba(94,165,0,0.2)] inline-block whitespace-nowrap leading-tight">
+            Payout Limits &amp; Amounts
+          </div>
+        </div>
+        <div class="absolute bottom-[-38px] left-1/2 -translate-x-1/2 text-center pointer-events-none z-10">
+          <div class="text-[9px] uppercase font-medium text-gray-300 tracking-wider bg-black py-1 px-3 rounded-full border border-[#5ea500]/50 shadow-[0_0_10px_rgba(94,165,0,0.2)] inline-block whitespace-nowrap leading-tight">
+            Creator Analytics
+          </div>
+        </div>
+      </div>
+
+      <!-- Left to Middle Connectors Mobile -->
+      <div class="sm:hidden flex z-0 w-full h-20 relative justify-center">
+        <svg class="absolute inset-0 w-full h-full overflow-visible pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 160">
+          <line x1="50" y1="0" x2="50" y2="160" stroke="#60a5fa" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke" style="filter: drop-shadow(0 0 3px rgba(96,165,250,0.8));">
+            <animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" calcMode="linear">
+            </animate>
+          </line>
+
+          <path d="M 48 160 C -10 110, -10 50, 48 0" fill="none" stroke="#5ea500" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke" style="filter: drop-shadow(0 0 3px rgba(94,165,0,0.8));">
+            <animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" calcMode="linear">
+            </animate>
+          </path>
+
+          <path d="M 52 160 C 110 110, 110 50, 52 0" fill="none" stroke="#5ea500" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke" style="filter: drop-shadow(0 0 3px rgba(94,165,0,0.8));">
+            <animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" calcMode="linear">
+            </animate>
+          </path>
+        </svg>
+
+        <!-- Feedback Labels Mobile -->
+        <div class="absolute top-1/2 -translate-y-1/2 left-[5%] -translate-x-1/2 text-center pointer-events-none z-10">
+          <div class="text-[8px] uppercase font-medium text-gray-300 tracking-wider bg-black py-2 px-3 rounded-full border border-[#5ea500]/50 shadow-[0_0_10px_rgba(94,165,0,0.2)] inline-block whitespace-nowrap leading-tight">
+            Payout<br>Limits
+          </div>
+        </div>
+        <div class="absolute top-1/2 -translate-y-1/2 right-[5%] translate-x-1/2 text-center pointer-events-none z-10">
+          <div class="text-[8px] uppercase font-medium text-gray-300 tracking-wider bg-black py-2 px-3 rounded-full border border-[#5ea500]/50 shadow-[0_0_10px_rgba(94,165,0,0.2)] inline-block whitespace-nowrap leading-tight">
+            Creator<br>Analytics
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Hub -->
+      <div class="flex flex-col shrink-0 sm:mb-0 sm:mt-0 w-14 z-30 mt-0 mb-0 relative items-center justify-center">
+        <div class="z-10 w-14 h-14 relative">
+          <div class="absolute inset-0 rounded-xl bg-[#5EA500]/30 animate-ping opacity-20 duration-1000"></div>
+          <div class="flex overflow-hidden bg-[#0A0A0A] rounded-xl absolute top-0 right-0 bottom-0 left-0 w-full h-full items-center justify-center" style="--border-gradient: linear-gradient(270deg, rgba(101, 163, 13, 1), rgba(96, 165, 250, 1)); --border-radius-before: 12px">
+            <div class="animate-pulse bg-[#5EA500]/10 w-full h-full absolute top-0 right-0 bottom-0 left-0"></div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[#5EA500] relative z-20">
+              <rect width="16" height="16" x="4" y="4" rx="2" ry="2" class=""></rect>
+              <rect width="6" height="6" x="9" y="9" rx="1" class=""></rect>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="sm:absolute sm:-bottom-9 flex flex-col sm:mt-0 whitespace-nowrap z-20 bg-[#0A0A0A] border-white/10 border rounded-md mt-3 pt-1 pr-3 pb-1 pl-3 items-center">
+          <span class="text-[9px] uppercase font-medium text-gray-200 tracking-wider">Garna Engine</span>
+        </div>
+      </div>
+
+      <!-- Middle to Right Connectors Desktop -->
+      <div class="hidden sm:block -mx-2 flex-1 z-0 h-[220px] mr-0 relative">
+        <svg class="absolute inset-0 w-full h-full overflow-visible pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 220">
+          <path d="M 0 110 C 40 110, 50 31, 100 31" fill="none" stroke="#5ea500" stroke-width="1" vector-effect="non-scaling-stroke" stroke-dasharray="4 4" style="filter: drop-shadow(0 0 3px rgba(94,165,0,0.8));">
+            <animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" calcMode="linear">
+            </animate>
+          </path>
+          <path d="M 0 110 L 100 110" fill="none" stroke="#5ea500" stroke-width="1" vector-effect="non-scaling-stroke" stroke-dasharray="4 4" style="filter: drop-shadow(0 0 3px rgba(94,165,0,0.8));">
+            <animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" calcMode="linear">
+            </animate>
+          </path>
+          <path d="M 0 110 C 40 110, 50 189, 100 189" fill="none" stroke="#5ea500" stroke-width="1" vector-effect="non-scaling-stroke" stroke-dasharray="4 4" style="filter: drop-shadow(0 0 3px rgba(94,165,0,0.8));">
+            <animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" calcMode="linear">
+            </animate>
+          </path>
+        </svg>
+      </div>
+
+      <!-- Middle to Right Connectors Mobile -->
+      <div class="w-px sm:hidden h-12 z-0 mr-auto mb-0 ml-auto relative">
+        <svg class="absolute inset-0 w-[20px] h-full -ml-[10px] overflow-visible pointer-events-none" preserveAspectRatio="none" viewBox="0 0 20 100">
+          <line x1="10" y1="0" x2="10" y2="100" stroke="#5ea500" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke" style="filter: drop-shadow(0 0 3px rgba(94,165,0,0.8));">
+            <animate attributeName="stroke-dashoffset" values="8;0" dur="1s" repeatCount="indefinite" calcMode="linear">
+            </animate>
+          </line>
+        </svg>
+      </div>
+
+      <!-- Right: Output Cards -->
+      <div class="flex flex-col sm:w-[150px] shrink-0 sm:h-[220px] max-w-fit z-30 relative gap-x-4 gap-y-4 justify-between">
+
+        <!-- Top Output -->
+        <div class="border-l-[2px] border-l-[#5EA500] flex flex-col cursor-default flex-1 overflow-hidden bg-[#0A0A0A] w-full border-white/10 border rounded-lg pt-2 pr-2 pb-2 pl-3 relative justify-center" style="animation-delay: 100ms">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#5EA500]/5 to-transparent pointer-events-none animate-pulse">
+          </div>
+          <div class="flex z-10 relative gap-x-2.5 gap-y-2.5 items-center">
+            <div class="w-5 h-5 rounded bg-[#5EA500]/10 flex items-center justify-center shrink-0 border border-[#5EA500]/20">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#5EA500]">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <span class="leading-tight text-xs font-medium text-white">Instant Payouts</span>
+          </div>
+        </div>
+
+        <!-- Middle Output -->
+        <div class="border-l-[2px] border-l-[#5EA500] flex flex-col cursor-default flex-1 overflow-hidden bg-[#0A0A0A] w-full border-white/10 border rounded-lg pt-2 pr-2 pb-2 pl-3 relative justify-center" style="animation-delay: 300ms">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#5EA500]/5 to-transparent pointer-events-none animate-pulse">
+          </div>
+          <div class="flex gap-2.5 z-10 relative gap-x-2.5 gap-y-2.5 items-center">
+            <div class="w-5 h-5 rounded bg-[#5EA500]/10 flex items-center justify-center shrink-0 border border-[#5EA500]/20">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#5EA500]">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </div>
+            <span class="leading-tight text-xs font-medium text-white">Automated Compliance &amp; KYC</span>
+          </div>
+        </div>
+
+        <!-- Bottom Output -->
+        <div class="border-l-[2px] border-l-[#5EA500] flex flex-col cursor-default flex-1 overflow-hidden bg-[#0A0A0A] w-full border-white/10 border rounded-lg pt-2 pr-2 pb-2 pl-3 relative justify-center" style="animation-delay: 500ms">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#5EA500]/5 to-transparent pointer-events-none animate-pulse">
+          </div>
+          <div class="flex gap-2.5 z-10 relative gap-x-2.5 gap-y-2.5 items-center">
+            <div class="w-5 h-5 rounded bg-[#5EA500]/10 flex items-center justify-center shrink-0 border border-[#5EA500]/20">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#5EA500]">
+                <path d="M12 2v20"></path>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" class=""></path>
+                <path d="m9 17 3 3 3-3"></path>
+              </svg>
+            </div>
+            <span class="leading-tight text-xs font-medium text-white">Minimal Fees</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="md:bottom-6 flex flex-wrap gap-4 md:gap-6 bg-[#0A0A0A] border-white/5 border rounded-full pt-2 pr-4 pb-2 pl-4 absolute bottom-4 gap-x-4 gap-y-4 justify-center">
+      <div class="flex items-center gap-2">
+        <div class="bg-[#60a5fa] w-2 h-2 rounded-full shadow-[0_0_5px_#5EA500]"></div>
+        <span class="text-[9px] md:text-[10px] uppercase font-medium text-gray-400 tracking-wider">AUDIT REPORTING</span>
+      </div>
+      <div class="flex gap-2 gap-x-2 gap-y-2 items-center">
+        <div class="bg-[#5ea500] w-2 h-2 rounded-full shadow-[0_0_5px_#5EA500]"></div>
+        <span class="text-[9px] md:text-[10px] uppercase font-medium text-gray-400 tracking-wider">Processing Delay</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Text Content -->
+  <div class="flex flex-col w-full gap-x-8 gap-y-8 order-first lg:order-last">
+    <h2 class="lg:text-5xl leading-[1.1] text-4xl font-normal text-white tracking-tight">The solution: Frictionless
+      global payments</h2>
+
+    <div class="flex flex-col gap-6 gap-x-6 gap-y-6">
+
+      <p class="leading-relaxed text-xl font-light text-gray-400">To solve these challenges, Higgsfield integrated Garna
+        as an abstraction layer to handle all operational and financial complexity, including automated KYC for every
+        global contractor</p>
+      <p class="leading-relaxed text-xl font-light text-gray-400">Automated compliance checks handle the heavy lifting,
+        while Garna provides real-time analytics on limits, creators, and payout amounts. This loop allows the team to
+        focus on developing the fastest growing GenAI company in the world</p>
+    </div>
+  </div>
+</div>
+</div>
+    </section>
+
+    <!-- Job Board -->
+    
+
+    <!-- Comparison Section -->
+    <section class="lg:pt-32 lg:pb-32 overflow-hidden pt-16 pb-16 relative">
+    <div class="z-10 max-w-7xl mr-auto ml-auto pr-6 pl-6 relative">
+        <!-- Top Content / Headers -->
+        <div class="flex flex-col lg:mb-24 gap-8 text-center max-w-4xl mr-auto mb-16 ml-auto gap-x-8 gap-y-8 items-center">
+            <h2 class="lg:text-5xl leading-[1.1] text-4xl font-normal text-white tracking-tight font-manrope">Diverse Payment Rails for Global Scale</h2>
+            
+            <div class="flex flex-col gap-4 max-w-3xl">
+                <p class="lg:text-xl leading-relaxed text-lg font-light text-gray-400 font-manrope">Higgsfield uses Garna’s multi-rail infrastructure to enable instant payouts in 146 countries. From bank transfers to local currencies and e-wallets, Garna provides a unified gateway that adapts to local financial preferences worldwide</p>
+                
+            </div>
+        </div>
+
+        <!-- 4-Column Feature Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 z-10 relative gap-x-6 gap-y-6">
+    <!-- Card 1 (Green) -->
+    <div class="group flex flex-col bg-[#0A0A0A] backdrop-blur-md border border-[#5EA500]/10 rounded-2xl p-8 hover:bg-[#0F0F0F] transition-all duration-500 relative overflow-hidden hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(94,165,0,0.2)] hover:border-[#5EA500]/40">
+        <!-- Subtle Top Highlight -->
+        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5EA500]/30 group-hover:via-[#5EA500]/60 to-transparent transition-colors duration-500"></div>
+        <!-- Ambient Background Glow -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#5EA500]/10 via-transparent to-transparent opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-b from-[#5EA500]/15 to-transparent border border-[#5EA500]/20 flex items-center justify-center text-[#5EA500] mb-8 group-hover:scale-110 group-hover:border-[#5EA500]/40 group-hover:from-[#5EA500]/25 transition-all duration-500 shadow-sm relative z-10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-landmark"><line x1="3" x2="21" y1="22" y2="22"></line><line x1="6" x2="6" y1="18" y2="11"></line><line x1="10" x2="10" y1="18" y2="11"></line><line x1="14" x2="14" y1="18" y2="11"></line><line x1="18" x2="18" y1="18" y2="11"></line><polygon points="12 2 20 7 4 7" class=""></polygon></svg>
+        </div>
+        
+        <div class="relative z-10 flex flex-col h-full">
+            <h3 class="text-xl font-normal text-white mb-2 tracking-tight group-hover:text-white transition-colors">Banking</h3>
+            <p class="flex-1 leading-relaxed text-sm font-light text-gray-400 mb-8">SEPA, SWIFT &amp; Local Transfers — Direct cross-border settlements</p>
+            <div class="mt-auto self-start">
+                <div class="inline-flex items-center px-3 py-1.5 rounded-full bg-[#5EA500]/10 border border-[#5EA500]/20 text-[10px] text-[#5EA500] font-mono uppercase tracking-wider group-hover:border-[#5EA500]/40 group-hover:bg-[#5EA500]/20 transition-all duration-300">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#5EA500] mr-2 shadow-[0_0_8px_#5EA500] transition-all duration-300"></span>
+                    Global Settlements
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2 (Green) -->
+    <div class="group flex flex-col hover:bg-[#0F0F0F] transition-all duration-500 overflow-hidden hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(94,165,0,0.2)] hover:border-[#5EA500]/40 bg-[#0A0A0A] border-[#5EA500]/10 border rounded-2xl pt-8 pr-8 pb-8 pl-8 relative backdrop-blur-md">
+        <!-- Subtle Top Highlight -->
+        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5EA500]/30 group-hover:via-[#5EA500]/60 to-transparent transition-colors duration-500"></div>
+        <!-- Ambient Background Glow -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#5EA500]/10 via-transparent to-transparent opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-b from-[#5EA500]/15 to-transparent border border-[#5EA500]/20 flex items-center justify-center text-[#5EA500] mb-8 group-hover:scale-110 group-hover:border-[#5EA500]/40 group-hover:from-[#5EA500]/25 transition-all duration-500 shadow-sm relative z-10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2" class=""></rect><line x1="2" x2="22" y1="10" y2="10" class=""></line></svg>
+        </div>
+        
+        <div class="relative z-10 flex flex-col h-full">
+            <h3 class="text-xl font-normal text-white mb-2 tracking-tight group-hover:text-white transition-colors">Cards</h3>
+            <p class="flex-1 leading-relaxed text-sm font-light text-gray-400 mb-8">Major card networks — Fast payouts in major currencies</p>
+            <div class="mt-auto self-start">
+                <div class="inline-flex text-[10px] uppercase group-hover:border-[#5EA500]/40 group-hover:bg-[#5EA500]/20 transition-all duration-300 text-[#5EA500] tracking-wider font-mono bg-[#5EA500]/10 border-[#5EA500]/20 border rounded-full pt-1.5 pr-3 pb-1.5 pl-3 items-center"><span class="w-1.5 h-1.5 rounded-full bg-[#5EA500] mr-2 shadow-[0_0_8px_#5EA500] transition-all duration-300"></span>Fast Card Payouts</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 3 (Green) -->
+    <div class="group flex flex-col bg-[#0A0A0A] backdrop-blur-md border border-[#5EA500]/10 rounded-2xl p-8 hover:bg-[#0F0F0F] transition-all duration-500 relative overflow-hidden hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(94,165,0,0.2)] hover:border-[#5EA500]/40">
+        <!-- Subtle Top Highlight -->
+        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5EA500]/30 group-hover:via-[#5EA500]/60 to-transparent transition-colors duration-500"></div>
+        <!-- Ambient Background Glow -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#5EA500]/10 via-transparent to-transparent opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        
+        <div class="flex group-hover:scale-110 group-hover:border-[#5EA500]/40 group-hover:from-[#5EA500]/25 transition-all duration-500 text-[#5EA500] bg-gradient-to-b from-[#5EA500]/15 to-transparent w-12 h-12 z-10 border-[#5EA500]/20 border rounded-xl mb-8 relative shadow-sm items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
+        </div>
+        
+        <div class="relative z-10 flex flex-col h-full">
+            <h3 class="group-hover:text-white transition-colors text-xl font-normal text-white tracking-tight mb-2">E-wallets</h3>
+            <p class="flex-1 leading-relaxed text-sm font-light text-gray-400 mb-8">PayPal, Payoneer and others. Flexible payout options for creator ecosystems</p>
+            <div class="mt-auto self-start">
+                <div class="inline-flex text-[10px] uppercase group-hover:border-[#5EA500]/40 group-hover:bg-[#5EA500]/20 transition-all duration-300 text-[#5EA500] tracking-wider font-mono bg-[#5EA500]/10 border-[#5EA500]/20 border rounded-full pt-1.5 pr-3 pb-1.5 pl-3 items-center"><span class="w-1.5 h-1.5 rounded-full bg-[#5EA500] mr-2 shadow-[0_0_8px_#5EA500] transition-all duration-300"></span>Platform Integrations</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 4 (Green) -->
+    <div class="group flex flex-col bg-[#0A0A0A] backdrop-blur-md border border-[#5EA500]/10 rounded-2xl p-8 hover:bg-[#0F0F0F] transition-all duration-500 relative overflow-hidden hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(94,165,0,0.2)] hover:border-[#5EA500]/40">
+        <!-- Subtle Top Highlight -->
+        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#5EA500]/30 group-hover:via-[#5EA500]/60 to-transparent transition-colors duration-500"></div>
+        <!-- Ambient Background Glow -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#5EA500]/10 via-transparent to-transparent opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-b from-[#5EA500]/15 to-transparent border border-[#5EA500]/20 flex items-center justify-center text-[#5EA500] mb-8 group-hover:scale-110 group-hover:border-[#5EA500]/40 group-hover:from-[#5EA500]/25 transition-all duration-500 shadow-sm relative z-10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bitcoin"><path d="M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042l-.347 1.97m1.563-8.864c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 4.312m5.908 1.042.348-1.97M7.48 20.364l3.126-17.727" class=""></path></svg>
+        </div>
+        
+        <div class="relative z-10 flex flex-col h-full">
+            <h3 class="text-xl font-normal text-white mb-2 tracking-tight group-hover:text-white transition-colors">Crypto Payouts</h3>
+            <p class="flex-1 leading-relaxed text-sm font-light text-gray-400 mb-8">Backed by VASP regulated rails. Secure and compliant stablecoin settlements</p>
+            <div class="mt-auto self-start">
+                <div class="inline-flex text-[10px] uppercase group-hover:border-[#5EA500]/40 group-hover:bg-[#5EA500]/20 transition-all duration-300 text-[#5EA500] tracking-wider font-mono bg-[#5EA500]/10 border-[#5EA500]/20 border rounded-full pt-1.5 pr-3 pb-1.5 pl-3 items-center"><span class="w-1.5 h-1.5 rounded-full bg-[#5EA500] mr-2 shadow-[0_0_8px_#5EA500] transition-all duration-300"></span>REGULATED RAILS</div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</section>
+
+    <!-- Payout Advantages -->
+    <section class="lg:pt-32 lg:pb-32 bg-[#050505] border-white/0 border-t pt-16 pb-16">
+        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+    <div class="lg:mb-20 text-center mb-16">
+        <h2 class="md:text-4xl lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope max-w-4xl mr-auto mb-6 ml-auto">Operations at Global Scale</h2>
+        <p class="text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto ml-auto">Beyond metrics, the partnership prioritized stability and speed during peak growth</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-6 gap-y-6">
+        
+        <!-- Card 1: Rapid Deployment -->
+        <div class="group overflow-hidden min-h-[480px] flex flex-col hover:border-[#5EA500]/30 hover:-translate-y-2 transition-all duration-500 bg-[#0b0b0b] border-white/5 border rounded-3xl pt-8 pr-8 pb-8 pl-8 relative shadow-2xl justify-between">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#5EA500]/5 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+    
+    <div class="relative z-10 flex flex-col items-start gap-4">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
+            <span class="relative flex h-1.5 w-1.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#5EA500] opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#5EA500] shadow-[0_0_8px_#5EA500]"></span>
+            </span>
+            <span class="text-[10px] uppercase font-semibold text-gray-300 tracking-widest text-center pt-0.5">Time-to-Payout Launch</span>
+        </div>
+        
+        <div class="flex items-baseline gap-3 mt-2">
+            <span class="text-6xl font-normal text-white tracking-tight font-manrope">72h</span>
+            
+        </div>
+        
+        <p class="leading-relaxed text-sm text-gray-400 max-w-[260px]">6,000 influencers joined the Higgsfield Earn campaign</p>
+    </div>
+    
+    <div class="absolute bottom-0 left-0 right-0 h-[220px] z-0 pointer-events-none">
+        <svg viewBox="0 0 400 220" preserveAspectRatio="none" class="w-full h-full">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#5EA500" stop-opacity="0.3"></stop>
+                    <stop offset="100%" stop-color="#5EA500" stop-opacity="0"></stop>
+                </linearGradient>
+                <filter id="glow1">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"></feGaussianBlur>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+            </defs>
+            
+            <path d="M-10,220 C120,220 160,180 200,110 S280,40 410,30 L410,220 Z" fill="url(#grad1)"></path>
+            <path d="M-10,220 C120,220 160,180 200,110 S280,40 410,30" fill="none" stroke="#5EA500" stroke-width="2" filter="url(#glow1)" class="group-hover:stroke-[#7CFF00] transition-colors duration-500"></path>
+            
+            <!-- Data Flow Particles -->
+            <circle r="3" fill="#fff" filter="url(#glow1)">
+                <animateMotion dur="3s" repeatCount="indefinite" path="M-10,220 C120,220 160,180 200,110 S280,40 410,30"></animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.8;1" dur="3s" repeatCount="indefinite"></animate>
+            </circle>
+            <circle r="2" fill="#7CFF00" filter="url(#glow1)">
+                <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite" path="M-10,220 C120,220 160,180 200,110 S280,40 410,30"></animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.8;1" dur="3s" begin="1.5s" repeatCount="indefinite"></animate>
+            </circle>
+            
+            <!-- Data Points -->
+            <circle cx="169" cy="157" r="5" fill="#5EA500">
+                <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"></animate>
+                <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"></animate>
+            </circle>
+            <text x="89" y="140" fill="#5EA500" font-size="12" font-family="monospace">Integration</text>
+            
+            <circle cx="328" cy="37" r="5" fill="#fff" class="shadow-[0_0_10px_#fff]">
+                <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite" begin="1s"></animate>
+                <animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite" begin="1s"></animate>
+            </circle>
+            <text x="248" y="22" fill="#fff" font-size="12" font-family="monospace">Full Scale</text>
+            
+            <!-- Grid framework -->
+            <path d="M0,165 L400,165 M0,110 L400,110 M0,55 L400,55" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4 4">
+                <animate attributeName="stroke-dashoffset" values="8;0" dur="2s" repeatCount="indefinite" calcMode="linear"></animate>
+            </path>
+        </svg>
+    </div>
+</div>
+
+        <!-- Card 2: High-Load Processing -->
+        <div class="group relative overflow-hidden bg-[#0b0b0b] border border-white/5 rounded-3xl p-8 min-h-[400px] flex flex-col justify-between hover:border-blue-500/30 transition-all duration-500 shadow-2xl">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div class="relative z-10 flex flex-col items-start gap-4">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_#3B82F6]"></span>
+                    <span class="text-[10px] uppercase font-semibold text-gray-300 tracking-widest text-center pt-0.5">High-Load Processing</span>
+                </div>
+                
+                <div class="flex flex-col mt-2">
+                    <span class="text-6xl font-normal text-white tracking-tight font-manrope">10,650</span>
+                </div>
+                
+                <p class="leading-relaxed text-sm text-gray-400 max-w-[260px]">Peak transaction volume handled without delays</p>
+            </div>
+            
+            <div class="absolute bottom-0 left-0 right-0 h-[220px] z-0 pointer-events-none">
+                <svg viewBox="0 0 400 220" preserveAspectRatio="none" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.3"></stop>
+                            <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"></stop>
+                        </linearGradient>
+                        <filter id="glow2">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"></feGaussianBlur>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"></feMergeNode>
+                                <feMergeNode in="SourceGraphic"></feMergeNode>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Jagged spike path -->
+                    <path d="M0,220 L0,180 L20,175 L40,190 L60,165 L80,170 L100,155 L120,180 L140,160 L160,150 L180,110 L190,70 L200,30 L210,80 L220,130 L240,160 L260,145 L280,180 L300,155 L320,150 L340,165 L360,170 L380,155 L400,160 L400,220 Z" fill="url(#grad2)"></path>
+                    <path d="M0,180 L20,175 L40,190 L60,165 L80,170 L100,155 L120,180 L140,160 L160,150 L180,110 L190,70 L200,30 L210,80 L220,130 L240,160 L260,145 L280,180 L300,155 L320,150 L340,165 L360,170 L380,155 L400,160" fill="none" stroke="#3B82F6" stroke-width="2" filter="url(#glow2)" class="group-hover:stroke-[#60A5FA] transition-colors duration-500"></path>
+                    
+                    <line x1="200" y1="30" x2="200" y2="220" stroke="#3B82F6" stroke-width="1" stroke-dasharray="2 4" opacity="0.5"></line>
+                    <circle cx="200" cy="30" r="4" fill="#fff" class="shadow-[0_0_10px_#fff]"></circle>
+                    
+                    <rect x="210" y="20" width="60" height="20" rx="4" fill="#3B82F6" opacity="0.1"></rect>
+                    <rect x="210" y="20" width="60" height="20" rx="4" fill="none" stroke="#3B82F6" stroke-width="0.5"></rect>
+                    <text x="240" y="33" fill="#60A5FA" font-size="10" font-family="monospace" text-anchor="middle">PEAK LOAD</text>
+                    
+                    <!-- Grid lines -->
+                    <path d="M0,160 L400,160 M0,100 L400,100 M0,40 L400,40" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4 4"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Card 3: Settlement Speed -->
+        <div class="group overflow-hidden min-h-[400px] flex flex-col hover:border-[#8B5CF6]/30 transition-all duration-500 bg-[#0b0b0b] border-white/5 border rounded-3xl pt-8 pr-8 pb-8 pl-8 relative shadow-2xl justify-between">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#8B5CF6]/10 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+    
+    <div class="relative z-10 flex flex-col items-start gap-4">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
+            <span class="relative flex h-1.5 w-1.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8B5CF6] opacity-75"></span>
+                <span class="inline-flex h-1.5 w-1.5 bg-[#8B5CF6] rounded-full relative shadow-[0_0_8px_#8B5CF6]"></span>
+            </span>
+            <span class="text-[10px] uppercase font-medium text-gray-300 tracking-widest text-center pt-0.5">Global Reach</span>
+        </div>
+        
+        <div class="flex flex-col gap-1 mt-2">
+            <span class="text-6xl font-normal text-white tracking-tight font-manrope">Fast</span>
+        </div>
+        
+        <p class="leading-relaxed text-sm text-gray-400 max-w-[260px]">Global payouts reaching recipients across 146 countries</p>
+    </div>
+    
+    <div class="absolute inset-0 z-0 pointer-events-none mt-10">
+        <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice" class="w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+            <defs>
+                <filter id="glow-minimal">
+                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur"></feGaussianBlur>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+                <filter id="glow-strong">
+                    <feGaussianBlur stdDeviation="4" result="coloredBlur"></feGaussianBlur>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+                <radialGradient id="globe-bg" cx="50%" cy="50%" r="50%">
+                    <stop offset="60%" stop-color="#8B5CF6" stop-opacity="0"></stop>
+                    <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.08"></stop>
+                </radialGradient>
+            </defs>
+
+            <g transform="translate(200, 255)">
+                <!-- Subtle backdrop glow behind globe -->
+                <circle cx="0" cy="0" r="105" fill="#8B5CF6" opacity="0.03" filter="url(#glow-minimal)"></circle>
+                
+                <!-- Globe Base -->
+                <circle cx="0" cy="0" r="90" fill="url(#globe-bg)"></circle>
+                <circle cx="0" cy="0" r="90" fill="none" stroke="#8B5CF6" stroke-width="1" opacity="0.25"></circle>
+                
+                <!-- Wireframe -->
+                <g stroke="#8B5CF6" stroke-width="0.5" fill="none" opacity="0.15">
+                    <ellipse cx="0" cy="0" rx="90" ry="26"></ellipse>
+                    <ellipse cx="0" cy="0" rx="90" ry="56"></ellipse>
+                    <ellipse cx="0" cy="0" rx="26" ry="90"></ellipse>
+                    <ellipse cx="0" cy="0" rx="56" ry="90"></ellipse>
+                </g>
+
+                <!-- Transfer Connections -->
+                <g>
+                    <!-- US to EU -->
+                    <path d="M -35 -20 Q -15 -60 10 -45" fill="none" stroke="#8B5CF6" stroke-width="2.5" filter="url(#glow-strong)" opacity="0.6"></path>
+                    <path d="M -35 -20 Q -15 -60 10 -45" fill="none" stroke="#8B5CF6" stroke-width="1.5" opacity="0.9">
+                        <animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite" calcMode="linear"></animate>
+                    </path>
+                    <circle r="3" fill="#ffffff" filter="url(#glow-minimal)">
+                        <animateMotion dur="2s" repeatCount="indefinite" path="M -35 -20 Q -15 -60 10 -45"></animateMotion>
+                        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="2s" repeatCount="indefinite"></animate>
+                    </circle>
+
+                    <!-- EU to APAC -->
+                    <path d="M 10 -45 Q 35 -35 45 -5" fill="none" stroke="#8B5CF6" stroke-width="1.5" filter="url(#glow-minimal)" opacity="0.4"></path>
+                    <path d="M 10 -45 Q 35 -35 45 -5" fill="none" stroke="#8B5CF6" stroke-width="1" opacity="0.6">
+                        <animate attributeName="stroke-dashoffset" values="12;0" dur="1.5s" repeatCount="indefinite" calcMode="linear"></animate>
+                    </path>
+                    <circle r="2.5" fill="#ffffff" filter="url(#glow-minimal)">
+                        <animateMotion dur="2.5s" repeatCount="indefinite" path="M 10 -45 Q 35 -35 45 -5" begin="0.5s"></animateMotion>
+                        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="2.5s" repeatCount="indefinite" begin="0.5s"></animate>
+                    </circle>
+
+                    <!-- US Point & Caption -->
+                    <circle cx="-35" cy="-20" r="3" fill="#ffffff" filter="url(#glow-minimal)">
+                        <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"></animate>
+                    </circle>
+                    <text x="-44" y="-17" fill="#ffffff" font-size="10" font-family="ui-sans-serif, system-ui, sans-serif" font-weight="600" text-anchor="end" opacity="0.9">US</text>
+
+                    <!-- EU Point & Caption -->
+                    <circle cx="10" cy="-45" r="3" fill="#ffffff" filter="url(#glow-minimal)">
+                        <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite" begin="0.5s"></animate>
+                    </circle>
+                    <text x="10" y="-55" fill="#ffffff" font-size="10" font-family="ui-sans-serif, system-ui, sans-serif" font-weight="600" text-anchor="middle" opacity="0.9">EU</text>
+
+                    <!-- APAC Point & Caption -->
+                    <circle cx="45" cy="-5" r="2.5" fill="#ffffff" filter="url(#glow-minimal)">
+                        <animate attributeName="r" values="2.5;4;2.5" dur="2s" repeatCount="indefinite" begin="1s"></animate>
+                    </circle>
+                    <text x="53" y="-2" fill="#ffffff" font-size="9" font-family="ui-sans-serif, system-ui, sans-serif" font-weight="500" text-anchor="start" opacity="0.8">APAC</text>
+                </g>
+            </g>
+        </svg>
+    </div>
+</div>
+
+        <!-- Card 4: Trust & Compliance -->
+        <div class="group overflow-hidden min-h-[400px] flex flex-col hover:border-[#FF9500]/30 transition-all duration-500 bg-[#0b0b0b] border-white/5 border rounded-3xl pt-8 pr-8 pb-8 pl-8 relative shadow-2xl justify-between">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FF9500]/10 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+    
+    <div class="relative z-10 flex flex-col items-start gap-4">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
+            <span class="relative flex h-1.5 w-1.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF9500] opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#FF9500] shadow-[0_0_8px_#FF9500]"></span>
+            </span>
+            <span class="text-[10px] uppercase font-semibold text-gray-300 tracking-widest text-center pt-0.5">Identity Verification</span>
+        </div>
+        
+        <div class="flex flex-col mt-2">
+            <span class="text-6xl font-normal text-white tracking-tight font-manrope">100%</span>
+        </div>
+        
+        <p class="leading-relaxed text-sm text-gray-400 max-w-[260px]">Automated KYC filtering for total program integrity</p>
+    </div>
+    
+    <div class="absolute bottom-0 left-0 right-0 h-[220px] z-0 flex items-center justify-center pointer-events-none rounded-b-3xl md:translate-y-6 lg:translate-y-0">
+        <!-- Ambient Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] bg-[#FF9500]/5 group-hover:bg-[#FF9500]/10 rounded-full blur-3xl transition-colors duration-700 pointer-events-none"></div>
+
+        <!-- Single Card -->
+        <div class="relative z-10 transform group-hover:-translate-y-2 transition-transform duration-500">
+            <!-- Focus Markers -->
+            <div class="absolute -top-[5px] -left-[5px] w-3 h-3 border-t border-l border-[#FF9500] opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute -top-[5px] -right-[5px] w-3 h-3 border-t border-r border-[#FF9500] opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute -bottom-[5px] -left-[5px] w-3 h-3 border-b border-l border-[#FF9500] opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute -bottom-[5px] -right-[5px] w-3 h-3 border-b border-r border-[#FF9500] opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div class="w-[180px] bg-[#FF9500]/[0.02] border border-[#FF9500]/50 rounded-xl p-4 flex flex-col gap-3 relative shadow-[0_0_30px_rgba(255,149,0,0.15)] group-hover:border-[#FF9500] group-hover:bg-[#FF9500]/[0.05] group-hover:shadow-[0_0_40px_rgba(255,149,0,0.25)] transition-all duration-500 backdrop-blur-sm">
+                
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-[#FF9500]/10 flex items-center justify-center text-[#FF9500] shrink-0 border border-[#FF9500]/30 shadow-[0_0_10px_rgba(255,149,0,0.2)]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
+                    <div class="flex flex-col gap-1.5 w-full">
+                        <div class="w-full h-1.5 rounded bg-[#FF9500]/30"></div>
+                        <div class="w-2/3 h-1.5 rounded bg-[#FF9500]/30"></div>
+                    </div>
+                </div>
+                
+                <div class="w-full h-px bg-[#FF9500]/20 my-1"></div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-1.5">
+                        <div class="w-4 h-4 rounded-full bg-[#FF9500] flex items-center justify-center text-[#0b0b0b] shadow-[0_0_8px_#FF9500]">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <span class="text-[10px] font-bold tracking-widest text-[#FF9500] mt-0.5">VERIFIED</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+    </div>
+</div>
+    </section><section class="overflow-hidden lg:pt-40 lg:pb-40 text-center pt-32 pb-32 relative">
+    <div class="z-10 max-w-4xl mr-auto ml-auto pr-6 pl-6 relative">
+        <h2 class="md:text-7xl lg:text-6xl text-5xl font-normal text-white tracking-tight font-manrope mr-auto mb-8 ml-auto">Scale Your Business with Global Payout Infrastructure</h2>
+        <p class="md:text-xl lg:text-2xl text-lg font-light text-gray-400 font-manrope mb-12">Launch fast, reliable payouts worldwide with a single API designed to scale with your business as you grow across markets</p><div class="reveal-up delay-300 flex flex-col sm:flex-row gap-4 gap-x-4 gap-y-4 items-center justify-center">
+            <button class="group flex transition-all hover:scale-105 overflow-hidden text-base font-medium text-white font-manrope bg-[#5EA500] rounded-xl pt-3 pr-8 pb-3 pl-8 relative shadow-[0_0_20px_-5px_rgba(94,165,0,0.5)] gap-x-2 gap-y-2 items-center">Start with Garna
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right transition-transform group-hover:translate-x-1">
+        <path d="M5 12h14"></path>
+        <path d="m12 5 7 7-7 7"></path>
+    </svg>
+</button>
+        </div>
+        
+    </div>
+</section>
+
+    <!-- Social Proof -->
+    
+
+    <!-- FAQ -->
+    
+
+    <!-- Final CTA -->
+    
+
+    <!-- Footer -->
+    <footer class="bg-black border-white/5 border-t pt-0 pb-0">
+        
+    <footer class="font-manrope bg-[#020202] w-full border-white/5 border-t pt-16 pb-16">
+    <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+        <div class="flex flex-col md:flex-row w-full mb-24 items-start justify-between">
+            <!-- Left Side: Logo & Info -->
+            <div class="flex flex-col md:w-auto w-full items-start pb-6 md:pb-0">
+                <a href="#" class="hover:opacity-80 transition-opacity text-4xl font-medium text-white tracking-tighter mb-6">garna</a>
+                
+                <div class="flex mb-1.5 gap-x-2 gap-y-2 items-center">
+    <span class="text-sm font-medium text-white">Powered by </span>
+    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/dba30eaa-553b-42f4-a0f5-7c4e93219870_3840w.png" alt="Mediacube" class="hover:opacity-100 transition-opacity">
+</div>
+                
+                <p class="text-sm text-gray-500">garna.io © 2026</p>
+            </div>
+
+            <!-- Right Side: Contacts & Address -->
+            <div class="flex flex-col md:w-auto max-w-xs gap-x-y-3 gap-y-3 items-start">
+                <div class="flex flex-col w-full gap-x-y-3 gap-y-3">
+                    <!-- LinkedIn Link -->
+                    <a href="https://www.linkedin.com/company/garna-io" target="_blank" class="group flex items-center gap-3 transition-colors md:w-auto w-full">
+    <div class="flex transition-colors group-hover:bg-[#5EA500]/10 group-hover:border-[#5EA500]/20 bg-[#1A1A1A] w-8 h-8 border-white/5 border rounded-lg items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="" data-lucide="linkedin" data-icon-set="lucide" data-icon-replaced="true" style="color: rgb(94, 165, 0);"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+    <span class="group-hover:text-[#7CFF00] transition-colors text-sm font-medium text-[#5EA500]">Garna</span>
+</a>
+                    
+                    <!-- Email Link -->
+                    <a href="mailto:hello@garna.io" class="group flex items-center gap-3 transition-colors md:w-auto">
+                        <div class="flex transition-colors group-hover:bg-[#5EA500]/10 group-hover:border-[#5EA500]/20 bg-[#1A1A1A] w-8 h-8 border-white/5 border rounded-lg items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="w-[16px] h-[16px]" style="width: 16px; height: 16px; color: rgb(94, 165, 0);" data-icon-set="lucide" data-lucide="mail" stroke-width="1.5" data-icon-replaced="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class=""><path d="m22 7l-8.991 5.727a2 2 0 0 1-2.009 0L2 7" class=""></path><rect width="20" height="16" x="2" y="4" rx="2" class=""></rect></g></svg>
+                        </div>
+                        <span class="group-hover:text-[#7CFF00] transition-colors text-sm font-medium text-[#5EA500]">hello@garna.io</span>
+                    </a>
+                </div>
+
+                <!-- Address -->
+                <div class="flex flex-col gap-0.5">
+                    <p class="leading-relaxed text-sm text-gray-500 font-manrope">134 Makariou III, Ground Floor, 3021 Limassol, Cyprus</p>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Disclaimer -->
+        <div class="text-xs w-full">
+            <p class="text-[11px] leading-[1.6] md:text-justify text-xs text-gray-600 font-manrope text-justify">© 2026 GARNA LTD. Stasikratous, 20, 1st floor, Flat/Office 105, 1065, Nicosia, Cyprus. HE 478114. Garna is not a financial institution. All fintech services within the Garna app are provided by certified partners, including Payoneer and others.
+Payment services may be provided by affiliates MEDIACUBE PAY INC. (Office 29 - 18 King Street East, Suite 1400, Toronto, Ontario, M5C1C4, Canada, FINTRAC Registration Number: M24438190) as well as other non-affiliated companies.</p>
+        </div>
+    </div>
+</footer></footer>
+
+
+</body></html>

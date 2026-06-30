@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import HeroSection from '../components/HeroSection.astro';
+import { pageShells } from '../content/page-shells';
+import rawContentHtml from '../content/site-pages/blog.html?raw';
+
+const blogContentWithoutHero = rawContentHtml.replace(
+	/<!-- Hero Section -->[\s\S]*?<\/section>\s*(?=<!-- AI Matching Feature -->)/,
+	''
+);
+
+const ctaStartMarker = '<section class="overflow-hidden lg:pt-8 lg:pb-8 pt-8 pb-8 relative">';
+const gridStartMarker = '<section class="lg:pt-16 lg:pb-16 pt-8 pb-8 relative">';
+const ctaStartIndex = blogContentWithoutHero.indexOf(ctaStartMarker);
+const gridStartIndex = blogContentWithoutHero.indexOf(gridStartMarker, ctaStartIndex);
+const blogContentBeforeCta =
+	ctaStartIndex >= 0 ? blogContentWithoutHero.slice(0, ctaStartIndex) : blogContentWithoutHero;
+const blogContentAfterCta =
+	ctaStartIndex >= 0 && gridStartIndex >= 0 ? blogContentWithoutHero.slice(gridStartIndex) : '';
+
+const blogHero = {
+	class: 'flex flex-col w-full pt-24 md:pt-32 pb-16 md:pb-24 relative justify-center',
+	containerClass:
+		'flex flex-col md:pl-6 md:pr-6 md:pt-8 w-full max-w-7xl z-10 mr-auto ml-auto pt-12 pr-6 pl-6 relative items-center',
+	contentClass: 'flex flex-col text-center max-w-5xl z-10 mb-12 relative items-center',
+	titleClass:
+		'leading-none md:text-7xl lg:text-[88px] text-6xl font-light text-white tracking-tight font-manrope mb-6',
+	descriptionClass:
+		'text-xl text-gray-400 tracking-tight font-extralight text-center max-w-5xl mr-auto ml-auto',
+	title: [{ text: 'Garna Insights Hub', translateKey: 'blog.hero.title' }],
+	description:
+		'Dive into the world of expert insights on global hiring, payroll, and workforce management and stay one step ahead. Check out our practical guides, industry trends, and international employment updates',
+	descriptionTranslateKey: 'blog.hero.description',
+	tone: 'neutral',
+};
+
+const demoOnclick =
+	"event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_demo' });";
+---
+
+<BaseLayout shell={pageShells.blog}>
+	<HeroSection {...blogHero}>
+		<div class="w-full relative z-10 flex justify-center">
+			<div class="flex flex-wrap md:flex-nowrap justify-center overflow-x-hidden md:overflow-x-auto no-scrollbar snap-x max-w-full pr-4 pl-4 gap-x-2 gap-y-2 items-center">
+				<button class="flex-shrink-0 bg-[#5ea500] text-white px-5 py-2 rounded-full text-sm hover:bg-[#4a8300] transition-colors snap-start">
+					<span data-translate="blog.categories.all">All categories</span>
+				</button>
+				<button class="flex-shrink-0 text-gray-400 px-5 py-2 rounded-full text-sm hover:bg-[#5ea500]/10 hover:text-[#5ea500] transition-colors snap-start border border-transparent hover:border-[#5ea500]/20"><span data-translate="blog.categories.payroll">Payroll</span></button>
+				<button class="flex-shrink-0 text-gray-400 px-5 py-2 rounded-full text-sm hover:bg-[#5ea500]/10 hover:text-[#5ea500] transition-colors snap-start border border-transparent hover:border-[#5ea500]/20"><span data-translate="blog.categories.hr">HR</span></button>
+				<button class="flex-shrink-0 text-gray-400 px-5 py-2 rounded-full text-sm hover:bg-[#5ea500]/10 hover:text-[#5ea500] transition-colors snap-start border border-transparent hover:border-[#5ea500]/20"><span data-translate="blog.categories.businessFinance">Business finance</span></button>
+				<button class="flex-shrink-0 text-gray-400 px-5 py-2 rounded-full text-sm hover:bg-[#5ea500]/10 hover:text-[#5ea500] transition-colors snap-start border border-transparent hover:border-[#5ea500]/20"><span data-translate="blog.categories.tools">Tools</span></button>
+			</div>
+		</div>
+	</HeroSection>
+	<Fragment set:html={blogContentBeforeCta} />
+	<section class="overflow-hidden lg:pt-8 lg:pb-8 pt-8 pb-8 relative">
+		<div class="font-manrope max-w-7xl mx-auto pr-6 pl-6">
+			<div class="flex flex-col border-white/10 border-b pb-12 items-center justify-center">
+				<div class="flex flex-col items-center justify-center flex-1 lg:max-w-xl w-full text-center">
+					<h2 class="md:text-3xl text-2xl font-thin text-white tracking-tight max-w-lg mb-8" data-translate="blog.cta.title">Your Global Growth Starts Here</h2>
+					<div class="flex w-full max-w-md mr-auto ml-auto items-center justify-center">
+						<Button href="#" onclick={demoOnclick} variant="primary" effect="rotating-flare" size="hero" class="w-fit">
+							<span data-translate="blog.cta.button">Book a Demo</span>
+						</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<Fragment set:html={blogContentAfterCta} />
+</BaseLayout>

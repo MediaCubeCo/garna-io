@@ -53,6 +53,9 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 	'white-label': '/white-label.html',
 	'payroll-small-business': '/payroll-small-business.html',
 	'employer-of-record': '/employer-of-record.html',
+	blog: '/blog.html',
+	'blog-author': '/blog-author.html',
+	'blog-article': '/blog-article.html',
 };
 
 const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
@@ -63,6 +66,9 @@ const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'white-label': 'white-label',
 	'payroll-small-business': 'payroll-small-business',
 	'employer-of-record': 'eor',
+	blog: 'blog',
+	'blog-author': 'blog-author',
+	'blog-article': 'blog-article',
 };
 
 async function serveStaticPage(

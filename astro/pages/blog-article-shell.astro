@@ -1,0 +1,866 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageShells } from '../content/page-shells';
+
+const shell = {
+	...pageShells.blogArticle,
+	title: '%%BLOG_PAGE_TITLE%%',
+	description: '%%BLOG_PAGE_DESCRIPTION%%',
+	ogImage: '%%BLOG_OG_IMAGE%%',
+	headExtra: '%%BLOG_DYNAMIC_HEAD%%',
+};
+---
+
+<BaseLayout shell={shell}>
+	<section class="flex flex-col md:pt-32 md:pb-16 w-full pt-6 pb-4 relative justify-center" data-section-kind="hero">
+		<div class="garna-container flex flex-col md:pt-8 md:pb-0 z-10 pt-24 pb-8 relative items-center">
+			<div class="flex flex-col text-center z-10 relative items-center w-full max-w-4xl mr-auto ml-auto">
+				<div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+					%%BLOG_CATEGORY_META%%
+					<span class="w-1 h-1 rounded-full bg-gray-600 hidden sm:block"></span>
+					<span class="text-gray-400 text-sm font-thin">%%BLOG_DATE%%</span>
+					<span class="w-1 h-1 rounded-full bg-gray-600 hidden sm:block"></span>
+					<span class="text-gray-400 text-sm font-thin flex items-center gap-1.5">
+						<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+						%%BLOG_READ_TIME%% min read
+					</span>
+				</div>
+				<h1 class="leading-tight text-4xl md:text-5xl text-white tracking-tight font-manrope mb-8">%%BLOG_TITLE%%</h1>
+				<p class="leading-relaxed text-lg font-extralight text-gray-400 font-manrope pb-12">%%BLOG_EXCERPT%%</p>
+				<div class="flex flex-col md:flex-row gap-6 w-full border-white/10 border-t pt-8 gap-x-6 gap-y-6 items-center justify-between">
+					%%BLOG_AUTHOR_BLOCK%%
+					<div class="flex gap-3 gap-x-3 gap-y-3 items-center">
+						<span class="text-gray-400 text-sm font-thin font-manrope">Share this article:</span>
+						<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="%%BLOG_X_SHARE_URL%%" target="_blank" rel="noopener noreferrer" aria-label="Share on X">%%BLOG_X_ICON%%</a>
+						<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="%%BLOG_LINKEDIN_SHARE_URL%%" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">%%BLOG_LINKEDIN_ICON%%</a>
+						<button type="button" class="garna-blog-copy-link w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" data-copy-url="%%BLOG_CANONICAL_URL%%" aria-label="Copy article link">%%BLOG_LINK_ICON%%</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	%%BLOG_COVER_BLOCK%%
+
+	<section class="lg:pt-16 lg:pb-16 pt-16 pb-8 relative">
+		<div class="garna-container garna-blog-article-layout font-manrope relative items-start justify-center">
+			<aside class="garna-blog-toc-column w-full lg:w-[220px] shrink-0 lg:sticky lg:top-20 hidden lg:block">
+				%%BLOG_TOC_DESKTOP%%
+			</aside>
+			<div class="w-full max-w-3xl text-xl text-gray-400 font-thin leading-[1.8] sm:px-0 shrink-0 lg:shrink">
+				<div class="block lg:hidden w-full bg-white/5 border border-white/10 rounded-xl p-6 mb-12">
+					%%BLOG_TOC_MOBILE%%
+				</div>
+				<div class="garna-blog-article-body">
+					%%BLOG_ARTICLE_BODY%%
+				</div>
+				%%BLOG_ARTICLE_AFTER_BODY%%
+			</div>
+			<aside class="w-full lg:w-[220px] shrink-0 lg:sticky lg:top-20 hidden lg:block">
+				%%BLOG_RIGHT_BANNER%%
+			</aside>
+		</div>
+	</section>
+
+	%%BLOG_ARTICLE_FAQ%%
+
+	<script is:inline>
+		document.addEventListener('click', async (event) => {
+			const button = event.target.closest('.garna-blog-copy-link');
+			if (!button) return;
+			const url = button.dataset.copyUrl || window.location.href;
+			const previousLabel = button.getAttribute('aria-label') || 'Copy article link';
+			try {
+				if (navigator.clipboard && window.isSecureContext) {
+					await navigator.clipboard.writeText(url);
+				} else {
+					const input = document.createElement('textarea');
+					input.value = url;
+					input.setAttribute('readonly', '');
+					input.style.position = 'fixed';
+					input.style.opacity = '0';
+					document.body.appendChild(input);
+					input.select();
+					document.execCommand('copy');
+					input.remove();
+				}
+				button.classList.add('bg-[#5ea500]', 'text-white', 'border-[#5ea500]');
+				button.setAttribute('aria-label', 'Article link copied');
+				window.setTimeout(() => {
+					button.classList.remove('bg-[#5ea500]', 'text-white', 'border-[#5ea500]');
+					button.setAttribute('aria-label', previousLabel);
+				}, 1400);
+			} catch (_error) {
+				window.location.href = url;
+			}
+		});
+	</script>
+
+	<style is:inline>
+		.garna-blog-article-layout {
+			display: flex;
+			flex-direction: column;
+			gap: 32px;
+		}
+
+		@media (min-width: 1024px) {
+			.garna-blog-article-layout {
+				flex-direction: row;
+			}
+		}
+
+		@media (min-width: 1280px) {
+			.garna-blog-article-layout {
+				gap: 80px;
+			}
+		}
+
+		.garna-blog-article-body h2,
+		.garna-blog-article-body h3,
+		.garna-blog-article-body h4 {
+			scroll-margin-top: 128px;
+			margin-top: 48px;
+			margin-bottom: 24px;
+			color: #f3f4f6;
+			font-weight: 200;
+			letter-spacing: 0;
+		}
+
+		.garna-blog-article-body h2,
+		.garna-blog-article-body h3 {
+			font-size: 30px;
+			line-height: 1.25;
+		}
+
+		.garna-blog-intro-anchor {
+			display: block;
+			height: 0;
+			scroll-margin-top: 128px;
+		}
+
+		.garna-blog-toc-track {
+			position: relative;
+			border-left: 1px solid rgba(255, 255, 255, .1);
+		}
+
+		.garna-blog-toc-marker {
+			position: absolute;
+			left: -1px;
+			top: var(--toc-marker-top, 0px);
+			width: 2px;
+			height: 44px;
+			background: #5ea500;
+			transition: top .28s ease;
+		}
+
+		.garna-blog-toc-list {
+			display: flex;
+			flex-direction: column;
+			min-width: 0;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			color: #6b7280;
+			font-size: 16px;
+			font-weight: 200;
+		}
+
+		.garna-blog-toc-link {
+			display: block;
+			min-width: 0;
+			max-width: 100%;
+			padding: 10px 0 10px 20px;
+			overflow: hidden;
+			color: inherit;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			transition: color .2s ease;
+		}
+
+		.garna-blog-toc-link:hover,
+		.garna-blog-toc-link.is-active {
+			color: #fff;
+		}
+
+		.garna-blog-toc--mobile .garna-blog-toc-link {
+			padding: 0;
+		}
+
+		.garna-blog-article-body p,
+		.garna-blog-article-body li {
+			color: #9ca3af;
+			font-size: 20px;
+			font-weight: 200;
+			line-height: 1.8;
+		}
+
+		.garna-blog-article-body p {
+			margin-bottom: 24px;
+		}
+
+		.garna-blog-image {
+			margin: 32px 0;
+			overflow: hidden;
+			border: 1px solid rgba(255, 255, 255, 0.05);
+			border-radius: 12px;
+			box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+		}
+
+		.garna-blog-image img {
+			display: block;
+			width: 100%;
+			aspect-ratio: 1 / 1;
+			object-fit: cover;
+		}
+
+		.garna-blog-image figcaption {
+			padding: 10px 14px;
+			color: #71717a;
+			font-size: 14px;
+			font-style: italic;
+		}
+
+		.garna-blog-video {
+			position: relative;
+			margin: 40px 0;
+			overflow: hidden;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 12px;
+			background: #111;
+			aspect-ratio: 16 / 9;
+		}
+
+		.garna-blog-video iframe {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			border: 0;
+		}
+
+		.garna-blog-tldr {
+			margin: 40px 0 48px;
+			padding: 28px 32px;
+			border: 1px solid rgba(94, 165, 0, 0.2);
+			border-radius: 12px;
+			background: rgba(94, 165, 0, 0.05);
+		}
+
+		.garna-blog-tldr h2 {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			margin: 0 0 20px;
+			color: #fff;
+			font-size: 20px;
+			line-height: 1.4;
+			font-weight: 200;
+		}
+
+		.garna-blog-tldr ul {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.garna-blog-tldr li {
+			display: flex;
+			align-items: flex-start;
+			gap: 12px;
+			color: #9ca3af;
+			font-size: 18px;
+			line-height: 1.55;
+			font-weight: 200;
+		}
+
+		.garna-blog-tldr li svg {
+			flex-shrink: 0;
+			margin-top: 8px;
+		}
+
+		.garna-blog-tldr li span {
+			color: #9ca3af;
+		}
+
+		.garna-blog-article-footer {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 24px;
+			margin-top: 48px;
+			padding-top: 32px;
+			border-top: 1px solid rgba(255, 255, 255, .1);
+		}
+
+		.garna-blog-article-footer-meta {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+			min-width: 0;
+			color: #9ca3af;
+			font-size: 16px;
+			font-weight: 200;
+		}
+
+		.garna-blog-article-footer-meta div {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			min-width: 0;
+			max-width: 100%;
+			white-space: nowrap;
+		}
+
+		.garna-blog-article-footer-meta span {
+			display: block;
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.garna-blog-article-footer-share {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			flex-shrink: 0;
+		}
+
+		.garna-blog-related {
+			margin-top: 64px;
+			padding-top: 32px;
+			border-top: 1px solid rgba(255, 255, 255, .1);
+		}
+
+		.garna-blog-related h3 {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			margin: 0 0 24px;
+			color: #fff;
+			font-size: 12px;
+			font-weight: 200;
+			letter-spacing: .12em;
+			text-transform: uppercase;
+		}
+
+		.garna-blog-related-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 24px;
+		}
+
+		.garna-blog-related-card {
+			display: block;
+			min-width: 0;
+		}
+
+		.garna-blog-related-image {
+			overflow: hidden;
+			margin-bottom: 16px;
+			border: 1px solid rgba(255, 255, 255, .05);
+			border-radius: 12px;
+			box-shadow: 0 10px 24px rgba(0, 0, 0, .28);
+		}
+
+		.garna-blog-related-image img {
+			display: block;
+			width: 100%;
+			height: 160px;
+			object-fit: cover;
+			transition: transform .7s ease;
+		}
+
+		.garna-blog-related-card:hover img {
+			transform: scale(1.05);
+		}
+
+		.garna-blog-related-card h4 {
+			margin: 0;
+			color: #fff;
+			font-size: 16px;
+			line-height: 1.35;
+			font-weight: 200;
+			transition: color .2s ease;
+		}
+
+		.garna-blog-related-card:hover h4 {
+			color: #5ea500;
+		}
+
+		.garna-blog-faq-section {
+			padding: 64px 0;
+			background: #050505;
+		}
+
+		.garna-blog-faq-layout {
+			display: flex;
+			flex-direction: column;
+			gap: 48px;
+		}
+
+		@media (min-width: 768px) {
+			.garna-blog-faq-layout {
+				flex-direction: row;
+				gap: 20px;
+			}
+
+			.garna-blog-faq-copy {
+				width: 33.333333%;
+			}
+
+			.garna-blog-faq-list {
+				width: 66.666667%;
+			}
+		}
+
+		@media (min-width: 1024px) {
+			.garna-blog-faq-layout {
+				gap: 80px;
+			}
+		}
+
+		.garna-blog-faq-section h2 {
+			margin: 0 0 24px;
+			color: #fff;
+			font-size: 30px;
+			line-height: 1.15;
+			font-weight: 400;
+			letter-spacing: 0;
+		}
+
+		.garna-blog-faq-section p.garna-blog-faq-subtitle {
+			margin: 0 0 32px;
+			color: #9ca3af;
+			font-size: 18px;
+			line-height: 1.6;
+			font-weight: 300;
+		}
+
+		.garna-blog-faq-contact {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			padding: 12px 24px;
+			border: 1px solid rgba(255, 255, 255, .1);
+			border-radius: 12px;
+			color: #fff;
+			font-size: 16px;
+			font-weight: 300;
+			transition: background .3s ease, border-color .3s ease, color .3s ease;
+		}
+
+		.garna-blog-faq-contact svg {
+			transition: transform .3s ease;
+		}
+
+		.garna-blog-faq-contact:hover {
+			background: #5ea500;
+			border-color: #5ea500;
+		}
+
+		.garna-blog-faq-contact:hover svg {
+			transform: translateX(4px);
+		}
+
+		.garna-blog-faq-list {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+		}
+
+		@media (max-width: 768px) {
+			.garna-blog-article-footer {
+				flex-direction: column;
+			}
+
+			.garna-blog-related-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		.garna-blog-cta {
+			display: block;
+			position: relative;
+			width: 100%;
+			height: 300px;
+			margin: 44px 0 24px;
+			overflow: hidden;
+			border: 1px solid rgba(255, 255, 255, 0.05);
+			border-radius: 12px;
+			background: linear-gradient(to bottom, #1a1a1e, #151518, #0a0a0c);
+			box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .35), 0 4px 6px -4px rgba(0, 0, 0, .35);
+			transition: transform .5s ease, box-shadow .5s ease, border-color .5s ease;
+		}
+
+		.garna-blog-cta:hover {
+			transform: translateY(-4px);
+			border-color: rgba(94, 165, 0, .3);
+			box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .55);
+		}
+
+		.garna-blog-cta-beams,
+		.garna-blog-cta-beams span {
+			position: absolute;
+			pointer-events: none;
+		}
+
+		.garna-blog-cta-beams {
+			inset: 0;
+			z-index: 0;
+			overflow: hidden;
+		}
+
+		.garna-blog-cta-beams span {
+			left: -30%;
+			width: 160%;
+			transform: rotate(35deg);
+			background: rgba(94, 165, 0, .2);
+			filter: blur(28px);
+			transition: transform 1s ease;
+		}
+
+		.garna-blog-cta-beams span:first-child {
+			top: 5%;
+			height: 80px;
+		}
+
+		.garna-blog-cta-beams span:last-child {
+			top: 30%;
+			height: 96px;
+			background: rgba(94, 165, 0, .1);
+			filter: blur(48px);
+		}
+
+		.garna-blog-cta-content {
+			position: relative;
+			z-index: 1;
+			display: flex;
+			width: 100%;
+			height: 100%;
+			justify-content: space-between;
+		}
+
+		.garna-blog-cta-copy {
+			display: flex;
+			width: 50%;
+			flex-direction: column;
+			justify-content: center;
+			padding: 32px 0 32px 32px;
+			text-align: left;
+		}
+
+		.garna-blog-cta h2 {
+			margin: 0;
+			color: #fff;
+			font-size: 30px;
+			line-height: 1.1;
+			font-weight: 400;
+		}
+
+		.garna-blog-cta p {
+			margin: 12px 0 0;
+			color: #9ca3af;
+			font-size: 16px;
+			line-height: 1.625;
+			font-weight: 200;
+		}
+
+		.garna-blog-cta-copy > span {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: max-content;
+			min-height: 42px;
+			margin-top: 24px;
+			padding: 10px 24px;
+			border-radius: 12px;
+			background: #5ea500;
+			color: #fff;
+			font-size: 16px;
+		}
+
+		.garna-blog-cta-visual {
+			position: relative;
+			width: 50%;
+			min-height: 300px;
+			flex-grow: 1;
+		}
+
+		.garna-blog-payroll-card {
+			position: absolute;
+			width: 220px;
+			overflow: hidden;
+			border: 1px solid rgba(255, 255, 255, .1);
+			border-radius: 16px;
+			background: rgba(24, 24, 27, .95);
+			box-shadow: 0 20px 40px -15px rgba(0, 0, 0, .7);
+			color: #fff;
+			transition: transform .7s ease, box-shadow .7s ease;
+		}
+
+		.garna-blog-cta:hover .garna-blog-payroll-card {
+			box-shadow: 0 25px 50px -12px rgba(94, 165, 0, .15);
+		}
+
+		.garna-blog-payroll-card--green {
+			z-index: 2;
+			left: 32px;
+			top: 50%;
+			transform: translateX(40px) translateY(calc(-50% - 44px)) rotate(3deg);
+		}
+
+		.garna-blog-payroll-card--blue {
+			z-index: 1;
+			right: 24px;
+			top: 50%;
+			transform: translateX(-24px) translateY(-21px) rotate(-2deg);
+		}
+
+		.garna-blog-cta:hover .garna-blog-payroll-card--green {
+			transform: translateX(40px) translateY(calc(-50% - 44px)) rotate(3deg) scale(1.05);
+		}
+
+		.garna-blog-cta:hover .garna-blog-payroll-card--blue {
+			transform: translateX(-24px) translateY(-21px) rotate(-2deg) scale(1.05);
+			box-shadow: 0 25px 50px -12px rgba(59, 130, 246, .15);
+		}
+
+		.garna-blog-payroll-card-main {
+			display: grid;
+			grid-template-columns: 40px minmax(0, 1fr) auto;
+			gap: 12px;
+			align-items: center;
+			padding: 16px;
+		}
+
+		.garna-blog-payroll-avatar {
+			position: relative;
+			width: 40px;
+			height: 40px;
+			flex-shrink: 0;
+		}
+
+		.garna-blog-payroll-avatar img {
+			width: 100%;
+			height: 100%;
+			border: 1px solid rgba(255, 255, 255, .2);
+			border-radius: 999px;
+			object-fit: cover;
+		}
+
+		.garna-blog-payroll-avatar span {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			width: 10px;
+			height: 10px;
+			border: 2px solid #18181b;
+			border-radius: 999px;
+			background: #5ea500;
+		}
+
+		.garna-blog-payroll-card--blue .garna-blog-payroll-avatar span {
+			background: #3b82f6;
+		}
+
+		.garna-blog-payroll-card strong,
+		.garna-blog-payroll-card small {
+			display: block;
+		}
+
+		.garna-blog-payroll-card strong {
+			color: #fff;
+			font-size: 12px;
+			line-height: 1.1;
+			font-weight: 300;
+		}
+
+		.garna-blog-payroll-card small {
+			margin-top: 2px;
+			color: #a1a1aa;
+			font-size: 10px;
+			line-height: 1.1;
+			font-weight: 200;
+		}
+
+		.garna-blog-payroll-amount {
+			text-align: right;
+		}
+
+		.garna-blog-payroll-card-footer {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 8px;
+			padding: 10px 16px;
+			border-top: 1px solid rgba(255, 255, 255, .06);
+			background: rgba(255, 255, 255, .02);
+			font-size: 11px;
+		}
+
+		.garna-blog-payroll-card-footer span {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			color: #d4d4d8;
+			font-weight: 300;
+		}
+
+		.garna-blog-payroll-card-footer i {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 16px;
+			height: 16px;
+			border-radius: 999px;
+			background: rgba(94, 165, 0, .1);
+			color: #5ea500;
+		}
+	</style>
+	<script is:inline>
+		(() => {
+			const initBlogToc = () => {
+				const tocRoots = Array.from(document.querySelectorAll('[data-blog-toc]'));
+				const links = Array.from(document.querySelectorAll('.garna-blog-toc-link[data-heading-id]'));
+				if (!tocRoots.length || !links.length) return;
+
+				const headings = links
+					.map((link) => {
+						const id = link.getAttribute('data-heading-id');
+						return id ? { id, element: document.getElementById(id) } : null;
+					})
+					.filter((item) => item && item.element);
+
+				if (!headings.length) return;
+
+				let ticking = false;
+
+				const setActive = () => {
+					ticking = false;
+					const viewportMiddle = window.innerHeight / 2;
+					let active = headings[0];
+
+					for (const heading of headings) {
+						if (heading.element.getBoundingClientRect().top <= viewportMiddle) {
+							active = heading;
+						}
+					}
+
+					links.forEach((link) => {
+						link.classList.toggle('is-active', link.getAttribute('data-heading-id') === active.id);
+					});
+
+					tocRoots.forEach((root) => {
+						const activeLink = Array.from(root.querySelectorAll('.garna-blog-toc-link[data-heading-id]'))
+							.find((link) => link.getAttribute('data-heading-id') === active.id);
+						const track = root.querySelector('.garna-blog-toc-track');
+						const marker = root.querySelector('.garna-blog-toc-marker');
+						if (!activeLink || !track || !marker) return;
+						marker.style.top = `${activeLink.offsetTop}px`;
+					});
+				};
+
+				const requestUpdate = () => {
+					if (ticking) return;
+					ticking = true;
+					window.requestAnimationFrame(setActive);
+				};
+
+				setActive();
+				window.addEventListener('scroll', requestUpdate, { passive: true });
+				window.addEventListener('resize', requestUpdate);
+				window.addEventListener('hashchange', requestUpdate);
+			};
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', initBlogToc, { once: true });
+			} else {
+				initBlogToc();
+			}
+
+			const initBlogFaq = () => {
+				const accordions = document.querySelectorAll('[data-faq-accordion]');
+				const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+				const setExpanded = (detail, expanded) => {
+					const summary = detail.querySelector('summary');
+					const panel = detail.querySelector('.garna-faq-panel');
+					detail.dataset.state = expanded ? 'open' : 'closed';
+					if (summary) summary.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+					if (panel && expanded && prefersReducedMotion) panel.style.height = 'auto';
+				};
+
+				const closeDetail = (detail) => {
+					const panel = detail.querySelector('.garna-faq-panel');
+					setExpanded(detail, false);
+					if (!panel) {
+						detail.open = false;
+						return;
+					}
+					if (!detail.open || prefersReducedMotion) {
+						panel.style.height = '0px';
+						detail.open = false;
+						return;
+					}
+					panel.style.height = `${panel.getBoundingClientRect().height}px`;
+					window.requestAnimationFrame(() => {
+						panel.style.height = '0px';
+					});
+					const onEnd = (event) => {
+						if (event.propertyName !== 'height') return;
+						detail.open = false;
+						panel.removeEventListener('transitionend', onEnd);
+					};
+					panel.addEventListener('transitionend', onEnd);
+				};
+
+				const openDetail = (detail) => {
+					const accordion = detail.closest('[data-faq-accordion]');
+					const panel = detail.querySelector('.garna-faq-panel');
+					if (!accordion || !panel) return;
+					accordion.querySelectorAll('details[data-faq-item]').forEach((item) => {
+						if (item !== detail) closeDetail(item);
+					});
+					detail.open = true;
+					setExpanded(detail, true);
+					if (prefersReducedMotion) {
+						panel.style.height = 'auto';
+						return;
+					}
+					panel.style.height = `${panel.getBoundingClientRect().height}px`;
+					window.requestAnimationFrame(() => {
+						panel.style.height = `${panel.scrollHeight}px`;
+					});
+					const onEnd = (event) => {
+						if (event.propertyName !== 'height') return;
+						panel.style.height = 'auto';
+						panel.removeEventListener('transitionend', onEnd);
+					};
+					panel.addEventListener('transitionend', onEnd);
+				};
+
+				accordions.forEach((accordion) => {
+					if (accordion.dataset.faqInitialized === 'true') return;
+					accordion.dataset.faqInitialized = 'true';
+					accordion.querySelectorAll('details[data-faq-item]').forEach((detail) => {
+						const summary = detail.querySelector('summary');
+						const panel = detail.querySelector('.garna-faq-panel');
+						setExpanded(detail, detail.open);
+						if (panel) panel.style.height = detail.open ? 'auto' : '0px';
+						summary?.addEventListener('click', (event) => {
+							event.preventDefault();
+							if (detail.open && detail.dataset.state === 'open') closeDetail(detail);
+							else openDetail(detail);
+						});
+					});
+				});
+			};
+
+			initBlogFaq();
+		})();
+	</script>
+</BaseLayout>
