@@ -85,7 +85,8 @@ const singleTitleSecondLine = shouldBreakSingleTitle
 						{singleTitleFirstLine}
 						{shouldBreakSingleTitle && (
 							<>
-								<br />
+								<br class="hidden md:block" />
+								<span class="md:hidden"> </span>
 								{singleTitleSecondLine}
 							</>
 						)}

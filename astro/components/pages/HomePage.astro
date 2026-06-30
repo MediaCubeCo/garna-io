@@ -121,17 +121,34 @@ const eorWhyGarnaStylesHtml = `
 
 const enterprisePayrollEorWhyGarnaTranslations = {
 	why: {
-		title: 'A Single Platform That Handles Many Processes — Greatly and Globally',
+		title: 'A Single Platform That Handles Many Processes &mdash; Greatly and Globally',
 		description:
 			"Garna helps enterprises keep their payroll in order across different countries and teams without overdoing. We've got one platform that lets you sort out payroll, compliance, reporting, and sending out paychecks all in one go",
 	},
+};
+
+const enterprisePayrollBadgeIcons = {
+	compliance:
+		'<svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>',
+	payments:
+		'<svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"></rect><path d="M2 10h20"></path><path d="M7 15h.01"></path><path d="M11 15h2"></path></svg>',
+	sso:
+		'<svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>',
+	permissions:
+		'<svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="m16 11 2 2 4-4"></path></svg>',
+	approvals:
+		'<svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>',
+	visibility:
+		'<svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>',
+	support:
+		'<svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11a9 9 0 0 1 18 0"></path><path d="M21 11v5a2 2 0 0 1-2 2h-2v-7h4Z"></path><path d="M3 11v5a2 2 0 0 0 2 2h2v-7H3Z"></path><path d="M13 19h2a4 4 0 0 0 4-4"></path></svg>',
 };
 
 const enterprisePayrollWhyGarnaSectionHtml = `
         <section id="why-garna" class="py-24">
             <div class="mx-auto max-w-7xl px-6">
                 <div class="mx-auto max-w-4xl text-center">
-                    <h2 class="font-manrope text-4xl font-normal leading-tight text-white lg:text-5xl">A Single Platform That Handles Many Processes — Greatly and Globally</h2>
+                    <h2 class="font-manrope text-4xl font-normal leading-tight text-white lg:text-5xl">A Single Platform That Handles Many Processes &mdash; Greatly and Globally</h2>
                     <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-gray-400">Garna helps enterprises keep their payroll in order across different countries and teams without overdoing. We've got one platform that lets you sort out payroll, compliance, reporting, and sending out paychecks all in one go</p>
                 </div>
 
@@ -145,7 +162,7 @@ const enterprisePayrollWhyGarnaSectionHtml = `
                     <input id="why-garna-support" type="radio" name="why-garna-tab">
 
                     <div class="why-garna-tabs overflow-visible border-b border-white/10 md:overflow-x-auto">
-                        <div class="mx-auto flex min-w-max justify-center gap-7 md:gap-8">
+                        <div class="flex flex-wrap justify-center gap-x-6 gap-y-4 md:gap-8">
                             <label for="why-garna-payroll" class="why-garna-tab">Payroll &amp; Compliance</label>
                             <label for="why-garna-payments" class="why-garna-tab">Payments Infrastructure</label>
                             <label for="why-garna-sso" class="why-garna-tab">SSO</label>
@@ -158,51 +175,51 @@ const enterprisePayrollWhyGarnaSectionHtml = `
 
                     <div class="why-garna-panels mt-12">
                         <article data-eor-why-panel="payroll" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                            <div class="surface-soft rounded-2xl p-10">
+                            <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
                                 <h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Payroll &amp; Compliance</h3>
                                 <p class="mt-5 text-base leading-relaxed text-gray-300">Automate your payroll, taxes, reporting and compliance in all the countries you have operations in. Garna helps big teams to reduce the paperwork and keep everything audit-proof so you know you're on the right side of the law</p>
                             </div>
                             <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6">
-                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&h=640&fit=crop&q=80" alt="Payroll compliance dashboard" class="absolute inset-0 h-full w-full object-cover opacity-35" loading="lazy" />
-                                <div class="relative z-10 ml-auto flex max-w-[17rem] items-start gap-3 rounded-2xl border border-white/10 bg-[#0A0A0A]/90 p-4 shadow-2xl shadow-black/50"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/15 text-[#5EA500]"><iconify-icon icon="lucide:shield-check" width="20"></iconify-icon></div><div><p class="text-sm font-semibold text-white">Compliance run</p><p class="mt-1 text-xs leading-relaxed text-gray-400">Taxes, reports, and audit trail synced</p></div></div>
+                                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&h=640&fit=crop&q=80" alt="Payroll compliance dashboard" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+                                <div class="absolute right-5 top-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50"><div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]">${enterprisePayrollBadgeIcons.compliance}</div><div><p class="text-sm font-semibold text-white">Compliance run</p><p class="text-xs text-[#5EA500]">Taxes, reports, and audit trail synced</p></div></div>
                             </div>
                         </article>
 
                         <article data-eor-why-panel="payments" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                            <div class="surface-soft rounded-2xl p-10">
+                            <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
                                 <h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Payments Infrastructure</h3>
                                 <p class="mt-5 text-base leading-relaxed text-gray-300">Send remunerations to all your teams and contractors globally using our platform built for big businesses. It has all the tools you need for mass payouts, multi-currency payroll, contractors and employee payments in 150+ countries. You can use bank transfers, SWIFT, SEPA, PayPal, Payoneer, and crypto</p>
                                 <div class="mt-8 space-y-3"><div class="flex items-start gap-3"><span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#5EA500]"></span><div><p class="font-semibold text-white">Flexible payment options</p><p class="mt-1 text-sm leading-relaxed text-gray-400">Pick the payment method that works best for your teams and structure and get everything sorted from one platform</p></div></div><div class="flex items-start gap-3"><span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#5EA500]"></span><div><p class="font-semibold text-white">Global reach</p><p class="mt-1 text-sm leading-relaxed text-gray-400">Pay your employees and contractors in 150+ countries without having to turn to different providers or separate systems</p></div></div><div class="flex items-start gap-3"><span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#5EA500]"></span><div><p class="font-semibold text-white">Early payout access</p><p class="mt-1 text-sm leading-relaxed text-gray-400">Give your teams faster payouts with our flexible funding and payment workflows</p></div></div></div>
                             </div>
                             <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6">
-                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=640&fit=crop&q=80" alt="Global payments infrastructure" class="absolute inset-0 h-full w-full object-cover opacity-30" loading="lazy" />
-                                <div class="relative z-10 grid h-full content-center gap-3"><div class="flex max-w-[17rem] items-start gap-3 rounded-2xl border border-white/10 bg-[#0A0A0A]/90 p-4 shadow-2xl shadow-black/50"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/15 text-[#5EA500]"><iconify-icon icon="lucide:route" width="20"></iconify-icon></div><div><p class="text-sm font-semibold text-white">Payout routes</p><p class="mt-1 text-xs leading-relaxed text-gray-400">SWIFT, SEPA, cards, and crypto ready</p></div></div><div class="ml-auto flex max-w-[17rem] items-start gap-3 rounded-2xl border border-white/10 bg-[#0A0A0A]/90 p-4 shadow-2xl shadow-black/50"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/15 text-[#5EA500]"><iconify-icon icon="lucide:send" width="20"></iconify-icon></div><div><p class="text-sm font-semibold text-white">Mass payout queued</p><p class="mt-1 text-xs leading-relaxed text-gray-400">$1.84M prepared for 38 countries</p></div></div></div>
+                                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&h=640&fit=crop&q=80" alt="Global payments infrastructure" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+                                <div class="absolute left-5 bottom-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50"><div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]">${enterprisePayrollBadgeIcons.payments}</div><div><p class="text-sm font-semibold text-white">Payout routes</p><p class="text-xs text-[#5EA500]">SWIFT, SEPA, cards, and crypto ready</p></div></div>
                             </div>
                         </article>
 
                         <article data-eor-why-panel="sso" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                            <div class="surface-soft rounded-2xl p-10"><h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Single Sign-On (SSO)</h3><p class="mt-5 text-base leading-relaxed text-gray-300">Get secure access to Garna through your existing identity provider. This feature locks down security, makes user management and the login process for employees and admins easier</p></div>
-                            <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=900&h=640&fit=crop&q=80" alt="Single sign-on security" class="absolute inset-0 h-full w-full object-cover opacity-25" loading="lazy" /><div class="relative z-10 mx-auto mt-16 flex max-w-[17rem] items-start gap-3 rounded-2xl border border-white/10 bg-[#0A0A0A]/90 p-4 shadow-2xl shadow-black/50"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/15 text-[#5EA500]"><iconify-icon icon="lucide:key-round" width="20"></iconify-icon></div><div><p class="text-sm font-semibold text-white">Identity connected</p><p class="mt-1 text-xs leading-relaxed text-gray-400">SSO enabled for admins and teams</p></div></div></div>
+                            <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10"><h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Single Sign-On (SSO)</h3><p class="mt-5 text-base leading-relaxed text-gray-300">Get secure access to Garna through your existing identity provider. This feature locks down security, makes user management and the login process for employees and admins easier</p></div>
+                            <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=900&h=640&fit=crop&q=80" alt="Single sign-on security" class="absolute inset-0 h-full w-full object-cover" loading="lazy" /><div class="absolute left-5 top-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50"><div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]">${enterprisePayrollBadgeIcons.sso}</div><div><p class="text-sm font-semibold text-white">Identity connected</p><p class="text-xs text-[#5EA500]">SSO enabled for admins and teams</p></div></div></div>
                         </article>
 
                         <article data-eor-why-panel="permissions" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                            <div class="surface-soft rounded-2xl p-10"><h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Role-Based Permissions</h3><p class="mt-5 text-base leading-relaxed text-gray-300">Give your finance, HR, operations, and leadership teams different levels of access based on their functions. This way every user only sees the data they need to see, while sensitive payroll information is kept safe</p></div>
-                            <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=900&h=640&fit=crop&q=80" alt="Team access permissions" class="absolute inset-0 h-full w-full object-cover opacity-25" loading="lazy" /><div class="relative z-10 grid gap-3"><div class="flex max-w-[17rem] items-start gap-3 rounded-2xl border border-[#5EA500]/20 bg-[#0A0A0A]/90 p-4 shadow-2xl shadow-black/50"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/15 text-[#5EA500]"><iconify-icon icon="lucide:user-cog" width="20"></iconify-icon></div><div><p class="text-sm font-semibold text-white">Finance admin</p><p class="mt-1 text-xs leading-relaxed text-gray-400">Full payroll access</p></div></div><div class="ml-auto flex max-w-[17rem] items-start gap-3 rounded-2xl border border-white/10 bg-[#0A0A0A]/90 p-4 shadow-2xl shadow-black/50"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/15 text-[#5EA500]"><iconify-icon icon="lucide:users" width="20"></iconify-icon></div><div><p class="text-sm font-semibold text-white">Regional lead</p><p class="mt-1 text-xs leading-relaxed text-gray-400">Local approvals and entity view</p></div></div></div></div>
+                            <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10"><h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Role-Based Permissions</h3><p class="mt-5 text-base leading-relaxed text-gray-300">Give your finance, HR, operations, and leadership teams different levels of access based on their functions. This way every user only sees the data they need to see, while sensitive payroll information is kept safe</p></div>
+                            <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=900&h=640&fit=crop&q=80" alt="Team access permissions" class="absolute inset-0 h-full w-full object-cover" loading="lazy" /><div class="absolute right-5 top-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50"><div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]">${enterprisePayrollBadgeIcons.permissions}</div><div><p class="text-sm font-semibold text-white">Finance admin</p><p class="text-xs text-[#5EA500]">Full payroll access</p></div></div></div>
                         </article>
 
                         <article data-eor-why-panel="approvals" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                            <div class="surface-soft rounded-2xl p-10"><h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Payment Limits &amp; Approval Controls</h3><p class="mt-5 text-base leading-relaxed text-gray-300">Set payout limits for managers, teams, or departments to keep control over company finances. For anything above that, require additional approvals</p></div>
-                            <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=900&h=640&fit=crop&q=80" alt="Payroll approval controls" class="absolute inset-0 h-full w-full object-cover opacity-25" loading="lazy" /><div class="relative z-10 grid h-full content-center gap-3"><div class="flex max-w-[17rem] items-start gap-3 rounded-2xl border border-white/10 bg-[#0A0A0A]/90 p-4 shadow-2xl shadow-black/50"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/15 text-[#5EA500]"><iconify-icon icon="lucide:badge-dollar-sign" width="20"></iconify-icon></div><div><p class="text-sm font-semibold text-white">EU contractor run</p><p class="mt-1 text-xs leading-relaxed text-gray-400">$42,000 needs regional approval</p></div></div><div class="ml-auto flex max-w-[17rem] items-start gap-3 rounded-2xl border border-white/10 bg-[#0A0A0A]/90 p-4 shadow-2xl shadow-black/50"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/15 text-[#5EA500]"><iconify-icon icon="lucide:shield-alert" width="20"></iconify-icon></div><div><p class="text-sm font-semibold text-white">APAC payroll</p><p class="mt-1 text-xs leading-relaxed text-gray-400">Limit exceeded, approval required</p></div></div></div></div>
+                            <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10"><h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Payment Limits &amp; Approval Controls</h3><p class="mt-5 text-base leading-relaxed text-gray-300">Set payout limits for managers, teams, or departments to keep control over company finances. For anything above that, require additional approvals</p></div>
+                            <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=900&h=640&fit=crop&q=80" alt="Payroll approval controls" class="absolute inset-0 h-full w-full object-cover" loading="lazy" /><div class="absolute left-5 top-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50"><div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]">${enterprisePayrollBadgeIcons.approvals}</div><div><p class="text-sm font-semibold text-white">EU contractor run</p><p class="text-xs text-[#5EA500]">$42,000 needs regional approval</p></div></div></div>
                         </article>
 
                         <article data-eor-why-panel="visibility" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                            <div class="surface-soft rounded-2xl p-10"><h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Control &amp; Visibility</h3><p class="mt-5 text-base leading-relaxed text-gray-300">Track payroll status, payout timing, exceptions, approvals, and workforce costs in one place so finance and operations teams can understand what is happening across every country</p></div>
-                            <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&h=640&fit=crop&q=80" alt="Payroll visibility reporting" class="absolute inset-0 h-full w-full object-cover opacity-25" loading="lazy" /><div class="relative z-10 grid h-full content-center gap-3"><div class="flex max-w-[17rem] items-start gap-3 rounded-2xl border border-white/10 bg-[#0A0A0A]/90 p-4 shadow-2xl shadow-black/50"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/15 text-[#5EA500]"><iconify-icon icon="lucide:bar-chart-3" width="20"></iconify-icon></div><div><p class="text-sm font-semibold text-white">Global payroll report</p><p class="mt-1 text-xs leading-relaxed text-gray-400">38 countries, 6 entities, 12 exceptions</p></div></div><div class="ml-auto flex max-w-[17rem] items-start gap-3 rounded-2xl border border-white/10 bg-[#0A0A0A]/90 p-4 shadow-2xl shadow-black/50"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/15 text-[#5EA500]"><iconify-icon icon="lucide:activity" width="20"></iconify-icon></div><div><p class="text-sm font-semibold text-white">Live visibility</p><p class="mt-1 text-xs leading-relaxed text-gray-400">Status and payout timing tracked</p></div></div></div></div>
+                            <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10"><h3 class="font-manrope text-3xl font-semibold leading-tight text-white">Control &amp; Visibility</h3><p class="mt-5 text-base leading-relaxed text-gray-300">Track payroll status, payout timing, exceptions, approvals, and workforce costs in one place so finance and operations teams can understand what is happening across every country</p></div>
+                            <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&h=640&fit=crop&q=80" alt="Payroll visibility reporting" class="absolute inset-0 h-full w-full object-cover" loading="lazy" /><div class="absolute right-5 bottom-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50"><div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]">${enterprisePayrollBadgeIcons.visibility}</div><div><p class="text-sm font-semibold text-white">Global payroll report</p><p class="text-xs text-[#5EA500]">38 countries, 6 entities, 12 exceptions</p></div></div></div>
                         </article>
 
                         <article data-eor-why-panel="support" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                            <div class="surface-soft rounded-2xl p-10"><h3 class="font-manrope text-3xl font-semibold leading-tight text-white">24/7 Support</h3><p class="mt-5 text-base leading-relaxed text-gray-300">Payroll operations don't stop when the office doors close. We have 24/7 support for all your payroll teams, finance departments, HR managers, contractors and employees wherever they are, any time of day</p></div>
-                            <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=900&h=640&fit=crop&q=80" alt="Payroll support team" class="absolute inset-0 h-full w-full object-cover opacity-25" loading="lazy" /><div class="relative z-10 ml-auto flex max-w-[17rem] items-start gap-3 rounded-2xl border border-white/10 bg-[#0A0A0A]/90 p-4 shadow-2xl shadow-black/50"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#5EA500]/15 text-[#5EA500]"><iconify-icon icon="lucide:headphones" width="20"></iconify-icon></div><div><p class="text-sm font-semibold text-white">Support desk</p><p class="mt-1 text-xs leading-relaxed text-gray-400">Payroll and compliance teams online</p></div></div></div>
+                            <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10"><h3 class="font-manrope text-3xl font-semibold leading-tight text-white">24/7 Support</h3><p class="mt-5 text-base leading-relaxed text-gray-300">Payroll operations don't stop when the office doors close. We have 24/7 support for all your payroll teams, finance departments, HR managers, contractors and employees wherever they are, any time of day</p></div>
+                            <div class="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[#111111] p-6"><img src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=900&h=640&fit=crop&q=80" alt="Payroll support team" class="absolute inset-0 h-full w-full object-cover" loading="lazy" /><div class="absolute left-5 bottom-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50"><div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/20 text-[#5EA500]">${enterprisePayrollBadgeIcons.support}</div><div><p class="text-sm font-semibold text-white">Support desk</p><p class="text-xs text-[#5EA500]">Payroll and compliance teams online</p></div></div></div>
                         </article>
                     </div>
                 </div>
@@ -427,7 +444,7 @@ const enterprisePayrollFeaturesHtml = `
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
                 <article class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:bg-[#111111] hover:border-white/10">
                     <div class="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-[#5EA500]/20 bg-[#5EA500]/10 text-[#5EA500] transition-transform duration-300 group-hover:scale-110">
                         <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -732,7 +749,7 @@ const enterprisePayrollHowToCompositeVisualHtml = `
                         </div>
 
                         <div class="mt-3 grid items-stretch gap-3 lg:grid-cols-[1.05fr_0.95fr]">
-                            <div class="flex h-full flex-col gap-3">
+                            <div class="grid h-full gap-3 md:grid-cols-2 lg:flex lg:grid-cols-none lg:flex-col">
                                 <div class="flex flex-1 flex-col justify-between rounded-2xl border border-white/10 bg-[#111111] p-3">
                                     <div class="mb-3 flex items-center justify-between">
                                         <span class="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">Team and payroll structure</span>
@@ -800,7 +817,7 @@ const enterprisePayrollHowToCompositeVisualHtml = `
                                     </div>
                                 </div>
 
-                                <div class="rounded-2xl border border-white/10 bg-[#111111] p-3">
+                                <div class="flex flex-col rounded-2xl border border-white/10 bg-[#111111] p-3 lg:flex-1">
                                     <div class="mb-3 flex items-center justify-between">
                                         <span class="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">Reporting and scale</span>
                                         <span class="text-xs text-[#5EA500]">Updated</span>
@@ -815,7 +832,7 @@ const enterprisePayrollHowToCompositeVisualHtml = `
                                             <div class="mt-2 text-xl font-semibold text-white font-manrope">12</div>
                                         </div>
                                     </div>
-                                    <div class="mt-3 flex h-10 items-end gap-2">
+                                    <div class="mt-auto flex h-16 items-end gap-2 pt-4">
                                         <div class="h-[35%] flex-1 rounded-t-lg bg-white/10"></div>
                                         <div class="h-[52%] flex-1 rounded-t-lg bg-white/10"></div>
                                         <div class="h-[44%] flex-1 rounded-t-lg bg-white/10"></div>
@@ -840,6 +857,12 @@ const removeEnterprisePayrollHowToBackground = (html: string) =>
 	html.replace(
 		'<section class="bg-[#020202] pt-16 pb-16 lg:pt-32 lg:pb-32" id="get-started">',
 		'<section class="pt-16 pb-16 lg:pt-32 lg:pb-32" id="get-started">'
+	);
+
+const widenEnterprisePayrollHowToBeforeSplit = (html: string) =>
+	html.replace(
+		'<div class="grid lg:grid-cols-2 gap-x-16 gap-y-16 items-center">',
+		'<div class="grid xl:grid-cols-2 gap-x-16 gap-y-16 items-center">'
 	);
 
 const moveEnterprisePayrollHowToAfterSolutions = (html: string) => {
@@ -904,6 +927,7 @@ if (isEnterprisePayroll) {
 	);
 	contentHtml = replaceEnterprisePayrollHowToVisual(contentHtml);
 	contentHtml = removeEnterprisePayrollHowToBackground(contentHtml);
+	contentHtml = widenEnterprisePayrollHowToBeforeSplit(contentHtml);
 	contentHtml = translateSimpleDataText(contentHtml, enterprisePayrollHowToTranslations);
 	contentHtml = moveEnterprisePayrollHowToAfterSolutions(contentHtml);
 	contentHtml = insertEnterprisePayrollComplexOperationsAfterHowTo(contentHtml);
@@ -992,7 +1016,7 @@ const enterprisePayrollFaqItems = [
 	{
 		question: 'Can Garna replace multiple payroll providers?',
 		answer:
-			'Yes, and to own the truth, it’s more efficient that way. Many of our enterprise customers use Garna to consolidate their payroll vendors, get their payroll operations centralized and be free from the complications of working with disconnected regional providers.',
+			"Yes, and to own the truth, it's more efficient that way. Many of our enterprise customers use Garna to consolidate their payroll vendors, get their payroll operations centralized and be free from the complications of working with disconnected regional providers.",
 		questionTranslateKey: 'enterprisePayrollFaq.items.q8.question',
 		answerTranslateKey: 'enterprisePayrollFaq.items.q8.answer',
 	},
@@ -1142,3 +1166,4 @@ const faqTitle = isEnterprisePayroll
 		}
 	}
 </style>
+
