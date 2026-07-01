@@ -23,7 +23,7 @@
 	smallBusinessKicker: 'Para equipos de menos de 50 personas',
 	midSizeBusiness: 'Nomina para medianas empresas',
 	midSizeBusinessKicker: 'Equipos en crecimiento de 50 a 500',
-	enterprise: 'Nomina para grandes empresas',
+	enterprise: 'Nómina para grandes empresas',
 	enterpriseKicker: 'Operaciones globales complejas',
 	byNeed: 'Por necesidad y mas',
 	whiteLabelPayroll: 'Nomina White Label',

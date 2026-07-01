@@ -14,6 +14,10 @@ export const payrollSolutionNewEn = {
 			'Save time and money while working with contractors and hiring employees in 150+ country. Full legal compliance without the extra costs — this and more, with Garna',
 		cta: 'Book a demo',
 	},
+	sectionHeadings: {
+		hireEmployeesWorldwide: 'Hire Employees Worldwide',
+		embeddedPayrollInfrastructure: 'Embedded Payroll Infrastructure',
+	},
 	faq: {
 		title: 'FAQ on Payroll Solutions',
 		items: {

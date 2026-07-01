@@ -6,7 +6,10 @@ import { aiHiringTranslations } from './translations/ai-hiring';
 import { whiteLabelTranslations } from './translations/white-label';
 import { eorTranslations } from './translations/eor';
 import { payrollSmallBusinessTranslations } from './translations/payroll-small-business';
+import { midSizeTranslations } from './translations/mid-size';
+import { payrollSolutionNewTranslations } from './translations/payroll-solution-new';
 import { blogArticleTranslations, blogAuthorTranslations, blogTranslations } from './translations/blog';
+import { enterprisePayrollTranslations } from './translations/enterprise-payroll';
 
 export type PageTranslations = typeof homeTranslations.en;
 
@@ -19,6 +22,9 @@ type AnyPageTranslations =
 	| typeof whiteLabelTranslations.en
 	| typeof eorTranslations.en
 	| typeof payrollSmallBusinessTranslations.en
+	| typeof midSizeTranslations.en
+	| typeof payrollSolutionNewTranslations.en
+	| typeof enterprisePayrollTranslations.en
 	| typeof blogTranslations.en
 	| typeof blogAuthorTranslations.en
 	| typeof blogArticleTranslations.en;
@@ -32,6 +38,10 @@ const translations = {
 	'white-label': whiteLabelTranslations,
 	eor: eorTranslations,
 	'employer-of-record': eorTranslations,
+	'mid-size': midSizeTranslations,
+	'mid-size-business-payroll': midSizeTranslations,
+	'payroll-solution-new': payrollSolutionNewTranslations,
+	'enterprise-payroll': enterprisePayrollTranslations,
 	'payroll-small-business': payrollSmallBusinessTranslations,
 	blog: blogTranslations,
 	'blog-author': blogAuthorTranslations,

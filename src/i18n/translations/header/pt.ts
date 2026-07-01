@@ -23,7 +23,7 @@
 	smallBusinessKicker: 'Para equipes com menos de 50 pessoas',
 	midSizeBusiness: 'Payroll para empresas de media dimensao',
 	midSizeBusinessKicker: 'Equipes em crescimento de 50 a 500',
-	enterprise: 'Payroll para grandes empresas',
+	enterprise: 'Payroll para Grandes Empresas',
 	enterpriseKicker: 'Operacoes globais complexas',
 	byNeed: 'Por necessidade e mais',
 	whiteLabelPayroll: 'Payroll White Label',

@@ -14,6 +14,10 @@ export const payrollSolutionNewPt = {
 			'Poupe tempo e dinheiro ao trabalhar com contratados internacionais e contratar funcionários em qualquer país. Total conformidade legal sem custos adicionais — tudo isto e muito mais com a Garna',
 		cta: 'Marcar uma demo',
 	},
+	sectionHeadings: {
+		hireEmployeesWorldwide: 'Realize Employment of Record com mais vantagens',
+		embeddedPayrollInfrastructure: 'Solução Embedded Contractor of Record para o seu negócio',
+	},
 	faq: {
 		title: 'FAQ sobre soluções de Payroll',
 		items: {
@@ -122,7 +126,7 @@ export const payrollSolutionNewPt = {
 			eorFundWalletRunPayroll: 'Adicionar fundos à carteira e processar folha de pagamento',
 		},
 	},
-	legacyText: {
+	sourceText: {
 		'Book a demo': 'Marcar uma demo',
 		'businesses using Garna': 'empresas usando Garna',
 		'global payroll service availability': 'disponibilidade global de folha de pagamento',

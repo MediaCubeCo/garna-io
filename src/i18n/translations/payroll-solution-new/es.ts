@@ -14,6 +14,10 @@ export const payrollSolutionNewEs = {
 			'Ahorra tiempo y dinero al trabajar con colaboradores externos internacionales y contratar empleados en cualquier país. Cumplimiento legal total sin costes adicionales: esto y mucho más, con Garna',
 		cta: 'Solicita una demostración',
 	},
+	sectionHeadings: {
+		hireEmployeesWorldwide: 'Realice contrataciones oficiales con más ventajas',
+		embeddedPayrollInfrastructure: 'Solución integrada de contratista de referencia para tu negocio',
+	},
 	faq: {
 		title: 'Preguntas frecuentes sobre soluciones de nóminas',
 		items: {
@@ -80,7 +84,7 @@ export const payrollSolutionNewEs = {
 			payoutCreated: '200 OK - Payout Created',
 		},
 	},
-	legacyText: {
+	sourceText: {
 		'Book a demo': 'Solicita un demo',
 		'businesses using Garna': 'empresas usando Garna',
 		'global payroll service availability': 'disponibilidad global de nómina',

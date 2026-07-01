@@ -15,7 +15,7 @@
 		name: 'Garna',
 	},
 	hero: {
-		badge: 'Enterprise payroll',
+		badge: 'Payroll для крупных компаний',
 		title: 'Глобальные платежные решения для вашего бизнеса',
 		tagline: 'для вашего бизнеса',
 		description:

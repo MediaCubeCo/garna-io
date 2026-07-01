@@ -15,12 +15,14 @@ export const pageFinalCtas = {
 		},
 	},
 	enterprisePayroll: {
-		title: [{ text: 'Global Payroll Is Easy When Made By Using Garna' }],
+		title: [{ text: 'Global Payroll Is Easy When Made By Using Garna', translateKey: 'enterpriseFinalCta.title' }],
 		description: {
 			text: "Garna provides the global payroll infrastructure independently from the task — whether you're scaling into new markets, dealing with distributed teams, or replacing old, fragmented payroll systems, it’ll adjust to your needs seamlessly",
+			translateKey: 'enterpriseFinalCta.description',
 		},
 		button: {
 			label: 'Try now',
+			translateKey: 'enterpriseFinalCta.button',
 			kind: 'demo',
 			trackingCta: 'enterprise_payroll_final_demo',
 		},

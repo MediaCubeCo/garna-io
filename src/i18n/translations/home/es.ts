@@ -15,7 +15,7 @@
 		name: 'Garna',
 	},
 	hero: {
-		badge: 'Nómina empresarial',
+		badge: 'Nómina para grandes empresas',
 		title: 'Soluciones de Nómina Global para tu negocio',
 		tagline: 'para tu negocio',
 		description:
