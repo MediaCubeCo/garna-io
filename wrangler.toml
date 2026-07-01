@@ -1,4 +1,4 @@
-name = "garna-io"
+﻿name = "garna-io"
 main = "src/index.ts"
 account_id = "f67149c49bb3df8b37eb59f539a72c97"
 compatibility_date = "2024-12-01"
@@ -8,6 +8,22 @@ port = 8788
 
 [vars]
 USE_STATIC_ASSETS = "true"
+PUBLIC_ORIGIN = "https://garna.io"
+EMAIL_FROM = "noreply@garna.io"
+ADMIN_EMAILS = "info@mediacube.network,sol@mediacube.io,angelm@mediacube.io,dariab@mediacube.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "garna-blog"
+database_id = "e76ba814-904b-4a34-b6ff-51f601b3a5ad"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "BLOG_MEDIA"
+bucket_name = "garna-blog-media"
+
+[[send_email]]
+name = "EMAIL"
 
 [assets]
 directory = "./dist"
@@ -15,88 +31,34 @@ binding = "ASSETS"
 run_worker_first = [
 	"/",
 	"/index.html",
-	"/contractor-of-record",
-	"/contractor-of-record.html",
 	"/for-contractors",
 	"/for-contractors.html",
 	"/form",
 	"/form.html",
 	"/ai-hiring",
 	"/ai-hiring.html",
-	"/white-label-payroll",
-	"/white-label-payroll.html",
 	"/white-label",
 	"/white-label.html",
-	"/small-business-payroll",
-	"/small-business-payroll.html",
 	"/payroll-small-business",
 	"/payroll-small-business.html",
-	"/payroll-solution-new",
-	"/payroll-solution-new.html",
-	"/mid-size",
-	"/mid-size.html",
-	"/mid-size-business-payroll",
-	"/mid-size-business-payroll.html",
-	"/enterprise-payroll",
-	"/enterprise-payroll.html",
+	"/eor",
+	"/eor.html",
 	"/blog",
 	"/blog.html",
-	"/blog-author",
-	"/blog-author.html",
-	"/blog-article",
-	"/blog-article.html",
-	"/en/contractor-of-record",
-	"/ru/contractor-of-record",
-	"/es/contractor-of-record",
-	"/pt/contractor-of-record",
-	"/en/for-contractors",
-	"/ru/for-contractors",
-	"/es/for-contractors",
-	"/pt/for-contractors",
-	"/en/ai-hiring",
-	"/ru/ai-hiring",
-	"/es/ai-hiring",
-	"/pt/ai-hiring",
-	"/en/white-label-payroll",
-	"/ru/white-label-payroll",
-	"/es/white-label-payroll",
-	"/pt/white-label-payroll",
-	"/en/small-business-payroll",
-	"/ru/small-business-payroll",
-	"/es/small-business-payroll",
-	"/pt/small-business-payroll",
-	"/en/mid-size",
-	"/ru/mid-size",
-	"/es/mid-size",
-	"/pt/mid-size",
-	"/en/mid-size-business-payroll",
-	"/ru/mid-size-business-payroll",
-	"/es/mid-size-business-payroll",
-	"/pt/mid-size-business-payroll",
-	"/en/enterprise-payroll",
-	"/ru/enterprise-payroll",
-	"/es/enterprise-payroll",
-	"/pt/enterprise-payroll",
 	"/en/blog",
 	"/ru/blog",
 	"/es/blog",
 	"/pt/blog",
+	"/blog-author",
+	"/blog-author.html",
 	"/en/blog-author",
 	"/ru/blog-author",
 	"/es/blog-author",
 	"/pt/blog-author",
+	"/blog-article",
+	"/blog-article.html",
 	"/en/blog-article",
 	"/ru/blog-article",
 	"/es/blog-article",
 	"/pt/blog-article",
-	"/en/payroll-solution-new",
-	"/ru/payroll-solution-new",
-	"/es/payroll-solution-new",
-	"/pt/payroll-solution-new",
-	"/eor",
-	"/eor.html",
-	"/en/employer-of-record",
-	"/ru/employer-of-record",
-	"/es/employer-of-record",
-	"/pt/employer-of-record",
 ]

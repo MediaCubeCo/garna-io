@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import { pageShells } from '../content/page-shells';
+
+const shell = {
+	...pageShells.blogAuthor,
+	title: '%%BLOG_PAGE_TITLE%%',
+	description: '%%BLOG_PAGE_DESCRIPTION%%',
+	ogImage: '%%BLOG_OG_IMAGE%%',
+	headExtra: '%%BLOG_DYNAMIC_HEAD%%',
+};
+
+const authorHero = {
+	class: 'flex flex-col md:pt-32 md:pb-0 w-full pt-24 pb-8 relative justify-center',
+	containerClass:
+		'flex flex-col md:pl-6 md:pr-6 md:pt-0 w-full max-w-7xl z-10 mr-auto ml-auto pt-0 pr-6 pl-6 relative items-center',
+	contentClass: 'flex flex-col text-center z-10 relative items-center w-full max-w-4xl mr-auto ml-auto',
+	titleClass: 'leading-tight text-4xl md:text-5xl text-white tracking-tight font-manrope mb-6',
+	descriptionClass: 'leading-relaxed text-lg font-light text-gray-400 font-manrope pb-12 max-w-3xl mx-auto',
+	title: [
+		{
+			text: '%%BLOG_AUTHOR_NAME%%',
+		},
+	],
+	description: '%%BLOG_AUTHOR_BIO%%',
+	tone: 'neutral',
+};
+---
+
+<BaseLayout shell={shell}>
+	<HeroSection {...authorHero}>
+		<div slot="before-title" class="contents">
+			<div class="mb-8 relative">
+				<div class="w-32 h-32 rounded-full border border-[#5ea500]/30 p-1.5 flex items-center justify-center bg-[#5ea500]/5 shadow-[0_0_30px_-5px_rgba(94,165,0,0.3)]">
+					%%BLOG_AUTHOR_AVATAR%%
+				</div>
+			</div>
+
+			<div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+				<span class="text-[#5ea500] text-xs font-light uppercase tracking-wider bg-[#5ea500]/10 px-4 py-1.5 rounded-full border border-[#5ea500]/20">Author Profile</span>
+				<span class="w-1 h-1 rounded-full bg-gray-600 hidden sm:block"></span>
+				<span class="text-gray-400 text-sm font-extralight">%%BLOG_AUTHOR_ROLE%%</span>
+			</div>
+		</div>
+
+		%%BLOG_AUTHOR_SOCIAL_SECTION%%
+	</HeroSection>
+
+	<section class="lg:pt-16 lg:pb-16 pt-8 pb-8 relative">
+		<div class="z-10 font-manrope max-w-7xl mx-auto px-6 relative w-full">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full gap-x-6 gap-y-6">
+				%%BLOG_ARTICLE_CARDS%%
+			</div>
+			%%BLOG_PAGINATION%%
+		</div>
+	</section>
+</BaseLayout>

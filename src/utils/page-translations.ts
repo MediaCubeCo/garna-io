@@ -1,4 +1,4 @@
-import { getPageTranslations } from '../i18n';
+﻿import { getPageTranslations } from '../i18n';
 import { RouteInfo } from './routes';
 import { languages } from '../config/languages';
 import { getHeaderTranslations } from '../i18n/translations/header';
@@ -8,22 +8,12 @@ const FOOTER_LEGAL_LINKS_PLACEHOLDER = '<!-- FOOTER_LEGAL_LINKS -->';
 
 /**
  * Builds the same-page URL for a given language (worker-side).
- * 404 page: switch to home in that language. Global Payroll lives at /lang.
- * The former home page now lives at /lang/contractor-of-record.
+ * 404 page: switch to home in that language. Home: /lang. Offer: /lang/for-contractors.
  */
 function getLanguagePagePath(pageName: string, lang: string): string {
 	const segment = lang.toLowerCase();
-	if (pageName === '404' || pageName === 'payroll-solution-new') {
+	if (pageName === '404' || pageName === 'home') {
 		return `/${segment}`;
-	}
-	if (pageName === 'home') {
-		return `/${segment}/contractor-of-record`;
-	}
-	if (pageName === 'enterprise-payroll') {
-		return `/${segment}/enterprise-payroll`;
-	}
-	if (pageName === 'mid-size') {
-		return `/${segment}/mid-size-business-payroll`;
 	}
 	if (pageName === 'offer') {
 		return `/${segment}/for-contractors`;
@@ -35,13 +25,10 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 		return `/${segment}/ai-hiring`;
 	}
 	if (pageName === 'white-label') {
-		return `/${segment}/white-label-payroll`;
+		return `/${segment}/white-label`;
 	}
 	if (pageName === 'payroll-small-business') {
-		return `/${segment}/small-business-payroll`;
-	}
-	if (pageName === 'eor' || pageName === 'employer-of-record') {
-		return `/${segment}/employer-of-record`;
+		return `/${segment}/payroll-small-business`;
 	}
 	if (pageName === 'blog') {
 		return `/${segment}/blog`;
@@ -51,6 +38,9 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	}
 	if (pageName === 'blog-article') {
 		return `/${segment}/blog-article`;
+	}
+	if (pageName === 'eor' || pageName === 'employer-of-record') {
+		return `/${segment}/employer-of-record`;
 	}
 	return `/${segment}`;
 }
@@ -227,11 +217,6 @@ export function injectPageTranslations(
 		}
 
 		{
-			const legacyTextMappings = (currentTranslations as any).legacyText;
-			if (legacyTextMappings && typeof legacyTextMappings === 'object') {
-				html = localizeExactTextNodes(html, legacyTextMappings as Record<string, string>);
-			}
-
 			// Update meta title if translation exists
 			if (
 				currentTranslations.meta &&
@@ -353,7 +338,7 @@ export function injectPageTranslations(
 			};
 
 			html = html.replace(
-				/<([a-zA-Z][a-zA-Z0-9:-]*)([^>]*\sdata-translate-(alt|aria-label|placeholder|value)=["']([^"']+)["'][^>]*)>/gi,
+				/<([a-zA-Z][a-zA-Z0-9:-]*)([^>]*\sdata-translate-(alt|placeholder|value)=["']([^"']+)["'][^>]*)>/gi,
 				(match: string, tagName: string, attributes: string, target: string, key: string) => {
 					const translation = getNestedValue(currentTranslations, key);
 					if (translation === undefined || translation === null) return match;
@@ -454,16 +439,25 @@ export function injectPageTranslations(
 				const translation = getNestedValue(currentTranslations, key);
 				if (translation !== undefined && translation !== null) {
 					const translationStr = String(translation);
-					const titleBreakWords = getTitleBreakWords(attributes, currentLanguage);
-					const translatedHtml = titleBreakWords
-						? insertTitleBreak(translationStr, titleBreakWords)
-						: translationStr;
 					const before = html.substring(0, startIndex);
 					const after = html.substring(endIndex);
 					const openTag = `<${tagName}${attributes}>`;
 					const closeTag = `</${tagName}>`;
-					html = before + openTag + translatedHtml + closeTag + after;
+					html = before + openTag + translationStr + closeTag + after;
 				}
+			}
+
+			const sourceTextTranslations = (currentTranslations as any).sourceText;
+			if (sourceTextTranslations && typeof sourceTextTranslations === 'object') {
+				html = replaceVisibleSourceText(html, sourceTextTranslations as Record<string, string>);
+			}
+
+			const sourceAttributeTranslations = (currentTranslations as any).sourceAttributes;
+			if (sourceAttributeTranslations && typeof sourceAttributeTranslations === 'object') {
+				html = replaceSourceAttributes(
+					html,
+					sourceAttributeTranslations as Record<string, Record<string, string>>
+				);
 			}
 		}
 
@@ -489,32 +483,6 @@ function escapeHtml(text: string): string {
 	return text.replace(/[&<>"']/g, (char) => map[char] || char);
 }
 
-function getTitleBreakWords(attributes: string, currentLanguage: string): number | null {
-	const match = attributes.match(/\sdata-title-break-after-words=["']([^"']+)["']/i);
-	if (!match) return null;
-
-	const value = match[1].trim();
-	if (/^\d+$/.test(value)) return Number(value);
-
-	for (const part of value.split(',')) {
-		const [lang, words] = part.split(':').map((item) => item.trim());
-		if (lang === currentLanguage && /^\d+$/.test(words)) {
-			return Number(words);
-		}
-	}
-
-	return null;
-}
-
-function insertTitleBreak(text: string, breakAfterWords: number): string {
-	const words = text.trim().split(/\s+/);
-	if (words.length <= breakAfterWords || breakAfterWords <= 0) {
-		return escapeHtml(text);
-	}
-
-	return `${escapeHtml(words.slice(0, breakAfterWords).join(' '))}<br class="hidden md:block"><span class="md:hidden"> </span>${escapeHtml(words.slice(breakAfterWords).join(' '))}`;
-}
-
 function serializeJsonForScript(value: unknown): string {
 	return JSON.stringify(value).replace(/</g, '\\u003c');
 }
@@ -533,31 +501,83 @@ function localizeLinkHref(html: string, markerAttribute: string, href: string): 
 	);
 }
 
-function localizeExactTextNodes(html: string, mappings: Record<string, string>): string {
-	for (const [source, target] of Object.entries(mappings)) {
-		if (!source || target === undefined || target === null) continue;
+function replaceVisibleSourceText(html: string, translations: Record<string, string>): string {
+	const normalizedTranslations = new Map<string, string>();
+	for (const [source, translation] of Object.entries(translations)) {
+		if (typeof translation !== 'string') continue;
+		const normalizedSource = normalizeVisibleText(source);
+		if (!normalizedSource) continue;
+		normalizedTranslations.set(normalizedSource, translation);
+	}
 
-		const escapedSource = escapeHtml(source);
-		const escapedTarget = escapeHtml(String(target));
-		html = replaceExactTextNode(html, source, escapedTarget);
-		if (escapedSource !== source) {
-			html = replaceExactTextNode(html, escapedSource, escapedTarget);
+	if (normalizedTranslations.size === 0) return html;
+
+	const parts = html.split(/(<[^>]+>)/g);
+	let skipTag: string | null = null;
+
+	return parts
+		.map((part) => {
+			if (part.startsWith('<')) {
+				const openTag = part.match(/^<\s*(script|style|svg|noscript)\b/i);
+				const closeTag = part.match(/^<\s*\/\s*(script|style|svg|noscript)\s*>/i);
+
+				if (openTag && !part.endsWith('/>')) {
+					skipTag = openTag[1].toLowerCase();
+				} else if (closeTag && skipTag === closeTag[1].toLowerCase()) {
+					skipTag = null;
+				}
+
+				return part;
+			}
+
+			if (skipTag) return part;
+
+			const normalizedText = normalizeVisibleText(part);
+			if (!normalizedText) return part;
+
+			const translation = normalizedTranslations.get(normalizedText);
+			if (translation === undefined) return part;
+
+			const leadingWhitespace = part.match(/^\s*/)?.[0] ?? '';
+			const trailingWhitespace = part.match(/\s*$/)?.[0] ?? '';
+			return `${leadingWhitespace}${escapeHtml(translation)}${trailingWhitespace}`;
+		})
+		.join('');
+}
+
+function normalizeVisibleText(text: string): string {
+	return text.replace(/\s+/g, ' ').trim();
+}
+
+function replaceSourceAttributes(
+	html: string,
+	translationsByAttribute: Record<string, Record<string, string>>
+): string {
+	const allowedAttributes = new Set(['alt', 'aria-label', 'title', 'placeholder', 'value']);
+
+	for (const [attributeName, translations] of Object.entries(translationsByAttribute)) {
+		if (!allowedAttributes.has(attributeName) || !translations || typeof translations !== 'object') continue;
+
+		const normalizedTranslations = new Map<string, string>();
+		for (const [source, translation] of Object.entries(translations)) {
+			if (typeof translation !== 'string') continue;
+			const normalizedSource = normalizeVisibleText(source);
+			if (!normalizedSource) continue;
+			normalizedTranslations.set(normalizedSource, translation);
 		}
+
+		if (normalizedTranslations.size === 0) continue;
+
+		const escapedAttributeName = attributeName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+		const attributePattern = new RegExp(`\\s(${escapedAttributeName})=(["'])(.*?)\\2`, 'gi');
+		html = html.replace(attributePattern, (match, name: string, quote: string, value: string) => {
+			const normalizedValue = normalizeVisibleText(value);
+			const translation = normalizedTranslations.get(normalizedValue);
+			if (translation === undefined) return match;
+
+			return ` ${name}=${quote}${escapeHtml(translation)}${quote}`;
+		});
 	}
 
 	return html;
-}
-
-function replaceExactTextNode(html: string, source: string, escapedTarget: string): string {
-	const sourcePattern = source
-		.trim()
-		.split(/\s+/)
-		.map((part) => escapeRegExp(part))
-		.join('\\s+');
-	const pattern = new RegExp(`>(\\s*)${sourcePattern}(\\s*)<`, 'g');
-	return html.replace(pattern, (_match, before, after) => `>${before}${escapedTarget}${after}<`);
-}
-
-function escapeRegExp(text: string): string {
-	return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

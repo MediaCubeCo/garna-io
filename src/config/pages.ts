@@ -120,14 +120,14 @@ export const basePaths: PageConfig[] = [
 	{
 		path: 'blog-author',
 		mode: 'static',
-		searchable: true,
+		searchable: false,
 		showHeader: true,
 		languages: ['en', 'es', 'pt', 'ru'],
 	},
 	{
 		path: 'blog-article',
 		mode: 'static',
-		searchable: true,
+		searchable: false,
 		showHeader: true,
 		languages: ['en', 'es', 'pt', 'ru'],
 	},
