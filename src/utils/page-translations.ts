@@ -25,10 +25,10 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 		return `/${segment}/ai-hiring`;
 	}
 	if (pageName === 'white-label') {
-		return `/${segment}/white-label`;
+		return `/${segment}/white-label-payroll`;
 	}
 	if (pageName === 'payroll-small-business') {
-		return `/${segment}/payroll-small-business`;
+		return `/${segment}/small-business-payroll`;
 	}
 	if (pageName === 'blog') {
 		return `/${segment}/blog`;

@@ -15,6 +15,7 @@
 		name: 'Garna',
 	},
 	hero: {
+		badge: 'Payroll empresarial',
 		title: 'Soluções de Folha de Pagamento Global para o seu negócio',
 		tagline: 'para o seu negócio',
 		description:

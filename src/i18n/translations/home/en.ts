@@ -15,6 +15,7 @@
 		name: 'Garna',
 	},
 	hero: {
+		badge: 'Enterprise payroll',
 		title: 'Global Payroll Solutions for your business',
 		tagline: 'for your business',
 		description: 'One transfer — countless possibilities. Pay remunerations in over 150 countries with minimal effort',

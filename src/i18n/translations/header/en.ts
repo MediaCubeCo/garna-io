@@ -10,7 +10,7 @@
 	solutions: 'Solutions',
 	resources: 'Resources',
 	resourcesKicker: 'Articles and company updates',
-	globalPayroll: 'Global Payout',
+	globalPayroll: 'Global Payroll',
 	globalPayrollKicker: 'Pay teams worldwide',
 	eor: 'Employer of Record',
 	eorKicker: 'Hire without a local entity',

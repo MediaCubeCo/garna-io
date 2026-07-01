@@ -41,6 +41,10 @@ export const pageHeroes = {
 		},
 		descriptionClass:
 			'leading-relaxed md:text-xl text-lg font-light text-gray-400 font-manrope max-w-4xl mr-auto mb-10 ml-auto',
+		badge: {
+			text: 'Enterprise payroll',
+			translateKey: 'hero.badge',
+		},
 		title: [{ text: 'Scaling Payroll Infrastructure Made for Global Businesses', translateKey: 'hero.title' }],
 		description:
 			'A centralized global payroll system designed to handle operations across countries, different entities, contractors and employees without sacrificing any flexibility',

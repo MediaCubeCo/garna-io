@@ -10,7 +10,7 @@
 	solutions: 'Решения',
 	resources: 'Ресурсы',
 	resourcesKicker: 'Статьи и новости компании',
-	globalPayroll: 'Глобальные выплаты',
+	globalPayroll: 'Global Payroll',
 	globalPayrollKicker: 'Платите командам по всему миру',
 	eor: 'Employer of Record',
 	eorKicker: 'Нанимайте без локального юрлица',

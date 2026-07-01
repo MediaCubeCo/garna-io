@@ -12,23 +12,28 @@ export async function handleBlogPublic(request: Request, env: BlogEnv): Promise<
 	if (!isSupportedLanguage(segments[0] || '') || segments[1] !== 'blog') return null;
 	const language = segments[0];
 
-	if (segments.length === 2) {
-		const [articles, categories] = await Promise.all([listPublishedArticles(env, 50, language), listCategories(env)]);
-		const categorySlug = url.searchParams.get('category') || undefined;
-		return renderBlogIndex(env, articles, categories, language, categorySlug);
-	}
+	try {
+		if (segments.length === 2) {
+			const [articles, categories] = await Promise.all([listPublishedArticles(env, 50, language), listCategories(env)]);
+			const categorySlug = url.searchParams.get('category') || undefined;
+			return renderBlogIndex(env, articles, categories, language, categorySlug);
+		}
 
-	if (segments.length === 3) {
-		const [article, articles] = await Promise.all([getPublishedArticleBySlug(env, segments[2], language), listPublishedArticles(env, 50, language)]);
-		const relatedArticles = article ? articles.filter((item) => item.id !== article.id).slice(0, 3) : [];
-		return article ? await renderArticlePage(env, article, relatedArticles, language) : notFound('Article not found');
-	}
+		if (segments.length === 3) {
+			const [article, articles] = await Promise.all([getPublishedArticleBySlug(env, segments[2], language), listPublishedArticles(env, 50, language)]);
+			const relatedArticles = article ? articles.filter((item) => item.id !== article.id).slice(0, 3) : [];
+			return article ? await renderArticlePage(env, article, relatedArticles, language) : notFound('Article not found');
+		}
 
-	if (segments.length === 4 && segments[2] === 'author') {
-		const author = await getAuthorBySlug(env, segments[3], language);
-		if (!author) return notFound('Author not found');
-		const articles = await listPublishedArticlesByAuthor(env, author.slug, language);
-		return renderAuthorPage(env, author, articles, language);
+		if (segments.length === 4 && segments[2] === 'author') {
+			const author = await getAuthorBySlug(env, segments[3], language);
+			if (!author) return notFound('Author not found');
+			const articles = await listPublishedArticlesByAuthor(env, author.slug, language);
+			return renderAuthorPage(env, author, articles, language);
+		}
+	} catch (error) {
+		console.warn('[blog public] Falling back to static route:', error);
+		return null;
 	}
 
 	return null;

@@ -10,7 +10,7 @@
 	solutions: 'Soluciones',
 	resources: 'Recursos',
 	resourcesKicker: 'Articulos y novedades de la empresa',
-	globalPayroll: 'Pagos globales',
+	globalPayroll: 'Nómina Global',
 	globalPayrollKicker: 'Paga a equipos en todo el mundo',
 	eor: 'Empleador de Registro',
 	eorKicker: 'Contrata sin entidad local',
