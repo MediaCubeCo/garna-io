@@ -209,10 +209,10 @@ export const payrollSolutionNewRu = {
 			'Почему Garna? Мы предлагаем множество преимуществ, своевременно и точно обрабатывая каждый платеж',
 		'Cut Admin Work by 70%': 'Сократите административную нагрузку на 70%',
 		'Our contract and payment automation frees your HR and finance department from routine tasks':
-			'Наша система автоматизации заключения договоров и расчетов освобождает ваши отделы кадров и финансов от рутинных задач Посвящайте свое время исключительно поиску талантов',
+			'Наша система автоматизации заключения договоров и расчетов освобождает ваши отделы кадров и финансов от рутинных задач',
 		'Flawless Reporting and Analytics': 'Безупречная отчетность и аналитика',
 		'All invoices, transactions, and tax reports are gathered in one place':
-			'Все инвойсы, транзакции и налоговые отчеты собраны в одном месте Экспортируйте данные в бухгалтерскую систему за считанные секунды для обеспечения полной прозрачности',
+			'Все инвойсы, транзакции и налоговые отчеты собраны в одном месте',
 		'100% Intellectual Property Protection': 'Стопроцентная защита интеллектуальной собственности',
 		'Scale with the API': 'Масштабируйте с помощью API',
 		'Integrate bulk payments directly into your internal systems and automate workflows programmatically':
