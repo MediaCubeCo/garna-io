@@ -1,7 +1,7 @@
 import type { FinalCTASectionConfig } from '../types/final-cta-section';
 
 export const pageFinalCtas = {
-	home: {
+	contractorOfRecord: {
 		title: [{ text: 'Ready to get started?', translateKey: 'whyGarna.cta.title' }],
 		description: {
 			text: 'Join thousands of businesses streamlining their global payroll today',
@@ -109,7 +109,7 @@ export const pageFinalCtas = {
 		titleClass: 'garna-hero-title-gradient text-4xl font-normal leading-tight text-white md:text-6xl font-manrope mb-8',
 		descriptionClass: 'mx-auto mt-6 max-w-2xl text-xl font-light leading-8 text-gray-400 font-manrope mb-12',
 	},
-	payrollSolutionNew: {
+	home: {
 		title: [{ text: 'Launch Global Payroll Software on Autopilot Today', translateKey: 'finalCta.title' }],
 		description: {
 			text: 'Pay your team in 150+ countries with just a few clicks. No red tape, just fast payments',

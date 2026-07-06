@@ -33,8 +33,8 @@ export const whiteLabelEn = {
 	"infrastructure": {
 		"badge": "Garna White Label Infrastructure",
 		"title": "Your logo on the front. Our powerful engine under the hood.",
-		"description": "Garna lets you launch white-label contractor payroll solutions in 2 days without investments and months of development. No need to connect payment systems and worry about compliance. We’ve already done it for you. We handle everything: from KYC to tax reporting so you can offer your contractors a seamless contractor management experience within your own UX.",
-		"whatCanWhiteLabel": "What you can White Label:"
+		"description": "Garna lets you launch white-label contractor payroll solutions in 2 days without investments and months of development. No need to connect payment systems and worry about compliance. We've already done it for you",
+		"whatCanWhiteLabel": ""
 	},
 	"products": {
 		"contractorManagement": {

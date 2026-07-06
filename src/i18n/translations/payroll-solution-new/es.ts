@@ -18,6 +18,12 @@ export const payrollSolutionNewEs = {
 		hireEmployeesWorldwide: 'Realice contrataciones oficiales con más ventajas',
 		embeddedPayrollInfrastructure: 'Solución integrada de contratista de referencia para tu negocio',
 	},
+	sectionDescriptions: {
+		hireEmployeesWorldwide:
+			'Simplifica el proceso de contratación de empleados y autónomos con Garna. A diferencia de otras empresas, nos encargamos no solo de los aspectos financieros, sino también de los legales, mientras tú buscas a los especialistas adecuados',
+		embeddedPayrollInfrastructure:
+			'Amplía tus operaciones con contratistas a nivel global. Utiliza Garna como tu proveedor de backend: integra la gestión de contratistas y los pagos en tu producto o lanza servicios de nóminas completos bajo tu propia marca',
+	},
 	faq: {
 		title: 'Preguntas frecuentes sobre soluciones de nóminas',
 		items: {
@@ -115,10 +121,10 @@ export const payrollSolutionNewEs = {
 			'Simplifica el proceso de contratación de empleados y autónomos con Garna. A diferencia de otras empresas, nos encargamos no solo de los aspectos financieros, sino también de los legales, mientras tú buscas a los especialistas adecuados',
 		'Quick Global Employment': 'Contratación global rápida',
 		'Hire employees anywhere in the world without setting up local legal entities':
-			'Contrate empleados en cualquier parte del mundo sin necesidad de constituir entidades jurídicas locales. Garna actúa como empleador legal, gestionando los impuestos, las prestaciones y el pleno cumplimiento de la legislación laboral',
+			'Contrate empleados en cualquier parte del mundo sin necesidad de constituir entidades jurídicas locales',
 		'Immigration Assistance': 'Asistencia en materia de inmigración',
 		'We help you not only find talent, but also apply for a visa and permanent residence support':
-			'Le ayudamos no solo a encontrar talento, sino también a solicitar visados y a tramitar la residencia permanente, para que sus empleados puedan trabajar desde cualquier parte del mundo sin dificultades legales innecesarias',
+			'Le ayudamos no solo a encontrar talento, sino también a solicitar visados y a tramitar la residencia permanente',
 		'Flexible Worksite Coverage': 'Cobertura flexible de lugares de trabajo',
 		'Hire for offices, retail, factories, or remote teams: wherever your business operates':
 			'Contrata personal para oficinas, comercios, fábricas o equipos remotos: dondequiera que opere tu empresa',
@@ -127,7 +133,7 @@ export const payrollSolutionNewEs = {
 			'¿Tienes alguna pregunta? Nuestro equipo de asistencia está disponible las 24 horas del día, los 7 días de la semana, para resolver cualquier problema en solo unos minutos',
 		'Seamless Integration': 'Integración perfecta',
 		'Garna integrates seamlessly with your existing HR processes and accounting payroll software':
-			'No es necesario que reestructures tus procesos para adaptarte a nosotros. Garna se integra a la perfección con tus procesos de RR. HH. y tu software de contabilidad y nóminas existentes',
+			'Garna se integra a la perfección con tus procesos de RR. HH. y tu software de contabilidad y nóminas existentes',
 		'Employee Benefits': 'Beneficios para los empleados',
 		'A user-friendly personal dashboard for every team member: access to payslips, vacation management, and expense tracking in real time':
 			'Un panel personal y fácil de usar para cada miembro del equipo: acceso a nóminas, gestión de vacaciones y seguimiento de gastos en tiempo real',
@@ -187,41 +193,41 @@ export const payrollSolutionNewEs = {
 			'Amplía tus operaciones con contratistas a nivel global. Utiliza Garna como tu proveedor de backend: integra la gestión de contratistas y los pagos en tu producto o lanza servicios de nóminas completos bajo tu propia marca',
 		'API contractor management and payments': 'Gestión de contratistas y pagos mediante API',
 		'Integrate global contractor payments directly into your platform':
-			'Integra los pagos a contratistas globales directamente en tu plataforma. Permite a tus usuarios retirar sus remuneraciones y recibir pagos con un solo clic en tu plataforma, sin tener que visitar sitios web externos',
+			'Integra los pagos a contratistas globales directamente en tu plataforma',
 		'White-label contractor dashboard and payments': 'Panel de control y pagos de contratistas de marca blanca',
 		'Launch professional payment software under your own brand':
-			'Lanza un software de pagos profesional bajo tu propia marca. Control total sobre la experiencia de usuario (UX) y la interfaz de usuario (UI), la generación de informes y funciones listas para usar para operaciones en más de 150 países',
+			'Lanza un software de pagos profesional bajo tu propia marca',
 		'Learn more': 'Más información',
 		'Start Paying Globally': 'Configura una nómina internacional y añade un servicio de contratista de referencia o empleador de referencia',
 		'From quick registration and talent’s search to your first payout. Everything is clear and completely under your control in a few simple steps':
 			'Desde el registro rápido y la búsqueda de talento hasta tu primer pago. Todo es claro y está completamente bajo tu control en unos pocos y sencillos pasos',
 		'Set up your company profile': 'Configura el perfil de tu empresa',
 		'Complete a quick verification process and gain access to a full-featured payroll software solution':
-			'Completa un rápido proceso de verificación y obtén acceso a una solución de software de nóminas con todas las funciones. Configuraremos la plataforma para satisfacer las necesidades de tu negocio en unos minutos',
+			'Completa un rápido proceso de verificación y obtén acceso a una solución de software de nóminas con todas las funciones',
 		'Add your team': 'Añade tu equipo',
 		'Import data for employees and international contractors':
-			'Importa los datos de los empleados y los contratistas internacionales. Nuestro panel de control unificado te permite gestionar el acceso y las funciones sin la molestia de las hojas de cálculo',
+			'Importa los datos de los empleados y los contratistas internacionales',
 		'Fund your account': 'Recarga tu cuenta',
 		'Fund your account at Garna via SWIFT, SEPA, bank transfer in local currencies, PayPal, or use crypto assets for instant deposits':
-			'Garna es un proveedor de nóminas flexible. Recarga tu cuenta en Garna a través de SWIFT, SEPA, transferencia bancaria en moneda local, PayPal o utiliza criptoactivos para realizar depósitos instantáneos',
+			'Recarga tu cuenta en Garna a través de SWIFT, SEPA, transferencia bancaria en moneda local, PayPal o utiliza criptoactivos para realizar depósitos instantáneos',
 		'Send payout': 'Envía el pago',
 		'Pay recipients in 150+ countries with full compliance':
-			'Haz clic en «Enviar» y los fondos se transferirán al instante a los destinatarios en más de 150 países. Garna se encarga de los acuerdos, la presentación de informes y garantiza el cumplimiento al 100%',
+			'Paga a destinatarios en más de 150 países con cumplimiento total de la normativa',
   'Set up your company account': 'Configura la cuenta de tu empresa',
 		'Make a quick profile check and verification, fill in the required fields and get started':
-			'Realiza una rápida comprobación y verificación de tu perfil, rellena los campos obligatorios y obten acceso al servicio. Lo personalizaremos según tus necesidades y deseos en un par de clics',
+			'Realiza una rápida comprobación y verificación de tu perfil, rellena los campos obligatorios y obten acceso al servicio',
 		'Assign a financial contact person': 'Designa a una persona de contacto para asuntos financieros',
 		'SSpecify the person who will be responsible for financial matters':
-			'Especifica quién será la persona responsable de los asuntos financieros. Puede ser el director financiero, el jefe del departamento financiero o tu mismo',
+			'Especifica quién será la persona responsable de los asuntos financieros',
 		'Create your first EoR contract': 'Crea tu primer contrato EoR',
 		"Enter the employee's details":
-			'Introduce los datos del empleado: país de trabajo, puesto, salario, fecha de inicio, moneda del salario y requisitos de visado de trabajo',
+			'Introduce los datos del empleado',
 		'Invite an employee': 'Invita a un empleado',
 		'Send an invitation and onboard your employee':
 			'Tras tu solicitud en la cuenta personal, el empleado recibe una invitación personal por correo electrónico y crea una cuenta en Garna para recibir los pagos',
 		'Fund your wallet and run first payroll': 'Recarga tu monedero y procesa la primera nómina',
 		'Top up your balance and start paying globally':
-			'Puedes hacerlo de la forma que te resulte más cómoda: desde SWIFT y SEPA hasta PayPal y criptomonedas. Empieza a pagar tu salario hoy mismo',
+			'Empieza a pagar tu salario hoy mismo',
 		'Senior Software Engineer': 'Senior Software Engineer',
 		'Onboarding': 'Incorporación',
 		'Employment Country': 'País de empleo',
@@ -238,19 +244,19 @@ export const payrollSolutionNewEs = {
 			'¿Por qué Garna? Ofrecemos numerosas ventajas al gestionar todos los procesos de pago de forma puntual y precisa',
 		'Cut Admin Work by 70%': 'Reduce el trabajo administrativo en un 70 %',
 		'Our contract and payment automation frees your HR and finance department from routine tasks':
-			'Nuestra automatización de contratos y pagos libera a tu departamento de RR. HH. y finanzas de las tareas rutinarias. Dedica tu tiempo exclusivamente al talento',
+			'Nuestra automatización de contratos y pagos libera a tu departamento de RR. HH. y finanzas de las tareas rutinarias',
 		'Flexible Funding: From Bank transfers to Crypto': 'Financiación flexible: desde transferencias bancarias hasta criptomonedas',
 		'You can make payments via traditional banking or digital assets for maximum speed':
 			'Puedes realizar pagos a través de la banca tradicional o de activos digitales para obtener la máxima rapidez',
 		'Flawless Reporting and Analytics': 'Informes y análisis impecables',
 		'All invoices, transactions, and tax reports are gathered in one place':
-			'Todas las facturas, transacciones e informes fiscales se recopilan en un solo lugar. Exporta los datos a la contabilidad en segundos para una transparencia total',
+			'Todas las facturas, transacciones e informes fiscales se recopilan en un solo lugar',
 		'100% Intellectual Property Protection': 'Protección del 100% de la propiedad intelectual',
 		'We legally guarantee that all work produced by your contractors belongs exclusively to you':
 			'Garantizamos legalmente que todo el trabajo realizado por tus contratistas te pertenece en exclusiva',
 		'Scale with the API': 'Escalabilidad con la API',
 		'Integrate bulk payments directly into your internal systems and automate workflows programmatically':
-			'Una solución empresarial para quienes crecen rápidamente. Integra los pagos masivos directamente en tus sistemas internos y automatiza los flujos de trabajo mediante programación',
+			'Integra los pagos masivos directamente en tus sistemas internos y automatiza los flujos de trabajo mediante programación',
 		'Access to the best specialists in 150+ countries': 'Acceso a los mejores especialistas en más de 150 países',
 		'Hunt the best specialists wherever they are without wasting time and money on registering legal entities':
 			'Busca a los mejores especialistas dondequiera que estén sin perder tiempo ni dinero en registrar entidades jurídicas',
@@ -259,16 +265,16 @@ export const payrollSolutionNewEs = {
 			'Ofrecemos soluciones rápidas a cualquier problema, tanto para la empresa como para cada empleado, las 24 horas del día',
 		'100% compliance with the laws': 'Cumplimiento al 100 % de la legislación',
 		'We assume full responsibility for compliance with the labor code of each country, from taxes to social benefits. Our team is monitoring any legal changes':
-			'Asumimos toda la responsabilidad del cumplimiento del código laboral de cada país, desde los impuestos hasta las prestaciones sociales. Nuestro equipo supervisa cualquier cambio legal',
+			'Asumimos toda la responsabilidad del cumplimiento del código laboral de cada país',
 		'Automated payments': 'Pagos automatizados',
 		'Make payments in one click in any currency. The system calculates taxes and other contributions immediately':
-			'Realiza pagos con un solo clic en cualquier moneda. El sistema calcula los impuestos y otras cotizaciones de forma inmediata',
+			'Realiza pagos con un solo clic en cualquier moneda',
 		'Shared dashboard': 'Panel de control compartido',
 		'Management of contracts, expenses, income, and vacations is available in one interface':
 			'La gestión de contratos, gastos, ingresos y vacaciones está disponible en una única interfaz',
 		'Garna Payroll vs Other Payroll': 'Garna Payroll frente a otros sistemas de nóminas',
 		'Everything is relative, right? Take a look at the comparison table, we believe our transparency speaks louder than words. We offer, and we offer a lot, because we want to be the best':
-			'Todo es relativo, ¿verdad? Echa un vistazo a la tabla comparativa; creemos que nuestra transparencia habla por sí sola. Ofrecemos mucho, porque queremos ser los mejores',
+			'Todo es relativo, ¿verdad? Echa un vistazo a la tabla comparativa; creemos que nuestra transparencia habla por sí sola',
 		'Feature': 'Característica',
 		'Other Payroll': 'Otros programas de nóminas',
 		'Geography': 'Ámbito geográfico',
@@ -350,7 +356,7 @@ export const payrollSolutionNewEs = {
 		'Real-time, exportable': 'En tiempo real, exportable',
 		'Trusted by Those Who Build the Future': 'La confianza de quienes construyen el futuro',
 		'Find out why large companies and middle-sized businesses are switching to Garna. We set the standard for international payroll, trusted by professionals in over 150 countries':
-			'Descubre por qué las grandes empresas y las medianas empresas se están pasando a Garna. Marcamos la pauta en la gestión internacional de nóminas, y contamos con la confianza de profesionales en más de 150 países',
+			'Descubre por qué las grandes empresas y las medianas empresas se están pasando a Garna',
 		'Finally, a platform that doesn\'t make me feel like a second-class citizen. Getting paid is instant, and I can withdraw to my local bank without the usual headache.':
 			'Por fin una plataforma que no me hace sentir ciudadano de segunda. Cobro al instante y puedo retirar a mi banco local sin los dolores de cabeza de siempre.',
 		'"Finally, a platform that doesn\'t make me feel like a second-class citizen. Getting paid is instant, and I can withdraw to my local bank without the usual headache."':

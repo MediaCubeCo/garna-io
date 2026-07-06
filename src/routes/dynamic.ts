@@ -75,16 +75,16 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 };
 
 const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
-	'': 'payroll-solution-new',
+	'': 'home',
 	'for-contractors': 'offer',
-	'contractor-of-record': 'home',
+	'contractor-of-record': 'contractor-of-record',
 	'mid-size-business-payroll': 'mid-size',
 	'enterprise-payroll': 'enterprise-payroll',
 	form: 'form',
 	'ai-hiring': 'ai-hiring',
 	'white-label-payroll': 'white-label',
 	'small-business-payroll': 'payroll-small-business',
-	'payroll-solution-new': 'payroll-solution-new',
+	'payroll-solution-new': 'home',
 	'employer-of-record': 'eor',
 	blog: 'blog',
 	'blog-author': 'blog-author',

@@ -18,6 +18,12 @@ export const payrollSolutionNewEn = {
 		hireEmployeesWorldwide: 'Hire Employees Worldwide',
 		embeddedPayrollInfrastructure: 'Embedded Payroll Infrastructure',
 	},
+	sectionDescriptions: {
+		hireEmployeesWorldwide:
+			'Simplify the hiring process for employees and freelancers with Garna. Unlike other companies, we will resolve not only the financial, but also legal side while you are looking for the right specialists',
+		embeddedPayrollInfrastructure:
+			'Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand',
+	},
 	faq: {
 		title: 'FAQ on Payroll Solutions',
 		items: {

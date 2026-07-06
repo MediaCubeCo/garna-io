@@ -1,7 +1,7 @@
 import type { HeroSectionConfig } from '../types/hero-section';
 
 export const pageHeroes = {
-	home: {
+	contractorOfRecord: {
 		class: 'home-hero overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
 		containerClass:
 			'garna-container overflow-visible z-10 text-center relative',
@@ -203,7 +203,7 @@ export const pageHeroes = {
 		tone: 'green',
 		align: 'split',
 	},
-	payrollSolutionNew: {
+	home: {
 		class: 'payroll-solution-new-hero overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
 		containerClass:
 			'overflow-visible md:px-12 md:pt-12 md:pb-0 text-center max-w-7xl z-10 mr-auto ml-auto pt-12 pr-6 pb-12 pl-6 relative',

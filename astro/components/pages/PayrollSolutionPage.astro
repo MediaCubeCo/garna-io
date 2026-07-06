@@ -16,7 +16,7 @@ const faqSectionMarker = '<section class="border-white/5 border-t pt-16 pr-6 pb-
 const faqSectionIndex = contentHtml.indexOf(faqSectionMarker);
 const legacyContentHtml = faqSectionIndex >= 0 ? contentHtml.slice(0, faqSectionIndex) : contentHtml;
 
-const payrollSolutionNewFaqItems = [
+const homeFaqItems = [
 	{
 		question: 'How quickly can I start using Garna Payroll?',
 		answer:
@@ -88,16 +88,16 @@ const payrollSolutionNewFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.payrollSolutionNew}>
-	<HeroSection {...pageHeroes.payrollSolutionNew} />
+<BaseLayout shell={pageShells.home}>
+	<HeroSection {...pageHeroes.home} />
 	<Fragment set:html={legacyContentHtml} />
 	<FAQSection
 		title={{ text: 'FAQ on Payroll Solutions', translateKey: 'faq.title' }}
-		items={payrollSolutionNewFaqItems}
+		items={homeFaqItems}
 		class="pt-16 pr-6 pb-16 pl-6 lg:pt-32 lg:pb-32"
 		containerClass="max-w-3xl mr-auto ml-auto"
 	/>
-	<FinalCTASection {...pageFinalCtas.payrollSolutionNew} />
+	<FinalCTASection {...pageFinalCtas.home} />
 	<script is:inline>
 		document.addEventListener('click', (event) => {
 			const link = event.target instanceof Element ? event.target.closest('a') : null;
@@ -112,8 +112,8 @@ const payrollSolutionNewFaqItems = [
 	</script>
 	<Fragment slot="widgets">
 		<GarnaBookingWidget
-			trackingSource="payroll-solution-new"
-			trackingPage="payroll-solution-new"
+			trackingSource="home"
+			trackingPage="home"
 			titleFallback="Start your journey with Garna"
 			subtitleFallback="Fill in your details to book a demo"
 		/>

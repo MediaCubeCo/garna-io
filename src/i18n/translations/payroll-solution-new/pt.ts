@@ -18,6 +18,12 @@ export const payrollSolutionNewPt = {
 		hireEmployeesWorldwide: 'Realize Employment of Record com mais vantagens',
 		embeddedPayrollInfrastructure: 'Solução Embedded Contractor of Record para o seu negócio',
 	},
+	sectionDescriptions: {
+		hireEmployeesWorldwide:
+			'Simplifique o processo de contratação de funcionários e freelancers com a Garna. Ao contrário de outras empresas, resolvemos não apenas a parte financeira, mas também a jurídica, enquanto procura os especialistas certos',
+		embeddedPayrollInfrastructure:
+			'Escale as suas operações com contratados a nível global. Utilize a Garna como fornecedor backend: integre gestão e pagamentos de contratados no seu produto ou lance serviços completos de payroll sob a sua própria marca',
+	},
 	faq: {
 		title: 'FAQ sobre soluções de Payroll',
 		items: {
@@ -103,16 +109,16 @@ export const payrollSolutionNewPt = {
 			processPayout: '// 2. Process automated payout',
 			payoutCreated: '200 OK - Payout Created',
 			eorStep1Description:
-				'Faça uma rápida verificação do perfil, preencha os campos necessários e obtenha acesso ao serviço. Personalizaremos tudo de acordo com as suas necessidades e preferências em apenas alguns cliques',
+				'Faça uma rápida verificação do perfil, preencha os campos necessários e obtenha acesso ao serviço',
 			eorStep2Title: 'Defina um contacto financeiro responsável',
 			eorStep2Description:
-				'Indique a pessoa responsável pelas questões financeiras. Pode ser o diretor financeiro, o responsável do departamento financeiro ou si próprio',
+				'Indique a pessoa responsável pelas questões financeiras',
 			eorStep3Description:
-				'Introduza os dados do funcionário: país de contratação, cargo, salário, data de início, moeda salarial e requisitos de visto de trabalho',
+				'Introduza os dados do funcionário',
 			eorStep4Description:
-				'Após o pedido na conta pessoal, o funcionário recebe um convite individual por e-mail e cria uma conta na Garna para receber pagamentos',
+				'Envie um convite e integre o funcionário',
 			eorStep5Description:
-				'Pode fazê-lo da forma mais conveniente: desde SWIFT e SEPA até PayPal e criptomoedas. Comece hoje mesmo a pagar salários',
+				'Comece hoje mesmo a pagar salários',
 			eorRole: 'Senior Software Engineer',
 			eorOnboarding: 'Integração',
 			eorEmploymentCountry: 'País de emprego',
@@ -154,19 +160,19 @@ export const payrollSolutionNewPt = {
 			'Simplifique o processo de contratação de funcionários e freelancers com a Garna. Ao contrário de outras empresas, resolvemos não apenas a parte financeira, mas também a jurídica, enquanto procura os especialistas certos',
 		'Quick Global Employment': 'Contratação global rápida',
 		'Hire employees anywhere in the world without setting up local legal entities':
-			'Contrate funcionários em qualquer parte do mundo sem criar entidades jurídicas locais. A Garna atua como empregador legal, tratando de impostos, benefícios e total conformidade com as leis laborais',
+			'Contrate funcionários em qualquer parte do mundo sem criar entidades jurídicas locais',
 		'Immigration Assistance': 'Apoio à imigração',
 		'We help you not only find talent, but also apply for a visa and permanent residence support':
-			'Ajudamos não apenas a encontrar talentos, mas também no pedido de visto e apoio à residência permanente, para que os seus funcionários possam trabalhar a partir de qualquer parte do mundo sem dificuldades jurídicas desnecessárias',
+			'Ajudamos não apenas a encontrar talentos, mas também no pedido de visto e apoio à residência permanente',
 		'Flexible Worksite Coverage': 'Cobertura flexível de locais de trabalho',
 		'Hire for offices, retail, factories, or remote teams: wherever your business operates':
 			'Contrate para escritórios, lojas, fábricas ou equipas remotas — onde quer que a sua empresa opere',
 		'24/7 Support': 'Suporte 24/7',
 		'Our support team is available 24/7 to resolve any issue in just a few minutes':
-			'Tem dúvidas? A nossa equipa de suporte está disponível 24/7 para resolver qualquer questão em apenas alguns minutos',
+			'A nossa equipa de suporte está disponível 24/7 para resolver qualquer questão em apenas alguns minutos',
 		'Seamless Integration': 'Integração perfeita',
 		'Garna integrates seamlessly with your existing HR processes and accounting payroll software':
-			'Não precisa alterar os seus processos para trabalhar connosco. A Garna integra-se facilmente nos seus processos de RH e software de payroll existentes',
+			'A Garna integra-se facilmente nos seus processos de RH e software de payroll existentes',
 		'Employee Benefits': 'Benefícios para funcionários',
 		'A user-friendly personal dashboard for every team member: access to payslips, vacation management, and expense tracking in real time':
 			'Um painel pessoal intuitivo para cada membro da equipa: acesso a recibos salariais, gestão de férias e controlo de despesas em tempo real',
@@ -258,10 +264,10 @@ export const payrollSolutionNewPt = {
 			'Escale as suas operações com contratados a nível global. Utilize a Garna como fornecedor backend: integre gestão e pagamentos de contratados no seu produto ou lance serviços completos de payroll sob a sua própria marca',
 		'API contractor management and payments': 'API para gestão e pagamentos de contratados',
 		'Integrate global contractor payments directly into your platform':
-			'Integre pagamentos globais de contratados diretamente na sua plataforma. Permita que os seus utilizadores levantem remunerações e recebam pagamentos com um único clique — sem necessidade de visitar websites externos',
+			'Integre pagamentos globais de contratados diretamente na sua plataforma',
 		'White-label contractor dashboard and payments': 'Dashboard White Label e pagamentos para contratados',
 		'Launch professional payment software under your own brand':
-			'Lance software profissional de pagamentos sob a sua própria marca. Controlo total sobre UX/UI, relatórios e funcionalidades prontas para utilização em operações em mais de 150 países',
+			'Lance software profissional de pagamentos sob a sua própria marca',
 		'Learn more': 'Saber mais',
 		'Start Paying Globally': 'Configure payroll internacional e adicione o serviço Contractor of Record ou Employer of Record',
 		'From quick registration and talent’s search to your first payout. Everything is clear and completely under your control in a few simple steps':
@@ -270,16 +276,16 @@ export const payrollSolutionNewPt = {
 		'Employer of Record': 'Para Employer of Record',
 		'Set up your company profile': 'Configure o perfil da sua empresa',
 		'Complete a quick verification process and gain access to a full-featured payroll software solution':
-			'Conclua um rápido processo de verificação e obtenha acesso a uma solução completa de software de payroll. Configuraremos a plataforma de acordo com as necessidades do seu negócio em apenas alguns minutos',
+			'Conclua um rápido processo de verificação e obtenha acesso a uma solução completa de software de payroll',
 		'Add your team': 'Adicione a sua equipa',
 		'Import data for employees and international contractors':
-			'Importe dados de funcionários e contratados internacionais. O nosso dashboard unificado permite gerir acessos e funções sem complicações com folhas de cálculo',
+			'Importe dados de funcionários e contratados internacionais',
 		'Fund your account': 'Adicione fundos à sua conta',
 		'Fund your account at Garna via SWIFT, SEPA, bank transfer in local currencies, PayPal, or use crypto assets for instant deposits':
-			'A Garna é um fornecedor de payroll flexível. Adicione fundos à sua conta através de SWIFT, SEPA, transferências bancárias em moedas locais, PayPal ou utilize criptoativos para depósitos instantâneos',
+			'Adicione fundos à sua conta através de SWIFT, SEPA, transferências bancárias em moedas locais, PayPal ou utilize criptoativos para depósitos instantâneos',
 		'Send payout': 'Envie pagamentos',
 		'Pay recipients in 150+ countries with full compliance':
-			'Clique em “Enviar” e os fundos serão transferidos instantaneamente para destinatários em mais de 150 países. A Garna trata dos contratos, relatórios e garante 100% de conformidade',
+			'Efetue pagamentos para destinatários em mais de 150 países com total conformidade legal',
 		'Sign up in Garna': 'Registe-se na Garna',
 		'Company name': 'Nome da empresa',
 		'Test Company Name': 'Nome da empresa de teste',
@@ -292,19 +298,19 @@ export const payrollSolutionNewPt = {
 		'All': 'Todos',
 		'Set up your company account': 'Configure a conta da sua empresa',
 		'Make a quick profile check and verification, fill in the required fields and get started':
-			'Faça uma rápida verificação do perfil, preencha os campos necessários e obtenha acesso ao serviço. Personalizaremos tudo de acordo com as suas necessidades e preferências em apenas alguns cliques',
+			'Faça uma rápida verificação do perfil, preencha os campos necessários e obtenha acesso ao serviço',
 		'Assign a financial contact person': 'Defina um contacto financeiro responsável',
 		'SSpecify the person who will be responsible for financial matters':
-			'Indique a pessoa responsável pelas questões financeiras. Pode ser o diretor financeiro, o responsável do departamento financeiro ou si próprio',
+			'Indique a pessoa responsável pelas questões financeiras',
 		'Create your first EoR contract': 'Crie o seu primeiro contrato EoR',
 		"Enter the employee's details":
-			'Introduza os dados do funcionário: país de contratação, cargo, salário, data de início, moeda salarial e requisitos de visto de trabalho',
+			'Introduza os dados do funcionário',
 		'Invite an employee': 'Convide um funcionário',
 		'Send an invitation and onboard your employee':
-			'Após o pedido na conta pessoal, o funcionário recebe um convite individual por e-mail e cria uma conta na Garna para receber pagamentos',
+			'Envie um convite e integre o funcionário',
 		'Fund your wallet and run first payroll': 'Adicione fundos à carteira e execute o primeiro payroll',
 		'Top up your balance and start paying globally':
-			'Pode fazê-lo da forma mais conveniente: desde SWIFT e SEPA até PayPal e criptomoedas. Comece hoje mesmo a pagar salários',
+			'Comece hoje mesmo a pagar salários',
 		'Senior Software Engineer': 'Senior Software Engineer',
 		Onboarding: 'Integração',
 		'Employment Country': 'País de emprego',
@@ -321,19 +327,19 @@ export const payrollSolutionNewPt = {
 			'Porque a Garna? Oferecemos inúmeras vantagens enquanto tratamos de cada processo de pagamento com precisão e dentro do prazo',
 		'Cut Admin Work by 70%': 'Reduza o trabalho administrativo em 70%',
 		'Our contract and payment automation frees your HR and finance department from routine tasks':
-			'A nossa automação de contratos e pagamentos liberta os departamentos de RH e financeiro das tarefas rotineiras. Dedique o seu tempo apenas aos talentos',
+			'A nossa automação de contratos e pagamentos liberta os departamentos de RH e financeiro das tarefas rotineiras',
 		'Flexible Funding: From Bank transfers to Crypto': 'Financiamento flexível: de transferências bancárias a criptomoedas',
 		'You can make payments via traditional banking or digital assets for maximum speed':
 			'Pode efetuar pagamentos através de bancos tradicionais ou ativos digitais para máxima rapidez',
 		'Flawless Reporting and Analytics': 'Relatórios e analítica impecáveis',
 		'All invoices, transactions, and tax reports are gathered in one place':
-			'Todas as faturas, transações e relatórios fiscais ficam reunidos num único lugar. Exporte os dados para a contabilidade em segundos e obtenha total transparência',
+			'Todas as faturas, transações e relatórios fiscais ficam reunidos num único lugar',
 		'100% Intellectual Property Protection': '100% de proteção da propriedade intelectual',
 		'We legally guarantee that all work produced by your contractors belongs exclusively to you':
 			'Garantimos legalmente que todo o trabalho produzido pelos seus contratados pertence exclusivamente à sua empresa',
 		'Scale with the API': 'Escale com a API',
 		'Integrate bulk payments directly into your internal systems and automate workflows programmatically':
-			'Uma solução empresarial para quem cresce rapidamente. Integre pagamentos em massa diretamente nos seus sistemas internos e automatize fluxos de trabalho programaticamente',
+			'Integre pagamentos em massa diretamente nos seus sistemas internos e automatize fluxos de trabalho programaticamente',
 		'Access to the best specialists in 150+ countries': 'Acesso aos melhores especialistas em mais de 150 países',
 		'Hunt the best specialists wherever they are without wasting time and money on registering legal entities':
 			'Encontre os melhores especialistas onde quer que estejam, sem perder tempo e dinheiro a registar entidades legais',
@@ -342,16 +348,16 @@ export const payrollSolutionNewPt = {
 			'Fornecemos soluções rápidas para qualquer questão, tanto para a empresa como para cada funcionário, a qualquer hora do dia',
 		'100% compliance with the laws': '100% de conformidade legal',
 		'We assume full responsibility for compliance with the labor code of each country, from taxes to social benefits. Our team is monitoring any legal changes':
-			'Assumimos total responsabilidade pelo cumprimento da legislação laboral de cada país — desde impostos até benefícios sociais. A nossa equipa acompanha constantemente quaisquer alterações legais',
+			'Assumimos total responsabilidade pelo cumprimento da legislação laboral de cada país',
 		'Automated payments': 'Pagamentos automatizados',
 		'Make payments in one click in any currency. The system calculates taxes and other contributions immediately':
-			'Efetue pagamentos com um clique em qualquer moeda. O sistema calcula imediatamente impostos e outras contribuições',
+			'Efetue pagamentos com um clique em qualquer moeda',
 		'Shared dashboard': 'Dashboard partilhado',
 		'Management of contracts, expenses, income, and vacations is available in one interface':
 			'A gestão de contratos, despesas, rendimentos e férias está disponível numa única interface',
 		'Garna Payroll vs Other Payroll': 'Garna Payroll vs Outro Payroll',
 		'Everything is relative, right? Take a look at the comparison table, we believe our transparency speaks louder than words. We offer, and we offer a lot, because we want to be the best':
-			'Tudo é relativo, certo? Veja a tabela comparativa — acreditamos que a nossa transparência fala mais alto do que palavras. Oferecemos muito, porque queremos ser os melhores',
+			'Tudo é relativo, certo? Veja a tabela comparativa — acreditamos que a nossa transparência fala mais alto do que palavras',
 		'Feature': 'Funcionalidade',
 		'Other Payroll': 'Outro Payroll',
 		'Geography': 'Geografia',
@@ -388,7 +394,7 @@ export const payrollSolutionNewPt = {
 		'Real-time, exportable': 'Em tempo real, exportáveis',
 		'Trusted by Those Who Build the Future': 'Escolhida por quem constrói o futuro',
 		'Find out why large companies and middle-sized businesses are switching to Garna. We set the standard for international payroll, trusted by professionals in over 150 countries':
-			'Descubra porque grandes empresas e negócios de média dimensão estão a mudar para a Garna. Definimos o padrão para payroll internacional, com a confiança de profissionais em mais de 150 países',
+			'Descubra porque grandes empresas e negócios de média dimensão estão a mudar para a Garna',
 		'"Finally, a platform that doesn\'t make me feel like a second-class citizen. Getting paid is instant, and I can withdraw to my local bank without the usual headache."':
 			'"Finalmente, uma plataforma que não me faz sentir um cidadão de segunda. Recebo na hora e consigo sacar para meu banco local sem a dor de cabeça de sempre."',
 		'Senior UX Designer': 'Senior UX Designer',

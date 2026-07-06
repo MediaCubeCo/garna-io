@@ -18,13 +18,13 @@ import { eorEn } from '../../../src/i18n/translations/eor/en';
 import { midSizeEn } from '../../../src/i18n/translations/mid-size/en';
 
 interface Props {
-	variant?: 'home' | 'enterprisePayroll';
+	variant?: 'contractorOfRecord' | 'enterprisePayroll';
 }
 
-const { variant = 'home' } = Astro.props;
+const { variant = 'contractorOfRecord' } = Astro.props;
 const isEnterprisePayroll = variant === 'enterprisePayroll';
-const heroConfig = variant === 'enterprisePayroll' ? pageHeroes.enterprisePayroll : pageHeroes.home;
-const finalCtaConfig = variant === 'enterprisePayroll' ? pageFinalCtas.enterprisePayroll : pageFinalCtas.home;
+const heroConfig = variant === 'enterprisePayroll' ? pageHeroes.enterprisePayroll : pageHeroes.contractorOfRecord;
+const finalCtaConfig = variant === 'enterprisePayroll' ? pageFinalCtas.enterprisePayroll : pageFinalCtas.contractorOfRecord;
 
 let { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
 	heroVisualMarker: '<!-- Dashboard Mockup with Dynamic Sizing -->',
@@ -1046,7 +1046,7 @@ const faqTitle = isEnterprisePayroll
 	: { text: 'Frequently asked questions', translateKey: 'faqHome.title' };
 ---
 
-<BaseLayout shell={pageShells.home} scriptsHtml={scriptsHtml}>
+<BaseLayout shell={pageShells.contractorOfRecord} scriptsHtml={scriptsHtml}>
 	<HeroSection {...heroConfig}>
 		{isEnterprisePayroll ? <EnterprisePayrollHeroVisual /> : <Fragment set:html={heroVisualHtml} />}
 	</HeroSection>
@@ -1135,8 +1135,8 @@ const faqTitle = isEnterprisePayroll
 	</script>
 	<Fragment slot="widgets">
 		<GarnaBookingWidget
-			trackingSource="payroll-solution"
-			trackingPage="payroll-solution"
+			trackingSource="contractor-of-record"
+			trackingPage="contractor-of-record"
 			titleFallback="Start your journey with Garna"
 			subtitleFallback="Fill in your details to book a demo"
 		/>
