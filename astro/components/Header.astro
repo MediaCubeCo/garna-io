@@ -958,9 +958,21 @@ const mobileLinkClass = (path: string) =>
 				? event.target.closest('a[data-localized-path]')
 				: null;
 			if (!(link instanceof HTMLAnchorElement)) return;
+			if (link.target && link.target !== '_self') return;
 
+			const url = new URL(link.href, window.location.href);
 			if (link.closest('.garna-header-dropdown')) closeHeaderDropdowns(link);
+			if (url.origin !== window.location.origin) return;
+			if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+			if (getLangFromPath(url.pathname) !== getLangFromPath(window.location.pathname)) return;
+
+			event.preventDefault();
 			closeMobileMenu();
+			navigate(url);
+		});
+
+		window.addEventListener('popstate', () => {
+			navigate(new URL(window.location.href), false);
 		});
 
 		if ('scrollRestoration' in history) {
