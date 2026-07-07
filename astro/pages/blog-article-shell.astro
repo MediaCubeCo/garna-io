@@ -198,6 +198,73 @@ const shell = {
 			margin-bottom: 24px;
 		}
 
+		.garna-blog-article-body ul,
+		.garna-blog-article-body ol {
+			display: grid;
+			gap: 10px;
+			margin: 0 0 28px;
+			padding-left: 1.35em;
+		}
+
+		.garna-blog-article-body ul {
+			list-style: disc;
+		}
+
+		.garna-blog-article-body ol {
+			list-style: decimal;
+		}
+
+		.garna-blog-article-body li::marker {
+			color: #5ea500;
+		}
+
+		.garna-blog-article-body a {
+			color: #d8f7b8;
+			text-decoration: underline;
+			text-decoration-color: rgba(94, 165, 0, .65);
+			text-underline-offset: 4px;
+		}
+
+		.garna-blog-article-body strong,
+		.garna-blog-article-body b {
+			color: #f3f4f6;
+			font-weight: 520;
+		}
+
+		.garna-blog-checklist {
+			padding-left: 0 !important;
+			list-style: none !important;
+		}
+
+		.garna-blog-checklist li {
+			display: flex;
+			align-items: flex-start;
+			gap: 12px;
+		}
+
+		.garna-blog-checklist-box {
+			display: inline-flex;
+			flex: 0 0 auto;
+			align-items: center;
+			justify-content: center;
+			width: 18px;
+			height: 18px;
+			margin-top: 9px;
+			border: 1px solid rgba(94, 165, 0, .8);
+			border-radius: 5px;
+			color: #5ea500;
+			font-size: 13px;
+			line-height: 1;
+		}
+
+		.garna-blog-divider {
+			width: 100%;
+			height: 1px;
+			margin: 36px 0;
+			border: 0;
+			background: rgba(161, 161, 170, .42);
+		}
+
 		.garna-blog-image {
 			margin: 32px 0;
 			overflow: hidden;
@@ -482,6 +549,11 @@ const shell = {
 			}
 		}
 
+		.garna-blog-article-body .garna-blog-cta,
+		.garna-blog-article-body .garna-blog-cta * {
+			text-decoration: none;
+		}
+
 		.garna-blog-cta {
 			display: block;
 			position: relative;
@@ -627,6 +699,75 @@ const shell = {
 		.garna-blog-cta:hover .garna-blog-payroll-card--blue {
 			transform: translateX(-24px) translateY(-21px) rotate(-2deg) scale(1.05);
 			box-shadow: 0 25px 50px -12px rgba(59, 130, 246, .15);
+		}
+
+		@media (max-width: 640px) {
+			.garna-blog-cta {
+				height: auto;
+				min-height: 500px;
+				margin: 36px 0 24px;
+			}
+
+			.garna-blog-cta-content {
+				flex-direction: column;
+				justify-content: flex-end;
+			}
+
+			.garna-blog-cta-copy,
+			.garna-blog-cta-visual {
+				width: 100%;
+			}
+
+			.garna-blog-cta-visual {
+				flex: 0 0 auto;
+				min-height: 258px;
+				order: 1;
+			}
+
+			.garna-blog-cta-copy {
+				order: 2;
+				padding: 22px 28px 18px;
+			}
+
+			.garna-blog-cta h2 {
+				max-width: 9em;
+				font-size: 30px;
+			}
+
+			.garna-blog-cta p {
+				max-width: 17em;
+				font-size: 16px;
+				line-height: 1.55;
+			}
+
+			.garna-blog-cta-copy > span {
+				margin-top: 22px;
+			}
+
+			.garna-blog-payroll-card {
+				width: min(78vw, 260px);
+			}
+
+			.garna-blog-payroll-card--green {
+				left: 50%;
+				top: 34px;
+				transform: translateX(-38%) rotate(3deg);
+			}
+
+			.garna-blog-payroll-card--blue {
+				right: auto;
+				left: 50%;
+				top: 126px;
+				transform: translateX(-58%) rotate(-2deg);
+			}
+
+			.garna-blog-cta:hover .garna-blog-payroll-card--green {
+				transform: translateX(-38%) rotate(3deg);
+			}
+
+			.garna-blog-cta:hover .garna-blog-payroll-card--blue {
+				transform: translateX(-58%) rotate(-2deg);
+			}
 		}
 
 		.garna-blog-payroll-card-main {

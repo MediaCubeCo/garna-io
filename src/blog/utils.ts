@@ -76,7 +76,7 @@ export function markdownToHtml(markdown: string, options: { headingIds?: boolean
 	const lines = markdown.replace(/\r\n/g, '\n').split('\n');
 	const html: string[] = [];
 	let paragraph: string[] = [];
-	let listOpen = false;
+	let listType: 'ul' | 'ol' | 'checklist' | null = null;
 	const usedHeadingIds = new Map<string, number>();
 
 	const closeParagraph = () => {
@@ -85,9 +85,21 @@ export function markdownToHtml(markdown: string, options: { headingIds?: boolean
 		paragraph = [];
 	};
 	const closeList = () => {
-		if (!listOpen) return;
-		html.push('</ul>');
-		listOpen = false;
+		if (!listType) return;
+		html.push(listType === 'ol' ? '</ol>' : '</ul>');
+		listType = null;
+	};
+	const openList = (type: 'ul' | 'ol' | 'checklist') => {
+		if (listType === type) return;
+		closeList();
+		if (type === 'ol') {
+			html.push('<ol>');
+		} else if (type === 'checklist') {
+			html.push('<ul class="garna-blog-checklist">');
+		} else {
+			html.push('<ul>');
+		}
+		listType = type;
 	};
 
 	for (const rawLine of lines) {
@@ -149,13 +161,25 @@ export function markdownToHtml(markdown: string, options: { headingIds?: boolean
 			html.push(`<h${level}${id ? ` id="${escapeAttribute(id)}"` : ''}>${inlineMarkdown(heading[2])}</h${level}>`);
 			continue;
 		}
+		const checklist = line.match(/^[-*]\s+\[([ xX])\]\s+(.+)$/);
+		if (checklist) {
+			closeParagraph();
+			openList('checklist');
+			const checked = checklist[1].toLowerCase() === 'x';
+			html.push(`<li><span class="garna-blog-checklist-box" aria-hidden="true">${checked ? '✓' : ''}</span><span>${inlineMarkdown(checklist[2])}</span></li>`);
+			continue;
+		}
+		const ordered = line.match(/^\d+\.\s+(.+)$/);
+		if (ordered) {
+			closeParagraph();
+			openList('ol');
+			html.push(`<li>${inlineMarkdown(ordered[1])}</li>`);
+			continue;
+		}
 		const bullet = line.match(/^[-*]\s+(.+)$/);
 		if (bullet) {
 			closeParagraph();
-			if (!listOpen) {
-				html.push('<ul>');
-				listOpen = true;
-			}
+			openList('ul');
 			html.push(`<li>${inlineMarkdown(bullet[1])}</li>`);
 			continue;
 		}
@@ -183,12 +207,9 @@ function stripMarkdown(value: string): string {
 
 function inlineMarkdown(value: string): string {
 	let text = escapeHtml(normalizePastedText(value));
+	text = text.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" rel="noopener noreferrer" target="_blank">$1</a>');
 	text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 	text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-	text = text.replace(
-		/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,
-		'<a href="$2" rel="noopener noreferrer" target="_blank">$1</a>'
-	);
 	return text;
 }
 

@@ -10,11 +10,22 @@ describe('Blog utilities', () => {
 	});
 
 	it('renders a safe markdown subset', () => {
-		const html = markdownToHtml('# Title\n\nHello **team**\n\n- One\n- Two');
+		const html = markdownToHtml('# Title\n\nHello **team**, *reader*, [open Garna](https://garna.io/)\n\n- One\n- Two');
 		expect(html).toContain('<h2>Title</h2>');
 		expect(html).toContain('<strong>team</strong>');
+		expect(html).toContain('<em>reader</em>');
+		expect(html).toContain('<a href="https://garna.io/" rel="noopener noreferrer" target="_blank">open Garna</a>');
 		expect(html).toContain('<ul>');
 		expect(html).toContain('<li>One</li>');
+	});
+
+	it('renders ordered and checklist markdown distinctly', () => {
+		const html = markdownToHtml('1. First\n2. Second\n\n- [x] Done\n- [ ] Waiting');
+		expect(html).toContain('<ol>');
+		expect(html).toContain('<li>First</li>');
+		expect(html).toContain('<ul class="garna-blog-checklist">');
+		expect(html).toContain('<span class="garna-blog-checklist-box" aria-hidden="true">✓</span>');
+		expect(html).toContain('<span class="garna-blog-checklist-box" aria-hidden="true"></span>');
 	});
 
 	it('renders markdown dividers as horizontal rules', () => {
