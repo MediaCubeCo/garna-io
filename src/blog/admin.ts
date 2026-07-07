@@ -45,10 +45,10 @@ export async function handleBlogAdmin(request: Request, env: BlogEnv): Promise<R
 		const author = await getAuthorById(env, id, language);
 		return author ? renderAuthorForm(env, session.email, author, { language, justSaved: url.searchParams.get('saved') === '1' }) : htmlResponse('Not found', { status: 404 });
 	}
-	if (url.pathname === '/admin/api/blog/articles' && request.method === 'POST') return saveArticle(request, env);
+	if (url.pathname === '/admin/api/blog/articles' && request.method === 'POST') return saveArticle(request, env, session.email);
 	if (url.pathname.match(/^\/admin\/api\/blog\/articles\/\d+$/) && request.method === 'POST') {
 		const id = Number(url.pathname.split('/').pop());
-		return saveArticle(request, env, id);
+		return saveArticle(request, env, session.email, id);
 	}
 	if (url.pathname === '/admin/api/blog/authors' && request.method === 'POST') return saveAuthor(request, env);
 	if (url.pathname.match(/^\/admin\/api\/blog\/authors\/\d+$/) && request.method === 'POST') {
@@ -100,6 +100,24 @@ function parseDatetimeLocal(value: string): string | null {
 	if (!value) return null;
 	const date = new Date(value);
 	return Number.isNaN(date.getTime()) ? null : date.toISOString();
+}
+
+function publicationTimeIndicator(value: string): string {
+	if (!value) return 'Publication time is not set.';
+	const date = new Date(value);
+	if (Number.isNaN(date.getTime())) return 'Publication time is invalid.';
+	const diffMs = date.getTime() - Date.now();
+	const absMs = Math.abs(diffMs);
+	const totalHours = Math.max(0, Math.floor(absMs / 3_600_000));
+	const days = Math.floor(totalHours / 24);
+	const hours = totalHours % 24;
+	const minutes = Math.floor((absMs % 3_600_000) / 60_000);
+	const parts = [];
+	if (days) parts.push(`${days}d`);
+	if (hours) parts.push(`${hours}h`);
+	if (!parts.length) parts.push(`${minutes}m`);
+	const duration = parts.join(' ');
+	return diffMs > 0 ? `Publishes in ${duration}.` : `Published ${duration} ago.`;
 }
 
 function normalizeObjectPosition(value: string): string | null {
@@ -249,9 +267,10 @@ async function renderDesignPreview(request: Request, env: BlogEnv): Promise<Resp
 	});
 }
 
-async function renderArticleForm(env: BlogEnv, email: string, article?: any, options: { justSaved?: boolean } = {}): Promise<Response> {
+async function renderArticleForm(env: BlogEnv, email: string, article?: any, options: { justSaved?: boolean; error?: string } = {}): Promise<Response> {
 	const [authors, categories, mediaAssets] = await Promise.all([listAuthors(env), listCategories(env), listMediaAssets(env)]);
-	const action = article ? `/admin/api/blog/articles/${article.id}` : '/admin/api/blog/articles';
+	const isExistingArticle = Boolean(article?.id);
+	const action = isExistingArticle ? `/admin/api/blog/articles/${article.id}` : '/admin/api/blog/articles';
 	const articleLanguage = normalizeArticleLanguage(article?.language || 'en');
 	const baseArticle = article?.id && articleLanguage !== 'en' ? await getArticleById(env, article.id, 'en') : article;
 	const translationDraftEntries = article?.id
@@ -314,6 +333,7 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 	const publishLabel = articleStatus === 'published' ? 'Unpublish' : 'Publish';
 	const lockedAttribute = isTranslationModeForForm ? 'disabled' : '';
 	const lockedGroupClass = isTranslationModeForForm ? ' is-locked' : '';
+	const publishedAtValue = toDatetimeLocalValue(article?.published_at || '');
 	const baseFaqs = placeholderArticle?.faqs || [];
 	const faqs = article?.faqs?.length ? article.faqs : [{ question: '', answer: '' }, { question: '', answer: '' }, { question: '', answer: '' }];
 	const faqFields = faqs.map((faq: any, index: number) => `<div class="faq-fields">
@@ -321,7 +341,8 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 		<label>Question<input name="faq_question[]" value="${escapeAttribute(faq.question || '')}" placeholder="${escapeAttribute(isTranslationModeForForm ? baseFaqs[index]?.question || '' : '')}" /></label>
 		<label>Answer<textarea name="faq_answer[]" placeholder="${escapeAttribute(isTranslationModeForForm ? baseFaqs[index]?.answer || '' : '')}">${escapeHtml(faq.answer || '')}</textarea></label>
 	</div>`).join('');
-	return adminShell(article ? 'Edit article' : 'New article', 'articles', email, `<form id="article-form" class="article-compose" method="post" enctype="multipart/form-data" action="${action}">
+	const errorHtml = options.error ? `<div class="form-alert" role="alert" data-form-alert>${escapeHtml(options.error)}</div>` : '<div class="form-alert is-hidden" role="alert" data-form-alert></div>';
+	return adminShell(isExistingArticle ? 'Edit article' : 'New article', 'articles', email, `<form id="article-form" class="article-compose" method="post" enctype="multipart/form-data" action="${action}">
 				<input type="hidden" name="language" value="${escapeAttribute(articleLanguage)}" />
 				${isTranslationModeForForm ? `<input type="hidden" name="slug" value="${escapeAttribute(article?.slug || '')}" />
 				<input type="hidden" name="author_id" value="${escapeAttribute(article?.author_id || '')}" />
@@ -329,9 +350,10 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 				<input type="hidden" name="status" value="${articleStatus}" />
 				${Array.from(selectedCategories).map((categoryId) => `<input type="hidden" name="category_ids" value="${escapeAttribute(categoryId)}" />`).join('')}` : ''}
 				<section class="article-canvas">
-					<section class="page-head"><h1>${article ? 'Edit article' : 'New article'}</h1><div class="language-switcher" aria-label="Article language" data-current-language="${escapeAttribute(articleLanguage)}">${languageSwitch}</div></section>
-					<input class="title-input" name="title" ${isTranslationModeForForm ? '' : 'required'} placeholder="${escapeAttribute(isTranslationModeForForm ? placeholderArticle?.title || 'Article title' : 'Article title')}" value="${escapeAttribute(article?.title || '')}" />
-					<textarea class="excerpt-input" name="excerpt" ${isTranslationModeForForm ? '' : 'required'} placeholder="${escapeAttribute(isTranslationModeForForm ? placeholderArticle?.excerpt || 'Article excerpt' : 'Article excerpt')}">${escapeHtml(article?.excerpt || '')}</textarea>
+					<section class="page-head"><h1>${isExistingArticle ? 'Edit article' : 'New article'}</h1><div class="language-switcher" aria-label="Article language" data-current-language="${escapeAttribute(articleLanguage)}">${languageSwitch}</div></section>
+					${errorHtml}
+					<input class="title-input" name="title" placeholder="${escapeAttribute(isTranslationModeForForm ? placeholderArticle?.title || 'Article title' : 'Article title')}" value="${escapeAttribute(article?.title || '')}" />
+					<textarea class="excerpt-input" name="excerpt" placeholder="${escapeAttribute(isTranslationModeForForm ? placeholderArticle?.excerpt || 'Article excerpt' : 'Article excerpt')}">${escapeHtml(article?.excerpt || '')}</textarea>
 					<div class="cover-picker" data-cover-picker data-media-assets="${escapeAttribute(mediaPayload)}">
 						<input type="hidden" name="cover_media_id" data-cover-media-id value="${escapeAttribute(selectedCoverId)}" />
 						<input type="hidden" name="current_cover_url" value="${escapeAttribute(article?.cover_url || '')}" />
@@ -416,8 +438,8 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					<h2>Publishing</h2>
 					${isTranslationModeForForm ? '<p class="locked-note">Locked for translations. Edit this in English.</p>' : ''}
 					<label>Slug<input name="slug" value="${escapeAttribute(article?.slug || '')}" ${lockedAttribute} /></label>
-					<label>Author<select name="author_id" required ${lockedAttribute}>${authorOptions}</select></label>
-					<label>Published at<input name="published_at" type="datetime-local" value="${escapeAttribute(toDatetimeLocalValue(article?.published_at || ''))}" ${lockedAttribute} /></label>
+					<label>Author<select name="author_id" ${lockedAttribute}>${authorOptions}</select></label>
+					<label>Published at<input name="published_at" type="datetime-local" value="${escapeAttribute(publishedAtValue)}" ${lockedAttribute} /><span class="time-indicator" data-publication-time-indicator>${escapeHtml(publicationTimeIndicator(publishedAtValue))}</span></label>
 					${isTranslationModeForForm ? '' : `<input type="hidden" name="status" value="${articleStatus}" />`}
 				</div>
 				<div class="settings-group${lockedGroupClass}">
@@ -470,6 +492,9 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					const source = document.getElementById('body-markdown');
 					const form = document.querySelector('.article-compose');
 					const editorHolder = document.getElementById('block-editor');
+					const formAlert = document.querySelector('[data-form-alert]');
+					const publishedAtInput = form.querySelector('input[name="published_at"]');
+					const publishedAtIndicator = document.querySelector('[data-publication-time-indicator]');
 					let isSubmitting = false;
 					const saveButton = document.querySelector('[data-save-button]');
 					const languageSwitcher = document.querySelector('.language-switcher');
@@ -507,6 +532,40 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 						button.classList.remove('is-saving');
 						button.textContent = 'Save';
 					};
+					const showFormError = (message) => {
+						if (!formAlert) return;
+						formAlert.textContent = message || 'Could not save the article.';
+						formAlert.classList.remove('is-hidden');
+						formAlert.scrollIntoView({ block: 'center', behavior: 'smooth' });
+					};
+					const clearFormError = () => {
+						if (!formAlert) return;
+						formAlert.textContent = '';
+						formAlert.classList.add('is-hidden');
+					};
+					const formatPublicationDelta = (value) => {
+						if (!value) return 'Publication time is not set.';
+						const date = new Date(value);
+						if (Number.isNaN(date.getTime())) return 'Publication time is invalid.';
+						const diffMs = date.getTime() - Date.now();
+						const absMs = Math.abs(diffMs);
+						const totalHours = Math.max(0, Math.floor(absMs / 3600000));
+						const days = Math.floor(totalHours / 24);
+						const hours = totalHours % 24;
+						const minutes = Math.floor((absMs % 3600000) / 60000);
+						const parts = [];
+						if (days) parts.push(days + 'd');
+						if (hours) parts.push(hours + 'h');
+						if (!parts.length) parts.push(minutes + 'm');
+						const duration = parts.join(' ');
+						return diffMs > 0 ? 'Publishes in ' + duration + '.' : 'Published ' + duration + ' ago.';
+					};
+					const updatePublicationIndicator = () => {
+						if (!publishedAtIndicator || !publishedAtInput) return;
+						publishedAtIndicator.textContent = formatPublicationDelta(publishedAtInput.value);
+					};
+					publishedAtInput?.addEventListener('input', updatePublicationIndicator);
+					updatePublicationIndicator();
 					const faqList = document.querySelector('[data-faq-list]');
 					const renumberFaqs = () => {
 						if (!faqList) return;
@@ -1125,12 +1184,12 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 						window.setTimeout(() => editorHolder.classList.remove('is-moving'), 260);
 					}
 				}, true);
-				form.addEventListener('submit', async (event) => {
-					if (isSubmitting) return;
-					event.preventDefault();
-					const submitter = event.submitter;
-					if (!form.reportValidity()) return;
-					try {
+					form.addEventListener('submit', async (event) => {
+						if (isSubmitting) return;
+						event.preventDefault();
+						const submitter = event.submitter;
+						clearFormError();
+						try {
 						const data = await editor.save();
 						if (isTranslationMode() && blockStructureSignature(data) !== initialBlockStructure) {
 							throw new Error('This language version can only edit existing blocks. Switch to English to add, remove, or reorder blocks.');
@@ -1151,7 +1210,7 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					} catch (error) {
 						resetSubmittingState(submitter);
 						isSubmitting = false;
-						window.alert(error?.message || 'Could not prepare the article for saving.');
+						showFormError(error?.message || 'Could not prepare the article for saving.');
 					}
 				});
 			})();
@@ -1310,7 +1369,7 @@ function renderMediaForm(email: string): Response {
 		</form>`);
 }
 
-async function saveArticle(request: Request, env: BlogEnv, id?: number): Promise<Response> {
+async function saveArticle(request: Request, env: BlogEnv, email: string, id?: number): Promise<Response> {
 	const form = await request.formData();
 	const title = String(form.get('title') || '').trim();
 	const slug = String(form.get('slug') || slugify(title)).trim();
@@ -1344,15 +1403,48 @@ async function saveArticle(request: Request, env: BlogEnv, id?: number): Promise
 		faqs: parseArticleFaqs(form),
 	};
 	if (language === 'en') {
-		validateArticle(input);
-		const articleId = await upsertArticle(env, input, id);
-		return redirect(`/admin/blog/articles/${articleId}${action === 'save' ? '?saved=1' : ''}`);
+		const validationError = validateArticle(input);
+		if (validationError) return renderArticleValidationError(env, email, input, id, validationError);
+		try {
+			const articleId = await upsertArticle(env, input, id);
+			return redirect(`/admin/blog/articles/${articleId}${action === 'save' ? '?saved=1' : ''}`);
+		} catch (error) {
+			return renderArticleValidationError(env, email, input, id, articleSaveErrorMessage(error));
+		}
 	}
-	if (!id) throw new Error('Save the English article before adding translations');
-	validateArticleTranslation(input);
-	await upsertArticleTranslation(env, id, input);
+	if (!id) return renderArticleValidationError(env, email, input, id, 'Save the English article before adding translations.');
+	const validationError = validateArticleTranslation(input);
+	if (validationError) return renderArticleValidationError(env, email, input, id, validationError);
+	try {
+		await upsertArticleTranslation(env, id, input);
+	} catch (error) {
+		return renderArticleValidationError(env, email, input, id, articleSaveErrorMessage(error));
+	}
 	const savedQuery = action === 'save' ? '&saved=1' : '';
 	return redirect(`/admin/blog/articles/${id}?lang=${language}${savedQuery}`);
+}
+
+async function renderArticleValidationError(env: BlogEnv, email: string, input: BlogArticleInput, id: number | undefined, error: string): Promise<Response> {
+	const persistedArticle = id ? await getArticleById(env, id, input.language || 'en') : null;
+	const article = {
+		...input,
+		id,
+		status: persistedArticle?.status || 'draft',
+		categories: (input.category_ids || []).map((categoryId) => ({ id: categoryId })),
+		faqs: input.faqs || [],
+	};
+	return renderArticleForm(env, email, article, { error });
+}
+
+function articleSaveErrorMessage(error: unknown): string {
+	const message = error instanceof Error ? error.message : String(error || '');
+	if (/unique/i.test(message) && /slug|articles\.slug/i.test(message)) {
+		return 'This slug is already used by another article. Choose a different slug.';
+	}
+	if (/foreign key|constraint/i.test(message) && /author/i.test(message)) {
+		return 'Choose an author before saving this article.';
+	}
+	return 'Could not save the article. Check the required fields and try again.';
 }
 
 function parseArticleFaqs(form: FormData): Array<{ question: string; answer: string }> {
@@ -1772,34 +1864,43 @@ function authorAvatarEditorScript(): string {
 	`;
 }
 
-function validateArticle(input: BlogArticleInput): void {
+function validateArticle(input: BlogArticleInput): string | null {
 	const missing: Array<[string, string | number | null | undefined]> = [
 		['title', input.title],
-		['language', input.language],
 		['slug', input.slug],
-		['excerpt', input.excerpt],
-		['body_markdown', input.body_markdown],
-		['author_id', input.author_id],
+		['description', input.excerpt],
 	];
+	if (input.status === 'published') {
+		missing.push(
+			['language', input.language],
+			['body content', input.body_markdown],
+			['author', input.author_id],
+		);
+	}
 	const missingFields = missing.filter(([, value]) => !value).map(([field]) => field);
 	if (input.status === 'published') {
 		const publishRequired: Array<[string, string | number | null | undefined]> = [
-			['cover_alt', input.cover_alt],
+			['cover alt text', input.cover_alt],
 		];
 		for (const [field, value] of publishRequired) {
 			if (!value) missingFields.push(field);
 		}
-		if ((input.faqs || []).length < 3) missingFields.push('faq_minimum_3');
+		if ((input.faqs || []).length < 3) missingFields.push('at least 3 FAQ items');
 	}
-	if (missingFields.length) throw new Error(`Missing required article fields: ${missingFields.join(', ')}`);
+	if (missingFields.length) {
+		const prefix = input.status === 'published' ? 'To publish this article, fill in' : 'To save this draft, fill in';
+		return `${prefix}: ${missingFields.join(', ')}.`;
+	}
+	return null;
 }
 
-function validateArticleTranslation(input: BlogArticleInput): void {
+function validateArticleTranslation(input: BlogArticleInput): string | null {
 	const missing: Array<[string, string | number | null | undefined]> = [
 		['language', input.language],
 	];
 	const missingFields = missing.filter(([, value]) => !value).map(([field]) => field);
-	if (missingFields.length) throw new Error(`Missing required article translation fields: ${missingFields.join(', ')}`);
+	if (missingFields.length) return `Missing required article translation fields: ${missingFields.join(', ')}.`;
+	return null;
 }
 
 function translationCompletionPercent(baseArticle: any, translation: Partial<BlogArticle> | null): number {
@@ -1877,6 +1978,8 @@ function adminHtml(title: string, body: string): Response {
 		.article-canvas { min-width: 0; width: 100%; max-width: 880px; height: 100%; overflow-y: auto; padding-top: 0; padding-bottom: 56px; }
 		.article-canvas > .page-head { position: sticky; top: 0; z-index: 5; margin: 0 0 var(--admin-sticky-gap); min-height: var(--admin-sticky-height); padding: 0; background: var(--wash); }
 		.article-canvas > .page-head h1 { font-size: 18px; line-height: 38px; font-weight: 720; }
+		.form-alert { margin: 0 0 12px; padding: 12px 14px; border: 1px solid #e7b8ad; border-radius: 7px; background: #fff4f1; color: #8f2d1d; font-size: 14px; line-height: 1.45; font-weight: 620; }
+		.form-alert.is-hidden { display: none; }
 		.language-switcher { display: inline-flex; align-items: center; gap: 4px; min-height: 38px; padding: 4px; border: 1px solid var(--line); border-radius: 7px; background: #fff; box-shadow: 0 1px 0 rgba(28,24,18,.03); }
 		.language-option { display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-width: 42px; min-height: 28px; margin: 0; padding: 0 8px; border-radius: 5px; color: #6b665d; cursor: pointer; font-size: 12px; font-weight: 680; letter-spacing: 0; text-decoration: none; user-select: none; }
 		.language-option span { display: inline-flex; align-items: center; justify-content: center; height: 100%; }
@@ -2014,6 +2117,7 @@ function adminHtml(title: string, body: string): Response {
 		label { display: grid; gap: 7px; color: #555; font-size: 14px; font-weight: 560; }
 		input, textarea, select { width: 100%; background: #fff; color: var(--ink); border: 1px solid #d9d6ce; border-radius: 7px; padding: 10px 12px; font: inherit; }
 		input:focus, textarea:focus, select:focus { outline: 2px solid rgba(72,124,31,.22); border-color: var(--accent); }
+		.time-indicator { display: block; margin-top: -2px; color: var(--muted); font-size: 12px; line-height: 1.35; font-weight: 560; }
 		textarea { min-height: 96px; } textarea.body { min-height: 420px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
 		.seo-setting { display: grid; gap: 8px; margin-top: 12px; }
 		.seo-setting-head { display: inline-flex; align-items: center; gap: 8px; color: #4f4a42; font-size: 13px; font-weight: 650; }

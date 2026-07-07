@@ -738,6 +738,23 @@ const shell = {
 				if (!headings.length) return;
 
 				let ticking = false;
+				const scrollToHeading = (id, behavior = 'smooth') => {
+					const target = document.getElementById(id);
+					if (!target) return false;
+					const siteHeader = document.querySelector('.garna-site-header');
+					const headerOffset = siteHeader ? siteHeader.getBoundingClientRect().height + 18 : 88;
+					const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+					window.scrollTo({ top: Math.max(0, top), behavior });
+					return true;
+				};
+				const scrollToCurrentHash = (behavior = 'auto') => {
+					if (!window.location.hash) return;
+					const hashId = decodeURIComponent(window.location.hash.slice(1));
+					if (hashId && headings.some((heading) => heading.id === hashId)) {
+						scrollToHeading(hashId, behavior);
+						requestUpdate();
+					}
+				};
 
 				const setActive = () => {
 					ticking = false;
@@ -774,6 +791,32 @@ const shell = {
 				window.addEventListener('scroll', requestUpdate, { passive: true });
 				window.addEventListener('resize', requestUpdate);
 				window.addEventListener('hashchange', requestUpdate);
+
+				if (!window.__garnaBlogTocClickBound) {
+					window.__garnaBlogTocClickBound = true;
+					document.addEventListener('click', (event) => {
+						if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+						const link = event.target instanceof Element ? event.target.closest('.garna-blog-toc-link[data-heading-id]') : null;
+						if (!(link instanceof HTMLAnchorElement)) return;
+						const id = link.getAttribute('data-heading-id');
+						if (!id || !document.getElementById(id)) return;
+						event.preventDefault();
+						if (window.location.hash !== `#${id}`) {
+							window.history.pushState(null, '', `#${id}`);
+						}
+						scrollToHeading(id);
+						window.dispatchEvent(new Event('scroll'));
+					}, true);
+				}
+
+				window.requestAnimationFrame(() => window.requestAnimationFrame(() => scrollToCurrentHash('auto')));
+				window.addEventListener('garna:page-mounted', () => {
+					window.requestAnimationFrame(() => {
+						window.requestAnimationFrame(() => {
+							window.requestAnimationFrame(() => scrollToCurrentHash('auto'));
+						});
+					});
+				}, { once: true });
 			};
 
 			if (document.readyState === 'loading') {

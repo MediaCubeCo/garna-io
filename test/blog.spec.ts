@@ -23,6 +23,15 @@ describe('Blog utilities', () => {
 		expect(html).not.toContain('<p>---</p>');
 	});
 
+	it('normalizes pasted non-breaking spaces in article text', () => {
+		const html = markdownToHtml('Use systems such as&nbsp;EFTPS.\n\nKeep A\u00a0B and C&#160;D readable.');
+		expect(html).toContain('such as EFTPS');
+		expect(html).toContain('A B');
+		expect(html).toContain('C D');
+		expect(html).not.toContain('&amp;nbsp;');
+		expect(html).not.toContain('&nbsp;');
+	});
+
 	it('renders rich blog blocks for images, YouTube, and CTA', () => {
 		const html = markdownToHtml('![Cover alt](/blog-media/cover.jpg)\n\n{{youtube:https://www.youtube.com/watch?v=dQw4w9WgXcQ}}\n\n{{cta:{"title":"Hire globally","text":"Run payroll in one place.","button":"Book a demo","url":"https://garna.io/"}}}\n\n{{tldr:{"title":"TLDR","items":["First takeaway","Second takeaway"]}}}');
 		expect(html).toContain('class="garna-blog-image"');

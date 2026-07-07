@@ -1,10 +1,8 @@
 ---
 import HeroSection from '../components/HeroSection.astro';
 import FAQSection from '../components/FAQSection.astro';
-import FinalCTASection from '../components/FinalCTASection.astro';
 import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
@@ -63,7 +61,6 @@ const eorFaqItems = [
 		class="bg-[#020202] py-24"
 		containerClass="garna-container"
 	/>
-	<FinalCTASection {...pageFinalCtas.eor} />
 	<Fragment slot="widgets">
 		<GarnaBookingWidget
 			trackingSource="eor"

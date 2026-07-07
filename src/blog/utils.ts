@@ -14,6 +14,13 @@ export function escapeAttribute(value: unknown): string {
 	return escapeHtml(value).replace(/`/g, '&#96;');
 }
 
+function normalizePastedText(value: string): string {
+	return value
+		.replace(/&(?:nbsp|#160|#x0*a0);/gi, ' ')
+		.replace(/[\u00a0\u1680\u180e\u2000-\u200a\u202f\u205f\u3000]/g, ' ')
+		.replace(/[\u200b\u200c\u200d\ufeff]/g, '');
+}
+
 export function slugify(value: string): string {
 	return value
 		.toLowerCase()
@@ -168,14 +175,14 @@ function uniqueHeadingId(value: string, used: Map<string, number>): string {
 }
 
 function stripMarkdown(value: string): string {
-	return value
+	return normalizePastedText(value)
 		.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
 		.replace(/[*_`~]/g, '')
 		.trim();
 }
 
 function inlineMarkdown(value: string): string {
-	let text = escapeHtml(value);
+	let text = escapeHtml(normalizePastedText(value));
 	text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 	text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
 	text = text.replace(
