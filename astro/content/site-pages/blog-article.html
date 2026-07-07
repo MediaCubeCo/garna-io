@@ -80,7 +80,7 @@
 </section>
 
     <!-- AI Matching Feature -->
-    <section class="bg-[#050505]">
+    <section>
   <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
     <a href="#" class="flex flex-col bg-[#0A0A0A] border border-white/5 rounded-3xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.5)] group hover:shadow-[0_0_30px_rgba(94,165,0,0.15)] hover:border-[#5ea500]/30 hover:-translate-y-1 transition-all duration-500 relative outline-none min-h-[250px] sm:min-h-[300px] lg:min-h-[500px]">
 
@@ -101,85 +101,131 @@
 
 </a>
   </div>
-</section><section class="lg:pt-16 lg:pb-16 bg-[#050505] pt-16 pb-8 relative">
+</section><section class="lg:pt-16 lg:pb-16 pt-16 pb-8 relative">
   <div class="flex flex-col lg:flex-row lg:gap-8 xl:gap-20 font-manrope w-full max-w-7xl z-10 mr-auto ml-auto pr-6 pl-6 relative gap-x-8 gap-y-8 items-start justify-center">
 
     <!-- Table of Contents Sidebar (Desktop) -->
-    <aside class="w-full lg:w-[220px] shrink-0 lg:sticky lg:top-20 hidden lg:block">
+    <aside class="w-full lg:w-[220px] shrink-0 lg:sticky lg:top-20 hidden lg:block" data-blog-toc>
       <h3 class="uppercase text-xs font-thin text-white tracking-widest mb-5">Table of Contents</h3>
+      <style>
+        [data-blog-toc] [data-toc-indicator] {
+          background: rgba(255, 255, 255, 0.28);
+          transform: scaleY(0);
+        }
+
+        [data-blog-toc] [data-toc-link]:hover [data-toc-indicator] {
+          transform: scaleY(1);
+        }
+
+        [data-blog-toc] [data-toc-link][aria-current="true"] [data-toc-indicator] {
+          background: #5ea500;
+          transform: scaleY(1);
+        }
+      </style>
       <ul class="flex flex-col text-base text-gray-500 font-thin border-l border-white/10 relative">
         <li class="">
-          <a href="#real-time-insights" class="text-white hover:text-white transition-colors relative block py-2.5 pl-5 group">
-            <span class="absolute left-[-1px] top-0 w-[2px] h-full bg-[#5ea500] scale-y-100 origin-top transition-transform duration-300 group-hover:scale-y-100"></span>
+          <a href="#real-time-insights" class="text-white hover:text-white transition-colors relative block py-2.5 pl-5 group" data-toc-link>
+            <span class="absolute left-[-1px] top-0 w-[2px] h-full origin-top transition-transform duration-300" data-toc-indicator></span>
             1. Real-Time Insights
           </a>
         </li>
         <li class="">
-          <a href="#scalability-flexibility" class="hover:text-white transition-colors relative block py-2.5 pl-5 group">
-            <span class="absolute left-[-1px] top-0 w-[2px] h-full bg-[#5ea500] scale-y-0 origin-top transition-transform duration-300 group-hover:scale-y-100"></span>
+          <a href="#scalability-flexibility" class="hover:text-white transition-colors relative block py-2.5 pl-5 group" data-toc-link>
+            <span class="absolute left-[-1px] top-0 w-[2px] h-full origin-top transition-transform duration-300" data-toc-indicator></span>
             2. Scalability and Flexibility
           </a>
         </li>
         <li class="">
-          <a href="#cost-effectiveness" class="hover:text-white transition-colors relative block py-2.5 pl-5 group">
-            <span class="absolute left-[-1px] top-0 w-[2px] h-full bg-[#5ea500] scale-y-0 origin-top transition-transform duration-300 group-hover:scale-y-100"></span>
+          <a href="#cost-effectiveness" class="hover:text-white transition-colors relative block py-2.5 pl-5 group" data-toc-link>
+            <span class="absolute left-[-1px] top-0 w-[2px] h-full origin-top transition-transform duration-300" data-toc-indicator></span>
             3. Cost-Effectiveness
           </a>
         </li>
       </ul>
       <script>
         (function() {
-            const initTocObserver = () => {
-                const aside = document.querySelector('aside[data-element-id="aura-empb9cnnk8hr1m1o8"]');
-                if (!aside) return;
-                const tocLinks = aside.querySelectorAll('a');
-                if (!tocLinks.length) return;
+          const initBlogToc = () => {
+            const links = Array.from(document.querySelectorAll('[data-toc-link]'));
+            const headings = links
+              .map((link) => {
+                const href = link.getAttribute('href');
+                if (!href || !href.startsWith('#')) return null;
+                const section = document.getElementById(href.slice(1));
+                return section ? { link, section } : null;
+              })
+              .filter(Boolean);
 
-                const observer = new IntersectionObserver((entries) => {
-                    let activeId = null;
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            activeId = entry.target.id;
-                        }
-                    });
+            if (!headings.length) return;
 
-                    if (activeId) {
-                        tocLinks.forEach(link => {
-                            const span = link.querySelector('span');
-                            if (link.getAttribute('href') === `#${activeId}`) {
-                                link.classList.add('text-white');
-                                if (span) {
-                                    span.classList.remove('scale-y-0');
-                                    span.classList.add('scale-y-100');
-                                }
-                            } else {
-                                link.classList.remove('text-white');
-                                if (span) {
-                                    span.classList.add('scale-y-0');
-                                    span.classList.remove('scale-y-100');
-                                }
-                            }
-                        });
-                    }
-                }, { rootMargin: "-10% 0px -50% 0px", threshold: 0 });
+            const setActive = (activeId) => {
+              links.forEach((link) => {
+                const isActive = link.getAttribute('href') === `#${activeId}`;
+                const indicator = link.querySelector('[data-toc-indicator]');
 
-                tocLinks.forEach(link => {
-                    const href = link.getAttribute('href');
-                    if(href && href.startsWith('#')) {
-                        const targetId = href.substring(1);
-                        const targetElement = document.getElementById(targetId);
-                        if (targetElement) {
-                            observer.observe(targetElement);
-                        }
-                    }
-                });
+                link.classList.toggle('text-white', isActive);
+                link.classList.toggle('text-gray-500', !isActive);
+                link.setAttribute('aria-current', isActive ? 'true' : 'false');
+              });
             };
 
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initTocObserver);
-            } else {
-                setTimeout(initTocObserver, 100);
-            }
+            const updateActive = () => {
+              const activationLine = 160;
+              let activeId = headings[0].section.id;
+
+              headings.forEach(({ section }) => {
+                if (section.getBoundingClientRect().top <= activationLine) {
+                  activeId = section.id;
+                }
+              });
+
+              setActive(activeId);
+            };
+
+            let ticking = false;
+            const requestUpdate = () => {
+              if (ticking) return;
+              ticking = true;
+              window.requestAnimationFrame(() => {
+                updateActive();
+                ticking = false;
+              });
+            };
+
+            updateActive();
+
+            links.forEach((link) => {
+              if (link.dataset.tocClickInitialized === 'true') return;
+              link.dataset.tocClickInitialized = 'true';
+
+              link.addEventListener('click', (event) => {
+                const href = link.getAttribute('href');
+                if (!href || !href.startsWith('#')) return;
+                const targetId = href.slice(1);
+                const target = document.getElementById(targetId);
+                if (!target) return;
+
+                event.preventDefault();
+                setActive(targetId);
+
+                const headerOffset = 112;
+                const targetTop = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                window.history.pushState(null, '', href);
+                window.scrollTo({
+                  top: Math.max(targetTop, 0),
+                  behavior: 'smooth',
+                });
+              });
+            });
+
+            window.addEventListener('scroll', requestUpdate, { passive: true });
+            window.addEventListener('resize', requestUpdate);
+          };
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initBlogToc);
+          } else {
+            initBlogToc();
+          }
         })();
       </script>
     </aside>
@@ -202,14 +248,14 @@
         </h3>
         <ul class="flex flex-col text-base text-gray-400 font-thin gap-3">
           <li class="">
-            <a href="#real-time-insights" class="hover:text-[#5ea500] transition-colors">1. Real-Time Insights</a>
+            <a href="#real-time-insights" class="hover:text-[#5ea500] transition-colors" data-toc-link>1. Real-Time Insights</a>
           </li>
           <li class="">
-            <a href="#scalability-flexibility" class="hover:text-[#5ea500] transition-colors">2. Scalability and
+            <a href="#scalability-flexibility" class="hover:text-[#5ea500] transition-colors" data-toc-link>2. Scalability and
               Flexibility</a>
           </li>
           <li class="">
-            <a href="#cost-effectiveness" class="hover:text-[#5ea500] transition-colors">3. Cost-Effectiveness</a>
+            <a href="#cost-effectiveness" class="hover:text-[#5ea500] transition-colors" data-toc-link>3. Cost-Effectiveness</a>
           </li>
         </ul>
       </div>
@@ -511,7 +557,7 @@
         </div>
 
         <!-- Single Clean Card -->
-        <div class="flex flex-col transition-all duration-500 group-hover:border-[#5ea500]/30 group-hover:shadow-[0_8px_25px_rgba(94,165,0,0.1)] overflow-hidden bg-center w-full h-full bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f0f31e7a-67b4-4cbd-918d-d607080ee39f_3840w.png)] bg-cover z-20 border-white/10 border rounded-xl relative shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md">
+        <div class="flex flex-col transition-all duration-500 group-hover:border-[#5ea500]/30 group-hover:shadow-[0_8px_25px_rgba(94,165,0,0.1)] overflow-hidden bg-center w-full h-full bg-[url(/pages/blog/assets/21-f0f31e7a-67b4-4cbd-918d-d607080ee39f_3840w.png)] bg-cover z-20 border-white/10 border rounded-xl relative shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md">
             
             
             
@@ -546,13 +592,13 @@
     </aside>
 
   </div>
-</section><section class="bg-[#050505] pt-16 pb-16">
+</section><section class="pt-16 pb-16">
   <div class="max-w-7xl mx-auto pr-6 pl-6">
   <div class="flex flex-col gap-y-12 gap-x-5 md:flex-row lg:gap-20">
   <div class="md:w-1/3">
     <h2 class="md:text-4xl text-3xl font-normal text-white tracking-tight mb-4">Frequently Asked Questions</h2>
     <p class="text-lg font-light text-gray-400 mb-8">Can't find the answer you're looking for? Reach out to our team.</p>
-    <a href="#" class="inline-flex items-center justify-center hover:bg-[#5ea500] hover:text-white hover:border-[#5ea500] transition-all duration-300 group font-light text-white border-white/10 border rounded-xl pt-3 pr-6 pb-3 pl-6 gap-2">Р РЋontact Team<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform w-[18px] h-[18px]" data-icon-replaced="true" style="width: 18px; height: 18px; color: rgb(255, 255, 255)"><path d="M5 12h14" class=""></path><path d="m12 5 7 7-7 7" class=""></path></svg></a>
+    <a href="#" class="inline-flex items-center justify-center hover:bg-[#5ea500] hover:text-white hover:border-[#5ea500] transition-all duration-300 group font-light text-white border-white/10 border rounded-xl pt-3 pr-6 pb-3 pl-6 gap-2">Contact Team<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform w-[18px] h-[18px]" data-icon-replaced="true" style="width: 18px; height: 18px; color: rgb(255, 255, 255)"><path d="M5 12h14" class=""></path><path d="m12 5 7 7-7 7" class=""></path></svg></a>
   </div>
 
   <div class="md:w-2/3 flex flex-col gap-4">

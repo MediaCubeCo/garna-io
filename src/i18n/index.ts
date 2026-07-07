@@ -7,6 +7,7 @@ import { whiteLabelTranslations } from './translations/white-label';
 import { eorTranslations } from './translations/eor';
 import { payrollSmallBusinessTranslations } from './translations/payroll-small-business';
 import { payrollSolutionNewTranslations } from './translations/payroll-solution-new';
+import { blogArticleTranslations, blogAuthorTranslations, blogTranslations } from './translations/blog';
 
 export type PageTranslations = typeof homeTranslations.en;
 
@@ -19,7 +20,10 @@ type AnyPageTranslations =
 	| typeof whiteLabelTranslations.en
 	| typeof eorTranslations.en
 	| typeof payrollSmallBusinessTranslations.en
-	| typeof payrollSolutionNewTranslations.en;
+	| typeof payrollSolutionNewTranslations.en
+	| typeof blogTranslations.en
+	| typeof blogAuthorTranslations.en
+	| typeof blogArticleTranslations.en;
 
 const translations = {
 	home: homeTranslations,
@@ -32,13 +36,9 @@ const translations = {
 	'employer-of-record': eorTranslations,
 	'payroll-small-business': payrollSmallBusinessTranslations,
 	'payroll-solution-new': payrollSolutionNewTranslations,
-	blog: {
-		en: {
-			meta: {},
-			footer: homeTranslations.en.footer,
-			bookingWidget: homeTranslations.en.bookingWidget,
-		},
-	},
+	blog: blogTranslations,
+	'blog-author': blogAuthorTranslations,
+	'blog-article': blogArticleTranslations,
 } as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
 export function getPageTranslations(pageName: string, locale: string): AnyPageTranslations {

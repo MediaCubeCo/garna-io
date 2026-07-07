@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import { pageShells } from '../content/page-shells';
+
+const shell = {
+	...pageShells.blog,
+	title: '%%BLOG_PAGE_TITLE%%',
+	description: '%%BLOG_PAGE_DESCRIPTION%%',
+	ogImage: '%%BLOG_OG_IMAGE%%',
+	headExtra: '%%BLOG_DYNAMIC_HEAD%%',
+};
+
+const blogHero = {
+	class: 'flex flex-col w-full pt-24 md:pt-32 pb-16 md:pb-24 relative justify-center',
+	containerClass:
+		'flex flex-col md:pl-6 md:pr-6 md:pt-8 w-full max-w-7xl z-10 mr-auto ml-auto pt-12 pr-6 pl-6 relative items-center',
+	contentClass: 'flex flex-col text-center max-w-5xl z-10 mb-12 relative items-center',
+	titleClass:
+		'leading-none md:text-7xl lg:text-[88px] text-6xl font-light text-white tracking-tight font-manrope mb-6',
+	descriptionClass:
+		'text-xl text-gray-400 tracking-tight font-extralight text-center max-w-5xl mr-auto ml-auto',
+	title: [{ text: 'Garna Insights Hub', translateKey: 'blog.hero.title' }],
+	description:
+		'Dive into the world of expert insights on global hiring, payroll, and workforce management and stay one step ahead. Check out our practical guides, industry trends, and international employment updates',
+	descriptionTranslateKey: 'blog.hero.description',
+	tone: 'neutral',
+};
+
+---
+
+<BaseLayout shell={shell}>
+	<HeroSection {...blogHero}>
+		<div class="w-full relative z-10 flex justify-center">
+			<div class="flex flex-wrap md:flex-nowrap justify-center overflow-x-hidden md:overflow-x-auto no-scrollbar snap-x max-w-full pr-4 pl-4 gap-x-2 gap-y-2 items-center" data-blog-category-filters>
+				%%BLOG_CATEGORY_FILTERS%%
+			</div>
+		</div>
+	</HeroSection>
+
+	<div data-blog-index-content>
+		%%BLOG_FEATURED_ARTICLE%%
+
+		%%BLOG_CTA_BLOCK%%
+
+		<section class="lg:pt-16 lg:pb-16 pt-8 pb-8 relative">
+			<div class="z-10 font-manrope max-w-7xl mx-auto px-6 relative w-full">
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full gap-x-6 gap-y-6">
+					%%BLOG_ARTICLE_CARDS%%
+				</div>
+				%%BLOG_PAGINATION%%
+			</div>
+		</section>
+	</div>
+
+	<script>
+		(() => {
+			const getContent = () => document.querySelector('[data-blog-index-content]');
+			const getFilters = () => document.querySelector('[data-blog-category-filters]');
+			const isBlogCategoryUrl = (url) => url.origin === window.location.origin && url.pathname.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, '');
+			const replaceBlogContent = async (url, pushState = true) => {
+				const content = getContent();
+				const filters = getFilters();
+				if (!content || !filters) return false;
+				content.setAttribute('aria-busy', 'true');
+				try {
+					const response = await fetch(url.href, {
+						headers: { 'X-Requested-With': 'fetch' },
+						credentials: 'same-origin',
+					});
+					if (!response.ok) return false;
+					const html = await response.text();
+					const nextDocument = new DOMParser().parseFromString(html, 'text/html');
+					const nextContent = nextDocument.querySelector('[data-blog-index-content]');
+					const nextFilters = nextDocument.querySelector('[data-blog-category-filters]');
+					if (!nextContent || !nextFilters) return false;
+					content.innerHTML = nextContent.innerHTML;
+					filters.innerHTML = nextFilters.innerHTML;
+					document.title = nextDocument.title || document.title;
+					if (pushState) window.history.pushState({ blogCategory: true }, '', url.href);
+					return true;
+				} finally {
+					content.removeAttribute('aria-busy');
+				}
+			};
+			document.addEventListener('click', async (event) => {
+				const link = event.target instanceof Element ? event.target.closest('[data-blog-category-link]') : null;
+				if (!(link instanceof HTMLAnchorElement)) return;
+				const url = new URL(link.href, window.location.href);
+				if (!isBlogCategoryUrl(url)) return;
+				event.preventDefault();
+				const updated = await replaceBlogContent(url);
+				if (!updated) window.location.href = link.href;
+			});
+			window.addEventListener('popstate', () => {
+				replaceBlogContent(new URL(window.location.href), false).catch(() => {
+					window.location.reload();
+				});
+			});
+		})();
+	</script>
+</BaseLayout>

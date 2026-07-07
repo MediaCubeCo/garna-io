@@ -1,9 +1,240 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
 import { pageShells } from '../content/page-shells';
 import rawContentHtml from '../content/site-pages/blog-article.html?raw';
+
+const articleContentHtml = rawContentHtml.replace(
+	/<!-- Hero Section -->[\s\S]*?<\/section>\s*(?=\s*<!-- AI Matching Feature -->)/,
+	''
+).replace(
+	/<section class="pt-16 pb-16">\s*<div class="max-w-7xl mx-auto pr-6 pl-6">[\s\S]*?<\/section>\s*(?=\s*<!-- Job Board -->)/,
+	''
+);
+
+const articleHero = {
+	class: 'flex flex-col md:pt-32 md:pb-16 w-full pt-6 pb-4 relative justify-center',
+	containerClass:
+		'flex flex-col md:pl-6 md:pr-6 md:pt-8 md:pb-0 w-full max-w-7xl z-10 mr-auto ml-auto pt-24 pb-8 pr-6 pl-6 relative items-center',
+	contentClass: 'flex flex-col text-center z-10 relative items-center w-full max-w-4xl mr-auto ml-auto',
+	titleClass: 'leading-tight text-4xl md:text-5xl text-white tracking-tight font-manrope mb-8',
+	descriptionClass: 'leading-relaxed text-lg font-extralight text-gray-400 font-manrope pb-12',
+	title: [
+		{
+			text: 'Breaking Down Complexity in Life Science Web Applications',
+			translateKey: 'blogArticle.hero.title',
+		},
+	],
+	description:
+		'Exploring architectural patterns and frontend strategies to build scalable, high-performance web tools for genomic data analysis and research collaboration',
+	descriptionTranslateKey: 'blogArticle.hero.description',
+	tone: 'neutral',
+};
+
+const articleFaqItems = [
+	{
+		question: 'What are the main features of the platform?',
+		answer:
+			'Our platform offers advanced analytics, seamless integrations with your favorite tools, real-time collaboration features, and enterprise-grade security. Everything is designed to help your team work more efficiently and scale without friction.',
+		questionTranslateKey: 'blogArticle.faq.items.q1.question',
+		answerTranslateKey: 'blogArticle.faq.items.q1.answer',
+	},
+	{
+		question: 'How does the pricing structure work?',
+		answer:
+			'We offer transparent, tiered pricing based on the number of active users and features required. There are no hidden fees, and you can switch plans or cancel at any time. Annual subscriptions come with a 20% discount.',
+		questionTranslateKey: 'blogArticle.faq.items.q2.question',
+		answerTranslateKey: 'blogArticle.faq.items.q2.answer',
+	},
+	{
+		question: 'Is it easy to migrate from another provider?',
+		answer:
+			'Yes! We provide dedicated migration specialists for all new accounts. We support automated imports from major platforms, and our team will handle the heavy lifting to ensure your historical data is transferred accurately and securely.',
+		questionTranslateKey: 'blogArticle.faq.items.q3.question',
+		answerTranslateKey: 'blogArticle.faq.items.q3.answer',
+	},
+	{
+		question: 'What level of support do you provide?',
+		answer:
+			'All plans include 24/7 email support and access to our comprehensive knowledge base. Pro and Enterprise plans include priority live chat, and Enterprise plans come with a dedicated Customer Success Manager and phone support.',
+		questionTranslateKey: 'blogArticle.faq.items.q4.question',
+		answerTranslateKey: 'blogArticle.faq.items.q4.answer',
+	},
+];
 ---
 
 <BaseLayout shell={pageShells.blogArticle}>
-	<Fragment set:html={rawContentHtml} />
+	<HeroSection {...articleHero}>
+		<div slot="before-title" class="flex flex-wrap items-center justify-center gap-3 mb-6">
+			<span class="text-[#5ea500] text-xs font-light uppercase tracking-wider bg-[#5ea500]/10 px-3 py-1 rounded-full border border-[#5ea500]/20" data-translate="blogArticle.hero.category">payroll</span>
+			<span class="w-1 h-1 rounded-full bg-gray-600 hidden sm:block"></span>
+			<span class="text-gray-400 text-sm font-thin" data-translate="blogArticle.hero.date">October 24, 2023</span>
+			<span class="w-1 h-1 rounded-full bg-gray-600 hidden sm:block"></span>
+			<span class="text-gray-400 text-sm font-thin flex items-center gap-1.5">
+				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+				<span data-translate="blogArticle.hero.readTime">6 min read</span>
+			</span>
+		</div>
+
+		<div class="flex flex-col md:flex-row gap-6 w-full max-w-4xl border-white/10 border-t pt-8 gap-x-6 gap-y-6 items-center justify-between">
+			<div class="flex items-center gap-4 text-left">
+				<img src="/pages/blog/assets/12-photo-1438761681033-6461ffad8d80.jpg" alt="Dr. Emily Chen" class="w-14 h-14 rounded-full border border-white/20 object-cover" data-translate-alt="blogArticle.hero.authorAlt">
+				<div>
+					<p class="text-white text-base font-extralight font-manrope tracking-tight" data-translate="blogArticle.hero.authorName">Dr. Emily Chen</p>
+					<p class="text-gray-400 text-sm font-thin font-manrope" data-translate="blogArticle.hero.authorRole">Lead Software Architect</p>
+				</div>
+			</div>
+
+			<div class="flex gap-3 gap-x-3 gap-y-3 items-center">
+				<span class="text-gray-400 text-sm font-thin font-manrope" data-translate="blogArticle.hero.shareLabel">Share this article:</span>
+				<button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" aria-label="Share on X">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="w-4 h-4">
+						<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path>
+					</svg>
+				</button>
+				<button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" aria-label="Share on LinkedIn">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 lucide lucide-linkedin">
+						<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+						<rect width="4" height="12" x="2" y="9"></rect>
+						<circle cx="4" cy="4" r="2"></circle>
+					</svg>
+				</button>
+				<button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" aria-label="Copy article link">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 lucide lucide-link">
+						<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+						<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+					</svg>
+				</button>
+			</div>
+		</div>
+	</HeroSection>
+	<Fragment set:html={articleContentHtml} />
+	<section class="bg-[#050505] pt-16 pb-16" data-blog-article-faq>
+		<div class="max-w-7xl mx-auto pr-6 pl-6">
+			<div class="flex flex-col gap-y-12 gap-x-5 md:flex-row lg:gap-20">
+				<div class="md:w-1/3">
+					<h2 class="md:text-4xl text-3xl font-normal text-white tracking-tight mb-4" data-translate="blogArticle.faq.title">
+						Frequently Asked Questions
+					</h2>
+					<p class="text-lg font-light text-gray-400 mb-8" data-translate="blogArticle.faq.subtitle">
+						Can't find the answer you're looking for? Reach out to our team.
+					</p>
+					<a href="#" class="inline-flex items-center justify-center hover:bg-[#5ea500] hover:text-white hover:border-[#5ea500] transition-all duration-300 group font-light text-white border-white/10 border rounded-xl pt-3 pr-6 pb-3 pl-6 gap-2">
+						<span data-translate="blogArticle.faq.contactCta">Contact Team</span>
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform w-[18px] h-[18px]" aria-hidden="true">
+							<path d="M5 12h14"></path>
+							<path d="m12 5 7 7-7 7"></path>
+						</svg>
+					</a>
+				</div>
+
+				<div class="md:w-2/3 flex flex-col gap-4" data-blog-article-faq-list>
+					{articleFaqItems.map((item) => (
+						<details class="group bg-[#0A0A0A] border border-white/5 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden hover:border-[#5ea500]/30 transition-colors duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]" data-blog-article-faq-item data-state="closed">
+							<summary class="flex items-center justify-between p-6 cursor-pointer text-white font-medium outline-none" aria-expanded="false">
+								<span class="text-lg font-light" data-translate={item.questionTranslateKey}>{item.question}</span>
+								<span class="transition-transform duration-300 text-white/50 flex-shrink-0 ml-4 bg-white/5 w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-[#5ea500]/10" data-blog-article-faq-icon>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+										<path d="m6 9 6 6 6-6"></path>
+									</svg>
+								</span>
+							</summary>
+							<div class="overflow-hidden transition-[height] duration-300 ease-out" data-blog-article-faq-panel>
+								<div class="px-6 pb-6 text-gray-400 leading-relaxed font-thin" data-translate={item.answerTranslateKey}>
+									{item.answer}
+								</div>
+							</div>
+						</details>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+	<style>
+		[data-blog-article-faq-icon] {
+			transform: rotate(0deg);
+		}
+
+		[data-blog-article-faq-item][data-state="open"] [data-blog-article-faq-icon] {
+			color: #5ea500;
+			transform: rotate(180deg);
+		}
+	</style>
+	<script>
+		function initializeBlogArticleFaq() {
+			document.querySelectorAll('[data-blog-article-faq-item]').forEach((detail) => {
+				if (detail.dataset.blogArticleFaqInitialized === 'true') return;
+				detail.dataset.blogArticleFaqInitialized = 'true';
+
+				const summary = detail.querySelector('summary');
+				const panel = detail.querySelector('[data-blog-article-faq-panel]');
+				const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+				const syncState = () => {
+					detail.dataset.state = detail.open ? 'open' : 'closed';
+					summary?.setAttribute('aria-expanded', detail.open ? 'true' : 'false');
+				};
+				const openDetail = () => {
+					detail.open = true;
+					syncState();
+					if (!panel) return;
+					if (prefersReducedMotion) {
+						panel.style.height = 'auto';
+						return;
+					}
+
+					panel.style.height = '0px';
+					window.requestAnimationFrame(() => {
+						panel.style.height = `${panel.scrollHeight}px`;
+					});
+
+					const onEnd = (event) => {
+						if (event.propertyName !== 'height') return;
+						panel.style.height = 'auto';
+						panel.removeEventListener('transitionend', onEnd);
+					};
+					panel.addEventListener('transitionend', onEnd);
+				};
+				const closeDetail = () => {
+					detail.dataset.state = 'closed';
+					summary?.setAttribute('aria-expanded', 'false');
+					if (!panel) {
+						detail.open = false;
+						return;
+					}
+					if (prefersReducedMotion) {
+						panel.style.height = '0px';
+						detail.open = false;
+						return;
+					}
+
+					panel.style.height = `${panel.scrollHeight}px`;
+					window.requestAnimationFrame(() => {
+						panel.style.height = '0px';
+					});
+
+					const onEnd = (event) => {
+						if (event.propertyName !== 'height') return;
+						detail.open = false;
+						panel.removeEventListener('transitionend', onEnd);
+					};
+					panel.addEventListener('transitionend', onEnd);
+				};
+
+				syncState();
+				if (panel) panel.style.height = detail.open ? 'auto' : '0px';
+				summary?.addEventListener('click', (event) => {
+					event.preventDefault();
+					if (detail.open) {
+						closeDetail();
+					} else {
+						openDetail();
+					}
+				});
+			});
+		}
+
+		initializeBlogArticleFaq();
+		document.addEventListener('astro:page-load', initializeBlogArticleFaq);
+		window.addEventListener('garna:page-content-updated', initializeBlogArticleFaq);
+	</script>
 </BaseLayout>

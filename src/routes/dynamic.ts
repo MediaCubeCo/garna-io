@@ -83,8 +83,8 @@ const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'payroll-solution-new': 'payroll-solution-new',
 	'employer-of-record': 'eor',
 	blog: 'blog',
-	'blog-author': 'blog',
-	'blog-article': 'blog',
+	'blog-author': 'blog-author',
+	'blog-article': 'blog-article',
 };
 
 async function serveStaticPage(

@@ -11,30 +11,18 @@ const offerHref = `${base}/for-contractors`;
 const aiHiringHref = `${base}/ai-hiring`;
 const whiteLabelPath = 'white-label-payroll';
 const whiteLabelHref = `${base}/${whiteLabelPath}`;
-const bankAccountHref = '#';
-const aboutUsHref = '#';
-const caseStudiesHref = '#';
-const reviewsHref = '#';
-const contractorOfRecordPath = 'contractor-of-record';
-const contractorOfRecordHref = `${base}/${contractorOfRecordPath}`;
 const employerOfRecordPath = 'employer-of-record';
 const eorHref = `${base}/${employerOfRecordPath}`;
 const smallBusinessPath = 'small-business-payroll';
 const smallBusinessHref = `${base}/${smallBusinessPath}`;
-const blogHref = `${base}/blog`;
 
 const signUpUrl = 'https://app.garna.io/auth/sign-up';
 const logInUrl = 'https://app.garna.io/auth/sign-in';
 
-const navLinkClass = (path: string) =>
-	[
-		'garna-header-nav-link',
-		currentPath === path ? 'is-active' : '',
-	].join(' ');
-
 const mobileLinkClass = (path: string) =>
 	[
 		'garna-header-mobile-link',
+		currentPath === path ? 'is-active' : '',
 	].join(' ');
 ---
 
@@ -78,18 +66,9 @@ const mobileLinkClass = (path: string) =>
 									<path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
 									<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
 								</svg>
-									<span class="garna-header-link-main" data-translate="header.eor">Employer of Record</span>
+									<span class="garna-header-link-main" data-translate="header.eor">Employer of Record (EOR)</span>
 								<span class="garna-header-link-separator">|</span>
 								<span class="garna-header-link-kicker" data-translate="header.eorKicker">Hire without local entity</span>
-							</a>
-							<a href={contractorOfRecordHref} data-localized-path={contractorOfRecordPath} data-nav-link class="garna-header-dropdown-link">
-								<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-									<rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-									<path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-								</svg>
-								<span class="garna-header-link-main" data-translate="header.contractorOfRecord">Contractor of Record</span>
-								<span class="garna-header-link-separator">|</span>
-								<span class="garna-header-link-kicker" data-translate="header.contractorOfRecordKicker">Manage global contractors</span>
 							</a>
 						</div>
 					</div>
@@ -123,39 +102,12 @@ const mobileLinkClass = (path: string) =>
 									<span class="garna-header-link-separator">|</span>
 									<span class="garna-header-link-kicker" data-translate="header.smallBusinessKicker">For teams under 50 people</span>
 								</a>
-								<a href="#" class="garna-header-dropdown-link">
-									<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-										<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
-										<path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
-										<path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
-										<path d="M10 6h4"></path>
-										<path d="M10 10h4"></path>
-										<path d="M10 14h4"></path>
-										<path d="M10 18h4"></path>
-									</svg>
-									<span class="garna-header-link-main" data-translate="header.midSizeBusiness">Mid-Size Business Payroll</span>
-									<span class="garna-header-link-separator">|</span>
-									<span class="garna-header-link-kicker" data-translate="header.midSizeBusinessKicker">Growing teams 50-500</span>
-								</a>
-								<a href="#" class="garna-header-dropdown-link">
-									<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-										<line x1="3" x2="21" y1="22" y2="22"></line>
-										<line x1="6" x2="6" y1="18" y2="11"></line>
-										<line x1="10" x2="10" y1="18" y2="11"></line>
-										<line x1="14" x2="14" y1="18" y2="11"></line>
-										<line x1="18" x2="18" y1="18" y2="11"></line>
-										<polygon points="12 2 20 7 4 7"></polygon>
-									</svg>
-									<span class="garna-header-link-main" data-translate="header.enterprise">Enterprise Payroll</span>
-									<span class="garna-header-link-separator">|</span>
-									<span class="garna-header-link-kicker" data-translate="header.enterpriseKicker">Complex global operations</span>
-								</a>
 							</div>
 
 							<div class="garna-header-divider"></div>
 
 							<div class="garna-header-dropdown-column">
-								<h3 class="garna-header-dropdown-title" data-translate="header.byNeed">By Need</h3>
+								<h3 class="garna-header-dropdown-title" data-translate="header.byNeed">By Need & More</h3>
 								<a href={whiteLabelHref} data-localized-path={whiteLabelPath} data-nav-link class="garna-header-dropdown-link">
 									<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 										<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
@@ -165,39 +117,6 @@ const mobileLinkClass = (path: string) =>
 									<span class="garna-header-link-main" data-translate="header.whiteLabelPayroll">White Label Payroll</span>
 									<span class="garna-header-link-separator">|</span>
 									<span class="garna-header-link-kicker" data-translate="header.whiteLabelKicker">Embed payroll in your app</span>
-								</a>
-								<a href="#" class="garna-header-dropdown-link">
-									<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-										<path d="m18 16 4-4-4-4"></path>
-										<path d="m6 8-4 4 4 4"></path>
-										<path d="m14.5 4-5 16"></path>
-									</svg>
-									<span class="garna-header-link-main" data-translate="header.payrollApi">Payroll API</span>
-									<span class="garna-header-link-separator">|</span>
-									<span class="garna-header-link-kicker" data-translate="header.payrollApiKicker">Build custom integrations</span>
-								</a>
-								<a href={bankAccountHref} class="garna-header-dropdown-link">
-									<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-										<path d="m3 10 9-7 9 7"></path>
-										<path d="M5 10h14"></path>
-										<path d="M5 21h14"></path>
-										<path d="M8 14v3"></path>
-										<path d="M12 14v3"></path>
-										<path d="M16 14v3"></path>
-									</svg>
-									<span class="garna-header-link-main" data-translate="header.bankAccount">Business Account</span>
-									<span class="garna-header-link-separator">|</span>
-									<span class="garna-header-link-kicker" data-translate="header.bankAccountKicker">Open accounts for payouts</span>
-								</a>
-								<a href={offerHref} data-localized-path="for-contractors" data-nav-link class="garna-header-dropdown-link">
-									<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-										<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-										<circle cx="9" cy="7" r="4"></circle>
-										<polyline points="16 11 18 13 22 9"></polyline>
-									</svg>
-									<span class="garna-header-link-main" data-translate="header.forContractors">For Contractors</span>
-									<span class="garna-header-link-separator">|</span>
-									<span class="garna-header-link-kicker" data-translate="header.contractorsKicker">Get paid faster globally</span>
 								</a>
 								<a href={aiHiringHref} data-localized-path="ai-hiring" data-nav-link class="garna-header-dropdown-link">
 									<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -212,11 +131,21 @@ const mobileLinkClass = (path: string) =>
 									<span class="garna-header-link-separator">|</span>
 									<span class="garna-header-link-kicker" data-translate="header.aiHiringFeatureText">Automate talent sourcing</span>
 								</a>
+								<a href={offerHref} data-localized-path="for-contractors" data-nav-link class="garna-header-dropdown-link">
+									<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+										<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+										<circle cx="9" cy="7" r="4"></circle>
+										<polyline points="16 11 18 13 22 9"></polyline>
+									</svg>
+									<span class="garna-header-link-main" data-translate="header.forContractors">For Contractors</span>
+									<span class="garna-header-link-separator">|</span>
+									<span class="garna-header-link-kicker" data-translate="header.contractorsKicker">Get paid faster globally</span>
+								</a>
 							</div>
 						</div>
 
 						<a href={aiHiringHref} data-localized-path="ai-hiring" data-nav-link class="garna-header-dropdown-feature garna-header-solutions-feature" aria-label="AI Hiring">
-							<img src="/images/header-ai-hiring.jpg" alt="" loading="lazy" />
+							<img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" />
 							<div class="garna-header-feature-copy">
 								<h4 data-translate="header.aiHiring">AI Hiring</h4>
 								<p data-translate="header.aiHiringFeatureText">Automate talent sourcing</p>
@@ -233,15 +162,6 @@ const mobileLinkClass = (path: string) =>
 				</div>
 			</div>
 
-			<a
-				href={blogHref}
-				data-localized-path="blog"
-				data-nav-link
-				class={navLinkClass('blog')}
-				data-translate="header.blog"
-			>
-				Blog
-			</a>
 		</div>
 
 		<div class="garna-header-actions">
@@ -343,22 +263,8 @@ const mobileLinkClass = (path: string) =>
 						<path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
 						<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
 					</svg>
-					<span class="garna-header-mobile-link-main" data-translate="header.eor">Employer of Record</span>
+					<span class="garna-header-mobile-link-main" data-translate="header.eor">Employer of Record (EOR)</span>
 					<span class="garna-header-mobile-link-kicker" data-translate="header.eorKicker">Hire without local entity</span>
-				</a>
-				<a
-					href={contractorOfRecordHref}
-					data-localized-path={contractorOfRecordPath}
-					data-nav-link
-					data-nav-mobile
-					class={`${mobileLinkClass(contractorOfRecordPath)} garna-header-mobile-card`}
-				>
-					<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-						<path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-					</svg>
-					<span class="garna-header-mobile-link-main" data-translate="header.contractorOfRecord">Contractor of Record</span>
-					<span class="garna-header-mobile-link-kicker" data-translate="header.contractorOfRecordKicker">Manage global contractors</span>
 				</a>
 			</div>
 
@@ -385,42 +291,9 @@ const mobileLinkClass = (path: string) =>
 						<span class="garna-header-mobile-link-main" data-translate="header.smallBusiness">Small Business Payroll</span>
 						<span class="garna-header-mobile-link-kicker" data-translate="header.smallBusinessKicker">For teams under 50 people</span>
 					</a>
-					<a
-						href="#"
-						data-nav-mobile
-						class="garna-header-mobile-link garna-header-mobile-card"
-					>
-						<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-							<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
-							<path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
-							<path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
-							<path d="M10 6h4"></path>
-							<path d="M10 10h4"></path>
-							<path d="M10 14h4"></path>
-							<path d="M10 18h4"></path>
-						</svg>
-						<span class="garna-header-mobile-link-main" data-translate="header.midSizeBusiness">Mid-Size Business Payroll</span>
-						<span class="garna-header-mobile-link-kicker" data-translate="header.midSizeBusinessKicker">Growing teams 50-500</span>
-					</a>
-					<a
-						href="#"
-						data-nav-mobile
-						class="garna-header-mobile-link garna-header-mobile-card"
-					>
-						<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-							<line x1="3" x2="21" y1="22" y2="22"></line>
-							<line x1="6" x2="6" y1="18" y2="11"></line>
-							<line x1="10" x2="10" y1="18" y2="11"></line>
-							<line x1="14" x2="14" y1="18" y2="11"></line>
-							<line x1="18" x2="18" y1="18" y2="11"></line>
-							<polygon points="12 2 20 7 4 7"></polygon>
-						</svg>
-						<span class="garna-header-mobile-link-main" data-translate="header.enterprise">Enterprise Payroll</span>
-						<span class="garna-header-mobile-link-kicker" data-translate="header.enterpriseKicker">Complex global operations</span>
-					</a>
 				</div>
 				<div class="garna-header-mobile-subgroup">
-					<div class="garna-header-mobile-subsection" data-translate="header.byNeed">By Need</div>
+					<div class="garna-header-mobile-subsection" data-translate="header.byNeed">By Need & More</div>
 					<a
 						href={whiteLabelHref}
 						data-localized-path={whiteLabelPath}
@@ -435,35 +308,6 @@ const mobileLinkClass = (path: string) =>
 						</svg>
 						<span class="garna-header-mobile-link-main" data-translate="header.whiteLabelPayroll">White Label Payroll</span>
 						<span class="garna-header-mobile-link-kicker" data-translate="header.whiteLabelKicker">Embed payroll in your app</span>
-					</a>
-					<a
-						href="#"
-						data-nav-mobile
-						class="garna-header-mobile-link garna-header-mobile-card"
-					>
-						<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-							<path d="m18 16 4-4-4-4"></path>
-							<path d="m6 8-4 4 4 4"></path>
-							<path d="m14.5 4-5 16"></path>
-						</svg>
-						<span class="garna-header-mobile-link-main" data-translate="header.payrollApi">Payroll API</span>
-						<span class="garna-header-mobile-link-kicker" data-translate="header.payrollApiKicker">Build custom integrations</span>
-					</a>
-					<a
-						href={bankAccountHref}
-						data-nav-mobile
-						class="garna-header-mobile-link garna-header-mobile-card"
-					>
-						<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-							<path d="m3 10 9-7 9 7"></path>
-							<path d="M5 10h14"></path>
-							<path d="M5 21h14"></path>
-							<path d="M8 14v3"></path>
-							<path d="M12 14v3"></path>
-							<path d="M16 14v3"></path>
-						</svg>
-						<span class="garna-header-mobile-link-main" data-translate="header.bankAccount">Business Account</span>
-						<span class="garna-header-mobile-link-kicker" data-translate="header.bankAccountKicker">Open accounts for payouts</span>
 					</a>
 					<a
 						href={offerHref}
@@ -499,49 +343,6 @@ const mobileLinkClass = (path: string) =>
 						<span class="garna-header-mobile-link-kicker" data-translate="header.aiHiringFeatureText">Automate talent sourcing</span>
 					</a>
 				</div>
-			</div>
-
-			<div class="garna-header-mobile-group">
-				<div class="garna-header-mobile-section" data-translate="header.resources">Resources</div>
-				<a
-					href={blogHref}
-					data-localized-path="blog"
-					data-nav-link
-					data-nav-mobile
-					class={`${mobileLinkClass('blog')} garna-header-mobile-card`}
-				>
-					<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-						<path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"></path>
-					</svg>
-					<span class="garna-header-mobile-link-main" data-translate="header.blog">Blog</span>
-					<span class="garna-header-mobile-link-kicker" data-translate="header.blogKicker">Articles and company updates</span>
-				</a>
-				<a href={aboutUsHref} data-nav-mobile class="garna-header-mobile-link garna-header-mobile-card">
-					<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<circle cx="12" cy="8" r="5"></circle>
-						<path d="M20 21a8 8 0 0 0-16 0"></path>
-					</svg>
-					<span class="garna-header-mobile-link-main" data-translate="header.aboutUs">About Us</span>
-					<span class="garna-header-mobile-link-kicker" data-translate="header.aboutUsKicker">Meet Garna and our mission</span>
-				</a>
-				<a href={caseStudiesHref} data-nav-mobile class="garna-header-mobile-link garna-header-mobile-card">
-					<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<path d="M4 19.5V4a2 2 0 0 1 2-2h11l3 3v14.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 19.5Z"></path>
-						<path d="M14 2v4h4"></path>
-						<path d="M8 10h8"></path>
-						<path d="M8 14h6"></path>
-					</svg>
-					<span class="garna-header-mobile-link-main" data-translate="header.caseStudies">Case Studies</span>
-					<span class="garna-header-mobile-link-kicker" data-translate="header.caseStudiesKicker">Customer stories and outcomes</span>
-				</a>
-				<a href={reviewsHref} data-nav-mobile class="garna-header-mobile-link garna-header-mobile-card">
-					<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-					</svg>
-					<span class="garna-header-mobile-link-main" data-translate="header.reviews">Reviews</span>
-					<span class="garna-header-mobile-link-kicker" data-translate="header.reviewsKicker">What customers say</span>
-				</a>
 			</div>
 			</div>
 
@@ -658,7 +459,6 @@ const mobileLinkClass = (path: string) =>
 
 			setSingleActiveLink('[data-nav-link]:not([data-nav-mobile])');
 			setSingleActiveLink('[data-nav-link][data-nav-mobile]');
-
 		};
 
 		const isScriptRuntimeReady = (src) => {
@@ -719,9 +519,49 @@ const mobileLinkClass = (path: string) =>
 			await Promise.all(pendingScripts);
 		};
 
+		const syncDocumentShell = (targetDoc) => {
+			document.documentElement.className = targetDoc.documentElement.className;
+			document.documentElement.lang = targetDoc.documentElement.lang || document.documentElement.lang;
+			document.body.className = targetDoc.body.className;
+		};
+
+		const syncManagedHeadStyles = (targetDoc) => {
+			document.head.querySelectorAll('[data-garna-spa-head-style]').forEach((element) => element.remove());
+
+			targetDoc.head.querySelectorAll('style').forEach((style) => {
+				const content = style.textContent || '';
+				if (!content.trim()) return;
+
+				const clone = style.cloneNode(true);
+				if (!(clone instanceof HTMLStyleElement)) return;
+				clone.dataset.garnaSpaHeadStyle = 'true';
+				document.head.appendChild(clone);
+			});
+		};
+
+		const runManagedHeadScripts = async (targetDoc) => {
+			document.head.querySelectorAll('[data-garna-spa-head-script]').forEach((element) => element.remove());
+
+			const scripts = Array.from(targetDoc.head.querySelectorAll('script:not([src])'));
+			for (const script of scripts) {
+				const content = script.textContent || '';
+				if (!content.trim()) continue;
+				if (content.includes('cdn.tailwindcss.com') && content.includes('console.warn')) continue;
+
+				const freshScript = document.createElement('script');
+				Array.from(script.attributes).forEach((attribute) => {
+					if (attribute.name === 'is:inline') return;
+					freshScript.setAttribute(attribute.name, attribute.value);
+				});
+				freshScript.dataset.garnaSpaHeadScript = 'true';
+				freshScript.textContent = content;
+				document.head.appendChild(freshScript);
+			}
+		};
+
 		const syncHead = async (targetDoc) => {
 			document.title = targetDoc.title || document.title;
-			document.documentElement.lang = targetDoc.documentElement.lang || document.documentElement.lang;
+			syncDocumentShell(targetDoc);
 
 			const selectors = [
 				'meta[name="description"]',
@@ -738,6 +578,8 @@ const mobileLinkClass = (path: string) =>
 				});
 			});
 
+			syncManagedHeadStyles(targetDoc);
+			await runManagedHeadScripts(targetDoc);
 			await appendMissingHeadResources(targetDoc);
 		};
 
@@ -900,7 +742,9 @@ const mobileLinkClass = (path: string) =>
 				const restoreScroll = enableInstantScroll();
 				jumpToPageTop();
 				try {
+					const previousPath = getPagePath();
 					if (shouldPushState) history.pushState({}, '', url.href);
+					window.dispatchEvent(new CustomEvent('garna:page-will-unmount', { detail: { path: previousPath } }));
 					localizeHeaderLinks();
 					setNavActiveState();
 					await syncHead(targetDoc);
@@ -915,7 +759,8 @@ const mobileLinkClass = (path: string) =>
 					await runScripts(targetScripts);
 					refreshPageIcons();
 					jumpToPageTop();
-					window.dispatchEvent(new CustomEvent('garna:page-content-updated'));
+					window.dispatchEvent(new CustomEvent('garna:page-content-updated', { detail: { path: getPagePath() } }));
+					window.dispatchEvent(new CustomEvent('garna:page-mounted', { detail: { path: getPagePath() } }));
 					jumpToPageTop();
 
 					requestAnimationFrame(() => {

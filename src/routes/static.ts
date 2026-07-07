@@ -1,6 +1,8 @@
 import { routes } from '../utils/routes';
 import { getSupportedLanguageCodes } from '../config/languages';
 import { basePaths } from '../config/pages';
+import { listAuthors, listPublishedArticles } from '../blog/data';
+import type { BlogEnv } from '../blog/types';
 
 const BASE_DOMAIN = 'https://garna.io';
 
@@ -39,7 +41,7 @@ function getNonSearchablePages(): string[] {
 		.concat(basePaths.filter((page) => page.searchable === false).map((page) => `/${page.path}`));
 }
 
-export async function generateLocaleSitemap(locale: string): Promise<string> {
+export async function generateLocaleSitemap(locale: string, env?: BlogEnv): Promise<string> {
 	const urls: string[] = [];
 
 	// Add all static routes for this locale
@@ -54,9 +56,26 @@ export async function generateLocaleSitemap(locale: string): Promise<string> {
 		urls.push(fullUrl);
 	}
 
-	urls.sort();
+	if (env?.DB) {
+		try {
+			const [articles, authors] = await Promise.all([listPublishedArticles(env, 500, locale), listAuthors(env)]);
+			for (const article of articles) {
+				urls.push(`${BASE_DOMAIN}/${locale}/blog/${article.slug}`);
+			}
+			const publishedAuthorSlugs = new Set(articles.map((article) => article.author?.slug).filter(Boolean));
+			for (const author of authors) {
+				if (publishedAuthorSlugs.has(author.slug)) {
+					urls.push(`${BASE_DOMAIN}/${locale}/blog/author/${author.slug}`);
+				}
+			}
+		} catch (error) {
+			console.error('[generateLocaleSitemap] Failed to add blog URLs', error);
+		}
+	}
 
-	const sitemapEntries = urls
+	const uniqueUrls = [...new Set(urls)].sort();
+
+	const sitemapEntries = uniqueUrls
 		.map(
 			(url) =>
 				`  <url>\n    <loc>${url}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`
@@ -364,7 +383,7 @@ export async function handleStaticFile(request: Request, pathname: string, env?:
 	if (localeSitemapMatch) {
 		const locale = localeSitemapMatch[1];
 		if (getSupportedLanguageCodes().includes(locale)) {
-			const sitemapContent = await generateLocaleSitemap(locale);
+			const sitemapContent = await generateLocaleSitemap(locale, env);
 			return new Response(sitemapContent, { headers });
 		} else {
 			return new Response('Not found', { status: 404 });

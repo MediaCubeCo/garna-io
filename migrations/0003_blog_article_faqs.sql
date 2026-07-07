@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS article_faqs (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	article_id INTEGER NOT NULL REFERENCES articles(id) ON DELETE CASCADE,
+	question TEXT NOT NULL,
+	answer TEXT NOT NULL,
+	position INTEGER NOT NULL DEFAULT 0,
+	created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_article_faqs_article_position ON article_faqs(article_id, position);

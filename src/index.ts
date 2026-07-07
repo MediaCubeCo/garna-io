@@ -3,6 +3,8 @@ import { handleRedirect } from './routes/redirects';
 import { show404Page } from './routes/404';
 import { handleStaticFile } from './routes/static';
 import { resolveRoute } from './utils/routes';
+import { handleBlogAdmin } from './blog/admin';
+import { handleBlogMedia, handleBlogPublic, handleLegacyBlogRedirect } from './blog/public';
 
 const CANONICAL_ORIGIN = 'https://garna.io';
 const DEFAULT_LANGUAGE = 'en';
@@ -20,22 +22,43 @@ export default {
 				return Response.redirect(targetUrl, 301);
 			}
 
-			// 1. Handle static files first (sitemap, robots.txt, assets)
+			// 1. Handle protected blog admin before static assets/routing
+			const blogAdminResponse = await handleBlogAdmin(request, env);
+			if (blogAdminResponse) {
+				return blogAdminResponse;
+			}
+
+			const blogMediaResponse = await handleBlogMedia(request, env);
+			if (blogMediaResponse) {
+				return blogMediaResponse;
+			}
+
+			// 2. Handle static files first (sitemap, robots.txt, assets)
 			const staticResponse = await handleStaticFile(request, url.pathname, env);
 			if (staticResponse) {
 				return staticResponse;
 			}
 
-			// 2. Resolve route
+			// 3. Resolve route
 			const routeInfo = resolveRoute(url.pathname + url.search);
 
-			// 3. Handle redirects
+			// 4. Handle redirects
 			const redirectResponse = await handleRedirect(routeInfo, country, request.url);
 			if (redirectResponse) {
 				return redirectResponse;
 			}
 
-			// 4. Handle dynamic routes
+			const legacyBlogRedirect = handleLegacyBlogRedirect(request);
+			if (legacyBlogRedirect) {
+				return legacyBlogRedirect;
+			}
+
+			const blogPublicResponse = await handleBlogPublic(request, env);
+			if (blogPublicResponse) {
+				return blogPublicResponse;
+			}
+
+			// 5. Handle static page routes
 			const dynamicResponse = await handleDynamic(request, routeInfo, env);
 			if (dynamicResponse) {
 				return dynamicResponse;
