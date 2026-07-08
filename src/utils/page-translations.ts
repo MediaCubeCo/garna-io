@@ -517,12 +517,16 @@ function replaceVisibleSourceText(html: string, translations: Record<string, str
 
 	const parts = html.split(/(<[^>]+>)/g);
 	let skipTag: string | null = null;
+	const translatedElementStack: string[] = [];
 
 	return parts
 		.map((part) => {
 			if (part.startsWith('<')) {
 				const openTag = part.match(/^<\s*(script|style|svg|noscript)\b/i);
 				const closeTag = part.match(/^<\s*\/\s*(script|style|svg|noscript)\s*>/i);
+				const genericOpenTag = part.match(/^<\s*([a-zA-Z][a-zA-Z0-9:-]*)\b/i);
+				const genericCloseTag = part.match(/^<\s*\/\s*([a-zA-Z][a-zA-Z0-9:-]*)\s*>/i);
+				const isSelfClosing = /\/\s*>$/.test(part);
 
 				if (openTag && !part.endsWith('/>')) {
 					skipTag = openTag[1].toLowerCase();
@@ -530,10 +534,23 @@ function replaceVisibleSourceText(html: string, translations: Record<string, str
 					skipTag = null;
 				}
 
+				if (genericCloseTag) {
+					const closingTagName = genericCloseTag[1].toLowerCase();
+					if (translatedElementStack[translatedElementStack.length - 1] === closingTagName) {
+						translatedElementStack.pop();
+					}
+				} else if (
+					genericOpenTag &&
+					!isSelfClosing &&
+					/\sdata-translate=(["'])[^"']+\1/i.test(part)
+				) {
+					translatedElementStack.push(genericOpenTag[1].toLowerCase());
+				}
+
 				return part;
 			}
 
-			if (skipTag) return part;
+			if (skipTag || translatedElementStack.length > 0) return part;
 
 			const normalizedText = normalizeVisibleText(part);
 			if (!normalizedText) return part;
