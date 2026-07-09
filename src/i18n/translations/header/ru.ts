@@ -1,4 +1,4 @@
-export const headerRu = {
+﻿export const headerRu = {
 	brand: 'garna',
 	payrollSolution: 'Для компаний',
 	forContractors: 'Для подрядчиков',
@@ -10,7 +10,8 @@ export const headerRu = {
 	solutions: 'Решения',
 	resources: 'Ресурсы',
 	resourcesKicker: 'Статьи и новости компании',
-	globalPayroll: 'Глобальные выплаты',
+	blog: 'Блог',
+	globalPayroll: 'Global Payroll',
 	globalPayrollKicker: 'Платите командам по всему миру',
 	eor: 'Employer of Record',
 	eorKicker: 'Нанимайте без локального юрлица',
@@ -23,7 +24,7 @@ export const headerRu = {
 	smallBusinessKicker: 'Для команд до 50 человек',
 	midSizeBusiness: 'Оплата труда для среднего бизнеса',
 	midSizeBusinessKicker: 'Для растущих команд от 50 до 500 человек',
-	enterprise: 'Оплата труда для крупных компаний',
+	enterprise: 'Payroll для крупных компаний',
 	enterpriseKicker: 'Сложные глобальные операции',
 	byNeed: 'По запросу и другое',
 	whiteLabelPayroll: 'White Label',

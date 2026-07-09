@@ -1,0 +1,20 @@
+---
+const languageCodes = ['en', 'es', 'pt', 'ru'];
+const currentLang = languageCodes.find((lang) => Astro.url.pathname.split('/').filter(Boolean)[0]?.toLowerCase() === lang) || 'en';
+const targetPath = `/${currentLang}/mid-size-business-payroll`;
+---
+
+<!doctype html>
+<html lang={currentLang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="refresh" content={`0; url=${targetPath}`} />
+		<link rel="canonical" href={targetPath} />
+		<script is:inline define:vars={{ targetPath }}>
+			window.location.replace(targetPath);
+		</script>
+	</head>
+	<body>
+		<a href={targetPath}>Continue to Mid-Size Business Payroll</a>
+	</body>
+</html>

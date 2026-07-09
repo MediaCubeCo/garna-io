@@ -1,7 +1,7 @@
 export const formRu = {
 	meta: {
 		title: 'Garna - Записаться на демо',
-		description: 'Заполните данные для записи на демо с Garna',
+		description: 'Заполните данные для записи на демо с Garna.',
 	},
 	images: {},
 	form: {

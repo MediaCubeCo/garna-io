@@ -1,7 +1,7 @@
 export const whiteLabelPt = {
 	"meta": {
-		"title": "Garna - Soluções White Label de folha de pagamento",
-		"description": "Lance gestão de contratados e pagamentos globais White Label sob sua marca com a infraestrutura da Garna."
+		"title": "Plataforma White Label para Pagamento de Salários e Contratados | Garna",
+		"description": "Lance uma plataforma global de onboarding, gestão e pagamentos de contratados sob a sua marca com a infraestrutura White Label da Garna."
 	},
 	"images": {},
 	"hero": {
@@ -33,8 +33,8 @@ export const whiteLabelPt = {
 	"infrastructure": {
 		"badge": "Infraestrutura White Label da Garna",
 		"title": "Seu logo na frente. Nosso motor por trás.",
-		"description": "A Garna permite lançar soluções White Label de pagamentos para contratados em 2 dias, sem investimento e sem meses de desenvolvimento. Você não precisa integrar sistemas de pagamento nem se preocupar com compliance: nós já fizemos isso por você. Cuidamos de tudo, de KYC a relatórios fiscais, para que seus contratados tenham uma experiência fluida dentro do seu próprio produto.",
-		"whatCanWhiteLabel": "O que você pode oferecer em White Label:"
+		"description": "A Garna permite lançar soluções White Label de pagamentos para contratados em 2 dias, sem investimento e sem meses de desenvolvimento. Você não precisa integrar sistemas de pagamento nem se preocupar com compliance: nós já fizemos isso por você",
+		"whatCanWhiteLabel": ""
 	},
 	"products": {
 		"contractorManagement": {

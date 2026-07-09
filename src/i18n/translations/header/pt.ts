@@ -1,4 +1,4 @@
-export const headerPt = {
+﻿export const headerPt = {
 	brand: 'garna',
 	payrollSolution: 'Solucao de folha de pagamento',
 	forContractors: 'Para contratados',
@@ -10,7 +10,7 @@ export const headerPt = {
 	solutions: 'Solucoes',
 	resources: 'Recursos',
 	resourcesKicker: 'Artigos e novidades da empresa',
-	globalPayroll: 'Pagamentos globais',
+	globalPayroll: 'Payroll Global',
 	globalPayrollKicker: 'Pague equipes no mundo todo',
 	eor: 'Employer of Record',
 	eorKicker: 'Contrate sem entidade local',
@@ -23,7 +23,7 @@ export const headerPt = {
 	smallBusinessKicker: 'Para equipes com menos de 50 pessoas',
 	midSizeBusiness: 'Payroll para empresas de media dimensao',
 	midSizeBusinessKicker: 'Equipes em crescimento de 50 a 500',
-	enterprise: 'Payroll para grandes empresas',
+	enterprise: 'Payroll para Grandes Empresas',
 	enterpriseKicker: 'Operacoes globais complexas',
 	byNeed: 'Por necessidade e mais',
 	whiteLabelPayroll: 'Payroll White Label',

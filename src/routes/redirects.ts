@@ -4,6 +4,9 @@ import { basePaths } from '../config/pages';
 
 const DEFAULT_LANGUAGE = 'en';
 const pagePaths = new Set(basePaths.map((page) => page.path));
+const legacyPageRedirects: Record<string, string> = {
+	'mid-size': 'mid-size-business-payroll',
+};
 
 function buildLocalizedTarget(
 	url: URL,
@@ -44,6 +47,20 @@ export async function handleRedirect(
 		const hashString = routeInfo.hash ? `#${routeInfo.hash}` : '';
 		const targetUrl = `${url.origin}/${routeInfo.locale}/employer-of-record${queryString}${hashString}`;
 		return Response.redirect(targetUrl, 301);
+	}
+
+	if (routeInfo.isValid && routeInfo.locale) {
+		const normalizedPath = routeInfo.pathSegments
+			.join('/')
+			.replace(/(^|\/)index\.html$/u, '')
+			.replace(/\.html$/u, '');
+		const redirectPath = legacyPageRedirects[normalizedPath];
+		if (redirectPath) {
+			const queryString = routeInfo.query ? `?${routeInfo.query}` : '';
+			const hashString = routeInfo.hash ? `#${routeInfo.hash}` : '';
+			const targetUrl = `${url.origin}/${routeInfo.locale}/${redirectPath}${queryString}${hashString}`;
+			return Response.redirect(targetUrl, 301);
+		}
 	}
 
 	// Handle valid path but unsupported locale - redirect to default (English)
@@ -94,6 +111,11 @@ export async function handleRedirect(
 
 		if (pagePaths.has(normalizedPath)) {
 			return buildLocalizedTarget(url, pathSegments, 302);
+		}
+
+		const redirectPath = legacyPageRedirects[normalizedPath];
+		if (redirectPath) {
+			return buildLocalizedTarget(url, [redirectPath], 301);
 		}
 	}
 

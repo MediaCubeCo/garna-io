@@ -1,7 +1,7 @@
 export const offerEn = {
 	meta: {
 		title: 'Garna for Contractors - Get Paid Globally',
-		description: 'Receive payments from clients worldwide with transparent fees and instant withdrawals',
+		description: 'Receive payments from clients worldwide with transparent fees and instant withdrawals.',
 	},
 	images: {},
 	nav: {
@@ -11,7 +11,7 @@ export const offerEn = {
 	},
 	hero: {
 		badge: 'For contractors & freelancers',
-		titleMain: 'Get paid globally,',
+		titleMain: 'Get paid globally, hassle-free',
 		titleAccent: 'hassle-free',
 		description:
 			'Receive payments from clients in the US, Europe, and worldwide – with full transparency and built-in compliance support',

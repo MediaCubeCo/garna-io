@@ -1,7 +1,7 @@
 export type FinalCTALayout = 'center' | 'split';
 export type FinalCTAVisual = 'ai-hiring' | 'white-label';
 export type FinalCTAButtonKind = 'demo' | 'signup' | 'external';
-export type FinalCTAButtonEffect = 'none' | 'rotating-flare' | 'hover-sweep';
+export type FinalCTAButtonEffect = 'none' | 'rotating-flare';
 export type FinalCTAButtonIcon = 'none' | 'arrow-up-right' | 'arrow-right';
 
 export interface FinalCTAText {

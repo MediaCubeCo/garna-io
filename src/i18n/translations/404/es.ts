@@ -1,7 +1,7 @@
 export const notFoundEs = {
 	meta: {
 		title: '404 - Objetivo Perdido - Garna',
-		description: 'Página no encontrada',
+		description: 'Página no encontrada.',
 	},
 	images: {},
 	hero: {

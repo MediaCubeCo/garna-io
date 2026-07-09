@@ -21,4 +21,5 @@ export interface FAQSectionConfig {
 	variant?: FAQVariant;
 	class?: string;
 	containerClass?: string;
+	accordionClass?: string;
 }

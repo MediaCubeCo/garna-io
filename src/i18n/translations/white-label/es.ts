@@ -1,7 +1,7 @@
 export const whiteLabelEs = {
 	"meta": {
-		"title": "Garna - Soluciones White Label de nómina",
-		"description": "Lanza gestión de contratistas y pagos globales White Label bajo tu propia marca con la infraestructura de Garna."
+		"title": "Plataforma de nóminas y pagos a contratistas de marca blanca | Garna",
+		"description": "Lanza servicios globales de incorporación, gestión y pagos a contratistas bajo tu marca con la infraestructura de marca blanca de Garna."
 	},
 	"images": {},
 	"hero": {
@@ -33,8 +33,8 @@ export const whiteLabelEs = {
 	"infrastructure": {
 		"badge": "Infraestructura White Label de Garna",
 		"title": "Tu logo al frente. Nuestro motor potente por detrás.",
-		"description": "Garna te permite lanzar soluciones White Label de pagos a contratistas en 2 días, sin inversión ni meses de desarrollo. No necesitas conectar sistemas de pago ni preocuparte por compliance: ya lo hicimos por ti. Nos ocupamos de todo, desde KYC hasta reportes fiscales, para que ofrezcas a tus contratistas una experiencia fluida dentro de tu propio producto.",
-		"whatCanWhiteLabel": "Qué puedes lanzar como White Label:"
+		"description": "Garna te permite lanzar soluciones White Label de pagos a contratistas en 2 días, sin inversión ni meses de desarrollo. No necesitas conectar sistemas de pago ni preocuparte por compliance: ya lo hicimos por ti",
+		"whatCanWhiteLabel": ""
 	},
 	"products": {
 		"contractorManagement": {

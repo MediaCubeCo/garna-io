@@ -82,7 +82,7 @@ const widgetConfig = {
 		var form = widgetTrans.form || {};
 		var errors = widgetTrans.errors || {};
 
-		return {
+		return removeUndefinedValues({
 			buttonChooseDate: widgetTrans.buttonChooseDate,
 			promoBannerText: campaignTrans.promoBannerText,
 			signUpPromptPrefix: signUp.promptPrefix,
@@ -104,7 +104,19 @@ const widgetConfig = {
 				workEmail: errors.workEmail,
 				invalidPhone: errors.invalidPhone
 			}
-		};
+		});
+	}
+
+	function removeUndefinedValues(value) {
+		if (Array.isArray(value)) return value;
+		if (!value || typeof value !== 'object') return value;
+
+		var result = {};
+		Object.keys(value).forEach(function (key) {
+			var item = removeUndefinedValues(value[key]);
+			if (item !== undefined) result[key] = item;
+		});
+		return result;
 	}
 
 	function initWidget() {

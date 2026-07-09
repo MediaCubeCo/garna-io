@@ -988,23 +988,35 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					render() {
 						const wrapper = document.createElement('div');
 						wrapper.className = 'cta-tool';
-						wrapper.innerHTML = '<div class="cta-preview"><div class="cta-preview-beams"><span></span><span></span></div><div class="cta-preview-copy"><strong data-preview-title>Modern Payroll for Global Teams</strong><p data-preview-text>Manage payroll and contractor payouts in 150+ countries with local currencies, cards, wallets, and crypto</p><span data-preview-button>Explore Payroll</span></div><div class="cta-mockup"><div class="cta-mockup-card cta-mockup-card-top"><img src="/pages/blog/assets/15-photo-1494790108377-be9c29b29330.jpg" alt="" /><b>Sarah J.</b><small>Engineering</small><span>$8,500.00</span></div><div class="cta-mockup-card cta-mockup-card-bottom"><img src="/pages/blog/assets/20-photo-1599566150163-29194dcaad36.jpg" alt="" /><b>Alex C.</b><small>Design</small><span>4.2 ETH</span></div></div></div><label>CTA title<input data-field="title" placeholder="Modern Payroll for Global Teams" /></label><label>Text<textarea data-field="text" placeholder="Manage payroll and contractor payouts in 150+ countries with local currencies, cards, wallets, and crypto"></textarea></label><label>Button label<input data-field="button" placeholder="Explore Payroll" /></label><label>Button URL<input data-field="url" placeholder="https://garna.io/" /></label>';
+						wrapper.innerHTML = '<div class="cta-preview"><div class="cta-preview-beams"><span></span><span></span></div><div class="cta-preview-copy"><strong data-preview-title>Modern Payroll for Global Teams</strong><p data-preview-text>Manage payroll and contractor payouts in 150+ countries with local currencies, cards, wallets, and crypto</p><span data-preview-button>Explore Payroll</span></div><div class="cta-mockup"><div class="cta-mockup-card cta-mockup-card-top"><img src="/pages/blog/assets/15-photo-1494790108377-be9c29b29330.jpg" alt="" /><b>Sarah J.</b><small>Engineering</small><span>$8,500.00</span></div><div class="cta-mockup-card cta-mockup-card-bottom"><img src="/pages/blog/assets/20-photo-1599566150163-29194dcaad36.jpg" alt="" /><b>Alex C.</b><small>Design</small><span>4.2 ETH</span></div></div></div><label>CTA title<input data-field="title" placeholder="Modern Payroll for Global Teams" /></label><label>Text<textarea data-field="text" placeholder="Manage payroll and contractor payouts in 150+ countries with local currencies, cards, wallets, and crypto"></textarea></label><label>Button label<input data-field="button" placeholder="Explore Payroll" /></label><label class="cta-url-toggle"><input type="checkbox" data-field="customUrlEnabled" /> Use custom button URL</label><label data-url-label>Button URL<input data-field="url" placeholder="https://garna.io/" /></label>';
 						for (const field of ['title', 'text', 'button', 'url']) {
 							const input = wrapper.querySelector('[data-field="' + field + '"]');
 							if (input) input.value = this.data[field] || '';
 						}
+						const urlInput = wrapper.querySelector('[data-field="url"]');
+						const customUrlToggle = wrapper.querySelector('[data-field="customUrlEnabled"]');
+						const hasCustomUrlFlag = typeof this.data.customUrlEnabled === 'boolean';
+						const legacyCustomUrl = Boolean(this.data.url && this.data.url !== 'https://garna.io/');
+						customUrlToggle.checked = hasCustomUrlFlag ? this.data.customUrlEnabled : legacyCustomUrl;
+						const syncUrl = () => {
+							urlInput.disabled = !customUrlToggle.checked;
+							wrapper.querySelector('[data-url-label]').classList.toggle('is-disabled', !customUrlToggle.checked);
+						};
 						const sync = () => {
 							wrapper.querySelector('[data-preview-title]').textContent = wrapper.querySelector('[data-field="title"]').value || 'Modern Payroll for Global Teams';
 							wrapper.querySelector('[data-preview-text]').textContent = wrapper.querySelector('[data-field="text"]').value || 'Manage payroll and contractor payouts in 150+ countries with local currencies, cards, wallets, and crypto';
 							wrapper.querySelector('[data-preview-button]').textContent = wrapper.querySelector('[data-field="button"]').value || 'Explore Payroll';
 						};
 						wrapper.querySelectorAll('input, textarea').forEach((input) => input.addEventListener('input', sync));
+						customUrlToggle.addEventListener('change', syncUrl);
+						syncUrl();
 						sync();
 						return wrapper;
 					}
 					save(wrapper) {
 						const value = (field) => wrapper.querySelector('[data-field="' + field + '"]')?.value.trim() || '';
-						return { title: value('title'), text: value('text'), button: value('button'), url: value('url') };
+						const customUrlEnabled = Boolean(wrapper.querySelector('[data-field="customUrlEnabled"]')?.checked);
+						return { title: value('title'), text: value('text'), button: value('button'), customUrlEnabled, url: customUrlEnabled ? value('url') : '' };
 					}
 				}
 				class TldrTool {
@@ -2147,6 +2159,10 @@ function adminHtml(title: string, body: string): Response {
 		.cta-tool label { color: rgba(255,255,255,.76); }
 		.cta-tool input, .cta-tool textarea { border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.08); color: #fff; }
 		.cta-tool input::placeholder, .cta-tool textarea::placeholder { color: rgba(255,255,255,.48); }
+		.cta-tool .cta-url-toggle { display: flex; align-items: center; gap: 8px; }
+		.cta-tool .cta-url-toggle input { width: auto; min-height: 0; }
+		.cta-tool label.is-disabled { opacity: .52; }
+		.cta-tool label.is-disabled input { cursor: not-allowed; }
 		.tldr-items { display: grid; gap: 10px; }
 		.tldr-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 8px; }
 		.tldr-item span { grid-column: 1 / -1; color: #4f5e46; }

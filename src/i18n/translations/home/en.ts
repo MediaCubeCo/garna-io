@@ -1,7 +1,8 @@
-export const homeEn = {
+﻿export const homeEn = {
 	meta: {
-		title: 'Garna - Global Payroll Solutions',
-		description: 'One transfer — countless possibilities. Pay remunerations in over 150 countries with minimal effort',
+		title: 'Global Payroll and Payments in 150+ Countries | Garna',
+		description:
+			'Reliable payroll software for international businesses. Automate international payroll, taxes, and compliance. Make fast payments to your team in any currency or cryptocurrency.',
 	},
 	images: {},
 	nav: {
@@ -14,7 +15,8 @@ export const homeEn = {
 		name: 'Garna',
 	},
 	hero: {
-		title: 'Global Payroll Solutions',
+		badge: 'Enterprise Payroll',
+		title: 'Global Payroll Solutions for your business',
 		tagline: 'for your business',
 		description: 'One transfer — countless possibilities. Pay remunerations in over 150 countries with minimal effort',
 		bookDemo: 'Book a demo',

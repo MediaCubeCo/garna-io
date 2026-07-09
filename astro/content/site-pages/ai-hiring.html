@@ -6,8 +6,8 @@
                     class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 shadow-sm mb-8 backdrop-blur-sm">
                     <span class="relative flex h-2 w-2">
                         <span
-                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span class="inline-flex bg-[#5ea500] w-2 h-2 rounded-full relative"></span>
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#5EA500] opacity-75"></span>
+                        <span class="inline-flex bg-[#5EA500] w-2 h-2 rounded-full relative"></span>
                     </span>
                     <span class="uppercase text-xs font-medium text-gray-300 tracking-wide font-manrope" data-translate="hero.badge">AI-Powered
                         Recruitment</span>
@@ -41,11 +41,13 @@
                     <!-- Fake Browser Header -->
                     <div class="flex items-center justify-between mb-3 px-2">
                         <div class="flex gap-2">
-                            <div class="w-2.5 h-2.5 rounded-full bg-white/10"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-white/10"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56] shadow-[inset_0_1px_0_rgba(255,255,255,0.24)]"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] shadow-[inset_0_1px_0_rgba(255,255,255,0.24)]"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f] shadow-[inset_0_1px_0_rgba(255,255,255,0.24)]"></div>
                         </div>
-                        <div class="h-5 w-64 bg-white/5 rounded-full mx-auto hidden md:block border border-white/5">
+                        <div class="h-5 w-64 bg-white/5 rounded-full mx-auto hidden md:flex border border-white/5 items-center justify-center gap-2 text-[10px] tracking-wide text-gray-400 font-manrope">
+                            <span class="h-1.5 w-1.5 rounded-full bg-[#5EA500] shadow-[0_0_10px_rgba(94,165,0,0.45)]"></span>
+                            <span>garna.io/ai-hiring</span>
                         </div>
                     </div>
 
@@ -204,7 +206,7 @@
             </div>
 
             <!-- Bento Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-6 gap-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-8">
 
                 <!-- Card 1: High Volume -->
                 <div
@@ -794,6 +796,50 @@
     <!-- Job Board -->
     <section class="lg:pt-32 lg:pb-32 bg-[#050505] pt-16 pb-16">
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+            <style>
+                .candidate-stack {
+                    isolation: isolate;
+                }
+
+                .candidate-stack > img {
+                    border-color: #0a0a0a !important;
+                    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+                }
+
+                .candidate-stack > * {
+                    position: relative;
+                }
+
+                .candidate-stack > *:nth-child(1) {
+                    z-index: 3;
+                }
+
+                .candidate-stack > *:nth-child(2) {
+                    z-index: 2;
+                }
+
+                .candidate-stack > *:nth-child(3) {
+                    z-index: 1;
+                }
+
+                .candidate-more {
+                    width: 2rem !important;
+                    height: 2rem !important;
+                    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+                    background: #111111 !important;
+                    color: rgba(255, 255, 255, 0.82) !important;
+                    box-shadow: 0 0 0 1px rgba(94, 165, 0, 0.12), 0 12px 28px rgba(0, 0, 0, 0.28);
+                    font-size: 0.75rem !important;
+                    font-weight: 600 !important;
+                    letter-spacing: 0;
+                }
+
+                .group:hover .candidate-more {
+                    border-color: rgba(94, 165, 0, 0.42) !important;
+                    color: #5EA500 !important;
+                    box-shadow: 0 0 0 1px rgba(94, 165, 0, 0.18), 0 0 18px rgba(94, 165, 0, 0.18);
+                }
+            </style>
             <div class="lg:mb-20 text-center mb-16">
                 <h2
                     class="md:text-4xl lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope max-w-4xl mr-auto mb-6 ml-auto"
@@ -804,7 +850,7 @@
                     skills</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:mb-20 mb-16 gap-x-6 gap-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:mb-20 mb-16 gap-x-8 gap-y-8">
                 <!-- Job Card Component -->
                 <div
                     class="bg-[#0a0a0a] rounded-xl p-6 border border-[#5EA500]/20 hover:border-[#5EA500]/40 hover:bg-[#0E0E0E] transition-all duration-300 group">
@@ -824,13 +870,13 @@
                         <span class=""></span>
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg"
                             alt="Candidate" class="w-8 h-8 rounded-full border-2 border-black object-cover bg-gray-700">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e69e5f8e-07cd-4ef2-97e3-d4bcfccc3881_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <div
-                            class="text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
                             +4</div>
                     </div>
 
@@ -866,13 +912,13 @@
 
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/bd0dc97c-a094-49ac-8265-f47f1efa3939_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/af66ba5d-69b1-41c6-b463-40f48d0134da_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <div
-                            class="text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
                             +2</div>
                     </div>
 
@@ -908,7 +954,7 @@
 
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8003e855-7d21-4b11-ba40-2921946b8a25_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/65695f80-23f9-46ee-8487-cbb6c93cc48b_320w.webp"
@@ -947,13 +993,13 @@
 
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a1e31719-a86b-48bc-8913-670561250931_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e5cbf539-f61a-4c9d-aff7-ea01dc1ddcb9_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <div
-                            class="text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
                             +6</div>
                     </div>
 
@@ -988,7 +1034,7 @@
 
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/146e6ba9-12a4-43b3-a1a3-7b2340a34a70_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                     </div>
@@ -1024,13 +1070,13 @@
 
                     </div>
 
-                    <div class="flex items-center -space-x-2 mb-6">
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5d0296a8-c467-44ef-9d51-ce4ee3a2c3c6_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d93fdd79-8748-45cc-bf20-725a75594265_320w.webp"
                             alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
                         <div
-                            class="text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
                             +8</div>
                     </div>
 
@@ -1306,7 +1352,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-6 gap-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-8">
 
                 <!-- Col 1: Multiple Payout Methods -->
                 <div
@@ -1640,7 +1686,7 @@
                 <p class="text-xl font-light text-gray-400 font-manrope max-w-3xl mx-auto" data-translate="testimonials.description">Real stories, real results.
                     See how our platform accelerates global hiring</p>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 gap-x-6 gap-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 gap-x-8 gap-y-8">
                 <!-- Testimonial 1 -->
                 <div
                     class="group relative bg-[#0A0A0A] hover:bg-[#0F0F0F] p-8 rounded-2xl border border-white/5 hover:border-white/10 transition-all duration-300 hover:-translate-y-1 overflow-hidden">

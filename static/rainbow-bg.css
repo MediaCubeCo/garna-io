@@ -5,8 +5,9 @@
 	right: 0;
 	left: 0;
 	height: 100vh;
-	z-index: -20;
+	z-index: 0;
 	overflow: hidden;
+	pointer-events: none;
 	background-color: rgba(5, 5, 5, 1);
 	-webkit-mask-image: linear-gradient(168deg, #000 0%, #000 28%, rgba(0, 0, 0, 0.72) 44%, rgba(0, 0, 0, 0.18) 60%, transparent 76%);
 	mask-image: linear-gradient(168deg, #000 0%, #000 28%, rgba(0, 0, 0, 0.72) 44%, rgba(0, 0, 0, 0.18) 60%, transparent 76%);

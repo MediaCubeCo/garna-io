@@ -2,15 +2,12 @@ export type HeroTone = 'green' | 'neutral';
 export type HeroAlign = 'center' | 'split';
 export type HeroCtaKind = 'demo' | 'signup' | 'external';
 export type HeroCtaVariant = 'primary' | 'secondary' | 'ghost' | 'icon' | 'glow';
-export type HeroCtaEffect = 'none' | 'rotating-flare' | 'hover-sweep';
+export type HeroCtaEffect = 'none' | 'rotating-flare';
 export type HeroCtaIcon = 'none' | 'arrow-up-right' | 'arrow-right';
 
 export interface HeroTextPart {
 	text: string;
 	translateKey: string;
-	class?: string;
-	breakBefore?: boolean;
-	breakClass?: string;
 }
 
 export interface HeroCta {
@@ -37,6 +34,7 @@ export interface HeroSectionConfig {
 	containerClass?: string;
 	contentClass?: string;
 	titleClass?: string;
+	titleBreakAfterWords?: number | Record<string, number>;
 	descriptionClass?: string;
 	badge?: HeroBadge;
 	title: HeroTextPart[];

@@ -1,4 +1,4 @@
-name = "garna-io"
+﻿name = "garna-io"
 main = "src/index.ts"
 account_id = "f67149c49bb3df8b37eb59f539a72c97"
 compatibility_date = "2024-12-01"

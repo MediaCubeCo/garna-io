@@ -1,4 +1,4 @@
-import { homeTranslations } from './translations/home';
+﻿import { homeTranslations as contractorOfRecordTranslations } from './translations/home';
 import { offerTranslations } from './translations/offer';
 import { notFoundTranslations } from './translations/404';
 import { formTranslations } from './translations/form';
@@ -6,12 +6,16 @@ import { aiHiringTranslations } from './translations/ai-hiring';
 import { whiteLabelTranslations } from './translations/white-label';
 import { eorTranslations } from './translations/eor';
 import { payrollSmallBusinessTranslations } from './translations/payroll-small-business';
+import { midSizeTranslations } from './translations/mid-size';
+import { payrollSolutionNewTranslations as homeTranslations } from './translations/payroll-solution-new';
 import { blogArticleTranslations, blogAuthorTranslations, blogTranslations } from './translations/blog';
+import { enterprisePayrollTranslations } from './translations/enterprise-payroll';
 
 export type PageTranslations = typeof homeTranslations.en;
 
 type AnyPageTranslations =
 	| typeof homeTranslations.en
+	| typeof contractorOfRecordTranslations.en
 	| typeof offerTranslations.en
 	| typeof notFoundTranslations.en
 	| typeof formTranslations.en
@@ -19,12 +23,16 @@ type AnyPageTranslations =
 	| typeof whiteLabelTranslations.en
 	| typeof eorTranslations.en
 	| typeof payrollSmallBusinessTranslations.en
+	| typeof midSizeTranslations.en
+	| typeof homeTranslations.en
+	| typeof enterprisePayrollTranslations.en
 	| typeof blogTranslations.en
 	| typeof blogAuthorTranslations.en
 	| typeof blogArticleTranslations.en;
 
 const translations = {
 	home: homeTranslations,
+	'contractor-of-record': contractorOfRecordTranslations,
 	offer: offerTranslations,
 	'404': notFoundTranslations,
 	form: formTranslations,
@@ -32,6 +40,10 @@ const translations = {
 	'white-label': whiteLabelTranslations,
 	eor: eorTranslations,
 	'employer-of-record': eorTranslations,
+	'mid-size': midSizeTranslations,
+	'mid-size-business-payroll': midSizeTranslations,
+	'payroll-solution-new': homeTranslations,
+	'enterprise-payroll': enterprisePayrollTranslations,
 	'payroll-small-business': payrollSmallBusinessTranslations,
 	blog: blogTranslations,
 	'blog-author': blogAuthorTranslations,

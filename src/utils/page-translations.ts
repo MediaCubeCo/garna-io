@@ -1,4 +1,4 @@
-import { getPageTranslations } from '../i18n';
+﻿import { getPageTranslations } from '../i18n';
 import { RouteInfo } from './routes';
 import { languages } from '../config/languages';
 import { getHeaderTranslations } from '../i18n/translations/header';
@@ -25,10 +25,13 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 		return `/${segment}/ai-hiring`;
 	}
 	if (pageName === 'white-label') {
-		return `/${segment}/white-label`;
+		return `/${segment}/white-label-payroll`;
 	}
 	if (pageName === 'payroll-small-business') {
-		return `/${segment}/payroll-small-business`;
+		return `/${segment}/small-business-payroll`;
+	}
+	if (pageName === 'mid-size' || pageName === 'mid-size-business-payroll') {
+		return `/${segment}/mid-size-business-payroll`;
 	}
 	if (pageName === 'blog') {
 		return `/${segment}/blog`;
@@ -514,12 +517,16 @@ function replaceVisibleSourceText(html: string, translations: Record<string, str
 
 	const parts = html.split(/(<[^>]+>)/g);
 	let skipTag: string | null = null;
+	const translatedElementStack: string[] = [];
 
 	return parts
 		.map((part) => {
 			if (part.startsWith('<')) {
 				const openTag = part.match(/^<\s*(script|style|svg|noscript)\b/i);
 				const closeTag = part.match(/^<\s*\/\s*(script|style|svg|noscript)\s*>/i);
+				const genericOpenTag = part.match(/^<\s*([a-zA-Z][a-zA-Z0-9:-]*)\b/i);
+				const genericCloseTag = part.match(/^<\s*\/\s*([a-zA-Z][a-zA-Z0-9:-]*)\s*>/i);
+				const isSelfClosing = /\/\s*>$/.test(part);
 
 				if (openTag && !part.endsWith('/>')) {
 					skipTag = openTag[1].toLowerCase();
@@ -527,10 +534,23 @@ function replaceVisibleSourceText(html: string, translations: Record<string, str
 					skipTag = null;
 				}
 
+				if (genericCloseTag) {
+					const closingTagName = genericCloseTag[1].toLowerCase();
+					if (translatedElementStack[translatedElementStack.length - 1] === closingTagName) {
+						translatedElementStack.pop();
+					}
+				} else if (
+					genericOpenTag &&
+					!isSelfClosing &&
+					/\sdata-translate=(["'])[^"']+\1/i.test(part)
+				) {
+					translatedElementStack.push(genericOpenTag[1].toLowerCase());
+				}
+
 				return part;
 			}
 
-			if (skipTag) return part;
+			if (skipTag || translatedElementStack.length > 0) return part;
 
 			const normalizedText = normalizeVisibleText(part);
 			if (!normalizedText) return part;
@@ -546,7 +566,15 @@ function replaceVisibleSourceText(html: string, translations: Record<string, str
 }
 
 function normalizeVisibleText(text: string): string {
-	return text.replace(/\s+/g, ' ').trim();
+	return text
+		.replace(/&mdash;/gi, '—')
+		.replace(/&ndash;/gi, '–')
+		.replace(/&amp;/gi, '&')
+		.replace(/&#0?39;|&apos;/gi, "'")
+		.replace(/[‘’]/g, "'")
+		.replace(/[“”]/g, '"')
+		.replace(/\s+/g, ' ')
+		.trim();
 }
 
 function replaceSourceAttributes(

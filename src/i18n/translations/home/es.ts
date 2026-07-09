@@ -1,8 +1,8 @@
-export const homeEs = {
+﻿export const homeEs = {
 	meta: {
-		title: 'Garna - Soluciones de Nómina Global',
+		title: 'Nóminas y pagos internacionales en más de 150 países | Garna',
 		description:
-			'Una transferencia, infinitas posibilidades. Pague remuneraciones en más de 150 países con un mínimo esfuerzo',
+			'Software de nóminas fiable para empresas internacionales. Automatiza las nóminas internacionales, los impuestos y el cumplimiento normativo. Realiza pagos rápidos a tu equipo en cualquier moneda o criptomoneda.',
 	},
 	images: {},
 	nav: {
@@ -15,7 +15,8 @@ export const homeEs = {
 		name: 'Garna',
 	},
 	hero: {
-		title: 'Soluciones de Nómina Global',
+		badge: 'Nómina para grandes empresas',
+		title: 'Soluciones de Nómina Global para tu negocio',
 		tagline: 'para tu negocio',
 		description:
 			'Una transferencia, infinitas posibilidades. Pague remuneraciones en más de 150 países con un mínimo esfuerzo',

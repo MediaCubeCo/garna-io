@@ -1,4 +1,4 @@
-export const headerEs = {
+﻿export const headerEs = {
 	brand: 'garna',
 	payrollSolution: 'Solucion de nomina',
 	forContractors: 'Para contratistas',
@@ -10,7 +10,7 @@ export const headerEs = {
 	solutions: 'Soluciones',
 	resources: 'Recursos',
 	resourcesKicker: 'Articulos y novedades de la empresa',
-	globalPayroll: 'Pagos globales',
+	globalPayroll: 'Nómina Global',
 	globalPayrollKicker: 'Paga a equipos en todo el mundo',
 	eor: 'Empleador de Registro',
 	eorKicker: 'Contrata sin entidad local',
@@ -23,7 +23,7 @@ export const headerEs = {
 	smallBusinessKicker: 'Para equipos de menos de 50 personas',
 	midSizeBusiness: 'Nomina para medianas empresas',
 	midSizeBusinessKicker: 'Equipos en crecimiento de 50 a 500',
-	enterprise: 'Nomina para grandes empresas',
+	enterprise: 'Nómina para grandes empresas',
 	enterpriseKicker: 'Operaciones globales complejas',
 	byNeed: 'Por necesidad y mas',
 	whiteLabelPayroll: 'Nomina White Label',
