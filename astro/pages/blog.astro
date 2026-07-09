@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/Button.astro';
+import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
 import HeroSection from '../components/HeroSection.astro';
 import { pageShells } from '../content/page-shells';
 import rawContentHtml from '../content/site-pages/blog.html?raw';
@@ -56,17 +56,25 @@ const demoOnclick =
 	<Fragment set:html={blogContentBeforeCta} />
 	<section class="overflow-hidden lg:pt-8 lg:pb-8 pt-8 pb-8 relative">
 		<div class="font-manrope max-w-7xl mx-auto pr-6 pl-6">
-			<div class="flex flex-col border-white/10 border-b pb-12 items-center justify-center">
-				<div class="flex flex-col items-center justify-center flex-1 lg:max-w-xl w-full text-center">
-					<h2 class="md:text-3xl text-2xl font-thin text-white tracking-tight max-w-lg mb-8" data-translate="blog.cta.title">Your Global Growth Starts Here</h2>
-					<div class="flex w-full max-w-md mr-auto ml-auto items-center justify-center">
-						<Button href="#" onclick={demoOnclick} variant="primary" effect="rotating-flare" size="hero" class="w-fit">
-							<span data-translate="blog.cta.button">Book a Demo</span>
-						</Button>
-					</div>
-				</div>
-			</div>
+			<a
+				href="#"
+				onclick={demoOnclick}
+				class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-between rounded-3xl border border-white/10 bg-[#0a0a0a]/55 px-6 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.22)] transition-colors hover:border-[#5ea500]/30 outline-none"
+			>
+				<h2 class="md:text-3xl text-2xl leading-tight font-thin text-white tracking-tight" data-translate="blog.cta.title">Your Global Growth Starts Here</h2>
+				<span class="inline-flex min-h-12 shrink-0 items-center justify-center rounded-xl bg-[#5ea500] px-7 text-base font-normal text-white shadow-[0_0_24px_rgba(94,165,0,0.32)] transition-transform duration-300 hover:scale-[1.03] hover:bg-[#69b800]">
+					<span data-translate="blog.cta.button">Book a Demo</span>
+				</span>
+			</a>
 		</div>
 	</section>
 	<Fragment set:html={blogContentAfterCta} />
+	<Fragment slot="widgets">
+		<GarnaBookingWidget
+			trackingSource="blog"
+			trackingPage="blog"
+			titleFallback="Start your journey with Garna"
+			subtitleFallback="Fill in your details to book a demo"
+		/>
+	</Fragment>
 </BaseLayout>

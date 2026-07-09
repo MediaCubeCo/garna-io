@@ -228,10 +228,13 @@ function youtubeEmbedUrl(value: string): string | null {
 
 function ctaBlockToHtml(value: string): string {
 	try {
-		const data = JSON.parse(value) as { title?: string; text?: string; button?: string; url?: string };
+		const data = JSON.parse(value) as { title?: string; text?: string; button?: string; customUrlEnabled?: boolean; url?: string };
 		if (!data.title && !data.text && !data.button) return '';
-		const url = data.url && /^https?:\/\//.test(data.url) ? data.url : 'https://garna.io/';
-		return `<a class="garna-blog-cta" href="${escapeAttribute(url)}" target="_blank" rel="noopener noreferrer">
+		const useCustomUrl = Boolean(data.customUrlEnabled && data.url && /^https?:\/\//.test(data.url));
+		const linkAttributes = useCustomUrl
+			? `href="${escapeAttribute(data.url || '')}" target="_blank" rel="noopener noreferrer"`
+			: `href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_article_inline_cta' });"`;
+		return `<a class="garna-blog-cta" ${linkAttributes}>
 			<div class="garna-blog-cta-beams" aria-hidden="true"><span></span><span></span></div>
 			<div class="garna-blog-cta-content">
 				<div class="garna-blog-cta-copy">

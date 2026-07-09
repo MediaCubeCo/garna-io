@@ -6,7 +6,53 @@ type TocItem = { id: string; label: string; isIntro?: boolean };
 
 type PageShellOptions = {
 	articleChrome?: boolean;
+	bookingWidget?: boolean;
 };
+
+function fallbackBookingWidget(): string {
+	return `<div id="garna-widget-root"></div>
+	<script src="/widget/garna-widget.js"></script>
+	<script>
+		(function () {
+			function initWidget() {
+				if (typeof window.GarnaWidget === 'undefined') {
+					setTimeout(initWidget, 100);
+					return;
+				}
+
+				window.GarnaWidget.init({
+					containerId: 'garna-widget-root',
+					embedInline: false,
+					calComLink: 'garna/demo',
+					locale: document.documentElement.lang || 'en',
+					trackingSource: 'blog-article',
+					trackingPage: 'blog-article',
+					title: 'Start your journey with Garna',
+					subtitle: 'Fill in your details to book a demo',
+					titleButtonForm: 'Continue',
+					colorBrandBg: '#5EA500',
+					colorBrandText: '#ffffff',
+					bgColorCal: '#0a0a0a',
+					colorBorder: 'rgb(34, 34, 34)',
+					thicknessBorder: '1px',
+					radiusBorder: '32px',
+					colorTextMain: '#ffffff',
+					colorTextCalendar: '#a4a4a4',
+					colorTextError: '#ff6b9d',
+					colorBorderTimeCalendar: '#ffffff9a',
+					colorBorderVerticalLine: 'rgb(34, 34, 34)',
+					colorTextLogo: '#5d5d5d'
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', initWidget);
+			} else {
+				initWidget();
+			}
+		})();
+	</script>`;
+}
 
 function pageShell(title: string, head: string, body: string, options: PageShellOptions = {}): string {
 	return `<!doctype html>
@@ -174,7 +220,8 @@ function pageShell(title: string, head: string, body: string, options: PageShell
 <body>
 	${options.articleChrome ? `${rainbowBackground()}${siteHeader()}` : ''}
 	<main class="garna-blog${options.articleChrome ? ' garna-blog--article' : ''}" data-page-title="${escapeAttribute(title)}">${body}</main>
-</body>
+	${options.articleChrome || options.bookingWidget ? fallbackBookingWidget() : ''}
+	</body>
 </html>`;
 }
 
@@ -215,7 +262,7 @@ export async function renderBlogIndex(env: BlogEnv, articles: BlogArticle[], cat
 		<section class="garna-blog-section">
 			<div class="garna-blog-grid">${cards || '<p>No published articles yet.</p>'}</div>
 		</section>`;
-	return htmlResponse(pageShell('Garna Insights Hub', head, body));
+	return htmlResponse(pageShell('Garna Insights Hub', head, body, { bookingWidget: true }));
 }
 
 export async function renderAuthorPage(env: BlogEnv, author: BlogAuthor, articles: BlogArticle[], language = 'en'): Promise<Response> {
@@ -370,6 +417,8 @@ function fillBlogListAstroShell(
 		'%%BLOG_CTA_BLOCK%%': hasActiveCategory ? '' : renderBlogListCta(),
 		'%%BLOG_ARTICLE_CARDS%%': renderArticleGridCards(input.articles),
 		'%%BLOG_PAGINATION%%': renderBlogPagination(input.articles.length),
+		'__GARNA_LOCALE__': serializeJsonForScript(input.language || 'en'),
+		'__GARNA_WIDGET_TRANSLATIONS__': serializeJsonForScript({}),
 	};
 	return replaceShellTokens(template, replacements)
 		.replaceAll('data-current-path="blog-list-shell"', 'data-current-path="blog"')
@@ -410,6 +459,10 @@ function replaceShellTokens(template: string, replacements: Record<string, strin
 		html = html.replaceAll(token, value);
 	}
 	return html;
+}
+
+function serializeJsonForScript(value: unknown): string {
+	return JSON.stringify(value).replace(/</g, '\\u003c');
 }
 
 function fillArticleAstroShell(
@@ -453,6 +506,8 @@ function fillArticleAstroShell(
 		'%%BLOG_ARTICLE_AFTER_BODY%%': input.afterBodyHtml,
 		'%%BLOG_ARTICLE_FAQ%%': input.faqHtml,
 		'%%BLOG_RIGHT_BANNER%%': input.rightBannerHtml,
+		'__GARNA_LOCALE__': serializeJsonForScript(article.language || 'en'),
+		'__GARNA_WIDGET_TRANSLATIONS__': serializeJsonForScript({}),
 	};
 	let html = template;
 	for (const [token, value] of Object.entries(replacements)) {
@@ -480,12 +535,12 @@ function renderBlogCategoryFilters(categories: BlogCategory[], language: string,
 function renderBlogListCta(): string {
 	return `<section class="overflow-hidden pt-4 pb-8 relative">
 		<div class="font-manrope max-w-7xl mx-auto pr-6 pl-6">
-			<div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-between rounded-3xl border border-white/10 bg-[#0a0a0a]/55 px-6 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.22)]">
+			<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_demo' });" class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-between rounded-3xl border border-white/10 bg-[#0a0a0a]/55 px-6 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.22)] transition-colors hover:border-[#5ea500]/30">
 				<h2 class="md:text-3xl text-2xl leading-tight font-thin text-white tracking-tight" data-translate="blog.cta.title">Your Global Growth Starts Here</h2>
-				<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_demo' });" class="inline-flex min-h-12 shrink-0 items-center justify-center rounded-xl bg-[#5ea500] px-7 text-base font-normal text-white shadow-[0_0_24px_rgba(94,165,0,0.32)] transition-transform duration-300 hover:scale-[1.03] hover:bg-[#69b800]">
+				<span class="inline-flex min-h-12 shrink-0 items-center justify-center rounded-xl bg-[#5ea500] px-7 text-base font-normal text-white shadow-[0_0_24px_rgba(94,165,0,0.32)] transition-transform duration-300 hover:scale-[1.03] hover:bg-[#69b800]">
 					<span data-translate="blog.cta.button">Book a Demo</span>
-				</a>
-			</div>
+				</span>
+			</a>
 		</div>
 	</section>`;
 }
@@ -675,7 +730,7 @@ function renderArticleFaq(article: BlogArticle): string {
 				<div class="garna-blog-faq-copy">
 					<h2>Frequently Asked Questions</h2>
 					<p class="garna-blog-faq-subtitle">Can't find the answer you're looking for? Reach out to our team.</p>
-					<a class="garna-blog-faq-contact" href="/en#contact">
+					<a class="garna-blog-faq-contact" href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_article_faq_contact' });">
 						<span>Contact Team</span>
 						${arrowRightIcon()}
 					</a>
@@ -809,7 +864,7 @@ function stripInlineMarkdown(value: string): string {
 }
 
 function payrollSideBanner(): string {
-	return `<a href="https://garna.io/" target="_blank" rel="noopener noreferrer" class="block overflow-hidden group transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:border-[#5ea500]/30 bg-gradient-to-b from-[#1a1a1e] via-[#151518] to-[#0a0a0c] w-full h-[320px] border-white/5 border rounded-xl mb-6 relative shadow-lg">
+	return `<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_article_side_banner_demo' });" class="block overflow-hidden group transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:border-[#5ea500]/30 bg-gradient-to-b from-[#1a1a1e] via-[#151518] to-[#0a0a0c] w-full h-[320px] border-white/5 border rounded-xl mb-6 relative shadow-lg">
 		<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
 			<div class="absolute top-[5%] left-[-30%] w-[160%] h-20 bg-[#5ea500]/20 rotate-[35deg] blur-2xl transform-gpu transition-transform duration-1000 group-hover:translate-x-4"></div>
 			<div class="absolute top-[30%] left-[-30%] w-[160%] h-24 bg-[#5ea500]/10 rotate-[35deg] blur-3xl transform-gpu transition-transform duration-1000 group-hover:translate-x-8"></div>
