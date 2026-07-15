@@ -250,8 +250,8 @@ export const pageHeroes = {
 		align: 'center',
 	},
 	form: {
-		class: 'lg:pb-32 lg:pt-16 pt-16 pb-24',
-		containerClass: 'garna-container',
+		class: 'garna-form-page lg:pb-32 lg:pt-16 pt-16 pb-24 relative z-10 isolate',
+		containerClass: 'garna-container relative z-10',
 		contentClass: 'lg:mb-20 text-center max-w-3xl mr-auto mb-16 ml-auto',
 		titleClass: 'garna-hero-title-gradient md:text-5xl text-3xl leading-[1.15] pb-[0.08em] font-normal tracking-tight font-manrope mb-6',
 		descriptionClass: 'text-xl font-light text-gray-400 font-manrope',

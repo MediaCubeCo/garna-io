@@ -5,6 +5,7 @@ import { handleStaticFile } from './routes/static';
 import { resolveRoute } from './utils/routes';
 import { handleBlogAdmin } from './blog/admin';
 import { handleBlogMedia, handleBlogPublic, handleLegacyBlogRedirect } from './blog/public';
+import { handleTaxCalculator } from './routes/tax-calculator';
 
 const CANONICAL_ORIGIN = 'https://garna.io';
 const DEFAULT_LANGUAGE = 'en';
@@ -14,6 +15,9 @@ export default {
 		try {
 			const url = new URL(request.url);
 			const country = (request as any).cf?.country || 'US';
+
+			const taxCalculatorResponse = await handleTaxCalculator(request);
+			if (taxCalculatorResponse) return taxCalculatorResponse;
 
 			// 0. Redirect www (http/https) to canonical https://garna.io/en
 			if (url.hostname === 'www.garna.io') {

@@ -40,6 +40,7 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 		'payroll-solution-new': '',
 		'payroll-small-business': 'small-business-payroll',
 		'white-label': 'white-label-payroll',
+		'tax-calculator': 'employee-cost-calculator',
 	};
 	const redirectPath = redirects[pageConfig.path];
 	if (redirectPath !== undefined) {
@@ -69,6 +70,7 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 	'small-business-payroll': '/payroll-small-business.html',
 	'payroll-solution-new': '/payroll-solution-new.html',
 	'employer-of-record': '/employer-of-record.html',
+	'employee-cost-calculator': '/tax-calculator.html',
 	blog: '/blog.html',
 	'blog-author': '/blog-author.html',
 	'blog-article': '/blog-article.html',
@@ -86,6 +88,7 @@ const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'small-business-payroll': 'payroll-small-business',
 	'payroll-solution-new': 'home',
 	'employer-of-record': 'eor',
+	'employee-cost-calculator': 'tax-calculator',
 	blog: 'blog',
 	'blog-author': 'blog-author',
 	'blog-article': 'blog-article',
