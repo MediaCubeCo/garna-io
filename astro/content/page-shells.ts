@@ -38,6 +38,15 @@ details > summary::-webkit-details-marker { display: none; }
 <style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style>`;
 
 export const pageShells = {
+	taxCalculator: {
+		title: 'Free Employee Cost Calculator: Estimate the True Cost of Hiring Globally | Garna',
+		description: 'Know the true cost of hiring with Garna’s free Global Employee Cost Calculator. Estimate total employment expenses for global teams.',
+		keywords: 'employee cost calculator, employment cost calculator, global hiring cost, salary tax calculator, Garna',
+		htmlClass: 'scroll-smooth dark',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#5EA500]/40 selection:text-white bg-[#050505]',
+		iconLibrary: 'lucide',
+		headExtra: '',
+	},
 	contractorOfRecord: {
 		"title": "Global Payroll and Payments in 150+ Countries | Garna",
 		"description": "Reliable payroll software for international businesses. Automate international payroll, taxes, and compliance. Make fast payments to your team in any currency or cryptocurrency.",

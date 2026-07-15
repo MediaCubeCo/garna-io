@@ -507,6 +507,14 @@ const mobileLinkClass = (path: string) =>
 
 		const supportedLangs = ['en', 'es', 'pt', 'ru'];
 
+		// Styles emitted by a page must be replaced during SPA navigation. Keep the
+		// Tailwind runtime stylesheet: it is maintained dynamically by the CDN script.
+		document.head.querySelectorAll('style').forEach((style) => {
+			const content = style.textContent || '';
+			const isTailwindRuntime = content.includes('--tw-border-spacing-x') || content.includes('--tw-ring-offset-shadow');
+			if (!isTailwindRuntime) style.dataset.garnaSpaHeadStyle = 'initial';
+		});
+
 		const getLangFromPath = (pathname = window.location.pathname) => {
 			const [firstSegment] = pathname.split('/').filter(Boolean);
 			const lang = firstSegment?.toLowerCase();
@@ -661,6 +669,39 @@ const mobileLinkClass = (path: string) =>
 			await Promise.all(pendingScripts);
 		};
 
+		const syncStylesheets = async (targetDoc) => {
+			const targetLinks = Array.from(targetDoc.head.querySelectorAll('link[rel="stylesheet"][href]'));
+			const targetHrefs = new Set(targetLinks.map((link) => new URL(link.getAttribute('href'), window.location.origin).href));
+			const pendingStyles = [];
+
+			for (const sourceLink of targetLinks) {
+				const href = sourceLink.getAttribute('href');
+				if (!href) continue;
+				const absoluteHref = new URL(href, window.location.origin).href;
+				const existing = Array.from(document.head.querySelectorAll('link[rel="stylesheet"][href]')).find(
+					(link) => new URL(link.getAttribute('href'), window.location.origin).href === absoluteHref
+				);
+				if (existing) continue;
+
+				const clone = sourceLink.cloneNode(true);
+				if (!(clone instanceof HTMLLinkElement)) continue;
+				clone.dataset.garnaSpaStylesheet = 'true';
+				pendingStyles.push(new Promise((resolve) => {
+					clone.addEventListener('load', resolve, { once: true });
+					clone.addEventListener('error', resolve, { once: true });
+					document.head.appendChild(clone);
+				}));
+			}
+
+			await Promise.all(pendingStyles);
+			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach((link) => {
+				const href = link.getAttribute('href');
+				if (!href) return;
+				const absoluteHref = new URL(href, window.location.origin).href;
+				if (!targetHrefs.has(absoluteHref)) link.remove();
+			});
+		};
+
 		const syncDocumentShell = (targetDoc) => {
 			document.documentElement.className = targetDoc.documentElement.className;
 			document.documentElement.lang = targetDoc.documentElement.lang || document.documentElement.lang;
@@ -720,6 +761,7 @@ const mobileLinkClass = (path: string) =>
 				});
 			});
 
+			await syncStylesheets(targetDoc);
 			syncManagedHeadStyles(targetDoc);
 			await runManagedHeadScripts(targetDoc);
 			await appendMissingHeadResources(targetDoc);

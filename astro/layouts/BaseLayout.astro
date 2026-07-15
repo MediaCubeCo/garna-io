@@ -12,6 +12,7 @@ interface Props {
 	showHeader?: boolean;
 	showFooter?: boolean;
 	scriptsHtml?: string;
+	rainbowCount?: number;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
 	showHeader = true,
 	showFooter = true,
 	scriptsHtml = '',
+	rainbowCount = 25,
 } = Astro.props;
 
 const currentPath = getPagePathFromPathname(Astro.url.pathname);
@@ -88,7 +90,7 @@ const {
 		/>
 	</head>
 	<body class={bodyClass}>
-		<RainbowBackground />
+		<RainbowBackground count={rainbowCount} />
 		{showHeader && <Header />}
 		<main id="astro-page-content" data-astro-page-content data-current-path={currentPath}>
 			<slot />

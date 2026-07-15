@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Take-Home Calculator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
+</head>
+<body>
+  <main class="container" style="max-width: 640px;">
+    <h2>Take-Home Calculator</h2>
+    <form hx-post="/calculate/" hx-target="#results" hx-swap="innerHTML">
+      {% csrf_token %}
+      <label>
+        Country
+        <select name="country" required
+                hx-get="/states/" hx-target="#state-container" hx-trigger="change">
+          <option value="">Select a country…</option>
+          {% for c in countries %}
+          <option value="{{ c.value }}">{{ c.label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <div id="state-container"></div>
+      <label>
+        Salary
+        <input type="number" name="salary" min="1" required placeholder="Enter amount">
+      </label>
+      <label>
+        Period
+        <select name="period">
+          <option value="monthly">Monthly</option>
+          <option value="annual">Annual</option>
+        </select>
+      </label>
+      <button type="submit">Calculate</button>
+    </form>
+    <div id="results" style="margin-top: 1.5rem;"></div>
+  </main>
+</body>
+</html>

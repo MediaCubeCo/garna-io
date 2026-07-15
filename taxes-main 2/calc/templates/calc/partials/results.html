@@ -1,0 +1,49 @@
+{% if result.errors %}
+<article>
+  <p><strong>Error:</strong> {{ result.errors|join:", " }}</p>
+</article>
+{% else %}
+<article>
+  <header>
+    <strong>{{ result.country }}</strong> &mdash; {{ result.currency }}
+    {% if result.exchangeRate != "1.00" %}(1 {{ result.currency }} = {{ result.exchangeRate }} USD){% endif %}
+  </header>
+  <table>
+    <thead>
+      <tr><th></th><th>{{ result.currency }}</th><th>USD</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Gross annual</strong></td>
+        <td>{{ result.grossAnnualSalary }}</td>
+        <td>{{ result.grossAnnualSalaryUSD }}</td>
+      </tr>
+      <tr>
+        <td><strong>Net annual</strong></td>
+        <td>{{ result.netAnnualSalary }}</td>
+        <td>{{ result.netAnnualSalaryUSD }}</td>
+      </tr>
+    </tbody>
+  </table>
+  {% if result.costs %}
+  <h6>Deductions</h6>
+  <table>
+    <thead>
+      <tr><th>Item</th><th>{{ result.currency }}</th><th>USD</th></tr>
+    </thead>
+    <tbody>
+      {% for cost in result.costs %}
+      <tr>
+        <td>{{ cost.name }}</td>
+        <td>{{ cost.valueExchanged }}</td>
+        <td>{{ cost.valueUSD }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  {% if result.disclaimer %}
+  <footer><small>{{ result.disclaimer }}</small></footer>
+  {% endif %}
+</article>
+{% endif %}

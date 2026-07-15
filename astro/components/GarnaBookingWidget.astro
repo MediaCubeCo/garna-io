@@ -52,7 +52,6 @@ const widgetConfig = {
 ---
 
 {renderRoot && <div id={containerId}></div>}
-<script is:inline src="/widget/garna-widget.js"></script>
 <script
 	is:inline
 	set:html={`
@@ -120,11 +119,6 @@ const widgetConfig = {
 	}
 
 	function initWidget() {
-		if (typeof window.GarnaWidget === 'undefined') {
-			setTimeout(initWidget, 100);
-			return;
-		}
-
 		window.GarnaWidget.init({
 			containerId: widgetConfig.containerId,
 			embedInline: widgetConfig.embedInline,
@@ -152,10 +146,39 @@ const widgetConfig = {
 		});
 	}
 
+	function loadWidget() {
+		if (typeof window.GarnaWidget !== 'undefined') {
+			initWidget();
+			return;
+		}
+
+		if (!window.__garnaWidgetLoadCallbacks) {
+			window.__garnaWidgetLoadCallbacks = [];
+		}
+		window.__garnaWidgetLoadCallbacks.push(initWidget);
+
+		if (window.__garnaWidgetLoading) return;
+		window.__garnaWidgetLoading = true;
+
+		var script = document.createElement('script');
+		script.src = '/widget/garna-widget.js';
+		script.dataset.garnaWidgetScript = 'true';
+		script.onload = function () {
+			window.__garnaWidgetLoading = false;
+			var callbacks = window.__garnaWidgetLoadCallbacks || [];
+			window.__garnaWidgetLoadCallbacks = [];
+			callbacks.forEach(function (callback) { callback(); });
+		};
+		script.onerror = function () {
+			window.__garnaWidgetLoading = false;
+		};
+		document.head.appendChild(script);
+	}
+
 	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initWidget);
+		document.addEventListener('DOMContentLoaded', loadWidget);
 	} else {
-		initWidget();
+		loadWidget();
 	}
 })();
 `}
