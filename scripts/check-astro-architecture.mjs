@@ -4,12 +4,13 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const astroRoot = path.join(root, 'astro');
-const allowedSetHtml = path.join(astroRoot, 'components/dynamic/TrustedDynamicHead.astro');
+const allowedSetHtml = path.join(astroRoot, 'components/sections/blog/TrustedDynamicHead.astro');
 
 const forbiddenPatterns = [
 	['raw page import', /\?raw\b/],
 	['legacy section extractor', /splitLegacyPageSections/],
 	['legacy page content import', /content\/site-(?:pages|heads|scripts|standalone|hero-visuals)/],
+	['intermediate component category', /components\/(?:pages|dynamic)\//],
 	['Tailwind browser runtime', /cdn\.tailwindcss\.com/],
 	['page-level script string', /scriptsHtml/],
 	['page-level head string', /headExtra/],
@@ -21,7 +22,10 @@ const forbiddenDirectories = [
 	'site-scripts',
 	'site-standalone',
 	'site-hero-visuals',
-].map((name) => path.join(astroRoot, 'content', name));
+].map((name) => path.join(astroRoot, 'content', name)).concat([
+	path.join(astroRoot, 'components/pages'),
+	path.join(astroRoot, 'components/dynamic'),
+]);
 
 async function walk(directory) {
 	const entries = await readdir(directory, { withFileTypes: true });

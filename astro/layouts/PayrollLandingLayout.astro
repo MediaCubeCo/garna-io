@@ -1,19 +1,19 @@
 ---
-import FAQSection from "../FAQSection.astro";
-import FinalCTASection from "../FinalCTASection.astro";
-import GarnaBookingWidget from "../GarnaBookingWidget.astro";
-import HeroSection from "../HeroSection.astro";
-import EnterprisePayrollHeroVisual from "../EnterprisePayrollHeroVisual.astro";
-import ContractorDashboardVisual from "../visuals/ContractorDashboardVisual.astro";
-import ContractorOfRecordSections from "./payroll/ContractorOfRecordSections.astro";
-import EnterprisePayrollSections from "./payroll/EnterprisePayrollSections.astro";
-import ContractorOfRecordInteractions from "./payroll/ContractorOfRecordInteractions.astro";
-import EnterprisePayrollInteractions from "./payroll/EnterprisePayrollInteractions.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { pageFinalCtas } from "../../content/page-final-ctas";
-import { pageHeroes } from "../../content/page-heroes";
-import { pageShells } from "../../content/page-shells";
-import type { FAQItem } from "../../types/faq-section";
+import FAQSection from "../components/FAQSection.astro";
+import FinalCTASection from "../components/FinalCTASection.astro";
+import GarnaBookingWidget from "../components/GarnaBookingWidget.astro";
+import HeroSection from "../components/HeroSection.astro";
+import EnterprisePayrollHeroVisual from "../components/EnterprisePayrollHeroVisual.astro";
+import ContractorDashboardVisual from "../components/visuals/ContractorDashboardVisual.astro";
+import ContractorOfRecordSections from "../components/sections/payroll/ContractorOfRecordSections.astro";
+import EnterprisePayrollSections from "../components/sections/payroll/EnterprisePayrollSections.astro";
+import ContractorOfRecordInteractions from "../components/sections/payroll/ContractorOfRecordInteractions.astro";
+import EnterprisePayrollInteractions from "../components/sections/payroll/EnterprisePayrollInteractions.astro";
+import BaseLayout from "./BaseLayout.astro";
+import { pageFinalCtas } from "../content/page-final-ctas";
+import { pageHeroes } from "../content/page-heroes";
+import { pageShells } from "../content/page-shells";
+import type { FAQItem } from "../types/faq-section";
 
 interface Props { variant?: "contractorOfRecord" | "enterprisePayroll"; }
 const { variant = "contractorOfRecord" } = Astro.props;

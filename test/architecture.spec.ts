@@ -40,7 +40,7 @@ describe('native Astro architecture', () => {
 
 	it('keeps homepage sections outside the embedded API code visual', async () => {
 		const source = await readFile(
-			path.join(root, 'astro/components/pages/payroll/PayrollSolutionSections.astro'),
+			path.join(root, 'astro/components/sections/payroll/PayrollSolutionSections.astro'),
 			'utf8',
 		);
 
