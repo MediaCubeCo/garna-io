@@ -316,7 +316,9 @@ describe('native Astro architecture', () => {
 		expect(card).toContain("title?: string | CardText");
 		expect(card).toContain("description?: string | CardText");
 		expect(card).toContain('interactive = true');
-		expect(card).toContain('hover:bg-white/[0.045]');
+		expect(card).toContain(".garna-card[data-interactive='true']:hover");
+		expect(card).toContain('background-color: rgba(255, 255, 255, 0.045)');
+		expect(card).toContain('border-color: rgba(255, 255, 255, 0.15)');
 		expect(card).toContain('<slot name="visual" />');
 		expect(sources.every((source) => source.includes("ui/Card.astro"))).toBe(true);
 		expect(sources.reduce((count, source) => count + (source.match(/<Card(?:\s|>)/g)?.length || 0), 0)).toBe(25);

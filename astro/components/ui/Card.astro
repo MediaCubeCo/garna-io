@@ -51,10 +51,10 @@ const defaultDescriptionClasses = {
 };
 ---
 
-<article data-card-variant={variant} class:list={[
-	'group font-manrope',
+<article data-card-variant={variant} data-interactive={interactive ? 'true' : 'false'} class:list={[
+	'garna-card group font-manrope',
 	variantClasses[variant],
-	interactive && 'transition duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.045] motion-reduce:transform-none motion-reduce:transition-colors',
+	interactive && 'transition duration-300 hover:-translate-y-1 motion-reduce:transform-none motion-reduce:transition-colors',
 	className,
 ]}>
 	{visualPosition === 'before' && <div class={visualClass}><slot name="visual" /></div>}
@@ -67,3 +67,10 @@ const defaultDescriptionClasses = {
 	<slot />
 	{visualPosition === 'after' && <div class={visualClass}><slot name="visual" /></div>}
 </article>
+
+<style>
+	.garna-card[data-interactive='true']:hover {
+		background-color: rgba(255, 255, 255, 0.045);
+		border-color: rgba(255, 255, 255, 0.15);
+	}
+</style>
