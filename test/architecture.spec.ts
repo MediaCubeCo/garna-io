@@ -1,4 +1,4 @@
-import { readdir } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { getArchitectureViolations } from '../scripts/check-astro-architecture.mjs';
@@ -36,5 +36,16 @@ describe('native Astro architecture', () => {
 			const files = await readdir(path.join(translationsRoot, family.name));
 			for (const locale of locales) expect(files).toContain(`${locale}.ts`);
 		}
+	});
+
+	it('keeps homepage sections outside the embedded API code visual', async () => {
+		const source = await readFile(
+			path.join(root, 'astro/components/pages/payroll/PayrollSolutionSections.astro'),
+			'utf8',
+		);
+
+		expect(source).toContain('<span class="text-[#61afef]">create</span>(&#123;');
+		expect(source).toContain('<div class="whitespace-nowrap">&#125;);</div>');
+		expect(source).not.toContain('<span class="text-[#61afef]">create</span>({');
 	});
 });
