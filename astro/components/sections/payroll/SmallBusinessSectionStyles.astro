@@ -1,0 +1,370 @@
+<style is:global>
+    @keyframes flow-line {
+        from {
+            stroke-dashoffset: 20;
+        }
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes pulse-box {
+        0%,
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 18px rgba(94, 165, 0, 0.18);
+        }
+
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(94, 165, 0, 0.5);
+        }
+    }
+
+    .steps-flow {
+        position: relative;
+        isolation: isolate;
+        overflow: visible;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .steps-flow::before,
+    .steps-flow::after,
+    .steps-flow-item::before,
+    .steps-flow-item:not(:last-child)::after {
+        display: none;
+    }
+
+    .steps-flow-grid {
+        position: relative;
+        z-index: 2;
+        overflow: visible;
+        align-items: flex-start;
+    }
+
+    .steps-flow-item {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex: 1 1 0%;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        min-height: auto;
+        overflow: visible;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        text-align: center;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(16px);
+        animation: routineCardIn 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        animation-delay: var(--step-delay, 0ms);
+    }
+
+    .steps-flow-marker {
+        position: relative;
+        display: grid;
+        width: 5rem;
+        height: 5rem;
+        place-items: center;
+        margin-bottom: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #0a0a0a;
+        color: #ffffff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        filter: none !important;
+        outline: 0 !important;
+        backdrop-filter: blur(16px);
+        transition: border-color 500ms ease, color 500ms ease, transform 500ms ease, box-shadow 500ms ease, background-color 500ms ease;
+    }
+
+    .steps-flow-marker::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: rgba(94, 165, 0, 0.05);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 500ms ease;
+    }
+
+    .steps-flow-number {
+        position: absolute;
+        top: -0.75rem;
+        right: -0.75rem;
+        display: grid;
+        width: 2rem;
+        height: 2rem;
+        place-items: center;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #111111;
+        color: #9ca3af;
+        font-size: 0.75rem;
+        font-weight: 700;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+        filter: none !important;
+        outline: 0 !important;
+        transition: border-color 500ms ease, color 500ms ease, box-shadow 500ms ease;
+    }
+
+    .steps-flow-item:hover .steps-flow-marker {
+        transform: translateY(-0.5rem);
+        border-color: rgba(94, 165, 0, 0.5);
+        background: #0a0a0a;
+        color: #5EA500;
+        box-shadow: 0 0 30px rgba(94, 165, 0, 0.3);
+        filter: none !important;
+        outline: 0 !important;
+    }
+
+    .steps-flow-item:hover .steps-flow-marker::before {
+        opacity: 1;
+    }
+
+    .steps-flow-marker iconify-icon,
+    .steps-flow-item iconify-icon {
+        filter: none;
+        text-shadow: none;
+        transition: color 500ms ease;
+    }
+
+    .steps-flow-item:hover iconify-icon,
+    .steps-flow-item:hover .steps-flow-number,
+    .steps-flow-item:hover h3 {
+        color: #5EA500;
+    }
+
+    .steps-flow-item:hover .steps-flow-number {
+        border-color: rgba(94, 165, 0, 0.3);
+        background: #111111;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+        filter: none !important;
+    }
+
+    .steps-flow-item:last-child .steps-flow-marker {
+        border-color: rgba(94, 165, 0, 0.4);
+        color: #5EA500;
+        animation: pulse-box 3s ease-in-out infinite;
+    }
+
+    .steps-flow-item:last-child .steps-flow-marker::before {
+        opacity: 0.5;
+        background: rgba(94, 165, 0, 0.1);
+    }
+
+    .steps-flow-item:last-child .steps-flow-number {
+        border-color: rgba(94, 165, 0, 0.5);
+        color: #5EA500;
+        box-shadow: 0 0 10px rgba(94, 165, 0, 0.3);
+    }
+
+    .steps-flow-item:last-child h3 {
+        color: #5EA500;
+    }
+
+    .steps-flow-item:not(:last-child) .steps-flow-marker,
+    .steps-flow-item:not(:last-child):hover .steps-flow-marker {
+        box-shadow: none !important;
+        animation: none !important;
+        filter: none !important;
+    }
+
+    .steps-flow-item:not(:last-child) .steps-flow-marker::before,
+    .steps-flow-item:not(:last-child):hover .steps-flow-marker::before {
+        opacity: 0 !important;
+        background: transparent !important;
+        animation: none !important;
+    }
+
+    .steps-flow-item:not(:last-child) .steps-flow-number,
+    .steps-flow-item:not(:last-child):hover .steps-flow-number {
+        box-shadow: none !important;
+        filter: none !important;
+    }
+
+    .steps-flow-item:not(:last-child) iconify-icon {
+        filter: none !important;
+        text-shadow: none !important;
+    }
+
+    .why-card {
+        border-color: rgba(255, 255, 255, 0.12);
+        background: #0a0a0a;
+        box-shadow: none;
+        transition: border-color 300ms ease, transform 300ms ease;
+    }
+
+    .why-card:hover {
+        border-color: rgba(255, 255, 255, 0.18);
+        box-shadow: none;
+    }
+
+    .payroll-routine-visual {
+        background: #0a0a0a !important;
+        background-image: none !important;
+        box-shadow: none !important;
+    }
+
+    .payroll-routine-visual::before,
+    .payroll-routine-visual::after,
+    .payroll-routine-visual .routine-panel::before,
+    .payroll-routine-visual .routine-panel::after,
+    .payroll-routine-visual .automation-core::before,
+    .payroll-routine-visual .automation-core::after {
+        content: none !important;
+        display: none !important;
+    }
+
+    .payroll-routine-visual .routine-panel,
+    .payroll-routine-visual .automation-core,
+    .payroll-routine-visual .routine-card {
+        background-image: none !important;
+        box-shadow: none !important;
+    }
+
+    .payroll-routine-visual .routine-stat-part {
+        display: block;
+    }
+
+    .payroll-routine-visual .routine-stat-row[data-layout="inline"] {
+        white-space: nowrap;
+    }
+
+    .payroll-routine-visual .routine-stat-row[data-layout="inline"] .routine-stat-part {
+        display: inline;
+    }
+
+    .payroll-routine-visual .routine-stat-row[data-layout="inline"] .routine-stat-part + .routine-stat-part {
+        margin-left: 0.25rem;
+    }
+
+    .payroll-routine-visual .routine-layout-grid,
+    .payroll-routine-visual[data-routine-layout="stacked"] .routine-layout-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    .payroll-routine-visual[data-routine-layout="wide"] .routine-layout-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        align-items: stretch;
+    }
+
+    .payroll-routine-visual[data-routine-layout="stacked"] [data-routine-stat-group][data-layout="stacked"] {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero-console,
+    .hero-console > .relative {
+        background-image: none !important;
+    }
+
+    .hero-console {
+        background-color: #0C0C0C !important;
+    }
+
+    .hero-run-card {
+        background-color: #050505 !important;
+        background-image: none !important;
+    }
+
+    @media (min-width: 1024px) and (max-width: 1200px) {
+        main > section:first-of-type .max-w-3xl {
+            max-width: min(48vw, 30rem);
+        }
+
+        main > section:first-of-type .hero-console {
+            width: min(42vw, 500px);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        main > section:first-of-type .hero-console {
+            right: max(var(--garna-container-gutter), calc((100vw - var(--garna-container-content-max)) / 2));
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+        main > section:first-of-type {
+            min-height: auto !important;
+            padding-top: 10rem !important;
+            padding-bottom: 5rem !important;
+        }
+
+        main > section:first-of-type .max-w-3xl {
+            max-width: min(42rem, 100%) !important;
+        }
+
+        main > section:first-of-type .hero-console {
+            position: relative !important;
+            top: auto !important;
+            right: auto !important;
+            width: 100% !important;
+            max-width: none !important;
+            margin: 3rem auto 0 !important;
+            transform: none !important;
+        }
+    }
+
+    .platform-card.glass-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .platform-card.glass-card ul {
+        grid-template-rows: repeat(3, minmax(6.75rem, 1fr));
+    }
+
+    .platform-card.glass-card li {
+        min-height: 0;
+    }
+
+    @media (min-width: 768px) {
+        .platform-card.glass-card ul {
+            grid-template-rows: repeat(3, minmax(7.75rem, 1fr));
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .platform-card.glass-card ul {
+            grid-template-rows: repeat(3, minmax(7.25rem, 1fr));
+        }
+    }
+
+    .hero-console::before,
+    .hero-console::after,
+    .hero-console > .relative::before,
+    .hero-console > .relative::after {
+        content: none !important;
+        display: none !important;
+    }
+
+    @media (max-width: 767px) {
+        main > section:first-of-type .hero-console {
+            width: 100% !important;
+            max-width: none !important;
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+
+        .steps-flow {
+            padding: 0;
+        }
+
+        .steps-flow-item {
+            min-height: 10rem;
+            padding-bottom: 1.75rem;
+        }
+
+        .steps-flow-marker {
+            margin-bottom: 1.25rem;
+        }
+    }
+</style>

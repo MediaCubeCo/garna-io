@@ -1,0 +1,396 @@
+---
+import Section from '../../layout/Section.astro';
+---
+
+<Section contained={false} spacing="none" class="hidden pt-16 pb-16 lg:pt-32 lg:pb-32" id="mid-size-get-started-details">
+        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+            <div class="lg:mb-20 text-center mb-16">
+                <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight mb-6 font-manrope"
+                    data-translate="howTo.title">How to get started</h2>
+                <p class="text-xl font-light text-gray-400 font-manrope" data-translate="howTo.description">Start using
+                    Garna in a few simple steps</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-x-16 gap-y-16 items-center">
+                <div class="self-start z-0 relative space-y-10">
+                    <div onclick="switchStep(0)"
+                        class="step-trigger group relative pl-14 cursor-pointer transition-all duration-300 opacity-100"
+                        data-index="0">
+                        <div class="-bottom-11 w-px bg-white/10 -z-10 absolute top-11 left-5"></div>
+                        <h3 class="group-hover:text-[#5EA500] transition-colors text-2xl font-normal text-white tracking-tight font-manrope"
+                            data-translate="howTo.steps.step1.title">Set up your account</h3>
+                        <div
+                            class="step-circle flex transition-all duration-300 z-10 text-sm font-semibold text-[#5EA500] bg-[#050505] w-10 h-10 border-[#5EA500] border rounded-full absolute top-1 left-0 shadow-[0_0_15px_rgba(94,165,0,0.3)] items-center justify-center font-sans">
+                            1</div>
+                        <p class="leading-relaxed text-base text-gray-500 font-manrope mt-3"
+                            data-translate="howTo.steps.step1.description">Create your company profile and verify your
+                            business details to get access to the platform</p>
+                    </div>
+
+                    <div onclick="switchStep(1)"
+                        class="step-trigger group cursor-pointer transition-all duration-300 hover:opacity-80 opacity-50 pl-14 relative"
+                        data-index="1">
+                        <div class="absolute left-5 top-11 -bottom-11 w-px bg-white/10 -z-10"></div>
+                        <div
+                            class="step-circle flex transition-all duration-300 z-10 text-sm font-semibold text-gray-500 bg-[#050505] w-10 h-10 border-white/10 border rounded-full absolute top-1 left-0 items-center justify-center font-sans">
+                            2</div>
+                        <h3 class="group-hover:text-[#5EA500] transition-colors text-2xl font-normal text-white tracking-tight font-manrope"
+                            data-translate="howTo.steps.step2.title">Invite your team</h3>
+                        <p class="leading-relaxed text-base text-gray-500 font-manrope mt-3"
+                            data-translate="howTo.steps.step2.description">Add employees and contractors to the
+                            dashboard and assign roles and permissions</p>
+                    </div>
+
+                    <div onclick="switchStep(2)"
+                        class="step-trigger group cursor-pointer transition-all duration-300 hover:opacity-80 opacity-50 pr-0 pl-14 relative left-0"
+                        data-index="2">
+                        <div class="-bottom-11 w-px bg-white/10 -z-10 absolute top-11 left-5"></div>
+                        <div
+                            class="step-circle flex transition-all duration-300 text-sm font-semibold text-gray-500 bg-[#050505] border border-white/10 w-10 h-10 z-10 rounded-full absolute top-1 left-0 items-center justify-center font-sans">
+                            3</div>
+                        <h3 class="group-hover:text-[#5EA500] transition-colors text-2xl font-normal text-white tracking-tight font-manrope"
+                            data-translate="howTo.steps.step3.title">Fund your balance</h3>
+                        <p class="leading-relaxed text-base text-gray-500 font-manrope mt-3 ml-0"
+                            data-translate="howTo.steps.step3.description">Top up your corporate wallet using bank
+                            transfer, SWIFT, SEPA, or crypto assets</p>
+                    </div>
+
+                    <div onclick="switchStep(3)"
+                        class="step-trigger group cursor-pointer transition-all duration-300 hover:opacity-80 opacity-50 pl-14 relative"
+                        data-index="3">
+                        <div
+                            class="step-circle flex transition-all duration-300 text-sm font-semibold text-gray-500 bg-[#050505] border border-white/10 w-10 h-10 z-10 rounded-full absolute top-1 left-0 items-center justify-center font-sans">
+                            4</div>
+                        <h3 class="text-2xl font-normal text-white group-hover:text-[#5EA500] transition-colors tracking-tight font-manrope"
+                            data-translate="howTo.steps.step4.title">Send payouts</h3>
+                        <p class="leading-relaxed text-base text-gray-500 font-manrope mt-3"
+                            data-translate="howTo.steps.step4.description">Execute global payrolls in one click with
+                            automated tax handling and compliance</p>
+                    </div>
+                </div>
+
+                <div class="relative h-[480px] w-full perspective-1000">
+                    <div class="step-content pointer-events-none transition-all duration-500 ease-out flex opacity-100 z-10 rounded-2xl absolute top-0 right-0 bottom-0 left-0 translate-y-0 scale-100 items-center"
+                        data-index="0">
+                        <div
+                            class="w-full bg-[#131313] rounded-2xl border border-white/10 p-8 flex flex-col shadow-2xl">
+                            <span class="text-xl text-center text-white font-medium mb-6 tracking-tight font-sans"
+                                data-translate="howTo.panel.signup.title">Sign up in Garna</span>
+                            <div class="space-y-4">
+                                <div class="">
+                                    <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
+                                        data-translate="howTo.panel.signup.companyNameLabel">Company name</label>
+                                    <input type="text" value="Test Company Name"
+                                        data-translate-value="howTo.panel.signup.companyNameValue"
+                                        class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-white transition-colors">
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="">
+                                        <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
+                                            data-translate="howTo.panel.signup.registrationNumberLabel">Registration
+                                            number</label>
+                                        <input type="text" value="HE123456"
+                                            data-translate-value="howTo.panel.signup.registrationNumberValue"
+                                            class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-white transition-colors">
+                                    </div>
+                                    <div class="">
+                                        <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
+                                            data-translate="howTo.panel.signup.registrationDateLabel">Data of company
+                                            registration</label>
+                                        <div class="relative">
+                                            <input type="text" value="02.02.2022"
+                                                data-translate-value="howTo.panel.signup.registrationDateValue"
+                                                class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-white pl-9 transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" data-lucide="calendar"
+                                                aria-hidden="true"
+                                                class="lucide lucide-calendar w-3.5 h-3.5 text-gray-500 absolute left-3 top-2.5">
+                                                <path d="M8 2v4"></path>
+                                                <path d="M16 2v4"></path>
+                                                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                                                <path d="M3 10h18"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
+                                        data-translate="howTo.panel.signup.countryLabel">Country of registration</label>
+                                    <div class="relative">
+                                        <div tabindex="0"
+                                            class="flex cursor-pointer transition-colors text-xs text-gray-300 bg-[#1A1A1A] w-full border-transparent border rounded-lg pt-2 pr-3 pb-2 pl-3 items-center justify-between focus:border-white focus:outline-none">
+                                            <span class="font-sans"
+                                                data-translate="howTo.panel.signup.countryValue">Cyprus</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                data-lucide="chevron-down" aria-hidden="true"
+                                                class="lucide lucide-chevron-down w-3.5 h-3.5 text-gray-500">
+                                                <path d="m6 9 6 6 6-6"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
+                                        data-translate="howTo.panel.signup.emailLabel">Email</label>
+                                    <input type="text" value="rulettequiddu-3309@yopmail.com"
+                                        data-translate-value="howTo.panel.signup.emailValue"
+                                        class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-white transition-colors">
+                                </div>
+                                <button
+                                    class="w-full bg-white hover:bg-[#D2D2D2] text-black font-semibold py-2.5 rounded-lg text-xs mt-4 transition-colors font-sans"
+                                    data-translate="howTo.panel.signup.nextButton">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-content absolute inset-0 rounded-2xl transition-all duration-500 ease-out opacity-0 translate-y-8 scale-95 -z-10 pointer-events-none flex items-center"
+                        data-index="1">
+                        <div
+                            class="w-full bg-[#131313] rounded-2xl border border-white/10 p-8 flex flex-col shadow-2xl">
+                            <h3 class="text-xl text-center text-white font-medium mb-2 tracking-tight font-sans"
+                                data-translate="howTo.panel.invite.title">Invitation by email</h3>
+                            <p class="text-center text-gray-500 text-[11px] mb-8 leading-relaxed font-sans"
+                                data-translate="howTo.panel.invite.subtitle">Select a position and enter the email
+                                addressesof employees to send invitations to</p>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
+                                        data-translate="howTo.panel.invite.positionLabel">Position</label>
+                                    <div class="relative">
+                                        <div tabindex="0"
+                                            class="mockup-input border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 flex justify-between items-center cursor-pointer focus:border-white focus:outline-none transition-colors">
+                                            <span class="font-sans" data-translate="howTo.panel.invite.positionValue">QA
+                                                Engineering Services</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                data-lucide="chevron-down" aria-hidden="true"
+                                                class="lucide lucide-chevron-down w-3.5 h-3.5 text-gray-500">
+                                                <path d="m6 9 6 6 6-6"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
+                                        data-translate="howTo.panel.invite.emailLabel">Email</label>
+                                    <div
+                                        class="mockup-input border-transparent w-full rounded-lg p-2 min-h-[100px] flex flex-col focus-within:border-white transition-colors">
+                                        <div
+                                            class="inline-flex items-center gap-1.5 bg-[#5EA500]/10 border border-[#5EA500]/20 rounded px-2 py-1 mb-2 self-start">
+                                            <span class="text-[11px] text-[#5EA500] font-sans"
+                                                data-translate="howTo.panel.invite.sampleEmail">emma.c17503@gmail.com</span>
+                                            <div
+                                                class="bg-[#5EA500]/20 rounded-full p-0.5 cursor-pointer hover:bg-[#5EA500]/30 transition-colors">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                                    data-lucide="x" aria-hidden="true"
+                                                    class="lucide lucide-x w-2.5 h-2.5 text-[#5EA500]">
+                                                    <path d="M18 6 6 18"></path>
+                                                    <path d="m6 6 12 12"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <input type="text" placeholder="Enter email"
+                                            data-translate-placeholder="howTo.panel.invite.emailPlaceholder"
+                                            class="w-full bg-transparent text-xs text-gray-300 focus:outline-none placeholder:text-gray-600 mt-auto">
+                                    </div>
+                                    <p class="text-[10px] text-gray-500 mt-1.5 leading-tight font-sans"
+                                        data-translate="howTo.panel.invite.hint">Press Enter after entering each email
+                                        or copy and paste a comma-separated list of emails to add them for sending</p>
+                                </div>
+
+                                <button
+                                    class="w-full bg-white hover:bg-[#D2D2D2] text-black font-semibold py-2.5 rounded-lg text-xs mt-4 transition-colors font-sans"
+                                    data-translate="howTo.panel.invite.submitButton">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-content absolute inset-0 rounded-2xl transition-all duration-500 ease-out opacity-0 translate-y-8 scale-95 -z-10 pointer-events-none flex items-center"
+                        data-index="2">
+                        <div
+                            class="w-full bg-[#131313] rounded-2xl border border-white/10 p-8 flex flex-col shadow-2xl">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-base text-white font-medium tracking-tight font-sans"
+                                    data-translate="howTo.panel.fund.title">Balance</h3>
+                            </div>
+
+                            <div class="bg-[#1A1A1A] rounded-xl p-5 mb-4 border border-white/5">
+                                <div class="flex justify-between items-start mb-4">
+                                    <span class="text-[11px] text-gray-400 font-sans"
+                                        data-translate="howTo.panel.fund.internalAccount">Internal account USD</span>
+                                    <div class="flex bg-black rounded p-0.5 border border-white/5">
+                                        <button
+                                            class="px-2 py-0.5 rounded bg-[#5EA500] text-[10px] text-black font-semibold font-sans"
+                                            data-translate="howTo.panel.fund.currencyUsd">USD</button>
+                                        <button
+                                            class="px-2 py-0.5 rounded text-[10px] text-gray-500 hover:text-gray-300 transition-colors font-sans"
+                                            data-translate="howTo.panel.fund.currencyEur">EUR</button>
+                                    </div>
+                                </div>
+                                <div class="text-3xl text-white font-medium mb-1 tracking-tight font-manrope">285 458.89
+                                    $</div>
+                                <div class="text-[10px] text-gray-500 mb-6 font-sans">
+                                    <span data-translate="howTo.panel.fund.accountNumber">Account number</span>
+                                    <span class="text-gray-300 font-mono text-xs font-sans">3943 0637 0092 5805</span>
+                                </div>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                                    <button
+                                        class="bg-[#5EA500]/5 hover:bg-[#5EA500]/10 text-[#5EA500] rounded-lg py-2.5 flex flex-col items-center justify-center gap-1.5 transition-colors border border-[#5EA500]/10 group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=""
+                                            class="lucide lucide-shuffle w-3.5 h-3.5 group-hover:scale-110 transition-transform">
+                                            <path d="m18 14 4 4-4 4"></path>
+                                            <path d="m18 2 4 4-4 4"></path>
+                                            <path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22">
+                                            </path>
+                                            <path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"></path>
+                                            <path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"></path>
+                                        </svg>
+                                        <span class="text-[9px] font-medium font-sans"
+                                            data-translate="howTo.panel.fund.actions.send">Send</span>
+                                    </button>
+                                    <button
+                                        class="bg-[#5EA500]/5 hover:bg-[#5EA500]/10 text-[#5EA500] rounded-lg py-2.5 flex flex-col items-center justify-center gap-1.5 transition-colors border border-[#5EA500]/10 group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up"
+                                            aria-hidden="true"
+                                            class="lucide lucide-arrow-up w-3.5 h-3.5 group-hover:scale-110 transition-transform">
+                                            <path d="m5 12 7-7 7 7"></path>
+                                            <path d="M12 19V5"></path>
+                                        </svg>
+                                        <span class="text-[9px] font-medium font-sans"
+                                            data-translate="howTo.panel.fund.actions.withdraw">Withdraw</span>
+                                    </button>
+                                    <button
+                                        class="bg-[#5EA500]/5 hover:bg-[#5EA500]/10 text-[#5EA500] rounded-lg py-2.5 flex flex-col items-center justify-center gap-1.5 transition-colors border border-[#5EA500]/10 group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeplus"=""
+                                            class="lucide lucide-plus w-3.5 h-3.5 group-hover:scale-110 transition-transform">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                        <span class="text-[9px] font-medium font-sans"
+                                            data-translate="howTo.panel.fund.actions.addFunds">Add funds</span>
+                                    </button>
+                                    <button
+                                        class="bg-[#5EA500]/5 hover:bg-[#5EA500]/10 text-[#5EA500] rounded-lg py-2.5 flex flex-col items-center justify-center gap-1.5 transition-colors border border-[#5EA500]/10 group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" data-lucide="layout-grid"
+                                            aria-hidden="true"
+                                            class="lucide lucide-layout-grid w-3.5 h-3.5 group-hover:scale-110 transition-transform">
+                                            <rect width="7" height="7" x="3" y="3" rx="1"></rect>
+                                            <rect width="7" height="7" x="14" y="3" rx="1"></rect>
+                                            <rect width="7" height="7" x="14" y="14" rx="1"></rect>
+                                            <rect width="7" height="7" x="3" y="14" rx="1"></rect>
+                                        </svg>
+                                        <span class="text-[9px] font-medium font-sans"
+                                            data-translate="howTo.panel.fund.actions.details">Details</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col">
+                                <div class="text-[11px] font-medium text-gray-400 mb-2 font-sans"
+                                    data-translate="howTo.panel.fund.historyTitle">History</div>
+                                <div
+                                    class="bg-[#1A1A1A] rounded-xl p-3 border border-white/5 flex items-center justify-between hover:bg-white/[0.02] transition-colors cursor-pointer mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500 border border-blue-500/20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" data-lucide="user"
+                                                aria-hidden="true" class="lucide lucide-user w-4 h-4">
+                                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="12" cy="7" r="4"></circle>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="text-[11px] text-white font-medium font-sans"
+                                                data-translate="howTo.panel.fund.transferTitle">Transfer to <span
+                                                    class="block md:inline">Alina Pashkina</span></div>
+                                            <div class="text-[9px] text-[#5EA500] bg-[#5EA500]/10 border border-[#5EA500]/20 px-1.5 py-0.5 rounded inline-block mt-0.5 font-sans"
+                                                data-translate="howTo.panel.fund.confirmed">Confirmed</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-[11px] text-white font-medium font-sans">-100.00 $</div>
+                                        <div class="text-[9px] text-gray-600 font-sans" data-demo-date>—</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-content absolute inset-0 rounded-2xl transition-all duration-500 ease-out opacity-0 translate-y-8 scale-95 -z-10 pointer-events-none flex items-center"
+                        data-index="3">
+                        <div
+                            class="w-full bg-[#131313] rounded-2xl border border-white/10 p-8 flex flex-col shadow-2xl">
+                            <h3 class="text-xl text-center text-white font-medium mb-8 tracking-tight font-sans"
+                                data-translate="howTo.panel.send.title">Transaction to user</h3>
+
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
+                                        data-translate="howTo.panel.send.recipientLabel">Email or username</label>
+                                    <div tabindex="0"
+                                        class="mockup-input border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 flex justify-between items-center cursor-pointer focus:border-white focus:outline-none transition-colors">
+                                        <div>
+                                            <div class="text-white font-medium mb-0.5 font-sans"
+                                                data-translate="howTo.panel.send.recipientName">Maria Ban</div>
+                                            <div class="text-[10px] text-gray-500 font-sans"
+                                                data-translate="howTo.panel.send.recipientEmail">
+                                                1mariatestova1@gmail.com</div>
+                                        </div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down"
+                                            aria-hidden="true"
+                                            class="lucide lucide-chevron-down w-3.5 h-3.5 text-gray-500">
+                                            <path d="m6 9 6 6 6-6"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
+                                        data-translate="howTo.panel.send.amountLabel">Transfer amount, $</label>
+                                    <input type="text" value="100"
+                                        class="mockup-input border-transparent w-full rounded-lg px-3 py-2.5 text-xs text-white font-medium focus:outline-none focus:border-white transition-colors">
+                                </div>
+
+                                <div>
+                                    <label class="text-[11px] text-gray-500 mb-1.5 block font-sans"
+                                        data-translate="howTo.panel.send.purposeLabel">Purpose of payment</label>
+                                    <div class="relative">
+                                        <textarea
+                                            class="mockup-input border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none h-20 resize-none pt-2 font-sans focus:border-white transition-colors"
+                                            placeholder="Enter description"
+                                            data-translate-placeholder="howTo.panel.send.purposePlaceholder"
+                                            data-translate-value="howTo.panel.send.purposeValue">Sales bonus for October 2025</textarea>
+                                        <div class="absolute bottom-2 right-2 text-[9px] text-gray-600 font-sans"
+                                            data-translate="howTo.panel.send.counter">28/255</div>
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="w-full bg-white hover:bg-[#D2D2D2] text-black font-semibold py-2.5 rounded-lg text-xs mt-2 transition-colors font-sans"
+                                    data-translate="howTo.panel.send.sendButton">Send</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </Section>

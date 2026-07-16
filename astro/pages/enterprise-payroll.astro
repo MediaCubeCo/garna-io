@@ -1,5 +1,54 @@
 ---
-import PayrollLandingLayout from '../layouts/PayrollLandingLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
+import EnterprisePayrollHeroVisual from '../components/EnterprisePayrollHeroVisual.astro';
+import EnterpriseControlSection from '../components/sections/payroll/EnterpriseControlSection.astro';
+import EnterprisePlatformSection from '../components/sections/payroll/EnterprisePlatformSection.astro';
+import EnterpriseSolutionsSection from '../components/sections/payroll/EnterpriseSolutionsSection.astro';
+import EnterprisePayrollStepsSection from '../components/sections/payroll/EnterprisePayrollStepsSection.astro';
+import EnterpriseOperationsSection from '../components/sections/payroll/EnterpriseOperationsSection.astro';
+import EnterpriseDifferentiatorsSection from '../components/sections/payroll/EnterpriseDifferentiatorsSection.astro';
+import EnterpriseTestimonialsSection from '../components/sections/payroll/EnterpriseTestimonialsSection.astro';
+import EnterprisePayrollSectionStyles from '../components/sections/payroll/EnterprisePayrollSectionStyles.astro';
+import EnterprisePayrollInteractions from '../components/sections/payroll/EnterprisePayrollInteractions.astro';
+import PayrollLandingEnhancements from '../components/sections/payroll/PayrollLandingEnhancements.astro';
+import { enterprisePayrollFaqItems } from '../content/payroll-landing-faqs';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
 ---
 
-<PayrollLandingLayout variant="enterprisePayroll" />
+<BaseLayout shell={pageShells.contractorOfRecord}>
+	<HeroSection {...pageHeroes.enterprisePayroll}>
+		<EnterprisePayrollHeroVisual />
+	</HeroSection>
+	<EnterpriseControlSection />
+	<EnterprisePlatformSection />
+	<EnterpriseSolutionsSection />
+	<EnterprisePayrollStepsSection />
+	<EnterpriseOperationsSection />
+	<EnterpriseDifferentiatorsSection />
+	<EnterpriseTestimonialsSection />
+	<EnterprisePayrollSectionStyles />
+	<FAQSection
+		title={{ text: 'Payroll FAQs for Global Businesses', translateKey: 'enterprisePayrollFaq.title' }}
+		subtitle={{ text: "Got Questions? We've Got Answers", translateKey: 'faqHome.subtitle' }}
+		items={enterprisePayrollFaqItems}
+		class="pt-16 pb-16 lg:pt-32 lg:pb-32"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...pageFinalCtas.enterprisePayroll} />
+	<PayrollLandingEnhancements />
+	<Fragment slot="widgets">
+		<EnterprisePayrollInteractions />
+		<GarnaBookingWidget
+			trackingSource="contractor-of-record"
+			trackingPage="contractor-of-record"
+			titleFallback="Start your journey with Garna"
+			subtitleFallback="Fill in your details to book a demo"
+		/>
+	</Fragment>
+</BaseLayout>

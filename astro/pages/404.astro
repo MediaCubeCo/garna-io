@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import NotFoundSection from '../components/sections/system/NotFoundSection.astro';
 import type { PageShellConfig } from '../types/page-shell';
 
 const shell: PageShellConfig = {
@@ -11,64 +12,5 @@ const shell: PageShellConfig = {
 ---
 
 <BaseLayout shell={shell} showHeader={false} showFooter={false}>
-	<section class="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-20">
-		<div class="bg-noise pointer-events-none absolute inset-0"></div>
-		<div class="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden" aria-hidden="true">
-			<div class="absolute h-[300px] w-[300px] rounded-full border border-white/5"></div>
-			<div class="absolute h-[500px] w-[500px] rounded-full border border-white/5 opacity-50"></div>
-			<div class="absolute h-[800px] w-[800px] rounded-full border border-white/5 opacity-30"></div>
-			<div class="pulse-ring absolute h-[400px] w-[400px]"></div>
-			<div class="pulse-ring pulse-ring-delay absolute h-[400px] w-[400px]"></div>
-			<div class="radar-sweep absolute h-[600px] w-[600px]"></div>
-		</div>
-
-		<div class="relative z-10 flex max-w-lg flex-col items-center text-center">
-			<div class="relative mb-10">
-				<div class="flex h-24 w-24 items-center justify-center rounded-full border border-white/10 bg-[#0A0A0A] shadow-2xl shadow-black/50">
-					<iconify-icon icon="solar:radar-2-linear" width="40" class="text-white/80"></iconify-icon>
-				</div>
-				<div class="absolute -right-1 -top-1 rounded-full bg-[#050505] p-1">
-					<div class="flex items-center gap-1 rounded-full bg-[#5EA500] px-2 py-1 font-manrope text-[10px] font-bold leading-none text-black">
-						<iconify-icon icon="solar:info-circle-bold" width="10"></iconify-icon>
-						<span data-translate="hero.code">404</span>
-					</div>
-				</div>
-			</div>
-
-			<h1 class="garna-hero-title-gradient flex items-center justify-center gap-3 font-manrope text-4xl font-semibold tracking-tight md:text-5xl">
-				<span data-translate="hero.title">Signal lost</span>
-				<span class="relative flex h-3 w-3" aria-hidden="true">
-					<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
-					<span class="relative inline-flex h-3 w-3 rounded-full bg-red-600"></span>
-				</span>
-			</h1>
-			<p class="mt-5 max-w-sm font-manrope text-base font-light leading-relaxed text-gray-400" data-translate="hero.description">
-				The page you are looking for does not exist at this address. Please check the URL for typos or return to the homepage
-			</p>
-
-			<div class="mt-8 flex w-full max-w-md items-center gap-3 rounded-xl border border-white/10 bg-[#0A0A0A] p-2 shadow-lg">
-				<iconify-icon icon="solar:magnifer-linear" width="18" class="ml-2 text-gray-500"></iconify-icon>
-				<div class="flex flex-1 items-center text-left font-mono text-xs text-gray-500">
-					<span class="text-gray-300" data-translate="search.query">/unknown-page</span><span class="cursor-blink ml-1 h-4 w-0.5 bg-[#5EA500]"></span>
-				</div>
-				<span class="rounded border border-white/5 bg-white/5 px-2 py-1 font-mono text-[10px] text-gray-400" data-translate="search.results">0 RESULTS</span>
-			</div>
-
-			<a href="/" data-garna-home class="garna-button garna-button-primary mt-10 inline-flex min-h-12 items-center justify-center rounded-xl px-7 text-white">
-				<span class="garna-button-inner font-manrope font-semibold" data-translate="cta.home">Return Home</span>
-			</a>
-		</div>
-	</section>
+	<NotFoundSection />
 </BaseLayout>
-
-<style>
-	.bg-noise { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E"); }
-	.radar-sweep { border-radius: 50%; background: conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(94,165,0,.1) 310deg, rgba(94,165,0,.4) 360deg); animation: radar-spin 4s linear infinite; }
-	.pulse-ring { border: 1px solid rgba(255,255,255,.04); border-radius: 50%; animation: radar-ripple 3s cubic-bezier(0,0,.2,1) infinite; }
-	.pulse-ring-delay { animation-delay: 1s; }
-	.cursor-blink { animation: cursor-blink 1s step-end infinite; }
-	@keyframes radar-spin { to { transform: rotate(360deg); } }
-	@keyframes radar-ripple { 0% { transform: scale(.8); opacity: 0; } 50% { opacity: 1; } 100% { transform: scale(1.2); opacity: 0; } }
-	@keyframes cursor-blink { 50% { opacity: 0; } }
-	@media (prefers-reduced-motion: reduce) { .radar-sweep, .pulse-ring, .cursor-blink { animation: none; } }
-</style>

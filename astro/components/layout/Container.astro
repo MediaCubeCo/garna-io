@@ -2,9 +2,10 @@
 interface Props {
 	class?: string;
 	width?: 'narrow' | 'content' | 'wide';
+	contained?: boolean;
 }
 
-const { class: className = '', width = 'content' } = Astro.props;
+const { class: className = '', width = 'content', contained = true } = Astro.props;
 const widthClass = {
 	narrow: 'max-w-3xl',
 	content: 'garna-container',
@@ -12,4 +13,4 @@ const widthClass = {
 }[width];
 ---
 
-<div class:list={[widthClass, className]}><slot /></div>
+{contained ? <div class:list={[widthClass, className]}><slot /></div> : <slot />}

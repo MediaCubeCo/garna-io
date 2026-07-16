@@ -1,0 +1,68 @@
+---
+import Section from '../../layout/Section.astro';
+---
+
+<Section contained={false} spacing="none" class="relative py-20 lg:py-28">
+            <div class="garna-container">
+                <div class="reveal mx-auto max-w-3xl text-center">
+                    <h2 class="text-4xl font-normal leading-tight text-white lg:text-5xl font-manrope" data-translate="steps.title">
+                        How Payroll Works for Small Companies
+                    </h2>
+                    <p class="mt-5 text-xl font-light leading-8 text-gray-400 font-manrope" data-translate="steps.description">
+                        Why does a small business choose us? The whole process takes 4 steps:
+                    </p>
+                </div>
+
+                <div class="reveal steps-flow mt-14" style="--delay: 120ms">
+                    <div class="steps-flow-grid flex flex-col md:flex-row w-full max-w-5xl mr-auto ml-auto relative gap-x-12 gap-y-4 items-start justify-between">
+                        <div class="hidden md:block absolute left-[12.5%] right-[12.5%] top-[40px] h-[3px] z-0 pointer-events-none -translate-y-1/2">
+                            <svg class="w-full h-full overflow-visible" preserveAspectRatio="none">
+                                <line x1="0" y1="1.5" x2="100%" y2="1.5" stroke="rgba(255,255,255,0.05)" stroke-width="3"
+                                    stroke-dasharray="0 20" stroke-linecap="round"></line>
+                                <line x1="0" y1="1.5" x2="100%" y2="1.5" stroke="#5EA500" stroke-width="3"
+                                    stroke-dasharray="0 20" stroke-linecap="round"
+                                    style="animation: flow-line 1s linear infinite;"></line>
+                            </svg>
+                        </div>
+                        <div class="md:hidden absolute left-1/2 top-[40px] bottom-[15%] w-[3px] -translate-x-1/2 z-0 pointer-events-none">
+                            <svg class="w-full h-full overflow-visible" preserveAspectRatio="none">
+                                <line x1="1.5" y1="0" x2="1.5" y2="100%" stroke="rgba(255,255,255,0.05)" stroke-width="3"
+                                    stroke-dasharray="0 20" stroke-linecap="round"></line>
+                            </svg>
+                        </div>
+                        <div class="steps-flow-item" style="--step-delay: 0ms">
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:user-id-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">01</span>
+                            </div>
+                            <h3 class="mb-2 text-center text-lg font-medium tracking-tight text-white transition-colors font-manrope" data-translate="steps.item1.title">Set up an account</h3>
+                            <p class="px-4 text-center text-sm leading-relaxed text-gray-400 md:px-2" data-translate="steps.item1.description">Create a company profile and go through a quick verification process</p>
+                        </div>
+                        <div class="steps-flow-item" style="--step-delay: 120ms">
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:users-group-rounded-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">02</span>
+                            </div>
+                            <h3 class="mb-2 text-center text-lg font-medium tracking-tight text-white transition-colors font-manrope" data-translate="steps.item2.title">Add your team</h3>
+                            <p class="px-4 text-center text-sm leading-relaxed text-gray-400 md:px-2" data-translate="steps.item2.description">Invite employees (EoR) or contractors (CoR) and assign them roles</p>
+                        </div>
+                        <div class="steps-flow-item" style="--step-delay: 240ms">
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:wallet-money-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">03</span>
+                            </div>
+                            <h3 class="mb-2 text-center text-lg font-medium tracking-tight text-white transition-colors font-manrope" data-translate="steps.item3.title">Top up your balance</h3>
+                            <p class="px-4 text-center text-sm leading-relaxed text-gray-400 md:px-2" data-translate="steps.item3.description">Transfer funds to your account in a convenient way</p>
+                        </div>
+                        <div class="steps-flow-item" style="--step-delay: 360ms">
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:check-circle-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">04</span>
+                            </div>
+                            <h3 class="mb-2 text-center text-lg font-medium tracking-tight text-white transition-colors font-manrope" data-translate="steps.item4.title">Start making payments</h3>
+                            <p class="px-4 text-center text-sm leading-relaxed text-gray-400 md:px-2" data-translate="steps.item4.description">One click, and the money is sent to the entire team, including all taxes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Section>

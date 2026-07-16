@@ -1,5 +1,52 @@
 ---
-import PayrollLandingLayout from '../layouts/PayrollLandingLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
+import ContractorDashboardVisual from '../components/visuals/ContractorDashboardVisual.astro';
+import ContractorTrustStripSection from '../components/sections/payroll/ContractorTrustStripSection.astro';
+import ContractorPayrollPlatformSection from '../components/sections/payroll/ContractorPayrollPlatformSection.astro';
+import ContractorDifferentiatorsSection from '../components/sections/payroll/ContractorDifferentiatorsSection.astro';
+import ContractorOnboardingStepsSection from '../components/sections/payroll/ContractorOnboardingStepsSection.astro';
+import DeferredPaymentsSection from '../components/sections/payroll/DeferredPaymentsSection.astro';
+import ContractorBenefitsSection from '../components/sections/payroll/ContractorBenefitsSection.astro';
+import ContractorOfRecordSectionStyles from '../components/sections/payroll/ContractorOfRecordSectionStyles.astro';
+import ContractorOfRecordInteractions from '../components/sections/payroll/ContractorOfRecordInteractions.astro';
+import PayrollLandingEnhancements from '../components/sections/payroll/PayrollLandingEnhancements.astro';
+import { contractorOfRecordFaqItems } from '../content/payroll-landing-faqs';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
 ---
 
-<PayrollLandingLayout />
+<BaseLayout shell={pageShells.contractorOfRecord}>
+	<HeroSection {...pageHeroes.contractorOfRecord}>
+		<ContractorDashboardVisual />
+	</HeroSection>
+	<ContractorTrustStripSection />
+	<ContractorPayrollPlatformSection />
+	<ContractorDifferentiatorsSection />
+	<ContractorOnboardingStepsSection />
+	<DeferredPaymentsSection />
+	<ContractorBenefitsSection />
+	<ContractorOfRecordSectionStyles />
+	<FAQSection
+		title={{ text: 'Frequently asked questions', translateKey: 'faqHome.title' }}
+		subtitle={{ text: "Got Questions? We've Got Answers", translateKey: 'faqHome.subtitle' }}
+		items={contractorOfRecordFaqItems}
+		class="pt-16 pb-16 lg:pt-32 lg:pb-32"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...pageFinalCtas.contractorOfRecord} />
+	<PayrollLandingEnhancements />
+	<Fragment slot="widgets">
+		<ContractorOfRecordInteractions />
+		<GarnaBookingWidget
+			trackingSource="contractor-of-record"
+			trackingPage="contractor-of-record"
+			titleFallback="Start your journey with Garna"
+			subtitleFallback="Fill in your details to book a demo"
+		/>
+	</Fragment>
+</BaseLayout>

@@ -6,7 +6,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import EmployerOfRecordSections from '../components/sections/payroll/EmployerOfRecordSections.astro';
+import EorTrustStripSection from '../components/sections/payroll/EorTrustStripSection.astro';
+import GlobalWorkforceBenefitsSection from '../components/sections/payroll/GlobalWorkforceBenefitsSection.astro';
+import GlobalHiringFeaturesSection from '../components/sections/payroll/GlobalHiringFeaturesSection.astro';
+import EorWhyGarnaSection from '../components/sections/payroll/EorWhyGarnaSection.astro';
+import EorFitSection from '../components/sections/payroll/EorFitSection.astro';
+import EorStepsSection from '../components/sections/payroll/EorStepsSection.astro';
+import EmployerOfRecordSectionStyles from '../components/sections/payroll/EmployerOfRecordSectionStyles.astro';
 import EmployerOfRecordInteractions from '../components/sections/payroll/EmployerOfRecordInteractions.astro';
 import EmployerOfRecordVisual from '../components/visuals/EmployerOfRecordVisual.astro';
 
@@ -52,7 +58,13 @@ const eorFaqItems = [
 	<HeroSection {...pageHeroes.eor}>
 		<EmployerOfRecordVisual />
 	</HeroSection>
-	<EmployerOfRecordSections />
+	<EorTrustStripSection />
+	<GlobalWorkforceBenefitsSection />
+	<GlobalHiringFeaturesSection />
+	<EorWhyGarnaSection />
+	<EorFitSection />
+	<EorStepsSection />
+	<EmployerOfRecordSectionStyles />
 	<FAQSection
 		kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
 		title={{ text: 'FAQ on Employer of Record', translateKey: 'faq.title' }}

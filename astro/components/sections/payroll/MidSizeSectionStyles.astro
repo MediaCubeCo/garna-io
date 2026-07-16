@@ -1,0 +1,241 @@
+<!-- Hero Section -->
+
+
+    <!-- Payroll Operations -->
+
+
+
+
+    <!-- Bento Grid Features -->
+
+
+
+    <!-- Flexible Payroll -->
+
+
+
+    <!-- Employee Benefits (REDESIGNED) -->
+
+
+
+    <!-- Growing Business Solutions -->
+
+
+
+    <!-- Payroll Workflow -->
+
+
+
+    <!-- How to get started (LEGACY HIDDEN) -->
+
+
+
+    <!-- Growing Companies Choice -->
+
+
+
+    <!-- Why Garna -->
+
+
+
+    <!-- Testimonials -->
+
+
+
+    <!-- Talent Matching -->
+
+<style is:global>
+        .mid-size-visual-pulse {
+            animation: mid-size-visual-pulse 2.8s ease-in-out infinite;
+        }
+
+        .mid-size-progress-a {
+            transform-origin: left;
+            animation: mid-size-progress-a 4.8s ease-in-out infinite;
+        }
+
+        .mid-size-progress-b {
+            transform-origin: left;
+            animation: mid-size-progress-b 5.2s ease-in-out infinite;
+        }
+
+        .mid-size-row-step {
+            animation: mid-size-row-step 4.5s ease-in-out infinite;
+        }
+
+        .mid-size-chip-step {
+            animation: mid-size-chip-step 4.8s ease-in-out infinite;
+        }
+
+        .mid-size-bar {
+            transform-origin: bottom;
+            animation: mid-size-bar-grow 4.8s ease-in-out infinite;
+        }
+
+        .mid-size-check-glow {
+            animation: mid-size-check-glow 3.6s ease-in-out infinite;
+        }
+
+        .mid-size-payroll-progress {
+            transform-origin: left;
+            animation: mid-size-payroll-progress 5.8s ease-in-out infinite;
+        }
+
+        .mid-size-payroll-status {
+            animation: mid-size-payroll-status 3.2s ease-in-out infinite;
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .mid-size-payroll-side-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1120px) and (max-width: 1279px) {
+            .mid-size-payroll-side-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 480px) {
+            .mid-size-payroll-run-header {
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 1rem;
+            }
+
+            .mid-size-payroll-run-header > div:last-child {
+                justify-self: end;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            html[lang='es'] #get-started h2[data-translate='payrollWorks.title'] {
+                max-width: 46rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            html[lang='es'] .mid-size-faq h2[data-translate='midSizeFaq.title'] {
+                max-width: 56rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            html[lang='pt'] .mid-size-faq h2[data-translate='midSizeFaq.title'] {
+                max-width: 56rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            html[lang='ru'] .mid-size-faq h2[data-translate='midSizeFaq.title'] {
+                max-width: 63rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1119px) {
+            html[lang='es'] .mid-size-payroll-side-grid,
+            html[lang='pt'] .mid-size-payroll-side-grid {
+                grid-template-rows: auto;
+            }
+
+            html[lang='es'] .mid-size-payroll-approval-card,
+            html[lang='pt'] .mid-size-payroll-approval-card {
+                display: none;
+            }
+        }
+
+        @keyframes mid-size-visual-pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 rgba(94, 165, 0, 0); }
+            50% { opacity: 0.86; box-shadow: 0 0 18px rgba(94, 165, 0, 0.22); }
+        }
+
+        @keyframes mid-size-progress-a {
+            0%, 100% { transform: scaleX(0.84); }
+            50% { transform: scaleX(0.94); }
+        }
+
+        @keyframes mid-size-progress-b {
+            0%, 100% { transform: scaleX(0.72); }
+            50% { transform: scaleX(0.86); }
+        }
+
+        @keyframes mid-size-row-step {
+            0%, 100% { border-color: rgba(255, 255, 255, 0.1); background-color: #191919; }
+            50% { border-color: rgba(94, 165, 0, 0.35); background-color: rgba(94, 165, 0, 0.1); }
+        }
+
+        @keyframes mid-size-chip-step {
+            0%, 100% { background-color: rgba(255, 255, 255, 0.05); color: inherit; }
+            50% { background-color: rgba(94, 165, 0, 0.16); color: #5EA500; }
+        }
+
+        @keyframes mid-size-bar-grow {
+            0%, 100% { transform: scaleY(0.86); }
+            50% { transform: scaleY(1); }
+        }
+
+        @keyframes mid-size-check-glow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(94, 165, 0, 0); }
+            50% { transform: scale(1.05); box-shadow: 0 0 18px rgba(94, 165, 0, 0.22); }
+        }
+
+        @keyframes mid-size-payroll-progress {
+            0%, 100% { transform: scaleX(0.72); }
+            48%, 62% { transform: scaleX(0.9); }
+        }
+
+        @keyframes mid-size-payroll-status {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.72; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .mid-size-visual-pulse,
+            .mid-size-progress-a,
+            .mid-size-progress-b,
+            .mid-size-row-step,
+            .mid-size-chip-step,
+            .mid-size-bar,
+            .mid-size-check-glow,
+            .mid-size-payroll-progress,
+            .mid-size-payroll-status {
+                animation: none;
+            }
+        }
+    </style>
+<style is:global>
+                                    @keyframes flowLine {
+                                        0% {
+                                            background-position: 0% -100%;
+                                        }
+
+                                        100% {
+                                            background-position: 0% 200%;
+                                        }
+                                    }
+
+                                    .flow-line {
+                                        background: linear-gradient(to bottom, transparent 0%, #5EA500 50%, transparent 100%);
+                                        background-size: 100% 200%;
+                                        animation: flowLine 1.5s linear infinite;
+                                    }
+                                </style>
+<style is:global>
+                                            @keyframes flowMove {
+                                                0% {
+                                                    transform: translateY(-100%);
+                                                    opacity: 0;
+                                                }
+
+                                                80% {
+                                                    opacity: 1;
+                                                }
+
+                                                100% {
+                                                    transform: translateY(100%);
+                                                    opacity: 0;
+                                                }
+                                            }
+                                        </style>

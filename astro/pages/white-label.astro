@@ -8,7 +8,13 @@ import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import WhiteLabelSections from '../components/sections/white-label/WhiteLabelSections.astro';
+import WhiteLabelTrustStripSection from '../components/sections/white-label/WhiteLabelTrustStripSection.astro';
+import WhiteLabelEngineSection from '../components/sections/white-label/WhiteLabelEngineSection.astro';
+import WhiteLabelBenefitsSection from '../components/sections/white-label/WhiteLabelBenefitsSection.astro';
+import WhiteLabelModelsSection from '../components/sections/white-label/WhiteLabelModelsSection.astro';
+import WhiteLabelAdvantageSection from '../components/sections/white-label/WhiteLabelAdvantageSection.astro';
+import WhiteLabelComparisonSection from '../components/sections/white-label/WhiteLabelComparisonSection.astro';
+import WhiteLabelSectionStyles from '../components/sections/white-label/WhiteLabelSectionStyles.astro';
 import WhiteLabelInteractions from '../components/sections/white-label/WhiteLabelInteractions.astro';
 import WhiteLabelDashboardVisual from '../components/visuals/WhiteLabelDashboardVisual.astro';
 
@@ -62,7 +68,13 @@ const whiteLabelFaqItems = [
 	<HeroSection {...pageHeroes.whiteLabel}>
 		<WhiteLabelDashboardVisual />
 	</HeroSection>
-	<WhiteLabelSections />
+	<WhiteLabelTrustStripSection />
+	<WhiteLabelEngineSection />
+	<WhiteLabelBenefitsSection />
+	<WhiteLabelModelsSection />
+	<WhiteLabelAdvantageSection />
+	<WhiteLabelComparisonSection />
+	<WhiteLabelSectionStyles />
 	<FAQSection
 		title={{ text: 'FAQ on Garna White Label Services', translateKey: 'faq.title' }}
 		subtitle={{ text: 'Have questions? We have answers', translateKey: 'faq.subtitle' }}

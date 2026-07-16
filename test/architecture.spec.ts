@@ -102,4 +102,58 @@ describe('native Astro architecture', () => {
 		expect(sectionComponent).toContain('<slot name="action" />');
 		expect(interactions).not.toContain('function switchFlow');
 	});
+
+	it('composes every non-blog entrypoint without page-sized section aggregators', async () => {
+		const nonBlogPages = [
+			'404.astro',
+			'ai-hiring.astro',
+			'contractor-of-record.astro',
+			'employer-of-record.astro',
+			'enterprise-payroll.astro',
+			'for-contractors.astro',
+			'form.astro',
+			'index.astro',
+			'mid-size-business-payroll.astro',
+			'payroll-small-business.astro',
+			'tax-calculator.astro',
+			'white-label.astro',
+		];
+		const pageSources = await Promise.all(
+			nonBlogPages.map((file) => readFile(path.join(root, 'astro/pages', file), 'utf8')),
+		);
+		const removedAggregators = [
+			'AIHiringSections',
+			'ContractorSections',
+			'ContractorOfRecordSections',
+			'EmployerOfRecordSections',
+			'EnterprisePayrollSections',
+			'MidSizeSections',
+			'SmallBusinessSections',
+			'WhiteLabelSections',
+			'PayrollLandingLayout',
+		];
+
+		expect(pageSources.every((source) => !source.includes('<section'))).toBe(true);
+		for (const aggregator of removedAggregators) {
+			expect(pageSources.every((source) => !source.includes(aggregator))).toBe(true);
+		}
+	});
+
+	it('wraps every migrated non-blog content section with the shared Section component', async () => {
+		const sectionsRoot = path.join(root, 'astro/components/sections');
+		const files = (await walk(sectionsRoot)).filter(
+			(file) => file.endsWith('.astro') && !file.includes(`${path.sep}blog${path.sep}`),
+		);
+		const sources = await Promise.all(files.map((file) => readFile(file, 'utf8')));
+		const migratedSections = sources.filter((source) => source.includes('<Section'));
+		const sectionComponent = await readFile(path.join(root, 'astro/components/layout/Section.astro'), 'utf8');
+		const containerComponent = await readFile(path.join(root, 'astro/components/layout/Container.astro'), 'utf8');
+
+		expect(migratedSections).toHaveLength(67);
+		expect(migratedSections.every((source) => source.includes("layout/Section.astro"))).toBe(true);
+		expect(migratedSections.every((source) => !source.includes('<section'))).toBe(true);
+		expect(sectionComponent).toContain('contained?: boolean');
+		expect(sectionComponent).toContain('contained={contained}');
+		expect(containerComponent).toContain('contained ?');
+	});
 });

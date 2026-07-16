@@ -7,7 +7,12 @@ import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import SmallBusinessSections from '../components/sections/payroll/SmallBusinessSections.astro';
+import SmallBusinessOverviewSection from '../components/sections/payroll/SmallBusinessOverviewSection.astro';
+import SmallBusinessPlatformSection from '../components/sections/payroll/SmallBusinessPlatformSection.astro';
+import SmallBusinessStepsSection from '../components/sections/payroll/SmallBusinessStepsSection.astro';
+import SmallBusinessBenefitsSection from '../components/sections/payroll/SmallBusinessBenefitsSection.astro';
+import SmallBusinessTestimonialsSection from '../components/sections/payroll/SmallBusinessTestimonialsSection.astro';
+import SmallBusinessSectionStyles from '../components/sections/payroll/SmallBusinessSectionStyles.astro';
 import SmallBusinessInteractions from '../components/sections/payroll/SmallBusinessInteractions.astro';
 import SmallBusinessPayrollVisual from '../components/visuals/SmallBusinessPayrollVisual.astro';
 
@@ -54,7 +59,12 @@ const payrollSmallBusinessFaqItems = [
 	<HeroSection {...pageHeroes.payrollSmallBusiness}>
 		<SmallBusinessPayrollVisual />
 	</HeroSection>
-	<SmallBusinessSections />
+	<SmallBusinessOverviewSection />
+	<SmallBusinessPlatformSection />
+	<SmallBusinessStepsSection />
+	<SmallBusinessBenefitsSection />
+	<SmallBusinessTestimonialsSection />
+	<SmallBusinessSectionStyles />
 	<FAQSection
 		kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
 		title={{ text: 'FAQ on Small Business Payroll', translateKey: 'faq.title' }}

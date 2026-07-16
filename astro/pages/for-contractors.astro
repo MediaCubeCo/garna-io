@@ -7,7 +7,12 @@ import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import ContractorSections from '../components/sections/contractor/ContractorSections.astro';
+import ContractorFinancesSection from '../components/sections/contractor/ContractorFinancesSection.astro';
+import ContractorFreedomSection from '../components/sections/contractor/ContractorFreedomSection.astro';
+import TransparentFeesSection from '../components/sections/contractor/TransparentFeesSection.astro';
+import ContractorTestimonialsSection from '../components/sections/contractor/ContractorTestimonialsSection.astro';
+import GlobalWorkInfrastructureSection from '../components/sections/contractor/GlobalWorkInfrastructureSection.astro';
+import ContractorSectionStyles from '../components/sections/contractor/ContractorSectionStyles.astro';
 import ContractorInteractions from '../components/sections/contractor/ContractorInteractions.astro';
 import ContractorWalletVisual from '../components/visuals/ContractorWalletVisual.astro';
 
@@ -79,7 +84,12 @@ const contractorFaqItems = [
 	<HeroSection {...pageHeroes.offer}>
 		<ContractorWalletVisual />
 	</HeroSection>
-	<ContractorSections />
+	<ContractorFinancesSection />
+	<ContractorFreedomSection />
+	<TransparentFeesSection />
+	<ContractorTestimonialsSection />
+	<GlobalWorkInfrastructureSection />
+	<ContractorSectionStyles />
 	<FAQSection
 		title={{ text: 'Common questions', translateKey: 'faq.title' }}
 		subtitle={{ text: 'Everything you need to know about getting paid', translateKey: 'faq.description' }}

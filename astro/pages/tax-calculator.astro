@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/Button.astro';
+import TaxCalculatorHeroSection from '../components/sections/tax-calculator/TaxCalculatorHeroSection.astro';
+import TaxCalculatorExplainerSection from '../components/sections/tax-calculator/TaxCalculatorExplainerSection.astro';
+import TaxCalculatorTrustStripSection from '../components/sections/tax-calculator/TaxCalculatorTrustStripSection.astro';
+import TaxCalculatorExpertSection from '../components/sections/tax-calculator/TaxCalculatorExpertSection.astro';
+import TaxCalculatorPageStyles from '../components/sections/tax-calculator/TaxCalculatorPageStyles.astro';
 import FAQSection from '../components/FAQSection.astro';
 import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
 import { pageShells } from '../content/page-shells';
@@ -8,9 +12,6 @@ import type { FAQItem } from '../types/faq-section';
 import '../styles/tax-calculator.css';
 import '../styles/tax-calculator-seo.css';
 
-const countries = [
-	['AL','Albania'],['AR','Argentina'],['AM','Armenia'],['AU','Australia'],['AT','Austria'],['AZ','Azerbaijan'],['BH','Bahrain'],['BD','Bangladesh'],['BY','Belarus'],['BE','Belgium'],['BO','Bolivia'],['BA','Bosnia and Herzegovina'],['BR','Brazil'],['BG','Bulgaria'],['KH','Cambodia'],['CM','Cameroon'],['CA','Canada'],['CL','Chile'],['CN','China'],['CO','Colombia'],['CR','Costa Rica'],['CI',"Côte d’Ivoire"],['HR','Croatia'],['CY','Cyprus'],['CZ','Czech Republic'],['DK','Denmark'],['DO','Dominican Republic'],['EC','Ecuador'],['EG','Egypt'],['SV','El Salvador'],['EE','Estonia'],['ET','Ethiopia'],['FI','Finland'],['FR','France'],['GE','Georgia'],['DE','Germany'],['GH','Ghana'],['GR','Greece'],['GT','Guatemala'],['HN','Honduras'],['HK','Hong Kong'],['HU','Hungary'],['IS','Iceland'],['IN','India'],['ID','Indonesia'],['IE','Ireland'],['IL','Israel'],['IT','Italy'],['JM','Jamaica'],['JP','Japan'],['JO','Jordan'],['KZ','Kazakhstan'],['KE','Kenya'],['XK','Kosovo'],['LV','Latvia'],['LT','Lithuania'],['LU','Luxembourg'],['MO','Macao'],['MG','Madagascar'],['MY','Malaysia'],['MT','Malta'],['MU','Mauritius'],['MX','Mexico'],['MD','Moldova'],['MN','Mongolia'],['ME','Montenegro'],['MA','Morocco'],['MZ','Mozambique'],['NA','Namibia'],['NP','Nepal'],['NL','Netherlands'],['NZ','New Zealand'],['NI','Nicaragua'],['NG','Nigeria'],['MK','North Macedonia'],['NO','Norway'],['OM','Oman'],['PK','Pakistan'],['PA','Panama'],['PY','Paraguay'],['PE','Peru'],['PH','Philippines'],['PL','Poland'],['PT','Portugal'],['PR','Puerto Rico'],['QA','Qatar'],['RO','Romania'],['RU','Russia'],['RW','Rwanda'],['SA','Saudi Arabia'],['SN','Senegal'],['RS','Serbia'],['SG','Singapore'],['SK','Slovakia'],['SI','Slovenia'],['ZA','South Africa'],['KR','South Korea'],['ES','Spain'],['LK','Sri Lanka'],['SR','Suriname'],['SE','Sweden'],['CH','Switzerland'],['TW','Taiwan'],['TH','Thailand'],['TN','Tunisia'],['TR','Turkey'],['UG','Uganda'],['UA','Ukraine'],['AE','United Arab Emirates'],['GB','United Kingdom'],['US','United States'],['UY','Uruguay'],['UZ','Uzbekistan'],['VN','Vietnam'],['ZM','Zambia'],
-];
 const faqItems = Array.from({ length: 9 }, (_, index) => ({
 	question: ['What is an employee cost calculator?','How do you calculate the total cost of an employee?','How much does an employee cost a company beyond salary?','Does employee cost vary by country?','What is the difference between salary and total employee cost?','How can I reduce employee hiring costs?','How do I calculate the cost of hiring an employee internationally?','Can Garna help manage employee payroll costs?','How accurate are employee cost calculator estimates?'][index],
 	answer: ['An employee cost calculator helps businesses estimate employment-related costs, including salary, taxes, social contributions and other required expenses.','Start with gross salary, then account for applicable taxes, contributions, benefits and other employment expenses. The exact total depends on the location and employment arrangement.','Costs beyond salary vary by country and may include taxes, insurance, social contributions and benefits.','Yes. Payroll taxes, social security, mandatory benefits, healthcare systems and employment rules differ significantly between countries.','Salary is the compensation paid directly to an employee. Total employee cost also includes the additional expenses connected with maintaining employment.','Businesses can automate payroll, select the right employment model, optimize benefits and reduce administrative overhead with a global payroll platform.','Consider salary expectations, local taxes, contributions, mandatory benefits, exchange rates and compliance requirements before entering a new market.','Yes. Garna helps businesses manage global payroll, payments and compliance across multiple countries in one platform.','Results are estimates based on available tax rates and typical requirements. Actual costs may vary according to employee details, company policies and local regulations.'][index],
@@ -19,148 +20,16 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 })) satisfies FAQItem[];
 ---
 <BaseLayout shell={pageShells.taxCalculator} rainbowCount={6}>
-	<section class="tax-hero">
-		<div class="tax-orb tax-orb--one"></div><div class="tax-orb tax-orb--two"></div>
-		<div class="garna-container tax-hero__inner">
-			<div class="tax-copy">
-				<div class="garna-hero-badge"><span class="garna-hero-badge-dot-shell"><span class="garna-hero-badge-dot-ping"></span><span class="garna-hero-badge-dot"></span></span><span data-translate="hero.badge">Global salary intelligence</span></div>
-				<h1 data-translate="hero.title">Employee Cost Calculator</h1>
-				<p data-translate="hero.description">Salary is only part of the equation. Estimate take-home pay and employee deductions in seconds, with no sign-up required.</p>
-				<div class="tax-hero-actions"><Button href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'employee_cost_calculator_hero_demo' });" size="hero" effect="rotating-flare" icon="arrow-up-right" class="tax-demo-button"><span data-translate="hero.demoCta">Request a Demo</span></Button></div>
-				<div class="tax-trust"><span>120+</span><span data-translate="hero.countries">supported countries</span><i></i><span data-translate="hero.updated">Current tax logic</span></div>
-			</div>
-			<div class="tax-card-shell" id="calculator">
-				<div class="tax-card">
-					<div class="tax-card__header"><div class="tax-card__meta"><span data-translate="calculator.eyebrow">Take-home calculator</span><span class="tax-live"><i></i><span data-translate="calculator.live">Live estimate</span></span></div><h2 data-translate="calculator.title">Calculate your net salary</h2></div>
-					<form id="tax-form">
-						<div class="tax-location-grid">
-							<label><span data-translate="calculator.country">Country</span><select name="country" required><option value="" data-translate="calculator.selectCountry">Select a country</option>{countries.map(([code,name]) => <option value={code}>{name}</option>)}</select></label>
-							<div id="tax-state-field" hidden><label><span data-translate="calculator.state">State or region</span><select name="state"></select></label></div>
-						</div>
-						<div class="tax-compensation-grid">
-							<label><span data-translate="calculator.salary">Gross salary</span><div class="tax-input-wrap has-single-currency"><input name="salary" type="number" inputmode="numeric" min="1" step="1" placeholder="5,000" required/><span class="tax-currency-value" id="tax-currency-value" aria-hidden="true">USD</span><select class="tax-currency-select" name="currency" aria-label="Currency" title="Currency"><option value="USD">USD — US Dollar</option></select><span class="tax-currency-chevron" id="tax-currency-chevron" aria-hidden="true" hidden><svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1.25 6 6.25l5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></label>
-							<label><span data-translate="calculator.period">Pay period</span><select name="period"><option value="monthly" data-translate="calculator.monthly">Monthly</option><option value="annual" data-translate="calculator.annual">Annual</option></select></label>
-						</div>
-						<Button type="submit" class="tax-submit"><span data-translate="calculator.calculate">Calculate take-home pay</span><span aria-hidden="true">→</span></Button>
-					</form>
-					<div id="tax-status" class="tax-status" aria-live="polite"></div>
-					<div id="tax-results" class="tax-results" hidden></div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="tax-explainer"><div class="garna-container"><span data-translate="info.kicker">Understand the full picture</span><h2 data-translate="info.title">From gross offer to money in your account</h2><div class="tax-steps"><article><b>01</b><h3 data-translate="info.grossTitle">Enter gross salary</h3><p data-translate="info.grossText">Choose the location, pay period and offer currency.</p></article><article><b>02</b><h3 data-translate="info.taxTitle">Apply local deductions</h3><p data-translate="info.taxText">The estimate accounts for country and regional tax logic.</p></article><article><b>03</b><h3 data-translate="info.netTitle">Review take-home pay</h3><p data-translate="info.netText">See annual net income and a transparent deduction breakdown.</p></article></div></div></section>
-	<section class="tax-trusted"><div class="garna-container"><p data-translate="trusted.kicker">Trusted by Businesses Scaling Globally</p><div class="tax-trusted__line"><span>150+</span><span data-translate="trusted.countries">countries supported by Garna</span><i></i><span data-translate="trusted.platform">One platform for global payroll and compliance</span></div></div></section>
-	<section class="tax-expert"><div class="garna-container tax-expert__inner"><div><span data-translate="expert.kicker">Questions about your report?</span><h2 data-translate="expert.title">Our global hiring experts can help.</h2><p data-translate="expert.text">Understand your costs and explore the best hiring options for your international team.</p></div><a class="garna-button tax-primary-link" href="https://garna.io/en/form" data-localized-path="form" data-translate="expert.cta">Talk to an Expert</a></div></section>
+		<TaxCalculatorHeroSection />
+		<TaxCalculatorExplainerSection />
+		<TaxCalculatorTrustStripSection />
+		<TaxCalculatorExpertSection />
 	<FAQSection title={{ text: 'Employee Cost Calculator FAQs', translateKey: 'faq.title' }} items={faqItems} class="tax-faq" containerClass="garna-container" accordionClass="mx-auto w-full space-y-4 xl:max-w-3xl" />
 	<div id="tax-i18n" hidden><span data-key="loading" data-translate="messages.loading">Calculating…</span><span data-key="configError" data-translate="messages.configError">Could not load country details. Please try again.</span><span data-key="calcError" data-translate="messages.calcError">Could not calculate right now. Please try again.</span><span data-key="gross" data-translate="results.gross">Gross annual</span><span data-key="net" data-translate="results.net">Net annual</span><span data-key="deductions" data-translate="results.deductions">Deductions</span><span data-key="item" data-translate="results.item">Item</span><span data-key="estimate" data-translate="results.estimate">Your estimated employee cost</span><span data-key="estimatedNote" data-translate="results.estimatedNote">This result is an estimate based on local taxation and standard employment requirements. Final amounts may vary.</span><span data-key="garnaSupports" data-translate="results.garnaSupports">Garna supports payroll operations in</span><span data-key="garnaText" data-translate="results.garnaText">Hire and pay employees in 150+ countries without establishing your own local entity.</span><span data-key="onboard" data-translate="results.onboard">Onboard Employee</span></div>
 	<Fragment slot="widgets"><GarnaBookingWidget trackingSource="employee-cost-calculator" trackingPage="employee-cost-calculator" trackingCta="employee_cost_calculator_hero_demo" titleFallback="Book a free 30-minute product demo" subtitleFallback="Get all your questions answered by our experts" /></Fragment>
 </BaseLayout>
 
-<style is:global>
-	.tax-card__header {
-		display: block;
-	}
-
-	.tax-card__meta {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 20px;
-	}
-
-	.tax-location-grid,
-	.tax-compensation-grid {
-		display: grid;
-		gap: 14px;
-	}
-
-	.tax-location-grid {
-		grid-template-columns: 1fr;
-	}
-
-	.tax-location-grid:has(#tax-state-field:not([hidden])) {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-
-	.tax-compensation-grid {
-		grid-template-columns: minmax(0, 1fr) minmax(132px, 170px);
-	}
-
-	.tax-currency-select {
-		position: absolute;
-		top: 1px;
-		right: 1px;
-		width: 92px !important;
-		height: 50px !important;
-		padding: 0 30px 0 12px !important;
-		border: 0 !important;
-		border-left: 1px solid rgba(255, 255, 255, 0.09) !important;
-		border-radius: 0 10px 10px 0 !important;
-		background-color: #0d0d0d !important;
-		appearance: none;
-		font-size: 12px !important;
-		color: transparent !important;
-		cursor: pointer;
-	}
-
-	.tax-currency-select option {
-		color: #fff;
-	}
-
-	.tax-currency-value {
-		position: absolute;
-		right: 34px;
-		top: 50%;
-		z-index: 1;
-		transform: translateY(-50%);
-		color: #fff;
-		font-size: 12px;
-		font-weight: 600;
-		letter-spacing: 0.02em;
-		pointer-events: none;
-	}
-
-	.tax-currency-chevron {
-		position: absolute;
-		right: 12px;
-		top: 50%;
-		z-index: 1;
-		display: grid;
-		place-items: center;
-		transform: translateY(-50%);
-		color: #a1a1aa;
-		pointer-events: none;
-	}
-
-	.tax-currency-chevron[hidden] {
-		display: none;
-	}
-
-	.has-single-currency .tax-currency-value {
-		right: 16px;
-	}
-
-	.has-single-currency .tax-currency-select {
-		cursor: default;
-		pointer-events: none;
-	}
-
-	.tax-input-wrap input {
-		padding-right: 106px;
-	}
-
-	.tax-currency-select:focus {
-		box-shadow: inset 0 0 0 1px rgba(94, 165, 0, 0.8) !important;
-	}
-
-	@media (max-width: 640px) {
-		.tax-location-grid:has(#tax-state-field:not([hidden])),
-		.tax-compensation-grid {
-			grid-template-columns: 1fr;
-		}
-	}
-</style>
+<TaxCalculatorPageStyles />
 
 <script>
 	const form = document.querySelector('#tax-form'); const results = document.querySelector('#tax-results'); const status = document.querySelector('#tax-status');
