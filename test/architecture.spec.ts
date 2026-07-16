@@ -334,7 +334,12 @@ describe('native Astro architecture', () => {
 		expect(card).toContain('interactive = true');
 		expect(card).toContain("data-card-glow={interactive ? 'true' : undefined}");
 		expect(card).toContain('--garna-card-glow-radius: 60vw;');
+		expect(card).toContain('--garna-card-border-glow-radius: 14rem;');
 		expect(card).toContain('background: radial-gradient(');
+		expect(card).toContain('.garna-card::after');
+		expect(card).toContain('-webkit-mask-composite: xor;');
+		expect(card).toContain('mask-composite: exclude;');
+		expect(card).toContain(".garna-card[data-card-glow='true']:hover::after");
 		expect(card).toContain("document.addEventListener('pointermove'");
 		expect(card).toContain("style.setProperty('--garna-card-glow-x'");
 		expect(card).toContain("style.setProperty('--garna-card-glow-y'");

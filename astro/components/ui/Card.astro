@@ -73,6 +73,7 @@ const defaultDescriptionClasses = {
 		--garna-card-glow-x: 50%;
 		--garna-card-glow-y: 50%;
 		--garna-card-glow-radius: 60vw;
+		--garna-card-border-glow-radius: 14rem;
 		position: relative;
 		isolation: isolate;
 	}
@@ -100,6 +101,31 @@ const defaultDescriptionClasses = {
 		z-index: 1;
 	}
 
+	@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+		.garna-card::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			z-index: 2;
+			padding: 1px;
+			border-radius: inherit;
+			background: radial-gradient(
+				circle var(--garna-card-border-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+				rgba(255, 255, 255, 0.9) 0%,
+				rgba(255, 255, 255, 0.52) 24%,
+				rgba(255, 255, 255, 0.2) 50%,
+				transparent 76%
+			);
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 300ms ease;
+			-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+			-webkit-mask-composite: xor;
+			mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+			mask-composite: exclude;
+		}
+	}
+
 	.garna-card[data-interactive='true']:hover {
 		border-color: rgba(255, 255, 255, 0.15);
 	}
@@ -107,6 +133,12 @@ const defaultDescriptionClasses = {
 	@media (hover: hover) and (pointer: fine) {
 		.garna-card[data-card-glow='true']:hover::before {
 			opacity: 1;
+		}
+
+		@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+			.garna-card[data-card-glow='true']:hover::after {
+				opacity: 1;
+			}
 		}
 	}
 
@@ -116,7 +148,8 @@ const defaultDescriptionClasses = {
 			--garna-card-glow-y: 50% !important;
 		}
 
-		.garna-card::before {
+		.garna-card::before,
+		.garna-card::after {
 			transition: none;
 		}
 	}
