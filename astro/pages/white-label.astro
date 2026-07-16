@@ -8,12 +8,8 @@ import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import rawContentHtml from '../content/site-pages/white-label.html?raw';
-import { splitLegacyPageSections } from '../utils/legacy-html';
-
-const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
-	heroVisualMarker: '<!-- Right Visual (Dashboard UI) -->',
-});
+import WhiteLabelSections from '../components/pages/white-label/WhiteLabelSections.astro';
+import WhiteLabelDashboardVisual from '../components/visuals/WhiteLabelDashboardVisual.astro';
 
 const whiteLabelFaqItems = [
 	{
@@ -63,9 +59,9 @@ const whiteLabelFaqItems = [
 
 <BaseLayout shell={pageShells.whiteLabel}>
 	<HeroSection {...pageHeroes.whiteLabel}>
-		<Fragment set:html={heroVisualHtml} />
+		<WhiteLabelDashboardVisual />
 	</HeroSection>
-	<Fragment set:html={contentHtml} />
+	<WhiteLabelSections />
 	<FAQSection
 		title={{ text: 'FAQ on Garna White Label Services', translateKey: 'faq.title' }}
 		subtitle={{ text: 'Have questions? We have answers', translateKey: 'faq.subtitle' }}

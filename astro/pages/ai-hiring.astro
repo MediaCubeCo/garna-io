@@ -7,12 +7,8 @@ import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import rawContentHtml from '../content/site-pages/ai-hiring.html?raw';
-import { splitLegacyPageSections } from '../utils/legacy-html';
-
-const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
-	heroVisualMarker: '<!-- UI Mockup -->',
-});
+import AIHiringSections from '../components/pages/ai-hiring/AIHiringSections.astro';
+import AIInterviewVisual from '../components/visuals/AIInterviewVisual.astro';
 
 const aiHiringFaqItems = [
 	{
@@ -56,9 +52,9 @@ const aiHiringFaqItems = [
 
 <BaseLayout shell={pageShells.aiHiring}>
 	<HeroSection {...pageHeroes.aiHiring}>
-		<Fragment set:html={heroVisualHtml} />
+		<AIInterviewVisual />
 	</HeroSection>
-	<Fragment set:html={contentHtml} />
+	<AIHiringSections />
 	<FAQSection
 		title={{ text: 'Frequently asked questions', translateKey: 'faq.title' }}
 		subtitle={{ text: 'Have questions? We have answers', translateKey: 'faq.subtitle' }}
