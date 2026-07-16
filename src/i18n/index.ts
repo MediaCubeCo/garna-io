@@ -44,7 +44,6 @@ const translations = {
 	'employer-of-record': eorTranslations,
 	'mid-size': midSizeTranslations,
 	'mid-size-business-payroll': midSizeTranslations,
-	'payroll-solution-new': homeTranslations,
 	'enterprise-payroll': enterprisePayrollTranslations,
 	'payroll-small-business': payrollSmallBusinessTranslations,
 	blog: blogTranslations,
