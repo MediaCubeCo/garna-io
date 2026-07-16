@@ -287,4 +287,40 @@ describe('native Astro architecture', () => {
 		expect(visual).toContain('@media (prefers-reduced-motion: reduce)');
 		expect(pageStyles).not.toContain('.payroll-routine-visual');
 	});
+
+	it('builds homepage cards through the shared Card contract and visual slots', async () => {
+		const card = await readFile(path.join(root, 'astro/components/ui/Card.astro'), 'utf8');
+		const homeCardSections = [
+			'ManageGlobalPayrollSection.astro',
+			'HireEmployeesWorldwideSection.astro',
+			'ContractorPaymentsSection.astro',
+			'WhyCompaniesChooseGarnaSection.astro',
+			'TrustedByBuildersSection.astro',
+		];
+		const sources = await Promise.all(
+			homeCardSections.map((file) =>
+				readFile(path.join(root, 'astro/components/sections/payroll/home', file), 'utf8'),
+			),
+		);
+		const visualFiles = [
+			'AutomatedPayrollPlatformVisual.astro',
+			'GlobalReachVisual.astro',
+			'TransparentFeesVisual.astro',
+			'PayoutMethodsVisual.astro',
+			'MobilePayoutVisual.astro',
+			'EarlyPayoutVisual.astro',
+			'CardIconVisual.astro',
+			'TestimonialAuthorVisual.astro',
+		];
+
+		expect(card).toContain("title?: string | CardText");
+		expect(card).toContain("description?: string | CardText");
+		expect(card).toContain('<slot name="visual" />');
+		expect(sources.every((source) => source.includes("ui/Card.astro"))).toBe(true);
+		expect(sources.reduce((count, source) => count + (source.match(/<Card(?:\s|>)/g)?.length || 0), 0)).toBe(25);
+		expect(sources.every((source) => !source.includes('<div class="glass-card'))).toBe(true);
+		for (const file of visualFiles) {
+			await expect(access(path.join(root, 'astro/components/visuals', file))).resolves.toBeUndefined();
+		}
+	});
 });

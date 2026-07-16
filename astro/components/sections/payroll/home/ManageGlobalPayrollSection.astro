@@ -1,194 +1,59 @@
 ---
 import Section from '../../../layout/Section.astro';
+import Card from '../../../ui/Card.astro';
+import AutomatedPayrollPlatformVisual from '../../../visuals/AutomatedPayrollPlatformVisual.astro';
+import GlobalReachVisual from '../../../visuals/GlobalReachVisual.astro';
+import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro';
 ---
 
 <Section
-	title={{ text: "Manage Global Payroll Effortlessly" }}
-	description={{ text: "We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries" }}
-	spacing="none" class="pb-16 lg:pb-32" headerClass="mb-16 max-w-4xl lg:mb-20" titleClass="lg:text-5xl" contentClass="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-2 lg:grid-cols-3"
+	title={{ text: 'Manage Global Payroll Effortlessly' }}
+	description={{ text: 'We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries' }}
+	spacing="none"
+	class="pb-16 lg:pb-32"
+	headerClass="mb-16 max-w-4xl lg:mb-20"
+	titleClass="lg:text-5xl"
+	contentClass="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
 >
-<!-- Large Card (Automated Payroll) -->
-    <div class="row-span-2 glass overflow-hidden group md:col-span-1 md:row-span-2 lg:col-span-1 rounded-3xl bg-[#0c0c0c] relative flex flex-col">
-        <div class="flex flex-col lg:pl-8 z-10 h-full pt-8 pr-8 pb-8 pl-8 relative">
-            <div class="shrink-0 mb-12">
-                <h3 class="text-2xl font-normal text-white tracking-tight font-manrope mb-3">Automated Payroll Platform</h3>
-                <p class="leading-relaxed text-base text-gray-400 font-manrope">Automate global payout processes with a flexible, user-friendly platform</p>
-            </div>
+	<Card
+		variant="visual"
+		title="Automated Payroll Platform"
+		description="Automate global payout processes with a flexible, user-friendly platform"
+		visualPosition="after"
+		class="row-span-2 flex flex-col md:col-span-1 md:row-span-2 lg:col-span-1"
+		bodyClass="shrink-0 px-8 pt-8"
+		visualClass="flex min-h-0 flex-1 px-8 pb-8 pt-12"
+		titleClass="text-2xl font-normal"
+		descriptionClass="text-base"
+	>
+		<AutomatedPayrollPlatformVisual slot="visual" />
+	</Card>
 
-            <div class="flex-1 min-h-0 relative flex items-center justify-center w-full">
-                 <!-- Background Grid -->
-                 <div class="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)] pointer-events-none"></div>
+	<Card
+		variant="visual"
+		title="Global Reach"
+		description="Pay in 150+ countries with local currencies and crypto"
+		visualPosition="after"
+		class="flex h-[340px] flex-col p-8 md:col-span-1 md:h-[260px] md:p-6 lg:col-span-2 lg:h-[280px] lg:flex-row lg:p-8"
+		bodyClass="relative z-20 mb-4 w-full lg:mb-0 lg:flex lg:w-1/2 lg:flex-col lg:justify-center"
+		visualClass="h-64 w-full lg:h-full lg:w-1/2"
+		titleClass="text-2xl font-normal"
+		descriptionClass="text-base"
+	>
+		<GlobalReachVisual slot="visual" />
+	</Card>
 
-                 <!-- Flow Diagram -->
-                 <div class="flex flex-col z-0 transform lg:scale-100 origin-center w-full relative scale-95 items-center justify-center">
-
-
-                    <!-- 1. Business Node -->
-                    <div class="flex flex-col z-10 relative gap-3 items-center">
-                        <div class="w-12 h-12 rounded-2xl bg-[#0e0e0e] border border-white/10 flex items-center justify-center shadow-lg relative group">
-                            <div class="group-hover:opacity-100 transition-opacity duration-500 bg-[#5EA500]/5 opacity-0 rounded-2xl absolute top-0 right-0 bottom-0 left-0 scale-125"></div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-white relative z-10"><rect width="16" height="20" x="4" y="2" rx="2" ry="2" class=""></rect><path d="M9 22v-4h6v4" class=""></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg>
-                        </div>
-                        <span class="uppercase text-sm font-medium text-gray-400 tracking-wider font-manrope">Business</span>
-                    </div>
-
-                    <!-- Connector 1 -->
-                    <div class="h-8 w-[1px] bg-white/5 relative overflow-hidden my-1">
-                        <div class="w-full h-full absolute top-0 right-0 bottom-0 left-0 overflow-hidden">
-
-                            <div class="w-full h-full" style="background: linear-gradient(to bottom, transparent, #5EA500, transparent); animation: flowMove 2s linear infinite !important"></div>
-                        </div>
-                    </div>
-
-                    <!-- 2. Garna Platform Node -->
-                    <div class="relative z-20 flex flex-col items-center">
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-20 bg-[#5EA500]/10 blur-2xl rounded-full pointer-events-none"></div>
-                        <div class="px-5 py-2.5 rounded-xl bg-[#0c0c0c] border border-[#5EA500]/20 shadow-[0_0_20px_-5px_rgba(94,165,0,0.2)] flex items-center gap-3 relative z-10 group backdrop-blur-sm">
-                            <div class="absolute top-0 right-0 bottom-0 left-0 bg-[#0c0c0c] z-20 flex items-center justify-center rounded-xl">
-                                <div class="animate-pulse border-[#5EA500]/10 border rounded-xl absolute top-0 right-0 bottom-0 left-0 items-center justify-center"></div>
-                                <span class="text-xl font-medium text-white tracking-tight font-manrope z-0 mb-1 relative">garna</span>
-                            </div>
-                            <div class="w-6 h-6 rounded-full bg-[#5EA500]/10 flex items-center justify-center border border-[#5EA500]/20">
-                                <span class="font-manrope font-bold text-sm text-[#5EA500] pb-[2px]">g</span>
-                            </div>
-                            <span class="font-manrope font-semibold text-sm text-white tracking-wide">Garna</span>
-                        </div>
-                    </div>
-
-                    <!-- Connector 2 -->
-                    <div class="h-10 w-full max-w-[300px] relative flex justify-center -mt-1 -mb-1 z-0">
-                         <svg class="w-full h-full absolute top-0 left-0 overflow-visible" viewBox="0 0 340 48" fill="none">
-                             <path id="pathCenter" d="M170,0 L170,48" stroke="rgba(255,255,255,0.08)" stroke-width="1"></path>
-                             <path id="pathLeft" d="M170,0 C170,24 56,24 56,48" stroke="rgba(255,255,255,0.08)" stroke-width="1" class=""></path>
-                             <path id="pathRight" d="M170,0 C170,24 284,24 284,48" stroke="rgba(255,255,255,0.08)" stroke-width="1"></path>
-                             <circle r="2" fill="#5EA500"><animateMotion dur="2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#pathCenter"></mpath></animateMotion></circle>
-                             <circle r="2" fill="#5EA500"><animateMotion dur="2s" repeatCount="indefinite" begin="0.2s" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#pathLeft"></mpath></animateMotion></circle>
-                             <circle r="2" fill="#5EA500"><animateMotion dur="2s" repeatCount="indefinite" begin="0.4s" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#pathRight"></mpath></animateMotion></circle>
-                         </svg>
-                    </div>
-
-                    <!-- 3. Employees -->
-                    <div class="grid grid-cols-3 gap-3 w-full max-w-[300px] relative z-10 pt-1">
-                        <div class="bg-[#0e0e0e] border border-white/5 p-2.5 rounded-xl flex flex-col items-center gap-2.5 group hover:border-white/10 transition-colors">
-                            <div class="w-10 h-10 rounded-full p-[1px] bg-gradient-to-b from-white/10 to-transparent group-hover:from-[#5EA500]/50 transition-colors duration-500">
-                                <div class="w-full h-full rounded-full overflow-hidden bg-[#141414]">
-                                    <img src="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg" alt="Elena" class="w-full h-full object-cover">
-                                </div>
-                            </div>
-                            <div class="text-center w-full">
-                                <div class="text-[10px] font-medium text-white font-manrope truncate w-full transition-colors">Elena</div>
-                                <div class="text-[9px] leading-tight whitespace-nowrap overflow-hidden text-ellipsis text-gray-500 font-manrope mt-0.5">Web Designer</div>
-                            </div>
-                        </div>
-                        <div class="bg-[#0e0e0e] border border-white/5 p-2.5 rounded-xl flex flex-col items-center gap-2.5 group hover:border-white/10 transition-colors">
-                             <div class="w-10 h-10 rounded-full p-[1px] bg-gradient-to-b from-white/10 to-transparent group-hover:from-[#5EA500]/50 transition-colors duration-500">
-                                <div class="w-full h-full rounded-full overflow-hidden bg-[#141414]">
-                                    <img src="/pages/payroll-solution-new/assets/02-4ea5c571-80d4-4ff4-8cf2-210e25af6262_320w.png" alt="David" class="w-full h-full object-cover">
-                                </div>
-                            </div>
-                            <div class="text-center w-full">
-                                <div class="text-[10px] font-medium text-white font-manrope truncate w-full transition-colors">David</div>
-                                <div class="text-[9px] leading-tight whitespace-nowrap overflow-hidden text-ellipsis text-gray-500 font-manrope mt-0.5">Developer</div>
-                            </div>
-                        </div>
-                        <div class="bg-[#0e0e0e] border border-white/5 p-2.5 rounded-xl flex flex-col items-center gap-2.5 group hover:border-white/10 transition-colors">
-                             <div class="w-10 h-10 rounded-full p-[1px] bg-gradient-to-b from-white/10 to-transparent group-hover:from-[#5EA500]/50 transition-colors duration-500">
-                                <div class="w-full h-full rounded-full overflow-hidden bg-[#141414]">
-                                    <img src="/pages/payroll-solution-new/assets/08-photo-1534528741775-53994a69daeb.jpg" alt="Maria" class="w-full h-full object-cover">
-                                </div>
-                            </div>
-                            <div class="text-center w-full">
-                                <div class="text-[10px] font-medium text-white font-manrope truncate w-full transition-colors">Maria</div>
-                                <div class="text-[9px] text-gray-500 font-manrope leading-tight mt-0.5 whitespace-nowrap overflow-hidden text-ellipsis">Ops Manager</div>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Global Reach Card (Increased Height & Consistent Padding) -->
-    <div class="glass overflow-hidden group md:col-span-1 md:p-6 md:h-[260px] lg:col-span-2 lg:h-[280px] lg:pl-8 lg:pr-8 lg:pb-8 lg:pt-8 bg-[#0c0c0c] h-[340px] rounded-3xl pt-8 pr-8 pb-8 pl-8 relative">
-    <div class="flex flex-col lg:flex-row z-10 gap-8 h-full relative gap-x-8 gap-y-8 items-center justify-between">
-        <div class="w-full lg:w-1/2 mb-4 lg:mb-0 relative z-20">
-            <h3 class="text-2xl font-normal text-white tracking-tight font-manrope mb-3">Global Reach</h3>
-            <p class="text-base text-gray-400 font-manrope">Pay in 150+ countries with local currencies and crypto</p>
-        </div>
-
-        <div class="w-full lg:w-1/2 h-64 lg:h-full relative flex items-center justify-center lg:justify-end overflow-visible">
-            <!-- Background Map Image -->
-            <img src="/pages/payroll-solution-new/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png" class="absolute inset-0 w-full h-full object-contain scale-[1.75] md:scale-[2.5] lg:scale-[1.75] opacity-[0.2] pointer-events-none select-none z-0 lg:translate-x-6 md:translate-x-0 translate-y-4 md:translate-y-6 lg:translate-y-0" alt="World Map">
-
-            <!-- Anchored Pills -->
-            <div class="flex items-center justify-center gap-2 animate-bounce md:-top-[15%] lg:top-[5%] shadow-xl z-10 text-xs bg-[#1A1A1A] border-white/10 border rounded-xl pt-1.5 pr-3 pb-1.5 pl-3 absolute top-[5%] left-0" style="animation-duration: 3s;">
-    <div class="w-5 h-5 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500 font-mono text-[11px] font-medium">£</div>
-    <span class="text-gray-300 font-sans">GBP <span class="text-gray-600">→</span> USD</span>
-</div>
-
-            <!-- Modified top position for mobile: changed from top-[46%] to top-[51%] -->
-            <div class="md:top-[60%] lg:top-[40%] flex gap-2 animate-bounce z-20 text-xs bg-[#1A1A1A] border-white/10 border rounded-xl pt-1.5 pr-3 pb-1.5 pl-3 absolute top-[51%] left-[35%] shadow-xl scale-[0.8] gap-x-2 gap-y-2 items-center" style="animation-duration: 4s">
-                <div class="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 font-mono text-[11px] font-medium">€</div>
-                <span class="font-sans text-gray-300">EUR <span class="text-gray-600">→</span> CHF</span>
-            </div>
-
-            <div class="flex animate-bounce z-10 md:-top-[5%] lg:top-[15%] text-xs bg-[#1A1A1A] border-white/10 border rounded-xl pt-1.5 pr-3 pb-1.5 pl-3 absolute top-[15%] right-0 shadow-xl scale-[0.8] gap-x-2 gap-y-2 items-center" style="animation-duration: 5s">
-                <div class="w-5 h-5 rounded-full bg-yellow-500/10 flex items-center justify-center text-yellow-500 font-mono text-[11px] font-medium">¥</div>
-                <span class="text-gray-300 font-sans">JPY <span class="text-gray-600">→</span> CAD</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-    <!-- No Hidden Fees Card (Increased Height & Consistent Padding) -->
-    <div class="glass overflow-hidden md:col-span-1 md:p-6 md:h-[260px] lg:col-span-2 lg:h-[280px] lg:pl-8 lg:pr-8 lg:pt-8 lg:pb-8 bg-[#0c0c0c] h-[340px] rounded-3xl pt-8 pr-8 pb-8 pl-8 relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent translate-x-[-100%] transition-transform duration-1000"></div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 md:gap-2 lg:gap-10 h-full gap-x-10 gap-y-3 items-center">
-            <div class="">
-               <h3 class="md:mb-2 text-2xl font-normal text-white font-manrope mb-3">No hidden Fees</h3>
-               <p class="text-base text-gray-400 font-manrope">Transparent pricing, zero setup cost</p>
-            </div>
-
-            <div class="md:text-xs lg:text-sm md:p-3 lg:p-4 md:max-w-full lg:max-w-[400px] md:scale-[0.86] lg:scale-100 text-sm bg-[#0c0c0c]/50 w-full max-w-[340px] border-white/10 border rounded-xl mr-auto ml-auto pt-4 pr-4 pb-4 pl-4 backdrop-blur-sm space-y-2">
-    <div class="flex justify-between text-gray-500 border-b border-white/5 pb-3">
-        <span class="">Payment Information</span>
-    </div>
-    <div class="flex justify-between items-center">
-        <span class="text-gray-300">Recipient receives</span>
-        <span class="text-white font-medium font-sans"><span class="num-anim" data-val="100" data-dec="0">100</span> $</span>
-    </div>
-    <div class="flex justify-between items-center">
-        <span class="text-gray-300 font-sans">Exchange rate</span>
-        <span class="text-[#5EA500] font-sans">1 € = <span class="num-anim" data-val="1.0591" data-dec="4">1.0591</span> $</span>
-    </div>
-    <div class="flex border-white/5 border-t mt-2 pt-3 items-center justify-between">
-        <span class="text-gray-300 font-sans">Fees</span>
-        <span class="overflow-hidden text-xs text-[#5EA500] bg-[#5EA500]/10 border-[#5EA500]/20 border rounded px-2 py-1 relative">
-            <span class="absolute inset-0 rounded-[inherit] pointer-events-none p-[1px]" style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;">
-                <span class="absolute inset-[-100%] animate-[spin_3s_linear_infinite]" style="background: conic-gradient(from 0deg, transparent 0deg, transparent 120deg, #5EA500 180deg, transparent 240deg, transparent 360deg);"></span>
-            </span>
-            <span class="relative z-10 font-medium font-sans">0.00 €</span>
-        </span>
-    </div>
-</div>
-    </div>
-</div>
+	<Card
+		variant="visual"
+		title="No hidden Fees"
+		description="Transparent pricing, zero setup cost"
+		visualPosition="after"
+		class="grid h-[340px] grid-cols-1 items-center gap-3 p-8 md:col-span-1 md:h-[260px] md:gap-2 md:p-6 lg:col-span-2 lg:h-[280px] lg:grid-cols-2 lg:gap-10 lg:p-8"
+		bodyClass="relative z-10"
+		visualClass="relative z-10"
+		titleClass="text-2xl font-normal md:mb-2"
+		descriptionClass="text-base"
+	>
+		<TransparentFeesVisual slot="visual" />
+	</Card>
 </Section>
-<style is:global>
-                        @keyframes flowLine {
-                            0% { background-position: 0% -100%; }
-                            100% { background-position: 0% 200%; }
-                        }
-                        .flow-line {
-                            background: linear-gradient(to bottom, transparent 0%, #5EA500 50%, transparent 100%);
-                            background-size: 100% 200%;
-                            animation: flowLine 1.5s linear infinite;
-                        }
-                    </style>
-<style is:global>
-                                @keyframes flowMove {
-                                    0% { transform: }
-                                    80% { opacity: 1; }
-                                    100% { transform: translateY(100%); opacity: 0; }
-                                }
-                            </style>

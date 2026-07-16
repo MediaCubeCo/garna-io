@@ -1,14 +1,69 @@
 ---
+interface CardText {
+	text: string;
+	translateKey?: string;
+}
+
 interface Props {
+	title?: string | CardText;
+	description?: string | CardText;
+	variant?: 'feature' | 'visual' | 'tab' | 'testimonial';
+	visualPosition?: 'before' | 'after';
 	class?: string;
+	bodyClass?: string;
+	visualClass?: string;
+	titleClass?: string;
+	descriptionClass?: string;
 	interactive?: boolean;
 }
 
-const { class: className = '', interactive = false } = Astro.props;
+const {
+	title,
+	description,
+	variant = 'feature',
+	visualPosition = 'before',
+	class: className = '',
+	bodyClass = '',
+	visualClass = '',
+	titleClass = '',
+	descriptionClass = '',
+	interactive = false,
+} = Astro.props;
+const titleValue = typeof title === 'string' ? { text: title } : title;
+const descriptionValue = typeof description === 'string' ? { text: description } : description;
+const variantClasses = {
+	feature: 'garna-glass-card rounded-2xl p-8',
+	visual: 'garna-glass-card overflow-hidden rounded-3xl',
+	tab: 'rounded-2xl border border-white/5 bg-[#0A0A0A]/80 p-8 backdrop-blur-sm',
+	testimonial: 'garna-glass-card flex h-full flex-col rounded-2xl p-8',
+};
+const defaultTitleClasses = {
+	feature: 'mb-3 text-xl font-normal tracking-tight text-white',
+	visual: 'mb-3 text-lg font-medium tracking-tight text-white',
+	tab: 'mb-4 text-xl font-extralight tracking-tight text-white',
+	testimonial: 'sr-only',
+};
+const defaultDescriptionClasses = {
+	feature: 'text-base font-light leading-relaxed text-gray-500',
+	visual: 'text-sm leading-relaxed text-gray-400',
+	tab: 'text-base font-thin leading-relaxed text-gray-400',
+	testimonial: 'mb-8 flex-grow leading-relaxed text-gray-300',
+};
 ---
 
-<div class:list={[
-	'garna-glass-card rounded-[var(--garna-radius-md)] p-6',
+<article data-card-variant={variant} class:list={[
+	'group font-manrope',
+	variantClasses[variant],
 	interactive && 'transition duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.045]',
 	className,
-]}><slot /></div>
+]}>
+	{visualPosition === 'before' && <div class={visualClass}><slot name="visual" /></div>}
+	{(titleValue || descriptionValue) && (
+		<div class={bodyClass}>
+			{titleValue && <h3 class:list={[defaultTitleClasses[variant], titleClass]} data-translate={titleValue.translateKey}>{titleValue.text}</h3>}
+			{descriptionValue && <p class:list={[defaultDescriptionClasses[variant], descriptionClass]} data-translate={descriptionValue.translateKey}>{descriptionValue.text}</p>}
+		</div>
+	)}
+	<slot />
+	{visualPosition === 'after' && <div class={visualClass}><slot name="visual" /></div>}
+</article>
