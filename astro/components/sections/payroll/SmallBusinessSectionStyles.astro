@@ -208,59 +208,6 @@
         box-shadow: none;
     }
 
-    .payroll-routine-visual {
-        background: #0a0a0a !important;
-        background-image: none !important;
-        box-shadow: none !important;
-    }
-
-    .payroll-routine-visual::before,
-    .payroll-routine-visual::after,
-    .payroll-routine-visual .routine-panel::before,
-    .payroll-routine-visual .routine-panel::after,
-    .payroll-routine-visual .automation-core::before,
-    .payroll-routine-visual .automation-core::after {
-        content: none !important;
-        display: none !important;
-    }
-
-    .payroll-routine-visual .routine-panel,
-    .payroll-routine-visual .automation-core,
-    .payroll-routine-visual .routine-card {
-        background-image: none !important;
-        box-shadow: none !important;
-    }
-
-    .payroll-routine-visual .routine-stat-part {
-        display: block;
-    }
-
-    .payroll-routine-visual .routine-stat-row[data-layout="inline"] {
-        white-space: nowrap;
-    }
-
-    .payroll-routine-visual .routine-stat-row[data-layout="inline"] .routine-stat-part {
-        display: inline;
-    }
-
-    .payroll-routine-visual .routine-stat-row[data-layout="inline"] .routine-stat-part + .routine-stat-part {
-        margin-left: 0.25rem;
-    }
-
-    .payroll-routine-visual .routine-layout-grid,
-    .payroll-routine-visual[data-routine-layout="stacked"] .routine-layout-grid {
-        grid-template-columns: minmax(0, 1fr) !important;
-    }
-
-    .payroll-routine-visual[data-routine-layout="wide"] .routine-layout-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        align-items: stretch;
-    }
-
-    .payroll-routine-visual[data-routine-layout="stacked"] [data-routine-stat-group][data-layout="stacked"] {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
     @media (min-width: 1024px) and (max-width: 1200px) {
         main > section:first-of-type .max-w-3xl {
             max-width: min(48vw, 30rem);

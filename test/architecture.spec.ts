@@ -264,4 +264,27 @@ describe('native Astro architecture', () => {
 		expect(visual).toContain('@media (prefers-reduced-motion: reduce)');
 		expect(pageStyles).not.toContain('main > section:first-of-type .hero-console');
 	});
+
+	it('keeps the small-business payroll automation graphic in a self-contained visual', async () => {
+		const section = await readFile(
+			path.join(root, 'astro/components/sections/payroll/SmallBusinessOverviewSection.astro'),
+			'utf8',
+		);
+		const visual = await readFile(
+			path.join(root, 'astro/components/visuals/PayrollAutomationVisual.astro'),
+			'utf8',
+		);
+		const pageStyles = await readFile(
+			path.join(root, 'astro/components/sections/payroll/SmallBusinessSectionStyles.astro'),
+			'utf8',
+		);
+
+		expect(section).toContain("visuals/PayrollAutomationVisual.astro");
+		expect(section).toContain('<PayrollAutomationVisual />');
+		expect(visual).toContain('aria-label="Payroll automation visual"');
+		expect(visual).toContain('.automation-core__ring {');
+		expect(visual).toContain("[data-routine-layout='wide']");
+		expect(visual).toContain('@media (prefers-reduced-motion: reduce)');
+		expect(pageStyles).not.toContain('.payroll-routine-visual');
+	});
 });
