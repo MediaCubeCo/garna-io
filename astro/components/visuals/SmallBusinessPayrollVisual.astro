@@ -92,3 +92,235 @@
 
                 </div>
             </div>
+
+<style>
+    .hero-console {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        margin: 3rem auto 0;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background:
+            radial-gradient(circle at 78% 16%, rgba(94, 165, 0, 0.16), transparent 28%),
+            radial-gradient(circle at 18% 92%, rgba(24, 89, 64, 0.22), transparent 32%),
+            linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(5, 5, 5, 0.98));
+        box-shadow:
+            0 28px 86px -34px rgba(94, 165, 0, 0.65),
+            0 30px 80px -24px rgba(0, 0, 0, 0.85);
+        animation:
+            dashboard-enter 900ms cubic-bezier(0.16, 1, 0.3, 1) both,
+            dashboard-float 7s ease-in-out 1s infinite;
+    }
+
+    .hero-console::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+            linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        background-size: 38px 38px;
+        mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.78), transparent 72%);
+        opacity: 0.72;
+    }
+
+    .hero-console::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -32%;
+        width: 24%;
+        pointer-events: none;
+        background: linear-gradient(90deg, transparent, rgba(94, 165, 0, 0.08), transparent);
+        transform: skewX(-16deg);
+        animation: dashboard-sweep 5.8s ease-in-out 1.2s infinite;
+    }
+
+    .hero-run-card {
+        position: relative;
+        overflow: hidden;
+        background:
+            radial-gradient(circle at 84% 18%, rgba(94, 165, 0, 0.16), transparent 28%),
+            linear-gradient(145deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.018));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+    }
+
+    .hero-run-card::before {
+        content: '';
+        position: absolute;
+        inset: -35% 48% 20% -20%;
+        pointer-events: none;
+        background: radial-gradient(circle, rgba(94, 165, 0, 0.2), transparent 58%);
+        filter: blur(18px);
+        opacity: 0.7;
+    }
+
+    .hero-ring {
+        position: relative;
+        display: grid;
+        width: 3.6rem;
+        height: 3.6rem;
+        place-items: center;
+        border-radius: 999px;
+        background: conic-gradient(from 210deg, #5EA500 0 92%, rgba(255, 255, 255, 0.1) 92% 100%);
+        box-shadow: 0 0 34px -12px rgba(94, 165, 0, 0.85);
+    }
+
+    .hero-ring::before {
+        content: '';
+        position: absolute;
+        inset: 6px;
+        border-radius: inherit;
+        background: #070707;
+    }
+
+    .hero-ring::after {
+        content: '';
+        position: absolute;
+        inset: -5px;
+        border: 1px solid rgba(94, 165, 0, 0.26);
+        border-radius: inherit;
+        animation: dashboard-pulse 2.8s ease-in-out infinite;
+    }
+
+    .hero-progress {
+        height: 0.55rem;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-progress span {
+        display: block;
+        width: 92%;
+        height: 100%;
+        border-radius: inherit;
+        background: #5EA500;
+        box-shadow: 0 0 24px -7px rgba(94, 165, 0, 0.95);
+        animation: hero-progress 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .dashboard-country-row {
+        opacity: 0;
+        transform: translateY(12px);
+        animation: dashboard-item-in 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        animation-delay: var(--row-delay, 0ms);
+    }
+
+    .dashboard-country-row:hover {
+        border-color: rgba(94, 165, 0, 0.22);
+        background: rgba(255, 255, 255, 0.045);
+    }
+
+    .dashboard-country-code {
+        display: grid;
+        width: 1.65rem;
+        height: 1.65rem;
+        place-items: center;
+        border-radius: 0.6rem;
+        background: rgba(94, 165, 0, 0.14);
+        color: #5EA500;
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+    }
+
+    .dashboard-avatar {
+        position: relative;
+        display: block;
+        width: 2rem;
+        height: 2rem;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 24px -16px rgba(0, 0, 0, 0.9);
+    }
+
+    .dashboard-avatar img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(0.86) contrast(1.04) brightness(0.92);
+        transform: scale(1.02);
+    }
+
+    .dashboard-avatar::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.46), transparent 28%);
+        opacity: 0.34;
+    }
+
+    .dashboard-soft-line {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(94, 165, 0, 0.34), transparent);
+    }
+
+    @media (min-width: 1024px) {
+        .hero-console {
+            position: absolute;
+            top: clamp(11.5rem, calc(13vw + 4rem), 15rem);
+            right: max(var(--garna-container-gutter), calc((100vw - var(--garna-container-content-max)) / 2));
+            width: min(42vw, 520px);
+            margin: 0;
+        }
+    }
+
+    @media (min-width: 1024px) and (max-width: 1200px) {
+        .hero-console {
+            width: min(42vw, 500px);
+        }
+    }
+
+    @keyframes dashboard-enter {
+        from { opacity: 0; filter: blur(14px); }
+        to { opacity: 1; filter: blur(0); }
+    }
+
+    @keyframes dashboard-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    @keyframes dashboard-sweep {
+        0%, 52% { left: -32%; opacity: 0; }
+        62% { opacity: 1; }
+        82%, 100% { left: 110%; opacity: 0; }
+    }
+
+    @keyframes dashboard-item-in {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes dashboard-pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(94, 165, 0, 0.22); }
+        50% { box-shadow: 0 0 0 7px rgba(94, 165, 0, 0); }
+    }
+
+    @keyframes hero-progress {
+        from { width: 18%; }
+        to { width: 92%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hero-console,
+        .hero-console::after,
+        .hero-ring::after,
+        .hero-progress span,
+        .dashboard-country-row {
+            animation: none;
+        }
+
+        .dashboard-country-row {
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>

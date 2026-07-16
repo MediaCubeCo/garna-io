@@ -261,33 +261,9 @@
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .hero-console,
-    .hero-console > .relative {
-        background-image: none !important;
-    }
-
-    .hero-console {
-        background-color: #0C0C0C !important;
-    }
-
-    .hero-run-card {
-        background-color: #050505 !important;
-        background-image: none !important;
-    }
-
     @media (min-width: 1024px) and (max-width: 1200px) {
         main > section:first-of-type .max-w-3xl {
             max-width: min(48vw, 30rem);
-        }
-
-        main > section:first-of-type .hero-console {
-            width: min(42vw, 500px);
-        }
-    }
-
-    @media (min-width: 1024px) {
-        main > section:first-of-type .hero-console {
-            right: max(var(--garna-container-gutter), calc((100vw - var(--garna-container-content-max)) / 2));
         }
     }
 
@@ -300,16 +276,6 @@
 
         main > section:first-of-type .max-w-3xl {
             max-width: min(42rem, 100%) !important;
-        }
-
-        main > section:first-of-type .hero-console {
-            position: relative !important;
-            top: auto !important;
-            right: auto !important;
-            width: 100% !important;
-            max-width: none !important;
-            margin: 3rem auto 0 !important;
-            transform: none !important;
         }
     }
 
@@ -338,22 +304,7 @@
         }
     }
 
-    .hero-console::before,
-    .hero-console::after,
-    .hero-console > .relative::before,
-    .hero-console > .relative::after {
-        content: none !important;
-        display: none !important;
-    }
-
     @media (max-width: 767px) {
-        main > section:first-of-type .hero-console {
-            width: 100% !important;
-            max-width: none !important;
-            margin-right: 0 !important;
-            margin-left: 0 !important;
-        }
-
         .steps-flow {
             padding: 0;
         }

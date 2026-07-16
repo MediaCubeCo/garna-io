@@ -247,4 +247,21 @@ describe('native Astro architecture', () => {
 		expect(globalStyles).toContain('background: var(--garna-surface);');
 		expect(globalStyles).toContain('border: 1px solid rgba(255, 255, 255, 0.05);');
 	});
+
+	it('keeps the small-business hero visual self-contained and desktop-positioned', async () => {
+		const visual = await readFile(
+			path.join(root, 'astro/components/visuals/SmallBusinessPayrollVisual.astro'),
+			'utf8',
+		);
+		const pageStyles = await readFile(
+			path.join(root, 'astro/components/sections/payroll/SmallBusinessSectionStyles.astro'),
+			'utf8',
+		);
+
+		expect(visual).toContain('position: absolute;');
+		expect(visual).toContain('width: min(42vw, 520px);');
+		expect(visual).toContain('.dashboard-avatar img {');
+		expect(visual).toContain('@media (prefers-reduced-motion: reduce)');
+		expect(pageStyles).not.toContain('main > section:first-of-type .hero-console');
+	});
 });
