@@ -26,6 +26,28 @@ describe('native Astro architecture', () => {
 		expect(pages.some((file) => file.endsWith(`${path.sep}mid-size.astro`))).toBe(false);
 	});
 
+	it('keeps components organized by architectural responsibility', async () => {
+		const componentsRoot = path.join(root, 'astro/components');
+		const rootEntries = await readdir(componentsRoot, { withFileTypes: true });
+		const rootAstroComponents = rootEntries.filter(
+			(entry) => entry.isFile() && entry.name.endsWith('.astro'),
+		);
+		const sectionComponents = (await walk(componentsRoot)).filter(
+			(file) => file.endsWith(`${path.sep}Section.astro`),
+		);
+		const hero = await readFile(
+			path.join(componentsRoot, 'sections/HeroSection.astro'),
+			'utf8',
+		);
+
+		expect(rootAstroComponents).toEqual([]);
+		expect(sectionComponents).toEqual([
+			path.join(componentsRoot, 'layout/Section.astro'),
+		]);
+		expect(hero).toContain('<section class={className} data-section-kind="hero">');
+		expect(hero).not.toContain("import Section from");
+	});
+
 	it('does not reintroduce legacy runtime composition', async () => {
 		expect(await getArchitectureViolations()).toEqual([]);
 		const blogAdmin = await readFile(path.join(root, 'src/blog/admin.ts'), 'utf8');

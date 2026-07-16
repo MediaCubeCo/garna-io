@@ -1,7 +1,7 @@
 ﻿---
-import '../styles/header.css';
-import Button from './Button.astro';
-import { getPagePathFromPathname } from '../utils/page-path';
+import '../../styles/header.css';
+import Button from '../ui/Button.astro';
+import { getPagePathFromPathname } from '../../utils/page-path';
 
 const currentPath = getPagePathFromPathname(Astro.url.pathname);
 

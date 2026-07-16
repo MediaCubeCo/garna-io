@@ -1,7 +1,6 @@
 ---
-import Button from './Button.astro';
-import Section from './Section.astro';
-import type { HeroSectionConfig as Props } from '../types/hero-section';
+import Button from '../ui/Button.astro';
+import type { HeroSectionConfig as Props } from '../../types/hero-section';
 
 const {
 	class: className = 'overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
@@ -61,7 +60,7 @@ const singleTitleSecondLine = shouldBreakSingleTitle
 	: '';
 ---
 
-<Section class={className} kind="hero">
+<section class={className} data-section-kind="hero">
 	{tone === 'green' && align === 'center' && (
 		<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#5EA500] opacity-[0.08] blur-[120px] rounded-full pointer-events-none" />
 	)}
@@ -115,4 +114,4 @@ const singleTitleSecondLine = shouldBreakSingleTitle
 		</div>
 		<slot />
 	</div>
-</Section>
+</section>

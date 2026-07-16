@@ -11,6 +11,7 @@ const forbiddenPatterns = [
 	['legacy section extractor', /splitLegacyPageSections/],
 	['legacy page content import', /content\/site-(?:pages|heads|scripts|standalone|hero-visuals)/],
 	['intermediate component category', /components\/(?:pages|dynamic)\//],
+	['root-level component import', /components\/(?:Button|EnterprisePayrollHeroVisual|FAQSection|FinalCTASection|Footer|GarnaBookingWidget|Header|HeroSection|RainbowBackground|Section)\.astro/],
 	['Tailwind browser runtime', /cdn\.tailwindcss\.com/],
 	['page-level script string', /scriptsHtml/],
 	['page-level head string', /headExtra/],
