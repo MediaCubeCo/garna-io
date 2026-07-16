@@ -7,59 +7,70 @@ interface CardText {
 interface Props {
 	title?: string | CardText;
 	description?: string | CardText;
-	variant?: 'feature' | 'visual' | 'tab' | 'testimonial';
+	eyebrow?: string | CardText;
+	variant?: 'feature' | 'visual' | 'compact' | 'tab' | 'testimonial';
+	id?: string;
 	visualPosition?: 'before' | 'after';
 	class?: string;
 	bodyClass?: string;
 	visualClass?: string;
 	titleClass?: string;
 	descriptionClass?: string;
+	eyebrowClass?: string;
 	interactive?: boolean;
 }
 
 const {
 	title,
 	description,
+	eyebrow,
 	variant = 'feature',
+	id,
 	visualPosition = 'before',
 	class: className = '',
 	bodyClass = '',
 	visualClass = '',
 	titleClass = '',
 	descriptionClass = '',
+	eyebrowClass = '',
 	interactive = true,
 } = Astro.props;
 const titleValue = typeof title === 'string' ? { text: title } : title;
 const descriptionValue = typeof description === 'string' ? { text: description } : description;
+const eyebrowValue = typeof eyebrow === 'string' ? { text: eyebrow } : eyebrow;
 const variantClasses = {
 	feature: 'garna-glass-card rounded-2xl p-8',
 	visual: 'garna-glass-card overflow-hidden rounded-3xl',
+	compact: 'garna-glass-card flex items-start gap-3 rounded-xl p-4',
 	tab: 'rounded-2xl border border-white/5 bg-[#0A0A0A]/80 p-8 backdrop-blur-sm',
 	testimonial: 'garna-glass-card flex h-full flex-col rounded-2xl p-8',
 };
 const defaultTitleClasses = {
 	feature: 'mb-3 text-xl font-normal tracking-tight text-white',
 	visual: 'mb-3 text-lg font-medium tracking-tight text-white',
+	compact: 'sr-only',
 	tab: 'mb-4 text-xl font-extralight tracking-tight text-white',
 	testimonial: 'sr-only',
 };
 const defaultDescriptionClasses = {
 	feature: '',
 	visual: '',
+	compact: '',
 	tab: '',
 	testimonial: 'mb-8 flex-grow',
 };
 ---
 
-<article data-card-variant={variant} data-interactive={interactive ? 'true' : 'false'} data-card-glow={interactive ? 'true' : undefined} class:list={[
+<article id={id} data-card-variant={variant} data-interactive={interactive ? 'true' : 'false'} data-card-glow={interactive ? 'true' : undefined} class:list={[
 	'garna-card group font-manrope',
 	variantClasses[variant],
 	interactive && 'transition duration-300 hover:-translate-y-1 motion-reduce:transform-none motion-reduce:transition-colors',
 	className,
 ]}>
 	{visualPosition === 'before' && <div class={visualClass}><slot name="visual" /></div>}
-	{(titleValue || descriptionValue) && (
+	{(eyebrowValue || titleValue || descriptionValue) && (
 		<div class={bodyClass}>
+			{eyebrowValue && <span class:list={['mb-3 block text-sm font-semibold text-[#5EA500]', eyebrowClass]} data-translate={eyebrowValue.translateKey}>{eyebrowValue.text}</span>}
 			{titleValue && <h3 class:list={[defaultTitleClasses[variant], titleClass]} data-translate={titleValue.translateKey}>{titleValue.text}</h3>}
 			{descriptionValue && <p data-garna-subtitle data-card-description class:list={['text-base leading-relaxed', defaultDescriptionClasses[variant], descriptionClass]} data-translate={descriptionValue.translateKey}>{descriptionValue.text}</p>}
 		</div>

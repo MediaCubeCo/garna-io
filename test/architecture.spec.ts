@@ -240,6 +240,41 @@ describe('native Astro architecture', () => {
 		expect(contentTabs).toContain("event.key === 'ArrowLeft'");
 	});
 
+	it('builds EOR content cards with the shared Card and isolated HTML visuals', async () => {
+		const sectionNames = [
+			'GlobalWorkforceBenefitsSection.astro',
+			'GlobalHiringFeaturesSection.astro',
+			'EorFitSection.astro',
+			'EorStepsSection.astro',
+		];
+		const sectionsRoot = path.join(root, 'astro/components/sections/payroll');
+		const sources = await Promise.all(sectionNames.map((file) => readFile(path.join(sectionsRoot, file), 'utf8')));
+		const combined = sources.join('\n');
+		const visualNames = [
+			'EorEntityHiringVisual.astro',
+			'EorWorkforceMixVisual.astro',
+			'EorPayrollRunVisual.astro',
+			'EorComplianceVisual.astro',
+			'EorIntegrationsVisual.astro',
+			'EorFastMovingVisual.astro',
+			'EorCompanyAccountStepVisual.astro',
+			'EorFinancialContactStepVisual.astro',
+			'EorContractStepVisual.astro',
+			'EorInviteStepVisual.astro',
+			'EorWalletStepVisual.astro',
+		];
+
+		expect(sources.every((source) => source.includes("ui/Card.astro"))).toBe(true);
+		expect(combined.match(/<Card\b/g)).toHaveLength(20);
+		expect(combined).not.toContain('<article class="surface-soft');
+		expect(combined).toContain('data-eor-card-scroll-prev');
+		expect(combined).toContain('data-eor-card-scroll-next');
+		expect(combined).toContain('id="eor-card-workforce"');
+		expect(combined.match(/lg:col-span-2/g)).toHaveLength(3);
+		expect(combined.match(/lg:col-span-3/g)).toHaveLength(2);
+		for (const visual of visualNames) await expect(access(path.join(root, 'astro/components/visuals', visual))).resolves.toBeUndefined();
+	});
+
 	it('keeps legacy surface aliases mapped to the shared card tokens', async () => {
 		const globalStyles = await readFile(path.join(root, 'astro/styles/global.css'), 'utf8');
 		const baseLayout = await readFile(path.join(root, 'astro/layouts/BaseLayout.astro'), 'utf8');

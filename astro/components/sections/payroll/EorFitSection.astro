@@ -1,5 +1,6 @@
 ---
 import Section from '../../layout/Section.astro';
+import Card from '../../ui/Card.astro';
 ---
 
 <Section contained={false} spacing="none" class="py-24">
@@ -8,12 +9,12 @@ import Section from '../../layout/Section.astro';
                     <div>
                         <h2 class="font-manrope text-4xl font-normal leading-tight text-left text-white lg:text-5xl" data-translate="fit.title">Is Garna Employer of Record <br class="hidden md:block lg:hidden">the Right Fit for Your Business?</h2>
                     </div>
-                    <div class="grid gap-3">
-                        <div class="flex gap-3 rounded-xl border border-white/10 p-4"><iconify-icon icon="lucide:check" width="20" class="mt-0.5 text-[#5EA500]"></iconify-icon><p data-translate="fit.items.1">You want to bring on international staff without setting up an office in every country</p></div>
-                        <div class="flex gap-3 rounded-xl border border-white/10 p-4"><iconify-icon icon="lucide:check" width="20" class="mt-0.5 text-[#5EA500]"></iconify-icon><p data-translate="fit.items.2">You want to automate global payroll, taxes, and compliance instead of juggling manual workflows</p></div>
-                        <div class="flex gap-3 rounded-xl border border-white/10 p-4"><iconify-icon icon="lucide:check" width="20" class="mt-0.5 text-[#5EA500]"></iconify-icon><p data-translate="fit.items.3">You already have international talent to hire and need help with contracts, onboarding, and compliance</p></div>
-                        <div class="flex gap-3 rounded-xl border border-white/10 p-4"><iconify-icon icon="lucide:check" width="20" class="mt-0.5 text-[#5EA500]"></iconify-icon><p data-translate="fit.items.4">You want to scale distributed teams fast without building internal HR and payroll infrastructure</p></div>
-                        <div class="flex gap-3 rounded-xl border border-white/10 p-4"><iconify-icon icon="lucide:check" width="20" class="mt-0.5 text-[#5EA500]"></iconify-icon><p data-translate="fit.items.6">You need contractor management, bank transfers, cryptocurrency payouts, and multi-country payroll in one platform</p></div>
+                    <div class="grid gap-3" data-eor-fit-cards>
+                        <Card variant="compact" visualClass="mt-0.5 shrink-0 text-[#5EA500]" description={{ text: 'You want to bring on international staff without setting up an office in every country', translateKey: 'fit.items.1' }}><iconify-icon slot="visual" icon="lucide:check" width="20"></iconify-icon></Card>
+                        <Card variant="compact" visualClass="mt-0.5 shrink-0 text-[#5EA500]" description={{ text: 'You want to automate global payroll, taxes, and compliance instead of juggling manual workflows', translateKey: 'fit.items.2' }}><iconify-icon slot="visual" icon="lucide:check" width="20"></iconify-icon></Card>
+                        <Card variant="compact" visualClass="mt-0.5 shrink-0 text-[#5EA500]" description={{ text: 'You already have international talent to hire and need help with contracts, onboarding, and compliance', translateKey: 'fit.items.3' }}><iconify-icon slot="visual" icon="lucide:check" width="20"></iconify-icon></Card>
+                        <Card variant="compact" visualClass="mt-0.5 shrink-0 text-[#5EA500]" description={{ text: 'You want to scale distributed teams fast without building internal HR and payroll infrastructure', translateKey: 'fit.items.4' }}><iconify-icon slot="visual" icon="lucide:check" width="20"></iconify-icon></Card>
+                        <Card variant="compact" visualClass="mt-0.5 shrink-0 text-[#5EA500]" description={{ text: 'You need contractor management, bank transfers, cryptocurrency payouts, and multi-country payroll in one platform', translateKey: 'fit.items.6' }}><iconify-icon slot="visual" icon="lucide:check" width="20"></iconify-icon></Card>
                     </div>
                 </div>
             </div>
