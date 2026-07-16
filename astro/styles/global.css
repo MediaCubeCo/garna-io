@@ -1,15 +1,94 @@
-/* Shared site-level CSS entrypoint for Astro components and future page work. */
+@import "tailwindcss";
+@source "../content/**/*.html";
+
+/* Garna design system: shared by native components and the temporary migration surface. */
+
+@theme {
+	--font-sans: "Manrope", sans-serif;
+	--font-manrope: "Manrope", sans-serif;
+	--color-garna-accent: #5ea500;
+	--color-garna-page: #050505;
+	--color-garna-surface: #0c0c0c;
+	--color-garna-surface-raised: #121212;
+	--color-garna-muted: #a1a1aa;
+	--animate-float: garna-float 6s ease-in-out infinite;
+}
 
 :root {
 	--garna-container-content-max: 1152px;
 	--garna-container-gutter: clamp(16px, 5vw, 64px);
 	--garna-page-bg: #050505;
 	--garna-section-stats-bg: #080808;
+	--garna-surface: #0c0c0c;
+	--garna-surface-raised: #121212;
+	--garna-border: rgba(255, 255, 255, 0.08);
+	--garna-border-strong: rgba(255, 255, 255, 0.14);
+	--garna-text: #f7f7f7;
+	--garna-text-muted: #a1a1aa;
+	--garna-accent: #5ea500;
+	--garna-radius-sm: 12px;
+	--garna-radius-md: 20px;
+	--garna-radius-lg: 28px;
+	--garna-shadow-card: 0 28px 80px -44px rgba(0, 0, 0, 0.95);
+	--garna-duration-fast: 180ms;
+	--garna-duration-base: 300ms;
 }
 
 html,
 body {
 	background: var(--garna-page-bg);
+	color: var(--garna-text-muted);
+	font-family: "Manrope", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Manrope", sans-serif;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--garna-page-bg); }
+::-webkit-scrollbar-thumb { background: #262626; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #404040; }
+
+.glass,
+.glass-card,
+.garna-glass-card {
+	background: rgba(12, 12, 12, 0.72);
+	border: 1px solid var(--garna-border);
+	box-shadow: var(--garna-shadow-card);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+}
+
+.glass-high,
+.glass-nav {
+	background: rgba(5, 5, 5, 0.72);
+	border-bottom: 1px solid var(--garna-border);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+}
+
+.bg-grid {
+	background-image:
+		linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+
+.perspective-1000 { perspective: 1000px; }
+.perspective-normal { perspective: 500px; }
+.perspective-midrange { perspective: 800px; }
+.perspective-distant { perspective: 1200px; }
+.transform-style-preserve-3d { transform-style: preserve-3d; }
+
+@keyframes garna-float {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-10px); }
 }
 
 #astro-page-content > section:has([data-translate^="stats."]) {
@@ -112,6 +191,15 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+
 	.garna-hero-badge-dot-ping {
 		animation: none;
 	}

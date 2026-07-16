@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
 	srcDir: './astro',
@@ -7,5 +8,8 @@ export default defineConfig({
 	publicDir: './static',
 	build: {
 		format: 'file',
+	},
+	vite: {
+		plugins: [tailwindcss()],
 	},
 });

@@ -1,0 +1,31 @@
+---
+import Container from './Container.astro';
+
+interface Props {
+	id?: string;
+	class?: string;
+	containerClass?: string;
+	width?: 'narrow' | 'content' | 'wide';
+	tone?: 'default' | 'subtle' | 'accent';
+}
+
+const {
+	id,
+	class: className = '',
+	containerClass = '',
+	width = 'content',
+	tone = 'default',
+} = Astro.props;
+---
+
+<section
+	id={id}
+	class:list={[
+		'relative py-20 lg:py-28',
+		tone === 'subtle' && 'bg-white/[0.015]',
+		tone === 'accent' && 'border-y border-[#5EA500]/15 bg-[#5EA500]/[0.025]',
+		className,
+	]}
+>
+	<Container width={width} class={containerClass}><slot /></Container>
+</section>

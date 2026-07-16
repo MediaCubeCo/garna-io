@@ -1,0 +1,10 @@
+---
+interface Props { class?: string; label?: string; labelTranslateKey?: string; }
+const { class: className = '', label, labelTranslateKey } = Astro.props;
+---
+
+<div class:list={['relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0c0c0c] p-4 shadow-[0_38px_100px_-52px_rgba(0,0,0,0.98)] md:p-6', className]}>
+	<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(94,165,0,0.12),transparent_42%)]"></div>
+	{label && <div class="relative mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#5EA500]" data-translate={labelTranslateKey}>{label}</div>}
+	<div class="relative"><slot /></div>
+</div>

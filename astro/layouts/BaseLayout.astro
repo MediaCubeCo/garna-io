@@ -35,6 +35,11 @@ const {
 	iconLibrary = 'iconify',
 	headExtra = '',
 } = shell;
+
+const sanitizedHeadExtra = headExtra.replace(
+	/<script\b[^>]*>[\s\S]*?tailwind\.config[\s\S]*?<\/script>/gi,
+	'',
+);
 ---
 
 <!doctype html>
@@ -59,21 +64,7 @@ const {
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon_16.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.png" />
 		<link rel="stylesheet" href="/rainbow-bg.css" />
-		<script is:inline>
-			(function () {
-				var originalWarn = console.warn;
-				console.warn = function (message) {
-					if (typeof message === 'string' && message.indexOf('cdn.tailwindcss.com') !== -1) return;
-					return originalWarn.apply(console, arguments);
-				};
-			})();
-		</script>
-		<script is:inline>
-			window.tailwind = window.tailwind || {};
-			window.tailwind.config = window.tailwind.config || {};
-		</script>
-		<Fragment set:html={headExtra} />
-		<script is:inline src="https://cdn.tailwindcss.com"></script>
+		<Fragment set:html={sanitizedHeadExtra} />
 		{
 			iconLibrary === 'lucide' ? (
 				<script is:inline src="https://unpkg.com/lucide@latest"></script>
