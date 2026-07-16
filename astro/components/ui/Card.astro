@@ -44,10 +44,10 @@ const defaultTitleClasses = {
 	testimonial: 'sr-only',
 };
 const defaultDescriptionClasses = {
-	feature: 'text-base font-light leading-relaxed text-gray-500',
-	visual: 'text-sm leading-relaxed text-gray-400',
-	tab: 'text-base font-thin leading-relaxed text-gray-400',
-	testimonial: 'mb-8 flex-grow leading-relaxed text-gray-300',
+	feature: 'text-gray-500',
+	visual: 'text-gray-400',
+	tab: 'text-gray-400',
+	testimonial: 'mb-8 flex-grow text-gray-300',
 };
 ---
 
@@ -61,7 +61,7 @@ const defaultDescriptionClasses = {
 	{(titleValue || descriptionValue) && (
 		<div class={bodyClass}>
 			{titleValue && <h3 class:list={[defaultTitleClasses[variant], titleClass]} data-translate={titleValue.translateKey}>{titleValue.text}</h3>}
-			{descriptionValue && <p class:list={[defaultDescriptionClasses[variant], descriptionClass]} data-translate={descriptionValue.translateKey}>{descriptionValue.text}</p>}
+			{descriptionValue && <p class:list={['text-base font-semibold leading-relaxed', defaultDescriptionClasses[variant], descriptionClass]} data-translate={descriptionValue.translateKey}>{descriptionValue.text}</p>}
 		</div>
 	)}
 	<slot />

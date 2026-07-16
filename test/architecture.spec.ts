@@ -315,6 +315,7 @@ describe('native Astro architecture', () => {
 
 		expect(card).toContain("title?: string | CardText");
 		expect(card).toContain("description?: string | CardText");
+		expect(card).toContain("'text-base font-semibold leading-relaxed'");
 		expect(card).toContain('interactive = true');
 		expect(card).toContain(".garna-card[data-interactive='true']:hover");
 		expect(card).toContain('background-color: rgba(255, 255, 255, 0.045)');
