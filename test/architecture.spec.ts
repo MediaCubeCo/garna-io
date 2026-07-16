@@ -18,11 +18,12 @@ async function walk(directory: string): Promise<string[]> {
 }
 
 describe('native Astro architecture', () => {
-	it('keeps all 19 public and Worker-template entrypoints', async () => {
+	it('keeps all 18 public and Worker-template entrypoints', async () => {
 		const pages = (await walk(path.join(root, 'astro/pages'))).filter((file) => file.endsWith('.astro'));
-		expect(pages).toHaveLength(19);
+		expect(pages).toHaveLength(18);
 		expect(pages.some((file) => file.includes(`${path.sep}pages${path.sep}en${path.sep}`))).toBe(false);
 		expect(pages.some((file) => file.endsWith(`${path.sep}payroll-solution-new.astro`))).toBe(false);
+		expect(pages.some((file) => file.endsWith(`${path.sep}mid-size.astro`))).toBe(false);
 	});
 
 	it('does not reintroduce legacy runtime composition', async () => {
