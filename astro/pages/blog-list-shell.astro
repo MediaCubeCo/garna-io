@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
 import HeroSection from '../components/HeroSection.astro';
+import TrustedDynamicHead from '../components/dynamic/TrustedDynamicHead.astro';
 import { pageShells } from '../content/page-shells';
 
 const shell = {
@@ -9,7 +10,6 @@ const shell = {
 	title: '%%BLOG_PAGE_TITLE%%',
 	description: '%%BLOG_PAGE_DESCRIPTION%%',
 	ogImage: '%%BLOG_OG_IMAGE%%',
-	headExtra: '%%BLOG_DYNAMIC_HEAD%%',
 };
 
 const blogHero = {
@@ -31,6 +31,7 @@ const blogHero = {
 ---
 
 <BaseLayout shell={shell}>
+	<TrustedDynamicHead slot="head" html="%%BLOG_DYNAMIC_HEAD%%" />
 	<HeroSection {...blogHero}>
 		<div class="w-full relative z-10 flex justify-center">
 			<div class="flex flex-wrap md:flex-nowrap justify-center overflow-x-hidden md:overflow-x-auto no-scrollbar snap-x max-w-full pr-4 pl-4 gap-x-2 gap-y-2 items-center" data-blog-category-filters>

@@ -192,13 +192,21 @@ const titleClass =
 				if (panel) panel.style.height = detail.open ? 'auto' : '0px';
 
 				if (!summary) return;
-				summary.addEventListener('click', (event) => {
-					event.preventDefault();
+				const toggleDetail = () => {
 					if (detail.open && detail.dataset.state === 'open') {
 						closeDetail(detail);
 					} else {
 						openDetail(detail);
 					}
+				};
+				summary.addEventListener('click', (event) => {
+					event.preventDefault();
+					toggleDetail();
+				});
+				summary.addEventListener('keydown', (event) => {
+					if (event.key !== 'Enter' && event.key !== ' ') return;
+					event.preventDefault();
+					toggleDetail();
 				});
 			});
 		});

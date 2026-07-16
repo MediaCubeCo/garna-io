@@ -729,7 +729,6 @@ const mobileLinkClass = (path: string) =>
 			for (const script of scripts) {
 				const content = script.textContent || '';
 				if (!content.trim()) continue;
-				if (content.includes('cdn.tailwindcss.com') && content.includes('console.warn')) continue;
 
 				const freshScript = document.createElement('script');
 				Array.from(script.attributes).forEach((attribute) => {

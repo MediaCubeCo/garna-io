@@ -52,13 +52,10 @@ const widgetConfig = {
 ---
 
 {renderRoot && <div id={containerId}></div>}
-<script
-	is:inline
-	set:html={`
+<script is:inline define:vars={{ widgetConfig }}>
 (function () {
 	'use strict';
 
-	var widgetConfig = ${JSON.stringify(widgetConfig)};
 	var language = __GARNA_LOCALE__;
 	var widgetTrans = __GARNA_WIDGET_TRANSLATIONS__;
 	var campaign = getCurrentCampaign();
@@ -181,5 +178,4 @@ const widgetConfig = {
 		loadWidget();
 	}
 })();
-`}
-/>
+</script>

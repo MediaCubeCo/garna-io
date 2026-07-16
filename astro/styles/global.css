@@ -1,7 +1,6 @@
 @import "tailwindcss";
-@source "../content/**/*.html";
 
-/* Garna design system: shared by native components and the temporary migration surface. */
+/* Garna design system shared by all native Astro components. */
 
 @theme {
 	--font-sans: "Manrope", sans-serif;
@@ -39,6 +38,8 @@ body {
 	background: var(--garna-page-bg);
 	color: var(--garna-text-muted);
 	font-family: "Manrope", sans-serif;
+	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 h1,

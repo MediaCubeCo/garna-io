@@ -11,7 +11,6 @@ interface Props {
 	shell: PageShellConfig;
 	showHeader?: boolean;
 	showFooter?: boolean;
-	scriptsHtml?: string;
 	rainbowCount?: number;
 }
 
@@ -19,7 +18,6 @@ const {
 	shell,
 	showHeader = true,
 	showFooter = true,
-	scriptsHtml = '',
 	rainbowCount = 25,
 } = Astro.props;
 
@@ -33,13 +31,7 @@ const {
 	htmlClass = 'scroll-smooth',
 	bodyClass = 'antialiased overflow-x-hidden bg-[#050505]',
 	iconLibrary = 'iconify',
-	headExtra = '',
 } = shell;
-
-const sanitizedHeadExtra = headExtra.replace(
-	/<script\b[^>]*>[\s\S]*?tailwind\.config[\s\S]*?<\/script>/gi,
-	'',
-);
 ---
 
 <!doctype html>
@@ -64,7 +56,7 @@ const sanitizedHeadExtra = headExtra.replace(
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon_16.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.png" />
 		<link rel="stylesheet" href="/rainbow-bg.css" />
-		<Fragment set:html={sanitizedHeadExtra} />
+		<slot name="head" />
 		{
 			iconLibrary === 'lucide' ? (
 				<script is:inline src="https://unpkg.com/lucide@latest"></script>
@@ -89,7 +81,6 @@ const sanitizedHeadExtra = headExtra.replace(
 		{showFooter && <Footer />}
 		<div id="astro-page-scripts" data-astro-page-scripts>
 			<slot name="widgets" />
-			<Fragment set:html={scriptsHtml} />
 		</div>
 	</body>
 </html>

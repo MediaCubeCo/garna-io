@@ -9,6 +9,8 @@
 		"start": "npm run dev",
 		"astro:dev": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev",
 		"test": "vitest run",
+		"check:architecture": "node scripts/check-astro-architecture.mjs",
+		"check": "npm run check:architecture && tsc --noEmit && npm test && npm run build",
 		"cf-typegen": "wrangler types"
 	},
 	"devDependencies": {

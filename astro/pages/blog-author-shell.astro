@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/HeroSection.astro';
+import TrustedDynamicHead from '../components/dynamic/TrustedDynamicHead.astro';
 import { pageShells } from '../content/page-shells';
 
 const shell = {
@@ -8,7 +9,6 @@ const shell = {
 	title: '%%BLOG_PAGE_TITLE%%',
 	description: '%%BLOG_PAGE_DESCRIPTION%%',
 	ogImage: '%%BLOG_OG_IMAGE%%',
-	headExtra: '%%BLOG_DYNAMIC_HEAD%%',
 };
 
 const authorHero = {
@@ -29,6 +29,7 @@ const authorHero = {
 ---
 
 <BaseLayout shell={shell}>
+	<TrustedDynamicHead slot="head" html="%%BLOG_DYNAMIC_HEAD%%" />
 	<HeroSection {...authorHero}>
 		<div slot="before-title" class="contents">
 			<div class="mb-8 relative">
