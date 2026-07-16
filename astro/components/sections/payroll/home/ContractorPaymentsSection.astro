@@ -1,12 +1,13 @@
-<section class="lg:py-32 pt-16 pb-16">
-        <div class="h-fit max-w-7xl mr-auto ml-auto pr-6 pl-6">
-            <div class="lg:mb-20 lg:ml-auto lg:mr-auto text-center max-w-4xl mr-auto mb-16 ml-auto">
-    <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope mb-6">Simplify Global Contractor Payments</h2>
-    <p class="text-xl font-light text-gray-400 font-manrope max-w-4xl">Centralize invoices, approvals, and payments in one place. Manage and pay freelancers worldwide in their preferred method and currency without unnecessary fees</p>
-</div>
+---
+import Section from '../../../layout/Section.astro';
+---
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-8">
-                <!-- Card 3: Payment Methods (Moved to First) -->
+<Section
+	title={{ text: "Simplify Global Contractor Payments" }}
+	description={{ text: "Centralize invoices, approvals, and payments in one place. Manage and pay freelancers worldwide in their preferred method and currency without unnecessary fees" }}
+	headerClass="mb-16 max-w-4xl lg:mb-20" titleClass="lg:text-5xl" contentClass="grid grid-cols-1 gap-x-8 gap-y-8 lg:grid-cols-3"
+>
+<!-- Card 3: Payment Methods (Moved to First) -->
                 <div class="glass-card flex flex-col overflow-hidden md:items-center md:text-center md:pt-10 md:pr-10 md:pb-10 md:pl-10 lg:items-stretch lg:text-left lg:pl-8 lg:pt-8 lg:pb-8 lg:pr-8 bg-[#0c0c0c] rounded-3xl pt-6 pr-6 pb-6 pl-6 relative">
     <h3 class="text-lg font-medium text-white tracking-tight font-manrope mb-3">Multiple payout methods</h3>
     <p class="leading-relaxed md:mb-3 text-sm text-gray-400 font-manrope">Contractors receive payouts via bank transfers in 80+ currencies, cards, wallets, or cryptocurrencies</p>
@@ -181,6 +182,4 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+</Section>

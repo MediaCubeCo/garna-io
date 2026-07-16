@@ -1,14 +1,17 @@
-<section class="overflow-hidden border-[#020202]/0 pt-16 pb-16 lg:pt-32 lg:pb-32 relative">
-        <div class="z-10 max-w-7xl mr-auto ml-auto pr-6 pl-6 relative">
+---
+import Section from '../../../layout/Section.astro';
+---
 
-    <!-- Centered Text -->
-    <div class="lg:mb-20 break-words whitespace-normal text-center max-w-5xl mr-auto mb-16 ml-auto" style="overflow-wrap: anywhere; word-break: break-word">
-                <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope mb-6" data-translate="sectionHeadings.embeddedPayrollInfrastructure">Embedded Payroll Infrastructure</h2>
-        <p class="text-xl text-gray-400 font-extralight mb-12" data-translate="sectionDescriptions.embeddedPayrollInfrastructure">Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand</p>
-    </div>
+<Section
+	title={{ text: "Embedded Payroll Infrastructure", translateKey: "sectionHeadings.embeddedPayrollInfrastructure" }}
+	description={{ text: "Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand", translateKey: "sectionDescriptions.embeddedPayrollInfrastructure" }}
+	class="overflow-hidden border-[#020202]/0" containerClass="relative z-10" headerClass="mb-16 max-w-5xl break-words whitespace-normal lg:mb-20" titleClass="lg:text-5xl" descriptionClass="font-extralight" contentClass="grid grid-cols-1 items-center gap-x-12 gap-y-12 lg:grid-cols-2 lg:gap-16"
+>
+<!-- Centered Text -->
+
 
     <!-- Two-column layout: Feature Cards (Left) & Product Showcase (Right) -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 gap-x-12 gap-y-12 items-center">
+
 
         <!-- Feature Minimal List with Text Links -->
         <div class="space-y-10 lg:space-y-12 w-full order-2 lg:order-1">
@@ -175,9 +178,7 @@
     </div>
 </div>
         </div>
-    </div>
-</div>
-    </section>
+</Section>
 <style is:global>
                 @keyframes floatCardCenter {
                     0%, 100% { transform: translateY(0); }

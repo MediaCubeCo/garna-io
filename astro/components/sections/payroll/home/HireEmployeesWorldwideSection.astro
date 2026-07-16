@@ -1,12 +1,13 @@
-<section class="border-y lg:py-32 border-[#020202]/0 pt-16 pb-16">
-        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
-    <div class="lg:mb-20 lg:ml-auto lg:mr-auto text-center max-w-5xl mr-auto mb-16 ml-auto">
-                <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope max-w-4xl mr-auto mb-6 ml-auto" data-translate="sectionHeadings.hireEmployeesWorldwide">Hire Employees Worldwide</h2>
-        <p class="text-xl font-light text-gray-400 font-manrope" data-translate="sectionDescriptions.hireEmployeesWorldwide">Simplify the hiring process for employees and freelancers with Garna. Unlike other companies, we will resolve not only the financial, but also legal side while you are looking for the right specialists</p>
-    </div>
+---
+import Section from '../../../layout/Section.astro';
+---
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="glass-card transition-all duration-300 hover:bg-[#0c0c0c] group bg-[#0c0c0c] rounded-2xl pt-8 pr-8 pb-8 pl-8">
+<Section
+	title={{ text: "Hire Employees Worldwide", translateKey: "sectionHeadings.hireEmployeesWorldwide" }}
+	description={{ text: "Simplify the hiring process for employees and freelancers with Garna. Unlike other companies, we will resolve not only the financial, but also legal side while you are looking for the right specialists", translateKey: "sectionDescriptions.hireEmployeesWorldwide" }}
+	class="border-y border-[#020202]/0" headerClass="mb-16 max-w-5xl lg:mb-20" titleClass="mx-auto max-w-4xl lg:text-5xl" contentClass="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+>
+<div class="glass-card transition-all duration-300 hover:bg-[#0c0c0c] group bg-[#0c0c0c] rounded-2xl pt-8 pr-8 pb-8 pl-8">
             <div class="w-12 h-12 rounded-xl bg-[#5EA500]/10 flex items-center justify-center text-[#5EA500] mb-6 group-hover:scale-110 transition-transform">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="globe" aria-hidden="true" class="lucide lucide-globe w-6 h-6"><circle cx="12" cy="12" r="10" class=""></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20" class=""></path></svg>
             </div>
@@ -55,6 +56,4 @@
             <h3 class="text-xl font-light text-white mb-3 font-sans tracking-tight">Employee Benefits</h3>
             <p class="leading-relaxed text-base text-gray-500 font-light font-manrope">A user-friendly personal dashboard for every team member: access to payslips, vacation management, and expense tracking in real time</p>
         </div>
-    </div>
-</div>
-    </section>
+</Section>

@@ -1,21 +1,25 @@
-<section class="pt-16 pb-16 lg:pt-32 lg:pb-32" id="get-started">
-  <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+---
+import Section from '../../../layout/Section.astro';
+import SegmentedControl from '../../../ui/SegmentedControl.astro';
+---
 
-  <!-- Header -->
-  <div class="lg:mb-12 text-center max-w-5xl mr-auto mb-10 ml-auto">
-    <h2 class="lg:text-5xl text-3xl md:text-4xl font-normal text-white tracking-tight font-manrope mb-6">Start Paying
-      Globally</h2>
-    <p class="text-lg md:text-xl font-thin text-gray-400 font-manrope">From quick registration and talent’s search to
-      your first payout. Everything is clear and completely under your control in a few simple steps</p>
-  </div>
+<Section
+	title={{ text: "Start Paying Globally" }}
+	description={{ text: "From quick registration and talent’s search to your first payout. Everything is clear and completely under your control in a few simple steps" }}
+	id="get-started" headerClass="mb-10 max-w-5xl lg:mb-12" titleClass="text-3xl md:text-4xl lg:text-5xl" controlsClass="relative z-20 mb-16 flex justify-center"
+>
+<!-- Header -->
 
-  <!-- Tab Switcher -->
-  <div class="flex justify-center mb-16 relative z-20">
-    <div class="inline-flex flex-col sm:flex-row gap-1 bg-[#0A0A0A] border-white/5 border rounded-xl pt-1.5 pr-1.5 pb-1.5 pl-1.5 shadow-lg gap-x-1 gap-y-1">
-      <button onclick="switchFlow('cor'); setTimeout(() =&gt; { this.className='transition-all sm:w-auto sm:mb-0 text-sm text-white font-light bg-[#5EA500] w-full rounded-lg px-6 py-2.5 shadow-md'; document.getElementById('tab-eor').className='hover:text-white focus:text-white active:text-white transition-all text-sm text-gray-400 font-light rounded-lg px-6 py-2.5 w-full sm:w-auto'; }, 0)" class="transition-all sm:w-auto sm:mb-0 text-sm text-white font-light bg-[#5EA500] w-full rounded-lg px-6 py-2.5 shadow-md" id="tab-cor">Contractor of Record</button>
-      <button onclick="switchFlow('eor'); setTimeout(() =&gt; { this.className='transition-all sm:w-auto sm:mb-0 text-sm text-white font-light bg-[#5EA500] w-full rounded-lg px-6 py-2.5 shadow-md'; document.getElementById('tab-cor').className='hover:text-white focus:text-white active:text-white transition-all text-sm text-gray-400 font-light rounded-lg px-6 py-2.5 w-full sm:w-auto'; }, 0)" class="hover:text-white focus:text-white active:text-white transition-all text-sm text-gray-400 font-light rounded-lg px-6 py-2.5 w-full sm:w-auto" id="tab-eor">Employer of Record</button>
-    </div>
-  </div>
+
+  <Fragment slot="controls">
+	<SegmentedControl
+		group="start-paying"
+		items={[
+			{ id: 'cor', label: { text: 'Contractor of Record' }, panelId: 'flow-cor' },
+			{ id: 'eor', label: { text: 'Employer of Record' }, panelId: 'flow-eor' },
+		]}
+	/>
+</Fragment>
 
   <!-- Flow: Contractor of Record -->
   <div class="grid lg:grid-cols-2 gap-x-16 gap-y-16 items-center transition-opacity duration-500 block" id="flow-cor">
@@ -259,8 +263,4 @@
       </div>
     </div>
   </div>
-
-</div>
-
-
-</section>
+</Section>

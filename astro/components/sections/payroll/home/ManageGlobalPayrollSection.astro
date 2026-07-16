@@ -1,12 +1,13 @@
-<section class="lg:pb-32 pb-16 relative">
-        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
-            <div class="lg:mb-20 text-center max-w-4xl mr-auto mb-16 ml-auto">
-                <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope mb-6">Manage Global Payroll Effortlessly</h2>
-                <p class="text-xl font-light text-gray-400 font-manrope max-w-3xl mx-auto">We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries</p>
-            </div>
+---
+import Section from '../../../layout/Section.astro';
+---
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
-    <!-- Large Card (Automated Payroll) -->
+<Section
+	title={{ text: "Manage Global Payroll Effortlessly" }}
+	description={{ text: "We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries" }}
+	spacing="none" class="pb-16 lg:pb-32" headerClass="mb-16 max-w-4xl lg:mb-20" titleClass="lg:text-5xl" contentClass="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-2 lg:grid-cols-3"
+>
+<!-- Large Card (Automated Payroll) -->
     <div class="row-span-2 glass overflow-hidden group md:col-span-1 md:row-span-2 lg:col-span-1 rounded-3xl bg-[#0c0c0c] relative flex flex-col">
         <div class="flex flex-col lg:pl-8 z-10 h-full pt-8 pr-8 pb-8 pl-8 relative">
             <div class="shrink-0 mb-12">
@@ -172,12 +173,7 @@
 </div>
     </div>
 </div>
-
-
-
-
-</div></div>
-    </section>
+</Section>
 <style is:global>
                         @keyframes flowLine {
                             0% { background-position: 0% -100%; }

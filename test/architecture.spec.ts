@@ -79,4 +79,27 @@ describe('native Astro architecture', () => {
 		expect(positions).toEqual([...positions].sort((left, right) => left - right));
 		expect(source).not.toContain('PayrollSolutionSections');
 	});
+
+	it('builds homepage content with the shared section composition contract', async () => {
+		const homeSectionsRoot = path.join(root, 'astro/components/sections/payroll/home');
+		const homeSections = (await readdir(homeSectionsRoot)).filter((file) => file.endsWith('.astro'));
+		const sectionSources = await Promise.all(
+			homeSections.map((file) => readFile(path.join(homeSectionsRoot, file), 'utf8')),
+		);
+		const sectionComponent = await readFile(path.join(root, 'astro/components/layout/Section.astro'), 'utf8');
+		const interactions = await readFile(
+			path.join(root, 'astro/components/sections/payroll/PayrollSolutionInteractions.astro'),
+			'utf8',
+		);
+
+		expect(sectionSources).toHaveLength(11);
+		expect(sectionSources.every((source) => source.includes("layout/Section.astro"))).toBe(true);
+		expect(sectionSources.filter((source) => source.includes('SegmentedControl'))).toHaveLength(2);
+		expect(sectionSources.some((source) => source.includes('layout="split"'))).toBe(true);
+		expect(sectionSources.some((source) => source.includes('action={{'))).toBe(true);
+		expect(sectionComponent).toContain('<slot name="controls" />');
+		expect(sectionComponent).toContain('<slot name="copy" />');
+		expect(sectionComponent).toContain('<slot name="action" />');
+		expect(interactions).not.toContain('function switchFlow');
+	});
 });

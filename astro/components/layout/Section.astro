@@ -1,5 +1,16 @@
 ---
 import Container from './Container.astro';
+import SectionHeader from './SectionHeader.astro';
+import Button from '../Button.astro';
+import type { LocalizedText } from '../../types/localized-text';
+
+interface SectionAction {
+	label: LocalizedText;
+	href: string;
+	variant?: 'primary' | 'secondary' | 'ghost' | 'glow';
+	icon?: 'none' | 'arrow-up-right' | 'arrow-right';
+	effect?: 'none' | 'rotating-flare';
+}
 
 interface Props {
 	id?: string;
@@ -7,6 +18,21 @@ interface Props {
 	containerClass?: string;
 	width?: 'narrow' | 'content' | 'wide';
 	tone?: 'default' | 'subtle' | 'accent';
+	spacing?: 'none' | 'compact' | 'default' | 'spacious';
+	layout?: 'stacked' | 'split';
+	align?: 'left' | 'center';
+	kicker?: LocalizedText;
+	title?: LocalizedText;
+	description?: LocalizedText;
+	action?: SectionAction;
+	headerClass?: string;
+	titleClass?: string;
+	descriptionClass?: string;
+	controlsClass?: string;
+	contentClass?: string;
+	actionClass?: string;
+	splitClass?: string;
+	copyClass?: string;
 }
 
 const {
@@ -15,17 +41,103 @@ const {
 	containerClass = '',
 	width = 'content',
 	tone = 'default',
+	spacing = 'default',
+	layout = 'stacked',
+	align = 'center',
+	kicker,
+	title,
+	description,
+	action,
+	headerClass = '',
+	titleClass = '',
+	descriptionClass = '',
+	controlsClass = '',
+	contentClass = '',
+	actionClass = '',
+	splitClass = '',
+	copyClass = '',
 } = Astro.props;
+
+const spacingClass = {
+	none: '',
+	compact: 'py-12 lg:py-20',
+	default: 'py-16 lg:py-32',
+	spacious: 'py-20 lg:py-36',
+}[spacing];
+const hasHeader = Boolean(kicker || title || description);
+const hasControls = Astro.slots.has('controls');
+const hasCopy = Astro.slots.has('copy');
+const hasActionSlot = Astro.slots.has('action');
 ---
 
 <section
 	id={id}
 	class:list={[
-		'relative py-20 lg:py-28',
+		'relative',
+		spacingClass,
 		tone === 'subtle' && 'bg-white/[0.015]',
 		tone === 'accent' && 'border-y border-[#5EA500]/15 bg-[#5EA500]/[0.025]',
 		className,
 	]}
 >
-	<Container width={width} class={containerClass}><slot /></Container>
+	<Container width={width} class={containerClass}>
+		{layout === 'split' ? (
+			<div class:list={['grid items-center gap-x-16 gap-y-16 lg:grid-cols-2', splitClass]}>
+				<div class:list={['min-w-0', copyClass]}>
+					{hasHeader && title && (
+						<SectionHeader
+							kicker={kicker}
+							title={title}
+							description={description}
+							align={align}
+							class={headerClass}
+							titleClass={titleClass}
+							descriptionClass={descriptionClass}
+						/>
+					)}
+					{hasControls && <div class={controlsClass}><slot name="controls" /></div>}
+					{hasCopy && <div><slot name="copy" /></div>}
+					{(hasActionSlot || action) && (
+						<div class:list={['mt-10', actionClass]}>
+							{hasActionSlot ? (
+								<slot name="action" />
+							) : action ? (
+								<Button href={action.href} variant={action.variant} icon={action.icon} effect={action.effect} size="hero" data-translate={action.label.translateKey}>
+									{action.label.text}
+								</Button>
+							) : null}
+						</div>
+					)}
+				</div>
+				<div class={contentClass}><slot /></div>
+			</div>
+		) : (
+			<>
+				{hasHeader && title && (
+					<SectionHeader
+						kicker={kicker}
+						title={title}
+						description={description}
+						align={align}
+						class={headerClass}
+						titleClass={titleClass}
+						descriptionClass={descriptionClass}
+					/>
+				)}
+				{hasControls && <div class={controlsClass}><slot name="controls" /></div>}
+				<div class={contentClass}><slot /></div>
+				{(hasActionSlot || action) && (
+					<div class:list={['mt-12 flex justify-center lg:mt-16', actionClass]}>
+						{hasActionSlot ? (
+							<slot name="action" />
+						) : action ? (
+							<Button href={action.href} variant={action.variant} icon={action.icon} effect={action.effect} size="hero" data-translate={action.label.translateKey}>
+								{action.label.text}
+							</Button>
+						) : null}
+					</div>
+				)}
+			</>
+		)}
+	</Container>
 </section>

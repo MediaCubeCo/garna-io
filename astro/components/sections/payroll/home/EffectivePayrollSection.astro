@@ -1,12 +1,13 @@
-<section class="lg:py-32 pt-16 pb-16">
-        <div class="h-fit max-w-7xl mr-auto ml-auto pr-6 pl-6">
-            <div class="lg:mb-20 lg:ml-auto lg:mr-auto text-center max-w-4xl mr-auto mb-16 ml-auto">
-    <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope mb-6">Effective Payroll For Your Team Starts Here</h2>
-    <p class="text-xl font-light text-gray-400 font-manrope max-w-4xl">Make payments to the contractor when you need to (without any hassle, delays, or additional fees) using CSV mass payments or stand alone transfers. Pay international contractors in just a few clicks or set up full automation</p>
-</div>
+---
+import Section from '../../../layout/Section.astro';
+---
 
-            <div class="overflow-visible max-w-6xl mr-auto ml-auto relative perspective-1000" style="height: 806.792px;">
-        <div class="glass overflow-visible origin-top -translate-x-1/2 md:w-[160%] md:scale-[0.625] lg:w-full lg:scale-[0.85] bg-[#0A0A0A] w-[320%] border-white/10 border rounded-xl pt-2 pr-2 pb-2 pl-2 relative left-1/2 shadow-2xl scale-[0.3125]">
+<Section
+	title={{ text: "Effective Payroll For Your Team Starts Here" }}
+	description={{ text: "Make payments to the contractor when you need to (without any hassle, delays, or additional fees) using CSV mass payments or stand alone transfers. Pay international contractors in just a few clicks or set up full automation" }}
+	headerClass="mb-16 max-w-4xl lg:mb-20" titleClass="lg:text-5xl" contentClass="relative mx-auto max-w-6xl overflow-visible perspective-1000"
+>
+<div class="glass overflow-visible origin-top -translate-x-1/2 md:w-[160%] md:scale-[0.625] lg:w-full lg:scale-[0.85] bg-[#0A0A0A] w-[320%] border-white/10 border rounded-xl pt-2 pr-2 pb-2 pl-2 relative left-1/2 shadow-2xl scale-[0.3125]">
 
             <!-- Script for number counting -->
 
@@ -210,10 +211,7 @@
             </div>
         </div>
         <!-- Script to sync wrapper height with scaled content -->
-
-    </div>
-        </div>
-    </section>
+</Section>
 <style is:global>
                 @keyframes fadeInMove {
                     0% { opacity: 0; transform: translateY(10px); }

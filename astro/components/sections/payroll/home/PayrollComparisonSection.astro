@@ -1,13 +1,13 @@
-<section class="border-y lg:py-32 border-[#020202]/0 pt-16 pb-16">
-        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
-    <div class="lg:mb-20 lg:ml-auto lg:mr-auto text-center max-w-5xl mr-auto mb-16 ml-auto">
-        <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope max-w-4xl mr-auto mb-6 ml-auto">Garna Payroll vs Other Payroll</h2>
-        <p class="text-xl font-light text-gray-400 font-manrope">Everything is relative, right? Take a look at the comparison table, we believe our transparency speaks louder than words. We offer, and we offer a lot, because we want to be the best</p>
-    </div>
+---
+import Section from '../../../layout/Section.astro';
+---
 
-    <div class="max-w-5xl mx-auto">
-
-    <!-- Desktop View -->
+<Section
+	title={{ text: "Garna Payroll vs Other Payroll" }}
+	description={{ text: "Everything is relative, right? Take a look at the comparison table, we believe our transparency speaks louder than words. We offer, and we offer a lot, because we want to be the best" }}
+	class="border-y border-[#020202]/0" headerClass="mb-16 max-w-5xl lg:mb-20" titleClass="mx-auto max-w-4xl lg:text-5xl" contentClass="mx-auto max-w-5xl"
+>
+<!-- Desktop View -->
     <div class="hidden md:grid grid-cols-3 font-manrope bg-black/40 border-white/5 border rounded-3xl relative backdrop-blur-sm">
         <!-- Highlight Background -->
         <div class="absolute -right-px -top-px -bottom-px w-[33.333%] bg-[#050505] border border-[#5EA500] rounded-r-3xl rounded-l-2xl shadow-[0_0_30px_rgba(94,165,0,0.15)] pointer-events-none z-0">
@@ -330,6 +330,4 @@
             </div>
         </div>
     </div>
-</div>
-</div>
-    </section>
+</Section>

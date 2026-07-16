@@ -1,12 +1,21 @@
-<section class="payroll-deferred-section overflow-hidden border-[#020202]/0 pt-16 pb-16 lg:pt-32 lg:pb-32 relative">
-        <div class="z-10 max-w-7xl mr-auto ml-auto pr-6 pl-6 relative">
-            <div class="payroll-deferred-grid grid lg:grid-cols-2 gap-x-16 gap-y-16 items-center">
+---
+import Section from '../../../layout/Section.astro';
+---
 
-                <div class="payroll-deferred-copy w-full max-w-full break-words whitespace-normal" style="overflow-wrap: anywhere; word-break: break-word;">
-                    <h2 class="lg:text-5xl text-4xl font-normal text-left text-white tracking-tight font-manrope mb-6">Pay contractors now, settle later</h2>
-                    <p class="text-xl font-light text-gray-400 font-manrope mb-12">Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow</p>
-
-                    <ul class="space-y-8">
+<Section
+	layout="split"
+	align="left"
+	title={{ text: 'Pay contractors now, settle later' }}
+	description={{ text: 'Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow' }}
+	class="payroll-deferred-section overflow-hidden border-[#020202]/0"
+	containerClass="relative z-10"
+	splitClass="payroll-deferred-grid"
+	copyClass="payroll-deferred-copy w-full max-w-full break-words whitespace-normal [overflow-wrap:anywhere] [word-break:break-word]"
+	titleClass="lg:text-5xl"
+	descriptionClass="mb-12"
+>
+	<Fragment slot="copy">
+<ul class="space-y-8">
     <li class="flex items-center gap-5">
         <div class="flex text-sm text-[#5EA500] font-mono bg-[#1A1A1A] w-9 h-8 border-white/10 border rounded-lg items-center justify-center">1</div>
         <span class="text-lg text-gray-300 font-manrope w-full">Immediate payouts, deferred settlement</span>
@@ -24,10 +33,8 @@
         <span class="text-lg text-gray-300 font-manrope w-full">Instant allocation &amp; processing</span>
     </li>
 </ul>
-
-                </div>
-
-                <div class="flex overflow-visible box-border md:px-0 h-auto pr-0 pl-0 relative items-center justify-center">
+	</Fragment>
+<div class="flex overflow-visible box-border md:px-0 h-auto pr-0 pl-0 relative items-center justify-center">
 
 
     <!-- Dashboard Container (Flat & Centered) -->
@@ -159,9 +166,7 @@
     <!-- Script for Looping Animations -->
 
 </div>
-            </div>
-        </div>
-    </section>
+</Section>
 <style is:global>
         @keyframes breatheBar {
             0%, 100% { transform: scaleY(1); opacity: 0.9; }

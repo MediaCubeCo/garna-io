@@ -1,19 +1,26 @@
-<section class="pt-16 pb-16 lg:pt-32 lg:pb-32" id="get-started">
-  <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+---
+import Section from '../../../layout/Section.astro';
+import SegmentedControl from '../../../ui/SegmentedControl.astro';
+---
 
-  <!-- Header -->
-  <div class="lg:mb-12 text-center max-w-5xl mr-auto mb-10 ml-auto">
-    <h2 class="lg:text-5xl text-3xl md:text-4xl font-normal text-white tracking-tight font-manrope mb-6">Why Companies Choose Garna</h2>
-    <p class="text-lg md:text-xl font-thin text-gray-400 font-manrope">Why Garna? There are plenty of benefits we offer while handling every payment process on time and accurately</p>
-  </div>
+<Section
+	title={{ text: "Why Companies Choose Garna" }}
+	description={{ text: "Why Garna? There are plenty of benefits we offer while handling every payment process on time and accurately" }}
+	id="why-garna" headerClass="mb-10 max-w-5xl lg:mb-12" titleClass="text-3xl md:text-4xl lg:text-5xl" controlsClass="relative z-20 mb-16 flex justify-center" actionClass="relative z-20"
+	action={{ label: { text: 'Book a demo' }, href: '#', variant: 'primary', icon: 'arrow-right' }}
+>
+<!-- Header -->
 
-  <!-- Tab Switcher -->
-  <div class="flex justify-center mb-16 relative z-20">
-    <div class="inline-flex flex-col sm:flex-row gap-1 bg-[#0A0A0A] border-white/5 border rounded-xl pt-1.5 pr-1.5 pb-1.5 pl-1.5 shadow-lg gap-x-1 gap-y-1">
-      <button id="btn-cor" onclick="document.getElementById('grid-cor').classList.remove('hidden'); document.getElementById('grid-eor').classList.add('hidden'); this.className='transition-all sm:w-auto sm:mb-0 text-sm text-white font-light bg-[#5EA500] w-full rounded-lg px-6 py-2.5 shadow-md'; document.getElementById('btn-eor').className='hover:text-white focus:text-white active:text-white transition-all text-sm text-gray-400 font-light rounded-lg px-6 py-2.5 w-full sm:w-auto';" class="transition-all sm:w-auto sm:mb-0 text-sm text-white font-light bg-[#5EA500] w-full rounded-lg px-6 py-2.5 shadow-md">Contractor of Record</button>
-      <button id="btn-eor" onclick="document.getElementById('grid-eor').classList.remove('hidden'); document.getElementById('grid-cor').classList.add('hidden'); this.className='transition-all sm:w-auto sm:mb-0 text-sm text-white font-light bg-[#5EA500] w-full rounded-lg px-6 py-2.5 shadow-md'; document.getElementById('btn-cor').className='hover:text-white focus:text-white active:text-white transition-all text-sm text-gray-400 font-light rounded-lg px-6 py-2.5 w-full sm:w-auto';" class="hover:text-white focus:text-white active:text-white transition-all text-sm text-gray-400 font-light rounded-lg px-6 py-2.5 w-full sm:w-auto">Employer of Record</button>
-    </div>
-  </div>
+
+  <Fragment slot="controls">
+	<SegmentedControl
+		group="why-garna"
+		items={[
+			{ id: 'cor', label: { text: 'Contractor of Record' }, panelId: 'grid-cor' },
+			{ id: 'eor', label: { text: 'Employer of Record' }, panelId: 'grid-eor' },
+		]}
+	/>
+</Fragment>
 
   <!-- Flow: Contractor of Record -->
   <!-- CoR Grid -->
@@ -164,16 +171,4 @@
         expenses, income, and vacations is available in one interface</p>
     </div>
   </div>
-
-  <!-- Book a Demo Button -->
-  <div class="mt-12 lg:mt-16 flex justify-center w-full relative z-20">
-    <a href="#" class="group flex items-center gap-2 transition-all hover:scale-105 accent-glow overflow-hidden text-base font-medium text-white font-manrope bg-[#5EA500] rounded-xl pt-3 pr-8 pb-3 pl-8 relative">
-                        <span class="">Book a demo</span>
-                        <iconify-icon icon="solar:arrow-right-linear" class="text-xl transition-transform group-hover:translate-x-1"></iconify-icon>
-                    </a>
-  </div>
-
-</div>
-
-
-</section>
+</Section>
