@@ -29,7 +29,7 @@ const {
 	keywords = '',
 	ogImage = 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
 	htmlClass = 'scroll-smooth',
-	bodyClass = 'antialiased overflow-x-hidden bg-[#050505]',
+	bodyClass = 'antialiased overflow-x-hidden bg-garna-page',
 	iconLibrary = 'iconify',
 } = shell;
 ---
@@ -72,7 +72,7 @@ const {
 			rel="stylesheet"
 		/>
 	</head>
-	<body class={bodyClass}>
+	<body class={bodyClass} data-garna-page>
 		<RainbowBackground count={rainbowCount} />
 		{showHeader && <Header />}
 		<main id="astro-page-content" data-astro-page-content data-current-path={currentPath}>

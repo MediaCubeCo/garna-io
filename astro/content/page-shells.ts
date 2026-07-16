@@ -6,7 +6,7 @@ export const pageShells = {
 		description: 'Know the true cost of hiring with Garna’s free Global Employee Cost Calculator. Estimate total employment expenses for global teams.',
 		keywords: 'employee cost calculator, employment cost calculator, global hiring cost, salary tax calculator, Garna',
 		htmlClass: 'scroll-smooth dark',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#5EA500]/40 selection:text-white bg-[#050505]',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#5EA500]/40 selection:text-white bg-garna-page',
 		iconLibrary: 'lucide',
 	},
 	contractorOfRecord: {
@@ -15,7 +15,7 @@ export const pageShells = {
 		"keywords": "global payroll, contractor payments, international payroll, Garna, fintech, cross-border payments, payroll solutions",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth",
-		"bodyClass": "antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden z-10 text-gray-300 bg-[#050505]",
+		"bodyClass": "antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden z-10 text-gray-300 bg-garna-page",
 		"iconLibrary": "lucide",
 	},
 	home: {
@@ -27,7 +27,7 @@ export const pageShells = {
 		ogImage: '/pages/payroll-solution-new/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png',
 		htmlClass: 'scroll-smooth dark',
 		bodyClass:
-			'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-[#050505]',
+			'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-garna-page',
 		iconLibrary: 'iconify',
 	},
 	offer: {
@@ -36,7 +36,7 @@ export const pageShells = {
 		"keywords": "contractor payments, get paid globally, freelancer payouts, Garna, international payments, contractor payouts",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth",
-		"bodyClass": "antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden text-gray-300 bg-[#050505] z-10",
+		"bodyClass": "antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden text-gray-300 bg-garna-page z-10",
 		"iconLibrary": "iconify",
 	},
 	aiHiring: {
@@ -45,7 +45,7 @@ export const pageShells = {
 		"keywords": "AI recruitment, hire talent, AI hiring, candidate screening, Garna, recruitment platform",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth",
-		"bodyClass": "antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden text-gray-300 bg-[#050505] z-10 relative",
+		"bodyClass": "antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden text-gray-300 bg-garna-page z-10 relative",
 		"iconLibrary": "iconify",
 	},
 	whiteLabel: {
@@ -65,7 +65,7 @@ export const pageShells = {
 			'small business payroll, global payroll, payroll for small business, employer of record, contractor payments, Garna',
 		ogImage: 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
 		htmlClass: 'scroll-smooth',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#5EA500]/30 selection:text-white bg-[#050505]',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#5EA500]/30 selection:text-white bg-garna-page',
 		iconLibrary: 'iconify',
 	},
 	eor: {
@@ -74,7 +74,7 @@ export const pageShells = {
 		"keywords": "employer of record, EOR, global employment, international hiring, global payroll, compliance, Garna",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth dark",
-		"bodyClass": "antialiased overflow-x-hidden selection:bg-[#5EA500]/40 selection:text-white bg-[#050505]",
+		"bodyClass": "antialiased overflow-x-hidden selection:bg-[#5EA500]/40 selection:text-white bg-garna-page",
 		"iconLibrary": "iconify",
 	},
 	blog: {
@@ -84,7 +84,7 @@ export const pageShells = {
 		keywords: 'Garna blog, global hiring, payroll insights, workforce management, international employment',
 		ogImage: '/pages/blog/assets/01-1e96bbb7-a5c7-4597-987a-3a820daffbff_3840w.jpg',
 		htmlClass: 'scroll-smooth dark',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-[#050505]',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-garna-page',
 		iconLibrary: 'iconify',
 	},
 	blogAuthor: {
@@ -93,7 +93,7 @@ export const pageShells = {
 		keywords: 'Garna blog author, payroll articles, workforce insights',
 		ogImage: '/pages/blog/assets/12-photo-1438761681033-6461ffad8d80.jpg',
 		htmlClass: 'scroll-smooth dark',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-[#050505]',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-garna-page',
 		iconLibrary: 'iconify',
 	},
 	blogArticle: {
@@ -102,7 +102,7 @@ export const pageShells = {
 		keywords: 'Garna blog article, payroll, workforce management, global hiring',
 		ogImage: '/pages/blog/assets/11-fdb0cbaa-87f1-425d-b6a2-ad16a6de7cb7_3840w.jpg',
 		htmlClass: 'scroll-smooth dark',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-[#050505]',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-garna-page',
 		iconLibrary: 'iconify',
 	},
 	form: {

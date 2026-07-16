@@ -6,7 +6,7 @@
 	--font-sans: "Manrope", sans-serif;
 	--font-manrope: "Manrope", sans-serif;
 	--color-garna-accent: #5ea500;
-	--color-garna-page: #050505;
+	--color-garna-page: #101010;
 	--color-garna-surface: #0c0c0c;
 	--color-garna-surface-raised: #121212;
 	--color-garna-muted: #a1a1aa;
@@ -16,7 +16,7 @@
 :root {
 	--garna-container-content-max: 1152px;
 	--garna-container-gutter: clamp(16px, 5vw, 64px);
-	--garna-page-bg: #050505;
+	--garna-page-bg: #101010;
 	--garna-section-stats-bg: #080808;
 	--garna-surface: #0c0c0c;
 	--garna-surface-raised: #121212;
@@ -34,7 +34,7 @@
 }
 
 html,
-body {
+body[data-garna-page] {
 	background: var(--garna-page-bg);
 	color: var(--garna-text-muted);
 	font-family: "Manrope", sans-serif;

@@ -242,7 +242,18 @@ describe('native Astro architecture', () => {
 
 	it('keeps legacy surface aliases mapped to the shared card tokens', async () => {
 		const globalStyles = await readFile(path.join(root, 'astro/styles/global.css'), 'utf8');
+		const baseLayout = await readFile(path.join(root, 'astro/layouts/BaseLayout.astro'), 'utf8');
+		const pageShells = await readFile(path.join(root, 'astro/content/page-shells.ts'), 'utf8');
+		const rainbowStyles = await readFile(path.join(root, 'static/rainbow-bg.css'), 'utf8');
 
+		expect(globalStyles).toContain('--garna-page-bg: #101010;');
+		expect(globalStyles).toContain('--color-garna-page: #101010;');
+		expect(globalStyles).toContain('body[data-garna-page] {');
+		expect(baseLayout).toContain("bodyClass = 'antialiased overflow-x-hidden bg-garna-page'");
+		expect(baseLayout).toContain('<body class={bodyClass} data-garna-page>');
+		expect(pageShells).not.toContain('bg-[#050505]');
+		expect(rainbowStyles).toContain('background-color: rgba(16, 16, 16, 1);');
+		expect(rainbowStyles).not.toContain('rgba(5, 5, 5, 1)');
 		expect(globalStyles).toContain('.surface-soft {');
 		expect(globalStyles).toContain('background: var(--garna-surface);');
 		expect(globalStyles).toContain('border: 1px solid rgba(255, 255, 255, 0.05);');
