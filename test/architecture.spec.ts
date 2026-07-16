@@ -275,6 +275,19 @@ describe('native Astro architecture', () => {
 		for (const visual of visualNames) await expect(access(path.join(root, 'astro/components/visuals', visual))).resolves.toBeUndefined();
 	});
 
+	it('keeps the shorter column sticky in EOR split sections on desktop', async () => {
+		const sectionsRoot = path.join(root, 'astro/components/sections/payroll');
+		const sources = await Promise.all(
+			['GlobalWorkforceBenefitsSection.astro', 'EorFitSection.astro'].map((file) =>
+				readFile(path.join(sectionsRoot, file), 'utf8'),
+			),
+		);
+
+		expect(sources.every((source) => source.includes('data-sticky-column'))).toBe(true);
+		expect(sources.every((source) => source.includes('lg:sticky lg:top-28 lg:self-start'))).toBe(true);
+		expect(sources.every((source) => !source.includes(' sticky '))).toBe(true);
+	});
+
 	it('keeps legacy surface aliases mapped to the shared card tokens', async () => {
 		const globalStyles = await readFile(path.join(root, 'astro/styles/global.css'), 'utf8');
 		const baseLayout = await readFile(path.join(root, 'astro/layouts/BaseLayout.astro'), 'utf8');
