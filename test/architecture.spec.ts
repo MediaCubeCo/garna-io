@@ -239,4 +239,12 @@ describe('native Astro architecture', () => {
 		expect(contentTabs).toContain("event.key === 'ArrowRight'");
 		expect(contentTabs).toContain("event.key === 'ArrowLeft'");
 	});
+
+	it('keeps legacy surface aliases mapped to the shared card tokens', async () => {
+		const globalStyles = await readFile(path.join(root, 'astro/styles/global.css'), 'utf8');
+
+		expect(globalStyles).toContain('.surface-soft {');
+		expect(globalStyles).toContain('background: var(--garna-surface);');
+		expect(globalStyles).toContain('border: 1px solid rgba(255, 255, 255, 0.05);');
+	});
 });

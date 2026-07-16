@@ -66,6 +66,13 @@ h6 {
 	-webkit-backdrop-filter: blur(20px);
 }
 
+.surface,
+.surface-soft {
+	background: var(--garna-surface);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	box-shadow: var(--garna-shadow-card);
+}
+
 .glass-high,
 .glass-nav {
 	background: rgba(5, 5, 5, 0.72);
