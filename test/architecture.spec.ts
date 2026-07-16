@@ -149,13 +149,40 @@ describe('native Astro architecture', () => {
 		const sectionComponent = await readFile(path.join(root, 'astro/components/layout/Section.astro'), 'utf8');
 		const containerComponent = await readFile(path.join(root, 'astro/components/layout/Container.astro'), 'utf8');
 
-		expect(migratedSections).toHaveLength(65);
+		expect(migratedSections).toHaveLength(61);
 		expect(migratedSections.every((source) => source.includes("layout/Section.astro"))).toBe(true);
 		expect(migratedSections.every((source) => !source.includes('<section'))).toBe(true);
 		expect(migratedSections.every((source) => !/^<Section[^>]*class="hidden/m.test(source))).toBe(true);
 		expect(sectionComponent).toContain('contained?: boolean');
 		expect(sectionComponent).toContain('contained={contained}');
 		expect(containerComponent).toContain('contained ?');
+	});
+
+	it('reuses shared payroll sections across page variants', async () => {
+		const pages = await Promise.all(
+			['contractor-of-record.astro', 'enterprise-payroll.astro', 'mid-size-business-payroll.astro'].map(
+				(file) => readFile(path.join(root, 'astro/pages', file), 'utf8'),
+			),
+		);
+		const [contractor, enterprise, midSize] = pages;
+		const payrollSections = path.join(root, 'astro/components/sections/payroll');
+		const removedDuplicates = [
+			'ContractorDifferentiatorsSection.astro',
+			'EnterpriseDifferentiatorsSection.astro',
+			'MidSizeDifferentiatorsSection.astro',
+			'EnterpriseSolutionsSection.astro',
+			'MidSizeSolutionsSection.astro',
+			'MidSizeContractorBenefitsSection.astro',
+		];
+
+		expect(contractor).toContain('<GarnaDifferentiatorsSection ctaVariant="compact" />');
+		expect(enterprise).toContain('<BusinessSolutionsSection audience="enterprise" />');
+		expect(midSize).toContain('<BusinessSolutionsSection audience="growing" />');
+		expect(contractor).toContain('<ContractorBenefitsSection />');
+		expect(midSize).toContain('<ContractorBenefitsSection />');
+		for (const duplicate of removedDuplicates) {
+			await expect(access(path.join(payrollSections, duplicate))).rejects.toThrow();
+		}
 	});
 
 	it('keeps payroll testimonial assets free of legacy duplicates', async () => {

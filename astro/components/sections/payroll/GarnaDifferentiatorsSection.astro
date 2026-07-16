@@ -1,5 +1,11 @@
 ---
 import Section from '../../layout/Section.astro';
+
+interface Props {
+	ctaVariant?: 'primary' | 'compact';
+}
+
+const { ctaVariant = 'primary' } = Astro.props;
 ---
 
 <Section contained={false} spacing="none" class="border-y lg:py-32 border-[#020202]/0 pt-16 pb-16">
@@ -121,9 +127,16 @@ import Section from '../../layout/Section.astro';
                         data-translate="whyGarna.cta.description">Join thousands of businesses streamlining their global
                         payroll today</p>
 
-                    <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'why_garna_demo' });"
-                        class="group inline-flex items-center gap-2 transition-all hover:scale-105 text-base font-normal text-white font-manrope bg-[#5EA500] z-10 rounded-xl pt-3 pr-8 pb-3 pl-8 relative shadow-[0_0_20px_-5px_rgba(94,165,0,0.5)]"
-                        data-translate="whyGarna.cta.button">Book a demo</a>
+                    {ctaVariant === 'compact' ? (
+                        <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'why_garna_demo' });"
+                            class="group inline-flex items-center gap-2 transition-all hover:scale-105 text-base font-normal text-white font-manrope bg-[#5EA500] z-10 rounded-xl pt-3 pr-8 pb-3 pl-8 relative shadow-[0_0_20px_-5px_rgba(94,165,0,0.5)]"
+                            data-translate="whyGarna.cta.button">Book a demo</a>
+                    ) : (
+                        <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'why_garna_demo' });"
+                            class="garna-button garna-button-primary relative z-10 inline-flex h-11 items-center justify-center rounded-xl px-7 font-manrope text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5EA500]">
+                            <span class="garna-button-inner" data-translate="whyGarna.cta.button">Book a demo</span>
+                        </a>
+                    )}
                 </div>
             </div>
         </div>
