@@ -565,47 +565,7 @@
             </div>
         </div>
     </section>
-    <script is:inline>
-        window.switchStep = function (index) {
-            document.querySelectorAll('.step-trigger').forEach((el) => {
-                if (el.getAttribute('data-index') == index) {
-                    el.classList.remove('opacity-50', 'hover:opacity-80');
-                    el.classList.add('opacity-100');
-                    const circle = el.querySelector('.step-circle');
-                    if (circle) {
-                        circle.classList.remove('text-gray-500', 'border-white/10', 'bg-[#050505]');
-                        circle.classList.add(
-                            'text-[#5EA500]',
-                            'border-[#5EA500]',
-                            'bg-[#050505]',
-                            'shadow-[0_0_15px_rgba(94,165,0,0.3)]'
-                        );
-                    }
-                    const title = el.querySelector('h3');
-                    if (title) title.classList.add('text-[#5EA500]');
-                } else {
-                    el.classList.add('opacity-50', 'hover:opacity-80');
-                    el.classList.remove('opacity-100');
-                    const circle = el.querySelector('.step-circle');
-                    if (circle) {
-                        circle.classList.add('text-gray-500', 'border-white/10', 'bg-[#050505]');
-                        circle.classList.remove('text-[#5EA500]', 'border-[#5EA500]', 'shadow-[0_0_15px_rgba(94,165,0,0.3)]');
-                    }
-                    const title = el.querySelector('h3');
-                    if (title) title.classList.remove('text-[#5EA500]');
-                }
-            });
-            document.querySelectorAll('.step-content').forEach((el) => {
-                if (el.getAttribute('data-index') == index) {
-                    el.classList.remove('opacity-0', 'translate-y-8', 'scale-95', '-z-10', 'pointer-events-none');
-                    el.classList.add('opacity-100', 'translate-y-0', 'scale-100', 'z-10');
-                } else {
-                    el.classList.add('opacity-0', 'translate-y-8', 'scale-95', '-z-10', 'pointer-events-none');
-                    el.classList.remove('opacity-100', 'translate-y-0', 'scale-100', 'z-10');
-                }
-            });
-        };
-    </script>
+    
 
     <!-- Why Contractors Choose Garna (Benefits) -->
     <section class="lg:pt-32 lg:pb-32 pt-16 pb-16 relative">
@@ -845,39 +805,7 @@
                     <span id="cnt-offer-freelancers" class="tabular-nums">0</span>
                     <span data-translate="testimonials.badgeAfter">+ FREELANCERS</span>
                 </p>
-                <script is:inline>
-                    (function () {
-                        const el = document.getElementById('cnt-offer-freelancers');
-                        if (!el) return;
-                        const target = 15654;
-                        const duration = 2000;
-                        const animate = () => {
-                            let start = null;
-                            const step = (timestamp) => {
-                                if (!start) start = timestamp;
-                                const progress = Math.min((timestamp - start) / duration, 1);
-                                const ease = 1 - Math.pow(1 - progress, 4);
-                                const current = Math.floor(ease * target);
-                                el.innerText = current.toLocaleString('en-US');
-                                if (progress < 1) window.requestAnimationFrame(step);
-                                else el.innerText = '15,654';
-                            };
-                            window.requestAnimationFrame(step);
-                        };
-                        const observer = new IntersectionObserver(
-                            (entries) => {
-                                entries.forEach((entry) => {
-                                    if (entry.isIntersecting) {
-                                        animate();
-                                        observer.disconnect();
-                                    }
-                                });
-                            },
-                            { threshold: 0.1 }
-                        );
-                        observer.observe(el);
-                    })();
-                </script>
+                
                 <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope mb-6"
                     data-translate="testimonials.title">
                     Trusted by talent worldwide
@@ -1022,17 +950,7 @@
                 </div>
 
                 <div class="grid lg:grid-cols-2 max-w-4xl mx-auto gap-x-6 gap-y-6 items-stretch">
-                    <style class="">
-                        @keyframes scan {
-                            0% {
-                                transform: translateY(-100%);
-                            }
-
-                            100% {
-                                transform: translateY(100%);
-                            }
-                        }
-                    </style>
+                    
                     <!-- Card 1: Privacy -->
                     <div
                         class="group flex flex-col overflow-hidden hover:border-[#5EA500]/30 transition-all duration-500 hover:shadow-[0_0_50px_-20px_rgba(94,165,0,0.15)] bg-[#0c0c0c] border-white/5 border rounded-3xl pt-8 pr-8 pb-8 pl-8 relative">
@@ -1292,17 +1210,7 @@
                                                     stroke-dasharray="300" stroke-dashoffset="300"
                                                     class="group-hover:animate-[dash_2s_ease-in-out_forwards]"></path>
                                             </svg>
-                                            <style is:inline>
-                                                .group:hover path {
-                                                    animation: dash 2s ease-out forwards;
-                                                }
-
-                                                @keyframes dash {
-                                                    to {
-                                                        stroke-dashoffset: 0;
-                                                    }
-                                                }
-                                            </style>
+                                            
                                         </div>
                                         <span class="text-[7px] text-gray-600 font-manrope"
                                             data-translate="support.cards.legal.signatureLabel">
@@ -1318,3 +1226,26 @@
         </section>
 
         <!-- Find work faster (Talent) -->
+
+<style is:global>
+                        @keyframes scan {
+                            0% {
+                                transform: translateY(-100%);
+                            }
+
+                            100% {
+                                transform: translateY(100%);
+                            }
+                        }
+                    </style>
+<style is:global>
+                                                .group:hover path {
+                                                    animation: dash 2s ease-out forwards;
+                                                }
+
+                                                @keyframes dash {
+                                                    to {
+                                                        stroke-dashoffset: 0;
+                                                    }
+                                                }
+                                            </style>

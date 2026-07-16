@@ -1,0 +1,131 @@
+<script is:inline>
+                        (function () {
+                            function formatValue(value, decimals) {
+                                return value.toLocaleString('en-US', {
+                                    minimumFractionDigits: decimals,
+                                    maximumFractionDigits: decimals
+                                });
+                            }
+
+                            function initCounterAnimation() {
+                                const elements = document.querySelectorAll('.counter-anim');
+                                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                                elements.forEach(el => {
+                                    const target = parseFloat(el.getAttribute('data-target'));
+                                    const prefix = el.getAttribute('data-prefix') || '';
+                                    const suffix = el.getAttribute('data-suffix') || '';
+                                    const decimals = parseInt(el.getAttribute('data-decimals') || 0);
+                                    const finalValue = prefix + formatValue(target, decimals) + suffix;
+
+                                    if (prefersReducedMotion) {
+                                        el.innerText = finalValue;
+                                        return;
+                                    }
+
+                                    function animate() {
+                                        if (el.dataset.counterAnimated === 'true') return;
+                                        el.dataset.counterAnimated = 'true';
+                                        const start = 0;
+                                        const duration = 2000;
+                                        const startTime = performance.now();
+
+                                        function update(currentTime) {
+                                            const elapsed = currentTime - startTime;
+                                            const progress = Math.min(elapsed / duration, 1);
+                                            const ease = 1 - Math.pow(1 - progress, 4); // Ease out quart
+
+                                            const current = start + (target - start) * ease;
+
+                                            el.innerText = prefix + formatValue(current, decimals) + suffix;
+
+                                            if (progress < 1) {
+                                                requestAnimationFrame(update);
+                                            } else {
+                                                el.innerText = finalValue;
+                                            }
+                                        }
+
+                                        requestAnimationFrame(update);
+                                    }
+
+                                    if ('IntersectionObserver' in window) {
+                                        const observer = new IntersectionObserver((entries) => {
+                                            entries.forEach(entry => {
+                                                if (entry.isIntersecting) {
+                                                    animate();
+                                                    observer.disconnect();
+                                                }
+                                            });
+                                        }, { threshold: 0.1 });
+
+                                        observer.observe(el);
+                                    } else {
+                                        animate();
+                                    }
+                                });
+                            }
+
+                            if (document.readyState === 'loading') {
+                                document.addEventListener('DOMContentLoaded', initCounterAnimation, { once: true });
+                            } else {
+                                initCounterAnimation();
+                            }
+                        })();
+                    </script>
+<script is:inline>
+                    (function () {
+                        const wrapper = document.currentScript.parentElement;
+                        const content = wrapper.querySelector('.glass');
+
+                        if (wrapper && content) {
+                            const updateHeight = () => {
+                                const rect = content.getBoundingClientRect();
+                                // Set the wrapper height to match the exact visual height of the scaled child
+                                if (rect.height > 0) {
+                                    wrapper.style.height = rect.height + 'px';
+                                }
+                            };
+
+                            // Update immediately, on resize, and on load
+                            updateHeight();
+                            window.addEventListener('resize', updateHeight);
+                            new ResizeObserver(updateHeight).observe(content);
+                            window.addEventListener('load', updateHeight);
+
+                            // Fallback polling for slow loads
+                            setTimeout(updateHeight, 500);
+                            setTimeout(updateHeight, 1500);
+                        }
+                    })();
+                </script>
+<script is:inline>
+        (function () {
+            const shell = document.querySelector('[data-eor-card-scroll-shell]');
+            const scroller = shell ? shell.querySelector('.eor-card-scroll') : null;
+            const prevButton = shell ? shell.querySelector('[data-eor-card-scroll-prev]') : null;
+            const nextButton = shell ? shell.querySelector('[data-eor-card-scroll-next]') : null;
+            if (!shell || !scroller || !prevButton || !nextButton) return;
+
+            function updateScrollState() {
+                const maxScroll = Math.max(scroller.scrollWidth - scroller.clientWidth, 0);
+                const atStart = scroller.scrollLeft <= 4;
+                const atEnd = scroller.scrollLeft >= maxScroll - 4;
+                shell.dataset.eorScrollStart = atStart ? 'true' : 'false';
+                shell.dataset.eorScrollEnd = atEnd ? 'true' : 'false';
+            }
+
+            function scrollCards(direction) {
+                scroller.scrollBy({
+                    left: direction * Math.min(scroller.clientWidth * 0.82, 360),
+                    behavior: 'smooth'
+                });
+            }
+
+            prevButton.addEventListener('click', () => scrollCards(-1));
+            nextButton.addEventListener('click', () => scrollCards(1));
+            scroller.addEventListener('scroll', updateScrollState, { passive: true });
+            window.addEventListener('resize', updateScrollState);
+            window.requestAnimationFrame(updateScrollState);
+        })();
+    </script>

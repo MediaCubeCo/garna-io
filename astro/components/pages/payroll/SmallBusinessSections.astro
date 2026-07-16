@@ -1,0 +1,824 @@
+
+
+<section class="relative py-20 lg:py-28">
+            <div class="garna-container">
+                <div class="reveal max-w-5xl text-left font-manrope">
+                        <h2 class="max-w-4xl text-left text-4xl font-normal leading-tight text-white lg:text-5xl font-manrope" data-translate="intro.title" data-title-break-after-words="en:4,ru:5,pt:5,es:6">
+                            Payroll That Actually Works<br>for Small Businesses
+                        </h2>
+                </div>
+
+                <div class="reveal mt-10 w-full border-y border-white/10 py-8" style="--delay: 80ms">
+                    <div class="grid gap-y-6">
+                        <div class="grid gap-4 md:grid-cols-[3.5rem_minmax(0,1fr)]">
+                            <span class="font-manrope text-sm font-semibold text-[#5EA500]">01</span>
+                            <div>
+                                <h3 class="text-base font-semibold text-white font-manrope" data-translate="intro.point1.title">Payroll shouldn’t slow your business down</h3>
+                                <p class="mt-2 text-sm leading-6 text-gray-400" data-translate="intro.point1.description">
+                                    Payroll shouldn’t slow your business down. For small businesses, payroll can turn into chaos: endless tables, manual recalculation of taxes, and the fear of missing a deadline. Every hour spent on accounting and administration is an hour stolen from your growth.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid gap-4 md:grid-cols-[3.5rem_minmax(0,1fr)]">
+                            <span class="font-manrope text-sm font-semibold text-[#5EA500]">02</span>
+                            <div>
+                                <h3 class="text-base font-semibold text-white font-manrope" data-translate="intro.point2.title">With Garna, the calculation takes no time</h3>
+                            </div>
+                        </div>
+                        <div class="grid gap-4 md:grid-cols-[3.5rem_minmax(0,1fr)]">
+                            <span class="font-manrope text-sm font-semibold text-[#5EA500]">03</span>
+                            <div>
+                                <h3 class="text-base font-semibold text-white font-manrope" data-translate="intro.point3.title">Save all essentials in one place</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal payroll-routine-visual mt-12 rounded-[24px] border border-white/10 p-4 md:p-6 lg:p-7"
+                        style="--delay: 140ms" aria-label="Payroll automation visual" data-translate-aria-label="routineVisual.ariaLabel">
+                        <div class="relative z-10 flex items-start justify-between gap-4 border-b border-white/10 pb-5 sm:items-center">
+                            <div class="min-w-0">
+                                <div class="text-sm font-semibold text-white font-manrope" data-translate="routineVisual.title">Payroll Autopilot</div>
+                                <div class="mt-1 text-xs text-gray-500" data-translate="routineVisual.subtitle">Calculating June payroll</div>
+                            </div>
+                            <div
+                                class="routine-pulse shrink-0 rounded-full border border-[#5EA500]/30 bg-[#5EA500]/10 px-3 py-1 text-xs font-semibold text-[#5EA500]">
+                                <span data-translate="routineVisual.live">Live</span>
+                            </div>
+                        </div>
+
+                        <div class="routine-layout-grid relative z-10 mt-6 grid gap-4">
+                            <div class="routine-panel rounded-2xl p-4 md:p-5" style="--routine-panel-delay: 0ms;">
+                                <div class="text-xs font-semibold uppercase tracking-wide text-gray-500 font-manrope">
+                                    <span data-translate="routineVisual.beforeGarna">Before Garna</span>
+                                </div>
+                                <div class="mt-4 grid min-h-0 grid-rows-3 gap-3">
+                                <div class="routine-card routine-card--before routine-card--blue flex items-center rounded-2xl border p-4"
+                                    style="--routine-delay: 80ms">
+                                    <div class="flex w-full items-center gap-3">
+                                        <div
+                                            class="routine-before-icon flex h-9 w-9 items-center justify-center rounded-lg">
+                                            <iconify-icon icon="solar:document-text-linear" width="19" height="19"></iconify-icon>
+                                        </div>
+                                        <div class="min-w-0 flex-1">
+                                            <div class="text-sm font-semibold text-white font-manrope" data-translate="routineVisual.spreadsheets">Spreadsheets</div>
+                                            <div class="text-xs text-gray-500" data-translate="routineVisual.rowsCurrencies">18 rows, 4 currencies</div>
+                                        </div>
+                                        <div class="routine-card__status ml-auto shrink-0 rounded-lg px-2 py-1 text-[11px] text-gray-400">
+                                            CSV
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="routine-card routine-card--before routine-card--yellow flex items-center rounded-2xl border p-4"
+                                    style="--routine-delay: 180ms">
+                                    <div class="flex w-full items-center gap-3">
+                                        <div
+                                            class="routine-before-icon flex h-9 w-9 items-center justify-center rounded-lg">
+                                            <iconify-icon icon="solar:danger-triangle-linear" width="19" height="19"></iconify-icon>
+                                        </div>
+                                        <div class="min-w-0 flex-1">
+                                            <div class="text-sm font-semibold text-white font-manrope" data-translate="routineVisual.deadlineRisk">Deadline risk</div>
+                                            <div class="text-xs text-gray-500" data-translate="routineVisual.taxTotalsChanged">Tax totals changed manually</div>
+                                        </div>
+                                        <div class="routine-card__status ml-auto shrink-0 rounded-lg px-2 py-1 text-[11px] text-gray-400">
+                                            <span data-translate="routineVisual.openCount">3 open</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="routine-card routine-card--before routine-card--red flex items-center rounded-2xl border p-4"
+                                    style="--routine-delay: 280ms">
+                                    <div class="flex w-full items-center gap-3">
+                                        <div
+                                            class="routine-before-icon flex h-9 w-9 items-center justify-center rounded-lg">
+                                            <iconify-icon icon="solar:document-add-linear" width="19" height="19"></iconify-icon>
+                                        </div>
+                                        <div class="min-w-0 flex-1">
+                                            <div class="text-sm font-semibold text-white font-manrope" data-translate="routineVisual.contracts">Contracts</div>
+                                            <div class="text-xs text-gray-500" data-translate="routineVisual.missingInvoiceLinks">Missing invoice links</div>
+                                        </div>
+                                        <div class="routine-card__status ml-auto shrink-0 rounded-lg px-2 py-1 text-[11px] text-gray-400">
+                                            <span data-translate="routineVisual.review">review</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="automation-core rounded-2xl p-4 text-center md:p-5">
+                                <div class="relative z-10 flex h-full min-h-[15rem] flex-col justify-between gap-4">
+                                    <div class="grid grid-cols-2 gap-2 text-left" data-routine-stat-group data-layout="stacked">
+                                        <div class="rounded-xl border border-slate-500/20 bg-slate-500/[0.045] p-2.5">
+                                            <div class="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+                                                <span data-translate="routineVisual.rules">Rules</span>
+                                            </div>
+                                            <div class="routine-stat-row mt-1 text-xs font-semibold leading-4 text-white font-manrope" data-routine-stat-row>
+                                                <span class="routine-stat-part" data-translate="routineVisual.matchedRulesNumber">9</span>
+                                                <span class="routine-stat-part" data-translate="routineVisual.matchedRulesLabel">matched</span>
+                                            </div>
+                                        </div>
+                                        <div class="rounded-xl border border-slate-500/20 bg-slate-500/[0.045] p-2.5">
+                                            <div class="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+                                                <span data-translate="routineVisual.docs">Docs</span>
+                                            </div>
+                                            <div class="routine-stat-row mt-1 text-xs font-semibold leading-4 text-white font-manrope" data-routine-stat-row>
+                                                <span class="routine-stat-part" data-translate="routineVisual.autoLinkedLine1">Auto</span>
+                                                <span class="routine-stat-part" data-translate="routineVisual.autoLinkedLine2">linked</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="automation-core__ring mx-auto">
+                                            <span class="relative z-10 text-xs font-semibold text-gray-200 font-manrope">70%</span>
+                                        </div>
+                                        <div class="relative z-10 mt-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-400">
+                                            <span data-translate="routineVisual.automationLayer">automation layer</span>
+                                        </div>
+                                        <div class="relative z-10 mt-1 text-[11px] leading-4 text-gray-500">
+                                            <span data-translate="routineVisual.rulesDocsMatched">rules and docs matched</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="routine-process-row relative z-10 flex items-center justify-between gap-2">
+                                             <span class="relative z-10 h-2 w-2 rounded-full bg-slate-500 shadow-[0_0_12px_rgba(148,163,184,0.42)]"></span>
+                                             <span class="relative z-10 h-2 w-2 rounded-full bg-slate-400 shadow-[0_0_12px_rgba(148,163,184,0.42)]"></span>
+                                             <span class="relative z-10 h-2 w-2 rounded-full bg-slate-500 shadow-[0_0_12px_rgba(148,163,184,0.42)]"></span>
+                                        </div>
+                                        <div class="relative z-10 mt-2 grid grid-cols-3 gap-2 text-[10px] font-medium text-gray-500">
+                                            <span data-translate="routineVisual.clean">Clean</span>
+                                            <span data-translate="routineVisual.calculate">Calculate</span>
+                                            <span data-translate="routineVisual.ready">Ready</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="routine-panel routine-panel--after rounded-2xl p-4 md:p-5" style="--routine-panel-delay: 600ms;">
+                                <div class="text-xs font-semibold uppercase tracking-wide text-[#5EA500] font-manrope">
+                                    <span data-translate="routineVisual.withGarna">With Garna</span>
+                                </div>
+                                <div class="mt-4 grid min-h-0 grid-rows-3 gap-3">
+                                <div class="routine-card routine-card--soft routine-card--green flex items-center rounded-2xl border p-4"
+                                    style="--routine-delay: 360ms;">
+                                    <div class="flex w-full items-center justify-between gap-3">
+                                        <div class="min-w-0 flex-1">
+                                            <div class="text-sm font-semibold text-white font-manrope" data-translate="routineVisual.salariesCalculated">Salaries calculated</div>
+                                            <div class="text-xs text-gray-500" data-translate="routineVisual.batchPrepared">$79,940 batch prepared</div>
+                                        </div>
+                                        <div class="ml-auto shrink-0 rounded-lg border border-[#5EA500]/25 bg-[#5EA500]/10 px-2 py-1 text-[11px] font-semibold text-[#5EA500]">
+                                             <span data-translate="routineVisual.peopleCount">24 people</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="routine-card routine-card--soft routine-card--green flex items-center rounded-2xl border p-4"
+                                    style="--routine-delay: 460ms;">
+                                    <div class="flex w-full items-center justify-between gap-3">
+                                        <div class="min-w-0 flex-1">
+                                            <div class="text-sm font-semibold text-white font-manrope" data-translate="routineVisual.taxesApplied">Taxes applied</div>
+                                            <div class="text-xs text-gray-500" data-translate="routineVisual.localRulesMatched">9 local rule sets matched</div>
+                                        </div>
+                                        <div class="ml-auto shrink-0 rounded-lg border border-[#5EA500]/25 bg-[#5EA500]/10 px-2 py-1 text-[11px] font-semibold text-[#5EA500]">
+                                             <span data-translate="routineVisual.passed">passed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="routine-card routine-card--soft routine-card--green flex items-center rounded-2xl border p-4"
+                                    style="--routine-delay: 560ms;">
+                                    <div class="flex w-full items-center justify-between gap-3">
+                                        <div class="min-w-0 flex-1">
+                                            <div class="text-sm font-semibold text-white font-manrope" data-translate="routineVisual.readyToPay">Ready to pay</div>
+                                            <div class="text-xs text-gray-500" data-translate="routineVisual.paymentRailsRouted">SWIFT, SEPA, crypto routed</div>
+                                        </div>
+                                        <div class="ml-auto shrink-0 rounded-lg border border-[#5EA500]/25 bg-[#5EA500]/10 px-2 py-1 text-[11px] font-semibold text-[#5EA500]">
+                                             <span data-translate="routineVisual.queued">queued</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+
+<section class="relative py-20 lg:py-28">
+            <div class="garna-container">
+                <div class="reveal mx-auto max-w-3xl text-center">
+                    <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope mb-6" data-translate="platform.title">
+                        Everything You Need to Manage Small Business Payroll
+                    </h2>
+                    <p class="leading-relaxed text-xl font-light text-gray-400 font-manrope" data-translate="platform.description">
+                        We have separated the important processes to make it easier for you to manage both full-time employees and freelancers
+                    </p>
+                </div>
+
+                <div class="platform-card-grid mt-12 grid gap-6 md:grid-cols-2">
+                    <article class="platform-card reveal glass-card rounded-2xl border-[#5EA500]/15 bg-[radial-gradient(circle_at_16%_0%,rgba(94,165,0,0.12),transparent_34%)] p-6 md:p-8" style="--delay: 80ms">
+                        <div class="mb-7 flex h-12 w-12 items-center justify-center rounded-xl border border-[#5EA500]/20 bg-[#5EA500]/10 text-[#5EA500]">
+                            <iconify-icon icon="solar:user-id-linear" width="26" height="26"></iconify-icon>
+                        </div>
+                        <div data-platform-heading-group>
+                            <h3 class="text-xl font-semibold leading-7 text-[#5EA500] font-manrope" data-translate="platform.eor.label">1. Hire and pay employees (EoR)</h3>
+                            <p class="mt-3 text-lg font-light leading-7 text-gray-300 font-manrope" data-translate="platform.eor.title">
+                                Full-time recruitment without opening legal entities and hiring legal and accounting consultants abroad
+                            </p>
+                        </div>
+                        <ul class="mt-7 grid gap-3 text-sm leading-6 text-gray-300 lg:grid-rows-3">
+                            <li class="flex w-full items-center rounded-xl border border-[#5EA500]/15 bg-[#5EA500]/[0.035] p-3.5 lg:min-h-[7.25rem]" data-platform-feature-row="1">
+                                <div class="flex items-start gap-3">
+                                    <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/10 text-[#5EA500]">
+                                        <iconify-icon icon="solar:check-circle-bold" width="14" height="14"></iconify-icon>
+                                    </span>
+                                    <span><strong class="block text-white" data-translate="platform.eor.feature1.title">Employer of Record</strong> <span data-translate="platform.eor.feature1.description">We become the official employer for your employees in 150+ countries.</span></span>
+                                </div>
+                            </li>
+                            <li class="flex w-full items-center rounded-xl border border-[#5EA500]/15 bg-[#5EA500]/[0.035] p-3.5 lg:min-h-[7.25rem]" data-platform-feature-row="2">
+                                <div class="flex items-start gap-3">
+                                    <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/10 text-[#5EA500]">
+                                        <iconify-icon icon="solar:check-circle-bold" width="14" height="14"></iconify-icon>
+                                    </span>
+                                    <span><strong class="block text-white" data-translate="platform.eor.feature2.title">Taxes and benefits</strong> <span data-translate="platform.eor.feature2.description">We take care of the calculation of contributions, health insurance and pension contributions according to local laws.</span></span>
+                                </div>
+                            </li>
+                            <li class="flex w-full items-center rounded-xl border border-[#5EA500]/15 bg-[#5EA500]/[0.035] p-3.5 lg:min-h-[7.25rem]" data-platform-feature-row="3">
+                                <div class="flex items-start gap-3">
+                                    <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#5EA500]/10 text-[#5EA500]">
+                                        <iconify-icon icon="solar:check-circle-bold" width="14" height="14"></iconify-icon>
+                                    </span>
+                                    <span><strong class="block text-white" data-translate="platform.eor.feature3.title">100% Compliance</strong> <span data-translate="platform.eor.feature3.description">All employment contracts and reports are executed flawlessly and are available to you at any time.</span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article class="platform-card reveal glass-card rounded-2xl border-[#6BAED6]/15 bg-[radial-gradient(circle_at_16%_0%,rgba(107,174,214,0.12),transparent_34%)] p-6 md:p-8" style="--delay: 160ms">
+                        <div class="mb-7 flex h-12 w-12 items-center justify-center rounded-xl border border-[#6BAED6]/20 bg-[#6BAED6]/10 text-[#6BAED6]">
+                            <iconify-icon icon="solar:wallet-money-linear" width="26" height="26"></iconify-icon>
+                        </div>
+                        <div data-platform-heading-group>
+                            <h3 class="text-xl font-semibold leading-7 text-[#6BAED6] font-manrope" data-translate="platform.cor.label">2. Pay contractors and freelancers (CoR)</h3>
+                            <p class="mt-3 text-lg font-light leading-7 text-gray-300 font-manrope" data-translate="platform.cor.title">
+                                Scale payments to team members in one click wherever they are
+                            </p>
+                        </div>
+                        <ul class="mt-7 grid gap-3 text-sm leading-6 text-gray-300 lg:grid-rows-3">
+                            <li class="flex w-full items-center rounded-xl border border-[#6BAED6]/15 bg-[#6BAED6]/[0.035] p-3.5 lg:min-h-[7.25rem]" data-platform-feature-row="1">
+                                <div class="flex items-start gap-3">
+                                    <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#6BAED6]/10 text-[#6BAED6]">
+                                        <iconify-icon icon="solar:check-circle-bold" width="14" height="14"></iconify-icon>
+                                    </span>
+                                    <span><strong class="block text-white" data-translate="platform.cor.feature1.title">Flexible payments</strong> <span data-translate="platform.cor.feature1.description">Pay via SWIFT, SEPA or in the crypto. Your performers can receive money in a convenient way.</span></span>
+                                </div>
+                            </li>
+                            <li class="flex w-full items-center rounded-xl border border-[#6BAED6]/15 bg-[#6BAED6]/[0.035] p-3.5 lg:min-h-[7.25rem]" data-platform-feature-row="2">
+                                <div class="flex items-start gap-3">
+                                    <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#6BAED6]/10 text-[#6BAED6]">
+                                        <iconify-icon icon="solar:check-circle-bold" width="14" height="14"></iconify-icon>
+                                    </span>
+                                    <span><strong class="block text-white" data-translate="platform.cor.feature2.title">Auto-invoicing</strong> <span data-translate="platform.cor.feature2.description">No more billing. The system generates invoices automatically.</span></span>
+                                </div>
+                            </li>
+                            <li class="flex w-full items-center rounded-xl border border-[#6BAED6]/15 bg-[#6BAED6]/[0.035] p-3.5 lg:min-h-[7.25rem]" data-platform-feature-row="3">
+                                <div class="flex items-start gap-3">
+                                    <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#6BAED6]/10 text-[#6BAED6]">
+                                        <iconify-icon icon="solar:check-circle-bold" width="14" height="14"></iconify-icon>
+                                    </span>
+                                    <span><strong class="block text-white" data-translate="platform.cor.feature3.title">IP protection</strong> <span data-translate="platform.cor.feature3.description">Automatic transfer of intellectual property rights to you with each payment.</span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+<section class="relative py-20 lg:py-28">
+            <div class="garna-container">
+                <div class="reveal mx-auto max-w-3xl text-center">
+                    <h2 class="text-4xl font-normal leading-tight text-white lg:text-5xl font-manrope" data-translate="steps.title">
+                        How Payroll Works for Small Companies
+                    </h2>
+                    <p class="mt-5 text-xl font-light leading-8 text-gray-400 font-manrope" data-translate="steps.description">
+                        Why does a small business choose us? The whole process takes 4 steps:
+                    </p>
+                </div>
+
+                <div class="reveal steps-flow mt-14" style="--delay: 120ms">
+                    <div class="steps-flow-grid flex flex-col md:flex-row w-full max-w-5xl mr-auto ml-auto relative gap-x-12 gap-y-4 items-start justify-between">
+                        <div class="hidden md:block absolute left-[12.5%] right-[12.5%] top-[40px] h-[3px] z-0 pointer-events-none -translate-y-1/2">
+                            <svg class="w-full h-full overflow-visible" preserveAspectRatio="none">
+                                <line x1="0" y1="1.5" x2="100%" y2="1.5" stroke="rgba(255,255,255,0.05)" stroke-width="3"
+                                    stroke-dasharray="0 20" stroke-linecap="round"></line>
+                                <line x1="0" y1="1.5" x2="100%" y2="1.5" stroke="#5EA500" stroke-width="3"
+                                    stroke-dasharray="0 20" stroke-linecap="round"
+                                    style="animation: flow-line 1s linear infinite;"></line>
+                            </svg>
+                        </div>
+                        <div class="md:hidden absolute left-1/2 top-[40px] bottom-[15%] w-[3px] -translate-x-1/2 z-0 pointer-events-none">
+                            <svg class="w-full h-full overflow-visible" preserveAspectRatio="none">
+                                <line x1="1.5" y1="0" x2="1.5" y2="100%" stroke="rgba(255,255,255,0.05)" stroke-width="3"
+                                    stroke-dasharray="0 20" stroke-linecap="round"></line>
+                            </svg>
+                        </div>
+                        <div class="steps-flow-item" style="--step-delay: 0ms">
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:user-id-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">01</span>
+                            </div>
+                            <h3 class="mb-2 text-center text-lg font-medium tracking-tight text-white transition-colors font-manrope" data-translate="steps.item1.title">Set up an account</h3>
+                            <p class="px-4 text-center text-sm leading-relaxed text-gray-400 md:px-2" data-translate="steps.item1.description">Create a company profile and go through a quick verification process</p>
+                        </div>
+                        <div class="steps-flow-item" style="--step-delay: 120ms">
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:users-group-rounded-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">02</span>
+                            </div>
+                            <h3 class="mb-2 text-center text-lg font-medium tracking-tight text-white transition-colors font-manrope" data-translate="steps.item2.title">Add your team</h3>
+                            <p class="px-4 text-center text-sm leading-relaxed text-gray-400 md:px-2" data-translate="steps.item2.description">Invite employees (EoR) or contractors (CoR) and assign them roles</p>
+                        </div>
+                        <div class="steps-flow-item" style="--step-delay: 240ms">
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:wallet-money-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">03</span>
+                            </div>
+                            <h3 class="mb-2 text-center text-lg font-medium tracking-tight text-white transition-colors font-manrope" data-translate="steps.item3.title">Top up your balance</h3>
+                            <p class="px-4 text-center text-sm leading-relaxed text-gray-400 md:px-2" data-translate="steps.item3.description">Transfer funds to your account in a convenient way</p>
+                        </div>
+                        <div class="steps-flow-item" style="--step-delay: 360ms">
+                            <div class="steps-flow-marker">
+                                <iconify-icon icon="solar:check-circle-linear" width="32" height="32" class="relative z-10"></iconify-icon>
+                                <span class="steps-flow-number font-manrope">04</span>
+                            </div>
+                            <h3 class="mb-2 text-center text-lg font-medium tracking-tight text-white transition-colors font-manrope" data-translate="steps.item4.title">Start making payments</h3>
+                            <p class="px-4 text-center text-sm leading-relaxed text-gray-400 md:px-2" data-translate="steps.item4.description">One click, and the money is sent to the entire team, including all taxes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<section class="relative py-20 lg:py-28">
+            <div class="garna-container">
+                <div class="grid gap-12 lg:grid-cols-[0.82fr_1.18fr]">
+                    <div class="reveal text-left">
+                        <h2 class="text-left text-4xl font-normal leading-tight text-white lg:text-5xl font-manrope" data-translate="why.title">
+                            Why Small Businesses Choose Payroll Solution by Garna
+                        </h2>
+                        <p class="mt-5 text-left text-xl font-light leading-8 text-gray-400 font-manrope" data-translate="why.description">
+                            Our advantages that save you time and money
+                        </p>
+                    </div>
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <div class="reveal why-card rounded-2xl border p-5" style="--delay: 40ms">
+                            <iconify-icon icon="solar:document-text-linear" class="mb-4 text-2xl text-[#5EA500]"></iconify-icon>
+                            <h3 class="font-semibold text-white font-manrope" data-translate="why.item1.title">Reducing the admin by 70%</h3>
+                            <p class="mt-2 text-sm leading-6 text-gray-400" data-translate="why.item1.description">Automated contracts and calculations free you from working with documentation</p>
+                        </div>
+                        <div class="reveal why-card rounded-2xl border p-5" style="--delay: 80ms">
+                            <iconify-icon icon="solar:chart-square-linear" class="mb-4 text-2xl text-[#5EA500]"></iconify-icon>
+                            <h3 class="font-semibold text-white font-manrope" data-translate="why.item2.title">Transparent reporting</h3>
+                            <p class="mt-2 text-sm leading-6 text-gray-400" data-translate="why.item2.description">All contracts, invoices, and transactions are available in one place within the service</p>
+                        </div>
+                        <div class="reveal why-card rounded-2xl border p-5" style="--delay: 120ms">
+                            <iconify-icon icon="solar:tag-price-linear" class="mb-4 text-2xl text-[#5EA500]"></iconify-icon>
+                            <h3 class="font-semibold text-white font-manrope" data-translate="why.item3.title">No hidden fees</h3>
+                            <p class="mt-2 text-sm leading-6 text-gray-400" data-translate="why.item3.description">Clear and transparent pricing, adapted to your budget</p>
+                        </div>
+                        <div class="reveal why-card rounded-2xl border p-5" style="--delay: 160ms">
+                            <iconify-icon icon="solar:code-square-linear" class="mb-4 text-2xl text-[#5EA500]"></iconify-icon>
+                            <h3 class="font-semibold text-white font-manrope" data-translate="why.item4.title">Scalability via API</h3>
+                            <p class="mt-2 text-sm leading-6 text-gray-400" data-translate="why.item4.description">Launch mass payouts automatically as your business grows</p>
+                        </div>
+                        <div class="reveal why-card rounded-2xl border p-5 md:col-span-2" style="--delay: 200ms">
+                            <iconify-icon icon="solar:headphones-round-linear" class="mb-4 text-2xl text-[#5EA500]"></iconify-icon>
+                            <h3 class="font-semibold text-white font-manrope" data-translate="why.item5.title">24/7 support</h3>
+                            <p class="mt-2 text-sm leading-6 text-gray-400" data-translate="why.item5.description">Our personal team of experts is always in touch with you and your team</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<section class="relative py-20 lg:py-28">
+            <div class="garna-container">
+                <div class="reveal mx-auto max-w-4xl text-center">
+                    <h2 class="text-4xl font-normal leading-tight text-white lg:text-5xl font-manrope" data-translate="testimonials.title">
+                        Trusted by Growing Small Businesses
+                    </h2>
+                </div>
+
+                <div class="mt-12 grid gap-8 min-[961px]:grid-cols-3">
+                    <article class="reveal rounded-2xl border border-white/10 bg-[#0A0A0A] p-6 text-left" style="--delay: 60ms">
+                        <div class="flex h-[4.75rem] items-start gap-4">
+                            <div class="h-14 w-14 shrink-0 overflow-hidden rounded-full border border-[#5EA500]/30 bg-[#0A0A0A] shadow-[0_0_32px_-16px_rgba(94,165,0,0.9)]">
+                                <img src="/pages/payroll-small-business/assets/testimonial-emma-v2.jpg" alt="Emma Torres" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+                            </div>
+                            <div class="min-w-0 pt-1">
+                                <h3 class="font-semibold text-white font-manrope">Emma Torres</h3>
+                                <p class="mt-1 text-sm leading-5 text-gray-500 font-manrope" data-translate="testimonials.emma.role">Founder, Loomline Studio</p>
+                            </div>
+                        </div>
+                        <p class="mt-6 text-sm leading-7 text-gray-400 md:mt-4" data-translate="testimonials.emma.quote">
+                            "We hired our first full-time designer abroad without opening an entity. Garna handled the contract, local payroll, and monthly documents while we stayed focused on clients"
+                        </p>
+                    </article>
+
+                    <article class="reveal rounded-2xl border border-white/10 bg-[#0A0A0A] p-6 text-left" style="--delay: 120ms">
+                        <div class="flex h-[4.75rem] items-start gap-4">
+                            <div class="h-14 w-14 shrink-0 overflow-hidden rounded-full border border-[#6BAED6]/30 bg-[#0A0A0A] shadow-[0_0_32px_-16px_rgba(107,174,214,0.9)]">
+                                <img src="/pages/payroll-small-business/assets/testimonial-michael-v2.jpg" alt="Michael Chen" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+                            </div>
+                            <div class="min-w-0 pt-1">
+                                <h3 class="font-semibold text-white font-manrope">Michael Chen</h3>
+                                <p class="mt-1 text-sm leading-5 text-gray-500 font-manrope" data-translate="testimonials.michael.role">Operations Lead, BrightCart</p>
+                            </div>
+                        </div>
+                        <p class="mt-6 text-sm leading-7 text-gray-400 md:mt-4" data-translate="testimonials.michael.quote">
+                            "Contractor payouts stopped taking over our Fridays. The team receives money on time, invoices are generated automatically, and finance has a clean record of every payment"
+                        </p>
+                    </article>
+
+                    <article class="reveal rounded-2xl border border-white/10 bg-[#0A0A0A] p-6 text-left" style="--delay: 180ms">
+                        <div class="flex h-[4.75rem] items-start gap-4">
+                            <div class="h-14 w-14 shrink-0 overflow-hidden rounded-full border border-white/15 bg-[#0A0A0A] shadow-[0_0_32px_-16px_rgba(255,255,255,0.55)]">
+                                <img src="/pages/payroll-small-business/assets/testimonial-sofia-v2.jpg" alt="Sofia Marin" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+                            </div>
+                            <div class="min-w-0 pt-1">
+                                <h3 class="font-semibold text-white font-manrope">Sofia Marin</h3>
+                                <p class="mt-1 text-sm leading-5 text-gray-500 font-manrope" data-translate="testimonials.sofia.role">People Partner, Northstar Analytics</p>
+                            </div>
+                        </div>
+                        <p class="mt-6 text-sm leading-7 text-gray-400 md:mt-4" data-translate="testimonials.sofia.quote">
+                            "As our team grew across five countries, Garna gave us one payroll flow for employees and contractors. Support answers fast and keeps every local detail under control"
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+<style is:global>
+    @keyframes flow-line {
+        from {
+            stroke-dashoffset: 20;
+        }
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes pulse-box {
+        0%,
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 18px rgba(94, 165, 0, 0.18);
+        }
+
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(94, 165, 0, 0.5);
+        }
+    }
+
+    .steps-flow {
+        position: relative;
+        isolation: isolate;
+        overflow: visible;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .steps-flow::before,
+    .steps-flow::after,
+    .steps-flow-item::before,
+    .steps-flow-item:not(:last-child)::after {
+        display: none;
+    }
+
+    .steps-flow-grid {
+        position: relative;
+        z-index: 2;
+        overflow: visible;
+        align-items: flex-start;
+    }
+
+    .steps-flow-item {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex: 1 1 0%;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        min-height: auto;
+        overflow: visible;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        text-align: center;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(16px);
+        animation: routineCardIn 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        animation-delay: var(--step-delay, 0ms);
+    }
+
+    .steps-flow-marker {
+        position: relative;
+        display: grid;
+        width: 5rem;
+        height: 5rem;
+        place-items: center;
+        margin-bottom: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #0a0a0a;
+        color: #ffffff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        filter: none !important;
+        outline: 0 !important;
+        backdrop-filter: blur(16px);
+        transition: border-color 500ms ease, color 500ms ease, transform 500ms ease, box-shadow 500ms ease, background-color 500ms ease;
+    }
+
+    .steps-flow-marker::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: rgba(94, 165, 0, 0.05);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 500ms ease;
+    }
+
+    .steps-flow-number {
+        position: absolute;
+        top: -0.75rem;
+        right: -0.75rem;
+        display: grid;
+        width: 2rem;
+        height: 2rem;
+        place-items: center;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #111111;
+        color: #9ca3af;
+        font-size: 0.75rem;
+        font-weight: 700;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+        filter: none !important;
+        outline: 0 !important;
+        transition: border-color 500ms ease, color 500ms ease, box-shadow 500ms ease;
+    }
+
+    .steps-flow-item:hover .steps-flow-marker {
+        transform: translateY(-0.5rem);
+        border-color: rgba(94, 165, 0, 0.5);
+        background: #0a0a0a;
+        color: #5EA500;
+        box-shadow: 0 0 30px rgba(94, 165, 0, 0.3);
+        filter: none !important;
+        outline: 0 !important;
+    }
+
+    .steps-flow-item:hover .steps-flow-marker::before {
+        opacity: 1;
+    }
+
+    .steps-flow-marker iconify-icon,
+    .steps-flow-item iconify-icon {
+        filter: none;
+        text-shadow: none;
+        transition: color 500ms ease;
+    }
+
+    .steps-flow-item:hover iconify-icon,
+    .steps-flow-item:hover .steps-flow-number,
+    .steps-flow-item:hover h3 {
+        color: #5EA500;
+    }
+
+    .steps-flow-item:hover .steps-flow-number {
+        border-color: rgba(94, 165, 0, 0.3);
+        background: #111111;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+        filter: none !important;
+    }
+
+    .steps-flow-item:last-child .steps-flow-marker {
+        border-color: rgba(94, 165, 0, 0.4);
+        color: #5EA500;
+        animation: pulse-box 3s ease-in-out infinite;
+    }
+
+    .steps-flow-item:last-child .steps-flow-marker::before {
+        opacity: 0.5;
+        background: rgba(94, 165, 0, 0.1);
+    }
+
+    .steps-flow-item:last-child .steps-flow-number {
+        border-color: rgba(94, 165, 0, 0.5);
+        color: #5EA500;
+        box-shadow: 0 0 10px rgba(94, 165, 0, 0.3);
+    }
+
+    .steps-flow-item:last-child h3 {
+        color: #5EA500;
+    }
+
+    .steps-flow-item:not(:last-child) .steps-flow-marker,
+    .steps-flow-item:not(:last-child):hover .steps-flow-marker {
+        box-shadow: none !important;
+        animation: none !important;
+        filter: none !important;
+    }
+
+    .steps-flow-item:not(:last-child) .steps-flow-marker::before,
+    .steps-flow-item:not(:last-child):hover .steps-flow-marker::before {
+        opacity: 0 !important;
+        background: transparent !important;
+        animation: none !important;
+    }
+
+    .steps-flow-item:not(:last-child) .steps-flow-number,
+    .steps-flow-item:not(:last-child):hover .steps-flow-number {
+        box-shadow: none !important;
+        filter: none !important;
+    }
+
+    .steps-flow-item:not(:last-child) iconify-icon {
+        filter: none !important;
+        text-shadow: none !important;
+    }
+
+    .why-card {
+        border-color: rgba(255, 255, 255, 0.12);
+        background: #0a0a0a;
+        box-shadow: none;
+        transition: border-color 300ms ease, transform 300ms ease;
+    }
+
+    .why-card:hover {
+        border-color: rgba(255, 255, 255, 0.18);
+        box-shadow: none;
+    }
+
+    .payroll-routine-visual {
+        background: #0a0a0a !important;
+        background-image: none !important;
+        box-shadow: none !important;
+    }
+
+    .payroll-routine-visual::before,
+    .payroll-routine-visual::after,
+    .payroll-routine-visual .routine-panel::before,
+    .payroll-routine-visual .routine-panel::after,
+    .payroll-routine-visual .automation-core::before,
+    .payroll-routine-visual .automation-core::after {
+        content: none !important;
+        display: none !important;
+    }
+
+    .payroll-routine-visual .routine-panel,
+    .payroll-routine-visual .automation-core,
+    .payroll-routine-visual .routine-card {
+        background-image: none !important;
+        box-shadow: none !important;
+    }
+
+    .payroll-routine-visual .routine-stat-part {
+        display: block;
+    }
+
+    .payroll-routine-visual .routine-stat-row[data-layout="inline"] {
+        white-space: nowrap;
+    }
+
+    .payroll-routine-visual .routine-stat-row[data-layout="inline"] .routine-stat-part {
+        display: inline;
+    }
+
+    .payroll-routine-visual .routine-stat-row[data-layout="inline"] .routine-stat-part + .routine-stat-part {
+        margin-left: 0.25rem;
+    }
+
+    .payroll-routine-visual .routine-layout-grid,
+    .payroll-routine-visual[data-routine-layout="stacked"] .routine-layout-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    .payroll-routine-visual[data-routine-layout="wide"] .routine-layout-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        align-items: stretch;
+    }
+
+    .payroll-routine-visual[data-routine-layout="stacked"] [data-routine-stat-group][data-layout="stacked"] {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero-console,
+    .hero-console > .relative {
+        background-image: none !important;
+    }
+
+    .hero-console {
+        background-color: #0C0C0C !important;
+    }
+
+    .hero-run-card {
+        background-color: #050505 !important;
+        background-image: none !important;
+    }
+
+    @media (min-width: 1024px) and (max-width: 1200px) {
+        main > section:first-of-type .max-w-3xl {
+            max-width: min(48vw, 30rem);
+        }
+
+        main > section:first-of-type .hero-console {
+            width: min(42vw, 500px);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        main > section:first-of-type .hero-console {
+            right: max(var(--garna-container-gutter), calc((100vw - var(--garna-container-content-max)) / 2));
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+        main > section:first-of-type {
+            min-height: auto !important;
+            padding-top: 10rem !important;
+            padding-bottom: 5rem !important;
+        }
+
+        main > section:first-of-type .max-w-3xl {
+            max-width: min(42rem, 100%) !important;
+        }
+
+        main > section:first-of-type .hero-console {
+            position: relative !important;
+            top: auto !important;
+            right: auto !important;
+            width: 100% !important;
+            max-width: none !important;
+            margin: 3rem auto 0 !important;
+            transform: none !important;
+        }
+    }
+
+    .platform-card.glass-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .platform-card.glass-card ul {
+        grid-template-rows: repeat(3, minmax(6.75rem, 1fr));
+    }
+
+    .platform-card.glass-card li {
+        min-height: 0;
+    }
+
+    @media (min-width: 768px) {
+        .platform-card.glass-card ul {
+            grid-template-rows: repeat(3, minmax(7.75rem, 1fr));
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .platform-card.glass-card ul {
+            grid-template-rows: repeat(3, minmax(7.25rem, 1fr));
+        }
+    }
+
+    .hero-console::before,
+    .hero-console::after,
+    .hero-console > .relative::before,
+    .hero-console > .relative::after {
+        content: none !important;
+        display: none !important;
+    }
+
+    @media (max-width: 767px) {
+        main > section:first-of-type .hero-console {
+            width: 100% !important;
+            max-width: none !important;
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+
+        .steps-flow {
+            padding: 0;
+        }
+
+        .steps-flow-item {
+            min-height: 10rem;
+            padding-bottom: 1.75rem;
+        }
+
+        .steps-flow-marker {
+            margin-bottom: 1.25rem;
+        }
+    }
+</style>

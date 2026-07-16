@@ -83,39 +83,7 @@
         
         <div class="block sm:hidden w-16 h-12 relative">
   <canvas style="display: block; box-sizing: border-box; height: 48px; width: 64px;" width="96" height="72" class="h-full" id="mobilePendingChartCanvas"></canvas>
-  <script is:inline>
-    setTimeout(() => {
-                    const canvas = document.getElementById('mobilePendingChartCanvas');
-                    if (canvas && typeof Chart !== 'undefined') {
-                        new Chart(canvas.getContext('2d'), {
-                            type: 'bar',
-                            data: {
-                                labels: ['1', '2', '3', '4', '5'],
-                                datasets: [{
-                                    data: [3, 5, 4, 8, 12],
-                                    backgroundColor: '#ef4444',
-                                    borderRadius: 2
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: { 
-                                    legend: { display: false }, 
-                                    tooltip: { enabled: false } 
-                                },
-                                scales: {
-                                    x: { display: false },
-                                    y: { display: false, min: 0 }
-                                },
-                                layout: {
-                                    padding: 0
-                                }
-                            }
-                        });
-                    }
-                }, 300);
-  </script>
+  
 </div>
     </div>
 </div>

@@ -1,4 +1,31 @@
-<script>
+<script is:inline>
+                    (function () {
+                        const el = document.querySelector('[data-element-id="aura-emkb8ctmf2ri4n2da"]');
+                        if (!el) return;
+                        const obs = new IntersectionObserver(e => {
+                            e.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    el.querySelectorAll('.num-anim').forEach(n => {
+                                        const t = parseFloat(n.getAttribute('data-val'));
+                                        const d = parseInt(n.getAttribute('data-dec'));
+                                        const dur = 1500;
+                                        const start = performance.now();
+                                        const step = (now) => {
+                                            const p = Math.min((now - start) / dur, 1);
+                                            const v = t * (1 - Math.pow(1 - p, 3));
+                                            n.textContent = v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+                                            if (p < 1) requestAnimationFrame(step);
+                                        };
+                                        requestAnimationFrame(step);
+                                    });
+                                    obs.disconnect();
+                                }
+                            });
+                        }, { threshold: 0.1 });
+                        obs.observe(el);
+                    })();
+                </script>
+<script is:inline>
         lucide.createIcons({
             attrs: {
                 'stroke-width': 1.5

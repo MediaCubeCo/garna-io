@@ -8,13 +8,8 @@ import { pageFinalCtas } from '../../content/page-final-ctas';
 import { pageHeroes } from '../../content/page-heroes';
 import { pageShells } from '../../content/page-shells';
 import type { FAQItem } from '../../types/faq-section';
-import rawContentHtml from '../../content/site-pages/payroll-solution-new.html?raw';
-import { splitLegacyPageSections } from '../../utils/legacy-html';
-
-const { contentHtml } = splitLegacyPageSections(rawContentHtml);
-const faqSectionMarker = '<section class="border-white/5 border-t pt-16 pr-6 pb-16 pl-6 lg:pt-32 lg:pb-32">';
-const faqSectionIndex = contentHtml.indexOf(faqSectionMarker);
-const legacyContentHtml = faqSectionIndex >= 0 ? contentHtml.slice(0, faqSectionIndex) : contentHtml;
+import PayrollSolutionSections from './payroll/PayrollSolutionSections.astro';
+import PayrollSolutionInteractions from './payroll/PayrollSolutionInteractions.astro';
 
 const homeFaqItems = [
 	{
@@ -90,7 +85,7 @@ const homeFaqItems = [
 
 <BaseLayout shell={pageShells.home}>
 	<HeroSection {...pageHeroes.home} />
-	<Fragment set:html={legacyContentHtml} />
+	<PayrollSolutionSections />
 	<FAQSection
 		title={{ text: 'FAQ on Payroll Solutions', translateKey: 'faq.title' }}
 		items={homeFaqItems}
@@ -111,6 +106,7 @@ const homeFaqItems = [
 		});
 	</script>
 	<Fragment slot="widgets">
+		<PayrollSolutionInteractions />
 		<GarnaBookingWidget
 			trackingSource="home"
 			trackingPage="home"

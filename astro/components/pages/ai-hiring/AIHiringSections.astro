@@ -49,51 +49,7 @@
                     <div
                         class="overflow-hidden flex flex-col transition-colors duration-500 bg-[#050505] w-full h-56 border-white/5 border rounded-xl mt-auto pt-5 pr-5 pb-5 pl-5 relative shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]">
 
-                        <style is:inline>
-                            @keyframes dash-flow {
-                                from {
-                                    stroke-dashoffset: 14;
-                                }
-
-                                to {
-                                    stroke-dashoffset: 0;
-                                }
-                            }
-
-                            .animate-dash-flow {
-                                animation: dash-flow 1s linear infinite;
-                            }
-
-                            @keyframes subtle-float {
-
-                                0%,
-                                100% {
-                                    transform: translateY(0);
-                                }
-
-                                50% {
-                                    transform: translateY(-4px);
-                                }
-                            }
-
-                            .animate-subtle-float {
-                                animation: subtle-float 4s ease-in-out infinite;
-                            }
-
-                            @keyframes shimmer {
-                                0% {
-                                    transform: translateX(-100%);
-                                }
-
-                                100% {
-                                    transform: translateX(100%);
-                                }
-                            }
-
-                            .animate-shimmer {
-                                animation: shimmer 2.5s infinite;
-                            }
-                        </style>
+                        
 
                         <!-- Background glow that brightens on hover -->
                         <div
@@ -319,17 +275,7 @@
 
                     <div
                         class="overflow-hidden flex flex-col transition-colors duration-500 group bg-[#050505] w-full h-56 border-white/5 border rounded-xl mt-auto pt-5 pr-5 pb-5 pl-5 relative shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]">
-                        <style is:inline>
-                            @keyframes ai-scan {
-                                0% {
-                                    transform: translateY(-100%);
-                                }
-
-                                100% {
-                                    transform: translateY(300%);
-                                }
-                            }
-                        </style>
+                        
 
                         <div class="absolute inset-0 pointer-events-none w-full h-full overflow-hidden rounded-xl z-0">
                             <div class="w-full h-32 bg-gradient-to-b from-transparent via-[#5EA500]/10 to-transparent opacity-60"
@@ -414,31 +360,7 @@
     <section class="lg:pt-32 lg:pb-32 pt-16 pb-16 relative">
         <div class="z-0 -top-px bg-dark-900 absolute"></div>
         <div class="z-10 font-manrope max-w-7xl mr-auto ml-auto pr-6 pl-6 relative">
-            <style class="">
-                @keyframes flow-line {
-                    from {
-                        stroke-dashoffset: 20;
-                    }
-
-                    to {
-                        stroke-dashoffset: 0;
-                    }
-                }
-
-                @keyframes pulse-box {
-
-                    0%,
-                    100% {
-                        transform: scale(1);
-                        box-shadow: 0 0 20px rgba(94, 165, 0, 0.2);
-                    }
-
-                    50% {
-                        transform: scale(1.05);
-                        box-shadow: 0 0 40px rgba(94, 165, 0, 0.5);
-                    }
-                }
-            </style>
+            
 
             <div class="flex flex-col md:items-center lg:mb-16 text-center mb-16 gap-x-y-6 gap-y-6">
                 <h2
@@ -608,50 +530,7 @@
     <!-- Job Board -->
     <section class="lg:pt-32 lg:pb-32 bg-[#050505] pt-16 pb-16">
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
-            <style is:inline>
-                .candidate-stack {
-                    isolation: isolate;
-                }
-
-                .candidate-stack > img {
-                    border-color: #0a0a0a !important;
-                    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
-                }
-
-                .candidate-stack > * {
-                    position: relative;
-                }
-
-                .candidate-stack > *:nth-child(1) {
-                    z-index: 3;
-                }
-
-                .candidate-stack > *:nth-child(2) {
-                    z-index: 2;
-                }
-
-                .candidate-stack > *:nth-child(3) {
-                    z-index: 1;
-                }
-
-                .candidate-more {
-                    width: 2rem !important;
-                    height: 2rem !important;
-                    border: 1px solid rgba(255, 255, 255, 0.18) !important;
-                    background: #111111 !important;
-                    color: rgba(255, 255, 255, 0.82) !important;
-                    box-shadow: 0 0 0 1px rgba(94, 165, 0, 0.12), 0 12px 28px rgba(0, 0, 0, 0.28);
-                    font-size: 0.75rem !important;
-                    font-weight: 600 !important;
-                    letter-spacing: 0;
-                }
-
-                .group:hover .candidate-more {
-                    border-color: rgba(94, 165, 0, 0.42) !important;
-                    color: #5EA500 !important;
-                    box-shadow: 0 0 0 1px rgba(94, 165, 0, 0.18), 0 0 18px rgba(94, 165, 0, 0.18);
-                }
-            </style>
+            
             <div class="lg:mb-20 text-center mb-16">
                 <h2
                     class="md:text-4xl lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope max-w-4xl mr-auto mb-6 ml-auto"
@@ -1271,14 +1150,7 @@
                         <!-- Background Image - Grayscale and Blended -->
                         <div class="bg-center transition-all duration-500 md:h-[450px] lg:h-auto opacity-30 bg-cover absolute top-0 right-0 bottom-0 left-0 grayscale"
                             style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&amp;q=80')">
-                            <style class="">
-                                @media (max-width: 767px) {
-                                    div:has(> [data-element-id="aura-emm2grdlc2bophqw1"]) {
-                                        top: 120px !important;
-                                        bottom: 110px !important;
-                                    }
-                                }
-                            </style>
+                            
                         </div>
 
                         <!-- Transfer Path Visualization - Full Color -->
@@ -1343,34 +1215,7 @@
                             </div>
                         </div>
 
-                        <style is:inline>
-                            @keyframes float-up-fade {
-                                0% {
-                                    opacity: 0;
-                                    transform: translateY(4px) scale(0.9);
-                                }
-
-                                10% {
-                                    opacity: 1;
-                                    transform: translateY(0) scale(1);
-                                }
-
-                                80% {
-                                    opacity: 1;
-                                    transform: translateY(0) scale(1);
-                                }
-
-                                90% {
-                                    opacity: 0;
-                                    transform: translateY(-2px) scale(0.95);
-                                }
-
-                                100% {
-                                    opacity: 0;
-                                    transform: translateY(-2px) scale(0.95);
-                                }
-                            }
-                        </style>
+                        
                     </div>
 
                     <!-- Header Content -->
@@ -1617,3 +1462,165 @@
             </div>
         </div>
     </section>
+
+<style is:global>
+                            @keyframes dash-flow {
+                                from {
+                                    stroke-dashoffset: 14;
+                                }
+
+                                to {
+                                    stroke-dashoffset: 0;
+                                }
+                            }
+
+                            .animate-dash-flow {
+                                animation: dash-flow 1s linear infinite;
+                            }
+
+                            @keyframes subtle-float {
+
+                                0%,
+                                100% {
+                                    transform: translateY(0);
+                                }
+
+                                50% {
+                                    transform: translateY(-4px);
+                                }
+                            }
+
+                            .animate-subtle-float {
+                                animation: subtle-float 4s ease-in-out infinite;
+                            }
+
+                            @keyframes shimmer {
+                                0% {
+                                    transform: translateX(-100%);
+                                }
+
+                                100% {
+                                    transform: translateX(100%);
+                                }
+                            }
+
+                            .animate-shimmer {
+                                animation: shimmer 2.5s infinite;
+                            }
+                        </style>
+<style is:global>
+                            @keyframes ai-scan {
+                                0% {
+                                    transform: translateY(-100%);
+                                }
+
+                                100% {
+                                    transform: translateY(300%);
+                                }
+                            }
+                        </style>
+<style is:global>
+                @keyframes flow-line {
+                    from {
+                        stroke-dashoffset: 20;
+                    }
+
+                    to {
+                        stroke-dashoffset: 0;
+                    }
+                }
+
+                @keyframes pulse-box {
+
+                    0%,
+                    100% {
+                        transform: scale(1);
+                        box-shadow: 0 0 20px rgba(94, 165, 0, 0.2);
+                    }
+
+                    50% {
+                        transform: scale(1.05);
+                        box-shadow: 0 0 40px rgba(94, 165, 0, 0.5);
+                    }
+                }
+            </style>
+<style is:global>
+                .candidate-stack {
+                    isolation: isolate;
+                }
+
+                .candidate-stack > img {
+                    border-color: #0a0a0a !important;
+                    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+                }
+
+                .candidate-stack > * {
+                    position: relative;
+                }
+
+                .candidate-stack > *:nth-child(1) {
+                    z-index: 3;
+                }
+
+                .candidate-stack > *:nth-child(2) {
+                    z-index: 2;
+                }
+
+                .candidate-stack > *:nth-child(3) {
+                    z-index: 1;
+                }
+
+                .candidate-more {
+                    width: 2rem !important;
+                    height: 2rem !important;
+                    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+                    background: #111111 !important;
+                    color: rgba(255, 255, 255, 0.82) !important;
+                    box-shadow: 0 0 0 1px rgba(94, 165, 0, 0.12), 0 12px 28px rgba(0, 0, 0, 0.28);
+                    font-size: 0.75rem !important;
+                    font-weight: 600 !important;
+                    letter-spacing: 0;
+                }
+
+                .group:hover .candidate-more {
+                    border-color: rgba(94, 165, 0, 0.42) !important;
+                    color: #5EA500 !important;
+                    box-shadow: 0 0 0 1px rgba(94, 165, 0, 0.18), 0 0 18px rgba(94, 165, 0, 0.18);
+                }
+            </style>
+<style is:global>
+                                @media (max-width: 767px) {
+                                    div:has(> [data-element-id="aura-emm2grdlc2bophqw1"]) {
+                                        top: 120px !important;
+                                        bottom: 110px !important;
+                                    }
+                                }
+                            </style>
+<style is:global>
+                            @keyframes float-up-fade {
+                                0% {
+                                    opacity: 0;
+                                    transform: translateY(4px) scale(0.9);
+                                }
+
+                                10% {
+                                    opacity: 1;
+                                    transform: translateY(0) scale(1);
+                                }
+
+                                80% {
+                                    opacity: 1;
+                                    transform: translateY(0) scale(1);
+                                }
+
+                                90% {
+                                    opacity: 0;
+                                    transform: translateY(-2px) scale(0.95);
+                                }
+
+                                100% {
+                                    opacity: 0;
+                                    transform: translateY(-2px) scale(0.95);
+                                }
+                            }
+                        </style>

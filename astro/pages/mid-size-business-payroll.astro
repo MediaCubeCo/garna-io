@@ -8,13 +8,8 @@ import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import rawContentHtml from '../content/site-pages/mid-size.html?raw';
-import scriptsHtml from '../content/site-scripts/mid-size.html?raw';
-import { splitLegacyPageSections } from '../utils/legacy-html';
-
-const { contentHtml } = splitLegacyPageSections(rawContentHtml, {
-	heroVisualMarker: '<!-- Dashboard Mockup with Dynamic Sizing -->',
-});
+import MidSizeSections from '../components/pages/payroll/MidSizeSections.astro';
+import PayrollInteractions from '../components/pages/payroll/PayrollInteractions.astro';
 
 const midSizeFaqItems = [
 	{
@@ -62,7 +57,7 @@ const midSizeFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.contractorOfRecord} scriptsHtml={scriptsHtml}>
+<BaseLayout shell={pageShells.contractorOfRecord}>
 	<HeroSection {...pageHeroes.midSize}>
 		<div class="relative mx-auto mt-14 w-full max-w-4xl px-4 md:mt-16 md:px-0">
 			<div class="mid-size-hero-visual overflow-hidden rounded-2xl border border-white/10 bg-[#101010] shadow-2xl shadow-black/40">
@@ -199,7 +194,7 @@ const midSizeFaqItems = [
 			</div>
 		</div>
 	</HeroSection>
-	<Fragment set:html={contentHtml} />
+	<MidSizeSections />
 	<FAQSection
 		title={{ text: 'Payroll FAQs for Growing Businesses', translateKey: 'midSizeFaq.title' }}
 		items={midSizeFaqItems}
@@ -282,6 +277,7 @@ const midSizeFaqItems = [
 		})();
 	</script>
 	<Fragment slot="widgets">
+		<PayrollInteractions />
 		<GarnaBookingWidget
 			trackingSource="mid-size"
 			trackingPage="mid-size"

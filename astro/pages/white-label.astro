@@ -9,6 +9,7 @@ import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
 import WhiteLabelSections from '../components/pages/white-label/WhiteLabelSections.astro';
+import WhiteLabelInteractions from '../components/pages/white-label/WhiteLabelInteractions.astro';
 import WhiteLabelDashboardVisual from '../components/visuals/WhiteLabelDashboardVisual.astro';
 
 const whiteLabelFaqItems = [
@@ -71,6 +72,7 @@ const whiteLabelFaqItems = [
 	/>
 	<FinalCTASection {...pageFinalCtas.whiteLabel} />
 	<Fragment slot="widgets">
+		<WhiteLabelInteractions />
 		<GarnaBookingWidget
 			trackingSource="white-label"
 			trackingPage="white-label"

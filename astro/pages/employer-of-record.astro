@@ -6,13 +6,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import rawContentHtml from '../content/site-pages/eor.html?raw';
-import scriptsHtml from '../content/site-scripts/eor.html?raw';
-import { splitLegacyPageSections } from '../utils/legacy-html';
-
-const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
-	heroVisualMarker: '<!-- Dashboard Mockup with Dynamic Sizing -->',
-});
+import EmployerOfRecordSections from '../components/pages/payroll/EmployerOfRecordSections.astro';
+import EmployerOfRecordInteractions from '../components/pages/payroll/EmployerOfRecordInteractions.astro';
+import EmployerOfRecordVisual from '../components/visuals/EmployerOfRecordVisual.astro';
 
 const eorFaqItems = [
 	{
@@ -52,11 +48,11 @@ const eorFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.eor} scriptsHtml={scriptsHtml}>
+<BaseLayout shell={pageShells.eor}>
 	<HeroSection {...pageHeroes.eor}>
-		<Fragment set:html={heroVisualHtml} />
+		<EmployerOfRecordVisual />
 	</HeroSection>
-	<Fragment set:html={contentHtml} />
+	<EmployerOfRecordSections />
 	<FAQSection
 		kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
 		title={{ text: 'FAQ on Employer of Record', translateKey: 'faq.title' }}
@@ -66,6 +62,7 @@ const eorFaqItems = [
 		containerClass="garna-container"
 	/>
 	<Fragment slot="widgets">
+		<EmployerOfRecordInteractions />
 		<GarnaBookingWidget
 			trackingSource="eor"
 			trackingPage="eor"

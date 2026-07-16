@@ -7,9 +7,9 @@ import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import rawContentHtml from '../content/site-pages/payroll-small-business.html?raw';
-import heroVisualHtml from '../content/site-hero-visuals/payroll-small-business.html?raw';
-import scriptsHtml from '../content/site-scripts/payroll-small-business.html?raw';
+import SmallBusinessSections from '../components/pages/payroll/SmallBusinessSections.astro';
+import SmallBusinessInteractions from '../components/pages/payroll/SmallBusinessInteractions.astro';
+import SmallBusinessPayrollVisual from '../components/visuals/SmallBusinessPayrollVisual.astro';
 
 const payrollSmallBusinessFaqItems = [
 	{
@@ -50,11 +50,11 @@ const payrollSmallBusinessFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.payrollSmallBusiness} scriptsHtml={scriptsHtml}>
+<BaseLayout shell={pageShells.payrollSmallBusiness}>
 	<HeroSection {...pageHeroes.payrollSmallBusiness}>
-		<Fragment set:html={heroVisualHtml} />
+		<SmallBusinessPayrollVisual />
 	</HeroSection>
-	<Fragment set:html={rawContentHtml} />
+	<SmallBusinessSections />
 	<FAQSection
 		kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
 		title={{ text: 'FAQ on Small Business Payroll', translateKey: 'faq.title' }}
@@ -64,4 +64,5 @@ const payrollSmallBusinessFaqItems = [
 		accordionClass="mx-auto w-full space-y-4 xl:max-w-3xl"
 	/>
 	<FinalCTASection {...pageFinalCtas.payrollSmallBusiness} />
+	<Fragment slot="widgets"><SmallBusinessInteractions /></Fragment>
 </BaseLayout>

@@ -22,42 +22,7 @@
         </div>
         <div class="text-lg text-gray-500 font-manrope"><span data-translate="stats.processing">faster payout processing</span></div>
     </div>
-    <script is:inline>
-        (function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const el = entry.target;
-                        const target = parseInt(el.getAttribute('data-target'));
-                        const suffix = el.getAttribute('data-suffix') || '';
-                        const duration = 2500;
-                        const startTime = performance.now();
-                        
-                        function update(currentTime) {
-                            const elapsed = currentTime - startTime;
-                            const progress = Math.min(elapsed / duration, 1);
-                            // Ease out quart
-                            const ease = 1 - Math.pow(1 - progress, 4);
-                            
-                            const current = Math.floor(target * ease);
-                            el.textContent = current + suffix;
-                            
-                            if (progress < 1) {
-                                requestAnimationFrame(update);
-                            } else {
-                                el.textContent = target + suffix;
-                            }
-                        }
-                        
-                        requestAnimationFrame(update);
-                        observer.unobserve(el);
-                    }
-                });
-            }, { threshold: 0.2 });
-            
-            document.querySelectorAll('.garna-stat-anim').forEach(el => observer.observe(el));
-        })();
-    </script>
+    
 </div>
     </section><section class="lg:pt-32 lg:pb-32 pt-16 pb-16">
         <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6 flex flex-col items-center">
@@ -219,12 +184,7 @@
 
             <!-- App Layout with Sidebar and Main Area -->
             <div class="flex flex-1 overflow-hidden relative">
-                <style class="">
-                    /* Remove the float animation from the parent container */
-                    div:has(> [data-element-id="aura-emnwbilso4wrsbs1a"]) {
-                        animation: none !important;
-                    }
-                </style>
+                
 
                 <!-- Sidebar Navigation -->
                 <div class="flex flex-col shrink-0 sm:w-16 bg-[#050505]/80 w-14 z-10 border-white/5 border-r pt-5 pb-5 gap-x-6 gap-y-4 items-center">
@@ -451,76 +411,8 @@
         </div>
 
         <!-- Script for Chart.js Injection -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script is:inline>
-            setTimeout(() => {
-            const canvasEl = document.getElementById('txChartCanvas');
-            if (canvasEl && typeof Chart !== 'undefined') {
-                const ctx = canvasEl.getContext('2d');
-                
-                // Ensure chart uses container height perfectly
-                const gradient = ctx.createLinearGradient(0, 0, 0, 200);
-                gradient.addColorStop(0, 'rgba(94, 165, 0, 0.4)');
-                gradient.addColorStop(1, 'rgba(94, 165, 0, 0.0)');
-
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'],
-                        datasets: [{
-                            data: [3.2, 3.8, 3.5, 4.5, 4.2, 5.8, 5.2, 6.5, 6.1, 7.8, 7.2, 8.5, 8.1, 8.42],
-                            borderColor: '#5EA500',
-                            borderWidth: 2,
-                            backgroundColor: gradient,
-                            fill: true,
-                            tension: 0.4,
-                            pointRadius: 0,
-                            pointHoverRadius: 4,
-                            pointHoverBackgroundColor: '#ffffff',
-                            pointHoverBorderColor: '#5EA500'
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: false },
-                            tooltip: {
-                                enabled: true,
-                                backgroundColor: '#111111',
-                                titleColor: '#ffffff',
-                                bodyColor: '#5EA500',
-                                borderColor: 'rgba(255,255,255,0.1)',
-                                borderWidth: 1,
-                                displayColors: false,
-                                callbacks: {
-                                    label: function(context) {
-                                        return '$' + context.parsed.y + 'M';
-                                    },
-                                    title: function() { return ''; }
-                                }
-                            }
-                        },
-                        scales: {
-                            x: { 
-                                display: false,
-                                grid: { display: false }
-                            },
-                            y: { 
-                                display: false, 
-                                min: 2,
-                                grid: { display: false }
-                            }
-                        },
-                        interaction: {
-                            mode: 'index',
-                            intersect: false,
-                        }
-                    }
-                });
-            }
-        }, 100);
-        </script>
+        
+        
     </div>
 </div>
     </div>
@@ -574,16 +466,7 @@
 
         <!-- Part 1: Benefits Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full mr-auto ml-auto gap-x-6 gap-y-6">
-    <style is:inline>
-        @keyframes revealCard {
-            0% { opacity: 0; transform: translateY(40px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        .reveal-card {
-            opacity: 0;
-            animation: revealCard 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
-    </style>
+    
     <!-- Fast -->
     <div class="reveal-card group flex flex-col hover:border-[#3b82f6]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] bg-[#0a0a0a] w-full h-full border-[#ffffff]/5 border rounded-2xl pt-6 pr-6 pb-6 pl-6 shadow-sm gap-x-4 gap-y-4 items-start" style="animation-delay: 100ms;">
         <div class="w-12 h-12 shrink-0 rounded-xl bg-[#3b82f6]/5 flex items-center justify-center border border-[#3b82f6]/20 text-[#3b82f6] text-xl font-medium font-manrope group-hover:scale-110 group-hover:bg-[#3b82f6]/10 transition-all duration-500">
@@ -956,3 +839,20 @@
     
 
     <!-- Social Proof -->
+
+<style is:global>
+                    /* Remove the float animation from the parent container */
+                    div:has(> [data-element-id="aura-emnwbilso4wrsbs1a"]) {
+                        animation: none !important;
+                    }
+                </style>
+<style is:global>
+        @keyframes revealCard {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .reveal-card {
+            opacity: 0;
+            animation: revealCard 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+    </style>

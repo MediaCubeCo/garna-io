@@ -38,47 +38,7 @@
                             $
                             <span class="count-up">0</span>
                             <span class="text-2xl text-gray-500">.00</span>
-                            <script is:inline>
-                                (function () {
-                                    const el = document.currentScript.parentElement.querySelector('.count-up');
-                                    const target = 4250;
-                                    const duration = 2000;
-
-                                    const animate = () => {
-                                        let start = null;
-                                        const step = (timestamp) => {
-                                            if (!start) start = timestamp;
-                                            const progress = Math.min((timestamp - start) / duration, 1);
-                                            const ease = 1 - Math.pow(1 - progress, 4); // Quartic ease out
-                                            el.innerText = Math.floor(ease * target).toLocaleString();
-                                            if (progress < 1) {
-                                                window.requestAnimationFrame(step);
-                                            } else {
-                                                el.innerText = '4,250';
-                                                // Restart animation after 2 seconds
-                                                setTimeout(() => {
-                                                    window.requestAnimationFrame(animate);
-                                                }, 2000);
-                                            }
-                                        };
-                                        window.requestAnimationFrame(step);
-                                    };
-
-                                    const observer = new IntersectionObserver(
-                                        (entries) => {
-                                            entries.forEach((entry) => {
-                                                if (entry.isIntersecting) {
-                                                    animate();
-                                                    observer.disconnect();
-                                                }
-                                            });
-                                        },
-                                        { threshold: 0.1 }
-                                    );
-
-                                    observer.observe(el);
-                                })();
-                            </script>
+                            
                         </div>
                     </div>
 
