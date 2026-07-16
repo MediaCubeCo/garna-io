@@ -18,13 +18,17 @@ async function walk(directory: string): Promise<string[]> {
 }
 
 describe('native Astro architecture', () => {
-	it('keeps all 23 static entrypoints', async () => {
+	it('keeps all 20 public and Worker-template entrypoints', async () => {
 		const pages = (await walk(path.join(root, 'astro/pages'))).filter((file) => file.endsWith('.astro'));
-		expect(pages).toHaveLength(23);
+		expect(pages).toHaveLength(20);
+		expect(pages.some((file) => file.includes(`${path.sep}pages${path.sep}en${path.sep}`))).toBe(false);
 	});
 
 	it('does not reintroduce legacy runtime composition', async () => {
 		expect(await getArchitectureViolations()).toEqual([]);
+		const blogAdmin = await readFile(path.join(root, 'src/blog/admin.ts'), 'utf8');
+		expect(blogAdmin).not.toContain('/admin/blog/design-preview');
+		expect(blogAdmin).not.toContain('Legacy designs');
 	});
 
 	it('keeps EN, ES, PT and RU modules complete for every localized page family', async () => {
