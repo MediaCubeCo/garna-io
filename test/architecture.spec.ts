@@ -46,12 +46,37 @@ describe('native Astro architecture', () => {
 
 	it('keeps homepage sections outside the embedded API code visual', async () => {
 		const source = await readFile(
-			path.join(root, 'astro/components/sections/payroll/PayrollSolutionSections.astro'),
+			path.join(root, 'astro/components/sections/payroll/home/EmbeddedPayrollInfrastructureSection.astro'),
 			'utf8',
 		);
 
 		expect(source).toContain('<span class="text-[#61afef]">create</span>(&#123;');
 		expect(source).toContain('<div class="whitespace-nowrap">&#125;);</div>');
 		expect(source).not.toContain('<span class="text-[#61afef]">create</span>({');
+	});
+
+	it('composes the homepage from explicit reusable sections in visual order', async () => {
+		const source = await readFile(path.join(root, 'astro/pages/index.astro'), 'utf8');
+		const sectionTags = [
+			'<HeroSection',
+			'<PayrollStatsSection',
+			'<ManageGlobalPayrollSection',
+			'<HireEmployeesWorldwideSection',
+			'<ContractorPaymentsSection',
+			'<EffectivePayrollSection',
+			'<DeferredContractorPaymentsSection',
+			'<EmbeddedPayrollInfrastructureSection',
+			'<StartPayingGloballySection',
+			'<WhyCompaniesChooseGarnaSection',
+			'<PayrollComparisonSection',
+			'<TrustedByBuildersSection',
+			'<FAQSection',
+			'<FinalCTASection',
+		];
+		const positions = sectionTags.map((tag) => source.indexOf(tag));
+
+		expect(positions.every((position) => position >= 0)).toBe(true);
+		expect(positions).toEqual([...positions].sort((left, right) => left - right));
+		expect(source).not.toContain('PayrollSolutionSections');
 	});
 });

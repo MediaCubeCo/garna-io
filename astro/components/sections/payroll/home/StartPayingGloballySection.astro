@@ -1,0 +1,266 @@
+<section class="pt-16 pb-16 lg:pt-32 lg:pb-32" id="get-started">
+  <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+
+  <!-- Header -->
+  <div class="lg:mb-12 text-center max-w-5xl mr-auto mb-10 ml-auto">
+    <h2 class="lg:text-5xl text-3xl md:text-4xl font-normal text-white tracking-tight font-manrope mb-6">Start Paying
+      Globally</h2>
+    <p class="text-lg md:text-xl font-thin text-gray-400 font-manrope">From quick registration and talent’s search to
+      your first payout. Everything is clear and completely under your control in a few simple steps</p>
+  </div>
+
+  <!-- Tab Switcher -->
+  <div class="flex justify-center mb-16 relative z-20">
+    <div class="inline-flex flex-col sm:flex-row gap-1 bg-[#0A0A0A] border-white/5 border rounded-xl pt-1.5 pr-1.5 pb-1.5 pl-1.5 shadow-lg gap-x-1 gap-y-1">
+      <button onclick="switchFlow('cor'); setTimeout(() =&gt; { this.className='transition-all sm:w-auto sm:mb-0 text-sm text-white font-light bg-[#5EA500] w-full rounded-lg px-6 py-2.5 shadow-md'; document.getElementById('tab-eor').className='hover:text-white focus:text-white active:text-white transition-all text-sm text-gray-400 font-light rounded-lg px-6 py-2.5 w-full sm:w-auto'; }, 0)" class="transition-all sm:w-auto sm:mb-0 text-sm text-white font-light bg-[#5EA500] w-full rounded-lg px-6 py-2.5 shadow-md" id="tab-cor">Contractor of Record</button>
+      <button onclick="switchFlow('eor'); setTimeout(() =&gt; { this.className='transition-all sm:w-auto sm:mb-0 text-sm text-white font-light bg-[#5EA500] w-full rounded-lg px-6 py-2.5 shadow-md'; document.getElementById('tab-cor').className='hover:text-white focus:text-white active:text-white transition-all text-sm text-gray-400 font-light rounded-lg px-6 py-2.5 w-full sm:w-auto'; }, 0)" class="hover:text-white focus:text-white active:text-white transition-all text-sm text-gray-400 font-light rounded-lg px-6 py-2.5 w-full sm:w-auto" id="tab-eor">Employer of Record</button>
+    </div>
+  </div>
+
+  <!-- Flow: Contractor of Record -->
+  <div class="grid lg:grid-cols-2 gap-x-16 gap-y-16 items-center transition-opacity duration-500 block" id="flow-cor">
+
+    <!-- Steps (CoR) -->
+    <div class="self-start z-0 relative space-y-10">
+      <div class="relative pl-14">
+        <div class="-bottom-11 w-px bg-white/10 -z-10 absolute top-11 left-5"></div>
+        <h3 class="text-2xl font-thin text-white tracking-tight font-manrope">
+          Set up your company profile</h3>
+        <div class="step-circle-cor flex transition-all duration-300 z-10 text-sm font-thin text-[#5EA500] bg-[#050505] w-10 h-10 border-[#5EA500] border rounded-full absolute top-1 left-0 shadow-[0_0_15px_rgba(94,165,0,0.3)] items-center justify-center font-sans">
+          1</div>
+        <p class="leading-relaxed text-base text-gray-500 font-thin font-manrope mt-3">Complete a quick verification
+          process and gain access to a full-featured payroll software solution</p>
+      </div>
+
+      <div class="pl-14 relative">
+        <div class="absolute left-5 top-11 -bottom-11 w-px bg-white/10 -z-10"></div>
+        <div class="step-circle-cor flex transition-all duration-300 z-10 text-sm font-thin text-[#5EA500] bg-[#050505] w-10 h-10 border-[#5EA500] border rounded-full absolute top-1 left-0 shadow-[0_0_15px_rgba(94,165,0,0.3)] items-center justify-center font-sans">
+          2</div>
+        <h3 class="text-2xl font-thin text-white tracking-tight font-manrope">
+          Add your team</h3>
+        <p class="leading-relaxed text-base text-gray-500 font-thin font-manrope mt-3">Import data for employees and
+          international contractors</p>
+      </div>
+
+      <div class="pl-14 relative">
+        <div class="-bottom-11 w-px bg-white/10 -z-10 absolute top-11 left-5"></div>
+        <div class="step-circle-cor flex transition-all duration-300 text-sm font-thin text-[#5EA500] bg-[#050505] border border-[#5EA500] shadow-[0_0_15px_rgba(94,165,0,0.3)] w-10 h-10 z-10 rounded-full absolute top-1 left-0 items-center justify-center font-sans">
+          3</div>
+        <h3 class="text-2xl font-thin text-white tracking-tight font-manrope">
+          Fund your account</h3>
+        <p class="leading-relaxed text-base text-gray-500 font-thin font-manrope mt-3">Fund your account at Garna via
+          SWIFT, SEPA, bank transfer in local currencies, PayPal, or use crypto assets for instant deposits</p>
+      </div>
+
+      <div class="pl-14 relative">
+        <div class="step-circle-cor flex transition-all duration-300 text-sm font-thin text-[#5EA500] bg-[#050505] border border-[#5EA500] shadow-[0_0_15px_rgba(94,165,0,0.3)] w-10 h-10 z-10 rounded-full absolute top-1 left-0 items-center justify-center font-sans">
+          4</div>
+        <h3 class="text-2xl font-thin text-white tracking-tight font-manrope">
+          Send payout</h3>
+        <p class="leading-relaxed text-base text-gray-500 font-thin font-manrope mt-3">Pay recipients in 150+ countries
+          with full compliance</p>
+      </div>
+    </div>
+
+    <!-- Panels (CoR) -->
+    <div class="w-full lg:h-full z-10 relative perspective-1000">
+      <!-- Static Panel 0: Profile (Consistent visual across all 4 steps without animation) -->
+      <div class="flex opacity-100 z-10 relative lg:absolute lg:top-0 lg:right-0 lg:bottom-0 lg:left-0 items-center">
+        <div class="w-full bg-[#131313] rounded-2xl border border-white/10 p-8 flex flex-col shadow-2xl">
+          <h3 class="text-xl text-center text-white font-semibold mb-6 tracking-tight font-sans" data-translate="legacy.visual.signUpInGarna">Sign up in Garna</h3>
+          <div class="space-y-4">
+            <div class="">
+              <label class="text-[11px] text-gray-500 mb-1.5 block font-sans font-thin" data-translate="legacy.visual.companyName">Company name</label>
+              <input type="text" value="Test Company Name" data-translate-value="legacy.visual.testCompanyName" class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-[#5EA500] transition-colors font-thin">
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="">
+                <label class="text-[11px] text-gray-500 mb-1.5 block font-sans font-thin" data-translate="legacy.visual.registrationNumber">Registration number</label>
+                <input type="text" value="HE123456" class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-[#5EA500] transition-colors font-thin">
+              </div>
+              <div class="">
+                <label class="text-[11px] text-gray-500 mb-1.5 block font-sans font-thin" data-translate="legacy.visual.dateOfRegistration">Date of registration</label>
+                <div class="relative">
+                  <input type="text" value="02.02.2022" class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-[#5EA500] pl-9 transition-colors font-thin">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar w-3.5 h-3.5 text-gray-500 absolute left-3 top-2.5">
+                    <path d="M8 2v4"></path>
+                    <path d="M16 2v4"></path>
+                    <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                    <path d="M3 10h18"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <label class="text-[11px] text-gray-500 mb-1.5 block font-sans font-thin" data-translate="legacy.visual.countryOfRegistration">Country of registration</label>
+              <div class="relative">
+                <div tabindex="0" class="flex cursor-pointer transition-colors text-xs text-gray-300 bg-[#1A1A1A] w-full border-transparent border rounded-lg pt-2 pr-3 pb-2 pl-3 items-center justify-between focus:border-[#5EA500] focus:outline-none">
+                  <span class="font-sans font-thin" data-translate="legacy.visual.cyprus">Cyprus</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-3.5 h-3.5 text-gray-500">
+                    <path d="m6 9 6 6 6-6"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <label class="text-[11px] text-gray-500 mb-1.5 block font-sans font-thin" data-translate="legacy.visual.email">Email</label>
+              <input type="email" value="admin@company.com" class="bg-[#1A1A1A] border border-transparent w-full rounded-lg px-3 py-2 text-xs text-gray-300 focus:outline-none focus:border-[#5EA500] transition-colors font-thin">
+            </div>
+            <button class="hover:bg-gray-200 transition-colors text-xs font-normal text-black font-sans bg-white w-full rounded-lg mt-4 py-2.5" data-translate="legacy.visual.next">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flow: Employer of Record -->
+  <div class="grid lg:grid-cols-2 gap-x-16 gap-y-16 items-center transition-opacity duration-500 hidden" id="flow-eor">
+
+    <!-- Steps (EoR) -->
+    <div class="self-start z-0 relative space-y-10">
+      <div class="relative pl-14">
+        <div class="-bottom-11 w-px bg-white/10 -z-10 absolute top-11 left-5"></div>
+        <h3 class="text-2xl font-thin text-white tracking-tight font-manrope">
+          Set up your company account</h3>
+        <div class="step-circle-eor flex transition-all duration-300 z-10 text-sm font-thin text-[#5EA500] bg-[#050505] w-10 h-10 border-[#5EA500] border rounded-full absolute top-1 left-0 shadow-[0_0_15px_rgba(94,165,0,0.3)] items-center justify-center font-sans">
+          1</div>
+        <p class="leading-relaxed text-base text-gray-500 font-thin font-manrope mt-3" data-translate="legacy.visual.eorStep1Description">Make a quick profile check and verification, fill in the required fields and get started</p>
+      </div>
+
+      <div class="pl-14 relative">
+        <div class="absolute left-5 top-11 -bottom-11 w-px bg-white/10 -z-10"></div>
+        <div class="step-circle-eor flex transition-all duration-300 z-10 text-sm font-thin text-[#5EA500] bg-[#050505] w-10 h-10 border-[#5EA500] border rounded-full absolute top-1 left-0 shadow-[0_0_15px_rgba(94,165,0,0.3)] items-center justify-center font-sans">
+          2</div>
+        <h3 class="text-2xl font-thin text-white tracking-tight font-manrope">
+          <span data-translate="legacy.visual.eorStep2Title">Assign a financial contact person</span></h3>
+        <p class="leading-relaxed text-base text-gray-500 font-thin font-manrope mt-3" data-translate="legacy.visual.eorStep2Description">SSpecify the person who will be responsible for financial matters</p>
+      </div>
+
+      <div class="pl-14 relative">
+        <div class="-bottom-11 w-px bg-white/10 -z-10 absolute top-11 left-5"></div>
+        <div class="step-circle-eor flex transition-all duration-300 text-sm font-thin text-[#5EA500] bg-[#050505] border border-[#5EA500] shadow-[0_0_15px_rgba(94,165,0,0.3)] w-10 h-10 z-10 rounded-full absolute top-1 left-0 items-center justify-center font-sans">
+          3</div>
+        <h3 class="text-2xl font-thin text-white tracking-tight font-manrope">
+          Create your first EoR contract</h3>
+        <p class="leading-relaxed text-base text-gray-500 font-thin font-manrope mt-3" data-translate="legacy.visual.eorStep3Description">Enter the employee's details</p>
+      </div>
+
+      <div class="pl-14 relative">
+        <div class="-bottom-11 w-px bg-white/10 -z-10 absolute top-11 left-5"></div>
+        <div class="step-circle-eor flex transition-all duration-300 text-sm font-thin text-[#5EA500] bg-[#050505] border border-[#5EA500] shadow-[0_0_15px_rgba(94,165,0,0.3)] w-10 h-10 z-10 rounded-full absolute top-1 left-0 items-center justify-center font-sans">
+          4</div>
+        <h3 class="text-2xl font-thin text-white tracking-tight font-manrope">
+          Invite an employee</h3>
+        <p class="leading-relaxed text-base text-gray-500 font-thin font-manrope mt-3" data-translate="legacy.visual.eorStep4Description">Send an invitation and onboard your employee</p>
+      </div>
+
+      <div class="pl-14 relative">
+        <div class="step-circle-eor flex transition-all duration-300 text-sm font-thin text-[#5EA500] bg-[#050505] border border-[#5EA500] shadow-[0_0_15px_rgba(94,165,0,0.3)] w-10 h-10 z-10 rounded-full absolute top-1 left-0 items-center justify-center font-sans">
+          5</div>
+        <h3 class="text-2xl font-thin text-white tracking-tight font-manrope">
+          Fund your wallet and run first payroll</h3>
+        <p class="leading-relaxed text-base text-gray-500 font-thin font-manrope mt-3" data-translate="legacy.visual.eorStep5Description">Top up your balance and start paying globally</p>
+      </div>
+    </div>
+
+    <!-- Panels (EoR) - Static Single Panel -->
+    <div class="relative lg:h-[560px] w-full perspective-1000">
+      <div class="flex opacity-100 z-10 rounded-2xl relative lg:absolute lg:top-0 lg:right-0 lg:bottom-0 lg:left-0 items-center">
+        <div class="w-full bg-[#131313] rounded-2xl border border-white/10 p-8 flex flex-col shadow-2xl">
+          <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-5">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-[#1A1A1A] border border-white/5 flex items-center justify-center text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-gray-400">
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-base text-white font-sans font-normal tracking-tight">John Doe</h4>
+                <p class="text-xs text-gray-500 font-sans font-thin" data-translate="legacy.visual.eorRole">Senior Software Engineer</p>
+              </div>
+            </div>
+            <div class="px-3 py-1.5 rounded-full bg-[#5EA500]/10 border border-[#5EA500]/20 text-[#5EA500] text-[11px] font-sans font-normal">
+              <span data-translate="legacy.visual.eorOnboarding">Onboarding</span>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-[#1A1A1A] p-4 rounded-xl border border-transparent">
+                <label class="text-[10px] text-gray-500 mb-1.5 block font-sans font-thin uppercase tracking-wider" data-translate="legacy.visual.eorEmploymentCountry">Employment Country</label>
+                <div class="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin text-gray-400">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span class="text-xs text-white font-sans font-thin" data-translate="legacy.visual.eorGermany">Germany</span>
+                </div>
+              </div>
+              <div class="bg-[#1A1A1A] p-4 rounded-xl border border-transparent">
+                <label class="text-[10px] text-gray-500 mb-1.5 block font-sans font-thin uppercase tracking-wider" data-translate="legacy.visual.eorEmployeeGrossSalary">Employee Gross Salary</label>
+                <div class="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coins text-gray-400">
+                    <circle cx="8" cy="8" r="6"></circle>
+                    <path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path>
+                    <path d="M7 6h1v4"></path>
+                    <path d="m16.71 13.88.7.71-2.82 2.82"></path>
+                  </svg>
+                  <span class="text-xs text-white font-sans font-thin">€ 85,000.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-[11px] text-gray-500 mb-3 block font-sans font-thin" data-translate="legacy.visual.eorChecklist">Onboarding Checklist</label>
+              <div class="space-y-3">
+                <div class="flex items-center justify-between p-3 bg-[#1A1A1A] rounded-lg">
+                  <div class="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2 text-[#5EA500]">
+                      <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    <span class="text-xs text-gray-300 font-sans font-thin" data-translate="legacy.visual.eorCompanyProfileVerified">Company Profile Verified</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-[#1A1A1A] rounded-lg">
+                  <div class="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2 text-[#5EA500]">
+                      <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    <span class="text-xs text-gray-300 font-sans font-thin" data-translate="legacy.visual.eorContractSigned">EoR Contract Signed</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-[#1A1A1A] rounded-lg border border-white/5">
+                  <div class="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle text-gray-600">
+                      <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                    <span class="text-xs text-gray-400 font-sans font-thin" data-translate="legacy.visual.eorEmployeeOnboarded">Employee Onboarded</span>
+                  </div>
+                  <span class="text-[10px] text-yellow-500 font-sans font-thin bg-yellow-500/10 px-2 py-0.5 rounded-full border border-yellow-500/20">Pending</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-5 border-t border-white/10 mt-2">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-[11px] text-gray-500 font-sans font-thin" data-translate="legacy.visual.eorFirstPayrollEstimate">First Payroll Estimate</span>
+                <span class="text-sm text-white font-sans font-normal">€ 7,083.33</span>
+              </div>
+              <button class="w-full bg-white hover:bg-gray-200 text-black font-normal py-3 rounded-lg text-xs transition-colors font-sans flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
+                <span data-translate="legacy.visual.eorFundWalletRunPayroll">Fund Wallet &amp; Run Payroll</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+</section>

@@ -3,8 +3,18 @@ import FAQSection from '../components/FAQSection.astro';
 import FinalCTASection from '../components/FinalCTASection.astro';
 import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
 import HeroSection from '../components/HeroSection.astro';
-import PayrollSolutionSections from '../components/sections/payroll/PayrollSolutionSections.astro';
 import PayrollSolutionInteractions from '../components/sections/payroll/PayrollSolutionInteractions.astro';
+import ContractorPaymentsSection from '../components/sections/payroll/home/ContractorPaymentsSection.astro';
+import DeferredContractorPaymentsSection from '../components/sections/payroll/home/DeferredContractorPaymentsSection.astro';
+import EffectivePayrollSection from '../components/sections/payroll/home/EffectivePayrollSection.astro';
+import EmbeddedPayrollInfrastructureSection from '../components/sections/payroll/home/EmbeddedPayrollInfrastructureSection.astro';
+import HireEmployeesWorldwideSection from '../components/sections/payroll/home/HireEmployeesWorldwideSection.astro';
+import ManageGlobalPayrollSection from '../components/sections/payroll/home/ManageGlobalPayrollSection.astro';
+import PayrollComparisonSection from '../components/sections/payroll/home/PayrollComparisonSection.astro';
+import PayrollStatsSection from '../components/sections/payroll/home/PayrollStatsSection.astro';
+import StartPayingGloballySection from '../components/sections/payroll/home/StartPayingGloballySection.astro';
+import TrustedByBuildersSection from '../components/sections/payroll/home/TrustedByBuildersSection.astro';
+import WhyCompaniesChooseGarnaSection from '../components/sections/payroll/home/WhyCompaniesChooseGarnaSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
@@ -85,7 +95,17 @@ const homeFaqItems = [
 
 <BaseLayout shell={pageShells.home}>
 	<HeroSection {...pageHeroes.home} />
-	<PayrollSolutionSections />
+	<PayrollStatsSection />
+	<ManageGlobalPayrollSection />
+	<HireEmployeesWorldwideSection />
+	<ContractorPaymentsSection />
+	<EffectivePayrollSection />
+	<DeferredContractorPaymentsSection />
+	<EmbeddedPayrollInfrastructureSection />
+	<StartPayingGloballySection />
+	<WhyCompaniesChooseGarnaSection />
+	<PayrollComparisonSection />
+	<TrustedByBuildersSection />
 	<FAQSection
 		title={{ text: 'FAQ on Payroll Solutions', translateKey: 'faq.title' }}
 		items={homeFaqItems}
