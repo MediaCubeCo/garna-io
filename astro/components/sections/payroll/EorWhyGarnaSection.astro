@@ -1,5 +1,6 @@
 ---
 import Section from '../../layout/Section.astro';
+import ContentTabs from '../../ui/ContentTabs.astro';
 ---
 
 <Section contained={false} spacing="none" id="why-garna" class="py-24">
@@ -9,7 +10,7 @@ import Section from '../../layout/Section.astro';
                     <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-gray-400" data-translate="why.description">Garna makes it easier to manage global employment from finding the right people to setting them up, paying them, and keeping paperwork organized</p>
                 </div>
 
-                <div class="why-garna mt-12">
+                <ContentTabs class="why-garna mt-12">
                     <input id="why-garna-sourcing" type="radio" name="why-garna-tab" checked>
                     <input id="why-garna-onboarding" type="radio" name="why-garna-tab">
                     <input id="why-garna-documents" type="radio" name="why-garna-tab">
@@ -29,7 +30,7 @@ import Section from '../../layout/Section.astro';
                     </div>
 
                     <div class="why-garna-panels mt-12">
-                    <article data-eor-why-panel="sourcing" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                    <article data-content-panel="sourcing" class="why-garna-panel grid gap-6 md:grid-cols-2">
                         <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
                             <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.sourcing.title">Finding the Right Talent, Quickly</h3>
                             <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.sourcing.solution">Find and hire global talent faster with tools that make cross-border hiring simple and compliant</p>
@@ -68,7 +69,7 @@ import Section from '../../layout/Section.astro';
                         </div>
                     </article>
 
-                    <article data-eor-why-panel="onboarding" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                    <article data-content-panel="onboarding" class="why-garna-panel grid gap-6 md:grid-cols-2">
                         <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
                             <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.onboarding.title">Automating International Employee Onboarding</h3>
                             <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.onboarding.solution">Country-aware workflows help new employees get started through one platform, with less manual HR work</p>
@@ -99,7 +100,7 @@ import Section from '../../layout/Section.astro';
                         </div>
                     </article>
 
-                    <article data-eor-why-panel="documents" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                    <article data-content-panel="documents" class="why-garna-panel grid gap-6 md:grid-cols-2">
                         <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
                             <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.documents.title">Centralizing Contracts and Compliance Documentation</h3>
                             <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.documents.solution">Keep contracts, tax forms, payroll records, and compliance documents together in one secure platform</p>
@@ -129,7 +130,7 @@ import Section from '../../layout/Section.astro';
                         </div>
                     </article>
 
-                    <article data-eor-why-panel="payroll" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                    <article data-content-panel="payroll" class="why-garna-panel grid gap-6 md:grid-cols-2">
                         <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
                             <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.payroll.title">Running Global Payroll Without All the Stress</h3>
                             <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.payroll.solution">Automated workflows help companies pay people around the world while reducing payroll errors and extra work</p>
@@ -158,7 +159,7 @@ import Section from '../../layout/Section.astro';
                         </div>
                     </article>
 
-                    <article data-eor-why-panel="reporting" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                    <article data-content-panel="reporting" class="why-garna-panel grid gap-6 md:grid-cols-2">
                         <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
                             <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.reporting.title">Getting a Clear View of Your Global Workforce</h3>
                             <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.reporting.solution">See payroll, compliance, onboarding, and workforce costs in one reporting layer with API-first infrastructure</p>
@@ -188,7 +189,7 @@ import Section from '../../layout/Section.astro';
                         </div>
                     </article>
 
-                    <article data-eor-why-panel="termination" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                    <article data-content-panel="termination" class="why-garna-panel grid gap-6 md:grid-cols-2">
                         <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
                             <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.termination.title">Offboarding Compliantly in a Global Market</h3>
                             <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.termination.solution">Country-specific termination workflows help teams offboard employees with confidence</p>
@@ -209,6 +210,7 @@ import Section from '../../layout/Section.astro';
                             </div>
                         </div>
                     </article>
-                </div>
+					</div>
+                </ContentTabs>
             </div>
         </Section>

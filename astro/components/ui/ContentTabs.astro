@@ -1,0 +1,144 @@
+---
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class={className} data-content-tabs>
+	<slot />
+</div>
+
+<style is:global>
+	[data-content-tabs] > input[type='radio'] {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	[data-content-tabs] .why-garna-tab {
+		display: block;
+		cursor: pointer;
+		border-bottom: 2px solid transparent;
+		padding-bottom: 0.7rem;
+		color: #71717a;
+		font-size: 0.9rem;
+		font-weight: 600;
+		transition: color 0.18s ease, border-color 0.18s ease;
+		white-space: normal;
+	}
+
+	[data-content-tabs] .why-garna-tab:hover,
+	[data-content-tabs] .why-garna-tab:focus-visible {
+		color: #fff;
+	}
+
+	[data-content-tabs] .why-garna-tab:focus-visible {
+		outline: 2px solid #5ea500;
+		outline-offset: 4px;
+	}
+
+	[data-content-tabs] .why-garna-panel {
+		display: none;
+	}
+
+	[data-content-tabs] > #why-garna-sourcing:checked ~ .why-garna-tabs label[for='why-garna-sourcing'],
+	[data-content-tabs] > #why-garna-onboarding:checked ~ .why-garna-tabs label[for='why-garna-onboarding'],
+	[data-content-tabs] > #why-garna-documents:checked ~ .why-garna-tabs label[for='why-garna-documents'],
+	[data-content-tabs] > #why-garna-payroll:checked ~ .why-garna-tabs label[for='why-garna-payroll'],
+	[data-content-tabs] > #why-garna-reporting:checked ~ .why-garna-tabs label[for='why-garna-reporting'],
+	[data-content-tabs] > #why-garna-termination:checked ~ .why-garna-tabs label[for='why-garna-termination'],
+	[data-content-tabs] > #why-garna-payments:checked ~ .why-garna-tabs label[for='why-garna-payments'],
+	[data-content-tabs] > #why-garna-sso:checked ~ .why-garna-tabs label[for='why-garna-sso'],
+	[data-content-tabs] > #why-garna-permissions:checked ~ .why-garna-tabs label[for='why-garna-permissions'],
+	[data-content-tabs] > #why-garna-approvals:checked ~ .why-garna-tabs label[for='why-garna-approvals'],
+	[data-content-tabs] > #why-garna-visibility:checked ~ .why-garna-tabs label[for='why-garna-visibility'],
+	[data-content-tabs] > #why-garna-support:checked ~ .why-garna-tabs label[for='why-garna-support'] {
+		border-color: #5ea500;
+		color: #fff;
+	}
+
+	[data-content-tabs] > #why-garna-sourcing:checked ~ .why-garna-panels [data-content-panel='sourcing'],
+	[data-content-tabs] > #why-garna-onboarding:checked ~ .why-garna-panels [data-content-panel='onboarding'],
+	[data-content-tabs] > #why-garna-documents:checked ~ .why-garna-panels [data-content-panel='documents'],
+	[data-content-tabs] > #why-garna-payroll:checked ~ .why-garna-panels [data-content-panel='payroll'],
+	[data-content-tabs] > #why-garna-reporting:checked ~ .why-garna-panels [data-content-panel='reporting'],
+	[data-content-tabs] > #why-garna-termination:checked ~ .why-garna-panels [data-content-panel='termination'],
+	[data-content-tabs] > #why-garna-payments:checked ~ .why-garna-panels [data-content-panel='payments'],
+	[data-content-tabs] > #why-garna-sso:checked ~ .why-garna-panels [data-content-panel='sso'],
+	[data-content-tabs] > #why-garna-permissions:checked ~ .why-garna-panels [data-content-panel='permissions'],
+	[data-content-tabs] > #why-garna-approvals:checked ~ .why-garna-panels [data-content-panel='approvals'],
+	[data-content-tabs] > #why-garna-visibility:checked ~ .why-garna-panels [data-content-panel='visibility'],
+	[data-content-tabs] > #why-garna-support:checked ~ .why-garna-panels [data-content-panel='support'] {
+		display: grid;
+	}
+
+	@media (min-width: 768px) {
+		[data-content-tabs] .why-garna-tab {
+			padding-bottom: 1rem;
+			font-size: 1rem;
+			white-space: nowrap;
+		}
+	}
+</style>
+
+<script>
+	const initializeContentTabs = (root: HTMLElement) => {
+		if (root.dataset.contentTabsReady === 'true') return;
+		root.dataset.contentTabsReady = 'true';
+
+		const inputs = Array.from(root.querySelectorAll<HTMLInputElement>(':scope > input[type="radio"]'));
+		const tabs = inputs
+			.map((input) => root.querySelector<HTMLLabelElement>(`label[for="${input.id}"]`))
+			.filter((tab): tab is HTMLLabelElement => tab !== null);
+		const panels = Array.from(root.querySelectorAll<HTMLElement>('.why-garna-panel'));
+
+		const select = (input: HTMLInputElement, moveFocus = false) => {
+			input.checked = true;
+			const key = input.id.replace('why-garna-', '');
+			for (const tab of tabs) {
+				const selected = tab.htmlFor === input.id;
+				tab.setAttribute('aria-selected', String(selected));
+				tab.tabIndex = selected ? 0 : -1;
+				if (selected && moveFocus) tab.focus();
+			}
+			for (const panel of panels) panel.hidden = panel.dataset.contentPanel !== key;
+		};
+
+		for (const [index, input] of inputs.entries()) {
+			const tab = tabs[index];
+			if (!tab) continue;
+			const key = input.id.replace('why-garna-', '');
+			const panel = panels.find((candidate) => candidate.dataset.contentPanel === key);
+			const panelId = `${input.id}-panel`;
+			tab.setAttribute('role', 'tab');
+			tab.id = `${input.id}-tab`;
+			tab.setAttribute('aria-controls', panelId);
+			panel?.setAttribute('role', 'tabpanel');
+			panel?.setAttribute('aria-labelledby', tab.id);
+			if (panel) panel.id = panelId;
+			input.addEventListener('change', () => select(input));
+			tab.addEventListener('keydown', (event) => {
+				let nextIndex = index;
+				if (event.key === 'ArrowRight') nextIndex = (index + 1) % inputs.length;
+				else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + inputs.length) % inputs.length;
+				else if (event.key === 'Home') nextIndex = 0;
+				else if (event.key === 'End') nextIndex = inputs.length - 1;
+				else return;
+				event.preventDefault();
+				select(inputs[nextIndex], true);
+			});
+		}
+
+		root.querySelector<HTMLElement>('.why-garna-tabs')?.setAttribute('role', 'tablist');
+		select(inputs.find((input) => input.checked) ?? inputs[0]);
+	};
+
+	const initializeAllContentTabs = () => {
+		document.querySelectorAll<HTMLElement>('[data-content-tabs]').forEach(initializeContentTabs);
+	};
+
+	initializeAllContentTabs();
+	document.addEventListener('astro:page-load', initializeAllContentTabs);
+</script>

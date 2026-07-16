@@ -219,4 +219,24 @@ describe('native Astro architecture', () => {
 		]);
 		await expect(access(path.join(root, 'public/pages'))).rejects.toThrow();
 	});
+
+	it('shares an accessible content-tabs interaction across EOR and enterprise payroll', async () => {
+		const contentTabs = await readFile(
+			path.join(root, 'astro/components/ui/ContentTabs.astro'),
+			'utf8',
+		);
+		const sections = await Promise.all(
+			['EorWhyGarnaSection.astro', 'EnterprisePlatformSection.astro'].map((file) =>
+				readFile(path.join(root, 'astro/components/sections/payroll', file), 'utf8'),
+			),
+		);
+
+		expect(sections.every((source) => source.includes("ui/ContentTabs.astro"))).toBe(true);
+		expect(sections.every((source) => source.includes('<ContentTabs class="why-garna mt-12">'))).toBe(true);
+		expect(contentTabs).toContain("setAttribute('role', 'tablist')");
+		expect(contentTabs).toContain("setAttribute('role', 'tab')");
+		expect(contentTabs).toContain("setAttribute('role', 'tabpanel')");
+		expect(contentTabs).toContain("event.key === 'ArrowRight'");
+		expect(contentTabs).toContain("event.key === 'ArrowLeft'");
+	});
 });
