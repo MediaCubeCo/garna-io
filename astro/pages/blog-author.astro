@@ -2,12 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import { pageShells } from '../content/page-shells';
-import rawContentHtml from '../content/site-pages/blog-author.html?raw';
-
-const authorContentHtml = rawContentHtml.replace(
-	/<!-- Hero Section -->[\s\S]*?<\/section>\s*(?=\s*<!-- AI Matching Feature -->)/,
-	''
-);
+import BlogAuthorSections from '../components/pages/blog/BlogAuthorSections.astro';
+import BlogAuthorInteractions from '../components/pages/blog/BlogAuthorInteractions.astro';
 
 const authorHero = {
 	class: 'flex flex-col md:pt-32 md:pb-0 w-full pt-24 pb-8 relative justify-center',
@@ -68,5 +64,6 @@ const authorHero = {
 			</div>
 		</div>
 	</HeroSection>
-	<Fragment set:html={authorContentHtml} />
+	<BlogAuthorSections />
+	<BlogAuthorInteractions />
 </BaseLayout>

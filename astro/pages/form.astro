@@ -23,9 +23,7 @@ import '../styles/form-page.css';
 			colorBorder="transparent"
 			thicknessBorder="0px"
 		/>
-		<script
-			is:inline
-			set:html={`
+		<script is:inline>
 (function () {
 	'use strict';
 
@@ -47,7 +45,6 @@ import '../styles/form-page.css';
 	if (heading && campaignCopy.heading) heading.textContent = campaignCopy.heading;
 	if (subtitle && campaignCopy.subtitle) subtitle.textContent = campaignCopy.subtitle;
 })();
-`}
-		/>
+		</script>
 	</HeroSection>
 </BaseLayout>

@@ -3,21 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
 import HeroSection from '../components/HeroSection.astro';
 import { pageShells } from '../content/page-shells';
-import rawContentHtml from '../content/site-pages/blog.html?raw';
-
-const blogContentWithoutHero = rawContentHtml.replace(
-	/<!-- Hero Section -->[\s\S]*?<\/section>\s*(?=<!-- AI Matching Feature -->)/,
-	''
-);
-
-const ctaStartMarker = '<section class="overflow-hidden lg:pt-8 lg:pb-8 pt-8 pb-8 relative">';
-const gridStartMarker = '<section class="lg:pt-16 lg:pb-16 pt-8 pb-8 relative">';
-const ctaStartIndex = blogContentWithoutHero.indexOf(ctaStartMarker);
-const gridStartIndex = blogContentWithoutHero.indexOf(gridStartMarker, ctaStartIndex);
-const blogContentBeforeCta =
-	ctaStartIndex >= 0 ? blogContentWithoutHero.slice(0, ctaStartIndex) : blogContentWithoutHero;
-const blogContentAfterCta =
-	ctaStartIndex >= 0 && gridStartIndex >= 0 ? blogContentWithoutHero.slice(gridStartIndex) : '';
+import BlogLeadSections from '../components/pages/blog/BlogLeadSections.astro';
+import BlogGridSections from '../components/pages/blog/BlogGridSections.astro';
+import BlogInteractions from '../components/pages/blog/BlogInteractions.astro';
 
 const blogHero = {
 	class: 'flex flex-col w-full pt-24 md:pt-32 pb-16 md:pb-24 relative justify-center',
@@ -53,7 +41,7 @@ const demoOnclick =
 			</div>
 		</div>
 	</HeroSection>
-	<Fragment set:html={blogContentBeforeCta} />
+	<BlogLeadSections />
 	<section class="overflow-hidden lg:pt-8 lg:pb-8 pt-8 pb-8 relative">
 		<div class="font-manrope max-w-7xl mx-auto pr-6 pl-6">
 			<a
@@ -68,8 +56,9 @@ const demoOnclick =
 			</a>
 		</div>
 	</section>
-	<Fragment set:html={blogContentAfterCta} />
+	<BlogGridSections />
 	<Fragment slot="widgets">
+		<BlogInteractions />
 		<GarnaBookingWidget
 			trackingSource="blog"
 			trackingPage="blog"

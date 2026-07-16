@@ -2,15 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import { pageShells } from '../content/page-shells';
-import rawContentHtml from '../content/site-pages/blog-article.html?raw';
-
-const articleContentHtml = rawContentHtml.replace(
-	/<!-- Hero Section -->[\s\S]*?<\/section>\s*(?=\s*<!-- AI Matching Feature -->)/,
-	''
-).replace(
-	/<section class="pt-16 pb-16">\s*<div class="max-w-7xl mx-auto pr-6 pl-6">[\s\S]*?<\/section>\s*(?=\s*<!-- Job Board -->)/,
-	''
-);
+import BlogArticleSections from '../components/pages/blog/BlogArticleSections.astro';
+import BlogArticleInteractions from '../components/pages/blog/BlogArticleInteractions.astro';
 
 const articleHero = {
 	class: 'flex flex-col md:pt-32 md:pb-16 w-full pt-6 pb-4 relative justify-center',
@@ -108,7 +101,7 @@ const articleFaqItems = [
 			</div>
 		</div>
 	</HeroSection>
-	<Fragment set:html={articleContentHtml} />
+	<BlogArticleSections />
 	<section class="bg-[#050505] pt-16 pb-16" data-blog-article-faq>
 		<div class="max-w-7xl mx-auto pr-6 pl-6">
 			<div class="flex flex-col gap-y-12 gap-x-5 md:flex-row lg:gap-20">
@@ -237,4 +230,5 @@ const articleFaqItems = [
 		document.addEventListener('astro:page-load', initializeBlogArticleFaq);
 		window.addEventListener('garna:page-content-updated', initializeBlogArticleFaq);
 	</script>
+	<BlogArticleInteractions />
 </BaseLayout>
