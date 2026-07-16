@@ -1,4 +1,4 @@
-import { readFile, readdir } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { getArchitectureViolations } from '../scripts/check-astro-architecture.mjs';
@@ -149,11 +149,25 @@ describe('native Astro architecture', () => {
 		const sectionComponent = await readFile(path.join(root, 'astro/components/layout/Section.astro'), 'utf8');
 		const containerComponent = await readFile(path.join(root, 'astro/components/layout/Container.astro'), 'utf8');
 
-		expect(migratedSections).toHaveLength(67);
+		expect(migratedSections).toHaveLength(65);
 		expect(migratedSections.every((source) => source.includes("layout/Section.astro"))).toBe(true);
 		expect(migratedSections.every((source) => !source.includes('<section'))).toBe(true);
+		expect(migratedSections.every((source) => !/^<Section[^>]*class="hidden/m.test(source))).toBe(true);
 		expect(sectionComponent).toContain('contained?: boolean');
 		expect(sectionComponent).toContain('contained={contained}');
 		expect(containerComponent).toContain('contained ?');
+	});
+
+	it('keeps payroll testimonial assets free of legacy duplicates', async () => {
+		const testimonialAssets = await readdir(
+			path.join(root, 'static/pages/payroll-small-business/assets'),
+		);
+
+		expect(testimonialAssets.sort()).toEqual([
+			'testimonial-emma-v2.jpg',
+			'testimonial-michael-v2.jpg',
+			'testimonial-sofia-v2.jpg',
+		]);
+		await expect(access(path.join(root, 'public/pages'))).rejects.toThrow();
 	});
 });
