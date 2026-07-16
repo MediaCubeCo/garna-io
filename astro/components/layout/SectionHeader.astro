@@ -38,7 +38,8 @@ const {
 	</h2>
 	{description && (
 		<p
-			class:list={['mt-6 font-manrope text-lg font-light leading-relaxed text-gray-400 md:text-xl', descriptionClass]}
+			data-garna-subtitle
+			class:list={['mt-6 font-manrope text-lg leading-relaxed md:text-xl', descriptionClass]}
 			data-translate={description.translateKey}
 		>
 			{description.text}

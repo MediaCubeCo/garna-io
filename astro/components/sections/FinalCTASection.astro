@@ -32,8 +32,8 @@ const resolvedTitleClass =
 const resolvedDescriptionClass =
 	descriptionClass ||
 	(isSplit
-		? 'text-xl font-light text-gray-400 max-w-lg mb-10'
-		: 'text-xl font-light text-gray-400 font-manrope max-w-2xl mr-auto mb-12 ml-auto');
+		? 'text-xl max-w-lg mb-10'
+		: 'text-xl font-manrope max-w-2xl mr-auto mb-12 ml-auto');
 const titleClassWithGradient = resolvedTitleClass.includes('garna-hero-title-gradient')
 	? resolvedTitleClass
 	: `garna-hero-title-gradient ${resolvedTitleClass}`;
@@ -65,7 +65,7 @@ const buttonIcon = button.icon || 'arrow-up-right';
 					</>
 				))}
 			</h2>
-			<p class={resolvedDescriptionClass} data-translate={description.translateKey}>{description.text}</p>
+			<p data-garna-subtitle class={resolvedDescriptionClass} data-translate={description.translateKey}>{description.text}</p>
 			<Button href={buttonHref} onclick={buttonOnclick} variant={buttonVariant} effect={buttonEffect} icon={buttonIcon} size="hero" class="w-fit" {...buttonAttributes}>
 				<span data-translate={button.translateKey}>{button.label}</span>
 			</Button>

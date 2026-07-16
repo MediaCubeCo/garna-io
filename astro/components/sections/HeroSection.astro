@@ -8,7 +8,7 @@ const {
 	contentClass = '',
 	titleClass = 'garna-hero-title-gradient leading-[1.1] lg:text-8xl lg:mb-12 md:mb-8 md:text-7xl text-6xl font-normal tracking-tight font-manrope mb-8',
 	titleBreakAfterWords,
-	descriptionClass = 'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-lg font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
+	descriptionClass = 'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-lg font-manrope max-w-3xl mr-auto mb-12 ml-auto',
 	badge,
 	title,
 	description,
@@ -99,7 +99,7 @@ const singleTitleSecondLine = shouldBreakSingleTitle
 			</h1>
 
 			{description && (
-				<p class={descriptionClass} data-translate={descriptionTranslateKey}>
+				<p data-garna-subtitle class={descriptionClass} data-translate={descriptionTranslateKey}>
 					{description}
 				</p>
 			)}

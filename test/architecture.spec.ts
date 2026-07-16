@@ -259,6 +259,31 @@ describe('native Astro architecture', () => {
 		expect(globalStyles).toContain('border: 1px solid rgba(255, 255, 255, 0.05);');
 	});
 
+	it('keeps hero, section, and card subtitles on one typography contract', async () => {
+		const globalStyles = await readFile(path.join(root, 'astro/styles/global.css'), 'utf8');
+		const hero = await readFile(path.join(root, 'astro/components/sections/HeroSection.astro'), 'utf8');
+		const sectionHeader = await readFile(path.join(root, 'astro/components/layout/SectionHeader.astro'), 'utf8');
+		const card = await readFile(path.join(root, 'astro/components/ui/Card.astro'), 'utf8');
+		const blogArticleShell = await readFile(path.join(root, 'astro/pages/blog-article-shell.astro'), 'utf8');
+		const sectionFiles = (await walk(path.join(root, 'astro/components/sections')))
+			.filter((file) => file.endsWith('.astro') && !file.includes(`${path.sep}blog${path.sep}`));
+		const unmarkedSubtitles: string[] = [];
+
+		for (const file of sectionFiles) {
+			const source = await readFile(file, 'utf8');
+			if (/<\/h2>\s*<p(?!\s+data-garna-subtitle)/.test(source)) unmarkedSubtitles.push(file);
+		}
+
+		expect(globalStyles).toContain('--garna-subtitle-color: #b0b0b0;');
+		expect(globalStyles).toContain('--garna-subtitle-weight: 600;');
+		expect(globalStyles).toContain('[data-garna-subtitle] {');
+		expect(hero).toContain('<p data-garna-subtitle class={descriptionClass}');
+		expect(sectionHeader).toContain('data-garna-subtitle');
+		expect(card).toContain('<p data-garna-subtitle data-card-description');
+		expect(blogArticleShell).toContain('<p data-garna-subtitle class="leading-relaxed text-lg font-manrope pb-12">');
+		expect(unmarkedSubtitles).toEqual([]);
+	});
+
 	it('keeps the small-business hero visual self-contained and desktop-positioned', async () => {
 		const visual = await readFile(
 			path.join(root, 'astro/components/visuals/SmallBusinessPayrollVisual.astro'),
@@ -327,7 +352,8 @@ describe('native Astro architecture', () => {
 
 		expect(card).toContain("title?: string | CardText");
 		expect(card).toContain("description?: string | CardText");
-		expect(card).toContain("'text-base font-semibold leading-relaxed text-[#B0B0B0]'");
+		expect(card).toContain("'text-base leading-relaxed'");
+		expect(card).toContain('data-garna-subtitle');
 		expect(card).toContain('data-card-description');
 		const descriptionVariants = card.match(/const defaultDescriptionClasses = \{[\s\S]*?\n\};/)?.[0] || '';
 		expect(descriptionVariants).not.toMatch(/text-(?:gray|zinc|slate|white|black|\[#)/);

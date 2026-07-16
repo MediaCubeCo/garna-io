@@ -61,7 +61,7 @@ const defaultDescriptionClasses = {
 	{(titleValue || descriptionValue) && (
 		<div class={bodyClass}>
 			{titleValue && <h3 class:list={[defaultTitleClasses[variant], titleClass]} data-translate={titleValue.translateKey}>{titleValue.text}</h3>}
-			{descriptionValue && <p data-card-description class:list={['text-base font-semibold leading-relaxed text-[#B0B0B0]', defaultDescriptionClasses[variant], descriptionClass]} data-translate={descriptionValue.translateKey}>{descriptionValue.text}</p>}
+			{descriptionValue && <p data-garna-subtitle data-card-description class:list={['text-base leading-relaxed', defaultDescriptionClasses[variant], descriptionClass]} data-translate={descriptionValue.translateKey}>{descriptionValue.text}</p>}
 		</div>
 	)}
 	<slot />

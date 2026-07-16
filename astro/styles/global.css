@@ -24,6 +24,8 @@
 	--garna-border-strong: rgba(255, 255, 255, 0.14);
 	--garna-text: #f7f7f7;
 	--garna-text-muted: #a1a1aa;
+	--garna-subtitle-color: #b0b0b0;
+	--garna-subtitle-weight: 600;
 	--garna-accent: #5ea500;
 	--garna-radius-sm: 12px;
 	--garna-radius-md: 20px;
@@ -40,6 +42,11 @@ body[data-garna-page] {
 	font-family: "Manrope", sans-serif;
 	overflow-x: hidden;
 	overflow-x: clip;
+}
+
+[data-garna-subtitle] {
+	color: var(--garna-subtitle-color) !important;
+	font-weight: var(--garna-subtitle-weight) !important;
 }
 
 h1,
