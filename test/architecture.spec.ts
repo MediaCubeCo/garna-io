@@ -290,6 +290,7 @@ describe('native Astro architecture', () => {
 
 	it('builds homepage cards through the shared Card contract and visual slots', async () => {
 		const card = await readFile(path.join(root, 'astro/components/ui/Card.astro'), 'utf8');
+		const packageJson = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 		const homeCardSections = [
 			'ManageGlobalPayrollSection.astro',
 			'HireEmployeesWorldwideSection.astro',
@@ -316,11 +317,15 @@ describe('native Astro architecture', () => {
 		expect(card).toContain("title?: string | CardText");
 		expect(card).toContain("description?: string | CardText");
 		expect(card).toContain("'text-base font-semibold leading-relaxed text-[#B0B0B0]'");
+		expect(card).toContain('data-card-description');
+		const descriptionVariants = card.match(/const defaultDescriptionClasses = \{[\s\S]*?\n\};/)?.[0] || '';
+		expect(descriptionVariants).not.toMatch(/text-(?:gray|zinc|slate|white|black|\[#)/);
 		expect(card).toContain('interactive = true');
 		expect(card).toContain(".garna-card[data-interactive='true']:hover");
 		expect(card).toContain('background-color: rgba(255, 255, 255, 0.045)');
 		expect(card).toContain('border-color: rgba(255, 255, 255, 0.15)');
 		expect(card).toContain('<slot name="visual" />');
+		expect(packageJson.scripts.dev).toContain('wrangler dev --live-reload');
 		expect(sources.every((source) => source.includes("ui/Card.astro"))).toBe(true);
 		expect(sources.reduce((count, source) => count + (source.match(/<Card(?:\s|>)/g)?.length || 0), 0)).toBe(25);
 		expect(sources.every((source) => !source.includes('<div class="glass-card'))).toBe(true);

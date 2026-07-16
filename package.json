@@ -5,7 +5,7 @@
 	"scripts": {
 		"build": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro build",
 		"deploy": "npm run build && wrangler deploy",
-		"dev": "npm run build && wrangler dev",
+		"dev": "npm run build && wrangler dev --live-reload",
 		"start": "npm run dev",
 		"astro:dev": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev",
 		"test": "vitest run",
