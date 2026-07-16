@@ -332,8 +332,14 @@ describe('native Astro architecture', () => {
 		const descriptionVariants = card.match(/const defaultDescriptionClasses = \{[\s\S]*?\n\};/)?.[0] || '';
 		expect(descriptionVariants).not.toMatch(/text-(?:gray|zinc|slate|white|black|\[#)/);
 		expect(card).toContain('interactive = true');
+		expect(card).toContain("data-card-glow={interactive ? 'true' : undefined}");
+		expect(card).toContain('--garna-card-glow-radius: 60vw;');
+		expect(card).toContain('background: radial-gradient(');
+		expect(card).toContain("document.addEventListener('pointermove'");
+		expect(card).toContain("style.setProperty('--garna-card-glow-x'");
+		expect(card).toContain("style.setProperty('--garna-card-glow-y'");
 		expect(card).toContain(".garna-card[data-interactive='true']:hover");
-		expect(card).toContain('background-color: rgba(255, 255, 255, 0.045)');
+		expect(card).not.toContain('background-color: rgba(255, 255, 255, 0.045)');
 		expect(card).toContain('border-color: rgba(255, 255, 255, 0.15)');
 		expect(card).toContain('<slot name="visual" />');
 		expect(packageJson.scripts.dev).toContain('wrangler dev --live-reload');

@@ -51,7 +51,7 @@ const defaultDescriptionClasses = {
 };
 ---
 
-<article data-card-variant={variant} data-interactive={interactive ? 'true' : 'false'} class:list={[
+<article data-card-variant={variant} data-interactive={interactive ? 'true' : 'false'} data-card-glow={interactive ? 'true' : undefined} class:list={[
 	'garna-card group font-manrope',
 	variantClasses[variant],
 	interactive && 'transition duration-300 hover:-translate-y-1 motion-reduce:transform-none motion-reduce:transition-colors',
@@ -69,8 +69,75 @@ const defaultDescriptionClasses = {
 </article>
 
 <style>
+	.garna-card {
+		--garna-card-glow-x: 50%;
+		--garna-card-glow-y: 50%;
+		--garna-card-glow-radius: 60vw;
+		position: relative;
+		isolation: isolate;
+	}
+
+	.garna-card::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		border-radius: inherit;
+		background: radial-gradient(
+			circle var(--garna-card-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+			rgba(255, 255, 255, 0.12) 0%,
+			rgba(255, 255, 255, 0.075) 18%,
+			rgba(255, 255, 255, 0.035) 40%,
+			transparent 70%
+		);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 300ms ease;
+	}
+
+	.garna-card > * {
+		position: relative;
+		z-index: 1;
+	}
+
 	.garna-card[data-interactive='true']:hover {
-		background-color: rgba(255, 255, 255, 0.045);
 		border-color: rgba(255, 255, 255, 0.15);
 	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.garna-card[data-card-glow='true']:hover::before {
+			opacity: 1;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.garna-card {
+			--garna-card-glow-x: 50% !important;
+			--garna-card-glow-y: 50% !important;
+		}
+
+		.garna-card::before {
+			transition: none;
+		}
+	}
 </style>
+
+<script>
+	const cardGlowWindow = window as typeof window & { __garnaCardGlowInitialized?: boolean };
+
+	if (!cardGlowWindow.__garnaCardGlowInitialized) {
+		cardGlowWindow.__garnaCardGlowInitialized = true;
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+		document.addEventListener('pointermove', (event) => {
+			if (reducedMotion.matches || !(event.target instanceof Element)) return;
+
+			const card = event.target.closest('[data-card-glow="true"]');
+			if (!(card instanceof HTMLElement)) return;
+
+			const bounds = card.getBoundingClientRect();
+			card.style.setProperty('--garna-card-glow-x', `${event.clientX - bounds.left}px`);
+			card.style.setProperty('--garna-card-glow-y', `${event.clientY - bounds.top}px`);
+		}, { passive: true });
+	}
+</script>
