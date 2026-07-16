@@ -275,13 +275,12 @@ describe('native Astro architecture', () => {
 		for (const visual of visualNames) await expect(access(path.join(root, 'astro/components/visuals', visual))).resolves.toBeUndefined();
 	});
 
-	it('keeps the shorter column sticky in EOR split sections on desktop', async () => {
-		const sectionsRoot = path.join(root, 'astro/components/sections/payroll');
-		const sources = await Promise.all(
-			['GlobalWorkforceBenefitsSection.astro', 'EorFitSection.astro'].map((file) =>
-				readFile(path.join(sectionsRoot, file), 'utf8'),
-			),
-		);
+	it('keeps the shorter column sticky in EOR split sections and split FAQ on desktop', async () => {
+		const sources = await Promise.all([
+			readFile(path.join(root, 'astro/components/sections/payroll/GlobalWorkforceBenefitsSection.astro'), 'utf8'),
+			readFile(path.join(root, 'astro/components/sections/payroll/EorFitSection.astro'), 'utf8'),
+			readFile(path.join(root, 'astro/components/sections/FAQSection.astro'), 'utf8'),
+		]);
 
 		expect(sources.every((source) => source.includes('data-sticky-column'))).toBe(true);
 		expect(sources.every((source) => source.includes('lg:sticky lg:top-28 lg:self-start'))).toBe(true);
