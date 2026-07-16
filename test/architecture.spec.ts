@@ -315,6 +315,8 @@ describe('native Astro architecture', () => {
 
 		expect(card).toContain("title?: string | CardText");
 		expect(card).toContain("description?: string | CardText");
+		expect(card).toContain('interactive = true');
+		expect(card).toContain('hover:bg-white/[0.045]');
 		expect(card).toContain('<slot name="visual" />');
 		expect(sources.every((source) => source.includes("ui/Card.astro"))).toBe(true);
 		expect(sources.reduce((count, source) => count + (source.match(/<Card(?:\s|>)/g)?.length || 0), 0)).toBe(25);

@@ -27,7 +27,7 @@ const {
 	visualClass = '',
 	titleClass = '',
 	descriptionClass = '',
-	interactive = false,
+	interactive = true,
 } = Astro.props;
 const titleValue = typeof title === 'string' ? { text: title } : title;
 const descriptionValue = typeof description === 'string' ? { text: description } : description;
@@ -54,7 +54,7 @@ const defaultDescriptionClasses = {
 <article data-card-variant={variant} class:list={[
 	'group font-manrope',
 	variantClasses[variant],
-	interactive && 'transition duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.045]',
+	interactive && 'transition duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.045] motion-reduce:transform-none motion-reduce:transition-colors',
 	className,
 ]}>
 	{visualPosition === 'before' && <div class={visualClass}><slot name="visual" /></div>}
