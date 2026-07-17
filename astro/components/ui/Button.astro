@@ -30,11 +30,11 @@ const resolvedEffect = effect || (variant === 'glow' ? 'rotating-flare' : 'none'
 const hasIcon = icon !== 'none';
 
 const baseClass =
-	'garna-button inline-flex items-center justify-center font-manrope focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5EA500]';
+	'garna-button inline-flex items-center justify-center font-manrope focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]';
 
 const variantClasses: Record<Exclude<ButtonVariant, 'glow'>, string> = {
 	primary:
-		'garna-button-primary text-white',
+		'garna-button-primary text-garna-accent-foreground',
 	secondary:
 		'garna-button-secondary text-white',
 	ghost: 'garna-button-ghost text-white',

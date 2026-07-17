@@ -25,12 +25,12 @@
 }
 
 .trigger:focus-visible {
-	border-bottom-color: rgb(94, 165, 0);
+	border-bottom-color: rgb(203, 243, 0);
 	outline: none;
 }
 
 .triggerOpen {
-	border-bottom-color: rgb(94, 165, 0);
+	border-bottom-color: rgb(203, 243, 0);
 }
 
 .trigger.error {
@@ -60,7 +60,7 @@
 
 .triggerOpen .arrow {
 	transform: rotate(180deg);
-	color: rgb(94, 165, 0);
+	color: rgb(203, 243, 0);
 }
 
 .dropdown {
@@ -111,14 +111,14 @@
 }
 
 .optionSelected {
-	color: rgb(94, 165, 0);
+	color: rgb(203, 243, 0);
 	font-weight: 500;
 }
 
 .optionSelected.optionHighlighted,
 .optionSelected:hover {
 	background-color: rgba(255, 255, 255, 0.08);
-	color: rgb(94, 165, 0);
+	color: rgb(203, 243, 0);
 }
 
 .errorMessage {

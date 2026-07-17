@@ -295,6 +295,9 @@ describe('native Astro architecture', () => {
 
 		expect(globalStyles).toContain('--garna-page-bg: #101010;');
 		expect(globalStyles).toContain('--color-garna-page: #101010;');
+		expect(globalStyles).toContain('--color-garna-accent: #CBF300;');
+		expect(globalStyles).toContain('--garna-accent: #CBF300;');
+		expect(globalStyles).toContain('--garna-accent-foreground: #101010;');
 		expect(globalStyles).toContain('body[data-garna-page] {');
 		expect(baseLayout).toContain("bodyClass = 'antialiased overflow-x-hidden bg-garna-page'");
 		expect(baseLayout).toContain('<body class={bodyClass} data-garna-page>');
@@ -304,6 +307,23 @@ describe('native Astro architecture', () => {
 		expect(globalStyles).toContain('.surface-soft {');
 		expect(globalStyles).toContain('background: var(--garna-surface);');
 		expect(globalStyles).toContain('border: 1px solid rgba(255, 255, 255, 0.05);');
+	});
+
+	it('keeps the retired green accent out of runtime sources', async () => {
+		const runtimeRoots = ['astro', 'src', 'static', 'scripts'];
+		const runtimeFiles = (await Promise.all(runtimeRoots.map((directory) => walk(path.join(root, directory)))))
+			.flat()
+			.filter((file) => /\.(?:astro|css|html|js|mjs|ts|tsx)$/.test(file) && !file.includes(`${path.sep}build${path.sep}`));
+		const staleAccentFiles = (
+			await Promise.all(
+				runtimeFiles.map(async (file) => {
+					const source = await readFile(file, 'utf8');
+					return /#5ea500|rgba?\(94\s*,\s*165\s*,\s*0/i.test(source) ? file : null;
+				}),
+			)
+		).filter((file): file is string => Boolean(file));
+
+		expect(staleAccentFiles).toEqual([]);
 	});
 
 	it('keeps hero, section, and card subtitles on one typography contract', async () => {

@@ -40,7 +40,7 @@
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(137, 165, 0, 0.5),
-		0 0 50px 25px rgba(94, 165, 0, 0.5),
+		0 0 50px 25px rgba(203, 243, 0, 0.5),
 		50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 44.1s linear infinite slide;
@@ -52,7 +52,7 @@
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		0 0 50px 25px rgba(0, 165, 77, 0.5),
-		50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 43.2s linear infinite slide;
 	animation-delay: -3.6s;
@@ -63,7 +63,7 @@
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		0 0 50px 25px rgba(137, 165, 0, 0.5),
-		50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 42.3s linear infinite slide;
 	animation-delay: -5.4s;
@@ -73,7 +73,7 @@
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(0, 165, 77, 0.5),
-		0 0 50px 25px rgba(94, 165, 0, 0.5),
+		0 0 50px 25px rgba(203, 243, 0, 0.5),
 		50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 41.4s linear infinite slide;
@@ -83,7 +83,7 @@
 .rainbow-bg .rainbow:nth-child(5) {
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
-		-50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		-50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		0 0 50px 25px rgba(0, 165, 77, 0.5),
 		50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
@@ -94,7 +94,7 @@
 .rainbow-bg .rainbow:nth-child(6) {
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
-		-50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		-50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		0 0 50px 25px rgba(137, 165, 0, 0.5),
 		50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
@@ -106,7 +106,7 @@
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(137, 165, 0, 0.5),
-		0 0 50px 25px rgba(94, 165, 0, 0.5),
+		0 0 50px 25px rgba(203, 243, 0, 0.5),
 		50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 38.7s linear infinite slide;
@@ -118,7 +118,7 @@
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		0 0 50px 25px rgba(0, 165, 77, 0.5),
-		50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 37.8s linear infinite slide;
 	animation-delay: -14.4s;
@@ -129,7 +129,7 @@
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		0 0 50px 25px rgba(137, 165, 0, 0.5),
-		50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 36.9s linear infinite slide;
 	animation-delay: -16.2s;
@@ -139,7 +139,7 @@
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(0, 165, 77, 0.5),
-		0 0 50px 25px rgba(94, 165, 0, 0.5),
+		0 0 50px 25px rgba(203, 243, 0, 0.5),
 		50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 36s linear infinite slide;
@@ -149,7 +149,7 @@
 .rainbow-bg .rainbow:nth-child(11) {
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
-		-50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		-50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		0 0 50px 25px rgba(0, 165, 77, 0.5),
 		50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
@@ -160,7 +160,7 @@
 .rainbow-bg .rainbow:nth-child(12) {
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
-		-50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		-50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		0 0 50px 25px rgba(137, 165, 0, 0.5),
 		50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
@@ -172,7 +172,7 @@
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(137, 165, 0, 0.5),
-		0 0 50px 25px rgba(94, 165, 0, 0.5),
+		0 0 50px 25px rgba(203, 243, 0, 0.5),
 		50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 33.3s linear infinite slide;
@@ -184,7 +184,7 @@
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		0 0 50px 25px rgba(0, 165, 77, 0.5),
-		50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 32.4s linear infinite slide;
 	animation-delay: -25.2s;
@@ -195,7 +195,7 @@
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		0 0 50px 25px rgba(137, 165, 0, 0.5),
-		50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 31.5s linear infinite slide;
 	animation-delay: -27s;
@@ -205,7 +205,7 @@
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(0, 165, 77, 0.5),
-		0 0 50px 25px rgba(94, 165, 0, 0.5),
+		0 0 50px 25px rgba(203, 243, 0, 0.5),
 		50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 30.6s linear infinite slide;
@@ -215,7 +215,7 @@
 .rainbow-bg .rainbow:nth-child(17) {
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
-		-50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		-50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		0 0 50px 25px rgba(0, 165, 77, 0.5),
 		50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
@@ -226,7 +226,7 @@
 .rainbow-bg .rainbow:nth-child(18) {
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
-		-50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		-50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		0 0 50px 25px rgba(137, 165, 0, 0.5),
 		50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
@@ -238,7 +238,7 @@
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(137, 165, 0, 0.5),
-		0 0 50px 25px rgba(94, 165, 0, 0.5),
+		0 0 50px 25px rgba(203, 243, 0, 0.5),
 		50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 27.9s linear infinite slide;
@@ -250,7 +250,7 @@
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		0 0 50px 25px rgba(0, 165, 77, 0.5),
-		50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 27s linear infinite slide;
 	animation-delay: -36s;
@@ -261,7 +261,7 @@
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		0 0 50px 25px rgba(137, 165, 0, 0.5),
-		50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 26.1s linear infinite slide;
 	animation-delay: -37.8s;
@@ -271,7 +271,7 @@
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(0, 165, 77, 0.5),
-		0 0 50px 25px rgba(94, 165, 0, 0.5),
+		0 0 50px 25px rgba(203, 243, 0, 0.5),
 		50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 25.2s linear infinite slide;
@@ -281,7 +281,7 @@
 .rainbow-bg .rainbow:nth-child(23) {
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
-		-50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		-50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		0 0 50px 25px rgba(0, 165, 77, 0.5),
 		50px 0 50px 25px rgba(137, 165, 0, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
@@ -292,7 +292,7 @@
 .rainbow-bg .rainbow:nth-child(24) {
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
-		-50px 0 50px 25px rgba(94, 165, 0, 0.5),
+		-50px 0 50px 25px rgba(203, 243, 0, 0.5),
 		0 0 50px 25px rgba(137, 165, 0, 0.5),
 		50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
@@ -304,7 +304,7 @@
 	box-shadow:
 		-130px 0 80px 40px rgba(16, 16, 16, 1),
 		-50px 0 50px 25px rgba(137, 165, 0, 0.5),
-		0 0 50px 25px rgba(94, 165, 0, 0.5),
+		0 0 50px 25px rgba(203, 243, 0, 0.5),
 		50px 0 50px 25px rgba(0, 165, 77, 0.5),
 		130px 0 80px 40px rgba(16, 16, 16, 1);
 	animation: 22.5s linear infinite slide;
@@ -326,7 +326,7 @@
 	position: absolute;
 	inset: -12%;
 	background:
-		radial-gradient(ellipse at 18% 12%, rgba(94, 165, 0, 0.2), transparent 35%),
+		radial-gradient(ellipse at 18% 12%, rgba(203, 243, 0, 0.2), transparent 35%),
 		radial-gradient(ellipse at 58% 0%, rgba(0, 165, 77, 0.14), transparent 38%),
 		radial-gradient(ellipse at 92% 22%, rgba(137, 165, 0, 0.16), transparent 34%);
 	opacity: 0.8;
@@ -336,7 +336,7 @@
 	box-shadow:
 		-210px 0 130px 70px rgba(5, 5, 5, 0.92),
 		-105px 0 100px 55px rgba(137, 165, 0, 0.4),
-		0 0 100px 55px rgba(94, 165, 0, 0.44),
+		0 0 100px 55px rgba(203, 243, 0, 0.44),
 		105px 0 100px 55px rgba(0, 165, 77, 0.4),
 		210px 0 130px 70px rgba(5, 5, 5, 0.92);
 	animation-duration: 36s;

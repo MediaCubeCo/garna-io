@@ -8,24 +8,24 @@
                     if (circle) {
                         circle.classList.remove('text-gray-500', 'border-white/10', 'bg-[#050505]');
                         circle.classList.add(
-                            'text-[#5EA500]',
-                            'border-[#5EA500]',
+                            'text-[#CBF300]',
+                            'border-[#CBF300]',
                             'bg-[#050505]',
-                            'shadow-[0_0_15px_rgba(94,165,0,0.3)]'
+                            'shadow-[0_0_15px_rgba(203, 243, 0,0.3)]'
                         );
                     }
                     const title = el.querySelector('h3');
-                    if (title) title.classList.add('text-[#5EA500]');
+                    if (title) title.classList.add('text-[#CBF300]');
                 } else {
                     el.classList.add('opacity-50', 'hover:opacity-80');
                     el.classList.remove('opacity-100');
                     const circle = el.querySelector('.step-circle');
                     if (circle) {
                         circle.classList.add('text-gray-500', 'border-white/10', 'bg-[#050505]');
-                        circle.classList.remove('text-[#5EA500]', 'border-[#5EA500]', 'shadow-[0_0_15px_rgba(94,165,0,0.3)]');
+                        circle.classList.remove('text-[#CBF300]', 'border-[#CBF300]', 'shadow-[0_0_15px_rgba(203, 243, 0,0.3)]');
                     }
                     const title = el.querySelector('h3');
-                    if (title) title.classList.remove('text-[#5EA500]');
+                    if (title) title.classList.remove('text-[#CBF300]');
                 }
             });
             document.querySelectorAll('.step-content').forEach((el) => {

@@ -2105,13 +2105,13 @@ function adminHtml(title: string, body: string): Response {
 		.cta-tool { background: linear-gradient(to bottom, #1a1a1e, #151518, #0a0a0c); border: 1px solid rgba(255,255,255,.05); }
 		.cta-preview { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(180px, .9fr); gap: 18px; min-height: 230px; overflow: hidden; border-radius: 12px; padding: 24px; background: linear-gradient(to bottom, #1a1a1e, #151518, #0a0a0c); border: 1px solid rgba(255,255,255,.05); box-shadow: 0 10px 15px -3px rgba(0,0,0,.35); }
 		.cta-preview-beams { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-		.cta-preview-beams span { position: absolute; left: -30%; width: 160%; transform: rotate(35deg); background: rgba(94,165,0,.2); filter: blur(28px); }
+		.cta-preview-beams span { position: absolute; left: -30%; width: 160%; transform: rotate(35deg); background: rgba(203, 243, 0,.2); filter: blur(28px); }
 		.cta-preview-beams span:first-child { top: 5%; height: 80px; }
-		.cta-preview-beams span:last-child { top: 30%; height: 96px; background: rgba(94,165,0,.1); filter: blur(48px); }
+		.cta-preview-beams span:last-child { top: 30%; height: 96px; background: rgba(203, 243, 0,.1); filter: blur(48px); }
 		.cta-preview-copy { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; }
 		.cta-preview strong { display: block; max-width: 300px; font-size: 30px; line-height: 1.1; font-weight: 400; letter-spacing: 0; }
 		.cta-preview p { max-width: 300px; color: #9ca3af; font-size: 16px; line-height: 1.625; font-weight: 200; }
-		.cta-preview-copy > span { display: inline-flex; width: max-content; min-height: 42px; align-items: center; margin-top: 10px; padding: 10px 24px; border-radius: 12px; background: #5ea500; color: #fff; font-weight: 400; }
+		.cta-preview-copy > span { display: inline-flex; width: max-content; min-height: 42px; align-items: center; margin-top: 10px; padding: 10px 24px; border-radius: 12px; background: #CBF300; color: #fff; font-weight: 400; }
 		.cta-mockup { position: relative; z-index: 1; min-height: 210px; }
 		.cta-mockup-card { position: absolute; width: 220px; display: grid; grid-template-columns: 40px 1fr auto; gap: 8px; align-items: center; padding: 14px; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(24,24,27,.95); box-shadow: 0 20px 40px -15px rgba(0,0,0,.7); }
 		.cta-mockup-card-top { top: 24px; left: 0; transform: rotate(3deg); }

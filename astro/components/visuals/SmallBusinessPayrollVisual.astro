@@ -34,7 +34,7 @@
                         </div>
                         <div class="relative z-10 mt-3 flex items-center justify-between text-xs text-gray-500">
                             <span data-translate="heroVisual.fundingAllocated">Funding allocated</span>
-                            <span class="font-semibold text-[#5EA500]">92%</span>
+                            <span class="font-semibold text-[#CBF300]">92%</span>
                         </div>
                         <div class="hero-progress relative z-10 mt-2"><span></span></div>
                         <div class="relative z-10 mt-3 grid grid-cols-3 gap-2">
@@ -48,7 +48,7 @@
                             </div>
                             <div class="rounded-xl border border-white/10 bg-black/25 p-2.5">
                                 <div class="text-xs text-gray-500" data-translate="heroVisual.taxReserve">Tax reserve</div>
-                                <div class="mt-1 text-base font-semibold text-[#5EA500] font-manrope">$8.2k</div>
+                                <div class="mt-1 text-base font-semibold text-[#CBF300] font-manrope">$8.2k</div>
                             </div>
                         </div>
 
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="text-right">
                                     <div class="text-xs font-semibold text-white font-manrope">$4.8k</div>
-                                    <div class="text-[11px] text-[#5EA500]" data-translate="heroVisual.ready">Ready</div>
+                                    <div class="text-[11px] text-[#CBF300]" data-translate="heroVisual.ready">Ready</div>
                                 </div>
                             </div>
                             <div class="dashboard-country-row grid grid-cols-[auto_auto_minmax(0,1fr)_auto] items-center gap-2.5 overflow-hidden rounded-xl border border-white/10 bg-black/20 p-2"
@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="text-right">
                                     <div class="text-xs font-semibold text-white font-manrope">€3.9k</div>
-                                    <div class="text-[11px] text-[#5EA500]" data-translate="heroVisual.taxOk">Tax OK</div>
+                                    <div class="text-[11px] text-[#CBF300]" data-translate="heroVisual.taxOk">Tax OK</div>
                                 </div>
                             </div>
                         </div>
@@ -102,11 +102,11 @@
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.08);
         background:
-            radial-gradient(circle at 78% 16%, rgba(94, 165, 0, 0.16), transparent 28%),
+            radial-gradient(circle at 78% 16%, rgba(203, 243, 0, 0.16), transparent 28%),
             radial-gradient(circle at 18% 92%, rgba(24, 89, 64, 0.22), transparent 32%),
             linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(5, 5, 5, 0.98));
         box-shadow:
-            0 28px 86px -34px rgba(94, 165, 0, 0.65),
+            0 28px 86px -34px rgba(203, 243, 0, 0.65),
             0 30px 80px -24px rgba(0, 0, 0, 0.85);
         animation:
             dashboard-enter 900ms cubic-bezier(0.16, 1, 0.3, 1) both,
@@ -134,7 +134,7 @@
         left: -32%;
         width: 24%;
         pointer-events: none;
-        background: linear-gradient(90deg, transparent, rgba(94, 165, 0, 0.08), transparent);
+        background: linear-gradient(90deg, transparent, rgba(203, 243, 0, 0.08), transparent);
         transform: skewX(-16deg);
         animation: dashboard-sweep 5.8s ease-in-out 1.2s infinite;
     }
@@ -143,7 +143,7 @@
         position: relative;
         overflow: hidden;
         background:
-            radial-gradient(circle at 84% 18%, rgba(94, 165, 0, 0.16), transparent 28%),
+            radial-gradient(circle at 84% 18%, rgba(203, 243, 0, 0.16), transparent 28%),
             linear-gradient(145deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.018));
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
     }
@@ -153,7 +153,7 @@
         position: absolute;
         inset: -35% 48% 20% -20%;
         pointer-events: none;
-        background: radial-gradient(circle, rgba(94, 165, 0, 0.2), transparent 58%);
+        background: radial-gradient(circle, rgba(203, 243, 0, 0.2), transparent 58%);
         filter: blur(18px);
         opacity: 0.7;
     }
@@ -165,8 +165,8 @@
         height: 3.6rem;
         place-items: center;
         border-radius: 999px;
-        background: conic-gradient(from 210deg, #5EA500 0 92%, rgba(255, 255, 255, 0.1) 92% 100%);
-        box-shadow: 0 0 34px -12px rgba(94, 165, 0, 0.85);
+        background: conic-gradient(from 210deg, #CBF300 0 92%, rgba(255, 255, 255, 0.1) 92% 100%);
+        box-shadow: 0 0 34px -12px rgba(203, 243, 0, 0.85);
     }
 
     .hero-ring::before {
@@ -181,7 +181,7 @@
         content: '';
         position: absolute;
         inset: -5px;
-        border: 1px solid rgba(94, 165, 0, 0.26);
+        border: 1px solid rgba(203, 243, 0, 0.26);
         border-radius: inherit;
         animation: dashboard-pulse 2.8s ease-in-out infinite;
     }
@@ -198,8 +198,8 @@
         width: 92%;
         height: 100%;
         border-radius: inherit;
-        background: #5EA500;
-        box-shadow: 0 0 24px -7px rgba(94, 165, 0, 0.95);
+        background: #CBF300;
+        box-shadow: 0 0 24px -7px rgba(203, 243, 0, 0.95);
         animation: hero-progress 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
@@ -211,7 +211,7 @@
     }
 
     .dashboard-country-row:hover {
-        border-color: rgba(94, 165, 0, 0.22);
+        border-color: rgba(203, 243, 0, 0.22);
         background: rgba(255, 255, 255, 0.045);
     }
 
@@ -221,8 +221,8 @@
         height: 1.65rem;
         place-items: center;
         border-radius: 0.6rem;
-        background: rgba(94, 165, 0, 0.14);
-        color: #5EA500;
+        background: rgba(203, 243, 0, 0.14);
+        color: #CBF300;
         font-size: 0.62rem;
         font-weight: 800;
         letter-spacing: 0.03em;
@@ -260,7 +260,7 @@
 
     .dashboard-soft-line {
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(94, 165, 0, 0.34), transparent);
+        background: linear-gradient(90deg, transparent, rgba(203, 243, 0, 0.34), transparent);
     }
 
     @media (min-width: 1024px) {
@@ -300,8 +300,8 @@
     }
 
     @keyframes dashboard-pulse {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(94, 165, 0, 0.22); }
-        50% { box-shadow: 0 0 0 7px rgba(94, 165, 0, 0); }
+        0%, 100% { box-shadow: 0 0 0 0 rgba(203, 243, 0, 0.22); }
+        50% { box-shadow: 0 0 0 7px rgba(203, 243, 0, 0); }
     }
 
     @keyframes hero-progress {

@@ -6,7 +6,7 @@ export const pageShells = {
 		description: 'Know the true cost of hiring with Garna’s free Global Employee Cost Calculator. Estimate total employment expenses for global teams.',
 		keywords: 'employee cost calculator, employment cost calculator, global hiring cost, salary tax calculator, Garna',
 		htmlClass: 'scroll-smooth dark',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#5EA500]/40 selection:text-white bg-garna-page',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300]/40 selection:text-white bg-garna-page',
 		iconLibrary: 'lucide',
 	},
 	contractorOfRecord: {
@@ -15,7 +15,7 @@ export const pageShells = {
 		"keywords": "global payroll, contractor payments, international payroll, Garna, fintech, cross-border payments, payroll solutions",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth",
-		"bodyClass": "antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden z-10 text-gray-300 bg-garna-page",
+		"bodyClass": "antialiased selection:bg-[#CBF300] selection:text-black overflow-x-hidden z-10 text-gray-300 bg-garna-page",
 		"iconLibrary": "lucide",
 	},
 	home: {
@@ -36,7 +36,7 @@ export const pageShells = {
 		"keywords": "contractor payments, get paid globally, freelancer payouts, Garna, international payments, contractor payouts",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth",
-		"bodyClass": "antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden text-gray-300 bg-garna-page z-10",
+		"bodyClass": "antialiased selection:bg-[#CBF300] selection:text-black overflow-x-hidden text-gray-300 bg-garna-page z-10",
 		"iconLibrary": "iconify",
 	},
 	aiHiring: {
@@ -45,7 +45,7 @@ export const pageShells = {
 		"keywords": "AI recruitment, hire talent, AI hiring, candidate screening, Garna, recruitment platform",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth",
-		"bodyClass": "antialiased selection:bg-[#5EA500] selection:text-white overflow-x-hidden text-gray-300 bg-garna-page z-10 relative",
+		"bodyClass": "antialiased selection:bg-[#CBF300] selection:text-black overflow-x-hidden text-gray-300 bg-garna-page z-10 relative",
 		"iconLibrary": "iconify",
 	},
 	whiteLabel: {
@@ -65,7 +65,7 @@ export const pageShells = {
 			'small business payroll, global payroll, payroll for small business, employer of record, contractor payments, Garna',
 		ogImage: 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
 		htmlClass: 'scroll-smooth',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#5EA500]/30 selection:text-white bg-garna-page',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300]/30 selection:text-white bg-garna-page',
 		iconLibrary: 'iconify',
 	},
 	eor: {
@@ -74,7 +74,7 @@ export const pageShells = {
 		"keywords": "employer of record, EOR, global employment, international hiring, global payroll, compliance, Garna",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth dark",
-		"bodyClass": "antialiased overflow-x-hidden selection:bg-[#5EA500]/40 selection:text-white bg-garna-page",
+		"bodyClass": "antialiased overflow-x-hidden selection:bg-[#CBF300]/40 selection:text-white bg-garna-page",
 		"iconLibrary": "iconify",
 	},
 	blog: {

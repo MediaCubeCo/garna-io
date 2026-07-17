@@ -43,8 +43,8 @@
 
                 // Ensure chart uses container height perfectly
                 const gradient = ctx.createLinearGradient(0, 0, 0, 200);
-                gradient.addColorStop(0, 'rgba(94, 165, 0, 0.4)');
-                gradient.addColorStop(1, 'rgba(94, 165, 0, 0.0)');
+                gradient.addColorStop(0, 'rgba(203, 243, 0, 0.4)');
+                gradient.addColorStop(1, 'rgba(203, 243, 0, 0.0)');
 
                 new Chart(ctx, {
                     type: 'line',
@@ -52,7 +52,7 @@
                         labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'],
                         datasets: [{
                             data: [3.2, 3.8, 3.5, 4.5, 4.2, 5.8, 5.2, 6.5, 6.1, 7.8, 7.2, 8.5, 8.1, 8.42],
-                            borderColor: '#5EA500',
+                            borderColor: '#CBF300',
                             borderWidth: 2,
                             backgroundColor: gradient,
                             fill: true,
@@ -60,7 +60,7 @@
                             pointRadius: 0,
                             pointHoverRadius: 4,
                             pointHoverBackgroundColor: '#ffffff',
-                            pointHoverBorderColor: '#5EA500'
+                            pointHoverBorderColor: '#CBF300'
                         }]
                     },
                     options: {
@@ -72,7 +72,7 @@
                                 enabled: true,
                                 backgroundColor: '#111111',
                                 titleColor: '#ffffff',
-                                bodyColor: '#5EA500',
+                                bodyColor: '#CBF300',
                                 borderColor: 'rgba(255,255,255,0.1)',
                                 borderWidth: 1,
                                 displayColors: false,

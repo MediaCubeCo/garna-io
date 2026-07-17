@@ -15,7 +15,7 @@ export function WidgetWrapper({ isOpen, onClose, config }: WidgetWrapperProps): 
 		title: 'Book a free 30-minute product demo',
 		subtitle: 'Get all your questions answered by our experts',
 		bgColorCal: '#0a0a0a',
-		colorBrandBg: '#5ea500',
+		colorBrandBg: '#CBF300',
 		colorBrandText: '#ffffff',
 		colorBorder: 'rgb(34, 34, 34)',
 		thicknessBorder: '1px',

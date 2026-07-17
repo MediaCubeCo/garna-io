@@ -30,7 +30,7 @@ function fallbackBookingWidget(): string {
 					title: 'Start your journey with Garna',
 					subtitle: 'Fill in your details to book a demo',
 					titleButtonForm: 'Continue',
-					colorBrandBg: '#5EA500',
+					colorBrandBg: '#CBF300',
 					colorBrandText: '#ffffff',
 					bgColorCal: '#0a0a0a',
 					colorBorder: 'rgb(34, 34, 34)',
@@ -63,21 +63,21 @@ function pageShell(title: string, head: string, body: string, options: PageShell
 	${options.articleChrome ? '<link rel="stylesheet" href="/rainbow-bg.css" />' : ''}
 	${head}
 	<style>
-		:root { color-scheme: dark; --bg: #050505; --panel: #0a0a0a; --muted: #a1a1aa; --green: #5ea500; }
+		:root { color-scheme: dark; --bg: #050505; --panel: #0a0a0a; --muted: #a1a1aa; --green: #CBF300; }
 		* { box-sizing: border-box; }
 		html { scroll-behavior: smooth; }
 		body { margin: 0; background: var(--bg); color: white; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
 		a { color: inherit; text-decoration: none; }
-		.garna-blog { min-height: 100vh; background: radial-gradient(circle at 70% 0%, rgba(94,165,0,.12), transparent 32%), var(--bg); }
+		.garna-blog { min-height: 100vh; background: radial-gradient(circle at 70% 0%, rgba(203, 243, 0,.12), transparent 32%), var(--bg); }
 		.garna-blog--article { position: relative; isolation: isolate; background: var(--bg); }
-		.garna-blog--article::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(circle at 52% 0%, rgba(94,165,0,.18), transparent 34%), linear-gradient(180deg, rgba(5,5,5,.18), #050505 520px); }
+		.garna-blog--article::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(circle at 52% 0%, rgba(203, 243, 0,.18), transparent 34%), linear-gradient(180deg, rgba(5,5,5,.18), #050505 520px); }
 		.garna-site-header { position: fixed; inset: 0 0 auto; z-index: 50; border-bottom: 1px solid rgba(255,255,255,.08); background: rgba(5,5,5,.72); backdrop-filter: blur(18px); }
 		.garna-site-header-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; max-width: 1180px; height: 64px; margin: 0 auto; padding: 0 24px; }
 		.garna-site-logo img { display: block; width: 82px; height: auto; }
 		.garna-site-nav { display: flex; gap: 36px; align-items: center; justify-content: center; color: rgba(255,255,255,.86); font-size: 16px; font-weight: 300; }
 		.garna-site-actions { display: flex; gap: 8px; align-items: center; justify-content: flex-end; }
 		.garna-site-button { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 0 26px; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; color: #fff; font-size: 15px; }
-		.garna-site-button--primary { border-color: transparent; background: #5ea500; box-shadow: 0 12px 28px rgba(94,165,0,.2); }
+		.garna-site-button--primary { border-color: transparent; background: #CBF300; box-shadow: 0 12px 28px rgba(203, 243, 0,.2); }
 		.garna-blog-header, .garna-blog-section { max-width: 1180px; margin: 0 auto; padding: 32px 24px; }
 		.garna-blog-header { padding-top: 104px; text-align: center; }
 		.garna-blog-kicker { color: var(--green); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; }
@@ -89,7 +89,7 @@ function pageShell(title: string, head: string, body: string, options: PageShell
 		.garna-blog-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #111; }
 		.garna-blog-card-body { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
 		.garna-blog-meta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; color: #8d8d95; font-size: 13px; }
-		.garna-blog-chip { color: var(--green); background: rgba(94,165,0,.1); border: 1px solid rgba(94,165,0,.22); padding: 4px 9px; border-radius: 999px; font-size: 12px; text-transform: uppercase; }
+		.garna-blog-chip { color: var(--green); background: rgba(203, 243, 0,.1); border: 1px solid rgba(203, 243, 0,.22); padding: 4px 9px; border-radius: 999px; font-size: 12px; text-transform: uppercase; }
 		.garna-blog-article { max-width: 820px; margin: 0 auto; padding: 0 24px 96px; }
 		.garna-article-hero { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1280px; margin: 0 auto; padding: 152px 24px 64px; }
 		.garna-article-hero-copy { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 896px; text-align: center; }
@@ -105,11 +105,11 @@ function pageShell(title: string, head: string, body: string, options: PageShell
 		.garna-article-author span span { display: block; margin-top: 2px; color: #9ca3af; font-size: 14px; font-weight: 100; }
 		.garna-article-share { display: flex; gap: 12px; align-items: center; color: #9ca3af; font-size: 14px; font-weight: 100; }
 		.garna-article-share-button { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.1); border-radius: 999px; background: rgba(255,255,255,.05); color: #9ca3af; transition: color .2s ease, background .2s ease, border-color .2s ease; }
-		.garna-article-share-button:hover { border-color: #5ea500; background: #5ea500; color: #fff; }
+		.garna-article-share-button:hover { border-color: #CBF300; background: #CBF300; color: #fff; }
 		.garna-article-cover-section { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
 		.garna-article-cover { display: block; position: relative; width: 100%; min-height: 500px; margin: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.05); border-radius: 24px; background: #0a0a0a; box-shadow: 0 0 15px rgba(0,0,0,.5); }
-		.garna-article-cover::before { content: ""; position: absolute; left: -80px; top: -80px; z-index: 1; width: 240px; height: 240px; border-radius: 999px; background: rgba(94,165,0,.05); filter: blur(48px); transition: background .5s ease; }
-		.garna-article-cover:hover::before { background: rgba(94,165,0,.15); }
+		.garna-article-cover::before { content: ""; position: absolute; left: -80px; top: -80px; z-index: 1; width: 240px; height: 240px; border-radius: 999px; background: rgba(203, 243, 0,.05); filter: blur(48px); transition: background .5s ease; }
+		.garna-article-cover:hover::before { background: rgba(203, 243, 0,.15); }
 		.garna-article-cover img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
 		.garna-article-shell { max-width: 1280px; margin: 0 auto; padding: 64px 24px 104px; }
 		.garna-article-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr) 220px; gap: 80px; align-items: start; justify-content: center; }
@@ -123,28 +123,28 @@ function pageShell(title: string, head: string, body: string, options: PageShell
 		.garna-blog-article-body ul, .garna-blog-article-body ol { display: grid; gap: 10px; margin: 0 0 28px; padding-left: 24px; }
 		.garna-blog-article-body ul { list-style: disc; }
 		.garna-blog-article-body ol { list-style: decimal; }
-		.garna-blog-article-body li::marker { color: #5ea500; }
-		.garna-blog-article-body a { color: #d8f7b8; text-decoration: underline; text-decoration-color: rgba(94,165,0,.65); text-underline-offset: 4px; }
+		.garna-blog-article-body li::marker { color: #CBF300; }
+		.garna-blog-article-body a { color: #d8f7b8; text-decoration: underline; text-decoration-color: rgba(203, 243, 0,.65); text-underline-offset: 4px; }
 		.garna-blog-article-body strong, .garna-blog-article-body b { color: #f3f4f6; font-weight: 520; }
 		.garna-blog-checklist { padding-left: 0 !important; list-style: none !important; }
 		.garna-blog-checklist li { display: flex; align-items: flex-start; gap: 12px; }
-		.garna-blog-checklist-box { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; width: 18px; height: 18px; margin-top: 8px; border: 1px solid rgba(94,165,0,.8); border-radius: 5px; color: #5ea500; font-size: 13px; line-height: 1; }
+		.garna-blog-checklist-box { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; width: 18px; height: 18px; margin-top: 8px; border: 1px solid rgba(203, 243, 0,.8); border-radius: 5px; color: #CBF300; font-size: 13px; line-height: 1; }
 		.garna-blog-divider { width: 100%; height: 1px; margin: 36px 0; border: 0; background: rgba(161,161,170,.42); }
 		.garna-article-toc { position: sticky; top: 96px; padding-top: 4px; }
 		.garna-article-toc-title { margin: 0 0 18px; color: #a1a1aa; font-size: 12px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; }
 		.garna-article-toc-list { display: grid; gap: 22px; margin: 0; padding: 14px 0 14px 18px; border-left: 1px solid rgba(255,255,255,.08); list-style: none; }
 		.garna-article-toc-list a { display: block; color: #71717a; font-size: 16px; line-height: 1.35; font-weight: 200; transition: color .2s ease; }
 		.garna-article-toc-list li:first-child { position: relative; }
-		.garna-article-toc-list li:first-child::before { content: ""; position: absolute; left: -19px; top: 0; width: 2px; height: 42px; background: #5ea500; }
+		.garna-article-toc-list li:first-child::before { content: ""; position: absolute; left: -19px; top: 0; width: 2px; height: 42px; background: #CBF300; }
 		.garna-article-toc-list li:first-child a, .garna-article-toc-list a:hover { color: #fff; }
 		.garna-article-aside { position: sticky; top: 88px; }
 		.garna-article-side-card { display: block; position: relative; width: 100%; height: 320px; overflow: hidden; border: 1px solid rgba(255,255,255,.07); border-radius: 12px; background: linear-gradient(to bottom, #1a1a1e, #151518, #0a0a0c); box-shadow: 0 18px 40px rgba(0,0,0,.35); }
-		.garna-article-side-card::before { content: ""; position: absolute; inset: -30% -55% auto; height: 170px; transform: rotate(35deg); background: rgba(94,165,0,.18); filter: blur(34px); }
+		.garna-article-side-card::before { content: ""; position: absolute; inset: -30% -55% auto; height: 170px; transform: rotate(35deg); background: rgba(203, 243, 0,.18); filter: blur(34px); }
 		.garna-article-side-card-inner { position: relative; z-index: 1; display: flex; height: 100%; flex-direction: column; align-items: center; justify-content: flex-start; padding: 24px; text-align: center; }
 		.garna-article-side-card h2 { margin: 0; color: #f4f4f5; font-size: 20px; line-height: 1.22; font-weight: 300; letter-spacing: 0; }
-		.garna-article-side-card h2 span { color: #5ea500; }
+		.garna-article-side-card h2 span { color: #CBF300; }
 		.garna-article-side-visual { width: 100%; max-width: 190px; min-height: 130px; object-fit: cover; margin: 18px auto 22px; border-radius: 12px; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 18px 34px rgba(0,0,0,.35); }
-		.garna-article-side-button { display: inline-flex; min-height: 38px; align-items: center; justify-content: center; padding: 0 22px; border-radius: 10px; background: #5ea500; color: #fff; font-size: 14px; box-shadow: 0 0 24px rgba(94,165,0,.38); }
+		.garna-article-side-button { display: inline-flex; min-height: 38px; align-items: center; justify-content: center; padding: 0 22px; border-radius: 10px; background: #CBF300; color: #fff; font-size: 14px; box-shadow: 0 0 24px rgba(203, 243, 0,.38); }
 		.garna-article-mobile-toc { display: none; margin: 0 0 34px; padding: 20px; border: 1px solid rgba(255,255,255,.08); border-radius: 10px; background: rgba(255,255,255,.03); }
 		.garna-blog-image { margin: 36px 0; }
 		.garna-blog-image img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,.1); background: #111; }
@@ -153,22 +153,22 @@ function pageShell(title: string, head: string, body: string, options: PageShell
 		.garna-blog-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 		.garna-blog-article-body .garna-blog-cta, .garna-blog-article-body .garna-blog-cta * { text-decoration: none; }
 		.garna-blog-cta { display: block; position: relative; width: 100%; height: 300px; margin: 44px 0 24px; overflow: hidden; border: 1px solid rgba(255,255,255,.05); border-radius: 12px; background: linear-gradient(to bottom, #1a1a1e, #151518, #0a0a0c); box-shadow: 0 10px 15px -3px rgba(0,0,0,.35), 0 4px 6px -4px rgba(0,0,0,.35); transition: transform .5s ease, box-shadow .5s ease, border-color .5s ease; }
-		.garna-blog-cta:hover { transform: translateY(-4px); border-color: rgba(94,165,0,.3); box-shadow: 0 25px 50px -12px rgba(0,0,0,.55); }
+		.garna-blog-cta:hover { transform: translateY(-4px); border-color: rgba(203, 243, 0,.3); box-shadow: 0 25px 50px -12px rgba(0,0,0,.55); }
 		.garna-blog-cta-beams { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-		.garna-blog-cta-beams span { position: absolute; left: -30%; width: 160%; transform: rotate(35deg); background: rgba(94,165,0,.2); filter: blur(28px); transition: transform 1s ease; }
+		.garna-blog-cta-beams span { position: absolute; left: -30%; width: 160%; transform: rotate(35deg); background: rgba(203, 243, 0,.2); filter: blur(28px); transition: transform 1s ease; }
 		.garna-blog-cta-beams span:first-child { top: 5%; height: 80px; }
-		.garna-blog-cta-beams span:last-child { top: 30%; height: 96px; background: rgba(94,165,0,.1); filter: blur(48px); }
+		.garna-blog-cta-beams span:last-child { top: 30%; height: 96px; background: rgba(203, 243, 0,.1); filter: blur(48px); }
 		.garna-blog-cta:hover .garna-blog-cta-beams span:first-child { transform: rotate(35deg) translateX(16px); }
 		.garna-blog-cta:hover .garna-blog-cta-beams span:last-child { transform: rotate(35deg) translateX(32px); }
 		.garna-blog-cta-content { position: relative; z-index: 1; display: flex; justify-content: space-between; width: 100%; height: 100%; }
 		.garna-blog-cta-copy { display: flex; flex-direction: column; justify-content: center; width: 50%; padding: 32px 0 32px 32px; text-align: left; }
 		.garna-blog-cta h2 { margin: 0; color: #fff; font-size: 30px; line-height: 1.1; font-weight: 400; letter-spacing: 0; }
 		.garna-blog-cta p { margin: 12px 0 0; color: #9ca3af; font-size: 16px; line-height: 1.625; font-weight: 200; }
-		.garna-blog-cta-copy > span { display: inline-flex; align-items: center; justify-content: center; width: max-content; min-height: 42px; margin-top: 24px; padding: 10px 24px; border-radius: 12px; background: #5ea500; color: #fff; font-size: 16px; font-weight: 400; transition: transform .3s ease; }
+		.garna-blog-cta-copy > span { display: inline-flex; align-items: center; justify-content: center; width: max-content; min-height: 42px; margin-top: 24px; padding: 10px 24px; border-radius: 12px; background: #CBF300; color: #fff; font-size: 16px; font-weight: 400; transition: transform .3s ease; }
 		.garna-blog-cta-copy > span:hover { transform: scale(1.05); }
 		.garna-blog-cta-visual { position: relative; flex-grow: 1; min-height: 300px; width: 50%; }
 		.garna-blog-payroll-card { position: absolute; width: 220px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(24,24,27,.95); box-shadow: 0 20px 40px -15px rgba(0,0,0,.7); color: #fff; transition: transform .7s ease, box-shadow .7s ease; }
-		.garna-blog-cta:hover .garna-blog-payroll-card { box-shadow: 0 25px 50px -12px rgba(94,165,0,.15); }
+		.garna-blog-cta:hover .garna-blog-payroll-card { box-shadow: 0 25px 50px -12px rgba(203, 243, 0,.15); }
 		.garna-blog-payroll-card--green { z-index: 2; left: 32px; top: 50%; transform: translateX(40px) translateY(calc(-50% - 44px)) rotate(3deg); }
 		.garna-blog-payroll-card--blue { z-index: 1; right: 24px; top: 50%; transform: translateX(-24px) translateY(-21px) rotate(-2deg); }
 		.garna-blog-cta:hover .garna-blog-payroll-card--green { transform: translateX(40px) translateY(calc(-50% - 44px)) rotate(3deg) scale(1.05); }
@@ -177,23 +177,23 @@ function pageShell(title: string, head: string, body: string, options: PageShell
 		.garna-blog-payroll-card-main { display: grid; grid-template-columns: 40px minmax(0,1fr) auto; gap: 12px; align-items: center; padding: 16px; }
 		.garna-blog-payroll-avatar { position: relative; width: 40px; height: 40px; flex-shrink: 0; }
 		.garna-blog-payroll-avatar img { width: 100%; height: 100%; object-fit: cover; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: #27272a; }
-		.garna-blog-payroll-avatar span { position: absolute; right: 0; bottom: 0; width: 10px; height: 10px; border: 2px solid #18181b; border-radius: 999px; background: #5ea500; }
+		.garna-blog-payroll-avatar span { position: absolute; right: 0; bottom: 0; width: 10px; height: 10px; border: 2px solid #18181b; border-radius: 999px; background: #CBF300; }
 		.garna-blog-payroll-card--blue .garna-blog-payroll-avatar span { background: #3b82f6; }
 		.garna-blog-payroll-card strong { display: block; color: #fff; font-size: 12px; line-height: 1.1; font-weight: 300; }
 		.garna-blog-payroll-card small { display: block; margin-top: 2px; color: #a1a1aa; font-size: 10px; line-height: 1.1; font-weight: 200; }
 		.garna-blog-payroll-amount { text-align: right; }
 		.garna-blog-payroll-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 16px; border-top: 1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); font-size: 11px; }
 		.garna-blog-payroll-card-footer span { display: flex; align-items: center; gap: 8px; color: #d4d4d8; font-weight: 300; }
-		.garna-blog-payroll-card-footer i { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 999px; background: rgba(94,165,0,.1); color: #5ea500; }
+		.garna-blog-payroll-card-footer i { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 999px; background: rgba(203, 243, 0,.1); color: #CBF300; }
 		.garna-blog-payroll-card--blue .garna-blog-payroll-card-footer i { background: rgba(59,130,246,.1); color: #60a5fa; }
-		.garna-blog-tldr { margin: 0 0 48px; padding: 24px 32px; border: 1px solid rgba(94,165,0,.2); border-radius: 12px; background: rgba(94,165,0,.05); }
+		.garna-blog-tldr { margin: 0 0 48px; padding: 24px 32px; border: 1px solid rgba(203, 243, 0,.2); border-radius: 12px; background: rgba(203, 243, 0,.05); }
 		.garna-blog-tldr h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 20px; color: #fff; font-size: 20px; line-height: 1.4; font-weight: 200; letter-spacing: 0; }
 		.garna-blog-tldr ul { display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; list-style: none; color: #9ca3af; font-size: 18px; font-weight: 200; }
 		.garna-blog-tldr li { display: flex; align-items: flex-start; gap: 12px; color: #9ca3af; font-size: 18px; line-height: 1.55; font-weight: 200; }
 		.garna-blog-tldr li svg { flex-shrink: 0; margin-top: 8px; }
 		.garna-blog-tldr li span { color: #9ca3af; }
 		.garna-blog-author { display: flex; gap: 18px; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
-		.garna-blog-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(94,165,0,.35); }
+		.garna-blog-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(203, 243, 0,.35); }
 		.garna-blog-admin-link { position: fixed; right: 16px; bottom: 16px; color: #777; font-size: 12px; }
 		@media (max-width: 1100px) {
 			.garna-article-grid { grid-template-columns: minmax(0, 768px); justify-content: center; }
@@ -520,8 +520,8 @@ function fillArticleAstroShell(
 }
 
 function renderBlogCategoryFilters(categories: BlogCategory[], language: string, activeCategorySlug?: string): string {
-	const activeClass = 'flex-shrink-0 bg-[#5ea500] text-white px-5 py-2 rounded-full text-sm hover:bg-[#4a8300] transition-colors snap-start';
-	const inactiveClass = 'flex-shrink-0 text-gray-400 px-5 py-2 rounded-full text-sm hover:bg-[#5ea500]/10 hover:text-[#5ea500] transition-colors snap-start border border-transparent hover:border-[#5ea500]/20';
+	const activeClass = 'flex-shrink-0 bg-[#CBF300] text-[#101010] px-5 py-2 rounded-full text-sm hover:bg-[#A9CA00] transition-colors snap-start';
+	const inactiveClass = 'flex-shrink-0 text-gray-400 px-5 py-2 rounded-full text-sm hover:bg-[#CBF300]/10 hover:text-[#CBF300] transition-colors snap-start border border-transparent hover:border-[#CBF300]/20';
 	const allButtonClass = activeCategorySlug ? inactiveClass : activeClass;
 	const allButton = `<a href="/${escapeAttribute(language)}/blog" class="${allButtonClass}" data-blog-category-link><span>All categories</span></a>`;
 	const categoryButtons = categories.map((category) => {
@@ -535,9 +535,9 @@ function renderBlogCategoryFilters(categories: BlogCategory[], language: string,
 function renderBlogListCta(): string {
 	return `<section class="overflow-hidden pt-4 pb-8 relative">
 		<div class="font-manrope max-w-7xl mx-auto pr-6 pl-6">
-			<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_demo' });" class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-between rounded-3xl border border-white/10 bg-[#0a0a0a]/55 px-6 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.22)] transition-colors hover:border-[#5ea500]/30">
+			<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_demo' });" class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-between rounded-3xl border border-white/10 bg-[#0a0a0a]/55 px-6 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.22)] transition-colors hover:border-[#CBF300]/30">
 				<h2 class="md:text-3xl text-2xl leading-tight font-thin text-white tracking-tight" data-translate="blog.cta.title">Your Global Growth Starts Here</h2>
-				<span class="inline-flex min-h-12 shrink-0 items-center justify-center rounded-xl bg-[#5ea500] px-7 text-base font-normal text-white shadow-[0_0_24px_rgba(94,165,0,0.32)] transition-transform duration-300 hover:scale-[1.03] hover:bg-[#69b800]">
+				<span class="inline-flex min-h-12 shrink-0 items-center justify-center rounded-xl bg-[#CBF300] px-7 text-base font-normal text-[#101010] shadow-[0_0_24px_rgba(203, 243, 0,0.32)] transition-transform duration-300 hover:scale-[1.03] hover:bg-[#D8FF33]">
 					<span data-translate="blog.cta.button">Book a Demo</span>
 				</span>
 			</a>
@@ -551,11 +551,11 @@ function renderFeaturedArticle(article: BlogArticle | undefined, language: strin
 	const articleLanguage = article.language || language;
 	return `<section>
 		<div class="max-w-7xl mx-auto pr-6 pb-16 pl-6">
-			<a href="/${escapeAttribute(articleLanguage)}/blog/${escapeAttribute(article.slug)}" class="flex flex-col lg:flex-row bg-[#0A0A0A] border border-white/5 rounded-3xl overflow-hidden group hover:border-[#5ea500]/30 hover:-translate-y-1 transition-all duration-500 relative outline-none">
-				<div class="absolute -left-20 -top-20 w-60 h-60 bg-[#5ea500]/5 rounded-full blur-3xl duration-500 pointer-events-none z-0"></div>
+			<a href="/${escapeAttribute(articleLanguage)}/blog/${escapeAttribute(article.slug)}" class="flex flex-col lg:flex-row bg-[#0A0A0A] border border-white/5 rounded-3xl overflow-hidden group hover:border-[#CBF300]/30 hover:-translate-y-1 transition-all duration-500 relative outline-none">
+				<div class="absolute -left-20 -top-20 w-60 h-60 bg-[#CBF300]/5 rounded-full blur-3xl duration-500 pointer-events-none z-0"></div>
 				<div class="p-8 lg:p-12 xl:p-16 flex flex-col justify-between w-full lg:w-[45%] relative z-10 shrink-0">
 					<div>
-						<span class="text-[#5ea500] text-sm font-light tracking-wide uppercase mb-6 inline-block font-manrope">${escapeHtml(category)}</span>
+						<span class="text-[#CBF300] text-sm font-light tracking-wide uppercase mb-6 inline-block font-manrope">${escapeHtml(category)}</span>
 						<h3 class="text-3xl lg:text-4xl font-light text-white tracking-tight mb-6 font-manrope transition-colors duration-300">${escapeHtml(article.title)}</h3>
 						<p class="leading-relaxed text-lg text-gray-400 font-extralight">${escapeHtml(article.excerpt)}</p>
 					</div>
@@ -583,7 +583,7 @@ function renderArticleGridCards(articles: BlogArticle[]): string {
 function renderReferenceArticleCard(article: BlogArticle): string {
 	const category = article.categories?.[0]?.name || 'Insight';
 	const language = article.language || 'en';
-	return `<a class="flex flex-col bg-[#0c0c0c] rounded-[20px] overflow-hidden border border-white/5 hover:border-[#5ea500]/50 transition-all duration-300 group cursor-pointer shadow-lg" href="/${escapeAttribute(language)}/blog/${escapeAttribute(article.slug)}">
+	return `<a class="flex flex-col bg-[#0c0c0c] rounded-[20px] overflow-hidden border border-white/5 hover:border-[#CBF300]/50 transition-all duration-300 group cursor-pointer shadow-lg" href="/${escapeAttribute(language)}/blog/${escapeAttribute(article.slug)}">
 		<div class="p-2 pb-0">
 			<div class="h-56 w-full overflow-hidden bg-[#0A0A0A] rounded-2xl">
 				${article.cover_url ? `<img src="${escapeAttribute(article.cover_url)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100" alt="${escapeAttribute(article.cover_alt || article.title)}" loading="lazy" style="${cropStyle(article.related_object_position || article.cover_object_position, article.related_crop_scale || article.cover_crop_scale)}">` : ''}
@@ -591,11 +591,11 @@ function renderReferenceArticleCard(article: BlogArticle): string {
 		</div>
 		<div class="p-8 flex flex-col flex-1">
 			<div class="text-sm font-thin text-gray-400 mb-4 flex items-center gap-2">
-				<span class="text-[#5ea500] font-thin">${escapeHtml(category)}</span>
-				<span class="w-1 h-1 rounded-full bg-[#5ea500]/50"></span>
+				<span class="text-[#CBF300] font-thin">${escapeHtml(category)}</span>
+				<span class="w-1 h-1 rounded-full bg-[#CBF300]/50"></span>
 				<span>${escapeHtml(formatDate(article.published_at))}</span>
 			</div>
-			<h3 class="text-xl font-thin text-white tracking-tight mb-3 leading-[1.4] group-hover:text-[#5ea500] transition-colors duration-300">${escapeHtml(article.title)}</h3>
+			<h3 class="text-xl font-thin text-white tracking-tight mb-3 leading-[1.4] group-hover:text-[#CBF300] transition-colors duration-300">${escapeHtml(article.title)}</h3>
 			<p class="text-base text-gray-400 font-thin leading-relaxed">${escapeHtml(article.excerpt)}</p>
 		</div>
 	</a>`;
@@ -604,9 +604,9 @@ function renderReferenceArticleCard(article: BlogArticle): string {
 function renderBlogPagination(articleCount: number): string {
 	if (articleCount <= 9) return '';
 	return `<div class="lg:mt-16 flex gap-1.5 sm:gap-2 mt-12 gap-x-1.5 gap-y-1.5 items-center justify-center">
-		<button class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-white/5 bg-[#0c0c0c] text-gray-400 hover:text-[#5ea500] hover:border-[#5ea500]/50 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#5ea500]/10" aria-label="Previous Page">${chevronLeftIcon()}</button>
-		<button class="sm:w-10 sm:h-10 flex transition-all duration-300 shadow-[#5ea500]/20 text-sm font-thin text-[#5ea500] bg-[#0c0c0c] w-8 h-8 border-[#5ea500] border rounded-full items-center justify-center" aria-label="Page 1" aria-current="page">1</button>
-		<button class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-white/5 bg-[#0c0c0c] text-gray-400 hover:text-[#5ea500] hover:border-[#5ea500]/50 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#5ea500]/10" aria-label="Next Page">${chevronRightIcon()}</button>
+		<button class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-white/5 bg-[#0c0c0c] text-gray-400 hover:text-[#CBF300] hover:border-[#CBF300]/50 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#CBF300]/10" aria-label="Previous Page">${chevronLeftIcon()}</button>
+		<button class="sm:w-10 sm:h-10 flex transition-all duration-300 shadow-[#CBF300]/20 text-sm font-thin text-[#CBF300] bg-[#0c0c0c] w-8 h-8 border-[#CBF300] border rounded-full items-center justify-center" aria-label="Page 1" aria-current="page">1</button>
+		<button class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-white/5 bg-[#0c0c0c] text-gray-400 hover:text-[#CBF300] hover:border-[#CBF300]/50 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#CBF300]/10" aria-label="Next Page">${chevronRightIcon()}</button>
 	</div>`;
 }
 
@@ -641,13 +641,13 @@ function usableSocialValue(value: string | null | undefined): boolean {
 
 function socialIconLink(href: string, label: string, icon: string, external = false): string {
 	const externalAttributes = external ? ' target="_blank" rel="noopener noreferrer"' : '';
-	return `<a href="${escapeAttribute(href)}" aria-label="${escapeAttribute(label)}"${externalAttributes} class="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all duration-300">${icon}</a>`;
+	return `<a href="${escapeAttribute(href)}" aria-label="${escapeAttribute(label)}"${externalAttributes} class="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#101010] hover:bg-[#CBF300] hover:border-[#CBF300] transition-all duration-300">${icon}</a>`;
 }
 
 function renderHeroCategories(article: BlogArticle): string {
 	const categories = article.categories?.length ? article.categories : [];
 	const category = categories[0];
-	return `<span class="text-[#5ea500] text-xs font-light uppercase tracking-wider bg-[#5ea500]/10 px-3 py-1 rounded-full border border-[#5ea500]/20">${escapeHtml(category?.name || 'payroll')}</span>`;
+	return `<span class="text-[#CBF300] text-xs font-light uppercase tracking-wider bg-[#CBF300]/10 px-3 py-1 rounded-full border border-[#CBF300]/20">${escapeHtml(category?.name || 'payroll')}</span>`;
 }
 
 function renderAuthorHeroBlock(article: BlogArticle): string {
@@ -668,7 +668,7 @@ function renderCoverBlock(article: BlogArticle): string {
 	return `<section>
 		<div class="garna-container">
 			<figure class="flex flex-col bg-[#0A0A0A] border border-white/5 rounded-3xl overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.5)] relative outline-none min-h-[250px] sm:min-h-[300px] lg:min-h-[500px]">
-				<div class="absolute -left-20 -top-20 w-60 h-60 bg-[#5ea500]/5 rounded-full blur-3xl pointer-events-none z-0"></div>
+				<div class="absolute -left-20 -top-20 w-60 h-60 bg-[#CBF300]/5 rounded-full blur-3xl pointer-events-none z-0"></div>
 				<div class="absolute inset-0 w-full h-full z-0 bg-[#0A0A0A]">
 					<img src="${escapeAttribute(article.cover_url)}" alt="${escapeAttribute(article.cover_alt || article.title)}" class="absolute inset-0 w-full h-full object-cover" style="${cropStyle(article.cover_object_position, article.cover_crop_scale)}" />
 				</div>
@@ -692,9 +692,9 @@ function renderArticleFooter(article: BlogArticle, url: string): string {
 			<div>${userCheckIcon()}<span>Written by: ${escapeHtml(writtenBy)}</span></div>
 		</div>
 		<div class="garna-blog-article-footer-share">
-			<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="https://x.com/intent/tweet?url=${escapeAttribute(encodeURIComponent(url))}" target="_blank" rel="noopener noreferrer" aria-label="Share on X">${xIcon()}</a>
-			<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="https://www.linkedin.com/sharing/share-offsite/?url=${escapeAttribute(encodeURIComponent(url))}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">${linkedInIcon()}</a>
-			<button type="button" class="garna-blog-copy-link w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" data-copy-url="${escapeAttribute(url)}" aria-label="Copy article link">${linkIcon()}</button>
+			<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#101010] hover:bg-[#CBF300] hover:border-[#CBF300] transition-all cursor-pointer" href="https://x.com/intent/tweet?url=${escapeAttribute(encodeURIComponent(url))}" target="_blank" rel="noopener noreferrer" aria-label="Share on X">${xIcon()}</a>
+			<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#101010] hover:bg-[#CBF300] hover:border-[#CBF300] transition-all cursor-pointer" href="https://www.linkedin.com/sharing/share-offsite/?url=${escapeAttribute(encodeURIComponent(url))}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">${linkedInIcon()}</a>
+			<button type="button" class="garna-blog-copy-link w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#101010] hover:bg-[#CBF300] hover:border-[#CBF300] transition-all cursor-pointer" data-copy-url="${escapeAttribute(url)}" aria-label="Copy article link">${linkIcon()}</button>
 		</div>
 	</div>`;
 }
@@ -736,10 +736,10 @@ function renderArticleFaq(article: BlogArticle): string {
 					</a>
 				</div>
 				<div class="garna-blog-faq-list" data-faq-accordion>
-					${faqs.map((faq) => `<details class="group bg-[#0A0A0A] border border-white/5 rounded-2xl overflow-hidden hover:border-[#5ea500]/30 transition-colors duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]" data-faq-item data-state="closed">
+					${faqs.map((faq) => `<details class="group bg-[#0A0A0A] border border-white/5 rounded-2xl overflow-hidden hover:border-[#CBF300]/30 transition-colors duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]" data-faq-item data-state="closed">
 						<summary class="flex items-center justify-between p-6 cursor-pointer text-white font-medium outline-none">
 							<span class="text-lg font-light">${escapeHtml(faq.question)}</span>
-							<span class="transition-transform duration-300 text-white/50 flex-shrink-0 ml-4 bg-white/5 w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-[#5ea500]/10">
+							<span class="transition-transform duration-300 text-white/50 flex-shrink-0 ml-4 bg-white/5 w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-[#CBF300]/10">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="garna-faq-icon" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
 							</span>
 						</summary>
@@ -760,7 +760,7 @@ function renderTableOfContentsForShell(items: TocItem[], variant: 'desktop' | 'm
 		.map((item, index) => {
 			const label = `${hasIntro ? index : index + 1}. ${escapeHtml(item.label)}`;
 			if (variant === 'mobile') {
-				return `<li><a href="#${escapeAttribute(item.id)}" data-heading-id="${escapeAttribute(item.id)}" class="garna-blog-toc-link hover:text-[#5ea500] transition-colors">${label}</a></li>`;
+				return `<li><a href="#${escapeAttribute(item.id)}" data-heading-id="${escapeAttribute(item.id)}" class="garna-blog-toc-link hover:text-[#CBF300] transition-colors">${label}</a></li>`;
 			}
 			return `<li><a href="#${escapeAttribute(item.id)}" data-heading-id="${escapeAttribute(item.id)}" class="garna-blog-toc-link ${index === 0 ? 'is-active' : ''}">${label}</a></li>`;
 		})
@@ -864,26 +864,26 @@ function stripInlineMarkdown(value: string): string {
 }
 
 function payrollSideBanner(): string {
-	return `<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_article_side_banner_demo' });" class="block overflow-hidden group transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:border-[#5ea500]/30 bg-gradient-to-b from-[#1a1a1e] via-[#151518] to-[#0a0a0c] w-full h-[320px] border-white/5 border rounded-xl mb-6 relative shadow-lg">
+	return `<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_article_side_banner_demo' });" class="block overflow-hidden group transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:border-[#CBF300]/30 bg-gradient-to-b from-[#1a1a1e] via-[#151518] to-[#0a0a0c] w-full h-[320px] border-white/5 border rounded-xl mb-6 relative shadow-lg">
 		<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-			<div class="absolute top-[5%] left-[-30%] w-[160%] h-20 bg-[#5ea500]/20 rotate-[35deg] blur-2xl transform-gpu transition-transform duration-1000 group-hover:translate-x-4"></div>
-			<div class="absolute top-[30%] left-[-30%] w-[160%] h-24 bg-[#5ea500]/10 rotate-[35deg] blur-3xl transform-gpu transition-transform duration-1000 group-hover:translate-x-8"></div>
+			<div class="absolute top-[5%] left-[-30%] w-[160%] h-20 bg-[#CBF300]/20 rotate-[35deg] blur-2xl transform-gpu transition-transform duration-1000 group-hover:translate-x-4"></div>
+			<div class="absolute top-[30%] left-[-30%] w-[160%] h-24 bg-[#CBF300]/10 rotate-[35deg] blur-3xl transform-gpu transition-transform duration-1000 group-hover:translate-x-8"></div>
 		</div>
 		<div class="flex flex-col w-full h-full z-10 pt-6 pr-6 pb-6 pl-6 relative items-center justify-start">
 			<div class="text-center mb-auto pb-4">
-				<h2 class="leading-[1.15] text-2xl lg:text-xl text-white tracking-tight font-thin xl:text-xl">See Global Payroll<br><span class="font-normal text-[#5ea500]">in Action</span></h2>
+				<h2 class="leading-[1.15] text-2xl lg:text-xl text-white tracking-tight font-thin xl:text-xl">See Global Payroll<br><span class="font-normal text-[#CBF300]">in Action</span></h2>
 			</div>
 			<div class="flex group-hover:-translate-y-1 transition-transform duration-500 w-full h-full max-w-[190px] z-20 mb-6 relative items-center justify-center">
-				<div class="absolute inset-0 bg-[#5ea500] blur-[16px] opacity-15 rounded-full group-hover:opacity-25 transition-all duration-700 mix-blend-screen"></div>
-				<div class="flex flex-col transition-all duration-500 group-hover:border-[#5ea500]/30 group-hover:shadow-[0_8px_25px_rgba(94,165,0,0.1)] overflow-hidden bg-center w-full h-full bg-[url(/pages/blog/assets/21-f0f31e7a-67b4-4cbd-918d-d607080ee39f_3840w.png)] bg-cover z-20 border-white/10 border rounded-xl relative shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md">
-					<div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#5ea500]/50 to-transparent opacity-40"></div>
+				<div class="absolute inset-0 bg-[#CBF300] blur-[16px] opacity-15 rounded-full group-hover:opacity-25 transition-all duration-700 mix-blend-screen"></div>
+				<div class="flex flex-col transition-all duration-500 group-hover:border-[#CBF300]/30 group-hover:shadow-[0_8px_25px_rgba(203, 243, 0,0.1)] overflow-hidden bg-center w-full h-full bg-[url(/pages/blog/assets/21-f0f31e7a-67b4-4cbd-918d-d607080ee39f_3840w.png)] bg-cover z-20 border-white/10 border rounded-xl relative shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md">
+					<div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#CBF300]/50 to-transparent opacity-40"></div>
 				</div>
 			</div>
 			<div class="group/btn z-20 mt-auto relative">
-				<div class="absolute -inset-0.5 bg-gradient-to-r from-[#5ea500] to-[#3a6600] rounded-full blur opacity-30 group-hover/btn:opacity-70 transition duration-500"></div>
-				<span class="flex transition-all duration-300 hover:scale-105 text-sm font-normal text-white tracking-wide bg-[#5ea500] rounded-xl pt-2.5 pr-6 pb-2.5 pl-6 relative shadow-sm gap-x-2 gap-y-2 items-center justify-center">Book a Demo</span>
+				<div class="absolute -inset-0.5 bg-gradient-to-r from-[#CBF300] to-[#829A00] rounded-full blur opacity-30 group-hover/btn:opacity-70 transition duration-500"></div>
+				<span class="flex transition-all duration-300 hover:scale-105 text-sm font-normal text-[#101010] tracking-wide bg-[#CBF300] rounded-xl pt-2.5 pr-6 pb-2.5 pl-6 relative shadow-sm gap-x-2 gap-y-2 items-center justify-center">Book a Demo</span>
 			</div>
-			<div class="absolute top-0 right-0 w-40 h-40 bg-[#5ea500]/5 rounded-full blur-3xl z-0 pointer-events-none transition-opacity duration-700 group-hover:bg-[#5ea500]/10"></div>
+			<div class="absolute top-0 right-0 w-40 h-40 bg-[#CBF300]/5 rounded-full blur-3xl z-0 pointer-events-none transition-opacity duration-700 group-hover:bg-[#CBF300]/10"></div>
 		</div>
 	</a>`;
 }
