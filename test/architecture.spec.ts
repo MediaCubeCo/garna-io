@@ -368,6 +368,21 @@ describe('native Astro architecture', () => {
 		expect(pageStyles).not.toContain('main > section:first-of-type .hero-console');
 	});
 
+	it('keeps the employee cost calculator on the shared Garna background contract', async () => {
+		const page = await readFile(path.join(root, 'astro/pages/tax-calculator.astro'), 'utf8');
+		const hero = await readFile(
+			path.join(root, 'astro/components/sections/tax-calculator/TaxCalculatorHeroSection.astro'),
+			'utf8',
+		);
+		const styles = await readFile(path.join(root, 'astro/styles/tax-calculator-seo.css'), 'utf8');
+
+		expect(page).toContain('<BaseLayout shell={pageShells.taxCalculator} rainbowCount={6}>');
+		expect(hero).not.toContain('tax-orb');
+		expect(styles).toContain('.tax-faq { padding: 100px 0 130px !important; background: var(--garna-page-bg); }');
+		expect(styles).toContain('.tax-trusted { padding: 65px 0; border-block: 1px solid rgba(255,255,255,.07); background: #080808;');
+		expect(styles).toContain('background: var(--garna-accent); color: var(--garna-accent-foreground);');
+	});
+
 	it('keeps the small-business payroll automation graphic in a self-contained visual', async () => {
 		const section = await readFile(
 			path.join(root, 'astro/components/sections/payroll/SmallBusinessOverviewSection.astro'),
