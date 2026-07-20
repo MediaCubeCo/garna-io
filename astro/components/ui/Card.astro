@@ -18,6 +18,7 @@ interface Props {
 	descriptionClass?: string;
 	eyebrowClass?: string;
 	interactive?: boolean;
+	ariaBusy?: boolean;
 }
 
 const {
@@ -34,6 +35,7 @@ const {
 	descriptionClass = '',
 	eyebrowClass = '',
 	interactive = true,
+	ariaBusy = false,
 } = Astro.props;
 const titleValue = typeof title === 'string' ? { text: title } : title;
 const descriptionValue = typeof description === 'string' ? { text: description } : description;
@@ -61,10 +63,10 @@ const defaultDescriptionClasses = {
 };
 ---
 
-<article id={id} data-card-variant={variant} data-interactive={interactive ? 'true' : 'false'} data-card-glow={interactive ? 'true' : undefined} class:list={[
+<article id={id} aria-busy={ariaBusy ? 'true' : 'false'} data-card-variant={variant} data-interactive={interactive ? 'true' : 'false'} data-card-glow={interactive ? 'true' : undefined} class:list={[
 	'garna-card group font-manrope',
 	variantClasses[variant],
-	interactive && 'transition duration-300 hover:-translate-y-1 motion-reduce:transform-none motion-reduce:transition-colors',
+	interactive && 'transition duration-300 hover:-translate-y-1 focus-within:-translate-y-1 motion-reduce:translate-none motion-reduce:transition-colors',
 	className,
 ]}>
 	{visualPosition === 'before' && <div class={visualClass}><slot name="visual" /></div>}
@@ -137,17 +139,17 @@ const defaultDescriptionClasses = {
 		}
 	}
 
-	.garna-card[data-interactive='true']:hover {
+	.garna-card[data-interactive='true']:is(:hover, :focus-within) {
 		border-color: rgba(255, 255, 255, 0.15);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
-		.garna-card[data-card-glow='true']:hover::before {
+		.garna-card[data-card-glow='true']:is(:hover, :focus-within)::before {
 			opacity: 1;
 		}
 
 		@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
-			.garna-card[data-card-glow='true']:hover::after {
+			.garna-card[data-card-glow='true']:is(:hover, :focus-within)::after {
 				opacity: 1;
 			}
 		}

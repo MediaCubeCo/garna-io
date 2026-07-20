@@ -375,12 +375,29 @@ describe('native Astro architecture', () => {
 			'utf8',
 		);
 		const styles = await readFile(path.join(root, 'astro/styles/tax-calculator-seo.css'), 'utf8');
+		const route = await readFile(path.join(root, 'src/routes/tax-calculator.ts'), 'utf8');
 
 		expect(page).toContain('<BaseLayout shell={pageShells.taxCalculator} rainbowCount={6}>');
+		expect(page).toContain('items={faqItems} variant="eor"');
+		expect(page).toContain('countries: selectedCountries.map');
+		expect(page).toContain('tax-compare-table');
+		expect(page).toContain('const flag = (countryCode: string)');
+		expect(hero).toContain('id="tax-add-comparison-country"');
+		expect(hero).toContain("import Card from '../../ui/Card.astro'");
+		expect(hero).toContain('<Card variant="feature" class="tax-card"');
+		expect(hero).toContain('Add a second country for comparison');
+		expect(hero).toContain('data-calculator-state="idle"');
+		expect(hero).toContain('class="tax-loading-view"');
+		expect(hero).toContain('<span>150+</span>');
 		expect(hero).not.toContain('tax-orb');
+		expect(route).toContain("https://api-prod.letsdeel.com/employment_cost");
+		expect(route).toContain('const MAX_COMPARISON_COUNTRIES = 2;');
+		expect(route).not.toContain('take_home_calculator');
 		expect(styles).toContain('.tax-faq { padding: 100px 0 130px !important; background: var(--garna-page-bg); }');
 		expect(styles).toContain('.tax-trusted { padding: 65px 0; border-block: 1px solid rgba(255,255,255,.07); background: #080808;');
 		expect(styles).toContain('background: var(--garna-accent); color: var(--garna-accent-foreground);');
+		expect(styles).toContain('width: min(100%, 700px)');
+		expect(styles).toContain('[data-calculator-state="results"] { width: min(100%, 1060px); }');
 	});
 
 	it('keeps the small-business payroll automation graphic in a self-contained visual', async () => {
@@ -447,11 +464,12 @@ describe('native Astro architecture', () => {
 		expect(card).toContain('.garna-card::after');
 		expect(card).toContain('-webkit-mask-composite: xor;');
 		expect(card).toContain('mask-composite: exclude;');
-		expect(card).toContain(".garna-card[data-card-glow='true']:hover::after");
+		expect(card).toContain(".garna-card[data-card-glow='true']:is(:hover, :focus-within)::after");
 		expect(card).toContain("document.addEventListener('pointermove'");
 		expect(card).toContain("style.setProperty('--garna-card-glow-x'");
 		expect(card).toContain("style.setProperty('--garna-card-glow-y'");
-		expect(card).toContain(".garna-card[data-interactive='true']:hover");
+		expect(card).toContain(".garna-card[data-interactive='true']:is(:hover, :focus-within)");
+		expect(card).toContain('focus-within:-translate-y-1');
 		expect(card).not.toContain('background-color: rgba(255, 255, 255, 0.045)');
 		expect(card).toContain('border-color: rgba(255, 255, 255, 0.15)');
 		expect(card).toContain('<slot name="visual" />');

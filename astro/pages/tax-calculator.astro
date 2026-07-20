@@ -24,21 +24,157 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 		<TaxCalculatorExplainerSection />
 		<TaxCalculatorTrustStripSection />
 		<TaxCalculatorExpertSection />
-	<FAQSection title={{ text: 'Employee Cost Calculator FAQs', translateKey: 'faq.title' }} items={faqItems} class="tax-faq" containerClass="garna-container" accordionClass="mx-auto w-full space-y-4 xl:max-w-3xl" />
-	<div id="tax-i18n" hidden><span data-key="loading" data-translate="messages.loading">Calculating…</span><span data-key="configError" data-translate="messages.configError">Could not load country details. Please try again.</span><span data-key="calcError" data-translate="messages.calcError">Could not calculate right now. Please try again.</span><span data-key="gross" data-translate="results.gross">Gross annual</span><span data-key="net" data-translate="results.net">Net annual</span><span data-key="deductions" data-translate="results.deductions">Deductions</span><span data-key="item" data-translate="results.item">Item</span><span data-key="estimate" data-translate="results.estimate">Your estimated employee cost</span><span data-key="estimatedNote" data-translate="results.estimatedNote">This result is an estimate based on local taxation and standard employment requirements. Final amounts may vary.</span><span data-key="garnaSupports" data-translate="results.garnaSupports">Garna supports payroll operations in</span><span data-key="garnaText" data-translate="results.garnaText">Hire and pay employees in 150+ countries without establishing your own local entity.</span><span data-key="onboard" data-translate="results.onboard">Onboard Employee</span></div>
+	<FAQSection title={{ text: 'Employee Cost Calculator FAQs', translateKey: 'faq.title' }} items={faqItems} variant="eor" class="tax-faq" containerClass="garna-container" />
+	<div id="tax-i18n" hidden>
+		<span data-key="loading" data-translate="messages.loading">Comparing hiring markets…</span><span data-key="configError" data-translate="messages.configError">Could not load country details. Please try again.</span><span data-key="calcError" data-translate="messages.calcError">Could not calculate right now. Please try again.</span><span data-key="selectCountryError" data-translate="messages.selectCountryError">Select at least one country to compare.</span><span data-key="duplicateCountry" data-translate="messages.duplicateCountry">Choose a different country for comparison.</span><span data-key="editInputs" data-translate="calculator.editInputs">Change inputs</span>
+		<span data-key="state" data-translate="calculator.state">State or region</span><span data-key="secondCountry" data-translate="calculator.secondCountry">Second country</span>
+		<span data-key="comparison" data-translate="results.comparison">Hiring cost comparison</span><span data-key="marketsCompared" data-translate="results.marketsCompared">markets compared</span><span data-key="gross" data-translate="results.gross">Gross annual salary</span><span data-key="net" data-translate="results.net">Estimated net annual</span><span data-key="employerCosts" data-translate="results.employerCosts">Annual employer costs</span><span data-key="totalAnnual" data-translate="results.totalAnnual">Total annual cost</span><span data-key="breakdown" data-translate="results.breakdown">Cost breakdown</span><span data-key="item" data-translate="results.item">Item</span><span data-key="bestValue" data-translate="results.bestValue">Lowest total cost</span><span data-key="moreThanLowest" data-translate="results.moreThanLowest">above lowest</span><span data-key="estimatedNote" data-translate="results.estimatedNote">This result is an estimate based on local taxation and standard employment requirements. Final amounts may vary.</span><span data-key="remove" data-translate="results.remove">Remove</span><span data-key="incomplete" data-translate="results.incomplete">Some countries could not be calculated.</span>
+	</div>
 	<Fragment slot="widgets"><GarnaBookingWidget trackingSource="employee-cost-calculator" trackingPage="employee-cost-calculator" trackingCta="employee_cost_calculator_hero_demo" titleFallback="Book a free 30-minute product demo" subtitleFallback="Get all your questions answered by our experts" /></Fragment>
 </BaseLayout>
 
 <TaxCalculatorPageStyles />
 
 <script>
-	const form = document.querySelector('#tax-form'); const results = document.querySelector('#tax-results'); const status = document.querySelector('#tax-status');
-	const country = form?.querySelector('[name=country]'); const currency = form?.querySelector('[name=currency]'); const currencyValue = document.querySelector('#tax-currency-value'); const currencyChevron = document.querySelector('#tax-currency-chevron'); const stateField = document.querySelector('#tax-state-field'); const state = form?.querySelector('[name=state]');
-	const t = (key) => document.querySelector(`#tax-i18n [data-key="${key}"]`)?.textContent || key;
-	const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]));
-	try { const names = new Intl.DisplayNames([document.documentElement.lang || 'en'], { type: 'region' }); [...country.options].slice(1).forEach((option) => { option.textContent = names.of(option.value) || option.textContent; }); } catch {}
-	const syncCurrencyCode = () => { const hasOptions = (currency?.options.length || 0) > 1; currencyValue.textContent = currency?.value || 'USD'; currencyChevron.hidden = !hasOptions; currency?.closest('.tax-input-wrap')?.classList.toggle('has-single-currency', !hasOptions); };
-	country?.addEventListener('change', async () => { if (!country.value) return; status.textContent = ''; results.hidden = true; try { const response = await fetch(`/api/tax-calculator/config?country=${country.value}`); if (!response.ok) throw new Error(); const data = await response.json(); currency.innerHTML = data.currencies.map((option) => `<option value="${esc(option.value)}">${esc(option.label)}</option>`).join(''); if (!data.currencies.length) currency.innerHTML = '<option value="USD">USD — US Dollar</option>'; syncCurrencyCode(); state.innerHTML = data.states.map((option) => `<option value="${esc(option.value)}">${esc(option.label)}</option>`).join(''); stateField.hidden = !data.states.length; state.required = !!data.states.length; } catch { status.textContent = t('configError'); } });
+	const form = document.querySelector<HTMLFormElement>('#tax-form');
+	const calculator = document.querySelector<HTMLElement>('#calculator');
+	const calculatorCard = calculator?.querySelector<HTMLElement>('.tax-card');
+	const loadingView = calculator?.querySelector<HTMLElement>('.tax-loading-view');
+	const results = document.querySelector<HTMLElement>('#tax-results');
+	const status = document.querySelector<HTMLElement>('#tax-status');
+	const countryRows = document.querySelector<HTMLElement>('#tax-country-rows');
+	const addCountryButton = document.querySelector<HTMLButtonElement>('#tax-add-comparison-country');
+	const currency = form?.querySelector<HTMLSelectElement>('[name=currency]');
+	const currencyValue = document.querySelector<HTMLElement>('#tax-currency-value');
+	const currencyChevron = document.querySelector<HTMLElement>('#tax-currency-chevron');
+	const locale = document.documentElement.lang || 'en';
+	const countryConfigs = new Map<string, { states: Array<{ value: string; label: string }>; currencies: Array<{ value: string; label: string }> }>();
+	const t = (key: string) => document.querySelector(`#tax-i18n [data-key="${key}"]`)?.textContent || key;
+	const esc = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#039;' })[char] || char);
+	const money = (value: unknown, code: string) => new Intl.NumberFormat(locale, { style: 'currency', currency: code, maximumFractionDigits: 0 }).format(Number(value) || 0);
+	const flag = (countryCode: string) => countryCode.replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
+	const firstCountrySelect = countryRows?.querySelector<HTMLSelectElement>('.tax-country-select');
+	let countryOptions = firstCountrySelect?.innerHTML || '';
+	const currencyCatalog = [...(currency?.options || [])].map((option) => ({ value: option.value, label: option.textContent || option.value }));
+	const setCalculatorState = (state: 'idle' | 'loading' | 'results') => {
+		if (!calculator) return;
+		calculator.dataset.calculatorState = state;
+		calculatorCard?.setAttribute('aria-busy', state === 'loading' ? 'true' : 'false');
+		loadingView?.setAttribute('aria-hidden', state === 'loading' ? 'false' : 'true');
+	};
+
+	try {
+		const names = new Intl.DisplayNames([locale], { type: 'region' });
+		[...(firstCountrySelect?.options || [])].slice(1).forEach((option) => { option.textContent = names.of(option.value) || option.textContent; });
+	} catch {}
+	countryOptions = firstCountrySelect?.innerHTML || countryOptions;
+
+	const syncCurrencyCode = () => {
+		if (currencyValue) currencyValue.textContent = currency?.value || 'USD';
+		if (currencyChevron) currencyChevron.hidden = false;
+	};
+
+	const loadCountryConfig = async (countryCode: string) => {
+		const response = await fetch(`/api/tax-calculator/config?country=${countryCode}`);
+		if (!response.ok) throw new Error(t('configError'));
+		return response.json();
+	};
+
+	const refreshCurrencies = () => {
+		if (!currency) return;
+		const current = currency.value;
+		const common = [...new Map([...countryConfigs.values()].flatMap((config) => config.currencies || []).map((item) => [item.value, item])).values()];
+		const commonCodes = new Set(common.map((item) => item.value));
+		currency.innerHTML = `${common.length ? `<optgroup label="Common for selected countries">${common.map((item) => `<option value="${esc(item.value)}">${esc(item.value)} — ${esc(item.label.replace(/^\w{3}\s*[—-]?\s*/, ''))}</option>`).join('')}</optgroup>` : ''}<optgroup label="All currencies">${currencyCatalog.filter((item) => !commonCodes.has(item.value)).map((item) => `<option value="${esc(item.value)}">${esc(item.label)}</option>`).join('')}</optgroup>`;
+		currency.value = [...currency.options].some((option) => option.value === current) ? current : (common[0]?.value || 'USD');
+		syncCurrencyCode();
+	};
+
+	const configureCountryRow = async (row: HTMLElement, countryCode: string) => {
+		const regionField = row.querySelector<HTMLElement>('.tax-region-field');
+		const regionSelect = row.querySelector<HTMLSelectElement>('.tax-region-select');
+		if (!countryCode) { if (regionField) regionField.hidden = true; return; }
+		if (status) { status.textContent = ''; status.classList.add('is-loading'); }
+		try {
+			const config = await loadCountryConfig(countryCode);
+			countryConfigs.set(countryCode, config);
+			if (regionSelect && regionField) {
+				regionSelect.innerHTML = `<option value="">${esc(t('state'))}</option>${(config.states || []).map((state: { value: string; label: string }) => `<option value="${esc(state.value)}">${esc(state.label)}</option>`).join('')}`;
+				regionField.hidden = !(config.states || []).length;
+				regionSelect.required = !!(config.states || []).length;
+			}
+			refreshCurrencies();
+			if (results) results.hidden = true;
+		} catch (error) {
+			if (status) status.textContent = error instanceof Error ? error.message : t('configError');
+		} finally { status?.classList.remove('is-loading'); }
+	};
+
+	countryRows?.addEventListener('change', (event) => {
+		const select = (event.target as HTMLElement).closest<HTMLSelectElement>('.tax-country-select');
+		if (!select) { if (results) results.hidden = true; return; }
+		const otherSelect = [...(countryRows.querySelectorAll<HTMLSelectElement>('.tax-country-select'))].find((item) => item !== select && item.value === select.value);
+		if (select.value && otherSelect) { select.value = ''; if (status) status.textContent = t('duplicateCountry'); return; }
+		void configureCountryRow(select.closest<HTMLElement>('.tax-country-row')!, select.value);
+	});
+
+	addCountryButton?.addEventListener('click', () => {
+		if (!countryRows || countryRows.querySelectorAll('.tax-country-row').length > 1) return;
+		countryRows.insertAdjacentHTML('beforeend', `<div class="tax-country-row is-comparison" data-country-row="1"><label><span>${esc(t('secondCountry'))}</span><select class="tax-country-select" aria-label="Country 2" required>${countryOptions}</select></label><label class="tax-region-field" hidden><span>${esc(t('state'))}</span><select class="tax-region-select" aria-label="${esc(t('state'))}"></select></label><button type="button" class="tax-remove-comparison" aria-label="${esc(t('remove'))}">×</button></div>`);
+		addCountryButton.hidden = true;
+	});
+
+	countryRows?.addEventListener('click', (event) => {
+		const removeButton = (event.target as HTMLElement).closest<HTMLButtonElement>('.tax-remove-comparison');
+		if (!removeButton) return;
+		const row = removeButton.closest<HTMLElement>('.tax-country-row');
+		const code = row?.querySelector<HTMLSelectElement>('.tax-country-select')?.value;
+		if (code) countryConfigs.delete(code);
+		row?.remove();
+		if (addCountryButton) addCountryButton.hidden = false;
+		refreshCurrencies();
+		if (results) results.hidden = true;
+	});
+
 	currency?.addEventListener('change', syncCurrencyCode);
-	form?.addEventListener('submit', async (event) => { event.preventDefault(); if (!form.reportValidity()) return; status.textContent = t('loading'); status.classList.add('is-loading'); results.hidden = true; const values = Object.fromEntries(new FormData(form).entries()); try { const response = await fetch('/api/tax-calculator/calculate', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(values) }); const data = await response.json(); if (!response.ok || data.error || data.errors?.length) throw new Error(data.error || data.errors?.join(', ')); const costs = (data.costs || []).map((cost) => `<tr><td>${esc(cost.name)}</td><td>${esc(cost.valueExchanged)}</td><td>${esc(cost.valueUSD)}</td></tr>`).join(''); const locale = document.documentElement.lang || 'en'; const signup = `https://app.garna.io/${locale}/auth/sign-up`; results.innerHTML = `<div class="tax-result-head"><span>${t('estimate')}</span><strong>${esc(data.country)} · ${esc(data.currency)}</strong></div><div class="tax-result-total"><span>${t('net')}</span><b>${esc(data.netAnnualSalary)} <small>${esc(data.currency)}</small></b></div><div class="tax-garna-result"><span>Garna</span><strong>${t('garnaSupports')} ${esc(data.country)}</strong><p>${t('garnaText')}</p><a href="${esc(signup)}">${t('onboard')} →</a></div><div class="tax-comparison"><div><span>${t('gross')}</span><strong>${esc(data.grossAnnualSalary)} ${esc(data.currency)}</strong></div><div><span>${t('net')}</span><strong>${esc(data.netAnnualSalaryUSD)} USD</strong></div></div>${costs ? `<h3>${t('deductions')}</h3><div class="tax-table-wrap"><table><thead><tr><th>${t('item')}</th><th>${esc(data.currency)}</th><th>USD</th></tr></thead><tbody>${costs}</tbody></table></div>` : ''}<p class="tax-disclaimer">* ${t('estimatedNote')}</p>${data.disclaimer ? `<p class="tax-disclaimer">${esc(data.disclaimer)}</p>` : ''}`; results.hidden = false; status.textContent = ''; } catch (error) { status.textContent = error.message || t('calcError'); } finally { status.classList.remove('is-loading'); } });
+
+	form?.addEventListener('submit', async (event) => {
+		event.preventDefault();
+		const selectedCountries = [...(countryRows?.querySelectorAll<HTMLElement>('.tax-country-row') || [])].map((row) => ({ countryCode: row.querySelector<HTMLSelectElement>('.tax-country-select')?.value || '', state: row.querySelector<HTMLSelectElement>('.tax-region-select')?.value || undefined })).filter(({ countryCode }) => countryCode);
+		if (!selectedCountries.length) { if (status) status.textContent = t('selectCountryError'); return; }
+		if (!form.reportValidity()) return;
+		if (status) { status.textContent = ''; status.classList.remove('is-loading'); }
+		if (results) results.hidden = true;
+		setCalculatorState('loading');
+		const values = Object.fromEntries(new FormData(form).entries());
+		try {
+			const [response] = await Promise.all([
+				fetch('/api/tax-calculator/calculate', { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify({ ...values, countries: selectedCountries.map(({ countryCode, state }) => ({ countryCode, ...(state ? { state } : {}) })) }) }),
+				new Promise((resolve) => window.setTimeout(resolve, 650)),
+			]);
+			const data = await response.json();
+			if (!response.ok || data.error) throw new Error(data.error || t('calcError'));
+			const compared = [...data.results].sort((a, b) => a.totalAnnual - b.totalAnnual);
+			const lowest = compared[0]?.totalAnnual || 0;
+			const headings = compared.map((item, index) => `<th><div class="tax-table-country"><span aria-hidden="true">${flag(item.countryCode)}</span><div><strong>${esc(item.country)}</strong>${item.state ? `<small>${esc(item.state)}</small>` : ''}</div>${index === 0 && compared.length > 1 ? `<b>${esc(t('bestValue'))}</b>` : ''}</div></th>`).join('');
+			const metricRow = (label, key, highlight = false) => `<tr${highlight ? ' class="is-total"' : ''}><th>${esc(label)}</th>${compared.map((item) => { const delta = key === 'totalAnnual' ? item.totalAnnual - lowest : 0; return `<td><strong>${money(item[key], item.currency)}</strong>${delta > 0 ? `<small>+${money(delta, item.currency)} ${esc(t('moreThanLowest'))}</small>` : ''}</td>`; }).join('')}</tr>`;
+			const costNames = [...new Set(compared.flatMap((item) => item.costs.map((cost) => cost.name)))];
+			const costRows = costNames.map((name) => `<tr><th>${esc(name)}</th>${compared.map((item) => { const cost = item.costs.find((entry) => entry.name === name); return `<td>${cost ? `<strong>${money(cost.annual, item.currency)}</strong>${cost.rate ? `<small>${esc(cost.rate)}</small>` : ''}` : '<span>—</span>'}</td>`; }).join('')}</tr>`).join('');
+			if (results) {
+				results.innerHTML = `<div class="tax-comparison-header"><div><span>${esc(t('comparison'))}</span><strong>${compared.length} ${esc(t('marketsCompared'))}</strong></div><div class="tax-results-actions"><b>${money(data.grossAnnual, data.currency)} · ${esc(data.currency)}</b><button type="button" data-edit-calculator><span aria-hidden="true">←</span>${esc(t('editInputs'))}</button></div></div><div class="tax-compare-table-wrap"><table class="tax-compare-table"><thead><tr><th>${esc(t('item'))}</th>${headings}</tr></thead><tbody>${metricRow(t('totalAnnual'), 'totalAnnual', true)}${metricRow(t('gross'), 'grossAnnual')}${metricRow(t('employerCosts'), 'employerCostAnnual')}${metricRow(t('net'), 'netAnnual')}<tr class="tax-breakdown-heading"><th colspan="${compared.length + 1}">${esc(t('breakdown'))}</th></tr>${costRows}</tbody></table></div>${data.errors?.length ? `<p class="tax-partial-error">${esc(t('incomplete'))}</p>` : ''}<p class="tax-disclaimer">* ${esc(t('estimatedNote'))}</p>`;
+				results.hidden = false;
+			}
+			if (status) status.textContent = '';
+			requestAnimationFrame(() => setCalculatorState('results'));
+		} catch (error) {
+			if (status) status.textContent = error instanceof Error ? error.message : t('calcError');
+			setCalculatorState('idle');
+		}
+	});
+
+	results?.addEventListener('click', (event) => {
+		if (!(event.target as HTMLElement).closest('[data-edit-calculator]')) return;
+		if (results) results.hidden = true;
+		requestAnimationFrame(() => setCalculatorState('idle'));
+	});
 </script>

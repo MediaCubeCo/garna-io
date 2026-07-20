@@ -1,38 +1,44 @@
 ---
 import Section from '../../layout/Section.astro';
 import Button from '../../ui/Button.astro';
-
-const countries = [
-	['AL','Albania'],['AR','Argentina'],['AM','Armenia'],['AU','Australia'],['AT','Austria'],['AZ','Azerbaijan'],['BH','Bahrain'],['BD','Bangladesh'],['BY','Belarus'],['BE','Belgium'],['BO','Bolivia'],['BA','Bosnia and Herzegovina'],['BR','Brazil'],['BG','Bulgaria'],['KH','Cambodia'],['CM','Cameroon'],['CA','Canada'],['CL','Chile'],['CN','China'],['CO','Colombia'],['CR','Costa Rica'],['CI',"Côte d’Ivoire"],['HR','Croatia'],['CY','Cyprus'],['CZ','Czech Republic'],['DK','Denmark'],['DO','Dominican Republic'],['EC','Ecuador'],['EG','Egypt'],['SV','El Salvador'],['EE','Estonia'],['ET','Ethiopia'],['FI','Finland'],['FR','France'],['GE','Georgia'],['DE','Germany'],['GH','Ghana'],['GR','Greece'],['GT','Guatemala'],['HN','Honduras'],['HK','Hong Kong'],['HU','Hungary'],['IS','Iceland'],['IN','India'],['ID','Indonesia'],['IE','Ireland'],['IL','Israel'],['IT','Italy'],['JM','Jamaica'],['JP','Japan'],['JO','Jordan'],['KZ','Kazakhstan'],['KE','Kenya'],['XK','Kosovo'],['LV','Latvia'],['LT','Lithuania'],['LU','Luxembourg'],['MO','Macao'],['MG','Madagascar'],['MY','Malaysia'],['MT','Malta'],['MU','Mauritius'],['MX','Mexico'],['MD','Moldova'],['MN','Mongolia'],['ME','Montenegro'],['MA','Morocco'],['MZ','Mozambique'],['NA','Namibia'],['NP','Nepal'],['NL','Netherlands'],['NZ','New Zealand'],['NI','Nicaragua'],['NG','Nigeria'],['MK','North Macedonia'],['NO','Norway'],['OM','Oman'],['PK','Pakistan'],['PA','Panama'],['PY','Paraguay'],['PE','Peru'],['PH','Philippines'],['PL','Poland'],['PT','Portugal'],['PR','Puerto Rico'],['QA','Qatar'],['RO','Romania'],['RU','Russia'],['RW','Rwanda'],['SA','Saudi Arabia'],['SN','Senegal'],['RS','Serbia'],['SG','Singapore'],['SK','Slovakia'],['SI','Slovenia'],['ZA','South Africa'],['KR','South Korea'],['ES','Spain'],['LK','Sri Lanka'],['SR','Suriname'],['SE','Sweden'],['CH','Switzerland'],['TW','Taiwan'],['TH','Thailand'],['TN','Tunisia'],['TR','Turkey'],['UG','Uganda'],['UA','Ukraine'],['AE','United Arab Emirates'],['GB','United Kingdom'],['US','United States'],['UY','Uruguay'],['UZ','Uzbekistan'],['VN','Vietnam'],['ZM','Zambia'],
-];
+import Card from '../../ui/Card.astro';
+import { calculatorCountries, calculatorCurrencies } from '../../../../src/data/calculator-countries';
 ---
 
 <Section contained={false} spacing="none" class="tax-hero">
 		<div class="garna-container tax-hero__inner">
 			<div class="tax-copy">
-				<div class="garna-hero-badge"><span class="garna-hero-badge-dot-shell"><span class="garna-hero-badge-dot-ping"></span><span class="garna-hero-badge-dot"></span></span><span data-translate="hero.badge">Global salary intelligence</span></div>
+				<div class="garna-hero-badge"><span class="garna-hero-badge-dot-shell"><span class="garna-hero-badge-dot-ping"></span><span class="garna-hero-badge-dot"></span></span><span data-translate="hero.badge">Global hiring intelligence</span></div>
 				<h1 data-translate="hero.title">Employee Cost Calculator</h1>
-				<p data-garna-subtitle data-translate="hero.description">Salary is only part of the equation. Estimate take-home pay and employee deductions in seconds, with no sign-up required.</p>
-				<div class="tax-hero-actions"><Button href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'employee_cost_calculator_hero_demo' });" size="hero" effect="rotating-flare" icon="arrow-up-right" class="tax-demo-button"><span data-translate="hero.demoCta">Request a Demo</span></Button></div>
-				<div class="tax-trust"><span>120+</span><span data-translate="hero.countries">supported countries</span><i></i><span data-translate="hero.updated">Current tax logic</span></div>
+				<p data-garna-subtitle data-translate="hero.description">Compare the true annual cost of hiring across countries, including gross salary and local employer contributions.</p>
+				<div class="tax-trust"><span>150+</span><span data-translate="hero.countries">supported countries</span><i></i><span data-translate="hero.updated">Current employment cost data</span></div>
 			</div>
-			<div class="tax-card-shell" id="calculator">
-				<div class="tax-card">
-					<div class="tax-card__header"><div class="tax-card__meta"><span data-translate="calculator.eyebrow">Take-home calculator</span><span class="tax-live"><i></i><span data-translate="calculator.live">Live estimate</span></span></div><h2 data-translate="calculator.title">Calculate your net salary</h2></div>
-					<form id="tax-form">
-						<div class="tax-location-grid">
-							<label><span data-translate="calculator.country">Country</span><select name="country" required><option value="" data-translate="calculator.selectCountry">Select a country</option>{countries.map(([code,name]) => <option value={code}>{name}</option>)}</select></label>
-							<div id="tax-state-field" hidden><label><span data-translate="calculator.state">State or region</span><select name="state"></select></label></div>
+			<div class="tax-card-shell" id="calculator" data-calculator-state="idle">
+				<Card variant="feature" class="tax-card" ariaBusy={false}>
+				<div class="tax-form-view">
+				<div class="tax-card__header"><div class="tax-card__meta"><span data-translate="calculator.eyebrow">Employer cost comparison</span><span class="tax-live"><i></i><span data-translate="calculator.live">Live estimate</span></span></div><h2 data-translate="calculator.title">Compare the cost of hiring across countries</h2></div>
+				<form id="tax-form">
+					<div class="tax-country-builder" id="tax-country-rows">
+						<div class="tax-country-row" data-country-row="0">
+							<label><span data-translate="calculator.country">Country</span><select class="tax-country-select" aria-label="Country 1" required><option value="" data-translate="calculator.selectCountry">Select a country</option>{calculatorCountries.map(([code,name]) => <option value={code} data-country-name={name}>{name}</option>)}</select></label>
+							<label class="tax-region-field" hidden><span data-translate="calculator.state">State or region</span><select class="tax-region-select" aria-label="State or region"></select></label>
 						</div>
-						<div class="tax-compensation-grid">
-							<label><span data-translate="calculator.salary">Gross salary</span><div class="tax-input-wrap has-single-currency"><input name="salary" type="number" inputmode="numeric" min="1" step="1" placeholder="5,000" required/><span class="tax-currency-value" id="tax-currency-value" aria-hidden="true">USD</span><select class="tax-currency-select" name="currency" aria-label="Currency" title="Currency"><option value="USD">USD — US Dollar</option></select><span class="tax-currency-chevron" id="tax-currency-chevron" aria-hidden="true" hidden><svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1.25 6 6.25l5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></label>
-							<label><span data-translate="calculator.period">Pay period</span><select name="period"><option value="monthly" data-translate="calculator.monthly">Monthly</option><option value="annual" data-translate="calculator.annual">Annual</option></select></label>
-						</div>
-						<Button type="submit" class="tax-submit"><span data-translate="calculator.calculate">Calculate take-home pay</span><span aria-hidden="true">→</span></Button>
+					</div>
+					<button id="tax-add-comparison-country" class="tax-add-comparison" type="button"><span aria-hidden="true">＋</span><span data-translate="calculator.addCountry">Add a second country for comparison</span></button>
+					<div class="tax-compensation-grid">
+						<label><span data-translate="calculator.salary">Gross annual salary</span><div class="tax-input-wrap"><input name="salary" type="number" inputmode="numeric" min="12" step="1" placeholder="60,000" required/><span class="tax-currency-value" id="tax-currency-value" aria-hidden="true">USD</span><select class="tax-currency-select" name="currency" aria-label="Currency" title="Currency"><optgroup label="All currencies">{calculatorCurrencies.map(([code,name]) => <option value={code}>{code} — {name}</option>)}</optgroup></select><span class="tax-currency-chevron" id="tax-currency-chevron" aria-hidden="true"><svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1.25 6 6.25l5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></label>
+					</div>
+					<Button type="submit" class="tax-submit"><span data-translate="calculator.calculate">Compare hiring costs</span><span aria-hidden="true">→</span></Button>
 					</form>
 					<div id="tax-status" class="tax-status" aria-live="polite"></div>
+					</div>
+					<div class="tax-loading-view" role="status" aria-live="polite" aria-hidden="true">
+						<div class="tax-loader" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
+						<strong data-translate="messages.loading">Comparing hiring markets…</strong>
+						<p data-translate="messages.loadingHint">Calculating local employer costs and contributions</p>
+					</div>
 					<div id="tax-results" class="tax-results" hidden></div>
-				</div>
+				</Card>
 			</div>
 		</div>
 	</Section>
