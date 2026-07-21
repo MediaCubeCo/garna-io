@@ -1,15 +1,20 @@
 ---
-import HeroSection from '../components/HeroSection.astro';
-import FAQSection from '../components/FAQSection.astro';
-import FinalCTASection from '../components/FinalCTASection.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import FinalCTASection from '../components/sections/FinalCTASection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import rawContentHtml from '../content/site-pages/payroll-small-business.html?raw';
-import heroVisualHtml from '../content/site-hero-visuals/payroll-small-business.html?raw';
-import scriptsHtml from '../content/site-scripts/payroll-small-business.html?raw';
+import SmallBusinessOverviewSection from '../components/sections/payroll/SmallBusinessOverviewSection.astro';
+import SmallBusinessPlatformSection from '../components/sections/payroll/SmallBusinessPlatformSection.astro';
+import SmallBusinessStepsSection from '../components/sections/payroll/SmallBusinessStepsSection.astro';
+import SmallBusinessBenefitsSection from '../components/sections/payroll/SmallBusinessBenefitsSection.astro';
+import SmallBusinessTestimonialsSection from '../components/sections/payroll/SmallBusinessTestimonialsSection.astro';
+import SmallBusinessSectionStyles from '../components/sections/payroll/SmallBusinessSectionStyles.astro';
+import SmallBusinessInteractions from '../components/sections/payroll/SmallBusinessInteractions.astro';
+import SmallBusinessPayrollVisual from '../components/visuals/SmallBusinessPayrollVisual.astro';
 
 const payrollSmallBusinessFaqItems = [
 	{
@@ -50,11 +55,16 @@ const payrollSmallBusinessFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.payrollSmallBusiness} scriptsHtml={scriptsHtml}>
+<BaseLayout shell={pageShells.payrollSmallBusiness}>
 	<HeroSection {...pageHeroes.payrollSmallBusiness}>
-		<Fragment set:html={heroVisualHtml} />
+		<SmallBusinessPayrollVisual />
 	</HeroSection>
-	<Fragment set:html={rawContentHtml} />
+	<SmallBusinessOverviewSection />
+	<SmallBusinessPlatformSection />
+	<SmallBusinessStepsSection />
+	<SmallBusinessBenefitsSection />
+	<SmallBusinessTestimonialsSection />
+	<SmallBusinessSectionStyles />
 	<FAQSection
 		kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
 		title={{ text: 'FAQ on Small Business Payroll', translateKey: 'faq.title' }}
@@ -64,4 +74,5 @@ const payrollSmallBusinessFaqItems = [
 		accordionClass="mx-auto w-full space-y-4 xl:max-w-3xl"
 	/>
 	<FinalCTASection {...pageFinalCtas.payrollSmallBusiness} />
+	<Fragment slot="widgets"><SmallBusinessInteractions /></Fragment>
 </BaseLayout>

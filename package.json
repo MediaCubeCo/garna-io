@@ -5,17 +5,21 @@
 	"scripts": {
 		"build": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro build",
 		"deploy": "npm run build && wrangler deploy",
-		"dev": "npm run build && wrangler dev",
+		"dev": "npm run build && wrangler dev --live-reload",
 		"start": "npm run dev",
 		"astro:dev": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev",
 		"test": "vitest run",
+		"check:architecture": "node scripts/check-astro-architecture.mjs",
+		"check": "npm run check:architecture && tsc --noEmit && npm test && npm run build",
 		"cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "^0.8.34",
 		"@cloudflare/workers-types": "^4.20250614.0",
+		"@tailwindcss/vite": "^4.3.2",
 		"astro": "^6.4.4",
 		"cross-env": "7.0.3",
+		"tailwindcss": "^4.3.2",
 		"typescript": "^5.5.2",
 		"vitest": "~3.0.7",
 		"wrangler": "^4.59.2"

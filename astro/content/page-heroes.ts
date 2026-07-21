@@ -13,7 +13,7 @@ export const pageHeroes = {
 			pt: 6,
 		},
 		descriptionClass:
-			'leading-relaxed md:text-xl text-lg font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-10 ml-auto',
+			'leading-relaxed md:text-xl text-lg font-manrope max-w-3xl mr-auto mb-10 ml-auto',
 		title: [{ text: 'Global Payroll Solutions for your business', translateKey: 'hero.title' }],
 		description:
 			'One transfer - countless possibilities. Pay remunerations in over 150 countries with minimal effort',
@@ -40,7 +40,7 @@ export const pageHeroes = {
 			en: 5,
 		},
 		descriptionClass:
-			'leading-relaxed md:text-xl text-lg font-light text-gray-400 font-manrope max-w-4xl mr-auto mb-10 ml-auto',
+			'leading-relaxed md:text-xl text-lg font-manrope max-w-4xl mr-auto mb-10 ml-auto',
 		badge: {
 			text: 'Enterprise Payroll',
 			translateKey: 'hero.badge',
@@ -69,7 +69,7 @@ export const pageHeroes = {
 		titleClass:
 			'garna-hero-title-gradient leading-[1.1] md:text-6xl lg:text-7xl text-5xl font-normal tracking-tight font-manrope mb-6',
 		descriptionClass:
-			'leading-relaxed md:text-xl text-lg font-light text-gray-400 font-manrope max-w-4xl mr-auto mb-10 ml-auto',
+			'leading-relaxed md:text-xl text-lg font-manrope max-w-4xl mr-auto mb-10 ml-auto',
 		title: [{ text: 'Payroll for Growing Companies', translateKey: 'hero.title' }],
 		description:
 			'A solution that keeps up with your growing business - a scalable platform that lets you put payroll on autopilot, manage employees and contractors from a single place',
@@ -96,7 +96,7 @@ export const pageHeroes = {
 			en: 3,
 		},
 		descriptionClass:
-			'md:text-xl leading-relaxed text-lg font-light text-gray-400 font-manrope max-w-2xl mr-auto mb-10 ml-auto',
+			'md:text-xl leading-relaxed text-lg font-manrope max-w-2xl mr-auto mb-10 ml-auto',
 		badge: {
 			text: 'For contractors & freelancers',
 			translateKey: 'hero.badge',
@@ -123,7 +123,7 @@ export const pageHeroes = {
 		titleClass:
 			'garna-hero-title-gradient md:text-7xl leading-[1.1] text-5xl font-normal tracking-tight font-manrope mb-8',
 		descriptionClass:
-			'leading-relaxed md:text-xl text-xl font-light text-gray-400 font-manrope max-w-2xl mr-auto mb-10 ml-auto',
+			'leading-relaxed md:text-xl text-xl font-manrope max-w-2xl mr-auto mb-10 ml-auto',
 		badge: {
 			text: 'AI-Powered Recruitment',
 			translateKey: 'hero.badge',
@@ -152,7 +152,7 @@ export const pageHeroes = {
 		titleClass:
 			'garna-hero-title-gradient leading-[1.15] md:text-5xl lg:text-6xl text-4xl font-normal tracking-tight',
 		descriptionClass:
-			'md:text-xl leading-relaxed text-lg font-light text-gray-400 font-manrope max-w-xl',
+			'md:text-xl leading-relaxed text-lg font-manrope max-w-xl',
 		badge: {
 			text: 'White Label contractor management & contractor of record platform',
 			translateKey: 'hero.badge',
@@ -182,7 +182,7 @@ export const pageHeroes = {
 		titleClass:
 			'garna-hero-title-gradient max-w-3xl leading-[1.15] md:text-5xl lg:text-6xl text-4xl font-normal tracking-tight font-manrope',
 		descriptionClass:
-			'mt-7 md:text-xl leading-relaxed text-lg font-light text-gray-400 font-manrope max-w-xl',
+			'mt-7 md:text-xl leading-relaxed text-lg font-manrope max-w-xl',
 		badge: {
 			text: 'Built for small global teams',
 			translateKey: 'hero.badge',
@@ -208,9 +208,9 @@ export const pageHeroes = {
 		containerClass:
 			'overflow-visible md:px-12 md:pt-12 md:pb-0 text-center max-w-7xl z-10 mr-auto ml-auto pt-12 pr-6 pb-12 pl-6 relative',
 		titleClass:
-			'garna-hero-title-gradient leading-[1.1] lg:text-8xl lg:mb-12 md:mb-8 md:text-7xl text-6xl font-light tracking-tight font-extralight mb-8',
+			'garna-hero-title-gradient leading-[1.1] lg:text-8xl lg:mb-12 md:mb-8 md:text-7xl text-6xl tracking-tight mb-8',
 		descriptionClass:
-			'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-xl font-light text-gray-400 font-manrope max-w-4xl mr-auto mb-12 ml-auto',
+			'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-xl font-manrope max-w-4xl mr-auto mb-12 ml-auto',
 		title: [{ text: 'Global Payroll Solution for International Businesses', translateKey: 'hero.titleMain' }],
 		description:
 			'Save time and money while working with contractors and hiring employees in 150+ country. Full legal compliance without the extra costs - this and more, with Garna',
@@ -232,7 +232,7 @@ export const pageHeroes = {
 		containerClass: 'garna-container flex flex-col items-center gap-12',
 		contentClass: 'mx-auto flex max-w-4xl flex-col items-center text-center',
 		titleClass: 'garna-hero-title-gradient font-manrope text-5xl font-normal leading-[1.05] tracking-tight md:text-[64px]',
-		descriptionClass: 'mx-auto mt-7 max-w-3xl text-lg font-light leading-relaxed text-gray-400 md:text-xl',
+		descriptionClass: 'mx-auto mt-7 max-w-3xl text-lg leading-relaxed md:text-xl',
 		title: [{ text: 'Worldwide Employment Made Simple, Quick & Flawless', translateKey: 'hero.title' }],
 		description:
 			"Hiring the best talent from around the globe doesn't have to be a set of complex compliance rules, separate payroll systems where you have to create multiple legal entities in each country. At Garna, we provide a simple, modern employer of record solution designed to help businesses expand globally without getting stuck in operational hassles",
@@ -254,7 +254,7 @@ export const pageHeroes = {
 		containerClass: 'garna-container relative z-10',
 		contentClass: 'lg:mb-20 text-center max-w-3xl mr-auto mb-16 ml-auto',
 		titleClass: 'garna-hero-title-gradient md:text-5xl text-3xl leading-[1.15] pb-[0.08em] font-normal tracking-tight font-manrope mb-6',
-		descriptionClass: 'text-xl font-light text-gray-400 font-manrope',
+		descriptionClass: 'text-xl font-manrope',
 		title: [{ text: 'Book a free 30-minute product demo', translateKey: 'form.heading' }],
 		description: 'Get all your questions answered by our experts',
 		descriptionTranslateKey: 'form.subtitle',

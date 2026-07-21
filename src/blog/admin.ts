@@ -27,8 +27,6 @@ export async function handleBlogAdmin(request: Request, env: BlogEnv): Promise<R
 	if (url.pathname === '/admin/blog/authors' && request.method === 'GET') return renderAuthors(env, session.email);
 	if (url.pathname === '/admin/blog/categories' && request.method === 'GET') return renderCategories(env, session.email);
 	if (url.pathname === '/admin/blog/media' && request.method === 'GET') return renderMedia(env, session.email);
-	if (url.pathname === '/admin/blog/design-preview' && request.method === 'GET') return renderDesignPreviewIndex(session.email);
-	if (url.pathname.startsWith('/admin/blog/design-preview/') && request.method === 'GET') return renderDesignPreview(request, env);
 	if (url.pathname === '/admin/blog/articles/new' && request.method === 'GET') return renderArticleForm(env, session.email);
 	if (url.pathname === '/admin/blog/authors/new' && request.method === 'GET') return renderAuthorForm(env, session.email);
 	if (url.pathname === '/admin/blog/categories/new' && request.method === 'GET') return renderCategoryForm(session.email);
@@ -235,36 +233,6 @@ async function renderMedia(env: BlogEnv, email: string): Promise<Response> {
 	return adminShell('Media', 'media', email, `<section class="page-head">
 		<div><p class="eyebrow">Assets</p><h1>Media</h1></div><p>${media.length} files</p>
 	</section><section class="surface"><table><thead><tr><th>File</th><th>Type</th><th>Size</th><th>Uploaded</th></tr></thead><tbody>${rows || '<tr><td colspan="4">No media yet.</td></tr>'}</tbody></table></section>`);
-}
-
-function renderDesignPreviewIndex(email: string): Response {
-	return adminShell('Design preview', 'preview', email, `<section class="page-head">
-		<div><p class="eyebrow">Legacy designs</p><h1>Blog design preview</h1></div>
-	</section>
-	<section class="surface preview-list">
-		<a href="/admin/blog/design-preview/list" target="_blank"><strong>Article list</strong><span>Original static blog listing page</span></a>
-		<a href="/admin/blog/design-preview/author" target="_blank"><strong>Author page</strong><span>Original static author profile page</span></a>
-		<a href="/admin/blog/design-preview/article" target="_blank"><strong>Article page</strong><span>Original static article detail page</span></a>
-	</section>`);
-}
-
-async function renderDesignPreview(request: Request, env: BlogEnv): Promise<Response> {
-	if (!env.ASSETS) return htmlResponse('Static assets binding is not available', { status: 500, headers: { 'Cache-Control': 'no-store' } });
-	const slug = new URL(request.url).pathname.split('/').pop() || '';
-	const assetBySlug: Record<string, string> = {
-		list: '/en/blog.html',
-		author: '/en/blog-author.html',
-		article: '/en/blog-article.html',
-	};
-	const assetPath = assetBySlug[slug];
-	if (!assetPath) return htmlResponse('Preview not found', { status: 404, headers: { 'Cache-Control': 'no-store' } });
-	const assetRequest = new Request(new URL(assetPath, request.url).toString(), { method: 'GET' });
-	const response = await env.ASSETS.fetch(assetRequest);
-	if (!response.ok) return htmlResponse('Preview asset not found', { status: 404, headers: { 'Cache-Control': 'no-store' } });
-	const html = await response.text();
-	return htmlResponse(html.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow" />'), {
-		headers: { 'Cache-Control': 'no-store' },
-	});
 }
 
 async function renderArticleForm(env: BlogEnv, email: string, article?: any, options: { justSaved?: boolean; error?: string } = {}): Promise<Response> {
@@ -2137,13 +2105,13 @@ function adminHtml(title: string, body: string): Response {
 		.cta-tool { background: linear-gradient(to bottom, #1a1a1e, #151518, #0a0a0c); border: 1px solid rgba(255,255,255,.05); }
 		.cta-preview { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(180px, .9fr); gap: 18px; min-height: 230px; overflow: hidden; border-radius: 12px; padding: 24px; background: linear-gradient(to bottom, #1a1a1e, #151518, #0a0a0c); border: 1px solid rgba(255,255,255,.05); box-shadow: 0 10px 15px -3px rgba(0,0,0,.35); }
 		.cta-preview-beams { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-		.cta-preview-beams span { position: absolute; left: -30%; width: 160%; transform: rotate(35deg); background: rgba(94,165,0,.2); filter: blur(28px); }
+		.cta-preview-beams span { position: absolute; left: -30%; width: 160%; transform: rotate(35deg); background: rgba(203, 243, 0,.2); filter: blur(28px); }
 		.cta-preview-beams span:first-child { top: 5%; height: 80px; }
-		.cta-preview-beams span:last-child { top: 30%; height: 96px; background: rgba(94,165,0,.1); filter: blur(48px); }
+		.cta-preview-beams span:last-child { top: 30%; height: 96px; background: rgba(203, 243, 0,.1); filter: blur(48px); }
 		.cta-preview-copy { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; }
 		.cta-preview strong { display: block; max-width: 300px; font-size: 30px; line-height: 1.1; font-weight: 400; letter-spacing: 0; }
 		.cta-preview p { max-width: 300px; color: #9ca3af; font-size: 16px; line-height: 1.625; font-weight: 200; }
-		.cta-preview-copy > span { display: inline-flex; width: max-content; min-height: 42px; align-items: center; margin-top: 10px; padding: 10px 24px; border-radius: 12px; background: #5ea500; color: #fff; font-weight: 400; }
+		.cta-preview-copy > span { display: inline-flex; width: max-content; min-height: 42px; align-items: center; margin-top: 10px; padding: 10px 24px; border-radius: 12px; background: #CBF300; color: #fff; font-weight: 400; }
 		.cta-mockup { position: relative; z-index: 1; min-height: 210px; }
 		.cta-mockup-card { position: absolute; width: 220px; display: grid; grid-template-columns: 40px 1fr auto; gap: 8px; align-items: center; padding: 14px; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(24,24,27,.95); box-shadow: 0 20px 40px -15px rgba(0,0,0,.7); }
 		.cta-mockup-card-top { top: 24px; left: 0; transform: rotate(3deg); }
@@ -2216,10 +2184,6 @@ function adminHtml(title: string, body: string): Response {
 			.status { display: inline-flex; margin: 0; padding: 4px 8px; border-radius: 99px; background: #ece9e2; color: #5d584d; font-size: 12px; }
 			.status.published { background: #e7f2dd; color: #365f19; }
 			.check { display: inline-flex; grid-template-columns: auto 1fr; align-items: center; margin-right: 12px; } .check input { width: auto; }
-			.preview-list { display: grid; gap: 10px; max-width: 720px; }
-			.preview-list a { display: grid; gap: 4px; padding: 14px; border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
-			.preview-list a:hover { border-color: var(--accent); }
-			.preview-list span { color: var(--muted); font-size: 13px; }
 			@media (max-width: 980px) { .main:has(.article-compose) { overflow-y: auto; padding-bottom: 56px; } .article-compose { height: auto; grid-template-columns: 1fr; overflow: visible; } .article-canvas, .settings-sidebar { height: auto; overflow: visible; padding-bottom: 0; } .page-actions { position: static; grid-template-columns: 1fr; } }
 		@media (max-width: 760px) { .admin-layout { grid-template-columns: 1fr; } .sidebar { position: static; } .sidebar-footer { position: static; margin: 24px 8px 0; } .main { padding: 22px 16px 40px; } .page-head, .article-faq-head { align-items: start; flex-direction: column; } .cover-actions { flex-direction: column; } .faq-fields { grid-template-columns: 1fr; } }
 	</style>
@@ -2228,13 +2192,12 @@ function adminHtml(title: string, body: string): Response {
 </html>`, { headers: { 'Cache-Control': 'no-store' } });
 }
 
-function adminShell(title: string, active: 'articles' | 'authors' | 'categories' | 'media' | 'preview', email: string, content: string): Response {
+function adminShell(title: string, active: 'articles' | 'authors' | 'categories' | 'media', email: string, content: string): Response {
 	const nav = [
 		['articles', 'Articles', '/admin/blog'],
 		['authors', 'Authors', '/admin/blog/authors'],
 		['categories', 'Categories', '/admin/blog/categories'],
 		['media', 'Media', '/admin/blog/media'],
-		['preview', 'Design preview', '/admin/blog/design-preview'],
 	] as const;
 	return adminHtml(title, `<div class="admin-layout">
 		<aside class="sidebar">

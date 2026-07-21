@@ -1,0 +1,115 @@
+<script is:inline>
+        window.switchStep = function (index) {
+            document.querySelectorAll('.step-trigger').forEach((el) => {
+                if (el.getAttribute('data-index') == index) {
+                    el.classList.remove('opacity-50', 'hover:opacity-80');
+                    el.classList.add('opacity-100');
+                    const circle = el.querySelector('.step-circle');
+                    if (circle) {
+                        circle.classList.remove('text-gray-500', 'border-white/10', 'bg-[#050505]');
+                        circle.classList.add(
+                            'text-[#CBF300]',
+                            'border-[#CBF300]',
+                            'bg-[#050505]',
+                            'shadow-[0_0_15px_rgba(203, 243, 0,0.3)]'
+                        );
+                    }
+                    const title = el.querySelector('h3');
+                    if (title) title.classList.add('text-[#CBF300]');
+                } else {
+                    el.classList.add('opacity-50', 'hover:opacity-80');
+                    el.classList.remove('opacity-100');
+                    const circle = el.querySelector('.step-circle');
+                    if (circle) {
+                        circle.classList.add('text-gray-500', 'border-white/10', 'bg-[#050505]');
+                        circle.classList.remove('text-[#CBF300]', 'border-[#CBF300]', 'shadow-[0_0_15px_rgba(203, 243, 0,0.3)]');
+                    }
+                    const title = el.querySelector('h3');
+                    if (title) title.classList.remove('text-[#CBF300]');
+                }
+            });
+            document.querySelectorAll('.step-content').forEach((el) => {
+                if (el.getAttribute('data-index') == index) {
+                    el.classList.remove('opacity-0', 'translate-y-8', 'scale-95', '-z-10', 'pointer-events-none');
+                    el.classList.add('opacity-100', 'translate-y-0', 'scale-100', 'z-10');
+                } else {
+                    el.classList.add('opacity-0', 'translate-y-8', 'scale-95', '-z-10', 'pointer-events-none');
+                    el.classList.remove('opacity-100', 'translate-y-0', 'scale-100', 'z-10');
+                }
+            });
+        };
+    </script>
+<script is:inline>
+                    (function () {
+                        const el = document.getElementById('cnt-offer-freelancers');
+                        if (!el) return;
+                        const target = 15654;
+                        const duration = 2000;
+                        const animate = () => {
+                            let start = null;
+                            const step = (timestamp) => {
+                                if (!start) start = timestamp;
+                                const progress = Math.min((timestamp - start) / duration, 1);
+                                const ease = 1 - Math.pow(1 - progress, 4);
+                                const current = Math.floor(ease * target);
+                                el.innerText = current.toLocaleString('en-US');
+                                if (progress < 1) window.requestAnimationFrame(step);
+                                else el.innerText = '15,654';
+                            };
+                            window.requestAnimationFrame(step);
+                        };
+                        const observer = new IntersectionObserver(
+                            (entries) => {
+                                entries.forEach((entry) => {
+                                    if (entry.isIntersecting) {
+                                        animate();
+                                        observer.disconnect();
+                                    }
+                                });
+                            },
+                            { threshold: 0.1 }
+                        );
+                        observer.observe(el);
+                    })();
+                </script>
+<script is:inline>
+                                (function () {
+                                    const el = document.currentScript.parentElement.querySelector('.count-up');
+                                    const target = 4250;
+                                    const duration = 2000;
+
+                                    const animate = () => {
+                                        let start = null;
+                                        const step = (timestamp) => {
+                                            if (!start) start = timestamp;
+                                            const progress = Math.min((timestamp - start) / duration, 1);
+                                            const ease = 1 - Math.pow(1 - progress, 4); // Quartic ease out
+                                            el.innerText = Math.floor(ease * target).toLocaleString();
+                                            if (progress < 1) {
+                                                window.requestAnimationFrame(step);
+                                            } else {
+                                                el.innerText = '4,250';
+                                                // Restart animation after 2 seconds
+                                                setTimeout(() => {
+                                                    window.requestAnimationFrame(animate);
+                                                }, 2000);
+                                            }
+                                        };
+                                        window.requestAnimationFrame(step);
+                                    };
+
+                                    const observer = new IntersectionObserver(
+                                        (entries) => {
+                                            entries.forEach((entry) => {
+                                                if (entry.isIntersecting) {
+                                                    animate();
+                                                    observer.disconnect();
+                                                }
+                                            });
+                                        },
+                                        { threshold: 0.1 }
+                                    );
+
+                                    observer.observe(el);
+                                })();
+                            </script>

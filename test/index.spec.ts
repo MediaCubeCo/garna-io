@@ -2,8 +2,28 @@ import { describe, it, expect } from 'vitest';
 import { resolveRoute } from '../src/utils/routes';
 import { getLanguageFromIP, isValidLocale } from '../src/utils/locale';
 import { getSupportedLanguageCodes } from '../src/config/languages';
+import { handleDynamic } from '../src/routes/dynamic';
+import { handleRedirect } from '../src/routes/redirects';
 
 describe('Route Resolution', () => {
+	it('redirects the retired payroll solution route without a duplicate Astro page', async () => {
+		const request = new Request('https://garna.io/en/payroll-solution-new?source=legacy');
+		const response = await handleDynamic(request, resolveRoute('/en/payroll-solution-new?source=legacy'));
+
+		expect(response?.status).toBe(308);
+		expect(response?.headers.get('Location')).toBe('https://garna.io/en?source=legacy');
+	});
+
+	it('redirects the retired mid-size route without a duplicate Astro page', async () => {
+		const requestUrl = 'https://garna.io/en/mid-size?source=legacy';
+		const response = await handleRedirect(resolveRoute('/en/mid-size?source=legacy'), 'US', requestUrl);
+
+		expect(response?.status).toBe(301);
+		expect(response?.headers.get('Location')).toBe(
+			'https://garna.io/en/mid-size-business-payroll?source=legacy',
+		);
+	});
+
 	it('should resolve valid English route', () => {
 		const result = resolveRoute('/en');
 		expect(result.isValid).toBe(true);

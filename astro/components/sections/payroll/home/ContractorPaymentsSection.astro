@@ -1,0 +1,48 @@
+---
+import Section from '../../../layout/Section.astro';
+import Card from '../../../ui/Card.astro';
+import PayoutMethodsVisual from '../../../visuals/PayoutMethodsVisual.astro';
+import MobilePayoutVisual from '../../../visuals/MobilePayoutVisual.astro';
+import EarlyPayoutVisual from '../../../visuals/EarlyPayoutVisual.astro';
+---
+
+<Section
+	title={{ text: 'Simplify Global Contractor Payments' }}
+	description={{ text: 'Centralize invoices, approvals, and payments in one place. Manage and pay freelancers worldwide in their preferred method and currency without unnecessary fees' }}
+	headerClass="mb-16 max-w-4xl lg:mb-20"
+	titleClass="lg:text-5xl"
+	contentClass="grid grid-cols-1 gap-8 lg:grid-cols-3"
+>
+	<Card
+		variant="visual"
+		title="Multiple payout methods"
+		description="Contractors receive payouts via bank transfers in 80+ currencies, cards, wallets, or cryptocurrencies"
+		visualPosition="after"
+		class="flex flex-col p-6 md:items-center md:p-10 md:text-center lg:items-stretch lg:p-8 lg:text-left"
+		visualClass="mt-6 w-full md:mt-8 md:max-w-md lg:mt-auto lg:max-w-full"
+	>
+		<PayoutMethodsVisual slot="visual" />
+	</Card>
+
+	<Card
+		variant="visual"
+		title="Mobile first experience"
+		description="Get notified when your payout is credited and manage balances and payouts in one app"
+		visualPosition="after"
+		class="flex flex-col px-8 pb-6 pt-8 md:items-center md:text-center lg:items-stretch lg:text-left"
+		visualClass="w-full"
+	>
+		<MobilePayoutVisual slot="visual" />
+	</Card>
+
+	<Card
+		variant="visual"
+		title="Early payout access"
+		description="Request early access to earned payouts through a simple and transparent approval flow"
+		visualPosition="after"
+		class="flex flex-col p-6 md:items-center md:p-10 md:text-center lg:items-stretch lg:p-8 lg:text-left"
+		visualClass="mt-6 w-full md:mt-8 md:max-w-md lg:mt-auto lg:max-w-full"
+	>
+		<EarlyPayoutVisual slot="visual" />
+	</Card>
+</Section>

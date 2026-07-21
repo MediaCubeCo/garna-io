@@ -27,7 +27,7 @@
 .input:focus-visible {
 	border: none;
 	outline: none;
-	border-bottom: 1px solid rgb(94, 165, 0);
+	border-bottom: 1px solid rgb(203, 243, 0);
 }
 
 /* Same styles as normal input when value is from suggestions/autofill – no visual change */

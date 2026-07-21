@@ -1,18 +1,20 @@
 ---
-import HeroSection from '../components/HeroSection.astro';
-import FAQSection from '../components/FAQSection.astro';
-import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import rawContentHtml from '../content/site-pages/eor.html?raw';
-import scriptsHtml from '../content/site-scripts/eor.html?raw';
-import { splitLegacyPageSections } from '../utils/legacy-html';
-
-const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
-	heroVisualMarker: '<!-- Dashboard Mockup with Dynamic Sizing -->',
-});
+import EorTrustStripSection from '../components/sections/payroll/EorTrustStripSection.astro';
+import GlobalWorkforceBenefitsSection from '../components/sections/payroll/GlobalWorkforceBenefitsSection.astro';
+import GlobalHiringFeaturesSection from '../components/sections/payroll/GlobalHiringFeaturesSection.astro';
+import EorWhyGarnaSection from '../components/sections/payroll/EorWhyGarnaSection.astro';
+import EorFitSection from '../components/sections/payroll/EorFitSection.astro';
+import EorStepsSection from '../components/sections/payroll/EorStepsSection.astro';
+import EmployerOfRecordSectionStyles from '../components/sections/payroll/EmployerOfRecordSectionStyles.astro';
+import EmployerOfRecordInteractions from '../components/sections/payroll/EmployerOfRecordInteractions.astro';
+import EmployerOfRecordVisual from '../components/visuals/EmployerOfRecordVisual.astro';
 
 const eorFaqItems = [
 	{
@@ -52,11 +54,17 @@ const eorFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.eor} scriptsHtml={scriptsHtml}>
+<BaseLayout shell={pageShells.eor}>
 	<HeroSection {...pageHeroes.eor}>
-		<Fragment set:html={heroVisualHtml} />
+		<EmployerOfRecordVisual />
 	</HeroSection>
-	<Fragment set:html={contentHtml} />
+	<EorTrustStripSection />
+	<GlobalWorkforceBenefitsSection />
+	<GlobalHiringFeaturesSection />
+	<EorWhyGarnaSection />
+	<EorFitSection />
+	<EorStepsSection />
+	<EmployerOfRecordSectionStyles />
 	<FAQSection
 		kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
 		title={{ text: 'FAQ on Employer of Record', translateKey: 'faq.title' }}
@@ -66,6 +74,7 @@ const eorFaqItems = [
 		containerClass="garna-container"
 	/>
 	<Fragment slot="widgets">
+		<EmployerOfRecordInteractions />
 		<GarnaBookingWidget
 			trackingSource="eor"
 			trackingPage="eor"

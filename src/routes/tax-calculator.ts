@@ -1,5 +1,8 @@
+import { calculatorCountryNames } from '../data/calculator-countries';
+
 const CALCULATOR_ORIGIN = 'https://taxes.yv144.com';
-const CALCULATOR_API = 'https://api-prod.letsdeel.com/guest/take_home_calculator/calculate';
+const CALCULATOR_API = 'https://api-prod.letsdeel.com/employment_cost';
+const MAX_COMPARISON_COUNTRIES = 2;
 
 const json = (body: unknown, status = 200) =>
 	new Response(JSON.stringify(body), {
@@ -48,21 +51,80 @@ export async function handleTaxCalculator(request: Request): Promise<Response | 
 	if (url.pathname === '/api/tax-calculator/calculate' && request.method === 'POST') {
 		try {
 			const input = (await request.json()) as Record<string, unknown>;
-			const country = String(input.country || '').toUpperCase();
 			const salary = Number(input.salary);
 			const currency = String(input.currency || 'USD').toUpperCase();
-			const period = input.period === 'annual' ? 'annual' : 'monthly';
-			const state = input.state ? String(input.state) : undefined;
-			if (!/^[A-Z]{2}$/.test(country) || !Number.isFinite(salary) || salary <= 0 || !/^[A-Z]{3}$/.test(currency)) {
+			const requestedCountries = Array.isArray(input.countries)
+				? input.countries
+				: input.country
+					? [{ countryCode: input.country, state: input.state }]
+					: [];
+			const countries = requestedCountries
+				.slice(0, MAX_COMPARISON_COUNTRIES)
+				.map((entry) => {
+					const value = entry && typeof entry === 'object' ? (entry as Record<string, unknown>) : {};
+					const countryCode = String(value.countryCode || '').toUpperCase();
+					return {
+						countryCode,
+						country: calculatorCountryNames.get(countryCode),
+						state: value.state ? String(value.state) : undefined,
+					};
+				});
+			if (
+				!countries.length ||
+				countries.some(({ countryCode, country }) => !/^[A-Z]{2}$/.test(countryCode) || !country) ||
+				new Set(countries.map(({ countryCode }) => countryCode)).size !== countries.length ||
+				!Number.isFinite(salary) ||
+				salary < 12 ||
+				!/^[A-Z]{3}$/.test(currency)
+			) {
 				return json({ error: 'Invalid calculator input' }, 400);
 			}
-			const response = await fetch(CALCULATOR_API, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-				body: JSON.stringify({ country, salary: Math.round(salary), currency, period, ...(state ? { state } : {}) }),
-			});
-			const result = await response.json();
-			return json(result, response.ok ? 200 : response.status);
+
+			const monthlySalary = Math.round((salary / 12) * 100) / 100;
+			const calculations = await Promise.all(
+				countries.map(async ({ countryCode, country, state }) => {
+					try {
+						const response = await fetch(CALCULATOR_API, {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+							body: JSON.stringify({ country, salary: monthlySalary, currency, ...(state ? { state } : {}) }),
+						});
+						const result = (await response.json()) as Record<string, any>;
+						if (!response.ok || result.error || result.errors?.length) {
+							throw new Error(result.error || result.errors?.join(', ') || `Calculation returned ${response.status}`);
+						}
+
+						const costs = (Array.isArray(result.costs) ? result.costs : []).map((cost: Record<string, unknown>) => {
+							const monthly = Number(cost.priceExchanged ?? cost.amount ?? cost.price ?? 0);
+							return {
+								name: String(cost.name || 'Employment cost'),
+								annual: Math.round(monthly * 12 * 100) / 100,
+								rate: cost.rate ? String(cost.rate) : undefined,
+							};
+						});
+						const employerCostAnnual = Math.round(costs.reduce((total, cost) => total + cost.annual, 0) * 100) / 100;
+						return {
+							ok: true as const,
+							countryCode,
+							country,
+							state,
+							currency,
+							grossAnnual: Math.round(salary * 100) / 100,
+							employerCostAnnual,
+							totalAnnual: Math.round((salary + employerCostAnnual) * 100) / 100,
+							netAnnual: Math.round(Number(result.netSalary || 0) * 12 * 100) / 100,
+							costs,
+						};
+					} catch (error: any) {
+						return { ok: false as const, countryCode, country, state, error: error?.message || 'Calculation failed' };
+					}
+				}),
+			);
+
+			const results = calculations.filter((calculation) => calculation.ok);
+			const errors = calculations.filter((calculation) => !calculation.ok);
+			if (!results.length) return json({ error: errors[0]?.error || 'Calculation is temporarily unavailable' }, 502);
+			return json({ currency, grossAnnual: salary, results, errors });
 		} catch (error: any) {
 			return json({ error: error?.message || 'Calculation is temporarily unavailable' }, 502);
 		}

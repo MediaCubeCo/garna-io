@@ -1,19 +1,22 @@
 ---
-import HeroSection from '../components/HeroSection.astro';
-import FAQSection from '../components/FAQSection.astro';
-import FinalCTASection from '../components/FinalCTASection.astro';
-import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import FinalCTASection from '../components/sections/FinalCTASection.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import rawContentHtml from '../content/site-pages/white-label.html?raw';
-import { splitLegacyPageSections } from '../utils/legacy-html';
-
-const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
-	heroVisualMarker: '<!-- Right Visual (Dashboard UI) -->',
-});
+import WhiteLabelTrustStripSection from '../components/sections/white-label/WhiteLabelTrustStripSection.astro';
+import WhiteLabelEngineSection from '../components/sections/white-label/WhiteLabelEngineSection.astro';
+import WhiteLabelBenefitsSection from '../components/sections/white-label/WhiteLabelBenefitsSection.astro';
+import WhiteLabelModelsSection from '../components/sections/white-label/WhiteLabelModelsSection.astro';
+import WhiteLabelAdvantageSection from '../components/sections/white-label/WhiteLabelAdvantageSection.astro';
+import WhiteLabelComparisonSection from '../components/sections/white-label/WhiteLabelComparisonSection.astro';
+import WhiteLabelSectionStyles from '../components/sections/white-label/WhiteLabelSectionStyles.astro';
+import WhiteLabelInteractions from '../components/sections/white-label/WhiteLabelInteractions.astro';
+import WhiteLabelDashboardVisual from '../components/visuals/WhiteLabelDashboardVisual.astro';
 
 const whiteLabelFaqItems = [
 	{
@@ -63,9 +66,15 @@ const whiteLabelFaqItems = [
 
 <BaseLayout shell={pageShells.whiteLabel}>
 	<HeroSection {...pageHeroes.whiteLabel}>
-		<Fragment set:html={heroVisualHtml} />
+		<WhiteLabelDashboardVisual />
 	</HeroSection>
-	<Fragment set:html={contentHtml} />
+	<WhiteLabelTrustStripSection />
+	<WhiteLabelEngineSection />
+	<WhiteLabelBenefitsSection />
+	<WhiteLabelModelsSection />
+	<WhiteLabelAdvantageSection />
+	<WhiteLabelComparisonSection />
+	<WhiteLabelSectionStyles />
 	<FAQSection
 		title={{ text: 'FAQ on Garna White Label Services', translateKey: 'faq.title' }}
 		subtitle={{ text: 'Have questions? We have answers', translateKey: 'faq.subtitle' }}
@@ -75,6 +84,7 @@ const whiteLabelFaqItems = [
 	/>
 	<FinalCTASection {...pageFinalCtas.whiteLabel} />
 	<Fragment slot="widgets">
+		<WhiteLabelInteractions />
 		<GarnaBookingWidget
 			trackingSource="white-label"
 			trackingPage="white-label"
