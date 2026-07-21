@@ -302,7 +302,7 @@ describe('native Astro architecture', () => {
 		expect(baseLayout).toContain("bodyClass = 'antialiased overflow-x-hidden bg-garna-page'");
 		expect(baseLayout).toContain('<body class={bodyClass} data-garna-page>');
 		expect(pageShells).not.toContain('bg-[#050505]');
-		expect(rainbowStyles).toContain('background-color: rgba(16, 16, 16, 1);');
+		expect(rainbowStyles).toContain('background-color: #101010;');
 		expect(rainbowStyles).not.toContain('rgba(5, 5, 5, 1)');
 		expect(globalStyles).toContain('.surface-soft {');
 		expect(globalStyles).toContain('background: var(--garna-surface);');
@@ -370,6 +370,9 @@ describe('native Astro architecture', () => {
 
 	it('keeps the employee cost calculator on the shared Garna background contract', async () => {
 		const page = await readFile(path.join(root, 'astro/pages/tax-calculator.astro'), 'utf8');
+		const baseLayout = await readFile(path.join(root, 'astro/layouts/BaseLayout.astro'), 'utf8');
+		const rainbow = await readFile(path.join(root, 'astro/components/visuals/RainbowBackground.astro'), 'utf8');
+		const rainbowStyles = await readFile(path.join(root, 'static/rainbow-bg.css'), 'utf8');
 		const hero = await readFile(
 			path.join(root, 'astro/components/sections/tax-calculator/TaxCalculatorHeroSection.astro'),
 			'utf8',
@@ -377,11 +380,19 @@ describe('native Astro architecture', () => {
 		const styles = await readFile(path.join(root, 'astro/styles/tax-calculator-seo.css'), 'utf8');
 		const route = await readFile(path.join(root, 'src/routes/tax-calculator.ts'), 'utf8');
 
-		expect(page).toContain('<BaseLayout shell={pageShells.taxCalculator} rainbowCount={6}>');
+		expect(page).toContain('<BaseLayout shell={pageShells.taxCalculator}>');
+		expect(baseLayout).toContain('rainbowCount = 6');
+		expect(rainbow).toContain('count = 6');
+		expect(rainbowStyles).toContain('animation: aurora-slide 24s linear infinite;');
+		expect(rainbowStyles).not.toContain('nth-child(7)');
 		expect(page).toContain('items={faqItems} variant="eor"');
 		expect(page).toContain('countries: selectedCountries.map');
 		expect(page).toContain('tax-compare-table');
 		expect(page).toContain('const flag = (countryCode: string)');
+		expect(page).toContain("const formatSalary = (digits: string)");
+		expect(page).toContain("salaryDisplay?.addEventListener('input'");
+		expect(hero).toContain('id="tax-salary-display"');
+		expect(hero).toContain('id="tax-salary-value" name="salary" type="hidden"');
 		expect(hero).toContain('id="tax-add-comparison-country"');
 		expect(hero).toContain("import Card from '../../ui/Card.astro'");
 		expect(hero).toContain('<Card variant="feature" class="tax-card"');

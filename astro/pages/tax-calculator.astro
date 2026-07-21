@@ -19,7 +19,7 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 	answerTranslateKey: `faq.a${index + 1}`,
 })) satisfies FAQItem[];
 ---
-<BaseLayout shell={pageShells.taxCalculator} rainbowCount={6}>
+<BaseLayout shell={pageShells.taxCalculator}>
 		<TaxCalculatorHeroSection />
 		<TaxCalculatorExplainerSection />
 		<TaxCalculatorTrustStripSection />
@@ -44,6 +44,8 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 	const status = document.querySelector<HTMLElement>('#tax-status');
 	const countryRows = document.querySelector<HTMLElement>('#tax-country-rows');
 	const addCountryButton = document.querySelector<HTMLButtonElement>('#tax-add-comparison-country');
+	const salaryDisplay = document.querySelector<HTMLInputElement>('#tax-salary-display');
+	const salaryValue = document.querySelector<HTMLInputElement>('#tax-salary-value');
 	const currency = form?.querySelector<HTMLSelectElement>('[name=currency]');
 	const currencyValue = document.querySelector<HTMLElement>('#tax-currency-value');
 	const currencyChevron = document.querySelector<HTMLElement>('#tax-currency-chevron');
@@ -53,6 +55,7 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 	const esc = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#039;' })[char] || char);
 	const money = (value: unknown, code: string) => new Intl.NumberFormat(locale, { style: 'currency', currency: code, maximumFractionDigits: 0 }).format(Number(value) || 0);
 	const flag = (countryCode: string) => countryCode.replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
+	const formatSalary = (digits: string) => digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	const firstCountrySelect = countryRows?.querySelector<HTMLSelectElement>('.tax-country-select');
 	let countryOptions = firstCountrySelect?.innerHTML || '';
 	const currencyCatalog = [...(currency?.options || [])].map((option) => ({ value: option.value, label: option.textContent || option.value }));
@@ -137,6 +140,24 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 	});
 
 	currency?.addEventListener('change', syncCurrencyCode);
+
+	salaryDisplay?.addEventListener('input', () => {
+		const caret = salaryDisplay.selectionStart ?? salaryDisplay.value.length;
+		const digitsBeforeCaret = salaryDisplay.value.slice(0, caret).replace(/\D/g, '').length;
+		const digits = salaryDisplay.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '');
+		const formatted = formatSalary(digits);
+		salaryDisplay.value = formatted;
+		if (salaryValue) salaryValue.value = digits;
+		salaryDisplay.setCustomValidity(digits && BigInt(digits) < 12n ? 'Enter an annual salary of 12 or more.' : '');
+
+		let nextCaret = 0;
+		let digitsSeen = 0;
+		while (nextCaret < formatted.length && digitsSeen < digitsBeforeCaret) {
+			if (/\d/.test(formatted[nextCaret])) digitsSeen += 1;
+			nextCaret += 1;
+		}
+		salaryDisplay.setSelectionRange(nextCaret, nextCaret);
+	});
 
 	form?.addEventListener('submit', async (event) => {
 		event.preventDefault();
