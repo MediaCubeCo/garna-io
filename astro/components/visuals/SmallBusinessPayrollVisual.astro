@@ -263,6 +263,44 @@
         background: linear-gradient(90deg, transparent, rgba(203, 243, 0, 0.34), transparent);
     }
 
+    :global(html[data-theme="light"]) .hero-console {
+        border-color: transparent;
+        background:
+            radial-gradient(circle at 78% 16%, rgba(203, 243, 0, 0.2), transparent 30%),
+            radial-gradient(circle at 18% 92%, rgba(24, 89, 64, 0.1), transparent 34%),
+            #ffffff;
+        box-shadow: 0 30px 76px -46px rgba(31, 38, 25, 0.34);
+    }
+
+    :global(html[data-theme="light"]) .hero-console::before {
+        background:
+            linear-gradient(to right, rgba(16, 16, 16, 0.035) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(16, 16, 16, 0.035) 1px, transparent 1px);
+        opacity: 0.42;
+    }
+
+    :global(html[data-theme="light"]) .hero-run-card {
+        border-color: transparent;
+        background:
+            radial-gradient(circle at 84% 18%, rgba(203, 243, 0, 0.18), transparent 30%),
+            #f6f7f2;
+        box-shadow: 0 16px 36px -30px rgba(31, 38, 25, 0.3);
+    }
+
+    :global(html[data-theme="light"]) .hero-ring::before {
+        background: #ffffff;
+    }
+
+    :global(html[data-theme="light"]) .hero-progress {
+        background: rgba(16, 16, 16, 0.1);
+    }
+
+    :global(html[data-theme="light"]) .dashboard-avatar {
+        border-color: rgba(16, 16, 16, 0.1);
+        background: #eef0ea;
+        box-shadow: 0 12px 24px -18px rgba(31, 38, 25, 0.28);
+    }
+
     @media (min-width: 1024px) {
         .hero-console {
             position: absolute;

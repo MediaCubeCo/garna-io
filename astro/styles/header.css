@@ -5,6 +5,10 @@
 	backdrop-filter: blur(16px);
 	-webkit-backdrop-filter: blur(16px);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	transition:
+		background-color 320ms ease,
+		border-color 320ms ease,
+		box-shadow 320ms ease;
 }
 
 .garna-header.is-mobile-open {

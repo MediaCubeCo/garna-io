@@ -506,6 +506,35 @@ const mobileLinkClass = (path: string) =>
 		const header = document.querySelector('.garna-header');
 
 		const supportedLangs = ['en', 'es', 'pt', 'ru'];
+		let headerSurfaceFrame = 0;
+
+		const syncHeaderSurface = () => {
+			if (!(header instanceof HTMLElement)) return;
+
+			const hero = document.querySelector('.payroll-solution-new-hero');
+			const usesLightTheme = document.documentElement.dataset.theme === 'light';
+			if (!usesLightTheme || !(hero instanceof HTMLElement)) {
+				header.classList.remove('is-over-light-surface');
+				return;
+			}
+
+			const headerHeight = header.getBoundingClientRect().height;
+			const heroBounds = hero.getBoundingClientRect();
+			const lightSurfaceBoundary = heroBounds.top + (heroBounds.height * 0.86);
+			header.classList.toggle('is-over-light-surface', lightSurfaceBoundary <= headerHeight);
+		};
+
+		const queueHeaderSurfaceSync = () => {
+			if (headerSurfaceFrame) return;
+			headerSurfaceFrame = window.requestAnimationFrame(() => {
+				headerSurfaceFrame = 0;
+				syncHeaderSurface();
+			});
+		};
+
+		window.addEventListener('scroll', queueHeaderSurfaceSync, { passive: true });
+		window.addEventListener('resize', queueHeaderSurfaceSync, { passive: true });
+		window.addEventListener('garna:page-content-updated', queueHeaderSurfaceSync);
 
 		// Styles emitted by a page must be replaced during SPA navigation. Keep the
 		// Tailwind runtime stylesheet: it is maintained dynamically by the CDN script.
@@ -1023,5 +1052,6 @@ const mobileLinkClass = (path: string) =>
 		localizeHeaderLinks();
 		setNavActiveState();
 		syncFooterLanguageState();
+		syncHeaderSurface();
 	})();
 </script>

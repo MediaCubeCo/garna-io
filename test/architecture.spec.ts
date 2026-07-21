@@ -18,6 +18,102 @@ async function walk(directory: string): Promise<string[]> {
 }
 
 describe('native Astro architecture', () => {
+	it('supports URL-driven light and dark theme variants across internal navigation', async () => {
+		const layout = await readFile(path.join(root, 'astro/layouts/BaseLayout.astro'), 'utf8');
+		const themes = await readFile(path.join(root, 'astro/styles/themes.css'), 'utf8');
+		const header = await readFile(path.join(root, 'astro/components/layout/Header.astro'), 'utf8');
+		const globalStyles = await readFile(path.join(root, 'astro/styles/global.css'), 'utf8');
+
+		expect(layout).toContain("import '../styles/themes.css'");
+		expect(layout).toContain('data-theme="dark"');
+		expect(layout).toContain("requestedTheme === 'light' ? 'light' : 'dark'");
+		expect(layout).toContain("theme !== 'light' && theme !== 'dark'");
+		expect(layout).toContain("url.searchParams.set('theme', theme)");
+		expect(layout).toContain('new MutationObserver(queuePreserveTheme)');
+		expect(themes).toContain('html[data-theme="light"]');
+		expect(themes).toContain('--garna-page-bg: #f4f5ef');
+		expect(themes).toContain('.garna-header');
+		expect(themes).toContain('.garna-card');
+		expect(themes).toContain('html[data-theme="light"] .payroll-solution-new-hero');
+		expect(themes).toContain("url('/images/home-hero-mesh-lime.svg')");
+		expect(themes).toContain("url('/images/home-hero-mesh-light.svg')");
+		expect(themes).toContain('.payroll-solution-new-hero::after');
+		expect(themes).toContain('-webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 43%, transparent 62%)');
+		expect(themes).toContain('mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 100%)');
+		expect(themes).toContain('background: #004a00');
+		expect(themes).toContain('filter: blur(128px)');
+		expect(themes).toContain('opacity: 0.64');
+		expect(themes).toContain('translate: -50% 0');
+		expect(themes).toContain('transform: none');
+		expect(themes).toMatch(/\.payroll-solution-new-hero::before \{[\s\S]*?z-index: 1/);
+		expect(themes).toMatch(/\.payroll-solution-new-hero::after \{[\s\S]*?z-index: 2/);
+		expect(themes).toMatch(/\.payroll-solution-new-hero \.garna-hero-green-glow \{[\s\S]*?z-index: 0/);
+		await expect(access(path.join(root, 'static/images/home-hero-mesh-lime.svg'))).resolves.toBeUndefined();
+		await expect(access(path.join(root, 'static/images/home-hero-mesh-light.svg'))).resolves.toBeUndefined();
+		expect(themes).toContain('.payroll-solution-new-hero [data-garna-subtitle]');
+		expect(themes).toContain('.garna-header:not(.is-over-light-surface)');
+		expect(header).toContain("const lightSurfaceBoundary = heroBounds.top + (heroBounds.height * 0.86)");
+		expect(header).toContain("window.addEventListener('scroll', queueHeaderSurfaceSync");
+		expect(header).toContain("window.addEventListener('garna:page-content-updated', queueHeaderSurfaceSync)");
+		expect(globalStyles).toContain('.tax-hero::before');
+		expect(globalStyles).toContain('background-image: none !important');
+		expect(themes).toContain('var(--garna-card-glow-x) var(--garna-card-glow-y)');
+		expect(themes).toContain('html[data-theme="light"] .garna-card::before');
+		expect(themes).toContain('background: none');
+		expect(themes).toContain('.garna-card-light-field');
+		expect(themes).toContain('width: 44rem');
+		expect(themes).toContain('transform: translate3d(var(--garna-card-light-x), var(--garna-card-light-y), 0)');
+		expect(themes).toContain('will-change: transform, opacity');
+		expect(themes).toContain('.garna-card-light-field[data-active="true"]');
+		expect(themes).toContain('transition: opacity 90ms ease-out');
+		expect(themes).toContain('z-index: 5');
+		expect(themes).toContain('z-index: 6');
+		expect(themes).toContain('background-color: rgba(255, 255, 255, 0.94)');
+		expect(themes).toContain('translate 220ms cubic-bezier(0.22, 1, 0.36, 1)');
+		expect(themes).toContain('transform 220ms cubic-bezier(0.22, 1, 0.36, 1)');
+		expect(themes).toContain('border-color: rgba(154, 184, 0, 0.46)');
+		expect(themes).toContain('.garna-product-window__chrome');
+		expect(themes).toContain('background: #e7e9e3 !important');
+		expect(themes).toContain('.garna-product-window__sidebar');
+		expect(themes).toContain('.garna-product-panel');
+		expect(themes).toContain('.garna-product-window img[src="/garna_logo.svg"]');
+		expect(themes).toContain('color: #607700 !important');
+		expect(themes).not.toContain('var(--garna-card-x');
+	});
+
+	it('uses the shared dashboard visual instead of duplicating its markup on the homepage', async () => {
+		const section = await readFile(
+			path.join(root, 'astro/components/sections/payroll/home/EffectivePayrollSection.astro'),
+			'utf8',
+		);
+		const dashboard = await readFile(
+			path.join(root, 'astro/components/visuals/ContractorDashboardVisual.astro'),
+			'utf8',
+		);
+
+		expect(section).toContain("import ContractorDashboardVisual from '../../../visuals/ContractorDashboardVisual.astro'");
+		expect(section).toContain('<ContractorDashboardVisual />');
+		expect(section).not.toContain('garna.io/dashboard');
+		expect(dashboard).toContain('garna-product-window');
+		expect(dashboard).toContain('garna-product-window__chrome');
+	});
+
+	it('keeps custom-styled payroll visuals theme-aware', async () => {
+		const automation = await readFile(
+			path.join(root, 'astro/components/visuals/PayrollAutomationVisual.astro'),
+			'utf8',
+		);
+		const smallBusiness = await readFile(
+			path.join(root, 'astro/components/visuals/SmallBusinessPayrollVisual.astro'),
+			'utf8',
+		);
+
+		expect(automation).toContain(':global(html[data-theme="light"]) .payroll-routine-visual');
+		expect(automation).toContain(':global(html[data-theme="light"]) .automation-core');
+		expect(smallBusiness).toContain(':global(html[data-theme="light"]) .hero-console');
+		expect(smallBusiness).toContain(':global(html[data-theme="light"]) .hero-run-card');
+	});
+
 	it('keeps all 18 public and Worker-template entrypoints', async () => {
 		const pages = (await walk(path.join(root, 'astro/pages'))).filter((file) => file.endsWith('.astro'));
 		expect(pages).toHaveLength(18);
@@ -99,6 +195,7 @@ describe('native Astro architecture', () => {
 
 		expect(positions.every((position) => position >= 0)).toBe(true);
 		expect(positions).toEqual([...positions].sort((left, right) => left - right));
+		expect(source).toContain('<PayrollStatsSection transparent />');
 		expect(source).not.toContain('PayrollSolutionSections');
 	});
 
@@ -346,6 +443,8 @@ describe('native Astro architecture', () => {
 		expect(globalStyles).toContain('[data-garna-subtitle] {');
 		expect(hero).toContain('<p data-garna-subtitle class={descriptionClass}');
 		expect(sectionHeader).toContain('data-garna-subtitle');
+		expect(sectionHeader).toContain('text-white md:text-5xl');
+		expect(sectionHeader).not.toContain('lg:text-6xl');
 		expect(card).toContain('<p data-garna-subtitle data-card-description');
 		expect(blogArticleShell).toContain('<p data-garna-subtitle class="leading-relaxed text-lg font-manrope pb-12">');
 		expect(unmarkedSubtitles).toEqual([]);
@@ -449,6 +548,10 @@ describe('native Astro architecture', () => {
 				readFile(path.join(root, 'astro/components/sections/payroll/home', file), 'utf8'),
 			),
 		);
+		const automatedPayrollVisual = await readFile(
+			path.join(root, 'astro/components/visuals/AutomatedPayrollPlatformVisual.astro'),
+			'utf8',
+		);
 		const visualFiles = [
 			'AutomatedPayrollPlatformVisual.astro',
 			'GlobalReachVisual.astro',
@@ -475,19 +578,36 @@ describe('native Astro architecture', () => {
 		expect(card).toContain('.garna-card::after');
 		expect(card).toContain('-webkit-mask-composite: xor;');
 		expect(card).toContain('mask-composite: exclude;');
-		expect(card).toContain(".garna-card[data-card-glow='true']:is(:hover, :focus-within)::after");
+		expect(card).toContain(".garna-card[data-card-glow='true']:is(:hover, :focus-within, [data-pointer-active='true'])::after");
 		expect(card).toContain("document.addEventListener('pointermove'");
 		expect(card).toContain("style.setProperty('--garna-card-glow-x'");
 		expect(card).toContain("style.setProperty('--garna-card-glow-y'");
-		expect(card).toContain(".garna-card[data-interactive='true']:is(:hover, :focus-within)");
+		expect(card).toContain("field.className = 'garna-card-light-field'");
+		expect(card).toContain("scope.classList.add('garna-card-light-scope')");
+		expect(card).toContain("style.setProperty('--garna-card-light-x'");
+		expect(card).toContain("style.setProperty('--garna-card-light-y'");
+		expect(card).toContain("window.addEventListener('scroll', clearActiveCard");
+		expect(card).toContain("[data-pointer-active='true']");
+		expect(card).toContain("activeCard.setAttribute('data-pointer-active', 'true')");
+		expect(card).toContain("activeCard?.removeAttribute('data-pointer-active')");
 		expect(card).toContain('focus-within:-translate-y-1');
 		expect(card).not.toContain('background-color: rgba(255, 255, 255, 0.045)');
 		expect(card).toContain('border-color: rgba(255, 255, 255, 0.15)');
 		expect(card).toContain('<slot name="visual" />');
+		const cardIconVisual = await readFile(path.join(root, 'astro/components/visuals/CardIconVisual.astro'), 'utf8');
+		expect(cardIconVisual).toContain("surface?: 'soft' | 'none'");
+		expect(cardIconVisual).toContain(":global(html[data-theme='light']) .card-icon-visual[data-icon-surface='soft']");
+		expect(cardIconVisual).toContain('background: #11130f');
 		expect(packageJson.scripts.dev).toContain('wrangler dev --live-reload');
 		expect(sources.every((source) => source.includes("ui/Card.astro"))).toBe(true);
 		expect(sources.reduce((count, source) => count + (source.match(/<Card(?:\s|>)/g)?.length || 0), 0)).toBe(25);
 		expect(sources.every((source) => !source.includes('<div class="glass-card'))).toBe(true);
+		expect(automatedPayrollVisual).toContain(":global(html[data-theme='light']) .payroll-platform-visual");
+		expect(automatedPayrollVisual).toContain('--visual-node-bg: rgba(255, 255, 255, 0.88)');
+		expect(automatedPayrollVisual).toContain('--visual-line: rgba(94, 111, 24, 0.24)');
+		expect(automatedPayrollVisual).toContain('--visual-flow: #829b00');
+		expect(automatedPayrollVisual).toContain('class="flow-dot"');
+		expect(automatedPayrollVisual).toContain('fill="currentColor"');
 		for (const file of visualFiles) {
 			await expect(access(path.join(root, 'astro/components/visuals', file))).resolves.toBeUndefined();
 		}
