@@ -186,6 +186,20 @@ export async function getPublishedArticleBySlug(env: BlogEnv, slug: string, lang
 	return overlayArticleTranslation(env, article, language);
 }
 
+export async function getArticleBySlugForAdmin(env: BlogEnv, slug: string, language = 'en'): Promise<BlogArticle | null> {
+	if (!env.DB) return null;
+	const row = await env.DB.prepare(
+		`${articleSelect}
+		 WHERE articles.slug = ?
+		   AND COALESCE(articles.language, 'en') = 'en'`
+	)
+		.bind(slug)
+		.first<any>();
+	if (!row) return null;
+	const article = await attachArticleRelations(env, rowToArticle(row));
+	return overlayArticleTranslationForAdmin(env, article, language);
+}
+
 export async function getArticleById(env: BlogEnv, id: number, language = 'en'): Promise<BlogArticle | null> {
 	if (!env.DB) return null;
 	const row = await env.DB.prepare(`${articleSelect} WHERE articles.id = ?`).bind(id).first<any>();

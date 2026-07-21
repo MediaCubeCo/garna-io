@@ -1,4 +1,5 @@
-import { getAuthorBySlug, getPublishedArticleBySlug, listCategories, listPublishedArticles, listPublishedArticlesByAuthor } from './data';
+import { getSession } from './auth';
+import { getArticleBySlugForAdmin, getAuthorBySlug, getPublishedArticleBySlug, listCategories, listPublishedArticles, listPublishedArticlesByAuthor } from './data';
 import { renderArticlePage, renderAuthorPage, renderBlogIndex } from './render';
 import type { BlogEnv } from './types';
 import { notFound, redirect } from './utils';
@@ -20,9 +21,16 @@ export async function handleBlogPublic(request: Request, env: BlogEnv): Promise<
 		}
 
 		if (segments.length === 3) {
-			const [article, articles] = await Promise.all([getPublishedArticleBySlug(env, segments[2], language), listPublishedArticles(env, 50, language)]);
+			const [publishedArticle, articles] = await Promise.all([getPublishedArticleBySlug(env, segments[2], language), listPublishedArticles(env, 50, language)]);
+			const article = publishedArticle || ((await getSession(request, env)) ? await getArticleBySlugForAdmin(env, segments[2], language) : null);
 			const relatedArticles = article ? articles.filter((item) => item.id !== article.id).slice(0, 3) : [];
-			return article ? await renderArticlePage(env, article, relatedArticles, language) : notFound('Article not found');
+			if (!article) return notFound('Article not found');
+			const response = await renderArticlePage(env, article, relatedArticles, language);
+			if (!publishedArticle) {
+				response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+				response.headers.set('Cache-Control', 'no-store');
+			}
+			return response;
 		}
 
 		if (segments.length === 4 && segments[2] === 'author') {

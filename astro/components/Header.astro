@@ -661,9 +661,49 @@ const mobileLinkClass = (path: string) =>
 			await Promise.all(pendingScripts);
 		};
 
+		const syncDocumentShell = (targetDoc) => {
+			document.documentElement.className = targetDoc.documentElement.className;
+			document.documentElement.lang = targetDoc.documentElement.lang || document.documentElement.lang;
+			document.body.className = targetDoc.body.className;
+		};
+
+		const syncManagedHeadStyles = (targetDoc) => {
+			document.head.querySelectorAll('[data-garna-spa-head-style]').forEach((element) => element.remove());
+
+			targetDoc.head.querySelectorAll('style').forEach((style) => {
+				const content = style.textContent || '';
+				if (!content.trim()) return;
+
+				const clone = style.cloneNode(true);
+				if (!(clone instanceof HTMLStyleElement)) return;
+				clone.dataset.garnaSpaHeadStyle = 'true';
+				document.head.appendChild(clone);
+			});
+		};
+
+		const runManagedHeadScripts = async (targetDoc) => {
+			document.head.querySelectorAll('[data-garna-spa-head-script]').forEach((element) => element.remove());
+
+			const scripts = Array.from(targetDoc.head.querySelectorAll('script:not([src])'));
+			for (const script of scripts) {
+				const content = script.textContent || '';
+				if (!content.trim()) continue;
+				if (content.includes('cdn.tailwindcss.com') && content.includes('console.warn')) continue;
+
+				const freshScript = document.createElement('script');
+				Array.from(script.attributes).forEach((attribute) => {
+					if (attribute.name === 'is:inline') return;
+					freshScript.setAttribute(attribute.name, attribute.value);
+				});
+				freshScript.dataset.garnaSpaHeadScript = 'true';
+				freshScript.textContent = content;
+				document.head.appendChild(freshScript);
+			}
+		};
+
 		const syncHead = async (targetDoc) => {
 			document.title = targetDoc.title || document.title;
-			document.documentElement.lang = targetDoc.documentElement.lang || document.documentElement.lang;
+			syncDocumentShell(targetDoc);
 
 			const selectors = [
 				'meta[name="description"]',
@@ -680,6 +720,8 @@ const mobileLinkClass = (path: string) =>
 				});
 			});
 
+			syncManagedHeadStyles(targetDoc);
+			await runManagedHeadScripts(targetDoc);
 			await appendMissingHeadResources(targetDoc);
 		};
 
@@ -842,10 +884,12 @@ const mobileLinkClass = (path: string) =>
 				const restoreScroll = enableInstantScroll();
 				jumpToPageTop();
 				try {
+					const previousPath = getPagePath();
 					if (shouldPushState) history.pushState({}, '', url.href);
-					await syncHead(targetDoc);
+					window.dispatchEvent(new CustomEvent('garna:page-will-unmount', { detail: { path: previousPath } }));
 					localizeHeaderLinks();
 					setNavActiveState();
+					await syncHead(targetDoc);
 					syncFooterDynamicBlocks(targetDoc);
 					resetPageWidget();
 
@@ -857,7 +901,8 @@ const mobileLinkClass = (path: string) =>
 					await runScripts(targetScripts);
 					refreshPageIcons();
 					jumpToPageTop();
-					window.dispatchEvent(new CustomEvent('garna:page-content-updated'));
+					window.dispatchEvent(new CustomEvent('garna:page-content-updated', { detail: { path: getPagePath() } }));
+					window.dispatchEvent(new CustomEvent('garna:page-mounted', { detail: { path: getPagePath() } }));
 					jumpToPageTop();
 
 					requestAnimationFrame(() => {

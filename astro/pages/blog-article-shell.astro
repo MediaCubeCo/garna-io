@@ -198,6 +198,73 @@ const shell = {
 			margin-bottom: 24px;
 		}
 
+		.garna-blog-article-body ul,
+		.garna-blog-article-body ol {
+			display: grid;
+			gap: 10px;
+			margin: 0 0 28px;
+			padding-left: 1.35em;
+		}
+
+		.garna-blog-article-body ul {
+			list-style: disc;
+		}
+
+		.garna-blog-article-body ol {
+			list-style: decimal;
+		}
+
+		.garna-blog-article-body li::marker {
+			color: #5ea500;
+		}
+
+		.garna-blog-article-body a {
+			color: #d8f7b8;
+			text-decoration: underline;
+			text-decoration-color: rgba(94, 165, 0, .65);
+			text-underline-offset: 4px;
+		}
+
+		.garna-blog-article-body strong,
+		.garna-blog-article-body b {
+			color: #f3f4f6;
+			font-weight: 520;
+		}
+
+		.garna-blog-checklist {
+			padding-left: 0 !important;
+			list-style: none !important;
+		}
+
+		.garna-blog-checklist li {
+			display: flex;
+			align-items: flex-start;
+			gap: 12px;
+		}
+
+		.garna-blog-checklist-box {
+			display: inline-flex;
+			flex: 0 0 auto;
+			align-items: center;
+			justify-content: center;
+			width: 18px;
+			height: 18px;
+			margin-top: 9px;
+			border: 1px solid rgba(94, 165, 0, .8);
+			border-radius: 5px;
+			color: #5ea500;
+			font-size: 13px;
+			line-height: 1;
+		}
+
+		.garna-blog-divider {
+			width: 100%;
+			height: 1px;
+			margin: 36px 0;
+			border: 0;
+			background: rgba(161, 161, 170, .42);
+		}
+
 		.garna-blog-image {
 			margin: 32px 0;
 			overflow: hidden;
@@ -482,6 +549,11 @@ const shell = {
 			}
 		}
 
+		.garna-blog-article-body .garna-blog-cta,
+		.garna-blog-article-body .garna-blog-cta * {
+			text-decoration: none;
+		}
+
 		.garna-blog-cta {
 			display: block;
 			position: relative;
@@ -629,6 +701,75 @@ const shell = {
 			box-shadow: 0 25px 50px -12px rgba(59, 130, 246, .15);
 		}
 
+		@media (max-width: 640px) {
+			.garna-blog-cta {
+				height: auto;
+				min-height: 500px;
+				margin: 36px 0 24px;
+			}
+
+			.garna-blog-cta-content {
+				flex-direction: column;
+				justify-content: flex-end;
+			}
+
+			.garna-blog-cta-copy,
+			.garna-blog-cta-visual {
+				width: 100%;
+			}
+
+			.garna-blog-cta-visual {
+				flex: 0 0 auto;
+				min-height: 258px;
+				order: 1;
+			}
+
+			.garna-blog-cta-copy {
+				order: 2;
+				padding: 22px 28px 18px;
+			}
+
+			.garna-blog-cta h2 {
+				max-width: 9em;
+				font-size: 30px;
+			}
+
+			.garna-blog-cta p {
+				max-width: 17em;
+				font-size: 16px;
+				line-height: 1.55;
+			}
+
+			.garna-blog-cta-copy > span {
+				margin-top: 22px;
+			}
+
+			.garna-blog-payroll-card {
+				width: min(78vw, 260px);
+			}
+
+			.garna-blog-payroll-card--green {
+				left: 50%;
+				top: 34px;
+				transform: translateX(-38%) rotate(3deg);
+			}
+
+			.garna-blog-payroll-card--blue {
+				right: auto;
+				left: 50%;
+				top: 126px;
+				transform: translateX(-58%) rotate(-2deg);
+			}
+
+			.garna-blog-cta:hover .garna-blog-payroll-card--green {
+				transform: translateX(-38%) rotate(3deg);
+			}
+
+			.garna-blog-cta:hover .garna-blog-payroll-card--blue {
+				transform: translateX(-58%) rotate(-2deg);
+			}
+		}
+
 		.garna-blog-payroll-card-main {
 			display: grid;
 			grid-template-columns: 40px minmax(0, 1fr) auto;
@@ -738,6 +879,23 @@ const shell = {
 				if (!headings.length) return;
 
 				let ticking = false;
+				const scrollToHeading = (id, behavior = 'smooth') => {
+					const target = document.getElementById(id);
+					if (!target) return false;
+					const siteHeader = document.querySelector('.garna-site-header');
+					const headerOffset = siteHeader ? siteHeader.getBoundingClientRect().height + 18 : 88;
+					const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+					window.scrollTo({ top: Math.max(0, top), behavior });
+					return true;
+				};
+				const scrollToCurrentHash = (behavior = 'auto') => {
+					if (!window.location.hash) return;
+					const hashId = decodeURIComponent(window.location.hash.slice(1));
+					if (hashId && headings.some((heading) => heading.id === hashId)) {
+						scrollToHeading(hashId, behavior);
+						requestUpdate();
+					}
+				};
 
 				const setActive = () => {
 					ticking = false;
@@ -774,6 +932,32 @@ const shell = {
 				window.addEventListener('scroll', requestUpdate, { passive: true });
 				window.addEventListener('resize', requestUpdate);
 				window.addEventListener('hashchange', requestUpdate);
+
+				if (!window.__garnaBlogTocClickBound) {
+					window.__garnaBlogTocClickBound = true;
+					document.addEventListener('click', (event) => {
+						if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+						const link = event.target instanceof Element ? event.target.closest('.garna-blog-toc-link[data-heading-id]') : null;
+						if (!(link instanceof HTMLAnchorElement)) return;
+						const id = link.getAttribute('data-heading-id');
+						if (!id || !document.getElementById(id)) return;
+						event.preventDefault();
+						if (window.location.hash !== `#${id}`) {
+							window.history.pushState(null, '', `#${id}`);
+						}
+						scrollToHeading(id);
+						window.dispatchEvent(new Event('scroll'));
+					}, true);
+				}
+
+				window.requestAnimationFrame(() => window.requestAnimationFrame(() => scrollToCurrentHash('auto')));
+				window.addEventListener('garna:page-mounted', () => {
+					window.requestAnimationFrame(() => {
+						window.requestAnimationFrame(() => {
+							window.requestAnimationFrame(() => scrollToCurrentHash('auto'));
+						});
+					});
+				}, { once: true });
 			};
 
 			if (document.readyState === 'loading') {
