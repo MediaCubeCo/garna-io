@@ -1,0 +1,117 @@
+---
+import Button from '../ui/Button.astro';
+import type { HeroSectionConfig as Props } from '../../types/hero-section';
+
+const {
+	class: className = 'overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
+	containerClass = 'garna-container overflow-visible z-10 text-center relative',
+	contentClass = '',
+	titleClass = 'garna-hero-title-gradient leading-[1.1] lg:text-8xl lg:mb-12 md:mb-8 md:text-7xl text-6xl font-normal tracking-tight font-manrope mb-8',
+	titleBreakAfterWords,
+	descriptionClass = 'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-lg font-manrope max-w-3xl mr-auto mb-12 ml-auto',
+	badge,
+	title,
+	description,
+	descriptionTranslateKey,
+	cta,
+	tone = 'green',
+	align = 'center',
+} = Astro.props;
+
+const ctaHref = cta?.href || '#';
+const ctaAttributes =
+	cta?.kind === 'signup'
+		? { 'data-garna-signup': true }
+		: {};
+const ctaOnclick =
+	cta?.kind === 'demo'
+		? `event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: '${cta.trackingCta || 'hero_demo'}' });`
+		: undefined;
+const ctaClass = cta?.class || '';
+const ctaVariant = cta?.variant || 'primary';
+const ctaEffect = cta?.effect || (cta?.kind === 'demo' ? 'rotating-flare' : 'none');
+const ctaIcon = cta?.icon || (cta?.kind === 'signup' || cta?.kind === 'external' ? 'arrow-up-right' : 'arrow-up-right');
+const ctaWrapperClass =
+	cta?.wrapperClass ||
+	(align === 'center'
+		? 'flex md:mb-24 mb-24 justify-center'
+		: 'flex flex-col sm:flex-row items-center gap-4');
+const badgeClass = ['garna-hero-badge', badge?.class || ''].filter(Boolean).join(' ');
+const resolvedTitleClass = titleClass.includes('garna-hero-title-gradient')
+	? titleClass
+	: `garna-hero-title-gradient ${titleClass}`;
+const singleTitle = title.length === 1 ? title[0] : undefined;
+const titleBreakAttribute =
+	typeof titleBreakAfterWords === 'number'
+		? String(titleBreakAfterWords)
+		: titleBreakAfterWords
+			? Object.entries(titleBreakAfterWords).map(([lang, words]) => `${lang}:${words}`).join(',')
+			: undefined;
+const defaultTitleBreakWords =
+	typeof titleBreakAfterWords === 'number' ? titleBreakAfterWords : titleBreakAfterWords?.en;
+const singleTitleWords = singleTitle?.text.trim().split(/\s+/) || [];
+const shouldBreakSingleTitle =
+	!!defaultTitleBreakWords && defaultTitleBreakWords > 0 && singleTitleWords.length > defaultTitleBreakWords;
+const singleTitleFirstLine = shouldBreakSingleTitle
+	? singleTitleWords.slice(0, defaultTitleBreakWords).join(' ')
+	: singleTitle?.text;
+const singleTitleSecondLine = shouldBreakSingleTitle
+	? singleTitleWords.slice(defaultTitleBreakWords).join(' ')
+	: '';
+---
+
+<section class={className} data-section-kind="hero">
+	{tone === 'green' && align === 'center' && (
+		<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#CBF300] opacity-[0.08] blur-[120px] rounded-full pointer-events-none" />
+	)}
+	<div class={containerClass}>
+		<div class={contentClass}>
+			{badge && (
+				<div class={badgeClass}>
+					<span class="garna-hero-badge-dot-shell" aria-hidden="true">
+						<span class="garna-hero-badge-dot-ping" />
+						<span class="garna-hero-badge-dot" />
+					</span>
+					<span data-translate={badge.translateKey}>{badge.text}</span>
+				</div>
+			)}
+
+			<slot name="before-title" />
+
+			<h1 class={resolvedTitleClass} data-translate={singleTitle?.translateKey} data-title-break-after-words={titleBreakAttribute}>
+				{singleTitle ? (
+					<>
+						{singleTitleFirstLine}
+						{shouldBreakSingleTitle && (
+							<>
+								<br class="hidden md:block" />
+								<span class="md:hidden"> </span>
+								{singleTitleSecondLine}
+							</>
+						)}
+					</>
+				) : title.map((part, index) => (
+					<>
+						<span data-translate={part.translateKey}>{part.text}</span>
+						{index < title.length - 1 && ' '}
+					</>
+				))}
+			</h1>
+
+			{description && (
+				<p data-garna-subtitle class={descriptionClass} data-translate={descriptionTranslateKey}>
+					{description}
+				</p>
+			)}
+
+			{cta && (
+				<div class={ctaWrapperClass}>
+					<Button href={ctaHref} onclick={ctaOnclick} variant={ctaVariant} effect={ctaEffect} icon={ctaIcon} size="hero" class={ctaClass} {...ctaAttributes}>
+						<span data-translate={cta.translateKey}>{cta.label}</span>
+					</Button>
+				</div>
+			)}
+		</div>
+		<slot />
+	</div>
+</section>

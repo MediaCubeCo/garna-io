@@ -1,0 +1,268 @@
+---
+import Section from '../../layout/Section.astro';
+---
+
+<Section contained={false} spacing="none" class="lg:pt-32 lg:pb-32 bg-[#050505] pt-16 pb-16">
+        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+
+            <div class="lg:mb-20 text-center mb-16">
+                <h2
+                    class="md:text-4xl lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope max-w-4xl mr-auto mb-6 ml-auto"
+                    data-translate="jobBoard.title">
+                    Explore available talent</h2>
+                <p data-garna-subtitle class="text-xl font-light text-gray-400 font-manrope max-w-3xl mx-auto" data-translate="jobBoard.description">Get access to the database of
+                    pre-vetted professionals ready to join your team. Transparent salary expectations and verified
+                    skills</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:mb-20 mb-16 gap-x-8 gap-y-8">
+                <!-- Job Card Component -->
+                <div
+                    class="bg-[#0a0a0a] rounded-xl p-6 border border-[#CBF300]/20 hover:border-[#CBF300]/40 hover:bg-[#0E0E0E] transition-all duration-300 group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span
+                            class="px-2.5 py-1 rounded-md bg-[#CBF300]/10 text-[#CBF300] text-[10px] font-bold tracking-wider uppercase border border-[#CBF300]/20" data-translate="jobBoard.engineering">Engineering</span>
+                        <div
+                            class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center -mr-2 border border-black">
+                            <iconify-icon icon="solar:code-circle-linear" class="text-gray-400"></iconify-icon>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-[#CBF300] transition-colors" data-translate="jobBoard.seniorSoftwareEngineer">
+                        Senior Software Engineer</h3>
+                    <div class="flex gap-2 text-sm text-gray-500 font-manrope mb-6 gap-x-2 gap-y-2 items-center">
+                        <span class="" data-translate="jobBoard.matchedCandidates6">6 matched candidates</span>
+
+                        <span class=""></span>
+                    </div>
+
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg"
+                            alt="Candidate" class="w-8 h-8 rounded-full border-2 border-black object-cover bg-gray-700">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e69e5f8e-07cd-4ef2-97e3-d4bcfccc3881_320w.webp"
+                            alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
+                        <div
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            +4</div>
+                    </div>
+
+                    <div class="flex border-white/5 border-t pt-4 items-center justify-between">
+                        <div class="font-manrope">
+                            <div class="text-xs text-gray-500 mb-0.5" data-translate="jobBoard.expectedSalary">Expected salary</div>
+                            <div class="font-semibold text-white">$3,600<span
+                                    class="text-gray-500 font-normal text-xs" data-translate="jobBoard.perMonth">/mo</span></div>
+                        </div>
+                        <a href="https://horyx.com"
+                            class="w-8 h-8 rounded-full bg-white/10 border border-white/10 text-white flex items-center justify-center group-hover:bg-[#CBF300] group-hover:text-[#101010] transition-all no-underline">
+                            <iconify-icon icon="solar:arrow-right-linear" class=""></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div
+                    class="bg-[#0a0a0a] rounded-xl p-6 border border-[#CBF300]/20 hover:border-[#CBF300]/40 hover:bg-[#0E0E0E] transition-all duration-300 group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span
+                            class="px-2.5 py-1 rounded-md bg-[#CBF300]/10 text-[#CBF300] text-[10px] font-bold tracking-wider uppercase border border-[#CBF300]/20" data-translate="jobBoard.design">Design</span>
+                        <div
+                            class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center -mr-2 border border-black">
+                            <iconify-icon icon="solar:palette-linear" class="text-gray-400"></iconify-icon>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-[#CBF300] transition-colors" data-translate="jobBoard.productDesigner">
+                        Product Designer</h3>
+                    <div class="flex gap-2 text-sm text-gray-500 font-manrope mb-6 gap-x-2 gap-y-2 items-center">
+                        <span class="" data-translate="jobBoard.matchedCandidates4">4 matched candidates</span>
+
+
+                    </div>
+
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/bd0dc97c-a094-49ac-8265-f47f1efa3939_320w.webp"
+                            alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/af66ba5d-69b1-41c6-b463-40f48d0134da_320w.webp"
+                            alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
+                        <div
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            +2</div>
+                    </div>
+
+                    <div class="flex border-white/5 border-t pt-4 items-center justify-between">
+                        <div class="font-manrope">
+                            <div class="text-xs text-gray-500 mb-0.5" data-translate="jobBoard.expectedSalary">Expected salary</div>
+                            <div class="font-semibold text-white">$1,400<span
+                                    class="text-gray-500 font-normal text-xs" data-translate="jobBoard.perMonth">/mo</span></div>
+                        </div>
+                        <a href="https://horyx.com"
+                            class="w-8 h-8 rounded-full bg-white/10 border border-white/10 text-white flex items-center justify-center group-hover:bg-[#CBF300] group-hover:text-[#101010] transition-all no-underline">
+                            <iconify-icon icon="solar:arrow-right-linear" class=""></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Job Card 3 -->
+                <div
+                    class="bg-[#0a0a0a] rounded-xl p-6 border border-[#CBF300]/20 hover:border-[#CBF300]/40 hover:bg-[#0E0E0E] transition-all duration-300 group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span
+                            class="px-2.5 py-1 rounded-md bg-[#CBF300]/10 text-[#CBF300] text-[10px] font-bold tracking-wider uppercase border border-[#CBF300]/20" data-translate="jobBoard.sales">Sales</span>
+                        <div
+                            class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center -mr-2 border border-black">
+                            <iconify-icon icon="solar:graph-up-linear" class="text-gray-400"></iconify-icon>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-[#CBF300] transition-colors" data-translate="jobBoard.salesManager">Sales
+                        Manager</h3>
+                    <div class="flex gap-2 text-sm text-gray-500 font-manrope mb-6 gap-x-2 gap-y-2 items-center">
+                        <span class="" data-translate="jobBoard.matchedCandidates2">2 matched candidates</span>
+
+
+                    </div>
+
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8003e855-7d21-4b11-ba40-2921946b8a25_320w.webp"
+                            alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/65695f80-23f9-46ee-8487-cbb6c93cc48b_320w.webp"
+                            alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
+                    </div>
+
+                    <div class="flex border-white/5 border-t pt-4 items-center justify-between">
+                        <div class="font-manrope">
+                            <div class="text-xs text-gray-500 mb-0.5" data-translate="jobBoard.expectedSalary">Expected salary</div>
+                            <div class="font-semibold text-white">$1,200<span
+                                    class="text-gray-500 font-normal text-xs" data-translate="jobBoard.perMonth">/mo</span></div>
+                        </div>
+                        <a href="https://horyx.com"
+                            class="w-8 h-8 rounded-full bg-white/10 border border-white/10 text-white flex items-center justify-center group-hover:bg-[#CBF300] group-hover:text-[#101010] transition-all no-underline">
+                            <iconify-icon icon="solar:arrow-right-linear" class=""></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Job Card 4 -->
+                <div
+                    class="bg-[#0a0a0a] rounded-xl p-6 border border-[#CBF300]/20 hover:border-[#CBF300]/40 hover:bg-[#0E0E0E] transition-all duration-300 group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span
+                            class="text-[10px] uppercase font-bold text-[#CBF300] tracking-wider bg-[#CBF300]/10 border-[#CBF300]/20 border rounded-md pt-1 pr-2.5 pb-1 pl-2.5" data-translate="jobBoard.development">DEVELOPMENT</span>
+                        <div
+                            class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center -mr-2 border border-black">
+                            <iconify-icon icon="solar:wallet-money-linear" class="text-gray-400"></iconify-icon>
+                        </div>
+                    </div>
+                    <h3 class="group-hover:text-[#CBF300] transition-colors text-lg font-semibold text-white mb-1">
+                        Senior Backend Developer</h3>
+                    <div class="flex gap-2 text-sm text-gray-500 font-manrope mb-6 gap-x-2 gap-y-2 items-center">
+                        <span class="">8 matched candidates</span>
+
+
+                    </div>
+
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a1e31719-a86b-48bc-8913-670561250931_320w.webp"
+                            alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e5cbf539-f61a-4c9d-aff7-ea01dc1ddcb9_320w.webp"
+                            alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
+                        <div
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            +6</div>
+                    </div>
+
+                    <div class="flex border-white/5 border-t pt-4 items-center justify-between">
+                        <div class="font-manrope">
+                            <div class="text-xs text-gray-500 mb-0.5" data-translate="jobBoard.expectedSalary">Expected salary</div>
+                            <div class="font-semibold text-white">$3,200<span
+                                    class="text-gray-500 font-normal text-xs" data-translate="jobBoard.perMonth">/mo</span></div>
+                        </div>
+                        <a href="https://horyx.com"
+                            class="w-8 h-8 rounded-full bg-white/10 border border-white/10 text-white flex items-center justify-center group-hover:bg-[#CBF300] group-hover:text-[#101010] transition-all no-underline">
+                            <iconify-icon icon="solar:arrow-right-linear" class=""></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+                <!-- Job Card 5 -->
+                <div
+                    class="bg-[#0a0a0a] rounded-xl p-6 border border-[#CBF300]/20 hover:border-[#CBF300]/40 hover:bg-[#0E0E0E] transition-all duration-300 group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span
+                            class="text-[10px] uppercase font-bold text-[#CBF300] tracking-wider bg-[#CBF300]/10 border-[#CBF300]/20 border rounded-md pt-1 pr-2.5 pb-1 pl-2.5" data-translate="jobBoard.operations">OPERATIONS</span>
+                        <div
+                            class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center -mr-2 border border-black">
+                            <iconify-icon icon="solar:document-text-linear" class="text-gray-400"></iconify-icon>
+                        </div>
+                    </div>
+                    <h3 class="group-hover:text-[#CBF300] transition-colors text-lg font-semibold text-white mb-1" data-translate="jobBoard.aiAutomationSpecialist">AI
+                        automation specialist</h3>
+                    <div class="flex gap-2 text-sm text-gray-500 font-manrope mb-6 gap-x-2 gap-y-2 items-center">
+                        <span class="" data-translate="jobBoard.matchedCandidates1">1 matched candidate</span>
+
+
+                    </div>
+
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/146e6ba9-12a4-43b3-a1a3-7b2340a34a70_320w.webp"
+                            alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
+                    </div>
+
+                    <div class="flex border-white/5 border-t pt-4 items-center justify-between">
+                        <div class="font-manrope">
+                            <div class="text-xs text-gray-500 mb-0.5" data-translate="jobBoard.expectedSalary">Expected salary</div>
+                            <div class="font-semibold text-white">$1,600<span
+                                    class="text-gray-500 font-normal text-xs" data-translate="jobBoard.perMonth">/mo</span></div>
+                        </div>
+                        <a href="https://horyx.com"
+                            class="w-8 h-8 rounded-full bg-white/10 border border-white/10 text-white flex items-center justify-center group-hover:bg-[#CBF300] group-hover:text-[#101010] transition-all no-underline">
+                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+                <!-- Job Card 6 -->
+                <div
+                    class="hover:border-white/10 hover:bg-[#0E0E0E] transition-all duration-300 group bg-[#0a0a0a] border-white/5 border rounded-xl pt-6 pr-6 pb-6 pl-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span
+                            class="px-2.5 py-1 rounded-md bg-[#CBF300]/10 text-[#CBF300] text-[10px] font-bold tracking-wider uppercase border border-[#CBF300]/20" data-translate="jobBoard.consulting">Consulting</span>
+                        <div
+                            class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center -mr-2 border border-black">
+                            <iconify-icon icon="solar:chat-square-call-linear" class="text-gray-400"></iconify-icon>
+                        </div>
+                    </div>
+                    <h3 class="group-hover:text-[#CBF300] transition-colors text-lg font-semibold text-white mb-1" data-translate="jobBoard.businessDevManager">
+                        Business development manager</h3>
+                    <div class="flex gap-2 text-sm text-gray-500 font-manrope mb-6 gap-x-2 gap-y-2 items-center">
+                        <span class="" data-translate="jobBoard.remote">Remote</span>
+
+
+                    </div>
+
+                    <div class="candidate-stack flex items-center -space-x-2 mb-6">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5d0296a8-c467-44ef-9d51-ce4ee3a2c3c6_320w.webp"
+                            alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d93fdd79-8748-45cc-bf20-725a75594265_320w.webp"
+                            alt="Candidate" class="bg-gray-700 w-8 h-8 object-cover border-black border-2 rounded-full">
+                        <div
+                            class="candidate-more text-[10px] flex font-medium text-white bg-dark-700 w-8 h-8 border-dark-800 border-2 rounded-full items-center justify-center">
+                            +8</div>
+                    </div>
+
+                    <div class="flex border-white/5 border-t pt-4 items-center justify-between">
+                        <div class="font-manrope">
+                            <div class="text-xs text-gray-500 mb-0.5" data-translate="jobBoard.expectedSalary">Expected salary</div>
+                            <div class="font-semibold text-white">$1,300<span
+                                    class="text-gray-500 font-normal text-xs" data-translate="jobBoard.perMonth">/mo</span></div>
+                        </div>
+                        <a href="https://horyx.com"
+                            class="w-8 h-8 rounded-full bg-white/10 border border-white/10 text-white flex items-center justify-center group-hover:bg-[#CBF300] group-hover:text-[#101010] transition-all no-underline">
+                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center">
+                <a href="https://horyx.com"
+                    class="group flex transition-all hover:scale-105 accent-glow overflow-hidden text-base font-medium text-[#101010] font-manrope bg-[#CBF300] rounded-xl pt-3 pr-8 pb-3 pl-8 relative gap-x-2 gap-y-2 items-center no-underline" data-translate="jobBoard.viewCandidatePool">View
+                    candidate pool</a>
+            </div>
+        </div>
+    </Section>

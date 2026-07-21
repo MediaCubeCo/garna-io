@@ -3,7 +3,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 8px;
-	background-color: rgb(94, 165, 0);
+	background-color: rgb(203, 243, 0);
 	border: 1px solid #fff3;
 	border-radius: 12px;
 	margin-top: auto;
@@ -12,7 +12,7 @@
 	font-weight: 600;
 	line-height: 24px;
 	transition: all 0.555s;
-	box-shadow: 0 10px 40px #5EA50033;
+	box-shadow: 0 10px 40px #CBF30033;
 	color: white;
 	cursor: pointer;
 }

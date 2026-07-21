@@ -1,9 +1,10 @@
 ---
-import HeroSection from '../components/HeroSection.astro';
-import GarnaBookingWidget from '../components/GarnaBookingWidget.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
+import '../styles/form-page.css';
 ---
 
 <BaseLayout shell={pageShells.form} showHeader={false}>
@@ -22,9 +23,7 @@ import { pageShells } from '../content/page-shells';
 			colorBorder="transparent"
 			thicknessBorder="0px"
 		/>
-		<script
-			is:inline
-			set:html={`
+		<script is:inline>
 (function () {
 	'use strict';
 
@@ -46,7 +45,6 @@ import { pageShells } from '../content/page-shells';
 	if (heading && campaignCopy.heading) heading.textContent = campaignCopy.heading;
 	if (subtitle && campaignCopy.subtitle) subtitle.textContent = campaignCopy.subtitle;
 })();
-`}
-		/>
+		</script>
 	</HeroSection>
 </BaseLayout>

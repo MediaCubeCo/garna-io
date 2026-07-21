@@ -16,6 +16,13 @@ const securityHeaders = {
 	'Permissions-Policy': 'geolocation=(self), microphone=()',
 };
 
+const LEGACY_ROUTE_REDIRECTS: Record<string, string> = {
+	'payroll-solution-new': '',
+	'payroll-small-business': 'small-business-payroll',
+	'white-label': 'white-label-payroll',
+	'tax-calculator': 'employee-cost-calculator',
+};
+
 function findPageConfig(segments: string[]): PageConfig | null {
 	const fullPath = segments.join('/');
 	let pageConfig = basePaths.find((p) => p.path === fullPath);
@@ -29,24 +36,20 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 		return null;
 	}
 
+	const requestedPath = routeInfo.pathSegments.join('/');
+	const redirectPath = LEGACY_ROUTE_REDIRECTS[requestedPath];
+	if (redirectPath !== undefined) {
+		const url = new URL(request.url);
+		url.pathname = redirectPath ? `/${routeInfo.language}/${redirectPath}` : `/${routeInfo.language}`;
+		return Response.redirect(url.toString(), 308);
+	}
+
 	const pageConfig = findPageConfig(routeInfo.pathSegments);
 	if (!pageConfig) return null;
 
 	const allowedLangs = languages.map((l) => l.value);
 	if (!allowedLangs.includes(routeInfo.language)) return null;
 	if (pageConfig.languages && !pageConfig.languages.includes(routeInfo.language)) return null;
-
-	const redirects: Record<string, string> = {
-		'payroll-solution-new': '',
-		'payroll-small-business': 'small-business-payroll',
-		'white-label': 'white-label-payroll',
-	};
-	const redirectPath = redirects[pageConfig.path];
-	if (redirectPath !== undefined) {
-		const url = new URL(request.url);
-		url.pathname = redirectPath ? `/${routeInfo.language}/${redirectPath}` : `/${routeInfo.language}`;
-		return Response.redirect(url.toString(), 308);
-	}
 
 	switch (pageConfig.mode) {
 		case 'static':
@@ -67,8 +70,8 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 	'ai-hiring': '/ai-hiring.html',
 	'white-label-payroll': '/white-label.html',
 	'small-business-payroll': '/payroll-small-business.html',
-	'payroll-solution-new': '/payroll-solution-new.html',
 	'employer-of-record': '/employer-of-record.html',
+	'employee-cost-calculator': '/tax-calculator.html',
 	blog: '/blog.html',
 	'blog-author': '/blog-author.html',
 	'blog-article': '/blog-article.html',
@@ -84,8 +87,8 @@ const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'ai-hiring': 'ai-hiring',
 	'white-label-payroll': 'white-label',
 	'small-business-payroll': 'payroll-small-business',
-	'payroll-solution-new': 'home',
 	'employer-of-record': 'eor',
+	'employee-cost-calculator': 'tax-calculator',
 	blog: 'blog',
 	'blog-author': 'blog-author',
 	'blog-article': 'blog-article',

@@ -1,6 +1,16 @@
 ---
-import '../styles/global.css';
-import html from '../content/site-standalone/404.html?raw';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NotFoundSection from '../components/sections/system/NotFoundSection.astro';
+import type { PageShellConfig } from '../types/page-shell';
+
+const shell: PageShellConfig = {
+	title: '404 - Target Missing - Garna',
+	description: 'Page not found',
+	bodyClass: 'overflow-x-hidden bg-garna-page text-white selection:bg-[#CBF300] selection:text-black',
+	iconLibrary: 'iconify',
+};
 ---
 
-<Fragment set:html={html} />
+<BaseLayout shell={shell} showHeader={false} showFooter={false}>
+	<NotFoundSection />
+</BaseLayout>

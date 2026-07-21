@@ -1,0 +1,20 @@
+{% if states %}
+<label>
+  State
+  <select name="state" required>
+    {% for s in states %}
+    <option value="{{ s.value }}">{{ s.label }}</option>
+    {% endfor %}
+  </select>
+</label>
+{% endif %}
+{% if local_currency %}
+<label>
+  Currency
+  <select name="currency">
+    <option value="{{ local_currency }}">{{ local_currency }}{% if local_currency_name %} {{ local_currency_name }}{% endif %}</option>
+    {% if local_currency != "USD" %}<option value="USD">USD US Dollar</option>{% endif %}
+
+  </select>
+</label>
+{% endif %}

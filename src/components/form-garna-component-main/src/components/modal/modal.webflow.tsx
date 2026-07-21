@@ -42,7 +42,7 @@ export default declareComponent(Modal, {
     // ===== Brand colors =====
     colorBrandBg: props.Text({
       name: "Brand color (buttons & active states)",
-      defaultValue: "#5ea500",
+      defaultValue: "#CBF300",
     }),
 
     colorBrandText: props.Text({

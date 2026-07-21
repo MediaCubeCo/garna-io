@@ -24,6 +24,7 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'ai-hiring') {
 		return `/${segment}/ai-hiring`;
 	}
+	if (pageName === 'tax-calculator') return `/${segment}/employee-cost-calculator`;
 	if (pageName === 'white-label') {
 		return `/${segment}/white-label-payroll`;
 	}
@@ -88,8 +89,8 @@ function buildFooterLangSelectHtml(
 	cursor: pointer; font: inherit; transition: border-color 0.18s ease; outline: none;
 }
 .footer-lang-trigger:hover { border-bottom-color: rgba(255, 255, 255, 0.2); }
-.footer-lang-trigger:focus-visible { border-bottom-color: rgb(94, 165, 0); outline: none; }
-.footer-lang-label:hover .footer-lang-trigger { border-bottom-color: rgb(94, 165, 0); }
+.footer-lang-trigger:focus-visible { border-bottom-color: rgb(203, 243, 0); outline: none; }
+.footer-lang-label:hover .footer-lang-trigger { border-bottom-color: rgb(203, 243, 0); }
 .footer-lang-triggerText {
 	flex: 1; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
@@ -121,9 +122,9 @@ function buildFooterLangSelectHtml(
 .footer-lang-option:hover, .footer-lang-optionHighlighted {
 	background-color: rgba(255, 255, 255, 0.06); color: #fff;
 }
-.footer-lang-optionSelected { color: rgb(94, 165, 0); font-weight: 500; }
+.footer-lang-optionSelected { color: rgb(203, 243, 0); font-weight: 500; }
 .footer-lang-optionSelected.footer-lang-optionHighlighted,
-.footer-lang-optionSelected:hover { background-color: rgba(255, 255, 255, 0.08); color: rgb(94, 165, 0); }
+.footer-lang-optionSelected:hover { background-color: rgba(255, 255, 255, 0.08); color: rgb(203, 243, 0); }
 @media (min-width: 768px) { .footer-lang-label { max-width: 160px; } }
 @media (max-width: 767px) { .footer-lang-label { max-width: 100%; } }`;
 
@@ -212,8 +213,8 @@ export function injectPageTranslations(
 		const privacyUrl = `https://app.garna.io/api/documents/privacy?lang=${escapeHtml(langParam)}`;
 		const footerLegalLinksHtml =
 			'<nav class="footer-legal-links flex flex-wrap items-center gap-x-3 gap-y-1 mt-3 md:mt-4 text-sm text-gray-500 font-manrope" aria-label="Legal">' +
-			`<a href="${agreementUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#5EA500] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5EA500]" data-translate="footer.termsOfService">Terms of Service</a>` +
-			`<a href="${privacyUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#5EA500] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5EA500]" data-translate="footer.privacyPolicy">Privacy Policy</a>` +
+			`<a href="${agreementUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.termsOfService">Terms of Service</a>` +
+			`<a href="${privacyUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.privacyPolicy">Privacy Policy</a>` +
 			'</nav>';
 		if (html.includes(FOOTER_LEGAL_LINKS_PLACEHOLDER)) {
 			html = html.replace(FOOTER_LEGAL_LINKS_PLACEHOLDER, footerLegalLinksHtml);
@@ -517,12 +518,16 @@ function replaceVisibleSourceText(html: string, translations: Record<string, str
 
 	const parts = html.split(/(<[^>]+>)/g);
 	let skipTag: string | null = null;
+	const translatedElementStack: string[] = [];
 
 	return parts
 		.map((part) => {
 			if (part.startsWith('<')) {
 				const openTag = part.match(/^<\s*(script|style|svg|noscript)\b/i);
 				const closeTag = part.match(/^<\s*\/\s*(script|style|svg|noscript)\s*>/i);
+				const genericOpenTag = part.match(/^<\s*([a-zA-Z][a-zA-Z0-9:-]*)\b/i);
+				const genericCloseTag = part.match(/^<\s*\/\s*([a-zA-Z][a-zA-Z0-9:-]*)\s*>/i);
+				const isSelfClosing = /\/\s*>$/.test(part);
 
 				if (openTag && !part.endsWith('/>')) {
 					skipTag = openTag[1].toLowerCase();
@@ -530,10 +535,23 @@ function replaceVisibleSourceText(html: string, translations: Record<string, str
 					skipTag = null;
 				}
 
+				if (genericCloseTag) {
+					const closingTagName = genericCloseTag[1].toLowerCase();
+					if (translatedElementStack[translatedElementStack.length - 1] === closingTagName) {
+						translatedElementStack.pop();
+					}
+				} else if (
+					genericOpenTag &&
+					!isSelfClosing &&
+					/\sdata-translate=(["'])[^"']+\1/i.test(part)
+				) {
+					translatedElementStack.push(genericOpenTag[1].toLowerCase());
+				}
+
 				return part;
 			}
 
-			if (skipTag) return part;
+			if (skipTag || translatedElementStack.length > 0) return part;
 
 			const normalizedText = normalizeVisibleText(part);
 			if (!normalizedText) return part;

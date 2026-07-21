@@ -1,9 +1,9 @@
 ---
 import '../styles/global.css';
 import '../styles/faq.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import RainbowBackground from '../components/RainbowBackground.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import RainbowBackground from '../components/visuals/RainbowBackground.astro';
 import type { PageShellConfig } from '../types/page-shell';
 import { getPagePathFromPathname } from '../utils/page-path';
 
@@ -11,14 +11,14 @@ interface Props {
 	shell: PageShellConfig;
 	showHeader?: boolean;
 	showFooter?: boolean;
-	scriptsHtml?: string;
+	rainbowCount?: number;
 }
 
 const {
 	shell,
 	showHeader = true,
 	showFooter = true,
-	scriptsHtml = '',
+	rainbowCount = 6,
 } = Astro.props;
 
 const currentPath = getPagePathFromPathname(Astro.url.pathname);
@@ -29,9 +29,8 @@ const {
 	keywords = '',
 	ogImage = 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
 	htmlClass = 'scroll-smooth',
-	bodyClass = 'antialiased overflow-x-hidden bg-[#050505]',
+	bodyClass = 'antialiased overflow-x-hidden bg-garna-page',
 	iconLibrary = 'iconify',
-	headExtra = '',
 } = shell;
 ---
 
@@ -57,21 +56,7 @@ const {
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon_16.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.png" />
 		<link rel="stylesheet" href="/rainbow-bg.css" />
-		<script is:inline>
-			(function () {
-				var originalWarn = console.warn;
-				console.warn = function (message) {
-					if (typeof message === 'string' && message.indexOf('cdn.tailwindcss.com') !== -1) return;
-					return originalWarn.apply(console, arguments);
-				};
-			})();
-		</script>
-		<script is:inline>
-			window.tailwind = window.tailwind || {};
-			window.tailwind.config = window.tailwind.config || {};
-		</script>
-		<Fragment set:html={headExtra} />
-		<script is:inline src="https://cdn.tailwindcss.com"></script>
+		<slot name="head" />
 		{
 			iconLibrary === 'lucide' ? (
 				<script is:inline src="https://unpkg.com/lucide@latest"></script>
@@ -87,8 +72,8 @@ const {
 			rel="stylesheet"
 		/>
 	</head>
-	<body class={bodyClass}>
-		<RainbowBackground />
+	<body class={bodyClass} data-garna-page>
+		<RainbowBackground count={rainbowCount} />
 		{showHeader && <Header />}
 		<main id="astro-page-content" data-astro-page-content data-current-path={currentPath}>
 			<slot />
@@ -96,7 +81,6 @@ const {
 		{showFooter && <Footer />}
 		<div id="astro-page-scripts" data-astro-page-scripts>
 			<slot name="widgets" />
-			<Fragment set:html={scriptsHtml} />
 		</div>
 	</body>
 </html>

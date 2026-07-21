@@ -1,15 +1,111 @@
-/* Shared site-level CSS entrypoint for Astro components and future page work. */
+@import "tailwindcss";
+
+/* Garna design system shared by all native Astro components. */
+
+@theme {
+	--font-sans: "Manrope", sans-serif;
+	--font-manrope: "Manrope", sans-serif;
+	--color-garna-accent: #CBF300;
+	--color-garna-accent-foreground: #101010;
+	--color-garna-page: #101010;
+	--color-garna-surface: #0c0c0c;
+	--color-garna-surface-raised: #121212;
+	--color-garna-muted: #a1a1aa;
+	--animate-float: garna-float 6s ease-in-out infinite;
+}
 
 :root {
 	--garna-container-content-max: 1152px;
 	--garna-container-gutter: clamp(16px, 5vw, 64px);
-	--garna-page-bg: #050505;
+	--garna-page-bg: #101010;
 	--garna-section-stats-bg: #080808;
+	--garna-surface: #0c0c0c;
+	--garna-surface-raised: #121212;
+	--garna-border: rgba(255, 255, 255, 0.08);
+	--garna-border-strong: rgba(255, 255, 255, 0.14);
+	--garna-text: #f7f7f7;
+	--garna-text-muted: #a1a1aa;
+	--garna-subtitle-color: #b0b0b0;
+	--garna-subtitle-weight: 600;
+	--garna-accent: #CBF300;
+	--garna-accent-foreground: #101010;
+	--garna-radius-sm: 12px;
+	--garna-radius-md: 20px;
+	--garna-radius-lg: 28px;
+	--garna-shadow-card: 0 28px 80px -44px rgba(0, 0, 0, 0.95);
+	--garna-duration-fast: 180ms;
+	--garna-duration-base: 300ms;
 }
 
 html,
-body {
+body[data-garna-page] {
 	background: var(--garna-page-bg);
+	color: var(--garna-text-muted);
+	font-family: "Manrope", sans-serif;
+	overflow-x: hidden;
+	overflow-x: clip;
+}
+
+[data-garna-subtitle] {
+	color: var(--garna-subtitle-color) !important;
+	font-weight: var(--garna-subtitle-weight) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Manrope", sans-serif;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--garna-page-bg); }
+::-webkit-scrollbar-thumb { background: #262626; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #404040; }
+
+.glass,
+.glass-card,
+.garna-glass-card {
+	background: rgba(12, 12, 12, 0.72);
+	border: 1px solid var(--garna-border);
+	box-shadow: var(--garna-shadow-card);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+}
+
+.surface,
+.surface-soft {
+	background: var(--garna-surface);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	box-shadow: var(--garna-shadow-card);
+}
+
+.glass-high,
+.glass-nav {
+	background: rgba(5, 5, 5, 0.72);
+	border-bottom: 1px solid var(--garna-border);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+}
+
+.bg-grid {
+	background-image:
+		linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+
+.perspective-1000 { perspective: 1000px; }
+.perspective-normal { perspective: 500px; }
+.perspective-midrange { perspective: 800px; }
+.perspective-distant { perspective: 1200px; }
+.transform-style-preserve-3d { transform-style: preserve-3d; }
+
+@keyframes garna-float {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-10px); }
 }
 
 #astro-page-content > section:has([data-translate^="stats."]) {
@@ -82,7 +178,7 @@ body {
 	width: 100%;
 	height: 100%;
 	border-radius: 9999px;
-	background: #5EA500;
+	background: #CBF300;
 }
 
 .garna-hero-badge-dot-ping {
@@ -93,7 +189,7 @@ body {
 
 .garna-hero-badge-dot {
 	position: relative;
-	box-shadow: 0 0 8px rgba(94, 165, 0, 0.72);
+	box-shadow: 0 0 8px rgba(203, 243, 0, 0.72);
 }
 
 .garna-hero-badge-compact {
@@ -112,6 +208,15 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+
 	.garna-hero-badge-dot-ping {
 		animation: none;
 	}
@@ -137,7 +242,7 @@ body {
 }
 
 .garna-button {
-	--garna-button-bg: #5EA500;
+	--garna-button-bg: #CBF300;
 	--garna-button-shine: #ffffff;
 	box-sizing: border-box;
 	position: relative;
@@ -188,16 +293,16 @@ body {
 .garna-button-primary {
 	background: var(--garna-button-bg);
 	box-shadow:
-		0 10px 24px -18px rgba(94, 165, 0, 0.85),
-		0 0 26px -12px rgba(94, 165, 0, 0.72),
+		0 10px 24px -18px rgba(203, 243, 0, 0.85),
+		0 0 26px -12px rgba(203, 243, 0, 0.72),
 		inset 0 2px 0 rgba(255, 255, 255, 0.2);
 }
 
 .garna-button-primary:hover {
 	background: var(--garna-button-bg);
 	box-shadow:
-		0 18px 34px -22px rgba(94, 165, 0, 1),
-		0 0 34px -8px rgba(94, 165, 0, 0.92),
+		0 18px 34px -22px rgba(203, 243, 0, 1),
+		0 0 34px -8px rgba(203, 243, 0, 0.92),
 		inset 0 2px 0 rgba(255, 255, 255, 0.28);
 }
 
@@ -211,8 +316,8 @@ body {
 .garna-button-secondary:hover {
 	background: rgba(255, 255, 255, 0.06);
 	box-shadow:
-		0 18px 34px -22px rgba(94, 165, 0, 1),
-		0 0 34px -8px rgba(94, 165, 0, 0.92),
+		0 18px 34px -22px rgba(203, 243, 0, 1),
+		0 0 34px -8px rgba(203, 243, 0, 0.92),
 		inset 0 0 0 1px rgba(255, 255, 255, 0.18),
 		inset 0 2px 0 rgba(255, 255, 255, 0.28);
 }
@@ -230,23 +335,23 @@ body {
 }
 
 .garna-button-icon:hover {
-	color: #5EA500;
+	color: #CBF300;
 }
 
 .garna-button-rotating-flare {
 	box-shadow:
 		inset 0 0 0 1px rgba(255, 255, 255, 0.22),
 		inset 0 2px 0 rgba(255, 255, 255, 0.3),
-		0 10px 24px -18px rgba(94, 165, 0, 0.85),
-		0 0 26px -12px rgba(94, 165, 0, 0.72);
+		0 10px 24px -18px rgba(203, 243, 0, 0.85),
+		0 0 26px -12px rgba(203, 243, 0, 0.72);
 }
 
 .garna-button-rotating-flare:hover {
 	box-shadow:
 		inset 0 0 0 1px rgba(255, 255, 255, 0.26),
 		inset 0 2px 0 rgba(255, 255, 255, 0.34),
-		0 18px 34px -22px rgba(94, 165, 0, 1),
-		0 0 34px -8px rgba(94, 165, 0, 0.92);
+		0 18px 34px -22px rgba(203, 243, 0, 1),
+		0 0 34px -8px rgba(203, 243, 0, 0.92);
 }
 
 .garna-button-rotating-flare::before {
@@ -262,9 +367,9 @@ body {
 	background: conic-gradient(
 		from var(--garna-button-gradient-angle),
 		transparent 0%,
-		rgba(94, 165, 0, 0.45) 5%,
+		rgba(203, 243, 0, 0.45) 5%,
 		var(--garna-button-shine) 15%,
-		rgba(94, 165, 0, 0.45) 30%,
+		rgba(203, 243, 0, 0.45) 30%,
 		transparent 42%,
 		transparent 100%
 	);

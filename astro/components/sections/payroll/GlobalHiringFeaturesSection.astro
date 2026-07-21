@@ -1,0 +1,31 @@
+---
+import Section from '../../layout/Section.astro';
+import Card from '../../ui/Card.astro';
+import EorEntityHiringVisual from '../../visuals/EorEntityHiringVisual.astro';
+import EorWorkforceMixVisual from '../../visuals/EorWorkforceMixVisual.astro';
+import EorPayrollRunVisual from '../../visuals/EorPayrollRunVisual.astro';
+import EorComplianceVisual from '../../visuals/EorComplianceVisual.astro';
+import EorIntegrationsVisual from '../../visuals/EorIntegrationsVisual.astro';
+import EorFastMovingVisual from '../../visuals/EorFastMovingVisual.astro';
+---
+
+<Section contained={false} spacing="none" class="py-24">
+	<div class="mx-auto max-w-7xl px-6">
+		<div class="mx-auto max-w-4xl text-center">
+			<h2 class="font-manrope text-center text-4xl font-normal leading-tight text-white lg:text-5xl" data-translate="hirePay.title">Everything You Need to Hire <br class="hidden md:block" />and Pay Globally</h2>
+			<p data-garna-subtitle class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-gray-400" data-translate="hirePay.description">Garna offers a flexible hiring system that helps companies hire international staff without walking the bureaucratic extra mile</p>
+		</div>
+		<div class="relative mt-12 -mr-6 md:mr-0" data-eor-card-scroll-shell data-eor-scroll-start="true" data-eor-scroll-end="false">
+			<div class="eor-card-edge eor-card-edge--left md:hidden"><button type="button" data-eor-card-scroll-prev aria-label="Scroll cards left" class="eor-card-edge-button"><iconify-icon icon="lucide:arrow-left" width="20" height="20"></iconify-icon></button></div>
+			<div class="eor-card-edge eor-card-edge--right md:hidden"><button type="button" data-eor-card-scroll-next aria-label="Scroll cards right" class="eor-card-edge-button"><iconify-icon icon="lucide:arrow-right" width="20" height="20"></iconify-icon></button></div>
+			<div class="eor-card-scroll flex gap-4 overflow-x-auto pr-6 md:grid md:grid-cols-2 md:overflow-visible md:pr-0 lg:grid-cols-3" data-eor-feature-cards>
+				<Card variant="visual" class="min-w-[320px] rounded-2xl p-5 md:min-w-0" bodyClass="pt-6" titleClass="text-xl font-semibold" title={{ text: 'Hire globally without opening entities', translateKey: 'hirePay.cards.entities.title' }} description={{ text: 'Hire employees around the globe without opening a local office or navigating its legal infrastructure', translateKey: 'hirePay.cards.entities.description' }}><EorEntityHiringVisual slot="visual" /></Card>
+				<Card variant="visual" id="eor-card-workforce" class="min-w-[320px] scroll-ml-6 rounded-2xl p-5 md:min-w-0" bodyClass="pt-6" titleClass="text-xl font-semibold" title={{ text: 'Employ any type of workforce', translateKey: 'hirePay.cards.workforce.title' }} description={{ text: 'Manage full-timers, contractors, freelancers, and distributed staff from a single place', translateKey: 'hirePay.cards.workforce.description' }}><EorWorkforceMixVisual slot="visual" /></Card>
+				<Card variant="visual" class="min-w-[320px] rounded-2xl p-5 md:min-w-0" bodyClass="pt-6" titleClass="text-xl font-semibold" title={{ text: 'Offer payroll that runs smoothly', translateKey: 'hirePay.cards.payroll.title' }} description={{ text: 'Pay staff, contractors, taxes, and multi-currency payouts automatically and without stress', translateKey: 'hirePay.cards.payroll.description' }}><EorPayrollRunVisual slot="visual" /></Card>
+				<Card variant="visual" class="min-w-[320px] rounded-2xl p-5 md:min-w-0" bodyClass="pt-6" titleClass="text-xl font-semibold" title={{ text: 'Ensure compliance in every market', translateKey: 'hirePay.cards.compliance.title' }} description={{ text: 'Stay aligned with local labor laws, tax regulations, and country-specific rules', translateKey: 'hirePay.cards.compliance.description' }}><EorComplianceVisual slot="visual" /></Card>
+				<Card variant="visual" class="min-w-[320px] rounded-2xl p-5 md:min-w-0" bodyClass="pt-6" titleClass="text-xl font-semibold" title={{ text: 'Integrate EoR into your tools', translateKey: 'hirePay.cards.integrations.title' }} description={{ text: 'Connect with existing HR, finance, and workforce management tools without disrupting your processes', translateKey: 'hirePay.cards.integrations.description' }}><EorIntegrationsVisual slot="visual" /></Card>
+				<Card variant="visual" class="min-w-[320px] rounded-2xl p-5 md:min-w-0" bodyClass="pt-6" titleClass="text-xl font-semibold" title={{ text: 'Built for fast-moving companies', translateKey: 'hirePay.cards.fastMoving.title' }} description={{ text: 'Support startups entering new markets and larger teams managing global workforce operations', translateKey: 'hirePay.cards.fastMoving.description' }}><EorFastMovingVisual slot="visual" /></Card>
+			</div>
+		</div>
+	</div>
+</Section>

@@ -228,10 +228,13 @@ function youtubeEmbedUrl(value: string): string | null {
 
 function ctaBlockToHtml(value: string): string {
 	try {
-		const data = JSON.parse(value) as { title?: string; text?: string; button?: string; url?: string };
+		const data = JSON.parse(value) as { title?: string; text?: string; button?: string; customUrlEnabled?: boolean; url?: string };
 		if (!data.title && !data.text && !data.button) return '';
-		const url = data.url && /^https?:\/\//.test(data.url) ? data.url : 'https://garna.io/';
-		return `<a class="garna-blog-cta" href="${escapeAttribute(url)}" target="_blank" rel="noopener noreferrer">
+		const useCustomUrl = Boolean(data.customUrlEnabled && data.url && /^https?:\/\//.test(data.url));
+		const linkAttributes = useCustomUrl
+			? `href="${escapeAttribute(data.url || '')}" target="_blank" rel="noopener noreferrer"`
+			: `href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_article_inline_cta' });"`;
+		return `<a class="garna-blog-cta" ${linkAttributes}>
 			<div class="garna-blog-cta-beams" aria-hidden="true"><span></span><span></span></div>
 			<div class="garna-blog-cta-content">
 				<div class="garna-blog-cta-copy">
@@ -281,11 +284,11 @@ function tldrBlockToHtml(value: string): string {
 }
 
 function zapIcon(): string {
-	return '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5ea500" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>';
+	return '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CBF300" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>';
 }
 
 function checkCircleIcon(): string {
-	return '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5ea500" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>';
+	return '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CBF300" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>';
 }
 
 export async function sha256Hex(value: string): Promise<string> {

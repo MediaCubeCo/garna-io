@@ -6,5 +6,4 @@ export interface PageShellConfig {
 	htmlClass?: string;
 	bodyClass?: string;
 	iconLibrary?: 'iconify' | 'lucide';
-	headExtra?: string;
 }

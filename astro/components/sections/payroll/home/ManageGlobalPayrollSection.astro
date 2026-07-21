@@ -1,0 +1,56 @@
+---
+import Section from '../../../layout/Section.astro';
+import Card from '../../../ui/Card.astro';
+import AutomatedPayrollPlatformVisual from '../../../visuals/AutomatedPayrollPlatformVisual.astro';
+import GlobalReachVisual from '../../../visuals/GlobalReachVisual.astro';
+import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro';
+---
+
+<Section
+	title={{ text: 'Manage Global Payroll Effortlessly' }}
+	description={{ text: 'We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries' }}
+	spacing="none"
+	class="pb-16 lg:pb-32"
+	headerClass="mb-16 max-w-4xl lg:mb-20"
+	titleClass="lg:text-5xl"
+	contentClass="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+>
+	<Card
+		variant="visual"
+		title="Automated Payroll Platform"
+		description="Automate global payout processes with a flexible, user-friendly platform"
+		visualPosition="after"
+		class="row-span-2 flex flex-col md:col-span-1 md:row-span-2 lg:col-span-1"
+		bodyClass="shrink-0 px-8 pt-8"
+		visualClass="flex min-h-0 flex-1 px-8 pb-8 pt-12"
+		titleClass="text-2xl font-normal"
+	>
+		<AutomatedPayrollPlatformVisual slot="visual" />
+	</Card>
+
+	<Card
+		variant="visual"
+		title="Global Reach"
+		description="Pay in 150+ countries with local currencies and crypto"
+		visualPosition="after"
+		class="flex h-[340px] flex-col p-8 md:col-span-1 md:h-[260px] md:p-6 lg:col-span-2 lg:h-[280px] lg:flex-row lg:p-8"
+		bodyClass="relative z-20 mb-4 w-full lg:mb-0 lg:flex lg:w-1/2 lg:flex-col lg:justify-center"
+		visualClass="h-64 w-full lg:h-full lg:w-1/2"
+		titleClass="text-2xl font-normal"
+	>
+		<GlobalReachVisual slot="visual" />
+	</Card>
+
+	<Card
+		variant="visual"
+		title="No hidden Fees"
+		description="Transparent pricing, zero setup cost"
+		visualPosition="after"
+		class="grid h-[340px] grid-cols-1 items-center gap-3 p-8 md:col-span-1 md:h-[260px] md:gap-2 md:p-6 lg:col-span-2 lg:h-[280px] lg:grid-cols-2 lg:gap-10 lg:p-8"
+		bodyClass="relative z-10"
+		visualClass="relative z-10"
+		titleClass="text-2xl font-normal md:mb-2"
+	>
+		<TransparentFeesVisual slot="visual" />
+	</Card>
+</Section>

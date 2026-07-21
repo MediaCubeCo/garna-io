@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
+import TrustedDynamicHead from '../components/sections/blog/TrustedDynamicHead.astro';
 import { pageShells } from '../content/page-shells';
 
 const shell = {
@@ -7,11 +9,11 @@ const shell = {
 	title: '%%BLOG_PAGE_TITLE%%',
 	description: '%%BLOG_PAGE_DESCRIPTION%%',
 	ogImage: '%%BLOG_OG_IMAGE%%',
-	headExtra: '%%BLOG_DYNAMIC_HEAD%%',
 };
 ---
 
 <BaseLayout shell={shell}>
+	<TrustedDynamicHead slot="head" html="%%BLOG_DYNAMIC_HEAD%%" />
 	<section class="flex flex-col md:pt-32 md:pb-16 w-full pt-6 pb-4 relative justify-center" data-section-kind="hero">
 		<div class="garna-container flex flex-col md:pt-8 md:pb-0 z-10 pt-24 pb-8 relative items-center">
 			<div class="flex flex-col text-center z-10 relative items-center w-full max-w-4xl mr-auto ml-auto">
@@ -26,14 +28,14 @@ const shell = {
 					</span>
 				</div>
 				<h1 class="leading-tight text-4xl md:text-5xl text-white tracking-tight font-manrope mb-8">%%BLOG_TITLE%%</h1>
-				<p class="leading-relaxed text-lg font-extralight text-gray-400 font-manrope pb-12">%%BLOG_EXCERPT%%</p>
+				<p data-garna-subtitle class="leading-relaxed text-lg font-manrope pb-12">%%BLOG_EXCERPT%%</p>
 				<div class="flex flex-col md:flex-row gap-6 w-full border-white/10 border-t pt-8 gap-x-6 gap-y-6 items-center justify-between">
 					%%BLOG_AUTHOR_BLOCK%%
 					<div class="flex gap-3 gap-x-3 gap-y-3 items-center">
 						<span class="text-gray-400 text-sm font-thin font-manrope">Share this article:</span>
-						<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="%%BLOG_X_SHARE_URL%%" target="_blank" rel="noopener noreferrer" aria-label="Share on X">%%BLOG_X_ICON%%</a>
-						<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" href="%%BLOG_LINKEDIN_SHARE_URL%%" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">%%BLOG_LINKEDIN_ICON%%</a>
-						<button type="button" class="garna-blog-copy-link w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5ea500] hover:border-[#5ea500] transition-all cursor-pointer" data-copy-url="%%BLOG_CANONICAL_URL%%" aria-label="Copy article link">%%BLOG_LINK_ICON%%</button>
+						<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#101010] hover:bg-[#CBF300] hover:border-[#CBF300] transition-all cursor-pointer" href="%%BLOG_X_SHARE_URL%%" target="_blank" rel="noopener noreferrer" aria-label="Share on X">%%BLOG_X_ICON%%</a>
+						<a class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#101010] hover:bg-[#CBF300] hover:border-[#CBF300] transition-all cursor-pointer" href="%%BLOG_LINKEDIN_SHARE_URL%%" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">%%BLOG_LINKEDIN_ICON%%</a>
+						<button type="button" class="garna-blog-copy-link w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#101010] hover:bg-[#CBF300] hover:border-[#CBF300] transition-all cursor-pointer" data-copy-url="%%BLOG_CANONICAL_URL%%" aria-label="Copy article link">%%BLOG_LINK_ICON%%</button>
 					</div>
 				</div>
 			</div>
@@ -84,10 +86,10 @@ const shell = {
 					document.execCommand('copy');
 					input.remove();
 				}
-				button.classList.add('bg-[#5ea500]', 'text-white', 'border-[#5ea500]');
+				button.classList.add('bg-[#CBF300]', 'text-[#101010]', 'border-[#CBF300]');
 				button.setAttribute('aria-label', 'Article link copied');
 				window.setTimeout(() => {
-					button.classList.remove('bg-[#5ea500]', 'text-white', 'border-[#5ea500]');
+					button.classList.remove('bg-[#CBF300]', 'text-[#101010]', 'border-[#CBF300]');
 					button.setAttribute('aria-label', previousLabel);
 				}, 1400);
 			} catch (_error) {
@@ -95,6 +97,14 @@ const shell = {
 			}
 		});
 	</script>
+	<Fragment slot="widgets">
+		<GarnaBookingWidget
+			trackingSource="blog-article"
+			trackingPage="blog-article"
+			titleFallback="Start your journey with Garna"
+			subtitleFallback="Fill in your details to book a demo"
+		/>
+	</Fragment>
 
 	<style is:inline>
 		.garna-blog-article-layout {
@@ -149,7 +159,7 @@ const shell = {
 			top: var(--toc-marker-top, 0px);
 			width: 2px;
 			height: 44px;
-			background: #5ea500;
+			background: #CBF300;
 			transition: top .28s ease;
 		}
 
@@ -215,13 +225,13 @@ const shell = {
 		}
 
 		.garna-blog-article-body li::marker {
-			color: #5ea500;
+			color: #CBF300;
 		}
 
 		.garna-blog-article-body a {
 			color: #d8f7b8;
 			text-decoration: underline;
-			text-decoration-color: rgba(94, 165, 0, .65);
+			text-decoration-color: rgba(203, 243, 0, .65);
 			text-underline-offset: 4px;
 		}
 
@@ -250,9 +260,9 @@ const shell = {
 			width: 18px;
 			height: 18px;
 			margin-top: 9px;
-			border: 1px solid rgba(94, 165, 0, .8);
+			border: 1px solid rgba(203, 243, 0, .8);
 			border-radius: 5px;
-			color: #5ea500;
+			color: #CBF300;
 			font-size: 13px;
 			line-height: 1;
 		}
@@ -308,9 +318,9 @@ const shell = {
 		.garna-blog-tldr {
 			margin: 40px 0 48px;
 			padding: 28px 32px;
-			border: 1px solid rgba(94, 165, 0, 0.2);
+			border: 1px solid rgba(203, 243, 0, 0.2);
 			border-radius: 12px;
-			background: rgba(94, 165, 0, 0.05);
+			background: rgba(203, 243, 0, 0.05);
 		}
 
 		.garna-blog-tldr h2 {
@@ -454,7 +464,7 @@ const shell = {
 		}
 
 		.garna-blog-related-card:hover h4 {
-			color: #5ea500;
+			color: #CBF300;
 		}
 
 		.garna-blog-faq-section {
@@ -525,8 +535,8 @@ const shell = {
 		}
 
 		.garna-blog-faq-contact:hover {
-			background: #5ea500;
-			border-color: #5ea500;
+			background: #CBF300;
+			border-color: #CBF300;
 		}
 
 		.garna-blog-faq-contact:hover svg {
@@ -570,7 +580,7 @@ const shell = {
 
 		.garna-blog-cta:hover {
 			transform: translateY(-4px);
-			border-color: rgba(94, 165, 0, .3);
+			border-color: rgba(203, 243, 0, .3);
 			box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .55);
 		}
 
@@ -590,7 +600,7 @@ const shell = {
 			left: -30%;
 			width: 160%;
 			transform: rotate(35deg);
-			background: rgba(94, 165, 0, .2);
+			background: rgba(203, 243, 0, .2);
 			filter: blur(28px);
 			transition: transform 1s ease;
 		}
@@ -603,7 +613,7 @@ const shell = {
 		.garna-blog-cta-beams span:last-child {
 			top: 30%;
 			height: 96px;
-			background: rgba(94, 165, 0, .1);
+			background: rgba(203, 243, 0, .1);
 			filter: blur(48px);
 		}
 
@@ -650,7 +660,7 @@ const shell = {
 			margin-top: 24px;
 			padding: 10px 24px;
 			border-radius: 12px;
-			background: #5ea500;
+			background: #CBF300;
 			color: #fff;
 			font-size: 16px;
 		}
@@ -675,7 +685,7 @@ const shell = {
 		}
 
 		.garna-blog-cta:hover .garna-blog-payroll-card {
-			box-shadow: 0 25px 50px -12px rgba(94, 165, 0, .15);
+			box-shadow: 0 25px 50px -12px rgba(203, 243, 0, .15);
 		}
 
 		.garna-blog-payroll-card--green {
@@ -801,7 +811,7 @@ const shell = {
 			height: 10px;
 			border: 2px solid #18181b;
 			border-radius: 999px;
-			background: #5ea500;
+			background: #CBF300;
 		}
 
 		.garna-blog-payroll-card--blue .garna-blog-payroll-avatar span {
@@ -858,8 +868,8 @@ const shell = {
 			width: 16px;
 			height: 16px;
 			border-radius: 999px;
-			background: rgba(94, 165, 0, .1);
-			color: #5ea500;
+			background: rgba(203, 243, 0, .1);
+			color: #CBF300;
 		}
 	</style>
 	<script is:inline>

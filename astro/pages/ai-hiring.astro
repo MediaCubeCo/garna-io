@@ -1,18 +1,21 @@
 ---
-import HeroSection from '../components/HeroSection.astro';
-import FAQSection from '../components/FAQSection.astro';
-import FinalCTASection from '../components/FinalCTASection.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import FinalCTASection from '../components/sections/FinalCTASection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import rawContentHtml from '../content/site-pages/ai-hiring.html?raw';
-import { splitLegacyPageSections } from '../utils/legacy-html';
-
-const { heroVisualHtml, contentHtml } = splitLegacyPageSections(rawContentHtml, {
-	heroVisualMarker: '<!-- UI Mockup -->',
-});
+import HiringFunnelSection from '../components/sections/ai-hiring/HiringFunnelSection.astro';
+import HiringProcessSection from '../components/sections/ai-hiring/HiringProcessSection.astro';
+import TalentMarketplaceSection from '../components/sections/ai-hiring/TalentMarketplaceSection.astro';
+import TalentMatchingSection from '../components/sections/ai-hiring/TalentMatchingSection.astro';
+import ContractorHiringSection from '../components/sections/ai-hiring/ContractorHiringSection.astro';
+import AIHiringTestimonialsSection from '../components/sections/ai-hiring/AIHiringTestimonialsSection.astro';
+import AIHiringSectionStyles from '../components/sections/ai-hiring/AIHiringSectionStyles.astro';
+import AIHiringInteractions from '../components/sections/ai-hiring/AIHiringInteractions.astro';
+import AIInterviewVisual from '../components/visuals/AIInterviewVisual.astro';
 
 const aiHiringFaqItems = [
 	{
@@ -56,9 +59,15 @@ const aiHiringFaqItems = [
 
 <BaseLayout shell={pageShells.aiHiring}>
 	<HeroSection {...pageHeroes.aiHiring}>
-		<Fragment set:html={heroVisualHtml} />
+		<AIInterviewVisual />
 	</HeroSection>
-	<Fragment set:html={contentHtml} />
+	<HiringFunnelSection />
+	<HiringProcessSection />
+	<TalentMarketplaceSection />
+	<TalentMatchingSection />
+	<ContractorHiringSection />
+	<AIHiringTestimonialsSection />
+	<AIHiringSectionStyles />
 	<FAQSection
 		title={{ text: 'Frequently asked questions', translateKey: 'faq.title' }}
 		subtitle={{ text: 'Have questions? We have answers', translateKey: 'faq.subtitle' }}
@@ -67,4 +76,5 @@ const aiHiringFaqItems = [
 		containerClass="garna-container"
 	/>
 	<FinalCTASection {...pageFinalCtas.aiHiring} />
+	<Fragment slot="widgets"><AIHiringInteractions /></Fragment>
 </BaseLayout>

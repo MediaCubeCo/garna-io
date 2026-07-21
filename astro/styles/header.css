@@ -62,8 +62,8 @@
 	background: transparent;
 	color: #ffffff;
 	font-family: Manrope, sans-serif;
-	font-size: clamp(16px, 1.25vw, 18px);
-	font-weight: 300;
+	font-size: 16px;
+	font-weight: 600;
 	line-height: 1.2;
 	text-decoration: none;
 	white-space: nowrap;
@@ -79,7 +79,7 @@
 .garna-header-nav-link.is-active,
 .garna-header-dropdown-link.is-active,
 .garna-header-mobile-link.is-active {
-	color: #5EA500;
+	color: #CBF300;
 }
 
 .garna-header-chevron {
@@ -90,7 +90,7 @@
 
 .garna-header-menu-group:hover:not(.is-dropdown-suppressed) .garna-header-chevron,
 .garna-header-menu-group:has(.garna-header-menu-trigger:focus-visible) .garna-header-chevron {
-	color: #5EA500;
+	color: #CBF300;
 	transform: rotate(180deg);
 }
 
@@ -150,7 +150,7 @@
 
 .garna-header-dropdown-title {
 	margin: 0 12px 12px;
-	color: #5EA500;
+	color: #CBF300;
 	font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 	font-size: 10px;
 	font-weight: 200;
@@ -182,9 +182,9 @@
 }
 
 .garna-header-dropdown-link.is-active {
-	border-color: rgba(94, 165, 0, 0.3);
-	background-color: rgba(94, 165, 0, 0.08);
-	box-shadow: 0 0 24px -20px rgba(94, 165, 0, 0.95);
+	border-color: rgba(203, 243, 0, 0.3);
+	background-color: rgba(203, 243, 0, 0.08);
+	box-shadow: 0 0 24px -20px rgba(203, 243, 0, 0.95);
 }
 
 .garna-header-dropdown-icon {
@@ -210,9 +210,9 @@
 }
 
 .garna-header-dropdown-link.is-active .garna-header-dropdown-icon {
-	border-color: rgba(94, 165, 0, 0.28);
-	background: rgba(94, 165, 0, 0.13);
-	color: #5EA500;
+	border-color: rgba(203, 243, 0, 0.28);
+	background: rgba(203, 243, 0, 0.13);
+	color: #CBF300;
 }
 
 .garna-header-link-main {
@@ -225,7 +225,7 @@
 	color: #ffffff;
 	font-family: Manrope, sans-serif;
 	font-size: 16px;
-	font-weight: 300;
+	font-weight: 600;
 	line-height: 1.25;
 	white-space: normal;
 	overflow-wrap: anywhere;
@@ -233,7 +233,7 @@
 }
 
 .garna-header-dropdown-link.is-active .garna-header-link-main {
-	color: #5EA500;
+	color: #CBF300;
 }
 
 .garna-header-link-separator {
@@ -296,12 +296,12 @@
 }
 
 .garna-header-dropdown-feature.is-active .garna-header-feature-copy h4 {
-	color: #5EA500;
+	color: #CBF300;
 }
 
 .garna-header-dropdown-feature.is-active {
-	border-color: rgba(94, 165, 0, 0.3);
-	box-shadow: 0 0 24px -20px rgba(94, 165, 0, 0.95);
+	border-color: rgba(203, 243, 0, 0.3);
+	box-shadow: 0 0 24px -20px rgba(203, 243, 0, 0.95);
 }
 
 .garna-header-products-feature {
@@ -369,7 +369,7 @@
 	align-items: center;
 	gap: 8px;
 	margin-top: 12px;
-	color: #5EA500;
+	color: #CBF300;
 	font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 	font-size: 10px;
 	font-weight: 200;
@@ -448,7 +448,7 @@
 }
 
 .garna-header-mobile-section {
-	color: #5EA500;
+	color: #CBF300;
 	font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 	font-size: 10px;
 	letter-spacing: 0.14em;
@@ -511,13 +511,13 @@
 }
 
 .garna-header-mobile-card.is-active .garna-header-mobile-icon {
-	border-color: rgba(94, 165, 0, 0.2);
-	background: rgba(94, 165, 0, 0.12);
-	color: #5EA500;
+	border-color: rgba(203, 243, 0, 0.2);
+	background: rgba(203, 243, 0, 0.12);
+	color: #CBF300;
 }
 
 .garna-header-mobile-card.is-active .garna-header-mobile-link-main {
-	color: #5EA500;
+	color: #CBF300;
 }
 
 .garna-header-mobile-link-main {

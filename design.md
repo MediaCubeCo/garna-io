@@ -9,7 +9,7 @@ Garna использует темную fintech/SaaS эстетику: черн�
 Ключевые признаки:
 
 - Темная база: единый фон сайта `#050505`; секционные фоновые плашки больше не используются как системный паттерн.
-- Основной бренд-акцент: Garna green `#5EA500`.
+- Основной бренд-акцент: Garna green `#CBF300`.
 - Поверхности: glassmorphism через низкую белую прозрачность, blur и тонкую белую границу.
 - Visual product mockups are approved only through named patterns such as Browser window visual; other dashboard examples remain pending until a specific mockup is documented.
 - Тон коммуникации: технологичный, деловой, уверенный. Интерфейс выглядит как продуктовая инфраструктура, а не как маркетинговая открытка.
@@ -40,7 +40,7 @@ Garna использует темную fintech/SaaS эстетику: черн�
 | `--color-card-border` | `rgba(255,255,255,0.05)` / `border-white/5` | Default card border |
 | `--color-text` | `#ffffff` | Headings and important text |
 | `--color-text-muted` | `#A1A1A1` | Standard gray copy and muted text |
-| `--color-primary` | `#5EA500` | CTA, active links, success indicators |
+| `--color-primary` | `#CBF300` | CTA, active links, success indicators |
 | `--color-primary-hover` | `#6AB901` | Hover state for every green button |
 | `--color-negative` | `#EF4444` | Negative comparison icon/accent, based on AI Hiring before/after cards |
 | `--color-warning` | `#EAB308` | Yellow utility/status accent, currently used by browser traffic-light dots and testimonial stars |
@@ -75,7 +75,7 @@ Utility accent colors:
 
 Green CTA color rule:
 
-- Default state: `--color-primary` / `#5EA500`.
+- Default state: `--color-primary` / `#CBF300`.
 - Hover state: `--color-primary-hover` / `#6AB901`.
 - This applies to every green button, including Primary CTA and Animated CTA.
 - Secondary buttons, icon-only buttons and text links do not use the green hover fill unless they are intentionally green CTAs.
@@ -109,7 +109,7 @@ Approved style:
 - Font family: Manrope.
 - Size: `text-sm`, roughly `14px`.
 - Weight: `font-medium` / `500`.
-- Color: primary green `#5EA500`.
+- Color: primary green `#CBF300`.
 - Text transform: uppercase.
 - Tracking: `tracking-wider`, around `0.05em`.
 - Spacing: `mb-4`, roughly `16px` below the tag before the H2.
@@ -184,7 +184,7 @@ Approved style:
 
 - Step title: Manrope, `24px`, `font-normal` / `400`, white `#ffffff`, `line-height: 1.25`, `mb-3` / `12px`, `letter-spacing: 0`.
 - Step description: Manrope, `16px`, `font-normal` / `400`, `leading-relaxed` / roughly `26px`, muted/supporting gray.
-- Hover/focus/active title color: primary green `#5EA500`.
+- Hover/focus/active title color: primary green `#CBF300`.
 
 Rules:
 
@@ -203,7 +203,7 @@ Approved style:
 - Item alignment: center vertically.
 - Item gap: `gap-5`, roughly `20px`.
 - Number marker: `36px` wide, `32px` tall, `rounded-lg`, `#1A1A1A` fill, `border-white/10`.
-- Number text: monospace, `14px`, normal weight, primary green `#5EA500`.
+- Number text: monospace, `14px`, normal weight, primary green `#CBF300`.
 - Item text: Manrope, `text-lg` / `18px`, normal weight `400`, gray-300 `#D1D5DB`.
 - Item text line height: about `1.45`.
 
@@ -224,7 +224,7 @@ Approved style:
 - Item layout: horizontal row, icon on the left and text on the right.
 - Item gap: `gap-3`, roughly `12px`.
 - Negative/before icon: `18px`, muted gray `#71717A`.
-- Positive/after marker: `16px` circle, primary green `#5EA500`, check icon inside, small green glow.
+- Positive/after marker: `16px` circle, primary green `#CBF300`, check icon inside, small green glow.
 - Before text: Manrope, `14px`, normal `400`, muted gray `#A1A1A1`, relaxed line height.
 - After text: Manrope, `14px`, medium `500`, gray-300 `#D1D5DB`, relaxed line height.
 
@@ -325,7 +325,7 @@ Approved base style:
 - Subtle white border: `rgba(255,255,255,0.10)`.
 - Light blur: `backdrop-filter: blur(4px)`.
 - Text: uppercase, Manrope, `12px`, `font-weight: 500`, `#d1d5db`, `letter-spacing: 0.025em`.
-- Left status dot: core Garna green `#5EA500` with a looping ping animation.
+- Left status dot: core Garna green `#CBF300` with a looping ping animation.
 
 Rules:
 
@@ -468,8 +468,8 @@ Highlighted Garna column:
 
 - The Garna column is the only highlighted column.
 - Highlight background: page-black or card-dark surface, not a bright green fill.
-- Highlight border: primary green `#5EA500`.
-- Highlight glow: soft and low-opacity, around `0 0 30px rgba(94,165,0,0.15)`.
+- Highlight border: primary green `#CBF300`.
+- Highlight glow: soft and low-opacity, around `0 0 30px rgba(203, 243, 0,0.15)`.
 - Header text in the highlighted column uses primary green.
 
 Typography:
@@ -562,7 +562,7 @@ Step trigger:
 - Hover/focus: trigger becomes fully opaque and the step title turns primary green.
 - Active trigger: full opacity.
 - Step marker: `40px` circle, page-background fill `#050505`, `border-white/5`, muted number in inactive state.
-- Active marker: green border `#5EA500`, green number and soft glow `0 0 15px rgba(94,165,0,0.3)`.
+- Active marker: green border `#CBF300`, green number and soft glow `0 0 15px rgba(203, 243, 0,0.3)`.
 - Vertical connector line between steps: `1px`, `white/5`.
 
 Step typography:
@@ -611,7 +611,7 @@ Diagram layout:
 - Mobile layout: one column.
 - Desktop connector: horizontal dotted/segmented line behind the icons.
 - Mobile connector: vertical dotted/segmented line behind the icons.
-- Animated flow line: primary green `#5EA500`, subtle, repeating continuously.
+- Animated flow line: primary green `#CBF300`, subtle, repeating continuously.
 
 Node:
 
@@ -808,9 +808,9 @@ These older utilities should no longer create new default card colors.
 
 Main shadow language:
 
-- Primary glow: `0 0 20px -5px rgba(94,165,0,0.5)` for header signup.
-- Strong CTA glow: `0 0 26px -10px rgba(94,165,0,0.9)`.
-- Ambient hero blur: large green blurred circles `blur-[120px]` with `#5EA500/10-20`.
+- Primary glow: `0 0 20px -5px rgba(203, 243, 0,0.5)` for header signup.
+- Strong CTA glow: `0 0 26px -10px rgba(203, 243, 0,0.9)`.
+- Ambient hero blur: large green blurred circles `blur-[120px]` with `#CBF300/10-20`.
 Use green glow only for primary emphasis. Most cards should rely on border and dark layering.
 
 ## 9. Buttons
@@ -821,7 +821,7 @@ Used for standard signup/product CTAs and supporting product actions.
 
 Core anatomy:
 
-- Background `#5EA500`.
+- Background `#CBF300`.
 - Text white.
 - Radius `12px`.
 - Horizontal padding around `24-32px`.
@@ -852,7 +852,7 @@ Supporting variants:
 
 - Header signup: compact `h-11`, `rounded-xl`.
 - Mobile menu icon button: circular green icon button, `44px`, `rounded-full`, primary green fill with primary hover.
-- Widget continue button: CSS module `.button`, `padding: 12px 32px`, `box-shadow: 0 10px 40px #5ea50033`.
+- Widget continue button: CSS module `.button`, `padding: 12px 32px`, `box-shadow: 0 10px 40px #CBF30033`.
 
 ### Learn More Text CTA
 
@@ -862,7 +862,7 @@ Core anatomy:
 
 - Use for low-emphasis `Learn more` style actions inside content sections.
 - `inline-flex`, vertically centered, `gap: 8px`.
-- Text: Manrope, `18px`, normal weight, green `#5EA500`.
+- Text: Manrope, `18px`, normal weight, green `#CBF300`.
 - Icon: horizontal `arrow-right`, `20px`, stroke `1.5`.
 - No background, border, radius, padding, shadow or glow.
 - Hover: text and icon change to white with a simple color transition.
@@ -882,7 +882,7 @@ Reference: Payroll Small Business footer contact block.
 - Email contact uses inline Lucide `mail` SVG.
 - Icon box: `32px` square, `rounded-lg`, `#1A1A1A` background, `border-white/10`.
 - Icon: `16px`, stroke width `1.5`, green `#4D8A00`.
-- Hover: icon box background changes to `#5EA500/10`; text stays primary green.
+- Hover: icon box background changes to `#CBF300/10`; text stays primary green.
 - Do not use text placeholders such as `in` or `@` for footer contacts.
 
 ## 10. Navigation
@@ -898,7 +898,7 @@ Elements:
   - For Contractors
   - AI Hiring
   - White Label
-- Active link: `#5EA500`.
+- Active link: `#CBF300`.
 - Right actions:
   - Login text/icon.
   - Sign Up primary button.
@@ -935,11 +935,11 @@ Use the For Contractors / `Built for your freedom` cards as the reference for th
 Anatomy:
 
 - Card: `#0C0C0C` fill, `border-white/5`, `rounded-2xl`, `p-8`.
-- Icon cell: `48px` square, `rounded-xl`, `#5EA500/10` background, `#5EA500/20` border.
-- Icon: green `#5EA500`, `24px`, stroke style.
+- Icon cell: `48px` square, `rounded-xl`, `#CBF300/10` background, `#CBF300/20` border.
+- Icon: green `#CBF300`, `24px`, stroke style.
 - Title: Manrope, `text-xl` / `20px`, `font-medium` / `500`, white, `mb-3`.
 - Description: Manrope, `text-base` / `16px`, `font-normal` / `400`, `leading-relaxed`, muted gray `#A1A1A1`.
-- Hover: card border becomes green `#5EA500/40`, a light green glow appears, and the icon cell scales up slightly.
+- Hover: card border becomes green `#CBF300/40`, a light green glow appears, and the icon cell scales up slightly.
 
 Rules:
 
@@ -959,7 +959,7 @@ Anatomy:
 - Minimum height: around `270px`, matching the first approved card samples in the UI catalog.
 - In mixed catalog grids, the card keeps its own height and does not stretch to match taller visual-card rows.
 - Icon comes first and sits directly on the card surface.
-- Icon: green `#5EA500`, `24px`, line icon.
+- Icon: green `#CBF300`, `24px`, line icon.
 - No icon cell: no square, no circle, no icon background, no icon border, no icon shadow.
 - Title: Manrope, `text-xl` / `20px`, `font-medium` / `500`, white, `mt-5`, `mb-3`.
 - Description: Manrope, `text-base` / `16px`, `font-normal` / `400`, `leading-relaxed`, muted gray `#A1A1A1`.
@@ -967,8 +967,8 @@ Anatomy:
 Hover:
 
 - Use the Feature visual card hover behavior.
-- Card border becomes green `#5EA500/40`.
-- The same soft green glow as the Contractor benefit card appears: `0 0 34px -12px rgba(94,165,0,0.34)`.
+- Card border becomes green `#CBF300/40`.
+- The same soft green glow as the Contractor benefit card appears: `0 0 34px -12px rgba(203, 243, 0,0.34)`.
 - Card background does not change.
 - Card does not scale or jump.
 - Icon does not scale.
@@ -992,7 +992,7 @@ Anatomy:
 - Quote text: Manrope, `text-base` / `16px`, normal `400`, `leading-relaxed`, gray-300 `#D1D5DB`.
 - Author row: `border-t border-white/5`, `pt-6`, real portrait avatar `40px` circle with `object-cover`, `border-white/10`, name and role.
 - Author name: Manrope, `text-sm` / `14px`, normal `400`, white.
-- Author role/company: Manrope, `text-xs` / `12px`, medium `500`, primary green `#5EA500`.
+- Author role/company: Manrope, `text-xs` / `12px`, medium `500`, primary green `#CBF300`.
 
 Hover:
 
@@ -1020,7 +1020,7 @@ Use this for available talent, job, role or candidate-pool preview cards.
 Anatomy:
 
 - Card: `#0C0C0C` fill, `border-white/5`, `rounded-xl`, `p-6`.
-- Category tag: small uppercase green label, `10px`, bold `700`, `#5EA500/10` background and `#5EA500/20` border.
+- Category tag: small uppercase green label, `10px`, bold `700`, `#CBF300/10` background and `#CBF300/20` border.
 - Top icon: `32px` circular icon cell, `white/5` background, black/page-color border, muted gray icon.
 - Title: Manrope, `text-lg` / `18px`, `font-semibold` / `600`, white by default.
 - Meta line: Manrope, `text-sm` / `14px`, muted gray.
@@ -1030,12 +1030,12 @@ Anatomy:
 
 Hover:
 
-- Card border becomes green `#5EA500/40`.
-- The same soft green glow as the Contractor benefit card appears: `0 0 34px -12px rgba(94,165,0,0.34)`.
+- Card border becomes green `#CBF300/40`.
+- The same soft green glow as the Contractor benefit card appears: `0 0 34px -12px rgba(203, 243, 0,0.34)`.
 - Card background does not change.
 - Card does not scale or jump.
-- Title color changes from white to primary green `#5EA500`.
-- Circular arrow action background and border become primary green `#5EA500`.
+- Title color changes from white to primary green `#CBF300`.
+- Circular arrow action background and border become primary green `#CBF300`.
 - Top icon and candidate avatars do not scale.
 
 Rules:
@@ -1055,16 +1055,16 @@ Anatomy:
 
 - Card: `#0C0C0C` fill, `border-white/5`, `rounded-2xl`, `p-8`, `overflow-hidden`.
 - Minimum height: around `400px` when the card includes a visual area.
-- Icon cell: same as Contractor benefit card, `48px` square, `rounded-xl`, `#5EA500/10` background, `#5EA500/20` border.
-- Icon: green `#5EA500`, `24px`, stroke style, `1.5px` stroke.
+- Icon cell: same as Contractor benefit card, `48px` square, `rounded-xl`, `#CBF300/10` background, `#CBF300/20` border.
+- Icon: green `#CBF300`, `24px`, stroke style, `1.5px` stroke.
 - Title: Manrope, `text-xl` / `20px`, `font-medium` / `500`, white, `mb-3`.
 - Description: Manrope, `text-base` / `16px`, `font-normal` / `400`, `leading-relaxed`, muted gray `#A1A1A1`.
 - Visual area: dark rectangle at the bottom, `rounded-xl`, `border-white/5`, `#050505` fill, inset shadow. In the UI catalog, label it as a generic visual area instead of drawing a specific product mockup.
 
 Hover:
 
-- Card border becomes green `#5EA500/40`.
-- The same soft green glow as the Contractor benefit card appears: `0 0 34px -12px rgba(94,165,0,0.34)`.
+- Card border becomes green `#CBF300/40`.
+- The same soft green glow as the Contractor benefit card appears: `0 0 34px -12px rgba(203, 243, 0,0.34)`.
 - Card background does not change.
 - Card does not scale or jump.
 - Icon cell does not scale.
@@ -1155,16 +1155,16 @@ Anatomy:
 - Content direction: vertical card stack.
 - Header row: icon on the left, title on the right, `gap-4`, `mb-4`.
 - Description sits below the icon/title row, not beside the icon.
-- Icon cell: `48px` square, `rounded-xl`, `#5EA500/10` background, `#5EA500/20` border, no shadow.
-- Icon: green `#5EA500`, `24px`, stroke style, `1.5px` stroke.
+- Icon cell: `48px` square, `rounded-xl`, `#CBF300/10` background, `#CBF300/20` border, no shadow.
+- Icon: green `#CBF300`, `24px`, stroke style, `1.5px` stroke.
 - Title: Manrope, `text-xl` / `20px`, `font-medium` / `500`, white.
 - Description: Manrope, `text-base` / `16px`, `font-normal` / `400`, `leading-relaxed`, muted gray `#A1A1A1`.
 
 Hover:
 
 - Card moves up slightly: `translateY(-4px)`.
-- Card border becomes green `#5EA500/40`.
-- The same soft green glow as the Contractor benefit card appears: `0 0 34px -12px rgba(94,165,0,0.34)`.
+- Card border becomes green `#CBF300/40`.
+- The same soft green glow as the Contractor benefit card appears: `0 0 34px -12px rgba(203, 243, 0,0.34)`.
 - Card background does not change.
 - Icon cell does not scale.
 - Icon cell does not receive a shadow.
@@ -1202,9 +1202,9 @@ Before card:
 After card:
 
 - Card: `#0C0C0C` fill with a subtle primary green radial gradient.
-- Border: primary green at low opacity, about `#5EA500/20`.
+- Border: primary green at low opacity, about `#CBF300/20`.
 - Header row: `40px` green icon cell plus title.
-- Green icon cell: `#5EA500/10` background, `#5EA500/20` border, icon color `#5EA500`.
+- Green icon cell: `#CBF300/10` background, `#CBF300/20` border, icon color `#CBF300`.
 - Title: Manrope, `20px`, normal `400`, white.
 - List: use the positive Before / after comparison list item typography.
 - Visual area: abstract placeholder only in the UI catalog, with slightly stronger green accents than the before card.
@@ -1249,10 +1249,10 @@ Anatomy:
 - Background: `#111111`.
 - Border: `white/10`.
 - Shadow: strong dark photo separation shadow, around `shadow-2xl shadow-black/50`.
-- Icon cell: circular, `36px`, `#5EA500/20` background, icon color `#5EA500`.
+- Icon cell: circular, `36px`, `#CBF300/20` background, icon color `#CBF300`.
 - Icon: line icon, about `19px`.
 - Title: Manrope, `14px`, `font-semibold` / `600`, white.
-- Supporting text: Manrope, `12px`, normal `400`, primary green `#5EA500`.
+- Supporting text: Manrope, `12px`, normal `400`, primary green `#CBF300`.
 
 Rules:
 
@@ -1359,7 +1359,7 @@ The current behavior standard is the Payroll Solutions FAQ pattern. Public FAQ b
 Anatomy:
 
 - Container: `#0C0C0C` fill, `border-white/5`, `rounded-xl`, `overflow-hidden`.
-- Open state: subtle `#0E0E0E` background, green-tinted border around `#5EA500/32`, soft green glow.
+- Open state: subtle `#0E0E0E` background, green-tinted border around `#CBF300/32`, soft green glow.
 - Question row: full-width `button`, `px-5/6`, `py-5`, `text-base`, `font-semibold`, white Manrope text.
 - Icon: `iconify-icon` `solar:alt-arrow-down-linear`, muted gray by default, primary green on open, rotates 180deg on open.
 - Answer panel: animated `height` transition from `0px` to `scrollHeight`, with opacity and `translateY` easing.
@@ -1388,7 +1388,7 @@ Use the Employee Records-style tab behavior for catalog demonstrations and new t
 - Label tabs with a bottom border.
 - Inactive tab: muted gray `#71717a`.
 - Hover state: tab text becomes white.
-- Active tab: white text and primary green `#5EA500` bottom border.
+- Active tab: white text and primary green `#CBF300` bottom border.
 - Panels switch by `:checked ~ .tab-panels`.
 - Panel content can fade/slide in subtly, but the tab label movement should stay minimal.
 
@@ -1422,7 +1422,7 @@ Options:
 - Label typography: Manrope, `text-sm` / `14px`, `font-light` / `300`.
 - Inactive option: transparent background, gray text around `#9CA3AF`.
 - Hover/focus inactive option: text becomes white.
-- Active option: primary green `#5EA500` fill, white text, `rounded-lg`, subtle green-tinted shadow.
+- Active option: primary green `#CBF300` fill, white text, `rounded-lg`, subtle green-tinted shadow.
 
 Rules:
 
@@ -1466,7 +1466,7 @@ Use for dashboard/product sections when more structure is needed.
 
 ### Ambient Glow
 
-Large absolute blurred green circles, usually `#5EA500/10` to `/20`, blur `120px+`.
+Large absolute blurred green circles, usually `#CBF300/10` to `/20`, blur `120px+`.
 
 ## 17. Iconography
 
@@ -1606,4 +1606,4 @@ To make the design system maintainable:
    - Segmented content switcher
    - Step switcher
    - Final CTA layout
-5. Keep `#5EA500` as the single primary brand color and use green glow sparingly.
+5. Keep `#CBF300` as the single primary brand color and use green glow sparingly.
