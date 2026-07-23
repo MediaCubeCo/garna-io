@@ -1,0 +1,2509 @@
+---
+import FAQSection from '../sections/FAQSection.astro';
+import GarnaBookingWidget from '../ui/GarnaBookingWidget.astro';
+import HeroSection from '../sections/HeroSection.astro';
+import Section from '../layout/Section.astro';
+import Card from '../ui/Card.astro';
+import Button from '../ui/Button.astro';
+import CardIconVisual from '../visuals/CardIconVisual.astro';
+import PayrollSolutionInteractions from '../sections/payroll/PayrollSolutionInteractions.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pageHeroes } from '../../content/page-heroes';
+import { pageShells } from '../../content/page-shells';
+import type { FAQItem } from '../../types/faq-section';
+
+const forCreatorsShell = {
+	...pageShells.home,
+	headExtra: `${pageShells.home.headExtra || ''}${pageShells.eor.headExtra || ''}`,
+};
+const forCreatorsHero = {
+	...pageHeroes.eor,
+	badge: {
+		text: 'Early Access for selected creators',
+		translateKey: 'hero.badge',
+	},
+	titleClass:
+		'garna-hero-title-gradient font-manrope text-5xl font-normal leading-[1.14] tracking-tight pb-[0.08em] md:text-[64px] md:leading-[1.12]',
+	title: [{ text: 'Creator payouts from global platforms, guided by Garna', translateKey: 'hero.titleMain' }],
+	description:
+		'Receive payouts from creator platforms, stock marketplaces, freelance services and digital product platforms through one Garna account. We will guide you through the first setup, help you understand which payout method fits your platform, and support you during your first withdrawals',
+	descriptionTranslateKey: 'hero.description',
+	cta: {
+		...pageHeroes.eor.cta,
+		label: 'Contact Payout Manager',
+		translateKey: 'hero.cta',
+		href: 'https://t.me/likelyiam',
+		kind: 'external',
+		trackingCta: 'for_creators_hero_contact_manager',
+		wrapperClass: 'creator-hero-actions mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row',
+	},
+	ctaSecondary: {
+		label: 'Create Garna Account',
+		translateKey: 'hero.accountCta',
+		href: 'https://app.garna.io/auth/sign-up',
+		kind: 'signup',
+		variant: 'secondary',
+		effect: 'none',
+		icon: 'none',
+	},
+};
+const forCreatorsFaqItems = [
+	{
+		question: 'Is Garna a creator platform?',
+		answer:
+			'No. Garna is not a marketplace and does not sell your content. Garna helps creators receive payouts from international platforms and withdraw funds using available payout methods',
+	},
+	{
+		question: 'Is this available for everyone?',
+		answer:
+			'Creator payouts are currently available in Early Access. We start with selected creators and platforms to make sure each setup works correctly',
+	},
+	{
+		question: 'Do I need to create a Garna account?',
+		answer:
+			'Yes. You need a Garna account to complete verification, create invoices, receive funds and withdraw your balance',
+	},
+	{
+		question: 'How long does verification take?',
+		answer: 'KYC usually takes 1-2 business days, depending on the documents and verification flow',
+	},
+	{
+		question: 'How long does it take to receive funds from a platform?',
+		answer:
+			'It depends on the platform and payout method. In many cases, incoming funds may take 1-5 business days after the platform sends the payout',
+	},
+	{
+		question: 'How long does withdrawal from Garna take?',
+		answer:
+			'Withdrawal timing depends on the selected method and destination. As a general guideline, it may take 1-2 business days for many standard methods',
+	},
+	{
+		question: 'Can I use Garna with any platform?',
+		answer:
+			'Not always. Each platform has its own payout rules and supported methods. During setup, we confirm whether your platform can be processed and which flow applies',
+	},
+	{
+		question: 'What is the fee?',
+		answer:
+			'The standard Garna service fee is 5.5%. Early Access creators can receive a reduced 1.5% Garna service fee for their first payouts, subject to final confirmation and setup details',
+	},
+] satisfies FAQItem[];
+---
+
+<BaseLayout shell={forCreatorsShell}>
+	<HeroSection {...forCreatorsHero}>
+		<div class="creator-hero-visual mx-auto mt-16 w-full max-w-5xl overflow-visible px-0 sm:mt-20">
+			<div class="creator-hero-panel relative overflow-hidden rounded-[28px] border border-white/10 bg-[#080908]/80 p-4 text-left shadow-[0_36px_120px_-72px_rgba(0,0,0,0.95)] backdrop-blur-xl sm:p-5 lg:p-6">
+				<div class="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#CBF300]/80 to-transparent"></div>
+				<div class="absolute -left-20 top-8 h-56 w-56 rounded-full bg-[#CBF300]/10 blur-3xl"></div>
+				<div class="absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-white/5 blur-3xl"></div>
+
+				<div class="creator-hero-grid relative grid gap-4">
+					<div class="creator-visual-column rounded-2xl border border-white/8 bg-white/[0.025] p-4">
+						<div class="mb-4 flex items-center justify-between">
+							<span class="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">Platforms</span>
+							<span class="rounded-full border border-[#CBF300]/20 bg-[#CBF300]/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#CBF300]">Connected</span>
+						</div>
+						<div class="space-y-3">
+							<div class="creator-platform-row">
+								<span class="creator-platform-mark">E</span>
+								<div>
+									<strong>Envato</strong>
+									<p>Marketplace payout</p>
+								</div>
+								<span>$2,840</span>
+							</div>
+							<div class="creator-platform-row">
+								<span class="creator-platform-mark">S</span>
+								<div>
+									<strong>Shutterstock</strong>
+									<p>Stock royalties</p>
+								</div>
+								<span>$690</span>
+							</div>
+							<div class="creator-platform-row">
+								<span class="creator-platform-mark">A</span>
+								<div>
+									<strong>Adobe Stock</strong>
+									<p>Asset earnings</p>
+								</div>
+								<span>$420</span>
+							</div>
+							<div class="creator-platform-row">
+								<span class="creator-platform-mark">U</span>
+								<div>
+									<strong>Upstock</strong>
+									<p>Stock media payout</p>
+								</div>
+								<span>$310</span>
+							</div>
+							<div class="creator-platform-row">
+								<span class="creator-platform-mark">G</span>
+								<div>
+									<strong>Gumroad</strong>
+									<p>Digital sales</p>
+								</div>
+								<span>$240</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="creator-payout-card relative rounded-3xl border border-white/10 bg-[#0d0d0d] p-5 shadow-[0_24px_72px_-46px_rgba(203,243,0,0.72)]">
+						<div class="mb-6 flex items-start justify-between gap-4">
+							<div>
+								<span class="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">Incoming payout</span>
+								<h3 class="mt-2 text-xl font-semibold text-white">Creator platform payment</h3>
+							</div>
+							<span class="rounded-full bg-[#CBF300] px-3 py-1 text-xs font-semibold text-black">Matched</span>
+						</div>
+						<div class="mb-6 rounded-2xl border border-white/8 bg-black/30 p-4">
+							<div class="flex items-end justify-between gap-3">
+								<div>
+									<p class="mb-2 text-sm text-gray-500">Available after verification</p>
+									<div class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">$2,840.00</div>
+								</div>
+								<span class="rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-semibold text-gray-300">USD</span>
+							</div>
+							<div class="mt-5 h-1.5 overflow-hidden rounded-full bg-white/8">
+								<div class="creator-progress h-full rounded-full bg-[#CBF300]"></div>
+							</div>
+						</div>
+						<div class="grid grid-cols-2 gap-3">
+							<div class="creator-status-tile">
+								<span>01</span>
+								<strong>Invoice verified</strong>
+								<p>Platform document attached</p>
+							</div>
+							<div class="creator-status-tile">
+								<span>02</span>
+								<strong>Balance credited</strong>
+								<p>Ready for withdrawal</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="creator-visual-column rounded-2xl border border-white/8 bg-white/[0.025] p-4">
+						<div class="mb-4">
+							<span class="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">Withdraw to</span>
+							<div class="mt-2 text-2xl font-semibold text-white">Your preferred <br class="creator-method-break" />method</div>
+						</div>
+						<div class="grid gap-3">
+							<div class="creator-withdraw-row">
+								<span>Bank</span>
+								<strong>SWIFT / SEPA</strong>
+							</div>
+							<div class="creator-withdraw-row">
+								<span>Card</span>
+								<strong>Local currency</strong>
+							</div>
+							<div class="creator-withdraw-row">
+								<span>Wallet</span>
+								<strong>PayPal / Payoneer</strong>
+							</div>
+							<div class="creator-withdraw-row">
+								<span>Crypto</span>
+								<strong>USDT / USDC</strong>
+							</div>
+							<div class="creator-withdraw-row">
+								<span>ACH</span>
+								<strong>US account</strong>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</HeroSection>
+	<Section
+		title={{ text: 'Built for creators who earn globally' }}
+		description={{ text: 'Garna can help creators, freelancers and digital sellers who receive income from international platforms' }}
+		class="border-y border-[#020202]/0"
+		headerClass="mb-14 max-w-5xl lg:mb-16"
+		titleClass="mx-auto max-w-4xl lg:text-5xl"
+		contentClass="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4"
+	>
+		<Card
+			class="p-6"
+			titleClass="text-lg"
+			descriptionClass="text-sm"
+			title="Designers & illustrators"
+			description="For creators selling graphics, templates, fonts, digital assets and visual products"
+		>
+			<CardIconVisual slot="visual" icon="lucide:palette" />
+		</Card>
+		<Card
+			class="p-6"
+			titleClass="text-lg"
+			descriptionClass="text-sm"
+			title="Photographers & stock contributors"
+			description="For contributors receiving royalties or payouts from stock photo and media platforms"
+		>
+			<CardIconVisual slot="visual" icon="lucide:camera" />
+		</Card>
+		<Card
+			class="p-6"
+			titleClass="text-lg"
+			descriptionClass="text-sm"
+			title="3D artists & game asset creators"
+			description="For creators selling 3D models, plugins, textures, game assets and marketplace products"
+		>
+			<CardIconVisual slot="visual" icon="lucide:box" />
+		</Card>
+		<Card
+			class="p-6"
+			titleClass="text-lg"
+			descriptionClass="text-sm"
+			title="Freelancers & digital sellers"
+			description="For people earning from freelance platforms, subscriptions, courses, music, content or digital products"
+		>
+			<CardIconVisual slot="visual" icon="lucide:store" />
+		</Card>
+	</Section>
+	<Section
+		layout="split"
+		spacing="none"
+		width="wide"
+		class="py-16 lg:py-32"
+		splitClass="gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start"
+		copyClass="max-w-xl text-left lg:sticky lg:top-28 lg:self-start"
+		align="left"
+		title={{ text: 'One account for creator payouts' }}
+		description={{ text: 'A guided way to connect platform payouts, receive funds to your Garna balance and withdraw using available payout methods' }}
+		titleClass="lg:text-5xl"
+		descriptionClass="text-lg"
+		contentClass="grid gap-4"
+	>
+		<Card
+			variant="compact"
+			visualClass="creator-step-number shrink-0"
+		>
+			<span slot="visual">01</span>
+			<div class="creator-step-copy">
+				<h3>Receive platform payouts</h3>
+				<p>Use Garna details where supported to receive payments from international creator platforms</p>
+			</div>
+		</Card>
+		<Card
+			variant="compact"
+			visualClass="creator-step-number shrink-0"
+		>
+			<span slot="visual">02</span>
+			<div class="creator-step-copy">
+				<h3>Get guided setup</h3>
+				<p>Tell us which platform you use. We will check the available payout method and guide you through setup</p>
+			</div>
+		</Card>
+		<Card
+			variant="compact"
+			visualClass="creator-step-number shrink-0"
+		>
+			<span slot="visual">03</span>
+			<div class="creator-step-copy">
+				<h3>Manage your balance</h3>
+				<p>Once funds arrive, they are credited to your Garna balance after verification and invoice matching</p>
+			</div>
+		</Card>
+		<Card
+			variant="compact"
+			visualClass="creator-step-number shrink-0"
+		>
+			<span slot="visual">04</span>
+			<div class="creator-step-copy">
+				<h3>Withdraw globally</h3>
+				<p>Withdraw your money using bank transfer, card, PayPal, Payoneer, crypto and other supported options</p>
+			</div>
+		</Card>
+	</Section>
+	<Section
+		title={{ text: 'From platform payout to your Garna balance' }}
+		description={{ text: 'The flow is simple, but setup may differ by platform. During Early Access, we guide you through the important details' }}
+		headerClass="mb-14 max-w-4xl lg:mb-16"
+		titleClass="mx-auto max-w-4xl lg:text-5xl"
+		contentClass="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6"
+	>
+		<Card
+			class="p-5 lg:col-span-2"
+			visualClass="mb-6"
+			eyebrow={{ text: '01' }}
+			title={{ text: 'Create your Garna account' }}
+			description={{ text: 'Register in Garna and complete verification. KYC usually takes 1-2 business days' }}
+		>
+			<div slot="visual" class="creator-process-visual">
+				<div class="creator-mini-window">
+					<div class="creator-mini-row"><span>Profile</span><strong>Setup</strong></div>
+					<div class="creator-mini-skeleton w-4/5"></div>
+					<div class="creator-mini-skeleton w-3/5"></div>
+					<div class="creator-mini-verification">
+						<span><i></i>Email confirmed</span>
+						<span><i></i>KYC in review</span>
+						<span><i></i>Account opening</span>
+					</div>
+				</div>
+			</div>
+		</Card>
+		<Card
+			class="p-5 lg:col-span-2"
+			visualClass="mb-6"
+			eyebrow={{ text: '02' }}
+			title={{ text: 'Tell us your platform' }}
+			description={{ text: 'Contact your payout manager and tell us where you receive income' }}
+		>
+			<div slot="visual" class="creator-process-visual">
+				<div class="creator-chat-card">
+					<div class="creator-chat-meta">
+						<span>Manager online</span>
+					</div>
+					<div class="creator-chat-bubble user">Income from Envato</div>
+					<div class="creator-chat-bubble manager">Send country and payout currency</div>
+				</div>
+			</div>
+		</Card>
+		<Card
+			class="p-5 lg:col-span-2"
+			visualClass="mb-6"
+			eyebrow={{ text: '03' }}
+			title={{ text: 'Get setup instructions' }}
+			description={{ text: 'We will check the available payout method and provide the correct Garna details or next steps' }}
+		>
+			<div slot="visual" class="creator-process-visual">
+				<div class="creator-details-sheet">
+					<div class="creator-details-header">
+						<span>Garna details</span>
+						<strong>USD</strong>
+					</div>
+					<div class="creator-details-grid">
+						<span>Routing</span>
+						<strong>021000021</strong>
+						<span>Account</span>
+						<strong>4461 9571</strong>
+						<span>Method</span>
+						<strong>SWIFT</strong>
+					</div>
+				</div>
+			</div>
+		</Card>
+		<Card
+			class="p-5 lg:col-span-2"
+			visualClass="mb-6"
+			eyebrow={{ text: '04' }}
+			title={{ text: 'Request payout on the platform' }}
+			description={{ text: 'Add the provided details where supported and request a withdrawal from your platform' }}
+		>
+			<div slot="visual" class="creator-process-visual">
+				<div class="creator-withdraw-panel">
+					<div class="creator-withdraw-header">
+						<span>Envato withdrawal</span>
+						<strong>$2,840</strong>
+					</div>
+					<div class="creator-withdraw-select">
+						<span>Destination</span>
+						<strong>Garna USD</strong>
+					</div>
+					<div class="creator-withdraw-note">
+						<span>Request</span>
+						<strong>Prepared</strong>
+					</div>
+				</div>
+			</div>
+		</Card>
+		<Card
+			class="p-5 lg:col-span-2"
+			visualClass="mb-6"
+			eyebrow={{ text: '05' }}
+			title={{ text: 'Create an invoice in Garna' }}
+			description={{ text: 'Create an invoice and attach the required confirmation, such as a payout screenshot or platform document' }}
+		>
+			<div slot="visual" class="creator-process-visual">
+				<div class="creator-invoice-doc">
+					<div class="creator-doc-corner">PDF</div>
+					<div class="creator-doc-title">Invoice #2048</div>
+					<div class="creator-doc-lines">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+					<div class="creator-doc-attach">Payout proof attached</div>
+				</div>
+			</div>
+		</Card>
+		<Card
+			class="p-5 lg:col-span-2"
+			visualClass="mb-6"
+			eyebrow={{ text: '06' }}
+			title={{ text: 'Receive and withdraw funds' }}
+			description={{ text: 'Garna matches the payment with your invoice, credits your balance, and you withdraw using your preferred available method' }}
+		>
+			<div slot="visual" class="creator-process-visual">
+				<div class="creator-balance-card">
+					<div class="creator-balance-top">
+						<span>Garna balance</span>
+						<em>Credited</em>
+					</div>
+					<strong>$2,840.00</strong>
+					<div class="creator-balance-bar"></div>
+					<div class="creator-balance-methods">
+						<span>Bank</span>
+						<span>Card</span>
+						<span>Crypto</span>
+					</div>
+				</div>
+			</div>
+		</Card>
+		<p class="creator-process-note md:col-span-2 lg:col-span-6">
+			Platform processing time usually depends on the platform itself. In many cases, incoming funds may take 1-5 business days
+		</p>
+	</Section>
+	<Section
+		title={{ text: 'Reduced fee for Early Access creators' }}
+		description={{ text: "We're opening creator payouts in Early Access and manually helping selected users configure their first platform setups" }}
+		headerClass="mb-10 max-w-4xl"
+		titleClass="mx-auto max-w-4xl lg:text-5xl"
+		descriptionClass="mx-auto max-w-3xl"
+		contentClass="creator-fee-layout"
+		action={{
+			label: { text: 'Contact Payout Manager' },
+			href: 'https://t.me/likelyiam',
+			variant: 'primary',
+			icon: 'arrow-up-right',
+			effect: 'none',
+		}}
+		actionClass="mt-8"
+	>
+		<Card
+			class="creator-fee-card p-6 md:p-8"
+		>
+			<div class="creator-fee-comparison">
+				<div class="creator-fee-row muted">
+					<span>Standard fee</span>
+					<strong>5.5%</strong>
+				</div>
+				<div class="creator-fee-row accent">
+					<span>Early Access fee</span>
+					<strong>1.5%</strong>
+				</div>
+			</div>
+			<p class="creator-fee-caption">
+				Early Access creators can receive a reduced 1.5% Garna service fee for their first payouts while we help validate and fine-tune the setup flow
+			</p>
+			<p class="creator-fee-disclaimer">
+				The percentages above refer only to Garna's service fee. Platform withdrawal fees, payment method charges, FX costs or other third-party fees may vary and are not included
+			</p>
+		</Card>
+	</Section>
+	<Section
+		title={{ text: 'Popular platforms we can help with' }}
+		description={{ text: "We're starting with popular creator platforms, stock marketplaces and digital product services. Some platforms can be configured directly, while others may require manual guidance from Garna or the platform's own support team" }}
+		headerClass="mb-14 max-w-4xl"
+		titleClass="mx-auto max-w-4xl lg:text-5xl"
+		contentClass="creator-platforms-block"
+	>
+		<div class="creator-platform-showcase" aria-label="Popular platforms">
+			<article class="creator-platform-logo-card" data-card-glow="true" data-interactive="true">
+				<img src="https://www.google.com/s2/favicons?domain=shutterstock.com&sz=128" alt="Shutterstock logo" loading="lazy" />
+				<strong>Shutterstock</strong>
+			</article>
+			<article class="creator-platform-logo-card" data-card-glow="true" data-interactive="true">
+				<img src="/images/adobe-stock-logo.png" alt="Adobe Stock logo" loading="lazy" />
+				<strong>Adobe Stock</strong>
+			</article>
+			<article class="creator-platform-logo-card" data-card-glow="true" data-interactive="true">
+				<img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="Canva logo" loading="lazy" />
+				<strong>Canva</strong>
+			</article>
+			<article class="creator-platform-logo-card" data-card-glow="true" data-interactive="true">
+				<img src="https://www.google.com/s2/favicons?domain=envato.com&sz=128" alt="Envato logo" loading="lazy" />
+				<strong>Envato</strong>
+			</article>
+			<article class="creator-platform-logo-card" data-card-glow="true" data-interactive="true">
+				<img src="https://www.google.com/s2/favicons?domain=gumroad.com&sz=128" alt="Gumroad logo" loading="lazy" />
+				<strong>Gumroad</strong>
+			</article>
+			<article class="creator-platform-logo-card" data-card-glow="true" data-interactive="true">
+				<img src="https://www.google.com/s2/favicons?domain=patreon.com&sz=128" alt="Patreon logo" loading="lazy" />
+				<strong>Patreon</strong>
+			</article>
+			<article class="creator-platform-logo-card" data-card-glow="true" data-interactive="true">
+				<img src="https://www.google.com/s2/favicons?domain=freepik.com&sz=128" alt="Freepik logo" loading="lazy" />
+				<strong>Freepik</strong>
+			</article>
+			<article class="creator-platform-logo-card" data-card-glow="true" data-interactive="true">
+				<img src="https://www.google.com/s2/favicons?domain=creativemarket.com&sz=128" alt="Creative Market logo" loading="lazy" />
+				<strong>Creative Market</strong>
+			</article>
+			<article class="creator-platform-logo-card" data-card-glow="true" data-interactive="true">
+				<img src="https://www.google.com/s2/favicons?domain=redbubble.com&sz=128" alt="Redbubble logo" loading="lazy" />
+				<strong>Redbubble</strong>
+			</article>
+			<article class="creator-platform-logo-card" data-card-glow="true" data-interactive="true">
+				<img src="/images/fiverr-logo.png" alt="Fiverr logo" loading="lazy" />
+				<strong>Fiverr</strong>
+			</article>
+		</div>
+		<div class="creator-platform-more">
+			<h3>More payout sources</h3>
+			<p>We can also review additional platforms and payout methods during Early Access. The exact setup depends on each platform's rules and available payout options</p>
+		</div>
+		<div class="creator-platform-ticker" aria-hidden="true">
+			<div class="creator-platform-track">
+				<span>Shutterstock</span>
+				<span>Adobe Stock</span>
+				<span>Freepik</span>
+				<span>Canva</span>
+				<span>Envato</span>
+				<span>Creative Market</span>
+				<span>Gumroad</span>
+				<span>Redbubble</span>
+				<span>Patreon</span>
+				<span>Fiverr</span>
+				<span>Upwork</span>
+				<span>iStock / Getty Images</span>
+				<span>ArtStation</span>
+				<span>Buy Me a Coffee</span>
+				<span>Creative Fabrica</span>
+				<span>Blender Market</span>
+				<span>Unity Asset Store</span>
+				<span>Unreal Marketplace</span>
+				<span>SoundCloud</span>
+				<span>Pixiv / FANBOX</span>
+				<span>Shutterstock</span>
+				<span>Adobe Stock</span>
+				<span>Freepik</span>
+				<span>Canva</span>
+				<span>Envato</span>
+				<span>Creative Market</span>
+				<span>Gumroad</span>
+				<span>Redbubble</span>
+				<span>Patreon</span>
+				<span>Fiverr</span>
+				<span>Upwork</span>
+				<span>iStock / Getty Images</span>
+				<span>ArtStation</span>
+				<span>Buy Me a Coffee</span>
+				<span>Creative Fabrica</span>
+				<span>Blender Market</span>
+				<span>Unity Asset Store</span>
+				<span>Unreal Marketplace</span>
+				<span>SoundCloud</span>
+				<span>Pixiv / FANBOX</span>
+			</div>
+		</div>
+	</Section>
+	<Section
+		title={{ text: 'Global payout infrastructure for modern teams and creators' }}
+		description={{ text: 'Garna already helps businesses and contractors work with international payouts. Now we are bringing the same payout infrastructure to creators who earn from global platforms' }}
+		headerClass="mb-14 max-w-4xl"
+		titleClass="mx-auto max-w-4xl lg:text-5xl"
+		descriptionClass="mx-auto max-w-3xl"
+		contentClass="creator-why-layout"
+	>
+		<Card class="creator-why-board p-5 md:p-6">
+			<div class="creator-why-primary">
+				<strong class="counter-anim" data-target="150" data-prefix="" data-suffix="+" data-decimals="0">150+</strong>
+				<div>
+					<h3>Global coverage</h3>
+					<p>Receive and withdraw funds across multiple countries, currencies and payout methods</p>
+				</div>
+			</div>
+			<div class="creator-why-metrics">
+				<div class="creator-why-metric">
+					<strong>80+</strong>
+					<h3>Currencies</h3>
+					<p>Work with multiple currencies and available payout directions through Garna</p>
+				</div>
+				<div class="creator-why-metric">
+					<strong>24/7</strong>
+					<h3>Guided onboarding</h3>
+					<p>A payout manager will help you understand what to do and which details to use</p>
+				</div>
+				<div class="creator-why-metric creator-why-metric-wide">
+					<strong>1-2 days</strong>
+					<h3>Compliance-first approach</h3>
+					<p>Garna works with verification, invoices and payment documentation to keep the process structured</p>
+				</div>
+			</div>
+		</Card>
+	</Section>
+	<Section
+		title={{ text: 'Need help with your first setup?' }}
+		description={{ text: 'Your payout manager will help you understand whether your platform is supported, which payout method is available, and what steps you need to complete' }}
+		layout="split"
+		align="left"
+		headerClass="creator-manager-copy mb-0"
+		titleClass="lg:text-5xl"
+		contentClass="creator-manager-layout"
+		actionClass="creator-manager-actions"
+	>
+		<div slot="action" class="creator-manager-buttons">
+			<Button
+				href="https://t.me/likelyiam"
+				icon="arrow-up-right"
+				size="hero"
+				trackingCta="for_creators_manager_telegram"
+			>
+				Message on Telegram
+			</Button>
+			<Button
+				href="mailto:rbl@garna.io"
+				variant="secondary"
+				effect="none"
+				icon="none"
+				size="hero"
+				trackingCta="for_creators_manager_email"
+			>
+				Send an email
+			</Button>
+		</div>
+		<Card class="creator-manager-card p-6 md:p-8">
+			<div class="creator-manager-topline" aria-hidden="true"></div>
+			<div class="creator-manager-panel">
+				<div class="creator-manager-chat-window">
+					<div class="creator-manager-chat-head">
+						<img
+							src="/pages/payroll-solution-new/assets/08-photo-1534528741775-53994a69daeb.jpg"
+							alt="Ava Martins"
+							loading="lazy"
+							decoding="async"
+						/>
+						<div>
+							<strong>Ava Martins</strong>
+							<p>Payout manager online</p>
+						</div>
+					</div>
+					<div class="creator-manager-messages">
+						<p>I receive income from Envato and Adobe Stock 👋</p>
+						<p>Hi Alex, send your platform and payout country. I will check which Garna details you can use</p>
+						<p>Great, I also need help with the first withdrawal</p>
+						<p>All set. Platform rules checked, payout route prepared, invoice matching included ✅</p>
+					</div>
+					<div class="creator-manager-result">
+						<span>Setup status</span>
+						<strong>Ready for first payout</strong>
+					</div>
+				</div>
+				<div class="creator-manager-route" aria-hidden="true">
+					<div>
+						<span>PM</span>
+						<div>
+							<strong>Personal manager</strong>
+							<p>Online during setup</p>
+						</div>
+						<small>Telegram / Email</small>
+					</div>
+				</div>
+				<div class="creator-manager-dialog">
+					<div class="creator-manager-dialog-head">
+						<span>Manager online</span>
+						<strong>2 min</strong>
+					</div>
+					<p>I need help with my first platform payout</p>
+					<p>Send your platform and country. I will check the setup steps for you</p>
+				</div>
+				<div class="creator-manager-steps">
+					<div><span>01</span><strong>Platform check</strong></div>
+					<div><span>02</span><strong>Setup guidance</strong></div>
+					<div><span>03</span><strong>First withdrawal</strong></div>
+				</div>
+				<div class="creator-manager-panel-header">
+					<div>
+						<span>Personal manager</span>
+						<strong>First payout setup</strong>
+					</div>
+					<b>Online</b>
+				</div>
+				<div class="creator-manager-chat">
+					<p>I receive income from Envato and Adobe Stock</p>
+					<p>We’ll check platform rules and send the available payout route</p>
+				</div>
+				<div class="creator-manager-checklist">
+					<div>
+						<span>01</span>
+						<strong>Platform check</strong>
+					</div>
+					<div>
+						<span>02</span>
+						<strong>Payout method</strong>
+					</div>
+					<div>
+						<span>03</span>
+						<strong>First withdrawal</strong>
+					</div>
+				</div>
+			</div>
+		</Card>
+	</Section>
+	<FAQSection
+		title={{ text: 'Questions creators usually ask' }}
+		subtitle={{ text: 'A few important details before you start your first payout setup with Garna' }}
+		items={forCreatorsFaqItems}
+		class="pt-16 pr-6 pb-16 pl-6 lg:pt-32 lg:pb-32"
+		containerClass="max-w-3xl mr-auto ml-auto"
+	/>
+	<Section
+		title={{ text: 'Start receiving creator payouts with Garna' }}
+		description={{ text: "Contact your payout manager to check your platform and get guided setup, or create your Garna account when you're ready to continue" }}
+		class="overflow-hidden border-white/0 border-t"
+		headerClass="mb-0 max-w-4xl"
+		titleClass="mx-auto max-w-4xl lg:text-6xl"
+		descriptionClass="mx-auto max-w-2xl"
+		contentClass="creator-final-actions mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+	>
+		<Button href="https://t.me/likelyiam" variant="primary" size="hero" icon="arrow-up-right">
+			Contact Payout Manager
+		</Button>
+		<Button href="https://app.garna.io/auth/sign-up" variant="secondary" size="hero">
+			Create Garna Account
+		</Button>
+	</Section>
+	<script is:inline>
+		document.addEventListener('click', (event) => {
+			const link = event.target instanceof Element ? event.target.closest('a') : null;
+			if (!link || link.getAttribute('href') !== '#') return;
+			if (!link.textContent || !link.textContent.toLowerCase().includes('book a demo')) return;
+
+			event.preventDefault();
+			if (window.GarnaWidget) {
+				window.GarnaWidget.open({ trackingCta: 'for_creators_demo' });
+			}
+		});
+	</script>
+	<Fragment slot="widgets">
+		<PayrollSolutionInteractions />
+		<GarnaBookingWidget
+			trackingSource="for-creators"
+			trackingPage="for-creators"
+			titleFallback="Start your journey with Garna"
+			subtitleFallback="Fill in your details to book a demo"
+		/>
+	</Fragment>
+</BaseLayout>
+
+<style is:global>
+	.creator-hero-panel {
+		position: relative;
+		overflow: hidden;
+		box-shadow:
+			0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+			0 40px 120px -72px rgba(0, 0, 0, 0.95);
+	}
+
+	.creator-hero-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.creator-method-break {
+		display: none;
+	}
+
+	.creator-hero-actions {
+		width: max-content;
+		max-width: 100%;
+		margin-inline: auto;
+	}
+
+	.creator-hero-actions > * {
+		width: 100%;
+	}
+
+	.creator-final-actions {
+		width: max-content;
+		max-width: 100%;
+		margin-inline: auto;
+	}
+
+	.creator-final-actions > * {
+		width: 100%;
+		justify-content: center;
+	}
+
+	@media (min-width: 640px) {
+		.creator-method-break {
+			display: block;
+		}
+
+		.creator-hero-actions {
+			width: auto;
+		}
+
+		.creator-hero-actions > * {
+			width: auto;
+		}
+
+		.creator-final-actions {
+			width: auto;
+		}
+
+		.creator-final-actions > * {
+			width: auto;
+		}
+	}
+
+	.creator-step-number {
+		display: inline-flex;
+		width: 46px;
+		height: 46px;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(203, 243, 0, 0.22);
+		border-radius: 14px;
+		background: rgba(203, 243, 0, 0.08);
+		color: #CBF300;
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+	}
+
+	.creator-step-copy h3 {
+		margin: 0;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 20px;
+		font-weight: 500;
+		line-height: 1.2;
+		letter-spacing: -0.01em;
+	}
+
+	.creator-step-copy p {
+		margin: 10px 0 0;
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		line-height: 1.55;
+	}
+
+	.creator-fee-card {
+		max-width: 860px;
+		margin-inline: auto;
+	}
+
+	.creator-fee-layout {
+		margin-top: 44px;
+	}
+
+	.creator-fee-comparison {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 12px;
+		margin-top: 0;
+	}
+
+	.creator-fee-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 18px;
+		border: 1px solid rgba(255, 255, 255, 0.07);
+		border-radius: 16px;
+		background: rgba(255, 255, 255, 0.035);
+		padding: 16px 18px;
+	}
+
+	.creator-fee-row span {
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+	}
+
+	.creator-fee-row strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(2.75rem, 8vw, 5rem);
+		font-weight: 500;
+		line-height: 0.95;
+		letter-spacing: -0.05em;
+	}
+
+	.creator-fee-row.muted strong {
+		color: rgba(255, 255, 255, 0.36);
+		text-decoration: line-through;
+		text-decoration-color: rgba(203, 243, 0, 0.5);
+		text-decoration-thickness: 2px;
+	}
+
+	.creator-fee-row.accent {
+		border-color: rgba(203, 243, 0, 0.2);
+		background:
+			linear-gradient(135deg, rgba(203, 243, 0, 0.14), rgba(203, 243, 0, 0.02)),
+			rgba(255, 255, 255, 0.035);
+	}
+
+	.creator-fee-row.accent span,
+	.creator-fee-row.accent strong {
+		color: #CBF300;
+	}
+
+	.creator-fee-caption {
+		margin: 24px auto 0;
+		max-width: 680px;
+		color: #d4d4d8;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		line-height: 1.55;
+		text-align: center;
+	}
+
+	.creator-fee-disclaimer {
+		margin: 14px auto 0;
+		max-width: 680px;
+		color: #71717a;
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		line-height: 1.55;
+		text-align: center;
+	}
+
+	.creator-platforms-block {
+		display: grid;
+		gap: 28px;
+	}
+
+	.creator-platform-showcase {
+		position: relative;
+		display: grid;
+		width: 100%;
+		max-width: min(1088px, 100%);
+		justify-self: center;
+		margin-inline: auto;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 12px;
+	}
+
+	.creator-platform-logo-card {
+		--garna-card-glow-x: 50%;
+		--garna-card-glow-y: 50%;
+		--garna-card-glow-radius: 60vw;
+		--garna-card-border-glow-radius: 14rem;
+		position: relative;
+		isolation: isolate;
+		display: flex;
+		min-height: 118px;
+		flex-direction: column;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		border-radius: 16px;
+		background: rgba(255, 255, 255, 0.025);
+		padding: 16px;
+		text-align: center;
+		transition:
+			border-color 240ms ease,
+			transform 240ms ease;
+	}
+
+	.creator-platform-logo-card::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		border-radius: inherit;
+		background: radial-gradient(
+			circle var(--garna-card-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+			rgba(255, 255, 255, 0.12) 0%,
+			rgba(255, 255, 255, 0.075) 18%,
+			rgba(255, 255, 255, 0.035) 40%,
+			transparent 70%
+		);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 300ms ease;
+	}
+
+	.creator-platform-logo-card > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+		.creator-platform-logo-card::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			z-index: 2;
+			padding: 1px;
+			border-radius: inherit;
+			background: radial-gradient(
+				circle var(--garna-card-border-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+				rgba(255, 255, 255, 0.9) 0%,
+				rgba(255, 255, 255, 0.52) 24%,
+				rgba(255, 255, 255, 0.2) 50%,
+				transparent 76%
+			);
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 300ms ease;
+			-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+			-webkit-mask-composite: xor;
+			mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+			mask-composite: exclude;
+		}
+	}
+
+	.creator-platform-logo-card[data-interactive='true']:is(:hover, :focus-within) {
+		border-color: rgba(255, 255, 255, 0.15);
+		transform: translateY(-0.25rem);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.creator-platform-logo-card[data-card-glow='true']:is(:hover, :focus-within)::before {
+			opacity: 1;
+		}
+
+		@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+			.creator-platform-logo-card[data-card-glow='true']:is(:hover, :focus-within)::after {
+				opacity: 1;
+			}
+		}
+	}
+
+	.creator-platform-logo-card img {
+		width: 48px;
+		height: 48px;
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.92);
+		padding: 7px;
+	}
+
+	.creator-platform-logo-card img.creator-platform-logo-wordmark {
+		width: min(100%, 132px);
+		height: 48px;
+		object-fit: contain;
+		padding: 9px 12px;
+	}
+
+	.creator-platform-logo-card strong {
+		display: block;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	.creator-platform-more {
+		display: grid;
+		max-width: 780px;
+		gap: 10px;
+		margin: 10px auto 0;
+		text-align: center;
+	}
+
+	.creator-platform-more h3 {
+		margin: 0;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 24px;
+		font-weight: 500;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+	}
+
+	.creator-platform-more p {
+		margin: 0;
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: 16px;
+		line-height: 1.55;
+	}
+
+	.creator-platform-ticker {
+		position: relative;
+		overflow: hidden;
+		margin-top: 10px;
+		width: 100vw;
+		margin-inline: calc(50% - 50vw);
+		padding-block: 8px;
+		-webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+		mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+	}
+
+	.creator-platform-track {
+		display: flex;
+		width: max-content;
+		gap: 8px;
+		animation: creator-platform-scroll 44s linear infinite;
+	}
+
+	.creator-platform-track span {
+		display: inline-flex;
+		min-width: 148px;
+		min-height: 36px;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+		padding: 0 18px;
+		border: 1px solid rgba(203, 243, 0, 0.16);
+		border-radius: 999px;
+		background:
+			linear-gradient(135deg, rgba(203, 243, 0, 0.09), rgba(203, 243, 0, 0.025)),
+			rgba(255, 255, 255, 0.025);
+		color: #e9ff9c;
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		box-shadow: inset 0 1px 0 rgba(203, 243, 0, 0.08);
+	}
+
+	.creator-why-layout {
+		display: grid;
+	}
+
+	.creator-why-board {
+		position: relative;
+		overflow: hidden;
+		background:
+			radial-gradient(circle at 12% 18%, rgba(203, 243, 0, 0.1), transparent 28%),
+			rgba(255, 255, 255, 0.02);
+	}
+
+	.creator-why-primary {
+		display: grid;
+		gap: 18px;
+		align-items: end;
+		padding-bottom: 22px;
+	}
+
+	.creator-why-primary strong {
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(4.5rem, 12vw, 7.5rem);
+		font-weight: 500;
+		line-height: 0.84;
+		letter-spacing: -0.07em;
+	}
+
+	.creator-why-primary h3,
+	.creator-why-metric h3 {
+		margin: 0;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-weight: 500;
+		letter-spacing: -0.02em;
+	}
+
+	.creator-why-primary h3 {
+		font-size: clamp(1.8rem, 4vw, 3rem);
+		line-height: 1.05;
+	}
+
+	.creator-why-primary p,
+	.creator-why-metric p {
+		margin: 10px 0 0;
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		line-height: 1.5;
+	}
+
+	.creator-why-metrics {
+		display: grid;
+		gap: 12px;
+		padding-top: 12px;
+	}
+
+	.creator-why-metric {
+		position: relative;
+		min-height: 142px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 18px;
+		background: rgba(0, 0, 0, 0.18);
+		overflow: hidden;
+		padding: 18px;
+	}
+
+	.creator-why-metric strong {
+		display: block;
+		margin-bottom: 22px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(2rem, 5vw, 3.25rem);
+		font-weight: 500;
+		line-height: 1;
+		letter-spacing: -0.05em;
+	}
+
+	.creator-manager-actions {
+		margin-top: 34px;
+	}
+
+	.creator-manager-buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	@media (max-width: 540px) {
+		.creator-manager-buttons {
+			width: max-content;
+			max-width: 100%;
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.creator-manager-buttons > * {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+
+	.creator-manager-layout {
+		min-width: 0;
+	}
+
+	.creator-manager-card {
+		position: relative;
+		overflow: hidden;
+		background: rgba(255, 255, 255, 0.025);
+	}
+
+	.creator-manager-topline {
+		position: absolute;
+		z-index: 2;
+		top: 0;
+		left: 18px;
+		right: 18px;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgba(203, 243, 0, 0.24) 14%, rgba(203, 243, 0, 0.82) 50%, rgba(203, 243, 0, 0.24) 86%, transparent);
+		box-shadow: 0 0 10px rgba(203, 243, 0, 0.2);
+		pointer-events: none;
+	}
+
+	.creator-manager-panel {
+		display: grid;
+	}
+
+	.creator-manager-panel-header,
+	.creator-manager-chat,
+	.creator-manager-checklist,
+	.creator-manager-route,
+	.creator-manager-dialog,
+	.creator-manager-steps {
+		display: none !important;
+	}
+
+	.creator-manager-chat-window {
+		display: grid;
+		gap: 18px;
+	}
+
+	.creator-manager-chat-head {
+		display: grid;
+		grid-template-columns: 42px minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.creator-manager-chat-head img {
+		width: 42px;
+		height: 42px;
+		border: 1px solid rgba(203, 243, 0, 0.22);
+		border-radius: 999px;
+		object-fit: cover;
+	}
+
+	.creator-manager-chat-head strong,
+	.creator-manager-result strong {
+		display: block;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	.creator-manager-chat-head p,
+	.creator-manager-result span {
+		margin: 4px 0 0;
+		color: #71717a;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		line-height: 1.25;
+	}
+
+	.creator-manager-chat-head small {
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+	}
+
+	.creator-manager-messages {
+		display: grid;
+		gap: 10px;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		padding-block: 18px;
+	}
+
+	.creator-manager-messages p {
+		margin: 0;
+		width: fit-content;
+		max-width: min(100%, 420px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.045);
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		line-height: 1.35;
+		padding: 10px 12px;
+	}
+
+	.creator-manager-messages p:nth-child(even) {
+		justify-self: end;
+		text-align: right;
+		border-color: rgba(203, 243, 0, 0.18);
+		background: rgba(203, 243, 0, 0.08);
+		color: #e9ff9c;
+	}
+
+	.creator-manager-result {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		background: rgba(255, 255, 255, 0.035);
+		padding: 14px 16px;
+	}
+
+	.creator-manager-result span {
+		margin: 0;
+	}
+
+	.creator-manager-result strong {
+		color: #ffffff;
+		text-align: right;
+	}
+
+	.creator-manager-route {
+		display: grid;
+		gap: 12px;
+	}
+
+	.creator-manager-route > div:not(.creator-manager-arrow) {
+		display: grid;
+		grid-template-columns: 42px minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 12px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 18px;
+		background: rgba(255, 255, 255, 0.035);
+		padding: 14px;
+	}
+
+	.creator-manager-route span {
+		display: inline-flex;
+		width: 42px;
+		height: 42px;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(203, 243, 0, 0.22);
+		border-radius: 12px;
+		background: rgba(203, 243, 0, 0.1);
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+	}
+
+	.creator-manager-route > div > div {
+		min-width: 0;
+	}
+
+	.creator-manager-route strong,
+	.creator-manager-steps strong {
+		display: block;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	.creator-manager-route p {
+		margin: 4px 0 0;
+		color: #71717a;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		line-height: 1.25;
+	}
+
+	.creator-manager-route small {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(203, 243, 0, 0.16);
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.06);
+		color: #d9ff73;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+		line-height: 1;
+		padding: 8px 10px;
+		white-space: nowrap;
+	}
+
+	.creator-manager-arrow {
+		display: none;
+		width: 44px;
+		height: 44px;
+		align-items: center;
+		justify-content: center;
+		border-radius: 999px;
+		background: #CBF300;
+		color: #101010;
+		font-family: Manrope, sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		box-shadow: 0 0 28px rgba(203, 243, 0, 0.34);
+	}
+
+	.creator-manager-dialog {
+		display: grid;
+		gap: 10px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 20px;
+		background: rgba(0, 0, 0, 0.24);
+		padding: 14px;
+	}
+
+	.creator-manager-dialog-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+	}
+
+	.creator-manager-dialog-head span,
+	.creator-manager-steps span {
+		color: #9ca3af;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		line-height: 1.35;
+	}
+
+	.creator-manager-dialog-head strong {
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+	}
+
+	.creator-manager-dialog p {
+		margin: 0;
+		width: fit-content;
+		max-width: min(100%, 420px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.045);
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		line-height: 1.35;
+		padding: 10px 12px;
+	}
+
+	.creator-manager-dialog p:last-child {
+		justify-self: end;
+		border-color: rgba(203, 243, 0, 0.18);
+		background: rgba(203, 243, 0, 0.08);
+		color: #e9ff9c;
+	}
+
+	.creator-manager-steps {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 10px;
+	}
+
+	.creator-manager-steps div {
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		background: rgba(255, 255, 255, 0.03);
+		padding: 12px;
+	}
+
+	.creator-manager-steps span {
+		display: block;
+		margin-bottom: 10px;
+		color: #CBF300;
+		font-size: 11px;
+		font-weight: 700;
+	}
+
+	@media (max-width: 640px) {
+		.creator-manager-route > div:not(.creator-manager-arrow) {
+			grid-template-columns: 42px minmax(0, 1fr);
+		}
+
+		.creator-manager-route small {
+			grid-column: 2;
+			width: fit-content;
+		}
+
+		.creator-manager-steps {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.creator-manager-panel-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 20px;
+		padding-bottom: 20px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.creator-manager-panel-header span,
+	.creator-manager-chat p:first-child,
+	.creator-manager-checklist span {
+		color: #9ca3af;
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		line-height: 1.35;
+	}
+
+	.creator-manager-panel-header strong {
+		display: block;
+		margin-top: 8px;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1.5rem, 4vw, 2.25rem);
+		font-weight: 500;
+		line-height: 1.05;
+		letter-spacing: -0.03em;
+	}
+
+	.creator-manager-panel-header b {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+	}
+
+	.creator-manager-panel-header b::before {
+		content: '';
+		width: 7px;
+		height: 7px;
+		border-radius: 999px;
+		background: #CBF300;
+		box-shadow: 0 0 16px rgba(203, 243, 0, 0.55);
+	}
+
+	.creator-manager-chat {
+		display: grid;
+		gap: 10px;
+	}
+
+	.creator-manager-chat p {
+		margin: 0;
+		width: fit-content;
+		max-width: min(100%, 420px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 18px;
+		background: rgba(255, 255, 255, 0.045);
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		line-height: 1.45;
+		padding: 13px 16px;
+	}
+
+	.creator-manager-chat p:last-child {
+		justify-self: end;
+		border-color: rgba(203, 243, 0, 0.18);
+		background: rgba(203, 243, 0, 0.08);
+		color: #e9ff9c;
+	}
+
+	.creator-manager-checklist {
+		display: grid;
+		gap: 10px;
+	}
+
+	.creator-manager-checklist div {
+		display: grid;
+		grid-template-columns: 42px minmax(0, 1fr);
+		align-items: center;
+		gap: 14px;
+		min-height: 58px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		background: rgba(0, 0, 0, 0.18);
+		padding: 10px 12px;
+	}
+
+	.creator-manager-checklist span {
+		display: inline-flex;
+		width: 42px;
+		height: 38px;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(203, 243, 0, 0.18);
+		border-radius: 12px;
+		background: rgba(203, 243, 0, 0.08);
+		color: #CBF300;
+		font-size: 12px;
+		font-weight: 700;
+	}
+
+	.creator-manager-checklist strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 1.3;
+	}
+
+	@keyframes creator-platform-scroll {
+		from {
+			transform: translateX(0);
+		}
+
+		to {
+			transform: translateX(calc(-50% - 6px));
+		}
+	}
+
+	.creator-process-note {
+		margin: 20px auto 0;
+		max-width: 820px;
+		padding: 0 22px;
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		line-height: 1.55;
+		text-align: center;
+	}
+
+	.creator-process-visual {
+		display: flex;
+		height: 156px;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		border-radius: 0;
+		background: transparent;
+		padding: 18px;
+	}
+
+	.creator-mini-window,
+	.creator-balance-card {
+		width: min(100%, 240px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 16px;
+		background: rgba(5, 5, 5, 0.72);
+		padding: 16px;
+	}
+
+	.creator-mini-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		margin-bottom: 10px;
+	}
+
+	.creator-mini-row span,
+	.creator-balance-card span {
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+	}
+
+	.creator-mini-row strong,
+	.creator-balance-card strong {
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+	}
+
+	.creator-mini-skeleton {
+		height: 7px;
+		margin-top: 7px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.16);
+	}
+
+	.creator-upload-pill {
+		border-radius: 10px;
+		background: #CBF300;
+		padding: 7px 10px;
+		color: #101010;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		text-align: center;
+	}
+
+	.creator-detail-tags,
+	.creator-balance-methods {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin-top: 12px;
+	}
+
+	.creator-detail-tags span,
+	.creator-balance-methods span {
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.045);
+		padding: 4px 7px;
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: 10px;
+		font-weight: 600;
+		line-height: 1;
+	}
+
+	.creator-detail-tags span:first-child,
+	.creator-balance-methods span:last-child {
+		border-color: rgba(203, 243, 0, 0.2);
+		background: rgba(203, 243, 0, 0.08);
+		color: #CBF300;
+	}
+
+	.creator-chat-card,
+	.creator-details-sheet,
+	.creator-withdraw-panel,
+	.creator-invoice-doc {
+		width: min(100%, 248px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 16px;
+		background: rgba(5, 5, 5, 0.72);
+		padding: 14px;
+	}
+
+	.creator-chat-card {
+		display: grid;
+		gap: 9px;
+		width: min(100%, 224px);
+		padding: 12px;
+	}
+
+	.creator-mini-verification {
+		display: grid;
+		gap: 6px;
+		margin-top: 10px;
+	}
+
+	.creator-mini-verification span {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		color: #d4d4d8;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+	}
+
+	.creator-mini-verification i {
+		width: 9px;
+		height: 9px;
+		border-radius: 999px;
+		background: #CBF300;
+	}
+
+	.creator-chat-bubble {
+		max-width: 86%;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 14px;
+		padding: 8px 10px;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		line-height: 1.3;
+	}
+
+	.creator-chat-bubble.user {
+		background: rgba(255, 255, 255, 0.05);
+		color: #ffffff;
+	}
+
+	.creator-chat-bubble.manager {
+		justify-self: end;
+		border-color: rgba(203, 243, 0, 0.18);
+		background: rgba(203, 243, 0, 0.08);
+		color: #d8ff56;
+	}
+
+	.creator-chat-meta,
+	.creator-details-header,
+	.creator-withdraw-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+	}
+
+	.creator-chat-meta span,
+	.creator-details-header span,
+	.creator-withdraw-header span,
+	.creator-withdraw-select span {
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+	}
+
+	.creator-chat-meta strong,
+	.creator-details-header strong,
+	.creator-withdraw-header strong,
+	.creator-withdraw-select strong {
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+	}
+
+	.creator-details-grid {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: 9px 12px;
+		margin-top: 14px;
+	}
+
+	.creator-details-grid span {
+		color: #71717a;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+	}
+
+	.creator-details-grid strong {
+		overflow: hidden;
+		color: #ffffff;
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 11px;
+		font-weight: 600;
+		text-align: right;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-withdraw-panel {
+		display: grid;
+		gap: 12px;
+		width: min(100%, 224px);
+	}
+
+	.creator-withdraw-select {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.045);
+		padding: 10px;
+	}
+
+	.creator-withdraw-header span,
+	.creator-withdraw-header strong,
+	.creator-withdraw-select span,
+	.creator-withdraw-select strong,
+	.creator-withdraw-note span,
+	.creator-withdraw-note strong {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-withdraw-note {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+		border: 1px solid rgba(203, 243, 0, 0.14);
+		border-radius: 12px;
+		background: rgba(203, 243, 0, 0.07);
+		padding: 9px 10px;
+	}
+
+	.creator-withdraw-note span {
+		color: #d4d4d8;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+	}
+
+	.creator-withdraw-note strong {
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+	}
+
+	.creator-invoice-doc {
+		position: relative;
+		min-height: 124px;
+		padding: 18px;
+	}
+
+	.creator-doc-corner {
+		position: absolute;
+		top: 14px;
+		right: 14px;
+		border-radius: 8px;
+		background: rgba(203, 243, 0, 0.1);
+		padding: 5px 7px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 10px;
+		font-weight: 800;
+	}
+
+	.creator-doc-title {
+		margin-bottom: 14px;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		font-weight: 700;
+	}
+
+	.creator-doc-lines {
+		display: grid;
+		gap: 7px;
+	}
+
+	.creator-doc-lines span {
+		height: 7px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.14);
+	}
+
+	.creator-doc-lines span:nth-child(1) { width: 78%; }
+	.creator-doc-lines span:nth-child(2) { width: 58%; }
+	.creator-doc-lines span:nth-child(3) { width: 70%; }
+
+	.creator-doc-attach {
+		margin-top: 14px;
+		border-radius: 10px;
+		background: rgba(203, 243, 0, 0.1);
+		padding: 8px 10px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+	}
+
+	.creator-mini-code {
+		margin-top: 16px;
+		border-radius: 10px;
+		background: rgba(203, 243, 0, 0.08);
+		padding: 9px 10px;
+		color: #CBF300;
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 11px;
+	}
+
+	.creator-upload-pill {
+		margin-top: 16px;
+		background: rgba(203, 243, 0, 0.12);
+		color: #CBF300;
+		text-align: left;
+	}
+
+	.creator-balance-card strong {
+		display: block;
+		margin-top: 10px;
+		color: #ffffff;
+		font-size: 28px;
+		letter-spacing: -0.03em;
+	}
+
+	.creator-balance-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+	}
+
+	.creator-balance-top em {
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.12);
+		padding: 4px 7px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 10px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	.creator-balance-bar {
+		height: 8px;
+		margin-top: 14px;
+		overflow: hidden;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	.creator-balance-bar::before {
+		content: '';
+		display: block;
+		width: 76%;
+		height: 100%;
+		border-radius: inherit;
+		background: #CBF300;
+	}
+
+	.creator-platform-row {
+		position: relative;
+		display: grid;
+		grid-template-columns: 40px minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 12px;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 16px;
+		background: rgba(255, 255, 255, 0.035);
+		padding: 10px 12px;
+		overflow: hidden;
+		animation: creator-platform-focus 9s ease-in-out infinite;
+	}
+
+	.creator-platform-row:nth-child(2) {
+		animation-delay: 1.8s;
+	}
+
+	.creator-platform-row:nth-child(3) {
+		animation-delay: 3.6s;
+	}
+
+	.creator-platform-row:nth-child(4) {
+		animation-delay: 5.4s;
+	}
+
+	.creator-platform-row:nth-child(5) {
+		animation-delay: 7.2s;
+	}
+
+	.creator-platform-row::before,
+	.creator-withdraw-row::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background: linear-gradient(90deg, rgba(203, 243, 0, 0.12), transparent 68%);
+		opacity: 0;
+		pointer-events: none;
+		animation: creator-platform-glow 9s ease-in-out infinite;
+	}
+
+	.creator-platform-row:nth-child(2)::before {
+		animation-delay: 1.8s;
+	}
+
+	.creator-platform-row:nth-child(3)::before {
+		animation-delay: 3.6s;
+	}
+
+	.creator-platform-row:nth-child(4)::before {
+		animation-delay: 5.4s;
+	}
+
+	.creator-platform-row:nth-child(5)::before {
+		animation-delay: 7.2s;
+	}
+
+	.creator-platform-row > *,
+	.creator-withdraw-row > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	.creator-platform-row > div {
+		min-width: 0;
+	}
+
+	.creator-platform-row strong,
+	.creator-withdraw-row strong,
+	.creator-status-tile strong {
+		display: block;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	.creator-platform-row strong,
+	.creator-platform-row p {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-platform-row p,
+	.creator-status-tile p {
+		margin: 4px 0 0;
+		color: #71717a;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		line-height: 1.25;
+	}
+
+	.creator-platform-row > span:last-child {
+		color: #d4d4d8;
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	@media (min-width: 640px) and (max-width: 1180px) {
+		.creator-hero-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			align-items: stretch;
+			width: 100%;
+		}
+
+		.creator-payout-card {
+			order: -1;
+			grid-column: 1 / -1;
+		}
+
+		.creator-visual-column {
+			width: 100%;
+			min-width: 0;
+		}
+	}
+
+	.creator-platform-mark {
+		display: inline-flex;
+		width: 38px;
+		height: 38px;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(203, 243, 0, 0.24);
+		border-radius: 12px;
+		background: rgba(203, 243, 0, 0.1);
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+	}
+
+	.creator-progress {
+		position: relative;
+		width: 78%;
+		overflow: hidden;
+		box-shadow: 0 0 22px rgba(203, 243, 0, 0.64);
+		animation: creator-progress-pulse 2.4s ease-in-out infinite, creator-progress-fill 9s ease-in-out infinite;
+	}
+
+	.creator-progress::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: -35%;
+		width: 32%;
+		border-radius: inherit;
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.82), transparent);
+		filter: blur(0.5px);
+		animation: creator-progress-sweep 1.65s ease-in-out infinite;
+	}
+
+	.creator-status-tile {
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 16px;
+		background: rgba(255, 255, 255, 0.035);
+		padding: 14px;
+	}
+
+	.creator-status-tile span {
+		display: inline-flex;
+		margin-bottom: 12px;
+		color: #CBF300;
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 11px;
+		letter-spacing: 0.12em;
+	}
+
+	.creator-withdraw-row {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.035);
+		padding: 13px 14px;
+		overflow: hidden;
+		animation: creator-withdraw-focus 9s ease-in-out infinite;
+	}
+
+	.creator-withdraw-row:nth-child(2) {
+		animation-delay: 1.8s;
+	}
+
+	.creator-withdraw-row:nth-child(3) {
+		animation-delay: 3.6s;
+	}
+
+	.creator-withdraw-row:nth-child(4) {
+		animation-delay: 5.4s;
+	}
+
+	.creator-withdraw-row:nth-child(5) {
+		animation-delay: 7.2s;
+	}
+
+	.creator-withdraw-row::before {
+		animation-name: creator-withdraw-glow;
+		animation-duration: 9s;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: infinite;
+	}
+
+	.creator-withdraw-row:nth-child(2)::before {
+		animation-delay: 1.8s;
+	}
+
+	.creator-withdraw-row:nth-child(3)::before {
+		animation-delay: 3.6s;
+	}
+
+	.creator-withdraw-row:nth-child(4)::before {
+		animation-delay: 5.4s;
+	}
+
+	.creator-withdraw-row:nth-child(5)::before {
+		animation-delay: 7.2s;
+	}
+
+	.creator-withdraw-row span {
+		color: #71717a;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+	}
+
+	.creator-withdraw-row strong {
+		text-align: right;
+		font-size: 13px;
+	}
+
+	@keyframes creator-progress-pulse {
+		0%,
+		100% {
+			filter: brightness(1);
+			transform: scaleX(0.96);
+			transform-origin: left center;
+		}
+
+		50% {
+			filter: brightness(1.35);
+			transform: scaleX(1);
+			transform-origin: left center;
+		}
+	}
+
+	@keyframes creator-progress-sweep {
+		0% {
+			left: -35%;
+			opacity: 0;
+		}
+
+		18% {
+			opacity: 0.9;
+		}
+
+		78% {
+			opacity: 0.9;
+		}
+
+		100% {
+			left: 104%;
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-progress-fill {
+		0%,
+		100% {
+			width: 62%;
+		}
+
+		42% {
+			width: 88%;
+		}
+
+		70% {
+			width: 74%;
+		}
+	}
+
+	@keyframes creator-platform-focus {
+		0%,
+		16%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.06);
+			background: rgba(255, 255, 255, 0.035);
+			box-shadow: none;
+			transform: translateY(0);
+		}
+
+		7% {
+			border-color: rgba(203, 243, 0, 0.26);
+			background: rgba(203, 243, 0, 0.075);
+			box-shadow: 0 12px 34px -28px rgba(203, 243, 0, 0.9);
+			transform: translateY(-1px);
+		}
+	}
+
+	@keyframes creator-platform-glow {
+		0%,
+		16%,
+		100% {
+			opacity: 0;
+		}
+
+		7% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes creator-withdraw-focus {
+		0%,
+		42%,
+		62%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.06);
+			background: rgba(255, 255, 255, 0.035);
+			box-shadow: none;
+			transform: translateY(0);
+		}
+
+		52% {
+			border-color: rgba(203, 243, 0, 0.26);
+			background: rgba(203, 243, 0, 0.075);
+			box-shadow: 0 12px 34px -28px rgba(203, 243, 0, 0.9);
+			transform: translateY(-1px);
+		}
+	}
+
+	@keyframes creator-withdraw-glow {
+		0%,
+		42%,
+		62%,
+		100% {
+			opacity: 0;
+		}
+
+		52% {
+			opacity: 1;
+		}
+	}
+
+	html[lang='ru'] .payroll-solution-new-hero h1,
+	html[lang='es'] .payroll-solution-new-hero h1,
+	html[lang='pt'] .payroll-solution-new-hero h1 {
+		font-size: 2.75rem;
+		line-height: 1.08;
+	}
+
+	@media (min-width: 1181px) {
+		.creator-fee-comparison {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.creator-fee-row {
+			min-height: 154px;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.creator-fee-row strong {
+			align-self: flex-end;
+		}
+
+		.creator-platform-showcase {
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+			gap: 14px;
+		}
+
+		html[lang='ru'] .payroll-solution-new-hero h1,
+		html[lang='es'] .payroll-solution-new-hero h1,
+		html[lang='pt'] .payroll-solution-new-hero h1 {
+			font-size: 3rem;
+		}
+	}
+
+	@media (min-width: 1181px) {
+		.creator-hero-grid {
+			grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.22fr) minmax(0, 0.95fr);
+			align-items: stretch;
+			gap: 16px;
+		}
+
+		.creator-payout-card {
+			padding: 20px;
+		}
+
+		.creator-payout-card h3 {
+			font-size: 20px;
+			line-height: 1.2;
+		}
+
+		.creator-payout-card .text-4xl {
+			font-size: clamp(2.45rem, 5vw, 3rem);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.creator-why-primary {
+			grid-template-columns: minmax(210px, 0.42fr) minmax(0, 1fr);
+			min-height: 184px;
+			align-items: center;
+		}
+
+		.creator-why-metrics {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.creator-why-metric {
+			min-height: 154px;
+		}
+
+		html[lang='ru'] .payroll-solution-new-hero h1,
+		html[lang='es'] .payroll-solution-new-hero h1,
+		html[lang='pt'] .payroll-solution-new-hero h1 {
+			font-size: 3.5rem;
+			line-height: 1.06;
+		}
+
+		html[lang='ru'] .payroll-deferred-section .payroll-deferred-grid {
+			grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+		}
+
+		html[lang='ru'] .payroll-deferred-section .payroll-deferred-copy {
+			overflow-wrap: normal !important;
+			word-break: normal !important;
+		}
+
+		html[lang='ru'] .payroll-deferred-section .payroll-deferred-copy h2 {
+			line-height: 1.08;
+			max-width: 42rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.creator-hero-panel::before,
+		.creator-platform-row,
+		.creator-platform-row::before,
+		.creator-progress,
+		.creator-progress::after,
+		.creator-withdraw-row,
+		.creator-withdraw-row::before {
+			animation: none;
+		}
+	}
+</style>

@@ -8,6 +8,7 @@ import { eorTranslations } from './translations/eor';
 import { payrollSmallBusinessTranslations } from './translations/payroll-small-business';
 import { midSizeTranslations } from './translations/mid-size';
 import { payrollSolutionNewTranslations as homeTranslations } from './translations/payroll-solution-new';
+import { forCreatorsTranslations } from './translations/for-creators';
 import { blogArticleTranslations, blogAuthorTranslations, blogTranslations } from './translations/blog';
 import { enterprisePayrollTranslations } from './translations/enterprise-payroll';
 import { taxCalculatorTranslations } from './translations/tax-calculator';
@@ -26,6 +27,7 @@ type AnyPageTranslations =
 	| typeof payrollSmallBusinessTranslations.en
 	| typeof midSizeTranslations.en
 	| typeof homeTranslations.en
+	| typeof forCreatorsTranslations.en
 	| typeof enterprisePayrollTranslations.en
 	| typeof blogTranslations.en
 	| typeof blogAuthorTranslations.en
@@ -42,6 +44,7 @@ const translations = {
 	'white-label': whiteLabelTranslations,
 	eor: eorTranslations,
 	'employer-of-record': eorTranslations,
+	'for-creators': forCreatorsTranslations,
 	'mid-size': midSizeTranslations,
 	'mid-size-business-payroll': midSizeTranslations,
 	'enterprise-payroll': enterprisePayrollTranslations,

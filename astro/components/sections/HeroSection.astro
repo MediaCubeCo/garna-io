@@ -14,6 +14,7 @@ const {
 	description,
 	descriptionTranslateKey,
 	cta,
+	ctaSecondary,
 	tone = 'green',
 	align = 'center',
 } = Astro.props;
@@ -31,6 +32,19 @@ const ctaClass = cta?.class || '';
 const ctaVariant = cta?.variant || 'primary';
 const ctaEffect = cta?.effect || (cta?.kind === 'demo' ? 'rotating-flare' : 'none');
 const ctaIcon = cta?.icon || (cta?.kind === 'signup' || cta?.kind === 'external' ? 'arrow-up-right' : 'arrow-up-right');
+const ctaSecondaryHref = ctaSecondary?.href || '#';
+const ctaSecondaryAttributes =
+	ctaSecondary?.kind === 'signup'
+		? { 'data-garna-signup': true }
+		: {};
+const ctaSecondaryOnclick =
+	ctaSecondary?.kind === 'demo'
+		? `event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: '${ctaSecondary.trackingCta || 'hero_demo'}' });`
+		: undefined;
+const ctaSecondaryClass = ctaSecondary?.class || '';
+const ctaSecondaryVariant = ctaSecondary?.variant || 'secondary';
+const ctaSecondaryEffect = ctaSecondary?.effect || 'none';
+const ctaSecondaryIcon = ctaSecondary?.icon || 'none';
 const ctaWrapperClass =
 	cta?.wrapperClass ||
 	(align === 'center'
@@ -109,6 +123,11 @@ const singleTitleSecondLine = shouldBreakSingleTitle
 					<Button href={ctaHref} onclick={ctaOnclick} variant={ctaVariant} effect={ctaEffect} icon={ctaIcon} size="hero" class={ctaClass} {...ctaAttributes}>
 						<span data-translate={cta.translateKey}>{cta.label}</span>
 					</Button>
+					{ctaSecondary && (
+						<Button href={ctaSecondaryHref} onclick={ctaSecondaryOnclick} variant={ctaSecondaryVariant} effect={ctaSecondaryEffect} icon={ctaSecondaryIcon} size="hero" class={ctaSecondaryClass} {...ctaSecondaryAttributes}>
+							<span data-translate={ctaSecondary.translateKey}>{ctaSecondary.label}</span>
+						</Button>
+					)}
 				</div>
 			)}
 		</div>

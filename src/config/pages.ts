@@ -38,6 +38,13 @@ export const basePaths: PageConfig[] = [
 		showHeader: true,
 	},
 	{
+		path: 'for-creators',
+		mode: 'static',
+		searchable: false,
+		showHeader: true,
+		languages: ['en', 'es', 'pt', 'ru'],
+	},
+	{
 		path: 'contractor-of-record',
 		mode: 'static',
 		searchable: true,
