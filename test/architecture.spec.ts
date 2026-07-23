@@ -65,13 +65,20 @@ describe('native Astro architecture', () => {
 		expect(themes).toContain('transform: translate3d(var(--garna-card-light-x), var(--garna-card-light-y), 0)');
 		expect(themes).toContain('will-change: transform, opacity');
 		expect(themes).toContain('.garna-card-light-field[data-active="true"]');
-		expect(themes).toContain('transition: opacity 90ms ease-out');
+		expect(themes).toContain('transition: opacity 300ms ease');
 		expect(themes).toContain('z-index: 5');
 		expect(themes).toContain('z-index: 6');
 		expect(themes).toContain('background-color: rgba(255, 255, 255, 0.94)');
-		expect(themes).toContain('translate 220ms cubic-bezier(0.22, 1, 0.36, 1)');
-		expect(themes).toContain('transform 220ms cubic-bezier(0.22, 1, 0.36, 1)');
-		expect(themes).toContain('border-color: rgba(154, 184, 0, 0.46)');
+		expect(themes).toContain('translate 300ms cubic-bezier(0.4, 0, 0.2, 1)');
+		expect(themes).toContain('translate: 0 -0.25rem');
+		expect(themes).toContain('transform 300ms cubic-bezier(0.4, 0, 0.2, 1)');
+		const lightCardRule = themes.match(/html\[data-theme="light"\] \.garna-card \{[\s\S]*?\n\}/)?.[0] || '';
+		const activeLightCardRule = themes.match(/html\[data-theme="light"\] \.garna-card\[data-interactive="true"\][\s\S]*?\n\}/)?.[0] || '';
+		expect(lightCardRule).toContain('box-shadow: none');
+		expect(lightCardRule).not.toContain('box-shadow 220ms');
+		expect(activeLightCardRule).toContain('border-color: rgba(16, 16, 16, 0.1)');
+		expect(activeLightCardRule).toContain('box-shadow: none');
+		expect(activeLightCardRule).not.toContain('rgba(154, 184, 0, 0.46)');
 		expect(themes).toContain('.garna-product-window__chrome');
 		expect(themes).toContain('background: #e7e9e3 !important');
 		expect(themes).toContain('.garna-product-window__sidebar');
@@ -196,6 +203,7 @@ describe('native Astro architecture', () => {
 		expect(positions.every((position) => position >= 0)).toBe(true);
 		expect(positions).toEqual([...positions].sort((left, right) => left - right));
 		expect(source).toContain('<PayrollStatsSection transparent />');
+		expect(source).toMatch(/<FAQSection[\s\S]*?variant="eor"[\s\S]*?containerClass="garna-container"/);
 		expect(source).not.toContain('PayrollSolutionSections');
 	});
 
@@ -565,6 +573,12 @@ describe('native Astro architecture', () => {
 
 		expect(card).toContain("title?: string | CardText");
 		expect(card).toContain("description?: string | CardText");
+		expect(card).toContain("feature: 'mb-3 text-lg font-semibold tracking-tight text-white'");
+		expect(card).toContain("visual: 'mb-3 text-lg font-semibold tracking-tight text-white'");
+		expect(card).toContain("tab: 'mb-4 text-xl font-semibold tracking-tight text-white'");
+		expect(card).toContain('data-card-title');
+		expect(card).toContain('.garna-card [data-card-title]');
+		expect(card).toContain('font-weight: 600;');
 		expect(card).toContain("'text-base leading-relaxed'");
 		expect(card).toContain('data-garna-subtitle');
 		expect(card).toContain('data-card-description');
@@ -586,6 +600,9 @@ describe('native Astro architecture', () => {
 		expect(card).toContain("scope.classList.add('garna-card-light-scope')");
 		expect(card).toContain("style.setProperty('--garna-card-light-x'");
 		expect(card).toContain("style.setProperty('--garna-card-light-y'");
+		expect(card).toContain("field.dataset.ready === 'true'");
+		expect(card).toContain('window.requestAnimationFrame(() => {');
+		expect(card).toContain("field.dataset.ready = 'true'");
 		expect(card).toContain("window.addEventListener('scroll', clearActiveCard");
 		expect(card).toContain("[data-pointer-active='true']");
 		expect(card).toContain("activeCard.setAttribute('data-pointer-active', 'true')");
@@ -600,6 +617,8 @@ describe('native Astro architecture', () => {
 		expect(cardIconVisual).toContain('background: #11130f');
 		expect(packageJson.scripts.dev).toContain('wrangler dev --live-reload');
 		expect(sources.every((source) => source.includes("ui/Card.astro"))).toBe(true);
+		expect(sources.every((source) => source.includes('gap-6'))).toBe(true);
+		expect(sources.every((source) => !source.includes('gap-8'))).toBe(true);
 		expect(sources.reduce((count, source) => count + (source.match(/<Card(?:\s|>)/g)?.length || 0), 0)).toBe(25);
 		expect(sources.every((source) => !source.includes('<div class="glass-card'))).toBe(true);
 		expect(automatedPayrollVisual).toContain(":global(html[data-theme='light']) .payroll-platform-visual");
