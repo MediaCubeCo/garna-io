@@ -48,10 +48,10 @@ const variantClasses = {
 	testimonial: 'garna-glass-card flex h-full flex-col rounded-2xl p-8',
 };
 const defaultTitleClasses = {
-	feature: 'mb-3 text-xl font-normal tracking-tight text-white',
-	visual: 'mb-3 text-lg font-medium tracking-tight text-white',
+	feature: 'mb-3 text-lg font-semibold tracking-tight text-white',
+	visual: 'mb-3 text-lg font-semibold tracking-tight text-white',
 	compact: 'sr-only',
-	tab: 'mb-4 text-xl font-extralight tracking-tight text-white',
+	tab: 'mb-4 text-xl font-semibold tracking-tight text-white',
 	testimonial: 'sr-only',
 };
 const defaultDescriptionClasses = {
@@ -73,7 +73,7 @@ const defaultDescriptionClasses = {
 	{(eyebrowValue || titleValue || descriptionValue) && (
 		<div class={bodyClass}>
 			{eyebrowValue && <span class:list={['mb-3 block text-sm font-semibold text-[#CBF300]', eyebrowClass]} data-translate={eyebrowValue.translateKey}>{eyebrowValue.text}</span>}
-			{titleValue && <h3 class:list={[defaultTitleClasses[variant], titleClass]} data-translate={titleValue.translateKey}>{titleValue.text}</h3>}
+			{titleValue && <h3 data-card-title class:list={[defaultTitleClasses[variant], titleClass]} data-translate={titleValue.translateKey}>{titleValue.text}</h3>}
 			{descriptionValue && <p data-garna-subtitle data-card-description class:list={['text-base leading-relaxed', defaultDescriptionClasses[variant], descriptionClass]} data-translate={descriptionValue.translateKey}>{descriptionValue.text}</p>}
 		</div>
 	)}
@@ -89,6 +89,10 @@ const defaultDescriptionClasses = {
 		--garna-card-border-glow-radius: 14rem;
 		position: relative;
 		isolation: isolate;
+	}
+
+	.garna-card [data-card-title] {
+		font-weight: 600;
 	}
 
 	.garna-card::before {
@@ -139,17 +143,17 @@ const defaultDescriptionClasses = {
 		}
 	}
 
-	.garna-card[data-interactive='true']:is(:hover, :focus-within) {
+	.garna-card[data-interactive='true']:is(:hover, :focus-within, [data-pointer-active='true']) {
 		border-color: rgba(255, 255, 255, 0.15);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
-		.garna-card[data-card-glow='true']:is(:hover, :focus-within)::before {
+		.garna-card[data-card-glow='true']:is(:hover, :focus-within, [data-pointer-active='true'])::before {
 			opacity: 1;
 		}
 
 		@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
-			.garna-card[data-card-glow='true']:is(:hover, :focus-within)::after {
+			.garna-card[data-card-glow='true']:is(:hover, :focus-within, [data-pointer-active='true'])::after {
 				opacity: 1;
 			}
 		}
@@ -174,16 +178,78 @@ const defaultDescriptionClasses = {
 	if (!cardGlowWindow.__garnaCardGlowInitialized) {
 		cardGlowWindow.__garnaCardGlowInitialized = true;
 		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const lightFieldRadius = 352;
+		const lightFields = new WeakMap<HTMLElement, HTMLElement>();
+		let activeCard: HTMLElement | null = null;
+		let activeLightField: HTMLElement | null = null;
+		let activeLightScope: HTMLElement | null = null;
+		let activeLightScopeBounds: DOMRect | null = null;
+
+		const getLightField = (scope: HTMLElement) => {
+			const existing = lightFields.get(scope);
+			if (existing) return existing;
+
+			const field = document.createElement('span');
+			field.className = 'garna-card-light-field';
+			field.setAttribute('aria-hidden', 'true');
+			scope.classList.add('garna-card-light-scope');
+			scope.prepend(field);
+			lightFields.set(scope, field);
+			return field;
+		};
+
+		const clearActiveCard = () => {
+			activeCard?.removeAttribute('data-pointer-active');
+			activeLightField?.removeAttribute('data-active');
+			activeCard = null;
+			activeLightField = null;
+			activeLightScope = null;
+			activeLightScopeBounds = null;
+		};
 
 		document.addEventListener('pointermove', (event) => {
 			if (reducedMotion.matches || !(event.target instanceof Element)) return;
 
 			const card = event.target.closest('[data-card-glow="true"]');
-			if (!(card instanceof HTMLElement)) return;
+			if (!(card instanceof HTMLElement)) {
+				clearActiveCard();
+				return;
+			}
+
+			if (activeCard !== card) {
+				clearActiveCard();
+				activeCard = card;
+				activeCard.setAttribute('data-pointer-active', 'true');
+
+				if (document.documentElement.dataset.theme === 'light' && card.parentElement) {
+					activeLightScope = card.parentElement;
+					activeLightField = getLightField(activeLightScope);
+					activeLightScopeBounds = activeLightScope.getBoundingClientRect();
+					const field = activeLightField;
+					if (field.dataset.ready === 'true') {
+						field.setAttribute('data-active', 'true');
+					} else {
+						window.requestAnimationFrame(() => {
+							field.dataset.ready = 'true';
+							if (activeLightField === field) field.setAttribute('data-active', 'true');
+						});
+					}
+				}
+			}
 
 			const bounds = card.getBoundingClientRect();
-			card.style.setProperty('--garna-card-glow-x', `${event.clientX - bounds.left}px`);
-			card.style.setProperty('--garna-card-glow-y', `${event.clientY - bounds.top}px`);
+			const localX = event.clientX - bounds.left;
+			const localY = event.clientY - bounds.top;
+			card.style.setProperty('--garna-card-glow-x', `${localX}px`);
+			card.style.setProperty('--garna-card-glow-y', `${localY}px`);
+
+			if (activeLightField && activeLightScopeBounds) {
+				activeLightField.style.setProperty('--garna-card-light-x', `${event.clientX - activeLightScopeBounds.left - lightFieldRadius}px`);
+				activeLightField.style.setProperty('--garna-card-light-y', `${event.clientY - activeLightScopeBounds.top - lightFieldRadius}px`);
+			}
 		}, { passive: true });
+
+		window.addEventListener('blur', clearActiveCard);
+		window.addEventListener('scroll', clearActiveCard, { passive: true });
 	}
 </script>

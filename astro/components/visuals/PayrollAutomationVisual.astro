@@ -329,6 +329,43 @@
     background: #0C1118;
 }
 
+:global(html[data-theme="light"]) .payroll-routine-visual {
+    background:
+        linear-gradient(90deg, rgba(107, 174, 214, 0.08), transparent 32%),
+        linear-gradient(90deg, transparent 66%, rgba(203, 243, 0, 0.12)),
+        #f8f9f5;
+    box-shadow: 0 28px 72px -48px rgba(31, 38, 25, 0.28);
+}
+
+:global(html[data-theme="light"]) .payroll-routine-visual::before {
+    background:
+        linear-gradient(to right, rgba(16, 16, 16, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(16, 16, 16, 0.035) 1px, transparent 1px);
+    opacity: 0.46;
+}
+
+:global(html[data-theme="light"]) .routine-panel,
+:global(html[data-theme="light"]) .routine-card--before {
+    border-color: transparent;
+    background: #ffffff;
+    box-shadow: 0 14px 34px -28px rgba(31, 38, 25, 0.32);
+}
+
+:global(html[data-theme="light"]) .routine-panel--after {
+    border-color: rgba(149, 178, 0, 0.22);
+    background: linear-gradient(180deg, rgba(203, 243, 0, 0.12), rgba(255, 255, 255, 0.96));
+}
+
+:global(html[data-theme="light"]) .automation-core {
+    border-color: transparent;
+    background: #eef0ea;
+    box-shadow: 0 14px 34px -28px rgba(31, 38, 25, 0.32);
+}
+
+:global(html[data-theme="light"]) .automation-core__ring::before {
+    background: #ffffff;
+}
+
 .automation-line {
     position: relative;
     overflow: hidden;
@@ -465,4 +502,3 @@
     }
 }
 </style>
-
