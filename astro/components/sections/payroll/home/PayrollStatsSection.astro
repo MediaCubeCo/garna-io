@@ -1,10 +1,19 @@
 ---
 import Section from '../../../layout/Section.astro';
+
+interface Props {
+	transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
 ---
 
 <Section
 	spacing="none"
-	class="mb-32 border-y border-white/5 bg-[#080808]"
+	class:list={[
+		'mb-32 border-y border-white/5',
+		transparent ? 'bg-transparent' : 'bg-[#080808]',
+	]}
 	contentClass="grid grid-cols-1 divide-y divide-white/5 py-16 text-center md:grid-cols-3 md:divide-x md:divide-y-0"
 >
     <div class="px-4">

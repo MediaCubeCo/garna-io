@@ -51,6 +51,11 @@ body[data-garna-page] {
 	font-weight: var(--garna-subtitle-weight) !important;
 }
 
+/* Hero artwork uses gradients and imagery without graph-paper overlays. */
+.tax-hero::before {
+	background-image: none !important;
+}
+
 h1,
 h2,
 h3,

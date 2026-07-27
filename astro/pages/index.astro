@@ -95,7 +95,7 @@ const homeFaqItems = [
 
 <BaseLayout shell={pageShells.home}>
 	<HeroSection {...pageHeroes.home} />
-	<PayrollStatsSection />
+	<PayrollStatsSection transparent />
 	<ManageGlobalPayrollSection />
 	<HireEmployeesWorldwideSection />
 	<ContractorPaymentsSection />
@@ -109,8 +109,9 @@ const homeFaqItems = [
 	<FAQSection
 		title={{ text: 'FAQ on Payroll Solutions', translateKey: 'faq.title' }}
 		items={homeFaqItems}
+		variant="eor"
 		class="pt-16 pr-6 pb-16 pl-6 lg:pt-32 lg:pb-32"
-		containerClass="max-w-3xl mr-auto ml-auto"
+		containerClass="garna-container"
 	/>
 	<FinalCTASection {...pageFinalCtas.home} />
 	<script is:inline>

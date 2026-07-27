@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/faq.css';
+import '../styles/themes.css';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import RainbowBackground from '../components/visuals/RainbowBackground.astro';
@@ -35,10 +36,23 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" class={htmlClass}>
+<html lang="en" class={htmlClass} data-theme="dark">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#101010" />
+		<script is:inline>
+			(() => {
+				const requestedTheme = new URLSearchParams(window.location.search).get('theme');
+				const theme = requestedTheme === 'light' ? 'light' : 'dark';
+				const root = document.documentElement;
+				root.dataset.theme = theme;
+				root.style.colorScheme = theme;
+				root.classList.toggle('garna-light-theme', theme === 'light');
+				const themeColor = document.querySelector('meta[name="theme-color"]');
+				if (themeColor) themeColor.setAttribute('content', theme === 'light' ? '#F4F5EF' : '#101010');
+			})();
+		</script>
 		<title>{title}</title>
 		{description && <meta name="description" content={description} />}
 		{keywords && <meta name="keywords" content={keywords} />}
@@ -82,5 +96,49 @@ const {
 		<div id="astro-page-scripts" data-astro-page-scripts>
 			<slot name="widgets" />
 		</div>
+		<script is:inline>
+			(() => {
+				const theme = new URLSearchParams(window.location.search).get('theme');
+				if (theme !== 'light' && theme !== 'dark') return;
+
+				const preserveTheme = (scope = document) => {
+					scope.querySelectorAll('a[href]').forEach((link) => {
+						const href = link.getAttribute('href');
+						if (!href || href.startsWith('#')) return;
+						try {
+							const url = new URL(href, window.location.href);
+							if (url.origin !== window.location.origin || !['http:', 'https:'].includes(url.protocol)) return;
+							url.searchParams.set('theme', theme);
+							link.setAttribute('href', `${url.pathname}${url.search}${url.hash}`);
+						} catch {
+							// Ignore non-navigation protocols and malformed legacy links.
+						}
+					});
+				};
+
+				preserveTheme();
+				let preserveQueued = false;
+				const queuePreserveTheme = () => {
+					if (preserveQueued) return;
+					preserveQueued = true;
+					window.requestAnimationFrame(() => {
+						preserveQueued = false;
+						preserveTheme();
+					});
+				};
+				new MutationObserver(queuePreserveTheme).observe(document.documentElement, {
+					attributes: true,
+					attributeFilter: ['href'],
+					childList: true,
+					subtree: true,
+				});
+				window.addEventListener('load', queuePreserveTheme, { once: true });
+				document.addEventListener('click', (event) => {
+					const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+					if (link) preserveTheme(link.parentElement || document);
+				}, true);
+				window.addEventListener('garna:page-content-updated', queuePreserveTheme);
+			})();
+		</script>
 	</body>
 </html>
