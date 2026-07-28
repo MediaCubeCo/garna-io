@@ -2,19 +2,346 @@ import { homePt } from '../home/pt';
 
 export const forCreatorsPt = {
 	meta: {
-		title: 'Garna for Creators',
+		title: 'Garna para criadores',
 		description:
-			'Receive payouts from creator platforms, stock marketplaces, freelance services and digital product platforms through one Garna account.',
+			'Receba pagamentos de plataformas para criadores, marketplaces de stock, serviços freelance e plataformas de produtos digitais numa única conta Garna.',
 	},
 	images: {},
 	hero: {
-		badge: 'Early Access for selected creators',
-		titleMain: 'Creator payouts from global platforms, guided by Garna',
-		titleAccent: 'guided by Garna',
+		badge: 'Acesso antecipado para criadores selecionados',
+		titleMain: 'Pagamentos de plataformas globais para criadores, guiados pela Garna',
+		titleAccent: 'guiados pela Garna',
 		description:
-			'Receive payouts from creator platforms, stock marketplaces, freelance services and digital product platforms through one Garna account. We will guide you through the first setup, help you understand which payout method fits your platform, and support you during your first withdrawals',
-		cta: 'Contact Payout Manager',
-		accountCta: 'Create Garna Account',
+			'Receba pagamentos de plataformas para criadores, marketplaces de stock, serviços freelance e plataformas de produtos digitais numa única conta Garna. Vamos guiá-lo na primeira configuração, ajudar a entender qual método de pagamento se adapta à sua plataforma e acompanhar os seus primeiros levantamentos',
+		cta: 'Contactar gestor de pagamentos',
+		accountCta: 'Criar conta Garna',
+	},
+	heroVisual: {
+		sources: {
+			envato: {
+				label: 'Pagamento Envato',
+			},
+			adobe: {
+				label: 'Ganhos de assets',
+			},
+			patreon: {
+				label: 'Pagamento de membros',
+			},
+		},
+		balance: {
+			label: 'Saldo do criador',
+			account: 'Conta',
+		},
+		destinations: {
+			bank: {
+				label: 'Transferência bancária',
+				title: 'Alex Carter USD',
+			},
+			card: {
+				label: 'Pagamento para cartão',
+				title: 'Visa / Mastercard',
+				meta: 'Cartão terminado em 4482',
+			},
+			crypto: {
+				label: 'Carteira cripto',
+				title: 'Carteira USDT',
+				meta: 'TRC20 • verificado',
+			},
+		},
+	},
+	creatorTypes: {
+		title: 'Criado para criadores que recebem a nível global',
+		description:
+			'A Garna pode ajudar criadores, freelancers e vendedores digitais que recebem rendimentos de plataformas internacionais',
+		cards: {
+			designers: {
+				title: 'Designers e ilustradores',
+				description: 'Para criadores que vendem gráficos, modelos, fontes, assets digitais e produtos visuais',
+			},
+			photographers: {
+				title: 'Fotógrafos e contribuidores de stock',
+				description: 'Para contribuidores que recebem royalties ou pagamentos de plataformas de fotografia e media de stock',
+			},
+			gameAssets: {
+				title: 'Artistas 3D e criadores de assets para jogos',
+				description: 'Para criadores que vendem modelos 3D, plugins, texturas, assets de jogos e produtos de marketplace',
+			},
+			freelancers: {
+				title: 'Freelancers e vendedores digitais',
+				description:
+					'Para quem recebe de plataformas freelance, subscrições, cursos, música, conteúdo ou produtos digitais',
+			},
+		},
+	},
+	accountFlow: {
+		title: 'Uma conta para pagamentos de criadores',
+		description:
+			'Uma forma guiada de ligar pagamentos de plataformas, receber fundos no seu saldo Garna e levantar dinheiro através dos métodos disponíveis',
+		steps: {
+			receive: {
+				title: 'Receba pagamentos de plataformas',
+				description: 'Use os dados da Garna, quando suportados, para receber pagamentos de plataformas internacionais para criadores',
+			},
+			setup: {
+				title: 'Receba configuração guiada',
+				description:
+					'Diga-nos que plataforma utiliza. Vamos verificar o método de pagamento disponível e guiá-lo durante a configuração',
+			},
+			withdraw: {
+				title: 'Levante fundos globalmente',
+				description:
+					'Levante o seu dinheiro por transferência bancária, cartão, PayPal, Payoneer, cripto e outras opções suportadas',
+			},
+		},
+	},
+	process: {
+		title: 'Do pagamento da plataforma ao seu saldo Garna',
+		description:
+			'O fluxo é simples, mas a configuração pode variar conforme a plataforma. Durante o Early Access, guiamos os detalhes importantes',
+		visual: {
+			account: {
+				profile: 'Perfil',
+				setup: 'Configuração',
+				statusLabel: 'Estado da conta',
+				statusValue: 'Abertura',
+				emailConfirmed: 'Email confirmado',
+				kycReview: 'KYC em revisão',
+				accountOpening: 'Abertura da conta',
+				legalName: 'Nome legal',
+				country: 'País',
+				currency: 'Moeda',
+			},
+			chat: {
+				managerOnline: 'Gestor online',
+				messageIncome: 'Rendimento da Envato',
+				messageCountry: 'Envie país e moeda de pagamento',
+				messagePlatform: 'Portugal, USD. Também uso Adobe Stock',
+				messageCheck: 'Entendido. Vou verificar a rota suportada e as regras de faturação',
+				messageWithdrawal: 'Inclua também os primeiros passos de levantamento',
+				platformsLabel: 'Plataformas',
+				platformsValue: '2 adicionadas',
+				routeLabel: 'Verificação da rota',
+				routeValue: 'Em progresso',
+			},
+			details: {
+				title: 'Dados da Garna',
+				routing: 'Routing',
+				account: 'Conta',
+				method: 'Método',
+				beneficiary: 'Beneficiário',
+				reference: 'Referência',
+				envatoReady: 'Envato pronta',
+				adobeManual: 'Adobe Stock manual',
+				invoiceRequired: 'Fatura obrigatória',
+				routeStatus: 'Estado da rota',
+				checked: 'Verificado',
+				useInPlatform: 'Usar na plataforma',
+				readyToPaste: 'Pronto para colar',
+				copyAction: 'Copiar dados de pagamento',
+			},
+			withdraw: {
+				title: 'Levantamento Envato',
+				summary: 'Resumo do pagamento',
+				availableNow: 'Disponível agora',
+				marketplaceFee: 'Taxa do marketplace',
+				paid: 'Paga',
+				routeDetails: 'Detalhes da rota',
+				destination: 'Destino',
+				request: 'Pedido',
+				prepared: 'Preparado',
+				requestAction: 'Solicitar pagamento',
+			},
+			invoice: {
+				title: 'Fatura #2048',
+				client: 'Cliente',
+				amount: 'Valor',
+				status: 'Estado',
+				matching: 'A conciliar',
+				reference: 'Referência',
+				junePayout: 'Pagamento de junho',
+				proofAttached: 'Comprovativo anexado',
+				screenshot: 'Captura',
+				platformReport: 'Relatório da plataforma',
+			},
+			balance: {
+				title: 'Saldo Garna',
+				credited: 'Creditado',
+				incomingPayout: 'Pagamento recebido',
+				availableNow: 'Disponível agora',
+				accountNumber: 'Número da conta',
+				bank: 'Banco',
+				card: 'Cartão',
+				crypto: 'Cripto',
+				withdrawAction: 'Levantar fundos',
+			},
+		},
+		steps: {
+			account: {
+				title: 'Crie a sua conta Garna',
+				description: 'Registe-se na Garna e conclua a verificação. O KYC costuma demorar 1-2 dias úteis',
+			},
+			platform: {
+				title: 'Diga-nos a sua plataforma',
+				description: 'Contacte o seu gestor de pagamentos e diga-nos onde recebe rendimentos',
+			},
+			instructions: {
+				title: 'Receba instruções de configuração',
+				description: 'Vamos verificar o método de pagamento disponível e fornecer os dados Garna corretos ou os próximos passos',
+			},
+			request: {
+				title: 'Solicite o pagamento na plataforma',
+				description: 'Adicione os dados fornecidos onde for suportado e solicite um levantamento na sua plataforma',
+			},
+			invoice: {
+				title: 'Crie uma fatura na Garna',
+				description: 'Crie uma fatura e anexe a confirmação necessária, como uma captura do pagamento ou documento da plataforma',
+			},
+			receive: {
+				title: 'Receba e levante fundos',
+				description:
+					'A Garna concilia o pagamento com a sua fatura, credita o saldo e permite levantar fundos pelo método disponível preferido',
+			},
+		},
+	},
+	earlyAccessFee: {
+		title: 'Taxa reduzida para\ncriadores em Early Access',
+		description:
+			'Estamos a abrir pagamentos para criadores em Early Access e a ajudar manualmente utilizadores selecionados a configurar as primeiras plataformas',
+		cta: 'Contactar gestor de pagamentos',
+		standard: {
+			label: 'Taxa padrão',
+			caption:
+				'A taxa regular de serviço da Garna aplica-se após o Early Access ou a configurações de pagamentos de criadores fora do grupo de lançamento selecionado.',
+		},
+		access: {
+			label: 'Taxa de Early Access',
+			caption:
+				'Criadores em Early Access podem receber uma taxa reduzida de serviço Garna de 1.5% nos primeiros pagamentos enquanto ajudamos a validar e ajustar o fluxo de configuração.',
+			disclaimer:
+				'As percentagens acima referem-se apenas à taxa de serviço da Garna. Taxas de levantamento da plataforma, custos de métodos de pagamento, custos de FX ou outras taxas de terceiros podem variar e não estão incluídos.',
+		},
+	},
+	platforms: {
+		title: 'Plataformas populares\nem que podemos ajudar',
+		description:
+			'Começamos com plataformas populares para criadores, marketplaces de stock e serviços de produtos digitais. Algumas plataformas podem ser configuradas diretamente, enquanto outras podem exigir orientação manual da Garna ou da equipa de suporte da própria plataforma',
+	},
+	globalInfrastructure: {
+		title: 'Infraestrutura global de pagamentos para equipas e criadores modernos',
+		description:
+			'A Garna já ajuda empresas e contratados a trabalhar com pagamentos internacionais. Agora levamos a mesma infraestrutura de pagamentos a criadores que recebem de plataformas globais',
+		cards: {
+			platformPayouts: {
+				title: 'Pagamentos de plataformas globais',
+				description: 'Receba rendimentos de criador entre países, moedas e métodos de pagamento',
+			},
+			currencyRoutes: {
+				title: 'Rotas de pagamento multi-moeda',
+				description: 'Use a moeda e a rota de pagamento certas a partir de uma única conta Garna',
+			},
+			setupSupport: {
+				title: 'Suporte contínuo de configuração',
+				description: 'Receba ajuda para escolher dados, faturas e próximos passos de configuração',
+			},
+			complianceFlow: {
+				metric: '1-2 dias',
+				title: 'Fluxo de pagamentos pronto para compliance',
+				description: 'Mantenha verificação, documentos e conciliação de pagamentos organizados',
+			},
+		},
+	},
+	managerSupport: {
+		title: 'Precisa de ajuda na primeira configuração?',
+		description:
+			'O seu gestor de pagamentos ajuda a perceber se a sua plataforma é suportada, que método de pagamento está disponível e que passos precisa de concluir',
+		actions: {
+			telegram: 'Enviar mensagem no Telegram',
+			email: 'Enviar um email',
+		},
+		visual: {
+			managerOnline: 'Gestor de pagamentos online',
+			messages: {
+				income: 'Recebo rendimentos da Envato e da Adobe Stock 👋',
+				platformCountry: 'Olá Alex, envie a sua plataforma e o país de pagamento. Vou verificar que dados da Garna pode usar',
+				firstWithdrawal: 'Perfeito, também preciso de ajuda com o primeiro levantamento',
+				ready: 'Tudo pronto. Regras da plataforma verificadas, rota de pagamento preparada e conciliação da fatura incluída ✅',
+			},
+			route: {
+				title: 'Gestor pessoal',
+				online: 'Online durante a configuração',
+				channels: 'Telegram / Email',
+			},
+			dialog: {
+				status: 'Gestor online',
+				time: '2 min',
+				request: 'Preciso de ajuda com o meu primeiro pagamento de plataforma',
+				reply: 'Envie a sua plataforma e país. Vou verificar os passos de configuração para si',
+			},
+			steps: {
+				platformCheck: 'Verificação da plataforma',
+				setupGuidance: 'Orientação de configuração',
+				payoutMethod: 'Método de pagamento',
+				firstWithdrawal: 'Primeiro levantamento',
+			},
+			panel: {
+				manager: 'Gestor pessoal',
+				title: 'Configuração do primeiro pagamento',
+				online: 'Online',
+				income: 'Recebo rendimentos da Envato e da Adobe Stock',
+				checkRules: 'Vamos verificar as regras da plataforma e enviar a rota de pagamento disponível',
+			},
+		},
+	},
+	creatorFaq: {
+		title: 'Perguntas frequentes dos criadores',
+		subtitle: 'Alguns detalhes importantes antes de começar a primeira configuração de pagamentos com a Garna',
+		items: {
+			creatorPlatform: {
+				question: 'A Garna é uma plataforma para criadores?',
+				answer:
+					'Não. A Garna não é um marketplace e não vende o seu conteúdo. A Garna ajuda criadores a receber pagamentos de plataformas internacionais e a levantar fundos com métodos disponíveis',
+			},
+			availability: {
+				question: 'Está disponível para todos?',
+				answer:
+					'Os pagamentos para criadores estão atualmente disponíveis em Early Access. Começamos com criadores e plataformas selecionados para garantir que cada configuração funciona corretamente',
+			},
+			account: {
+				question: 'Preciso de criar uma conta Garna?',
+				answer: 'Sim. Precisa de uma conta Garna para concluir a verificação, criar faturas, receber fundos e levantar o saldo',
+			},
+			verification: {
+				question: 'Quanto tempo demora a verificação?',
+				answer: 'O KYC normalmente demora 1-2 dias úteis, dependendo dos documentos e do fluxo de verificação',
+			},
+			platformFunds: {
+				question: 'Quanto tempo demora receber fundos de uma plataforma?',
+				answer:
+					'Depende da plataforma e do método de pagamento. Em muitos casos, os fundos recebidos podem demorar 1-5 dias úteis depois de a plataforma enviar o pagamento',
+			},
+			withdrawal: {
+				question: 'Quanto tempo demora um levantamento da Garna?',
+				answer:
+					'O tempo de levantamento depende do método e destino selecionados. Como orientação geral, muitos métodos padrão podem demorar 1-2 dias úteis',
+			},
+			anyPlatform: {
+				question: 'Posso usar a Garna com qualquer plataforma?',
+				answer:
+					'Nem sempre. Cada plataforma tem as suas próprias regras de pagamento e métodos suportados. Durante a configuração, confirmamos se a sua plataforma pode ser processada e que fluxo se aplica',
+			},
+			fee: {
+				question: 'Qual é a taxa?',
+				answer:
+					'A taxa padrão de serviço da Garna é 5.5%. Criadores em Early Access podem receber uma taxa reduzida de 1.5% nos primeiros pagamentos, sujeita a confirmação final e detalhes de configuração',
+			},
+		},
+	},
+	creatorFinalCta: {
+		title: 'Comece a receber pagamentos de criador com a Garna',
+		description:
+			'Contacte o seu gestor de pagamentos para verificar a sua plataforma e receber configuração guiada, ou crie a sua conta Garna quando estiver pronto para continuar',
+		contact: 'Contactar gestor de pagamentos',
+		account: 'Criar conta Garna',
 	},
 	sectionHeadings: {
 		hireEmployeesWorldwide: 'Realize Employment of Record com mais vantagens',

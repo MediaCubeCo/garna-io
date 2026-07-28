@@ -50,126 +50,206 @@ const forCreatorsHero = {
 const forCreatorsFaqItems = [
 	{
 		question: 'Is Garna a creator platform?',
+		questionTranslateKey: 'creatorFaq.items.creatorPlatform.question',
 		answer:
 			'No. Garna is not a marketplace and does not sell your content. Garna helps creators receive payouts from international platforms and withdraw funds using available payout methods',
+		answerTranslateKey: 'creatorFaq.items.creatorPlatform.answer',
 	},
 	{
 		question: 'Is this available for everyone?',
+		questionTranslateKey: 'creatorFaq.items.availability.question',
 		answer:
 			'Creator payouts are currently available in Early Access. We start with selected creators and platforms to make sure each setup works correctly',
+		answerTranslateKey: 'creatorFaq.items.availability.answer',
 	},
 	{
 		question: 'Do I need to create a Garna account?',
+		questionTranslateKey: 'creatorFaq.items.account.question',
 		answer:
 			'Yes. You need a Garna account to complete verification, create invoices, receive funds and withdraw your balance',
+		answerTranslateKey: 'creatorFaq.items.account.answer',
 	},
 	{
 		question: 'How long does verification take?',
+		questionTranslateKey: 'creatorFaq.items.verification.question',
 		answer: 'KYC usually takes 1-2 business days, depending on the documents and verification flow',
+		answerTranslateKey: 'creatorFaq.items.verification.answer',
 	},
 	{
 		question: 'How long does it take to receive funds from a platform?',
+		questionTranslateKey: 'creatorFaq.items.platformFunds.question',
 		answer:
 			'It depends on the platform and payout method. In many cases, incoming funds may take 1-5 business days after the platform sends the payout',
+		answerTranslateKey: 'creatorFaq.items.platformFunds.answer',
 	},
 	{
 		question: 'How long does withdrawal from Garna take?',
+		questionTranslateKey: 'creatorFaq.items.withdrawal.question',
 		answer:
 			'Withdrawal timing depends on the selected method and destination. As a general guideline, it may take 1-2 business days for many standard methods',
+		answerTranslateKey: 'creatorFaq.items.withdrawal.answer',
 	},
 	{
 		question: 'Can I use Garna with any platform?',
+		questionTranslateKey: 'creatorFaq.items.anyPlatform.question',
 		answer:
 			'Not always. Each platform has its own payout rules and supported methods. During setup, we confirm whether your platform can be processed and which flow applies',
+		answerTranslateKey: 'creatorFaq.items.anyPlatform.answer',
 	},
 	{
 		question: 'What is the fee?',
+		questionTranslateKey: 'creatorFaq.items.fee.question',
 		answer:
 			'The standard Garna service fee is 5.5%. Early Access creators can receive a reduced 1.5% Garna service fee for their first payouts, subject to final confirmation and setup details',
+		answerTranslateKey: 'creatorFaq.items.fee.answer',
 	},
 ] satisfies FAQItem[];
 ---
 
 <BaseLayout shell={forCreatorsShell}>
 	<HeroSection {...forCreatorsHero}>
-		<div class="creator-hero-visual mx-auto mt-16 w-full max-w-5xl overflow-visible px-0 sm:mt-20">
+		<div class="creator-hero-visual mx-auto w-full max-w-5xl overflow-visible px-0">
 			<div class="creator-hero-panel relative overflow-hidden rounded-[28px] border border-white/10 bg-[#080908]/80 p-4 text-left shadow-[0_36px_120px_-72px_rgba(0,0,0,0.95)] backdrop-blur-xl sm:p-5 lg:p-6">
 				<div class="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#CBF300]/80 to-transparent"></div>
 				<div class="absolute -left-20 top-8 h-56 w-56 rounded-full bg-[#CBF300]/10 blur-3xl"></div>
 				<div class="absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-white/5 blur-3xl"></div>
 
 				<div class="creator-wallet-visual relative" aria-label="Creator sees a platform payout move into a Garna account">
-					<div class="creator-wallet-browser">
-						<div class="creator-wallet-stage">
-							<div class="creator-wallet-notification">
-								<div class="creator-wallet-window-head">
-									<img class="creator-wallet-platform-logo" src="/images/envato-logo.svg" alt="Envato" loading="lazy" />
-									<span>Creator platform</span>
-								</div>
-								<div>
-									<span>Envato balance</span>
-									<strong class="creator-wallet-platform-amount" aria-label="$2,840.00 available on Envato">
-										<span>$2,840.00</span>
-										<span>$0.00</span>
-									</strong>
-									<p>Marketplace payout transfer</p>
-								</div>
-								<div class="creator-wallet-platform-list">
-									<div><span>Status</span><strong>Available payout</strong></div>
-									<div><span>Period</span><strong>June earnings</strong></div>
-									<div><span>Destination</span><strong>Garna account</strong></div>
-								</div>
-								<div class="creator-wallet-platform-action">Request withdrawal</div>
+					<div class="creator-wallet-simple">
+						<div class="creator-wallet-source-stack">
+							<div class="creator-wallet-source-card creator-wallet-simple-card creator-wallet-float-one">
+								<img src="/images/envato-logo.svg" alt="Envato" loading="lazy" />
+								<span data-translate="heroVisual.sources.envato.label">Envato payout</span>
+								<strong>$2,840.00</strong>
 							</div>
-
-							<div class="creator-wallet-garna-card" aria-label="Garna payout routing">
-								<div class="creator-wallet-flow-status" aria-hidden="true">
-									<span>Platform matched</span>
-									<span>Invoice checked</span>
-									<span>Route prepared</span>
-								</div>
-								<span class="creator-wallet-flow-dot creator-wallet-flow-dot-in" aria-hidden="true"></span>
-								<span class="creator-wallet-flow-dot creator-wallet-flow-dot-out" aria-hidden="true"></span>
-								<span class="creator-wallet-garna-mark" aria-hidden="true">
-									<img src="/images/garna-g-logo.svg" alt="" loading="lazy" />
-								</span>
-								<span class="creator-wallet-garna-caption">Garna check</span>
+							<div class="creator-wallet-source-card creator-wallet-simple-card creator-wallet-float-two">
+								<img src="/images/adobe-stock-logo.svg" alt="Adobe Stock" loading="lazy" />
+								<span data-translate="heroVisual.sources.adobe.label">Asset earnings</span>
+								<strong>$420.00</strong>
 							</div>
+							<div class="creator-wallet-source-card creator-wallet-simple-card creator-wallet-float-three">
+								<img class="creator-wallet-source-logo-patreon" src="/images/patreon-logo.svg" alt="Patreon" loading="lazy" />
+								<span data-translate="heroVisual.sources.patreon.label">Member payout</span>
+								<strong>$310.00</strong>
+							</div>
+						</div>
 
-							<div class="creator-wallet-account">
-								<div class="creator-wallet-account-head">
-									<div>
-										<img src="/garna_logo.svg" alt="Garna" loading="lazy" />
-										<span>Balance</span>
-									</div>
-									<img
-										class="creator-wallet-account-avatar"
-										src="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg"
-										alt="Logged in creator"
-										loading="lazy"
-										decoding="async"
-									/>
-								</div>
-								<div class="creator-wallet-balance">
-									<span>Internal account USD</span>
-									<strong class="creator-wallet-account-amount" aria-label="Garna balance credited with $2,840.00">
-										<span>$0.00</span>
-										<span>$2,840.00</span>
-									</strong>
-									<p>Account number 4461 9571 3840 9821</p>
-								</div>
-								<span class="creator-wallet-section-label">Actions</span>
-								<div class="creator-wallet-actions">
-									<span>Send</span>
-									<span>Withdraw</span>
-									<span>Add funds</span>
-									<span>Details</span>
-								</div>
-								<span class="creator-wallet-section-label">Templates</span>
-								<div class="creator-wallet-templates">
-									<div><span>CSV payment</span><i></i></div>
-									<div><span>Top up with USDT</span><i></i></div>
-								</div>
+						<div class="creator-wallet-flow-curve" aria-hidden="true">
+							<svg class="creator-wallet-flow-svg creator-wallet-flow-svg-desktop" viewBox="0 0 1000 360" preserveAspectRatio="none">
+								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-one" d="M210 69 H312 Q324 69 324 81 V168 Q324 180 336 180 H384" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-two" d="M262 180 H384" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-three" d="M212 289 H312 Q324 289 324 277 V192 Q324 180 336 180 H384" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-one" d="M616 180 H664 Q676 180 676 168 V91 Q676 79 688 79 H790" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-two" d="M616 180 H738" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-three" d="M616 180 H664 Q676 180 676 192 V270 Q676 282 688 282 H786" />
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-one" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M210 69 H312 Q324 69 324 81 V168 Q324 180 336 180 H384" keyPoints="0;0;1;1" keyTimes="0;0.03;0.17;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-two" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M262 180 H384" keyPoints="0;0;1;1" keyTimes="0;0.36;0.42;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-three" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M212 289 H312 Q324 289 324 277 V192 Q324 180 336 180 H384" keyPoints="0;0;1;1" keyTimes="0;0.69;0.83;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-six" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M616 180 H664 Q676 180 676 168 V91 Q676 79 688 79 H790" keyPoints="0;0;1;1" keyTimes="0;0.83;0.97;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-five" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M616 180 H738" keyPoints="0;0;1;1" keyTimes="0;0.50;0.56;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-four" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M616 180 H664 Q676 180 676 192 V270 Q676 282 688 282 H786" keyPoints="0;0;1;1" keyTimes="0;0.17;0.31;1" calcMode="linear" />
+								</circle>
+							</svg>
+							<svg class="creator-wallet-flow-svg creator-wallet-flow-svg-compact" viewBox="0 0 1000 620" preserveAspectRatio="none">
+								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-one" d="M166 102 V158 Q166 170 178 170 H488 Q500 170 500 182 V282" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-two" d="M500 102 V282" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-three" d="M834 102 V158 Q834 170 822 170 H512 Q500 170 500 182 V282" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-trunk-in" d="M500 244 V282" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-trunk-out" d="M500 338 V378" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-one" d="M500 338 V438 Q500 450 488 450 H178 Q166 450 166 462 V516" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-two" d="M500 338 V516" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-three" d="M500 338 V438 Q500 450 512 450 H822 Q834 450 834 462 V516" />
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-one" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M166 102 V158 Q166 170 178 170 H488 Q500 170 500 182 V282" keyPoints="0;0;1;1" keyTimes="0;0.03;0.15;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-two" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M500 102 V282" keyPoints="0;0;1;1" keyTimes="0;0.36;0.48;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-three" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M834 102 V158 Q834 170 822 170 H512 Q500 170 500 182 V282" keyPoints="0;0;1;1" keyTimes="0;0.69;0.81;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-six" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V438 Q500 450 488 450 H178 Q166 450 166 462 V516" keyPoints="0;0;1;1" keyTimes="0;0.83;0.95;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-five" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V516" keyPoints="0;0;1;1" keyTimes="0;0.50;0.62;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-four" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V438 Q500 450 512 450 H822 Q834 450 834 462 V516" keyPoints="0;0;1;1" keyTimes="0;0.17;0.29;1" calcMode="linear" />
+								</circle>
+							</svg>
+							<svg class="creator-wallet-flow-svg creator-wallet-flow-svg-phone" viewBox="0 0 1000 620" preserveAspectRatio="none">
+								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-one" d="M166 102 V160 Q166 172 178 172 H488 Q500 172 500 184 V282" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-two" d="M500 102 V282" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-three" d="M834 102 V160 Q834 172 822 172 H512 Q500 172 500 184 V282" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-trunk-in" d="M500 206 V282" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-trunk-out" d="M500 338 V414" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-one" d="M500 338 V432 Q500 444 488 444 H178 Q166 444 166 456 V516" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-two" d="M500 338 V516" />
+								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-three" d="M500 338 V432 Q500 444 512 444 H822 Q834 444 834 456 V516" />
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-one" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M166 102 V160 Q166 172 178 172 H488 Q500 172 500 184 V282" keyPoints="0;0;1;1" keyTimes="0;0.03;0.15;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-two" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M500 102 V282" keyPoints="0;0;1;1" keyTimes="0;0.36;0.48;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-three" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M834 102 V160 Q834 172 822 172 H512 Q500 172 500 184 V282" keyPoints="0;0;1;1" keyTimes="0;0.69;0.81;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-six" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V432 Q500 444 488 444 H178 Q166 444 166 456 V516" keyPoints="0;0;1;1" keyTimes="0;0.83;0.95;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-five" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V516" keyPoints="0;0;1;1" keyTimes="0;0.50;0.62;1" calcMode="linear" />
+								</circle>
+								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-four" r="5">
+									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V432 Q500 444 512 444 H822 Q834 444 834 456 V516" keyPoints="0;0;1;1" keyTimes="0;0.17;0.29;1" calcMode="linear" />
+								</circle>
+							</svg>
+						</div>
+						<div class="creator-wallet-balance-card" aria-label="Garna balance receives creator payout">
+							<div class="creator-wallet-balance-head">
+								<img src="/garna_logo.svg" alt="Garna" loading="lazy" />
+								<span data-translate="heroVisual.balance.label">Creator balance</span>
+							</div>
+							<strong class="creator-wallet-simple-amount" aria-label="$2,840.00 credited to Garna balance">
+								<span>$0.00</span>
+								<span>$2,840.00</span>
+								<span>$420.00</span>
+								<span>$310.00</span>
+							</strong>
+							<div class="creator-wallet-card-strip">
+								<span data-translate="heroVisual.balance.account">Account</span>
+								<b>4461 **** **** 9821</b>
+							</div>
+						</div>
+
+						<div class="creator-wallet-destination-stack">
+							<div class="creator-wallet-destination-card creator-wallet-simple-card creator-wallet-destination-one">
+								<span data-translate="heroVisual.destinations.bank.label">Bank transfer</span>
+								<strong data-translate="heroVisual.destinations.bank.title">Alex Carter USD</strong>
+								<small>•••• 9821</small>
+							</div>
+							<div class="creator-wallet-destination-card creator-wallet-simple-card creator-wallet-destination-two">
+								<span data-translate="heroVisual.destinations.card.label">Card payout</span>
+								<strong data-translate="heroVisual.destinations.card.title">Visa / Mastercard</strong>
+								<small data-translate="heroVisual.destinations.card.meta">Card ending 4482</small>
+							</div>
+							<div class="creator-wallet-destination-card creator-wallet-simple-card creator-wallet-destination-three">
+								<span data-translate="heroVisual.destinations.crypto.label">Crypto wallet</span>
+								<strong data-translate="heroVisual.destinations.crypto.title">USDT wallet</strong>
+								<small data-translate="heroVisual.destinations.crypto.meta">TRC20 • verified</small>
 							</div>
 						</div>
 					</div>
@@ -178,8 +258,8 @@ const forCreatorsFaqItems = [
 		</div>
 	</HeroSection>
 	<Section
-		title={{ text: 'Built for creators who earn globally' }}
-		description={{ text: 'Garna can help creators, freelancers and digital sellers who receive income from international platforms' }}
+		title={{ text: 'Built for creators who earn globally', translateKey: 'creatorTypes.title' }}
+		description={{ text: 'Garna can help creators, freelancers and digital sellers who receive income from international platforms', translateKey: 'creatorTypes.description' }}
 		class="border-y border-[#020202]/0"
 		headerClass="mb-14 max-w-5xl lg:mb-16"
 		titleClass="mx-auto max-w-4xl lg:text-5xl"
@@ -189,8 +269,8 @@ const forCreatorsFaqItems = [
 			class="p-6"
 			titleClass="text-lg"
 			descriptionClass="text-sm"
-			title="Designers & illustrators"
-			description="For creators selling graphics, templates, fonts, digital assets and visual products"
+			title={{ text: 'Designers & illustrators', translateKey: 'creatorTypes.cards.designers.title' }}
+			description={{ text: 'For creators selling graphics, templates, fonts, digital assets and visual products', translateKey: 'creatorTypes.cards.designers.description' }}
 		>
 			<CardIconVisual slot="visual" icon="lucide:palette" />
 		</Card>
@@ -198,8 +278,8 @@ const forCreatorsFaqItems = [
 			class="p-6"
 			titleClass="text-lg"
 			descriptionClass="text-sm"
-			title="Photographers & stock contributors"
-			description="For contributors receiving royalties or payouts from stock photo and media platforms"
+			title={{ text: 'Photographers & stock contributors', translateKey: 'creatorTypes.cards.photographers.title' }}
+			description={{ text: 'For contributors receiving royalties or payouts from stock photo and media platforms', translateKey: 'creatorTypes.cards.photographers.description' }}
 		>
 			<CardIconVisual slot="visual" icon="lucide:camera" />
 		</Card>
@@ -207,8 +287,8 @@ const forCreatorsFaqItems = [
 			class="p-6"
 			titleClass="text-lg"
 			descriptionClass="text-sm"
-			title="3D artists & game asset creators"
-			description="For creators selling 3D models, plugins, textures, game assets and marketplace products"
+			title={{ text: '3D artists & game asset creators', translateKey: 'creatorTypes.cards.gameAssets.title' }}
+			description={{ text: 'For creators selling 3D models, plugins, textures, game assets and marketplace products', translateKey: 'creatorTypes.cards.gameAssets.description' }}
 		>
 			<CardIconVisual slot="visual" icon="lucide:box" />
 		</Card>
@@ -216,8 +296,8 @@ const forCreatorsFaqItems = [
 			class="p-6"
 			titleClass="text-lg"
 			descriptionClass="text-sm"
-			title="Freelancers & digital sellers"
-			description="For people earning from freelance platforms, subscriptions, courses, music, content or digital products"
+			title={{ text: 'Freelancers & digital sellers', translateKey: 'creatorTypes.cards.freelancers.title' }}
+			description={{ text: 'For people earning from freelance platforms, subscriptions, courses, music, content or digital products', translateKey: 'creatorTypes.cards.freelancers.description' }}
 		>
 			<CardIconVisual slot="visual" icon="lucide:store" />
 		</Card>
@@ -225,13 +305,13 @@ const forCreatorsFaqItems = [
 	<Section
 		layout="split"
 		spacing="none"
-		width="wide"
+		width="content"
 		class="py-16 lg:py-32"
 		splitClass="gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start"
 		copyClass="max-w-xl text-left lg:sticky lg:top-28 lg:self-start"
 		align="left"
-		title={{ text: 'One account for creator payouts' }}
-		description={{ text: 'A guided way to connect platform payouts, receive funds to your Garna balance and withdraw using available payout methods' }}
+		title={{ text: 'One account for creator payouts', translateKey: 'accountFlow.title' }}
+		description={{ text: 'A guided way to connect platform payouts, receive funds to your Garna balance and withdraw using available payout methods', translateKey: 'accountFlow.description' }}
 		titleClass="lg:text-5xl"
 		descriptionClass="text-lg"
 		contentClass="grid gap-4"
@@ -242,8 +322,8 @@ const forCreatorsFaqItems = [
 		>
 			<span slot="visual">01</span>
 			<div class="creator-step-copy">
-				<h3>Receive platform payouts</h3>
-				<p>Use Garna details where supported to receive payments from international creator platforms</p>
+				<h3 data-translate="accountFlow.steps.receive.title">Receive platform payouts</h3>
+				<p data-translate="accountFlow.steps.receive.description">Use Garna details where supported to receive payments from international creator platforms</p>
 			</div>
 		</Card>
 		<Card
@@ -252,8 +332,8 @@ const forCreatorsFaqItems = [
 		>
 			<span slot="visual">02</span>
 			<div class="creator-step-copy">
-				<h3>Get guided setup</h3>
-				<p>Tell us which platform you use. We will check the available payout method and guide you through setup</p>
+				<h3 data-translate="accountFlow.steps.setup.title">Get guided setup</h3>
+				<p data-translate="accountFlow.steps.setup.description">Tell us which platform you use. We will check the available payout method and guide you through setup</p>
 			</div>
 		</Card>
 		<Card
@@ -262,24 +342,14 @@ const forCreatorsFaqItems = [
 		>
 			<span slot="visual">03</span>
 			<div class="creator-step-copy">
-				<h3>Manage your balance</h3>
-				<p>Once funds arrive, they are credited to your Garna balance after verification and invoice matching</p>
-			</div>
-		</Card>
-		<Card
-			variant="compact"
-			visualClass="creator-step-number shrink-0"
-		>
-			<span slot="visual">04</span>
-			<div class="creator-step-copy">
-				<h3>Withdraw globally</h3>
-				<p>Withdraw your money using bank transfer, card, PayPal, Payoneer, crypto and other supported options</p>
+				<h3 data-translate="accountFlow.steps.withdraw.title">Withdraw globally</h3>
+				<p data-translate="accountFlow.steps.withdraw.description">Withdraw your money using bank transfer, card, PayPal, Payoneer, crypto and other supported options</p>
 			</div>
 		</Card>
 	</Section>
 	<Section
-		title={{ text: 'From platform payout to your Garna balance' }}
-		description={{ text: 'The flow is simple, but setup may differ by platform. During Early Access, we guide you through the important details' }}
+		title={{ text: 'From platform payout to your Garna balance', translateKey: 'process.title' }}
+		description={{ text: 'The flow is simple, but setup may differ by platform. During Early Access, we guide you through the important details', translateKey: 'process.description' }}
 		headerClass="mb-14 max-w-4xl lg:mb-16"
 		titleClass="mx-auto max-w-4xl lg:text-5xl"
 		contentClass="creator-process-scroll"
@@ -288,189 +358,191 @@ const forCreatorsFaqItems = [
 			<div class="creator-process-visual-stage" aria-label="Creator payout setup visual">
 				<div class="creator-process-visual is-active" data-process-visual="0">
 				<div class="creator-mini-window">
-					<div class="creator-mini-row"><span>Profile</span><strong>Setup</strong></div>
+					<div class="creator-mini-row"><span data-translate="process.visual.account.profile">Profile</span><strong data-translate="process.visual.account.setup">Setup</strong></div>
 					<div class="creator-mini-amount">
-						<span>Account status</span>
-						<strong>Opening</strong>
+						<span data-translate="process.visual.account.statusLabel">Account status</span>
+						<strong data-translate="process.visual.account.statusValue">Opening</strong>
 					</div>
-					<div class="creator-mini-skeleton w-4/5"></div>
-					<div class="creator-mini-skeleton w-3/5"></div>
 					<div class="creator-mini-verification">
-						<span><i></i>Email confirmed</span>
-						<span><i></i>KYC in review</span>
-						<span><i></i>Account opening</span>
+						<span><i></i><b data-translate="process.visual.account.emailConfirmed">Email confirmed</b></span>
+						<span><i></i><b data-translate="process.visual.account.kycReview">KYC in review</b></span>
+						<span><i></i><b data-translate="process.visual.account.accountOpening">Account opening</b></span>
 					</div>
 					<div class="creator-visual-list">
-						<div><span>Legal name</span><strong>Alex Carter</strong></div>
-						<div><span>Country</span><strong>Portugal</strong></div>
-						<div><span>Currency</span><strong>USD</strong></div>
+						<div><span data-translate="process.visual.account.legalName">Legal name</span><strong>Alex Carter</strong></div>
+						<div><span data-translate="process.visual.account.country">Country</span><strong>Portugal</strong></div>
+						<div><span data-translate="process.visual.account.currency">Currency</span><strong>USD</strong></div>
 					</div>
-					<div class="creator-visual-action">Continue verification</div>
 				</div>
 			</div>
 				<div class="creator-process-visual" data-process-visual="1">
 				<div class="creator-chat-card">
 					<div class="creator-chat-meta">
-						<span>Manager online</span>
+						<span data-translate="process.visual.chat.managerOnline">Manager online</span>
 						<strong>2 min</strong>
 					</div>
-					<div class="creator-chat-bubble user">Income from Envato</div>
-					<div class="creator-chat-bubble manager">Send country and payout currency</div>
-					<div class="creator-chat-bubble user">Portugal, USD. I also use Adobe Stock</div>
-					<div class="creator-chat-bubble manager">Got it. I will check supported route and invoice rules</div>
-					<div class="creator-chat-bubble user">Please include the first withdrawal steps too</div>
+					<div class="creator-chat-bubble user" data-translate="process.visual.chat.messageIncome">Income from Envato</div>
+					<div class="creator-chat-bubble manager" data-translate="process.visual.chat.messageCountry">Send country and payout currency</div>
+					<div class="creator-chat-bubble user" data-translate="process.visual.chat.messagePlatform">Portugal, USD. I also use Adobe Stock</div>
+					<div class="creator-chat-bubble manager" data-translate="process.visual.chat.messageCheck">Got it. I will check supported route and invoice rules</div>
+					<div class="creator-chat-bubble user" data-translate="process.visual.chat.messageWithdrawal">Please include the first withdrawal steps too</div>
 					<div class="creator-visual-list">
-						<div><span>Platforms</span><strong>2 added</strong></div>
-						<div><span>Route check</span><strong>In progress</strong></div>
+						<div><span data-translate="process.visual.chat.platformsLabel">Platforms</span><strong data-translate="process.visual.chat.platformsValue">2 added</strong></div>
+						<div><span data-translate="process.visual.chat.routeLabel">Route check</span><strong data-translate="process.visual.chat.routeValue">In progress</strong></div>
 					</div>
 				</div>
 			</div>
 				<div class="creator-process-visual" data-process-visual="2">
 				<div class="creator-details-sheet">
 					<div class="creator-details-header">
-						<span>Garna details</span>
+						<span data-translate="process.visual.details.title">Garna details</span>
 						<strong>USD</strong>
 					</div>
 					<div class="creator-details-grid">
-						<span>Routing</span>
+						<span data-translate="process.visual.details.routing">Routing</span>
 						<strong>021000021</strong>
-						<span>Account</span>
+						<span data-translate="process.visual.details.account">Account</span>
 						<strong>4461 9571</strong>
-						<span>Method</span>
+						<span data-translate="process.visual.details.method">Method</span>
 						<strong>SWIFT</strong>
-						<span>Beneficiary</span>
+						<span data-translate="process.visual.details.beneficiary">Beneficiary</span>
 						<strong>Garna LLC</strong>
-						<span>Reference</span>
+						<span data-translate="process.visual.details.reference">Reference</span>
 						<strong>ENV-2048</strong>
 					</div>
 					<div class="creator-detail-tags">
-						<span>Envato ready</span>
-						<span>Adobe Stock manual</span>
-						<span>Invoice required</span>
+						<span data-translate="process.visual.details.envatoReady">Envato ready</span>
+						<span data-translate="process.visual.details.adobeManual">Adobe Stock manual</span>
+						<span data-translate="process.visual.details.invoiceRequired">Invoice required</span>
 					</div>
 					<div class="creator-details-status">
-						<div><span>Route status</span><strong>Checked</strong></div>
-						<div><span>Use in platform</span><strong>Ready to paste</strong></div>
+						<div><span data-translate="process.visual.details.routeStatus">Route status</span><strong data-translate="process.visual.details.checked">Checked</strong></div>
+						<div><span data-translate="process.visual.details.useInPlatform">Use in platform</span><strong data-translate="process.visual.details.readyToPaste">Ready to paste</strong></div>
 					</div>
-					<div class="creator-visual-action">Copy payout details</div>
+					<div class="creator-visual-action" data-translate="process.visual.details.copyAction">Copy payout details</div>
 				</div>
 			</div>
 				<div class="creator-process-visual" data-process-visual="3">
 				<div class="creator-withdraw-panel">
 					<div class="creator-withdraw-header">
-						<span>Envato withdrawal</span>
+						<span data-translate="process.visual.withdraw.title">Envato withdrawal</span>
 						<strong>$2,840</strong>
 					</div>
+					<div class="creator-visual-section-label" data-translate="process.visual.withdraw.summary">Payout summary</div>
 					<div class="creator-visual-list">
-						<div><span>Available now</span><strong>$2,840.00</strong></div>
-						<div><span>Marketplace fee</span><strong>Paid</strong></div>
+						<div><span data-translate="process.visual.withdraw.availableNow">Available now</span><strong>$2,840.00</strong></div>
+						<div><span data-translate="process.visual.withdraw.marketplaceFee">Marketplace fee</span><strong data-translate="process.visual.withdraw.paid">Paid</strong></div>
 					</div>
+					<div class="creator-visual-section-label" data-translate="process.visual.withdraw.routeDetails">Route details</div>
 					<div class="creator-withdraw-select">
-						<span>Destination</span>
+						<span data-translate="process.visual.withdraw.destination">Destination</span>
 						<strong>Garna USD</strong>
 					</div>
 					<div class="creator-withdraw-note">
-						<span>Request</span>
-						<strong>Prepared</strong>
+						<span data-translate="process.visual.withdraw.request">Request</span>
+						<strong data-translate="process.visual.withdraw.prepared">Prepared</strong>
 					</div>
-					<div class="creator-visual-action">Request payout</div>
+					<div class="creator-visual-action" data-translate="process.visual.withdraw.requestAction">Request payout</div>
 				</div>
 			</div>
 				<div class="creator-process-visual" data-process-visual="4">
 				<div class="creator-invoice-doc">
 					<div class="creator-doc-header">
-						<div class="creator-doc-title">Invoice #2048</div>
+						<div class="creator-doc-title" data-translate="process.visual.invoice.title">Invoice #2048</div>
 						<div class="creator-doc-corner">PDF</div>
 					</div>
 					<div class="creator-visual-list">
-						<div><span>Client</span><strong>Envato Pty Ltd</strong></div>
-						<div><span>Amount</span><strong>$2,840.00</strong></div>
-						<div><span>Status</span><strong>Matching</strong></div>
+						<div><span data-translate="process.visual.invoice.client">Client</span><strong>Envato Pty Ltd</strong></div>
+						<div><span data-translate="process.visual.invoice.amount">Amount</span><strong>$2,840.00</strong></div>
+						<div><span data-translate="process.visual.invoice.status">Status</span><strong data-translate="process.visual.invoice.matching">Matching</strong></div>
+						<div><span data-translate="process.visual.invoice.reference">Reference</span><strong data-translate="process.visual.invoice.junePayout">June payout</strong></div>
 					</div>
 					<div class="creator-doc-lines">
 						<span></span>
 						<span></span>
 						<span></span>
 					</div>
-					<div class="creator-doc-attach">Payout proof attached</div>
+					<div class="creator-doc-attach" data-translate="process.visual.invoice.proofAttached">Payout proof attached</div>
 					<div class="creator-detail-tags">
-						<span>Screenshot</span>
-						<span>Platform report</span>
+						<span data-translate="process.visual.invoice.screenshot">Screenshot</span>
+						<span data-translate="process.visual.invoice.platformReport">Platform report</span>
 					</div>
 				</div>
 			</div>
 				<div class="creator-process-visual" data-process-visual="5">
 				<div class="creator-balance-card">
 					<div class="creator-balance-top">
-						<span>Garna balance</span>
-						<em>Credited</em>
+						<span data-translate="process.visual.balance.title">Garna balance</span>
+						<em data-translate="process.visual.balance.credited">Credited</em>
 					</div>
 					<strong data-process-balance-counter>$0.00</strong>
 					<div class="creator-visual-list">
-						<div><span>Incoming payout</span><strong>Envato</strong></div>
-						<div><span>Available now</span><strong>$2,840.00</strong></div>
+						<div><span data-translate="process.visual.balance.incomingPayout">Incoming payout</span><strong>Envato</strong></div>
+						<div><span data-translate="process.visual.balance.availableNow">Available now</span><strong>$2,840.00</strong></div>
+						<div><span data-translate="process.visual.balance.accountNumber">Account number</span><strong>•••• 9821</strong></div>
 					</div>
 					<div class="creator-balance-bar"></div>
 					<div class="creator-balance-methods">
-						<span>Bank</span>
-						<span>Card</span>
-						<span>Crypto</span>
+						<span data-translate="process.visual.balance.bank">Bank</span>
+						<span data-translate="process.visual.balance.card">Card</span>
+						<span data-translate="process.visual.balance.crypto">Crypto</span>
 					</div>
-					<div class="creator-visual-action">Withdraw funds</div>
+					<div class="creator-visual-action" data-translate="process.visual.balance.withdrawAction">Withdraw funds</div>
 				</div>
 			</div>
-			</div>
-			<div class="creator-process-progress" aria-hidden="true">
-				<span class="is-active"></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
+				<div class="creator-process-progress" aria-hidden="true">
+					<span class="is-active"></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
 			</div>
 		</div>
 		<div class="creator-process-copy">
 			<article class="creator-process-step is-active" data-process-step="0">
 				<span>01</span>
-				<h3>Create your Garna account</h3>
-				<p>Register in Garna and complete verification. KYC usually takes 1-2 business days</p>
+				<h3 data-translate="process.steps.account.title">Create your Garna account</h3>
+				<p data-translate="process.steps.account.description">Register in Garna and complete verification. KYC usually takes 1-2 business days</p>
 			</article>
 			<article class="creator-process-step" data-process-step="1">
 				<span>02</span>
-				<h3>Tell us your platform</h3>
-				<p>Contact your payout manager and tell us where you receive income</p>
+				<h3 data-translate="process.steps.platform.title">Tell us your platform</h3>
+				<p data-translate="process.steps.platform.description">Contact your payout manager and tell us where you receive income</p>
 			</article>
 			<article class="creator-process-step" data-process-step="2">
 				<span>03</span>
-				<h3>Get setup instructions</h3>
-				<p>We will check the available payout method and provide the correct Garna details or next steps</p>
+				<h3 data-translate="process.steps.instructions.title">Get setup instructions</h3>
+				<p data-translate="process.steps.instructions.description">We will check the available payout method and provide the correct Garna details or next steps</p>
 			</article>
 			<article class="creator-process-step" data-process-step="3">
 				<span>04</span>
-				<h3>Request payout on the platform</h3>
-				<p>Add the provided details where supported and request a withdrawal from your platform</p>
+				<h3 data-translate="process.steps.request.title">Request payout on the platform</h3>
+				<p data-translate="process.steps.request.description">Add the provided details where supported and request a withdrawal from your platform</p>
 			</article>
 			<article class="creator-process-step" data-process-step="4">
 				<span>05</span>
-				<h3>Create an invoice in Garna</h3>
-				<p>Create an invoice and attach the required confirmation, such as a payout screenshot or platform document</p>
+				<h3 data-translate="process.steps.invoice.title">Create an invoice in Garna</h3>
+				<p data-translate="process.steps.invoice.description">Create an invoice and attach the required confirmation, such as a payout screenshot or platform document</p>
 			</article>
 			<article class="creator-process-step" data-process-step="5">
 				<span>06</span>
-				<h3>Receive and withdraw funds</h3>
-				<p>Garna matches the payment with your invoice, credits your balance, and you withdraw using your preferred available method</p>
+				<h3 data-translate="process.steps.receive.title">Receive and withdraw funds</h3>
+				<p data-translate="process.steps.receive.description">Garna matches the payment with your invoice, credits your balance, and you withdraw using your preferred available method</p>
 			</article>
 		</div>
+		<div class="creator-process-fallback" data-process-fallback></div>
 	</Section>
 	<Section
-		title={{ text: 'Reduced fee for\nEarly Access creators' }}
-		description={{ text: "We're opening creator payouts in Early Access and manually helping selected users configure their first platform setups" }}
+		title={{ text: 'Reduced fee for\nEarly Access creators', translateKey: 'earlyAccessFee.title' }}
+		description={{ text: "We're opening creator payouts in Early Access and manually helping selected users configure their first platform setups", translateKey: 'earlyAccessFee.description' }}
 		headerClass="mb-10 max-w-4xl"
 		titleClass="creator-fee-title mx-auto max-w-4xl lg:text-5xl"
 		descriptionClass="mx-auto max-w-3xl"
 		contentClass="creator-fee-layout"
 		action={{
-			label: { text: 'Contact Payout Manager' },
+			label: { text: 'Contact Payout Manager', translateKey: 'earlyAccessFee.cta' },
 			href: 'https://t.me/likelyiam',
 			variant: 'primary',
 			icon: 'arrow-up-right',
@@ -479,21 +551,21 @@ const forCreatorsFaqItems = [
 	>
 		<div class="creator-fee-comparison">
 			<div class="creator-fee-rate creator-fee-rate-standard" data-card-glow="true" data-interactive="true">
-				<span>Standard fee</span>
+				<span data-translate="earlyAccessFee.standard.label">Standard fee</span>
 				<div class="creator-fee-copy">
-					<p class="creator-fee-caption">
+					<p class="creator-fee-caption" data-translate="earlyAccessFee.standard.caption">
 						The regular Garna service fee applies after Early Access or for creator payout setups outside the selected launch group.
 					</p>
 				</div>
 				<strong>5.5%</strong>
 			</div>
 			<div class="creator-fee-rate creator-fee-rate-access" data-card-glow="true" data-interactive="true">
-				<span>Early Access fee</span>
+				<span data-translate="earlyAccessFee.access.label">Early Access fee</span>
 				<div class="creator-fee-copy">
-					<p class="creator-fee-caption">
+					<p class="creator-fee-caption" data-translate="earlyAccessFee.access.caption">
 						Early Access creators can receive a reduced 1.5% Garna service fee for their first payouts while we help validate and fine-tune the setup flow.
 					</p>
-					<p class="creator-fee-disclaimer">
+					<p class="creator-fee-disclaimer" data-translate="earlyAccessFee.access.disclaimer">
 						The percentages above refer only to Garna's service fee. Platform withdrawal fees, payment method charges, FX costs or other third-party fees may vary and are not included.
 					</p>
 				</div>
@@ -502,58 +574,58 @@ const forCreatorsFaqItems = [
 		</div>
 	</Section>
 	<Section
-		title={{ text: 'Popular platforms\nwe can help with' }}
-		description={{ text: "We're starting with popular creator platforms, stock marketplaces and digital product services. Some platforms can be configured directly, while others may require manual guidance from Garna or the platform's own support team" }}
+		title={{ text: 'Popular platforms\nwe can help with', translateKey: 'platforms.title' }}
+		description={{ text: "We're starting with popular creator platforms, stock marketplaces and digital product services. Some platforms can be configured directly, while others may require manual guidance from Garna or the platform's own support team", translateKey: 'platforms.description' }}
 		headerClass="mb-14 max-w-4xl"
 		titleClass="creator-platforms-title mx-auto max-w-4xl lg:text-5xl"
 		contentClass="creator-platforms-block"
 	>
 		<div class="creator-platform-showcase" data-random-platform-logos aria-label="Popular platforms">
 			<span class="creator-platform-logo" aria-label="Shutterstock and Upwork">
-				<img src="/images/shutterstock-logo.svg" alt="" loading="lazy" />
+				<img class="creator-platform-logo-boost" src="/images/shutterstock-logo.svg" alt="" loading="lazy" />
 				<img class="creator-platform-logo-alt creator-platform-logo-accent" src="/images/upwork-logo.svg" alt="" loading="lazy" />
 			</span>
 			<span class="creator-platform-logo" aria-label="Adobe Stock and iStock">
-				<img src="/images/adobe-stock-logo-white.png" alt="" loading="lazy" />
-				<img class="creator-platform-logo-alt" src="/images/istock-logo.svg" alt="" loading="lazy" />
+				<img class="creator-platform-logo-boost" src="/images/adobe-stock-logo.svg" alt="" loading="lazy" />
+				<img class="creator-platform-logo-alt creator-platform-logo-shrink" src="/images/istock-logo.svg" alt="" loading="lazy" />
 			</span>
 			<span class="creator-platform-logo" aria-label="Magnific and ArtStation">
-				<img class="creator-platform-logo-accent" src="/images/magnific-logo.svg" alt="" loading="lazy" />
-				<img class="creator-platform-logo-alt" src="/images/artstation-logo.svg" alt="" loading="lazy" />
+				<img class="creator-platform-logo-accent creator-platform-logo-boost" src="/images/magnific-logo.svg" alt="" loading="lazy" />
+				<img class="creator-platform-logo-alt creator-platform-logo-boost" src="/images/artstation-logo.svg" alt="" loading="lazy" />
 			</span>
 			<span class="creator-platform-logo" aria-label="Canva and Buy Me a Coffee">
-				<img class="creator-platform-logo-compact" src="/images/canva-logo.svg" alt="" loading="lazy" />
-				<img class="creator-platform-logo-alt creator-platform-logo-wide" src="/images/buy-me-a-coffee-logo.svg" alt="" loading="lazy" />
+				<img class="creator-platform-logo-compact creator-platform-logo-shrink" src="/images/canva-logo.svg" alt="" loading="lazy" />
+				<img class="creator-platform-logo-alt creator-platform-logo-xl" src="/images/buy-me-a-coffee-logo.svg" alt="" loading="lazy" />
 			</span>
 			<span class="creator-platform-logo" aria-label="Envato and Creative Fabrica">
 				<img src="/images/envato-logo.svg" alt="" loading="lazy" />
-				<img class="creator-platform-logo-alt creator-platform-logo-accent" src="/images/creative-fabrica-logo.png" alt="" loading="lazy" />
+				<img class="creator-platform-logo-alt creator-platform-logo-accent creator-platform-logo-creative-fabrica" src="/images/creative-fabrica-logo.svg" alt="" loading="lazy" />
 			</span>
 			<span class="creator-platform-logo" aria-label="Creative Market and Blender Market">
 				<img src="/images/creative-market-logo.svg" alt="" loading="lazy" />
-				<img class="creator-platform-logo-alt" src="/images/blender-logo.svg" alt="" loading="lazy" />
+				<img class="creator-platform-logo-alt creator-platform-logo-boost" src="/images/blender-logo.svg" alt="" loading="lazy" />
 			</span>
 			<span class="creator-platform-logo" aria-label="Gumroad and Unity Asset Store">
 				<img class="creator-platform-logo-wide" src="/images/gumroad-logo.svg" alt="" loading="lazy" />
-				<img class="creator-platform-logo-alt creator-platform-logo-accent" src="/images/unity-logo.svg" alt="" loading="lazy" />
+				<img class="creator-platform-logo-alt creator-platform-logo-accent creator-platform-logo-shrink" src="/images/unity-logo.svg" alt="" loading="lazy" />
 			</span>
 			<span class="creator-platform-logo" aria-label="Redbubble and Unreal Marketplace">
 				<img src="/images/redbubble-logo.svg" alt="" loading="lazy" />
-				<img class="creator-platform-logo-alt creator-platform-logo-wide" src="/images/unreal-marketplace-logo.png" alt="" loading="lazy" />
+				<img class="creator-platform-logo-alt creator-platform-logo-xl" src="/images/unreal-marketplace-logo.png" alt="" loading="lazy" />
 			</span>
 			<span class="creator-platform-logo" aria-label="Patreon and SoundCloud">
 				<img class="creator-platform-logo-accent" src="/images/patreon-logo.svg" alt="" loading="lazy" />
-				<img class="creator-platform-logo-alt" src="/images/soundcloud-logo.svg" alt="" loading="lazy" />
+				<img class="creator-platform-logo-alt creator-platform-logo-xl" src="/images/soundcloud-logo.svg" alt="" loading="lazy" />
 			</span>
 			<span class="creator-platform-logo" aria-label="Fiverr and Pixiv FANBOX">
-				<img src="/images/fiverr-logo.svg" alt="" loading="lazy" />
-				<img class="creator-platform-logo-alt" src="/images/pixiv-fanbox-logo.png" alt="" loading="lazy" />
+				<img class="creator-platform-logo-shrink creator-platform-logo-lift" src="/images/fiverr-logo.svg" alt="" loading="lazy" />
+				<img class="creator-platform-logo-alt creator-platform-logo-boost" src="/images/pixiv-fanbox-logo.svg" alt="" loading="lazy" />
 			</span>
 		</div>
 	</Section>
 	<Section
-		title={{ text: 'Global payout infrastructure for modern teams and creators' }}
-		description={{ text: 'Garna already helps businesses and contractors work with international payouts. Now we are bringing the same payout infrastructure to creators who earn from global platforms' }}
+		title={{ text: 'Global payout infrastructure for modern teams and creators', translateKey: 'globalInfrastructure.title' }}
+		description={{ text: 'Garna already helps businesses and contractors work with international payouts. Now we are bringing the same payout infrastructure to creators who earn from global platforms', translateKey: 'globalInfrastructure.description' }}
 		headerClass="mb-14 max-w-4xl"
 		titleClass="mx-auto max-w-4xl lg:text-5xl"
 		descriptionClass="mx-auto max-w-3xl"
@@ -563,36 +635,36 @@ const forCreatorsFaqItems = [
 			<Card class="creator-why-card p-6 md:p-8">
 				<strong>150+</strong>
 				<div>
-					<h3>Global platform payouts</h3>
-					<p>Receive creator income across countries, currencies and payout methods</p>
+					<h3 data-translate="globalInfrastructure.cards.platformPayouts.title">Global platform payouts</h3>
+					<p data-translate="globalInfrastructure.cards.platformPayouts.description">Receive creator income across countries, currencies and payout methods</p>
 				</div>
 			</Card>
 			<Card class="creator-why-card p-6 md:p-8">
 				<strong>80+</strong>
 				<div>
-					<h3>Multi-currency payout routes</h3>
-					<p>Use the right payout currency and route from one Garna account</p>
+					<h3 data-translate="globalInfrastructure.cards.currencyRoutes.title">Multi-currency payout routes</h3>
+					<p data-translate="globalInfrastructure.cards.currencyRoutes.description">Use the right payout currency and route from one Garna account</p>
 				</div>
 			</Card>
 			<Card class="creator-why-card p-6 md:p-8">
 				<strong>24/7</strong>
 				<div>
-					<h3>Always-on setup support</h3>
-					<p>Get help choosing details, invoices and the next setup steps</p>
+					<h3 data-translate="globalInfrastructure.cards.setupSupport.title">Always-on setup support</h3>
+					<p data-translate="globalInfrastructure.cards.setupSupport.description">Get help choosing details, invoices and the next setup steps</p>
 				</div>
 			</Card>
 			<Card class="creator-why-card p-6 md:p-8">
-				<strong>1-2 days</strong>
+				<strong data-translate="globalInfrastructure.cards.complianceFlow.metric">1-2 days</strong>
 				<div>
-					<h3>Compliance-ready payout flow</h3>
-					<p>Keep verification, documents and payment matching organized</p>
+					<h3 data-translate="globalInfrastructure.cards.complianceFlow.title">Compliance-ready payout flow</h3>
+					<p data-translate="globalInfrastructure.cards.complianceFlow.description">Keep verification, documents and payment matching organized</p>
 				</div>
 			</Card>
 		</div>
 	</Section>
 	<Section
-		title={{ text: 'Need help with your first setup?' }}
-		description={{ text: 'Your payout manager will help you understand whether your platform is supported, which payout method is available, and what steps you need to complete' }}
+		title={{ text: 'Need help with your first setup?', translateKey: 'managerSupport.title' }}
+		description={{ text: 'Your payout manager will help you understand whether your platform is supported, which payout method is available, and what steps you need to complete', translateKey: 'managerSupport.description' }}
 		layout="split"
 		align="left"
 		headerClass="creator-manager-copy mb-0"
@@ -606,6 +678,7 @@ const forCreatorsFaqItems = [
 				icon="arrow-up-right"
 				size="hero"
 				trackingCta="for_creators_manager_telegram"
+				data-translate="managerSupport.actions.telegram"
 			>
 				Message on Telegram
 			</Button>
@@ -616,6 +689,7 @@ const forCreatorsFaqItems = [
 				icon="none"
 				size="hero"
 				trackingCta="for_creators_manager_email"
+				data-translate="managerSupport.actions.email"
 			>
 				Send an email
 			</Button>
@@ -633,7 +707,7 @@ const forCreatorsFaqItems = [
 						/>
 						<div>
 							<strong>Ava Martins</strong>
-							<p>Payout manager online</p>
+							<p data-translate="managerSupport.visual.managerOnline">Payout manager online</p>
 						</div>
 						<div class="creator-manager-chat-tools" aria-hidden="true">
 							<span class="creator-manager-tool creator-manager-tool-search"></span>
@@ -642,93 +716,93 @@ const forCreatorsFaqItems = [
 						</div>
 					</div>
 					<div class="creator-manager-messages" aria-label="Example chat with payout manager">
-						<p>I receive income from Envato and Adobe Stock 👋</p>
+						<p data-translate="managerSupport.visual.messages.income">I receive income from Envato and Adobe Stock 👋</p>
 						<div class="creator-chat-typing creator-chat-typing-first" aria-hidden="true">
 							<span></span>
 							<span></span>
 							<span></span>
 						</div>
-						<p>Hi Alex, send your platform and payout country. I will check which Garna details you can use</p>
-						<p>Great, I also need help with the first withdrawal</p>
+						<p data-translate="managerSupport.visual.messages.platformCountry">Hi Alex, send your platform and payout country. I will check which Garna details you can use</p>
+						<p data-translate="managerSupport.visual.messages.firstWithdrawal">Great, I also need help with the first withdrawal</p>
 						<div class="creator-chat-typing creator-chat-typing-second" aria-hidden="true">
 							<span></span>
 							<span></span>
 							<span></span>
 						</div>
-						<p>All set. Platform rules checked, payout route prepared, invoice matching included ✅</p>
+						<p data-translate="managerSupport.visual.messages.ready">All set. Platform rules checked, payout route prepared, invoice matching included ✅</p>
 					</div>
 				</div>
 				<div class="creator-manager-route" aria-hidden="true">
 					<div>
 						<span>PM</span>
 						<div>
-							<strong>Personal manager</strong>
-							<p>Online during setup</p>
+							<strong data-translate="managerSupport.visual.route.title">Personal manager</strong>
+							<p data-translate="managerSupport.visual.route.online">Online during setup</p>
 						</div>
-						<small>Telegram / Email</small>
+						<small data-translate="managerSupport.visual.route.channels">Telegram / Email</small>
 					</div>
 				</div>
 				<div class="creator-manager-dialog">
 					<div class="creator-manager-dialog-head">
-						<span>Manager online</span>
-						<strong>2 min</strong>
+						<span data-translate="managerSupport.visual.dialog.status">Manager online</span>
+						<strong data-translate="managerSupport.visual.dialog.time">2 min</strong>
 					</div>
-					<p>I need help with my first platform payout</p>
-					<p>Send your platform and country. I will check the setup steps for you</p>
+					<p data-translate="managerSupport.visual.dialog.request">I need help with my first platform payout</p>
+					<p data-translate="managerSupport.visual.dialog.reply">Send your platform and country. I will check the setup steps for you</p>
 				</div>
 				<div class="creator-manager-steps">
-					<div><span>01</span><strong>Platform check</strong></div>
-					<div><span>02</span><strong>Setup guidance</strong></div>
-					<div><span>03</span><strong>First withdrawal</strong></div>
+					<div><span>01</span><strong data-translate="managerSupport.visual.steps.platformCheck">Platform check</strong></div>
+					<div><span>02</span><strong data-translate="managerSupport.visual.steps.setupGuidance">Setup guidance</strong></div>
+					<div><span>03</span><strong data-translate="managerSupport.visual.steps.firstWithdrawal">First withdrawal</strong></div>
 				</div>
 				<div class="creator-manager-panel-header">
 					<div>
-						<span>Personal manager</span>
-						<strong>First payout setup</strong>
+						<span data-translate="managerSupport.visual.panel.manager">Personal manager</span>
+						<strong data-translate="managerSupport.visual.panel.title">First payout setup</strong>
 					</div>
-					<b>Online</b>
+					<b data-translate="managerSupport.visual.panel.online">Online</b>
 				</div>
 				<div class="creator-manager-chat">
-					<p>I receive income from Envato and Adobe Stock</p>
-					<p>We’ll check platform rules and send the available payout route</p>
+					<p data-translate="managerSupport.visual.panel.income">I receive income from Envato and Adobe Stock</p>
+					<p data-translate="managerSupport.visual.panel.checkRules">We’ll check platform rules and send the available payout route</p>
 				</div>
 				<div class="creator-manager-checklist">
 					<div>
 						<span>01</span>
-						<strong>Platform check</strong>
+						<strong data-translate="managerSupport.visual.steps.platformCheck">Platform check</strong>
 					</div>
 					<div>
 						<span>02</span>
-						<strong>Payout method</strong>
+						<strong data-translate="managerSupport.visual.steps.payoutMethod">Payout method</strong>
 					</div>
 					<div>
 						<span>03</span>
-						<strong>First withdrawal</strong>
+						<strong data-translate="managerSupport.visual.steps.firstWithdrawal">First withdrawal</strong>
 					</div>
 				</div>
 			</div>
 		</Card>
 	</Section>
 	<FAQSection
-		title={{ text: 'Questions creators usually ask' }}
-		subtitle={{ text: 'A few important details before you start your first payout setup with Garna' }}
+		title={{ text: 'Questions creators usually ask', translateKey: 'creatorFaq.title' }}
+		subtitle={{ text: 'A few important details before you start your first payout setup with Garna', translateKey: 'creatorFaq.subtitle' }}
 		items={forCreatorsFaqItems}
 		class="pt-16 pr-6 pb-16 pl-6 lg:pt-32 lg:pb-32"
 		containerClass="max-w-3xl mr-auto ml-auto"
 	/>
 	<Section
-		title={{ text: 'Start receiving creator payouts with Garna' }}
-		description={{ text: "Contact your payout manager to check your platform and get guided setup, or create your Garna account when you're ready to continue" }}
+		title={{ text: 'Start receiving creator payouts with Garna', translateKey: 'creatorFinalCta.title' }}
+		description={{ text: "Contact your payout manager to check your platform and get guided setup, or create your Garna account when you're ready to continue", translateKey: 'creatorFinalCta.description' }}
 		class="overflow-hidden border-white/0 border-t"
 		headerClass="mb-0 max-w-4xl"
 		titleClass="mx-auto max-w-4xl lg:text-6xl"
 		descriptionClass="mx-auto max-w-2xl"
 		contentClass="creator-final-actions mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
 	>
-		<Button href="https://t.me/likelyiam" variant="primary" size="hero" icon="arrow-up-right">
+		<Button href="https://t.me/likelyiam" variant="primary" size="hero" icon="arrow-up-right" data-translate="creatorFinalCta.contact">
 			Contact Payout Manager
 		</Button>
-		<Button href="https://app.garna.io/auth/sign-up" variant="secondary" size="hero">
+		<Button href="https://app.garna.io/auth/sign-up" variant="secondary" size="hero" data-translate="creatorFinalCta.account">
 			Create Garna Account
 		</Button>
 	</Section>
@@ -737,25 +811,68 @@ const forCreatorsFaqItems = [
 		const creatorProcessSteps = Array.from(document.querySelectorAll('[data-process-step]'));
 		const creatorProcessVisuals = Array.from(document.querySelectorAll('[data-process-visual]'));
 		const creatorProcessProgress = Array.from(document.querySelectorAll('.creator-process-progress span'));
+		const creatorProcessFallback = document.querySelector('[data-process-fallback]');
 		const creatorBalanceDuration = 5800;
 		let creatorBalanceActiveStartedAt = null;
+		const creatorWalletVisual = document.querySelector('.creator-wallet-visual');
+		const reduceCreatorProcessMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const targetCreatorBalance = 2840;
+		const formatCreatorBalance = (value) =>
+			new Intl.NumberFormat('en-US', {
+				style: 'currency',
+				currency: 'USD',
+				minimumFractionDigits: 2,
+				maximumFractionDigits: 2,
+			}).format(value);
+
+		const updateCreatorWalletScale = () => {
+			if (!(creatorWalletVisual instanceof HTMLElement)) return;
+
+			if (!window.matchMedia('(max-width: 760px)').matches) {
+				creatorWalletVisual.style.removeProperty('--creator-wallet-visual-scale');
+				creatorWalletVisual.style.removeProperty('min-height');
+				return;
+			}
+
+			const visualWidth = Math.max(280, creatorWalletVisual.clientWidth || window.innerWidth);
+			const scale = Math.min(1, visualWidth / 760);
+			creatorWalletVisual.style.setProperty('--creator-wallet-visual-scale', String(scale));
+			creatorWalletVisual.style.minHeight = `${Math.ceil(620 * scale)}px`;
+		};
+
+		updateCreatorWalletScale();
+		window.addEventListener('resize', updateCreatorWalletScale);
 
 		if (creatorProcess && creatorProcessSteps.length && creatorProcessVisuals.length) {
 			const creatorProcessScroll = creatorProcess.closest('.creator-process-scroll');
 			let creatorProcessFrame = null;
 			let creatorProcessCurrentIndex = -1;
 
-			const setCreatorProcessStep = (index) => {
+			const setCreatorProcessStep = (index, stepProgress = 1) => {
 				if (index !== creatorProcessCurrentIndex) {
 					creatorBalanceActiveStartedAt = index === 5 ? performance.now() : null;
 					creatorProcessCurrentIndex = index;
 				}
 
+				const clampedStepProgress = Math.min(1, Math.max(0, stepProgress));
+				const progressTrack = creatorProcessProgress[0]?.parentElement;
+				if (progressTrack instanceof HTMLElement) {
+					progressTrack.style.setProperty('--creator-process-step-progress', `${clampedStepProgress * 100}%`);
+				}
+
 				creatorProcessSteps.forEach((step) => {
 					step.classList.toggle('is-active', step.getAttribute('data-process-step') === String(index));
 				});
-				creatorProcessVisuals.forEach((visual) => {
-					visual.classList.toggle('is-active', visual.getAttribute('data-process-visual') === String(index));
+				creatorProcessVisuals.forEach((visual, visualIndex) => {
+					const isActiveVisual = visual.getAttribute('data-process-visual') === String(index);
+					const stackDistance = (visualIndex - index + creatorProcessVisuals.length) % creatorProcessVisuals.length;
+
+					visual.classList.toggle('is-active', isActiveVisual);
+					visual.classList.toggle('is-stack-one', !isActiveVisual && stackDistance === 1);
+					visual.classList.toggle('is-stack-two', !isActiveVisual && stackDistance === 2);
+					visual.classList.toggle('is-stack-three', !isActiveVisual && stackDistance === 3);
+					visual.classList.toggle('is-stack-four', !isActiveVisual && stackDistance === 4);
+					visual.classList.toggle('is-stack-five', !isActiveVisual && stackDistance === 5);
 				});
 				creatorProcessProgress.forEach((dot, dotIndex) => {
 					dot.classList.toggle('is-active', dotIndex === index);
@@ -768,11 +885,15 @@ const forCreatorsFaqItems = [
 
 				const rect = creatorProcessScroll.getBoundingClientRect();
 				const scrollDistance = Math.max(1, rect.height - window.innerHeight);
-				const stickyOffset = window.innerWidth > 980 ? 104 : 0;
+				const processStyles = window.getComputedStyle(creatorProcessScroll);
+				const cssStickyOffset = Number.parseFloat(processStyles.getPropertyValue('--creator-process-top-offset'));
+				const stickyOffset = window.innerWidth > 980 && Number.isFinite(cssStickyOffset) ? cssStickyOffset : 0;
 				const progress = Math.min(1, Math.max(0, (stickyOffset - rect.top) / scrollDistance));
-				const index = Math.min(creatorProcessSteps.length - 1, Math.floor(progress * creatorProcessSteps.length));
+				const rawStepProgress = progress * creatorProcessSteps.length;
+				const index = Math.min(creatorProcessSteps.length - 1, Math.floor(rawStepProgress));
+				const stepProgress = Math.min(1, rawStepProgress - index);
 
-				setCreatorProcessStep(index);
+				setCreatorProcessStep(index, stepProgress);
 			};
 
 			const requestCreatorProcessUpdate = () => {
@@ -785,22 +906,101 @@ const forCreatorsFaqItems = [
 			window.addEventListener('resize', requestCreatorProcessUpdate);
 		}
 
+		if (creatorProcessFallback && creatorProcessSteps.length && creatorProcessVisuals.length) {
+			creatorProcessSteps.forEach((step, index) => {
+				const visual = creatorProcessVisuals[index];
+				const visualContent = visual?.firstElementChild?.cloneNode(true);
+				const stepContent = step.cloneNode(true);
+				const fallbackItem = document.createElement('article');
+				const visualShell = document.createElement('div');
+
+				fallbackItem.className = 'creator-process-fallback-item';
+				visualShell.className = 'creator-process-fallback-visual';
+				visualShell.setAttribute('data-process-fallback-visual', String(index));
+				stepContent.className = 'creator-process-fallback-copy';
+				stepContent.removeAttribute('data-process-step');
+
+				if (visualContent) {
+					visualShell.appendChild(visualContent);
+				}
+
+				fallbackItem.append(visualShell, stepContent);
+				creatorProcessFallback.appendChild(fallbackItem);
+			});
+
+			const animateCreatorFallbackBalance = (visual) => {
+				if (!(visual instanceof HTMLElement) || visual.dataset.creatorBalanceAnimated === 'true') return;
+
+				const counter = visual.querySelector('[data-process-balance-counter]');
+				const bar = visual.querySelector('.creator-balance-bar');
+				if (!(counter instanceof HTMLElement)) return;
+
+				visual.dataset.creatorBalanceAnimated = 'true';
+				if (reduceCreatorProcessMotion.matches) {
+					counter.textContent = formatCreatorBalance(targetCreatorBalance);
+					if (bar instanceof HTMLElement) {
+						bar.style.setProperty('--creator-balance-progress', '1');
+					}
+					return;
+				}
+
+				let startedAt = null;
+				const delay = 720;
+				const duration = 1300;
+				const animate = (timestamp) => {
+					startedAt ??= timestamp;
+					const elapsed = Math.max(0, timestamp - startedAt - delay);
+					const rawProgress = Math.min(1, elapsed / duration);
+					const easedProgress = 1 - Math.pow(1 - rawProgress, 3);
+					counter.textContent = formatCreatorBalance(targetCreatorBalance * easedProgress);
+					if (bar instanceof HTMLElement) {
+						bar.style.setProperty('--creator-balance-progress', String(easedProgress));
+					}
+					if (rawProgress < 1) {
+						window.requestAnimationFrame(animate);
+					}
+				};
+
+				counter.textContent = formatCreatorBalance(0);
+				if (bar instanceof HTMLElement) {
+					bar.style.setProperty('--creator-balance-progress', '0');
+				}
+				window.requestAnimationFrame(animate);
+			};
+
+			const activateCreatorFallbackVisual = (visual) => {
+				visual.classList.add('is-active');
+				animateCreatorFallbackBalance(visual);
+			};
+
+			const creatorFallbackVisuals = Array.from(
+				creatorProcessFallback.querySelectorAll('.creator-process-fallback-visual'),
+			);
+
+			if (reduceCreatorProcessMotion.matches || !('IntersectionObserver' in window)) {
+				creatorFallbackVisuals.forEach(activateCreatorFallbackVisual);
+			} else {
+				const creatorFallbackObserver = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) return;
+							activateCreatorFallbackVisual(entry.target);
+							creatorFallbackObserver.unobserve(entry.target);
+						});
+					},
+					{ threshold: 0.28, rootMargin: '0px 0px -12% 0px' },
+				);
+
+				creatorFallbackVisuals.forEach((visual) => creatorFallbackObserver.observe(visual));
+			}
+		}
+
 		const creatorBalanceCounter = document.querySelector('[data-process-balance-counter]');
 		const creatorBalanceBar = document.querySelector('.creator-balance-bar');
-		const reduceCreatorProcessMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 		if (creatorBalanceCounter) {
-			const targetBalance = 2840;
-			const formatCreatorBalance = (value) =>
-				new Intl.NumberFormat('en-US', {
-					style: 'currency',
-					currency: 'USD',
-					minimumFractionDigits: 2,
-					maximumFractionDigits: 2,
-				}).format(value);
-
 			if (reduceCreatorProcessMotion.matches) {
-				creatorBalanceCounter.textContent = formatCreatorBalance(targetBalance);
+				creatorBalanceCounter.textContent = formatCreatorBalance(targetCreatorBalance);
 				if (creatorBalanceBar instanceof HTMLElement) {
 					creatorBalanceBar.style.setProperty('--creator-balance-progress', '1');
 				}
@@ -814,10 +1014,10 @@ const forCreatorsFaqItems = [
 					const cycle =
 						creatorBalanceActiveStartedAt === null
 							? 0
-							: ((timestamp - creatorBalanceActiveStartedAt) % creatorBalanceDuration) / creatorBalanceDuration;
+							: Math.min(1, (timestamp - creatorBalanceActiveStartedAt) / creatorBalanceDuration);
 					const rawProgress = Math.min(1, Math.max(0, (cycle - fillStart) / (fillEnd - fillStart)));
 					const easedProgress = 1 - Math.pow(1 - rawProgress, 3);
-					creatorBalanceCounter.textContent = formatCreatorBalance(targetBalance * easedProgress);
+					creatorBalanceCounter.textContent = formatCreatorBalance(targetCreatorBalance * easedProgress);
 					if (creatorBalanceBar instanceof HTMLElement) {
 						creatorBalanceBar.style.setProperty('--creator-balance-progress', String(easedProgress));
 					}
@@ -882,13 +1082,12 @@ const forCreatorsFaqItems = [
 <style is:global>
 	.creator-hero-panel {
 		position: relative;
-		overflow: hidden;
-		border-color: rgba(255, 255, 255, 0.08) !important;
-		background:
-			linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.018)),
-			#0c0c0c !important;
-		box-shadow: 0 34px 110px -78px rgba(0, 0, 0, 0.95);
+		overflow: visible;
+		border-color: transparent !important;
+		background: transparent !important;
+		box-shadow: none;
 		padding: 0 !important;
+		backdrop-filter: none;
 	}
 
 	.creator-hero-panel > .absolute {
@@ -896,12 +1095,379 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-hero-panel > .absolute:first-child {
-		display: block;
+		display: none;
 	}
 
 	.creator-wallet-visual {
 		display: block;
-		min-height: 380px;
+		min-height: clamp(390px, 34vw, 440px);
+	}
+
+	.creator-wallet-simple {
+		--creator-wallet-cycle: 15s;
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(220px, 0.9fr) minmax(250px, 0.78fr) minmax(220px, 0.9fr);
+		align-items: center;
+		gap: clamp(20px, 3vw, 38px);
+		min-height: clamp(390px, 34vw, 440px);
+		padding: clamp(12px, 2vw, 24px);
+		overflow: visible;
+		border-radius: 0;
+		background: transparent;
+	}
+
+	.creator-wallet-simple-card,
+	.creator-wallet-balance-card {
+		position: relative;
+		z-index: 3;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		background: #0c0c0c;
+		box-shadow: 0 18px 58px rgba(0, 0, 0, 0.2);
+		opacity: 1;
+	}
+
+	.creator-wallet-source-stack,
+	.creator-wallet-destination-stack {
+		position: relative;
+		z-index: 4;
+		display: grid;
+		align-content: center;
+		gap: 18px;
+	}
+
+	.creator-wallet-source-stack {
+		justify-items: start;
+	}
+
+	.creator-wallet-destination-stack {
+		justify-items: end;
+	}
+
+	.creator-wallet-source-card {
+		display: grid;
+		gap: 8px;
+		width: clamp(176px, 18vw, 224px);
+		padding: 16px 18px;
+		animation: creator-wallet-simple-source var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-source-card img {
+		width: auto;
+		max-width: 96px;
+		height: 22px;
+		object-fit: contain;
+		filter: brightness(0) invert(1);
+	}
+
+	.creator-wallet-float-one img {
+		height: 20px;
+		max-width: 88px;
+	}
+
+	.creator-wallet-source-logo-patreon {
+		height: 19px;
+		max-width: 86px;
+	}
+
+	.creator-wallet-source-card span,
+	.creator-wallet-destination-card span,
+	.creator-wallet-balance-head span,
+	.creator-wallet-card-strip span,
+	.creator-wallet-destination-card small {
+		color: #9aa3b2;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 650;
+		line-height: 1.25;
+	}
+
+	.creator-wallet-source-card strong,
+	.creator-wallet-destination-card strong,
+	.creator-wallet-card-strip b {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 14px;
+		font-weight: 800;
+		line-height: 1;
+	}
+
+	.creator-wallet-float-one {
+		margin-left: 0;
+	}
+
+	.creator-wallet-float-two {
+		margin-left: clamp(36px, 4vw, 64px);
+		animation-delay: 5s;
+	}
+
+	.creator-wallet-float-three {
+		margin-left: 4px;
+		animation-delay: 10s;
+	}
+
+	.creator-wallet-balance-card {
+		display: grid;
+		width: 100%;
+		gap: 14px;
+		justify-self: center;
+		padding: 24px;
+		animation: creator-wallet-simple-balance-card var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-balance-head {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.creator-wallet-balance-head img {
+		width: 70px;
+		height: auto;
+		object-fit: contain;
+	}
+
+	.creator-wallet-simple-amount {
+		position: relative;
+		display: block;
+		min-height: 1.02em;
+		overflow: hidden;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(32px, 3.55vw, 42px);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.02;
+	}
+
+	.creator-wallet-simple-amount span {
+		display: block;
+		color: inherit;
+		font: inherit;
+		opacity: 0;
+		position: absolute;
+		inset: 0 auto auto 0;
+		white-space: nowrap;
+	}
+
+	.creator-wallet-simple-amount span:first-child {
+		animation: creator-wallet-simple-amount-zero var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-simple-amount span:nth-child(2) {
+		animation: creator-wallet-simple-amount-one var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-simple-amount span:nth-child(3) {
+		animation: creator-wallet-simple-amount-two var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-simple-amount span:nth-child(4) {
+		animation: creator-wallet-simple-amount-three var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-card-strip {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 14px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.04);
+		padding: 12px 14px;
+		white-space: nowrap;
+	}
+
+	.creator-wallet-card-strip b {
+		flex-shrink: 0;
+		font-size: 13px;
+		letter-spacing: 0;
+	}
+
+	.creator-wallet-destination-card {
+		display: grid;
+		width: clamp(178px, 18vw, 226px);
+		gap: 7px;
+		padding: 16px 18px;
+		animation: creator-wallet-simple-destination var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-destination-card small {
+		font-size: 11px;
+	}
+
+	.creator-wallet-destination-card strong {
+		font-size: 15px;
+	}
+
+	.creator-wallet-destination-one {
+		margin-right: 0;
+		animation-delay: 10s;
+	}
+
+	.creator-wallet-destination-two {
+		margin-right: clamp(36px, 4vw, 64px);
+		animation-delay: 5s;
+	}
+
+	.creator-wallet-destination-three {
+		margin-right: 4px;
+		animation-delay: 0s;
+	}
+
+	.creator-wallet-flow-curve {
+		position: absolute;
+		inset: clamp(12px, 2vw, 24px);
+		z-index: 2;
+		pointer-events: none;
+	}
+
+	.creator-wallet-flow-svg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		overflow: visible;
+	}
+
+	.creator-wallet-flow-svg-compact,
+	.creator-wallet-flow-svg-phone {
+		display: none;
+	}
+
+	.creator-wallet-flow-trunk-in,
+	.creator-wallet-flow-trunk-out {
+		display: none;
+	}
+
+	.creator-wallet-flow-path {
+		fill: none;
+		stroke: rgba(203, 243, 0, 0.18);
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 2.15;
+		opacity: 0.16;
+		vector-effect: non-scaling-stroke;
+	}
+
+	.creator-wallet-flow-source {
+		animation: creator-wallet-simple-source-path var(--creator-wallet-cycle) ease-in-out infinite;
+		animation-fill-mode: both;
+	}
+
+	.creator-wallet-flow-destination {
+		animation: creator-wallet-simple-destination-path var(--creator-wallet-cycle) ease-in-out infinite;
+		animation-fill-mode: both;
+	}
+
+	.creator-wallet-flow-trunk-in,
+	.creator-wallet-flow-trunk-out {
+		animation-duration: var(--creator-wallet-cycle);
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+	}
+
+	.creator-wallet-flow-source-two,
+	.creator-wallet-flow-destination-two {
+		animation-delay: 5s;
+	}
+
+	.creator-wallet-flow-source-three,
+	.creator-wallet-flow-destination-one {
+		animation-delay: 10s;
+	}
+
+	.creator-wallet-flow-destination-three {
+		animation-delay: 0s;
+	}
+
+	.creator-wallet-flow-trunk-in,
+	.creator-wallet-flow-trunk-out {
+		stroke-width: 2.55;
+	}
+
+	.creator-wallet-flow-trunk-in {
+		animation-name: creator-wallet-simple-trunk-in;
+	}
+
+	.creator-wallet-flow-trunk-out {
+		animation-name: creator-wallet-simple-trunk-out;
+	}
+
+	.creator-wallet-simple-dot {
+		fill: #CBF300;
+		filter: drop-shadow(0 0 8px rgba(203, 243, 0, 0.7));
+		opacity: 0;
+		animation-fill-mode: both;
+	}
+
+	.creator-wallet-flow-dot-one {
+		animation: creator-wallet-simple-dot-source-one var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-flow-dot-two {
+		animation: creator-wallet-simple-dot-source-two var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-flow-dot-three {
+		animation: creator-wallet-simple-dot-source-three var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-flow-dot-four {
+		animation: creator-wallet-simple-dot-destination-one var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-flow-dot-five {
+		animation: creator-wallet-simple-dot-destination-two var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-flow-dot-six {
+		animation: creator-wallet-simple-dot-destination-three var(--creator-wallet-cycle) ease-in-out infinite;
+	}
+
+	.creator-wallet-route-label {
+		position: absolute;
+		left: 50%;
+		top: clamp(12px, 2.8vw, 30px);
+		z-index: 4;
+		display: grid;
+		place-items: center;
+		min-width: 230px;
+		min-height: 38px;
+		border: 1px solid rgba(203, 243, 0, 0.2);
+		border-radius: 999px;
+		background: rgba(12, 12, 12, 0.92);
+		padding: 11px 18px;
+		color: #d9ff73;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		font-weight: 800;
+		line-height: 1;
+		text-align: center;
+		transform: translateX(-50%);
+	}
+
+	.creator-wallet-route-label span {
+		grid-area: 1 / 1;
+		opacity: 0;
+		white-space: nowrap;
+		animation-duration: var(--creator-wallet-cycle);
+		animation-iteration-count: infinite;
+		animation-timing-function: step-end;
+	}
+
+	.creator-wallet-route-label span:first-child {
+		animation-name: creator-wallet-simple-label-one;
+	}
+
+	.creator-wallet-route-label span:nth-child(2) {
+		animation-name: creator-wallet-simple-label-two;
+	}
+
+	.creator-wallet-route-label span:nth-child(3) {
+		animation-name: creator-wallet-simple-label-three;
 	}
 
 	.creator-wallet-browser {
@@ -1398,14 +1964,151 @@ const forCreatorsFaqItems = [
 		background: rgba(255, 255, 255, 0.12);
 	}
 
-	@media (max-width: 760px) {
-		.creator-wallet-stage {
+	@media (max-width: 980px) {
+		.creator-wallet-visual {
+			min-height: clamp(560px, 78vw, 680px);
+		}
+
+		.creator-wallet-simple {
 			grid-template-areas:
-				"notification"
+				"sources"
 				"garna"
-				"account";
-			grid-template-columns: 1fr;
-			min-height: 0;
+				"destinations";
+			grid-template-columns: minmax(0, 1fr);
+			min-height: clamp(560px, 78vw, 680px);
+			gap: clamp(36px, 6vw, 52px);
+			padding: clamp(10px, 2vw, 18px);
+		}
+
+		.creator-wallet-source-stack,
+		.creator-wallet-destination-stack {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			align-content: stretch;
+			align-items: center;
+			gap: clamp(10px, 2vw, 16px);
+			justify-items: stretch;
+		}
+
+		.creator-wallet-source-stack {
+			grid-area: sources;
+		}
+
+		.creator-wallet-balance-card {
+			grid-area: garna;
+			width: min(100%, 340px);
+		}
+
+		.creator-wallet-destination-stack {
+			grid-area: destinations;
+		}
+
+		.creator-wallet-source-card,
+		.creator-wallet-destination-card {
+			width: 100%;
+			min-height: 92px;
+			margin-left: 0;
+			margin-right: 0;
+			padding: 14px 15px;
+		}
+
+		.creator-wallet-source-card span,
+		.creator-wallet-destination-card span,
+		.creator-wallet-destination-card small {
+			font-size: 11px;
+		}
+
+		.creator-wallet-source-card strong,
+		.creator-wallet-destination-card strong {
+			font-size: 13px;
+		}
+
+		.creator-wallet-flow-curve {
+			inset: 0;
+		}
+
+		.creator-wallet-flow-svg-desktop {
+			display: none;
+		}
+
+		.creator-wallet-flow-svg-compact {
+			display: block;
+		}
+
+		.creator-wallet-flow-svg-phone {
+			display: none;
+		}
+	}
+
+	@media (max-width: 760px) {
+		.creator-wallet-visual {
+			--creator-wallet-visual-scale: 1;
+			position: relative;
+			display: block;
+			min-height: 620px;
+			overflow: visible;
+		}
+
+		.creator-wallet-simple {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			width: 760px;
+			min-height: 620px;
+			grid-template-areas:
+				"sources"
+				"garna"
+				"destinations";
+			grid-template-columns: minmax(0, 1fr);
+			gap: 36px;
+			padding: 12px;
+			transform: translateX(-50%) scale(var(--creator-wallet-visual-scale));
+			transform-origin: top center;
+			will-change: transform;
+		}
+
+		.creator-wallet-source-stack,
+		.creator-wallet-destination-stack {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			justify-items: stretch;
+			gap: 12px;
+		}
+
+		.creator-wallet-source-card,
+		.creator-wallet-destination-card {
+			width: 100%;
+			margin-right: 0;
+			margin-left: 0;
+		}
+
+		.creator-wallet-balance-card {
+			width: min(100%, 340px);
+		}
+
+		.creator-wallet-simple-amount {
+			font-size: clamp(32px, 3.55vw, 42px);
+		}
+
+		.creator-wallet-card-strip {
+			align-items: center;
+			flex-direction: row;
+			gap: 14px;
+		}
+
+		.creator-wallet-flow-curve {
+			display: block;
+			inset: 0;
+		}
+
+		.creator-wallet-flow-svg-desktop {
+			display: none;
+		}
+
+		.creator-wallet-flow-svg-compact {
+			display: none;
+		}
+
+		.creator-wallet-flow-svg-phone {
+			display: block;
 		}
 
 		.creator-wallet-garna-card {
@@ -2182,22 +2885,24 @@ const forCreatorsFaqItems = [
 
 	.creator-platform-showcase {
 		position: relative;
-		display: grid;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
 		width: 100%;
 		max-width: min(1120px, 100%);
 		justify-self: center;
 		margin-inline: auto;
-		grid-template-columns: repeat(5, minmax(112px, 1fr));
-		grid-auto-rows: clamp(54px, 6vw, 74px);
-		gap: clamp(16px, 2vw, 26px) clamp(18px, 3vw, 34px);
+		gap: clamp(22px, 2.6vw, 34px) clamp(28px, 4vw, 48px);
 	}
 
 	.creator-platform-logo {
 		--platform-logo-tone: brightness(0) invert(1);
 		position: relative;
 		display: inline-flex;
-		width: 100%;
-		height: 100%;
+		flex: 0 1 clamp(138px, 16vw, 176px);
+		width: clamp(138px, 16vw, 176px);
+		height: clamp(54px, 6vw, 74px);
 		align-items: center;
 		justify-content: center;
 		opacity: 0.86;
@@ -2214,8 +2919,8 @@ const forCreatorsFaqItems = [
 	.creator-platform-logo img {
 		position: absolute;
 		inset: 0;
-		width: min(100%, 168px);
-		height: min(100%, 72px);
+		width: min(92%, 154px);
+		height: min(76%, 54px);
 		margin: auto;
 		object-fit: contain;
 		opacity: 0.9;
@@ -2253,12 +2958,59 @@ const forCreatorsFaqItems = [
 
 	.creator-platform-logo img.creator-platform-logo-compact {
 		width: min(88%, 148px);
-		height: min(88%, 62px);
+		height: min(78%, 54px);
 	}
 
 	.creator-platform-logo img.creator-platform-logo-wide {
-		width: min(122%, 198px);
-		height: min(122%, 82px);
+		width: min(100%, 166px);
+		height: min(82%, 56px);
+	}
+
+	.creator-platform-logo img.creator-platform-logo-shrink {
+		width: min(82%, 138px);
+		height: min(70%, 48px);
+	}
+
+	.creator-platform-logo img.creator-platform-logo-boost {
+		width: min(96%, 162px);
+		height: min(82%, 58px);
+	}
+
+	.creator-platform-logo img.creator-platform-logo-xl {
+		width: min(104%, 176px);
+		height: min(88%, 62px);
+	}
+
+	.creator-platform-logo img.creator-platform-logo-creative-fabrica {
+		width: min(116%, 196px);
+		height: min(100%, 70px);
+	}
+
+	.creator-platform-logo img.creator-platform-logo-lift {
+		transform: translateY(-4px) scale(1);
+	}
+
+	@media (max-width: 640px) {
+		.creator-platform-showcase {
+			gap: 18px 22px;
+		}
+
+		.creator-platform-logo {
+			flex-basis: clamp(118px, 38vw, 142px);
+			width: clamp(118px, 38vw, 142px);
+			height: 52px;
+		}
+
+		.creator-platform-logo img,
+		.creator-platform-logo img.creator-platform-logo-compact,
+		.creator-platform-logo img.creator-platform-logo-wide,
+		.creator-platform-logo img.creator-platform-logo-shrink,
+		.creator-platform-logo img.creator-platform-logo-boost,
+		.creator-platform-logo img.creator-platform-logo-xl,
+		.creator-platform-logo img.creator-platform-logo-creative-fabrica {
+			width: min(92%, 142px);
+			height: min(82%, 48px);
+		}
 	}
 
 	.creator-why-layout {
@@ -2307,6 +3059,9 @@ const forCreatorsFaqItems = [
 
 	.creator-why-card:nth-child(4) strong {
 		font-size: clamp(2.35rem, 3vw, 3.15rem);
+		max-width: calc(100% - clamp(48px, 5.4vw, 64px));
+		white-space: normal;
+		overflow-wrap: anywhere;
 	}
 
 	.creator-why-card > div {
@@ -2338,7 +3093,36 @@ const forCreatorsFaqItems = [
 		gap: 12px;
 	}
 
-	@media (max-width: 540px) {
+	.creator-manager-actions {
+		container-type: inline-size;
+	}
+
+	@container (max-width: 560px) and (min-width: 421px) {
+		.creator-manager-buttons {
+			gap: 10px;
+		}
+
+		.creator-manager-buttons > * {
+			padding-right: 24px;
+			padding-left: 24px;
+		}
+	}
+
+	@container (max-width: 420px) {
+		.creator-manager-buttons {
+			width: max-content;
+			max-width: 100%;
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.creator-manager-buttons > * {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+
+	@media (max-width: 440px) {
 		.creator-manager-buttons {
 			width: max-content;
 			max-width: 100%;
@@ -3124,6 +3908,473 @@ const forCreatorsFaqItems = [
 		}
 	}
 
+	@keyframes creator-wallet-simple-source-path {
+		0%,
+		2%,
+		18.4%,
+		100% {
+			opacity: 0.16;
+			stroke: rgba(203, 243, 0, 0.18);
+		}
+
+		3% {
+			opacity: 0.22;
+			stroke: rgba(203, 243, 0, 0.24);
+		}
+
+		5%,
+		17% {
+			opacity: 0.78;
+			stroke: rgba(203, 243, 0, 0.64);
+		}
+
+		18% {
+			opacity: 0.32;
+			stroke: rgba(203, 243, 0, 0.3);
+		}
+	}
+
+	@keyframes creator-wallet-simple-destination-path {
+		0%,
+		16%,
+		32.4%,
+		100% {
+			opacity: 0.16;
+			stroke: rgba(203, 243, 0, 0.18);
+		}
+
+		17% {
+			opacity: 0.22;
+			stroke: rgba(203, 243, 0, 0.24);
+		}
+
+		19%,
+		31% {
+			opacity: 0.78;
+			stroke: rgba(203, 243, 0, 0.64);
+		}
+
+		32% {
+			opacity: 0.32;
+			stroke: rgba(203, 243, 0, 0.3);
+		}
+	}
+
+	@keyframes creator-wallet-simple-trunk-in {
+		0%,
+		17%,
+		31%,
+		50%,
+		64%,
+		83%,
+		97%,
+		100% {
+			opacity: 0.18;
+			stroke: rgba(203, 243, 0, 0.18);
+		}
+
+		3%,
+		34%,
+		67% {
+			opacity: 0.26;
+			stroke: rgba(203, 243, 0, 0.26);
+		}
+
+		3.1%,
+		15%,
+		36.1%,
+		48%,
+		69.1%,
+		81% {
+			opacity: 0.86;
+			stroke: rgba(203, 243, 0, 0.7);
+		}
+
+		16%,
+		49%,
+		82% {
+			opacity: 0.34;
+			stroke: rgba(203, 243, 0, 0.32);
+		}
+	}
+
+	@keyframes creator-wallet-simple-trunk-out {
+		0%,
+		31%,
+		34%,
+		64%,
+		67%,
+		97%,
+		100% {
+			opacity: 0.18;
+			stroke: rgba(203, 243, 0, 0.18);
+		}
+
+		17%,
+		50%,
+		83% {
+			opacity: 0.26;
+			stroke: rgba(203, 243, 0, 0.26);
+		}
+
+		17.1%,
+		29%,
+		50.1%,
+		62%,
+		83.1%,
+		95% {
+			opacity: 0.86;
+			stroke: rgba(203, 243, 0, 0.7);
+		}
+
+		30%,
+		63%,
+		96% {
+			opacity: 0.34;
+			stroke: rgba(203, 243, 0, 0.32);
+		}
+	}
+
+	@keyframes creator-wallet-simple-dot-source-one {
+		0%,
+		3% {
+			opacity: 0;
+		}
+
+		3.1% {
+			opacity: 1;
+		}
+
+		17% {
+			opacity: 1;
+		}
+
+		18.4%,
+		100% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-wallet-simple-dot-source-two {
+		0%,
+		36% {
+			opacity: 0;
+		}
+
+		36.1% {
+			opacity: 1;
+		}
+
+		42% {
+			opacity: 1;
+		}
+
+		43.4%,
+		100% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-wallet-simple-dot-source-three {
+		0%,
+		69% {
+			opacity: 0;
+		}
+
+		69.1% {
+			opacity: 1;
+		}
+
+		83% {
+			opacity: 1;
+		}
+
+		84.4%,
+		100% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-wallet-simple-dot-destination-one {
+		0%,
+		17% {
+			opacity: 0;
+		}
+
+		17.1% {
+			opacity: 1;
+		}
+
+		31% {
+			opacity: 1;
+		}
+
+		32.4%,
+		100% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-wallet-simple-dot-destination-two {
+		0%,
+		50% {
+			opacity: 0;
+		}
+
+		50.1% {
+			opacity: 1;
+		}
+
+		56% {
+			opacity: 1;
+		}
+
+		57.4%,
+		100% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-wallet-simple-dot-destination-three {
+		0%,
+		83% {
+			opacity: 0;
+		}
+
+		83.1% {
+			opacity: 1;
+		}
+
+		97% {
+			opacity: 1;
+		}
+
+		98.4%,
+		100% {
+			opacity: 0;
+		}
+	}
+
+	@media (max-width: 1180px) {
+		.creator-wallet-flow-svg-compact .creator-wallet-flow-dot-two,
+		.creator-wallet-flow-svg-phone .creator-wallet-flow-dot-two {
+			animation-name: creator-wallet-simple-dot-source-two-vertical;
+		}
+
+		.creator-wallet-flow-svg-compact .creator-wallet-flow-dot-five,
+		.creator-wallet-flow-svg-phone .creator-wallet-flow-dot-five {
+			animation-name: creator-wallet-simple-dot-destination-two-vertical;
+		}
+	}
+
+	@keyframes creator-wallet-simple-dot-source-two-vertical {
+		0%,
+		36% {
+			opacity: 0;
+		}
+
+		36.1%,
+		48% {
+			opacity: 1;
+		}
+
+		49.4%,
+		100% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-wallet-simple-dot-destination-two-vertical {
+		0%,
+		50% {
+			opacity: 0;
+		}
+
+		50.1%,
+		62% {
+			opacity: 1;
+		}
+
+		63.4%,
+		100% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-wallet-simple-label-one {
+		0%,
+		33.332%,
+		96.667%,
+		100% {
+			opacity: 1;
+		}
+
+		33.333%,
+		96.666% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-wallet-simple-label-two {
+		0%,
+		33.332%,
+		66.667%,
+		100% {
+			opacity: 0;
+		}
+
+		33.333%,
+		66.666% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes creator-wallet-simple-label-three {
+		0%,
+		66.666%,
+		96.667%,
+		100% {
+			opacity: 0;
+		}
+
+		66.667%,
+		96.666% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes creator-wallet-simple-source {
+		0%,
+		2%,
+		20.8%,
+		100% {
+			opacity: 1;
+			border-color: rgba(255, 255, 255, 0.08);
+			transform: translateY(0) scale(1);
+		}
+
+		5%,
+		17% {
+			opacity: 1;
+			border-color: rgba(203, 243, 0, 0.26);
+			transform: translateY(-3px) scale(1.04);
+		}
+	}
+
+	@keyframes creator-wallet-simple-balance-card {
+		0%,
+		9%,
+		30%,
+		42%,
+		63%,
+		75%,
+		96%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.08);
+			box-shadow: 0 22px 70px rgba(0, 0, 0, 0.26);
+		}
+
+		14%,
+		25%,
+		47%,
+		58%,
+		80%,
+		91% {
+			border-color: rgba(203, 243, 0, 0.22);
+			box-shadow: 0 26px 80px rgba(0, 0, 0, 0.28), 0 0 44px rgba(203, 243, 0, 0.12);
+		}
+	}
+
+	@keyframes creator-wallet-simple-destination {
+		0%,
+		16%,
+		34.8%,
+		100% {
+			opacity: 1;
+			border-color: rgba(255, 255, 255, 0.08);
+			transform: translateY(0) scale(1);
+		}
+
+		19%,
+		31% {
+			opacity: 1;
+			border-color: rgba(203, 243, 0, 0.26);
+			transform: translateY(-3px) scale(1.04);
+		}
+	}
+
+	@keyframes creator-wallet-simple-amount-zero {
+		0%,
+		12%,
+		27%,
+		46%,
+		60%,
+		79%,
+		93%,
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		16%,
+		24%,
+		50%,
+		57%,
+		83%,
+		90% {
+			opacity: 0;
+			transform: translateY(-0.8em);
+		}
+	}
+
+	@keyframes creator-wallet-simple-amount-one {
+		0%,
+		12%,
+		27%,
+		100% {
+			opacity: 0;
+			transform: translateY(0.8em);
+		}
+
+		16%,
+		24% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes creator-wallet-simple-amount-two {
+		0%,
+		46%,
+		60%,
+		100% {
+			opacity: 0;
+			transform: translateY(0.8em);
+		}
+
+		50%,
+		57% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes creator-wallet-simple-amount-three {
+		0%,
+		79%,
+		93%,
+		100% {
+			opacity: 0;
+			transform: translateY(0.8em);
+		}
+
+		83%,
+		90% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
 	@keyframes creator-wallet-flow-dot-in {
 		0%,
 		100% {
@@ -3417,10 +4668,10 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-process-scroll {
-		--creator-process-top-offset: 104px;
+		--creator-process-top-offset: 124px;
 		--creator-process-bottom-offset: 64px;
 		display: grid;
-		min-height: 360vh;
+		min-height: 780vh;
 		grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
 		align-items: start;
 		gap: clamp(28px, 5vw, 72px);
@@ -3431,18 +4682,20 @@ const forCreatorsFaqItems = [
 		top: var(--creator-process-top-offset);
 		display: grid;
 		min-width: 0;
-		gap: 16px;
+		gap: 0;
 	}
 
 	.creator-process-visual-stage {
+		--creator-process-card-height: 360px;
+		--creator-process-progress-y: calc(50% + 180px + 32px);
 		position: relative;
 		width: 100%;
 		height: calc(100vh - var(--creator-process-top-offset) - var(--creator-process-bottom-offset));
 		min-height: 420px;
 		overflow: hidden;
-		border: 1px solid rgba(255, 255, 255, 0.08);
+		border: 0;
 		border-radius: 28px;
-		background: rgba(255, 255, 255, 0.02);
+		background: transparent;
 		box-shadow: none;
 	}
 
@@ -3453,27 +4706,84 @@ const forCreatorsFaqItems = [
 	.creator-process-visual {
 		position: absolute;
 		inset: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		z-index: 1;
+		display: grid;
+		place-items: center;
 		overflow: hidden;
 		padding: clamp(34px, 5vw, 74px);
-		opacity: 0;
-		transform: translateY(18px) scale(0.98);
+		opacity: 0.06;
+		filter: brightness(0.64) saturate(0.86);
+		transform: translateY(-70px) scale(0.84);
+		transform-origin: center center;
 		transition:
-			opacity 360ms ease,
-			transform 360ms ease;
+			filter 720ms cubic-bezier(0.22, 1, 0.36, 1),
+			transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.creator-process-visual.is-active {
+		z-index: 5;
 		opacity: 1;
+		filter: none;
 		transform: translateY(0) scale(1);
 	}
 
+	.creator-process-visual.is-stack-one {
+		z-index: 4;
+		opacity: 1;
+		filter: brightness(0.94) saturate(0.98);
+		transform: translateY(-26px) scale(0.92);
+	}
+
+	.creator-process-visual.is-stack-two {
+		z-index: 3;
+		opacity: 1;
+		filter: brightness(0.9) saturate(0.96);
+		transform: translateY(-50px) scale(0.84);
+	}
+
+	.creator-process-visual.is-stack-three {
+		z-index: 2;
+		opacity: 1;
+		filter: brightness(0.86) saturate(0.94);
+		transform: translateY(-70px) scale(0.77);
+	}
+
+	.creator-process-visual.is-stack-four {
+		z-index: 1;
+		opacity: 1;
+		filter: brightness(0.82) saturate(0.92);
+		transform: translateY(-88px) scale(0.71);
+	}
+
+	.creator-process-visual.is-stack-five {
+		z-index: 0;
+		opacity: 1;
+		filter: brightness(0.78) saturate(0.9);
+		transform: translateY(-104px) scale(0.66);
+	}
+
+	.creator-process-visual.is-active .creator-mini-window,
+	.creator-process-visual.is-active .creator-chat-card,
+	.creator-process-visual.is-active .creator-details-sheet,
+	.creator-process-visual.is-active .creator-withdraw-panel,
+	.creator-process-visual.is-active .creator-invoice-doc,
+	.creator-process-visual.is-active .creator-balance-card {
+		background: #0c0c0c;
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+	}
+
 	.creator-process-progress {
+		--creator-process-step-progress: 0%;
+		position: absolute;
+		left: 50%;
+		top: clamp(22px, var(--creator-process-progress-y), calc(100% - 10px));
+		z-index: 6;
 		display: flex;
 		justify-content: center;
 		gap: 8px;
+		pointer-events: none;
+		transform: translate(-50%, -50%);
 	}
 
 	.creator-process-progress span {
@@ -3481,14 +4791,22 @@ const forCreatorsFaqItems = [
 		height: 8px;
 		border-radius: 999px;
 		background: rgba(255, 255, 255, 0.16);
+		box-shadow: none;
 		transition:
-			width 220ms ease,
-			background 220ms ease;
+			width 240ms ease,
+			background 180ms ease,
+			box-shadow 180ms ease;
 	}
 
 	.creator-process-progress span.is-active {
-		width: 28px;
-		background: #CBF300;
+		width: 112px;
+		background:
+			linear-gradient(
+				90deg,
+				#CBF300 0 var(--creator-process-step-progress),
+				rgba(203, 243, 0, 0.18) var(--creator-process-step-progress) 100%
+			);
+		box-shadow: inset 0 0 0 1px rgba(203, 243, 0, 0.18);
 	}
 
 	.creator-process-copy {
@@ -3506,7 +4824,12 @@ const forCreatorsFaqItems = [
 		flex-direction: column;
 		justify-content: flex-start;
 		border: 0;
-		padding: clamp(150px, 22vh, 210px) 0 42px;
+		padding: clamp(
+				104px,
+				calc((100vh - var(--creator-process-top-offset) - var(--creator-process-bottom-offset) - 244px) / 2),
+				280px
+			)
+			0 0;
 		opacity: 0;
 		pointer-events: none;
 		transform: none;
@@ -3535,12 +4858,13 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-process-step h3 {
-		margin: 0;
+		margin: 0 0 -0.08em;
+		padding-bottom: 0.08em;
 		color: #ffffff;
 		font-family: Manrope, sans-serif;
 		font-size: clamp(2rem, 3.8vw, 3.8rem);
 		font-weight: 400;
-		line-height: 1.04;
+		line-height: 1.08;
 		letter-spacing: 0;
 		clip-path: inset(0 100% 0 0);
 		filter: blur(8px);
@@ -3553,6 +4877,59 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-process-step p {
+		max-width: 520px;
+		margin: 22px 0 0;
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1rem, 1.4vw, 1.2rem);
+		line-height: 1.55;
+	}
+
+	.creator-process-fallback {
+		display: none;
+	}
+
+	.creator-process-fallback-item {
+		min-width: 0;
+	}
+
+	.creator-process-fallback-visual {
+		--creator-process-card-height: 360px;
+		min-width: 0;
+	}
+
+	.creator-process-fallback-copy {
+		min-width: 0;
+	}
+
+	.creator-process-fallback-copy > span {
+		display: inline-flex;
+		width: fit-content;
+		margin-bottom: 22px;
+		border: 1px solid rgba(203, 243, 0, 0.16);
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.07);
+		padding: 7px 10px;
+		color: #CBF300;
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+	}
+
+	.creator-process-fallback-copy h3 {
+		max-width: 560px;
+		margin: 0 0 -0.08em;
+		padding-bottom: 0.08em;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(2rem, 3.8vw, 3.8rem);
+		font-weight: 400;
+		line-height: 1.08;
+		letter-spacing: 0;
+	}
+
+	.creator-process-fallback-copy p {
 		max-width: 520px;
 		margin: 22px 0 0;
 		color: #a1a1aa;
@@ -3587,6 +4964,7 @@ const forCreatorsFaqItems = [
 		display: flex;
 		flex-direction: column;
 		width: min(100%, 240px);
+		margin: auto;
 		border: 1px solid var(--garna-border);
 		border-radius: 16px;
 		background: rgba(12, 12, 12, 0.72);
@@ -3597,43 +4975,166 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-process-visual-stage .creator-mini-window,
-	.creator-process-visual-stage .creator-balance-card {
+	.creator-process-visual-stage .creator-balance-card,
+	.creator-process-fallback-visual .creator-mini-window,
+	.creator-process-fallback-visual .creator-balance-card {
 		width: min(100%, 430px);
-		padding: clamp(20px, 2.8vw, 28px);
+		height: var(--creator-process-card-height);
+		max-height: calc(100% - 72px);
+		box-sizing: border-box;
+		padding: 24px;
 		border-radius: 24px;
 	}
 
-	.creator-process-visual-stage .creator-mini-window {
-		gap: 10px;
+	.creator-process-visual-stage .creator-mini-window,
+	.creator-process-fallback-visual .creator-mini-window {
+		gap: 7px;
 	}
 
-	.creator-process-visual[data-process-visual='3'] .creator-visual-list {
-		display: contents;
+	.creator-process-visual[data-process-visual='0'] .creator-mini-window,
+	.creator-process-fallback-visual[data-process-fallback-visual='0'] .creator-mini-window {
+		justify-content: space-between;
+		gap: 0;
+	}
+
+	.creator-process-visual[data-process-visual='0'] .creator-mini-row,
+	.creator-process-fallback-visual[data-process-fallback-visual='0'] .creator-mini-row {
+		margin-bottom: 0;
+	}
+
+	.creator-process-visual[data-process-visual='0'] .creator-mini-amount,
+	.creator-process-fallback-visual[data-process-fallback-visual='0'] .creator-mini-amount {
+		display: flex;
+		min-height: 84px;
+		box-sizing: border-box;
+		flex-direction: column;
+		justify-content: center;
+		margin: 0;
+		padding: 16px 14px;
+	}
+
+	.creator-process-visual[data-process-visual='0'] .creator-mini-verification,
+	.creator-process-fallback-visual[data-process-fallback-visual='0'] .creator-mini-verification {
+		margin: 0;
+	}
+
+	.creator-process-visual[data-process-visual='0'] .creator-visual-list,
+	.creator-process-fallback-visual[data-process-fallback-visual='0'] .creator-visual-list {
+		margin-top: 0;
+	}
+
+	.creator-process-visual[data-process-visual='3'] .creator-visual-list,
+	.creator-process-fallback-visual[data-process-fallback-visual='3'] .creator-visual-list {
+		display: grid;
+		gap: 6px;
+		margin-top: 0;
 	}
 
 	.creator-process-visual[data-process-visual='3'] .creator-visual-list div,
 	.creator-process-visual[data-process-visual='3'] .creator-withdraw-select,
-	.creator-process-visual[data-process-visual='3'] .creator-withdraw-note {
-		min-height: 48px;
-		padding: 10px 12px;
+	.creator-process-visual[data-process-visual='3'] .creator-withdraw-note,
+	.creator-process-visual[data-process-visual='3'] .creator-visual-action,
+	.creator-process-fallback-visual[data-process-fallback-visual='3'] .creator-visual-list div,
+	.creator-process-fallback-visual[data-process-fallback-visual='3'] .creator-withdraw-select,
+	.creator-process-fallback-visual[data-process-fallback-visual='3'] .creator-withdraw-note,
+	.creator-process-fallback-visual[data-process-fallback-visual='3'] .creator-visual-action {
+		min-height: 42px;
+		box-sizing: border-box;
+		padding: 7px 12px;
+	}
+
+	.creator-process-visual[data-process-visual='3'] .creator-withdraw-panel,
+	.creator-process-fallback-visual[data-process-fallback-visual='3'] .creator-withdraw-panel {
+		justify-content: space-between;
+		gap: 0;
+	}
+
+	.creator-process-visual[data-process-visual='3'] .creator-visual-action,
+	.creator-process-visual[data-process-visual='5'] .creator-visual-action,
+	.creator-process-fallback-visual[data-process-fallback-visual='3'] .creator-visual-action,
+	.creator-process-fallback-visual[data-process-fallback-visual='5'] .creator-visual-action {
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.creator-process-visual-stage .creator-chat-card,
 	.creator-process-visual-stage .creator-details-sheet,
 	.creator-process-visual-stage .creator-withdraw-panel,
-	.creator-process-visual-stage .creator-invoice-doc {
+	.creator-process-visual-stage .creator-invoice-doc,
+	.creator-process-fallback-visual .creator-chat-card,
+	.creator-process-fallback-visual .creator-details-sheet,
+	.creator-process-fallback-visual .creator-withdraw-panel,
+	.creator-process-fallback-visual .creator-invoice-doc {
 		width: min(100%, 430px);
-		padding: clamp(20px, 2.8vw, 28px);
+		height: var(--creator-process-card-height);
+		max-height: calc(100% - 72px);
+		box-sizing: border-box;
+		padding: 24px;
 		border-radius: 24px;
 	}
 
 	.creator-process-visual-stage .creator-chat-card,
-	.creator-process-visual-stage .creator-withdraw-panel {
-		width: min(100%, 410px);
+	.creator-process-visual-stage .creator-withdraw-panel,
+	.creator-process-fallback-visual .creator-chat-card,
+	.creator-process-fallback-visual .creator-withdraw-panel {
+		width: min(100%, 430px);
 	}
 
-	.creator-process-visual-stage .creator-balance-card > strong {
+	.creator-process-visual-stage .creator-chat-card,
+	.creator-process-visual-stage .creator-details-sheet,
+	.creator-process-visual-stage .creator-invoice-doc,
+	.creator-process-visual-stage .creator-balance-card,
+	.creator-process-fallback-visual .creator-chat-card,
+	.creator-process-fallback-visual .creator-details-sheet,
+	.creator-process-fallback-visual .creator-invoice-doc,
+	.creator-process-fallback-visual .creator-balance-card {
+		justify-content: space-between;
+	}
+
+	.creator-process-fallback-visual .creator-mini-window,
+	.creator-process-fallback-visual .creator-chat-card,
+	.creator-process-fallback-visual .creator-details-sheet,
+	.creator-process-fallback-visual .creator-withdraw-panel,
+	.creator-process-fallback-visual .creator-invoice-doc,
+	.creator-process-fallback-visual .creator-balance-card {
+		height: var(--creator-process-card-height);
+		max-height: none;
+	}
+
+	.creator-process-visual-stage .creator-balance-card > strong,
+	.creator-process-fallback-visual .creator-balance-card > strong {
 		font-size: clamp(2.2rem, 4.2vw, 3.3rem);
+	}
+
+	.creator-process-visual-stage .creator-process-visual[data-process-visual='5'] .creator-balance-card > strong,
+	.creator-process-fallback-visual[data-process-fallback-visual='5'] .creator-balance-card > strong {
+		font-size: clamp(1.95rem, 3.4vw, 2.7rem);
+		line-height: 1;
+	}
+
+	.creator-process-visual-stage .creator-process-visual[data-process-visual='5'] .creator-visual-list,
+	.creator-process-fallback-visual[data-process-fallback-visual='5'] .creator-visual-list {
+		gap: 6px;
+		margin-top: 0;
+	}
+
+	.creator-process-visual-stage .creator-process-visual[data-process-visual='5'] .creator-balance-bar,
+	.creator-process-fallback-visual[data-process-fallback-visual='5'] .creator-balance-bar {
+		height: 10px;
+		margin-top: 0;
+	}
+
+	.creator-process-visual-stage .creator-process-visual[data-process-visual='5'] .creator-balance-methods,
+	.creator-process-fallback-visual[data-process-fallback-visual='5'] .creator-balance-methods {
+		margin-top: 0;
+	}
+
+	.creator-process-visual-stage .creator-process-visual[data-process-visual='5'] .creator-balance-top,
+	.creator-process-visual-stage .creator-process-visual[data-process-visual='5'] .creator-balance-card > strong,
+	.creator-process-fallback-visual[data-process-fallback-visual='5'] .creator-balance-top,
+	.creator-process-fallback-visual[data-process-fallback-visual='5'] .creator-balance-card > strong {
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 
 	.creator-mini-row {
@@ -3670,7 +5171,7 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-mini-amount {
-		margin: 4px 0 2px;
+		margin: 2px 0 0;
 		border: 1px solid rgba(255, 255, 255, 0.08);
 		border-radius: 14px;
 		background: rgba(255, 255, 255, 0.045);
@@ -3773,6 +5274,7 @@ const forCreatorsFaqItems = [
 		display: flex;
 		flex-direction: column;
 		width: min(100%, 248px);
+		margin: auto;
 		border: 1px solid var(--garna-border);
 		border-radius: 16px;
 		background: rgba(12, 12, 12, 0.72);
@@ -3785,7 +5287,7 @@ const forCreatorsFaqItems = [
 	.creator-chat-card {
 		display: flex;
 		flex-direction: column;
-		gap: 9px;
+		gap: 0;
 		width: min(100%, 280px);
 		padding: 12px;
 	}
@@ -3793,7 +5295,7 @@ const forCreatorsFaqItems = [
 	.creator-mini-verification {
 		display: grid;
 		gap: 5px;
-		margin-top: 2px;
+		margin-top: -1px;
 	}
 
 	.creator-mini-verification span {
@@ -3804,6 +5306,10 @@ const forCreatorsFaqItems = [
 		font-family: Manrope, sans-serif;
 		font-size: 11px;
 		font-weight: 600;
+	}
+
+	.creator-mini-verification b {
+		font: inherit;
 	}
 
 	.creator-mini-verification i {
@@ -3840,8 +5346,9 @@ const forCreatorsFaqItems = [
 		color: #d8ff56;
 	}
 
-	.creator-process-visual[data-process-visual='1'] .creator-visual-list {
-		margin-top: 5px;
+	.creator-process-visual[data-process-visual='1'] .creator-visual-list,
+	.creator-process-fallback-visual[data-process-fallback-visual='1'] .creator-visual-list {
+		margin-top: 0;
 	}
 
 	.creator-process-visual.is-active[data-process-visual='1'] .creator-visual-list div {
@@ -3858,11 +5365,11 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-chat-meta {
-		margin-bottom: 5px;
+		margin-bottom: 0;
 	}
 
 	.creator-withdraw-header {
-		margin-bottom: 2px;
+		margin-bottom: 0;
 	}
 
 	.creator-chat-meta span,
@@ -3889,6 +5396,44 @@ const forCreatorsFaqItems = [
 		grid-template-columns: auto minmax(0, 1fr);
 		gap: 9px 12px;
 		margin-top: 14px;
+	}
+
+	.creator-process-visual[data-process-visual='2'] .creator-details-grid,
+	.creator-process-fallback-visual[data-process-fallback-visual='2'] .creator-details-grid {
+		gap: 7px 10px;
+		margin-top: 0;
+	}
+
+	.creator-process-visual[data-process-visual='2'] .creator-detail-tags,
+	.creator-process-fallback-visual[data-process-fallback-visual='2'] .creator-detail-tags {
+		gap: 5px;
+		margin-top: 0;
+	}
+
+	.creator-process-visual[data-process-visual='2'] .creator-detail-tags span,
+	.creator-process-fallback-visual[data-process-fallback-visual='2'] .creator-detail-tags span {
+		padding: 4px 6px;
+	}
+
+	.creator-process-visual[data-process-visual='2'] .creator-details-sheet,
+	.creator-process-fallback-visual[data-process-fallback-visual='2'] .creator-details-sheet {
+		justify-content: space-between;
+	}
+
+	.creator-process-visual[data-process-visual='2'] .creator-details-status,
+	.creator-process-fallback-visual[data-process-fallback-visual='2'] .creator-details-status {
+		gap: 8px;
+		margin-top: 0;
+	}
+
+	.creator-process-visual[data-process-visual='2'] .creator-details-status div,
+	.creator-process-fallback-visual[data-process-fallback-visual='2'] .creator-details-status div {
+		padding: 7px 9px;
+	}
+
+	.creator-process-visual[data-process-visual='2'] .creator-visual-action,
+	.creator-process-fallback-visual[data-process-fallback-visual='2'] .creator-visual-action {
+		margin-top: 0;
 	}
 
 	.creator-details-grid span {
@@ -4061,27 +5606,80 @@ const forCreatorsFaqItems = [
 		text-align: center;
 	}
 
+	.creator-visual-section-label {
+		color: #71717a;
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 9px;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
 	.creator-process-visual-stage .creator-mini-window,
 	.creator-process-visual-stage .creator-chat-card,
 	.creator-process-visual-stage .creator-details-sheet,
 	.creator-process-visual-stage .creator-withdraw-panel,
 	.creator-process-visual-stage .creator-invoice-doc,
-	.creator-process-visual-stage .creator-balance-card {
-		padding: clamp(20px, 2.4vw, 24px);
+	.creator-process-visual-stage .creator-balance-card,
+	.creator-process-fallback-visual .creator-mini-window,
+	.creator-process-fallback-visual .creator-chat-card,
+	.creator-process-fallback-visual .creator-details-sheet,
+	.creator-process-fallback-visual .creator-withdraw-panel,
+	.creator-process-fallback-visual .creator-invoice-doc,
+	.creator-process-fallback-visual .creator-balance-card {
+		padding: 24px;
+		gap: 0;
+		justify-content: space-between;
 	}
 
-	.creator-mini-window .creator-visual-action {
-		margin-top: 4px;
+	.creator-mini-window .creator-visual-action,
+	.creator-details-sheet .creator-visual-action,
+	.creator-withdraw-panel .creator-visual-action,
+	.creator-balance-card .creator-visual-action {
+		margin-top: 0;
+	}
+
+	.creator-invoice-doc .creator-detail-tags {
+		margin-top: 0;
 	}
 
 	.creator-withdraw-panel .creator-visual-action {
-		margin-top: 2px;
+		margin-top: 0;
+	}
+
+	.creator-process-visual[data-process-visual='5'] .creator-balance-card .creator-visual-action,
+	.creator-process-fallback-visual[data-process-fallback-visual='5'] .creator-balance-card .creator-visual-action {
+		margin-top: 0;
+	}
+
+	.creator-process-visual[data-process-visual='3'] .creator-withdraw-panel .creator-visual-action,
+	.creator-process-fallback-visual[data-process-fallback-visual='3'] .creator-withdraw-panel .creator-visual-action {
+		margin-top: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.creator-process-visual[data-process-visual='4'] .creator-visual-list,
+	.creator-process-visual[data-process-visual='4'] .creator-doc-lines,
+	.creator-process-visual[data-process-visual='4'] .creator-doc-attach,
+	.creator-process-visual[data-process-visual='4'] .creator-detail-tags,
+	.creator-process-fallback-visual[data-process-fallback-visual='4'] .creator-visual-list,
+	.creator-process-fallback-visual[data-process-fallback-visual='4'] .creator-doc-lines,
+	.creator-process-fallback-visual[data-process-fallback-visual='4'] .creator-doc-attach,
+	.creator-process-fallback-visual[data-process-fallback-visual='4'] .creator-detail-tags {
+		margin-top: 0;
+	}
+
+	.creator-process-visual[data-process-visual='4'] .creator-doc-header,
+	.creator-process-fallback-visual[data-process-fallback-visual='4'] .creator-doc-header {
+		margin-bottom: 0;
 	}
 
 	.creator-process-visual.is-active .creator-mini-skeleton,
 	.creator-process-visual.is-active .creator-doc-lines span {
 		transform-origin: left center;
-		animation: creator-process-line-fill 5.8s ease-in-out infinite both;
+		animation: creator-process-line-fill 860ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 	}
 
 	.creator-process-visual.is-active .creator-mini-skeleton:nth-of-type(2) {
@@ -4097,7 +5695,7 @@ const forCreatorsFaqItems = [
 	.creator-process-visual.is-active .creator-doc-attach,
 	.creator-process-visual.is-active .creator-balance-bar,
 	.creator-process-visual.is-active .creator-balance-methods span {
-		animation: creator-process-row-live 5.8s ease-in-out infinite both;
+		animation: creator-process-row-live 780ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 	}
 
 	.creator-process-visual.is-active .creator-mini-verification span:nth-child(2),
@@ -4116,11 +5714,11 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-process-visual.is-active .creator-mini-verification i {
-		animation: creator-process-status-dot 5.8s ease-in-out infinite;
+		animation: none;
 	}
 
 	.creator-process-visual.is-active .creator-chat-bubble {
-		animation: creator-process-chat-message 6.4s ease-in-out infinite both;
+		animation: creator-process-chat-message 760ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 	}
 
 	.creator-process-visual.is-active .creator-chat-bubble:nth-child(3) { animation-delay: 0.45s; }
@@ -4129,7 +5727,7 @@ const forCreatorsFaqItems = [
 	.creator-process-visual.is-active .creator-chat-bubble:nth-child(6) { animation-delay: 1.7s; }
 
 	.creator-process-visual.is-active .creator-details-grid strong {
-		animation: creator-process-detail-type 6s steps(10, end) infinite both;
+		animation: creator-process-detail-type 840ms steps(16, end) both;
 	}
 
 	.creator-process-visual.is-active .creator-details-grid strong:nth-of-type(2) { animation-delay: 0.18s; }
@@ -4141,7 +5739,7 @@ const forCreatorsFaqItems = [
 		animation: none;
 	}
 
-	.creator-process-visual.is-active[data-process-visual='0'] .creator-mini-amount { animation: creator-process-row-live 5.8s ease-in-out infinite both; animation-delay: 0.08s; }
+	.creator-process-visual.is-active[data-process-visual='0'] .creator-mini-amount { animation: creator-process-row-live 780ms cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: 0.08s; }
 	.creator-process-visual.is-active[data-process-visual='0'] .creator-mini-skeleton:nth-of-type(1) { animation-delay: 0.32s; }
 	.creator-process-visual.is-active[data-process-visual='0'] .creator-mini-skeleton:nth-of-type(2) { animation-delay: 0.48s; }
 	.creator-process-visual.is-active[data-process-visual='0'] .creator-mini-verification span:nth-child(1) { animation-delay: 0.72s; }
@@ -4178,12 +5776,13 @@ const forCreatorsFaqItems = [
 	.creator-process-visual.is-active[data-process-visual='4'] .creator-visual-list div:nth-child(1) { animation-delay: 0.22s; }
 	.creator-process-visual.is-active[data-process-visual='4'] .creator-visual-list div:nth-child(2) { animation-delay: 0.4s; }
 	.creator-process-visual.is-active[data-process-visual='4'] .creator-visual-list div:nth-child(3) { animation-delay: 0.58s; }
-	.creator-process-visual.is-active[data-process-visual='4'] .creator-doc-lines span:nth-child(1) { animation-delay: 0.88s; }
-	.creator-process-visual.is-active[data-process-visual='4'] .creator-doc-lines span:nth-child(2) { animation-delay: 1.04s; }
-	.creator-process-visual.is-active[data-process-visual='4'] .creator-doc-lines span:nth-child(3) { animation-delay: 1.2s; }
-	.creator-process-visual.is-active[data-process-visual='4'] .creator-doc-attach { animation-delay: 1.48s; }
-	.creator-process-visual.is-active[data-process-visual='4'] .creator-detail-tags span:nth-child(1) { animation-delay: 1.7s; }
-	.creator-process-visual.is-active[data-process-visual='4'] .creator-detail-tags span:nth-child(2) { animation-delay: 1.88s; }
+	.creator-process-visual.is-active[data-process-visual='4'] .creator-visual-list div:nth-child(4) { animation-delay: 0.76s; }
+	.creator-process-visual.is-active[data-process-visual='4'] .creator-doc-lines span:nth-child(1) { animation-delay: 1.02s; }
+	.creator-process-visual.is-active[data-process-visual='4'] .creator-doc-lines span:nth-child(2) { animation-delay: 1.18s; }
+	.creator-process-visual.is-active[data-process-visual='4'] .creator-doc-lines span:nth-child(3) { animation-delay: 1.34s; }
+	.creator-process-visual.is-active[data-process-visual='4'] .creator-doc-attach { animation-delay: 1.62s; }
+	.creator-process-visual.is-active[data-process-visual='4'] .creator-detail-tags span:nth-child(1) { animation-delay: 1.84s; }
+	.creator-process-visual.is-active[data-process-visual='4'] .creator-detail-tags span:nth-child(2) { animation-delay: 2.02s; }
 
 	.creator-process-visual.is-active[data-process-visual='5'] .creator-visual-list div,
 	.creator-process-visual.is-active[data-process-visual='5'] .creator-balance-bar,
@@ -4193,67 +5792,174 @@ const forCreatorsFaqItems = [
 
 	.creator-process-visual.is-active[data-process-visual='5'] .creator-visual-list div:nth-child(1) { animation-delay: 0.18s; }
 	.creator-process-visual.is-active[data-process-visual='5'] .creator-visual-list div:nth-child(2) { animation-delay: 0.42s; }
-	.creator-process-visual.is-active[data-process-visual='5'] .creator-balance-bar { animation-delay: 0.72s; }
-	.creator-process-visual.is-active[data-process-visual='5'] .creator-balance-methods span:nth-child(1) { animation-delay: 1.02s; }
-	.creator-process-visual.is-active[data-process-visual='5'] .creator-balance-methods span:nth-child(2) { animation-delay: 1.2s; }
-	.creator-process-visual.is-active[data-process-visual='5'] .creator-balance-methods span:nth-child(3) { animation-delay: 1.38s; }
-	.creator-process-visual.is-active[data-process-visual='5'] .creator-visual-action { animation-delay: 2s; }
+	.creator-process-visual.is-active[data-process-visual='5'] .creator-visual-list div:nth-child(3) { animation-delay: 0.66s; }
+	.creator-process-visual.is-active[data-process-visual='5'] .creator-balance-bar { animation-delay: 0.94s; }
+	.creator-process-visual.is-active[data-process-visual='5'] .creator-balance-methods span:nth-child(1) { animation-delay: 1.24s; }
+	.creator-process-visual.is-active[data-process-visual='5'] .creator-balance-methods span:nth-child(2) { animation-delay: 1.42s; }
+	.creator-process-visual.is-active[data-process-visual='5'] .creator-balance-methods span:nth-child(3) { animation-delay: 1.6s; }
+	.creator-process-visual.is-active[data-process-visual='5'] .creator-visual-action { animation-delay: 2.08s; }
+
+	.creator-process-fallback-visual.is-active .creator-mini-window,
+	.creator-process-fallback-visual.is-active .creator-chat-card,
+	.creator-process-fallback-visual.is-active .creator-details-sheet,
+	.creator-process-fallback-visual.is-active .creator-withdraw-panel,
+	.creator-process-fallback-visual.is-active .creator-invoice-doc,
+	.creator-process-fallback-visual.is-active .creator-balance-card {
+		background: #0c0c0c;
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+	}
+
+	.creator-process-fallback-visual.is-active .creator-mini-skeleton,
+	.creator-process-fallback-visual.is-active .creator-doc-lines span {
+		transform-origin: left center;
+		animation: creator-process-line-fill 860ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+	}
+
+	.creator-process-fallback-visual.is-active .creator-mini-verification span,
+	.creator-process-fallback-visual.is-active .creator-visual-list div,
+	.creator-process-fallback-visual.is-active .creator-detail-tags span,
+	.creator-process-fallback-visual.is-active .creator-details-status div,
+	.creator-process-fallback-visual.is-active .creator-withdraw-select,
+	.creator-process-fallback-visual.is-active .creator-withdraw-note,
+	.creator-process-fallback-visual.is-active .creator-doc-attach,
+	.creator-process-fallback-visual.is-active .creator-balance-bar,
+	.creator-process-fallback-visual.is-active .creator-balance-methods span {
+		animation: creator-process-row-live 780ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+	}
+
+	.creator-process-fallback-visual.is-active .creator-mini-verification span:nth-child(2),
+	.creator-process-fallback-visual.is-active .creator-visual-list div:nth-child(2),
+	.creator-process-fallback-visual.is-active .creator-detail-tags span:nth-child(2),
+	.creator-process-fallback-visual.is-active .creator-details-status div:nth-child(2),
+	.creator-process-fallback-visual.is-active .creator-balance-methods span:nth-child(2) {
+		animation-delay: 0.35s;
+	}
+
+	.creator-process-fallback-visual.is-active .creator-mini-verification span:nth-child(3),
+	.creator-process-fallback-visual.is-active .creator-visual-list div:nth-child(3),
+	.creator-process-fallback-visual.is-active .creator-detail-tags span:nth-child(3),
+	.creator-process-fallback-visual.is-active .creator-balance-methods span:nth-child(3) {
+		animation-delay: 0.62s;
+	}
+
+	.creator-process-fallback-visual.is-active .creator-mini-verification i {
+		animation: none;
+	}
+
+	.creator-process-fallback-visual.is-active .creator-chat-bubble {
+		animation: creator-process-chat-message 760ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+	}
+
+	.creator-process-fallback-visual.is-active .creator-chat-bubble:nth-child(3) { animation-delay: 0.45s; }
+	.creator-process-fallback-visual.is-active .creator-chat-bubble:nth-child(4) { animation-delay: 0.9s; }
+	.creator-process-fallback-visual.is-active .creator-chat-bubble:nth-child(5) { animation-delay: 1.35s; }
+	.creator-process-fallback-visual.is-active .creator-chat-bubble:nth-child(6) { animation-delay: 1.7s; }
+
+	.creator-process-fallback-visual.is-active .creator-details-grid strong {
+		animation: creator-process-detail-type 840ms steps(16, end) both;
+	}
+
+	.creator-process-fallback-visual.is-active .creator-details-grid strong:nth-of-type(2) { animation-delay: 0.18s; }
+	.creator-process-fallback-visual.is-active .creator-details-grid strong:nth-of-type(3) { animation-delay: 0.36s; }
+	.creator-process-fallback-visual.is-active .creator-details-grid strong:nth-of-type(4) { animation-delay: 0.54s; }
+	.creator-process-fallback-visual.is-active .creator-details-grid strong:nth-of-type(5) { animation-delay: 0.72s; }
+
+	.creator-process-fallback-visual.is-active .creator-visual-action {
+		animation: creator-process-action-press 5.8s ease-in-out infinite both;
+	}
+
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='0'] .creator-mini-amount { animation: creator-process-row-live 780ms cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: 0.08s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='0'] .creator-mini-verification span:nth-child(1) { animation-delay: 0.72s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='0'] .creator-mini-verification span:nth-child(2) { animation-delay: 0.9s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='0'] .creator-mini-verification span:nth-child(3) { animation-delay: 1.08s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='0'] .creator-visual-list div:nth-child(1) { animation-delay: 1.32s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='0'] .creator-visual-list div:nth-child(2) { animation-delay: 1.5s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='0'] .creator-visual-list div:nth-child(3) { animation-delay: 1.68s; }
+
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='1'] .creator-chat-bubble:nth-child(2) { animation-delay: 0.18s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='1'] .creator-chat-bubble:nth-child(3) { animation-delay: 0.5s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='1'] .creator-chat-bubble:nth-child(4) { animation-delay: 0.82s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='1'] .creator-chat-bubble:nth-child(5) { animation-delay: 1.14s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='1'] .creator-chat-bubble:nth-child(6) { animation-delay: 1.46s; }
+
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='2'] .creator-details-grid strong:nth-of-type(1) { animation-delay: 0.22s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='2'] .creator-details-grid strong:nth-of-type(2) { animation-delay: 0.4s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='2'] .creator-details-grid strong:nth-of-type(3) { animation-delay: 0.58s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='2'] .creator-details-grid strong:nth-of-type(4) { animation-delay: 0.76s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='2'] .creator-details-grid strong:nth-of-type(5) { animation-delay: 0.94s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='2'] .creator-detail-tags span:nth-child(1) { animation-delay: 1.26s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='2'] .creator-detail-tags span:nth-child(2) { animation-delay: 1.44s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='2'] .creator-detail-tags span:nth-child(3) { animation-delay: 1.62s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='2'] .creator-details-status div:nth-child(1) { animation-delay: 1.88s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='2'] .creator-details-status div:nth-child(2) { animation-delay: 2.06s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='2'] .creator-visual-action { animation-delay: 1.88s; }
+
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='3'] .creator-visual-list div:nth-child(1) { animation-delay: 0.22s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='3'] .creator-visual-list div:nth-child(2) { animation-delay: 0.42s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='3'] .creator-withdraw-select { animation-delay: 0.72s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='3'] .creator-withdraw-note { animation-delay: 1.02s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='3'] .creator-visual-action { animation-delay: 1.34s; }
+
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='4'] .creator-visual-list div:nth-child(1) { animation-delay: 0.22s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='4'] .creator-visual-list div:nth-child(2) { animation-delay: 0.4s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='4'] .creator-visual-list div:nth-child(3) { animation-delay: 0.58s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='4'] .creator-visual-list div:nth-child(4) { animation-delay: 0.76s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='4'] .creator-doc-lines span:nth-child(1) { animation-delay: 1.02s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='4'] .creator-doc-lines span:nth-child(2) { animation-delay: 1.18s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='4'] .creator-doc-lines span:nth-child(3) { animation-delay: 1.34s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='4'] .creator-doc-attach { animation-delay: 1.62s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='4'] .creator-detail-tags span:nth-child(1) { animation-delay: 1.84s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='4'] .creator-detail-tags span:nth-child(2) { animation-delay: 2.02s; }
+
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='5'] .creator-visual-list div,
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='5'] .creator-balance-bar,
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='5'] .creator-balance-methods span {
+		animation-name: creator-process-balance-sequence;
+	}
+
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='5'] .creator-visual-list div:nth-child(1) { animation-delay: 0.18s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='5'] .creator-visual-list div:nth-child(2) { animation-delay: 0.42s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='5'] .creator-visual-list div:nth-child(3) { animation-delay: 0.66s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='5'] .creator-balance-bar { animation-delay: 0.94s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='5'] .creator-balance-methods span:nth-child(1) { animation-delay: 1.24s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='5'] .creator-balance-methods span:nth-child(2) { animation-delay: 1.42s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='5'] .creator-balance-methods span:nth-child(3) { animation-delay: 1.6s; }
+	.creator-process-fallback-visual.is-active[data-process-fallback-visual='5'] .creator-visual-action { animation-delay: 2.08s; }
 
 	@keyframes creator-process-line-fill {
-		0%,
-		12% {
+		0% {
 			opacity: 0;
 			transform: scaleX(0.18);
-		}
-
-		34%,
-		76% {
-			opacity: 1;
-			transform: scaleX(1);
 		}
 
 		100% {
-			opacity: 0;
-			transform: scaleX(0.18);
+			opacity: 1;
+			transform: scaleX(1);
 		}
 	}
 
 	@keyframes creator-process-row-live {
-		0%,
-		16% {
+		0% {
 			opacity: 0;
 			transform: translateY(8px);
 		}
 
-		32%,
-		78% {
+		100% {
 			opacity: 1;
 			transform: translateY(0);
-		}
-
-		100% {
-			opacity: 0;
-			transform: translateY(-4px);
 		}
 	}
 
 	@keyframes creator-process-balance-sequence {
-		0%,
-		12% {
+		0% {
 			opacity: 0;
 			transform: translateY(7px);
 		}
 
-		24%,
-		66% {
+		100% {
 			opacity: 1;
 			transform: translateY(0);
-		}
-
-		78%,
-		100% {
-			opacity: 0;
-			transform: translateY(-4px);
 		}
 	}
 
@@ -4271,40 +5977,26 @@ const forCreatorsFaqItems = [
 	}
 
 	@keyframes creator-process-chat-message {
-		0%,
-		12% {
+		0% {
 			opacity: 0;
 			transform: translateY(10px) scale(0.98);
 		}
 
-		25%,
-		84% {
+		100% {
 			opacity: 1;
 			transform: translateY(0) scale(1);
-		}
-
-		100% {
-			opacity: 0;
-			transform: translateY(-4px) scale(0.99);
 		}
 	}
 
 	@keyframes creator-process-detail-type {
-		0%,
-		14% {
+		0% {
 			clip-path: inset(0 100% 0 0);
 			opacity: 0.35;
-		}
-
-		38%,
-		82% {
-			clip-path: inset(0 0 0 0);
-			opacity: 1;
 		}
 
 		100% {
-			clip-path: inset(0 100% 0 0);
-			opacity: 0.35;
+			clip-path: inset(0 0 0 0);
+			opacity: 1;
 		}
 	}
 
@@ -4931,14 +6623,70 @@ const forCreatorsFaqItems = [
 
 	@media (min-width: 1181px) {
 		.creator-platform-showcase {
-			grid-template-columns: repeat(5, minmax(112px, 1fr));
-			gap: 24px 34px;
+			gap: 34px 52px;
+		}
+
+		.creator-platform-logo {
+			flex-basis: 160px;
+			width: 160px;
 		}
 
 		html[lang='ru'] .payroll-solution-new-hero h1,
 		html[lang='es'] .payroll-solution-new-hero h1,
 		html[lang='pt'] .payroll-solution-new-hero h1 {
 			font-size: 3rem;
+		}
+	}
+
+	@media (min-width: 981px) and (max-height: 720px) {
+		.creator-process-scroll {
+			min-height: auto;
+			grid-template-columns: 1fr;
+			gap: 0;
+		}
+
+		.creator-process-pin,
+		.creator-process-copy {
+			display: none;
+		}
+
+		.creator-process-fallback {
+			display: grid;
+			gap: 72px;
+		}
+
+		.creator-process-fallback-item {
+			display: grid;
+			min-height: calc(100vh - var(--creator-process-top-offset) - var(--creator-process-bottom-offset));
+			grid-template-columns: minmax(430px, 1fr) minmax(320px, 0.92fr);
+			align-items: center;
+			gap: clamp(28px, 5vw, 72px);
+			padding: 24px 0;
+		}
+
+		.creator-process-fallback-item:nth-child(even) {
+			grid-template-columns: minmax(320px, 0.92fr) minmax(430px, 1fr);
+		}
+
+		.creator-process-fallback-item:nth-child(even) .creator-process-fallback-visual {
+			order: 2;
+		}
+
+		.creator-process-fallback-visual {
+			display: grid;
+			width: 100%;
+			min-width: 0;
+			place-items: center;
+		}
+
+		.creator-process-fallback-copy {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.creator-process-fallback-copy h3 {
+			font-size: clamp(2rem, 3.4vw, 3.35rem);
 		}
 	}
 
@@ -4960,37 +6708,73 @@ const forCreatorsFaqItems = [
 			--creator-process-bottom-offset: 48px;
 			min-height: auto;
 			grid-template-columns: 1fr;
+			gap: 0;
 		}
 
-		.creator-process-pin {
-			position: relative;
-			top: auto;
-		}
-
-		.creator-process-visual-stage {
-			height: calc(100vh - var(--creator-process-top-offset) - var(--creator-process-bottom-offset));
-			min-height: 360px;
-		}
-
+		.creator-process-pin,
 		.creator-process-copy {
-			position: relative;
-			top: auto;
-			height: calc(100vh - var(--creator-process-top-offset) - var(--creator-process-bottom-offset));
-			min-height: 300px;
+			display: none;
 		}
 
-		.creator-process-step {
-			inset: 0;
-			border: 0;
-			padding: clamp(72px, 16vh, 110px) 0 24px;
+		.creator-process-fallback {
+			display: grid;
+			gap: clamp(56px, 9vw, 88px);
 		}
 
-		.creator-process-step.is-active {
-			transform: none;
+		.creator-process-fallback-item {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 28px;
+			align-items: center;
 		}
 
-		.creator-process-step h3 {
+		.creator-process-fallback-copy {
+			order: 1;
+		}
+
+		.creator-process-fallback-visual {
+			order: 2;
+			width: 100%;
+		}
+
+		.creator-process-fallback-copy h3 {
 			font-size: clamp(1.8rem, 7.4vw, 2.7rem);
+		}
+
+		.creator-process-fallback-visual .creator-mini-window,
+		.creator-process-fallback-visual .creator-chat-card,
+		.creator-process-fallback-visual .creator-details-sheet,
+		.creator-process-fallback-visual .creator-withdraw-panel,
+		.creator-process-fallback-visual .creator-invoice-doc,
+		.creator-process-fallback-visual .creator-balance-card {
+			width: min(100%, 430px);
+		}
+	}
+
+	@media (min-width: 760px) and (max-width: 980px) {
+		.creator-process-fallback-item {
+			grid-template-columns: minmax(340px, 1fr) minmax(280px, 0.92fr);
+			gap: clamp(28px, 5vw, 56px);
+		}
+
+		.creator-process-fallback-item:nth-child(even) {
+			grid-template-columns: minmax(280px, 0.92fr) minmax(340px, 1fr);
+		}
+
+		.creator-process-fallback-item:nth-child(even) .creator-process-fallback-visual {
+			order: 2;
+		}
+
+		.creator-process-fallback-item:nth-child(even) .creator-process-fallback-copy {
+			order: 1;
+		}
+
+		.creator-process-fallback-item:nth-child(odd) .creator-process-fallback-visual {
+			order: 1;
+		}
+
+		.creator-process-fallback-item:nth-child(odd) .creator-process-fallback-copy {
+			order: 2;
 		}
 	}
 
@@ -5089,7 +6873,22 @@ const forCreatorsFaqItems = [
 		.creator-process-visual.is-active .creator-withdraw-note,
 		.creator-process-visual.is-active .creator-doc-attach,
 		.creator-process-visual.is-active .creator-visual-action,
-		.creator-process-visual.is-active .creator-balance-bar {
+		.creator-process-visual.is-active .creator-balance-bar,
+		.creator-process-fallback-visual.is-active .creator-mini-skeleton,
+		.creator-process-fallback-visual.is-active .creator-doc-lines span,
+		.creator-process-fallback-visual.is-active .creator-mini-verification span,
+		.creator-process-fallback-visual.is-active .creator-visual-list div,
+		.creator-process-fallback-visual.is-active .creator-detail-tags span,
+		.creator-process-fallback-visual.is-active .creator-details-status div,
+		.creator-process-fallback-visual.is-active .creator-balance-methods span,
+		.creator-process-fallback-visual.is-active .creator-mini-verification i,
+		.creator-process-fallback-visual.is-active .creator-chat-bubble,
+		.creator-process-fallback-visual.is-active .creator-details-grid strong,
+		.creator-process-fallback-visual.is-active .creator-withdraw-select,
+		.creator-process-fallback-visual.is-active .creator-withdraw-note,
+		.creator-process-fallback-visual.is-active .creator-doc-attach,
+		.creator-process-fallback-visual.is-active .creator-visual-action,
+		.creator-process-fallback-visual.is-active .creator-balance-bar {
 			animation: none;
 		}
 
