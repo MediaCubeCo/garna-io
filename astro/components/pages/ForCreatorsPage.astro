@@ -18,6 +18,7 @@ const forCreatorsShell = {
 };
 const forCreatorsHero = {
 	...pageHeroes.eor,
+	class: 'creator-payout-hero overflow-hidden pt-32 pb-20 md:pb-28 lg:pt-48 lg:pb-36 relative',
 	badge: {
 		text: 'Early Access for selected creators',
 		translateKey: 'hero.badge',
@@ -30,22 +31,14 @@ const forCreatorsHero = {
 	descriptionTranslateKey: 'hero.description',
 	cta: {
 		...pageHeroes.eor.cta,
-		label: 'Contact Payout Manager',
-		translateKey: 'hero.cta',
-		href: 'https://t.me/likelyiam',
-		kind: 'external',
-		trackingCta: 'for_creators_hero_contact_manager',
-		wrapperClass: 'creator-hero-actions mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row',
-	},
-	ctaSecondary: {
 		label: 'Create Garna Account',
 		translateKey: 'hero.accountCta',
 		href: 'https://app.garna.io/auth/sign-up',
 		kind: 'signup',
-		variant: 'secondary',
-		effect: 'none',
-		icon: 'none',
+		trackingCta: 'for_creators_hero_signup',
+		wrapperClass: 'creator-hero-actions mt-9 mb-14 flex flex-col items-center justify-center gap-3 sm:flex-row',
 	},
+	ctaSecondary: undefined,
 };
 const forCreatorsFaqItems = [
 	{
@@ -108,151 +101,313 @@ const forCreatorsFaqItems = [
 
 <BaseLayout shell={forCreatorsShell}>
 	<HeroSection {...forCreatorsHero}>
-		<div class="creator-hero-visual mx-auto w-full max-w-5xl overflow-visible px-0">
+		<div slot="cta-extra" class="creator-hero-contact-card" aria-label="Contact payout manager">
+			<div class="creator-hero-contact-copy">
+				<strong>Contact payout manager</strong>
+			</div>
+			<div class="creator-hero-contact-links">
+				<a href="https://t.me/likelyiam" aria-label="Telegram">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.5 4.2 10.8c-.8.3-.8 1.2.1 1.5l4 1.2 1.5 4.8c.3.8 1.2.9 1.7.2l2.2-3 4.1 3c.7.5 1.5.1 1.7-.8l2.4-11.9c.2-.9-.6-1.6-1.4-1.3Z" /><path d="m8.4 13.4 8.5-5.3-6.8 7.6" /></svg>
+				</a>
+				<a href="https://wa.me/0000000000" aria-label="WhatsApp">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.2a7.8 7.8 0 0 0-6.6 12l-1 3.4 3.5-.9A7.8 7.8 0 1 0 12 4.2Z" /><path d="M9 8.7c.2-.2.5-.2.7 0l1 1.3c.2.2.2.5 0 .7l-.5.6a5.5 5.5 0 0 0 2.5 2.5l.6-.5c.2-.2.5-.2.7 0l1.3 1c.2.2.2.5 0 .7-.5.6-1.3.9-2.1.7-2.5-.5-4.4-2.4-4.9-4.9-.2-.8.1-1.6.7-2.1Z" /></svg>
+				</a>
+				<a href="https://instagram.com/garna.io" aria-label="Instagram">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="4" /><circle cx="12" cy="12" r="3.2" /></svg>
+				</a>
+			</div>
+		</div>
+		<div class="creator-hero-visual mx-auto w-full max-w-[1040px] overflow-visible px-0">
 			<div class="creator-hero-panel relative overflow-hidden rounded-[28px] border border-white/10 bg-[#080908]/80 p-4 text-left shadow-[0_36px_120px_-72px_rgba(0,0,0,0.95)] backdrop-blur-xl sm:p-5 lg:p-6">
 				<div class="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#CBF300]/80 to-transparent"></div>
 				<div class="absolute -left-20 top-8 h-56 w-56 rounded-full bg-[#CBF300]/10 blur-3xl"></div>
 				<div class="absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-white/5 blur-3xl"></div>
 
-				<div class="creator-wallet-visual relative" aria-label="Creator sees a platform payout move into a Garna account">
-					<div class="creator-wallet-simple">
-						<div class="creator-wallet-source-stack">
-							<div class="creator-wallet-source-card creator-wallet-simple-card creator-wallet-float-one">
-								<img src="/images/envato-logo.svg" alt="Envato" loading="lazy" />
-								<span data-translate="heroVisual.sources.envato.label">Envato payout</span>
-								<strong>$2,840.00</strong>
-							</div>
-							<div class="creator-wallet-source-card creator-wallet-simple-card creator-wallet-float-two">
-								<img src="/images/adobe-stock-logo.svg" alt="Adobe Stock" loading="lazy" />
-								<span data-translate="heroVisual.sources.adobe.label">Asset earnings</span>
-								<strong>$420.00</strong>
-							</div>
-							<div class="creator-wallet-source-card creator-wallet-simple-card creator-wallet-float-three">
-								<img class="creator-wallet-source-logo-patreon" src="/images/patreon-logo.svg" alt="Patreon" loading="lazy" />
-								<span data-translate="heroVisual.sources.patreon.label">Member payout</span>
-								<strong>$310.00</strong>
-							</div>
+				<div class="creator-wallet-visual relative" aria-label="Creator payout flow preview" data-creator-payout-demo>
+					<div class="creator-payout-demo">
+						<div class="creator-payout-demo-tabs" role="tablist" aria-label="Creator payout flow stages">
+							<button class="is-active" type="button" role="tab" aria-selected="true" data-demo-tab="0">
+								<span class="creator-payout-tab-icon creator-payout-tab-icon--large" aria-hidden="true">
+									<svg viewBox="0 0 24 24" aria-hidden="true">
+										<path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+										<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+									</svg>
+								</span>
+								<span class="creator-payout-tab-copy">
+									<strong>Platform payout</strong>
+									<small>Creator earnings are sent</small>
+								</span>
+								<i aria-hidden="true"></i>
+							</button>
+							<button type="button" role="tab" aria-selected="false" data-demo-tab="1">
+								<span class="creator-payout-tab-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" aria-hidden="true">
+										<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path>
+										<path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path>
+									</svg>
+								</span>
+								<span class="creator-payout-tab-copy">
+									<strong>Garna balance</strong>
+									<small>Funds arrive verified</small>
+								</span>
+								<i aria-hidden="true"></i>
+							</button>
+							<button type="button" role="tab" aria-selected="false" data-demo-tab="2">
+								<span class="creator-payout-tab-icon creator-payout-tab-icon--large creator-payout-tab-icon--withdraw" aria-hidden="true">
+									<svg viewBox="0 0 24 24" aria-hidden="true">
+										<path d="M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5"></path>
+										<path d="M18 12h.01"></path>
+										<path d="M19 22v-6"></path>
+										<path d="m16 19 3-3 3 3"></path>
+										<path d="M6 12h.01"></path>
+										<circle cx="12" cy="12" r="2"></circle>
+									</svg>
+								</span>
+								<span class="creator-payout-tab-copy">
+									<strong>Withdraw funds</strong>
+									<small>Choose payout method</small>
+								</span>
+								<i aria-hidden="true"></i>
+							</button>
 						</div>
 
-						<div class="creator-wallet-flow-curve" aria-hidden="true">
-							<svg class="creator-wallet-flow-svg creator-wallet-flow-svg-desktop" viewBox="0 0 1000 360" preserveAspectRatio="none">
-								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-one" d="M210 69 H312 Q324 69 324 81 V168 Q324 180 336 180 H384" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-two" d="M262 180 H384" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-three" d="M212 289 H312 Q324 289 324 277 V192 Q324 180 336 180 H384" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-one" d="M616 180 H664 Q676 180 676 168 V91 Q676 79 688 79 H790" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-two" d="M616 180 H738" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-three" d="M616 180 H664 Q676 180 676 192 V270 Q676 282 688 282 H786" />
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-one" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M210 69 H312 Q324 69 324 81 V168 Q324 180 336 180 H384" keyPoints="0;0;1;1" keyTimes="0;0.03;0.17;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-two" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M262 180 H384" keyPoints="0;0;1;1" keyTimes="0;0.36;0.42;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-three" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M212 289 H312 Q324 289 324 277 V192 Q324 180 336 180 H384" keyPoints="0;0;1;1" keyTimes="0;0.69;0.83;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-six" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M616 180 H664 Q676 180 676 168 V91 Q676 79 688 79 H790" keyPoints="0;0;1;1" keyTimes="0;0.83;0.97;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-five" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M616 180 H738" keyPoints="0;0;1;1" keyTimes="0;0.50;0.56;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-four" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M616 180 H664 Q676 180 676 192 V270 Q676 282 688 282 H786" keyPoints="0;0;1;1" keyTimes="0;0.17;0.31;1" calcMode="linear" />
-								</circle>
-							</svg>
-							<svg class="creator-wallet-flow-svg creator-wallet-flow-svg-compact" viewBox="0 0 1000 620" preserveAspectRatio="none">
-								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-one" d="M166 102 V158 Q166 170 178 170 H488 Q500 170 500 182 V282" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-two" d="M500 102 V282" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-three" d="M834 102 V158 Q834 170 822 170 H512 Q500 170 500 182 V282" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-trunk-in" d="M500 244 V282" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-trunk-out" d="M500 338 V378" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-one" d="M500 338 V438 Q500 450 488 450 H178 Q166 450 166 462 V516" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-two" d="M500 338 V516" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-three" d="M500 338 V438 Q500 450 512 450 H822 Q834 450 834 462 V516" />
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-one" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M166 102 V158 Q166 170 178 170 H488 Q500 170 500 182 V282" keyPoints="0;0;1;1" keyTimes="0;0.03;0.15;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-two" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M500 102 V282" keyPoints="0;0;1;1" keyTimes="0;0.36;0.48;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-three" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M834 102 V158 Q834 170 822 170 H512 Q500 170 500 182 V282" keyPoints="0;0;1;1" keyTimes="0;0.69;0.81;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-six" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V438 Q500 450 488 450 H178 Q166 450 166 462 V516" keyPoints="0;0;1;1" keyTimes="0;0.83;0.95;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-five" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V516" keyPoints="0;0;1;1" keyTimes="0;0.50;0.62;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-four" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V438 Q500 450 512 450 H822 Q834 450 834 462 V516" keyPoints="0;0;1;1" keyTimes="0;0.17;0.29;1" calcMode="linear" />
-								</circle>
-							</svg>
-							<svg class="creator-wallet-flow-svg creator-wallet-flow-svg-phone" viewBox="0 0 1000 620" preserveAspectRatio="none">
-								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-one" d="M166 102 V160 Q166 172 178 172 H488 Q500 172 500 184 V282" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-two" d="M500 102 V282" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-source creator-wallet-flow-source-three" d="M834 102 V160 Q834 172 822 172 H512 Q500 172 500 184 V282" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-trunk-in" d="M500 206 V282" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-trunk-out" d="M500 338 V414" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-one" d="M500 338 V432 Q500 444 488 444 H178 Q166 444 166 456 V516" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-two" d="M500 338 V516" />
-								<path class="creator-wallet-flow-path creator-wallet-flow-destination creator-wallet-flow-destination-three" d="M500 338 V432 Q500 444 512 444 H822 Q834 444 834 456 V516" />
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-one" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M166 102 V160 Q166 172 178 172 H488 Q500 172 500 184 V282" keyPoints="0;0;1;1" keyTimes="0;0.03;0.15;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-two" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M500 102 V282" keyPoints="0;0;1;1" keyTimes="0;0.36;0.48;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-three" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M834 102 V160 Q834 172 822 172 H512 Q500 172 500 184 V282" keyPoints="0;0;1;1" keyTimes="0;0.69;0.81;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-six" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V432 Q500 444 488 444 H178 Q166 444 166 456 V516" keyPoints="0;0;1;1" keyTimes="0;0.83;0.95;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-five" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V516" keyPoints="0;0;1;1" keyTimes="0;0.50;0.62;1" calcMode="linear" />
-								</circle>
-								<circle class="creator-wallet-simple-dot creator-wallet-flow-dot-four" r="5">
-									<animateMotion dur="15s" repeatCount="indefinite" path="M500 338 V432 Q500 444 512 444 H822 Q834 444 834 456 V516" keyPoints="0;0;1;1" keyTimes="0;0.17;0.29;1" calcMode="linear" />
-								</circle>
-							</svg>
-						</div>
-						<div class="creator-wallet-balance-card" aria-label="Garna balance receives creator payout">
-							<div class="creator-wallet-balance-head">
-								<img src="/garna_logo.svg" alt="Garna" loading="lazy" />
-								<span data-translate="heroVisual.balance.label">Creator balance</span>
-							</div>
-							<strong class="creator-wallet-simple-amount" aria-label="$2,840.00 credited to Garna balance">
-								<span>$0.00</span>
-								<span>$2,840.00</span>
-								<span>$420.00</span>
-								<span>$310.00</span>
-							</strong>
-							<div class="creator-wallet-card-strip">
-								<span data-translate="heroVisual.balance.account">Account</span>
-								<b>4461 **** **** 9821</b>
-							</div>
-						</div>
+						<div class="creator-payout-demo-stage">
+							<section class="creator-payout-screen creator-payout-screen--platform is-active" data-demo-screen="0" role="tabpanel">
+								<div class="creator-payout-window creator-payout-window--platform is-platform-flow">
+									<div class="creator-platform-browser-bar" aria-hidden="true">
+										<div class="creator-platform-top-logo">
+											<span class="creator-platform-top-mark">
+												<svg viewBox="0 0 24 24" aria-hidden="true">
+													<path d="m12 3.8 2.35 4.75 5.25.76-3.8 3.7.9 5.22L12 15.76l-4.7 2.47.9-5.22-3.8-3.7 5.25-.76L12 3.8Z"></path>
+												</svg>
+											</span>
+											<strong>marketplace</strong>
+										</div>
+										<div class="creator-platform-search">
+											<span class="creator-platform-search-filter">
+												All items
+												<svg viewBox="0 0 16 16" aria-hidden="true">
+													<path d="m4 6 4 4 4-4"></path>
+												</svg>
+											</span>
+											<i></i>
+											<svg class="creator-platform-search-icon" viewBox="0 0 24 24" aria-hidden="true">
+												<circle cx="11" cy="11" r="7"></circle>
+												<path d="m20 20-3.5-3.5"></path>
+											</svg>
+											<strong>Search</strong>
+										</div>
+										<button type="button">Unlimited Access</button>
+										<span class="creator-platform-avatar" aria-label="Account">
+											<img src="/images/creator-avatar-headphones.jpg" alt="" loading="lazy" />
+										</span>
+									</div>
+									<div class="creator-platform-content">
+										<div class="creator-platform-marketplace">
+											<div class="creator-platform-marketplace-head">
+												<strong>Every type of asset, for any creator project</strong>
+											</div>
+											<div class="creator-platform-category-grid" aria-hidden="true">
+												<article class="creator-platform-category-card creator-platform-category-card--wide">
+													<div>
+														<strong>Video Templates</strong>
+														<span>150,000+</span>
+													</div>
+													<img src="/images/creator-video-templates-cover.jpg" alt="" loading="lazy" />
+												</article>
+												<article class="creator-platform-category-card creator-platform-category-card--first-stack">
+													<div>
+														<strong>Sound Effects</strong>
+														<span>940,000+</span>
+													</div>
+													<img src="/images/creator-sound-effects-cover.jpg" alt="" loading="lazy" />
+												</article>
+												<article class="creator-platform-category-card">
+													<div>
+														<strong>Stock Photos</strong>
+														<span>16.1M+</span>
+													</div>
+													<img src="/images/creator-stock-photos-cover.jpg" alt="" loading="lazy" />
+												</article>
+												<article class="creator-platform-category-card creator-platform-category-card--dark">
+													<div>
+														<strong>Royalty-Free Music</strong>
+														<span>340,000+</span>
+													</div>
+													<img src="/images/creator-music-cover.jpg" alt="" loading="lazy" />
+												</article>
+												<article class="creator-platform-category-card">
+													<div>
+														<strong>Graphic Templates</strong>
+														<span>430,000+</span>
+													</div>
+													<img src="/images/creator-graphic-templates-cover.jpg" alt="" loading="lazy" />
+												</article>
+												<article class="creator-platform-category-card">
+													<div>
+														<strong>Fonts</strong>
+														<span>80,000+</span>
+													</div>
+													<img src="/images/creator-fonts-cover.avif" alt="" loading="lazy" />
+												</article>
+												<article class="creator-platform-category-card creator-platform-category-card--accent">
+													<div>
+														<strong>3D Assets</strong>
+														<span>380,000+</span>
+													</div>
+													<img src="/images/creator-3d-assets-cover.jpg" alt="" loading="lazy" />
+												</article>
+												<article class="creator-platform-category-card">
+													<div>
+														<strong>Presentation Templates</strong>
+														<span>220,000+</span>
+													</div>
+													<img src="/images/creator-presentation-templates-cover.jpg" alt="" loading="lazy" />
+												</article>
+											</div>
+										</div>
+										<div class="creator-platform-finance" aria-hidden="true">
+											<div class="creator-platform-finance-head">
+												<div>
+													<span>Creator studio</span>
+													<strong>Earnings workspace</strong>
+												</div>
+												<b>June cycle</b>
+											</div>
+											<div class="creator-platform-finance-grid">
+												<article class="creator-platform-finance-balance">
+													<span>Ready to transfer</span>
+													<strong>$3,140.00</strong>
+													<small>From 3 creator products</small>
+												</article>
+												<article>
+													<span>Checked</span>
+													<strong>3/3</strong>
+													<small>Sources verified</small>
+												</article>
+												<article>
+													<span>Avg rating</span>
+													<strong>4.8</strong>
+													<small>Across paid products</small>
+												</article>
+											</div>
+											<div class="creator-platform-finance-table">
+												<div>
+													<img src="/images/creator-video-templates-cover.jpg" alt="" loading="lazy" />
+													<span>Video template pack</span>
+													<small>42 sales / 4.9 rating</small>
+													<strong>$1,420.00</strong>
+												</div>
+												<div>
+													<img src="/images/creator-music-cover.jpg" alt="" loading="lazy" />
+													<span>Music creator bundle</span>
+													<small>18 licenses / featured</small>
+													<strong>$940.00</strong>
+												</div>
+												<div>
+													<img src="/images/creator-graphic-templates-cover.jpg" alt="" loading="lazy" />
+													<span>Graphic mockup set</span>
+													<small>24 sales / trending</small>
+													<strong>$780.00</strong>
+												</div>
+											</div>
+											<div class="creator-platform-destination">
+												<div>
+													<strong>Choose how to receive earnings</strong>
+													<small>Select a route, then continue payout</small>
+												</div>
+												<div class="creator-platform-destination-options" aria-label="Payout route options">
+													<button class="creator-platform-destination-garna" type="button">
+														<i aria-hidden="true"></i>
+														<span>Garna</span>
+														<small>Best route</small>
+													</button>
+													<button class="creator-platform-destination-paypal" type="button">
+														<i aria-hidden="true"></i>
+														<span>PayPal</span>
+														<small>Extra fees</small>
+													</button>
+													<button class="creator-platform-destination-bank" type="button">
+														<i aria-hidden="true"></i>
+														<span>Bank</span>
+														<small>3-5 days</small>
+													</button>
+												</div>
+												<div class="creator-platform-destination-action">
+													<small class="creator-platform-destination-status">
+														<span>No destination selected yet</span>
+														<span>Garna selected. Continue payout</span>
+													</small>
+													<button class="creator-platform-send-button" type="button" disabled>Continue payout</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="creator-platform-live-cursor" aria-hidden="true">
+										<svg viewBox="0 0 28 28">
+											<path d="M5 3.5 21.5 14 14 15.4l-3.4 7.1L5 3.5Z"></path>
+										</svg>
+										<span>Creator</span>
+									</div>
+								</div>
+							</section>
 
-						<div class="creator-wallet-destination-stack">
-							<div class="creator-wallet-destination-card creator-wallet-simple-card creator-wallet-destination-one">
-								<span data-translate="heroVisual.destinations.bank.label">Bank transfer</span>
-								<strong data-translate="heroVisual.destinations.bank.title">Alex Carter USD</strong>
-								<small>•••• 9821</small>
-							</div>
-							<div class="creator-wallet-destination-card creator-wallet-simple-card creator-wallet-destination-two">
-								<span data-translate="heroVisual.destinations.card.label">Card payout</span>
-								<strong data-translate="heroVisual.destinations.card.title">Visa / Mastercard</strong>
-								<small data-translate="heroVisual.destinations.card.meta">Card ending 4482</small>
-							</div>
-							<div class="creator-wallet-destination-card creator-wallet-simple-card creator-wallet-destination-three">
-								<span data-translate="heroVisual.destinations.crypto.label">Crypto wallet</span>
-								<strong data-translate="heroVisual.destinations.crypto.title">USDT wallet</strong>
-								<small data-translate="heroVisual.destinations.crypto.meta">TRC20 • verified</small>
-							</div>
+							<section class="creator-payout-screen creator-payout-screen--garna" data-demo-screen="1" role="tabpanel" hidden>
+								<div class="creator-payout-window creator-payout-window--garna">
+									<header>
+										<div>
+											<img src="/garna_logo.svg" alt="Garna" loading="lazy" />
+											<span>Creator balance</span>
+										</div>
+										<b>Verified</b>
+									</header>
+									<div class="creator-payout-balance">
+										<span>Available now</span>
+										<strong>$2,840.00</strong>
+									</div>
+									<div class="creator-payout-balance-card">
+										<span>Account</span>
+										<strong>4461 **** **** 9821</strong>
+									</div>
+									<div class="creator-payout-checklist">
+										<span><i></i>Compliance checked</span>
+										<span><i></i>Fee reduced to 1.5%</span>
+										<span><i></i>Withdrawal methods ready</span>
+									</div>
+								</div>
+							</section>
+
+							<section class="creator-payout-screen creator-payout-screen--withdraw" data-demo-screen="2" role="tabpanel" hidden>
+								<div class="creator-payout-window creator-payout-window--withdraw">
+									<header>
+										<div>
+											<span class="creator-payout-window-icon">↗</span>
+											<span>Withdraw funds</span>
+										</div>
+										<strong>$2,840.00</strong>
+									</header>
+									<div class="creator-payout-methods">
+										<article class="is-selected">
+											<span>Bank transfer</span>
+											<strong>Alex Carter USD</strong>
+											<small>•••• 9821</small>
+										</article>
+										<article>
+											<span>Card payout</span>
+											<strong>Visa / Mastercard</strong>
+											<small>Card ending 4482</small>
+										</article>
+										<article>
+											<span>Crypto wallet</span>
+											<strong>USDT wallet</strong>
+											<small>TRC20 verified</small>
+										</article>
+									</div>
+								</div>
+							</section>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -306,50 +461,74 @@ const forCreatorsFaqItems = [
 		layout="split"
 		spacing="none"
 		width="content"
-		class="py-16 lg:py-32"
-		splitClass="gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start"
-		copyClass="max-w-xl text-left lg:sticky lg:top-28 lg:self-start"
+		class="creator-account-flow-section pt-16 pb-8 lg:pt-32 lg:pb-0"
+		containerClass="creator-account-flow-container"
+		splitClass="creator-account-flow-grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start"
+		copyClass="creator-account-flow-copy max-w-xl text-left lg:sticky lg:top-28 lg:self-start"
 		align="left"
 		title={{ text: 'One account for creator payouts', translateKey: 'accountFlow.title' }}
 		description={{ text: 'A guided way to connect platform payouts, receive funds to your Garna balance and withdraw using available payout methods', translateKey: 'accountFlow.description' }}
 		titleClass="lg:text-5xl"
 		descriptionClass="text-lg"
-		contentClass="grid gap-4"
+		contentClass="creator-account-stack"
 	>
 		<Card
 			variant="compact"
-			visualClass="creator-step-number shrink-0"
+			class="creator-account-stack-card"
+			interactive={false}
 		>
-			<span slot="visual">01</span>
 			<div class="creator-step-copy">
 				<h3 data-translate="accountFlow.steps.receive.title">Receive platform payouts</h3>
-				<p data-translate="accountFlow.steps.receive.description">Use Garna details where supported to receive payments from international creator platforms</p>
+				<div class="creator-step-card-bottom">
+					<p data-translate="accountFlow.steps.receive.description">Use Garna details where supported to receive payments from international creator platforms</p>
+					<div class="creator-step-card-footer" aria-hidden="true">
+						<span>Platform payout</span>
+						<span>Garna details</span>
+						<span>Balance credit</span>
+					</div>
+				</div>
 			</div>
 		</Card>
 		<Card
 			variant="compact"
-			visualClass="creator-step-number shrink-0"
+			class="creator-account-stack-card"
+			interactive={false}
 		>
-			<span slot="visual">02</span>
 			<div class="creator-step-copy">
 				<h3 data-translate="accountFlow.steps.setup.title">Get guided setup</h3>
-				<p data-translate="accountFlow.steps.setup.description">Tell us which platform you use. We will check the available payout method and guide you through setup</p>
+				<div class="creator-step-card-bottom">
+					<p data-translate="accountFlow.steps.setup.description">Tell us which platform you use. We will check the available payout method and guide you through setup</p>
+					<div class="creator-step-card-footer" aria-hidden="true">
+						<span>Platform rules</span>
+						<span>Payout route</span>
+						<span>Setup guidance</span>
+					</div>
+				</div>
 			</div>
 		</Card>
 		<Card
 			variant="compact"
-			visualClass="creator-step-number shrink-0"
+			class="creator-account-stack-card"
+			interactive={false}
 		>
-			<span slot="visual">03</span>
 			<div class="creator-step-copy">
 				<h3 data-translate="accountFlow.steps.withdraw.title">Withdraw globally</h3>
-				<p data-translate="accountFlow.steps.withdraw.description">Withdraw your money using bank transfer, card, PayPal, Payoneer, crypto and other supported options</p>
+				<div class="creator-step-card-bottom">
+					<p data-translate="accountFlow.steps.withdraw.description">Withdraw your money using bank transfer, card, PayPal, Payoneer, crypto and other supported options</p>
+					<div class="creator-step-card-footer" aria-hidden="true">
+						<span>Choose method</span>
+						<span>Send request</span>
+						<span>Receive funds</span>
+					</div>
+				</div>
 			</div>
 		</Card>
 	</Section>
 	<Section
 		title={{ text: 'From platform payout to your Garna balance', translateKey: 'process.title' }}
 		description={{ text: 'The flow is simple, but setup may differ by platform. During Early Access, we guide you through the important details', translateKey: 'process.description' }}
+		spacing="none"
+		class="creator-process-section pt-16 pb-8 lg:pt-32 lg:pb-0"
 		headerClass="mb-14 max-w-4xl lg:mb-16"
 		titleClass="mx-auto max-w-4xl lg:text-5xl"
 		contentClass="creator-process-scroll"
@@ -574,6 +753,32 @@ const forCreatorsFaqItems = [
 		</div>
 	</Section>
 	<Section
+		contentClass="creator-fee-banner-layout"
+	>
+		<div class="creator-fee-banner" data-card-glow="true" data-interactive="true">
+			<div class="creator-fee-banner-copy creator-fee-banner-standard">
+				<h2>Reduced fee for creator payouts</h2>
+				<p>
+					Standard Garna service fee applies after Early Access or outside the selected launch group
+				</p>
+			</div>
+			<div class="creator-fee-banner-rates" aria-label="Standard fee reduced from 5.5% to 1.5%">
+				<span class="creator-fee-banner-old">5.5%</span>
+				<strong>1.5%</strong>
+			</div>
+			<div class="creator-fee-banner-note">
+				<span>Launch terms</span>
+				<p>
+					Selected creators can start with a reduced Garna service fee while we help validate the first payout setup.
+				</p>
+				<p>
+					Garna service fee only. Platform, payment method and FX fees may vary.
+				</p>
+				<a href="https://t.me/likelyiam">Contact Payout Manager</a>
+			</div>
+		</div>
+	</Section>
+	<Section
 		title={{ text: 'Popular platforms\nwe can help with', translateKey: 'platforms.title' }}
 		description={{ text: "We're starting with popular creator platforms, stock marketplaces and digital product services. Some platforms can be configured directly, while others may require manual guidance from Garna or the platform's own support team", translateKey: 'platforms.description' }}
 		headerClass="mb-14 max-w-4xl"
@@ -669,8 +874,9 @@ const forCreatorsFaqItems = [
 		align="left"
 		headerClass="creator-manager-copy mb-0"
 		titleClass="lg:text-5xl"
-		contentClass="creator-manager-layout"
+		contentClass="creator-manager-layout lg:order-1"
 		actionClass="creator-manager-actions"
+		copyClass="lg:order-2"
 	>
 		<div slot="action" class="creator-manager-buttons">
 			<Button
@@ -787,8 +993,9 @@ const forCreatorsFaqItems = [
 		title={{ text: 'Questions creators usually ask', translateKey: 'creatorFaq.title' }}
 		subtitle={{ text: 'A few important details before you start your first payout setup with Garna', translateKey: 'creatorFaq.subtitle' }}
 		items={forCreatorsFaqItems}
+		variant="eor"
 		class="pt-16 pr-6 pb-16 pl-6 lg:pt-32 lg:pb-32"
-		containerClass="max-w-3xl mr-auto ml-auto"
+		containerClass="garna-container"
 	/>
 	<Section
 		title={{ text: 'Start receiving creator payouts with Garna', translateKey: 'creatorFinalCta.title' }}
@@ -799,12 +1006,25 @@ const forCreatorsFaqItems = [
 		descriptionClass="mx-auto max-w-2xl"
 		contentClass="creator-final-actions mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
 	>
-		<Button href="https://t.me/likelyiam" variant="primary" size="hero" icon="arrow-up-right" data-translate="creatorFinalCta.contact">
-			Contact Payout Manager
-		</Button>
-		<Button href="https://app.garna.io/auth/sign-up" variant="secondary" size="hero" data-translate="creatorFinalCta.account">
+		<Button href="https://app.garna.io/auth/sign-up" variant="primary" size="hero" icon="arrow-up-right" data-translate="creatorFinalCta.account">
 			Create Garna Account
 		</Button>
+		<div class="creator-hero-contact-card" aria-label="Contact payout manager">
+			<div class="creator-hero-contact-copy">
+				<strong>Contact payout manager</strong>
+			</div>
+			<div class="creator-hero-contact-links">
+				<a href="https://t.me/likelyiam" aria-label="Telegram">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.5 4.2 10.8c-.8.3-.8 1.2.1 1.5l4 1.2 1.5 4.8c.3.8 1.2.9 1.7.2l2.2-3 4.1 3c.7.5 1.5.1 1.7-.8l2.4-11.9c.2-.9-.6-1.6-1.4-1.3Z" /><path d="m8.4 13.4 8.5-5.3-6.8 7.6" /></svg>
+				</a>
+				<a href="https://wa.me/0000000000" aria-label="WhatsApp">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.2a7.8 7.8 0 0 0-6.6 12l-1 3.4 3.5-.9A7.8 7.8 0 1 0 12 4.2Z" /><path d="M9 8.7c.2-.2.5-.2.7 0l1 1.3c.2.2.2.5 0 .7l-.5.6a5.5 5.5 0 0 0 2.5 2.5l.6-.5c.2-.2.5-.2.7 0l1.3 1c.2.2.2.5 0 .7-.5.6-1.3.9-2.1.7-2.5-.5-4.4-2.4-4.9-4.9-.2-.8.1-1.6.7-2.1Z" /></svg>
+				</a>
+				<a href="https://instagram.com/garna.io" aria-label="Instagram">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="4" /><circle cx="12" cy="12" r="3.2" /></svg>
+				</a>
+			</div>
+		</div>
 	</Section>
 	<script is:inline>
 		const creatorProcess = document.querySelector('[data-creator-process]');
@@ -812,10 +1032,12 @@ const forCreatorsFaqItems = [
 		const creatorProcessVisuals = Array.from(document.querySelectorAll('[data-process-visual]'));
 		const creatorProcessProgress = Array.from(document.querySelectorAll('.creator-process-progress span'));
 		const creatorProcessFallback = document.querySelector('[data-process-fallback]');
+		const creatorAccountFlowSection = document.querySelector('.creator-account-flow-section');
 		const creatorBalanceDuration = 5800;
 		let creatorBalanceActiveStartedAt = null;
 		const creatorWalletVisual = document.querySelector('.creator-wallet-visual');
 		const reduceCreatorProcessMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const creatorAccountFlowDesktop = window.matchMedia('(min-width: 1024px)');
 		const targetCreatorBalance = 2840;
 		const formatCreatorBalance = (value) =>
 			new Intl.NumberFormat('en-US', {
@@ -842,6 +1064,167 @@ const forCreatorsFaqItems = [
 
 		updateCreatorWalletScale();
 		window.addEventListener('resize', updateCreatorWalletScale);
+
+		document.querySelectorAll('[data-creator-payout-demo]').forEach((demoRoot) => {
+			if (!(demoRoot instanceof HTMLElement)) return;
+
+			const tabs = Array.from(demoRoot.querySelectorAll('[data-demo-tab]'));
+			const screens = Array.from(demoRoot.querySelectorAll('[data-demo-screen]'));
+			const tabList = demoRoot.querySelector('.creator-payout-demo-tabs');
+			let activeIndex = 0;
+
+			const setActiveDemoScreen = (nextIndex) => {
+				activeIndex = ((nextIndex % screens.length) + screens.length) % screens.length;
+				demoRoot.style.setProperty('--creator-payout-active-tab', String(activeIndex));
+
+				if (tabList instanceof HTMLElement) {
+					tabList.style.setProperty('--creator-payout-active-tab', String(activeIndex));
+					tabList.classList.remove('is-progress-running');
+				}
+
+				tabs.forEach((tab, index) => {
+					const isActive = index === activeIndex;
+					tab.classList.toggle('is-active', isActive);
+					tab.setAttribute('aria-selected', String(isActive));
+				});
+
+				screens.forEach((screen, index) => {
+					const isActive = index === activeIndex;
+					screen.classList.toggle('is-active', isActive);
+					if (isActive) {
+						screen.removeAttribute('hidden');
+					} else {
+						screen.setAttribute('hidden', '');
+					}
+				});
+			};
+
+			tabs.forEach((tab, index) => {
+				tab.addEventListener('click', () => setActiveDemoScreen(index));
+			});
+
+			setActiveDemoScreen(0);
+		});
+
+		if (creatorAccountFlowSection instanceof HTMLElement) {
+			let creatorAccountFlowFrame = null;
+			const clampAccountFlowProgress = (value) => Math.min(1, Math.max(0, value));
+			const easeAccountFlowProgress = (value) => {
+				const progress = clampAccountFlowProgress(value);
+				return progress * progress * (3 - progress * 2);
+			};
+			const syncCreatorAccountFlowHeight = () => {
+				const container = creatorAccountFlowSection.querySelector('.creator-account-flow-container');
+				const grid = creatorAccountFlowSection.querySelector('.creator-account-flow-grid');
+				const cards = creatorAccountFlowSection.querySelectorAll('.creator-account-stack-card');
+				const firstCard = cards[0];
+
+				if (!(container instanceof HTMLElement) || !(grid instanceof HTMLElement) || !(firstCard instanceof HTMLElement)) {
+					return { container, grid, animationDistance: 1, holdDistance: 0 };
+				}
+
+				if (!creatorAccountFlowDesktop.matches) {
+					container.style.removeProperty('--creator-account-flow-height');
+					return { container, grid, animationDistance: 1, holdDistance: 0 };
+				}
+
+				const styles = window.getComputedStyle(creatorAccountFlowSection);
+				const gap = Number.parseFloat(styles.getPropertyValue('--creator-account-card-gap')) || 18;
+				const cardHeight = firstCard.offsetHeight;
+				const gridHeight = grid.offsetHeight;
+				const animationDistance = Math.max(560, Math.round((cardHeight + gap) * 2.65));
+				container.style.setProperty(
+					'--creator-account-flow-height',
+					`${Math.round(gridHeight + animationDistance)}px`
+				);
+
+				return { container, grid, animationDistance, holdDistance: 0 };
+			};
+			const setCreatorAccountCardOffsets = (stepTwo, stepThree, collapseProgress = 0) => {
+				const cards = creatorAccountFlowSection.querySelectorAll('.creator-account-stack-card');
+				const firstCard = cards[0];
+				const styles = window.getComputedStyle(creatorAccountFlowSection);
+				const cardHeight = firstCard instanceof HTMLElement ? firstCard.offsetHeight : 0;
+				const gap = Number.parseFloat(styles.getPropertyValue('--creator-account-card-gap')) || 18;
+				const peek = Number.parseFloat(styles.getPropertyValue('--creator-account-card-peek')) || 76;
+				const secondStart = cardHeight + gap;
+				const thirdStart = (cardHeight + gap) * 2;
+				const secondPeekY = peek;
+				const thirdPeekY = peek * 2;
+				const clampedCollapse = clampAccountFlowProgress(collapseProgress);
+				const secondStackY = secondStart + (secondPeekY - secondStart) * stepTwo;
+				const thirdStackY = thirdStart + (thirdPeekY - thirdStart) * stepThree;
+				const secondY = secondStackY + (0 - secondStackY) * clampedCollapse;
+				const thirdY = thirdStackY + (0 - thirdStackY) * clampedCollapse;
+
+				creatorAccountFlowSection.style.setProperty('--creator-account-step-two', stepTwo.toFixed(4));
+				creatorAccountFlowSection.style.setProperty('--creator-account-step-three', stepThree.toFixed(4));
+				creatorAccountFlowSection.style.setProperty('--creator-account-collapse', clampedCollapse.toFixed(4));
+				creatorAccountFlowSection.style.setProperty('--creator-account-card-two-y', `${secondY.toFixed(2)}px`);
+				creatorAccountFlowSection.style.setProperty('--creator-account-card-three-y', `${thirdY.toFixed(2)}px`);
+			};
+
+			const updateCreatorAccountFlow = () => {
+				creatorAccountFlowFrame = null;
+
+				if (!creatorAccountFlowDesktop.matches) {
+					syncCreatorAccountFlowHeight();
+					creatorAccountFlowSection.style.removeProperty('--creator-account-step-two');
+					creatorAccountFlowSection.style.removeProperty('--creator-account-step-three');
+					creatorAccountFlowSection.style.removeProperty('--creator-account-collapse');
+					creatorAccountFlowSection.style.removeProperty('--creator-account-card-two-y');
+					creatorAccountFlowSection.style.removeProperty('--creator-account-card-three-y');
+					return;
+				}
+
+				if (reduceCreatorProcessMotion.matches) {
+					syncCreatorAccountFlowHeight();
+					setCreatorAccountCardOffsets(1, 1, 1);
+					return;
+				}
+
+				const { container, grid, animationDistance } = syncCreatorAccountFlowHeight();
+				if (!(container instanceof HTMLElement) || !(grid instanceof HTMLElement)) return;
+
+				const rect = container.getBoundingClientRect();
+				const styles = window.getComputedStyle(creatorAccountFlowSection);
+				const stickyOffset = Number.parseFloat(styles.getPropertyValue('--creator-account-stack-top')) || 112;
+				const gridHeight = Math.max(1, grid.offsetHeight);
+				const stickyReleaseDistance = Math.max(1, container.offsetHeight - gridHeight);
+				const animationScrollDistance = Math.max(1, Math.min(animationDistance, stickyReleaseDistance));
+				const progress = clampAccountFlowProgress((stickyOffset - rect.top) / animationScrollDistance);
+				const cards = creatorAccountFlowSection.querySelectorAll('.creator-account-stack-card');
+				const firstCard = cards[0];
+				const cardHeight = firstCard instanceof HTMLElement ? firstCard.offsetHeight : 0;
+				const gap = Number.parseFloat(styles.getPropertyValue('--creator-account-card-gap')) || 18;
+				const peek = Number.parseFloat(styles.getPropertyValue('--creator-account-card-peek')) || 76;
+				const secondTravel = Math.max(1, cardHeight + gap - peek);
+				const thirdTravel = Math.max(1, (cardHeight + gap) * 2 - peek * 2);
+				const cardMotionDuration = 0.26;
+				const stepTwoStart = 0.12;
+				const stepThreeStart = stepTwoStart + cardMotionDuration - 0.1;
+				const stepThreeDuration = cardMotionDuration * (thirdTravel / secondTravel);
+				const stackedHoldDuration = 0.06;
+				const collapseDuration = 0.08;
+				const collapseStart = 0.82;
+				const stepTwo = easeAccountFlowProgress((progress - stepTwoStart) / cardMotionDuration);
+				const stepThree = easeAccountFlowProgress((progress - stepThreeStart) / stepThreeDuration);
+				const collapseProgress = easeAccountFlowProgress((progress - collapseStart) / collapseDuration);
+
+				setCreatorAccountCardOffsets(stepTwo, stepThree, collapseProgress);
+			};
+
+			const requestCreatorAccountFlowUpdate = () => {
+				if (creatorAccountFlowFrame !== null) return;
+				creatorAccountFlowFrame = window.requestAnimationFrame(updateCreatorAccountFlow);
+			};
+
+			updateCreatorAccountFlow();
+			window.addEventListener('scroll', requestCreatorAccountFlowUpdate, { passive: true });
+			window.addEventListener('resize', requestCreatorAccountFlowUpdate);
+			creatorAccountFlowDesktop.addEventListener('change', requestCreatorAccountFlowUpdate);
+			reduceCreatorProcessMotion.addEventListener('change', requestCreatorAccountFlowUpdate);
+		}
 
 		if (creatorProcess && creatorProcessSteps.length && creatorProcessVisuals.length) {
 			const creatorProcessScroll = creatorProcess.closest('.creator-process-scroll');
@@ -887,7 +1270,18 @@ const forCreatorsFaqItems = [
 				const scrollDistance = Math.max(1, rect.height - window.innerHeight);
 				const processStyles = window.getComputedStyle(creatorProcessScroll);
 				const cssStickyOffset = Number.parseFloat(processStyles.getPropertyValue('--creator-process-top-offset'));
-				const stickyOffset = window.innerWidth > 980 && Number.isFinite(cssStickyOffset) ? cssStickyOffset : 0;
+				const computedStickyTop =
+					creatorProcess instanceof HTMLElement
+						? Number.parseFloat(window.getComputedStyle(creatorProcess).top)
+						: Number.NaN;
+				const stickyOffset =
+					window.innerWidth > 980
+						? Number.isFinite(computedStickyTop)
+							? computedStickyTop
+							: Number.isFinite(cssStickyOffset)
+								? cssStickyOffset
+								: 0
+						: 0;
 				const progress = Math.min(1, Math.max(0, (stickyOffset - rect.top) / scrollDistance));
 				const rawStepProgress = progress * creatorProcessSteps.length;
 				const index = Math.min(creatorProcessSteps.length - 1, Math.floor(rawStepProgress));
@@ -1033,28 +1427,88 @@ const forCreatorsFaqItems = [
 
 		if (platformLogoShowcase && !reducePlatformLogoMotion.matches) {
 			const platformLogoCells = Array.from(platformLogoShowcase.querySelectorAll('.creator-platform-logo'));
-			let platformLogoQueue = [];
+			const platformLogoLastChangedAt = new WeakMap();
+			const platformLogoStartedAt = Date.now();
+			let platformLogoTimer = 0;
 
-			const shufflePlatformLogoQueue = () => {
-				platformLogoQueue = platformLogoCells.map((_, index) => index);
+			const randomBetween = (min, max) => min + Math.random() * (max - min);
+			const randomInt = (min, max) => Math.floor(randomBetween(min, max + 1));
+			const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
-				for (let index = platformLogoQueue.length - 1; index > 0; index -= 1) {
-					const swapIndex = Math.floor(Math.random() * (index + 1));
-					[platformLogoQueue[index], platformLogoQueue[swapIndex]] = [platformLogoQueue[swapIndex], platformLogoQueue[index]];
+			const currentLogoEnergy = () => {
+				const elapsed = (Date.now() - platformLogoStartedAt) / 1000;
+				const slowWave = (Math.sin(elapsed * 0.37) + 1) / 2;
+				const mediumWave = (Math.sin(elapsed * 0.91 + 1.7) + 1) / 2;
+				const flicker = Math.random() ** 1.7;
+				return clamp(0.3 + slowWave * 0.34 + mediumWave * 0.22 + flicker * 0.28, 0, 1);
+			};
+
+			const weightedPlatformCell = (blocked = new Set()) => {
+				const now = Date.now();
+				const weights = platformLogoCells.map((cell) => {
+					if (blocked.has(cell)) return 0;
+					const lastChangedAt = platformLogoLastChangedAt.get(cell) || 0;
+					const age = now - lastChangedAt;
+					if (age < 1700) return 0;
+					const ageWeight = clamp(age / 8500, 0.22, 1.8);
+					const centerBias = 1 + (1 - Math.abs(platformLogoCells.indexOf(cell) - (platformLogoCells.length - 1) / 2) / platformLogoCells.length) * 0.28;
+					return ageWeight * centerBias * randomBetween(0.72, 1.38);
+				});
+				const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+				if (totalWeight <= 0) return null;
+
+				let cursor = Math.random() * totalWeight;
+				for (let index = 0; index < weights.length; index += 1) {
+					cursor -= weights[index];
+					if (cursor <= 0) return platformLogoCells[index];
 				}
+
+				return platformLogoCells[platformLogoCells.length - 1];
 			};
 
-			shufflePlatformLogoQueue();
+			const switchPlatformLogoCell = (cell) => {
+				cell.classList.remove('is-logo-fresh');
+				cell.classList.toggle('is-alt-visible');
+				void cell.offsetWidth;
+				cell.classList.add('is-logo-fresh');
+				platformLogoLastChangedAt.set(cell, Date.now());
+			};
 
-			const switchRandomPlatformLogo = () => {
+			const schedulePlatformLogoWave = () => {
 				if (platformLogoCells.length < 2) return;
-				if (!platformLogoQueue.length) shufflePlatformLogoQueue();
 
-				const nextIndex = platformLogoQueue.shift();
-				platformLogoCells[nextIndex].classList.toggle('is-alt-visible');
+				const energy = currentLogoEnergy();
+				const elapsed = (Date.now() - platformLogoStartedAt) / 1000;
+				const startupBoost = clamp(1 - elapsed / 14, 0, 1);
+				const pairLogoChance = 0.5 + startupBoost * 0.08;
+				const tripleLogoChance = 0.035 + energy * 0.025;
+				const waveRoll = Math.random();
+				const waveSize =
+					waveRoll < tripleLogoChance
+						? Math.min(3, platformLogoCells.length)
+						: waveRoll < tripleLogoChance + pairLogoChance
+							? Math.min(2, platformLogoCells.length)
+							: 1;
+				const blocked = new Set();
+
+				for (let index = 0; index < waveSize; index += 1) {
+					const cell = weightedPlatformCell(blocked);
+					if (!cell) continue;
+					blocked.add(cell);
+					const waveDelay = index === 0 ? 0 : index * randomBetween(220, 420) + randomBetween(0, 140);
+					window.setTimeout(() => switchPlatformLogoCell(cell), Math.round(waveDelay));
+				}
+
+				const calmGap = randomBetween(620, 1350);
+				const quickGap = randomBetween(380, 760);
+				const breathingPause = Math.random() < 0.08 ? randomBetween(650, 1150) : 0;
+				const startupGapPull = startupBoost * randomBetween(90, 240);
+				const nextDelay = Math.round(Math.max(320, (Math.random() < energy * 0.45 ? quickGap : calmGap) - startupGapPull + breathingPause));
+				platformLogoTimer = window.setTimeout(schedulePlatformLogoWave, nextDelay);
 			};
 
-			window.setInterval(switchRandomPlatformLogo, 1000);
+			platformLogoTimer = window.setTimeout(schedulePlatformLogoWave, randomBetween(220, 520));
+			window.addEventListener('garna:page-will-unmount', () => window.clearTimeout(platformLogoTimer), { once: true });
 		}
 
 		document.addEventListener('click', (event) => {
@@ -1101,6 +1555,2368 @@ const forCreatorsFaqItems = [
 	.creator-wallet-visual {
 		display: block;
 		min-height: clamp(390px, 34vw, 440px);
+	}
+
+	.creator-wallet-visual[data-creator-payout-demo] {
+		height: auto;
+		min-height: calc(
+			clamp(96px, 8vw, 112px) + clamp(560px, calc(100vh - 178px), 680px) + clamp(12px, 1.4vw, 18px)
+		);
+	}
+
+	.creator-wallet-visual[data-creator-payout-demo] > .creator-wallet-simple {
+		display: none;
+	}
+
+	.creator-payout-demo {
+		--creator-payout-tabs-height: clamp(96px, 8vw, 112px);
+		--creator-payout-demo-gap: clamp(20px, 2vw, 28px);
+		--creator-payout-screen-height: clamp(560px, calc(100vh - var(--creator-payout-tabs-height) - var(--creator-payout-demo-gap) - 48px), 680px);
+		position: relative;
+		display: grid;
+		grid-template-rows: auto var(--creator-payout-screen-height);
+		gap: var(--creator-payout-demo-gap);
+		min-height: calc(var(--creator-payout-tabs-height) + var(--creator-payout-screen-height) + var(--creator-payout-demo-gap));
+		overflow: visible;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		padding: 0;
+		box-shadow: none;
+	}
+
+	.creator-payout-demo::before {
+		content: none;
+	}
+
+	.creator-payout-demo-tabs,
+	.creator-payout-demo-stage {
+		position: relative;
+		z-index: 1;
+	}
+
+	.creator-payout-demo-tabs {
+		--creator-payout-active-tab: 0;
+		display: grid;
+		width: 100%;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		min-height: var(--creator-payout-tabs-height);
+		margin-inline: auto;
+		overflow: visible;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+	}
+
+	.creator-payout-demo-tabs::after {
+		content: none;
+	}
+
+	.creator-payout-demo-tabs button {
+		position: relative;
+		display: flex;
+		min-height: var(--creator-payout-tabs-height);
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 10px;
+		min-width: 0;
+		border: 0;
+		background: transparent;
+		padding: 6px clamp(16px, 2vw, 24px) 16px;
+		color: rgba(255, 255, 255, 0.64);
+		font-family: Manrope, sans-serif;
+		text-align: center;
+		cursor: pointer;
+		transition:
+			background 180ms ease,
+			color 180ms ease;
+	}
+
+	.creator-payout-tab-icon {
+		display: inline-flex;
+		width: 44px;
+		height: 44px;
+		aspect-ratio: 1 / 1;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid #303633;
+		border-radius: 14px;
+		background: #141816;
+		color: #8a928e;
+		opacity: 1;
+		transition:
+			opacity 180ms ease,
+			border-color 180ms ease,
+			background 180ms ease,
+			color 180ms ease,
+			box-shadow 180ms ease;
+	}
+
+	.creator-payout-tab-icon svg {
+		display: block;
+		width: 26px;
+		height: 26px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.25 !important;
+		stroke-opacity: 1;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.creator-payout-tab-icon svg * {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.25 !important;
+		stroke-opacity: 1 !important;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		vector-effect: non-scaling-stroke;
+	}
+
+	.creator-payout-tab-icon--large svg {
+		width: 26px;
+		height: 26px;
+		stroke-width: 1.25;
+	}
+
+	.creator-payout-tab-icon--withdraw svg {
+		width: 26px;
+		height: 26px;
+		stroke-width: 1.25 !important;
+	}
+
+	.creator-payout-tab-copy {
+		display: grid;
+		justify-items: center;
+		min-width: 0;
+		gap: 5px;
+	}
+
+	.creator-payout-tab-copy strong {
+		color: currentColor;
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 1.15;
+	}
+
+	.creator-payout-tab-copy small {
+		color: rgba(255, 255, 255, 0.48);
+		font-size: 12px;
+		font-weight: 560;
+		line-height: 1.25;
+	}
+
+	.creator-payout-demo-tabs button::after {
+		content: '';
+		position: absolute;
+		right: clamp(16px, 2vw, 24px);
+		bottom: 0;
+		left: clamp(16px, 2vw, 24px);
+		height: 2px;
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	.creator-payout-demo-tabs button:not(:last-child)::before {
+		content: '';
+		position: absolute;
+		top: 28px;
+		right: 0;
+		width: 1px;
+		height: 48px;
+		background: rgba(255, 255, 255, 0.09);
+	}
+
+	.creator-payout-demo-tabs button:last-child {
+		border-right: 0;
+	}
+
+	.creator-payout-demo-tabs button:hover,
+	.creator-payout-demo-tabs button.is-active {
+		color: #ffffff;
+	}
+
+	.creator-payout-demo-tabs button.is-active .creator-payout-tab-icon {
+		border-color: #3d4a14;
+		background: #1d250f;
+		color: #CBF300;
+		opacity: 1;
+		box-shadow: 0 12px 28px -22px rgba(203, 243, 0, 0.5);
+	}
+
+	.creator-payout-demo-tabs button.is-active .creator-payout-tab-copy small {
+		color: rgba(255, 255, 255, 0.62);
+	}
+
+	.creator-payout-demo-tabs i {
+		position: absolute;
+		right: clamp(16px, 2vw, 24px);
+		bottom: 0;
+		left: clamp(16px, 2vw, 24px);
+		z-index: 2;
+		display: block;
+		height: 2px;
+		background: #CBF300;
+		box-shadow: 0 0 14px rgba(203, 243, 0, 0.52);
+		transform: scaleX(0);
+		transform-origin: left center;
+	}
+
+	.creator-payout-demo-tabs.is-progress-running button.is-active i {
+		animation: creator-payout-tab-progress var(--demo-progress-duration, 8500ms) linear forwards;
+		animation-play-state: var(--demo-progress-state, running);
+	}
+
+	.creator-payout-demo-stage {
+		display: grid;
+		height: var(--creator-payout-screen-height);
+		min-height: var(--creator-payout-screen-height);
+		margin-top: 0;
+		overflow: visible;
+		border: 0;
+		border-radius: 22px;
+		background:
+			radial-gradient(circle at 88% 24%, rgba(107, 174, 214, 0.08), transparent 32%),
+			linear-gradient(180deg, rgba(14, 15, 14, 0.94), rgba(5, 5, 5, 0.98));
+		padding: 0;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.06),
+			0 36px 110px -74px rgba(0, 0, 0, 0.95);
+	}
+
+	.creator-payout-screen {
+		grid-area: 1 / 1;
+		display: grid;
+		height: 100%;
+		min-height: 0;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 0;
+		align-items: stretch;
+		align-self: stretch;
+		opacity: 0;
+		transform: none;
+		transition: opacity 260ms ease;
+	}
+
+	.creator-payout-screen.is-active {
+		opacity: 1;
+		transform: none;
+	}
+
+	.creator-payout-window,
+	.creator-payout-side-note {
+		position: relative;
+		overflow: hidden;
+		border: 0;
+		border-radius: 18px;
+		background: rgba(12, 12, 12, 0.84);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+	}
+
+	.creator-payout-window {
+		display: grid;
+		height: 100%;
+		min-height: 0;
+		align-self: stretch;
+		align-content: start;
+		gap: clamp(10px, 1.45vw, 16px);
+		border-top: 0;
+		border-top-left-radius: 18px;
+		border-top-right-radius: 18px;
+		padding: clamp(16px, 1.8vw, 20px);
+	}
+
+	.creator-payout-window--platform {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(10px, 1.2vw, 14px);
+		overflow: visible;
+		isolation: isolate;
+		background: linear-gradient(180deg, rgba(14, 15, 14, 0.96), rgba(7, 8, 7, 0.98));
+	}
+
+	.creator-payout-window--platform::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+		pointer-events: none;
+		border: 1px solid rgba(160, 160, 160, 0.32);
+		border-radius: inherit;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+	}
+
+	.creator-platform-browser-bar {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto auto;
+		align-items: center;
+		gap: 12px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 18px;
+		background:
+			linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
+			rgba(8, 9, 8, 0.88);
+		padding: 7px 8px;
+		color: #ffffff;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.075),
+			0 18px 48px -42px rgba(0, 0, 0, 0.9);
+		backdrop-filter: blur(18px);
+		-webkit-backdrop-filter: blur(18px);
+	}
+
+	.creator-platform-top-logo {
+		display: inline-flex;
+		align-items: center;
+		align-self: center;
+		gap: 6px;
+		min-width: 118px;
+		height: 40px;
+	}
+
+	.creator-platform-top-mark {
+		display: inline-flex;
+		width: 28px;
+		height: 28px;
+		align-items: center;
+		justify-content: center;
+		color: #CBF300 !important;
+	}
+
+	.creator-platform-top-mark svg {
+		display: block;
+		width: 27px;
+		height: 27px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.8;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.creator-platform-top-logo strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 18px;
+		font-weight: 900;
+		line-height: 1;
+		letter-spacing: -0.05em;
+		transform: translateY(-0.5px);
+	}
+
+	.creator-platform-search {
+		display: grid;
+		grid-template-columns: auto 1px auto minmax(0, 1fr);
+		align-items: center;
+		justify-self: center;
+		gap: 13px;
+		width: min(100%, 540px);
+		min-width: 0;
+		height: 40px;
+		border: 1px solid rgba(255, 255, 255, 0.11);
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.055);
+		padding: 0 12px 0 16px;
+	}
+
+	.creator-platform-search span,
+	.creator-platform-search strong {
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		line-height: 1;
+	}
+
+	.creator-platform-search span {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		color: rgba(255, 255, 255, 0.82);
+		font-weight: 800;
+		white-space: nowrap;
+	}
+
+	.creator-platform-search-filter svg {
+		width: 13px;
+		height: 13px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		opacity: 0.86;
+	}
+
+	.creator-platform-search strong {
+		overflow: hidden;
+		color: #8d939d;
+		font-weight: 650;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-platform-search i {
+		display: block;
+		width: 1px;
+		height: 24px;
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	.creator-platform-search-icon {
+		width: 19px;
+		height: 19px;
+		color: rgba(255, 255, 255, 0.88);
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2.1;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.creator-platform-browser-bar button {
+		border: 1px solid rgba(203, 243, 0, 0.36);
+		border-radius: 10px;
+		background: #CBF300;
+		padding: 12px 20px;
+		color: #050505;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 850;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.creator-platform-avatar {
+		display: inline-grid;
+		width: 32px;
+		height: 32px;
+		place-items: center;
+		overflow: hidden;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		background: transparent;
+		box-shadow: none;
+	}
+
+	.creator-platform-avatar img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: 46% 45%;
+		border-radius: inherit;
+	}
+
+	.creator-platform-content {
+		position: relative;
+		display: grid;
+		min-height: 0;
+		flex: 1 1 auto;
+	}
+
+	.creator-platform-marketplace {
+		grid-area: 1 / 1;
+		display: grid;
+		min-height: 0;
+		gap: 16px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.09);
+		border-radius: 18px;
+		background: #111211;
+		padding: clamp(16px, 2vw, 20px);
+		animation: creator-platform-marketplace-view 8500ms ease-in-out infinite;
+	}
+
+	.creator-platform-finance {
+		grid-area: 1 / 1;
+		display: grid;
+		min-height: 0;
+		grid-template-rows: auto auto minmax(0, 1fr) auto;
+		gap: 12px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 18px;
+		background: #111211;
+		padding: clamp(16px, 2vw, 20px);
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(10px) scale(0.985);
+		animation: creator-platform-finance-view 8500ms ease-in-out infinite;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-live-cursor {
+		display: flex;
+		animation: creator-platform-cursor-path 8500ms cubic-bezier(0.22, 1, 0.36, 1) infinite;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-live-cursor::before {
+		animation: creator-platform-cursor-pulse 8500ms ease-in-out infinite;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-live-cursor svg {
+		animation: creator-platform-cursor-click 8500ms ease-in-out infinite;
+	}
+
+	.creator-platform-finance-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		margin-bottom: 2px;
+	}
+
+	.creator-platform-finance-head div {
+		display: grid;
+		gap: 5px;
+	}
+
+	.creator-platform-finance-head span {
+		color: rgba(255, 255, 255, 0.5);
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 10px;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.creator-platform-finance-head strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(22px, 2vw, 28px);
+		font-weight: 820;
+		line-height: 1;
+		letter-spacing: -0.04em;
+	}
+
+	.creator-platform-finance-head b {
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.055);
+		padding: 8px 12px;
+		color: rgba(255, 255, 255, 0.78);
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 850;
+	}
+
+	.creator-platform-finance-grid {
+		display: grid;
+		grid-template-columns: 1.24fr repeat(2, minmax(0, 0.88fr));
+		gap: 12px;
+	}
+
+	.creator-platform-finance-grid article,
+	.creator-platform-finance-table {
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.045);
+	}
+
+	.creator-platform-finance-grid article {
+		display: grid;
+		gap: 6px;
+		padding: 16px;
+	}
+
+	.creator-platform-finance-grid span,
+	.creator-platform-finance-table small {
+		color: #98a1af;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	.creator-platform-finance-grid strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(19px, 2vw, 28px);
+		font-weight: 780;
+		line-height: 1;
+		letter-spacing: -0.035em;
+	}
+
+	.creator-platform-route-brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 9px;
+	}
+
+	.creator-platform-route-brand i {
+		display: inline-flex;
+		width: 30px;
+		height: 30px;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: 9px;
+		background: rgba(255, 255, 255, 0.055);
+	}
+
+	.creator-platform-route-brand i::before {
+		content: '';
+		display: block;
+		width: 13px;
+		height: 21px;
+		background: #CBF300;
+		mask: url('/images/garna-g-mark.svg') center / contain no-repeat;
+		-webkit-mask: url('/images/garna-g-mark.svg') center / contain no-repeat;
+	}
+
+	.creator-platform-finance-grid small {
+		color: rgba(255, 255, 255, 0.58);
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 650;
+	}
+
+	.creator-platform-destination {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		align-items: stretch;
+		gap: 9px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.045);
+		padding: 12px 12px 10px;
+	}
+
+	.creator-platform-destination > div:first-child {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 16px;
+	}
+
+	.creator-platform-destination > div:first-child span {
+		grid-column: 1;
+		color: rgba(255, 255, 255, 0.5);
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 10px;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.creator-platform-destination > div:first-child strong {
+		grid-column: 1;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 16px;
+		font-weight: 820;
+		line-height: 1.1;
+	}
+
+	.creator-platform-destination > div:first-child small {
+		grid-column: 2;
+		align-self: center;
+		color: rgba(255, 255, 255, 0.42);
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 720;
+		line-height: 1.2;
+		white-space: nowrap;
+	}
+
+	.creator-platform-destination-options {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-items: center;
+		gap: 10px;
+	}
+
+	.creator-platform-destination-options button {
+		display: grid;
+		min-height: 58px;
+		min-width: 0;
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: 4px 10px;
+		align-items: center;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.035);
+		padding: 10px 13px;
+		color: rgba(255, 255, 255, 0.58);
+		font-family: Manrope, sans-serif;
+		text-align: left;
+	}
+
+	.creator-platform-destination-options button span {
+		min-width: 0;
+		overflow: hidden;
+		color: #ffffff;
+		font-size: 15px;
+		font-weight: 720;
+		line-height: 1;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-platform-destination-options button.is-selected span {
+		color: #CBF300;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-destination-options button.creator-platform-destination-garna span {
+		animation: creator-platform-route-title-select 8500ms ease-in-out infinite;
+	}
+
+	.creator-platform-destination-options button small {
+		grid-column: 1 / -1;
+		color: rgba(255, 255, 255, 0.42);
+		font-size: 11.5px;
+		font-weight: 560;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.creator-platform-destination-options button i {
+		display: inline-flex;
+		width: 28px;
+		height: 28px;
+		align-items: center;
+		justify-content: center;
+		border-radius: 7px;
+		background: rgba(255, 255, 255, 0.055);
+	}
+
+	.creator-platform-destination-options button.creator-platform-destination-bank i::before {
+		content: '';
+		display: block;
+		width: 19px;
+		height: 19px;
+		background: #d9e8ff;
+		transform: translateY(-1.5px);
+		mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 10.2 12 4l9 6.2v1.8H3v-1.8Zm2 3.3h3v5H5v-5Zm5.5 0h3v5h-3v-5Zm5.5 0h3v5h-3v-5ZM3.8 20h16.4v2H3.8v-2Z'/%3E%3C/svg%3E") center / contain no-repeat;
+		-webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 10.2 12 4l9 6.2v1.8H3v-1.8Zm2 3.3h3v5H5v-5Zm5.5 0h3v5h-3v-5Zm5.5 0h3v5h-3v-5ZM3.8 20h16.4v2H3.8v-2Z'/%3E%3C/svg%3E") center / contain no-repeat;
+	}
+
+	.creator-platform-destination-options button.creator-platform-destination-bank i {
+		background: #050505;
+	}
+
+	.creator-platform-destination-options button.creator-platform-destination-paypal i::before {
+		content: '';
+		display: block;
+		width: 14px;
+		height: 17px;
+		background: url('/images/paypal-logo-icon-2014.svg') center / contain no-repeat;
+	}
+
+	.creator-platform-destination-options button.creator-platform-destination-paypal i {
+		background: #ffffff;
+	}
+
+	.creator-platform-destination-options button.creator-platform-destination-garna i::before {
+		content: '';
+		display: block;
+		width: 10px;
+		height: 16px;
+		background: #050505;
+		mask: url('/images/garna-g-mark.svg') center / contain no-repeat;
+		-webkit-mask: url('/images/garna-g-mark.svg') center / contain no-repeat;
+	}
+
+	.creator-platform-destination-options button.creator-platform-destination-garna i {
+		background: #CBF300;
+	}
+
+	.creator-platform-destination-options button.creator-platform-destination-bank small,
+	.creator-platform-destination-options button.creator-platform-destination-paypal small,
+	.creator-platform-destination-options button.creator-platform-destination-garna small {
+		grid-column: 2;
+	}
+
+	.creator-platform-destination-options button.is-selected {
+		border-color: rgba(203, 243, 0, 0.26);
+		background: rgba(203, 243, 0, 0.055);
+		color: #CBF300;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-destination-options button.creator-platform-destination-garna {
+		animation: creator-platform-route-select 8500ms ease-in-out infinite;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-destination-options button.creator-platform-destination-garna small {
+		animation: creator-platform-route-caption-select 8500ms ease-in-out infinite;
+	}
+
+	.creator-platform-destination-options button.is-selected i {
+		display: inline-flex;
+	}
+
+	.creator-platform-destination-options button.is-selected small {
+		grid-column: 2;
+		color: #CBF300;
+	}
+
+	.creator-platform-finance-balance {
+		background: rgba(255, 255, 255, 0.06) !important;
+	}
+
+	.creator-platform-finance-balance strong {
+		color: #ffffff;
+		font-size: clamp(28px, 3vw, 38px);
+		font-weight: 720;
+	}
+
+	.creator-platform-finance-table {
+		display: grid;
+		grid-template-rows: repeat(3, minmax(0, 1fr));
+		align-content: stretch;
+		overflow: hidden;
+	}
+
+	.creator-platform-finance-table div {
+		display: grid;
+		grid-template-columns: 42px minmax(80px, 0.28fr) minmax(262px, 1.22fr) 104px;
+		grid-template-rows: 1fr;
+		min-height: 0;
+		column-gap: 16px;
+		align-items: center;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+		padding: 8px 12px;
+	}
+
+	.creator-platform-finance-table div:last-child {
+		border-bottom: 0;
+	}
+
+	.creator-platform-finance-table span {
+		grid-column: 2;
+		min-width: 0;
+		overflow: hidden;
+		color: #ffffff !important;
+		font-family: Manrope, sans-serif;
+		font-size: 19px;
+		font-weight: 880;
+		line-height: 1.1;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-platform-finance-table small {
+		grid-column: 3;
+		justify-self: center;
+		color: rgba(255, 255, 255, 0.52);
+		font-size: 12.5px;
+		font-weight: 740;
+		text-align: center;
+		white-space: nowrap;
+	}
+
+	.creator-payout-window--platform .creator-platform-finance-table img {
+		grid-column: 1;
+		width: 42px;
+		height: 38px;
+		max-width: none;
+		border-radius: 9px;
+		filter: brightness(0.82);
+		object-fit: cover;
+	}
+
+	.creator-platform-finance-table strong {
+		grid-column: 4;
+		justify-self: end;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		font-weight: 820;
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+		text-align: right;
+	}
+
+	.creator-platform-send-button {
+		display: inline-flex;
+		height: 40px;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(203, 243, 0, 0.32);
+		border-radius: 10px;
+		background: #CBF300;
+		padding: 0 18px;
+		color: #050505;
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		font-weight: 850;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.creator-platform-send-button:disabled {
+		border-color: rgba(255, 255, 255, 0.09);
+		background: rgba(255, 255, 255, 0.08);
+		color: rgba(255, 255, 255, 0.38);
+		cursor: default;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-send-button:disabled {
+		animation: creator-platform-send-enable 8500ms ease-in-out infinite;
+	}
+
+	.creator-platform-destination-action {
+		grid-column: 1 / -1;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		border-top: 1px solid rgba(255, 255, 255, 0.075);
+		padding-top: 5px;
+	}
+
+	.creator-platform-destination-action small {
+		position: relative;
+		display: block;
+		min-width: 190px;
+		color: rgba(255, 255, 255, 0.44);
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 720;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.creator-platform-destination-status span {
+		display: block;
+		transition: opacity 180ms ease;
+	}
+
+	.creator-platform-destination-status span + span {
+		position: absolute;
+		inset: 0 auto auto 0;
+		opacity: 0;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-destination-status span:first-child {
+		animation: creator-platform-status-hide 8500ms ease-in-out infinite;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-destination-status span:last-child {
+		animation: creator-platform-status-show 8500ms ease-in-out infinite;
+	}
+
+	.creator-platform-live-cursor {
+		position: absolute;
+		z-index: 10;
+		top: 52%;
+		left: 46%;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		pointer-events: none;
+		opacity: 0;
+		filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.38));
+		animation: creator-platform-cursor-path 8500ms cubic-bezier(0.22, 1, 0.36, 1) infinite;
+	}
+
+	.creator-platform-live-cursor::before {
+		content: '';
+		position: absolute;
+		top: -13px;
+		left: -12px;
+		width: 34px;
+		height: 34px;
+		border: 2px solid rgba(203, 243, 0, 0.9);
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.16);
+		opacity: 0;
+		transform: scale(0.45);
+		animation: creator-platform-cursor-pulse 8500ms ease-in-out infinite;
+	}
+
+	.creator-platform-live-cursor svg {
+		position: relative;
+		z-index: 2;
+		width: 30px;
+		height: 30px;
+		fill: #CBF300;
+		stroke: rgba(5, 5, 5, 0.9);
+		stroke-linejoin: round;
+		stroke-width: 1.2;
+		transform-origin: 30% 20%;
+		animation: creator-platform-cursor-click 8500ms ease-in-out infinite;
+	}
+
+	.creator-platform-live-cursor span {
+		position: absolute;
+		top: 8px;
+		left: 26px;
+		z-index: 1;
+		border: 1px solid rgba(203, 243, 0, 0.28);
+		border-radius: 999px;
+		background: rgba(11, 15, 7, 0.86);
+		padding: 7px 10px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 800;
+		line-height: 1;
+		white-space: nowrap;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 8px 18px rgba(0, 0, 0, 0.22);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+	}
+
+	.creator-platform-marketplace-head {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.creator-platform-marketplace-head strong {
+		max-width: none;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(18px, 1.8vw, 24px);
+		font-weight: 850;
+		line-height: 1.05;
+		letter-spacing: -0.04em;
+		white-space: nowrap;
+	}
+
+	.creator-platform-marketplace-head span {
+		color: #8d939d;
+		font-size: 12px;
+		font-weight: 760;
+		white-space: nowrap;
+	}
+
+	.creator-platform-category-grid {
+		display: grid;
+		min-height: 0;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-rows: repeat(13, minmax(14px, 1fr));
+		gap: 14px;
+		overflow: hidden;
+	}
+
+	.creator-platform-category-card {
+		position: relative;
+		display: grid;
+		grid-template-rows: auto minmax(0, 1fr);
+		min-width: 0;
+		min-height: 0;
+		gap: 14px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.11);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.045);
+		padding: 14px;
+		transition:
+			border-color 180ms ease,
+			background 180ms ease,
+			box-shadow 180ms ease,
+			transform 180ms ease;
+	}
+
+	.creator-platform-category-card:hover,
+	.creator-platform-category-card:focus-within {
+		border-color: rgba(255, 255, 255, 0.16);
+		background: rgba(255, 255, 255, 0.07);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.08),
+			0 18px 44px -34px rgba(255, 255, 255, 0.16);
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-category-card:nth-child(3) {
+		animation: creator-platform-card-cursor-hover 8500ms ease-in-out infinite;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-category-card:nth-child(4) {
+		animation: creator-platform-card-cursor-hover-middle 8500ms ease-in-out infinite;
+	}
+
+	.creator-platform-category-card--wide {
+		grid-column: 1;
+		grid-row: 1 / span 6;
+		background: rgba(255, 255, 255, 0.055);
+	}
+
+	.creator-platform-category-card--first-stack {
+		grid-column: 1;
+		grid-row: 7 / span 6;
+	}
+
+	.creator-platform-category-card:nth-child(3) {
+		grid-column: 2;
+		grid-row: 2 / span 6;
+	}
+
+	.creator-platform-category-card:nth-child(4) {
+		grid-column: 3;
+		grid-row: 1 / span 6;
+	}
+
+	.creator-platform-category-card:nth-child(5) {
+		grid-column: 4;
+		grid-row: 2 / span 6;
+	}
+
+	.creator-platform-category-card:nth-child(6) {
+		grid-column: 2;
+		grid-row: 8 / span 6;
+	}
+
+	.creator-platform-category-card:nth-child(7) {
+		grid-column: 3;
+		grid-row: 7 / span 6;
+	}
+
+	.creator-platform-category-card:nth-child(8) {
+		grid-column: 4;
+		grid-row: 8 / span 6;
+	}
+
+	.creator-platform-category-card--dark {
+		background: rgba(255, 255, 255, 0.035);
+	}
+
+	.creator-platform-category-card--accent {
+		background: rgba(255, 255, 255, 0.045);
+	}
+
+	.creator-platform-category-card div {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		gap: 4px;
+	}
+
+	.creator-platform-category-card strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(14px, 1.28vw, 19px);
+		font-weight: 850;
+		line-height: 1.04;
+		letter-spacing: -0.035em;
+	}
+
+	.creator-platform-category-card span {
+		color: #9ca3af;
+		font-size: 11px;
+		font-weight: 760;
+	}
+
+	.creator-platform-category-card img {
+		position: relative;
+		z-index: 1;
+		display: block;
+		width: 100%;
+		height: 100%;
+		min-height: 68px;
+		margin-top: 0;
+		border-radius: 12px;
+		filter: brightness(0.8);
+		object-fit: cover;
+		transition:
+			filter 180ms ease,
+			transform 220ms ease;
+	}
+
+	.creator-platform-category-card:hover img,
+	.creator-platform-category-card:focus-within img {
+		filter: brightness(0.9);
+		transform: scale(1.025);
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-category-card:nth-child(3) img {
+		animation: creator-platform-card-image-cursor-hover 8500ms ease-in-out infinite;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-category-card:nth-child(4) img {
+		animation: creator-platform-card-image-cursor-hover-middle 8500ms ease-in-out infinite;
+	}
+
+	.creator-payout-window::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background: radial-gradient(circle at 88% 0%, rgba(255, 255, 255, 0.055), transparent 32%);
+		opacity: 0.84;
+	}
+
+	.creator-payout-window > *,
+	.creator-payout-side-note > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	.creator-payout-window--platform > .creator-platform-live-cursor {
+		position: absolute;
+		z-index: 12;
+	}
+
+	.creator-payout-window header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 18px;
+	}
+
+	.creator-payout-window header div {
+		display: grid;
+		gap: 10px;
+	}
+
+	.creator-payout-window img {
+		width: auto;
+		max-width: 100px;
+		height: 24px;
+		object-fit: contain;
+	}
+
+	.creator-payout-platform-brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		color: #ffffff !important;
+		font-family: Manrope, sans-serif !important;
+	}
+
+	.creator-payout-platform-brand strong {
+		color: #ffffff;
+		font-size: 22px;
+		font-weight: 840;
+		line-height: 1;
+		letter-spacing: -0.04em;
+	}
+
+	.creator-payout-platform-mark {
+		display: inline-flex;
+		width: 34px;
+		height: 34px;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid #303633;
+		border-radius: 11px;
+		background: #141816;
+		color: #CBF300 !important;
+	}
+
+	.creator-payout-platform-mark svg {
+		display: block;
+		width: 25px;
+		height: 25px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.35;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		transform: translateY(-0.5px);
+	}
+
+	.creator-platform-workspace {
+		display: grid;
+		grid-template-columns: minmax(0, 1.5fr) minmax(190px, 0.78fr);
+		gap: 12px;
+		flex: 0 0 auto;
+		min-height: max-content;
+	}
+
+	.creator-platform-main {
+		display: grid;
+		min-width: 0;
+		gap: 12px;
+	}
+
+	.creator-platform-summary,
+	.creator-platform-income-card,
+	.creator-platform-route-card,
+	.creator-platform-payout-list {
+		border: 1px solid rgba(255, 255, 255, 0.075);
+		border-radius: 16px;
+		background: rgba(255, 255, 255, 0.038);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+	}
+
+	.creator-platform-summary {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: end;
+		gap: 14px;
+		padding: clamp(16px, 2.2vw, 22px);
+		background:
+			radial-gradient(circle at 82% 16%, rgba(203, 243, 0, 0.16), transparent 34%),
+			rgba(255, 255, 255, 0.045);
+	}
+
+	.creator-platform-summary div {
+		display: grid;
+		gap: 7px;
+		min-width: 0;
+	}
+
+	.creator-platform-summary strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(38px, 5.7vw, 64px);
+		font-weight: 620;
+		line-height: 0.95;
+		letter-spacing: -0.055em;
+	}
+
+	.creator-platform-summary button {
+		min-width: 132px;
+		border: 0;
+		border-radius: 999px;
+		background: #CBF300;
+		padding: 12px 16px;
+		color: #050505;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 850;
+		line-height: 1;
+		white-space: nowrap;
+		box-shadow: 0 18px 42px -26px rgba(203, 243, 0, 0.9);
+	}
+
+	.creator-platform-income-card {
+		display: grid;
+		gap: 12px;
+		padding: 14px;
+	}
+
+	.creator-platform-income-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 14px;
+	}
+
+	.creator-platform-income-head strong,
+	.creator-platform-route-card strong,
+	.creator-platform-payout-list strong,
+	.creator-platform-route-card b {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-weight: 760;
+		line-height: 1.12;
+	}
+
+	.creator-platform-income-head strong {
+		font-size: 13px;
+		text-align: right;
+	}
+
+	.creator-platform-source-details {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 8px;
+	}
+
+	.creator-platform-source-details div {
+		display: grid;
+		min-width: 0;
+		gap: 5px;
+		border-radius: 12px;
+		background: rgba(0, 0, 0, 0.22);
+		padding: 10px;
+	}
+
+	.creator-platform-source-details strong {
+		min-width: 0;
+		overflow: hidden;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 760;
+		line-height: 1.12;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-platform-bars {
+		display: grid;
+		height: 68px;
+		grid-template-columns: repeat(7, minmax(0, 1fr));
+		align-items: end;
+		gap: 8px;
+	}
+
+	.creator-platform-bars i {
+		display: block;
+		height: var(--bar-height);
+		border-radius: 8px 8px 2px 2px;
+		background: linear-gradient(180deg, rgba(203, 243, 0, 0.82), rgba(203, 243, 0, 0.12));
+		box-shadow: 0 -10px 28px -22px rgba(203, 243, 0, 0.92);
+	}
+
+	.creator-platform-income-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 7px;
+	}
+
+	.creator-platform-income-meta span {
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.06);
+		padding: 6px 9px;
+		color: rgba(255, 255, 255, 0.7);
+		font-size: 11px;
+	}
+
+	.creator-platform-route-card {
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 16px;
+		background:
+			radial-gradient(circle at 72% 14%, rgba(203, 243, 0, 0.12), transparent 34%),
+			rgba(255, 255, 255, 0.04);
+	}
+
+	.creator-platform-route-card strong {
+		font-size: 19px;
+		letter-spacing: -0.03em;
+	}
+
+	.creator-platform-route-card div {
+		display: grid;
+		gap: 5px;
+		border-radius: 12px;
+		background: rgba(0, 0, 0, 0.22);
+		padding: 10px;
+	}
+
+	.creator-platform-route-card b {
+		font-size: 12px;
+	}
+
+	.creator-platform-route-card em {
+		display: inline-flex;
+		width: fit-content;
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.12);
+		padding: 7px 9px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-style: normal;
+		font-weight: 850;
+		line-height: 1;
+	}
+
+	.creator-platform-payout-list {
+		display: grid;
+		flex: 0 0 auto;
+		overflow: hidden;
+	}
+
+	.creator-platform-payout-list div {
+		display: grid;
+		grid-template-columns: 78px minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 14px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		padding: 10px 14px;
+	}
+
+	.creator-platform-payout-list div:last-child {
+		border-bottom: 0;
+	}
+
+	.creator-platform-payout-list div.is-selected {
+		background: linear-gradient(90deg, rgba(203, 243, 0, 0.12), rgba(203, 243, 0, 0.025) 64%, transparent);
+	}
+
+	.creator-platform-payout-list div.is-selected span {
+		color: #CBF300;
+	}
+
+	.creator-platform-payout-list strong {
+		min-width: 0;
+		overflow: hidden;
+		font-size: 13px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-platform-payout-list small {
+		color: rgba(255, 255, 255, 0.72);
+		font-size: 12px;
+		font-weight: 760;
+		white-space: nowrap;
+	}
+
+	.creator-payout-window--platform img,
+	.creator-payout-window--garna img {
+		filter: brightness(0) invert(1);
+	}
+
+	.creator-payout-window--platform .creator-platform-avatar img {
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		border-radius: 999px;
+		filter: none;
+		object-fit: cover;
+		object-position: 46% 45%;
+	}
+
+	.creator-payout-window--platform .creator-platform-category-card img {
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		min-height: 68px;
+		margin-top: 0;
+		border-radius: 12px;
+		filter: brightness(0.8);
+		object-fit: cover;
+	}
+
+	.creator-payout-window span,
+	.creator-payout-window small,
+	.creator-payout-side-note span {
+		color: #98a1af;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 650;
+		line-height: 1.25;
+	}
+
+	.creator-payout-window header > strong,
+	.creator-payout-window header b {
+		border: 0;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.07);
+		padding: 8px 11px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.creator-payout-platform-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 12px;
+	}
+
+	.creator-payout-dashboard-filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	.creator-payout-dashboard-filters span {
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.055);
+		padding: 7px 10px;
+		color: rgba(255, 255, 255, 0.72);
+	}
+
+	.creator-payout-platform-grid article,
+	.creator-payout-chart,
+	.creator-payout-table,
+	.creator-payout-balance-card,
+	.creator-payout-methods article {
+		border: 0;
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.035);
+	}
+
+	.creator-payout-platform-grid article {
+		display: grid;
+		gap: 6px;
+		padding: 11px 13px;
+	}
+
+	.creator-payout-platform-grid strong,
+	.creator-payout-table strong,
+	.creator-payout-balance strong,
+	.creator-payout-balance-card strong,
+	.creator-payout-methods strong,
+	.creator-payout-side-note strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-weight: 780;
+		line-height: 1.05;
+	}
+
+	.creator-payout-platform-grid strong {
+		font-size: clamp(20px, 2.35vw, 30px);
+		letter-spacing: -0.03em;
+	}
+
+	.creator-payout-chart {
+		display: grid;
+		gap: 12px;
+		padding: 12px 14px;
+	}
+
+	.creator-payout-chart-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.creator-payout-chart-head strong {
+		color: rgba(255, 255, 255, 0.86);
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		font-weight: 760;
+	}
+
+	.creator-payout-chart-bars {
+		display: grid;
+		height: 58px;
+		grid-template-columns: repeat(7, minmax(0, 1fr));
+		align-items: end;
+		gap: 8px;
+	}
+
+	.creator-payout-chart-bars i {
+		display: block;
+		height: var(--bar-height);
+		border-radius: 7px 7px 0 0;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.11));
+	}
+
+	.creator-payout-table {
+		display: grid;
+		overflow: hidden;
+	}
+
+	.creator-payout-table strong {
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: 0;
+	}
+
+	.creator-payout-table div {
+		display: grid;
+		grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 16px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		padding: 9px 14px;
+	}
+
+	.creator-payout-table div:last-child {
+		border-bottom: 0;
+	}
+
+	.creator-payout-balance {
+		display: grid;
+		gap: 8px;
+		border-radius: 18px;
+		background:
+			radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.07), transparent 34%),
+			rgba(255, 255, 255, 0.035);
+		padding: clamp(20px, 3vw, 32px);
+	}
+
+	.creator-payout-balance strong {
+		font-size: clamp(46px, 7vw, 82px);
+		font-weight: 650;
+		letter-spacing: -0.055em;
+	}
+
+	.creator-payout-balance-card {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 18px;
+		padding: 15px 17px;
+	}
+
+	.creator-payout-checklist {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 10px;
+	}
+
+	.creator-payout-checklist span {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		border: 0;
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.04);
+		padding: 11px;
+		color: rgba(255, 255, 255, 0.78);
+	}
+
+	.creator-payout-checklist i {
+		width: 7px;
+		height: 7px;
+		flex: 0 0 auto;
+		border-radius: 999px;
+		background: #CBF300;
+		box-shadow: 0 0 10px rgba(203, 243, 0, 0.45);
+	}
+
+	.creator-payout-window-icon {
+		display: grid;
+		width: 36px;
+		height: 36px;
+		place-items: center;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.06);
+		color: #CBF300 !important;
+		font-size: 20px !important;
+	}
+
+	.creator-payout-methods {
+		display: grid;
+		gap: 12px;
+	}
+
+	.creator-payout-methods article {
+		display: grid;
+		grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 14px;
+		padding: 16px;
+	}
+
+	.creator-payout-methods article.is-selected {
+		border-color: transparent;
+		background: rgba(255, 255, 255, 0.055);
+	}
+
+	.creator-payout-side-note {
+		display: flex;
+		min-height: 100%;
+		flex-direction: column;
+		justify-content: flex-end;
+		gap: 12px;
+		padding: clamp(18px, 2vw, 24px);
+	}
+
+	.creator-payout-side-note::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, transparent, rgba(203, 243, 0, 0.06)),
+			radial-gradient(circle at 50% 0%, rgba(203, 243, 0, 0.1), transparent 38%);
+	}
+
+	.creator-payout-side-note span {
+		color: #CBF300;
+		font-size: 11px;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.creator-payout-side-note strong {
+		font-size: clamp(20px, 2.4vw, 30px);
+		font-weight: 520;
+		line-height: 1.16;
+	}
+
+	@keyframes creator-payout-tab-progress {
+		from { transform: scaleX(0); }
+		to { transform: scaleX(1); }
+	}
+
+	@keyframes creator-platform-card-cursor-hover {
+		0%,
+		4%,
+		17%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.11);
+			background: rgba(255, 255, 255, 0.045);
+			box-shadow: none;
+		}
+
+		7%,
+		14% {
+			border-color: rgba(255, 255, 255, 0.16);
+			background: rgba(255, 255, 255, 0.07);
+			box-shadow:
+				inset 0 1px 0 rgba(255, 255, 255, 0.08),
+				0 18px 44px -34px rgba(255, 255, 255, 0.16);
+		}
+	}
+
+	@keyframes creator-platform-card-cursor-hover-middle {
+		0%,
+		12%,
+		24%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.11);
+			background: rgba(255, 255, 255, 0.035);
+			box-shadow: none;
+		}
+
+		15%,
+		21% {
+			border-color: rgba(255, 255, 255, 0.16);
+			background: rgba(255, 255, 255, 0.07);
+			box-shadow:
+				inset 0 1px 0 rgba(255, 255, 255, 0.08),
+				0 18px 44px -34px rgba(255, 255, 255, 0.16);
+		}
+	}
+
+	@keyframes creator-platform-card-cursor-hover-late {
+		0%,
+		19%,
+		31%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.11);
+			background: rgba(255, 255, 255, 0.045);
+			box-shadow: none;
+		}
+
+		22%,
+		28% {
+			border-color: rgba(255, 255, 255, 0.16);
+			background: rgba(255, 255, 255, 0.07);
+			box-shadow:
+				inset 0 1px 0 rgba(255, 255, 255, 0.08),
+				0 18px 44px -34px rgba(255, 255, 255, 0.16);
+		}
+	}
+
+	@keyframes creator-platform-card-image-cursor-hover {
+		0%,
+		4%,
+		17%,
+		100% {
+			filter: brightness(0.8);
+			transform: scale(1);
+		}
+
+		7%,
+		14% {
+			filter: brightness(0.9);
+			transform: scale(1.025);
+		}
+	}
+
+	@keyframes creator-platform-card-image-cursor-hover-middle {
+		0%,
+		12%,
+		24%,
+		100% {
+			filter: brightness(0.8);
+			transform: scale(1);
+		}
+
+		15%,
+		21% {
+			filter: brightness(0.9);
+			transform: scale(1.025);
+		}
+	}
+
+	@keyframes creator-platform-card-image-cursor-hover-late {
+		0%,
+		19%,
+		31%,
+		100% {
+			filter: brightness(0.8);
+			transform: scale(1);
+		}
+
+		22%,
+		28% {
+			filter: brightness(0.9);
+			transform: scale(1.025);
+		}
+	}
+
+	@keyframes creator-platform-cursor-path {
+		0% {
+			opacity: 0;
+			top: 51%;
+			left: 44%;
+			transform: translate(-10px, -8px) scale(0.96);
+		}
+
+		4%,
+		5% {
+			opacity: 1;
+			top: 51%;
+			left: 44%;
+			transform: translate(-6px, -4px);
+		}
+
+		7%,
+		11% {
+			opacity: 1;
+			top: 51%;
+			left: 44%;
+			transform: translate(-6px, -4px);
+		}
+
+		25%,
+		45% {
+			opacity: 1;
+			top: 7.5%;
+			left: 96.2%;
+			transform: translate(-6px, -4px);
+		}
+
+		62%,
+		70% {
+			opacity: 1;
+			top: 80.8%;
+			left: 20.5%;
+			transform: translate(-6px, -4px);
+		}
+
+		80%,
+		90% {
+			opacity: 1;
+			top: 91.2%;
+			left: 86.7%;
+			transform: translate(-6px, -4px);
+		}
+
+		96%,
+		100% {
+			opacity: 0;
+			top: 91.2%;
+			left: 86.7%;
+			transform: translate(-6px, -4px);
+		}
+	}
+
+	@keyframes creator-platform-cursor-click {
+		0%,
+		26%,
+		33%,
+		64%,
+		71%,
+		82%,
+		89%,
+		100% {
+			transform: scale(1);
+		}
+
+		29%,
+		67%,
+		85% {
+			transform: scale(0.86);
+		}
+	}
+
+	@keyframes creator-platform-cursor-pulse {
+		0%,
+		25%,
+		33%,
+		63%,
+		72%,
+		81%,
+		90%,
+		100% {
+			opacity: 0;
+			transform: scale(0.45);
+		}
+
+		28%,
+		66%,
+		84% {
+			opacity: 0.96;
+			transform: scale(0.62);
+		}
+
+		32%,
+		70%,
+		88% {
+			opacity: 0;
+			transform: scale(1.25);
+		}
+	}
+
+	@keyframes creator-platform-finance-cursor-path {
+		0%,
+		5% {
+			opacity: 0;
+			top: 7.8%;
+			left: 95.2%;
+			transform: translate(-6px, -4px);
+		}
+
+		12%,
+		24% {
+			opacity: 1;
+			top: 7.8%;
+			left: 95.2%;
+			transform: translate(-6px, -4px);
+		}
+
+		42%,
+		54% {
+			opacity: 1;
+			top: 80.8%;
+			left: 20.5%;
+			transform: translate(-6px, -4px);
+		}
+
+		73%,
+		86% {
+			opacity: 1;
+			top: 90.6%;
+			left: 86.7%;
+			transform: translate(-6px, -4px);
+		}
+
+		96%,
+		100% {
+			opacity: 0;
+			top: 90.6%;
+			left: 86.7%;
+			transform: translate(-6px, -4px);
+		}
+	}
+
+	@keyframes creator-platform-finance-cursor-click {
+		0%,
+		44%,
+		51%,
+		79%,
+		86%,
+		100% {
+			transform: scale(1);
+		}
+
+		47%,
+		82% {
+			transform: scale(0.86);
+		}
+	}
+
+	@keyframes creator-platform-finance-cursor-pulse {
+		0%,
+		43%,
+		52%,
+		78%,
+		87%,
+		100% {
+			opacity: 0;
+			transform: scale(0.45);
+		}
+
+		46%,
+		81% {
+			opacity: 0.96;
+			transform: scale(0.62);
+		}
+
+		50%,
+		85% {
+			opacity: 0;
+			transform: scale(1.25);
+		}
+	}
+
+	@keyframes creator-platform-route-select {
+		0%,
+		66%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.08);
+			background: rgba(255, 255, 255, 0.035);
+			box-shadow: none;
+		}
+
+		67%,
+		91% {
+			border-color: rgba(203, 243, 0, 0.26);
+			background: rgba(203, 243, 0, 0.055);
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 16px 36px -30px rgba(203, 243, 0, 0.32);
+		}
+	}
+
+	@keyframes creator-platform-route-caption-select {
+		0%,
+		66%,
+		100% {
+			color: rgba(255, 255, 255, 0.42);
+		}
+
+		67%,
+		91% {
+			color: #CBF300;
+		}
+	}
+
+	@keyframes creator-platform-route-title-select {
+		0%,
+		66%,
+		100% {
+			color: #ffffff;
+		}
+
+		67%,
+		91% {
+			color: #CBF300;
+		}
+	}
+
+	@keyframes creator-platform-send-enable {
+		0%,
+		66%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.09);
+			background: rgba(255, 255, 255, 0.08);
+			color: rgba(255, 255, 255, 0.38);
+			transform: scale(1);
+		}
+
+		67%,
+		82%,
+		91% {
+			border-color: rgba(203, 243, 0, 0.32);
+			background: #CBF300;
+			color: #050505;
+			transform: scale(1);
+		}
+
+		85% {
+			border-color: rgba(203, 243, 0, 0.32);
+			background: #CBF300;
+			color: #050505;
+			transform: scale(0.97);
+		}
+	}
+
+	@keyframes creator-platform-status-hide {
+		0%,
+		66%,
+		100% {
+			opacity: 1;
+		}
+
+		67%,
+		91% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-platform-status-show {
+		0%,
+		66%,
+		100% {
+			opacity: 0;
+		}
+
+		67%,
+		91% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes creator-platform-marketplace-view {
+		0%,
+		31% {
+			opacity: 1;
+			transform: scale(1);
+		}
+
+		38%,
+		93% {
+			opacity: 0;
+			transform: scale(0.985);
+		}
+
+		98%,
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	@keyframes creator-platform-finance-view {
+		0%,
+		32% {
+			opacity: 0;
+			transform: translateY(10px) scale(0.985);
+		}
+
+		40%,
+		93% {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+
+		98%,
+		100% {
+			opacity: 0;
+			transform: translateY(8px) scale(0.99);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.creator-platform-live-cursor {
+			display: none;
+		}
+
+		.creator-platform-marketplace,
+		.creator-platform-finance {
+			animation: none;
+		}
+
+		.creator-platform-finance {
+			display: none;
+		}
+	}
+
+	@media (max-width: 860px) {
+		.creator-payout-screen {
+			grid-template-columns: 1fr;
+		}
+
+		.creator-payout-side-note {
+			min-height: auto;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.creator-wallet-visual[data-creator-payout-demo],
+		.creator-payout-demo {
+			min-height: 0;
+		}
+
+		.creator-payout-demo {
+			--creator-payout-tabs-height: auto;
+			--creator-payout-screen-height: auto;
+			grid-template-rows: auto minmax(360px, auto);
+		}
+
+		.creator-payout-demo-stage {
+			height: auto;
+			min-height: 360px;
+		}
+
+		.creator-payout-demo-tabs {
+			grid-template-columns: 1fr;
+		}
+
+		.creator-payout-demo-tabs button {
+			min-height: 72px;
+			justify-items: start;
+			border-right: 0;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+			padding: 12px 16px 16px;
+			text-align: left;
+		}
+
+		.creator-payout-demo-tabs button:not(:last-child)::before {
+			content: none;
+		}
+
+		.creator-payout-tab-icon {
+			width: 42px;
+			height: 42px;
+			border-radius: 12px;
+		}
+
+		.creator-payout-tab-icon svg {
+			width: 24px;
+			height: 24px;
+		}
+
+		.creator-payout-tab-icon--large svg {
+			width: 24px;
+			height: 24px;
+		}
+
+		.creator-payout-tab-icon--withdraw svg {
+			width: 24px;
+			height: 24px;
+		}
+
+		.creator-payout-tab-copy small {
+			display: none;
+		}
+
+		.creator-payout-demo-tabs button::after,
+		.creator-payout-demo-tabs i {
+			right: 16px;
+			left: 16px;
+		}
+
+		.creator-payout-demo-tabs button:last-child {
+			border-bottom: 0;
+		}
+
+		.creator-payout-platform-grid,
+		.creator-payout-checklist,
+		.creator-payout-methods article {
+			grid-template-columns: 1fr;
+		}
+
+		.creator-platform-workspace,
+		.creator-platform-summary,
+		.creator-platform-source-details,
+		.creator-platform-browser-bar,
+		.creator-platform-search,
+		.creator-platform-payout-list div {
+			grid-template-columns: 1fr;
+		}
+
+		.creator-platform-browser-bar {
+			border-radius: 18px;
+		}
+
+		.creator-platform-search {
+			padding: 8px 10px;
+		}
+
+		.creator-platform-search i {
+			display: none;
+		}
+
+		.creator-platform-marketplace-head {
+			display: grid;
+			align-items: start;
+		}
+
+		.creator-platform-marketplace-head span {
+			white-space: normal;
+		}
+
+		.creator-platform-category-grid {
+			grid-template-columns: 1fr;
+			grid-template-rows: none;
+			grid-auto-rows: minmax(120px, auto);
+			overflow: visible;
+		}
+
+		.creator-platform-category-card--wide {
+			grid-row: auto;
+		}
+
+		.creator-platform-category-card:nth-child(n) {
+			grid-column: auto;
+			grid-row: auto;
+		}
+
+		.creator-platform-summary {
+			align-items: start;
+		}
+
+		.creator-platform-summary button {
+			width: 100%;
+		}
+
+		.creator-platform-route-card {
+			min-height: 190px;
+		}
+
+		.creator-platform-payout-list div {
+			gap: 6px;
+		}
+
+		.creator-platform-payout-list strong,
+		.creator-platform-payout-list small {
+			white-space: normal;
+		}
 	}
 
 	.creator-wallet-simple {
@@ -2193,6 +5009,79 @@ const forCreatorsFaqItems = [
 		width: 100%;
 	}
 
+	.creator-hero-contact-card {
+		display: inline-flex;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: 12px;
+		background:
+			linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+			rgba(7, 8, 7, 0.46);
+		padding: 5px 6px 5px 16px;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+		backdrop-filter: blur(18px);
+		-webkit-backdrop-filter: blur(18px);
+	}
+
+	.creator-hero-contact-copy {
+		display: grid;
+		gap: 2px;
+		min-width: 0;
+		text-align: left;
+	}
+
+	.creator-hero-contact-copy strong {
+		color: rgba(255, 255, 255, 0.88);
+		font-family: Manrope, sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 1.2;
+		white-space: nowrap;
+	}
+
+	.creator-hero-contact-links {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.creator-hero-contact-links a {
+		display: inline-flex;
+		width: 38px;
+		height: 38px;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(255, 255, 255, 0.045);
+		border-radius: 10px;
+		background: rgba(255, 255, 255, 0.026);
+		color: rgba(255, 255, 255, 0.78);
+		transition:
+			border-color 180ms ease,
+			background 180ms ease,
+			color 180ms ease,
+			transform 180ms ease;
+	}
+
+	.creator-hero-contact-links a:hover {
+		border-color: rgba(203, 243, 0, 0.34);
+		background: rgba(203, 243, 0, 0.08);
+		color: #CBF300;
+		transform: translateY(-1px);
+	}
+
+	.creator-hero-contact-links svg {
+		width: 25px;
+		height: 25px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 0.9;
+	}
+
 	.creator-final-actions {
 		width: max-content;
 		max-width: 100%;
@@ -2215,6 +5104,11 @@ const forCreatorsFaqItems = [
 
 		.creator-hero-actions > * {
 			width: auto;
+		}
+
+		.creator-hero-contact-card {
+			width: auto;
+			min-width: 312px;
 		}
 
 		.creator-final-actions {
@@ -2654,6 +5548,51 @@ const forCreatorsFaqItems = [
 		}
 	}
 
+	.creator-account-stack {
+		display: grid;
+		gap: 18px;
+	}
+
+	.creator-account-flow-section {
+		--creator-account-stack-top: 112px;
+		--creator-account-card-peek: 76px;
+	}
+
+	.creator-account-stack-card {
+		display: grid !important;
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: minmax(0, 1fr);
+		align-items: stretch !important;
+		align-content: stretch !important;
+		min-height: clamp(270px, 22vw, 330px);
+		overflow: hidden;
+		border-color: rgba(255, 255, 255, 0.08) !important;
+		border-radius: 18px !important;
+		padding: clamp(16px, 1.8vw, 22px) !important;
+		background: #0c0c0c !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.055),
+			0 28px 72px -62px rgba(0, 0, 0, 0.8);
+	}
+
+	.creator-account-stack-card::before {
+		content: none;
+	}
+
+	.creator-account-stack-card > div:empty {
+		display: none;
+	}
+
+	.creator-account-stack-card .creator-step-number {
+		width: 58px;
+		height: 58px;
+		border-radius: 18px;
+		font-weight: 700;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.1),
+			0 0 26px rgba(203, 243, 0, 0.08);
+	}
+
 	.creator-step-number {
 		display: inline-flex;
 		width: 46px;
@@ -2670,6 +5609,27 @@ const forCreatorsFaqItems = [
 		letter-spacing: 0.08em;
 	}
 
+	.creator-account-stack-card .creator-step-copy {
+		display: flex;
+		height: 100%;
+		min-width: 0;
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	.creator-step-card-bottom {
+		margin-top: auto;
+	}
+
+	.creator-account-stack-card .creator-step-copy h3 {
+		max-width: 520px;
+		font-size: clamp(1.32rem, 1.8vw, 1.72rem);
+	}
+
+	.creator-account-stack-card .creator-step-copy p {
+		max-width: 560px;
+	}
+
 	.creator-step-copy h3 {
 		margin: 0;
 		color: #ffffff;
@@ -2681,11 +5641,102 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-step-copy p {
-		margin: 10px 0 0;
+		margin: 0;
 		color: #a1a1aa;
 		font-family: Manrope, sans-serif;
 		font-size: 15px;
 		line-height: 1.55;
+	}
+
+	.creator-step-card-footer {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		padding-top: clamp(14px, 1.8vw, 22px);
+	}
+
+	.creator-step-card-footer span {
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 10px;
+		background: rgba(255, 255, 255, 0.055);
+		padding: 9px 12px;
+		color: rgba(255, 255, 255, 0.78);
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		font-weight: 650;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.creator-step-card-footer span:first-child {
+		border-color: rgba(203, 243, 0, 0.26);
+		background: rgba(203, 243, 0, 0.095);
+		color: #CBF300;
+	}
+
+	@media (max-width: 640px) {
+		.creator-account-stack-card {
+			min-height: 210px;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.creator-account-flow-section {
+			--creator-account-step-two: 0;
+			--creator-account-step-three: 0;
+			--creator-account-collapse: 0;
+			--creator-account-card-gap: 18px;
+			--creator-account-flow-gap: clamp(72px, 7vw, 128px);
+			--creator-account-card-two-y: calc(100% + var(--creator-account-card-gap));
+			--creator-account-card-three-y: calc(200% + var(--creator-account-card-gap) + var(--creator-account-card-gap));
+		}
+
+		.creator-account-flow-container {
+			min-height: var(--creator-account-flow-height, auto);
+		}
+
+		.creator-account-flow-grid {
+			position: sticky;
+			top: var(--creator-account-stack-top);
+			align-content: start;
+			align-items: start;
+			padding-bottom: var(--creator-account-flow-gap);
+		}
+
+		.creator-account-flow-copy {
+			position: static !important;
+			top: auto;
+		}
+
+		.creator-account-stack {
+			align-self: start;
+			position: relative;
+			overflow: visible;
+			padding-bottom: 0;
+		}
+
+		.creator-account-stack-card {
+			width: 100%;
+			transform: translateY(0);
+			transition: transform 90ms linear;
+			will-change: transform;
+			z-index: 1;
+		}
+
+		.creator-account-stack-card:nth-child(n + 2) {
+			position: absolute !important;
+			inset: 0 0 auto;
+		}
+
+		.creator-account-stack-card:nth-child(2) {
+			transform: translateY(var(--creator-account-card-two-y));
+			z-index: 2;
+		}
+
+		.creator-account-stack-card:nth-child(3) {
+			transform: translateY(var(--creator-account-card-three-y));
+			z-index: 3;
+		}
 	}
 
 	.creator-fee-title {
@@ -2868,6 +5919,204 @@ const forCreatorsFaqItems = [
 		text-align: left;
 	}
 
+	.creator-fee-banner-layout {
+		width: min(100%, 1040px);
+		margin-inline: auto;
+	}
+
+	.creator-fee-banner {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(250px, 0.82fr) minmax(300px, 0.92fr) minmax(300px, 1fr);
+		align-items: stretch;
+		gap: clamp(18px, 2.8vw, 36px);
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 18px;
+		background: rgba(12, 12, 12, 0.72);
+		padding: clamp(26px, 3.4vw, 42px);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.06),
+			0 28px 72px -62px rgba(0, 0, 0, 0.8);
+	}
+
+	.creator-fee-banner::before {
+		content: none;
+	}
+
+	.creator-fee-banner > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	.creator-fee-banner-copy,
+	.creator-fee-banner-note {
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.creator-fee-banner-copy span {
+		display: inline-flex;
+		margin-bottom: 14px;
+		color: #CBF300;
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+
+	.creator-fee-banner-copy h2 {
+		margin: 0 0 18px;
+		max-width: 360px;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1.78rem, 2.8vw, 2.55rem);
+		font-weight: 400;
+		line-height: 1.04;
+		letter-spacing: 0;
+	}
+
+	.creator-fee-banner-copy p,
+	.creator-fee-banner-note p {
+		margin: 0;
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: 14px;
+		line-height: 1.55;
+	}
+
+	.creator-fee-banner-note p + p {
+		margin-top: 12px;
+		color: rgba(161, 161, 170, 0.7);
+		font-size: 12px;
+		line-height: 1.45;
+	}
+
+	.creator-fee-banner-rates {
+		display: grid;
+		align-content: center;
+		justify-content: center;
+		justify-items: center;
+		gap: 6px;
+		white-space: nowrap;
+	}
+
+	.creator-fee-banner-old {
+		position: relative;
+		width: fit-content;
+		color: rgba(255, 255, 255, 0.34);
+		font-family: Manrope, sans-serif;
+		font-size: clamp(2.3rem, 4.2vw, 3.8rem);
+		font-weight: 500;
+		line-height: 0.9;
+		letter-spacing: -0.03em;
+	}
+
+	.creator-fee-banner-old::after {
+		content: '';
+		position: absolute;
+		left: -2%;
+		right: -2%;
+		top: 50%;
+		height: 3px;
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.74);
+		box-shadow: none;
+		transform: translateY(-50%);
+	}
+
+	.creator-fee-banner-rates strong {
+		position: relative;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(5rem, 11vw, 9rem);
+		font-weight: 500;
+		line-height: 0.82;
+		letter-spacing: -0.055em;
+		text-shadow:
+			0 0 18px rgba(203, 243, 0, 0.26),
+			0 0 42px rgba(203, 243, 0, 0.12);
+	}
+
+	.creator-fee-banner-rates strong::after {
+		content: 'EARLY ACCESS FEE';
+		display: block;
+		margin-top: 12px;
+		color: rgba(203, 243, 0, 0.72);
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: clamp(0.68rem, 1vw, 0.82rem);
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-align: center;
+	}
+
+	.creator-fee-banner-note {
+		gap: 0;
+		justify-self: stretch;
+		max-width: none;
+	}
+
+	.creator-fee-banner-note > span {
+		display: inline-flex;
+		margin-bottom: 14px;
+		color: #CBF300;
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+
+	.creator-fee-banner-note a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: clamp(24px, 3vw, 36px);
+		border: 1px solid rgba(203, 243, 0, 0.42);
+		border-radius: 12px;
+		padding: 13px 18px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		text-decoration: none;
+		transition:
+			background 180ms ease,
+			color 180ms ease,
+			border-color 180ms ease;
+	}
+
+	.creator-fee-banner-note a:hover {
+		border-color: #CBF300;
+		background: #CBF300;
+		color: #050505;
+	}
+
+	@media (max-width: 980px) {
+		.creator-fee-banner {
+			grid-template-columns: 1fr;
+			text-align: center;
+		}
+
+		.creator-fee-banner-copy,
+		.creator-fee-banner-note {
+			align-items: center;
+			max-width: 620px;
+			justify-self: center;
+		}
+
+		.creator-fee-banner-copy h2 {
+			max-width: 520px;
+		}
+
+		.creator-fee-banner-note a {
+			margin-top: 18px;
+		}
+	}
+
 	.creator-platforms-block {
 		display: grid;
 		gap: 28px;
@@ -2897,7 +6146,10 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-logo {
-		--platform-logo-tone: brightness(0) invert(1);
+		--platform-logo-tone: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+			hue-rotate(0deg) brightness(100%) contrast(100%);
+		--platform-logo-fresh-tone: brightness(0) saturate(100%) invert(87%) sepia(99%) saturate(1214%)
+			hue-rotate(18deg) brightness(106%) contrast(104%);
 		position: relative;
 		display: inline-flex;
 		flex: 0 1 clamp(138px, 16vw, 176px);
@@ -2951,6 +6203,11 @@ const forCreatorsFaqItems = [
 		transform: translateY(0) scale(1);
 	}
 
+	.creator-platform-logo.is-logo-fresh:not(.is-alt-visible) img:not(.creator-platform-logo-alt),
+	.creator-platform-logo.is-logo-fresh.is-alt-visible img.creator-platform-logo-alt {
+		animation: creator-platform-logo-fresh 2600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
 	.creator-platform-logo img.creator-platform-logo-accent {
 		--platform-logo-image-tone: brightness(0) saturate(100%) invert(87%) sepia(99%) saturate(1214%)
 			hue-rotate(18deg) brightness(106%) contrast(104%);
@@ -2988,6 +6245,17 @@ const forCreatorsFaqItems = [
 
 	.creator-platform-logo img.creator-platform-logo-lift {
 		transform: translateY(-4px) scale(1);
+	}
+
+	@keyframes creator-platform-logo-fresh {
+		0%,
+		16% {
+			filter: var(--platform-logo-fresh-tone) blur(0) drop-shadow(0 0 18px rgba(203, 243, 0, 0.44));
+		}
+
+		100% {
+			filter: var(--platform-logo-tone) blur(0) drop-shadow(0 0 0 rgba(203, 243, 0, 0));
+		}
 	}
 
 	@media (max-width: 640px) {
@@ -4668,8 +7936,12 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-process-scroll {
+		--creator-process-card-height: 360px;
 		--creator-process-top-offset: 124px;
 		--creator-process-bottom-offset: 64px;
+		--creator-process-content-height: calc(var(--creator-process-card-height) + 120px);
+		--creator-process-sticky-offset: calc((100vh - var(--creator-process-content-height)) / 2 + 36px);
+		--creator-process-visual-offset-y: -28px;
 		display: grid;
 		min-height: 780vh;
 		grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
@@ -4679,18 +7951,17 @@ const forCreatorsFaqItems = [
 
 	.creator-process-pin {
 		position: sticky;
-		top: var(--creator-process-top-offset);
+		top: var(--creator-process-sticky-offset);
 		display: grid;
 		min-width: 0;
 		gap: 0;
 	}
 
 	.creator-process-visual-stage {
-		--creator-process-card-height: 360px;
-		--creator-process-progress-y: calc(50% + 180px + 32px);
+		--creator-process-progress-y: calc(50% + 180px + 32px + var(--creator-process-visual-offset-y));
 		position: relative;
 		width: 100%;
-		height: calc(100vh - var(--creator-process-top-offset) - var(--creator-process-bottom-offset));
+		height: var(--creator-process-content-height);
 		min-height: 420px;
 		overflow: hidden;
 		border: 0;
@@ -4713,7 +7984,7 @@ const forCreatorsFaqItems = [
 		padding: clamp(34px, 5vw, 74px);
 		opacity: 0.06;
 		filter: brightness(0.64) saturate(0.86);
-		transform: translateY(-70px) scale(0.84);
+		transform: translateY(calc(-70px + var(--creator-process-visual-offset-y))) scale(0.84);
 		transform-origin: center center;
 		transition:
 			filter 720ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -4724,42 +7995,42 @@ const forCreatorsFaqItems = [
 		z-index: 5;
 		opacity: 1;
 		filter: none;
-		transform: translateY(0) scale(1);
+		transform: translateY(var(--creator-process-visual-offset-y)) scale(1);
 	}
 
 	.creator-process-visual.is-stack-one {
 		z-index: 4;
 		opacity: 1;
 		filter: brightness(0.94) saturate(0.98);
-		transform: translateY(-26px) scale(0.92);
+		transform: translateY(calc(-26px + var(--creator-process-visual-offset-y))) scale(0.92);
 	}
 
 	.creator-process-visual.is-stack-two {
 		z-index: 3;
 		opacity: 1;
 		filter: brightness(0.9) saturate(0.96);
-		transform: translateY(-50px) scale(0.84);
+		transform: translateY(calc(-50px + var(--creator-process-visual-offset-y))) scale(0.84);
 	}
 
 	.creator-process-visual.is-stack-three {
 		z-index: 2;
 		opacity: 1;
 		filter: brightness(0.86) saturate(0.94);
-		transform: translateY(-70px) scale(0.77);
+		transform: translateY(calc(-70px + var(--creator-process-visual-offset-y))) scale(0.77);
 	}
 
 	.creator-process-visual.is-stack-four {
 		z-index: 1;
 		opacity: 1;
 		filter: brightness(0.82) saturate(0.92);
-		transform: translateY(-88px) scale(0.71);
+		transform: translateY(calc(-88px + var(--creator-process-visual-offset-y))) scale(0.71);
 	}
 
 	.creator-process-visual.is-stack-five {
 		z-index: 0;
 		opacity: 1;
 		filter: brightness(0.78) saturate(0.9);
-		transform: translateY(-104px) scale(0.66);
+		transform: translateY(calc(-104px + var(--creator-process-visual-offset-y))) scale(0.66);
 	}
 
 	.creator-process-visual.is-active .creator-mini-window,
@@ -4811,9 +8082,9 @@ const forCreatorsFaqItems = [
 
 	.creator-process-copy {
 		position: sticky;
-		top: var(--creator-process-top-offset);
+		top: var(--creator-process-sticky-offset);
 		min-width: 0;
-		height: calc(100vh - var(--creator-process-top-offset) - var(--creator-process-bottom-offset));
+		height: var(--creator-process-content-height);
 		min-height: 420px;
 	}
 
@@ -4826,8 +8097,8 @@ const forCreatorsFaqItems = [
 		border: 0;
 		padding: clamp(
 				104px,
-				calc((100vh - var(--creator-process-top-offset) - var(--creator-process-bottom-offset) - 244px) / 2),
-				280px
+				calc((var(--creator-process-content-height) - 244px) / 2),
+				132px
 			)
 			0 0;
 		opacity: 0;
@@ -6622,6 +9893,10 @@ const forCreatorsFaqItems = [
 	}
 
 	@media (min-width: 1181px) {
+		.creator-process-scroll {
+			--creator-process-content-height: calc(var(--creator-process-card-height) + 220px);
+		}
+
 		.creator-platform-showcase {
 			gap: 34px 52px;
 		}
@@ -6635,6 +9910,12 @@ const forCreatorsFaqItems = [
 		html[lang='es'] .payroll-solution-new-hero h1,
 		html[lang='pt'] .payroll-solution-new-hero h1 {
 			font-size: 3rem;
+		}
+	}
+
+	@media (min-width: 981px) and (max-width: 1180px) {
+		.creator-process-scroll {
+			--creator-process-content-height: calc(var(--creator-process-card-height) + 220px);
 		}
 	}
 

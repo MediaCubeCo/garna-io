@@ -32,6 +32,11 @@ const titleClass =
 						</p>
 					)}
 					<h2 class={titleClass} data-translate={title.translateKey}>{title.text}</h2>
+					{subtitle && (
+						<p data-garna-subtitle class="mt-5 max-w-xl text-left text-lg font-manrope leading-relaxed" data-translate={subtitle.translateKey}>
+							{subtitle.text}
+						</p>
+					)}
 				</div>
 				<div class="eor-faq w-full space-y-4" id="eor-faq-accordion" data-faq-accordion>
 					{items.map((item) => (
