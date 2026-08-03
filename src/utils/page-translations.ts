@@ -28,6 +28,7 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 		return `/${segment}/for-creators`;
 	}
 	if (pageName === 'tax-calculator') return `/${segment}/employee-cost-calculator`;
+	if (pageName === 'eor-cost-calculator') return `/${segment}/eor-cost-calculator`;
 	if (pageName === 'white-label') {
 		return `/${segment}/white-label-payroll`;
 	}

@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
+import Card from '../components/ui/Card.astro';
+import { pageShells } from '../content/page-shells';
+import { eorCostCountries } from '../../src/data/eor-cost-countries';
+import '../styles/eor-cost-calculator.css';
+---
+
+<BaseLayout shell={pageShells.eorCostCalculator} rainbowCount={6}>
+	<div class="eor-cost-hero">
+		<div class="garna-container">
+			<div class="eor-cost-hero__copy">
+				<div class="garna-hero-badge"><span class="garna-hero-badge-dot-shell"><span class="garna-hero-badge-dot-ping"></span><span class="garna-hero-badge-dot"></span></span><span data-translate="hero.badge">EOR cost comparison</span></div>
+				<h1><span data-translate="hero.title">Same employee. Same taxes.</span><br /><em data-translate="hero.accent">A smaller invoice.</em></h1>
+				<p data-garna-subtitle data-translate="hero.description">Employer taxes and contributions are set by the country, not by your provider. Compare the service fee you pay now with Garna.</p>
+			</div>
+
+			<Card class="eor-calculator hover:!translate-y-0 focus-within:!translate-y-0" id="eor-cost-calculator" variant="visual">
+				<div class="eor-calculator__inputs" aria-labelledby="eor-input-title">
+					<p class="eor-calculator__eyebrow" id="eor-input-title" data-translate="calculator.currentSetup">Your current setup</p>
+
+					<label class="eor-field" for="eor-headcount">
+						<span data-translate="calculator.employees">Employees on EOR</span>
+						<span class="eor-stepper">
+							<button type="button" data-step="-1" aria-label="Decrease employee count">−</button>
+							<input id="eor-headcount" type="number" min="1" max="500" value="5" />
+							<button type="button" data-step="1" aria-label="Increase employee count">+</button>
+						</span>
+					</label>
+
+					<label class="eor-field" for="eor-provider">
+						<span data-translate="calculator.provider">Current provider</span>
+						<select id="eor-provider">
+							<option value="deel" data-fee="599">Deel</option>
+							<option value="remote" data-fee="599">Remote</option>
+							<option value="multiplier" data-fee="400">Multiplier</option>
+							<option value="other" data-fee="" data-translate="calculator.otherProvider">Other provider</option>
+						</select>
+						<small data-translate="calculator.providerHint">Choose a provider to use its published list price, or enter the fee you actually pay.</small>
+					</label>
+
+					<label class="eor-field" for="eor-fee">
+						<span data-translate="calculator.fee">Service fee per employee</span>
+						<span class="eor-money-input"><b aria-hidden="true">$</b><input id="eor-fee" type="number" min="0" step="1" value="599" /></span>
+						<small data-translate="calculator.feeHint">Monthly provider fee per employee, excluding salary and employer taxes.</small>
+					</label>
+
+					<button class="eor-more-toggle" type="button" aria-expanded="false" aria-controls="eor-more-fields">
+						<svg aria-hidden="true" viewBox="0 0 20 20"><path d="m5 7.5 5 5 5-5" /></svg>
+						<span data-translate="calculator.addDetails">Add country and salary for the full picture</span>
+					</button>
+
+					<div class="eor-more-fields" id="eor-more-fields" hidden>
+						<div class="eor-field">
+							<label for="eor-country" data-translate="calculator.country">Country of employment</label>
+							<div class="eor-country-picker">
+								<span class="eor-country-flag" id="eor-country-flag" aria-hidden="true">🇵🇹</span>
+								<input id="eor-country" type="text" value="Portugal" autocomplete="off" aria-autocomplete="list" aria-controls="eor-country-list" aria-expanded="false" />
+								<div class="eor-country-list" id="eor-country-list" role="listbox" hidden>
+									{eorCostCountries.map((country) => <button type="button" role="option" data-country-code={country.code} data-country-name={country.name} data-country-rate={country.rate} data-country-fixed={country.fixed}><span aria-hidden="true">{country.code.replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)))}</span><b>{country.name}</b><small>{Math.round(country.rate * 100)}%</small></button>)}
+								</div>
+							</div>
+							<small id="eor-country-hint">Employer contributions for the selected country.</small>
+						</div>
+						<label class="eor-field" for="eor-salary">
+							<span data-translate="calculator.salary">Gross monthly salary, per employee</span>
+							<span class="eor-money-input"><b aria-hidden="true">$</b><input id="eor-salary" type="number" min="0" step="100" value="4000" /></span>
+						</label>
+					</div>
+				</div>
+
+				<div class="eor-calculator__results" aria-labelledby="eor-result-title" aria-live="polite">
+					<p class="eor-calculator__eyebrow" id="eor-result-title" data-translate="calculator.comparison">Monthly cost, side by side</p>
+					<div class="eor-compare">
+						<article class="eor-provider-card">
+							<p id="eor-current-label">With Deel</p>
+							<strong id="eor-current-monthly">$2,995</strong>
+							<small data-translate="results.monthlyFee">per month, service fee</small>
+							<dl><div><dt data-translate="results.perEmployee">Per employee</dt><dd id="eor-current-per">$599</dd></div><div><dt data-translate="results.perYear">Per year</dt><dd id="eor-current-year">$35,940</dd></div><div data-full-cost hidden><dt data-translate="results.employerTaxes">Employer taxes</dt><dd id="eor-current-tax">—</dd></div><div data-full-cost hidden><dt data-translate="results.totalYear">Total per year</dt><dd id="eor-current-total">—</dd></div></dl>
+						</article>
+						<article class="eor-provider-card eor-provider-card--garna">
+							<p data-translate="results.withGarna">With Garna EOR</p>
+							<strong id="eor-garna-monthly">$1,750</strong>
+							<small data-translate="results.monthlyFee">per month, service fee</small>
+							<dl><div><dt data-translate="results.perEmployee">Per employee</dt><dd id="eor-garna-per">$350</dd></div><div><dt data-translate="results.perYear">Per year</dt><dd id="eor-garna-year">$21,000</dd></div><div data-full-cost hidden><dt data-translate="results.employerTaxes">Employer taxes</dt><dd id="eor-garna-tax">—</dd></div><div data-full-cost hidden><dt data-translate="results.totalYear">Total per year</dt><dd id="eor-garna-total">—</dd></div></dl>
+						</article>
+					</div>
+
+					<div class="eor-savings" data-positive="true">
+						<span data-translate="results.savingsLabel">You keep, per year</span>
+						<strong id="eor-savings">$14,940</strong>
+						<p id="eor-savings-copy">That is 5 employees × $249 saved every month.</p>
+					</div>
+
+					<div class="eor-tax-note"><i aria-hidden="true"></i><p><strong data-translate="results.taxNoteTitle">Taxes and contributions do not change.</strong> <span data-translate="results.taxNote">They are fixed by the country and paid in full either way. Garna helps you pay less for the platform that handles them.</span></p></div>
+					<button class="eor-quote-button" id="eor-quote-button" type="button"><span data-translate="results.cta">Get an exact quote</span><span aria-hidden="true">↗</span></button>
+					<p class="eor-quote-note" data-translate="results.ctaNote">Review the exact country-by-country breakdown with our global employment team.</p>
+				</div>
+			</Card>
+		</div>
+	</div>
+
+	<div class="eor-value-strip">
+		<div class="garna-container eor-value-strip__grid">
+			<article><span data-translate="strip.feeKicker">FEE</span><h2 data-translate="strip.feeTitle">From $350 per employee</h2><p data-translate="strip.feeText">One monthly fee per employee, with no onboarding charge or per-country surcharge.</p></article>
+			<article><span data-translate="strip.reachKicker">REACH</span><h2 data-translate="strip.reachTitle">150+ countries, 80+ currencies</h2><p data-translate="strip.reachText">Contracts, payroll, contributions and local support handled in one place.</p></article>
+			<article><span data-translate="strip.moveKicker">MOVE</span><h2 data-translate="strip.moveTitle">Keep your people, change the invoice</h2><p data-translate="strip.moveText">Same role, salary and benefits — with a new employer of record behind the team.</p></article>
+		</div>
+	</div>
+
+	<div id="eor-cost-i18n" hidden>
+		<span data-key="withProvider" data-translate="runtime.withProvider">With &#123;provider&#125;</span>
+		<span data-key="currentProvider" data-translate="runtime.currentProvider">Your provider now</span>
+		<span data-key="emptyFee" data-translate="runtime.emptyFee">Enter your current fee to see the difference.</span>
+		<span data-key="saving" data-translate="runtime.saving">That is &#123;count&#125; &#123;employees&#125; × &#123;amount&#125; saved every month.</span>
+		<span data-key="employeeOne" data-translate="runtime.employeeOne">employee</span>
+		<span data-key="employeeMany" data-translate="runtime.employeeMany">employees</span>
+		<span data-key="closeFee" data-translate="runtime.closeFee">The fees are close. Garna also has no salary deposit, per-country surcharge or separate onboarding fee.</span>
+		<span data-key="lowerFee" data-translate="runtime.lowerFee">Your current fee is lower. Ask us for volume pricing based on your countries.</span>
+		<span data-key="countryHint" data-translate="runtime.countryHint">Employer contributions in &#123;country&#125;: about &#123;rate&#125;% of gross&#123;fixed&#125;.</span>
+		<span data-key="fixed" data-translate="runtime.fixed"> plus &#123;amount&#125; fixed per year</span>
+		<span data-key="noCountry" data-translate="runtime.noCountry">No country found</span>
+	</div>
+
+	<Fragment slot="widgets"><GarnaBookingWidget trackingSource="eor-cost-calculator" trackingPage="eor-cost-calculator" trackingCta="eor_cost_calculator_quote" titleFallback="Get an exact EOR quote" subtitleFallback="Review your country-by-country costs with our global employment team" /></Fragment>
+</BaseLayout>
+
+<style>
+	@media (min-width: 901px) {
+		:global(.eor-cost-hero__copy) {
+			max-width: 1200px !important;
+		}
+	}
+</style>
+
+<script>
+	const root = document.querySelector<HTMLElement>('#eor-cost-calculator');
+	const headcount = document.querySelector<HTMLInputElement>('#eor-headcount');
+	const provider = document.querySelector<HTMLSelectElement>('#eor-provider');
+	const fee = document.querySelector<HTMLInputElement>('#eor-fee');
+	const salary = document.querySelector<HTMLInputElement>('#eor-salary');
+	const toggle = document.querySelector<HTMLButtonElement>('.eor-more-toggle');
+	const moreFields = document.querySelector<HTMLElement>('#eor-more-fields');
+	const countryInput = document.querySelector<HTMLInputElement>('#eor-country');
+	const countryList = document.querySelector<HTMLElement>('#eor-country-list');
+	const countryFlag = document.querySelector<HTMLElement>('#eor-country-flag');
+	const countryHint = document.querySelector<HTMLElement>('#eor-country-hint');
+	const locale = document.documentElement.lang || 'en';
+	const GARNA_FEE = 350;
+	let selectedCountry = { code: 'PT', name: 'Portugal', rate: 0.275, fixed: 1894 };
+	let regionNames: Intl.DisplayNames | null = null;
+	try { regionNames = new Intl.DisplayNames([locale], { type: 'region' }); } catch {}
+	const t = (key: string) => document.querySelector(`#eor-cost-i18n [data-key="${key}"]`)?.textContent || key;
+	const template = (key: string, values: Record<string, string | number>) => Object.entries(values).reduce((copy, [name, value]) => copy.replaceAll(`{${name}}`, String(value)), t(key));
+	const money = (value: number) => new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Math.round(value));
+	const numberValue = (input: HTMLInputElement | null, fallback = 0) => Math.max(0, Number(input?.value) || fallback);
+	const countryName = (code: string, fallback: string) => regionNames?.of(code) || fallback;
+	const flag = (code: string) => code.replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
+
+	const update = () => {
+		const count = Math.min(500, Math.max(1, Math.round(numberValue(headcount, 1))));
+		const currentFee = numberValue(fee);
+		if (headcount && Number(headcount.value) !== count) headcount.value = String(count);
+		const currentMonthly = currentFee * count;
+		const garnaMonthly = GARNA_FEE * count;
+		const yearlySaving = (currentFee - GARNA_FEE) * count * 12;
+		const option = provider?.selectedOptions[0];
+		const providerName = option?.value && option.value !== 'other' ? option.textContent || '' : '';
+		const setText = (selector: string, value: string) => { const el = root?.querySelector<HTMLElement>(selector); if (el) el.textContent = value; };
+		setText('#eor-current-label', providerName ? template('withProvider', { provider: providerName }) : t('currentProvider'));
+		setText('#eor-current-per', money(currentFee)); setText('#eor-current-monthly', money(currentMonthly)); setText('#eor-current-year', money(currentMonthly * 12));
+		setText('#eor-garna-per', money(GARNA_FEE)); setText('#eor-garna-monthly', money(garnaMonthly)); setText('#eor-garna-year', money(garnaMonthly * 12));
+		setText('#eor-savings', money(Math.abs(yearlySaving)));
+		const savingsBox = root?.querySelector<HTMLElement>('.eor-savings');
+		if (savingsBox) savingsBox.dataset.positive = String(yearlySaving >= 0);
+		const difference = currentFee - GARNA_FEE;
+		const savingsCopy = !currentFee ? t('emptyFee') : difference >= GARNA_FEE * 0.15 ? template('saving', { count, employees: t(count === 1 ? 'employeeOne' : 'employeeMany'), amount: money(difference) }) : difference >= 0 ? t('closeFee') : t('lowerFee');
+		setText('#eor-savings-copy', savingsCopy);
+
+		if (!moreFields?.hidden) {
+			const annualSalary = numberValue(salary) * 12;
+			const annualTax = (annualSalary * selectedCountry.rate + selectedCountry.fixed) * count;
+			const annualPayroll = annualSalary * count;
+			setText('#eor-current-tax', money(annualTax)); setText('#eor-garna-tax', money(annualTax));
+			setText('#eor-current-total', money(annualPayroll + annualTax + currentMonthly * 12));
+			setText('#eor-garna-total', money(annualPayroll + annualTax + garnaMonthly * 12));
+			const fixedText = selectedCountry.fixed ? template('fixed', { amount: money(selectedCountry.fixed) }) : '';
+			if (countryHint) countryHint.textContent = template('countryHint', { country: countryName(selectedCountry.code, selectedCountry.name), rate: Math.round(selectedCountry.rate * 100), fixed: fixedText });
+		}
+	};
+
+	root?.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((button) => button.addEventListener('click', () => { if (headcount) headcount.value = String(Math.min(500, Math.max(1, numberValue(headcount, 1) + Number(button.dataset.step)))); update(); }));
+	provider?.addEventListener('change', () => { const listedFee = provider.selectedOptions[0]?.dataset.fee; if (fee) { fee.value = listedFee || ''; if (!listedFee) fee.focus(); } update(); });
+	fee?.addEventListener('input', () => { const listedFee = provider?.selectedOptions[0]?.dataset.fee; if (provider && listedFee && fee.value !== listedFee) provider.value = 'other'; update(); });
+	headcount?.addEventListener('input', update); salary?.addEventListener('input', update);
+	toggle?.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') !== 'true'; toggle.setAttribute('aria-expanded', String(open)); if (moreFields) moreFields.hidden = !open; root?.querySelectorAll<HTMLElement>('[data-full-cost]').forEach((row) => { row.hidden = !open; }); update(); });
+
+	const filterCountries = () => {
+		const query = (countryInput?.value || '').trim().toLocaleLowerCase(locale);
+		let matches = 0;
+		countryList?.querySelectorAll<HTMLButtonElement>('[data-country-code]').forEach((item) => {
+			const localized = countryName(item.dataset.countryCode || '', item.dataset.countryName || '');
+			const visible = !query || localized.toLocaleLowerCase(locale).includes(query) || (item.dataset.countryName || '').toLowerCase().includes(query);
+			item.hidden = !visible;
+			const label = item.querySelector('b'); if (label) label.textContent = localized;
+			if (visible) matches += 1;
+		});
+		let empty = countryList?.querySelector<HTMLElement>('[data-country-empty]');
+		if (!matches && countryList) { if (!empty) { empty = document.createElement('p'); empty.dataset.countryEmpty = ''; countryList.append(empty); } empty.textContent = t('noCountry'); }
+		else empty?.remove();
+	};
+	const openCountryList = () => { filterCountries(); if (countryList) countryList.hidden = false; countryInput?.setAttribute('aria-expanded', 'true'); };
+	countryInput?.addEventListener('focus', openCountryList);
+	countryInput?.addEventListener('input', openCountryList);
+	countryInput?.addEventListener('blur', () => window.setTimeout(() => { if (countryList) countryList.hidden = true; countryInput.value = countryName(selectedCountry.code, selectedCountry.name); countryInput.setAttribute('aria-expanded', 'false'); }, 120));
+	countryList?.addEventListener('mousedown', (event) => {
+		const item = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-country-code]');
+		if (!item) return;
+		event.preventDefault();
+		selectedCountry = { code: item.dataset.countryCode || 'PT', name: item.dataset.countryName || 'Portugal', rate: Number(item.dataset.countryRate) || 0, fixed: Number(item.dataset.countryFixed) || 0 };
+		if (countryInput) countryInput.value = countryName(selectedCountry.code, selectedCountry.name);
+		if (countryFlag) countryFlag.textContent = flag(selectedCountry.code);
+		countryList.hidden = true; countryInput?.setAttribute('aria-expanded', 'false'); update();
+	});
+	document.querySelector('#eor-quote-button')?.addEventListener('click', () => { const widget = (window as any).GarnaWidget; if (widget?.open) widget.open(); else document.querySelector<HTMLElement>('#garna-widget-root')?.scrollIntoView({ behavior: 'smooth' }); });
+	if (countryInput) countryInput.value = countryName(selectedCountry.code, selectedCountry.name);
+	filterCountries(); update();
+</script>

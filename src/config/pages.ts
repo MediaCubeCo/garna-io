@@ -118,6 +118,13 @@ export const basePaths: PageConfig[] = [
 		languages: ['en', 'es', 'pt', 'ru'],
 	},
 	{
+		path: 'eor-cost-calculator',
+		mode: 'static',
+		searchable: true,
+		showHeader: true,
+		languages: ['en', 'es', 'pt', 'ru'],
+	},
+	{
 		path: 'tax-calculator',
 		mode: 'static',
 		searchable: false,

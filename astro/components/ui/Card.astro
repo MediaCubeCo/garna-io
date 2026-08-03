@@ -40,6 +40,7 @@ const {
 const titleValue = typeof title === 'string' ? { text: title } : title;
 const descriptionValue = typeof description === 'string' ? { text: description } : description;
 const eyebrowValue = typeof eyebrow === 'string' ? { text: eyebrow } : eyebrow;
+const hasVisual = Astro.slots.has('visual');
 const variantClasses = {
 	feature: 'garna-glass-card rounded-2xl p-8',
 	visual: 'garna-glass-card overflow-hidden rounded-3xl',
@@ -69,7 +70,7 @@ const defaultDescriptionClasses = {
 	interactive && 'transition duration-300 hover:-translate-y-1 focus-within:-translate-y-1 motion-reduce:translate-none motion-reduce:transition-colors',
 	className,
 ]}>
-	{visualPosition === 'before' && <div class={visualClass}><slot name="visual" /></div>}
+	{hasVisual && visualPosition === 'before' && <div class={visualClass}><slot name="visual" /></div>}
 	{(eyebrowValue || titleValue || descriptionValue) && (
 		<div class={bodyClass}>
 			{eyebrowValue && <span class:list={['mb-3 block text-sm font-semibold text-[#CBF300]', eyebrowClass]} data-translate={eyebrowValue.translateKey}>{eyebrowValue.text}</span>}
@@ -78,7 +79,7 @@ const defaultDescriptionClasses = {
 		</div>
 	)}
 	<slot />
-	{visualPosition === 'after' && <div class={visualClass}><slot name="visual" /></div>}
+	{hasVisual && visualPosition === 'after' && <div class={visualClass}><slot name="visual" /></div>}
 </article>
 
 <style>

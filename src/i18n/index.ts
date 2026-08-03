@@ -12,6 +12,7 @@ import { forCreatorsTranslations } from './translations/for-creators';
 import { blogArticleTranslations, blogAuthorTranslations, blogTranslations } from './translations/blog';
 import { enterprisePayrollTranslations } from './translations/enterprise-payroll';
 import { taxCalculatorTranslations } from './translations/tax-calculator';
+import { eorCostCalculatorTranslations } from './translations/eor-cost-calculator';
 
 export type PageTranslations = typeof homeTranslations.en;
 
@@ -32,7 +33,8 @@ type AnyPageTranslations =
 	| typeof blogTranslations.en
 	| typeof blogAuthorTranslations.en
 	| typeof blogArticleTranslations.en
-	| typeof taxCalculatorTranslations.en;
+	| typeof taxCalculatorTranslations.en
+	| typeof eorCostCalculatorTranslations.en;
 
 const translations = {
 	home: homeTranslations,
@@ -53,6 +55,7 @@ const translations = {
 	'blog-author': blogAuthorTranslations,
 	'blog-article': blogArticleTranslations,
 	'tax-calculator': taxCalculatorTranslations,
+	'eor-cost-calculator': eorCostCalculatorTranslations,
 } as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
 export function getPageTranslations(pageName: string, locale: string): AnyPageTranslations {

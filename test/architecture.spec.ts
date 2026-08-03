@@ -121,9 +121,9 @@ describe('native Astro architecture', () => {
 		expect(smallBusiness).toContain(':global(html[data-theme="light"]) .hero-run-card');
 	});
 
-	it('keeps all 18 public and Worker-template entrypoints', async () => {
+	it('keeps all 20 public and Worker-template entrypoints', async () => {
 		const pages = (await walk(path.join(root, 'astro/pages'))).filter((file) => file.endsWith('.astro'));
-		expect(pages).toHaveLength(18);
+		expect(pages).toHaveLength(20);
 		expect(pages.some((file) => file.includes(`${path.sep}pages${path.sep}en${path.sep}`))).toBe(false);
 		expect(pages.some((file) => file.endsWith(`${path.sep}payroll-solution-new.astro`))).toBe(false);
 		expect(pages.some((file) => file.endsWith(`${path.sep}mid-size.astro`))).toBe(false);
@@ -243,6 +243,7 @@ describe('native Astro architecture', () => {
 			'mid-size-business-payroll.astro',
 			'payroll-small-business.astro',
 			'tax-calculator.astro',
+			'eor-cost-calculator.astro',
 			'white-label.astro',
 		];
 		const pageSources = await Promise.all(
@@ -582,6 +583,9 @@ describe('native Astro architecture', () => {
 		expect(card).toContain("'text-base leading-relaxed'");
 		expect(card).toContain('data-garna-subtitle');
 		expect(card).toContain('data-card-description');
+		expect(card).toContain("const hasVisual = Astro.slots.has('visual')");
+		expect(card).toContain("hasVisual && visualPosition === 'before'");
+		expect(card).toContain("hasVisual && visualPosition === 'after'");
 		const descriptionVariants = card.match(/const defaultDescriptionClasses = \{[\s\S]*?\n\};/)?.[0] || '';
 		expect(descriptionVariants).not.toMatch(/text-(?:gray|zinc|slate|white|black|\[#)/);
 		expect(card).toContain('interactive = true');
