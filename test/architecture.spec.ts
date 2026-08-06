@@ -121,9 +121,9 @@ describe('native Astro architecture', () => {
 		expect(smallBusiness).toContain(':global(html[data-theme="light"]) .hero-run-card');
 	});
 
-	it('keeps all 20 public and Worker-template entrypoints', async () => {
+	it('keeps all 21 public and Worker-template entrypoints', async () => {
 		const pages = (await walk(path.join(root, 'astro/pages'))).filter((file) => file.endsWith('.astro'));
-		expect(pages).toHaveLength(20);
+		expect(pages).toHaveLength(21);
 		expect(pages.some((file) => file.includes(`${path.sep}pages${path.sep}en${path.sep}`))).toBe(false);
 		expect(pages.some((file) => file.endsWith(`${path.sep}payroll-solution-new.astro`))).toBe(false);
 		expect(pages.some((file) => file.endsWith(`${path.sep}mid-size.astro`))).toBe(false);

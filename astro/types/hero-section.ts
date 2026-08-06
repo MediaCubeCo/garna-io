@@ -1,6 +1,6 @@
 export type HeroTone = 'green' | 'neutral';
 export type HeroAlign = 'center' | 'split';
-export type HeroCtaKind = 'demo' | 'signup' | 'external';
+export type HeroCtaKind = 'demo' | 'signup' | 'external' | 'home';
 export type HeroCtaVariant = 'primary' | 'secondary' | 'ghost' | 'icon' | 'glow';
 export type HeroCtaEffect = 'none' | 'rotating-flare';
 export type HeroCtaIcon = 'none' | 'arrow-up-right' | 'arrow-right';
@@ -14,6 +14,8 @@ export interface HeroCta {
 	label: string;
 	translateKey: string;
 	href?: string;
+	target?: '_blank' | '_self' | '_parent' | '_top';
+	rel?: string;
 	kind?: HeroCtaKind;
 	trackingCta?: string;
 	class?: string;

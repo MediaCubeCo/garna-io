@@ -1,6 +1,47 @@
 import type { HeroSectionConfig } from '../types/hero-section';
 
 export const pageHeroes = {
+	gamescom2026: {
+		class: 'gamescom-hero relative overflow-hidden',
+		containerClass: 'gamescom-container relative z-10',
+		contentClass: 'gamescom-hero-content reveal',
+		titleClass: 'gamescom-hero-title font-manrope font-normal tracking-tight',
+		descriptionClass: 'gamescom-hero-lead font-manrope',
+		badge: {
+			text: 'Gamescom 2026 · Cologne · 23–30 August',
+			translateKey: 'hero.badge',
+		},
+		title: [
+			{ text: 'Your Gamescom 2026', translateKey: 'hero.titleLead' },
+			{ text: 'side events', translateKey: 'hero.titleAccent' },
+			{ text: 'guide', translateKey: 'hero.titleTail' },
+		],
+		description:
+			'Mixers, dinners, pitch sessions, pavilion receptions, and the parties that run till morning. We checked every link and wrote down how to get in. The list stays updated through the show.',
+		descriptionTranslateKey: 'hero.description',
+		cta: {
+			label: 'What Garna does',
+			translateKey: 'hero.learnCta',
+			href: '/en',
+			kind: 'home',
+			variant: 'primary',
+			effect: 'rotating-flare',
+			icon: 'none',
+			wrapperClass: 'gamescom-hero-actions flex flex-wrap gap-3',
+		},
+		ctaSecondary: {
+			label: 'Get PDF',
+			translateKey: 'hero.pdfCta',
+			href: '/Garna-Gamescom-2026-Side-Events.pdf',
+			target: '_blank',
+			rel: 'noopener noreferrer',
+			kind: 'external',
+			variant: 'secondary',
+			icon: 'arrow-up-right',
+		},
+		tone: 'neutral',
+		align: 'split',
+	},
 	contractorOfRecord: {
 		class: 'home-hero overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
 		containerClass:

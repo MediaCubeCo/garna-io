@@ -61,6 +61,7 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 
 // Mapping of public route paths to Astro-generated asset files in dist/.
 const PAGE_PATH_TO_ASSET: Record<string, string> = {
+	'gamescom-2026-side-events': '/gamescom-2026-side-events.html',
 	'': '/index.html',
 	'for-contractors': '/for-contractors.html',
 	'for-creators': '/for-creators.html',
@@ -80,6 +81,7 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 };
 
 const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
+	'gamescom-2026-side-events': 'gamescom-2026-side-events',
 	'': 'home',
 	'for-contractors': 'offer',
 	'for-creators': 'for-creators',
