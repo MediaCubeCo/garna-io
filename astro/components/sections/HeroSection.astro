@@ -20,9 +20,13 @@ const {
 } = Astro.props;
 
 const ctaHref = cta?.href || '#';
+const ctaTarget = cta?.target;
+const ctaRel = cta?.rel;
 const ctaAttributes =
 	cta?.kind === 'signup'
 		? { 'data-garna-signup': true }
+		: cta?.kind === 'home'
+			? { 'data-garna-home': true }
 		: {};
 const ctaOnclick =
 	cta?.kind === 'demo'
@@ -33,9 +37,13 @@ const ctaVariant = cta?.variant || 'primary';
 const ctaEffect = cta?.effect || (cta?.kind === 'demo' ? 'rotating-flare' : 'none');
 const ctaIcon = cta?.icon || (cta?.kind === 'signup' || cta?.kind === 'external' ? 'arrow-up-right' : 'arrow-up-right');
 const ctaSecondaryHref = ctaSecondary?.href || '#';
+const ctaSecondaryTarget = ctaSecondary?.target;
+const ctaSecondaryRel = ctaSecondary?.rel;
 const ctaSecondaryAttributes =
 	ctaSecondary?.kind === 'signup'
 		? { 'data-garna-signup': true }
+		: ctaSecondary?.kind === 'home'
+			? { 'data-garna-home': true }
 		: {};
 const ctaSecondaryOnclick =
 	ctaSecondary?.kind === 'demo'
@@ -120,11 +128,11 @@ const singleTitleSecondLine = shouldBreakSingleTitle
 
 			{cta && (
 				<div class={ctaWrapperClass}>
-					<Button href={ctaHref} onclick={ctaOnclick} variant={ctaVariant} effect={ctaEffect} icon={ctaIcon} size="hero" class={ctaClass} {...ctaAttributes}>
+					<Button href={ctaHref} target={ctaTarget} rel={ctaRel} onclick={ctaOnclick} variant={ctaVariant} effect={ctaEffect} icon={ctaIcon} size="hero" class={ctaClass} {...ctaAttributes}>
 						<span data-translate={cta.translateKey}>{cta.label}</span>
 					</Button>
 					{ctaSecondary && (
-						<Button href={ctaSecondaryHref} onclick={ctaSecondaryOnclick} variant={ctaSecondaryVariant} effect={ctaSecondaryEffect} icon={ctaSecondaryIcon} size="hero" class={ctaSecondaryClass} {...ctaSecondaryAttributes}>
+						<Button href={ctaSecondaryHref} target={ctaSecondaryTarget} rel={ctaSecondaryRel} onclick={ctaSecondaryOnclick} variant={ctaSecondaryVariant} effect={ctaSecondaryEffect} icon={ctaSecondaryIcon} size="hero" class={ctaSecondaryClass} {...ctaSecondaryAttributes}>
 							<span data-translate={ctaSecondary.translateKey}>{ctaSecondary.label}</span>
 						</Button>
 					)}

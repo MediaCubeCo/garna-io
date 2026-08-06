@@ -998,7 +998,7 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 						const wrapper = document.createElement('div');
 						wrapper.className = 'tldr-tool';
 						const items = Array.isArray(this.data.items) && this.data.items.length ? this.data.items : ['', '', ''];
-						wrapper.innerHTML = '<label>Title<input data-field="title" value="' + (this.data.title || 'TLDR') + '" /></label><div class="tldr-items"></div><button type="button" class="tldr-add">Add point</button>';
+						wrapper.innerHTML = '<label>Title<input data-field="title" value="' + (this.data.title || (isTranslationMode() ? '' : 'TLDR')) + '" /></label><div class="tldr-items"></div><button type="button" class="tldr-add">Add point</button>';
 						const list = wrapper.querySelector('.tldr-items');
 						const addItem = (value = '') => {
 							const row = document.createElement('label');
@@ -1014,7 +1014,7 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					}
 					save(wrapper) {
 						return {
-							title: wrapper.querySelector('[data-field="title"]')?.value.trim() || 'TLDR',
+							title: wrapper.querySelector('[data-field="title"]')?.value.trim() || (isTranslationMode() ? '' : 'TLDR'),
 							items: Array.from(wrapper.querySelectorAll('[data-item]')).map((item) => item.value.trim()).filter(Boolean),
 						};
 					}
@@ -1143,7 +1143,7 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 						url: block.data.url || '',
 					}) + '}}';
 					if (block.type === 'tldr') return '{{tldr:' + JSON.stringify({
-						title: stripTags(block.data.title || 'TLDR'),
+						title: stripTags(block.data.title || (isTranslationMode() ? '' : 'TLDR')),
 						items: (block.data.items || []).map((item) => stripTags(item || '')).filter(Boolean),
 					}) + '}}';
 					return textWithBreaks(block.data.text);
@@ -1176,8 +1176,9 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					};
 				}
 				if (window.Embed) tools.embed = { class: window.Embed, inlineToolbar: true, config: { services: { youtube: true } } };
+				const baseEditorData = markdownToEditorData(source.dataset.baseBody || '');
 				const initialEditorData = isTranslationMode() && !source.value.trim() && source.dataset.baseBody
-					? blankEditorDataFromStructure(markdownToEditorData(source.dataset.baseBody))
+					? blankEditorDataFromStructure(baseEditorData)
 					: markdownToEditorData(source.value);
 				const blockStructureSignature = (data) => (data.blocks || []).map((block) => block.type).join('|');
 				const initialBlockStructure = blockStructureSignature(initialEditorData);
@@ -1185,16 +1186,96 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 				let lastValidEditorData = cloneEditorData(initialEditorData);
 				let isRestoringEditorStructure = false;
 				let structureGuardTimer = 0;
+				const editorPlaceholderText = (value) => normalizeEditorText(
+					new DOMParser().parseFromString(String(value || ''), 'text/html').body.textContent || '',
+				).trim();
+				const refreshEditablePlaceholder = (element) => {
+					if (!(element instanceof HTMLElement) || !element.dataset.translationPlaceholder) return;
+					element.classList.toggle('is-translation-empty', !normalizeEditorText(element.textContent || '').trim());
+				};
+				const setEditablePlaceholder = (element, value) => {
+					if (!(element instanceof HTMLElement)) return;
+					const placeholder = editorPlaceholderText(value);
+					if (!placeholder) return;
+					element.dataset.translationPlaceholder = placeholder;
+					refreshEditablePlaceholder(element);
+				};
+				const setFieldPlaceholder = (element, value) => {
+					if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) return;
+					const placeholder = editorPlaceholderText(value);
+					if (placeholder) element.placeholder = placeholder;
+				};
+				const flattenListItems = (items) => (items || []).flatMap((item) => {
+					if (typeof item === 'string') return [item];
+					return [listItemContent(item), ...flattenListItems(item?.items || [])];
+				});
+				const applyTranslationPlaceholders = () => {
+					if (!isTranslationMode()) return;
+					baseEditorData.blocks.forEach((baseBlock, index) => {
+						const holder = editor.blocks.getBlockByIndex(index)?.holder;
+						if (!holder) return;
+						if (baseBlock.type === 'paragraph' || baseBlock.type === 'header') {
+							setEditablePlaceholder(holder.querySelector('[contenteditable="true"]'), baseBlock.data.text);
+							return;
+						}
+						if (baseBlock.type === 'list') {
+							const placeholders = flattenListItems(baseBlock.data.items);
+							const fields = holder.querySelectorAll('.cdx-list__item-content, [contenteditable="true"]');
+							Array.from(fields).forEach((field, itemIndex) => setEditablePlaceholder(field, placeholders[itemIndex]));
+							return;
+						}
+						if (baseBlock.type === 'quote') {
+							setEditablePlaceholder(holder.querySelector('.cdx-quote__text'), baseBlock.data.text);
+							setEditablePlaceholder(holder.querySelector('.cdx-quote__caption'), baseBlock.data.caption);
+							return;
+						}
+						if (baseBlock.type === 'image' || baseBlock.type === 'embed') {
+							setEditablePlaceholder(holder.querySelector('[contenteditable="true"]'), baseBlock.data.caption);
+							return;
+						}
+						if (baseBlock.type === 'cta') {
+							for (const field of ['title', 'text', 'button']) {
+								setFieldPlaceholder(holder.querySelector('[data-field="' + field + '"]'), baseBlock.data[field]);
+							}
+							return;
+						}
+						if (baseBlock.type === 'tldr') {
+							setFieldPlaceholder(holder.querySelector('[data-field="title"]'), baseBlock.data.title);
+							const fields = holder.querySelectorAll('[data-item]');
+							Array.from(fields).forEach((field, itemIndex) => setFieldPlaceholder(field, baseBlock.data.items?.[itemIndex]));
+						}
+					});
+				};
+				// EditorJS.save() omits validation-empty blocks, so use the live block API
+				// when guarding translation structure and snapshot each block individually.
+				const currentEditorStructure = () => Array.from(
+					{ length: editor.blocks.getBlocksCount() },
+					(_, index) => editor.blocks.getBlockByIndex(index)?.name || '',
+				).join('|');
+				const snapshotEditorData = async () => {
+					const blocks = [];
+					for (let index = 0; index < editor.blocks.getBlocksCount(); index += 1) {
+						const block = editor.blocks.getBlockByIndex(index);
+						if (!block) continue;
+						const savedBlock = await block.save();
+						blocks.push(savedBlock || {
+							id: block.id,
+							type: block.name,
+							data: {},
+						});
+					}
+					return { time: Date.now(), blocks, version: '2.0.0' };
+				};
 				const restoreEditorStructure = async () => {
 					if (!isTranslationMode() || isRestoringEditorStructure) return;
-					const data = await editor.save();
-					if (blockStructureSignature(data) === initialBlockStructure) {
-						lastValidEditorData = cloneEditorData(data);
+					if (currentEditorStructure() === initialBlockStructure) {
+						lastValidEditorData = cloneEditorData(await snapshotEditorData());
 						return;
 					}
 					isRestoringEditorStructure = true;
 					await editor.render(lastValidEditorData);
 					markEditorButtonsSafe();
+					applyTranslationPlaceholders();
 					window.setTimeout(() => { isRestoringEditorStructure = false; }, 0);
 				};
 				const editor = new EditorJS({
@@ -1211,10 +1292,18 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 					},
 					onReady: () => {
 						markEditorButtonsSafe();
-						new MutationObserver(markEditorButtonsSafe).observe(editorHolder, { childList: true, subtree: true });
+						applyTranslationPlaceholders();
+						new MutationObserver(() => {
+							markEditorButtonsSafe();
+							applyTranslationPlaceholders();
+						}).observe(editorHolder, { childList: true, subtree: true });
 						if (!isTranslationMode()) new DragDrop(editor, '1px dashed #487c1f');
 						syncLanguageMode();
 					},
+				});
+				editorHolder.addEventListener('input', (event) => {
+					const target = event.target instanceof HTMLElement ? event.target : null;
+					if (target?.matches('[data-translation-placeholder]')) refreshEditablePlaceholder(target);
 				});
 				form.addEventListener('click', (event) => {
 					const target = event.target instanceof Element ? event.target : null;
@@ -1232,7 +1321,7 @@ async function renderArticleForm(env: BlogEnv, email: string, article?: any, opt
 						clearFormError();
 						try {
 						const data = await editor.save();
-						if (isTranslationMode() && blockStructureSignature(data) !== initialBlockStructure) {
+						if (isTranslationMode() && currentEditorStructure() !== initialBlockStructure) {
 							throw new Error('This language version can only edit existing blocks. Switch to English to add, remove, or reorder blocks.');
 						}
 						source.value = editorToMarkdown(data);
@@ -2094,7 +2183,13 @@ function adminHtml(title: string, body: string): Response {
 			.article-compose.is-translation-mode .block-editor .ce-popover,
 			.article-compose.is-translation-mode .block-editor .ce-block__settings-btn { display: none !important; pointer-events: none !important; }
 			.article-compose.is-translation-mode .block-editor .ce-toolbar__actions { pointer-events: none; }
-		.block-editor .ce-paragraph { line-height: 1.7; }
+			.article-compose.is-translation-mode .block-editor [data-translation-placeholder].is-translation-empty::before {
+				content: attr(data-translation-placeholder);
+				color: #9b968d;
+				opacity: .72;
+				pointer-events: none;
+			}
+			.block-editor .ce-paragraph { line-height: 1.7; }
 		.block-editor .ce-header { padding: .25em 0; }
 		.block-editor .ce-toolbar__settings-btn { cursor: grab; }
 		.block-editor .ce-toolbar__settings-btn:active { cursor: grabbing; }
@@ -2184,7 +2279,7 @@ function adminHtml(title: string, body: string): Response {
 			.status { display: inline-flex; margin: 0; padding: 4px 8px; border-radius: 99px; background: #ece9e2; color: #5d584d; font-size: 12px; }
 			.status.published { background: #e7f2dd; color: #365f19; }
 			.check { display: inline-flex; grid-template-columns: auto 1fr; align-items: center; margin-right: 12px; } .check input { width: auto; }
-			@media (max-width: 980px) { .main:has(.article-compose) { overflow-y: auto; padding-bottom: 56px; } .article-compose { height: auto; grid-template-columns: 1fr; overflow: visible; } .article-canvas, .settings-sidebar { height: auto; overflow: visible; padding-bottom: 0; } .page-actions { position: static; grid-template-columns: 1fr; } }
+			@media (max-width: 980px) { .main:has(.article-compose) { overflow-y: auto; padding-bottom: 56px; } .article-compose { height: auto; grid-template-columns: 1fr; overflow: visible; } .article-canvas, .settings-sidebar { height: auto; overflow: visible; padding-bottom: 0; } .page-actions { position: relative; grid-template-columns: 1fr; } }
 		@media (max-width: 760px) { .admin-layout { grid-template-columns: 1fr; } .sidebar { position: static; } .sidebar-footer { position: static; margin: 24px 8px 0; } .main { padding: 22px 16px 40px; } .page-head, .article-faq-head { align-items: start; flex-direction: column; } .cover-actions { flex-direction: column; } .faq-fields { grid-template-columns: 1fr; } }
 	</style>
 </head>
