@@ -4,15 +4,15 @@ export const forCreatorsEs = {
 	meta: {
 		title: 'Garna para creadores',
 		description:
-			'Recibe pagos de plataformas para creadores, marketplaces de stock, servicios freelance y plataformas de productos digitales en una sola cuenta de Garna.',
+			'Recibe pagos de plataformas para creadores, Marketplace, servicios freelance y plataformas de productos digitales en una sola cuenta de Garna.',
 	},
 	images: {},
 	hero: {
 		badge: 'Acceso anticipado para creadores seleccionados',
-		titleMain: 'Pagos de plataformas globales para creadores, guiados por Garna',
-		titleAccent: 'guiados por Garna',
+		titleMain: 'Cobra desde cualquier plataforma de creadores en un solo lugar',
+		titleAccent: 'en un solo lugar',
 		description:
-			'Recibe pagos de plataformas para creadores, marketplaces de stock, servicios freelance y plataformas de productos digitales en una sola cuenta de Garna. Te guiaremos durante la primera configuración, te ayudaremos a entender qué método de pago encaja con tu plataforma y te acompañaremos en tus primeros retiros',
+			'Recibe ingresos de Marketplace, plataformas y servicios freelance, y gestiona tu saldo y retiros con configuración guiada',
 		cta: 'Contactar al gestor de pagos',
 		accountCta: 'Crear cuenta de Garna',
 	},
@@ -49,6 +49,125 @@ export const forCreatorsEs = {
 			},
 		},
 	},
+	payoutDemo: {
+		cursor: 'Creador',
+		tabs: {
+			platform: {
+				title: 'Pago de plataforma',
+				subtitle: 'Ganancias enviadas',
+			},
+			balance: {
+				title: 'Saldo Garna',
+				subtitle: 'Fondos verificados',
+			},
+			withdraw: {
+				title: 'Retirar fondos',
+				subtitle: 'Elige método de pago',
+			},
+		},
+		platform: {
+			brand: 'marketplace',
+			search: 'Buscar',
+			unlimitedAccess: 'Acceso ilimitado',
+			marketplaceHeading: 'Todo tipo de assets para cualquier proyecto',
+			filters: {
+				allItems: 'Todo',
+			},
+			categories: {
+				videoTemplates: 'Plantillas de video',
+				soundEffects: 'Efectos de sonido',
+				stockPhotos: 'Fotos de stock',
+				royaltyFreeMusic: 'Música sin regalías',
+				graphicTemplates: 'Plantillas gráficas',
+				fonts: 'Fuentes',
+				assets3d: 'Assets 3D',
+				presentationTemplates: 'Plantillas de presentación',
+			},
+			finance: {
+				creatorStudio: 'Estudio del creador',
+				earningsWorkspace: 'Panel de ingresos',
+				juneCycle: 'Ciclo de junio',
+				readyToTransfer: 'Listo para transferir',
+				fromProducts: 'De 3 productos',
+				checked: 'Revisado',
+				sourcesVerified: 'Fuentes verificadas',
+				avgRating: 'Valoración media',
+				acrossPaidProducts: 'En productos pagos',
+			},
+			products: {
+				videoPack: 'Pack de plantillas',
+				videoMeta: '42 ventas / 4.9 rating',
+				musicBundle: 'Bundle musical',
+				musicMeta: '18 licencias / destacado',
+				graphicSet: 'Set de mockups',
+				graphicMeta: '24 ventas / tendencia',
+			},
+			destination: {
+				title: 'Elegir plantilla de pago',
+				garnaBank: 'Cuenta bancaria Garna',
+				debitCard: 'Tarjeta de débito',
+				noTemplate: 'Sin plantilla seleccionada',
+				templateSelected: 'Plantilla de pago seleccionada',
+				sendPayout: 'Enviar pago',
+			},
+		},
+		garna: {
+			nav: {
+				balance: 'Saldo',
+				notifications: 'Notificaciones',
+				support: 'Soporte',
+			},
+			balanceTitle: 'Saldo',
+			internalAccountUsd: 'Cuenta interna USD',
+			accountNumber: 'Número de cuenta',
+			actions: {
+				send: 'Enviar',
+				withdraw: 'Retirar',
+				addFunds: 'Añadir fondos',
+			},
+			templates: {
+				title: 'Plantillas',
+				all: 'Todo',
+				usdCard: 'Tarjeta USD',
+				eurAccount: 'Cuenta EUR',
+			},
+			transactions: {
+				title: 'Transacciones',
+				marketplaceTitle: 'Pago de ganancias de Marketplace',
+				marketplaceSubtitle: 'Acreditado desde plataforma de creadores',
+				danielTitle: 'Transferencia de Daniel Cruz',
+				collaborationPayment: 'Pago por colaboración',
+				usdCardTitle: 'Transferencia a tarjeta USD',
+				confirmed: 'Confirmado',
+			},
+			modal: {
+				date: '12 junio 2026 a las 17:21',
+				title: 'Pago de Marketplace acreditado',
+				transactionDetails: 'Detalles de transacción',
+				amountUsd: 'Importe, USD',
+				creditedAmount: 'Importe acreditado',
+				gotIt: 'Entendido',
+			},
+		},
+		withdraw: {
+			modal: {
+				title: 'Retirar fondos',
+				garnaInternalAccount: 'Cuenta interna Garna',
+				toUsdCard: 'A tarjeta USD',
+				withdrawAll: 'Retirar todo',
+				enterAmount: 'Introduce un importe - calcularemos la comisión',
+				debited: 'Debitado',
+				sent: 'enviado',
+				details: 'Detalles',
+				withdrawButton: 'Retirar',
+			},
+			success: {
+				title: 'Transferencia completada',
+				copy: 'El dinero ya está en la cuenta del destinatario',
+				close: 'Cerrar',
+			},
+		},
+	},
 	creatorTypes: {
 		title: 'Creado para creadores que ganan a nivel global',
 		description:
@@ -64,7 +183,7 @@ export const forCreatorsEs = {
 			},
 			gameAssets: {
 				title: 'Artistas 3D y creadores de assets para juegos',
-				description: 'Para creadores que venden modelos 3D, plugins, texturas, assets de juegos y productos de marketplace',
+				description: 'Para creadores que venden modelos 3D, plugins, texturas, assets de juegos y productos de Marketplace',
 			},
 			freelancers: {
 				title: 'Freelancers y vendedores digitales',
@@ -81,16 +200,31 @@ export const forCreatorsEs = {
 			receive: {
 				title: 'Recibe pagos de plataformas',
 				description: 'Usa los datos de Garna, cuando estén disponibles, para recibir pagos de plataformas internacionales para creadores',
+				footer: {
+					platformPayout: 'Pago de plataforma',
+					garnaDetails: 'Datos de Garna',
+					balanceCredit: 'Abono al saldo',
+				},
 			},
 			setup: {
 				title: 'Obtén configuración guiada',
 				description:
 					'Dinos qué plataforma usas. Revisaremos el método de pago disponible y te guiaremos durante la configuración',
+				footer: {
+					platformRules: 'Reglas de plataforma',
+					payoutRoute: 'Ruta de pago',
+					setupGuidance: 'Guía de configuración',
+				},
 			},
 			withdraw: {
 				title: 'Retira fondos globalmente',
 				description:
 					'Retira tu dinero mediante transferencia bancaria, tarjeta, PayPal, Payoneer, cripto y otras opciones disponibles',
+				footer: {
+					chooseMethod: 'Elegir método',
+					sendRequest: 'Enviar solicitud',
+					receiveFunds: 'Recibir fondos',
+				},
 			},
 		},
 	},
@@ -143,7 +277,7 @@ export const forCreatorsEs = {
 				title: 'Retiro de Envato',
 				summary: 'Resumen del pago',
 				availableNow: 'Disponible ahora',
-				marketplaceFee: 'Fee del marketplace',
+				marketplaceFee: 'Fee de Marketplace',
 				paid: 'Pagado',
 				routeDetails: 'Detalles de ruta',
 				destination: 'Destino',
@@ -220,11 +354,21 @@ export const forCreatorsEs = {
 			disclaimer:
 				'Los porcentajes anteriores se refieren solo al fee de servicio de Garna. Las comisiones de retiro de plataformas, cargos de métodos de pago, costes de FX u otras comisiones de terceros pueden variar y no están incluidos.',
 		},
+		banner: {
+			title: 'Fee reducido para pagos de creadores',
+			description:
+				'El fee estándar de servicio de Garna se aplica después de Early Access o fuera del grupo de lanzamiento seleccionado',
+			terms: 'Condiciones de lanzamiento',
+			accessCaption:
+				'Los creadores seleccionados pueden empezar con un fee reducido de servicio de Garna mientras ayudamos a validar la primera configuración de pago.',
+			disclaimer: 'Solo fee de servicio de Garna. Las comisiones de plataforma, método de pago y FX pueden variar.',
+			cta: 'Contactar al gestor de pagos',
+		},
 	},
 	platforms: {
 		title: 'Plataformas populares\ncon las que podemos ayudar',
 		description:
-			'Empezamos con plataformas populares para creadores, marketplaces de stock y servicios de productos digitales. Algunas plataformas se pueden configurar directamente, mientras que otras pueden requerir acompañamiento manual de Garna o del soporte de la propia plataforma',
+			'Empezamos con plataformas populares para creadores, Marketplace y servicios de productos digitales. Algunas plataformas se pueden configurar directamente, mientras que otras pueden requerir acompañamiento manual de Garna o del soporte de la propia plataforma',
 	},
 	globalInfrastructure: {
 		title: 'Infraestructura global de pagos para equipos y creadores modernos',
@@ -299,7 +443,7 @@ export const forCreatorsEs = {
 			creatorPlatform: {
 				question: '¿Garna es una plataforma para creadores?',
 				answer:
-					'No. Garna no es un marketplace y no vende tu contenido. Garna ayuda a los creadores a recibir pagos de plataformas internacionales y retirar fondos con los métodos disponibles',
+					'No. Garna no es Marketplace y no vende tu contenido. Garna ayuda a los creadores a recibir pagos de plataformas internacionales y retirar fondos con los métodos disponibles',
 			},
 			availability: {
 				question: '¿Está disponible para todos?',

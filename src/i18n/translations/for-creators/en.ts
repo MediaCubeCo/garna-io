@@ -4,15 +4,15 @@ export const forCreatorsEn = {
 	meta: {
 		title: 'Garna for Creators',
 		description:
-			'Receive payouts from creator platforms, stock marketplaces, freelance services and digital product platforms through one Garna account.',
+			'Receive payouts from creator platforms, Marketplace, freelance services and digital product platforms through one Garna account.',
 	},
 	images: {},
 	hero: {
 		badge: 'Early Access for selected creators',
-		titleMain: 'Creator payouts from global platforms, guided by Garna',
-		titleAccent: 'guided by Garna',
-		description:
-			'Receive payouts from creator platforms, stock marketplaces, freelance services and digital product platforms through one Garna account. We will guide you through the first setup, help you understand which payout method fits your platform, and support you during your first withdrawals',
+		titleMain: 'Get paid from every creator platform in one place',
+		titleAccent: 'in one place',
+	description:
+			'Receive income from Marketplace, platforms, and freelance services, then manage your balance and withdrawals with guided setup',
 		cta: 'Contact Payout Manager',
 		accountCta: 'Create Garna Account',
 	},
@@ -49,6 +49,125 @@ export const forCreatorsEn = {
 			},
 		},
 	},
+	payoutDemo: {
+		cursor: 'Creator',
+		tabs: {
+			platform: {
+				title: 'Platform payout',
+				subtitle: 'Creator earnings are sent',
+			},
+			balance: {
+				title: 'Garna balance',
+				subtitle: 'Funds arrive verified',
+			},
+			withdraw: {
+				title: 'Withdraw funds',
+				subtitle: 'Choose payout method',
+			},
+		},
+		platform: {
+			brand: 'marketplace',
+			search: 'Search',
+			unlimitedAccess: 'Unlimited Access',
+			marketplaceHeading: 'Every type of asset, for any creator project',
+			filters: {
+				allItems: 'All items',
+			},
+			categories: {
+				videoTemplates: 'Video Templates',
+				soundEffects: 'Sound Effects',
+				stockPhotos: 'Stock Photos',
+				royaltyFreeMusic: 'Royalty-Free Music',
+				graphicTemplates: 'Graphic Templates',
+				fonts: 'Fonts',
+				assets3d: '3D Assets',
+				presentationTemplates: 'Presentation Templates',
+			},
+			finance: {
+				creatorStudio: 'Creator studio',
+				earningsWorkspace: 'Earnings workspace',
+				juneCycle: 'June cycle',
+				readyToTransfer: 'Ready to transfer',
+				fromProducts: 'From 3 creator products',
+				checked: 'Checked',
+				sourcesVerified: 'Sources verified',
+				avgRating: 'Avg rating',
+				acrossPaidProducts: 'Across paid products',
+			},
+			products: {
+				videoPack: 'Video template pack',
+				videoMeta: '42 sales / 4.9 rating',
+				musicBundle: 'Music creator bundle',
+				musicMeta: '18 licenses / featured',
+				graphicSet: 'Graphic mockup set',
+				graphicMeta: '24 sales / trending',
+			},
+			destination: {
+				title: 'Choose payout template',
+				garnaBank: 'Garna bank account',
+				debitCard: 'Debit card',
+				noTemplate: 'No template selected yet',
+				templateSelected: 'Payout template selected',
+				sendPayout: 'Send payout',
+			},
+		},
+		garna: {
+			nav: {
+				balance: 'Balance',
+				notifications: 'Notifications',
+				support: 'Support',
+			},
+			balanceTitle: 'Balance',
+			internalAccountUsd: 'Internal account USD',
+			accountNumber: 'Account number',
+			actions: {
+				send: 'Send',
+				withdraw: 'Withdraw',
+				addFunds: 'Add funds',
+			},
+			templates: {
+				title: 'Templates',
+				all: 'All',
+				usdCard: 'USD card',
+				eurAccount: 'EUR account',
+			},
+			transactions: {
+				title: 'Transactions',
+				marketplaceTitle: 'Marketplace earnings payout',
+				marketplaceSubtitle: 'Credited from creator platform',
+				danielTitle: 'Transfer from Daniel Cruz',
+				collaborationPayment: 'Creator collaboration payment',
+				usdCardTitle: 'Transfer to USD card',
+				confirmed: 'Confirmed',
+			},
+			modal: {
+				date: '12 June 2026 at 17:21',
+				title: 'Marketplace payout credited',
+				transactionDetails: 'Transaction details',
+				amountUsd: 'Amount, USD',
+				creditedAmount: 'Credited amount',
+				gotIt: 'Got it',
+			},
+		},
+		withdraw: {
+			modal: {
+				title: 'Withdraw funds',
+				garnaInternalAccount: 'Garna internal account',
+				toUsdCard: 'To USD card',
+				withdrawAll: 'Withdraw all',
+				enterAmount: 'Enter an amount - we will calculate the fee',
+				debited: 'Debited',
+				sent: 'sent',
+				details: 'Details',
+				withdrawButton: 'Withdraw',
+			},
+			success: {
+				title: 'Transfer completed',
+				copy: "The money is already in the recipient's account",
+				close: 'Close',
+			},
+		},
+	},
 	creatorTypes: {
 		title: 'Built for creators who earn globally',
 		description:
@@ -64,7 +183,7 @@ export const forCreatorsEn = {
 			},
 			gameAssets: {
 				title: '3D artists & game asset creators',
-				description: 'For creators selling 3D models, plugins, textures, game assets and marketplace products',
+				description: 'For creators selling 3D models, plugins, textures, game assets and Marketplace products',
 			},
 			freelancers: {
 				title: 'Freelancers & digital sellers',
@@ -81,16 +200,31 @@ export const forCreatorsEn = {
 			receive: {
 				title: 'Receive platform payouts',
 				description: 'Use Garna details where supported to receive payments from international creator platforms',
+				footer: {
+					platformPayout: 'Platform payout',
+					garnaDetails: 'Garna details',
+					balanceCredit: 'Balance credit',
+				},
 			},
 			setup: {
 				title: 'Get guided setup',
 				description:
 					'Tell us which platform you use. We will check the available payout method and guide you through setup',
+				footer: {
+					platformRules: 'Platform rules',
+					payoutRoute: 'Payout route',
+					setupGuidance: 'Setup guidance',
+				},
 			},
 			withdraw: {
 				title: 'Withdraw globally',
 				description:
 					'Withdraw your money using bank transfer, card, PayPal, Payoneer, crypto and other supported options',
+				footer: {
+					chooseMethod: 'Choose method',
+					sendRequest: 'Send request',
+					receiveFunds: 'Receive funds',
+				},
 			},
 		},
 	},
@@ -221,11 +355,20 @@ export const forCreatorsEn = {
 			disclaimer:
 				"The percentages above refer only to Garna's service fee. Platform withdrawal fees, payment method charges, FX costs or other third-party fees may vary and are not included.",
 		},
+		banner: {
+			title: 'Reduced fee for creator payouts',
+			description: 'Standard Garna service fee applies after Early Access or outside the selected launch group',
+			terms: 'Launch terms',
+			accessCaption:
+				'Selected creators can start with a reduced Garna service fee while we help validate the first payout setup.',
+			disclaimer: 'Garna service fee only. Platform, payment method and FX fees may vary.',
+			cta: 'Contact Payout Manager',
+		},
 	},
 	platforms: {
 		title: 'Popular platforms\nwe can help with',
 		description:
-			"We're starting with popular creator platforms, stock marketplaces and digital product services. Some platforms can be configured directly, while others may require manual guidance from Garna or the platform's own support team",
+			"We're starting with popular creator platforms, Marketplace and digital product services. Some platforms can be configured directly, while others may require manual guidance from Garna or the platform's own support team",
 	},
 	globalInfrastructure: {
 		title: 'Global payout infrastructure for modern teams and creators',
@@ -300,7 +443,7 @@ export const forCreatorsEn = {
 			creatorPlatform: {
 				question: 'Is Garna a creator platform?',
 				answer:
-					'No. Garna is not a marketplace and does not sell your content. Garna helps creators receive payouts from international platforms and withdraw funds using available payout methods',
+					'No. Garna is not a Marketplace and does not sell your content. Garna helps creators receive payouts from international platforms and withdraw funds using available payout methods',
 			},
 			availability: {
 				question: 'Is this available for everyone?',
@@ -360,7 +503,7 @@ export const forCreatorsEn = {
 			q1: {
 				question: 'Is Garna a creator platform?',
 				answer:
-					'No. Garna is not a marketplace and does not sell your content. Garna helps creators receive payouts from international platforms and withdraw funds using available payout methods',
+					'No. Garna is not a Marketplace and does not sell your content. Garna helps creators receive payouts from international platforms and withdraw funds using available payout methods',
 			},
 			q2: {
 				question: 'Is this available for everyone?',

@@ -25,9 +25,9 @@ const forCreatorsHero = {
 	},
 	titleClass:
 		'garna-hero-title-gradient font-manrope text-5xl font-normal leading-[1.14] tracking-tight pb-[0.08em] md:text-[64px] md:leading-[1.12]',
-	title: [{ text: 'Creator payouts from global platforms, guided by Garna', translateKey: 'hero.titleMain' }],
+	title: [{ text: 'Get paid from every creator platform in one place', translateKey: 'hero.titleMain' }],
 	description:
-		'Receive payouts from creator platforms, stock marketplaces, freelance services and digital product platforms through one Garna account. We will guide you through the first setup, help you understand which payout method fits your platform, and support you during your first withdrawals',
+		'Receive income from marketplaces, platforms, and freelance services, then manage your balance and withdrawals with guided setup',
 	descriptionTranslateKey: 'hero.description',
 	cta: {
 		...pageHeroes.eor.cta,
@@ -36,7 +36,7 @@ const forCreatorsHero = {
 		href: 'https://app.garna.io/auth/sign-up',
 		kind: 'signup',
 		trackingCta: 'for_creators_hero_signup',
-		wrapperClass: 'creator-hero-actions mt-9 mb-14 flex flex-col items-center justify-center gap-3 sm:flex-row',
+		wrapperClass: 'creator-hero-actions mt-9 mb-14 flex flex-wrap items-center justify-center gap-3',
 	},
 	ctaSecondary: undefined,
 };
@@ -103,7 +103,7 @@ const forCreatorsFaqItems = [
 	<HeroSection {...forCreatorsHero}>
 		<div slot="cta-extra" class="creator-hero-contact-card" aria-label="Contact payout manager">
 			<div class="creator-hero-contact-copy">
-				<strong>Contact payout manager</strong>
+				<strong data-translate="hero.cta">Contact payout manager</strong>
 			</div>
 			<div class="creator-hero-contact-links">
 				<a href="https://t.me/likelyiam" aria-label="Telegram">
@@ -134,8 +134,8 @@ const forCreatorsFaqItems = [
 									</svg>
 								</span>
 								<span class="creator-payout-tab-copy">
-									<strong>Platform payout</strong>
-									<small>Creator earnings are sent</small>
+									<strong data-translate="payoutDemo.tabs.platform.title">Platform payout</strong>
+									<small data-translate="payoutDemo.tabs.platform.subtitle">Creator earnings are sent</small>
 								</span>
 								<i aria-hidden="true"></i>
 							</button>
@@ -147,8 +147,8 @@ const forCreatorsFaqItems = [
 									</svg>
 								</span>
 								<span class="creator-payout-tab-copy">
-									<strong>Garna balance</strong>
-									<small>Funds arrive verified</small>
+									<strong data-translate="payoutDemo.tabs.balance.title">Garna balance</strong>
+									<small data-translate="payoutDemo.tabs.balance.subtitle">Funds arrive verified</small>
 								</span>
 								<i aria-hidden="true"></i>
 							</button>
@@ -164,8 +164,8 @@ const forCreatorsFaqItems = [
 									</svg>
 								</span>
 								<span class="creator-payout-tab-copy">
-									<strong>Withdraw funds</strong>
-									<small>Choose payout method</small>
+									<strong data-translate="payoutDemo.tabs.withdraw.title">Withdraw funds</strong>
+									<small data-translate="payoutDemo.tabs.withdraw.subtitle">Choose payout method</small>
 								</span>
 								<i aria-hidden="true"></i>
 							</button>
@@ -185,7 +185,7 @@ const forCreatorsFaqItems = [
 										</div>
 										<div class="creator-platform-search">
 											<span class="creator-platform-search-filter">
-												All items
+												<span data-translate="payoutDemo.platform.filters.allItems">All items</span>
 												<svg viewBox="0 0 16 16" aria-hidden="true">
 													<path d="m4 6 4 4 4-4"></path>
 												</svg>
@@ -195,9 +195,9 @@ const forCreatorsFaqItems = [
 												<circle cx="11" cy="11" r="7"></circle>
 												<path d="m20 20-3.5-3.5"></path>
 											</svg>
-											<strong>Search</strong>
+											<strong data-translate="payoutDemo.platform.search">Search</strong>
 										</div>
-										<button type="button">Unlimited Access</button>
+										<button type="button" data-translate="payoutDemo.platform.unlimitedAccess">Unlimited Access</button>
 										<span class="creator-platform-avatar" aria-label="Account">
 											<img src="/images/creator-avatar-headphones.jpg" alt="" loading="lazy" />
 										</span>
@@ -205,61 +205,61 @@ const forCreatorsFaqItems = [
 									<div class="creator-platform-content">
 										<div class="creator-platform-marketplace">
 											<div class="creator-platform-marketplace-head">
-												<strong>Every type of asset, for any creator project</strong>
+												<strong data-translate="payoutDemo.platform.marketplaceHeading">Every type of asset, for any creator project</strong>
 											</div>
 											<div class="creator-platform-category-grid" aria-hidden="true">
 												<article class="creator-platform-category-card creator-platform-category-card--wide">
 													<div>
-														<strong>Video Templates</strong>
+														<strong data-translate="payoutDemo.platform.categories.videoTemplates">Video Templates</strong>
 														<span>150,000+</span>
 													</div>
 													<img src="/images/creator-video-templates-cover.jpg" alt="" loading="lazy" />
 												</article>
 												<article class="creator-platform-category-card creator-platform-category-card--first-stack">
 													<div>
-														<strong>Sound Effects</strong>
+														<strong data-translate="payoutDemo.platform.categories.soundEffects">Sound Effects</strong>
 														<span>940,000+</span>
 													</div>
 													<img src="/images/creator-sound-effects-cover.jpg" alt="" loading="lazy" />
 												</article>
 												<article class="creator-platform-category-card">
 													<div>
-														<strong>Stock Photos</strong>
+														<strong data-translate="payoutDemo.platform.categories.stockPhotos">Stock Photos</strong>
 														<span>16.1M+</span>
 													</div>
 													<img src="/images/creator-stock-photos-cover.jpg" alt="" loading="lazy" />
 												</article>
 												<article class="creator-platform-category-card creator-platform-category-card--dark">
 													<div>
-														<strong>Royalty-Free Music</strong>
+														<strong data-translate="payoutDemo.platform.categories.royaltyFreeMusic">Royalty-Free Music</strong>
 														<span>340,000+</span>
 													</div>
 													<img src="/images/creator-music-cover.jpg" alt="" loading="lazy" />
 												</article>
 												<article class="creator-platform-category-card">
 													<div>
-														<strong>Graphic Templates</strong>
+														<strong data-translate="payoutDemo.platform.categories.graphicTemplates">Graphic Templates</strong>
 														<span>430,000+</span>
 													</div>
 													<img src="/images/creator-graphic-templates-cover.jpg" alt="" loading="lazy" />
 												</article>
 												<article class="creator-platform-category-card">
 													<div>
-														<strong>Fonts</strong>
+														<strong data-translate="payoutDemo.platform.categories.fonts">Fonts</strong>
 														<span>80,000+</span>
 													</div>
 													<img src="/images/creator-fonts-cover.avif" alt="" loading="lazy" />
 												</article>
 												<article class="creator-platform-category-card creator-platform-category-card--accent">
 													<div>
-														<strong>3D Assets</strong>
+														<strong data-translate="payoutDemo.platform.categories.assets3d">3D Assets</strong>
 														<span>380,000+</span>
 													</div>
 													<img src="/images/creator-3d-assets-cover.jpg" alt="" loading="lazy" />
 												</article>
 												<article class="creator-platform-category-card">
 													<div>
-														<strong>Presentation Templates</strong>
+														<strong data-translate="payoutDemo.platform.categories.presentationTemplates">Presentation Templates</strong>
 														<span>220,000+</span>
 													</div>
 													<img src="/images/creator-presentation-templates-cover.jpg" alt="" loading="lazy" />
@@ -269,76 +269,75 @@ const forCreatorsFaqItems = [
 										<div class="creator-platform-finance" aria-hidden="true">
 											<div class="creator-platform-finance-head">
 												<div>
-													<span>Creator studio</span>
-													<strong>Earnings workspace</strong>
+													<span data-translate="payoutDemo.platform.finance.creatorStudio">Creator studio</span>
+													<strong data-translate="payoutDemo.platform.finance.earningsWorkspace">Earnings workspace</strong>
 												</div>
-												<b>June cycle</b>
+												<b data-translate="payoutDemo.platform.finance.juneCycle">June cycle</b>
 											</div>
 											<div class="creator-platform-finance-grid">
 												<article class="creator-platform-finance-balance">
-													<span>Ready to transfer</span>
-													<strong>$3,140.00</strong>
-													<small>From 3 creator products</small>
+													<span data-translate="payoutDemo.platform.finance.readyToTransfer">Ready to transfer</span>
+													<strong>$1,720.00</strong>
+													<small data-translate="payoutDemo.platform.finance.fromProducts">From 3 creator products</small>
 												</article>
 												<article>
-													<span>Checked</span>
+													<span data-translate="payoutDemo.platform.finance.checked">Checked</span>
 													<strong>3/3</strong>
-													<small>Sources verified</small>
+													<small data-translate="payoutDemo.platform.finance.sourcesVerified">Sources verified</small>
 												</article>
 												<article>
-													<span>Avg rating</span>
+													<span data-translate="payoutDemo.platform.finance.avgRating">Avg rating</span>
 													<strong>4.8</strong>
-													<small>Across paid products</small>
+													<small data-translate="payoutDemo.platform.finance.acrossPaidProducts">Across paid products</small>
 												</article>
 											</div>
 											<div class="creator-platform-finance-table">
 												<div>
 													<img src="/images/creator-video-templates-cover.jpg" alt="" loading="lazy" />
-													<span>Video template pack</span>
-													<small>42 sales / 4.9 rating</small>
-													<strong>$1,420.00</strong>
+													<span data-translate="payoutDemo.platform.products.videoPack">Video template pack</span>
+													<small data-translate="payoutDemo.platform.products.videoMeta">42 sales / 4.9 rating</small>
+													<strong>$860.00</strong>
 												</div>
 												<div>
 													<img src="/images/creator-music-cover.jpg" alt="" loading="lazy" />
-													<span>Music creator bundle</span>
-													<small>18 licenses / featured</small>
-													<strong>$940.00</strong>
+													<span data-translate="payoutDemo.platform.products.musicBundle">Music creator bundle</span>
+													<small data-translate="payoutDemo.platform.products.musicMeta">18 licenses / featured</small>
+													<strong>$520.00</strong>
 												</div>
 												<div>
 													<img src="/images/creator-graphic-templates-cover.jpg" alt="" loading="lazy" />
-													<span>Graphic mockup set</span>
-													<small>24 sales / trending</small>
-													<strong>$780.00</strong>
+													<span data-translate="payoutDemo.platform.products.graphicSet">Graphic mockup set</span>
+													<small data-translate="payoutDemo.platform.products.graphicMeta">24 sales / trending</small>
+													<strong>$340.00</strong>
 												</div>
 											</div>
 											<div class="creator-platform-destination">
 												<div>
-													<strong>Choose how to receive earnings</strong>
-													<small>Select a route, then continue payout</small>
+													<strong data-translate="payoutDemo.platform.destination.title">Choose payout template</strong>
 												</div>
 												<div class="creator-platform-destination-options" aria-label="Payout route options">
 													<button class="creator-platform-destination-garna" type="button">
 														<i aria-hidden="true"></i>
-														<span>Garna</span>
-														<small>Best route</small>
+														<span data-translate="payoutDemo.platform.destination.garnaBank">Garna bank account</span>
+														<small>•••• •••• •••• 9821</small>
 													</button>
 													<button class="creator-platform-destination-paypal" type="button">
 														<i aria-hidden="true"></i>
 														<span>PayPal</span>
-														<small>Extra fees</small>
+														<small>mia@creator.co</small>
 													</button>
 													<button class="creator-platform-destination-bank" type="button">
 														<i aria-hidden="true"></i>
-														<span>Bank</span>
-														<small>3-5 days</small>
+														<span data-translate="payoutDemo.platform.destination.debitCard">Debit card</span>
+														<small>•••• 4482</small>
 													</button>
 												</div>
 												<div class="creator-platform-destination-action">
 													<small class="creator-platform-destination-status">
-														<span>No destination selected yet</span>
-														<span>Garna selected. Continue payout</span>
+														<span data-translate="payoutDemo.platform.destination.noTemplate">No template selected yet</span>
+														<span data-translate="payoutDemo.platform.destination.templateSelected">Payout template selected</span>
 													</small>
-													<button class="creator-platform-send-button" type="button" disabled>Continue payout</button>
+													<button class="creator-platform-send-button" type="button" disabled data-translate="payoutDemo.platform.destination.sendPayout">Send payout</button>
 												</div>
 											</div>
 										</div>
@@ -347,37 +346,517 @@ const forCreatorsFaqItems = [
 										<svg viewBox="0 0 28 28">
 											<path d="M5 3.5 21.5 14 14 15.4l-3.4 7.1L5 3.5Z"></path>
 										</svg>
-										<span>Creator</span>
+										<span data-translate="payoutDemo.cursor">Creator</span>
 									</div>
 								</div>
 							</section>
 
 							<section class="creator-payout-screen creator-payout-screen--garna" data-demo-screen="1" role="tabpanel" hidden>
-								<div class="creator-payout-window creator-payout-window--garna">
-									<header>
-										<div>
-											<img src="/garna_logo.svg" alt="Garna" loading="lazy" />
-											<span>Creator balance</span>
+								<div class="creator-payout-window creator-payout-window--garna creator-payout-window--garna-before">
+									<div class="creator-garna-dashboard" aria-label="Mia's Garna balance dashboard">
+										<aside class="creator-garna-sidebar" aria-hidden="true">
+											<img src="/garna_logo.svg" alt="Garna" class="creator-garna-logo" loading="lazy" />
+											<nav class="creator-garna-nav">
+												<span class="is-active">
+													<svg class="creator-garna-nav-icon" viewBox="-1 -1 26 26" aria-hidden="true">
+														<circle cx="12" cy="12" r="10"></circle>
+														<path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+														<path d="M12 18V6"></path>
+													</svg>
+													<em data-translate="payoutDemo.garna.nav.balance">Balance</em>
+												</span>
+												<span>
+													<svg class="creator-garna-nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+														<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+														<path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+													</svg>
+													<em data-translate="payoutDemo.garna.nav.notifications">Notifications</em>
+													<b class="creator-garna-badge">
+														<i class="creator-garna-badge-number creator-garna-badge-number--before">2</i>
+														<i class="creator-garna-badge-number creator-garna-badge-number--after">3</i>
+													</b>
+												</span>
+												<span>
+													<svg class="creator-garna-nav-icon creator-garna-nav-icon--support" viewBox="-2 -3 28 29" aria-hidden="true">
+														<path d="M3 14v3a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2Z"></path>
+														<path d="M15 14v3a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2Z"></path>
+														<path d="M21 14V9a9 9 0 1 0-18 0v5"></path>
+													</svg>
+													<em data-translate="payoutDemo.garna.nav.support">Support</em>
+												</span>
+											</nav>
+										</aside>
+										<div class="creator-garna-main">
+											<header class="creator-garna-topbar">
+												<div>
+													<strong data-translate="payoutDemo.garna.balanceTitle">Balance</strong>
+												</div>
+												<div class="creator-garna-profile">
+													<img src="/images/creator-avatar-headphones.jpg" alt="" loading="lazy" />
+												</div>
+											</header>
+
+											<section class="creator-garna-balance-card">
+												<div class="creator-garna-card-head">
+													<div>
+														<span data-translate="payoutDemo.garna.internalAccountUsd">Internal account USD</span>
+														<strong class="creator-garna-balance-value creator-garna-balance-value--before" data-creator-garna-balance>$2,840.00</strong>
+														<strong class="creator-garna-balance-value creator-garna-balance-value--after">$4,560.00</strong>
+													</div>
+													<div class="creator-garna-currency-switch" aria-hidden="true">
+														<b>USD</b>
+														<span>EUR</span>
+													</div>
+												</div>
+												<div class="creator-garna-account-row">
+													<span data-translate="payoutDemo.garna.accountNumber">Account number</span>
+													<strong>4461 9571 3840 9821</strong>
+												</div>
+												<div class="creator-garna-actions">
+													<button type="button">
+														<svg class="creator-garna-action-icon" viewBox="0 0 24 24" aria-hidden="true">
+															<path d="m18 14 4 4-4 4"></path>
+															<path d="m18 2 4 4-4 4"></path>
+															<path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"></path>
+															<path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"></path>
+															<path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"></path>
+														</svg>
+														<span data-translate="payoutDemo.garna.actions.send">Send</span>
+													</button>
+													<button type="button">
+														<svg class="creator-garna-action-icon" viewBox="0 0 24 24" aria-hidden="true">
+															<path d="m5 12 7-7 7 7"></path>
+															<path d="M12 19V5"></path>
+														</svg>
+														<span data-translate="payoutDemo.garna.actions.withdraw">Withdraw</span>
+													</button>
+													<button type="button">
+														<svg class="creator-garna-action-icon" viewBox="0 0 24 24" aria-hidden="true">
+															<path d="M5 12h14"></path>
+															<path d="M12 5v14"></path>
+														</svg>
+														<span data-translate="payoutDemo.garna.actions.addFunds">Add funds</span>
+													</button>
+												</div>
+											</section>
+
+											<section class="creator-garna-templates" aria-label="Garna templates">
+												<div class="creator-garna-section-head">
+													<strong data-translate="payoutDemo.garna.templates.title">Templates</strong>
+													<span data-translate="payoutDemo.garna.templates.all">All</span>
+												</div>
+												<div class="creator-garna-template-grid">
+													<article>
+														<span class="creator-garna-template-media creator-garna-template-media--card" aria-hidden="true">
+															<img src="/images/usd-card-icon.svg" alt="" loading="lazy" />
+														</span>
+														<strong data-translate="payoutDemo.garna.templates.usdCard">USD card</strong>
+														<small>5144 21** **** 0082</small>
+													</article>
+													<article>
+														<span class="creator-garna-template-media creator-garna-template-media--bank" aria-hidden="true">
+															<img src="/images/regional-eur-filled.svg" alt="" loading="lazy" />
+														</span>
+														<strong data-translate="payoutDemo.garna.templates.eurAccount">EUR account</strong>
+														<small>DE89 3704 0044...</small>
+													</article>
+													<article>
+														<span class="creator-garna-template-media creator-garna-template-media--avatar" aria-hidden="true">
+															<img src="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg" alt="" loading="lazy" />
+														</span>
+														<strong>Nina Volkova</strong>
+														<small>4462 9874 2654 7767</small>
+													</article>
+													<article>
+														<span class="creator-garna-template-media creator-garna-template-media--avatar" aria-hidden="true">
+															<img src="/pages/payroll-solution-new/assets/08-photo-1534528741775-53994a69daeb.jpg" alt="" loading="lazy" />
+														</span>
+														<strong>Sofia Reed</strong>
+														<small>4457 9712 5713 3604</small>
+													</article>
+												</div>
+											</section>
+
+											<section class="creator-garna-transactions" aria-label="Recent transactions">
+												<div class="creator-garna-section-head">
+													<strong data-translate="payoutDemo.garna.transactions.title">Transactions</strong>
+												</div>
+												<div class="creator-garna-transaction-list">
+													<article class="creator-garna-transaction-incoming creator-garna-transaction-row creator-garna-transaction-row--before creator-garna-transaction-row--daniel-before">
+														<span class="creator-garna-transaction-icon creator-garna-transaction-icon--avatar" aria-hidden="true">
+															<img src="/pages/payroll-small-business/assets/testimonial-michael-v2.jpg" alt="" loading="lazy" />
+														</span>
+														<div class="creator-garna-transaction-copy">
+															<strong data-translate="payoutDemo.garna.transactions.danielTitle">Transfer from Daniel Cruz</strong>
+															<span data-translate="payoutDemo.garna.transactions.collaborationPayment">Creator collaboration payment</span>
+														</div>
+														<div class="creator-garna-transaction-meta">
+															<b>+$1,120.00</b>
+															<span>10.06.2026, 14:36</span>
+														</div>
+													</article>
+													<article class="creator-garna-transaction-row creator-garna-transaction-row--before creator-garna-transaction-row--card-before">
+														<span class="creator-garna-transaction-icon creator-garna-transaction-icon--card" aria-hidden="true">
+															<img src="/images/usd-card-icon.svg" alt="" loading="lazy" />
+														</span>
+														<div class="creator-garna-transaction-copy">
+															<strong data-translate="payoutDemo.garna.transactions.usdCardTitle">Transfer to USD card</strong>
+															<small data-translate="payoutDemo.garna.transactions.confirmed">Confirmed</small>
+														</div>
+														<div class="creator-garna-transaction-meta">
+															<b>-$600.00</b>
+															<span>12.06.2026, 18:04</span>
+														</div>
+													</article>
+													<article class="creator-garna-transaction-incoming creator-garna-transaction-row creator-garna-transaction-row--after creator-garna-transaction-row--marketplace-after">
+														<span class="creator-garna-transaction-icon creator-garna-transaction-icon--marketplace" aria-hidden="true">
+															<svg class="creator-garna-marketplace-star" viewBox="0 0 24 24">
+																<path d="m12 3.8 2.35 4.75 5.25.76-3.8 3.7.9 5.22L12 15.76l-4.7 2.47.9-5.22-3.8-3.7 5.25-.76L12 3.8Z"></path>
+															</svg>
+														</span>
+														<div class="creator-garna-transaction-copy">
+															<strong data-translate="payoutDemo.garna.transactions.marketplaceTitle">Marketplace earnings payout</strong>
+															<span data-translate="payoutDemo.garna.transactions.marketplaceSubtitle">Credited from creator platform</span>
+														</div>
+														<div class="creator-garna-transaction-meta">
+															<b>+$1,720.00</b>
+															<span>12.06.2026, 17:21</span>
+														</div>
+													</article>
+													<article class="creator-garna-transaction-incoming creator-garna-transaction-row creator-garna-transaction-row--after creator-garna-transaction-row--daniel-after">
+														<span class="creator-garna-transaction-icon creator-garna-transaction-icon--avatar" aria-hidden="true">
+															<img src="/pages/payroll-small-business/assets/testimonial-michael-v2.jpg" alt="" loading="lazy" />
+														</span>
+														<div class="creator-garna-transaction-copy">
+															<strong data-translate="payoutDemo.garna.transactions.danielTitle">Transfer from Daniel Cruz</strong>
+															<span data-translate="payoutDemo.garna.transactions.collaborationPayment">Creator collaboration payment</span>
+														</div>
+														<div class="creator-garna-transaction-meta">
+															<b>+$1,120.00</b>
+															<span>10.06.2026, 14:36</span>
+														</div>
+													</article>
+												</div>
+											</section>
 										</div>
-										<b>Verified</b>
-									</header>
-									<div class="creator-payout-balance">
-										<span>Available now</span>
-										<strong>$2,840.00</strong>
 									</div>
-									<div class="creator-payout-balance-card">
-										<span>Account</span>
-										<strong>4461 **** **** 9821</strong>
+									<div class="creator-garna-live-cursor" aria-hidden="true">
+										<svg viewBox="0 0 28 28">
+											<path d="M5 3.5 21.5 14 14 15.4l-3.4 7.1L5 3.5Z"></path>
+										</svg>
+										<span data-translate="payoutDemo.cursor">Creator</span>
 									</div>
-									<div class="creator-payout-checklist">
-										<span><i></i>Compliance checked</span>
-										<span><i></i>Fee reduced to 1.5%</span>
-										<span><i></i>Withdrawal methods ready</span>
+									<div class="creator-garna-modal-backdrop" aria-hidden="true"></div>
+									<div class="creator-garna-payout-modal" role="dialog" aria-label="Marketplace payout credited">
+										<button class="creator-garna-modal-close" type="button" aria-label="Close payout details">
+											<svg viewBox="0 0 24 24" aria-hidden="true">
+												<path d="M18 6 6 18"></path>
+												<path d="m6 6 12 12"></path>
+											</svg>
+										</button>
+										<span class="creator-garna-modal-date" data-translate="payoutDemo.garna.modal.date">12 June 2026 at 17:21</span>
+										<strong class="creator-garna-modal-title" data-translate="payoutDemo.garna.modal.title">Marketplace payout credited</strong>
+										<b class="creator-garna-modal-amount">$1,720.00</b>
+										<div class="creator-garna-modal-table" aria-label="Payout details">
+											<div class="creator-garna-modal-table-head">
+												<strong data-translate="payoutDemo.garna.modal.transactionDetails">Transaction details</strong>
+												<strong data-translate="payoutDemo.garna.modal.amountUsd">Amount, USD</strong>
+											</div>
+											<div class="creator-garna-modal-table-row">
+												<span class="creator-garna-modal-info" aria-hidden="true">
+													<svg viewBox="0 0 24 24">
+														<path d="M12 17v-6"></path>
+														<path d="M12 7h.01"></path>
+													</svg>
+												</span>
+												<span data-translate="payoutDemo.garna.transactions.marketplaceTitle">Marketplace earnings payout</span>
+												<b>1,720.00</b>
+											</div>
+											<div class="creator-garna-modal-total">
+												<strong data-translate="payoutDemo.garna.modal.creditedAmount">Credited amount</strong>
+												<b>1,720.00 USD</b>
+											</div>
+										</div>
+										<button class="creator-garna-modal-ok" type="button" data-translate="payoutDemo.garna.modal.gotIt">Got it</button>
 									</div>
 								</div>
 							</section>
 
-							<section class="creator-payout-screen creator-payout-screen--withdraw" data-demo-screen="2" role="tabpanel" hidden>
+							<section class="creator-payout-screen creator-payout-screen--garna" data-demo-screen="2" role="tabpanel" hidden>
+								<div class="creator-payout-window creator-payout-window--garna creator-payout-window--withdraw-garna-start">
+									<div class="creator-garna-dashboard" aria-label="Mia's Garna balance dashboard">
+										<aside class="creator-garna-sidebar" aria-hidden="true">
+											<img src="/garna_logo.svg" alt="Garna" class="creator-garna-logo" loading="lazy" />
+											<nav class="creator-garna-nav">
+												<span class="is-active">
+													<svg class="creator-garna-nav-icon" viewBox="-1 -1 26 26" aria-hidden="true">
+														<circle cx="12" cy="12" r="10"></circle>
+														<path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+														<path d="M12 18V6"></path>
+													</svg>
+													<em data-translate="payoutDemo.garna.nav.balance">Balance</em>
+												</span>
+												<span>
+													<svg class="creator-garna-nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+														<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+														<path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+													</svg>
+													<em data-translate="payoutDemo.garna.nav.notifications">Notifications</em>
+													<b class="creator-garna-badge creator-garna-badge--static">3</b>
+												</span>
+												<span>
+													<svg class="creator-garna-nav-icon creator-garna-nav-icon--support" viewBox="-2 -3 28 29" aria-hidden="true">
+														<path d="M3 14v3a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2Z"></path>
+														<path d="M15 14v3a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2Z"></path>
+														<path d="M21 14V9a9 9 0 1 0-18 0v5"></path>
+													</svg>
+													<em data-translate="payoutDemo.garna.nav.support">Support</em>
+												</span>
+											</nav>
+										</aside>
+										<div class="creator-garna-main">
+											<header class="creator-garna-topbar">
+												<div>
+													<strong data-translate="payoutDemo.garna.balanceTitle">Balance</strong>
+												</div>
+												<div class="creator-garna-profile">
+													<img src="/images/creator-avatar-headphones.jpg" alt="" loading="lazy" />
+												</div>
+											</header>
+											<section class="creator-garna-balance-card">
+												<div class="creator-garna-card-head">
+													<div>
+														<span data-translate="payoutDemo.garna.internalAccountUsd">Internal account USD</span>
+														<strong class="creator-garna-balance-value creator-garna-balance-value--before">$4,560.00</strong>
+														<strong class="creator-garna-balance-value creator-garna-balance-value--after">$3,560.00</strong>
+													</div>
+													<div class="creator-garna-currency-switch" aria-hidden="true">
+														<b>USD</b>
+														<span>EUR</span>
+													</div>
+												</div>
+												<div class="creator-garna-account-row">
+													<span data-translate="payoutDemo.garna.accountNumber">Account number</span>
+													<strong>4461 9571 3840 9821</strong>
+												</div>
+												<div class="creator-garna-actions">
+													<button type="button">
+														<svg class="creator-garna-action-icon" viewBox="0 0 24 24" aria-hidden="true">
+															<path d="m18 14 4 4-4 4"></path>
+															<path d="m18 2 4 4-4 4"></path>
+															<path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"></path>
+															<path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"></path>
+															<path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"></path>
+														</svg>
+														<span data-translate="payoutDemo.garna.actions.send">Send</span>
+													</button>
+													<button type="button">
+														<svg class="creator-garna-action-icon" viewBox="0 0 24 24" aria-hidden="true">
+															<path d="m5 12 7-7 7 7"></path>
+															<path d="M12 19V5"></path>
+														</svg>
+														<span data-translate="payoutDemo.garna.actions.withdraw">Withdraw</span>
+													</button>
+													<button type="button">
+														<svg class="creator-garna-action-icon" viewBox="0 0 24 24" aria-hidden="true">
+															<path d="M5 12h14"></path>
+															<path d="M12 5v14"></path>
+														</svg>
+														<span data-translate="payoutDemo.garna.actions.addFunds">Add funds</span>
+													</button>
+												</div>
+											</section>
+											<section class="creator-garna-templates" aria-label="Garna templates">
+												<div class="creator-garna-section-head">
+													<strong data-translate="payoutDemo.garna.templates.title">Templates</strong>
+													<span data-translate="payoutDemo.garna.templates.all">All</span>
+												</div>
+												<div class="creator-garna-template-grid">
+													<article>
+														<span class="creator-garna-template-media creator-garna-template-media--card" aria-hidden="true">
+															<img src="/images/usd-card-icon.svg" alt="" loading="lazy" />
+														</span>
+														<strong data-translate="payoutDemo.garna.templates.usdCard">USD card</strong>
+														<small>5144 21** **** 0082</small>
+													</article>
+													<article>
+														<span class="creator-garna-template-media creator-garna-template-media--bank" aria-hidden="true">
+															<img src="/images/regional-eur-filled.svg" alt="" loading="lazy" />
+														</span>
+														<strong data-translate="payoutDemo.garna.templates.eurAccount">EUR account</strong>
+														<small>DE89 3704 0044...</small>
+													</article>
+													<article>
+														<span class="creator-garna-template-media creator-garna-template-media--avatar" aria-hidden="true">
+															<img src="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg" alt="" loading="lazy" />
+														</span>
+														<strong>Nina Volkova</strong>
+														<small>4462 9874 2654 7767</small>
+													</article>
+													<article>
+														<span class="creator-garna-template-media creator-garna-template-media--avatar" aria-hidden="true">
+															<img src="/pages/payroll-solution-new/assets/08-photo-1534528741775-53994a69daeb.jpg" alt="" loading="lazy" />
+														</span>
+														<strong>Sofia Reed</strong>
+														<small>4457 9712 5713 3604</small>
+													</article>
+												</div>
+											</section>
+											<section class="creator-garna-transactions" aria-label="Recent transactions">
+												<div class="creator-garna-section-head">
+													<strong data-translate="payoutDemo.garna.transactions.title">Transactions</strong>
+												</div>
+												<div class="creator-garna-transaction-list">
+													<article class="creator-garna-transaction-incoming creator-garna-transaction-row creator-garna-transaction-row--before creator-withdraw-transaction-row--marketplace-before">
+														<span class="creator-garna-transaction-icon creator-garna-transaction-icon--marketplace" aria-hidden="true">
+															<svg class="creator-garna-marketplace-star" viewBox="0 0 24 24">
+																<path d="m12 3.8 2.35 4.75 5.25.76-3.8 3.7.9 5.22L12 15.76l-4.7 2.47.9-5.22-3.8-3.7 5.25-.76L12 3.8Z"></path>
+															</svg>
+														</span>
+														<div class="creator-garna-transaction-copy">
+															<strong data-translate="payoutDemo.garna.transactions.marketplaceTitle">Marketplace earnings payout</strong>
+															<span data-translate="payoutDemo.garna.transactions.marketplaceSubtitle">Credited from creator platform</span>
+														</div>
+														<div class="creator-garna-transaction-meta">
+															<b>+$1,720.00</b>
+															<span>12.06.2026, 17:21</span>
+														</div>
+													</article>
+													<article class="creator-garna-transaction-incoming creator-garna-transaction-row creator-garna-transaction-row--before creator-withdraw-transaction-row--daniel-before">
+														<span class="creator-garna-transaction-icon creator-garna-transaction-icon--avatar" aria-hidden="true">
+															<img src="/pages/payroll-small-business/assets/testimonial-michael-v2.jpg" alt="" loading="lazy" />
+														</span>
+														<div class="creator-garna-transaction-copy">
+															<strong data-translate="payoutDemo.garna.transactions.danielTitle">Transfer from Daniel Cruz</strong>
+															<span data-translate="payoutDemo.garna.transactions.collaborationPayment">Creator collaboration payment</span>
+														</div>
+														<div class="creator-garna-transaction-meta">
+															<b>+$1,120.00</b>
+															<span>10.06.2026, 14:36</span>
+														</div>
+													</article>
+													<article class="creator-garna-transaction-row creator-garna-transaction-row--after creator-withdraw-transaction-row--card-after">
+														<span class="creator-garna-transaction-icon creator-garna-transaction-icon--card" aria-hidden="true">
+															<img src="/images/usd-card-icon.svg" alt="" loading="lazy" />
+														</span>
+														<div class="creator-garna-transaction-copy">
+															<strong data-translate="payoutDemo.garna.transactions.usdCardTitle">Transfer to USD card</strong>
+															<small data-translate="payoutDemo.garna.transactions.confirmed">Confirmed</small>
+														</div>
+														<div class="creator-garna-transaction-meta">
+															<b>-$1,000.00</b>
+															<span>12.06.2026, 18:04</span>
+														</div>
+													</article>
+													<article class="creator-garna-transaction-incoming creator-garna-transaction-row creator-garna-transaction-row--after creator-withdraw-transaction-row--marketplace-after">
+														<span class="creator-garna-transaction-icon creator-garna-transaction-icon--marketplace" aria-hidden="true">
+															<svg class="creator-garna-marketplace-star" viewBox="0 0 24 24">
+																<path d="m12 3.8 2.35 4.75 5.25.76-3.8 3.7.9 5.22L12 15.76l-4.7 2.47.9-5.22-3.8-3.7 5.25-.76L12 3.8Z"></path>
+															</svg>
+														</span>
+														<div class="creator-garna-transaction-copy">
+															<strong data-translate="payoutDemo.garna.transactions.marketplaceTitle">Marketplace earnings payout</strong>
+															<span data-translate="payoutDemo.garna.transactions.marketplaceSubtitle">Credited from creator platform</span>
+														</div>
+														<div class="creator-garna-transaction-meta">
+															<b>+$1,720.00</b>
+															<span>12.06.2026, 17:21</span>
+														</div>
+													</article>
+												</div>
+											</section>
+										</div>
+									</div>
+									<div class="creator-garna-live-cursor" aria-hidden="true">
+										<svg viewBox="0 0 28 28">
+											<path d="M5 3.5 21.5 14 14 15.4l-3.4 7.1L5 3.5Z"></path>
+										</svg>
+										<span data-translate="payoutDemo.cursor">Creator</span>
+									</div>
+									<div class="creator-garna-modal-backdrop" aria-hidden="true"></div>
+									<div class="creator-garna-payout-modal creator-withdraw-entry-modal" role="dialog" aria-label="Withdraw funds">
+										<button class="creator-withdraw-modal-back" type="button" aria-label="Back to balance">
+											<svg viewBox="0 0 24 24" aria-hidden="true">
+												<path d="M19 12H5"></path>
+												<path d="m12 19-7-7 7-7"></path>
+											</svg>
+										</button>
+										<button class="creator-garna-modal-close" type="button" aria-label="Close withdrawal details">
+											<svg viewBox="0 0 24 24" aria-hidden="true">
+												<path d="M18 6 6 18"></path>
+												<path d="m6 6 12 12"></path>
+											</svg>
+										</button>
+										<strong class="creator-garna-modal-title" data-translate="payoutDemo.withdraw.modal.title">Withdraw funds</strong>
+										<div class="creator-withdraw-flow" aria-label="Withdrawal details">
+											<div class="creator-withdraw-route-card">
+												<span class="creator-withdraw-route-icon creator-withdraw-route-icon--account" aria-hidden="true">
+													<img src="/images/creator-avatar-headphones.jpg" alt="" loading="lazy" />
+												</span>
+												<div>
+													<strong>USD 4,560.00</strong>
+													<small data-translate="payoutDemo.withdraw.modal.garnaInternalAccount">Garna internal account</small>
+												</div>
+											</div>
+											<span class="creator-withdraw-flow-arrow" aria-hidden="true">
+												<svg viewBox="0 0 24 24">
+													<path d="M12 5v14"></path>
+													<path d="m19 12-7 7-7-7"></path>
+												</svg>
+											</span>
+											<div class="creator-withdraw-route-card">
+												<span class="creator-withdraw-route-icon creator-withdraw-route-icon--card" aria-hidden="true">
+													<img src="/images/usd-card-icon.svg" alt="" loading="lazy" />
+												</span>
+												<div>
+													<strong data-translate="payoutDemo.withdraw.modal.toUsdCard">To USD card</strong>
+													<small>5144 21** **** 0082</small>
+												</div>
+												<span class="creator-withdraw-route-info" aria-hidden="true">
+													<svg viewBox="0 0 24 24">
+														<circle cx="12" cy="12" r="10"></circle>
+														<path d="M12 16v-4"></path>
+														<path d="M12 8h.01"></path>
+													</svg>
+												</span>
+											</div>
+											<strong class="creator-withdraw-flow-amount creator-withdraw-flow-amount--typing" aria-label="Withdrawal amount">
+												<b class="creator-withdraw-flow-amount-typed" aria-hidden="true"></b><i aria-hidden="true"></i> $
+											</strong>
+											<button class="creator-withdraw-flow-all" type="button" data-translate="payoutDemo.withdraw.modal.withdrawAll">Withdraw all</button>
+											<div class="creator-withdraw-flow-note-stack">
+												<span class="creator-withdraw-flow-note creator-withdraw-flow-note--before" data-translate="payoutDemo.withdraw.modal.enterAmount">Enter an amount - we will calculate the fee</span>
+												<span class="creator-withdraw-flow-note creator-withdraw-flow-fee creator-withdraw-flow-note--after">
+													<span><i data-translate="payoutDemo.withdraw.modal.debited">Debited</i> <b>1,000 $</b>, <i data-translate="payoutDemo.withdraw.modal.sent">sent</i> <b>1,000 $</b></span>
+													<a href="#" aria-label="View withdrawal fee details" data-translate="payoutDemo.withdraw.modal.details">Details</a>
+												</span>
+											</div>
+										</div>
+										<div class="creator-withdraw-submit-stack">
+											<button class="creator-garna-modal-ok creator-garna-modal-ok--disabled creator-withdraw-submit--before" type="button" disabled data-translate="payoutDemo.withdraw.modal.withdrawButton">Withdraw</button>
+											<button class="creator-garna-modal-ok creator-withdraw-submit--after" type="button" data-translate="payoutDemo.withdraw.modal.withdrawButton">Withdraw</button>
+										</div>
+									</div>
+									<div class="creator-garna-payout-modal creator-withdraw-success-modal" role="dialog" aria-label="Withdrawal completed">
+										<button class="creator-garna-modal-close" type="button" aria-label="Close withdrawal completed">
+											<svg viewBox="0 0 24 24" aria-hidden="true">
+												<path d="M18 6 6 18"></path>
+												<path d="m6 6 12 12"></path>
+											</svg>
+										</button>
+										<span class="creator-withdraw-success-icon" aria-hidden="true">
+											<svg viewBox="0 0 24 24">
+												<path d="m7 12 3.2 3.2L17 8.8"></path>
+											</svg>
+										</span>
+										<strong class="creator-withdraw-success-title" data-translate="payoutDemo.withdraw.success.title">Transfer completed</strong>
+										<p class="creator-withdraw-success-copy" data-translate="payoutDemo.withdraw.success.copy">The money is already in the recipient's account</p>
+										<button class="creator-garna-modal-ok creator-withdraw-success-close" type="button" data-translate="payoutDemo.withdraw.success.close">Close</button>
+									</div>
+								</div>
+							</section>
+
+							<section class="creator-payout-screen creator-payout-screen--withdraw" data-demo-screen="99" role="tabpanel" hidden>
 								<div class="creator-payout-window creator-payout-window--withdraw">
 									<header>
 										<div>
@@ -461,7 +940,7 @@ const forCreatorsFaqItems = [
 		layout="split"
 		spacing="none"
 		width="content"
-		class="creator-account-flow-section pt-16 pb-8 lg:pt-32 lg:pb-0"
+		class="creator-account-flow-section pt-16 pb-16 lg:pt-32 lg:pb-32"
 		containerClass="creator-account-flow-container"
 		splitClass="creator-account-flow-grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start"
 		copyClass="creator-account-flow-copy max-w-xl text-left lg:sticky lg:top-28 lg:self-start"
@@ -482,9 +961,9 @@ const forCreatorsFaqItems = [
 				<div class="creator-step-card-bottom">
 					<p data-translate="accountFlow.steps.receive.description">Use Garna details where supported to receive payments from international creator platforms</p>
 					<div class="creator-step-card-footer" aria-hidden="true">
-						<span>Platform payout</span>
-						<span>Garna details</span>
-						<span>Balance credit</span>
+						<span data-translate="accountFlow.steps.receive.footer.platformPayout">Platform payout</span>
+						<span data-translate="accountFlow.steps.receive.footer.garnaDetails">Garna details</span>
+						<span data-translate="accountFlow.steps.receive.footer.balanceCredit">Balance credit</span>
 					</div>
 				</div>
 			</div>
@@ -499,9 +978,9 @@ const forCreatorsFaqItems = [
 				<div class="creator-step-card-bottom">
 					<p data-translate="accountFlow.steps.setup.description">Tell us which platform you use. We will check the available payout method and guide you through setup</p>
 					<div class="creator-step-card-footer" aria-hidden="true">
-						<span>Platform rules</span>
-						<span>Payout route</span>
-						<span>Setup guidance</span>
+						<span data-translate="accountFlow.steps.setup.footer.platformRules">Platform rules</span>
+						<span data-translate="accountFlow.steps.setup.footer.payoutRoute">Payout route</span>
+						<span data-translate="accountFlow.steps.setup.footer.setupGuidance">Setup guidance</span>
 					</div>
 				</div>
 			</div>
@@ -516,9 +995,9 @@ const forCreatorsFaqItems = [
 				<div class="creator-step-card-bottom">
 					<p data-translate="accountFlow.steps.withdraw.description">Withdraw your money using bank transfer, card, PayPal, Payoneer, crypto and other supported options</p>
 					<div class="creator-step-card-footer" aria-hidden="true">
-						<span>Choose method</span>
-						<span>Send request</span>
-						<span>Receive funds</span>
+						<span data-translate="accountFlow.steps.withdraw.footer.chooseMethod">Choose method</span>
+						<span data-translate="accountFlow.steps.withdraw.footer.sendRequest">Send request</span>
+						<span data-translate="accountFlow.steps.withdraw.footer.receiveFunds">Receive funds</span>
 					</div>
 				</div>
 			</div>
@@ -757,8 +1236,8 @@ const forCreatorsFaqItems = [
 	>
 		<div class="creator-fee-banner" data-card-glow="true" data-interactive="true">
 			<div class="creator-fee-banner-copy creator-fee-banner-standard">
-				<h2>Reduced fee for creator payouts</h2>
-				<p>
+				<h2 data-translate="earlyAccessFee.banner.title">Reduced fee for creator payouts</h2>
+				<p data-translate="earlyAccessFee.banner.description">
 					Standard Garna service fee applies after Early Access or outside the selected launch group
 				</p>
 			</div>
@@ -767,14 +1246,14 @@ const forCreatorsFaqItems = [
 				<strong>1.5%</strong>
 			</div>
 			<div class="creator-fee-banner-note">
-				<span>Launch terms</span>
-				<p>
+				<span data-translate="earlyAccessFee.banner.terms">Launch terms</span>
+				<p data-translate="earlyAccessFee.banner.accessCaption">
 					Selected creators can start with a reduced Garna service fee while we help validate the first payout setup.
 				</p>
-				<p>
+				<p data-translate="earlyAccessFee.banner.disclaimer">
 					Garna service fee only. Platform, payment method and FX fees may vary.
 				</p>
-				<a href="https://t.me/likelyiam">Contact Payout Manager</a>
+				<a href="https://t.me/likelyiam" data-translate="earlyAccessFee.banner.cta">Contact Payout Manager</a>
 			</div>
 		</div>
 	</Section>
@@ -1011,7 +1490,7 @@ const forCreatorsFaqItems = [
 		</Button>
 		<div class="creator-hero-contact-card" aria-label="Contact payout manager">
 			<div class="creator-hero-contact-copy">
-				<strong>Contact payout manager</strong>
+				<strong data-translate="creatorFinalCta.contact">Contact payout manager</strong>
 			</div>
 			<div class="creator-hero-contact-links">
 				<a href="https://t.me/likelyiam" aria-label="Telegram">
@@ -1071,15 +1550,70 @@ const forCreatorsFaqItems = [
 			const tabs = Array.from(demoRoot.querySelectorAll('[data-demo-tab]'));
 			const screens = Array.from(demoRoot.querySelectorAll('[data-demo-screen]'));
 			const tabList = demoRoot.querySelector('.creator-payout-demo-tabs');
+			const demoShell = demoRoot.querySelector('.creator-payout-demo');
+			const demoDurations = [10500, 7500, 11500];
+			const demoFlipDuration = 400;
+			const demoDesignWidth = 980;
+			let demoTimer = null;
+			let demoFlipTimer = null;
 			let activeIndex = 0;
+			const getActiveDemoDuration = () => demoDurations[activeIndex] || demoDurations[0];
+			const clearScreenFlipTimer = (screen) => {
+				const timer = screen.getAttribute('data-demo-flip-timer');
+				if (timer) {
+					window.clearTimeout(Number(timer));
+					screen.removeAttribute('data-demo-flip-timer');
+				}
+			};
+
+			const restartProgress = () => {
+				if (!(tabList instanceof HTMLElement)) return;
+				tabList.classList.remove('is-progress-running');
+				void tabList.offsetWidth;
+				window.requestAnimationFrame(() => {
+					tabList.classList.add('is-progress-running');
+				});
+			};
+
+			const syncDemoScale = () => {
+				if (!(demoShell instanceof HTMLElement)) return;
+				const availableWidth = demoRoot.getBoundingClientRect().width;
+				const scale = Math.min(1, availableWidth / demoDesignWidth);
+				const designHeight = demoShell.offsetHeight || 820;
+				demoRoot.style.setProperty('--creator-payout-demo-scale', String(scale));
+				demoRoot.style.setProperty('--creator-payout-demo-scaled-height', `${designHeight * scale}px`);
+			};
+
+			const scheduleNextDemoScreen = () => {
+				if (demoTimer !== null) {
+					window.clearTimeout(demoTimer);
+				}
+
+				demoTimer = window.setTimeout(() => {
+					setActiveDemoScreen(activeIndex + 1);
+				}, getActiveDemoDuration());
+			};
 
 			const setActiveDemoScreen = (nextIndex) => {
-				activeIndex = ((nextIndex % screens.length) + screens.length) % screens.length;
+				const previousIndex = activeIndex;
+				activeIndex = ((nextIndex % tabs.length) + tabs.length) % tabs.length;
+				const isChangingScreen = previousIndex !== activeIndex;
+				if (demoFlipTimer !== null) {
+					window.clearTimeout(demoFlipTimer);
+					demoFlipTimer = null;
+				}
+				demoRoot.classList.toggle('is-flipping', isChangingScreen);
+				if (isChangingScreen) {
+					demoFlipTimer = window.setTimeout(() => {
+						demoRoot.classList.remove('is-flipping');
+						demoFlipTimer = null;
+					}, demoFlipDuration);
+				}
 				demoRoot.style.setProperty('--creator-payout-active-tab', String(activeIndex));
 
 				if (tabList instanceof HTMLElement) {
 					tabList.style.setProperty('--creator-payout-active-tab', String(activeIndex));
-					tabList.classList.remove('is-progress-running');
+					tabList.style.setProperty('--demo-progress-duration', `${getActiveDemoDuration()}ms`);
 				}
 
 				tabs.forEach((tab, index) => {
@@ -1089,21 +1623,64 @@ const forCreatorsFaqItems = [
 				});
 
 				screens.forEach((screen, index) => {
-					const isActive = index === activeIndex;
-					screen.classList.toggle('is-active', isActive);
+					const screenIndex = Number(screen.getAttribute('data-demo-screen'));
+					const isActive = screenIndex === activeIndex;
+					const wasActive = screen.classList.contains('is-active');
+					clearScreenFlipTimer(screen);
 					if (isActive) {
 						screen.removeAttribute('hidden');
+						screen.classList.remove('is-leaving');
+						screen.classList.add('is-active');
+						if (isChangingScreen) {
+							screen.classList.add('is-entering');
+							const enterTimer = window.setTimeout(() => {
+								screen.classList.remove('is-entering');
+								screen.removeAttribute('data-demo-flip-timer');
+							}, demoFlipDuration);
+							screen.setAttribute('data-demo-flip-timer', String(enterTimer));
+						} else {
+							screen.classList.remove('is-entering');
+						}
+					} else if (wasActive && isChangingScreen) {
+						screen.removeAttribute('hidden');
+						screen.classList.remove('is-active', 'is-entering');
+						screen.classList.add('is-leaving');
+						const leaveTimer = window.setTimeout(() => {
+							screen.classList.remove('is-leaving');
+							screen.setAttribute('hidden', '');
+							screen.removeAttribute('data-demo-flip-timer');
+						}, demoFlipDuration);
+						screen.setAttribute('data-demo-flip-timer', String(leaveTimer));
 					} else {
+						screen.classList.remove('is-active', 'is-entering', 'is-leaving');
 						screen.setAttribute('hidden', '');
 					}
 				});
+
+				restartProgress();
+				scheduleNextDemoScreen();
 			};
 
 			tabs.forEach((tab, index) => {
 				tab.addEventListener('click', () => setActiveDemoScreen(index));
 			});
 
+			syncDemoScale();
+			const demoResizeObserver = 'ResizeObserver' in window ? new ResizeObserver(syncDemoScale) : null;
+			demoResizeObserver?.observe(demoRoot);
+			window.addEventListener('resize', syncDemoScale);
 			setActiveDemoScreen(0);
+
+			window.addEventListener('garna:page-will-unmount', () => {
+				if (demoTimer !== null) {
+					window.clearTimeout(demoTimer);
+				}
+				if (demoFlipTimer !== null) {
+					window.clearTimeout(demoFlipTimer);
+				}
+				demoResizeObserver?.disconnect();
+				window.removeEventListener('resize', syncDemoScale);
+			}, { once: true });
 		});
 
 		if (creatorAccountFlowSection instanceof HTMLElement) {
@@ -1125,12 +1702,18 @@ const forCreatorsFaqItems = [
 
 				if (!creatorAccountFlowDesktop.matches) {
 					container.style.removeProperty('--creator-account-flow-height');
+					creatorAccountFlowSection.style.removeProperty('--creator-account-stack-bottom-space');
 					return { container, grid, animationDistance: 1, holdDistance: 0 };
 				}
 
 				const styles = window.getComputedStyle(creatorAccountFlowSection);
 				const gap = Number.parseFloat(styles.getPropertyValue('--creator-account-card-gap')) || 18;
+				const peek = Number.parseFloat(styles.getPropertyValue('--creator-account-card-peek')) || 76;
 				const cardHeight = firstCard.offsetHeight;
+				creatorAccountFlowSection.style.setProperty(
+					'--creator-account-stack-bottom-space',
+					`${Math.round(peek * 2)}px`
+				);
 				const gridHeight = grid.offsetHeight;
 				const animationDistance = Math.max(560, Math.round((cardHeight + gap) * 2.65));
 				container.style.setProperty(
@@ -1179,7 +1762,7 @@ const forCreatorsFaqItems = [
 
 				if (reduceCreatorProcessMotion.matches) {
 					syncCreatorAccountFlowHeight();
-					setCreatorAccountCardOffsets(1, 1, 1);
+					setCreatorAccountCardOffsets(1, 1, 0);
 					return;
 				}
 
@@ -1203,13 +1786,10 @@ const forCreatorsFaqItems = [
 				const cardMotionDuration = 0.26;
 				const stepTwoStart = 0.12;
 				const stepThreeStart = stepTwoStart + cardMotionDuration - 0.1;
-				const stepThreeDuration = cardMotionDuration * (thirdTravel / secondTravel);
-				const stackedHoldDuration = 0.06;
-				const collapseDuration = 0.08;
-				const collapseStart = 0.82;
+				const stepThreeDuration = Math.max(0.1, 1 - stepThreeStart);
 				const stepTwo = easeAccountFlowProgress((progress - stepTwoStart) / cardMotionDuration);
 				const stepThree = easeAccountFlowProgress((progress - stepThreeStart) / stepThreeDuration);
-				const collapseProgress = easeAccountFlowProgress((progress - collapseStart) / collapseDuration);
+				const collapseProgress = 0;
 
 				setCreatorAccountCardOffsets(stepTwo, stepThree, collapseProgress);
 			};
@@ -1558,10 +2138,14 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-wallet-visual[data-creator-payout-demo] {
-		height: auto;
-		min-height: calc(
-			clamp(96px, 8vw, 112px) + clamp(560px, calc(100vh - 178px), 680px) + clamp(12px, 1.4vw, 18px)
-		);
+		--creator-payout-demo-scale: 1;
+		--creator-payout-demo-scaled-height: 820px;
+		display: grid;
+		justify-content: center;
+		justify-items: center;
+		height: var(--creator-payout-demo-scaled-height);
+		min-height: var(--creator-payout-demo-scaled-height);
+		overflow: visible;
 	}
 
 	.creator-wallet-visual[data-creator-payout-demo] > .creator-wallet-simple {
@@ -1569,13 +2153,16 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-payout-demo {
-		--creator-payout-tabs-height: clamp(96px, 8vw, 112px);
-		--creator-payout-demo-gap: clamp(20px, 2vw, 28px);
-		--creator-payout-screen-height: clamp(560px, calc(100vh - var(--creator-payout-tabs-height) - var(--creator-payout-demo-gap) - 48px), 680px);
+		--creator-payout-tabs-height: 112px;
+		--creator-payout-demo-gap: 28px;
+		--creator-payout-screen-height: 680px;
 		position: relative;
 		display: grid;
+		width: 980px;
+		justify-self: center;
 		grid-template-rows: auto var(--creator-payout-screen-height);
 		gap: var(--creator-payout-demo-gap);
+		margin-inline: auto;
 		min-height: calc(var(--creator-payout-tabs-height) + var(--creator-payout-screen-height) + var(--creator-payout-demo-gap));
 		overflow: visible;
 		border: 0;
@@ -1583,6 +2170,8 @@ const forCreatorsFaqItems = [
 		background: transparent;
 		padding: 0;
 		box-shadow: none;
+		transform: scale(var(--creator-payout-demo-scale));
+		transform-origin: top center;
 	}
 
 	.creator-payout-demo::before {
@@ -1769,12 +2358,116 @@ const forCreatorsFaqItems = [
 		animation-play-state: var(--demo-progress-state, running);
 	}
 
+	@media (max-width: 1180px) {
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo {
+			--creator-payout-tabs-height: 100px;
+			--creator-payout-demo-gap: 28px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo-tabs {
+			height: 100px;
+			min-height: 100px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo-tabs button {
+			height: 100px;
+			min-height: 100px;
+			justify-content: flex-start;
+			gap: 10px;
+			padding-top: 6px;
+			padding-bottom: 16px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo-tabs button:not(:last-child)::before {
+			top: 28px;
+			height: 48px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-tab-copy small {
+			display: none;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo {
+			--creator-payout-tabs-height: 72px;
+			--creator-payout-demo-gap: 18px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo-tabs {
+			height: 72px;
+			min-height: 72px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo-tabs button {
+			height: 72px;
+			min-height: 72px;
+			justify-content: center;
+			gap: 0;
+			padding-top: 0;
+			padding-bottom: 8px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo-tabs button:not(:last-child)::before {
+			top: 18px;
+			height: 34px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-tab-copy {
+			display: none;
+		}
+	}
+
+	@media (max-width: 765px) {
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo {
+			--creator-payout-tabs-height: 112px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo-tabs {
+			height: 112px;
+			min-height: 112px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo-tabs button {
+			height: 112px;
+			min-height: 112px;
+			justify-content: center;
+			gap: 0;
+			padding-top: 0;
+			padding-bottom: 16px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-tab-icon {
+			width: 66px;
+			height: 66px;
+			border-radius: 21px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-tab-icon svg,
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-tab-icon--large svg,
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-tab-icon--withdraw svg {
+			width: 39px;
+			height: 39px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-demo-tabs button:not(:last-child)::before {
+			top: 32px;
+			height: 48px;
+		}
+
+		.creator-wallet-visual[data-creator-payout-demo] .creator-payout-tab-copy {
+			display: none;
+		}
+	}
+
 	.creator-payout-demo-stage {
 		display: grid;
 		height: var(--creator-payout-screen-height);
 		min-height: var(--creator-payout-screen-height);
 		margin-top: 0;
 		overflow: visible;
+		perspective: 1600px;
+		transform-style: preserve-3d;
 		border: 0;
 		border-radius: 22px;
 		background:
@@ -1786,7 +2479,13 @@ const forCreatorsFaqItems = [
 			0 36px 110px -74px rgba(0, 0, 0, 0.95);
 	}
 
+	.creator-wallet-visual[data-creator-payout-demo].is-flipping .creator-payout-demo-stage {
+		background: transparent;
+		box-shadow: none;
+	}
+
 	.creator-payout-screen {
+		position: relative;
 		grid-area: 1 / 1;
 		display: grid;
 		height: 100%;
@@ -1797,12 +2496,48 @@ const forCreatorsFaqItems = [
 		align-self: stretch;
 		opacity: 0;
 		transform: none;
+		transform-origin: center center;
+		transform-style: preserve-3d;
+		backface-visibility: hidden;
 		transition: opacity 260ms ease;
+		will-change: transform, opacity;
 	}
 
 	.creator-payout-screen.is-active {
+		z-index: 2;
 		opacity: 1;
 		transform: none;
+	}
+
+	.creator-payout-screen.is-entering {
+		z-index: 1;
+		animation: creator-payout-screen-flip-in 400ms linear both;
+	}
+
+	.creator-payout-screen.is-leaving {
+		z-index: 3;
+		opacity: 1;
+		pointer-events: none;
+		animation: creator-payout-screen-flip-out 400ms linear both;
+	}
+
+	.creator-payout-screen::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 20;
+		border-radius: 18px;
+		pointer-events: none;
+		opacity: 0;
+		background: transparent;
+	}
+
+	.creator-payout-screen.is-entering::after {
+		animation: none;
+	}
+
+	.creator-payout-screen.is-leaving::after {
+		animation: none;
 	}
 
 	.creator-payout-window,
@@ -1829,12 +2564,1305 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-payout-window--platform {
+		--creator-platform-accent: #87e64b;
+		--creator-platform-accent-soft: rgba(135, 230, 75, 0.14);
+		--creator-platform-accent-border: rgba(86, 166, 45, 0.34);
+		--creator-platform-text: #171717;
+		--creator-platform-muted: #555555;
+		--creator-platform-subtle: #7a7a7a;
+		--creator-platform-line: #b8b2aa;
+		--creator-platform-surface: #ffffff;
+		--creator-platform-surface-soft: #ffffff;
 		display: flex;
 		flex-direction: column;
 		gap: clamp(10px, 1.2vw, 14px);
 		overflow: visible;
 		isolation: isolate;
-		background: linear-gradient(180deg, rgba(14, 15, 14, 0.96), rgba(7, 8, 7, 0.98));
+		background: #fbf2ea;
+		box-shadow: 0 24px 70px -48px rgba(23, 23, 23, 0.5);
+	}
+
+	.creator-payout-window--garna {
+		display: grid;
+		min-height: 100%;
+		grid-template-rows: minmax(0, 1fr);
+		align-content: stretch;
+		align-items: stretch;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		overflow: hidden;
+		background: #0c0c0c;
+		color: #050505;
+		padding: 0;
+	}
+
+	.creator-payout-window--garna::before {
+		content: none;
+	}
+
+	.creator-garna-dashboard {
+		display: grid;
+		grid-template-columns: minmax(172px, 0.29fr) minmax(0, 1fr);
+		height: 100%;
+		min-height: 100%;
+		overflow: hidden;
+	}
+
+	.creator-garna-sidebar {
+		display: flex;
+		height: 100%;
+		min-width: 0;
+		min-height: 100%;
+		flex-direction: column;
+		gap: clamp(24px, 3vw, 34px);
+		border-right: 0;
+		background: transparent;
+		padding: clamp(20px, 2.3vw, 28px) clamp(14px, 1.7vw, 20px);
+	}
+
+	.creator-garna-logo {
+		align-self: flex-start;
+		width: auto;
+		max-width: none;
+		height: clamp(24px, 2.4vw, 32px);
+		object-fit: contain;
+	}
+
+	.creator-garna-nav {
+		display: grid;
+		gap: 8px;
+	}
+
+	.creator-garna-nav span {
+		position: relative;
+		display: grid;
+		grid-template-columns: 20px minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 10px;
+		min-height: 42px;
+		border-radius: 10px;
+		padding: 0 11px;
+		color: rgba(154, 164, 182, 0.78);
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 760;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.creator-garna-nav em {
+		min-width: 0;
+		overflow: hidden;
+		font-style: normal;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-garna-nav span.is-active {
+		background: #121212;
+		color: #ffffff;
+	}
+
+	.creator-garna-nav span b {
+		display: inline-grid;
+		width: 22px;
+		height: 22px;
+		place-items: center;
+		border-radius: 999px;
+		background: #CBF300;
+		color: #050505;
+		font-size: 11px;
+		font-weight: 900;
+	}
+
+	.creator-garna-badge {
+		position: relative;
+		grid-column: 3;
+		grid-row: 1;
+		overflow: hidden;
+		color: #050505;
+	}
+
+	.creator-garna-badge--static {
+		display: grid;
+		place-items: center;
+		color: #050505;
+		font-size: 11px;
+		font-weight: 900;
+		line-height: 1;
+	}
+
+	.creator-garna-badge-number {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		width: 100%;
+		height: 100%;
+		min-height: 0;
+		place-items: center;
+		padding: 0;
+		color: #050505;
+		font-size: 11px;
+		font-weight: 900;
+		font-style: normal;
+		line-height: 1;
+		text-align: center;
+		transition:
+			opacity 220ms ease,
+			transform 220ms ease;
+	}
+
+	.creator-garna-template-icon,
+	.creator-garna-transaction-list article i {
+		display: inline-block;
+		width: 18px;
+		height: 18px;
+		background: currentColor;
+		mask-position: center;
+		mask-repeat: no-repeat;
+		mask-size: contain;
+		-webkit-mask-position: center;
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-size: contain;
+	}
+
+	.creator-garna-nav-icon {
+		display: block;
+		width: 18px;
+		height: 18px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.5;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.creator-garna-nav-icon--support {
+		width: 18px;
+		height: 18px;
+		overflow: visible;
+	}
+
+	.creator-garna-action-icon {
+		display: block;
+		width: 14px;
+		height: 14px;
+		flex: 0 0 auto;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2.5;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.creator-garna-template-icon--csv {
+		mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 2h8l4 4v16H6V2Zm7 1.8V7h3.2L13 3.8ZM8 11h8v1.7H8V11Zm0 4h8v1.7H8V15Z'/%3E%3C/svg%3E");
+		-webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 2h8l4 4v16H6V2Zm7 1.8V7h3.2L13 3.8ZM8 11h8v1.7H8V11Zm0 4h8v1.7H8V15Z'/%3E%3C/svg%3E");
+	}
+
+	.creator-garna-main {
+		display: grid;
+		height: 100%;
+		min-width: 0;
+		min-height: 100%;
+		grid-template-rows: auto minmax(236px, 1.25fr) minmax(96px, 0.72fr) minmax(102px, 0.82fr);
+		align-content: stretch;
+		gap: 13px;
+		background: transparent;
+		padding: clamp(16px, 2vw, 24px);
+	}
+
+	.creator-garna-topbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.creator-garna-topbar div:first-child {
+		display: grid;
+		gap: 8px;
+	}
+
+	.creator-garna-topbar span,
+	.creator-garna-account-row span,
+	.creator-garna-section-head span,
+	.creator-garna-transaction-list span,
+	.creator-garna-transaction-list small {
+		color: rgba(154, 164, 182, 0.72);
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	.creator-garna-topbar div:first-child > span {
+		width: fit-content;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.065);
+		padding: 7px 13px;
+		color: rgba(220, 226, 235, 0.8);
+		font-size: 11px;
+	}
+
+	.creator-garna-topbar div:first-child > span::before {
+		content: '';
+		display: inline-block;
+		width: 7px;
+		height: 7px;
+		margin-right: 8px;
+		border-radius: 999px;
+		background: #CBF300;
+		box-shadow: 0 0 10px rgba(203, 243, 0, 0.6);
+		vertical-align: 1px;
+	}
+
+	.creator-garna-topbar strong,
+	.creator-garna-section-head strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-weight: 760;
+		line-height: 1;
+	}
+
+	.creator-garna-topbar strong {
+		font-size: clamp(20px, 2.2vw, 28px);
+		letter-spacing: -0.04em;
+	}
+
+	.creator-garna-profile {
+		display: block;
+		width: 34px;
+		height: 34px;
+		overflow: hidden;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		background: rgba(255, 255, 255, 0.06);
+	}
+
+	.creator-garna-profile img {
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		border-radius: 999px;
+		filter: none;
+		object-fit: cover;
+	}
+
+	.creator-garna-balance-card,
+	.creator-garna-template-grid article,
+	.creator-garna-transaction-list article {
+		border: 1px solid rgba(255, 255, 255, 0.085);
+		border-radius: 16px;
+		background: #121212;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+	}
+
+	.creator-garna-balance-card {
+		display: grid;
+		align-content: space-between;
+		gap: clamp(12px, 1.3vw, 16px);
+		padding: clamp(17px, 2vw, 22px);
+	}
+
+	.creator-garna-card-head {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: start;
+		gap: 16px;
+	}
+
+	.creator-garna-card-head div:first-child {
+		display: grid;
+		min-width: 0;
+		gap: 10px;
+	}
+
+	.creator-garna-balance-value {
+		grid-column: 1;
+		grid-row: 2;
+		transition:
+			opacity 220ms ease,
+			transform 220ms ease;
+	}
+
+	.creator-garna-card-head span {
+		color: rgba(255, 255, 255, 0.86);
+		font-family: Manrope, sans-serif;
+		font-size: 13px;
+		font-weight: 760;
+		line-height: 1;
+	}
+
+	.creator-garna-card-head strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(36px, 4.8vw, 52px);
+		font-weight: 640;
+		letter-spacing: -0.06em;
+		line-height: 0.95;
+		white-space: nowrap;
+	}
+
+	.creator-garna-currency-switch {
+		display: inline-grid;
+		grid-template-columns: repeat(2, auto);
+		align-items: center;
+		gap: 4px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 10px;
+		background: rgba(255, 255, 255, 0.055);
+		padding: 2px 4px;
+	}
+
+	.creator-garna-currency-switch b,
+	.creator-garna-currency-switch span {
+		min-width: 42px;
+		border-radius: 7px;
+		padding: 7px 10px;
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 900;
+		line-height: 1;
+		text-align: center;
+	}
+
+	.creator-garna-currency-switch b {
+		background: #CBF300;
+		color: #050505;
+	}
+
+	.creator-garna-currency-switch span {
+		color: rgba(154, 164, 182, 0.76);
+	}
+
+	.creator-garna-account-row {
+		display: grid;
+		gap: 6px;
+	}
+
+	.creator-garna-account-row strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 15px;
+		font-weight: 760;
+		line-height: 1;
+	}
+
+	.creator-garna-actions {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 10px;
+		margin-top: auto;
+		margin-bottom: 4px;
+	}
+
+	.creator-garna-actions button {
+		display: inline-flex;
+		flex: 0 0 auto;
+		width: max-content;
+		max-width: none;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		min-width: 150px;
+		height: 42px;
+		border: 1px solid rgba(203, 243, 0, 0.18);
+		border-radius: 10px;
+		background: rgba(203, 243, 0, 0.07);
+		padding: 0 18px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 900;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.creator-garna-actions button [data-translate] {
+		display: inline;
+		max-width: none;
+		overflow: visible;
+		color: inherit;
+		line-height: 1;
+		padding-bottom: 0;
+		text-overflow: clip;
+		white-space: nowrap;
+	}
+
+	.creator-garna-section-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		margin-bottom: 11px;
+	}
+
+	.creator-garna-templates,
+	.creator-garna-transactions {
+		display: grid;
+		min-height: 0;
+		grid-template-rows: auto minmax(0, 1fr);
+	}
+
+	.creator-garna-section-head strong {
+		font-size: 16px;
+	}
+
+	.creator-garna-section-head span {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		color: #CBF300;
+		font-size: 11px;
+		font-weight: 900;
+	}
+
+	.creator-garna-templates .creator-garna-section-head span::after {
+		content: "";
+		width: 6px;
+		height: 6px;
+		border-top: 1.5px solid currentColor;
+		border-right: 1.5px solid currentColor;
+		transform: rotate(45deg);
+	}
+
+	.creator-garna-templates .creator-garna-section-head span {
+		gap: 9px;
+		color: #CBF300;
+		padding-right: 10px;
+	}
+
+	.creator-garna-section-head .creator-garna-transaction-tools {
+		gap: 20px;
+		color: rgba(255, 255, 255, 0.76);
+	}
+
+	.creator-garna-transaction-tools i {
+		display: inline-grid;
+		width: 18px;
+		height: 18px;
+		place-items: center;
+	}
+
+	.creator-garna-transaction-tools svg {
+		display: block;
+		width: 18px;
+		height: 18px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.8;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.creator-garna-template-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 10px;
+		height: 100%;
+	}
+
+	.creator-garna-template-grid article {
+		display: grid;
+		min-height: 82px;
+		align-content: start;
+		gap: 5px;
+		padding: 13px 14px 12px;
+		transform-origin: center;
+	}
+
+	.creator-garna-template-grid strong,
+	.creator-garna-template-grid small {
+		min-width: 0;
+		overflow: hidden;
+		font-family: Manrope, sans-serif;
+		line-height: 1.18;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-garna-template-grid strong {
+		margin-top: 6px;
+		padding-bottom: 2px;
+		color: #ffffff;
+		font-size: 13px;
+		font-weight: 820;
+	}
+
+	.creator-garna-template-grid small {
+		padding-bottom: 2px;
+		color: rgba(154, 164, 182, 0.9);
+		font-size: 12px;
+		font-weight: 760;
+	}
+
+	.creator-garna-template-media {
+		position: relative;
+		display: inline-grid;
+		width: 38px;
+		height: 38px;
+		place-items: center;
+		overflow: hidden;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.08);
+	}
+
+	.creator-garna-template-media img {
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		filter: none;
+		object-fit: cover;
+	}
+
+	.creator-garna-template-media--avatar {
+		background: transparent;
+	}
+
+	.creator-garna-template-media--avatar img {
+		position: absolute;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		border-radius: inherit;
+		object-fit: cover;
+	}
+
+	.creator-garna-template-media--card {
+		background: #3b82f6;
+	}
+
+	.creator-garna-template-media--card img {
+		width: 28px;
+		max-width: none;
+		height: 32px;
+		object-fit: fill;
+	}
+
+	.creator-garna-template-media--bank {
+		background: #2d7c6f;
+		color: #ffffff;
+	}
+
+	.creator-garna-template-media--bank img {
+		width: 32px;
+		max-width: none;
+		height: 32px;
+		object-fit: contain;
+	}
+
+	.creator-garna-transaction-list {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 8px;
+		height: 100%;
+		grid-template-rows: repeat(2, minmax(44px, 1fr));
+		overflow: hidden;
+		position: relative;
+	}
+
+	.creator-garna-transaction-list article {
+		display: grid;
+		grid-template-columns: 38px minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 12px;
+		min-height: 44px;
+		padding: 9px 14px;
+		transform-origin: center;
+	}
+
+	.creator-garna-transaction-row {
+		transition:
+			opacity 220ms ease,
+			transform 220ms ease;
+	}
+
+	.creator-garna-transaction-list article:nth-child(1),
+	.creator-garna-transaction-list article:nth-child(3) {
+		grid-column: 1 / -1;
+		grid-row: 1;
+	}
+
+	.creator-garna-transaction-list article:nth-child(2),
+	.creator-garna-transaction-list article:nth-child(4) {
+		grid-column: 1 / -1;
+		grid-row: 2;
+	}
+
+	.creator-garna-transaction-icon {
+		position: relative;
+		display: inline-grid;
+		width: 38px;
+		height: 38px;
+		place-items: center;
+		overflow: hidden;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.08);
+	}
+
+	.creator-garna-transaction-icon img {
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		filter: none;
+		object-fit: cover;
+	}
+
+	.creator-garna-transaction-icon--play {
+		background: #8b5cf6;
+		color: #ffffff;
+	}
+
+	.creator-garna-transaction-icon--play svg {
+		width: 18px;
+		height: 18px;
+		fill: currentColor;
+	}
+
+	.creator-garna-transaction-icon--marketplace {
+		background: #ffffff;
+		color: #87e64b;
+	}
+
+	.creator-garna-transaction-icon--marketplace .creator-garna-marketplace-star {
+		display: block;
+		width: 32px;
+		height: 32px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.75;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.creator-garna-transaction-icon--avatar {
+		background: transparent;
+	}
+
+	.creator-garna-transaction-icon--card {
+		background: #3b82f6;
+	}
+
+	.creator-garna-transaction-icon--card img {
+		width: 30px;
+		max-width: none;
+		height: 23px;
+		object-fit: contain;
+	}
+
+	.creator-garna-transaction-copy,
+	.creator-garna-transaction-meta {
+		display: grid;
+		min-width: 0;
+		gap: 4px;
+	}
+
+	.creator-garna-transaction-copy strong,
+	.creator-garna-transaction-meta b {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-weight: 820;
+		line-height: 1.05;
+	}
+
+	.creator-garna-transaction-copy strong {
+		min-width: 0;
+		overflow: hidden;
+		font-size: 13px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-garna-transaction-copy span,
+	.creator-garna-transaction-meta span {
+		color: rgba(154, 164, 182, 0.88);
+		font-family: Manrope, sans-serif;
+		font-size: 11px;
+		font-weight: 720;
+		line-height: 1.15;
+	}
+
+	.creator-garna-transaction-copy small {
+		width: fit-content;
+		border-radius: 7px;
+		border: 0;
+		background: rgba(203, 243, 0, 0.22);
+		padding: 4px 8px;
+		color: #CBF300;
+		font-size: 10px;
+		font-weight: 900;
+		line-height: 1;
+	}
+
+	.creator-garna-transaction-meta {
+		justify-items: end;
+		text-align: right;
+	}
+
+	.creator-garna-transaction-meta b {
+		font-size: 15px;
+		white-space: nowrap;
+	}
+
+	.creator-garna-modal-backdrop {
+		position: absolute;
+		inset: 0;
+		z-index: 8;
+		background: rgba(5, 5, 5, 0.54);
+		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.creator-garna-payout-modal {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 9;
+		display: grid;
+		width: min(58%, 500px);
+		min-width: 0;
+		gap: 10px;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: 16px;
+		background: #151515;
+		padding: clamp(18px, 2vw, 22px);
+		color: #ffffff;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.07),
+			0 34px 90px -46px rgba(0, 0, 0, 0.9);
+		visibility: hidden;
+		opacity: 0;
+		transform: translate(-50%, -46%) scale(0.96);
+	}
+
+	.creator-garna-modal-close {
+		position: absolute;
+		top: 14px;
+		right: 14px;
+		display: inline-grid;
+		width: 26px;
+		height: 26px;
+		place-items: center;
+		border: 0;
+		border-radius: 999px;
+		background: transparent;
+		color: rgba(154, 164, 182, 0.92);
+	}
+
+	.creator-garna-modal-close svg {
+		display: block;
+		width: 17px;
+		height: 17px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+	}
+
+	.creator-garna-modal-date,
+	.creator-garna-modal-table span {
+		color: rgba(190, 199, 214, 0.82);
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 720;
+		line-height: 1.2;
+	}
+
+	.creator-garna-modal-title {
+		max-width: calc(100% - 34px);
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(17px, 1.55vw, 21px);
+		font-weight: 740;
+		letter-spacing: -0.03em;
+		line-height: 1.05;
+	}
+
+	.creator-garna-modal-amount {
+		margin-top: 4px;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(28px, 3vw, 36px);
+		font-weight: 640;
+		letter-spacing: -0.06em;
+		line-height: 0.95;
+	}
+
+	.creator-garna-modal-table {
+		display: grid;
+		margin-top: 8px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.095);
+		border-radius: 10px;
+		background: #121212;
+	}
+
+	.creator-garna-modal-table-head,
+	.creator-garna-modal-table-row,
+	.creator-garna-modal-total {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 10px;
+		min-height: 42px;
+		padding: 0 14px;
+	}
+
+	.creator-garna-modal-table-head {
+		grid-template-columns: minmax(0, 1fr) auto;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+	}
+
+	.creator-garna-modal-table-head strong,
+	.creator-garna-modal-total strong,
+	.creator-garna-modal-total b,
+	.creator-garna-modal-table-row b {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-weight: 820;
+		line-height: 1;
+	}
+
+	.creator-garna-modal-table-head strong {
+		font-size: 12px;
+	}
+
+	.creator-garna-modal-table-row {
+		border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+	}
+
+	.creator-garna-modal-info {
+		display: inline-grid;
+		width: 26px;
+		height: 26px;
+		place-items: center;
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.22);
+		color: #CBF300;
+	}
+
+	.creator-garna-modal-info svg {
+		display: block;
+		width: 17px;
+		height: 17px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2.7;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.creator-garna-modal-table-row b,
+	.creator-garna-modal-total b {
+		justify-self: end;
+		font-size: 13px;
+	}
+
+	.creator-garna-modal-total {
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+
+	.creator-garna-modal-ok {
+		justify-self: center;
+		min-width: 118px;
+		height: 38px;
+		margin-top: 8px;
+		border: 0;
+		border-radius: 10px;
+		background: #CBF300;
+		color: #050505;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 900;
+		line-height: 1;
+		transform-origin: center;
+	}
+
+	.creator-payout-window--withdraw-garna-start > .creator-withdraw-entry-modal,
+	.creator-payout-window--withdraw-garna-start > .creator-withdraw-success-modal {
+		width: min(60%, 520px);
+		gap: 14px;
+	}
+
+	.creator-payout-window--withdraw-garna-start .creator-garna-modal-title {
+		justify-self: center;
+		max-width: calc(100% - 34px);
+		text-align: center;
+	}
+
+	.creator-withdraw-modal-back {
+		position: absolute;
+		top: 14px;
+		left: 14px;
+		display: inline-grid;
+		width: 26px;
+		height: 26px;
+		place-items: center;
+		border: 0;
+		border-radius: 999px;
+		background: transparent;
+		color: rgba(154, 164, 182, 0.92);
+	}
+
+	.creator-withdraw-modal-back svg {
+		display: block;
+		width: 17px;
+		height: 17px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.creator-withdraw-flow {
+		display: grid;
+		gap: 10px;
+		margin-top: 4px;
+	}
+
+	.creator-withdraw-route-card {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 12px;
+		min-height: 74px;
+		border: 1px solid rgba(255, 255, 255, 0.095);
+		border-radius: 14px;
+		background: #121212;
+		padding: 14px 16px;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+	}
+
+	.creator-withdraw-route-icon {
+		display: inline-grid;
+		width: 42px;
+		height: 42px;
+		place-items: center;
+		overflow: hidden;
+		border-radius: 999px;
+		color: #ffffff;
+	}
+
+	.creator-withdraw-route-icon--account {
+		background: rgba(255, 255, 255, 0.06);
+	}
+
+	.creator-withdraw-route-icon--account img {
+		display: block;
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.creator-withdraw-route-icon--card {
+		background: #3b82f6;
+	}
+
+	.creator-withdraw-route-icon--card img {
+		width: 21px;
+		max-width: none;
+		height: 16px;
+		object-fit: contain;
+	}
+
+	.creator-withdraw-route-card strong,
+	.creator-withdraw-route-card small,
+	.creator-withdraw-flow-note {
+		font-family: Manrope, sans-serif;
+	}
+
+	.creator-withdraw-route-card strong {
+		display: block;
+		min-width: 0;
+		overflow: hidden;
+		color: #ffffff;
+		font-size: 15px;
+		font-weight: 820;
+		line-height: 1.08;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-withdraw-route-card small {
+		display: block;
+		margin-top: 5px;
+		overflow: hidden;
+		color: rgba(190, 199, 214, 0.82);
+		font-size: 13px;
+		font-weight: 720;
+		line-height: 1.1;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-withdraw-flow-arrow,
+	.creator-withdraw-route-info {
+		display: inline-grid;
+		place-items: center;
+	}
+
+	.creator-withdraw-flow-arrow {
+		color: rgba(190, 199, 214, 0.82);
+	}
+
+	.creator-withdraw-route-info {
+		color: rgba(154, 164, 182, 0.92);
+	}
+
+	.creator-withdraw-flow-arrow {
+		width: 24px;
+		height: 24px;
+		justify-self: center;
+		margin: 0;
+	}
+
+	.creator-withdraw-flow-arrow svg,
+	.creator-withdraw-route-info svg {
+		display: block;
+		width: 20px;
+		height: 20px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.creator-withdraw-route-info svg {
+		width: 17px;
+		height: 17px;
+		stroke-width: 2;
+	}
+
+	.creator-withdraw-flow-amount {
+		margin-top: 10px;
+		justify-self: center;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(32px, 4.1vw, 46px);
+		font-weight: 720;
+		letter-spacing: -0.06em;
+		line-height: 0.95;
+		white-space: nowrap;
+	}
+
+	.creator-withdraw-flow-amount--typing {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 3px;
+	}
+
+	.creator-withdraw-flow-amount-typed {
+		display: inline-block;
+		color: inherit;
+		font: inherit;
+		font-weight: inherit;
+		letter-spacing: inherit;
+		line-height: inherit;
+	}
+
+	.creator-withdraw-flow-amount-typed::before {
+		content: '0';
+		animation: creator-withdraw-amount-type 10148ms steps(1, end) both;
+	}
+
+	.creator-withdraw-flow-amount--typing i {
+		display: inline-block;
+		width: 1px;
+		height: 0.78em;
+		border-radius: 999px;
+		background: #CBF300;
+		transform: translateY(0.08em);
+		animation:
+			creator-withdraw-amount-caret 900ms steps(1, end) infinite,
+			creator-withdraw-amount-caret-visibility 10148ms steps(1, end) both;
+	}
+
+	.creator-withdraw-flow-all {
+		margin-top: 8px;
+		justify-self: center;
+		min-height: 34px;
+		border: 0;
+		border-radius: 10px;
+		background: rgba(203, 243, 0, 0.13);
+		padding: 0 16px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 900;
+		line-height: 1;
+	}
+
+	.creator-withdraw-flow-note {
+		margin-top: 10px;
+		color: #ffffff;
+		font-size: 13px;
+		font-weight: 620;
+		line-height: 1.2;
+	}
+
+	.creator-withdraw-flow-note-stack {
+		display: grid;
+		width: 100%;
+		min-height: 16px;
+		margin-top: 10px;
+	}
+
+	.creator-withdraw-flow-note-stack > .creator-withdraw-flow-note {
+		grid-area: 1 / 1;
+		margin-top: 0;
+	}
+
+	.creator-withdraw-flow-fee {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 14px;
+		min-width: 0;
+		color: #ffffff;
+		font-weight: 620;
+		white-space: nowrap;
+	}
+
+	.creator-withdraw-flow-fee b {
+		color: #ffffff;
+		font-weight: 760;
+	}
+
+	.creator-withdraw-flow-fee > span {
+		display: block;
+		min-width: 0;
+		overflow: hidden;
+		color: #ffffff;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		-webkit-text-fill-color: #ffffff;
+	}
+
+	.creator-withdraw-flow-fee i {
+		color: #ffffff;
+		font-style: normal;
+		font-weight: 420;
+		-webkit-text-fill-color: #ffffff;
+	}
+
+	.creator-withdraw-flow-fee [data-translate] {
+		display: inline;
+		max-width: none;
+		overflow: visible;
+		line-height: inherit;
+		padding-bottom: 0;
+		text-overflow: clip;
+		white-space: nowrap;
+	}
+
+	.creator-withdraw-flow-fee a {
+		flex: 0 0 auto;
+		color: #CBF300;
+		font-weight: 560;
+		text-decoration: none;
+	}
+
+	.creator-withdraw-submit-stack {
+		display: grid;
+		justify-self: center;
+		margin-top: 8px;
+	}
+
+	.creator-withdraw-submit-stack > .creator-garna-modal-ok {
+		grid-area: 1 / 1;
+		margin-top: 0;
+	}
+
+	.creator-withdraw-flow-note--before,
+	.creator-withdraw-submit--before {
+		animation: creator-withdraw-before-state 10148ms steps(1, end) both;
+	}
+
+	.creator-withdraw-flow-note--after,
+	.creator-withdraw-submit--after {
+		animation: creator-withdraw-after-state 10148ms steps(1, end) both;
+	}
+
+	.creator-withdraw-submit--after {
+		animation:
+			creator-withdraw-after-state 10148ms steps(1, end) both,
+			creator-withdraw-modal-ok-hover-hold 10148ms ease-in-out both;
+	}
+
+	.creator-payout-window--withdraw-garna-start .creator-withdraw-success-close {
+		animation: creator-withdraw-success-close-hover-hold 10148ms ease-in-out both;
+	}
+
+	.creator-withdraw-success-modal {
+		align-content: center;
+		justify-items: center;
+		width: min(58%, 500px);
+		min-height: 270px;
+		gap: 14px;
+		padding: clamp(24px, 2.4vw, 32px);
+		text-align: center;
+	}
+
+	.creator-withdraw-success-icon {
+		display: grid;
+		width: 56px;
+		height: 56px;
+		place-items: center;
+		border-radius: 999px;
+		background: #CBF300;
+		color: #ffffff;
+		box-shadow: 0 18px 40px -30px rgba(203, 243, 0, 0.72);
+	}
+
+	.creator-withdraw-success-icon svg {
+		display: block;
+		width: 34px;
+		height: 34px;
+		fill: none;
+		stroke: #050505;
+		stroke-width: 2.7;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.creator-withdraw-success-icon svg path {
+		stroke: #050505;
+	}
+
+	.creator-withdraw-success-title {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 28px;
+		font-weight: 760;
+		letter-spacing: -0.04em;
+		line-height: 1.04;
+	}
+
+	.creator-withdraw-success-copy {
+		margin: -4px 0 4px;
+		color: rgba(255, 255, 255, 0.76);
+		font-family: Manrope, sans-serif;
+		font-size: 14px;
+		font-weight: 560;
+		line-height: 1.35;
+	}
+
+	.creator-withdraw-success-close {
+		min-width: 132px;
+		margin-top: 4px;
+	}
+
+	.creator-garna-modal-ok--disabled,
+	.creator-garna-modal-ok--disabled:disabled {
+		background: rgba(224, 229, 236, 0.14);
+		color: rgba(255, 255, 255, 0.34);
+		cursor: default;
 	}
 
 	.creator-payout-window--platform::after {
@@ -1843,26 +3871,24 @@ const forCreatorsFaqItems = [
 		inset: 0;
 		z-index: 3;
 		pointer-events: none;
-		border: 1px solid rgba(160, 160, 160, 0.32);
+		border: 0;
 		border-radius: inherit;
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
 	}
 
 	.creator-platform-browser-bar {
 		display: grid;
-		grid-template-columns: auto minmax(0, 1fr) auto auto;
+		grid-template-columns: auto minmax(72px, 1fr) max-content auto;
 		align-items: center;
 		gap: 12px;
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		border: 1px solid #d7d2cc;
 		border-radius: 18px;
-		background:
-			linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
-			rgba(8, 9, 8, 0.88);
+		background: #ffffff;
 		padding: 7px 8px;
-		color: #ffffff;
+		color: #171717;
 		box-shadow:
-			inset 0 1px 0 rgba(255, 255, 255, 0.075),
-			0 18px 48px -42px rgba(0, 0, 0, 0.9);
+			inset 0 1px 0 rgba(255, 255, 255, 0.92),
+			0 16px 34px -32px rgba(23, 23, 23, 0.25);
 		backdrop-filter: blur(18px);
 		-webkit-backdrop-filter: blur(18px);
 	}
@@ -1882,7 +3908,7 @@ const forCreatorsFaqItems = [
 		height: 28px;
 		align-items: center;
 		justify-content: center;
-		color: #CBF300 !important;
+		color: var(--creator-platform-accent) !important;
 	}
 
 	.creator-platform-top-mark svg {
@@ -1897,7 +3923,7 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-top-logo strong {
-		color: #ffffff;
+		color: var(--creator-platform-text);
 		font-family: Manrope, sans-serif;
 		font-size: 18px;
 		font-weight: 900;
@@ -1910,14 +3936,14 @@ const forCreatorsFaqItems = [
 		display: grid;
 		grid-template-columns: auto 1px auto minmax(0, 1fr);
 		align-items: center;
-		justify-self: center;
+		justify-self: stretch;
 		gap: 13px;
-		width: min(100%, 540px);
+		width: 100%;
 		min-width: 0;
 		height: 40px;
-		border: 1px solid rgba(255, 255, 255, 0.11);
+		border: 1px solid #d7d2cc;
 		border-radius: 999px;
-		background: rgba(255, 255, 255, 0.055);
+		background: var(--creator-platform-surface-soft);
 		padding: 0 12px 0 16px;
 	}
 
@@ -1932,8 +3958,8 @@ const forCreatorsFaqItems = [
 		display: inline-flex;
 		align-items: center;
 		gap: 7px;
-		color: rgba(255, 255, 255, 0.82);
-		font-weight: 800;
+		color: #111827;
+		font-weight: 700;
 		white-space: nowrap;
 	}
 
@@ -1950,8 +3976,8 @@ const forCreatorsFaqItems = [
 
 	.creator-platform-search strong {
 		overflow: hidden;
-		color: #8d939d;
-		font-weight: 650;
+		color: var(--creator-platform-text);
+		font-weight: 560;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
@@ -1960,13 +3986,13 @@ const forCreatorsFaqItems = [
 		display: block;
 		width: 1px;
 		height: 24px;
-		background: rgba(255, 255, 255, 0.12);
+		background: #d7d2cc;
 	}
 
 	.creator-platform-search-icon {
 		width: 19px;
 		height: 19px;
-		color: rgba(255, 255, 255, 0.88);
+		color: var(--creator-platform-text);
 		fill: none;
 		stroke: currentColor;
 		stroke-width: 2.1;
@@ -1975,16 +4001,25 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-browser-bar button {
-		border: 1px solid rgba(203, 243, 0, 0.36);
+		display: inline-block;
+		width: max-content;
+		max-width: 100%;
+		min-width: max-content;
+		border: 1px solid transparent;
 		border-radius: 10px;
-		background: #CBF300;
+		background: var(--creator-platform-accent);
 		padding: 12px 20px;
-		color: #050505;
+		color: #10210c;
 		font-family: Manrope, sans-serif;
-		font-size: 12px;
+		font-size: 13px;
 		font-weight: 850;
-		line-height: 1;
+		line-height: 1.18;
 		white-space: nowrap;
+	}
+
+	.creator-payout-window--platform button:focus,
+	.creator-payout-window--platform button:focus-visible {
+		outline: none;
 	}
 
 	.creator-platform-avatar {
@@ -1994,9 +4029,14 @@ const forCreatorsFaqItems = [
 		place-items: center;
 		overflow: hidden;
 		border-radius: 999px;
-		border: 1px solid rgba(255, 255, 255, 0.16);
+		border: 1px solid #d7d2cc;
 		background: transparent;
 		box-shadow: none;
+		transform-origin: center;
+	}
+
+	.creator-payout-window--platform.is-platform-flow .creator-platform-avatar {
+		animation: creator-platform-avatar-cursor-hover 10500ms ease-in-out both;
 	}
 
 	.creator-platform-avatar img {
@@ -2021,11 +4061,11 @@ const forCreatorsFaqItems = [
 		min-height: 0;
 		gap: 16px;
 		overflow: hidden;
-		border: 1px solid rgba(255, 255, 255, 0.09);
-		border-radius: 18px;
-		background: #111211;
-		padding: clamp(16px, 2vw, 20px);
-		animation: creator-platform-marketplace-view 8500ms ease-in-out infinite;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		padding: 0;
+		animation: creator-platform-marketplace-view 10500ms ease-in-out both;
 	}
 
 	.creator-platform-finance {
@@ -2035,27 +4075,27 @@ const forCreatorsFaqItems = [
 		grid-template-rows: auto auto minmax(0, 1fr) auto;
 		gap: 12px;
 		overflow: hidden;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		border-radius: 18px;
-		background: #111211;
-		padding: clamp(16px, 2vw, 20px);
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		padding: 0;
 		opacity: 0;
 		pointer-events: none;
 		transform: translateY(10px) scale(0.985);
-		animation: creator-platform-finance-view 8500ms ease-in-out infinite;
+		animation: creator-platform-finance-view 10500ms ease-in-out both;
 	}
 
 	.creator-payout-window--platform.is-platform-flow .creator-platform-live-cursor {
 		display: flex;
-		animation: creator-platform-cursor-path 8500ms cubic-bezier(0.22, 1, 0.36, 1) infinite;
+		animation: creator-platform-cursor-path 10500ms cubic-bezier(0.22, 1, 0.36, 1) both;
 	}
 
 	.creator-payout-window--platform.is-platform-flow .creator-platform-live-cursor::before {
-		animation: creator-platform-cursor-pulse 8500ms ease-in-out infinite;
+		animation: creator-platform-cursor-pulse 10500ms ease-in-out both;
 	}
 
 	.creator-payout-window--platform.is-platform-flow .creator-platform-live-cursor svg {
-		animation: creator-platform-cursor-click 8500ms ease-in-out infinite;
+		animation: creator-platform-cursor-click 10500ms ease-in-out both;
 	}
 
 	.creator-platform-finance-head {
@@ -2072,7 +4112,7 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-finance-head span {
-		color: rgba(255, 255, 255, 0.5);
+		color: var(--creator-platform-subtle);
 		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 		font-size: 10px;
 		font-weight: 800;
@@ -2081,23 +4121,42 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-finance-head strong {
-		color: #ffffff;
+		color: var(--creator-platform-text);
 		font-family: Manrope, sans-serif;
 		font-size: clamp(22px, 2vw, 28px);
 		font-weight: 820;
-		line-height: 1;
+		line-height: 1.12;
 		letter-spacing: -0.04em;
+		padding-bottom: 2px;
 	}
 
 	.creator-platform-finance-head b {
-		border: 1px solid rgba(255, 255, 255, 0.12);
+		display: inline-flex;
+		width: max-content;
+		max-width: none;
+		min-width: max-content;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid #d7d2cc;
 		border-radius: 999px;
-		background: rgba(255, 255, 255, 0.055);
+		background: var(--creator-platform-surface-soft);
 		padding: 8px 12px;
-		color: rgba(255, 255, 255, 0.78);
+		color: var(--creator-platform-muted);
 		font-family: Manrope, sans-serif;
 		font-size: 11px;
 		font-weight: 850;
+		line-height: 1;
+		overflow: visible;
+		text-overflow: clip;
+		white-space: nowrap;
+	}
+
+	.creator-platform-finance-head b[data-translate] {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		padding-bottom: 8px;
 	}
 
 	.creator-platform-finance-grid {
@@ -2108,9 +4167,9 @@ const forCreatorsFaqItems = [
 
 	.creator-platform-finance-grid article,
 	.creator-platform-finance-table {
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		border: 1px solid var(--creator-platform-line);
 		border-radius: 14px;
-		background: rgba(255, 255, 255, 0.045);
+		background: var(--creator-platform-surface-soft);
 	}
 
 	.creator-platform-finance-grid article {
@@ -2121,7 +4180,7 @@ const forCreatorsFaqItems = [
 
 	.creator-platform-finance-grid span,
 	.creator-platform-finance-table small {
-		color: #98a1af;
+		color: var(--creator-platform-subtle);
 		font-family: Manrope, sans-serif;
 		font-size: 11px;
 		font-weight: 700;
@@ -2129,7 +4188,7 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-finance-grid strong {
-		color: #ffffff;
+		color: var(--creator-platform-text);
 		font-family: Manrope, sans-serif;
 		font-size: clamp(19px, 2vw, 28px);
 		font-weight: 780;
@@ -2149,9 +4208,9 @@ const forCreatorsFaqItems = [
 		height: 30px;
 		align-items: center;
 		justify-content: center;
-		border: 1px solid rgba(255, 255, 255, 0.12);
+		border: 1px solid #d7d2cc;
 		border-radius: 9px;
-		background: rgba(255, 255, 255, 0.055);
+		background: #f6f2ee;
 	}
 
 	.creator-platform-route-brand i::before {
@@ -2159,13 +4218,13 @@ const forCreatorsFaqItems = [
 		display: block;
 		width: 13px;
 		height: 21px;
-		background: #CBF300;
+		background: var(--creator-platform-accent);
 		mask: url('/images/garna-g-mark.svg') center / contain no-repeat;
 		-webkit-mask: url('/images/garna-g-mark.svg') center / contain no-repeat;
 	}
 
 	.creator-platform-finance-grid small {
-		color: rgba(255, 255, 255, 0.58);
+		color: var(--creator-platform-subtle);
 		font-family: Manrope, sans-serif;
 		font-size: 11px;
 		font-weight: 650;
@@ -2175,11 +4234,11 @@ const forCreatorsFaqItems = [
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
 		align-items: stretch;
-		gap: 9px;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		border-radius: 14px;
-		background: rgba(255, 255, 255, 0.045);
-		padding: 12px 12px 10px;
+		gap: 10px;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		padding: 0;
 	}
 
 	.creator-platform-destination > div:first-child {
@@ -2191,7 +4250,7 @@ const forCreatorsFaqItems = [
 
 	.creator-platform-destination > div:first-child span {
 		grid-column: 1;
-		color: rgba(255, 255, 255, 0.5);
+		color: var(--creator-platform-subtle);
 		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 		font-size: 10px;
 		font-weight: 800;
@@ -2201,7 +4260,7 @@ const forCreatorsFaqItems = [
 
 	.creator-platform-destination > div:first-child strong {
 		grid-column: 1;
-		color: #ffffff;
+		color: var(--creator-platform-text);
 		font-family: Manrope, sans-serif;
 		font-size: 16px;
 		font-weight: 820;
@@ -2211,7 +4270,7 @@ const forCreatorsFaqItems = [
 	.creator-platform-destination > div:first-child small {
 		grid-column: 2;
 		align-self: center;
-		color: rgba(255, 255, 255, 0.42);
+		color: var(--creator-platform-muted);
 		font-family: Manrope, sans-serif;
 		font-size: 11px;
 		font-weight: 720;
@@ -2231,21 +4290,24 @@ const forCreatorsFaqItems = [
 		min-height: 58px;
 		min-width: 0;
 		grid-template-columns: auto minmax(0, 1fr);
-		gap: 4px 10px;
-		align-items: center;
-		border: 1px solid rgba(255, 255, 255, 0.08);
+		grid-template-rows: auto auto;
+		gap: 2px 10px;
+		align-content: center;
+		align-items: start;
+		border: 1px solid #d7d2cc;
 		border-radius: 12px;
-		background: rgba(255, 255, 255, 0.035);
+		background: #ffffff;
 		padding: 10px 13px;
-		color: rgba(255, 255, 255, 0.58);
+		color: var(--creator-platform-muted);
 		font-family: Manrope, sans-serif;
 		text-align: left;
 	}
 
 	.creator-platform-destination-options button span {
+		align-self: end;
 		min-width: 0;
 		overflow: hidden;
-		color: #ffffff;
+		color: var(--creator-platform-text);
 		font-size: 15px;
 		font-weight: 720;
 		line-height: 1;
@@ -2254,30 +4316,33 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-destination-options button.is-selected span {
-		color: #CBF300;
+		color: var(--creator-platform-text);
 	}
 
 	.creator-payout-window--platform.is-platform-flow .creator-platform-destination-options button.creator-platform-destination-garna span {
-		animation: creator-platform-route-title-select 8500ms ease-in-out infinite;
+		animation: none;
 	}
 
 	.creator-platform-destination-options button small {
-		grid-column: 1 / -1;
-		color: rgba(255, 255, 255, 0.42);
+		grid-column: 2;
+		align-self: start;
+		color: var(--creator-platform-muted);
 		font-size: 11.5px;
 		font-weight: 560;
-		line-height: 1;
+		line-height: 1.05;
 		white-space: nowrap;
 	}
 
 	.creator-platform-destination-options button i {
+		grid-row: 1 / span 2;
+		align-self: center;
 		display: inline-flex;
 		width: 28px;
 		height: 28px;
 		align-items: center;
 		justify-content: center;
 		border-radius: 7px;
-		background: rgba(255, 255, 255, 0.055);
+		background: #f6f2ee;
 	}
 
 	.creator-platform-destination-options button.creator-platform-destination-bank i::before {
@@ -2285,14 +4350,13 @@ const forCreatorsFaqItems = [
 		display: block;
 		width: 19px;
 		height: 19px;
-		background: #d9e8ff;
-		transform: translateY(-1.5px);
-		mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 10.2 12 4l9 6.2v1.8H3v-1.8Zm2 3.3h3v5H5v-5Zm5.5 0h3v5h-3v-5Zm5.5 0h3v5h-3v-5ZM3.8 20h16.4v2H3.8v-2Z'/%3E%3C/svg%3E") center / contain no-repeat;
-		-webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 10.2 12 4l9 6.2v1.8H3v-1.8Zm2 3.3h3v5H5v-5Zm5.5 0h3v5h-3v-5Zm5.5 0h3v5h-3v-5ZM3.8 20h16.4v2H3.8v-2Z'/%3E%3C/svg%3E") center / contain no-repeat;
+		background: #171717;
+		mask: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 11.75C1 12.2141 1.18437 12.6592 1.51256 12.9874C1.84075 13.3156 2.28587 13.5 2.75 13.5H13.25C13.7141 13.5 14.1592 13.3156 14.4874 12.9874C14.8156 12.6592 15 12.2141 15 11.75V6.9375H1V11.75ZM3.0625 9.375C3.0625 9.12636 3.16127 8.8879 3.33709 8.71209C3.5129 8.53627 3.75136 8.4375 4 8.4375H5.5C5.74864 8.4375 5.9871 8.53627 6.16291 8.71209C6.33873 8.8879 6.4375 9.12636 6.4375 9.375V10C6.4375 10.2486 6.33873 10.4871 6.16291 10.6629C5.9871 10.8387 5.74864 10.9375 5.5 10.9375H4C3.75136 10.9375 3.5129 10.8387 3.33709 10.6629C3.16127 10.4871 3.0625 10.2486 3.0625 10V9.375ZM13.25 2.5H2.75C2.28587 2.5 1.84075 2.68437 1.51256 3.01256C1.18437 3.34075 1 3.78587 1 4.25V5.0625H15V4.25C15 3.78587 14.8156 3.34075 14.4874 3.01256C14.1592 2.68437 13.7141 2.5 13.25 2.5Z' fill='white'/%3E%3C/svg%3E") center / contain no-repeat;
+		-webkit-mask: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 11.75C1 12.2141 1.18437 12.6592 1.51256 12.9874C1.84075 13.3156 2.28587 13.5 2.75 13.5H13.25C13.7141 13.5 14.1592 13.3156 14.4874 12.9874C14.8156 12.6592 15 12.2141 15 11.75V6.9375H1V11.75ZM3.0625 9.375C3.0625 9.12636 3.16127 8.8879 3.33709 8.71209C3.5129 8.53627 3.75136 8.4375 4 8.4375H5.5C5.74864 8.4375 5.9871 8.53627 6.16291 8.71209C6.33873 8.8879 6.4375 9.12636 6.4375 9.375V10C6.4375 10.2486 6.33873 10.4871 6.16291 10.6629C5.9871 10.8387 5.74864 10.9375 5.5 10.9375H4C3.75136 10.9375 3.5129 10.8387 3.33709 10.6629C3.16127 10.4871 3.0625 10.2486 3.0625 10V9.375ZM13.25 2.5H2.75C2.28587 2.5 1.84075 2.68437 1.51256 3.01256C1.18437 3.34075 1 3.78587 1 4.25V5.0625H15V4.25C15 3.78587 14.8156 3.34075 14.4874 3.01256C14.1592 2.68437 13.7141 2.5 13.25 2.5Z' fill='white'/%3E%3C/svg%3E") center / contain no-repeat;
 	}
 
 	.creator-platform-destination-options button.creator-platform-destination-bank i {
-		background: #050505;
+		background: var(--creator-platform-accent);
 	}
 
 	.creator-platform-destination-options button.creator-platform-destination-paypal i::before {
@@ -2304,21 +4368,22 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-destination-options button.creator-platform-destination-paypal i {
-		background: #ffffff;
+		background: #f5f5f5;
 	}
 
 	.creator-platform-destination-options button.creator-platform-destination-garna i::before {
 		content: '';
 		display: block;
-		width: 10px;
-		height: 16px;
-		background: #050505;
-		mask: url('/images/garna-g-mark.svg') center / contain no-repeat;
-		-webkit-mask: url('/images/garna-g-mark.svg') center / contain no-repeat;
+		width: 19px;
+		height: 19px;
+		background: #ffffff;
+		transform: translateY(-1.5px);
+		mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 10.2 12 4l9 6.2v1.8H3v-1.8Zm2 3.3h3v5H5v-5Zm5.5 0h3v5h-3v-5Zm5.5 0h3v5h-3v-5ZM3.8 20h16.4v2H3.8v-2Z'/%3E%3C/svg%3E") center / contain no-repeat;
+		-webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 10.2 12 4l9 6.2v1.8H3v-1.8Zm2 3.3h3v5H5v-5Zm5.5 0h3v5h-3v-5Zm5.5 0h3v5h-3v-5ZM3.8 20h16.4v2H3.8v-2Z'/%3E%3C/svg%3E") center / contain no-repeat;
 	}
 
 	.creator-platform-destination-options button.creator-platform-destination-garna i {
-		background: #CBF300;
+		background: #171717;
 	}
 
 	.creator-platform-destination-options button.creator-platform-destination-bank small,
@@ -2328,17 +4393,18 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-destination-options button.is-selected {
-		border-color: rgba(203, 243, 0, 0.26);
-		background: rgba(203, 243, 0, 0.055);
-		color: #CBF300;
+		border-width: 1.5px;
+		border-color: var(--creator-platform-accent);
+		background: #ffffff;
+		color: var(--creator-platform-accent);
 	}
 
 	.creator-payout-window--platform.is-platform-flow .creator-platform-destination-options button.creator-platform-destination-garna {
-		animation: creator-platform-route-select 8500ms ease-in-out infinite;
+		animation: creator-platform-route-select 10500ms ease-in-out both;
 	}
 
 	.creator-payout-window--platform.is-platform-flow .creator-platform-destination-options button.creator-platform-destination-garna small {
-		animation: creator-platform-route-caption-select 8500ms ease-in-out infinite;
+		animation: none;
 	}
 
 	.creator-platform-destination-options button.is-selected i {
@@ -2347,11 +4413,19 @@ const forCreatorsFaqItems = [
 
 	.creator-platform-destination-options button.is-selected small {
 		grid-column: 2;
-		color: #CBF300;
+		color: var(--creator-platform-muted);
 	}
 
 	.creator-platform-finance-balance {
-		background: rgba(255, 255, 255, 0.06) !important;
+		border-color: rgba(23, 23, 23, 0.92) !important;
+		background: #171717 !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.08),
+			0 18px 38px -30px rgba(23, 23, 23, 0.72);
+	}
+
+	.creator-platform-finance-balance span {
+		color: rgba(255, 255, 255, 0.68);
 	}
 
 	.creator-platform-finance-balance strong {
@@ -2360,21 +4434,28 @@ const forCreatorsFaqItems = [
 		font-weight: 720;
 	}
 
+	.creator-platform-finance-balance small {
+		color: rgba(255, 255, 255, 0.62);
+	}
+
 	.creator-platform-finance-table {
 		display: grid;
 		grid-template-rows: repeat(3, minmax(0, 1fr));
 		align-content: stretch;
 		overflow: hidden;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
 	}
 
 	.creator-platform-finance-table div {
 		display: grid;
-		grid-template-columns: 42px minmax(80px, 0.28fr) minmax(262px, 1.22fr) 104px;
+		grid-template-columns: 52px minmax(178px, 0.48fr) minmax(190px, 1.02fr) 104px;
 		grid-template-rows: 1fr;
 		min-height: 0;
-		column-gap: 16px;
+		column-gap: 18px;
 		align-items: center;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+		border-bottom: 1px solid var(--creator-platform-line);
 		padding: 8px 12px;
 	}
 
@@ -2386,10 +4467,10 @@ const forCreatorsFaqItems = [
 		grid-column: 2;
 		min-width: 0;
 		overflow: hidden;
-		color: #ffffff !important;
+		color: var(--creator-platform-text) !important;
 		font-family: Manrope, sans-serif;
-		font-size: 19px;
-		font-weight: 880;
+		font-size: 14px;
+		font-weight: 820;
 		line-height: 1.1;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -2398,7 +4479,8 @@ const forCreatorsFaqItems = [
 	.creator-platform-finance-table small {
 		grid-column: 3;
 		justify-self: center;
-		color: rgba(255, 255, 255, 0.52);
+		transform: translateX(-50px);
+		color: var(--creator-platform-muted);
 		font-size: 12.5px;
 		font-weight: 740;
 		text-align: center;
@@ -2407,18 +4489,18 @@ const forCreatorsFaqItems = [
 
 	.creator-payout-window--platform .creator-platform-finance-table img {
 		grid-column: 1;
-		width: 42px;
-		height: 38px;
+		width: 50px;
+		height: 46px;
 		max-width: none;
-		border-radius: 9px;
-		filter: brightness(0.82);
+		border-radius: 10px;
+		filter: none;
 		object-fit: cover;
 	}
 
 	.creator-platform-finance-table strong {
 		grid-column: 4;
 		justify-self: end;
-		color: #ffffff;
+		color: var(--creator-platform-text);
 		font-family: Manrope, sans-serif;
 		font-size: 15px;
 		font-weight: 820;
@@ -2432,11 +4514,11 @@ const forCreatorsFaqItems = [
 		height: 40px;
 		align-items: center;
 		justify-content: center;
-		border: 1px solid rgba(203, 243, 0, 0.32);
+		border: 1px solid transparent;
 		border-radius: 10px;
-		background: #CBF300;
+		background: var(--creator-platform-accent);
 		padding: 0 18px;
-		color: #050505;
+		color: #10210c;
 		font-family: Manrope, sans-serif;
 		font-size: 13px;
 		font-weight: 850;
@@ -2445,14 +4527,14 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-send-button:disabled {
-		border-color: rgba(255, 255, 255, 0.09);
-		background: rgba(255, 255, 255, 0.08);
-		color: rgba(255, 255, 255, 0.38);
+		border-color: #d7d2cc;
+		background: #f5f5f5;
+		color: #8a837b;
 		cursor: default;
 	}
 
 	.creator-payout-window--platform.is-platform-flow .creator-platform-send-button:disabled {
-		animation: creator-platform-send-enable 8500ms ease-in-out infinite;
+		animation: creator-platform-send-enable 10500ms ease-in-out both;
 	}
 
 	.creator-platform-destination-action {
@@ -2461,7 +4543,7 @@ const forCreatorsFaqItems = [
 		align-items: center;
 		justify-content: space-between;
 		gap: 12px;
-		border-top: 1px solid rgba(255, 255, 255, 0.075);
+		border-top: 1px solid var(--creator-platform-line);
 		padding-top: 5px;
 	}
 
@@ -2469,7 +4551,7 @@ const forCreatorsFaqItems = [
 		position: relative;
 		display: block;
 		min-width: 190px;
-		color: rgba(255, 255, 255, 0.44);
+		color: var(--creator-platform-muted);
 		font-family: Manrope, sans-serif;
 		font-size: 11px;
 		font-weight: 720;
@@ -2489,11 +4571,11 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-payout-window--platform.is-platform-flow .creator-platform-destination-status span:first-child {
-		animation: creator-platform-status-hide 8500ms ease-in-out infinite;
+		animation: creator-platform-status-hide 10500ms ease-in-out both;
 	}
 
 	.creator-payout-window--platform.is-platform-flow .creator-platform-destination-status span:last-child {
-		animation: creator-platform-status-show 8500ms ease-in-out infinite;
+		animation: creator-platform-status-show 10500ms ease-in-out both;
 	}
 
 	.creator-platform-live-cursor {
@@ -2505,9 +4587,10 @@ const forCreatorsFaqItems = [
 		align-items: center;
 		gap: 8px;
 		pointer-events: none;
-		opacity: 0;
+		visibility: hidden;
+		opacity: 1;
 		filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.38));
-		animation: creator-platform-cursor-path 8500ms cubic-bezier(0.22, 1, 0.36, 1) infinite;
+		animation: creator-platform-cursor-path 10500ms cubic-bezier(0.22, 1, 0.36, 1) both;
 	}
 
 	.creator-platform-live-cursor::before {
@@ -2517,12 +4600,12 @@ const forCreatorsFaqItems = [
 		left: -12px;
 		width: 34px;
 		height: 34px;
-		border: 2px solid rgba(203, 243, 0, 0.9);
+		border: 2px solid rgba(135, 230, 75, 0.82);
 		border-radius: 999px;
-		background: rgba(203, 243, 0, 0.16);
+		background: rgba(135, 230, 75, 0.16);
 		opacity: 0;
 		transform: scale(0.45);
-		animation: creator-platform-cursor-pulse 8500ms ease-in-out infinite;
+		animation: creator-platform-cursor-pulse 10500ms ease-in-out both;
 	}
 
 	.creator-platform-live-cursor svg {
@@ -2530,12 +4613,12 @@ const forCreatorsFaqItems = [
 		z-index: 2;
 		width: 30px;
 		height: 30px;
-		fill: #CBF300;
-		stroke: rgba(5, 5, 5, 0.9);
+		fill: #171717;
+		stroke: #ffffff;
 		stroke-linejoin: round;
-		stroke-width: 1.2;
+		stroke-width: 1.4;
 		transform-origin: 30% 20%;
-		animation: creator-platform-cursor-click 8500ms ease-in-out infinite;
+		animation: creator-platform-cursor-click 10500ms ease-in-out both;
 	}
 
 	.creator-platform-live-cursor span {
@@ -2543,19 +4626,227 @@ const forCreatorsFaqItems = [
 		top: 8px;
 		left: 26px;
 		z-index: 1;
-		border: 1px solid rgba(203, 243, 0, 0.28);
+		display: inline-flex;
+		width: max-content;
+		max-width: none;
+		min-width: max-content;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(23, 23, 23, 0.18);
 		border-radius: 999px;
-		background: rgba(11, 15, 7, 0.86);
+		background: #ffffff;
 		padding: 7px 10px;
-		color: #CBF300;
+		color: #171717 !important;
 		font-family: Manrope, sans-serif;
-		font-size: 11px;
-		font-weight: 800;
-		line-height: 1;
+		font-size: 11px !important;
+		font-weight: 900 !important;
+		line-height: 1 !important;
+		overflow: visible;
+		text-overflow: clip;
 		white-space: nowrap;
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 8px 18px rgba(0, 0, 0, 0.22);
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
+		box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+	}
+
+	.creator-garna-live-cursor {
+		position: absolute;
+		right: calc(clamp(44px, 6.4%, 74px) + 50px);
+		bottom: calc(clamp(40px, 7.4%, 68px) + 50px);
+		z-index: 12;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		pointer-events: none;
+		visibility: hidden;
+		opacity: 0;
+		filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.38));
+		animation: creator-garna-cursor-to-button 7500ms ease-in-out both;
+	}
+
+	.creator-garna-live-cursor::before {
+		content: '';
+		position: absolute;
+		top: -13px;
+		left: -12px;
+		width: 34px;
+		height: 34px;
+		border: 2px solid rgba(203, 243, 0, 0.86);
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.18);
+		opacity: 0;
+		transform: scale(0.45);
+		animation: creator-garna-cursor-click-pulse 7500ms ease-in-out both;
+	}
+
+	.creator-garna-live-cursor svg {
+		position: relative;
+		z-index: 2;
+		width: 30px;
+		height: 30px;
+		fill: #171717;
+		stroke: #ffffff;
+		stroke-linejoin: round;
+		stroke-width: 1.4;
+		transform-origin: 30% 20%;
+		animation: creator-garna-cursor-click 7500ms ease-in-out both;
+	}
+
+	.creator-garna-live-cursor span {
+		position: absolute;
+		top: 8px;
+		left: 26px;
+		z-index: 1;
+		display: inline-flex;
+		width: max-content;
+		max-width: none;
+		min-width: max-content;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(23, 23, 23, 0.18);
+		border-radius: 999px;
+		background: #ffffff;
+		padding: 7px 10px;
+		color: #171717 !important;
+		font-family: Manrope, sans-serif;
+		font-size: 11px !important;
+		font-weight: 900 !important;
+		line-height: 1 !important;
+		overflow: visible;
+		text-overflow: clip;
+		white-space: nowrap;
+		box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+	}
+
+	.creator-payout-window--garna:not(.creator-payout-window--garna-before) > .creator-garna-live-cursor {
+		display: none;
+	}
+
+	.creator-payout-window--garna.creator-payout-window--withdraw-garna-start > .creator-garna-live-cursor {
+		right: auto;
+		bottom: auto;
+		left: calc(18% - 100px);
+		top: 82%;
+		display: flex;
+		animation: creator-withdraw-cursor-to-usd-template 11355ms ease-in-out both;
+	}
+
+	.creator-payout-window--garna.creator-payout-window--withdraw-garna-start > .creator-garna-live-cursor::before {
+		animation: creator-withdraw-cursor-click-pulse 10148ms ease-in-out both;
+	}
+
+	.creator-payout-window--garna.creator-payout-window--withdraw-garna-start > .creator-garna-live-cursor svg {
+		animation: creator-withdraw-cursor-click 10148ms ease-in-out both;
+	}
+
+	.creator-payout-window--withdraw-garna-start .creator-garna-template-grid article:first-child {
+		animation: creator-withdraw-usd-template-hover 10148ms ease-in-out both;
+	}
+
+	.creator-payout-window--withdraw-garna-start .creator-garna-template-grid article:nth-child(2) {
+		animation: creator-withdraw-eur-template-hover 11355ms ease-in-out both;
+	}
+
+	.creator-payout-window--garna-before > .creator-garna-modal-backdrop {
+		animation: creator-garna-backdrop-flow 7500ms ease-in-out both;
+	}
+
+	.creator-payout-window--garna-before > .creator-garna-payout-modal {
+		animation: creator-garna-modal-flow 7500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.creator-payout-window--withdraw-garna-start > .creator-garna-modal-backdrop {
+		animation: creator-withdraw-first-backdrop-flow 10148ms ease-in-out both;
+	}
+
+	.creator-payout-window--withdraw-garna-start > .creator-withdraw-entry-modal {
+		animation: creator-withdraw-first-modal-flow 10148ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.creator-payout-window--withdraw-garna-start > .creator-withdraw-success-modal {
+		animation: creator-withdraw-success-modal-flow 10148ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.creator-payout-window--withdraw-garna-start .creator-garna-balance-value--before {
+		animation: creator-garna-balance-roll-out-flow 8213ms ease-in-out 3287ms both;
+	}
+
+	.creator-payout-window--withdraw-garna-start .creator-garna-balance-value--after {
+		animation: creator-garna-balance-roll-in-flow 8213ms ease-in-out 3287ms both;
+	}
+
+	.creator-payout-window--withdraw-garna-start .creator-withdraw-transaction-row--marketplace-before {
+		animation: creator-garna-daniel-move-down-flow 8213ms cubic-bezier(0.22, 1, 0.36, 1) 3287ms both;
+	}
+
+	.creator-payout-window--withdraw-garna-start .creator-withdraw-transaction-row--daniel-before {
+		animation: creator-garna-card-transaction-exit-flow 8213ms ease-in-out 3287ms both;
+	}
+
+	.creator-payout-window--withdraw-garna-start .creator-withdraw-transaction-row--card-after {
+		animation: creator-garna-marketplace-transaction-enter-flow 8213ms cubic-bezier(0.22, 1, 0.36, 1) 3287ms both;
+	}
+
+	.creator-payout-window--withdraw-garna-start .creator-withdraw-transaction-row--marketplace-after {
+		animation: creator-garna-daniel-after-settle-flow 8213ms ease-in-out 3287ms both;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-modal-ok {
+		animation: creator-garna-modal-ok-hover-flow 7500ms ease-in-out both;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-badge-number--before,
+	.creator-payout-window--garna-before .creator-garna-balance-value--before {
+		animation: creator-garna-before-data-flow 7500ms ease-in-out both;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-badge-number--after,
+	.creator-payout-window--garna-before .creator-garna-balance-value--after {
+		animation: creator-garna-after-data-flow 7500ms ease-in-out both;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-balance-value--before {
+		animation-name: creator-garna-balance-roll-out-flow;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-balance-value--after {
+		animation-name: creator-garna-balance-roll-in-flow;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-badge-number--before {
+		animation-name: creator-garna-badge-roll-out-flow;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-badge-number--after {
+		animation-name: creator-garna-badge-roll-in-flow;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-transaction-row--daniel-before {
+		animation:
+			creator-garna-daniel-move-down-flow 7500ms cubic-bezier(0.22, 1, 0.36, 1) both,
+			creator-garna-daniel-hover-flow 7500ms ease-in-out both;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-transaction-row--card-before {
+		animation: creator-garna-card-transaction-exit-flow 7500ms ease-in-out both;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-transaction-row--marketplace-after {
+		animation: creator-garna-marketplace-transaction-enter-flow 7500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-transaction-row--daniel-after {
+		animation: creator-garna-daniel-after-settle-flow 7500ms ease-in-out both;
+	}
+
+	.creator-payout-window--garna-before .creator-garna-template-grid article:nth-child(2) {
+		animation: creator-garna-eur-template-hover-flow 7500ms ease-in-out both;
+	}
+
+	.creator-garna-badge-number--after,
+	.creator-garna-balance-value--after,
+	.creator-garna-transaction-row--after {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
 	}
 
 	.creator-platform-marketplace-head {
@@ -2567,17 +4858,18 @@ const forCreatorsFaqItems = [
 
 	.creator-platform-marketplace-head strong {
 		max-width: none;
-		color: #ffffff;
+		color: var(--creator-platform-text);
 		font-family: Manrope, sans-serif;
 		font-size: clamp(18px, 1.8vw, 24px);
 		font-weight: 850;
-		line-height: 1.05;
+		line-height: 1.12;
 		letter-spacing: -0.04em;
+		padding-bottom: 2px;
 		white-space: nowrap;
 	}
 
 	.creator-platform-marketplace-head span {
-		color: #8d939d;
+		color: var(--creator-platform-muted);
 		font-size: 12px;
 		font-weight: 760;
 		white-space: nowrap;
@@ -2600,9 +4892,9 @@ const forCreatorsFaqItems = [
 		min-height: 0;
 		gap: 14px;
 		overflow: hidden;
-		border: 1px solid rgba(255, 255, 255, 0.11);
+		border: 1px solid var(--creator-platform-line);
 		border-radius: 14px;
-		background: rgba(255, 255, 255, 0.045);
+		background: var(--creator-platform-surface-soft);
 		padding: 14px;
 		transition:
 			border-color 180ms ease,
@@ -2611,27 +4903,18 @@ const forCreatorsFaqItems = [
 			transform 180ms ease;
 	}
 
-	.creator-platform-category-card:hover,
-	.creator-platform-category-card:focus-within {
-		border-color: rgba(255, 255, 255, 0.16);
-		background: rgba(255, 255, 255, 0.07);
-		box-shadow:
-			inset 0 1px 0 rgba(255, 255, 255, 0.08),
-			0 18px 44px -34px rgba(255, 255, 255, 0.16);
-	}
-
 	.creator-payout-window--platform.is-platform-flow .creator-platform-category-card:nth-child(3) {
-		animation: creator-platform-card-cursor-hover 8500ms ease-in-out infinite;
+		animation: creator-platform-card-cursor-hover 10500ms ease-in-out both;
 	}
 
 	.creator-payout-window--platform.is-platform-flow .creator-platform-category-card:nth-child(4) {
-		animation: creator-platform-card-cursor-hover-middle 8500ms ease-in-out infinite;
+		animation: creator-platform-card-cursor-hover-middle 10500ms ease-in-out both;
 	}
 
 	.creator-platform-category-card--wide {
 		grid-column: 1;
 		grid-row: 1 / span 6;
-		background: rgba(255, 255, 255, 0.055);
+		background: #ffffff;
 	}
 
 	.creator-platform-category-card--first-stack {
@@ -2670,11 +4953,11 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-category-card--dark {
-		background: rgba(255, 255, 255, 0.035);
+		background: #ffffff;
 	}
 
 	.creator-platform-category-card--accent {
-		background: rgba(255, 255, 255, 0.045);
+		background: var(--creator-platform-surface-soft);
 	}
 
 	.creator-platform-category-card div {
@@ -2685,7 +4968,7 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-category-card strong {
-		color: #ffffff;
+		color: var(--creator-platform-text);
 		font-family: Manrope, sans-serif;
 		font-size: clamp(14px, 1.28vw, 19px);
 		font-weight: 850;
@@ -2694,7 +4977,7 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-platform-category-card span {
-		color: #9ca3af;
+		color: var(--creator-platform-muted);
 		font-size: 11px;
 		font-weight: 760;
 	}
@@ -2708,25 +4991,19 @@ const forCreatorsFaqItems = [
 		min-height: 68px;
 		margin-top: 0;
 		border-radius: 12px;
-		filter: brightness(0.8);
+		filter: saturate(0.95) brightness(0.98);
 		object-fit: cover;
 		transition:
 			filter 180ms ease,
 			transform 220ms ease;
 	}
 
-	.creator-platform-category-card:hover img,
-	.creator-platform-category-card:focus-within img {
-		filter: brightness(0.9);
-		transform: scale(1.025);
-	}
-
 	.creator-payout-window--platform.is-platform-flow .creator-platform-category-card:nth-child(3) img {
-		animation: creator-platform-card-image-cursor-hover 8500ms ease-in-out infinite;
+		animation: creator-platform-card-image-cursor-hover 10500ms ease-in-out both;
 	}
 
 	.creator-payout-window--platform.is-platform-flow .creator-platform-category-card:nth-child(4) img {
-		animation: creator-platform-card-image-cursor-hover-middle 8500ms ease-in-out infinite;
+		animation: creator-platform-card-image-cursor-hover-middle 10500ms ease-in-out both;
 	}
 
 	.creator-payout-window::before {
@@ -2738,10 +5015,41 @@ const forCreatorsFaqItems = [
 		opacity: 0.84;
 	}
 
+	.creator-payout-window--garna::before {
+		content: none;
+		background: none;
+		opacity: 0;
+	}
+
 	.creator-payout-window > *,
 	.creator-payout-side-note > * {
 		position: relative;
 		z-index: 1;
+	}
+
+	.creator-payout-window--garna > .creator-garna-dashboard {
+		position: relative;
+		z-index: 1;
+	}
+
+	.creator-payout-window--garna > .creator-garna-modal-backdrop {
+		position: absolute;
+		z-index: 8;
+	}
+
+	.creator-payout-window--garna > .creator-garna-payout-modal {
+		position: absolute;
+		z-index: 9;
+	}
+
+	.creator-payout-window--garna > .creator-garna-live-cursor {
+		position: absolute;
+		z-index: 12;
+	}
+
+	.creator-payout-window--garna-after > .creator-garna-modal-backdrop,
+	.creator-payout-window--garna-after > .creator-garna-payout-modal {
+		display: none;
 	}
 
 	.creator-payout-window--platform > .creator-platform-live-cursor {
@@ -3048,6 +5356,108 @@ const forCreatorsFaqItems = [
 		filter: brightness(0) invert(1);
 	}
 
+	.creator-payout-window--garna .creator-garna-logo,
+	.creator-payout-window--garna .creator-garna-profile img,
+	.creator-payout-window--garna .creator-garna-template-media img,
+	.creator-payout-window--garna .creator-garna-transaction-icon img,
+	.creator-payout-window--garna .creator-withdraw-route-icon img {
+		filter: none;
+	}
+
+	.creator-payout-window--garna .creator-withdraw-route-icon--account img {
+		display: block;
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		border-radius: inherit;
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.creator-payout-window--garna .creator-garna-template-media--bank img {
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+	}
+
+	.creator-payout-window--garna .creator-garna-template-media--card img {
+		width: 28px;
+		height: 32px;
+		object-fit: fill;
+	}
+
+	.creator-payout-window--garna .creator-garna-transaction-icon--card img {
+		width: 28px;
+		height: 32px;
+		object-fit: fill;
+	}
+
+	.creator-payout-window--garna .creator-garna-transaction-icon--marketplace {
+		background: #ffffff;
+		color: #87e64b;
+	}
+
+	.creator-payout-window--garna .creator-garna-marketplace-star {
+		width: 32px;
+		height: 32px;
+		fill: none;
+		stroke: #87e64b;
+	}
+
+	.creator-payout-window--garna .creator-garna-profile img {
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.creator-payout-window--garna .creator-garna-transaction-icon--avatar img {
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		border-radius: inherit;
+		object-fit: cover;
+	}
+
+	.creator-payout-window--garna .creator-garna-transaction-copy small {
+		color: #CBF300;
+		font-size: 10px;
+		font-weight: 900;
+		line-height: 1;
+	}
+
+	.creator-payout-window--garna .creator-garna-templates .creator-garna-section-head span {
+		color: #CBF300;
+	}
+
+	.creator-payout-window--garna .creator-garna-modal-info {
+		color: #CBF300;
+	}
+
+	.creator-payout-window--garna .creator-garna-modal-info svg {
+		stroke: #CBF300;
+	}
+
+	.creator-payout-window--garna .creator-garna-badge-number {
+		width: 100%;
+		height: 100%;
+		min-height: 0;
+		padding: 0;
+		color: #050505;
+		font-size: 11px;
+		font-weight: 900;
+		font-style: normal;
+		line-height: 1;
+	}
+
+	.creator-payout-window--garna .creator-garna-template-media--avatar img {
+		inset: 0;
+		width: 100% !important;
+		max-width: none;
+		height: 100% !important;
+		object-fit: cover !important;
+	}
+
 	.creator-payout-window--platform .creator-platform-avatar img {
 		width: 100%;
 		max-width: none;
@@ -3065,7 +5475,7 @@ const forCreatorsFaqItems = [
 		min-height: 68px;
 		margin-top: 0;
 		border-radius: 12px;
-		filter: brightness(0.8);
+		filter: saturate(0.95) brightness(0.98);
 		object-fit: cover;
 	}
 
@@ -3077,6 +5487,190 @@ const forCreatorsFaqItems = [
 		font-size: 12px;
 		font-weight: 650;
 		line-height: 1.25;
+	}
+
+	.creator-payout-demo-tabs [data-translate],
+	.creator-payout-window--platform [data-translate] {
+		min-width: 0;
+		max-width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-payout-demo-tabs [data-translate]:not(button),
+	.creator-payout-window--platform [data-translate]:not(button),
+	.creator-payout-window--garna [data-translate]:not(button):not(.creator-garna-live-cursor span) {
+		display: block;
+		line-height: 1.18;
+		padding-bottom: 2px;
+	}
+
+	.creator-payout-window--platform .creator-platform-finance-head b[data-translate] {
+		display: inline-flex;
+		width: max-content;
+		max-width: none;
+		min-width: max-content;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		padding: 8px 12px;
+		overflow: visible;
+		text-overflow: clip;
+		white-space: nowrap;
+	}
+
+	.creator-payout-window--garna [data-translate]:not(button):not(.creator-garna-live-cursor span) {
+		min-width: 0;
+		max-width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-payout-window--garna .creator-garna-topbar strong[data-translate] {
+		max-width: none;
+		overflow: visible;
+		padding-right: 4px;
+		text-overflow: clip;
+	}
+
+	.creator-payout-window--garna .creator-garna-section-head span[data-translate] {
+		display: inline-flex;
+		flex: 0 0 auto;
+		width: auto;
+		max-width: none;
+		align-items: center;
+		overflow: visible;
+		line-height: 1;
+		padding: 0 18px 0 0;
+		text-overflow: clip;
+	}
+
+	.creator-payout-window--garna .creator-garna-templates .creator-garna-section-head span[data-translate] {
+		position: relative;
+		justify-content: flex-end;
+		color: #CBF300;
+	}
+
+	.creator-payout-window--garna .creator-garna-templates .creator-garna-section-head span[data-translate]::after {
+		position: absolute;
+		top: 50%;
+		right: 2px;
+		flex: 0 0 auto;
+		transform: translateY(-50%) rotate(45deg);
+	}
+
+	.creator-payout-window--garna .creator-garna-actions button [data-translate] {
+		display: inline-flex;
+		height: 14px;
+		max-width: none;
+		align-items: center;
+		overflow: visible;
+		color: inherit;
+		line-height: 14px;
+		padding-bottom: 0;
+		text-overflow: clip;
+		white-space: nowrap;
+	}
+
+	.creator-payout-window--garna .creator-withdraw-flow-fee {
+		min-width: 0;
+		white-space: nowrap;
+	}
+
+	.creator-payout-window--garna .creator-withdraw-flow-fee > span {
+		display: block;
+		flex: 0 0 auto;
+		width: max-content;
+		max-width: none;
+		min-width: max-content;
+		overflow: visible;
+		text-overflow: clip;
+		white-space: nowrap !important;
+	}
+
+	.creator-payout-window--garna .creator-withdraw-flow-fee [data-translate] {
+		display: inline !important;
+		max-width: none;
+		overflow: visible !important;
+		line-height: inherit !important;
+		padding-bottom: 0 !important;
+		text-overflow: clip !important;
+		white-space: nowrap !important;
+	}
+
+	.creator-payout-window--garna .creator-withdraw-flow-fee > span > i,
+	.creator-payout-window--garna .creator-withdraw-flow-fee > span > b {
+		display: inline !important;
+		white-space: nowrap !important;
+	}
+
+	.creator-payout-window--platform .creator-platform-live-cursor span {
+		display: inline-flex;
+		width: max-content;
+		max-width: none;
+		min-width: max-content;
+		align-items: center;
+		justify-content: center;
+		color: var(--creator-platform-text);
+		font-size: 11px;
+		font-weight: 900;
+		line-height: 1;
+		overflow: visible;
+		padding: 7px 10px;
+		text-overflow: clip;
+		white-space: nowrap;
+	}
+
+	.creator-payout-window--platform .creator-platform-search-filter [data-translate] {
+		display: inline;
+		max-width: none;
+		overflow: visible;
+		line-height: 1;
+		padding-bottom: 0;
+		text-overflow: clip;
+	}
+
+	.creator-payout-window--platform .creator-platform-search-filter {
+		color: #111827;
+		font-weight: 700;
+	}
+
+	.creator-payout-window--platform .creator-platform-search strong {
+		display: inline-flex;
+		align-items: center;
+		line-height: 1;
+		padding-bottom: 0;
+		color: var(--creator-platform-subtle);
+	}
+
+	.creator-payout-window--platform .creator-platform-finance-table small {
+		color: var(--creator-platform-muted);
+	}
+
+	.creator-payout-window--platform .creator-platform-finance-table span {
+		color: var(--creator-platform-text) !important;
+		font-size: 14px !important;
+		font-weight: 820 !important;
+		line-height: 1.1;
+	}
+
+	.creator-payout-window--platform .creator-platform-finance-grid article:not(.creator-platform-finance-balance) small {
+		color: var(--creator-platform-subtle);
+	}
+
+	.creator-payout-window--platform .creator-platform-finance-grid article:not(.creator-platform-finance-balance) span {
+		color: var(--creator-platform-subtle);
+	}
+
+	.creator-payout-window--platform .creator-platform-finance-head span,
+	.creator-payout-window--platform .creator-platform-destination-status {
+		color: var(--creator-platform-muted);
+	}
+
+	.creator-payout-window--platform .creator-platform-destination-status span {
+		color: var(--creator-platform-muted);
 	}
 
 	.creator-payout-window header > strong,
@@ -3321,43 +5915,124 @@ const forCreatorsFaqItems = [
 		to { transform: scaleX(1); }
 	}
 
+	@keyframes creator-payout-screen-flip-out {
+		0% {
+			opacity: 1;
+			transform: rotateY(0deg) scale(1);
+			filter: none;
+		}
+
+		50%,
+		100% {
+			opacity: 0;
+			transform: rotateY(90deg) scale(0.992);
+			filter: none;
+		}
+	}
+
+	@keyframes creator-payout-screen-flip-in {
+		0%,
+		49.9% {
+			opacity: 0;
+			transform: rotateY(-90deg) scale(0.992);
+			filter: none;
+		}
+
+		50% {
+			opacity: 1;
+			transform: rotateY(-90deg) scale(0.992);
+			filter: none;
+		}
+
+		100% {
+			opacity: 1;
+			transform: rotateY(0deg) scale(1);
+			filter: none;
+		}
+	}
+
+	@keyframes creator-payout-screen-flip-shade-out {
+		0%,
+		100% {
+			opacity: 0;
+		}
+
+		54% {
+			opacity: 0.13;
+		}
+	}
+
+	@keyframes creator-payout-screen-flip-shade-in {
+		0% {
+			opacity: 0;
+		}
+
+		56% {
+			opacity: 0.12;
+		}
+
+		100% {
+			opacity: 0;
+		}
+	}
+
 	@keyframes creator-platform-card-cursor-hover {
 		0%,
 		4%,
 		17%,
 		100% {
-			border-color: rgba(255, 255, 255, 0.11);
-			background: rgba(255, 255, 255, 0.045);
+			border-color: #8f8982;
+			background: #ffffff;
 			box-shadow: none;
 		}
 
 		7%,
 		14% {
-			border-color: rgba(255, 255, 255, 0.16);
-			background: rgba(255, 255, 255, 0.07);
+			border-color: #69645f;
+			background: #ffffff;
 			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.08),
-				0 18px 44px -34px rgba(255, 255, 255, 0.16);
+				inset 0 1px 0 rgba(255, 255, 255, 0.92),
+				0 18px 44px -34px rgba(23, 23, 23, 0.26);
 		}
 	}
 
 	@keyframes creator-platform-card-cursor-hover-middle {
 		0%,
 		12%,
-		24%,
+		19%,
 		100% {
-			border-color: rgba(255, 255, 255, 0.11);
-			background: rgba(255, 255, 255, 0.035);
+			border-color: #8f8982;
+			background: #ffffff;
 			box-shadow: none;
 		}
 
 		15%,
-		21% {
-			border-color: rgba(255, 255, 255, 0.16);
-			background: rgba(255, 255, 255, 0.07);
+		17.2% {
+			border-color: #69645f;
+			background: #ffffff;
 			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.08),
-				0 18px 44px -34px rgba(255, 255, 255, 0.16);
+				inset 0 1px 0 rgba(255, 255, 255, 0.92),
+				0 18px 44px -34px rgba(23, 23, 23, 0.26);
+		}
+	}
+
+	@keyframes creator-platform-avatar-cursor-hover {
+		0%,
+		22%,
+		48%,
+		100% {
+			border-width: 1px;
+			border-color: #d7d2cc;
+			box-shadow: none;
+			transform: scale(1);
+		}
+
+		28%,
+		43% {
+			border-width: 1.5px;
+			border-color: var(--creator-platform-accent);
+			box-shadow: none;
+			transform: scale(1.08);
 		}
 	}
 
@@ -3386,13 +6061,13 @@ const forCreatorsFaqItems = [
 		4%,
 		17%,
 		100% {
-			filter: brightness(0.8);
+			filter: saturate(0.95) brightness(0.98);
 			transform: scale(1);
 		}
 
 		7%,
 		14% {
-			filter: brightness(0.9);
+			filter: saturate(1) brightness(1.02);
 			transform: scale(1.025);
 		}
 	}
@@ -3400,15 +6075,15 @@ const forCreatorsFaqItems = [
 	@keyframes creator-platform-card-image-cursor-hover-middle {
 		0%,
 		12%,
-		24%,
+		19%,
 		100% {
-			filter: brightness(0.8);
+			filter: saturate(0.95) brightness(0.98);
 			transform: scale(1);
 		}
 
 		15%,
-		21% {
-			filter: brightness(0.9);
+		17.2% {
+			filter: saturate(1) brightness(1.02);
 			transform: scale(1.025);
 		}
 	}
@@ -3431,22 +6106,32 @@ const forCreatorsFaqItems = [
 
 	@keyframes creator-platform-cursor-path {
 		0% {
+			visibility: hidden;
 			opacity: 0;
 			top: 51%;
 			left: 44%;
-			transform: translate(-10px, -8px) scale(0.96);
+			transform: translate(-6px, -4px);
 		}
 
-		4%,
-		5% {
+		4% {
+			visibility: visible;
+			opacity: 0;
+			top: 51%;
+			left: 44%;
+			transform: translate(-6px, -4px);
+		}
+
+		10%,
+		11% {
+			visibility: visible;
 			opacity: 1;
 			top: 51%;
 			left: 44%;
 			transform: translate(-6px, -4px);
 		}
 
-		7%,
-		11% {
+		12% {
+			visibility: visible;
 			opacity: 1;
 			top: 51%;
 			left: 44%;
@@ -3455,6 +6140,7 @@ const forCreatorsFaqItems = [
 
 		25%,
 		45% {
+			visibility: visible;
 			opacity: 1;
 			top: 7.5%;
 			left: 96.2%;
@@ -3463,26 +6149,773 @@ const forCreatorsFaqItems = [
 
 		62%,
 		70% {
+			visibility: visible;
 			opacity: 1;
-			top: 80.8%;
-			left: 20.5%;
+			top: 85%;
+			left: 22.3%;
 			transform: translate(-6px, -4px);
 		}
 
 		80%,
 		90% {
+			visibility: visible;
 			opacity: 1;
-			top: 91.2%;
-			left: 86.7%;
+			top: 96.2%;
+			left: 91%;
 			transform: translate(-6px, -4px);
 		}
 
-		96%,
+		96% {
+			visibility: visible;
+			opacity: 0;
+			top: 96.2%;
+			left: 91%;
+			transform: translate(-6px, -4px);
+		}
+
+		100% {
+			visibility: hidden;
+			opacity: 0;
+			top: 96.2%;
+			left: 91%;
+			transform: translate(-6px, -4px);
+		}
+	}
+
+	@keyframes creator-garna-cursor-appear {
+		0%,
+		18% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(0, 0) scale(1);
+		}
+
+		26%,
+		100% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes creator-withdraw-cursor-appear {
+		0%,
+		6% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(0, 0) scale(1);
+		}
+
+		12%,
+		100% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes creator-withdraw-cursor-to-usd-template {
+		0%,
+		4.4% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(0, 0) scale(1);
+		}
+
+		8.7%,
+		10.1% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(0, 0) scale(1);
+		}
+
+		16.6%,
+		41.2% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(235px, -141px) scale(1);
+		}
+
+		41.9% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(235px, -141px) scale(1);
+		}
+
+		47.7%,
+		66.1% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(398px, -18px) scale(1);
+		}
+
+		71.9%,
+		95.5% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(430px, -148px) scale(1);
+		}
+
+		99.8% {
+			visibility: visible;
+			opacity: 0;
+			transform: translate(430px, -148px) scale(0.98);
+		}
+
+		100% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(430px, -148px) scale(0.98);
+		}
+	}
+
+	@keyframes creator-withdraw-usd-template-hover {
+		0%,
+		16.2%,
+		31.6%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.085);
+			background: #121212;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+			transform: scale(1);
+		}
+
+		17%,
+		30.8% {
+			border-color: rgba(203, 243, 0, 0.28);
+			background: #121212;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+			transform: scale(1);
+		}
+
+		22.7% {
+			border-color: rgba(203, 243, 0, 0.28);
+			background: #121212;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+			transform: scale(1);
+		}
+	}
+
+	@keyframes creator-withdraw-eur-template-hover {
+		0%,
+		81.1%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.085);
+			background: #121212;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+			transform: scale(1);
+		}
+
+		81.2%,
+		99.8% {
+			border-color: rgba(203, 243, 0, 0.28);
+			background: #121212;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+			transform: scale(1);
+		}
+	}
+
+	@keyframes creator-withdraw-amount-caret {
+		0%,
+		37.2% {
+			opacity: 1;
+		}
+
+		38.1%,
 		100% {
 			opacity: 0;
-			top: 91.2%;
-			left: 86.7%;
-			transform: translate(-6px, -4px);
+		}
+	}
+
+	@keyframes creator-withdraw-amount-caret-visibility {
+		0%,
+		43.6% {
+			visibility: visible;
+		}
+
+		43.7%,
+		100% {
+			visibility: hidden;
+		}
+	}
+
+	@keyframes creator-withdraw-amount-type {
+		0%,
+		34% {
+			content: '0';
+		}
+
+		36.4% {
+			content: '1';
+		}
+
+		38.9% {
+			content: '10';
+		}
+
+		41.3% {
+			content: '100';
+		}
+
+		43.7%,
+		100% {
+			content: '1,000';
+		}
+	}
+
+	@keyframes creator-withdraw-before-state {
+		0%,
+		43.6% {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		43.7%,
+		100% {
+			visibility: hidden;
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-withdraw-after-state {
+		0%,
+		43.6% {
+			visibility: hidden;
+			opacity: 0;
+		}
+
+		43.7%,
+		100% {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	@keyframes creator-withdraw-cursor-click {
+		0%,
+		20.2%,
+		25.9%,
+		58.3%,
+		64%,
+		80.5%,
+		91.1%,
+		100% {
+			transform: scale(1);
+		}
+
+		22.7%,
+		60.7%,
+		87.8% {
+			transform: scale(0.92);
+		}
+	}
+
+	@keyframes creator-withdraw-cursor-click-pulse {
+		0%,
+		22.5%,
+		26.7%,
+		60.5%,
+		64.8%,
+		87.6%,
+		91.9%,
+		100% {
+			opacity: 0;
+			transform: scale(0.45);
+		}
+
+		22.7%,
+		60.7%,
+		87.8% {
+			opacity: 0.96;
+			transform: scale(0.45);
+		}
+
+		25.1%,
+		63.1%,
+		90.2%,
+		100% {
+			opacity: 0;
+			transform: scale(1.25);
+		}
+	}
+
+	@keyframes creator-garna-cursor-to-button {
+		0%,
+		10% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(0, 0) scale(1);
+		}
+
+		18%,
+		42% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(0, 0) scale(1);
+		}
+
+		62%,
+		92% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(-372px, -78px) scale(1);
+		}
+
+		98% {
+			visibility: visible;
+			opacity: 0;
+			transform: translate(-372px, -78px) scale(0.98);
+		}
+
+		100% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(-372px, -78px) scale(0.98);
+		}
+	}
+
+	@keyframes creator-garna-cursor-click {
+		0%,
+		68%,
+		75%,
+		100% {
+			transform: scale(1);
+		}
+
+		71% {
+			transform: scale(0.92);
+		}
+	}
+
+	@keyframes creator-garna-cursor-click-pulse {
+		0%,
+		70.8%,
+		76%,
+		100% {
+			opacity: 0;
+			transform: scale(0.45);
+		}
+
+		71% {
+			opacity: 0.96;
+			transform: scale(0.45);
+		}
+
+		74% {
+			opacity: 0;
+			transform: scale(1.25);
+		}
+	}
+
+	@keyframes creator-garna-backdrop-reveal {
+		0% {
+			visibility: hidden;
+			opacity: 0;
+		}
+
+		100% {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	@keyframes creator-garna-backdrop-flow {
+		0%,
+		24% {
+			visibility: hidden;
+			opacity: 0;
+		}
+
+		31%,
+		72% {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		80%,
+		100% {
+			visibility: hidden;
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-garna-modal-reveal {
+		0% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(-50%, -46%) scale(0.96);
+		}
+
+		100% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+		}
+	}
+
+	@keyframes creator-garna-modal-flow {
+		0%,
+		25% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(-50%, -46%) scale(0.96);
+		}
+
+		33%,
+		70% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+		}
+
+		78% {
+			visibility: visible;
+			opacity: 0;
+			transform: translate(-50%, -51%) scale(0.985);
+		}
+
+		100% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(-50%, -51%) scale(0.985);
+		}
+	}
+
+	@keyframes creator-withdraw-first-backdrop-flow {
+		0%,
+		25.9% {
+			visibility: hidden;
+			opacity: 0;
+		}
+
+		30%,
+		90.8% {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		95%,
+		100% {
+			visibility: hidden;
+			opacity: 0;
+		}
+	}
+
+	@keyframes creator-withdraw-first-modal-flow {
+		0%,
+		26.7% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(-50%, -46%) scale(0.96);
+		}
+
+		32.4%,
+		64% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+		}
+
+		67.2%,
+		100% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(-50%, -51%) scale(0.985);
+		}
+	}
+
+	@keyframes creator-withdraw-success-modal-flow {
+		0%,
+		64% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(-50%, -46%) scale(0.96);
+		}
+
+		69.6%,
+		90.8% {
+			visibility: visible;
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+		}
+
+		95%,
+		100% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translate(-50%, -51%) scale(0.985);
+		}
+	}
+
+	@keyframes creator-garna-modal-ok-hover-flow {
+		0%,
+		58%,
+		76%,
+		100% {
+			background: #CBF300;
+			box-shadow: none;
+			transform: scale(1);
+		}
+
+		62%,
+		68% {
+			background: #d8ff17;
+			box-shadow:
+				0 0 0 3px rgba(203, 243, 0, 0.2),
+				0 14px 28px -18px rgba(5, 5, 5, 0.45);
+			transform: scale(1.045);
+		}
+
+		70% {
+			background: #d0fb00;
+			box-shadow:
+				0 0 0 2px rgba(203, 243, 0, 0.18),
+				0 10px 22px -18px rgba(5, 5, 5, 0.42);
+			transform: scale(0.985);
+		}
+	}
+
+	@keyframes creator-withdraw-modal-ok-hover-hold {
+		0%,
+		53.3% {
+			background: #CBF300;
+			box-shadow: none;
+			transform: scale(1);
+		}
+
+		53.4%,
+		100% {
+			background: #d8ff17;
+			box-shadow:
+				0 0 0 3px rgba(203, 243, 0, 0.2),
+				0 14px 28px -18px rgba(5, 5, 5, 0.45);
+			transform: scale(1.045);
+		}
+	}
+
+	@keyframes creator-withdraw-success-close-hover-hold {
+		0%,
+		80.4% {
+			background: #CBF300;
+			box-shadow: none;
+			transform: scale(1);
+		}
+
+		80.5%,
+		100% {
+			background: #d8ff17;
+			box-shadow:
+				0 0 0 3px rgba(203, 243, 0, 0.2),
+				0 14px 28px -18px rgba(5, 5, 5, 0.45);
+			transform: scale(1.045);
+		}
+	}
+
+	@keyframes creator-garna-daniel-hover-flow {
+		0%,
+		15%,
+		34%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.085);
+			background: #121212;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+		}
+
+		18%,
+		30% {
+			border-color: rgba(203, 243, 0, 0.28);
+			background: #121212;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+		}
+	}
+
+	@keyframes creator-garna-eur-template-hover-flow {
+		0%,
+		78%,
+		100% {
+			border-color: rgba(255, 255, 255, 0.085);
+			background: #121212;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+			transform: scale(1);
+		}
+
+		80%,
+		98% {
+			border-color: rgba(203, 243, 0, 0.28);
+			background: #121212;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+			transform: scale(1);
+		}
+	}
+
+	@keyframes creator-garna-before-data-flow {
+		0%,
+		72% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		80%,
+		100% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translateY(-6px);
+		}
+	}
+
+	@keyframes creator-garna-after-data-flow {
+		0%,
+		72% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translateY(7px);
+		}
+
+		80%,
+		100% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes creator-garna-balance-roll-out-flow {
+		0%,
+		72% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		80%,
+		100% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translateY(24px);
+		}
+	}
+
+	@keyframes creator-garna-balance-roll-in-flow {
+		0%,
+		72% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translateY(-24px);
+		}
+
+		80%,
+		100% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes creator-garna-badge-roll-out-flow {
+		0%,
+		72% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		80%,
+		100% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translateY(12px);
+		}
+	}
+
+	@keyframes creator-garna-badge-roll-in-flow {
+		0%,
+		72% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translateY(-12px);
+		}
+
+		80%,
+		100% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes creator-garna-daniel-move-down-flow {
+		0%,
+		72% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		80% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(calc(100% + 8px));
+		}
+
+		100% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translateY(calc(100% + 8px));
+		}
+	}
+
+	@keyframes creator-garna-card-transaction-exit-flow {
+		0%,
+		72% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		78% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(calc(100% + 8px));
+		}
+
+		84%,
+		100% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translateY(calc(100% + 28px));
+		}
+	}
+
+	@keyframes creator-garna-marketplace-transaction-enter-flow {
+		0%,
+		72% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translateY(-12px);
+		}
+
+		80%,
+		100% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes creator-garna-daniel-after-settle-flow {
+		0%,
+		78% {
+			visibility: hidden;
+			opacity: 0;
+			transform: translateY(0);
+		}
+
+		86%,
+		100% {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
 		}
 	}
 
@@ -3501,28 +6934,28 @@ const forCreatorsFaqItems = [
 		29%,
 		67%,
 		85% {
-			transform: scale(0.86);
+			transform: scale(0.92);
 		}
 	}
 
 	@keyframes creator-platform-cursor-pulse {
 		0%,
-		25%,
+		28.8%,
 		33%,
-		63%,
+		66.8%,
 		72%,
-		81%,
+		84.8%,
 		90%,
 		100% {
 			opacity: 0;
 			transform: scale(0.45);
 		}
 
-		28%,
-		66%,
-		84% {
+		29%,
+		67%,
+		85% {
 			opacity: 0.96;
-			transform: scale(0.62);
+			transform: scale(0.45);
 		}
 
 		32%,
@@ -3553,24 +6986,24 @@ const forCreatorsFaqItems = [
 		42%,
 		54% {
 			opacity: 1;
-			top: 80.8%;
-			left: 20.5%;
+			top: 82.6%;
+			left: 22.3%;
 			transform: translate(-6px, -4px);
 		}
 
 		73%,
 		86% {
 			opacity: 1;
-			top: 90.6%;
-			left: 86.7%;
+			top: 92.4%;
+			left: 89.3%;
 			transform: translate(-6px, -4px);
 		}
 
 		96%,
 		100% {
 			opacity: 0;
-			top: 90.6%;
-			left: 86.7%;
+			top: 92.4%;
+			left: 89.3%;
 			transform: translate(-6px, -4px);
 		}
 	}
@@ -3587,25 +7020,25 @@ const forCreatorsFaqItems = [
 
 		47%,
 		82% {
-			transform: scale(0.86);
+			transform: scale(0.92);
 		}
 	}
 
 	@keyframes creator-platform-finance-cursor-pulse {
 		0%,
-		43%,
+		46.8%,
 		52%,
-		78%,
+		81.8%,
 		87%,
 		100% {
 			opacity: 0;
 			transform: scale(0.45);
 		}
 
-		46%,
-		81% {
+		47%,
+		82% {
 			opacity: 0.96;
-			transform: scale(0.62);
+			transform: scale(0.45);
 		}
 
 		50%,
@@ -3617,96 +7050,93 @@ const forCreatorsFaqItems = [
 
 	@keyframes creator-platform-route-select {
 		0%,
-		66%,
-		100% {
-			border-color: rgba(255, 255, 255, 0.08);
-			background: rgba(255, 255, 255, 0.035);
+		68% {
+			border-width: 1px;
+			border-color: #d7d2cc;
+			background: #ffffff;
 			box-shadow: none;
 		}
 
-		67%,
-		91% {
-			border-color: rgba(203, 243, 0, 0.26);
-			background: rgba(203, 243, 0, 0.055);
-			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 16px 36px -30px rgba(203, 243, 0, 0.32);
+		69%,
+		100% {
+			border-width: 1.5px;
+			border-color: var(--creator-platform-accent);
+			background: #ffffff;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 16px 36px -30px rgba(86, 166, 45, 0.28);
 		}
 	}
 
 	@keyframes creator-platform-route-caption-select {
 		0%,
-		66%,
-		100% {
-			color: rgba(255, 255, 255, 0.42);
+		68% {
+			color: #6b7280;
 		}
 
-		67%,
-		91% {
-			color: #CBF300;
+		69%,
+		100% {
+			color: #56a62d;
 		}
 	}
 
 	@keyframes creator-platform-route-title-select {
 		0%,
-		66%,
-		100% {
-			color: #ffffff;
+		68% {
+			color: #111827;
 		}
 
-		67%,
-		91% {
-			color: #CBF300;
+		69%,
+		100% {
+			color: #56a62d;
 		}
 	}
 
 	@keyframes creator-platform-send-enable {
 		0%,
-		66%,
-		100% {
-			border-color: rgba(255, 255, 255, 0.09);
-			background: rgba(255, 255, 255, 0.08);
-			color: rgba(255, 255, 255, 0.38);
+		66% {
+			border-color: #d7d2cc;
+			background: #f6f2ee;
+			color: #8a837b;
 			transform: scale(1);
 		}
 
 		67%,
 		82%,
-		91% {
-			border-color: rgba(203, 243, 0, 0.32);
-			background: #CBF300;
-			color: #050505;
+		91%,
+		100% {
+			border-color: transparent;
+			background: #87e64b;
+			color: #10210c;
 			transform: scale(1);
 		}
 
 		85% {
-			border-color: rgba(203, 243, 0, 0.32);
-			background: #CBF300;
-			color: #050505;
+			border-color: transparent;
+			background: #87e64b;
+			color: #10210c;
 			transform: scale(0.97);
 		}
 	}
 
 	@keyframes creator-platform-status-hide {
 		0%,
-		66%,
-		100% {
+		66% {
 			opacity: 1;
 		}
 
 		67%,
-		91% {
+		100% {
 			opacity: 0;
 		}
 	}
 
 	@keyframes creator-platform-status-show {
 		0%,
-		66%,
-		100% {
+		66% {
 			opacity: 0;
 		}
 
 		67%,
-		91% {
+		100% {
 			opacity: 1;
 		}
 	}
@@ -3719,15 +7149,9 @@ const forCreatorsFaqItems = [
 		}
 
 		38%,
-		93% {
+		100% {
 			opacity: 0;
 			transform: scale(0.985);
-		}
-
-		98%,
-		100% {
-			opacity: 1;
-			transform: scale(1);
 		}
 	}
 
@@ -3739,15 +7163,9 @@ const forCreatorsFaqItems = [
 		}
 
 		40%,
-		93% {
+		100% {
 			opacity: 1;
 			transform: translateY(0) scale(1);
-		}
-
-		98%,
-		100% {
-			opacity: 0;
-			transform: translateY(8px) scale(0.99);
 		}
 	}
 
@@ -3776,7 +7194,7 @@ const forCreatorsFaqItems = [
 		}
 	}
 
-	@media (max-width: 640px) {
+	@media (max-width: 0px) {
 		.creator-wallet-visual[data-creator-payout-demo],
 		.creator-payout-demo {
 			min-height: 0;
@@ -3854,22 +7272,12 @@ const forCreatorsFaqItems = [
 		.creator-platform-workspace,
 		.creator-platform-summary,
 		.creator-platform-source-details,
-		.creator-platform-browser-bar,
-		.creator-platform-search,
 		.creator-platform-payout-list div {
 			grid-template-columns: 1fr;
 		}
 
 		.creator-platform-browser-bar {
 			border-radius: 18px;
-		}
-
-		.creator-platform-search {
-			padding: 8px 10px;
-		}
-
-		.creator-platform-search i {
-			display: none;
 		}
 
 		.creator-platform-marketplace-head {
@@ -3916,6 +7324,122 @@ const forCreatorsFaqItems = [
 		.creator-platform-payout-list strong,
 		.creator-platform-payout-list small {
 			white-space: normal;
+		}
+
+		.creator-garna-dashboard {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.creator-garna-sidebar {
+			display: grid;
+			grid-template-columns: auto minmax(0, 1fr);
+			align-items: center;
+			gap: 12px;
+			border-right: 0;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+			padding: 14px;
+		}
+
+		.creator-garna-logo {
+			height: 22px;
+		}
+
+		.creator-garna-nav {
+			display: flex;
+			min-width: 0;
+			justify-content: flex-end;
+			gap: 6px;
+		}
+
+		.creator-garna-nav span {
+			display: none;
+		}
+
+		.creator-garna-nav span.is-active,
+		.creator-garna-nav span:nth-child(2) {
+			display: inline-grid;
+			width: 38px;
+			min-height: 38px;
+			grid-template-columns: 1fr;
+			place-items: center;
+			padding: 0;
+			font-size: 0;
+		}
+
+		.creator-garna-nav span b {
+			position: absolute;
+			top: -5px;
+			right: -5px;
+			width: 18px;
+			height: 18px;
+			font-size: 10px;
+		}
+
+		.creator-garna-main {
+			grid-template-rows: auto;
+			align-content: start;
+			gap: 8px;
+			padding: 14px;
+		}
+
+		.creator-garna-topbar {
+			align-items: center;
+		}
+
+		.creator-garna-topbar div:first-child > span {
+			display: none;
+		}
+
+		.creator-garna-card-head,
+		.creator-garna-actions,
+		.creator-garna-template-grid,
+		.creator-garna-transaction-list article {
+			grid-template-columns: 1fr;
+		}
+
+		.creator-garna-card-head strong {
+			font-size: 34px;
+			white-space: normal;
+		}
+
+		.creator-garna-currency-switch {
+			justify-self: start;
+		}
+
+		.creator-garna-actions,
+		.creator-garna-template-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.creator-garna-actions {
+			display: flex;
+			flex-wrap: nowrap;
+		}
+
+		.creator-garna-actions button {
+			width: max-content;
+			max-width: none;
+			min-width: 0;
+			height: 38px;
+			font-size: 11px;
+			padding: 0 12px;
+		}
+
+		.creator-garna-template-grid article {
+			min-height: 70px;
+		}
+
+		.creator-garna-transaction-list article {
+			gap: 8px;
+		}
+
+		.creator-garna-transaction-list {
+			grid-template-rows: none;
+		}
+
+		.creator-garna-transaction-list article b {
+			justify-self: start;
 		}
 	}
 
@@ -5000,18 +8524,19 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-hero-actions {
-		width: max-content;
+		width: 100%;
 		max-width: 100%;
 		margin-inline: auto;
 	}
 
 	.creator-hero-actions > * {
-		width: 100%;
+		width: auto;
 	}
 
 	.creator-hero-contact-card {
 		display: inline-flex;
-		width: 100%;
+		width: auto;
+		max-width: 100%;
 		align-items: center;
 		justify-content: space-between;
 		gap: 16px;
@@ -5096,19 +8621,6 @@ const forCreatorsFaqItems = [
 	@media (min-width: 640px) {
 		.creator-method-break {
 			display: block;
-		}
-
-		.creator-hero-actions {
-			width: auto;
-		}
-
-		.creator-hero-actions > * {
-			width: auto;
-		}
-
-		.creator-hero-contact-card {
-			width: auto;
-			min-width: 312px;
 		}
 
 		.creator-final-actions {
@@ -5686,7 +9198,6 @@ const forCreatorsFaqItems = [
 			--creator-account-step-three: 0;
 			--creator-account-collapse: 0;
 			--creator-account-card-gap: 18px;
-			--creator-account-flow-gap: clamp(72px, 7vw, 128px);
 			--creator-account-card-two-y: calc(100% + var(--creator-account-card-gap));
 			--creator-account-card-three-y: calc(200% + var(--creator-account-card-gap) + var(--creator-account-card-gap));
 		}
@@ -5700,7 +9211,6 @@ const forCreatorsFaqItems = [
 			top: var(--creator-account-stack-top);
 			align-content: start;
 			align-items: start;
-			padding-bottom: var(--creator-account-flow-gap);
 		}
 
 		.creator-account-flow-copy {
@@ -5712,7 +9222,7 @@ const forCreatorsFaqItems = [
 			align-self: start;
 			position: relative;
 			overflow: visible;
-			padding-bottom: 0;
+			padding-bottom: var(--creator-account-stack-bottom-space, 0);
 		}
 
 		.creator-account-stack-card {
