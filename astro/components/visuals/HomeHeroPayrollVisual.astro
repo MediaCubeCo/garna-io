@@ -1,0 +1,566 @@
+<div class="home-payroll-visual" aria-label="Global payroll dashboard visual">
+	<div class="home-payroll-visual__ambient" aria-hidden="true"></div>
+	<div class="home-payroll-visual__shell">
+		<div class="home-payroll-visual__topbar">
+			<div class="home-payroll-visual__brand">
+				<span class="home-payroll-visual__brand-mark">g</span>
+				<span>Garna payroll</span>
+			</div>
+			<div class="home-payroll-visual__status">
+				<span aria-hidden="true"></span>
+				Live run
+			</div>
+		</div>
+
+		<div class="home-payroll-visual__body">
+			<section class="home-payroll-visual__panel home-payroll-visual__panel--primary">
+				<div class="home-payroll-visual__panel-header">
+					<div>
+						<p>Payroll batch</p>
+						<h2>$284,600</h2>
+					</div>
+					<span>Ready</span>
+				</div>
+				<div class="home-payroll-visual__progress" aria-hidden="true">
+					<span></span>
+				</div>
+				<div class="home-payroll-visual__metrics">
+					<div>
+						<strong>150+</strong>
+						<span>countries</span>
+					</div>
+					<div>
+						<strong>80+</strong>
+						<span>currencies</span>
+					</div>
+					<div>
+						<strong>1</strong>
+						<span>invoice</span>
+					</div>
+				</div>
+			</section>
+
+			<section class="home-payroll-visual__panel home-payroll-visual__panel--flow">
+				<div class="home-payroll-visual__flow-node home-payroll-visual__flow-node--source">
+					<span>Business</span>
+				</div>
+				<div class="home-payroll-visual__flow-line" aria-hidden="true">
+					<span></span>
+				</div>
+				<div class="home-payroll-visual__flow-node home-payroll-visual__flow-node--garna">
+					<span>garna</span>
+				</div>
+				<div class="home-payroll-visual__flow-branches" aria-hidden="true">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<div class="home-payroll-visual__people">
+					<article>
+						<img src="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg" alt="" loading="lazy" />
+						<div>
+							<strong>Elena</strong>
+							<span>EUR</span>
+						</div>
+					</article>
+					<article>
+						<img src="/pages/payroll-solution-new/assets/02-4ea5c571-80d4-4ff4-8cf2-210e25af6262_320w.png" alt="" loading="lazy" />
+						<div>
+							<strong>David</strong>
+							<span>USD</span>
+						</div>
+					</article>
+					<article>
+						<img src="/pages/payroll-solution-new/assets/08-photo-1534528741775-53994a69daeb.jpg" alt="" loading="lazy" />
+						<div>
+							<strong>Maria</strong>
+							<span>GBP</span>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<section class="home-payroll-visual__panel home-payroll-visual__panel--side">
+				<div class="home-payroll-visual__side-row">
+					<span>Compliance</span>
+					<strong>Passed</strong>
+				</div>
+				<div class="home-payroll-visual__side-row">
+					<span>Payment rails</span>
+					<strong>7 active</strong>
+				</div>
+				<div class="home-payroll-visual__rail-grid" aria-hidden="true">
+					<span>SWIFT</span>
+					<span>SEPA</span>
+					<span>Cards</span>
+					<span>Crypto</span>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+
+<style>
+	.home-payroll-visual {
+		position: relative;
+		width: min(100%, 1060px);
+		margin: clamp(3rem, 6vw, 5.75rem) auto 0;
+		isolation: isolate;
+		text-align: left;
+	}
+
+	.home-payroll-visual__ambient {
+		position: absolute;
+		inset: -12% 4% -18%;
+		z-index: -1;
+		border-radius: 999px;
+		background:
+			radial-gradient(circle at 28% 24%, rgba(203, 243, 0, 0.22), transparent 30%),
+			radial-gradient(circle at 72% 62%, rgba(107, 174, 214, 0.16), transparent 34%);
+		filter: blur(42px);
+		opacity: 0.86;
+	}
+
+	.home-payroll-visual__shell {
+		position: relative;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 22px;
+		background:
+			radial-gradient(circle at 82% 0%, rgba(203, 243, 0, 0.12), transparent 30%),
+			linear-gradient(180deg, rgba(19, 20, 18, 0.94), rgba(5, 5, 5, 0.98));
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.07),
+			0 42px 110px -74px rgba(0, 0, 0, 0.96);
+	}
+
+	.home-payroll-visual__shell::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background:
+			linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+			linear-gradient(to bottom, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+		background-size: 48px 48px;
+		mask-image: linear-gradient(180deg, black, transparent 88%);
+		opacity: 0.55;
+	}
+
+	.home-payroll-visual__topbar,
+	.home-payroll-visual__body {
+		position: relative;
+		z-index: 1;
+	}
+
+	.home-payroll-visual__topbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		padding: 0.9rem 1rem;
+	}
+
+	.home-payroll-visual__brand,
+	.home-payroll-visual__status {
+		display: inline-flex;
+		align-items: center;
+		font-family: Manrope, sans-serif;
+	}
+
+	.home-payroll-visual__brand {
+		gap: 0.65rem;
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 0.9rem;
+		font-weight: 650;
+	}
+
+	.home-payroll-visual__brand-mark {
+		display: grid;
+		width: 1.75rem;
+		height: 1.75rem;
+		place-items: center;
+		border: 1px solid rgba(203, 243, 0, 0.28);
+		border-radius: 0.65rem;
+		background: rgba(203, 243, 0, 0.1);
+		color: #CBF300;
+		font-weight: 800;
+	}
+
+	.home-payroll-visual__status {
+		gap: 0.45rem;
+		border: 1px solid rgba(203, 243, 0, 0.24);
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.08);
+		padding: 0.35rem 0.7rem;
+		color: #CBF300;
+		font-size: 0.72rem;
+		font-weight: 700;
+	}
+
+	.home-payroll-visual__status span {
+		width: 0.42rem;
+		height: 0.42rem;
+		border-radius: 999px;
+		background: #CBF300;
+		box-shadow: 0 0 12px rgba(203, 243, 0, 0.8);
+		animation: home-payroll-pulse 2.4s ease-in-out infinite;
+	}
+
+	.home-payroll-visual__body {
+		display: grid;
+		grid-template-columns: minmax(230px, 0.88fr) minmax(320px, 1.2fr) minmax(230px, 0.84fr);
+		gap: 1rem;
+		padding: 1rem;
+	}
+
+	.home-payroll-visual__panel {
+		position: relative;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		background: rgba(255, 255, 255, 0.035);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+	}
+
+	.home-payroll-visual__panel--primary,
+	.home-payroll-visual__panel--side {
+		padding: 1rem;
+	}
+
+	.home-payroll-visual__panel--primary {
+		min-height: 18rem;
+		background:
+			radial-gradient(circle at 88% 18%, rgba(203, 243, 0, 0.14), transparent 30%),
+			rgba(255, 255, 255, 0.035);
+	}
+
+	.home-payroll-visual__panel-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	.home-payroll-visual__panel-header p,
+	.home-payroll-visual__metrics span,
+	.home-payroll-visual__side-row span,
+	.home-payroll-visual__people span {
+		margin: 0;
+		color: #8f949d;
+		font-family: Manrope, sans-serif;
+	}
+
+	.home-payroll-visual__panel-header p {
+		font-size: 0.75rem;
+		font-weight: 650;
+		text-transform: uppercase;
+	}
+
+	.home-payroll-visual__panel-header h2 {
+		margin: 0.6rem 0 0;
+		color: #ffffff;
+		font-size: clamp(2rem, 4vw, 3.2rem);
+		font-weight: 500;
+		line-height: 1;
+	}
+
+	.home-payroll-visual__panel-header > span {
+		border: 1px solid rgba(203, 243, 0, 0.25);
+		border-radius: 0.7rem;
+		background: rgba(203, 243, 0, 0.08);
+		padding: 0.36rem 0.55rem;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 0.72rem;
+		font-weight: 750;
+	}
+
+	.home-payroll-visual__progress {
+		height: 0.55rem;
+		margin-top: 2.25rem;
+		overflow: hidden;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.08);
+	}
+
+	.home-payroll-visual__progress span {
+		display: block;
+		width: 92%;
+		height: 100%;
+		border-radius: inherit;
+		background: #CBF300;
+		box-shadow: 0 0 22px rgba(203, 243, 0, 0.54);
+		animation: home-payroll-progress 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+	}
+
+	.home-payroll-visual__metrics {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.65rem;
+		margin-top: 1rem;
+	}
+
+	.home-payroll-visual__metrics div {
+		border: 1px solid rgba(255, 255, 255, 0.07);
+		border-radius: 12px;
+		background: rgba(0, 0, 0, 0.22);
+		padding: 0.75rem 0.65rem;
+	}
+
+	.home-payroll-visual__metrics strong {
+		display: block;
+		color: #ffffff;
+		font-size: 1.15rem;
+		font-weight: 750;
+		line-height: 1;
+	}
+
+	.home-payroll-visual__metrics span {
+		display: block;
+		margin-top: 0.42rem;
+		font-size: 0.68rem;
+	}
+
+	.home-payroll-visual__panel--flow {
+		display: grid;
+		min-height: 18rem;
+		align-content: center;
+		justify-items: center;
+		padding: 1.15rem;
+		background:
+			radial-gradient(circle at 50% 42%, rgba(203, 243, 0, 0.14), transparent 32%),
+			rgba(255, 255, 255, 0.028);
+	}
+
+	.home-payroll-visual__flow-node {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: rgba(10, 10, 10, 0.76);
+		color: rgba(255, 255, 255, 0.88);
+		font-family: Manrope, sans-serif;
+		font-size: 0.78rem;
+		font-weight: 720;
+	}
+
+	.home-payroll-visual__flow-node--source {
+		width: 5.4rem;
+		height: 2.8rem;
+		border-radius: 0.95rem;
+	}
+
+	.home-payroll-visual__flow-node--garna {
+		width: 8.4rem;
+		height: 3rem;
+		border-color: rgba(203, 243, 0, 0.34);
+		border-radius: 1rem;
+		box-shadow: 0 0 28px -10px rgba(203, 243, 0, 0.72);
+	}
+
+	.home-payroll-visual__flow-node--garna span {
+		color: #ffffff;
+		font-size: 1.08rem;
+	}
+
+	.home-payroll-visual__flow-line {
+		position: relative;
+		width: 1px;
+		height: 2.1rem;
+		overflow: hidden;
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	.home-payroll-visual__flow-line span {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to bottom, transparent, #CBF300, transparent);
+		filter: drop-shadow(0 0 5px rgba(203, 243, 0, 0.7));
+		animation: home-payroll-flow 2.2s linear infinite;
+	}
+
+	.home-payroll-visual__flow-branches {
+		display: grid;
+		width: min(100%, 18rem);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.7rem;
+		margin: 0.75rem 0 0.7rem;
+	}
+
+	.home-payroll-visual__flow-branches span {
+		height: 1.9rem;
+		border: solid rgba(203, 243, 0, 0.26);
+		border-width: 0 1px 1px;
+		border-radius: 0 0 0.9rem 0.9rem;
+	}
+
+	.home-payroll-visual__people {
+		display: grid;
+		width: min(100%, 19rem);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.6rem;
+	}
+
+	.home-payroll-visual__people article {
+		display: grid;
+		gap: 0.55rem;
+		justify-items: center;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 14px;
+		background: rgba(0, 0, 0, 0.2);
+		padding: 0.72rem 0.45rem;
+		text-align: center;
+	}
+
+	.home-payroll-visual__people img {
+		width: 2.35rem;
+		height: 2.35rem;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: 999px;
+		object-fit: cover;
+	}
+
+	.home-payroll-visual__people strong {
+		display: block;
+		color: #ffffff;
+		font-size: 0.75rem;
+		font-weight: 700;
+		line-height: 1.1;
+	}
+
+	.home-payroll-visual__people span {
+		display: block;
+		margin-top: 0.18rem;
+		font-size: 0.64rem;
+	}
+
+	.home-payroll-visual__panel--side {
+		display: grid;
+		min-height: 18rem;
+		align-content: space-between;
+		gap: 1rem;
+	}
+
+	.home-payroll-visual__side-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.8rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+		padding-bottom: 0.9rem;
+	}
+
+	.home-payroll-visual__side-row span {
+		font-size: 0.76rem;
+	}
+
+	.home-payroll-visual__side-row strong {
+		color: #ffffff;
+		font-size: 0.86rem;
+		font-weight: 720;
+		white-space: nowrap;
+	}
+
+	.home-payroll-visual__rail-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.65rem;
+	}
+
+	.home-payroll-visual__rail-grid span {
+		display: grid;
+		min-height: 3.2rem;
+		place-items: center;
+		border: 1px solid rgba(203, 243, 0, 0.16);
+		border-radius: 12px;
+		background: rgba(203, 243, 0, 0.055);
+		color: rgba(255, 255, 255, 0.84);
+		font-size: 0.72rem;
+		font-weight: 720;
+	}
+
+	@media (max-width: 900px) {
+		.home-payroll-visual__body {
+			grid-template-columns: 1fr;
+		}
+
+		.home-payroll-visual__panel--primary,
+		.home-payroll-visual__panel--flow,
+		.home-payroll-visual__panel--side {
+			min-height: auto;
+		}
+
+		.home-payroll-visual__panel--side {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.home-payroll-visual__rail-grid {
+			grid-column: 1 / -1;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 560px) {
+		.home-payroll-visual {
+			margin-top: 2.5rem;
+		}
+
+		.home-payroll-visual__topbar,
+		.home-payroll-visual__body {
+			padding: 0.75rem;
+		}
+
+		.home-payroll-visual__body,
+		.home-payroll-visual__panel--side {
+			gap: 0.75rem;
+		}
+
+		.home-payroll-visual__topbar {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		.home-payroll-visual__metrics,
+		.home-payroll-visual__people,
+		.home-payroll-visual__rail-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.home-payroll-visual__panel--side {
+			grid-template-columns: 1fr;
+		}
+
+		.home-payroll-visual__people article {
+			grid-template-columns: auto minmax(0, 1fr);
+			align-items: center;
+			justify-items: start;
+			text-align: left;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.home-payroll-visual__status span,
+		.home-payroll-visual__progress span,
+		.home-payroll-visual__flow-line span {
+			animation: none;
+		}
+	}
+
+	@keyframes home-payroll-pulse {
+		0%, 100% { box-shadow: 0 0 0 0 rgba(203, 243, 0, 0.28); }
+		50% { box-shadow: 0 0 0 7px rgba(203, 243, 0, 0); }
+	}
+
+	@keyframes home-payroll-progress {
+		from { width: 22%; }
+		to { width: 92%; }
+	}
+
+	@keyframes home-payroll-flow {
+		0% { transform: translateY(-100%); opacity: 0; }
+		18%, 82% { opacity: 1; }
+		100% { transform: translateY(100%); opacity: 0; }
+	}
+</style>

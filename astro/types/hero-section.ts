@@ -41,6 +41,7 @@ export interface HeroSectionConfig {
 	description?: string;
 	descriptionTranslateKey?: string;
 	cta?: HeroCta;
+	ctaSecondary?: HeroCta;
 	tone?: HeroTone;
 	align?: HeroAlign;
 }

@@ -1,0 +1,408 @@
+import { homeEn } from '../home/en';
+
+export const forCreatorsEn = {
+	meta: {
+		title: 'Garna for Creators',
+		description:
+			'Receive payouts from creator platforms, stock marketplaces, freelance services and digital product platforms through one Garna account.',
+	},
+	images: {},
+	hero: {
+		badge: 'Early Access for selected creators',
+		titleMain: 'Creator payouts from global platforms, guided by Garna',
+		titleAccent: 'guided by Garna',
+		description:
+			'Receive payouts from creator platforms, stock marketplaces, freelance services and digital product platforms through one Garna account. We will guide you through the first setup, help you understand which payout method fits your platform, and support you during your first withdrawals',
+		cta: 'Contact Payout Manager',
+		accountCta: 'Create Garna Account',
+	},
+	heroVisual: {
+		sources: {
+			envato: {
+				label: 'Envato payout',
+			},
+			adobe: {
+				label: 'Asset earnings',
+			},
+			patreon: {
+				label: 'Member payout',
+			},
+		},
+		balance: {
+			label: 'Creator balance',
+			account: 'Account',
+		},
+		destinations: {
+			bank: {
+				label: 'Bank transfer',
+				title: 'Alex Carter USD',
+			},
+			card: {
+				label: 'Card payout',
+				title: 'Visa / Mastercard',
+				meta: 'Card ending 4482',
+			},
+			crypto: {
+				label: 'Crypto wallet',
+				title: 'USDT wallet',
+				meta: 'TRC20 • verified',
+			},
+		},
+	},
+	creatorTypes: {
+		title: 'Built for creators who earn globally',
+		description:
+			'Garna can help creators, freelancers and digital sellers who receive income from international platforms',
+		cards: {
+			designers: {
+				title: 'Designers & illustrators',
+				description: 'For creators selling graphics, templates, fonts, digital assets and visual products',
+			},
+			photographers: {
+				title: 'Photographers & stock contributors',
+				description: 'For contributors receiving royalties or payouts from stock photo and media platforms',
+			},
+			gameAssets: {
+				title: '3D artists & game asset creators',
+				description: 'For creators selling 3D models, plugins, textures, game assets and marketplace products',
+			},
+			freelancers: {
+				title: 'Freelancers & digital sellers',
+				description:
+					'For people earning from freelance platforms, subscriptions, courses, music, content or digital products',
+			},
+		},
+	},
+	accountFlow: {
+		title: 'One account for creator payouts',
+		description:
+			'A guided way to connect platform payouts, receive funds to your Garna balance and withdraw using available payout methods',
+		steps: {
+			receive: {
+				title: 'Receive platform payouts',
+				description: 'Use Garna details where supported to receive payments from international creator platforms',
+			},
+			setup: {
+				title: 'Get guided setup',
+				description:
+					'Tell us which platform you use. We will check the available payout method and guide you through setup',
+			},
+			withdraw: {
+				title: 'Withdraw globally',
+				description:
+					'Withdraw your money using bank transfer, card, PayPal, Payoneer, crypto and other supported options',
+			},
+		},
+	},
+	process: {
+		title: 'From platform payout to your Garna balance',
+		description:
+			'The flow is simple, but setup may differ by platform. During Early Access, we guide you through the important details',
+		visual: {
+			account: {
+				profile: 'Profile',
+				setup: 'Setup',
+				statusLabel: 'Account status',
+				statusValue: 'Opening',
+				emailConfirmed: 'Email confirmed',
+				kycReview: 'KYC in review',
+				accountOpening: 'Account opening',
+				legalName: 'Legal name',
+				country: 'Country',
+				currency: 'Currency',
+			},
+			chat: {
+				managerOnline: 'Manager online',
+				messageIncome: 'Income from Envato',
+				messageCountry: 'Send country and payout currency',
+				messagePlatform: 'Portugal, USD. I also use Adobe Stock',
+				messageCheck: 'Got it. I will check supported route and invoice rules',
+				messageWithdrawal: 'Please include the first withdrawal steps too',
+				platformsLabel: 'Platforms',
+				platformsValue: '2 added',
+				routeLabel: 'Route check',
+				routeValue: 'In progress',
+			},
+			details: {
+				title: 'Garna details',
+				routing: 'Routing',
+				account: 'Account',
+				method: 'Method',
+				beneficiary: 'Beneficiary',
+				reference: 'Reference',
+				envatoReady: 'Envato ready',
+				adobeManual: 'Adobe Stock manual',
+				invoiceRequired: 'Invoice required',
+				routeStatus: 'Route status',
+				checked: 'Checked',
+				useInPlatform: 'Use in platform',
+				readyToPaste: 'Ready to paste',
+				copyAction: 'Copy payout details',
+			},
+			withdraw: {
+				title: 'Envato withdrawal',
+				summary: 'Payout summary',
+				availableNow: 'Available now',
+				marketplaceFee: 'Marketplace fee',
+				paid: 'Paid',
+				routeDetails: 'Route details',
+				destination: 'Destination',
+				request: 'Request',
+				prepared: 'Prepared',
+				requestAction: 'Request payout',
+			},
+			invoice: {
+				title: 'Invoice #2048',
+				client: 'Client',
+				amount: 'Amount',
+				status: 'Status',
+				matching: 'Matching',
+				reference: 'Reference',
+				junePayout: 'June payout',
+				proofAttached: 'Payout proof attached',
+				screenshot: 'Screenshot',
+				platformReport: 'Platform report',
+			},
+			balance: {
+				title: 'Garna balance',
+				credited: 'Credited',
+				incomingPayout: 'Incoming payout',
+				availableNow: 'Available now',
+				accountNumber: 'Account number',
+				bank: 'Bank',
+				card: 'Card',
+				crypto: 'Crypto',
+				withdrawAction: 'Withdraw funds',
+			},
+		},
+		steps: {
+			account: {
+				title: 'Create your Garna account',
+				description: 'Register in Garna and complete verification. KYC usually takes 1-2 business days',
+			},
+			platform: {
+				title: 'Tell us your platform',
+				description: 'Contact your payout manager and tell us where you receive income',
+			},
+			instructions: {
+				title: 'Get setup instructions',
+				description: 'We will check the available payout method and provide the correct Garna details or next steps',
+			},
+			request: {
+				title: 'Request payout on the platform',
+				description: 'Add the provided details where supported and request a withdrawal from your platform',
+			},
+			invoice: {
+				title: 'Create an invoice in Garna',
+				description:
+					'Create an invoice and attach the required confirmation, such as a payout screenshot or platform document',
+			},
+			receive: {
+				title: 'Receive and withdraw funds',
+				description:
+					'Garna matches the payment with your invoice, credits your balance, and you withdraw using your preferred available method',
+			},
+		},
+	},
+	earlyAccessFee: {
+		title: 'Reduced fee for\nEarly Access creators',
+		description:
+			"We're opening creator payouts in Early Access and manually helping selected users configure their first platform setups",
+		cta: 'Contact Payout Manager',
+		standard: {
+			label: 'Standard fee',
+			caption:
+				'The regular Garna service fee applies after Early Access or for creator payout setups outside the selected launch group.',
+		},
+		access: {
+			label: 'Early Access fee',
+			caption:
+				'Early Access creators can receive a reduced 1.5% Garna service fee for their first payouts while we help validate and fine-tune the setup flow.',
+			disclaimer:
+				"The percentages above refer only to Garna's service fee. Platform withdrawal fees, payment method charges, FX costs or other third-party fees may vary and are not included.",
+		},
+	},
+	platforms: {
+		title: 'Popular platforms\nwe can help with',
+		description:
+			"We're starting with popular creator platforms, stock marketplaces and digital product services. Some platforms can be configured directly, while others may require manual guidance from Garna or the platform's own support team",
+	},
+	globalInfrastructure: {
+		title: 'Global payout infrastructure for modern teams and creators',
+		description:
+			'Garna already helps businesses and contractors work with international payouts. Now we are bringing the same payout infrastructure to creators who earn from global platforms',
+		cards: {
+			platformPayouts: {
+				title: 'Global platform payouts',
+				description: 'Receive creator income across countries, currencies and payout methods',
+			},
+			currencyRoutes: {
+				title: 'Multi-currency payout routes',
+				description: 'Use the right payout currency and route from one Garna account',
+			},
+			setupSupport: {
+				title: 'Always-on setup support',
+				description: 'Get help choosing details, invoices and the next setup steps',
+			},
+			complianceFlow: {
+				metric: '1-2 days',
+				title: 'Compliance-ready payout flow',
+				description: 'Keep verification, documents and payment matching organized',
+			},
+		},
+	},
+	managerSupport: {
+		title: 'Need help with your first setup?',
+		description:
+			'Your payout manager will help you understand whether your platform is supported, which payout method is available, and what steps you need to complete',
+		actions: {
+			telegram: 'Message on Telegram',
+			email: 'Send an email',
+		},
+		visual: {
+			managerOnline: 'Payout manager online',
+			messages: {
+				income: 'I receive income from Envato and Adobe Stock 👋',
+				platformCountry: 'Hi Alex, send your platform and payout country. I will check which Garna details you can use',
+				firstWithdrawal: 'Great, I also need help with the first withdrawal',
+				ready: 'All set. Platform rules checked, payout route prepared, invoice matching included ✅',
+			},
+			route: {
+				title: 'Personal manager',
+				online: 'Online during setup',
+				channels: 'Telegram / Email',
+			},
+			dialog: {
+				status: 'Manager online',
+				time: '2 min',
+				request: 'I need help with my first platform payout',
+				reply: 'Send your platform and country. I will check the setup steps for you',
+			},
+			steps: {
+				platformCheck: 'Platform check',
+				setupGuidance: 'Setup guidance',
+				payoutMethod: 'Payout method',
+				firstWithdrawal: 'First withdrawal',
+			},
+			panel: {
+				manager: 'Personal manager',
+				title: 'First payout setup',
+				online: 'Online',
+				income: 'I receive income from Envato and Adobe Stock',
+				checkRules: 'We’ll check platform rules and send the available payout route',
+			},
+		},
+	},
+	creatorFaq: {
+		title: 'Questions creators usually ask',
+		subtitle: 'A few important details before you start your first payout setup with Garna',
+		items: {
+			creatorPlatform: {
+				question: 'Is Garna a creator platform?',
+				answer:
+					'No. Garna is not a marketplace and does not sell your content. Garna helps creators receive payouts from international platforms and withdraw funds using available payout methods',
+			},
+			availability: {
+				question: 'Is this available for everyone?',
+				answer:
+					'Creator payouts are currently available in Early Access. We start with selected creators and platforms to make sure each setup works correctly',
+			},
+			account: {
+				question: 'Do I need to create a Garna account?',
+				answer: 'Yes. You need a Garna account to complete verification, create invoices, receive funds and withdraw your balance',
+			},
+			verification: {
+				question: 'How long does verification take?',
+				answer: 'KYC usually takes 1-2 business days, depending on the documents and verification flow',
+			},
+			platformFunds: {
+				question: 'How long does it take to receive funds from a platform?',
+				answer:
+					'It depends on the platform and payout method. In many cases, incoming funds may take 1-5 business days after the platform sends the payout',
+			},
+			withdrawal: {
+				question: 'How long does withdrawal from Garna take?',
+				answer:
+					'Withdrawal timing depends on the selected method and destination. As a general guideline, it may take 1-2 business days for many standard methods',
+			},
+			anyPlatform: {
+				question: 'Can I use Garna with any platform?',
+				answer:
+					'Not always. Each platform has its own payout rules and supported methods. During setup, we confirm whether your platform can be processed and which flow applies',
+			},
+			fee: {
+				question: 'What is the fee?',
+				answer:
+					'The standard Garna service fee is 5.5%. Early Access creators can receive a reduced 1.5% Garna service fee for their first payouts, subject to final confirmation and setup details',
+			},
+		},
+	},
+	creatorFinalCta: {
+		title: 'Start receiving creator payouts with Garna',
+		description:
+			"Contact your payout manager to check your platform and get guided setup, or create your Garna account when you're ready to continue",
+		contact: 'Contact Payout Manager',
+		account: 'Create Garna Account',
+	},
+	sectionHeadings: {
+		hireEmployeesWorldwide: 'Hire Employees Worldwide',
+		embeddedPayrollInfrastructure: 'Embedded Payroll Infrastructure',
+	},
+	sectionDescriptions: {
+		hireEmployeesWorldwide:
+			'Simplify the hiring process for employees and freelancers with Garna. Unlike other companies, we will resolve not only the financial, but also legal side while you are looking for the right specialists',
+		embeddedPayrollInfrastructure:
+			'Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand',
+	},
+	faq: {
+		title: 'Questions creators usually ask',
+		items: {
+			q1: {
+				question: 'Is Garna a creator platform?',
+				answer:
+					'No. Garna is not a marketplace and does not sell your content. Garna helps creators receive payouts from international platforms and withdraw funds using available payout methods',
+			},
+			q2: {
+				question: 'Is this available for everyone?',
+				answer:
+					'Creator payouts are currently available in Early Access. We start with selected creators and platforms to make sure each setup works correctly',
+			},
+			q3: {
+				question: 'Do I need to create a Garna account?',
+				answer:
+					'Yes. You need a Garna account to complete verification, create invoices, receive funds and withdraw your balance',
+			},
+			q4: {
+				question: 'How long does verification take?',
+				answer: 'KYC usually takes 1-2 business days, depending on the documents and verification flow',
+			},
+			q5: {
+				question: 'How long does it take to receive funds from a platform?',
+				answer:
+					'It depends on the platform and payout method. In many cases, incoming funds may take 1-5 business days after the platform sends the payout',
+			},
+			q6: {
+				question: 'How long does withdrawal from Garna take?',
+				answer:
+					'Withdrawal timing depends on the selected method and destination. As a general guideline, it may take 1-2 business days for many standard methods',
+			},
+			q7: {
+				question: 'Can I use Garna with any platform?',
+				answer:
+					'Not always. Each platform has its own payout rules and supported methods. During setup, we confirm whether your platform can be processed and which flow applies',
+			},
+			q8: {
+				question: 'What is the fee?',
+				answer:
+					'The standard Garna service fee is 5.5%. Early Access creators can receive a reduced 1.5% Garna service fee for their first payouts, subject to final confirmation and setup details',
+			},
+		},
+	},
+	finalCta: {
+		title: 'Launch Global Payroll Software on Autopilot Today',
+		description: 'Pay your team in 150+ countries with just a few clicks. No red tape, just fast payments',
+		button: 'Book a demo',
+	},
+	footer: homeEn.footer,
+	bookingWidget: homeEn.bookingWidget,
+};
