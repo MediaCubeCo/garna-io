@@ -8,9 +8,11 @@ import { eorTranslations } from './translations/eor';
 import { payrollSmallBusinessTranslations } from './translations/payroll-small-business';
 import { midSizeTranslations } from './translations/mid-size';
 import { payrollSolutionNewTranslations as homeTranslations } from './translations/payroll-solution-new';
+import { forCreatorsTranslations } from './translations/for-creators';
 import { blogArticleTranslations, blogAuthorTranslations, blogTranslations } from './translations/blog';
 import { enterprisePayrollTranslations } from './translations/enterprise-payroll';
 import { taxCalculatorTranslations } from './translations/tax-calculator';
+import { eorCostCalculatorTranslations } from './translations/eor-cost-calculator';
 
 export type PageTranslations = typeof homeTranslations.en;
 
@@ -26,11 +28,13 @@ type AnyPageTranslations =
 	| typeof payrollSmallBusinessTranslations.en
 	| typeof midSizeTranslations.en
 	| typeof homeTranslations.en
+	| typeof forCreatorsTranslations.en
 	| typeof enterprisePayrollTranslations.en
 	| typeof blogTranslations.en
 	| typeof blogAuthorTranslations.en
 	| typeof blogArticleTranslations.en
-	| typeof taxCalculatorTranslations.en;
+	| typeof taxCalculatorTranslations.en
+	| typeof eorCostCalculatorTranslations.en;
 
 const translations = {
 	home: homeTranslations,
@@ -42,6 +46,7 @@ const translations = {
 	'white-label': whiteLabelTranslations,
 	eor: eorTranslations,
 	'employer-of-record': eorTranslations,
+	'for-creators': forCreatorsTranslations,
 	'mid-size': midSizeTranslations,
 	'mid-size-business-payroll': midSizeTranslations,
 	'enterprise-payroll': enterprisePayrollTranslations,
@@ -50,6 +55,7 @@ const translations = {
 	'blog-author': blogAuthorTranslations,
 	'blog-article': blogArticleTranslations,
 	'tax-calculator': taxCalculatorTranslations,
+	'eor-cost-calculator': eorCostCalculatorTranslations,
 } as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
 export function getPageTranslations(pageName: string, locale: string): AnyPageTranslations {

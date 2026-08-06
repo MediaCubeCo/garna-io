@@ -1,6 +1,14 @@
 import type { PageShellConfig } from '../types/page-shell';
 
 export const pageShells = {
+	eorCostCalculator: {
+		title: 'EOR Cost Calculator: Compare Employer of Record Fees | Garna',
+		description: 'Compare your current Employer of Record service fee with Garna and estimate annual EOR savings, salary and employer contributions.',
+		keywords: 'EOR cost calculator, employer of record cost, EOR fees, EOR comparison, Garna',
+		htmlClass: 'scroll-smooth dark',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300]/40 selection:text-white bg-garna-page',
+		iconLibrary: 'lucide',
+	},
 	taxCalculator: {
 		title: 'Free Employee Cost Calculator: Estimate the True Cost of Hiring Globally | Garna',
 		description: 'Know the true cost of hiring with Garna’s free Global Employee Cost Calculator. Estimate total employment expenses for global teams.',

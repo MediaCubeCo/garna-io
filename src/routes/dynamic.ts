@@ -63,6 +63,7 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 const PAGE_PATH_TO_ASSET: Record<string, string> = {
 	'': '/index.html',
 	'for-contractors': '/for-contractors.html',
+	'for-creators': '/for-creators.html',
 	'contractor-of-record': '/contractor-of-record.html',
 	'mid-size-business-payroll': '/mid-size-business-payroll.html',
 	'enterprise-payroll': '/enterprise-payroll.html',
@@ -72,6 +73,7 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 	'small-business-payroll': '/payroll-small-business.html',
 	'employer-of-record': '/employer-of-record.html',
 	'employee-cost-calculator': '/tax-calculator.html',
+	'eor-cost-calculator': '/eor-cost-calculator.html',
 	blog: '/blog.html',
 	'blog-author': '/blog-author.html',
 	'blog-article': '/blog-article.html',
@@ -80,6 +82,7 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'': 'home',
 	'for-contractors': 'offer',
+	'for-creators': 'for-creators',
 	'contractor-of-record': 'contractor-of-record',
 	'mid-size-business-payroll': 'mid-size',
 	'enterprise-payroll': 'enterprise-payroll',
@@ -89,6 +92,7 @@ const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'small-business-payroll': 'payroll-small-business',
 	'employer-of-record': 'eor',
 	'employee-cost-calculator': 'tax-calculator',
+	'eor-cost-calculator': 'eor-cost-calculator',
 	blog: 'blog',
 	'blog-author': 'blog-author',
 	'blog-article': 'blog-article',

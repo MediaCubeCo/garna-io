@@ -1,0 +1,707 @@
+import { homeEs } from '../home/es';
+
+export const forCreatorsEs = {
+	meta: {
+		title: 'Garna para creadores',
+		description:
+			'Recibe pagos de plataformas para creadores, marketplaces de stock, servicios freelance y plataformas de productos digitales en una sola cuenta de Garna.',
+	},
+	images: {},
+	hero: {
+		badge: 'Acceso anticipado para creadores seleccionados',
+		titleMain: 'Pagos de plataformas globales para creadores, guiados por Garna',
+		titleAccent: 'guiados por Garna',
+		description:
+			'Recibe pagos de plataformas para creadores, marketplaces de stock, servicios freelance y plataformas de productos digitales en una sola cuenta de Garna. Te guiaremos durante la primera configuración, te ayudaremos a entender qué método de pago encaja con tu plataforma y te acompañaremos en tus primeros retiros',
+		cta: 'Contactar al gestor de pagos',
+		accountCta: 'Crear cuenta de Garna',
+	},
+	heroVisual: {
+		sources: {
+			envato: {
+				label: 'Pago de Envato',
+			},
+			adobe: {
+				label: 'Ingresos por assets',
+			},
+			patreon: {
+				label: 'Pago de miembros',
+			},
+		},
+		balance: {
+			label: 'Saldo del creador',
+			account: 'Cuenta',
+		},
+		destinations: {
+			bank: {
+				label: 'Transferencia bancaria',
+				title: 'Alex Carter USD',
+			},
+			card: {
+				label: 'Pago a tarjeta',
+				title: 'Visa / Mastercard',
+				meta: 'Tarjeta terminada en 4482',
+			},
+			crypto: {
+				label: 'Billetera cripto',
+				title: 'Billetera USDT',
+				meta: 'TRC20 • verificado',
+			},
+		},
+	},
+	creatorTypes: {
+		title: 'Creado para creadores que ganan a nivel global',
+		description:
+			'Garna puede ayudar a creadores, freelancers y vendedores digitales que reciben ingresos de plataformas internacionales',
+		cards: {
+			designers: {
+				title: 'Diseñadores e ilustradores',
+				description: 'Para creadores que venden gráficos, plantillas, fuentes, assets digitales y productos visuales',
+			},
+			photographers: {
+				title: 'Fotógrafos y colaboradores de stock',
+				description: 'Para colaboradores que reciben regalías o pagos de plataformas de fotografía y medios de stock',
+			},
+			gameAssets: {
+				title: 'Artistas 3D y creadores de assets para juegos',
+				description: 'Para creadores que venden modelos 3D, plugins, texturas, assets de juegos y productos de marketplace',
+			},
+			freelancers: {
+				title: 'Freelancers y vendedores digitales',
+				description:
+					'Para quienes ganan en plataformas freelance, suscripciones, cursos, música, contenido o productos digitales',
+			},
+		},
+	},
+	accountFlow: {
+		title: 'Una cuenta para los pagos de creadores',
+		description:
+			'Una forma guiada de conectar pagos de plataformas, recibir fondos en tu saldo de Garna y retirarlos con los métodos disponibles',
+		steps: {
+			receive: {
+				title: 'Recibe pagos de plataformas',
+				description: 'Usa los datos de Garna, cuando estén disponibles, para recibir pagos de plataformas internacionales para creadores',
+			},
+			setup: {
+				title: 'Obtén configuración guiada',
+				description:
+					'Dinos qué plataforma usas. Revisaremos el método de pago disponible y te guiaremos durante la configuración',
+			},
+			withdraw: {
+				title: 'Retira fondos globalmente',
+				description:
+					'Retira tu dinero mediante transferencia bancaria, tarjeta, PayPal, Payoneer, cripto y otras opciones disponibles',
+			},
+		},
+	},
+	process: {
+		title: 'Del pago de la plataforma a tu saldo de Garna',
+		description:
+			'El flujo es simple, pero la configuración puede variar según la plataforma. Durante Early Access, te guiamos en los detalles importantes',
+		visual: {
+			account: {
+				profile: 'Perfil',
+				setup: 'Configuración',
+				statusLabel: 'Estado de la cuenta',
+				statusValue: 'Apertura',
+				emailConfirmed: 'Email confirmado',
+				kycReview: 'KYC en revisión',
+				accountOpening: 'Apertura de cuenta',
+				legalName: 'Nombre legal',
+				country: 'País',
+				currency: 'Moneda',
+			},
+			chat: {
+				managerOnline: 'Gestor en línea',
+				messageIncome: 'Ingresos de Envato',
+				messageCountry: 'Envía país y moneda de pago',
+				messagePlatform: 'Portugal, USD. También uso Adobe Stock',
+				messageCheck: 'Entendido. Revisaré la ruta disponible y las reglas de factura',
+				messageWithdrawal: 'Incluye también los primeros pasos de retiro',
+				platformsLabel: 'Plataformas',
+				platformsValue: '2 añadidas',
+				routeLabel: 'Revisión de ruta',
+				routeValue: 'En progreso',
+			},
+			details: {
+				title: 'Datos de Garna',
+				routing: 'Routing',
+				account: 'Cuenta',
+				method: 'Método',
+				beneficiary: 'Beneficiario',
+				reference: 'Referencia',
+				envatoReady: 'Envato listo',
+				adobeManual: 'Adobe Stock manual',
+				invoiceRequired: 'Factura requerida',
+				routeStatus: 'Estado de ruta',
+				checked: 'Revisado',
+				useInPlatform: 'Usar en plataforma',
+				readyToPaste: 'Listo para pegar',
+				copyAction: 'Copiar datos de pago',
+			},
+			withdraw: {
+				title: 'Retiro de Envato',
+				summary: 'Resumen del pago',
+				availableNow: 'Disponible ahora',
+				marketplaceFee: 'Fee del marketplace',
+				paid: 'Pagado',
+				routeDetails: 'Detalles de ruta',
+				destination: 'Destino',
+				request: 'Solicitud',
+				prepared: 'Preparada',
+				requestAction: 'Solicitar pago',
+			},
+			invoice: {
+				title: 'Factura #2048',
+				client: 'Cliente',
+				amount: 'Importe',
+				status: 'Estado',
+				matching: 'Conciliando',
+				reference: 'Referencia',
+				junePayout: 'Pago de junio',
+				proofAttached: 'Comprobante adjunto',
+				screenshot: 'Captura',
+				platformReport: 'Informe de plataforma',
+			},
+			balance: {
+				title: 'Saldo de Garna',
+				credited: 'Acreditado',
+				incomingPayout: 'Pago entrante',
+				availableNow: 'Disponible ahora',
+				accountNumber: 'Número de cuenta',
+				bank: 'Banco',
+				card: 'Tarjeta',
+				crypto: 'Cripto',
+				withdrawAction: 'Retirar fondos',
+			},
+		},
+		steps: {
+			account: {
+				title: 'Crea tu cuenta de Garna',
+				description: 'Regístrate en Garna y completa la verificación. El KYC suele tardar 1-2 días laborables',
+			},
+			platform: {
+				title: 'Cuéntanos tu plataforma',
+				description: 'Contacta con tu gestor de pagos y dinos dónde recibes ingresos',
+			},
+			instructions: {
+				title: 'Recibe instrucciones de configuración',
+				description: 'Revisaremos el método de pago disponible y te daremos los datos correctos de Garna o los próximos pasos',
+			},
+			request: {
+				title: 'Solicita el pago en la plataforma',
+				description: 'Añade los datos proporcionados donde sea compatible y solicita un retiro desde tu plataforma',
+			},
+			invoice: {
+				title: 'Crea una factura en Garna',
+				description: 'Crea una factura y adjunta la confirmación requerida, como una captura del pago o un documento de la plataforma',
+			},
+			receive: {
+				title: 'Recibe y retira fondos',
+				description:
+					'Garna concilia el pago con tu factura, acredita tu saldo y tú retiras los fondos con el método disponible que prefieras',
+			},
+		},
+	},
+	earlyAccessFee: {
+		title: 'Fee reducido para\ncreadores de Early Access',
+		description:
+			'Estamos abriendo los pagos para creadores en Early Access y ayudando manualmente a usuarios seleccionados a configurar sus primeras plataformas',
+		cta: 'Contactar al gestor de pagos',
+		standard: {
+			label: 'Fee estándar',
+			caption:
+				'El fee regular de servicio de Garna se aplica después de Early Access o para configuraciones de pagos de creadores fuera del grupo de lanzamiento seleccionado.',
+		},
+		access: {
+			label: 'Fee de Early Access',
+			caption:
+				'Los creadores de Early Access pueden recibir un fee reducido de servicio de Garna del 1.5% para sus primeros pagos mientras ayudamos a validar y ajustar el flujo de configuración.',
+			disclaimer:
+				'Los porcentajes anteriores se refieren solo al fee de servicio de Garna. Las comisiones de retiro de plataformas, cargos de métodos de pago, costes de FX u otras comisiones de terceros pueden variar y no están incluidos.',
+		},
+	},
+	platforms: {
+		title: 'Plataformas populares\ncon las que podemos ayudar',
+		description:
+			'Empezamos con plataformas populares para creadores, marketplaces de stock y servicios de productos digitales. Algunas plataformas se pueden configurar directamente, mientras que otras pueden requerir acompañamiento manual de Garna o del soporte de la propia plataforma',
+	},
+	globalInfrastructure: {
+		title: 'Infraestructura global de pagos para equipos y creadores modernos',
+		description:
+			'Garna ya ayuda a empresas y contratistas a trabajar con pagos internacionales. Ahora llevamos la misma infraestructura de pagos a creadores que ganan en plataformas globales',
+		cards: {
+			platformPayouts: {
+				title: 'Pagos de plataformas globales',
+				description: 'Recibe ingresos de creador entre países, monedas y métodos de pago',
+			},
+			currencyRoutes: {
+				title: 'Rutas de pago multi-moneda',
+				description: 'Usa la moneda y la ruta de pago correctas desde una sola cuenta de Garna',
+			},
+			setupSupport: {
+				title: 'Soporte de configuración continuo',
+				description: 'Recibe ayuda para elegir datos, facturas y próximos pasos de configuración',
+			},
+			complianceFlow: {
+				metric: '1-2 días',
+				title: 'Flujo de pagos listo para compliance',
+				description: 'Mantén verificación, documentos y conciliación de pagos organizados',
+			},
+		},
+	},
+	managerSupport: {
+		title: '¿Necesitas ayuda con tu primera configuración?',
+		description:
+			'Tu gestor de pagos te ayudará a entender si tu plataforma está soportada, qué método de pago está disponible y qué pasos debes completar',
+		actions: {
+			telegram: 'Escribir por Telegram',
+			email: 'Enviar un email',
+		},
+		visual: {
+			managerOnline: 'Gestor de pagos online',
+			messages: {
+				income: 'Recibo ingresos de Envato y Adobe Stock 👋',
+				platformCountry: 'Hola Alex, envía tu plataforma y el país de pago. Revisaré qué datos de Garna puedes usar',
+				firstWithdrawal: 'Perfecto, también necesito ayuda con el primer retiro',
+				ready: 'Listo. Reglas de plataforma revisadas, ruta de pago preparada y conciliación de factura incluida ✅',
+			},
+			route: {
+				title: 'Gestor personal',
+				online: 'Online durante la configuración',
+				channels: 'Telegram / Email',
+			},
+			dialog: {
+				status: 'Gestor online',
+				time: '2 min',
+				request: 'Necesito ayuda con mi primer pago de plataforma',
+				reply: 'Envía tu plataforma y país. Revisaré los pasos de configuración para ti',
+			},
+			steps: {
+				platformCheck: 'Revisión de plataforma',
+				setupGuidance: 'Guía de configuración',
+				payoutMethod: 'Método de pago',
+				firstWithdrawal: 'Primer retiro',
+			},
+			panel: {
+				manager: 'Gestor personal',
+				title: 'Configuración del primer pago',
+				online: 'Online',
+				income: 'Recibo ingresos de Envato y Adobe Stock',
+				checkRules: 'Revisaremos las reglas de la plataforma y enviaremos la ruta de pago disponible',
+			},
+		},
+	},
+	creatorFaq: {
+		title: 'Preguntas frecuentes de los creadores',
+		subtitle: 'Algunos detalles importantes antes de empezar tu primera configuración de pagos con Garna',
+		items: {
+			creatorPlatform: {
+				question: '¿Garna es una plataforma para creadores?',
+				answer:
+					'No. Garna no es un marketplace y no vende tu contenido. Garna ayuda a los creadores a recibir pagos de plataformas internacionales y retirar fondos con los métodos disponibles',
+			},
+			availability: {
+				question: '¿Está disponible para todos?',
+				answer:
+					'Los pagos para creadores están disponibles actualmente en Early Access. Empezamos con creadores y plataformas seleccionados para asegurarnos de que cada configuración funcione correctamente',
+			},
+			account: {
+				question: '¿Necesito crear una cuenta de Garna?',
+				answer: 'Sí. Necesitas una cuenta de Garna para completar la verificación, crear facturas, recibir fondos y retirar tu saldo',
+			},
+			verification: {
+				question: '¿Cuánto tarda la verificación?',
+				answer: 'El KYC suele tardar 1-2 días hábiles, según los documentos y el flujo de verificación',
+			},
+			platformFunds: {
+				question: '¿Cuánto tarda recibir fondos de una plataforma?',
+				answer:
+					'Depende de la plataforma y del método de pago. En muchos casos, los fondos entrantes pueden tardar 1-5 días hábiles después de que la plataforma envíe el pago',
+			},
+			withdrawal: {
+				question: '¿Cuánto tarda un retiro desde Garna?',
+				answer:
+					'El tiempo de retiro depende del método y destino seleccionados. Como referencia general, muchos métodos estándar pueden tardar 1-2 días hábiles',
+			},
+			anyPlatform: {
+				question: '¿Puedo usar Garna con cualquier plataforma?',
+				answer:
+					'No siempre. Cada plataforma tiene sus propias reglas de pago y métodos soportados. Durante la configuración, confirmamos si tu plataforma puede procesarse y qué flujo aplica',
+			},
+			fee: {
+				question: '¿Cuál es la comisión?',
+				answer:
+					'La comisión estándar de servicio de Garna es del 5.5%. Los creadores en Early Access pueden recibir una comisión reducida del 1.5% para sus primeros pagos, sujeta a confirmación final y detalles de configuración',
+			},
+		},
+	},
+	creatorFinalCta: {
+		title: 'Empieza a recibir pagos de creador con Garna',
+		description:
+			'Contacta con tu gestor de pagos para revisar tu plataforma y recibir configuración guiada, o crea tu cuenta de Garna cuando estés listo para continuar',
+		contact: 'Contactar gestor de pagos',
+		account: 'Crear cuenta Garna',
+	},
+	sectionHeadings: {
+		hireEmployeesWorldwide: 'Realice contrataciones oficiales con más ventajas',
+		embeddedPayrollInfrastructure: 'Solución integrada de contratista de referencia para tu negocio',
+	},
+	sectionDescriptions: {
+		hireEmployeesWorldwide:
+			'Simplifica el proceso de contratación de empleados y autónomos con Garna. A diferencia de otras empresas, nos encargamos no solo de los aspectos financieros, sino también de los legales, mientras tú buscas a los especialistas adecuados',
+		embeddedPayrollInfrastructure:
+			'Amplía tus operaciones con contratistas a nivel global. Utiliza Garna como tu proveedor de backend: integra la gestión de contratistas y los pagos en tu producto o lanza servicios de nóminas completos bajo tu propia marca',
+	},
+	faq: {
+		title: 'Preguntas frecuentes sobre soluciones de nóminas',
+		items: {
+			q1: {
+				question: '¿Cuánto tardaré en empezar a utilizar Garna Payroll?',
+				answer:
+					'El tiempo medio desde el registro hasta la primera contratación o el primer pago a un colaborador externo es inferior a 10 minutos. Puedes crear una cuenta, verificarla y empezar a utilizarla inmediatamente después. Nuestro equipo procesa las solicitudes con rapidez y te da acceso a uno de los mejores servicios de nóminas online y soluciones de gestión de colaboradores externos. En este punto, actuamos como proveedor de nóminas, lo que te permite trabajar tanto con empleados como con colaboradores externos.',
+			},
+			q2: {
+				question: '¿Puedo personalizar el panel de control de los contratistas con la imagen de mi empresa?',
+				answer:
+					'¡Por supuesto! Nuestra solución de marca blanca te permite personalizar completamente la interfaz, no solo para tus contratistas internos, sino también para tus clientes.',
+			},
+			q3: {
+				question: '¿Qué métodos de pago admite Garna?',
+				answer:
+					'Admitimos transferencias bancarias (SWIFT, SEPA, transferencias bancarias en moneda local), pagos con tarjeta en moneda local, PayPal, Payoneer y pagos en criptomonedas (USDT/USDC).',
+			},
+			q4: {
+				question: '¿Cómo gestiona Garna los impuestos y el cumplimiento normativo a nivel global?',
+				answer:
+					'No tendrás que preocuparte por los trámites burocráticos. Al trabajar con nuestra solución de Empleo Oficial, nos encargamos de todos los impuestos locales, las cotizaciones sociales, los seguros y el cumplimiento normativo. Al trabajar con nuestra solución de Contratista Oficial, Garna se asegura de evitar el riesgo de clasificación errónea de los trabajadores. Como tu agente de contratista oficial, asumimos toda la responsabilidad de la contratación para que puedas centrarte en el crecimiento de tu empresa.',
+			},
+			q5: {
+				question: '¿Puedo integrar la API de Garna en mi plataforma?',
+				answer: 'Sí. Con nuestra API, puedes automatizar los pagos a los contratistas desde tu propia plataforma.',
+			},
+			q6: {
+				question: '¿Qué divisas se admiten para los pagos?',
+				answer:
+					'Admitimos más de 80 divisas locales, incluyendo USD, EUR y GBP. En Garna, creemos que las empresas deben disponer de los mejores tipos de cambio sin recargos.',
+			},
+			q7: {
+				question: '¿Cómo gestiona Garna la administración de los contratistas?',
+				answer:
+					'Garna automatiza todo el proceso, desde la incorporación y las comprobaciones de cumplimiento normativo hasta la generación instantánea de facturas. Tú pagas una única factura consolidada y nosotros distribuimos los fondos a los colaboradores en su método de pago y moneda preferidos. Garna asume el riesgo de clasificación errónea y se encarga del cumplimiento normativo local.',
+			},
+			q8: {
+				question: '¿Están seguros mis datos con Garna?',
+				answer:
+					'Por supuesto. Como uno de los principales proveedores globales de nóminas, Garna utiliza cifrado de nivel bancario y cumple estrictamente con los protocolos del RGPD y las normas de seguridad de datos financieros. Además, solo tú tienes acceso a tu cuenta personal. Puedes eliminar tu cuenta personal en cualquier momento.',
+			},
+			q9: {
+				question: '¿Puedo utilizar Garna Payroll si mi empresa ya tiene su propio panel de control?',
+				answer: 'Sí, podemos integrar cualquiera de nuestras herramientas en tus flujos de trabajo.',
+			},
+			q10: {
+				question: '¿Ofrecen asistencia para cuestiones relacionadas con la gestión de nóminas a nivel global?',
+				answer:
+					'Sí, por supuesto. Nuestro equipo de asistencia está disponible las 24 horas del día, los 7 días de la semana, para responder a cualquier pregunta que puedas tener sobre el servicio, los pagos, etc.',
+			},
+		},
+	},
+	finalCta: {
+		title: 'Lanza hoy mismo un software de nóminas global en piloto automático',
+		description: 'Paga a tu equipo en más de 150 países con solo unos clics. Sin trámites burocráticos, solo pagos rápidos',
+		button: 'Solicita una demostración',
+	},
+	legacy: {
+		visual: {
+			verifyCompliance: '// 1. Verify compliance',
+			notCompliant: "'Not compliant'",
+			processPayout: '// 2. Process automated payout',
+			payoutCreated: '200 OK - Payout Created',
+		},
+	},
+	sourceText: {
+		'Book a demo': 'Solicita un demo',
+		'businesses using Garna': 'empresas usando Garna',
+		'global payroll service availability': 'disponibilidad global de nómina',
+		'countries covered': 'países cubiertos',
+		'Manage Global Payroll Effortlessly': 'Gestiona la nómina global sin esfuerzo',
+		'We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries':
+			'Optimizamos el procesamiento de nóminas, ofreciendo soluciones flexibles y fiables para empresas de todos los tamaños y sectores',
+		'Automated Payroll Platform': 'Plataforma de nómina automatizada',
+		'Automate global payout processes with a flexible, user-friendly platform':
+			'Automatice los procesos de pago globales con una plataforma flexible y fácil de usar',
+		'Business': 'Negocio',
+		'Web Designer': 'Web Designer',
+		'Developer': 'Developer',
+		'Ops Manager': 'Ops Manager',
+		'Global Reach': 'Alcance global',
+		'Pay in 150+ countries with local currencies and crypto': 'Paga en más de 150 países con monedas locales y cripto',
+		'No hidden Fees': 'Sin comisiones ocultas',
+		'Transparent pricing, zero setup cost': 'Precios transparentes, cero costo de implementación',
+		'Payment Information': 'Información de pago',
+		'Recipient receives 100 $': 'El destinatario recibe 100 $',
+		'Exchange rate 1 € = 1.0591 $': 'Tipo de cambio 1 € = 1.0591 $',
+		'Fees 0.00 €': 'Comisiones 0.00 €',
+		'Recipient receives': 'El destinatario recibe',
+		'Exchange rate': 'Tipo de cambio',
+		'Fees': 'Comisiones',
+		'Hire Employees Worldwide': 'Realice contrataciones oficiales con más ventajas',
+		'Simplify the hiring process for employees and freelancers with Garna. Unlike other companies, we will resolve not only the financial, but also legal side while you are looking for the right specialists':
+			'Simplifica el proceso de contratación de empleados y autónomos con Garna. A diferencia de otras empresas, nos encargamos no solo de los aspectos financieros, sino también de los legales, mientras tú buscas a los especialistas adecuados',
+		'Quick Global Employment': 'Contratación global rápida',
+		'Hire employees anywhere in the world without setting up local legal entities':
+			'Contrate empleados en cualquier parte del mundo sin necesidad de constituir entidades jurídicas locales',
+		'Immigration Assistance': 'Asistencia en materia de inmigración',
+		'We help you not only find talent, but also apply for a visa and permanent residence support':
+			'Le ayudamos no solo a encontrar talento, sino también a solicitar visados y a tramitar la residencia permanente',
+		'Flexible Worksite Coverage': 'Cobertura flexible de lugares de trabajo',
+		'Hire for offices, retail, factories, or remote teams: wherever your business operates':
+			'Contrata personal para oficinas, comercios, fábricas o equipos remotos: dondequiera que opere tu empresa',
+		'24/7 Support': 'Asistencia 24/7',
+		'Our support team is available 24/7 to resolve any issue in just a few minutes':
+			'¿Tienes alguna pregunta? Nuestro equipo de asistencia está disponible las 24 horas del día, los 7 días de la semana, para resolver cualquier problema en solo unos minutos',
+		'Seamless Integration': 'Integración perfecta',
+		'Garna integrates seamlessly with your existing HR processes and accounting payroll software':
+			'Garna se integra a la perfección con tus procesos de RR. HH. y tu software de contabilidad y nóminas existentes',
+		'Employee Benefits': 'Beneficios para los empleados',
+		'A user-friendly personal dashboard for every team member: access to payslips, vacation management, and expense tracking in real time':
+			'Un panel personal y fácil de usar para cada miembro del equipo: acceso a nóminas, gestión de vacaciones y seguimiento de gastos en tiempo real',
+		'Simplify Global Contractor Payments': 'Simplifica la gestión y los pagos de contratistas internacionales',
+		'Centralize invoices, approvals, and payments in one place. Manage and pay freelancers worldwide in their preferred method and currency without unnecessary fees':
+			'Centraliza las facturas, las aprobaciones y los pagos en un solo lugar. Gestiona y paga a autónomos de todo el mundo con su método y moneda preferidos sin comisiones innecesarias',
+		'Multiple payout methods': 'Múltiples métodos de pago',
+		'Contractors receive payouts via bank transfers in 80+ currencies, cards, wallets, or cryptocurrencies':
+			'Los contratistas reciben pagos por transferencias bancarias en más de 80 monedas, tarjetas, billeteras o criptomonedas',
+		'Bank transfer': 'Transferencia bancaria',
+		'Transfer to a card': 'Transferencia a tarjeta',
+		'Electronic wallets': 'Billeteras electrónicas',
+		'Cryptocurrencies': 'Criptomonedas',
+		'Mobile first experience': 'Experiencia móvil primero',
+		'Get notified when your payout is credited and manage balances and payouts in one app':
+			'Recibe notificaciones cuando se acredite tu pago y gestiona saldos y pagos en una sola app',
+		'Payout credited': 'Pago acreditado',
+		'Your January payout has been credited to your balance': 'Tu pago de enero se acreditó en tu saldo',
+		'Early payout access': 'Acceso a pago anticipado',
+		'Request early access to earned payouts through a simple and transparent approval flow':
+			'Solicita acceso anticipado a pagos devengados con un flujo de aprobación simple y transparente',
+		'Effective Payroll For Your Team Starts Here': 'Una gestión eficaz de las nóminas para tu equipo empieza aquí',
+		'Make payments to the contractor when you need to (without any hassle, delays, or additional fees) using CSV mass payments or stand alone transfers. Pay international contractors in just a few clicks or set up full automation':
+			'Realiza pagos a los contratistas cuando lo necesites (sin complicaciones, retrasos ni comisiones adicionales) mediante pagos masivos en CSV o transferencias individuales. Paga a contratistas internacionales con solo unos clics o configura la automatización completa',
+		'Balance': 'Saldo',
+		'Company': 'Empresa',
+		'Notifications': 'Notificaciones',
+		'Send': 'Enviar',
+		'Withdraw': 'Retirar',
+		'Add funds': 'Añadir fondos',
+		'Details': 'Detalles',
+		'Internal account USD': 'Cuenta interna USD',
+		'Account number': 'Número de cuenta',
+		'Templates': 'Plantillas',
+		'All >': 'Todas >',
+		'Transaction by email': 'Transacción por correo',
+		'CSV payment': 'Pago CSV',
+		'Top up with USDT': 'Recargar con USDT',
+		'Top up with Bank transfer': 'Recargar con transferencia bancaria',
+		'Transactions': 'Transacciones',
+		'Transfer to Maria Rei': 'Transferir a Maria Rei',
+		'Transfer to Vlad Kolomensky': 'Transferir a Vlad Kolomensky',
+		'Confirmed': 'Confirmado',
+		'$ 1,000,000.00 available for team payouts': '$ 1,000,000.00 disponible para pagos del equipo',
+		'Pay your contractors now — repay later with flexible terms':
+			'Pague a sus contratistas ahora, reembolse después con términos flexibles',
+		'Request': 'Solicitar',
+		'Pay contractors now, settle later': 'Paga a los contratistas ahora y liquida más tarde',
+		'Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow':
+			'Realiza pagos globales de forma inmediata y devuelve el importe a Garna según un calendario que se adapte al flujo de caja de tu empresa',
+		'Immediate payouts, deferred settlement': 'Pagos inmediatos, liquidación diferida',
+		'Flexible terms: 30, 60, or 90 days': 'Condiciones flexibles: 30, 60 o 90 días',
+		'Facility limits from $50K to one million': 'Límites de crédito de $50K a un millón',
+		'Instant allocation &amp; processing': 'Asignación y procesamiento instantáneos',
+		'Embedded Payroll Infrastructure': 'Solución integrada de contratista de referencia para tu negocio',
+		'Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand':
+			'Amplía tus operaciones con contratistas a nivel global. Utiliza Garna como tu proveedor de backend: integra la gestión de contratistas y los pagos en tu producto o lanza servicios de nóminas completos bajo tu propia marca',
+		'API contractor management and payments': 'Gestión de contratistas y pagos mediante API',
+		'Integrate global contractor payments directly into your platform':
+			'Integra los pagos a contratistas globales directamente en tu plataforma',
+		'White-label contractor dashboard and payments': 'Panel de control y pagos de contratistas de marca blanca',
+		'Launch professional payment software under your own brand':
+			'Lanza un software de pagos profesional bajo tu propia marca',
+		'Learn more': 'Más información',
+		'Start Paying Globally': 'Configura una nómina internacional y añade un servicio de contratista de referencia o empleador de referencia',
+		'From quick registration and talent’s search to your first payout. Everything is clear and completely under your control in a few simple steps':
+			'Desde el registro rápido y la búsqueda de talento hasta tu primer pago. Todo es claro y está completamente bajo tu control en unos pocos y sencillos pasos',
+		'Set up your company profile': 'Configura el perfil de tu empresa',
+		'Complete a quick verification process and gain access to a full-featured payroll software solution':
+			'Completa un rápido proceso de verificación y obtén acceso a una solución de software de nóminas con todas las funciones',
+		'Add your team': 'Añade tu equipo',
+		'Import data for employees and international contractors':
+			'Importa los datos de los empleados y los contratistas internacionales',
+		'Fund your account': 'Recarga tu cuenta',
+		'Fund your account at Garna via SWIFT, SEPA, bank transfer in local currencies, PayPal, or use crypto assets for instant deposits':
+			'Recarga tu cuenta en Garna a través de SWIFT, SEPA, transferencia bancaria en moneda local, PayPal o utiliza criptoactivos para realizar depósitos instantáneos',
+		'Send payout': 'Envía el pago',
+		'Pay recipients in 150+ countries with full compliance':
+			'Paga a destinatarios en más de 150 países con cumplimiento total de la normativa',
+  'Set up your company account': 'Configura la cuenta de tu empresa',
+		'Make a quick profile check and verification, fill in the required fields and get started':
+			'Realiza una rápida comprobación y verificación de tu perfil, rellena los campos obligatorios y obten acceso al servicio',
+		'Assign a financial contact person': 'Designa a una persona de contacto para asuntos financieros',
+		'SSpecify the person who will be responsible for financial matters':
+			'Especifica quién será la persona responsable de los asuntos financieros',
+		'Create your first EoR contract': 'Crea tu primer contrato EoR',
+		"Enter the employee's details":
+			'Introduce los datos del empleado',
+		'Invite an employee': 'Invita a un empleado',
+		'Send an invitation and onboard your employee':
+			'Tras tu solicitud en la cuenta personal, el empleado recibe una invitación personal por correo electrónico y crea una cuenta en Garna para recibir los pagos',
+		'Fund your wallet and run first payroll': 'Recarga tu monedero y procesa la primera nómina',
+		'Top up your balance and start paying globally':
+			'Empieza a pagar tu salario hoy mismo',
+		'Senior Software Engineer': 'Senior Software Engineer',
+		'Onboarding': 'Incorporación',
+		'Employment Country': 'País de empleo',
+		'Employee Gross Salary': 'Salario bruto del empleado',
+		'Germany': 'Alemania',
+		'Onboarding Checklist': 'Lista de incorporación',
+		'Company Profile Verified': 'Perfil de la empresa verificado',
+		'EoR Contract Signed': 'Contrato EoR firmado',
+		'Employee Onboarded': 'Empleado incorporado',
+		'First Payroll Estimate': 'Estimación de la primera nómina',
+		'Fund Wallet &amp; Run Payroll': 'Recargar monedero y procesar nómina',
+		'Why Companies Choose Garna': 'Por qué Garna es la mejor opción para la gestión global de nóminas y contratistas',
+		'Why Garna? There are plenty of benefits we offer while handling every payment process on time and accurately':
+			'¿Por qué Garna? Ofrecemos numerosas ventajas al gestionar todos los procesos de pago de forma puntual y precisa',
+		'Cut Admin Work by 70%': 'Reduce el trabajo administrativo en un 70 %',
+		'Our contract and payment automation frees your HR and finance department from routine tasks':
+			'Nuestra automatización de contratos y pagos libera a tu departamento de RR. HH. y finanzas de las tareas rutinarias',
+		'Flexible Funding: From Bank transfers to Crypto': 'Financiación flexible: desde transferencias bancarias hasta criptomonedas',
+		'You can make payments via traditional banking or digital assets for maximum speed':
+			'Puedes realizar pagos a través de la banca tradicional o de activos digitales para obtener la máxima rapidez',
+		'Flawless Reporting and Analytics': 'Informes y análisis impecables',
+		'All invoices, transactions, and tax reports are gathered in one place':
+			'Todas las facturas, transacciones e informes fiscales se recopilan en un solo lugar',
+		'100% Intellectual Property Protection': 'Protección del 100% de la propiedad intelectual',
+		'We legally guarantee that all work produced by your contractors belongs exclusively to you':
+			'Garantizamos legalmente que todo el trabajo realizado por tus contratistas te pertenece en exclusiva',
+		'Scale with the API': 'Escalabilidad con la API',
+		'Integrate bulk payments directly into your internal systems and automate workflows programmatically':
+			'Integra los pagos masivos directamente en tus sistemas internos y automatiza los flujos de trabajo mediante programación',
+		'Access to the best specialists in 150+ countries': 'Acceso a los mejores especialistas en más de 150 países',
+		'Hunt the best specialists wherever they are without wasting time and money on registering legal entities':
+			'Busca a los mejores especialistas dondequiera que estén sin perder tiempo ni dinero en registrar entidades jurídicas',
+		'24/7 support': 'Asistencia 24/7',
+		'We provide quick solutions to any issues both for the company and for each employee around the clock':
+			'Ofrecemos soluciones rápidas a cualquier problema, tanto para la empresa como para cada empleado, las 24 horas del día',
+		'100% compliance with the laws': 'Cumplimiento al 100 % de la legislación',
+		'We assume full responsibility for compliance with the labor code of each country, from taxes to social benefits. Our team is monitoring any legal changes':
+			'Asumimos toda la responsabilidad del cumplimiento del código laboral de cada país',
+		'Automated payments': 'Pagos automatizados',
+		'Make payments in one click in any currency. The system calculates taxes and other contributions immediately':
+			'Realiza pagos con un solo clic en cualquier moneda',
+		'Shared dashboard': 'Panel de control compartido',
+		'Management of contracts, expenses, income, and vacations is available in one interface':
+			'La gestión de contratos, gastos, ingresos y vacaciones está disponible en una única interfaz',
+		'Garna Payroll vs Other Payroll': 'Garna Payroll frente a otros sistemas de nóminas',
+		'Everything is relative, right? Take a look at the comparison table, we believe our transparency speaks louder than words. We offer, and we offer a lot, because we want to be the best':
+			'Todo es relativo, ¿verdad? Echa un vistazo a la tabla comparativa; creemos que nuestra transparencia habla por sí sola',
+		'Feature': 'Característica',
+		'Other Payroll': 'Otros programas de nóminas',
+		'Geography': 'Ámbito geográfico',
+		'Limited to few countries': 'Limitada a unos pocos países',
+		'150+ countries': '+150 países',
+		'Tax compliance': 'Cumplimiento fiscal',
+		'Manual / regional expertise needed': 'Se requiere experiencia manual/regional',
+		'Automated &amp; compliant': 'Automatizado y conforme a la normativa',
+		'Payout speed': 'Rapidez de pago',
+		'Up to a Few Days': 'De unos minutos a varios días',
+		'Few Minutes': 'Pocos minutos',
+		'Integration': 'Integración',
+		'Hard or custom-built': 'Fija o personalizada',
+		'API ready / White label': 'Compatible con API / Marca blanca',
+		'Dashboard': 'Panel de control',
+		'Fragmented tools': 'Herramientas fragmentadas',
+		'Unified dashboard for contractors and employees management': 'Panel de control unificado para la gestión de contratistas y empleados',
+		'Support': 'Asistencia',
+		'Standard business hours': 'Horario comercial estándar',
+		'24/7 global support': 'Asistencia global 24/7',
+		'Funding options': 'Opciones de financiación',
+		'Bank and SWIFT only': 'Solo bancos y SWIFT',
+		'Bank transfers in USD and local currencies, SWIFT, SEPA, Crypto, PayPal, Payoneer':
+			'Transferencias bancarias en USD y monedas locales, SWIFT, SEPA, criptomonedas, PayPal, Payoneer',
+		'Contractor management': 'Gestión de contratistas',
+		'18 records': '18 registros',
+		'Powered by Garna': 'Con tecnología de Garna',
+		'Pending Payouts': 'Pagos pendientes',
+		'Contractor Batch': 'Lote de contratistas',
+		'Approve &amp; Pay': 'Aprobar y pagar',
+		'Post-Payment Balance': 'Saldo posterior al pago',
+		'Revolving Facility': 'Línea revolvente',
+		'Active': 'Activo',
+		'Outstanding': 'Pendiente',
+		'Available Limit': 'Límite disponible',
+		'Utilization 12.4%': 'Utilización 12.4%',
+		'Payout Volume': 'Volumen de pagos',
+		'Payout Processed': 'Pago procesado',
+		'Just now': 'Ahora mismo',
+		'just now': 'ahora',
+		'Engineering Team': 'Equipo de Ingeniería',
+		'Vendor payout': 'Pago a proveedor',
+		'Paid': 'Pagado',
+		'Mon': 'Lun',
+		'Tue': 'Mar',
+		'Wed': 'Mié',
+		'Thu': 'Jue',
+		'Fri': 'Vie',
+		'Sat': 'Sáb',
+		'Sun': 'Dom',
+		'Tuesday, January 10': 'Martes, 10 de enero',
+		'Employee': 'Empleado',
+		'New': 'Nuevo',
+		'new': 'nuevo',
+		'NEW': 'NUEVO',
+		'Amount requested': 'Monto solicitado',
+		'Reason': 'Motivo',
+		'Personal expenses': 'Gastos personales',
+		'Status': 'Estado',
+		'Pending': 'Pendiente',
+		'Approve': 'Aprobar',
+		'Decline': 'Rechazar',
+		'Contractor of Record': 'Para contratistas registrados',
+		'Employer of Record': 'Para el empleador oficial',
+		'Sign up in Garna': 'Regístrate en Garna',
+		'Company name': 'Nombre de la empresa',
+		'Test Company Name': 'Nombre de empresa de prueba',
+		'Registration number': 'Número de registro',
+		'Date of registration': 'Fecha de registro de la empresa',
+		'Country of registration': 'País de registro',
+		'Cyprus': 'Chipre',
+		'Email': 'Correo electrónico',
+		'Next': 'Siguiente',
+		'All': 'Todas',
+		'Limited': 'Limitada',
+		'Integrated': 'Integrada',
+		'Reporting': 'Informes',
+		'Manual &amp; slow': 'Manual y lento',
+		'Real-time, exportable': 'En tiempo real, exportable',
+		'Trusted by Those Who Build the Future': 'La confianza de quienes construyen el futuro',
+		'Find out why large companies and middle-sized businesses are switching to Garna. We set the standard for international payroll, trusted by professionals in over 150 countries':
+			'Descubre por qué las grandes empresas y las medianas empresas se están pasando a Garna',
+		'Finally, a platform that doesn\'t make me feel like a second-class citizen. Getting paid is instant, and I can withdraw to my local bank without the usual headache.':
+			'Por fin una plataforma que no me hace sentir ciudadano de segunda. Cobro al instante y puedo retirar a mi banco local sin los dolores de cabeza de siempre.',
+		'"Finally, a platform that doesn\'t make me feel like a second-class citizen. Getting paid is instant, and I can withdraw to my local bank without the usual headache."':
+			'"Por fin una plataforma que no me hace sentir ciudadano de segunda. Cobro al instante y puedo retirar a mi banco local sin los dolores de cabeza de siempre."',
+		'Garna opened the US market for me. I can now accept payments from clients who only work with US entities and withdraw straight to my bank. Absolute game changer.':
+			'Garna me abrió el mercado de EE. UU. Ahora puedo aceptar pagos de clientes que solo trabajan con entidades estadounidenses y retirar directo a mi banco. Un cambio total.',
+		'"Garna opened the US market for me. I can now accept payments from clients who only work with US entities and withdraw straight to my bank. Absolute game changer."':
+			'"Garna me abrió el mercado de EE. UU. Ahora puedo aceptar pagos de clientes que solo trabajan con entidades estadounidenses y retirar directo a mi banco. Un cambio total."',
+		'Had an issue with my local tax authorities before started using Garna. Now I have all the tax documents in place.':
+			'Tuve problemas con las autoridades fiscales locales antes de usar Garna. Ahora tengo todos los documentos fiscales en orden.',
+		'"Had an issue with my local tax authorities before started using Garna. Now I have all the tax documents in place."':
+			'"Tuve problemas con las autoridades fiscales locales antes de usar Garna. Ahora tengo todos los documentos fiscales en orden."',
+		'Senior UX Designer': 'Senior UX Designer',
+		'Full Stack Developer': 'Full Stack Developer',
+		'Marketing Consultant': 'Marketing Consultant',
+	},
+	footer: homeEs.footer,
+	bookingWidget: homeEs.bookingWidget,
+};
