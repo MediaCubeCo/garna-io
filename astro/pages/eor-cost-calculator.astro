@@ -196,8 +196,8 @@ import '../styles/eor-cost-calculator.css';
 	headcount?.addEventListener('input', update); salary?.addEventListener('input', update);
 	toggle?.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') !== 'true'; toggle.setAttribute('aria-expanded', String(open)); if (moreFields) moreFields.hidden = !open; root?.querySelectorAll<HTMLElement>('[data-full-cost]').forEach((row) => { row.hidden = !open; }); update(); });
 
-	const filterCountries = () => {
-		const query = (countryInput?.value || '').trim().toLocaleLowerCase(locale);
+	const filterCountries = (value = countryInput?.value || '') => {
+		const query = value.trim().toLocaleLowerCase(locale);
 		let matches = 0;
 		countryList?.querySelectorAll<HTMLButtonElement>('[data-country-code]').forEach((item) => {
 			const localized = countryName(item.dataset.countryCode || '', item.dataset.countryName || '');
@@ -210,9 +210,14 @@ import '../styles/eor-cost-calculator.css';
 		if (!matches && countryList) { if (!empty) { empty = document.createElement('p'); empty.dataset.countryEmpty = ''; countryList.append(empty); } empty.textContent = t('noCountry'); }
 		else empty?.remove();
 	};
-	const openCountryList = () => { filterCountries(); if (countryList) countryList.hidden = false; countryInput?.setAttribute('aria-expanded', 'true'); };
-	countryInput?.addEventListener('focus', openCountryList);
-	countryInput?.addEventListener('input', openCountryList);
+	const openCountryList = (showAll = false) => {
+		filterCountries(showAll ? '' : countryInput?.value);
+		if (showAll) countryInput?.select();
+		if (countryList) countryList.hidden = false;
+		countryInput?.setAttribute('aria-expanded', 'true');
+	};
+	countryInput?.addEventListener('focus', () => openCountryList(true));
+	countryInput?.addEventListener('input', () => openCountryList());
 	countryInput?.addEventListener('blur', () => window.setTimeout(() => { if (countryList) countryList.hidden = true; countryInput.value = countryName(selectedCountry.code, selectedCountry.name); countryInput.setAttribute('aria-expanded', 'false'); }, 120));
 	countryList?.addEventListener('mousedown', (event) => {
 		const item = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-country-code]');
