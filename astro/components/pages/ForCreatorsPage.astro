@@ -1193,66 +1193,25 @@ const forCreatorsFaqItems = [
 		<div class="creator-process-fallback" data-process-fallback></div>
 	</Section>
 	<Section
-		title={{ text: 'Reduced fee for\nEarly Access creators', translateKey: 'earlyAccessFee.title' }}
-		description={{ text: "We're opening creator payouts in Early Access and manually helping selected users configure their first platform setups", translateKey: 'earlyAccessFee.description' }}
-		headerClass="mb-10 max-w-4xl"
-		titleClass="creator-fee-title mx-auto max-w-4xl lg:text-5xl"
-		descriptionClass="mx-auto max-w-3xl"
-		contentClass="creator-fee-layout"
-		action={{
-			label: { text: 'Contact Payout Manager', translateKey: 'earlyAccessFee.cta' },
-			href: 'https://t.me/likelyiam',
-			variant: 'primary',
-			icon: 'arrow-up-right',
-			effect: 'none',
-		}}
-	>
-		<div class="creator-fee-comparison">
-			<div class="creator-fee-rate creator-fee-rate-standard" data-card-glow="true" data-interactive="true">
-				<span data-translate="earlyAccessFee.standard.label">Standard fee</span>
-				<div class="creator-fee-copy">
-					<p class="creator-fee-caption" data-translate="earlyAccessFee.standard.caption">
-						The regular Garna service fee applies after Early Access or for creator payout setups outside the selected launch group.
-					</p>
-				</div>
-				<strong>5.5%</strong>
-			</div>
-			<div class="creator-fee-rate creator-fee-rate-access" data-card-glow="true" data-interactive="true">
-				<span data-translate="earlyAccessFee.access.label">Early Access fee</span>
-				<div class="creator-fee-copy">
-					<p class="creator-fee-caption" data-translate="earlyAccessFee.access.caption">
-						Early Access creators can receive a reduced 1.5% Garna service fee for their first payouts while we help validate and fine-tune the setup flow.
-					</p>
-					<p class="creator-fee-disclaimer" data-translate="earlyAccessFee.access.disclaimer">
-						The percentages above refer only to Garna's service fee. Platform withdrawal fees, payment method charges, FX costs or other third-party fees may vary and are not included.
-					</p>
-				</div>
-				<strong>1.5%</strong>
-			</div>
-		</div>
-	</Section>
-	<Section
 		contentClass="creator-fee-banner-layout"
 	>
 		<div class="creator-fee-banner" data-card-glow="true" data-interactive="true">
 			<div class="creator-fee-banner-copy creator-fee-banner-standard">
 				<h2 data-translate="earlyAccessFee.banner.title">Reduced fee for creator payouts</h2>
-				<p data-translate="earlyAccessFee.banner.description">
-					Standard Garna service fee applies after Early Access or outside the selected launch group
-				</p>
 			</div>
 			<div class="creator-fee-banner-rates" aria-label="Standard fee reduced from 5.5% to 1.5%">
 				<span class="creator-fee-banner-old">5.5%</span>
 				<strong>1.5%</strong>
 			</div>
 			<div class="creator-fee-banner-note">
-				<span data-translate="earlyAccessFee.banner.terms">Launch terms</span>
-				<p data-translate="earlyAccessFee.banner.accessCaption">
-					Selected creators can start with a reduced Garna service fee while we help validate the first payout setup.
-				</p>
-				<p data-translate="earlyAccessFee.banner.disclaimer">
-					Garna service fee only. Platform, payment method and FX fees may vary.
-				</p>
+				<div class="creator-fee-banner-note-copy">
+					<p data-translate="earlyAccessFee.banner.accessCaption">
+						Selected creators can start with a reduced Garna service fee while we help validate the first payout setup.
+					</p>
+					<p data-translate="earlyAccessFee.banner.disclaimer">
+						Garna service fee only. Platform, payment method and FX fees may vary.
+					</p>
+				</div>
 				<a href="https://t.me/likelyiam" data-translate="earlyAccessFee.banner.cta">Contact Payout Manager</a>
 			</div>
 		</div>
@@ -1264,7 +1223,7 @@ const forCreatorsFaqItems = [
 		titleClass="creator-platforms-title mx-auto max-w-4xl lg:text-5xl"
 		contentClass="creator-platforms-block"
 	>
-		<div class="creator-platform-showcase" data-random-platform-logos aria-label="Popular platforms">
+		<div class="creator-platform-showcase" data-platform-logo-rotator aria-label="Popular platforms">
 			<span class="creator-platform-logo" aria-label="Shutterstock and Upwork">
 				<img class="creator-platform-logo-boost" src="/images/shutterstock-logo.svg" alt="" loading="lazy" />
 				<img class="creator-platform-logo-alt creator-platform-logo-accent" src="/images/upwork-logo.svg" alt="" loading="lazy" />
@@ -1552,17 +1511,24 @@ const forCreatorsFaqItems = [
 			const tabList = demoRoot.querySelector('.creator-payout-demo-tabs');
 			const demoShell = demoRoot.querySelector('.creator-payout-demo');
 			const demoDurations = [10500, 7500, 11500];
-			const demoFlipDuration = 400;
+			const demoTransitionDuration = 920;
 			const demoDesignWidth = 980;
 			let demoTimer = null;
-			let demoFlipTimer = null;
+			let demoTransitionTimer = null;
+			let isDemoInView = false;
 			let activeIndex = 0;
 			const getActiveDemoDuration = () => demoDurations[activeIndex] || demoDurations[0];
-			const clearScreenFlipTimer = (screen) => {
-				const timer = screen.getAttribute('data-demo-flip-timer');
+			const stopDemoTimer = () => {
+				if (demoTimer !== null) {
+					window.clearTimeout(demoTimer);
+					demoTimer = null;
+				}
+			};
+			const clearScreenTransitionTimer = (screen) => {
+				const timer = screen.getAttribute('data-demo-transition-timer');
 				if (timer) {
 					window.clearTimeout(Number(timer));
-					screen.removeAttribute('data-demo-flip-timer');
+					screen.removeAttribute('data-demo-transition-timer');
 				}
 			};
 
@@ -1585,9 +1551,8 @@ const forCreatorsFaqItems = [
 			};
 
 			const scheduleNextDemoScreen = () => {
-				if (demoTimer !== null) {
-					window.clearTimeout(demoTimer);
-				}
+				stopDemoTimer();
+				if (!isDemoInView) return;
 
 				demoTimer = window.setTimeout(() => {
 					setActiveDemoScreen(activeIndex + 1);
@@ -1597,17 +1562,18 @@ const forCreatorsFaqItems = [
 			const setActiveDemoScreen = (nextIndex) => {
 				const previousIndex = activeIndex;
 				activeIndex = ((nextIndex % tabs.length) + tabs.length) % tabs.length;
+				const upcomingIndex = (activeIndex + 1) % screens.length;
 				const isChangingScreen = previousIndex !== activeIndex;
-				if (demoFlipTimer !== null) {
-					window.clearTimeout(demoFlipTimer);
-					demoFlipTimer = null;
+				if (demoTransitionTimer !== null) {
+					window.clearTimeout(demoTransitionTimer);
+					demoTransitionTimer = null;
 				}
-				demoRoot.classList.toggle('is-flipping', isChangingScreen);
+				demoRoot.classList.toggle('is-switching-screen', isChangingScreen);
 				if (isChangingScreen) {
-					demoFlipTimer = window.setTimeout(() => {
-						demoRoot.classList.remove('is-flipping');
-						demoFlipTimer = null;
-					}, demoFlipDuration);
+					demoTransitionTimer = window.setTimeout(() => {
+						demoRoot.classList.remove('is-switching-screen');
+						demoTransitionTimer = null;
+					}, demoTransitionDuration);
 				}
 				demoRoot.style.setProperty('--creator-payout-active-tab', String(activeIndex));
 
@@ -1625,34 +1591,39 @@ const forCreatorsFaqItems = [
 				screens.forEach((screen, index) => {
 					const screenIndex = Number(screen.getAttribute('data-demo-screen'));
 					const isActive = screenIndex === activeIndex;
+					const isNext = screenIndex === upcomingIndex && screens.length > 1;
 					const wasActive = screen.classList.contains('is-active');
-					clearScreenFlipTimer(screen);
+					clearScreenTransitionTimer(screen);
 					if (isActive) {
 						screen.removeAttribute('hidden');
-						screen.classList.remove('is-leaving');
+						screen.classList.remove('is-leaving', 'is-next');
 						screen.classList.add('is-active');
 						if (isChangingScreen) {
 							screen.classList.add('is-entering');
 							const enterTimer = window.setTimeout(() => {
 								screen.classList.remove('is-entering');
-								screen.removeAttribute('data-demo-flip-timer');
-							}, demoFlipDuration);
-							screen.setAttribute('data-demo-flip-timer', String(enterTimer));
+								screen.removeAttribute('data-demo-transition-timer');
+							}, demoTransitionDuration);
+							screen.setAttribute('data-demo-transition-timer', String(enterTimer));
 						} else {
 							screen.classList.remove('is-entering');
 						}
 					} else if (wasActive && isChangingScreen) {
 						screen.removeAttribute('hidden');
-						screen.classList.remove('is-active', 'is-entering');
+						screen.classList.remove('is-active', 'is-entering', 'is-next');
 						screen.classList.add('is-leaving');
 						const leaveTimer = window.setTimeout(() => {
 							screen.classList.remove('is-leaving');
 							screen.setAttribute('hidden', '');
-							screen.removeAttribute('data-demo-flip-timer');
-						}, demoFlipDuration);
-						screen.setAttribute('data-demo-flip-timer', String(leaveTimer));
-					} else {
+							screen.removeAttribute('data-demo-transition-timer');
+						}, demoTransitionDuration);
+						screen.setAttribute('data-demo-transition-timer', String(leaveTimer));
+					} else if (isNext) {
+						screen.removeAttribute('hidden');
 						screen.classList.remove('is-active', 'is-entering', 'is-leaving');
+						screen.classList.add('is-next');
+					} else {
+						screen.classList.remove('is-active', 'is-entering', 'is-leaving', 'is-next');
 						screen.setAttribute('hidden', '');
 					}
 				});
@@ -1661,8 +1632,29 @@ const forCreatorsFaqItems = [
 				scheduleNextDemoScreen();
 			};
 
+			const pauseDemoProgress = () => {
+				if (!(tabList instanceof HTMLElement)) return;
+				tabList.classList.remove('is-progress-running');
+			};
+
+			const startDemoSequence = () => {
+				if (isDemoInView) return;
+				isDemoInView = true;
+				setActiveDemoScreen(0);
+			};
+
+			const stopDemoSequence = () => {
+				if (!isDemoInView) return;
+				isDemoInView = false;
+				stopDemoTimer();
+				pauseDemoProgress();
+			};
+
 			tabs.forEach((tab, index) => {
-				tab.addEventListener('click', () => setActiveDemoScreen(index));
+				tab.addEventListener('click', () => {
+					isDemoInView = true;
+					setActiveDemoScreen(index);
+				});
 			});
 
 			syncDemoScale();
@@ -1670,14 +1662,32 @@ const forCreatorsFaqItems = [
 			demoResizeObserver?.observe(demoRoot);
 			window.addEventListener('resize', syncDemoScale);
 			setActiveDemoScreen(0);
+			stopDemoSequence();
+
+			const demoVisibilityObserver = 'IntersectionObserver' in window
+				? new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.target !== demoRoot) return;
+						if (entry.isIntersecting) {
+							startDemoSequence();
+						} else {
+							stopDemoSequence();
+						}
+					});
+				}, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 })
+				: null;
+			if (demoVisibilityObserver) {
+				demoVisibilityObserver.observe(demoRoot);
+			} else {
+				startDemoSequence();
+			}
 
 			window.addEventListener('garna:page-will-unmount', () => {
-				if (demoTimer !== null) {
-					window.clearTimeout(demoTimer);
+				stopDemoTimer();
+				if (demoTransitionTimer !== null) {
+					window.clearTimeout(demoTransitionTimer);
 				}
-				if (demoFlipTimer !== null) {
-					window.clearTimeout(demoFlipTimer);
-				}
+				demoVisibilityObserver?.disconnect();
 				demoResizeObserver?.disconnect();
 				window.removeEventListener('resize', syncDemoScale);
 			}, { once: true });
@@ -2002,20 +2012,20 @@ const forCreatorsFaqItems = [
 			}
 		}
 
-		const platformLogoShowcase = document.querySelector('[data-random-platform-logos]');
+		const platformLogoRotator = document.querySelector('[data-platform-logo-rotator]');
 		const reducePlatformLogoMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-		if (platformLogoShowcase && !reducePlatformLogoMotion.matches) {
-			const platformLogoCells = Array.from(platformLogoShowcase.querySelectorAll('.creator-platform-logo'));
+		if (platformLogoRotator && !reducePlatformLogoMotion.matches) {
+			const platformLogoCells = Array.from(platformLogoRotator.querySelectorAll('.creator-platform-logo'))
+				.filter((cell) => cell.querySelector('.creator-platform-logo-alt'));
 			const platformLogoLastChangedAt = new WeakMap();
 			const platformLogoStartedAt = Date.now();
 			let platformLogoTimer = 0;
 
 			const randomBetween = (min, max) => min + Math.random() * (max - min);
-			const randomInt = (min, max) => Math.floor(randomBetween(min, max + 1));
 			const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
-			const currentLogoEnergy = () => {
+			const currentPlatformLogoEnergy = () => {
 				const elapsed = (Date.now() - platformLogoStartedAt) / 1000;
 				const slowWave = (Math.sin(elapsed * 0.37) + 1) / 2;
 				const mediumWave = (Math.sin(elapsed * 0.91 + 1.7) + 1) / 2;
@@ -2023,15 +2033,16 @@ const forCreatorsFaqItems = [
 				return clamp(0.3 + slowWave * 0.34 + mediumWave * 0.22 + flicker * 0.28, 0, 1);
 			};
 
-			const weightedPlatformCell = (blocked = new Set()) => {
+			const weightedPlatformLogoCell = (blocked = new Set()) => {
 				const now = Date.now();
 				const weights = platformLogoCells.map((cell) => {
 					if (blocked.has(cell)) return 0;
 					const lastChangedAt = platformLogoLastChangedAt.get(cell) || 0;
 					const age = now - lastChangedAt;
 					if (age < 1700) return 0;
+					const cellIndex = platformLogoCells.indexOf(cell);
 					const ageWeight = clamp(age / 8500, 0.22, 1.8);
-					const centerBias = 1 + (1 - Math.abs(platformLogoCells.indexOf(cell) - (platformLogoCells.length - 1) / 2) / platformLogoCells.length) * 0.28;
+					const centerBias = 1 + (1 - Math.abs(cellIndex - (platformLogoCells.length - 1) / 2) / platformLogoCells.length) * 0.28;
 					return ageWeight * centerBias * randomBetween(0.72, 1.38);
 				});
 				const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
@@ -2047,17 +2058,26 @@ const forCreatorsFaqItems = [
 			};
 
 			const switchPlatformLogoCell = (cell) => {
+				const freshTimer = cell.getAttribute('data-platform-logo-fresh-timer');
+				if (freshTimer) {
+					window.clearTimeout(Number(freshTimer));
+				}
 				cell.classList.remove('is-logo-fresh');
 				cell.classList.toggle('is-alt-visible');
 				void cell.offsetWidth;
 				cell.classList.add('is-logo-fresh');
+				const timer = window.setTimeout(() => {
+					cell.classList.remove('is-logo-fresh');
+					cell.removeAttribute('data-platform-logo-fresh-timer');
+				}, 1700);
+				cell.setAttribute('data-platform-logo-fresh-timer', String(timer));
 				platformLogoLastChangedAt.set(cell, Date.now());
 			};
 
 			const schedulePlatformLogoWave = () => {
 				if (platformLogoCells.length < 2) return;
 
-				const energy = currentLogoEnergy();
+				const energy = currentPlatformLogoEnergy();
 				const elapsed = (Date.now() - platformLogoStartedAt) / 1000;
 				const startupBoost = clamp(1 - elapsed / 14, 0, 1);
 				const pairLogoChance = 0.5 + startupBoost * 0.08;
@@ -2072,7 +2092,7 @@ const forCreatorsFaqItems = [
 				const blocked = new Set();
 
 				for (let index = 0; index < waveSize; index += 1) {
-					const cell = weightedPlatformCell(blocked);
+					const cell = weightedPlatformLogoCell(blocked);
 					if (!cell) continue;
 					blocked.add(cell);
 					const waveDelay = index === 0 ? 0 : index * randomBetween(220, 420) + randomBetween(0, 140);
@@ -2466,8 +2486,6 @@ const forCreatorsFaqItems = [
 		min-height: var(--creator-payout-screen-height);
 		margin-top: 0;
 		overflow: visible;
-		perspective: 1600px;
-		transform-style: preserve-3d;
 		border: 0;
 		border-radius: 22px;
 		background:
@@ -2477,11 +2495,6 @@ const forCreatorsFaqItems = [
 		box-shadow:
 			inset 0 1px 0 rgba(255, 255, 255, 0.06),
 			0 36px 110px -74px rgba(0, 0, 0, 0.95);
-	}
-
-	.creator-wallet-visual[data-creator-payout-demo].is-flipping .creator-payout-demo-stage {
-		background: transparent;
-		box-shadow: none;
 	}
 
 	.creator-payout-screen {
@@ -2495,30 +2508,39 @@ const forCreatorsFaqItems = [
 		align-items: stretch;
 		align-self: stretch;
 		opacity: 0;
-		transform: none;
+		transform: translateY(18px) scale(0.986);
 		transform-origin: center center;
-		transform-style: preserve-3d;
-		backface-visibility: hidden;
-		transition: opacity 260ms ease;
+		transition:
+			opacity 360ms ease,
+			transform 920ms cubic-bezier(0.16, 1, 0.3, 1);
 		will-change: transform, opacity;
 	}
 
 	.creator-payout-screen.is-active {
-		z-index: 2;
+		z-index: 3;
 		opacity: 1;
 		transform: none;
 	}
 
-	.creator-payout-screen.is-entering {
+	.creator-payout-screen.is-next {
 		z-index: 1;
-		animation: creator-payout-screen-flip-in 400ms linear both;
+		opacity: 0.7;
+		pointer-events: none;
+		clip-path: inset(calc(100% - 46px) 24px 0 24px round 18px 18px 0 0);
+		filter: saturate(0.78) brightness(0.86);
+		transform: translateY(28px) scale(0.964);
+	}
+
+	.creator-payout-screen.is-entering {
+		z-index: 4;
+		animation: creator-payout-screen-tab-in 920ms cubic-bezier(0.16, 1, 0.3, 1) both;
 	}
 
 	.creator-payout-screen.is-leaving {
-		z-index: 3;
+		z-index: 2;
 		opacity: 1;
 		pointer-events: none;
-		animation: creator-payout-screen-flip-out 400ms linear both;
+		animation: creator-payout-screen-tab-out 760ms cubic-bezier(0.4, 0, 0.2, 1) both;
 	}
 
 	.creator-payout-screen::after {
@@ -5915,64 +5937,31 @@ const forCreatorsFaqItems = [
 		to { transform: scaleX(1); }
 	}
 
-	@keyframes creator-payout-screen-flip-out {
+	@keyframes creator-payout-screen-tab-out {
 		0% {
 			opacity: 1;
-			transform: rotateY(0deg) scale(1);
-			filter: none;
-		}
-
-		50%,
-		100% {
-			opacity: 0;
-			transform: rotateY(90deg) scale(0.992);
-			filter: none;
-		}
-	}
-
-	@keyframes creator-payout-screen-flip-in {
-		0%,
-		49.9% {
-			opacity: 0;
-			transform: rotateY(-90deg) scale(0.992);
-			filter: none;
-		}
-
-		50% {
-			opacity: 1;
-			transform: rotateY(-90deg) scale(0.992);
+			transform: translateY(0) scale(1);
 			filter: none;
 		}
 
 		100% {
-			opacity: 1;
-			transform: rotateY(0deg) scale(1);
+			opacity: 0;
+			transform: translateY(-6px) scale(0.992);
 			filter: none;
 		}
 	}
 
-	@keyframes creator-payout-screen-flip-shade-out {
-		0%,
-		100% {
-			opacity: 0;
-		}
-
-		54% {
-			opacity: 0.13;
-		}
-	}
-
-	@keyframes creator-payout-screen-flip-shade-in {
+	@keyframes creator-payout-screen-tab-in {
 		0% {
-			opacity: 0;
-		}
-
-		56% {
-			opacity: 0.12;
+			opacity: 0.66;
+			transform: translateY(22px) scale(0.976);
+			filter: none;
 		}
 
 		100% {
-			opacity: 0;
+			opacity: 1;
+			transform: translateY(0) scale(1);
+			filter: none;
 		}
 	}
 
@@ -9249,202 +9238,25 @@ const forCreatorsFaqItems = [
 		}
 	}
 
-	.creator-fee-title {
-		white-space: normal;
-	}
-
-	@media (min-width: 768px) {
-		.creator-fee-title {
-			white-space: pre-line;
-		}
-	}
-
-	.creator-fee-comparison {
-		position: relative;
-		display: grid;
-		max-width: 1120px;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		align-items: stretch;
-		gap: clamp(14px, 2.4vw, 28px);
-		margin: 0 auto;
-	}
-
-	.creator-fee-rate {
-		--garna-card-glow-x: 50%;
-		--garna-card-glow-y: 50%;
-		--garna-card-glow-radius: 60vw;
-		--garna-card-border-glow-radius: 14rem;
-		position: relative;
-		isolation: isolate;
-		min-height: clamp(380px, 38vw, 500px);
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		overflow: hidden;
-		border: 1px solid var(--garna-border);
-		border-radius: 20px;
-		background: rgba(12, 12, 12, 0.72);
-		box-shadow: var(--garna-shadow-card);
-		backdrop-filter: blur(20px);
-		-webkit-backdrop-filter: blur(20px);
-		padding: clamp(20px, 2.8vw, 34px);
-		transition:
-			border-color 300ms ease,
-			transform 300ms ease;
-	}
-
-	.creator-fee-rate::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		z-index: 0;
-		border-radius: inherit;
-		background: radial-gradient(
-			circle var(--garna-card-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
-			rgba(255, 255, 255, 0.12) 0%,
-			rgba(255, 255, 255, 0.075) 18%,
-			rgba(255, 255, 255, 0.035) 40%,
-			transparent 70%
-		);
-		opacity: 0;
-		pointer-events: none;
-		transition: opacity 300ms ease;
-	}
-
-	.creator-fee-rate > * {
-		position: relative;
-		z-index: 1;
-	}
-
-	@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
-		.creator-fee-rate::after {
-			content: '';
-			position: absolute;
-			inset: 0;
-			z-index: 2;
-			padding: 1px;
-			border-radius: inherit;
-			background: radial-gradient(
-				circle var(--garna-card-border-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
-				rgba(255, 255, 255, 0.9) 0%,
-				rgba(255, 255, 255, 0.52) 24%,
-				rgba(255, 255, 255, 0.2) 50%,
-				transparent 76%
-			);
-			opacity: 0;
-			pointer-events: none;
-			transition: opacity 300ms ease;
-			-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-			-webkit-mask-composite: xor;
-			mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-			mask-composite: exclude;
-		}
-	}
-
-	.creator-fee-rate:is(:hover, :focus-within) {
-		border-color: rgba(255, 255, 255, 0.15);
-		transform: translateY(-4px);
-	}
-
-	@media (hover: hover) and (pointer: fine) {
-		.creator-fee-rate:is(:hover, :focus-within)::before {
-			opacity: 1;
-		}
-
-		@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
-			.creator-fee-rate:is(:hover, :focus-within)::after {
-				opacity: 1;
-			}
-		}
-	}
-
-	.creator-fee-rate span {
-		color: #a1a1aa;
-		font-family: Manrope, sans-serif;
-		font-size: 13px;
-		font-weight: 600;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-	}
-
-	.creator-fee-rate strong {
-		position: relative;
-		z-index: 1;
-		margin-top: auto;
-		color: #ffffff;
-		font-family: Manrope, sans-serif;
-		font-size: clamp(4.2rem, 9vw, 7.2rem);
-		font-weight: 500;
-		line-height: 0.9;
-		letter-spacing: -0.055em;
-		white-space: nowrap;
-	}
-
-	.creator-fee-rate-standard {
-		background: rgba(12, 12, 12, 0.72);
-	}
-
-	.creator-fee-rate-standard strong {
-		color: rgba(255, 255, 255, 0.36);
-		text-decoration: line-through;
-		text-decoration-color: rgba(203, 243, 0, 0.5);
-		text-decoration-thickness: 3px;
-	}
-
-	.creator-fee-rate-access {
-		border-color: var(--garna-border);
-		background: rgba(12, 12, 12, 0.72);
-	}
-
-	.creator-fee-rate-access span,
-	.creator-fee-rate-access strong {
-		color: #CBF300;
-	}
-
-	.creator-fee-copy {
-		display: grid;
-		gap: 10px;
-		max-width: 470px;
-		margin-top: clamp(18px, 2.2vw, 28px);
-		margin-bottom: clamp(28px, 4vw, 56px);
-	}
-
-	.creator-fee-caption {
-		margin: 0;
-		max-width: none;
-		color: #d4d4d8;
-		font-family: Manrope, sans-serif;
-		font-size: 14px;
-		line-height: 1.55;
-		text-align: left;
-	}
-
-	.creator-fee-disclaimer {
-		margin: 0;
-		max-width: none;
-		color: #71717a;
-		font-family: Manrope, sans-serif;
-		font-size: 12px;
-		line-height: 1.55;
-		text-align: left;
-	}
-
 	.creator-fee-banner-layout {
-		width: min(100%, 1040px);
+		width: 100%;
 		margin-inline: auto;
 	}
 
 	.creator-fee-banner {
 		position: relative;
 		display: grid;
-		grid-template-columns: minmax(250px, 0.82fr) minmax(300px, 0.92fr) minmax(300px, 1fr);
-		align-items: stretch;
-		gap: clamp(18px, 2.8vw, 36px);
+		min-height: clamp(390px, 33vw, 460px);
+		grid-template-columns: minmax(0, 60%) minmax(320px, 40%);
+		grid-template-rows: auto 1fr auto;
+		align-items: center;
+		column-gap: clamp(48px, 7vw, 112px);
+		row-gap: clamp(24px, 3.2vw, 48px);
 		overflow: hidden;
 		border: 1px solid rgba(255, 255, 255, 0.1);
 		border-radius: 18px;
 		background: rgba(12, 12, 12, 0.72);
-		padding: clamp(26px, 3.4vw, 42px);
+		padding: clamp(34px, 4vw, 58px);
 		box-shadow:
 			inset 0 1px 0 rgba(255, 255, 255, 0.06),
 			0 28px 72px -62px rgba(0, 0, 0, 0.8);
@@ -9467,6 +9279,12 @@ const forCreatorsFaqItems = [
 		align-items: flex-start;
 	}
 
+	.creator-fee-banner-copy {
+		grid-column: 1;
+		grid-row: 1;
+		align-self: end;
+	}
+
 	.creator-fee-banner-copy span {
 		display: inline-flex;
 		margin-bottom: 14px;
@@ -9479,14 +9297,15 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-fee-banner-copy h2 {
-		margin: 0 0 18px;
-		max-width: 360px;
+		margin: 0;
+		max-width: 540px;
 		color: #ffffff;
 		font-family: Manrope, sans-serif;
-		font-size: clamp(1.78rem, 2.8vw, 2.55rem);
+		font-size: clamp(1.95rem, 2.95vw, 3.35rem);
 		font-weight: 400;
 		line-height: 1.04;
 		letter-spacing: 0;
+		white-space: pre-line;
 	}
 
 	.creator-fee-banner-copy p,
@@ -9494,32 +9313,36 @@ const forCreatorsFaqItems = [
 		margin: 0;
 		color: #a1a1aa;
 		font-family: Manrope, sans-serif;
-		font-size: 14px;
+		font-size: clamp(16px, 1.08vw, 17px);
 		line-height: 1.55;
 	}
 
 	.creator-fee-banner-note p + p {
 		margin-top: 12px;
-		color: rgba(161, 161, 170, 0.7);
-		font-size: 12px;
-		line-height: 1.45;
+		color: rgba(161, 161, 170, 0.82);
+		font-size: clamp(15px, 1vw, 16px);
+		line-height: 1.55;
 	}
 
 	.creator-fee-banner-rates {
-		display: grid;
-		align-content: center;
-		justify-content: center;
-		justify-items: center;
-		gap: 6px;
+		grid-column: 1;
+		grid-row: 3;
+		align-self: end;
+		justify-self: start;
+		display: flex;
+		align-items: baseline;
+		gap: clamp(14px, 2vw, 26px);
 		white-space: nowrap;
+		transform: none;
 	}
 
 	.creator-fee-banner-old {
 		position: relative;
+		order: 2;
 		width: fit-content;
 		color: rgba(255, 255, 255, 0.34);
 		font-family: Manrope, sans-serif;
-		font-size: clamp(2.3rem, 4.2vw, 3.8rem);
+		font-size: clamp(2.5rem, 4.13vw, 4rem);
 		font-weight: 500;
 		line-height: 0.9;
 		letter-spacing: -0.03em;
@@ -9540,9 +9363,10 @@ const forCreatorsFaqItems = [
 
 	.creator-fee-banner-rates strong {
 		position: relative;
+		order: 1;
 		color: #CBF300;
 		font-family: Manrope, sans-serif;
-		font-size: clamp(5rem, 11vw, 9rem);
+		font-size: clamp(6rem, 11.81vw, 10.8rem);
 		font-weight: 500;
 		line-height: 0.82;
 		letter-spacing: -0.055em;
@@ -9551,22 +9375,31 @@ const forCreatorsFaqItems = [
 			0 0 42px rgba(203, 243, 0, 0.12);
 	}
 
-	.creator-fee-banner-rates strong::after {
-		content: 'EARLY ACCESS FEE';
-		display: block;
-		margin-top: 12px;
-		color: rgba(203, 243, 0, 0.72);
-		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-		font-size: clamp(0.68rem, 1vw, 0.82rem);
-		font-weight: 700;
-		letter-spacing: 0.16em;
-		text-align: center;
+	.creator-fee-banner-note {
+		grid-column: 2;
+		grid-row: 1 / 4;
+		display: flex;
+		min-width: 0;
+		max-width: none;
+		flex-direction: column;
+		align-items: flex-end;
+		justify-self: stretch;
+		align-self: center;
+		gap: clamp(22px, 2.4vw, 32px);
+		text-align: right;
+		transform: none;
 	}
 
-	.creator-fee-banner-note {
+	.creator-fee-banner-note-copy {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+		align-items: flex-end;
 		gap: 0;
-		justify-self: stretch;
-		max-width: none;
+		justify-content: start;
+		padding-top: 0;
 	}
 
 	.creator-fee-banner-note > span {
@@ -9581,17 +9414,21 @@ const forCreatorsFaqItems = [
 	}
 
 	.creator-fee-banner-note a {
+		position: relative;
+		z-index: 2;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		margin-top: clamp(24px, 3vw, 36px);
+		margin-top: 0;
 		border: 1px solid rgba(203, 243, 0, 0.42);
 		border-radius: 12px;
-		padding: 13px 18px;
+		padding: 15px 22px;
+		min-width: 240px;
 		color: #CBF300;
 		font-family: Manrope, sans-serif;
-		font-size: 15px;
+		font-size: 16px;
 		font-weight: 600;
+		white-space: nowrap;
 		text-decoration: none;
 		transition:
 			background 180ms ease,
@@ -9605,14 +9442,29 @@ const forCreatorsFaqItems = [
 		color: #050505;
 	}
 
-	@media (max-width: 980px) {
+	@media (max-width: 1180px) {
 		.creator-fee-banner {
+			min-height: auto;
 			grid-template-columns: 1fr;
+			grid-template-rows: none;
 			text-align: center;
 		}
 
 		.creator-fee-banner-copy,
-		.creator-fee-banner-note {
+		.creator-fee-banner-rates,
+		.creator-fee-banner-note,
+		.creator-fee-banner-note-copy,
+		.creator-fee-banner-note a {
+			grid-column: auto;
+			grid-row: auto;
+			align-self: auto;
+			justify-self: center;
+			transform: none;
+		}
+
+		.creator-fee-banner-copy,
+		.creator-fee-banner-note,
+		.creator-fee-banner-note-copy {
 			align-items: center;
 			max-width: 620px;
 			justify-self: center;
@@ -9620,6 +9472,21 @@ const forCreatorsFaqItems = [
 
 		.creator-fee-banner-copy h2 {
 			max-width: 520px;
+		}
+
+		.creator-fee-banner-copy {
+			gap: 24px;
+		}
+
+		.creator-fee-banner-rates {
+			justify-items: center;
+		}
+
+		.creator-fee-banner-note {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding-top: 0;
 		}
 
 		.creator-fee-banner-note a {
@@ -9688,39 +9555,23 @@ const forCreatorsFaqItems = [
 		opacity: 0.9;
 		filter: var(--platform-logo-image-tone, var(--platform-logo-tone)) blur(0);
 		transform: translateY(0) scale(1);
-		transition:
-			opacity 520ms cubic-bezier(0.45, 0, 0.2, 1),
-			filter 520ms cubic-bezier(0.45, 0, 0.2, 1),
-			transform 520ms cubic-bezier(0.45, 0, 0.2, 1);
-		will-change: opacity, transform, filter;
 	}
 
 	.creator-platform-logo img.creator-platform-logo-alt {
-		opacity: 0;
-		filter: var(--platform-logo-image-tone, var(--platform-logo-tone)) blur(4px);
-		transform: translateY(6px) scale(0.98);
+		display: none;
 	}
 
 	.creator-platform-logo.is-alt-visible img:not(.creator-platform-logo-alt) {
-		opacity: 0;
-		filter: var(--platform-logo-image-tone, var(--platform-logo-tone)) blur(4px);
-		transform: translateY(-6px) scale(0.98);
+		display: none;
 	}
 
 	.creator-platform-logo.is-alt-visible img.creator-platform-logo-alt {
-		opacity: 0.9;
-		filter: var(--platform-logo-image-tone, var(--platform-logo-tone)) blur(0);
-		transform: translateY(0) scale(1);
+		display: block;
 	}
 
-	.creator-platform-logo.is-logo-fresh:not(.is-alt-visible) img:not(.creator-platform-logo-alt),
+	.creator-platform-logo.is-logo-fresh img:not(.creator-platform-logo-alt),
 	.creator-platform-logo.is-logo-fresh.is-alt-visible img.creator-platform-logo-alt {
-		animation: creator-platform-logo-fresh 2600ms cubic-bezier(0.22, 1, 0.36, 1) both;
-	}
-
-	.creator-platform-logo img.creator-platform-logo-accent {
-		--platform-logo-image-tone: brightness(0) saturate(100%) invert(87%) sepia(99%) saturate(1214%)
-			hue-rotate(18deg) brightness(106%) contrast(104%);
+		animation: creator-platform-logo-settle 2200ms cubic-bezier(0.16, 1, 0.3, 1) both;
 	}
 
 	.creator-platform-logo img.creator-platform-logo-compact {
@@ -9757,13 +9608,20 @@ const forCreatorsFaqItems = [
 		transform: translateY(-4px) scale(1);
 	}
 
-	@keyframes creator-platform-logo-fresh {
-		0%,
-		16% {
-			filter: var(--platform-logo-fresh-tone) blur(0) drop-shadow(0 0 18px rgba(203, 243, 0, 0.44));
+	@keyframes creator-platform-logo-settle {
+		0% {
+			opacity: 0;
+			filter: var(--platform-logo-fresh-tone) blur(2px) drop-shadow(0 0 6px rgba(203, 243, 0, 0.18));
+		}
+
+		16%,
+		28% {
+			opacity: 0.9;
+			filter: var(--platform-logo-fresh-tone) blur(0) drop-shadow(0 0 10px rgba(203, 243, 0, 0.28));
 		}
 
 		100% {
+			opacity: 0.9;
 			filter: var(--platform-logo-tone) blur(0) drop-shadow(0 0 0 rgba(203, 243, 0, 0));
 		}
 	}
@@ -9861,8 +9719,14 @@ const forCreatorsFaqItems = [
 		margin: 10px 0 0;
 		color: #a1a1aa;
 		font-family: Manrope, sans-serif;
-		font-size: 15px;
+		font-size: 16px;
 		line-height: 1.5;
+	}
+
+	@media (max-width: 640px) {
+		.creator-why-cards {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.creator-manager-buttons {
@@ -10638,52 +10502,6 @@ const forCreatorsFaqItems = [
 		font-size: 15px;
 		font-weight: 500;
 		line-height: 1.3;
-	}
-
-	@keyframes creator-logo-primary {
-		0%,
-		8% {
-			opacity: 0.92;
-			filter: var(--platform-logo-tone) blur(0);
-			transform: translateY(0) scale(1);
-		}
-
-		11.5%,
-		50% {
-			opacity: 0;
-			filter: var(--platform-logo-tone) blur(4px);
-			transform: translateY(-6px) scale(0.98);
-		}
-
-		53.5%,
-		100% {
-			opacity: 0.92;
-			filter: var(--platform-logo-tone) blur(0);
-			transform: translateY(0) scale(1);
-		}
-	}
-
-	@keyframes creator-logo-alt {
-		0%,
-		8% {
-			opacity: 0;
-			filter: var(--platform-logo-tone) blur(4px);
-			transform: translateY(6px) scale(0.98);
-		}
-
-		11.5%,
-		50% {
-			opacity: 0.92;
-			filter: var(--platform-logo-tone) blur(0);
-			transform: translateY(0) scale(1);
-		}
-
-		53.5%,
-		100% {
-			opacity: 0;
-			filter: var(--platform-logo-tone) blur(4px);
-			transform: translateY(-6px) scale(0.98);
-		}
 	}
 
 	@keyframes creator-wallet-simple-source-path {
@@ -13482,18 +13300,6 @@ const forCreatorsFaqItems = [
 	}
 
 	@media (max-width: 980px) {
-		.creator-fee-comparison {
-			grid-template-columns: 1fr;
-		}
-
-		.creator-fee-rate {
-			min-height: clamp(180px, 42vw, 240px);
-		}
-
-		.creator-fee-rate strong {
-			font-size: clamp(3.8rem, 15vw, 6.2rem);
-		}
-
 		.creator-process-scroll {
 			--creator-process-top-offset: 72px;
 			--creator-process-bottom-offset: 48px;
@@ -13618,16 +13424,6 @@ const forCreatorsFaqItems = [
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.creator-fee-rate {
-			--garna-card-glow-x: 50% !important;
-			--garna-card-glow-y: 50% !important;
-		}
-
-		.creator-fee-rate::before,
-		.creator-fee-rate::after {
-			transition: none;
-		}
-
 		.creator-hero-panel::before,
 		.creator-platform-logo img,
 		.creator-platform-row,
