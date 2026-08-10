@@ -4,7 +4,9 @@ import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
 import Card from '../components/ui/Card.astro';
 import { pageShells } from '../content/page-shells';
 import { eorCostCountries } from '../../src/data/eor-cost-countries';
+import { EOR_COST_LIMITS } from '../../src/utils/eor-cost-limits';
 import '../styles/eor-cost-calculator.css';
+import '../styles/eor-cost-limits.css';
 ---
 
 <BaseLayout shell={pageShells.eorCostCalculator} rainbowCount={6}>
@@ -24,9 +26,10 @@ import '../styles/eor-cost-calculator.css';
 						<span data-translate="calculator.employees">Employees on EOR</span>
 						<span class="eor-stepper">
 							<button type="button" data-step="-1" aria-label="Decrease employee count">−</button>
-							<input id="eor-headcount" type="number" min="1" max="500" value="5" />
+							<input id="eor-headcount" type="number" min="1" max={EOR_COST_LIMITS.employees} value="5" aria-describedby="eor-headcount-limit" />
 							<button type="button" data-step="1" aria-label="Increase employee count">+</button>
 						</span>
+						<small id="eor-headcount-limit" class="eor-limit-note" aria-live="polite" data-translate="runtime.employeeLimit">Maximum: 10,000 employees.</small>
 					</label>
 
 					<label class="eor-field" for="eor-provider">
@@ -65,7 +68,8 @@ import '../styles/eor-cost-calculator.css';
 						</div>
 						<label class="eor-field" for="eor-salary">
 							<span data-translate="calculator.salary">Gross monthly salary, per employee</span>
-							<span class="eor-money-input"><b aria-hidden="true">$</b><input id="eor-salary" type="number" min="0" step="100" value="4000" /></span>
+							<span class="eor-money-input"><b aria-hidden="true">$</b><input id="eor-salary" type="number" min="0" max={EOR_COST_LIMITS.payoutUsd} step="100" value="4000" aria-describedby="eor-salary-limit" /></span>
+							<small id="eor-salary-limit" class="eor-limit-note" aria-live="polite" data-translate="runtime.payoutLimit">Maximum payout: $100,000,000.</small>
 						</label>
 					</div>
 				</div>
@@ -121,6 +125,10 @@ import '../styles/eor-cost-calculator.css';
 		<span data-key="countryHint" data-translate="runtime.countryHint">Employer contributions in &#123;country&#125;: about &#123;rate&#125;% of gross&#123;fixed&#125;.</span>
 		<span data-key="fixed" data-translate="runtime.fixed"> plus &#123;amount&#125; fixed per year</span>
 		<span data-key="noCountry" data-translate="runtime.noCountry">No country found</span>
+		<span data-key="employeeLimit" data-translate="runtime.employeeLimit">Maximum: 10,000 employees.</span>
+		<span data-key="employeeLimitReached" data-translate="runtime.employeeLimitReached">Maximum reached: 10,000 employees.</span>
+		<span data-key="payoutLimit" data-translate="runtime.payoutLimit">Maximum payout: $100,000,000.</span>
+		<span data-key="payoutLimitReached" data-translate="runtime.payoutLimitReached">Maximum reached: $100,000,000.</span>
 	</div>
 
 	<Fragment slot="widgets"><GarnaBookingWidget trackingSource="eor-cost-calculator" trackingPage="eor-cost-calculator" trackingCta="eor_cost_calculator_quote" titleFallback="Get an exact EOR quote" subtitleFallback="Review your country-by-country costs with our global employment team" /></Fragment>
@@ -135,6 +143,8 @@ import '../styles/eor-cost-calculator.css';
 </style>
 
 <script>
+	import { EOR_COST_LIMITS, clampEorEmployees, clampEorPayoutUsd, formatEorSavings } from '../../src/utils/eor-cost-limits';
+
 	const root = document.querySelector<HTMLElement>('#eor-cost-calculator');
 	const headcount = document.querySelector<HTMLInputElement>('#eor-headcount');
 	const provider = document.querySelector<HTMLSelectElement>('#eor-provider');
@@ -155,13 +165,28 @@ import '../styles/eor-cost-calculator.css';
 	const template = (key: string, values: Record<string, string | number>) => Object.entries(values).reduce((copy, [name, value]) => copy.replaceAll(`{${name}}`, String(value)), t(key));
 	const money = (value: number) => new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Math.round(value));
 	const numberValue = (input: HTMLInputElement | null, fallback = 0) => Math.max(0, Number(input?.value) || fallback);
+	const setLimitNote = (note: HTMLElement | null, atLimit: boolean, defaultKey: string, reachedKey: string) => {
+		if (!note) return;
+		note.textContent = t(atLimit ? reachedKey : defaultKey);
+		note.dataset.limitReached = String(atLimit);
+	};
 	const countryName = (code: string, fallback: string) => regionNames?.of(code) || fallback;
 	const flag = (code: string) => code.replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
 
 	const update = () => {
-		const count = Math.min(500, Math.max(1, Math.round(numberValue(headcount, 1))));
+		const rawCount = Number(headcount?.value);
+		const rawPayout = Number(salary?.value);
+		const count = clampEorEmployees(Number.isNaN(rawCount) ? 1 : rawCount);
+		const monthlyPayout = clampEorPayoutUsd(Number.isNaN(rawPayout) ? 0 : rawPayout);
 		const currentFee = numberValue(fee);
 		if (headcount && Number(headcount.value) !== count) headcount.value = String(count);
+		if (salary && Number(salary.value) !== monthlyPayout) salary.value = String(monthlyPayout);
+		const decrement = root?.querySelector<HTMLButtonElement>('[data-step="-1"]');
+		const increment = root?.querySelector<HTMLButtonElement>('[data-step="1"]');
+		if (decrement) decrement.disabled = count <= 1;
+		if (increment) increment.disabled = count >= EOR_COST_LIMITS.employees;
+		setLimitNote(document.querySelector('#eor-headcount-limit'), rawCount >= EOR_COST_LIMITS.employees, 'employeeLimit', 'employeeLimitReached');
+		setLimitNote(document.querySelector('#eor-salary-limit'), rawPayout >= EOR_COST_LIMITS.payoutUsd, 'payoutLimit', 'payoutLimitReached');
 		const currentMonthly = currentFee * count;
 		const garnaMonthly = GARNA_FEE * count;
 		const yearlySaving = (currentFee - GARNA_FEE) * count * 12;
@@ -171,15 +196,15 @@ import '../styles/eor-cost-calculator.css';
 		setText('#eor-current-label', providerName ? template('withProvider', { provider: providerName }) : t('currentProvider'));
 		setText('#eor-current-per', money(currentFee)); setText('#eor-current-monthly', money(currentMonthly)); setText('#eor-current-year', money(currentMonthly * 12));
 		setText('#eor-garna-per', money(GARNA_FEE)); setText('#eor-garna-monthly', money(garnaMonthly)); setText('#eor-garna-year', money(garnaMonthly * 12));
-		setText('#eor-savings', money(Math.abs(yearlySaving)));
+		setText('#eor-savings', formatEorSavings(yearlySaving, money));
 		const savingsBox = root?.querySelector<HTMLElement>('.eor-savings');
-		if (savingsBox) savingsBox.dataset.positive = String(yearlySaving >= 0);
+		if (savingsBox) savingsBox.dataset.positive = yearlySaving < 0 ? 'neutral' : 'true';
 		const difference = currentFee - GARNA_FEE;
 		const savingsCopy = !currentFee ? t('emptyFee') : difference >= GARNA_FEE * 0.15 ? template('saving', { count, employees: t(count === 1 ? 'employeeOne' : 'employeeMany'), amount: money(difference) }) : difference >= 0 ? t('closeFee') : t('lowerFee');
 		setText('#eor-savings-copy', savingsCopy);
 
 		if (!moreFields?.hidden) {
-			const annualSalary = numberValue(salary) * 12;
+			const annualSalary = monthlyPayout * 12;
 			const annualTax = (annualSalary * selectedCountry.rate + selectedCountry.fixed) * count;
 			const annualPayroll = annualSalary * count;
 			setText('#eor-current-tax', money(annualTax)); setText('#eor-garna-tax', money(annualTax));
@@ -190,7 +215,7 @@ import '../styles/eor-cost-calculator.css';
 		}
 	};
 
-	root?.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((button) => button.addEventListener('click', () => { if (headcount) headcount.value = String(Math.min(500, Math.max(1, numberValue(headcount, 1) + Number(button.dataset.step)))); update(); }));
+	root?.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((button) => button.addEventListener('click', () => { if (headcount) headcount.value = String(numberValue(headcount, 1) + Number(button.dataset.step)); update(); }));
 	provider?.addEventListener('change', () => { const listedFee = provider.selectedOptions[0]?.dataset.fee; if (fee) { fee.value = listedFee || ''; if (!listedFee) fee.focus(); } update(); });
 	fee?.addEventListener('input', () => { const listedFee = provider?.selectedOptions[0]?.dataset.fee; if (provider && listedFee && fee.value !== listedFee) provider.value = 'other'; update(); });
 	headcount?.addEventListener('input', update); salary?.addEventListener('input', update);

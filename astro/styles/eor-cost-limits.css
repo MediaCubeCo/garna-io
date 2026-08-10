@@ -1,0 +1,21 @@
+.eor-limit-note {
+	transition: color 0.2s;
+}
+
+.eor-limit-note[data-limit-reached="true"] {
+	color: #cbf300 !important;
+}
+
+.eor-stepper button:disabled {
+	cursor: not-allowed;
+	opacity: 0.35;
+}
+
+.eor-stepper button:disabled:hover {
+	background: transparent;
+	color: #a5a5ad;
+}
+
+.eor-savings[data-positive="neutral"] > strong {
+	color: #85858e;
+}
