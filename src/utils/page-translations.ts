@@ -447,11 +447,28 @@ export function injectPageTranslations(
 				const translation = getNestedValue(currentTranslations, key);
 				if (translation !== undefined && translation !== null) {
 					const translationStr = String(translation);
+					const breakAttribute = attributes.match(/\sdata-(?:title|description)-break-after-words=["']([^"']+)["']/i)?.[1];
+					let translatedContent = translationStr;
+					if (breakAttribute) {
+						const language = currentLanguage.toLowerCase();
+						const breakAfterWords = breakAttribute.includes(':')
+							? Number(
+									breakAttribute
+										.split(',')
+										.map((entry) => entry.trim().split(':'))
+										.find(([entryLanguage]) => entryLanguage?.toLowerCase() === language)?.[1]
+								)
+							: Number(breakAttribute);
+						const words = translationStr.trim().split(/\s+/);
+						if (Number.isInteger(breakAfterWords) && breakAfterWords > 0 && words.length > breakAfterWords) {
+							translatedContent = `${words.slice(0, breakAfterWords).join(' ')}<br class="hidden md:block"><span class="md:hidden"> </span>${words.slice(breakAfterWords).join(' ')}`;
+						}
+					}
 					const before = html.substring(0, startIndex);
 					const after = html.substring(endIndex);
 					const openTag = `<${tagName}${attributes}>`;
 					const closeTag = `</${tagName}>`;
-					html = before + openTag + translationStr + closeTag + after;
+					html = before + openTag + translatedContent + closeTag + after;
 				}
 			}
 

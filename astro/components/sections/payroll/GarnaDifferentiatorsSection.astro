@@ -129,12 +129,12 @@ const { ctaVariant = 'primary' } = Astro.props;
 
                     {ctaVariant === 'compact' ? (
                         <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'why_garna_demo' });"
-                            class="group inline-flex items-center gap-2 transition-all hover:scale-105 text-base font-normal text-[#101010] font-manrope bg-[#CBF300] z-10 rounded-xl pt-3 pr-8 pb-3 pl-8 relative shadow-[0_0_20px_-5px_rgba(203, 243, 0,0.5)]"
+                            class="group inline-flex items-center gap-2 transition-all hover:scale-105 text-base font-medium text-[#101010] font-manrope bg-[#CBF300] z-10 rounded-xl pt-3 pr-8 pb-3 pl-8 relative shadow-[0_0_20px_-5px_rgba(203, 243, 0,0.5)]"
                             data-translate="whyGarna.cta.button">Book a demo</a>
                     ) : (
                         <a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'why_garna_demo' });"
-                            class="garna-button garna-button-primary relative z-10 inline-flex h-11 items-center justify-center rounded-xl px-7 font-manrope text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]">
-                            <span class="garna-button-inner" data-translate="whyGarna.cta.button">Book a demo</span>
+                            class="garna-button garna-button-primary relative z-10 inline-flex h-11 items-center justify-center rounded-xl px-7 font-manrope text-[#101010] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" style="color: #101010;">
+                            <span class="garna-button-inner text-[#101010]" data-translate="whyGarna.cta.button">Book a demo</span>
                         </a>
                     )}
                 </div>

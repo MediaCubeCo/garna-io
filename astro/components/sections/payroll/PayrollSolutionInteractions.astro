@@ -5,7 +5,9 @@
                     if (entry.isIntersecting) {
                         const el = entry.target;
                         const target = parseInt(el.getAttribute('data-target'));
+                        const prefix = el.getAttribute('data-prefix') || '';
                         const suffix = el.getAttribute('data-suffix') || '';
+                        const grouping = el.getAttribute('data-grouping');
                         const duration = 2500;
                         const startTime = performance.now();
 
@@ -16,12 +18,18 @@
                             const ease = 1 - Math.pow(1 - progress, 4);
 
                             const current = Math.floor(target * ease);
-                            el.textContent = current + suffix;
+                            const formattedCurrent = grouping === 'space'
+                                ? String(current).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+                                : String(current);
+                            el.textContent = prefix + formattedCurrent + suffix;
 
                             if (progress < 1) {
                                 requestAnimationFrame(update);
                             } else {
-                                el.textContent = target + suffix;
+                                const formattedTarget = grouping === 'space'
+                                    ? String(target).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+                                    : String(target);
+                                el.textContent = prefix + formattedTarget + suffix;
                             }
                         }
 

@@ -28,7 +28,7 @@ const { group, items, activeId = items[0]?.id, class: className = '' } = Astro.p
 	{items.map((item) => (
 		<button
 			type="button"
-			class="garna-segmented-control-item w-full rounded-lg px-6 py-2.5 text-sm font-light transition-all sm:w-auto"
+			class="garna-segmented-control-item w-full rounded-lg px-6 py-2.5 text-sm font-medium transition-all sm:w-auto"
 			role="tab"
 			id={`${group}-${item.id}`}
 			aria-controls={item.panelId}
@@ -98,7 +98,7 @@ const { group, items, activeId = items[0]?.id, class: className = '' } = Astro.p
 
 	.garna-segmented-control-item[aria-selected='true'] {
 		background: #CBF300;
-		color: white;
+		color: #101010;
 		box-shadow: 0 4px 12px rgb(0 0 0 / 0.25);
 	}
 </style>

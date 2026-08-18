@@ -55,6 +55,7 @@ export const pageHeroes = {
 		},
 		descriptionClass:
 			'leading-relaxed md:text-xl text-lg font-manrope max-w-3xl mr-auto mb-10 ml-auto',
+		descriptionBreakAfterWords: { en: 11 },
 		title: [{ text: 'Global Payroll Solutions for your business', translateKey: 'hero.title' }],
 		description:
 			'One transfer - countless possibilities. Pay remunerations in over 150 countries with minimal effort',
@@ -78,10 +79,11 @@ export const pageHeroes = {
 		titleClass:
 			'garna-hero-title-gradient leading-[1.1] md:text-6xl lg:text-7xl text-5xl font-normal tracking-tight font-manrope mb-6',
 		titleBreakAfterWords: {
-			en: 5,
+			en: 3,
 		},
 		descriptionClass:
 			'leading-relaxed md:text-xl text-lg font-manrope max-w-4xl mr-auto mb-10 ml-auto',
+		descriptionBreakAfterWords: { en: 11 },
 		badge: {
 			text: 'Enterprise Payroll',
 			translateKey: 'hero.badge',

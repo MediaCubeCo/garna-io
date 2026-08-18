@@ -38,6 +38,7 @@ export interface HeroSectionConfig {
 	titleClass?: string;
 	titleBreakAfterWords?: number | Record<string, number>;
 	descriptionClass?: string;
+	descriptionBreakAfterWords?: number | Record<string, number>;
 	badge?: HeroBadge;
 	title: HeroTextPart[];
 	description?: string;
