@@ -1,0 +1,413 @@
+@import "tailwindcss";
+
+/* Garna design system shared by all native Astro components. */
+
+@theme {
+	--font-sans: "Manrope", sans-serif;
+	--font-manrope: "Manrope", sans-serif;
+	--color-garna-accent: #CBF300;
+	--color-garna-accent-foreground: #101010;
+	--color-garna-page: #101010;
+	--color-garna-surface: #0c0c0c;
+	--color-garna-surface-raised: #121212;
+	--color-garna-muted: #a1a1aa;
+	--animate-float: garna-float 6s ease-in-out infinite;
+}
+
+:root {
+	--garna-container-content-max: 1152px;
+	--garna-container-gutter: clamp(16px, 5vw, 64px);
+	--garna-page-bg: #101010;
+	--garna-section-stats-bg: #080808;
+	--garna-surface: #0c0c0c;
+	--garna-surface-raised: #121212;
+	--garna-border: rgba(255, 255, 255, 0.08);
+	--garna-border-strong: rgba(255, 255, 255, 0.14);
+	--garna-text: #f7f7f7;
+	--garna-text-muted: #a1a1aa;
+	--garna-subtitle-color: #b0b0b0;
+	--garna-subtitle-weight: 600;
+	--garna-accent: #CBF300;
+	--garna-accent-foreground: #101010;
+	--garna-radius-sm: 12px;
+	--garna-radius-md: 20px;
+	--garna-radius-lg: 28px;
+	--garna-shadow-card: 0 28px 80px -44px rgba(0, 0, 0, 0.95);
+	--garna-duration-fast: 180ms;
+	--garna-duration-base: 300ms;
+}
+
+html,
+body[data-garna-page] {
+	background: var(--garna-page-bg);
+	color: var(--garna-text-muted);
+	font-family: "Manrope", sans-serif;
+	overflow-x: hidden;
+	overflow-x: clip;
+}
+
+[data-garna-subtitle] {
+	color: var(--garna-subtitle-color) !important;
+	font-weight: var(--garna-subtitle-weight) !important;
+}
+
+/* Hero artwork uses gradients and imagery without graph-paper overlays. */
+.tax-hero::before {
+	background-image: none !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Manrope", sans-serif;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--garna-page-bg); }
+::-webkit-scrollbar-thumb { background: #262626; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #404040; }
+
+.glass,
+.glass-card,
+.garna-glass-card {
+	background: rgba(12, 12, 12, 0.72);
+	border: 1px solid var(--garna-border);
+	box-shadow: var(--garna-shadow-card);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+}
+
+.surface,
+.surface-soft {
+	background: var(--garna-surface);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	box-shadow: var(--garna-shadow-card);
+}
+
+.glass-high,
+.glass-nav {
+	background: rgba(5, 5, 5, 0.72);
+	border-bottom: 1px solid var(--garna-border);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+}
+
+.bg-grid {
+	background-image:
+		linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+
+.perspective-1000 { perspective: 1000px; }
+.perspective-normal { perspective: 500px; }
+.perspective-midrange { perspective: 800px; }
+.perspective-distant { perspective: 1200px; }
+.transform-style-preserve-3d { transform-style: preserve-3d; }
+
+@keyframes garna-float {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-10px); }
+}
+
+#astro-page-content > section:has([data-translate^="stats."]) {
+	background: var(--garna-section-stats-bg) !important;
+}
+
+.garna-clear-section-bg {
+	background-color: transparent !important;
+	background-image: none !important;
+}
+
+.garna-container {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: calc(var(--garna-container-content-max) + (var(--garna-container-gutter) * 2));
+	margin-inline: auto;
+	padding-inline: var(--garna-container-gutter);
+}
+
+[class~="max-w-7xl"] {
+	max-width: calc(var(--garna-container-content-max) + (var(--garna-container-gutter) * 2)) !important;
+}
+
+[class~="max-w-7xl"][class~="px-6"],
+[class~="max-w-7xl"][class~="pr-6"][class~="pl-6"] {
+	padding-left: var(--garna-container-gutter) !important;
+	padding-right: var(--garna-container-gutter) !important;
+}
+
+.garna-hero-title-gradient {
+	color: transparent !important;
+	background: linear-gradient(175deg, #ffffff 0%, rgba(255, 255, 255, 0.86) 42%, rgba(255, 255, 255, 0.38) 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+}
+
+.garna-hero-badge {
+	display: inline-flex;
+	width: fit-content;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 32px;
+	padding: 2px 10px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 9999px;
+	background: rgba(255, 255, 255, 0.05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	color: #d1d5db;
+	font-family: Manrope, sans-serif;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 16px;
+	letter-spacing: 0.025em;
+	text-transform: uppercase;
+}
+
+.garna-hero-badge-dot-shell {
+	position: relative;
+	display: flex;
+	width: 6px;
+	height: 6px;
+	flex: 0 0 auto;
+}
+
+.garna-hero-badge-dot,
+.garna-hero-badge-dot-ping {
+	display: inline-flex;
+	width: 100%;
+	height: 100%;
+	border-radius: 9999px;
+	background: #CBF300;
+}
+
+.garna-hero-badge-dot-ping {
+	position: absolute;
+	opacity: 0.75;
+	animation: garna-hero-badge-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.garna-hero-badge-dot {
+	position: relative;
+	box-shadow: 0 0 8px rgba(203, 243, 0, 0.72);
+}
+
+.garna-hero-badge-compact {
+	margin-bottom: 0;
+	font-size: 11px;
+	line-height: 15px;
+	white-space: nowrap;
+}
+
+@keyframes garna-hero-badge-ping {
+	75%,
+	100% {
+		transform: scale(2);
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+
+	.garna-hero-badge-dot-ping {
+		animation: none;
+	}
+}
+
+.garna-instant-scroll,
+.garna-instant-scroll *,
+.garna-instant-scroll::before,
+.garna-instant-scroll::after {
+	scroll-behavior: auto !important;
+}
+
+@property --garna-button-gradient-angle {
+	syntax: "<angle>";
+	initial-value: 0deg;
+	inherits: false;
+}
+
+@keyframes garna-button-border-spin {
+	to {
+		--garna-button-gradient-angle: 360deg;
+	}
+}
+
+.garna-button {
+	--garna-button-bg: #CBF300;
+	--garna-button-shine: #ffffff;
+	box-sizing: border-box;
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+	gap: 0.5rem;
+	border: 0;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.2;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, filter 0.28s ease, color 0.28s ease, background 0.28s ease;
+}
+
+.garna-button::before,
+.garna-button::after {
+	box-sizing: border-box;
+}
+
+.garna-button:hover {
+	transform: translateY(-3px);
+	filter: saturate(1.06);
+}
+
+.garna-button:active {
+	transform: translateY(-1px) scale(0.99);
+}
+
+.garna-button-inner {
+	position: relative;
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.garna-button-icon-svg {
+	width: 19px;
+	height: 19px;
+	transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.garna-button:hover .garna-button-icon-svg {
+	transform: translate(3px, -3px);
+}
+
+.garna-button-primary {
+	background: var(--garna-button-bg);
+	box-shadow:
+		0 10px 24px -18px rgba(203, 243, 0, 0.85),
+		0 0 26px -12px rgba(203, 243, 0, 0.72),
+		inset 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.garna-button-primary:hover {
+	background: var(--garna-button-bg);
+	box-shadow:
+		0 18px 34px -22px rgba(203, 243, 0, 1),
+		0 0 34px -8px rgba(203, 243, 0, 0.92),
+		inset 0 2px 0 rgba(255, 255, 255, 0.28);
+}
+
+.garna-button-secondary {
+	background: rgba(255, 255, 255, 0.04);
+	box-shadow:
+		inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+		inset 0 2px 0 rgba(255, 255, 255, 0.06);
+}
+
+.garna-button-secondary:hover {
+	background: rgba(255, 255, 255, 0.06);
+	box-shadow:
+		0 14px 28px -22px rgba(203, 243, 0, 0.82),
+		0 0 24px -11px rgba(203, 243, 0, 0.58),
+		inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+		inset 0 2px 0 rgba(255, 255, 255, 0.28);
+}
+
+.garna-button-ghost {
+	background: transparent;
+}
+
+.garna-button-ghost:hover {
+	opacity: 0.8;
+}
+
+.garna-button-icon {
+	background: transparent;
+}
+
+.garna-button-icon:hover {
+	color: #CBF300;
+}
+
+.garna-button-rotating-flare {
+	box-shadow:
+		inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+		inset 0 2px 0 rgba(255, 255, 255, 0.3),
+		0 10px 24px -18px rgba(203, 243, 0, 0.85),
+		0 0 26px -12px rgba(203, 243, 0, 0.72);
+}
+
+.garna-button-rotating-flare:hover {
+	box-shadow:
+		inset 0 0 0 1px rgba(255, 255, 255, 0.26),
+		inset 0 2px 0 rgba(255, 255, 255, 0.34),
+		0 18px 34px -22px rgba(203, 243, 0, 1),
+		0 0 34px -8px rgba(203, 243, 0, 0.92);
+}
+
+.garna-button-rotating-flare::before {
+	content: '';
+	pointer-events: none;
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 0.75rem;
+	padding: 3px 2px 2px;
+	background: conic-gradient(
+		from var(--garna-button-gradient-angle),
+		transparent 0%,
+		rgba(203, 243, 0, 0.45) 5%,
+		var(--garna-button-shine) 15%,
+		rgba(203, 243, 0, 0.45) 30%,
+		transparent 42%,
+		transparent 100%
+	);
+	-webkit-mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0);
+	mask-composite: exclude;
+	animation: garna-button-border-spin 2.5s linear infinite;
+}
+
+.garna-button-rotating-flare::after {
+	content: '';
+	pointer-events: none;
+	position: absolute;
+	inset: 3px 2px 2px;
+	z-index: 1;
+	border-radius: calc(0.75rem - 3px) calc(0.75rem - 2px) calc(0.75rem - 2px) calc(0.75rem - 2px);
+	background: var(--garna-button-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.garna-button,
+	.garna-button::before,
+	.garna-button::after,
+	.garna-button-icon-svg {
+		transition: none;
+	}
+
+	.garna-button-rotating-flare::before {
+		animation: none;
+	}
+}

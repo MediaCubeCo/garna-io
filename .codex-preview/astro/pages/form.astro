@@ -1,0 +1,50 @@
+---
+import HeroSection from '../components/sections/HeroSection.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
+import '../styles/form-page.css';
+---
+
+<BaseLayout shell={pageShells.form} showHeader={false}>
+	<HeroSection {...pageHeroes.form}>
+		<img src="/garna_logo.svg" alt="Garna" class="block h-10 w-auto object-contain mx-auto mb-8" data-translate-alt="footer.brand" slot="before-title" />
+		<div id="garna-widget-root" class="max-w-[900px] mr-auto ml-auto pr-6 pl-6"></div>
+		<GarnaBookingWidget
+			renderRoot={false}
+			embedInline
+			trackingSource="payroll-solution"
+			trackingPage="payroll-solution"
+			trackingCta="embedded_form"
+			titleFallback="Book a free 30-minute product demo"
+			subtitleFallback="Get all your questions answered by our experts"
+			bgColorCal="#000"
+			colorBorder="transparent"
+			thicknessBorder="0px"
+		/>
+		<script is:inline>
+(function () {
+	'use strict';
+
+	var params = new URLSearchParams(window.location.search);
+	var campaign = '';
+	params.forEach(function (value, key) {
+		if (key.toLowerCase() === 'utm_campaign') campaign = value;
+	});
+
+	if (campaign.trim().toLowerCase() !== 'linkedin_inmail') return;
+
+	var translations = __GARNA_WIDGET_TRANSLATIONS__;
+	var campaignCopy = translations && translations.campaigns && translations.campaigns.linkedinInmail;
+	if (!campaignCopy) return;
+
+	var heading = document.querySelector('[data-translate="form.heading"]');
+	var subtitle = document.querySelector('[data-translate="form.subtitle"]');
+
+	if (heading && campaignCopy.heading) heading.textContent = campaignCopy.heading;
+	if (subtitle && campaignCopy.subtitle) subtitle.textContent = campaignCopy.subtitle;
+})();
+		</script>
+	</HeroSection>
+</BaseLayout>

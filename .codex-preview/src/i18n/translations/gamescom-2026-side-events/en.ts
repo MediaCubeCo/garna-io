@@ -1,0 +1,40 @@
+export const gamescom2026En = {
+	meta: {
+		title: 'Gamescom 2026 Side Events Guide | Cologne, 23–30 August | Garna',
+		description: 'Gamescom 2026 side events in Cologne, 23–30 August: mixers, dinners, pitch sessions and parties, with how to get into each one. Kept up to date by Garna.',
+	},
+	hero: {
+		badge: 'Gamescom 2026 · Cologne · 23–30 August',
+		titleLead: 'Your Gamescom 2026',
+		titleAccent: 'side events',
+		titleTail: 'guide',
+		description: 'Mixers, dinners, pitch sessions, pavilion receptions, and the parties that run till morning. We checked every link and wrote down how to get in. The list stays updated through the show.',
+		learnCta: 'What Garna does',
+		pdfCta: 'Get PDF',
+	},
+	stats: {
+		events: 'side events',
+		days: 'days covered',
+		city: 'city, Cologne',
+		advisory: 'Dates and access rules come from the organisers and change often. Check the event page before you plan around one.',
+	},
+	offer: {
+		eyebrow: "While you're here",
+		title: 'Trouble with payroll, or paying too much for it?',
+		description: "Garna runs payroll and contractor payments in 150+ countries: local currencies, cards, wallets and crypto, plus the tax and compliance side. If that's on your list for after Cologne, book a slot and we'll show you the numbers.",
+		demoCta: 'Book a demo',
+		learnCta: 'What Garna does',
+	},
+	schedule: {
+		loading: 'Loading the schedule…',
+		access: { free: 'Free', paid: 'Paid', apply: 'Apply', invite: 'Invite only', badge: 'With gamescom badge', open: 'Open entry', tba: 'TBA', closed: 'Closed' },
+		cta: { register: 'Register', tickets: 'Get tickets', apply: 'Apply', details: 'Details', noLink: 'No link yet' },
+		weekdays: { sun: 'Sun', mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat' },
+		months: { january: 'January', february: 'February', march: 'March', april: 'April', may: 'May', june: 'June', july: 'July', august: 'August', september: 'September', october: 'October', november: 'November', december: 'December' },
+		event: { one: 'event', few: 'events', many: 'events', multiDay: 'Runs across several days', featured: 'Worth your time', timeTba: 'Time TBA' },
+		date: { label: 'Date', tba: 'TBA', announced: 'Date to be announced', unannouncedSuffix: "organisers haven't announced a date yet" },
+		empty: { title: 'Nothing scheduled here yet', description: 'Pick another day above. We keep this page updated through the show.', noEventsTitle: 'No events loaded', noEventsDescription: "The schedule didn't come through. A refresh usually fixes it." },
+		error: { title: "The schedule didn't load", description: "A refresh usually fixes it. If it doesn't, the browser console has the details." },
+		source: { live: 'The schedule is read from our events sheet every time this page loads, so it is always the current one.', fallback: "We couldn't reach the live sheet, so this is the last saved copy of the schedule." },
+	},
+};

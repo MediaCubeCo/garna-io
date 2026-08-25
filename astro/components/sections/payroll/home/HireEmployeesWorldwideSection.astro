@@ -1,33 +1,32 @@
 ---
 import Section from '../../../layout/Section.astro';
 import Card from '../../../ui/Card.astro';
-import CardIconVisual from '../../../visuals/CardIconVisual.astro';
 ---
 
 <Section
+	spacing="default"
 	title={{ text: 'Hire Employees Worldwide', translateKey: 'sectionHeadings.hireEmployeesWorldwide' }}
-	description={{ text: 'Simplify the hiring process for employees and freelancers with Garna. Unlike other companies, we will resolve not only the financial, but also legal side while you are looking for the right specialists', translateKey: 'sectionDescriptions.hireEmployeesWorldwide' }}
+	description={{ text: "Find and hire talents that you couldn't find locally without setting up a local legal entity" }}
 	class="border-y border-[#020202]/0"
 	headerClass="mb-16 max-w-5xl lg:mb-20"
 	titleClass="mx-auto max-w-4xl lg:text-5xl"
 	contentClass="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
 >
-	<Card title="Quick Global Employment" description="Hire employees anywhere in the world without setting up local legal entities">
-		<CardIconVisual slot="visual" icon="lucide:globe-2" />
+	<Card title="Quick Global Employment" description="Hire employees in 150+ countries without setting up local legal entities">
+		<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<circle cx="12" cy="12" r="10"></circle>
+			<path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"></path>
+		</svg>
 	</Card>
-	<Card title="Immigration Assistance" description="We help you not only find talent, but also apply for a visa and permanent residence support">
-		<CardIconVisual slot="visual" icon="lucide:plane" />
+	<Card title="Immigration Assistance" description="70+ countries where we provide immigration assistance">
+		<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<path d="M17.8 19 15 12l6-6c.8-.8.8-2 0-2.8-.8-.8-2-.8-2.8 0l-6 6-7-2.8-2 2 5.7 3.8-3.2 3.2-2.5-.4-1.5 1.5 3.5 2 2 3.5 1.5-1.5-.4-2.5 3.2-3.2 3.8 5.7 2-2Z"></path>
+		</svg>
 	</Card>
-	<Card title="Flexible Worksite Coverage" description="Hire for offices, retail, factories, or remote teams: wherever your business operates">
-		<CardIconVisual slot="visual" icon="lucide:building-2" />
-	</Card>
-	<Card title="24/7 Support" description="Our support team is available 24/7 to resolve any issue in just a few minutes">
-		<CardIconVisual slot="visual" icon="lucide:headset" />
-	</Card>
-	<Card title="Seamless Integration" description="Garna integrates seamlessly with your existing HR processes and accounting payroll software">
-		<CardIconVisual slot="visual" icon="lucide:blocks" />
-	</Card>
-	<Card title="Employee Benefits" description="A user-friendly personal dashboard for every team member: access to payslips, vacation management, and expense tracking in real time">
-		<CardIconVisual slot="visual" icon="lucide:gift" />
+	<Card title="Stay compliant" description="We tap into local regulatory expertise across markets, so you have freedom to grow wherever you go">
+		<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"></path>
+			<path d="m9 12 2 2 4-4"></path>
+		</svg>
 	</Card>
 </Section>

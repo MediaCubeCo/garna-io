@@ -1,0 +1,17 @@
+---
+interface Props {
+	text: string;
+	translateKey: string;
+	class?: string;
+}
+
+const { text, translateKey, class: className = '' } = Astro.props;
+---
+
+<span class:list={['garna-hero-badge', className]}>
+	<span class="garna-hero-badge-dot-shell" aria-hidden="true">
+		<span class="garna-hero-badge-dot-ping"></span>
+		<span class="garna-hero-badge-dot"></span>
+	</span>
+	<span data-translate={translateKey}>{text}</span>
+</span>

@@ -1,0 +1,208 @@
+import { basePaths, PageConfig } from '../config/pages';
+import { RouteInfo } from '../utils/routes';
+import { languages } from '../config/languages';
+import { getPageTranslations } from '../i18n';
+import { injectHtmlLangTag } from '../utils/htmlLang';
+import { injectCanonicalTag } from '../utils/canonical';
+import { injectHreflangTags } from '../utils/hreflang';
+import { injectSchemaOrg } from '../utils/schema';
+import { injectPageTranslations } from '../utils/page-translations';
+
+const securityHeaders = {
+	'Content-Security-Policy': "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'",
+	'X-XSS-Protection': '1; mode=block',
+	'X-Content-Type-Options': 'nosniff',
+	'Referrer-Policy': 'strict-origin-when-cross-origin',
+	'Permissions-Policy': 'geolocation=(self), microphone=()',
+};
+
+const LEGACY_ROUTE_REDIRECTS: Record<string, string> = {
+	'payroll-solution-new': '',
+	'payroll-small-business': 'small-business-payroll',
+	'white-label': 'white-label-payroll',
+	'tax-calculator': 'employee-cost-calculator',
+};
+
+function findPageConfig(segments: string[]): PageConfig | null {
+	const fullPath = segments.join('/');
+	let pageConfig = basePaths.find((p) => p.path === fullPath);
+	if (pageConfig) return pageConfig;
+
+	return null;
+}
+
+export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?: any): Promise<Response | null> {
+	if (!routeInfo.isValid || !routeInfo.locale || !routeInfo.language) {
+		return null;
+	}
+
+	const requestedPath = routeInfo.pathSegments.join('/');
+	const redirectPath = LEGACY_ROUTE_REDIRECTS[requestedPath];
+	if (redirectPath !== undefined) {
+		const url = new URL(request.url);
+		url.pathname = redirectPath ? `/${routeInfo.language}/${redirectPath}` : `/${routeInfo.language}`;
+		return Response.redirect(url.toString(), 308);
+	}
+
+	const pageConfig = findPageConfig(routeInfo.pathSegments);
+	if (!pageConfig) return null;
+
+	const allowedLangs = languages.map((l) => l.value);
+	if (!allowedLangs.includes(routeInfo.language)) return null;
+	if (pageConfig.languages && !pageConfig.languages.includes(routeInfo.language)) return null;
+
+	switch (pageConfig.mode) {
+		case 'static':
+			return serveStaticPage(request, routeInfo, pageConfig, env);
+		default:
+			return null;
+	}
+}
+
+// Mapping of public route paths to Astro-generated asset files in dist/.
+const PAGE_PATH_TO_ASSET: Record<string, string> = {
+	'gamescom-2026-side-events': '/gamescom-2026-side-events.html',
+	'': '/index.html',
+	'for-contractors': '/for-contractors.html',
+	'for-creators': '/for-creators.html',
+	'contractor-of-record': '/contractor-of-record.html',
+	'mid-size-business-payroll': '/mid-size-business-payroll.html',
+	'enterprise-payroll': '/enterprise-payroll.html',
+	form: '/form.html',
+	'ai-hiring': '/ai-hiring.html',
+	'white-label-payroll': '/white-label.html',
+	'small-business-payroll': '/payroll-small-business.html',
+	'employer-of-record': '/employer-of-record.html',
+	'employee-cost-calculator': '/tax-calculator.html',
+	'eor-cost-calculator': '/eor-cost-calculator.html',
+	blog: '/blog.html',
+	'blog-author': '/blog-author.html',
+	'blog-article': '/blog-article.html',
+};
+
+const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
+	'gamescom-2026-side-events': 'gamescom-2026-side-events',
+	'': 'home',
+	'for-contractors': 'offer',
+	'for-creators': 'for-creators',
+	'contractor-of-record': 'contractor-of-record',
+	'mid-size-business-payroll': 'mid-size',
+	'enterprise-payroll': 'enterprise-payroll',
+	form: 'form',
+	'ai-hiring': 'ai-hiring',
+	'white-label-payroll': 'white-label',
+	'small-business-payroll': 'payroll-small-business',
+	'employer-of-record': 'eor',
+	'employee-cost-calculator': 'tax-calculator',
+	'eor-cost-calculator': 'eor-cost-calculator',
+	blog: 'blog',
+	'blog-author': 'blog-author',
+	'blog-article': 'blog-article',
+};
+
+async function serveStaticPage(
+	request: Request,
+	routeInfo: RouteInfo,
+	pageConfig: PageConfig,
+	env?: any
+): Promise<Response | null> {
+	const useStaticAssetsFlag = env?.USE_STATIC_ASSETS === 'true';
+	const hasAssetsBinding = env?.ASSETS !== undefined;
+
+	if (!useStaticAssetsFlag || !hasAssetsBinding || !env?.ASSETS) {
+		const errorMsg =
+			`Static Assets required but not available!\n\n` +
+			`USE_STATIC_ASSETS: ${env?.USE_STATIC_ASSETS}\n` +
+			`hasAssetsBinding: ${hasAssetsBinding}\n` +
+			`Please configure Static Assets in wrangler.toml`;
+		console.error(errorMsg);
+		return new Response(errorMsg, {
+			status: 500,
+			headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+		});
+	}
+
+	const pagePath = pageConfig.path;
+	const assetPath = PAGE_PATH_TO_ASSET[pagePath];
+	const translationKey = PAGE_PATH_TO_TRANSLATION_KEY[pagePath];
+
+	if (!assetPath || !translationKey) {
+		console.error(`[serveStaticPage] No asset mapping for page path: ${pagePath}`);
+		return null;
+	}
+
+	try {
+		const assetUrl = new URL(assetPath, request.url);
+		const assetRequest = new Request(assetUrl.toString(), {
+			method: 'GET',
+			headers: request.headers,
+		});
+
+		const response = await env.ASSETS.fetch(assetRequest);
+
+		if (!response.ok) {
+			console.error(`[serveStaticPage] Asset fetch failed: ${response.status} ${response.statusText}`);
+			return null;
+		}
+
+		// Read HTML content
+		let html = await response.text();
+
+		// Apply HTML modifications
+		const language = routeInfo.language || 'en';
+		const path = routeInfo.pathSegments.join('/');
+		const baseUrl = 'https://garna.io';
+
+		// 1. Inject html lang attribute
+		html = injectHtmlLangTag(html, language);
+
+		// 2. Inject canonical tag
+		html = injectCanonicalTag(html, routeInfo.locale || 'en', path);
+
+		// 3. Inject hreflang tags
+		html = injectHreflangTags(html, path, pageConfig.languages);
+
+		// 4. Inject Schema.org JSON-LD
+		const canonicalUrl = `${baseUrl}/${language}${path ? `/${path}` : ''}`;
+		const currentMeta = (getPageTranslations(translationKey, language) as any)?.meta;
+		const pageTitle = currentMeta?.title;
+		const pageDescription = currentMeta?.description;
+		html = injectSchemaOrg(html, canonicalUrl, pageTitle, pageDescription);
+
+		// 5. Inject page translations
+		html = injectPageTranslations(
+			html,
+			translationKey,
+			routeInfo,
+			baseUrl,
+			env,
+			pageConfig.languages
+		);
+
+		// Return response with modified HTML and security headers
+		const responseHeaders = new Headers();
+		responseHeaders.set('Content-Type', 'text/html; charset=utf-8');
+		const requestHost = new URL(request.url).hostname;
+		const isLocalRequest = requestHost === 'localhost' || requestHost === '127.0.0.1' || requestHost === '::1';
+		responseHeaders.set(
+			'Cache-Control',
+			isLocalRequest ? 'no-store, no-cache, must-revalidate' : 'public, max-age=3600'
+		);
+
+		// Add security headers
+		for (const [key, value] of Object.entries(securityHeaders)) {
+			responseHeaders.set(key, value);
+		}
+
+		return new Response(html, {
+			status: 200,
+			headers: responseHeaders,
+		});
+	} catch (error: any) {
+		console.error(`[serveStaticPage] Error serving static page:`, error);
+		return new Response(`Error serving page: ${error?.message || 'Unknown error'}`, {
+			status: 500,
+			headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+		});
+	}
+}

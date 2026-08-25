@@ -1,0 +1,190 @@
+        <div class="payroll-platform-visual flex-1 min-h-0 relative flex items-center justify-center w-full">
+             <!-- Background Grid -->
+             <div class="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)] pointer-events-none"></div>
+
+             <!-- Flow Diagram -->
+             <div class="flex flex-col z-0 transform lg:scale-100 origin-center w-full relative scale-95 items-center justify-center">
+
+
+                <!-- 1. Business Node -->
+                <div class="flex flex-col z-10 relative gap-3 items-center">
+                    <div class="platform-node business-node w-12 h-12 rounded-2xl border flex items-center justify-center shadow-lg relative group">
+                        <div class="group-hover:opacity-100 transition-opacity duration-500 bg-[#CBF300]/5 opacity-0 rounded-2xl absolute top-0 right-0 bottom-0 left-0 scale-125"></div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="node-icon relative z-10"><rect width="16" height="20" x="4" y="2" rx="2" ry="2" class=""></rect><path d="M9 22v-4h6v4" class=""></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg>
+</div>
+                    <span class="visual-label uppercase text-sm font-medium tracking-wider font-manrope">Business</span>
+                </div>
+
+                <!-- Connector 1 -->
+                <div class="flow-line h-8 w-[1px] relative overflow-hidden my-1">
+                    <div class="w-full h-full absolute top-0 right-0 bottom-0 left-0 overflow-hidden">
+
+                        <div class="flow-pulse w-full h-full"></div>
+                    </div>
+                </div>
+
+                <!-- 2. Garna Platform Node -->
+                <div class="relative z-20 flex flex-col items-center">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-20 bg-[#CBF300]/10 blur-2xl rounded-full pointer-events-none"></div>
+                    <div class="garna-node px-5 py-2.5 rounded-xl border flex items-center gap-3 relative z-10 group backdrop-blur-sm">
+                        <div class="garna-node-cover absolute top-0 right-0 bottom-0 left-0 z-20 flex items-center justify-center rounded-xl">
+                            <div class="animate-pulse border-[#CBF300]/10 border rounded-xl absolute top-0 right-0 bottom-0 left-0 items-center justify-center"></div>
+                            <span class="garna-wordmark text-xl font-medium tracking-tight font-manrope z-0 mb-1 relative">garna</span>
+                        </div>
+                        <div class="w-6 h-6 rounded-full bg-[#CBF300]/10 flex items-center justify-center border border-[#CBF300]/20">
+                            <span class="font-manrope font-bold text-sm text-[#CBF300] pb-[2px]">g</span>
+                        </div>
+                        <span class="garna-wordmark font-manrope font-semibold text-sm tracking-wide">Garna</span>
+                    </div>
+                </div>
+
+                <!-- Connector 2 -->
+                <div class="h-10 w-full max-w-[300px] relative flex justify-center -mt-1 -mb-1 z-0">
+                     <svg class="w-full h-full absolute top-0 left-0 overflow-visible" viewBox="0 0 340 48" fill="none">
+                         <path class="flow-branch" id="pathCenter" d="M170,0 L170,48" stroke="currentColor" stroke-width="1"></path>
+                         <path class="flow-branch" id="pathLeft" d="M170,0 C170,24 56,24 56,48" stroke="currentColor" stroke-width="1"></path>
+                         <path class="flow-branch" id="pathRight" d="M170,0 C170,24 284,24 284,48" stroke="currentColor" stroke-width="1"></path>
+                         <circle class="flow-dot" r="2" fill="currentColor"><animateMotion dur="2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#pathCenter"></mpath></animateMotion></circle>
+                         <circle class="flow-dot" r="2" fill="currentColor"><animateMotion dur="2s" repeatCount="indefinite" begin="0.2s" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#pathLeft"></mpath></animateMotion></circle>
+                         <circle class="flow-dot" r="2" fill="currentColor"><animateMotion dur="2s" repeatCount="indefinite" begin="0.4s" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#pathRight"></mpath></animateMotion></circle>
+                     </svg>
+                </div>
+
+                <!-- 3. Employees -->
+                <div class="grid grid-cols-3 gap-3 w-full max-w-[300px] relative z-10 pt-1">
+                    <div class="employee-card border p-2.5 rounded-xl flex flex-col items-center gap-2.5 group transition-colors">
+                        <div class="avatar-ring w-10 h-10 rounded-full p-[1px] transition-colors duration-500">
+                            <div class="avatar-inner w-full h-full rounded-full overflow-hidden">
+                                <img src="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg" alt="Elena" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="text-center w-full">
+                            <div class="employee-name text-[10px] font-medium font-manrope truncate w-full transition-colors">Elena</div>
+                            <div class="employee-role text-[9px] leading-tight whitespace-nowrap overflow-hidden text-ellipsis font-manrope mt-0.5">Web Designer</div>
+                        </div>
+                    </div>
+                    <div class="employee-card border p-2.5 rounded-xl flex flex-col items-center gap-2.5 group transition-colors">
+                         <div class="avatar-ring w-10 h-10 rounded-full p-[1px] transition-colors duration-500">
+                            <div class="avatar-inner w-full h-full rounded-full overflow-hidden">
+                                <img src="/pages/payroll-solution-new/assets/02-4ea5c571-80d4-4ff4-8cf2-210e25af6262_320w.png" alt="David" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="text-center w-full">
+                            <div class="employee-name text-[10px] font-medium font-manrope truncate w-full transition-colors">David</div>
+                            <div class="employee-role text-[9px] leading-tight whitespace-nowrap overflow-hidden text-ellipsis font-manrope mt-0.5">Developer</div>
+                        </div>
+                    </div>
+                    <div class="employee-card border p-2.5 rounded-xl flex flex-col items-center gap-2.5 group transition-colors">
+                         <div class="avatar-ring w-10 h-10 rounded-full p-[1px] transition-colors duration-500">
+                            <div class="avatar-inner w-full h-full rounded-full overflow-hidden">
+                                <img src="/pages/payroll-solution-new/assets/08-photo-1534528741775-53994a69daeb.jpg" alt="Maria" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="text-center w-full">
+                            <div class="employee-name text-[10px] font-medium font-manrope truncate w-full transition-colors">Maria</div>
+                            <div class="employee-role text-[9px] font-manrope leading-tight mt-0.5 whitespace-nowrap overflow-hidden text-ellipsis">Ops Manager</div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+
+<style>
+	.payroll-platform-visual {
+		--visual-node-bg: #0e0e0e;
+		--visual-node-border: rgba(255, 255, 255, 0.1);
+		--visual-node-border-hover: rgba(255, 255, 255, 0.18);
+		--visual-text: #ffffff;
+		--visual-muted: #777d86;
+		--visual-line: rgba(255, 255, 255, 0.1);
+		--visual-flow: #cbf300;
+		--visual-flow-shadow: rgba(203, 243, 0, 0.55);
+		--visual-avatar-ring: rgba(255, 255, 255, 0.12);
+		--visual-avatar-bg: #141414;
+	}
+
+	:global(html[data-theme='light']) .payroll-platform-visual {
+		--visual-node-bg: rgba(255, 255, 255, 0.88);
+		--visual-node-border: rgba(70, 82, 21, 0.16);
+		--visual-node-border-hover: rgba(139, 166, 0, 0.55);
+		--visual-text: #202318;
+		--visual-muted: #68705d;
+		--visual-line: rgba(94, 111, 24, 0.24);
+		--visual-flow: #829b00;
+		--visual-flow-shadow: rgba(130, 155, 0, 0.48);
+		--visual-avatar-ring: rgba(86, 101, 24, 0.2);
+		--visual-avatar-bg: #eef1e8;
+	}
+
+	.platform-node,
+	.employee-card {
+		background: var(--visual-node-bg);
+		border-color: var(--visual-node-border);
+	}
+
+	.platform-node {
+		box-shadow: 0 14px 34px -22px rgba(0, 0, 0, 0.48);
+	}
+
+	.node-icon,
+	.garna-wordmark,
+	.employee-name {
+		color: var(--visual-text);
+	}
+
+	.visual-label,
+	.employee-role {
+		color: var(--visual-muted);
+	}
+
+	.flow-line {
+		background: var(--visual-line);
+	}
+
+	.flow-pulse {
+		background: linear-gradient(to bottom, transparent, var(--visual-flow), transparent);
+		animation: flowMove 2s linear infinite !important;
+		filter: drop-shadow(0 0 4px var(--visual-flow-shadow));
+	}
+
+	.garna-node {
+		background: var(--visual-node-bg);
+		border-color: color-mix(in srgb, var(--visual-flow) 32%, transparent);
+		box-shadow: 0 0 22px -7px var(--visual-flow-shadow);
+	}
+
+	.garna-node-cover {
+		background: var(--visual-node-bg);
+	}
+
+	.flow-branch {
+		color: var(--visual-line);
+	}
+
+	.flow-dot {
+		color: var(--visual-flow);
+		filter: drop-shadow(0 0 3px var(--visual-flow-shadow));
+	}
+
+	.employee-card:hover {
+		border-color: var(--visual-node-border-hover);
+	}
+
+	.avatar-ring {
+		background: linear-gradient(to bottom, var(--visual-avatar-ring), transparent);
+	}
+
+	.employee-card:hover .avatar-ring {
+		background: linear-gradient(to bottom, color-mix(in srgb, var(--visual-flow) 64%, transparent), transparent);
+	}
+
+	.avatar-inner {
+		background: var(--visual-avatar-bg);
+	}
+
+	@keyframes flowMove {
+		0% { transform: translateY(-100%); opacity: 0; }
+		20%, 80% { opacity: 1; }
+		100% { transform: translateY(100%); opacity: 0; }
+	}
+</style>

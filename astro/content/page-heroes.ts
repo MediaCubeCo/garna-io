@@ -247,16 +247,18 @@ export const pageHeroes = {
 		align: 'split',
 	},
 	home: {
-		class: 'payroll-solution-new-hero overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
+		class: 'payroll-solution-new-hero relative h-[100svh] min-h-[100svh] overflow-hidden pt-24 md:pt-28 lg:pt-32',
 		containerClass:
-			'overflow-visible md:px-12 md:pt-12 md:pb-0 text-center max-w-7xl z-10 mr-auto ml-auto pt-12 pr-6 pb-12 pl-6 relative',
+			'relative z-10 mx-auto h-full max-w-7xl overflow-visible px-6 pb-8 pt-4 text-center md:px-12 md:pt-5',
+		contentClass: 'relative z-10',
 		titleClass:
-			'garna-hero-title-gradient leading-[1.1] lg:text-8xl lg:mb-12 md:mb-8 md:text-7xl text-6xl tracking-tight mb-8',
+			'garna-hero-title-gradient mb-4 text-[3.25rem] leading-[1.06] tracking-tight md:mb-5 md:text-[4rem] lg:mb-6 lg:text-[5rem]',
 		descriptionClass:
-			'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-xl font-manrope max-w-4xl mr-auto mb-12 ml-auto',
-		title: [{ text: 'Global Payroll Solution for International Businesses', translateKey: 'hero.titleMain' }],
+			'mx-auto mb-6 max-w-3xl font-manrope text-xl leading-relaxed !text-white opacity-70 [text-shadow:0_2px_18px_rgba(0,0,0,0.72)] md:mb-7 md:text-[1.375rem] lg:mb-8',
+		title: [{ text: 'The All in One Payroll Platform', translateKey: 'hero.titleMain' }],
+		titleBreakAfterWords: { en: 4 },
 		description:
-			'Save time and money while working with contractors and hiring employees in 150+ country. Full legal compliance without the extra costs - this and more, with Garna',
+			'Pay contractors and hire employees in 150+ countries — fully compliant, without the extra costs of a local entity',
 		descriptionTranslateKey: 'hero.description',
 		cta: {
 			label: 'Book a demo',
@@ -265,9 +267,9 @@ export const pageHeroes = {
 			trackingCta: 'payroll_solution_new_hero_demo',
 			variant: 'primary',
 			effect: 'rotating-flare',
-			wrapperClass: 'flex justify-center',
+			wrapperClass: 'relative z-20 flex justify-center',
 		},
-		tone: 'green',
+		tone: 'neutral',
 		align: 'center',
 	},
 	eor: {

@@ -1,0 +1,415 @@
+<div class="payroll-platform-visual relative mx-auto flex h-[320px] w-full max-w-[430px] items-center justify-center overflow-visible font-sans" aria-label="Automated salary accrual stack">
+	<div class="salary-stack relative h-[235px] w-full max-w-[376px]">
+		<article class="salary-card salary-card--layer salary-card--layer-1" aria-hidden="true">
+			<span>Taxes calculated</span>
+			<i>Auto-check</i>
+		</article>
+		<article class="salary-card salary-card--layer salary-card--layer-2" aria-hidden="true">
+			<span>Timesheets synced</span>
+			<i>Done</i>
+		</article>
+
+		<article class="salary-card salary-card--front">
+			<div class="salary-head">
+				<img class="salary-avatar" src="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg" alt="" loading="lazy" aria-hidden="true" />
+				<div>
+					<strong>Salary accrued</strong>
+					<small>Eva Miller · Product designer</small>
+				</div>
+			</div>
+			<div class="salary-amount" aria-hidden="true">
+				<span>Net payout</span>
+				<strong>$3,840.00</strong>
+			</div>
+			<div class="salary-breakdown" aria-hidden="true">
+				<span><i>Base salary</i><b>$4,200.00</b></span>
+				<span><i>Taxes & fees</i><b>−$360.00</b></span>
+				<span><i>Pay date</i><b>28 June</b></span>
+			</div>
+			<div class="salary-footer" aria-hidden="true">
+				<span>Automated by Garna</span>
+				<button>Run payroll</button>
+			</div>
+		</article>
+	</div>
+</div>
+
+<style>
+	.automation-note {
+		position: absolute;
+		left: 50%;
+		width: 100%;
+		border: 1px solid rgb(255 255 255 / 0.08);
+		border-radius: 1.35rem;
+		background: #050505;
+		padding: 1.08rem;
+		text-align: left;
+	}
+
+	.notification-stack {
+		transform: translateY(-3.7rem);
+	}
+
+	.automation-note--layer {
+		height: 10.4rem;
+		padding: 0;
+		border-color: rgb(255 255 255 / 0.08);
+		background: #050505;
+	}
+
+	.automation-note--layer-1 {
+		top: 2.45rem;
+		z-index: 1;
+		transform: translateX(-50%) scale(0.94);
+	}
+
+	.automation-note--layer-2 {
+		top: 3.25rem;
+		z-index: 2;
+		transform: translateX(-50%) scale(0.97);
+	}
+
+	.automation-note--front {
+		top: 4.2rem;
+		z-index: 3;
+		border-color: rgb(255 255 255 / 0.08);
+		background: #050505;
+		padding: 1.18rem;
+		transform: translateX(-50%);
+		animation: payroll-ready-card 6.5s ease-in-out infinite;
+	}
+
+	.note-head {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 0.85rem;
+	}
+
+	.note-step,
+	.note-logo {
+		display: flex;
+		height: 2.45rem;
+		width: 2.45rem;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		border-radius: 0.78rem;
+	}
+
+	.note-step {
+		background: rgb(203 243 0 / 0.09);
+		color: #CBF300;
+		font-size: 0.84rem;
+		font-weight: 800;
+	}
+
+	.note-logo {
+		background: white;
+		color: #050505;
+	}
+
+	.note-logo svg {
+		height: 1.28rem;
+		width: auto;
+	}
+
+	.automation-note strong {
+		display: block;
+		color: white;
+		font-size: 0.98rem;
+		font-weight: 600;
+		line-height: 1.18;
+	}
+
+	.automation-note small {
+		display: block;
+		margin-top: 0.22rem;
+		color: rgb(107 114 128);
+		font-size: 0.68rem;
+		line-height: 1.2;
+	}
+
+	.automation-note em {
+		display: inline-flex;
+		min-height: 1.2rem;
+		align-items: center;
+		justify-content: center;
+		border-radius: 9999px;
+		background: rgb(203 243 0 / 0.1);
+		padding: 0 0.56rem;
+		color: #CBF300;
+		font-size: 0.56rem;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.ready-checklist {
+		margin-top: 1rem;
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.ready-checklist span {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+		border-radius: 0.8rem;
+		background: rgb(255 255 255 / 0.035);
+		padding: 0.5rem 0.62rem;
+		color: rgb(209 213 219);
+		font-size: 0.72rem;
+		font-weight: 600;
+	}
+
+	.ready-checklist i {
+		display: flex;
+		height: 1.05rem;
+		width: 1.05rem;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		border-radius: 9999px;
+		background: rgb(203 243 0 / 0.12);
+		color: #CBF300;
+		font-size: 0.62rem;
+		font-style: normal;
+	}
+
+	.ready-checklist span:nth-child(1) i { animation: checklist-pulse 6.5s ease-in-out infinite; }
+	.ready-checklist span:nth-child(2) i { animation: checklist-pulse 6.5s ease-in-out 0.45s infinite; }
+	.ready-checklist span:nth-child(3) i { animation: checklist-pulse 6.5s ease-in-out 0.9s infinite; }
+
+	.note-progress {
+		margin-top: 1rem;
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.5rem;
+	}
+
+	.note-progress span {
+		border-radius: 0.85rem;
+		background: rgb(255 255 255 / 0.045);
+		padding: 0.66rem 0.5rem;
+		color: rgb(107 114 128);
+		font-size: 0.6rem;
+		text-align: center;
+	}
+
+	.note-progress b {
+		display: block;
+		margin-bottom: 0.12rem;
+		color: white;
+		font-size: 0.88rem;
+		line-height: 1;
+	}
+
+	@keyframes payroll-ready-card {
+		0%, 100% {
+			transform: translateX(-50%);
+		}
+
+		45%, 55% {
+			transform: translateX(-50%) translateY(-0.08rem);
+		}
+	}
+
+	@keyframes checklist-pulse {
+		0%, 18%, 100% {
+			background: rgb(203 243 0 / 0.12);
+			box-shadow: none;
+		}
+
+		8% {
+			background: rgb(203 243 0 / 0.2);
+			box-shadow: 0 0 0 0.25rem rgb(203 243 0 / 0.045);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.automation-note--front,
+		.ready-checklist i {
+			animation: none;
+		}
+	}
+
+	.salary-stack {
+		transform: translateY(-5.25rem);
+	}
+
+	.salary-card {
+		position: absolute;
+		left: 50%;
+		width: 100%;
+		border: 1px solid rgb(255 255 255 / 0.08);
+		border-radius: 1.35rem;
+		background: #050505;
+		text-align: left;
+	}
+
+	.salary-card--layer {
+		display: flex;
+		height: 4.1rem;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 1.18rem;
+		color: rgb(156 163 175);
+		font-size: 0.76rem;
+		font-weight: 600;
+	}
+
+	.salary-card--layer i {
+		display: inline-flex;
+		min-height: 1.18rem;
+		align-items: center;
+		justify-content: center;
+		border-radius: 9999px;
+		background: rgb(203 243 0 / 0.08);
+		padding: 0 0.5rem;
+		color: #CBF300;
+		font-size: 0.52rem;
+		font-style: normal;
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+
+	.salary-card--layer-1 {
+		top: 2.4rem;
+		z-index: 1;
+		transform: translateX(-50%) scale(0.94);
+	}
+
+	.salary-card--layer-2 {
+		top: 3.25rem;
+		z-index: 2;
+		transform: translateX(-50%) scale(0.97);
+	}
+
+	.salary-card--front {
+		top: 4.1rem;
+		z-index: 3;
+		padding: 0.95rem;
+		transform: translateX(-50%);
+	}
+
+	.salary-head {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 0.82rem;
+	}
+
+	.salary-avatar {
+		height: 2.45rem;
+		width: 2.45rem;
+		border-radius: 9999px;
+		object-fit: cover;
+	}
+
+	.salary-card strong {
+		display: block;
+		color: white;
+		font-size: 0.98rem;
+		font-weight: 650;
+		line-height: 1.18;
+	}
+
+	.salary-card small {
+		display: block;
+		margin-top: 0.2rem;
+		color: rgb(107 114 128);
+		font-size: 0.68rem;
+		line-height: 1.2;
+	}
+
+	.salary-card em {
+		display: inline-flex;
+		min-height: 1.2rem;
+		align-items: center;
+		justify-content: center;
+		border-radius: 9999px;
+		background: rgb(203 243 0 / 0.1);
+		padding: 0 0.56rem;
+		color: #CBF300;
+		font-size: 0.56rem;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.salary-amount {
+		margin-top: 0.75rem;
+		border-radius: 1rem;
+		background: rgb(255 255 255 / 0.04);
+		padding: 0.62rem 0.74rem;
+	}
+
+	.salary-amount span {
+		display: block;
+		color: rgb(107 114 128);
+		font-size: 0.64rem;
+		font-weight: 700;
+		letter-spacing: 0.09em;
+		text-transform: uppercase;
+	}
+
+	.salary-amount strong {
+		margin-top: 0.22rem;
+		font-size: 1.62rem;
+		letter-spacing: -0.04em;
+	}
+
+	.salary-breakdown {
+		margin-top: 0.52rem;
+		display: grid;
+		gap: 0.3rem;
+	}
+
+	.salary-breakdown span {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-radius: 0.75rem;
+		background: rgb(255 255 255 / 0.032);
+		padding: 0.36rem 0.54rem;
+	}
+
+	.salary-breakdown i {
+		color: rgb(107 114 128);
+		font-size: 0.66rem;
+		font-style: normal;
+		font-weight: 600;
+	}
+
+	.salary-breakdown b {
+		color: rgb(229 231 235);
+		font-size: 0.7rem;
+		font-weight: 700;
+	}
+
+	.salary-footer {
+		margin-top: 0.55rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.8rem;
+	}
+
+	.salary-footer span {
+		color: rgb(107 114 128);
+		font-size: 0.68rem;
+	}
+
+	.salary-footer button {
+		border-radius: 0.7rem;
+		background: #CBF300;
+		padding: 0.44rem 0.72rem;
+		color: #050505;
+		font-size: 0.68rem;
+		font-weight: 800;
+	}
+
+</style>

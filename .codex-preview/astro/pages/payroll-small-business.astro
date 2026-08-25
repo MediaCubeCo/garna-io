@@ -1,0 +1,78 @@
+---
+import HeroSection from '../components/sections/HeroSection.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import FinalCTASection from '../components/sections/FinalCTASection.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
+import type { FAQItem } from '../types/faq-section';
+import SmallBusinessOverviewSection from '../components/sections/payroll/SmallBusinessOverviewSection.astro';
+import SmallBusinessPlatformSection from '../components/sections/payroll/SmallBusinessPlatformSection.astro';
+import SmallBusinessStepsSection from '../components/sections/payroll/SmallBusinessStepsSection.astro';
+import SmallBusinessBenefitsSection from '../components/sections/payroll/SmallBusinessBenefitsSection.astro';
+import SmallBusinessTestimonialsSection from '../components/sections/payroll/SmallBusinessTestimonialsSection.astro';
+import SmallBusinessSectionStyles from '../components/sections/payroll/SmallBusinessSectionStyles.astro';
+import SmallBusinessInteractions from '../components/sections/payroll/SmallBusinessInteractions.astro';
+import SmallBusinessPayrollVisual from '../components/visuals/SmallBusinessPayrollVisual.astro';
+
+const payrollSmallBusinessFaqItems = [
+	{
+		question: 'How can I hire an employee abroad without opening my own local legal entity?',
+		answer:
+			"To do this, we use the Employer of Record model. You delegate the legal side of hiring to us. Garna is an official employer in 150+ countries, so you don't have to spend months and thousands of dollars to register a company in another country.",
+		questionTranslateKey: 'faq.items.q1.question',
+		answerTranslateKey: 'faq.items.q1.answer',
+	},
+	{
+		question: 'How much does payroll cost for a small company?',
+		answer:
+			"Garna offers a transparent pay-as-you-go model. You only pay those to whom you actually make payments. It's convenient if your team is small.",
+		questionTranslateKey: 'faq.items.q2.question',
+		answerTranslateKey: 'faq.items.q2.answer',
+	},
+	{
+		question: 'Why is Garna payroll better than local legal entities?',
+		answer:
+			'When hiring 1-10 employees opening a local legal entity, hiring legal and accounting specialists or firms can be expensive. With Garna payroll you pay only per employee, it helps you keep the cost lean while hiring anywhere in the world. You also mitigate the risk of running into fines for incorrect taxes or missing documents if you do everything on your own. Garna automates compliance, saving you time on documentation.',
+		questionTranslateKey: 'faq.items.q3.question',
+		answerTranslateKey: 'faq.items.q3.answer',
+	},
+	{
+		question: 'What taxes do I need to file?',
+		answer:
+			"With Garna, you don't need to worry about taxes. When using the Garna EoR solution, we calculate everything automatically.",
+		questionTranslateKey: 'faq.items.q4.question',
+		answerTranslateKey: 'faq.items.q4.answer',
+	},
+	{
+		question: 'Can I pay contractors and employees in one system?',
+		answer:
+			'Yes. This is the main advantage of Garna. You manage a global team in one interface and split payments into official salaries (for staff) and royalties (for freelancers).',
+		questionTranslateKey: 'faq.items.q5.question',
+		answerTranslateKey: 'faq.items.q5.answer',
+	},
+] satisfies FAQItem[];
+---
+
+<BaseLayout shell={pageShells.payrollSmallBusiness}>
+	<HeroSection {...pageHeroes.payrollSmallBusiness}>
+		<SmallBusinessPayrollVisual />
+	</HeroSection>
+	<SmallBusinessOverviewSection />
+	<SmallBusinessPlatformSection />
+	<SmallBusinessStepsSection />
+	<SmallBusinessBenefitsSection />
+	<SmallBusinessTestimonialsSection />
+	<SmallBusinessSectionStyles />
+	<FAQSection
+		kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
+		title={{ text: 'FAQ on Small Business Payroll', translateKey: 'faq.title' }}
+		items={payrollSmallBusinessFaqItems}
+		class="relative py-20 lg:py-28"
+		containerClass="garna-container"
+		accordionClass="mx-auto w-full space-y-4 xl:max-w-3xl"
+	/>
+	<FinalCTASection {...pageFinalCtas.payrollSmallBusiness} />
+	<Fragment slot="widgets"><SmallBusinessInteractions /></Fragment>
+</BaseLayout>

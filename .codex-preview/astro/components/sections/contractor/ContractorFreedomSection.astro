@@ -1,0 +1,133 @@
+---
+import Section from '../../layout/Section.astro';
+---
+
+<Section contained={false} spacing="none" class="lg:pt-32 lg:pb-32 pt-16 pb-16 relative">
+        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+            <div class="text-center mb-16">
+                <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope text-center mb-6"
+                    data-translate="benefits.title">
+                    Built for your freedom
+                </h2>
+                <p data-garna-subtitle class="text-xl font-light text-gray-400 font-manrope max-w-2xl mx-auto"
+                    data-translate="benefits.description">
+                    We designed Garna to give independent workers the stability and flexibility of a corporate payroll,
+                    without
+                    the strings attached
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-x-8 gap-y-8">
+                <!-- Benefit 1 -->
+                <div class="glass-card group rounded-2xl pt-8 pr-8 pb-8 pl-8">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-[#CBF300]/10 flex items-center justify-center text-[#CBF300] mb-6 border border-[#CBF300]/20 group-hover:scale-110 transition-transform duration-300">
+                        <iconify-icon icon="solar:global-outline" class="text-2xl" width="24" height="24"
+                            style="color: rgb(203, 243, 0)"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-medium text-white font-manrope mb-3"
+                        data-translate="benefits.items.payments.title">
+                        Payments from clients worldwide
+                    </h3>
+                    <p class="leading-relaxed text-gray-400 font-manrope"
+                        data-translate="benefits.items.payments.description">
+                        Accept transfers from international clients in their preferred currency without worrying about
+                        borders or
+                        complex banking rules
+                    </p>
+                </div>
+
+                <!-- Benefit 5 (Moved to top right) -->
+                <div class="glass-card group lg:col-span-2 overflow-hidden rounded-2xl pt-8 pr-8 pb-8 pl-8 relative">
+                    <div class="z-10 max-w-lg relative">
+                        <div
+                            class="flex group-hover:scale-110 transition-transform duration-300 text-[#CBF300] bg-[#CBF300]/10 w-12 h-12 border-[#CBF300]/20 border rounded-xl mb-6 items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" class="" data-lucide="laptop" data-icon-set="lucide"
+                                data-icon-replaced="true" style="color: rgb(203, 243, 0)">
+                                <path
+                                    d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-medium text-white font-manrope mb-3"
+                            data-translate="benefits.items.remote.title">
+                            Work from anywhere
+                        </h3>
+                        <p class="leading-relaxed text-gray-400 font-manrope"
+                            data-translate="benefits.items.remote.description">
+                            Designed for the global economy. Whether you're in Berlin, Bali, or Boston, Garna ensures
+                            your money
+                            reaches you without currency headaches
+                        </p>
+                    </div>
+                    <!-- Decorative Map Graphic -->
+                    <div class="absolute right-0 top-0 bottom-0 w-1/2 opacity-20 pointer-events-none mix-blend-overlay">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png"
+                            class="w-full h-full object-cover object-left" alt="Map" />
+                    </div>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div
+                        class="flex group-hover:scale-110 transition-transform duration-300 text-[#CBF300] bg-[#CBF300]/10 w-12 h-12 border-[#CBF300]/20 border rounded-xl mb-6 items-center justify-center">
+                        <iconify-icon icon="solar:eye-linear" class="text-2xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-medium text-white font-manrope mb-3"
+                        data-translate="benefits.items.transparency.title">
+                        Full transparency
+                    </h3>
+                    <p class="leading-relaxed text-gray-400 font-manrope"
+                        data-translate="benefits.items.transparency.description">
+                        Track every cent. View pending payments, transaction history, and download statements in one
+                        dashboard
+                    </p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-[#CBF300]/10 flex items-center justify-center text-[#CBF300] mb-6 border border-[#CBF300]/20 group-hover:scale-110 transition-transform duration-300">
+                        <iconify-icon icon="solar:card-transfer-linear" class="text-2xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-medium text-white font-manrope mb-3"
+                        data-translate="benefits.items.withdraw.title">
+                        Withdraw to 10+ payment options
+                    </h3>
+                    <p class="leading-relaxed text-gray-400 font-manrope"
+                        data-translate="benefits.items.withdraw.description">
+                        Flexibility is key. Move funds to your bank in USD, local currencies, debit cards, PayPal,
+                        Payoneer, or
+                        crypto wallets
+                    </p>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-[#CBF300]/10 flex items-center justify-center text-[#CBF300] mb-6 border border-[#CBF300]/20 group-hover:scale-110 transition-transform duration-300">
+                        <iconify-icon icon="solar:document-add-linear" class="text-2xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-medium text-white font-manrope mb-3"
+                        data-translate="benefits.items.tax.title">
+                        Tax and reporting documents
+                    </h3>
+                    <p class="leading-relaxed text-gray-400 font-manrope"
+                        data-translate="benefits.items.tax.description">
+                        We automate the boring stuff. Properly formatted tax forms and invoices are generated and stored
+                        for you
+                        automatically
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex mt-12 justify-center">
+                <a href="https://app.garna.io/en/auth/sign-up" data-garna-signup
+                    class="group inline-flex items-center justify-center gap-2 transition-all hover:scale-105 accent-glow text-base font-semibold text-[#101010] font-manrope bg-[#CBF300] rounded-xl py-3 px-8 shadow-[0_0_30px_-5px_rgba(203, 243, 0,0.4)] relative">
+                    <span data-translate="benefits.getStartedNow">Get started now</span>
+                </a>
+            </div>
+        </div>
+    </Section>

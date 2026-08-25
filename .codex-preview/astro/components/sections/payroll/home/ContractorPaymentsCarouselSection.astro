@@ -1,0 +1,302 @@
+---
+import Section from '../../../layout/Section.astro';
+import Button from '../../../ui/Button.astro';
+
+const features = [
+	{ title: 'Hire\nContractors\nWorldwide', description: 'Manage contractors, invoices, and approvals\nfrom one platform', image: '/pages/payroll-solution-new/assets/contractor-hired-original.jpg' },
+	{ title: 'Flexible\nGlobal\nPayments', description: 'Pay in 80+ currencies across 150+ countries\nby bank, card, e-wallet, or crypto', image: '/pages/payroll-solution-new/assets/flexible-global-payments.png' },
+	{ title: 'Get\nMisclassification\nProtection', description: 'Garna acts as contractor or agent of record\nand bears misclassification risks', image: '/pages/payroll-solution-new/assets/misclassification-protection.png' },
+];
+---
+
+<Section
+	spacing="none"
+	class="pt-8 pb-16 lg:pt-16 lg:pb-32"
+	contentClass="contractor-carousel-content"
+>
+	<div class="contractor-carousel" data-contractor-carousel>
+		<div class="contractor-carousel__copy" aria-live="polite">
+			<h3 data-carousel-title>{features[0].title}</h3>
+			<p data-carousel-description>{features[0].description}</p>
+
+			<div class="contractor-carousel__controls">
+				<Button
+					href="#"
+					size="header"
+					variant="primary"
+					effect="none"
+					icon="none"
+					onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'contractor_carousel_demo' });"
+				>
+					Book a demo
+				</Button>
+			</div>
+		</div>
+
+		<div class="contractor-carousel__viewport">
+			<div class="contractor-carousel__rail" data-carousel-rail>
+				{features.map((feature, index) => (
+					<button type="button" class:list={['contractor-carousel__slide', { 'is-active': index === 0 }]} data-carousel-slide data-index={index} aria-label={`Show ${feature.title}`}>
+						<img src={feature.image} alt="" loading="lazy" />
+						{index === 0 && (
+							<span class="contractor-carousel__hire-notification" aria-hidden="true">
+								<span class="contractor-carousel__hire-avatar">
+									<img src="/pages/payroll-solution-new/assets/contractor-avatar-maya.png" alt="" />
+									<span>✓</span>
+								</span>
+								<span class="contractor-carousel__hire-copy">
+									<strong>Maya Chen</strong>
+									<small>Contractor onboarded</small>
+								</span>
+								<span class="contractor-carousel__hire-status">Active</span>
+							</span>
+						)}
+						{index === 1 && (
+							<span class="contractor-carousel__payment-notification" aria-hidden="true">
+								<span class="contractor-carousel__payment-header">
+									<span class="contractor-carousel__payment-icon">
+										<img src="/images/garna-g-mark-dark.svg" alt="" />
+									</span>
+									<span class="contractor-carousel__payment-app">Garna</span>
+									<span class="contractor-carousel__payment-time">2 min ago</span>
+								</span>
+								<span class="contractor-carousel__payment-copy">
+									<strong>Payment sent</strong>
+									<small>1,000 USD was converted to 900 EUR</small>
+								</span>
+							</span>
+						)}
+						{index === 2 && (
+							<span class="contractor-carousel__compliance-notification" aria-hidden="true">
+								<span class="contractor-carousel__compliance-table">
+									<span class="contractor-carousel__compliance-row">
+										<small>Classification risk</small>
+										<strong>
+											Low
+										</strong>
+									</span>
+									<span class="contractor-carousel__compliance-row">
+										<small>Contract review</small>
+										<strong>
+											Complete
+										</strong>
+									</span>
+								</span>
+								<span class="contractor-carousel__compliance-footer">
+									<strong>Protected by Garna</strong>
+									<small>updated now</small>
+								</span>
+							</span>
+						)}
+						<span></span>
+					</button>
+				))}
+			</div>
+			<div class="contractor-carousel__image-controls">
+				<div class="contractor-carousel__dots">
+					{features.map((feature, index) => (
+						<button type="button" class:list={{ 'is-active': index === 0 }} data-carousel-dot data-index={index} aria-label={feature.title} aria-current={index === 0 ? 'true' : undefined}></button>
+					))}
+				</div>
+			</div>
+		</div>
+	</div>
+</Section>
+
+<script define:vars={{ features }}>
+	for (const carousel of document.querySelectorAll('[data-contractor-carousel]')) {
+		if (!(carousel instanceof HTMLElement) || carousel.dataset.ready === 'true') continue;
+		carousel.dataset.ready = 'true';
+		const rail = carousel.querySelector('[data-carousel-rail]');
+		const viewport = carousel.querySelector('.contractor-carousel__viewport');
+		const title = carousel.querySelector('[data-carousel-title]');
+		const description = carousel.querySelector('[data-carousel-description]');
+		const dots = [...carousel.querySelectorAll('[data-carousel-dot]')];
+		const slides = [...carousel.querySelectorAll('[data-carousel-slide]')];
+		const autoplayDuration = 5500;
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		let activeIndex = 0;
+		let isMoving = false;
+		let isInView = false;
+		let autoplayTimer;
+
+		const stopAutoplay = () => {
+			window.clearTimeout(autoplayTimer);
+			dots.forEach((dot) => dot.classList.remove('is-progressing'));
+		};
+
+		const startAutoplay = () => {
+			stopAutoplay();
+			if (!isInView || reduceMotion || document.hidden) return;
+			const activeDot = dots[activeIndex];
+			if (activeDot instanceof HTMLElement) {
+				void activeDot.offsetWidth;
+				activeDot.classList.add('is-progressing');
+			}
+			autoplayTimer = window.setTimeout(() => move(activeIndex + 1, 'next'), autoplayDuration);
+		};
+
+		const updateContent = (nextIndex) => {
+			activeIndex = (nextIndex + features.length) % features.length;
+			const feature = features[activeIndex];
+			if (title) title.textContent = feature.title;
+			if (description) description.textContent = feature.description;
+			dots.forEach((dot, index) => {
+				dot.classList.toggle('is-active', index === activeIndex);
+				if (index === activeIndex) dot.setAttribute('aria-current', 'true'); else dot.removeAttribute('aria-current');
+			});
+			slides.forEach((slide, index) => slide.classList.toggle('is-active', index === activeIndex));
+		};
+
+		const move = (nextIndex, direction) => {
+			if (!(rail instanceof HTMLElement) || isMoving) return;
+			stopAutoplay();
+			isMoving = true;
+			const firstSlide = rail.firstElementChild;
+			if (!(firstSlide instanceof HTMLElement)) return;
+			const gap = Number.parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap) || 0;
+			updateContent(nextIndex);
+			const firstSlideStyle = getComputedStyle(firstSlide);
+			const step = firstSlide.offsetWidth
+				+ (Number.parseFloat(firstSlideStyle.marginLeft) || 0)
+				+ (Number.parseFloat(firstSlideStyle.marginRight) || 0)
+				+ gap;
+			let transitionClone;
+
+			if (direction === 'previous') {
+				const lastSlide = rail.lastElementChild;
+				transitionClone = lastSlide?.cloneNode(true);
+				rail.classList.add('is-resetting');
+				if (transitionClone) rail.prepend(transitionClone);
+				rail.style.transform = `translateX(-${step}px)`;
+				void rail.offsetWidth;
+				rail.classList.remove('is-resetting');
+				requestAnimationFrame(() => { rail.style.transform = 'translateX(0)'; });
+			} else {
+				transitionClone = firstSlide.cloneNode(true);
+				rail.append(transitionClone);
+				requestAnimationFrame(() => { rail.style.transform = `translateX(-${step}px)`; });
+			}
+
+			window.setTimeout(() => {
+				rail.classList.add('is-resetting');
+				if (direction === 'previous') {
+					transitionClone?.remove();
+					const lastSlide = rail.lastElementChild;
+					if (lastSlide) rail.prepend(lastSlide);
+				} else {
+					transitionClone?.remove();
+					if (rail.firstElementChild) rail.append(rail.firstElementChild);
+				}
+				rail.style.transform = 'translateX(0)';
+				void rail.offsetWidth;
+				rail.classList.remove('is-resetting');
+				isMoving = false;
+				startAutoplay();
+			}, 540);
+		};
+
+		const moveTo = (nextIndex) => {
+			const normalizedIndex = (nextIndex + features.length) % features.length;
+			if (normalizedIndex === activeIndex) {
+				startAutoplay();
+				return;
+			}
+			const direction = normalizedIndex === (activeIndex + 1) % features.length ? 'next' : 'previous';
+			move(normalizedIndex, direction);
+		};
+
+		dots.forEach((dot) => dot.addEventListener('click', () => moveTo(Number(dot.dataset.index ?? 0))));
+		slides.forEach((slide) => slide.addEventListener('click', () => moveTo(Number(slide.dataset.index ?? 0))));
+
+		const observer = new IntersectionObserver(([entry]) => {
+			isInView = Boolean(entry?.isIntersecting && entry.intersectionRatio >= 0.4);
+			if (isInView) startAutoplay(); else stopAutoplay();
+		}, { threshold: [0, 0.4] });
+		observer.observe(viewport ?? carousel);
+
+		document.addEventListener('visibilitychange', () => {
+			if (document.hidden) stopAutoplay(); else if (isInView) startAutoplay();
+		});
+	}
+</script>
+
+<style>
+	:global(.contractor-carousel-content) { display: block; }
+	.contractor-carousel { display: grid; grid-template-columns: minmax(17rem, .72fr) minmax(0, 1.28fr); align-items: center; gap: clamp(2.5rem, 6vw, 6.5rem); min-height: 34rem; margin-right: calc(50% - 50vw); overflow: hidden; }
+	.contractor-carousel__copy { max-width: 28rem; padding-left: clamp(0rem, 2vw, 1.5rem); text-align: left; }
+	.contractor-carousel__copy h3 { height: 2.94em; max-width: 13ch; margin: 0; color: #fff; font-size: clamp(2.4rem, 3.65vw, 4.25rem); font-weight: 500; letter-spacing: -.055em; line-height: .98; white-space: pre-line; }
+	.contractor-carousel__copy p { height: 3.2em; max-width: 31rem; margin: 2rem 0 0; color: rgb(229 231 235 / .84); font-size: clamp(1rem, 1.3vw, 1.2rem); line-height: 1.6; white-space: pre-line; }
+	.contractor-carousel__controls { display: flex; align-items: center; margin-top: 2.75rem; }
+	.contractor-carousel__image-controls { display: flex; width: 39%; justify-content: center; margin-top: 1.35rem; }
+	.contractor-carousel__dots { display: flex; align-items: center; gap: .45rem; }
+	.contractor-carousel__dots button { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 9999px; background: rgb(255 255 255 / .24); padding: 0; cursor: pointer; transition: width 220ms ease, background 220ms ease; }
+	.contractor-carousel__dots button:hover { background: rgb(255 255 255 / .44); }
+	.contractor-carousel__dots button.is-active { width: 3.4rem; background: rgb(255 255 255 / .16); }
+	.contractor-carousel__dots button.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #cbf300; content: ''; transform: scaleX(0); transform-origin: left center; }
+	.contractor-carousel__dots button.is-active.is-progressing::after { animation: contractor-carousel-progress 5.5s linear forwards; }
+	@keyframes contractor-carousel-progress { to { transform: scaleX(1); } }
+	.contractor-carousel__viewport { width: 100%; overflow: hidden; padding-block: .6rem; }
+	.contractor-carousel__rail { display: flex; gap: 1.15rem; width: 100%; transform: translateX(0); transition: transform 520ms cubic-bezier(.22, 1, .36, 1); will-change: transform; }
+	.contractor-carousel__rail.is-resetting { transition: none; }
+	.contractor-carousel__slide { position: relative; flex: 0 0 39%; height: 31.5rem; margin-right: -2.34%; overflow: hidden; border: 1px solid rgb(255 255 255 / .08); border-radius: 1.75rem; background: #0a0a0a; padding: 0; cursor: pointer; opacity: .55; transform: scale(.94); transform-origin: center left; transition: opacity 420ms ease, transform 520ms cubic-bezier(.22, 1, .36, 1), border-color 220ms ease; }
+	.contractor-carousel__slide.is-active { margin-right: 0; opacity: 1; transform: none; }
+	.contractor-carousel__slide:hover { border-color: rgb(255 255 255 / .16); }
+	.contractor-carousel__slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.86) contrast(1.04) saturate(.94); }
+	.contractor-carousel__slide > span { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 0 0 / .02), rgb(0 0 0 / .22)); pointer-events: none; }
+	.contractor-carousel__slide.is-active img { filter: none; }
+	.contractor-carousel__slide.is-active > span { background: none; }
+	.contractor-carousel__slide > .contractor-carousel__hire-notification { position: absolute; z-index: 2; top: auto; right: 1rem; bottom: 1rem; left: 1rem; display: flex; min-height: 4.6rem; align-items: center; gap: .82rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(7 8 10 / .58); padding: .62rem .85rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(12px); pointer-events: none; }
+	.contractor-carousel__hire-avatar { position: relative; flex: 0 0 3rem; width: 3rem; height: 3rem; }
+	.contractor-carousel__hire-avatar > img { position: static; width: 100%; height: 100%; border-radius: 9999px; object-fit: cover; filter: none; }
+	.contractor-carousel__hire-avatar > span { position: absolute; right: -.12rem; bottom: -.08rem; display: grid; width: 1rem; height: 1rem; place-items: center; border-radius: 9999px; background: #cbf300; color: #080808; font-size: .58rem; font-weight: 800; }
+	.contractor-carousel__hire-copy { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: .2rem; }
+	.contractor-carousel__hire-copy strong { overflow: hidden; padding-right: 2.8rem; color: #fff; font-size: .96rem; font-weight: 600; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
+	.contractor-carousel__hire-copy small { color: rgb(255 255 255 / .58); font-size: .74rem; line-height: 1.2; white-space: nowrap; }
+	.contractor-carousel__hire-status { position: absolute; top: .92rem; right: .82rem; border-radius: 9999px; background: #cbf300; padding: .31rem .44rem; color: #080808; font-size: .51rem; font-weight: 700; line-height: 1; letter-spacing: .02em; text-transform: uppercase; }
+	.contractor-carousel__slide > .contractor-carousel__payment-notification { position: absolute; z-index: 2; top: auto; right: 1rem; bottom: 1rem; left: 1rem; display: flex; min-height: 5.65rem; flex-direction: column; gap: .5rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(22 23 26 / .58); padding: .68rem .82rem .78rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(18px) saturate(1.18); pointer-events: none; }
+	.contractor-carousel__slide.is-active > .contractor-carousel__hire-notification,
+	.contractor-carousel__slide.is-active > .contractor-carousel__payment-notification { background: rgb(7 8 10 / .58); }
+	.contractor-carousel__payment-header { display: flex; align-items: center; gap: .48rem; }
+	.contractor-carousel__payment-icon { display: grid; flex: 0 0 1.45rem; width: 1.45rem; height: 1.45rem; place-items: center; border-radius: .4rem; background: #cbf300; }
+	.contractor-carousel__slide .contractor-carousel__payment-icon img { position: static; width: .72rem; height: .95rem; object-fit: contain; filter: none; }
+	.contractor-carousel__payment-app { min-width: 0; flex: 1; color: rgb(255 255 255 / .62); font-size: .64rem; font-weight: 600; line-height: 1; letter-spacing: .035em; text-transform: uppercase; }
+	.contractor-carousel__payment-copy { display: flex; min-width: 0; flex-direction: column; gap: .22rem; padding-left: .08rem; }
+	.contractor-carousel__payment-copy strong { overflow: hidden; color: #fff; font-size: .9rem; font-weight: 650; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
+	.contractor-carousel__payment-copy small { overflow: hidden; color: rgb(255 255 255 / .7); font-size: .69rem; line-height: 1.28; text-overflow: ellipsis; white-space: nowrap; }
+	.contractor-carousel__payment-time { flex: 0 0 auto; color: rgb(255 255 255 / .46); font-size: .61rem; font-weight: 500; line-height: 1; letter-spacing: .01em; text-transform: lowercase; }
+	.contractor-carousel__slide > .contractor-carousel__compliance-notification { position: absolute; z-index: 2; top: auto; right: 1rem; bottom: 1rem; left: 1rem; display: flex; flex-direction: column; gap: .52rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(7 8 10 / .58); padding: .68rem .82rem .78rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(12px); pointer-events: none; }
+	.contractor-carousel__slide.is-active > .contractor-carousel__compliance-notification { background: rgb(7 8 10 / .58); }
+	.contractor-carousel__compliance-table { display: flex; flex-direction: column; gap: .52rem; }
+	.contractor-carousel__compliance-row { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+	.contractor-carousel__compliance-row small { color: #fff; font-size: .68rem; line-height: 1.2; }
+	.contractor-carousel__compliance-row strong { color: #fff; font-size: .76rem; font-weight: 560; line-height: 1.2; }
+	.contractor-carousel__compliance-row:first-child strong { color: #cbf300; }
+	.contractor-carousel__compliance-footer { display: flex; align-items: center; justify-content: space-between; gap: .75rem; border-radius: .72rem; background: rgb(203 243 0 / .12); padding: .5rem .58rem; }
+	.contractor-carousel__compliance-footer strong { color: #cbf300; font-size: .66rem; font-weight: 650; line-height: 1; }
+	.contractor-carousel__compliance-footer small { color: #fff; font-size: .56rem; line-height: 1; }
+
+	@media (max-width: 900px) {
+		.contractor-carousel { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; margin-right: 0; }
+		.contractor-carousel__copy { max-width: 36rem; padding-left: 0; }
+		.contractor-carousel__copy h3 { max-width: 14ch; }
+		.contractor-carousel__image-controls { width: 78%; }
+		.contractor-carousel__slide { flex-basis: 78%; height: auto; margin-right: -4.68%; aspect-ratio: 1.2; }
+		.contractor-carousel__slide.is-active { margin-right: 0; }
+		.contractor-carousel__rail { transform: translateX(0); }
+	}
+	@media (max-width: 560px) {
+		.contractor-carousel { gap: 2rem; }
+		.contractor-carousel__copy h3 { font-size: 2.35rem; }
+		.contractor-carousel__copy p { margin-top: 1.35rem; font-size: 1rem; }
+		.contractor-carousel__controls { margin-top: 2rem; }
+		.contractor-carousel__image-controls { width: 88%; margin-top: 1rem; }
+		.contractor-carousel__slide { flex-basis: 88%; margin-right: -5.28%; aspect-ratio: .96; border-radius: 1.25rem; }
+		.contractor-carousel__slide.is-active { margin-right: 0; }
+		.contractor-carousel__slide > .contractor-carousel__hire-notification { right: .75rem; bottom: .75rem; left: .75rem; min-height: 4.45rem; border-radius: 1rem; }
+		.contractor-carousel__slide > .contractor-carousel__payment-notification { top: auto; right: .75rem; bottom: .75rem; left: .75rem; min-height: 5.45rem; border-radius: 1rem; }
+		.contractor-carousel__slide > .contractor-carousel__compliance-notification { top: auto; right: .75rem; bottom: .75rem; left: .75rem; border-radius: 1rem; }
+		.contractor-carousel__rail { gap: .8rem; transform: translateX(0); }
+	}
+	@media (prefers-reduced-motion: reduce) { .contractor-carousel__rail, .contractor-carousel__slide { transition: none; } }
+</style>

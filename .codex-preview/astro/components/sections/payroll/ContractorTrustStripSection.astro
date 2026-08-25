@@ -1,0 +1,31 @@
+---
+import Section from '../../layout/Section.astro';
+---
+
+<Section contained={false} spacing="none" class="border-y bg-[#080808] border-white/5 mb-32">
+        <div
+            class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5 text-center max-w-7xl mr-auto ml-auto pt-16 pr-6 pb-16 pl-6 gap-x-8 gap-y-8">
+            <div class="px-4">
+                <div class="lg:text-6xl text-5xl font-light text-white tracking-tight font-manrope mb-3">
+                    <span class="garna-stat-anim" data-target="300" data-suffix="+">0</span>
+                </div>
+                <div class="text-lg text-gray-500 font-manrope" data-translate="stats.businessesUsing">businesses using
+                    Garna</div>
+            </div>
+            <div class="px-4 pt-8 md:pt-0">
+                <div class="text-5xl lg:text-6xl font-light text-white mb-3 tracking-tight font-manrope">
+                    <span class="garna-stat-anim" data-target="24" data-suffix="/7">0</span>
+                </div>
+                <div class="text-lg text-gray-500 font-manrope" data-translate="stats.globalAvailability">global payroll
+                    availability</div>
+            </div>
+            <div class="px-4 pt-8 md:pt-0">
+                <div class="text-5xl lg:text-6xl font-light text-white mb-3 tracking-tight font-manrope">
+                    <span class="garna-stat-anim" data-target="98" data-suffix="%">0</span>
+                </div>
+                <div class="text-lg text-gray-500 font-manrope" data-translate="stats.successRate">payout success rate
+                </div>
+            </div>
+
+        </div>
+    </Section>

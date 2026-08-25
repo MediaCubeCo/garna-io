@@ -510,6 +510,7 @@ const mobileLinkClass = (path: string) =>
 
 		const syncHeaderSurface = () => {
 			if (!(header instanceof HTMLElement)) return;
+			header.classList.toggle('is-scrolled', window.scrollY > 1);
 
 			const hero = document.querySelector('.payroll-solution-new-hero');
 			const usesLightTheme = document.documentElement.dataset.theme === 'light';
@@ -534,6 +535,8 @@ const mobileLinkClass = (path: string) =>
 
 		window.addEventListener('scroll', queueHeaderSurfaceSync, { passive: true });
 		window.addEventListener('resize', queueHeaderSurfaceSync, { passive: true });
+		window.addEventListener('pageshow', queueHeaderSurfaceSync);
+		window.addEventListener('load', queueHeaderSurfaceSync, { once: true });
 		window.addEventListener('garna:page-content-updated', queueHeaderSurfaceSync);
 
 		// Styles emitted by a page must be replaced during SPA navigation. Keep the
@@ -1053,5 +1056,6 @@ const mobileLinkClass = (path: string) =>
 		setNavActiveState();
 		syncFooterLanguageState();
 		syncHeaderSurface();
+		window.requestAnimationFrame(syncHeaderSurface);
 	})();
 </script>

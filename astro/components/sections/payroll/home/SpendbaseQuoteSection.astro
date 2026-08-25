@@ -1,0 +1,29 @@
+---
+import Section from '../../../layout/Section.astro';
+---
+
+<Section
+	spacing="default"
+	class="overflow-hidden"
+	contentClass="mx-auto max-w-6xl"
+>
+	<figure class="px-0 py-4 sm:py-6 lg:py-8">
+		<div class="mb-10 grid h-[4.5rem] w-[4.5rem] place-items-center rounded-full bg-white sm:h-20 sm:w-20 lg:mb-12">
+			<img
+				src="/images/spendbase-mark.svg"
+				alt="Spendbase"
+				width="32"
+				height="32"
+				class="h-14 w-14 sm:h-16 sm:w-16"
+			/>
+		</div>
+
+		<blockquote class="w-full max-w-none font-manrope text-[clamp(1.5rem,2.1vw,1.75rem)] font-medium leading-[1.28] tracking-[-0.035em] text-white">
+			“Garna offers an efficient solution for worldwide payments with seamless transactions across multiple regions. Their team is responsive, professional, and proactive. We highly appreciate their exceptional service and look forward to continuing our partnership.”
+		</blockquote>
+
+		<figcaption class="mt-8 font-manrope text-base font-medium text-white/80 sm:mt-10 sm:text-lg">
+			Serge L. <span class="mx-1.5 text-[#CBF300]">•</span> CFO, Spendbase
+		</figcaption>
+	</figure>
+</Section>

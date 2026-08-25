@@ -1,0 +1,37 @@
+---
+import Section from '../../../layout/Section.astro';
+
+interface Props {
+	transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+---
+
+<Section
+	spacing="none"
+	class:list={[
+		'mb-32 border-y border-white/5',
+		transparent ? 'bg-transparent' : 'bg-[#080808]',
+	]}
+	contentClass="grid grid-cols-1 divide-y divide-white/5 py-16 text-center md:grid-cols-3 md:divide-x md:divide-y-0"
+>
+    <div class="px-4">
+        <div class="lg:text-6xl text-5xl font-light text-white tracking-tight font-manrope mb-3">
+            <span class="garna-stat-anim" data-target="400" data-suffix="+">0</span>
+        </div>
+        <div class="text-lg text-gray-500 font-manrope">businesses using Garna</div>
+    </div>
+    <div class="px-4 pt-8 md:pt-0">
+        <div class="text-5xl lg:text-6xl font-light text-white mb-3 tracking-tight font-manrope">
+            <span class="garna-stat-anim" data-target="110" data-prefix="$" data-suffix="M+">0</span>
+        </div>
+        <div class="text-lg text-gray-500 font-manrope">paid to specialists</div>
+    </div>
+    <div class="px-4 pt-8 md:pt-0">
+        <div class="text-5xl lg:text-6xl font-light text-white mb-3 tracking-tight font-manrope">
+            <span class="garna-stat-anim" data-target="38000" data-suffix="+" data-grouping="space">0</span>
+        </div>
+        <div class="text-lg text-gray-500 font-manrope">talents already use Garna</div>
+    </div>
+</Section>

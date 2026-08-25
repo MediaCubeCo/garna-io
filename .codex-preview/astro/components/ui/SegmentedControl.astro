@@ -1,0 +1,104 @@
+---
+import type { LocalizedText } from '../../types/localized-text';
+
+interface SegmentItem {
+	id: string;
+	label: LocalizedText;
+	panelId: string;
+}
+
+interface Props {
+	group: string;
+	items: SegmentItem[];
+	activeId?: string;
+	class?: string;
+}
+
+const { group, items, activeId = items[0]?.id, class: className = '' } = Astro.props;
+---
+
+<div
+	class:list={[
+		'garna-segmented-control inline-flex w-full flex-col gap-1 rounded-xl border border-white/5 bg-[#0A0A0A] p-1.5 shadow-lg sm:w-auto sm:flex-row',
+		className,
+	]}
+	data-segmented-control={group}
+	role="tablist"
+>
+	{items.map((item) => (
+		<button
+			type="button"
+			class="garna-segmented-control-item w-full rounded-lg px-6 py-2.5 text-sm font-medium transition-all sm:w-auto"
+			role="tab"
+			id={`${group}-${item.id}`}
+			aria-controls={item.panelId}
+			aria-selected={item.id === activeId ? 'true' : 'false'}
+			tabindex={item.id === activeId ? 0 : -1}
+			data-segment-value={item.id}
+			data-panel-id={item.panelId}
+			data-translate={item.label.translateKey}
+		>
+			{item.label.text}
+		</button>
+	))}
+</div>
+
+<script is:inline>
+	(() => {
+		const initialize = (control) => {
+			if (!(control instanceof HTMLElement) || control.dataset.initialized === 'true') return;
+			control.dataset.initialized = 'true';
+			const buttons = Array.from(control.querySelectorAll('[data-segment-value]'));
+
+			const select = (button, focus = false) => {
+				if (!(button instanceof HTMLButtonElement)) return;
+				buttons.forEach((candidate) => {
+					if (!(candidate instanceof HTMLButtonElement)) return;
+					const isActive = candidate === button;
+					candidate.setAttribute('aria-selected', String(isActive));
+					candidate.tabIndex = isActive ? 0 : -1;
+					const panelId = candidate.dataset.panelId;
+					const panel = panelId ? document.getElementById(panelId) : null;
+					if (panel) {
+						panel.classList.toggle('hidden', !isActive);
+						panel.setAttribute('aria-hidden', String(!isActive));
+					}
+				});
+				if (focus) button.focus();
+				window.dispatchEvent(new CustomEvent('garna:segment-change', {
+					detail: { group: control.dataset.segmentedControl, value: button.dataset.segmentValue },
+				}));
+			};
+
+			buttons.forEach((button, index) => {
+				button.addEventListener('click', () => select(button));
+				button.addEventListener('keydown', (event) => {
+					if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+					event.preventDefault();
+					const direction = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
+					const next = buttons[(index + direction + buttons.length) % buttons.length];
+					select(next, true);
+				});
+			});
+		};
+
+		document.querySelectorAll('[data-segmented-control]').forEach(initialize);
+	})();
+</script>
+
+<style>
+	.garna-segmented-control-item {
+		color: rgb(156 163 175);
+	}
+
+	.garna-segmented-control-item:hover,
+	.garna-segmented-control-item:focus-visible {
+		color: white;
+	}
+
+	.garna-segmented-control-item[aria-selected='true'] {
+		background: #CBF300;
+		color: #101010;
+		box-shadow: 0 4px 12px rgb(0 0 0 / 0.25);
+	}
+</style>

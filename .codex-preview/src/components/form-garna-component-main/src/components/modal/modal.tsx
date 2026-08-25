@@ -1,0 +1,581 @@
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import styles from './modal.module.css';
+import Button from '../button/button';
+import Form from '../form/form';
+import { useForm } from '../../hooks/useForm';
+import formValidation from '../../utils/validtionForm';
+import { getCalApi } from '@calcom/embed-react';
+import { sendGtagEvent } from '../../utils/gtag';
+import { hashEmail } from '../../utils/hashEmail';
+import { sendFormCompletedWebhook } from '../../utils/webhook';
+
+export interface IForm {
+	firstName: string;
+	lastName: string;
+	email: string;
+	numEmployes: string;
+}
+export type IFormErrors = Record<keyof IForm, string>;
+export interface IValidInfo {
+	isFormValid: boolean;
+	errorsMessage: IFormErrors;
+}
+
+/** Optional widget copy; when provided, overrides default English strings. */
+export interface IModalTranslations {
+	buttonChooseDate?: string;
+	promoBannerText?: string;
+	signUpPromptPrefix?: string;
+	signUpLinkText?: string;
+	signUpPromptSuffix?: string;
+	disclaimerPrefix?: string;
+	privacyLinkText?: string;
+	disclaimerSuffix?: string;
+	form?: {
+		firstName?: string;
+		lastName?: string;
+		email?: string;
+		employees?: string;
+	};
+	companySizeOptions?: string[];
+	errors?: {
+		required?: string;
+		invalidEmail?: string;
+		workEmail?: string;
+		invalidPhone?: string;
+	};
+}
+
+export interface IModalProps {
+	calComLink: string;
+	titleButton: string;
+	titleButtonForm: string;
+	title: string;
+	subtitle: string;
+	colorBrandBg: string;
+	colorBrandText: string;
+	bgColorCal: string;
+	colorBorder: string;
+	thicknessBorder: string;
+	radiusBorder: string;
+	colorTextMain: string;
+	colorTextCalendar: string;
+	colorTextError: string;
+	colorBorderTimeCalendar: string;
+	colorBorderVerticalLine: string;
+	colorTextLogo: string;
+	/** Current language/locale for sign-up and privacy links (e.g. 'en', 'es'). Defaults to 'en'. */
+	locale?: string;
+	/** Optional attribution fields propagated to webhook, analytics, and Cal.com booking metadata. */
+	trackingSource?: string;
+	trackingPage?: string;
+	trackingCta?: string;
+	/** Optional translations for all widget copy; keys match page bookingWidget. */
+	translations?: IModalTranslations;
+	// Optional props for external control
+	isModalVis?: boolean;
+	onCloseModal?: () => void;
+	/** When true, render as inline form (no overlay, no close button, not dismissible). */
+	embedded?: boolean;
+}
+const DEFAULT_TRANSLATIONS: Required<IModalTranslations> = {
+	buttonChooseDate: 'Choose a date & time',
+	promoBannerText: '',
+	signUpPromptPrefix: 'Contractor or employee? ',
+	signUpLinkText: 'Sign up',
+	signUpPromptSuffix: ' here instead',
+	disclaimerPrefix:
+		'We respect your data. By submitting this form, you agree that we will contact you in relation to our products and services, in accordance with our ',
+	privacyLinkText: 'privacy policy',
+	disclaimerSuffix: '.',
+	form: {
+		firstName: 'First name*',
+		lastName: 'Last name*',
+		email: 'Work email*',
+		employees: 'Number of employees*',
+	},
+	companySizeOptions: ['1-20 people', '21-200 people', '201-1000 people', '1001-2000 people', '2001+ people'],
+	errors: {
+		required: 'This field is required',
+		invalidEmail: 'Please enter a valid email address',
+		workEmail: 'Please use your work email (no free email providers like Gmail, Yahoo, etc.)',
+		invalidPhone: 'Please enter a valid phone number',
+	},
+};
+
+export default function Modal({
+	calComLink = 'garna/demo',
+	titleButton = 'Book a Demo',
+	titleButtonForm = 'Continue',
+	title = 'Title insert here',
+	subtitle = 'Subtitle insert here',
+	bgColorCal = '#0a0a0a',
+	colorBrandBg = '#CBF300',
+	colorBrandText = '#ffffffff',
+	colorBorder = 'rgb(34, 34, 34)',
+	thicknessBorder = '1px',
+	radiusBorder = '32px',
+	colorTextMain = '#ffffffff',
+	colorTextCalendar = '#a4a4a4ff',
+	colorTextError = 'pink',
+	colorBorderTimeCalendar = '#ffffff9a',
+	colorBorderVerticalLine = 'rgb(34, 34, 34)',
+	colorTextLogo = '#5d5d5dff',
+	locale = 'en',
+	trackingSource,
+	trackingPage,
+	trackingCta,
+	translations: translationsOverride,
+	isModalVis: externalIsModalVis,
+	onCloseModal: externalOnCloseModal,
+	embedded = false,
+}: IModalProps): React.JSX.Element {
+	const t = { ...DEFAULT_TRANSLATIONS, ...translationsOverride };
+	const formLabels = { ...DEFAULT_TRANSLATIONS.form, ...translationsOverride?.form };
+	const errorMessages = { ...DEFAULT_TRANSLATIONS.errors, ...translationsOverride?.errors };
+	const companySizeOptions = (
+		translationsOverride?.companySizeOptions?.length
+			? translationsOverride.companySizeOptions
+			: DEFAULT_TRANSLATIONS.companySizeOptions
+	) as string[];
+	const signUpUrl = `https://app.garna.io/${locale}/auth/sign-up`;
+	const privacyUrl = `https://app.garna.io/api/privacy?lang=${locale}`;
+	const trackingFields = useMemo(() => ({
+		...(trackingSource ? { source: trackingSource } : {}),
+		...(trackingPage ? { page: trackingPage } : {}),
+		...(trackingCta ? { cta: trackingCta } : {}),
+	}), [trackingSource, trackingPage, trackingCta]);
+	// Use external state if provided, otherwise use internal state
+	const [internalIsModalVis, setIsModalVisible] = useState(false);
+	const isModalVis = externalIsModalVis !== undefined ? externalIsModalVis : internalIsModalVis;
+
+	const onToogleModal = () => {
+		if (externalOnCloseModal) {
+			externalOnCloseModal();
+		} else {
+			setIsModalVisible(!internalIsModalVis);
+		}
+	};
+
+	const [validInfo, setValidInfo] = useState({
+		isFormValid: false,
+		errorsMessage: {
+			firstName: '',
+			lastName: '',
+			email: '',
+			numEmployes: '',
+		},
+	});
+
+	const { values, handleChange } = useForm<IForm>({
+		firstName: '',
+		lastName: '',
+		email: '',
+		numEmployes: '',
+	});
+	const { firstName, lastName, email, numEmployes } = values;
+	//Контейнр для встраивания calCom
+	const calContainerRef = useRef<HTMLDivElement | null>(null);
+	const webhookSentRef = useRef(false);
+
+	const onCloseModal = useCallback(() => {
+		if (externalOnCloseModal) {
+			externalOnCloseModal();
+		} else {
+			setIsModalVisible(false);
+		}
+
+		//Сброс шага обратно на форму
+		setValidInfo((prev) => ({ ...prev, isFormValid: false }));
+		webhookSentRef.current = false;
+		if (calContainerRef.current) {
+			calContainerRef.current.innerHTML = '';
+		}
+	}, [externalOnCloseModal]);
+
+	// Send webhook + gtag when user completes the form and moves to step 2 (calendar)
+	useEffect(() => {
+		if (!validInfo.isFormValid || webhookSentRef.current) return;
+		webhookSentRef.current = true;
+
+		(async () => {
+			const garnaClientID = await hashEmail(email);
+			const language = (locale?.split('-')[0] || 'en').toLowerCase();
+			sendFormCompletedWebhook({ firstName, lastName, email, numEmployes, garnaClientID, language, ...trackingFields });
+			sendGtagEvent('form_step1_completed', {
+				...trackingFields,
+				first_name: firstName,
+				last_name: lastName,
+				num_employees: numEmployes,
+				garna_client_id: garnaClientID,
+			});
+		})();
+	}, [
+		validInfo.isFormValid,
+		firstName,
+		lastName,
+		email,
+		numEmployes,
+		locale,
+		trackingFields,
+	]);
+
+	// Lock body scroll when modal is open (skip when embedded)
+	useEffect(() => {
+		if (!embedded && isModalVis) {
+			const prevOverflow = document.body.style.overflow;
+			const prevPaddingRight = document.body.style.paddingRight;
+			const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+			const currentPaddingRight = parseFloat(window.getComputedStyle(document.body).paddingRight) || 0;
+			const fixedElements = Array.from(document.querySelectorAll<HTMLElement>('.garna-header'));
+			const previousFixedElementPadding = fixedElements.map((element) => ({
+				element,
+				paddingRight: element.style.paddingRight,
+			}));
+
+			document.body.style.overflow = 'hidden';
+			if (scrollbarWidth > 0) {
+				document.body.style.paddingRight = `${currentPaddingRight + scrollbarWidth}px`;
+				fixedElements.forEach((element) => {
+					const elementPaddingRight = parseFloat(window.getComputedStyle(element).paddingRight) || 0;
+					element.style.paddingRight = `${elementPaddingRight + scrollbarWidth}px`;
+				});
+			}
+
+			return () => {
+				document.body.style.overflow = prevOverflow;
+				document.body.style.paddingRight = prevPaddingRight;
+				previousFixedElementPadding.forEach(({ element, paddingRight }) => {
+					element.style.paddingRight = paddingRight;
+				});
+			};
+		}
+	}, [isModalVis, embedded]);
+
+	// Escape to close (skip when embedded)
+	useEffect(() => {
+		if (embedded) return;
+		const closeModal = (event: KeyboardEvent): void => {
+			if (event.key === 'Escape') {
+				onCloseModal();
+			}
+		};
+		document.addEventListener('keydown', closeModal);
+		return () => document.removeEventListener('keydown', closeModal);
+	}, [onCloseModal, embedded]);
+
+	//Инициализация CalCom после успешной валидации формы
+	useEffect(() => {
+		if (!isModalVis) return;
+		if (!validInfo.isFormValid) return;
+
+		const container = calContainerRef.current;
+		if (!container) return;
+
+		let cancelled = false;
+		const namespace = calComLink.replace('/', '-');
+
+		// When embedded, stamp border-radius directly on Cal.com's iframe.
+		// CSS alone can't reliably clip cross-origin iframes — Cal.com resets inline styles on resize.
+		// We observe both childList (iframe injection) and attribute changes (style resets).
+		let iframeObserver: MutationObserver | null = null;
+		let iframeAttrObserver: MutationObserver | null = null;
+		let iframePolls: ReturnType<typeof setTimeout>[] = [];
+		if (embedded) {
+			const stampRadius = (iframe: HTMLIFrameElement) => {
+				// Guard: only set if not already applied to avoid observer loops
+				if (iframe.style.borderRadius !== '32px') {
+					iframe.style.borderRadius = '32px';
+				}
+				if (iframe.style.border !== 'none') {
+					iframe.style.border = 'none';
+				}
+			};
+
+			const applyRadius = () => {
+				const iframe = container.querySelector('iframe');
+				if (!iframe) return;
+				stampRadius(iframe as HTMLIFrameElement);
+				// Also watch the iframe's own style attribute for Cal.com resize resets
+				if (!iframeAttrObserver) {
+					iframeAttrObserver = new MutationObserver(() => {
+						stampRadius(iframe as HTMLIFrameElement);
+					});
+					iframeAttrObserver.observe(iframe, { attributes: true, attributeFilter: ['style'] });
+				}
+			};
+
+			// Watch for iframe being added to the container
+			iframeObserver = new MutationObserver(applyRadius);
+			iframeObserver.observe(container, { childList: true, subtree: true });
+			// Fallback polling — catches cases where iframe exists before observer attaches
+			iframePolls = [50, 200, 500, 1000, 2000, 4000].map((ms) => setTimeout(applyRadius, ms));
+		}
+
+		(async () => {
+			const cal = await getCalApi({ namespace: namespace });
+			if (cancelled) return;
+
+			// Inline embed + prefill. Steps 2 & 3 (calendar, booking) stay in Cal.com default language.
+			const fullName = [firstName, lastName].filter(Boolean).join(' ').trim();
+			cal('inline', {
+				elementOrSelector: container,
+				calLink: calComLink,
+				config: {
+					layout: 'month_view',
+					theme: 'dark',
+					name: fullName,
+					email,
+					...(trackingSource ? { 'metadata[source]': trackingSource } : {}),
+					...(trackingPage ? { 'metadata[page]': trackingPage } : {}),
+					...(trackingCta ? { 'metadata[cta]': trackingCta } : {}),
+				},
+			});
+			// 🔽 UI и стилизация под garna.io
+			cal('ui', {
+				theme: 'dark',
+				cssVarsPerTheme: {
+					light: { 'cal-brand': '#CBF300' },
+					dark: {
+						'cal-brand': colorBrandBg,
+						'cal-brand-text': colorBrandText,
+						'cal-bg-muted': bgColorCal,
+						'cal-border-booker': colorBorder, //Бордер обводка
+						'cal-border-booker-width': thicknessBorder, //толщина обводки
+						'cal-radius': radiusBorder, //радиус обводки
+
+						'cal-text': colorTextMain, // основной цвет текста
+						'cal-text-emphasis': colorTextCalendar, //Цвет шрифта календаря
+						'cal-text-error': colorTextError, //Цвет ошибки
+						'cal-border': colorBorderTimeCalendar, //обводка Времени
+						'cal-border-subtle': colorBorderVerticalLine, //Цвет разделительных линий
+						'cal-bg-emphasis': colorTextLogo, //Цвет текста логотипа
+					},
+				},
+				layout: 'month_view',
+			});
+
+			// Cal.com embed events → gtag (GA4) when booking/reschedule/cancel completes
+			const toBookingParams = (data: Record<string, unknown>) => ({
+				booking_uid: data?.uid,
+				booking_title: data?.title,
+				start_time: data?.startTime,
+				end_time: data?.endTime,
+				event_type_id: data?.eventTypeId,
+				status: data?.status,
+				payment_required: data?.paymentRequired,
+				is_recurring: data?.isRecurring,
+				all_bookings: data?.allBookings,
+				video_call_url: data?.videoCallUrl,
+				cal_link: calComLink,
+			});
+
+			const sendBookingGtagWithApplicant = (
+				eventName: string,
+				calData: Record<string, unknown>
+			) => {
+				hashEmail(email).then((applicantGarnaClientID) => {
+					sendGtagEvent(eventName, {
+						...trackingFields,
+						...toBookingParams(calData),
+						applicant_first_name: firstName,
+						applicant_last_name: lastName,
+						applicant_garna_client_id: applicantGarnaClientID,
+					});
+				});
+			};
+
+			cal('on', {
+				action: 'bookingSuccessfulV2',
+				callback: (e: { detail: { data?: Record<string, unknown> } }) => {
+					sendBookingGtagWithApplicant('cal_booking_success', e.detail?.data ?? {});
+				},
+			});
+			cal('on', {
+				action: 'rescheduleBookingSuccessfulV2',
+				callback: (e: { detail: { data?: Record<string, unknown> } }) => {
+					sendBookingGtagWithApplicant('cal_reschedule_success', e.detail?.data ?? {});
+				},
+			});
+			cal('on', {
+				action: 'bookingCancelled',
+				callback: (e: { detail: { data?: Record<string, unknown> } }) => {
+					const data = e.detail?.data ?? {};
+					const booking = (data.booking as Record<string, unknown>) ?? {};
+					const organizer = (data.organizer as Record<string, unknown>) ?? {};
+					const eventType = (data.eventType as Record<string, unknown>) ?? {};
+					sendGtagEvent('cal_booking_cancelled', {
+						...trackingFields,
+						cancellation_reason: booking?.cancellationReason,
+						organizer_name: organizer?.name,
+						organizer_email: organizer?.email,
+						event_type_title: eventType?.title,
+						cal_link: calComLink,
+					});
+				},
+			});
+		})();
+
+		return () => {
+			cancelled = true;
+			iframeObserver?.disconnect();
+			iframeAttrObserver?.disconnect();
+			iframePolls.forEach(clearTimeout);
+		};
+	}, [
+		isModalVis,
+		validInfo.isFormValid,
+		firstName,
+		lastName,
+		email,
+		calComLink,
+		colorBrandBg,
+		colorBrandText,
+		bgColorCal,
+		colorBorder,
+		thicknessBorder,
+		radiusBorder,
+		colorTextMain,
+		colorTextCalendar,
+		colorTextError,
+		colorBorderTimeCalendar,
+		colorBorderVerticalLine,
+		colorTextLogo,
+		embedded,
+		trackingSource,
+		trackingPage,
+		trackingCta,
+		trackingFields,
+	]);
+
+	const handleOverlayMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+		if (e.target === e.currentTarget) {
+			onCloseModal();
+		}
+	};
+
+	const contentClass =
+		!validInfo.isFormValid ? styles.garna_garna_demo_modal : styles.garna_garna_demo_modal_step_2;
+	const wrapperClass = embedded ? styles.garna_demo_embedded_wrapper : styles.garna_demo_modal_overlay;
+	const contentBoxClass = embedded ? `${contentClass} ${styles.garna_demo_embedded_content}` : contentClass;
+
+	const step1Form = (
+		<div className={styles.garna_demo_form_wrapper} hidden={validInfo.isFormValid}>
+			{!embedded && (
+				<div className={styles.title_block}>
+					<h2 className={styles.h2}>{title}</h2>
+					<p className={styles.subtitle}>{subtitle}</p>
+				</div>
+			)}
+			<Form
+				values={values}
+				handleChange={handleChange}
+				errorsMessages={validInfo.errorsMessage}
+				placeholders={formLabels}
+				companySizeOptions={companySizeOptions}
+			/>
+			<div className={styles.formFooter}>
+				{t.promoBannerText ? (
+					<div className={styles.promoBanner}>
+						<span className={styles.promoBannerIcon} aria-hidden="true">
+							🎁
+						</span>
+						<p className={styles.promoBannerText}>{t.promoBannerText}</p>
+					</div>
+				) : (
+					<p className={styles.signUpPrompt}>
+						{t.signUpPromptPrefix}
+						<a className={styles.link} href={signUpUrl} target="_blank" rel="noopener noreferrer">
+							{t.signUpLinkText}
+						</a>
+						{t.signUpPromptSuffix}
+					</p>
+				)}
+				<div className={styles.buttonWrap}>
+					<Button
+						label={t.buttonChooseDate}
+						icon={
+							<svg
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden
+							>
+								<path
+									d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path d="M9 14h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+							</svg>
+						}
+						onClick={() => formValidation(values, validInfo, setValidInfo, errorMessages)}
+					/>
+				</div>
+				<p className={styles.disclaimer}>
+					{t.disclaimerPrefix}
+					<a className={styles.link} href={privacyUrl} target="_blank" rel="noopener noreferrer">
+						{t.privacyLinkText}
+					</a>
+					{t.disclaimerSuffix}
+				</p>
+			</div>
+		</div>
+	);
+
+	const calContent = (
+		<div className={styles.garna_demo_cal_wrapper} hidden={!validInfo.isFormValid}>
+			<div
+				ref={calContainerRef}
+				className={embedded ? styles.garna_demo_cal_inner : undefined}
+			/>
+		</div>
+	);
+
+	const formContent = embedded ? (
+		<>
+			{/* Step 1: wrapped in card; steps 2/3: no wrapper */}
+			<div className={styles.embedded_form_card} hidden={validInfo.isFormValid}>
+				{step1Form}
+			</div>
+			{calContent}
+		</>
+	) : (
+		<>
+			{step1Form}
+			{calContent}
+		</>
+	);
+
+	return (
+		<div className="garna-demo-component">
+			<div
+				className={wrapperClass}
+				hidden={!embedded && !isModalVis}
+				onMouseDown={embedded ? undefined : handleOverlayMouseDown}
+			>
+				{embedded ? (
+					formContent
+				) : (
+					<div className={contentBoxClass} onMouseDown={(e) => e.stopPropagation()}>
+						<div className={styles.btn_wrap}>
+							<button className={styles.garna_demo_modal_close} onClick={onToogleModal}>
+								<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path
+										d="M5.18164 5.18164C5.53314 4.83047 6.10371 4.83027 6.45508 5.18164L16 14.7266L25.5459 5.18164C25.8973 4.83077 26.467 4.83061 26.8184 5.18164C27.1697 5.53301 27.1695 6.10358 26.8184 6.45508L17.2725 16L26.8184 25.5459C27.1697 25.8973 27.1695 26.4669 26.8184 26.8184C26.4669 27.1698 25.8974 27.1698 25.5459 26.8184L16 17.2725L6.45508 26.8184C6.10361 27.1698 5.53311 27.1698 5.18164 26.8184C4.83051 26.4669 4.83047 25.8973 5.18164 25.5459L14.7266 16L5.18164 6.45508C4.83017 6.10361 4.83017 5.53311 5.18164 5.18164Z"
+										fill="white"
+									/>
+								</svg>
+							</button>
+						</div>
+						{formContent}
+					</div>
+				)}
+			</div>
+		</div>
+	);
+}

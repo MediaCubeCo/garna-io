@@ -1,48 +1,309 @@
 ---
 import Section from '../../../layout/Section.astro';
-import Card from '../../../ui/Card.astro';
-import PayoutMethodsVisual from '../../../visuals/PayoutMethodsVisual.astro';
-import MobilePayoutVisual from '../../../visuals/MobilePayoutVisual.astro';
-import EarlyPayoutVisual from '../../../visuals/EarlyPayoutVisual.astro';
 ---
 
 <Section
-	title={{ text: 'Simplify Global Contractor Payments' }}
-	description={{ text: 'Centralize invoices, approvals, and payments in one place. Manage and pay freelancers worldwide in their preferred method and currency without unnecessary fees' }}
-	headerClass="mb-16 max-w-4xl lg:mb-20"
-	titleClass="lg:text-5xl"
-	contentClass="grid grid-cols-1 gap-6 lg:grid-cols-3"
+	title={{ text: 'Contractor Management and\nGlobal Payments' }}
+	description={{ text: 'Manage contractor invoices, approvals, and payouts in one place, in 80+ currencies and\n150+ countries' }}
+	spacing="default"
+	headerClass="mb-16 max-w-4xl lg:mb-32"
+	titleClass="whitespace-pre-line lg:text-5xl"
+	descriptionClass="whitespace-pre-line"
+	contentClass="contractor-showcase-content"
 >
-	<Card
-		variant="visual"
-		title="Multiple payout methods"
-		description="Contractors receive payouts via bank transfers in 80+ currencies, cards, wallets, or cryptocurrencies"
-		visualPosition="after"
-		class="flex flex-col p-6 md:items-center md:p-10 md:text-center lg:items-stretch lg:p-8 lg:text-left"
-		visualClass="mt-6 w-full md:mt-8 md:max-w-md lg:mt-auto lg:max-w-full"
-	>
-		<PayoutMethodsVisual slot="visual" />
-	</Card>
+	<div class="contractor-showcase">
+		<div class="contractor-showcase__media">
+			<div class="contractor-showcase__panel" data-contractor-showcase-panel data-variant="contractors">
+				<span class="contractor-showcase__eyebrow">Contractor hub</span>
+				<h3>Hire Contractors Worldwide</h3>
+				<p>Manage an unlimited amount of contractors from one platform.</p>
+			</div>
+			<div class="contractor-showcase__photo">
+				<img
+					src="/images/header-ai-hiring.jpg"
+					alt=""
+					loading="lazy"
+					class="contractor-showcase__image"
+					data-contractor-showcase-image
+				/>
+				<div class="contractor-showcase__shade"></div>
+			</div>
+		</div>
 
-	<Card
-		variant="visual"
-		title="Mobile first experience"
-		description="Get notified when your payout is credited and manage balances and payouts in one app"
-		visualPosition="after"
-		class="flex flex-col px-8 pb-6 pt-8 md:items-center md:text-center lg:items-stretch lg:text-left"
-		visualClass="w-full"
-	>
-		<MobilePayoutVisual slot="visual" />
-	</Card>
-
-	<Card
-		variant="visual"
-		title="Early payout access"
-		description="Request early access to earned payouts through a simple and transparent approval flow"
-		visualPosition="after"
-		class="flex flex-col p-6 md:items-center md:p-10 md:text-center lg:items-stretch lg:p-8 lg:text-left"
-		visualClass="mt-6 w-full md:mt-8 md:max-w-md lg:mt-auto lg:max-w-full"
-	>
-		<EarlyPayoutVisual slot="visual" />
-	</Card>
+		<div class="contractor-showcase__switchers" aria-label="Contractor payments features">
+			<button class="is-active" type="button" data-variant="contractors" data-title="Hire Contractors Worldwide" data-description="Manage an unlimited amount of contractors from one platform." data-label="Contractor hub" data-image="/images/header-ai-hiring.jpg" aria-label="Hire Contractors Worldwide">
+				<span>Hire Contractors Worldwide</span>
+			</button>
+			<button type="button" data-variant="payments" data-title="Flexible Global Payments" data-description="Pay contractors using 80+ local currencies via bank transfer, card transfer, e-wallet, and crypto." data-label="Local payouts" data-image="/pages/payroll-solution-new/assets/08-photo-1534528741775-53994a69daeb.jpg" aria-label="Flexible Global Payments">
+				<span>Flexible Global Payments</span>
+			</button>
+			<button type="button" data-variant="compliance" data-title="Get Misclassification Protection" data-description="Garna acts as contractor or agent of record and bears misclassification risks." data-label="Risk guard" data-image="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg" aria-label="Get Misclassification Protection">
+				<span>Get Misclassification Protection</span>
+			</button>
+		</div>
+	</div>
 </Section>
+
+<script>
+	const contractorShowcase = document.querySelector('.contractor-showcase');
+
+	if (contractorShowcase) {
+		const image = contractorShowcase.querySelector('[data-contractor-showcase-image]');
+		const panel = contractorShowcase.querySelector('[data-contractor-showcase-panel]');
+		const switchers = contractorShowcase.querySelectorAll('.contractor-showcase__switchers button');
+
+		switchers.forEach((switcher) => {
+			const activate = () => {
+				if (!(image instanceof HTMLImageElement)) return;
+
+				switchers.forEach((item) => item.classList.remove('is-active'));
+				switcher.classList.add('is-active');
+				image.src = switcher.dataset.image ?? image.src;
+
+				if (panel instanceof HTMLElement) {
+					const title = panel.querySelector('h3');
+					const description = panel.querySelector('p');
+					const label = panel.querySelector('.contractor-showcase__eyebrow');
+
+					panel.dataset.variant = switcher.dataset.variant ?? 'contractors';
+					if (title) title.textContent = switcher.dataset.title ?? '';
+					if (description) description.textContent = switcher.dataset.description ?? '';
+					if (label) label.textContent = switcher.dataset.label ?? '';
+				}
+			};
+
+			switcher.addEventListener('click', activate);
+		});
+	}
+</script>
+
+<style>
+	:global(.contractor-showcase-content) {
+		display: block;
+	}
+
+	.contractor-showcase {
+		position: relative;
+		width: 100%;
+		display: grid;
+		gap: 1.9rem;
+	}
+
+	.contractor-showcase__media {
+		position: relative;
+		width: 100%;
+		min-height: 29rem;
+		overflow: hidden;
+		border: 1px solid rgb(255 255 255 / 0.08);
+		border-radius: 1.75rem;
+		background: #0a0a0a;
+		box-shadow: none;
+	}
+
+	.contractor-showcase__image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 1;
+		filter: brightness(0.82) contrast(1.06) saturate(0.95);
+		transition: opacity 260ms ease, filter 260ms ease;
+	}
+
+	.contractor-showcase__shade {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgb(0 0 0 / 0.04) 0%, rgb(0 0 0 / 0.16) 48%, rgb(0 0 0 / 0.56) 100%),
+			linear-gradient(90deg, rgb(0 0 0 / 0.18), rgb(0 0 0 / 0.04) 45%, rgb(0 0 0 / 0.2));
+	}
+
+	.contractor-showcase__panel {
+		position: absolute;
+		left: 50%;
+		bottom: clamp(1.6rem, 4vw, 3.2rem);
+		display: grid;
+		width: min(43rem, calc(100% - 2.5rem));
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 1.35rem;
+		transform: translateX(-50%);
+		border: 1px solid rgb(255 255 255 / 0.13);
+		border-radius: 1.35rem;
+		background:
+			linear-gradient(180deg, rgb(18 19 20 / 0.9), rgb(5 6 7 / 0.95));
+		padding: 1.15rem 1.25rem;
+		text-align: left;
+		backdrop-filter: blur(14px);
+	}
+
+	.contractor-showcase__panel h3 {
+		margin: 0;
+		color: #fff;
+		font-size: 1.28rem;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		line-height: 1.2;
+	}
+
+	.contractor-showcase__panel p {
+		margin: 0.55rem 0 0;
+		color: rgb(209 213 219 / 0.88);
+		font-size: 0.92rem;
+		line-height: 1.45;
+	}
+
+	.contractor-showcase__art {
+		position: relative;
+		width: 15rem;
+		min-height: 8.1rem;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 1.15rem;
+		background:
+			linear-gradient(180deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.028));
+		padding: 0.95rem 1rem;
+	}
+
+	.contractor-showcase__metric-label {
+		display: block;
+		color: rgb(229 231 235 / 0.72);
+		font-size: 0.76rem;
+		font-weight: 600;
+		line-height: 1;
+	}
+
+	.contractor-showcase__metric-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-top: 0.5rem;
+	}
+
+	.contractor-showcase__metric-row strong {
+		color: #fff;
+		font-size: 2rem;
+		font-weight: 700;
+		letter-spacing: -0.04em;
+		line-height: 1;
+	}
+
+	.contractor-showcase__metric-row small {
+		color: #34d399;
+		font-size: 0.82rem;
+		font-weight: 700;
+		white-space: nowrap;
+	}
+
+	.contractor-showcase__art svg {
+		display: block;
+		width: 100%;
+		height: 3.8rem;
+		margin-top: 0.55rem;
+	}
+
+	.metric-grid,
+	.metric-line {
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		vector-effect: non-scaling-stroke;
+	}
+
+	.metric-grid {
+		stroke: rgb(255 255 255 / 0.12);
+		stroke-width: 1;
+	}
+
+	.metric-line {
+		stroke: #34d399;
+		stroke-width: 2.4;
+	}
+
+	.metric-line--ghost {
+		stroke: rgb(255 255 255 / 0.28);
+		stroke-dasharray: 5 7;
+		stroke-width: 2;
+	}
+
+	.contractor-showcase__panel[data-variant="payments"] .metric-line {
+		stroke: #cbf300;
+	}
+
+	.contractor-showcase__panel[data-variant="payments"] .contractor-showcase__metric-row small {
+		color: #cbf300;
+	}
+
+	.contractor-showcase__panel[data-variant="compliance"] .metric-line {
+		stroke: #60a5fa;
+	}
+
+	.contractor-showcase__panel[data-variant="compliance"] .contractor-showcase__metric-row small {
+		color: #60a5fa;
+	}
+
+	.contractor-showcase__switchers {
+		display: flex;
+		justify-content: center;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+	}
+
+	.contractor-showcase__switchers button {
+		appearance: none;
+		border: 1px solid rgb(255 255 255 / 0.16);
+		border-radius: 9999px;
+		background: rgb(255 255 255 / 0.015);
+		padding: 0.88rem 1.55rem;
+		color: white;
+		font-size: 0.96rem;
+		font-weight: 600;
+		line-height: 1;
+		cursor: pointer;
+		transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+	}
+
+	.contractor-showcase__switchers button:hover,
+	.contractor-showcase__switchers button:focus-visible,
+	.contractor-showcase__switchers button.is-active {
+		border-color: rgb(203 243 0 / 0.34);
+		background: rgb(203 243 0 / 0.1);
+	}
+
+	.contractor-showcase__switchers button:focus-visible {
+		outline: 2px solid rgb(203 243 0 / 0.45);
+		outline-offset: 3px;
+	}
+
+	@media (max-width: 900px) {
+		.contractor-showcase__panel {
+			width: min(28rem, calc(100% - 2rem));
+		}
+	}
+
+	@media (max-width: 560px) {
+		.contractor-showcase__media {
+			min-height: 32rem;
+			border-radius: 1.25rem;
+		}
+
+		.contractor-showcase__panel {
+			grid-template-columns: 1fr;
+			gap: 0.8rem;
+			padding: 1rem;
+		}
+
+		.contractor-showcase__art {
+			display: none;
+		}
+
+
+		.contractor-showcase__switchers {
+			justify-content: stretch;
+		}
+
+		.contractor-showcase__switchers button {
+			flex: 1 1 100%;
+		}
+	}
+</style>

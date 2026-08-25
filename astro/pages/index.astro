@@ -4,17 +4,15 @@ import FinalCTASection from '../components/sections/FinalCTASection.astro';
 import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
 import PayrollSolutionInteractions from '../components/sections/payroll/PayrollSolutionInteractions.astro';
-import ContractorPaymentsSection from '../components/sections/payroll/home/ContractorPaymentsSection.astro';
-import DeferredContractorPaymentsSection from '../components/sections/payroll/home/DeferredContractorPaymentsSection.astro';
+import ContractorPaymentsSection from '../components/sections/payroll/home/ContractorPaymentsCarouselSection.astro';
+import DeferredContractorPaymentsSection from '../components/sections/payroll/home/DeferredPaymentsStackSection.astro';
 import EffectivePayrollSection from '../components/sections/payroll/home/EffectivePayrollSection.astro';
-import EmbeddedPayrollInfrastructureSection from '../components/sections/payroll/home/EmbeddedPayrollInfrastructureSection.astro';
+import EmbeddedPayrollInfrastructureSection from '../components/sections/payroll/home/EmbeddedPayrollInfrastructureTabs.astro';
 import HireEmployeesWorldwideSection from '../components/sections/payroll/home/HireEmployeesWorldwideSection.astro';
 import ManageGlobalPayrollSection from '../components/sections/payroll/home/ManageGlobalPayrollSection.astro';
-import PayrollComparisonSection from '../components/sections/payroll/home/PayrollComparisonSection.astro';
 import PayrollStatsSection from '../components/sections/payroll/home/PayrollStatsSection.astro';
-import StartPayingGloballySection from '../components/sections/payroll/home/StartPayingGloballySection.astro';
+import SpendbaseQuoteSection from '../components/sections/payroll/home/SpendbaseQuoteSection.astro';
 import TrustedByBuildersSection from '../components/sections/payroll/home/TrustedByBuildersSection.astro';
-import WhyCompaniesChooseGarnaSection from '../components/sections/payroll/home/WhyCompaniesChooseGarnaSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
@@ -23,88 +21,125 @@ import type { FAQItem } from '../types/faq-section';
 
 const homeFaqItems = [
 	{
-		question: 'How quickly can I start using Garna Payroll?',
+		question: 'What services does Garna provide?',
 		answer:
-			'Average time from sign up to the first hire or contractor payment is less than 10 minutes. You can create an account, verify it, and start using it immediately after. Our team processes applications quickly and grants access to one of the best online payroll services and contractor management solutions. At this point we work as a payroll provider enabling you with the possibility to work with employees and contractors.',
+			'Global payroll, Employer of Record, Contractor of Record, business banking, and international payments, all in one platform. You can hire, pay, and manage your whole team, employees, and contractors, without switching between tools.',
 		questionTranslateKey: 'faq.items.q1.question',
 		answerTranslateKey: 'faq.items.q1.answer',
 	},
 	{
-		question: 'Can I brand the contractor dashboard under my company?',
+		question: 'What is Employer of Record (EOR)?',
 		answer:
-			'Of course! Our White Label solution allows you to fully customize the interface not only for your in-house contractors but also for your customers.',
+			'An EOR legally employs your team in a country where you have no entity. Garna becomes that legal employer; you manage the day-to-day work.',
 		questionTranslateKey: 'faq.items.q2.question',
 		answerTranslateKey: 'faq.items.q2.answer',
 	},
 	{
-		question: 'What payment methods does Garna support?',
+		question: 'What is a Contractor of Record?',
 		answer:
-			'We support bank transfers (SWIFT, SEPA, bank transfers in local currencies), payments to cards in local currency, PayPal, Payoneer, and payments in cryptocurrency (USDT/USDC).',
+			"Garna manages the contract, compliance, and payments for your freelancers, so you're protected from misclassification risk without having to become their legal employer.",
 		questionTranslateKey: 'faq.items.q3.question',
 		answerTranslateKey: 'faq.items.q3.answer',
 	},
 	{
-		question: 'How does Garna handle taxes and compliance globally?',
+		question: 'What’s the difference between hiring through an EOR and hiring a contractor?',
 		answer:
-			"You won't have to worry about red tape. When working with our Employment of Record solution, we handle all local taxes, social contributions, insurance, and compliance. When working with our Contractor of Record solution, Garna ensures to avoid risk of worker misclassification. As your contractor of record agent, we take full responsibility for hiring so that you can focus on the growth of your company.",
+			'An EOR is designed for full-time employees who need local employment contracts, benefits, and payroll compliance. Contractors work independently and are typically hired for specific projects or services without an employment relationship.',
 		questionTranslateKey: 'faq.items.q4.question',
 		answerTranslateKey: 'faq.items.q4.answer',
 	},
 	{
-		question: 'Can I integrate the Garna API into my platform?',
-		answer: 'Yes. With our API, you can automate payments to contractors within your product.',
+		question: 'Can I hire international talent without an EOR?',
+		answer:
+			"Yes, by opening your own legal entity. It works, but incorporation, local payroll, and ongoing compliance make it slow and expensive at a small headcount. Check at what team size it's cheaper to set up your own company instead of using an EOR.",
 		questionTranslateKey: 'faq.items.q5.question',
 		answerTranslateKey: 'faq.items.q5.answer',
 	},
 	{
-		question: 'What currencies are supported for payouts?',
+		question: 'Why should I choose Garna over other providers?',
 		answer:
-			'We support 80+ local currencies, including USD, EUR, and GBP. At Garna, we believe that businesses should have best exchange rates without markups.',
+			'1. All-in-one service in one place: hire employees via EOR, work with contractors of any type (individuals, sole proprietors, or legal entities), and run your everyday banking¹ from a single platform.\n\n2. Transparent pricing without hidden fees.\n\n3. Truly global payouts: pay to 150+ countries in 80+ local currencies using bank transfers, cards, PayPal, local e-wallets, or crypto.\n\n4. Business banking included: multi-currency IBANs in your company name and transfers to 150+ destinations, provided by a separate licensed entity.\n\n5. Reliable payment infrastructure: one of the largest payment networks in the industry, with 20+ banking partners and payment systems.\n\n6. Virtual cards: issue a card in the app, add it to Apple Pay or Google Pay, and pay directly from your Garna balance².\n\n7. Human support with an average reply time of 67 seconds.\n\n¹ Business banking services are provided through a separate licensed payment entity/provider.\n² Card issuance and card payment services are provided through a licensed third-party payment provider and are subject to KYC, eligibility, and applicable terms.',
 		questionTranslateKey: 'faq.items.q6.question',
 		answerTranslateKey: 'faq.items.q6.answer',
 	},
 	{
-		question: 'How does Garna handle contractor management?',
+		question: 'How long does it take to onboard an employee?',
 		answer:
-			'Garna automates the entire process, from onboarding and compliance checks to instant invoice generation. You pay a single consolidated invoice, and we distribute the funds to contractors in their preferred payment method and currency. Garna takes the risk of misclassification and handles local compliance.',
+			'In most countries, we can hire a new employee in no more than one business day. Once we receive the confirmed offer details and the employee completes the required onboarding steps, including uploading documents and signing the contract, we ensure a smooth and fast start while supporting both you and the new hire.',
 		questionTranslateKey: 'faq.items.q7.question',
 		answerTranslateKey: 'faq.items.q7.answer',
 	},
 	{
-		question: 'Is my data secure with Garna?',
+		question: 'How long does it take to start using Garna Contractor of Record?',
 		answer:
-			'Of course. As top global payroll providers, Garna uses bank-level encryption and strictly adheres to GDPR protocols and financial data security standards. Plus, only you have access to your personal account. You can delete your personal account at any time.',
+			'In most cases, you can have your first contractor onboarded in less than 20 minutes. Once you create a business account and pass verification, you can start inviting contractors. Garna also offers real-time payment options, so contractors can receive their remuneration the same day.',
 		questionTranslateKey: 'faq.items.q8.question',
 		answerTranslateKey: 'faq.items.q8.answer',
 	},
 	{
-		question: 'Can I use Garna Payroll if my business already has its own dashboard?',
-		answer: 'Yes, we can integrate any of our tools into your workflows.',
+		question: 'What payment methods does Garna support?',
+		answer:
+			'We support bank transfers (SWIFT, SEPA, and bank transfers in local currencies), card payments in local currency, PayPal, Payoneer, other e-wallets, and cryptocurrency payments¹. With Garna, you can issue a digital card in the app, add it to Apple Pay or Google Pay, and pay directly from your Garna balance².\n\n¹ Cryptocurrency payment services are provided through a licensed third-party provider and are subject to availability, eligibility, and applicable terms.\n² Card issuance and card payment services are provided through a licensed third-party payment provider and are subject to KYC, eligibility, and applicable terms.',
 		questionTranslateKey: 'faq.items.q9.question',
 		answerTranslateKey: 'faq.items.q9.answer',
 	},
 	{
-		question: 'Do you offer support for global payroll issues?',
+		question: 'Can I use my Garna business account as a daily business account?',
 		answer:
-			'Yes, of course. Our support team is always on call 24/7 to answer any questions you may have about the service, payments, etc.',
+			'Yes, it works as a regular business account for everyday banking, not just for payroll and contractor payments. With a Garna Business Account, you can get multi-currency IBANs in your company name, receive payments, and send transfers to 150+ destinations¹.\n\n¹ Business banking services are provided through a separate licensed payment entity/provider.',
 		questionTranslateKey: 'faq.items.q10.question',
 		answerTranslateKey: 'faq.items.q10.answer',
 	},
+	{
+		question: 'What benefits does a business get access to when using Garna?',
+		answer:
+			'Beyond contractor management and payroll, you can access business benefits and receive discounts for Slack, Google Workspace, AWS, and accounts with over 100 other service providers at no extra cost.',
+		questionTranslateKey: 'faq.items.q11.question',
+		answerTranslateKey: 'faq.items.q11.answer',
+	},
 ] satisfies FAQItem[];
+
 ---
 
-<BaseLayout shell={pageShells.home}>
-	<HeroSection {...pageHeroes.home} />
-	<PayrollStatsSection transparent />
-	<ManageGlobalPayrollSection />
-	<HireEmployeesWorldwideSection />
+<BaseLayout shell={pageShells.home} showRainbow={false}>
+	<div class="home-hero-scroll-stage" data-home-scroll-stage>
+	<HeroSection {...pageHeroes.home}>
+		<figure slot="background" class="home-hero-laptop-scene" aria-label="Garna payroll platform shown on a laptop">
+			<img
+				class="home-hero-sharp-still"
+				src="/pages/payroll-solution-new/assets/home-hero-scroll-sharp-still.png?v=12"
+				alt=""
+				aria-hidden="true"
+				loading="eager"
+				decoding="async"
+				fetchpriority="high"
+			/>
+			<video
+				class="home-hero-scrub-video"
+				data-home-hero-scrub-video
+				muted
+				playsinline
+				preload="auto"
+                      poster="/pages/payroll-solution-new/assets/home-hero-scroll-scrub-poster.jpg?v=44"
+				aria-hidden="true"
+			>
+                      <source src="/pages/payroll-solution-new/assets/home-hero-scroll-scrub-lg.mp4?v=44" type="video/mp4" />
+			</video>
+		</figure>
+		<PayrollStatsSection />
+	</HeroSection>
+	</div>
+	<div class="home-manage-reveal" data-home-manage-reveal>
+		<div class="home-manage-reveal-sticky">
+			<ManageGlobalPayrollSection />
+		</div>
+	</div>
 	<ContractorPaymentsSection />
+	<HireEmployeesWorldwideSection />
 	<EffectivePayrollSection />
+	<SpendbaseQuoteSection />
 	<DeferredContractorPaymentsSection />
 	<EmbeddedPayrollInfrastructureSection />
-	<StartPayingGloballySection />
-	<WhyCompaniesChooseGarnaSection />
-	<PayrollComparisonSection />
 	<TrustedByBuildersSection />
 	<FAQSection
 		title={{ text: 'FAQ on Payroll Solutions', translateKey: 'faq.title' }}
@@ -137,7 +172,246 @@ const homeFaqItems = [
 	</Fragment>
 </BaseLayout>
 
+<script is:inline>
+	(() => {
+		const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+		const range = (value, start, end) => clamp((value - start) / (end - start));
+		const ease = (value) => value * value * (3 - 2 * value);
+
+		const initHomeHeroScroll = () => {
+			const stage = document.querySelector('[data-home-scroll-stage]');
+			if (!(stage instanceof HTMLElement) || stage.dataset.scrollSceneReady === 'true') return;
+
+			const hero = stage.querySelector('.payroll-solution-new-hero');
+			const video = stage.querySelector('[data-home-hero-scrub-video]');
+			const reveal = document.querySelector('[data-home-manage-reveal]');
+			const foreground = hero?.querySelector(':scope > div.relative.z-10');
+			if (!(hero instanceof HTMLElement) || !(video instanceof HTMLVideoElement)) return;
+
+			stage.dataset.scrollSceneReady = 'true';
+			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+			let frame = 0;
+			let scrubFrame = 0;
+			let targetTime = 0;
+
+			video.pause();
+
+			const render = () => {
+				frame = 0;
+
+				const stageRect = stage.getBoundingClientRect();
+				const headerHeight = document.querySelector('.garna-header')?.getBoundingClientRect().height || 64;
+				const scrollDistance = Math.max(1, stage.offsetHeight - window.innerHeight);
+				const progress = clamp(-stageRect.top / scrollDistance);
+				const scrubProgress = reduceMotion.matches ? 0 : ease(range(progress, 0.025, 0.94));
+				const duration = Number.isFinite(video.duration) ? video.duration : 0;
+
+				if (duration > 0) {
+					targetTime = Math.min(duration - 0.001, duration * scrubProgress);
+					if (!scrubFrame) scrubFrame = window.requestAnimationFrame(renderScrub);
+				}
+
+				const revealRect = reveal instanceof HTMLElement ? reveal.getBoundingClientRect() : null;
+				const seamProgress = revealRect ? ease(range(headerHeight - revealRect.top, 0, 3)) : ease(range(progress, 0.999, 1));
+				const revealProgress = reduceMotion.matches ? 1 : seamProgress;
+				const hazeIn = ease(range(progress, 0.16, 0.32));
+				const hazeOut = 1 - ease(range(progress, 0.54, 0.78));
+				const sideBlurIn = ease(range(progress, 0.04, 0.16));
+				const sideBlurOut = 1 - ease(range(progress, 0.82, 0.96));
+				const sideBlurExpand = ease(range(progress, 0.08, 0.42));
+				const sideBlurRetreat = 1 - ease(range(progress, 0.38, 0.62));
+				const sideBlurSpread = sideBlurExpand * sideBlurRetreat;
+				document.documentElement.style.setProperty('--home-header-height', `${headerHeight}px`);
+				stage.style.setProperty('--home-copy-opacity', String(1 - ease(range(progress, 0, 0.12))));
+				stage.style.setProperty('--home-video-opacity', String(1 - revealProgress));
+				stage.style.setProperty('--home-still-opacity', String(1 - ease(range(progress, 0.005, 0.035))));
+				stage.style.setProperty('--home-zoom-haze-opacity', String(Math.max(0, hazeIn * hazeOut)));
+				stage.style.setProperty('--home-side-blur-opacity', String(Math.max(0, sideBlurIn * sideBlurOut * (1 - revealProgress))));
+				stage.style.setProperty('--home-side-blur-width', `${Math.round(40 + sideBlurSpread * 440)}px`);
+				stage.style.setProperty('--home-side-blur-radius', `${Math.round(12 + sideBlurSpread * 18)}px`);
+				document.documentElement.style.setProperty('--home-manage-reveal-opacity', String(revealProgress));
+				if (foreground instanceof HTMLElement) foreground.style.pointerEvents = progress > 0.2 ? 'none' : '';
+			};
+
+			const renderScrub = () => {
+				scrubFrame = 0;
+				const duration = Number.isFinite(video.duration) ? video.duration : 0;
+				if (duration <= 0) return;
+
+				const diff = targetTime - video.currentTime;
+				if (Math.abs(diff) <= 0.006) {
+					video.currentTime = targetTime;
+					return;
+				}
+
+				video.currentTime += diff * 0.14;
+				scrubFrame = window.requestAnimationFrame(renderScrub);
+			};
+
+			const schedule = () => {
+				if (!frame) frame = window.requestAnimationFrame(render);
+			};
+
+			window.addEventListener('scroll', schedule, { passive: true });
+			window.addEventListener('resize', schedule, { passive: true });
+			reduceMotion.addEventListener?.('change', schedule);
+			video.addEventListener('loadedmetadata', schedule, { once: true });
+			video.load();
+			render();
+		};
+
+		initHomeHeroScroll();
+		window.addEventListener('garna:page-content-updated', initHomeHeroScroll);
+	})();
+</script>
+
+<style>
+	.home-hero-scroll-stage {
+		--home-header-height: 64px;
+		--home-copy-opacity: 1;
+		--home-video-opacity: 1;
+		--home-still-opacity: 1;
+		--home-zoom-haze-opacity: 0;
+		--home-side-blur-opacity: 0;
+		--home-side-blur-width: 150px;
+		--home-side-blur-radius: 12px;
+		position: relative;
+		height: 500svh;
+	}
+
+	.home-hero-scroll-stage :global(.payroll-solution-new-hero) {
+		position: sticky;
+		top: 0;
+	}
+
+	.home-hero-scroll-stage :global(.payroll-solution-new-hero > div.relative.z-10) {
+		opacity: var(--home-copy-opacity);
+		transition: opacity 120ms linear;
+	}
+
+	.home-hero-laptop-scene {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		isolation: isolate;
+	}
+
+	.home-hero-laptop-scene::before {
+		position: absolute;
+		z-index: 4;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: min(var(--home-side-blur-width), 38vw);
+		content: "";
+		background: linear-gradient(90deg, rgb(5 7 9 / 0.16), rgb(5 7 9 / 0));
+		backdrop-filter: blur(var(--home-side-blur-radius)) saturate(1.03);
+		-webkit-backdrop-filter: blur(var(--home-side-blur-radius)) saturate(1.03);
+		mask-image: linear-gradient(90deg, #000 0%, #000 42%, rgb(0 0 0 / 0.78) 66%, transparent 100%);
+		-webkit-mask-image: linear-gradient(90deg, #000 0%, #000 42%, rgb(0 0 0 / 0.78) 66%, transparent 100%);
+		opacity: var(--home-side-blur-opacity);
+		pointer-events: none;
+		transition: opacity 120ms linear;
+	}
+
+	.home-hero-laptop-scene::after {
+		position: absolute;
+		z-index: 4;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: min(var(--home-side-blur-width), 38vw);
+		content: "";
+		background: linear-gradient(270deg, rgb(5 7 9 / 0.16), rgb(5 7 9 / 0));
+		backdrop-filter: blur(var(--home-side-blur-radius)) saturate(1.03);
+		-webkit-backdrop-filter: blur(var(--home-side-blur-radius)) saturate(1.03);
+		mask-image: linear-gradient(270deg, #000 0%, #000 42%, rgb(0 0 0 / 0.78) 66%, transparent 100%);
+		-webkit-mask-image: linear-gradient(270deg, #000 0%, #000 42%, rgb(0 0 0 / 0.78) 66%, transparent 100%);
+		opacity: var(--home-side-blur-opacity);
+		pointer-events: none;
+		transition: opacity 120ms linear;
+	}
+
+	.home-hero-scrub-video {
+		position: absolute;
+		z-index: 1;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: 54% center;
+		opacity: var(--home-video-opacity);
+		pointer-events: none;
+		transition: opacity 120ms linear;
+	}
+
+	.home-hero-sharp-still {
+		position: absolute;
+		z-index: 2;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: 54% center;
+		opacity: var(--home-still-opacity);
+		pointer-events: none;
+		transition: opacity 120ms linear;
+	}
+
+	.home-manage-reveal {
+		position: relative;
+		z-index: 6;
+		margin-top: calc(-125svh + var(--home-header-height, 64px));
+		padding-bottom: 24svh;
+		opacity: var(--home-manage-reveal-opacity, 0);
+		pointer-events: none;
+	}
+
+	.home-manage-reveal-sticky {
+		position: sticky;
+		top: var(--home-header-height, 64px);
+	}
+
+	.home-manage-reveal-sticky :global(section) {
+		min-height: 100svh;
+		background: #101010;
+	}
+
+	.home-manage-reveal[style],
+	:root[style] .home-manage-reveal {
+		pointer-events: auto;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.home-hero-scroll-stage {
+			height: auto;
+		}
+
+		.home-hero-scroll-stage :global(.payroll-solution-new-hero) {
+			position: relative;
+		}
+
+		.home-manage-reveal {
+			margin-top: 0;
+			padding-bottom: 0;
+			opacity: 1;
+		}
+
+		.home-manage-reveal-sticky {
+			position: relative;
+			top: auto;
+		}
+	}
+</style>
+
 <style is:global>
+	astro-dev-toolbar {
+		display: none !important;
+	}
+
 	html[lang='ru'] .payroll-solution-new-hero h1,
 	html[lang='es'] .payroll-solution-new-hero h1,
 	html[lang='pt'] .payroll-solution-new-hero h1 {

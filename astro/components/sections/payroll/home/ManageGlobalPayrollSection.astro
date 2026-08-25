@@ -1,56 +1,80 @@
 ---
 import Section from '../../../layout/Section.astro';
-import Card from '../../../ui/Card.astro';
-import AutomatedPayrollPlatformVisual from '../../../visuals/AutomatedPayrollPlatformVisual.astro';
+import GarnaModularPlatformVisual from '../../../visuals/GarnaModularPlatformVisual.astro';
 import GlobalReachVisual from '../../../visuals/GlobalReachVisual.astro';
+import PayoutMethodsPhoneVisual from '../../../visuals/PayoutMethodsPhoneVisual.astro';
 import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro';
 ---
 
 <Section
 	title={{ text: 'Manage Global Payroll Effortlessly' }}
-	description={{ text: 'We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries' }}
-	spacing="none"
-	class="pb-16 lg:pb-32"
+	description={{ text: 'One platform to run payroll for freelancers, remote employees, and full-time teams' }}
+	spacing="default"
 	headerClass="mb-16 max-w-4xl lg:mb-20"
 	titleClass="lg:text-5xl"
-	contentClass="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+	contentClass="grid grid-cols-1 gap-4 md:grid-cols-2"
 >
-	<Card
-		variant="visual"
-		title="Automated Payroll Platform"
-		description="Automate global payout processes with a flexible, user-friendly platform"
-		visualPosition="after"
-		class="row-span-2 flex flex-col md:col-span-1 md:row-span-2 lg:col-span-1"
-		bodyClass="shrink-0 px-8 pt-8"
-		visualClass="flex min-h-0 flex-1 px-8 pb-8 pt-12"
-		titleClass="text-2xl"
-	>
-		<AutomatedPayrollPlatformVisual slot="visual" />
-	</Card>
+	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white">Automated Payroll Platform</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed">Automate global payout processes with a flexible, user-friendly platform</p>
+		<div class="mt-6 flex min-h-0 flex-1 items-start justify-center overflow-hidden px-6 pt-2">
+			<div class="flex h-full w-full max-w-md items-start justify-center"><GarnaModularPlatformVisual /></div>
+		</div>
+	</article>
 
-	<Card
-		variant="visual"
-		title="Global Reach"
-		description="Pay in 150+ countries with local currencies and crypto"
-		visualPosition="after"
-		class="flex h-[340px] flex-col p-8 md:col-span-1 md:h-[260px] md:p-6 lg:col-span-2 lg:h-[280px] lg:flex-row lg:p-8"
-		bodyClass="relative z-20 mb-4 w-full lg:mb-0 lg:flex lg:w-1/2 lg:flex-col lg:justify-center"
-		visualClass="h-64 w-full lg:h-full lg:w-1/2"
-		titleClass="text-2xl"
-	>
-		<GlobalReachVisual slot="visual" />
-	</Card>
+	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white">Global Reach</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed">Pay in 150+ countries with local currencies and crypto</p>
+		<div class="-mx-8 -mb-8 mt-8 flex min-h-0 flex-1 items-start justify-center overflow-hidden lg:-mx-12">
+			<div class="h-full w-full"><GlobalReachVisual /></div>
+		</div>
+	</article>
 
-	<Card
-		variant="visual"
-		title="No hidden Fees"
-		description="Transparent pricing, zero setup cost"
-		visualPosition="after"
-		class="grid h-[340px] grid-cols-1 items-center gap-3 p-8 md:col-span-1 md:h-[260px] md:gap-2 md:p-6 lg:col-span-2 lg:h-[280px] lg:grid-cols-2 lg:gap-10 lg:p-8"
-		bodyClass="relative z-10"
-		visualClass="relative z-10"
-		titleClass="text-2xl md:mb-2"
-	>
-		<TransparentFeesVisual slot="visual" />
-	</Card>
+	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white">Flexible Payout Methods</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed">Pay teams by bank transfer, card, electronic wallet, or crypto</p>
+		<div class="mt-10 flex min-h-0 flex-1 items-end justify-center overflow-visible px-8 pt-8">
+			<div class="w-full max-w-md"><PayoutMethodsPhoneVisual /></div>
+		</div>
+	</article>
+
+	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white">No hidden Fees</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed">Transparent pricing, zero setup cost</p>
+		<div class="mt-10 flex min-h-0 flex-1 items-center justify-center overflow-hidden p-8">
+			<div class="w-full max-w-md"><TransparentFeesVisual /></div>
+		</div>
+	</article>
 </Section>
+
+<script>
+	for (const card of document.querySelectorAll('[data-feature-card]')) {
+		if (!(card instanceof HTMLElement) || card.dataset.clickableReady === 'true') continue;
+		card.dataset.clickableReady = 'true';
+
+		const openCard = (event) => {
+			const target = event.target;
+			if (target instanceof Element && target.closest('button, a') && target.closest('button, a') !== card) return;
+			const href = card.dataset.href?.trim();
+			if (href) window.location.assign(href);
+		};
+
+		card.addEventListener('click', openCard);
+		card.addEventListener('keydown', (event) => {
+			if (event.key !== 'Enter' && event.key !== ' ') return;
+			event.preventDefault();
+			openCard(event);
+		});
+	}
+</script>
+
+<style>
+	.payroll-feature-card {
+		cursor: pointer;
+	}
+
+	.payroll-feature-card:focus-visible {
+		outline: 2px solid rgb(203 243 0 / 0.4);
+		outline-offset: 3px;
+	}
+</style>
