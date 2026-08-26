@@ -10,8 +10,7 @@ export const payrollSolutionNewEn = {
 	hero: {
 		titleMain: 'The All in One Payroll Platform',
 		titleAccent: 'for International Businesses',
-		description:
-			'Pay contractors and hire employees in 150+ countries — fully compliant, without the extra costs of a local entity',
+		description: 'Hire, pay, and manage global teams without setting up local entities',
 		cta: 'Book a demo',
 	},
 	sectionHeadings: {

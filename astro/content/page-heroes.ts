@@ -247,18 +247,16 @@ export const pageHeroes = {
 		align: 'split',
 	},
 	home: {
-		class: 'payroll-solution-new-hero relative h-[100svh] min-h-[100svh] overflow-hidden pt-24 md:pt-28 lg:pt-32',
+		class: 'payroll-solution-new-hero relative mb-16 h-[100svh] min-h-[100svh] max-h-[100svh] overflow-hidden pt-24 pb-24 md:mb-24 md:pt-28 md:pb-32 lg:mb-32 lg:pt-32 lg:pb-40',
 		containerClass:
 			'relative z-10 mx-auto h-full max-w-7xl overflow-visible px-6 pb-8 pt-4 text-center md:px-12 md:pt-5',
-		contentClass: 'relative z-10',
+		contentClass: 'relative z-10 pb-16 md:pb-24 lg:pb-32',
 		titleClass:
-			'garna-hero-title-gradient mb-4 text-[3.25rem] leading-[1.06] tracking-tight md:mb-5 md:text-[4rem] lg:mb-6 lg:text-[5rem]',
+			'garna-hero-title-gradient mb-3 text-[2.75rem] leading-[1.06] tracking-tight md:mb-4 md:text-[3.35rem] lg:mb-5 lg:text-[70px] lg:whitespace-nowrap',
 		descriptionClass:
-			'mx-auto mb-6 max-w-3xl font-manrope text-xl leading-relaxed !text-white opacity-70 [text-shadow:0_2px_18px_rgba(0,0,0,0.72)] md:mb-7 md:text-[1.375rem] lg:mb-8',
+			'mx-auto mb-5 max-w-3xl text-center font-manrope text-base leading-relaxed !text-white opacity-70 [text-shadow:0_2px_18px_rgba(0,0,0,0.72)] md:mb-6 md:text-lg lg:mb-7 lg:text-xl lg:whitespace-nowrap',
 		title: [{ text: 'The All in One Payroll Platform', translateKey: 'hero.titleMain' }],
-		titleBreakAfterWords: { en: 4 },
-		description:
-			'Pay contractors and hire employees in 150+ countries — fully compliant, without the extra costs of a local entity',
+		description: 'Hire, pay, and manage global teams without setting up local entities',
 		descriptionTranslateKey: 'hero.description',
 		cta: {
 			label: 'Book a demo',

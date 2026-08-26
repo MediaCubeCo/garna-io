@@ -9,8 +9,8 @@ import DeferredContractorPaymentsSection from '../components/sections/payroll/ho
 import EffectivePayrollSection from '../components/sections/payroll/home/EffectivePayrollSection.astro';
 import EmbeddedPayrollInfrastructureSection from '../components/sections/payroll/home/EmbeddedPayrollInfrastructureTabs.astro';
 import HireEmployeesWorldwideSection from '../components/sections/payroll/home/HireEmployeesWorldwideSection.astro';
+import HomeProofStatsSection from '../components/sections/payroll/home/HomeProofStatsSection.astro';
 import ManageGlobalPayrollSection from '../components/sections/payroll/home/ManageGlobalPayrollSection.astro';
-import PayrollStatsSection from '../components/sections/payroll/home/PayrollStatsSection.astro';
 import SpendbaseQuoteSection from '../components/sections/payroll/home/SpendbaseQuoteSection.astro';
 import TrustedByBuildersSection from '../components/sections/payroll/home/TrustedByBuildersSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -102,38 +102,31 @@ const homeFaqItems = [
 ---
 
 <BaseLayout shell={pageShells.home} showRainbow={false}>
-	<div class="home-hero-scroll-stage" data-home-scroll-stage>
-	<HeroSection {...pageHeroes.home}>
-		<figure slot="background" class="home-hero-laptop-scene" aria-label="Garna payroll platform shown on a laptop">
-			<img
-				class="home-hero-sharp-still"
-				src="/pages/payroll-solution-new/assets/home-hero-scroll-sharp-still.png?v=12"
-				alt=""
-				aria-hidden="true"
-				loading="eager"
-				decoding="async"
-				fetchpriority="high"
-			/>
-			<video
-				class="home-hero-scrub-video"
-				data-home-hero-scrub-video
-				muted
-				playsinline
-				preload="auto"
-                      poster="/pages/payroll-solution-new/assets/home-hero-scroll-scrub-poster.jpg?v=44"
-				aria-hidden="true"
-			>
-                      <source src="/pages/payroll-solution-new/assets/home-hero-scroll-scrub-lg.mp4?v=44" type="video/mp4" />
-			</video>
-		</figure>
-		<PayrollStatsSection />
-	</HeroSection>
-	</div>
-	<div class="home-manage-reveal" data-home-manage-reveal>
-		<div class="home-manage-reveal-sticky">
-			<ManageGlobalPayrollSection />
+	<div class="home-hero-proof-stage" data-home-hero-proof-stage>
+		<HeroSection {...pageHeroes.home}>
+			<div slot="background" class="home-hero-cover" aria-hidden="true">
+				<div class="home-hero-cover__media">
+					<img data-home-hero-image src="/pages/payroll-solution-new/assets/home-hero-profile-clouds-v2.jpg" alt="" />
+				</div>
+				<div class="home-hero-focus-frame" data-home-hero-frame>
+					<div class="home-hero-focus-frame__actions" data-home-hero-actions>
+						<span>Payroll</span>
+						<span>Global payouts</span>
+						<span>
+							<svg viewBox="0 0 13 21" aria-hidden="true">
+								<path d="M11.4746 14.7227C11.4275 15.5537 11.2163 16.3675 10.8525 17.1162C10.0307 18.7581 8.70591 19.7429 6.90425 20.0733C5.69763 20.2945 4.51044 20.1991 3.37495 19.7168C1.85099 19.0695 0.86664 17.9207 0.339801 16.3662C0.139741 15.7559 0.0279696 15.1196 0.00874611 14.4776C0.00684991 14.4314 0.0087461 14.385 0.00874611 14.3321H3.00777C3.0243 14.5458 3.03371 14.7549 3.05757 14.9619C3.10582 15.4803 3.25312 15.9843 3.49116 16.4473C3.95449 17.3081 4.67246 17.7533 5.65425 17.7686C6.07065 17.775 6.47795 17.734 6.86226 17.5596C7.41667 17.308 7.79767 16.8839 8.05952 16.3447C8.29209 15.8435 8.42793 15.3026 8.46089 14.751C8.47202 14.613 8.47777 14.4745 8.48628 14.3311H11.4932C11.4872 14.4642 11.4839 14.5936 11.4746 14.7227ZM11.5449 1.16602C11.7043 1.3011 11.8639 1.43594 12.0322 1.57813L10.2383 3.70215C10.2425 3.713 10.2478 3.72352 10.2539 3.7334C10.8744 4.54768 11.273 5.50908 11.4111 6.52344C11.5791 7.65883 11.5135 8.78028 11.1269 9.86524C10.4697 11.71 9.20303 12.9244 7.29195 13.3994C5.74263 13.7845 4.2315 13.6402 2.81929 12.8555C1.5815 12.1676 0.782316 11.1098 0.337847 9.77735C0.059096 8.91898 -0.0490815 8.01407 0.0204649 7.11426C0.0817073 6.18439 0.306447 5.29789 0.758746 4.47949C1.56472 3.02129 2.79412 2.12177 4.42085 1.78028C5.63517 1.51384 6.90175 1.61637 8.05757 2.07422C8.07377 2.08059 8.09019 2.0874 8.1064 2.09375C8.17573 2.12094 8.25148 2.17872 8.31245 2.16602C8.36926 2.15407 8.41133 2.06798 8.45796 2.0127C9.00725 1.3629 9.55666 0.712741 10.1055 0.0625C10.1221 0.0427899 10.137 0.020795 10.1523 0H10.1689C10.6274 0.388706 11.0864 0.777334 11.5449 1.16602ZM5.51167 4.0586C5.19448 4.069 4.88273 4.14498 4.59566 4.28028C4.00652 4.55998 3.62387 5.03063 3.37202 5.61719C3.09821 6.25495 3.015 6.92884 3.02144 7.61621C3.02143 7.73798 3.01589 7.86003 3.02241 7.98145C3.0535 8.55888 3.15117 9.12344 3.38863 9.65528C3.65578 10.2535 4.05942 10.7237 4.67378 10.9893C5.06109 11.1566 5.46927 11.1886 5.88472 11.1787C6.77375 11.1576 7.45241 10.7698 7.91988 10.0147C8.12885 9.66554 8.27656 9.28275 8.3564 8.88379C8.49588 8.21172 8.52413 7.52099 8.43941 6.83985C8.39161 6.35369 8.25726 5.8794 8.04292 5.44043C7.74657 4.85268 7.31184 4.41419 6.68062 4.18946C6.30092 4.05435 5.90773 4.04298 5.51167 4.0586Z" />
+							</svg>
+						</span>
+					</div>
+				</div>
+			</div>
+		</HeroSection>
+		<HomeProofStatsSection />
+		<div class="home-hero-proof-transition" data-home-proof-transition aria-hidden="true">
+			<img src="/pages/payroll-solution-new/assets/home-hero-profile-clouds-v2.jpg" alt="" data-home-transition-image />
 		</div>
 	</div>
+	<ManageGlobalPayrollSection />
 	<ContractorPaymentsSection />
 	<HireEmployeesWorldwideSection />
 	<EffectivePayrollSection />
@@ -161,6 +154,225 @@ const homeFaqItems = [
 			}
 		});
 	</script>
+	<script is:inline>
+		(() => {
+			const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+			const mix = (from, to, progress) => from + (to - from) * progress;
+			const smoothstep = (start, end, value) => {
+				const t = clamp((value - start) / (end - start));
+				return t * t * (3 - 2 * t);
+			};
+			const getPositionRatio = (token, axis) => {
+				if (!token) return 0.5;
+				if (token.endsWith('%')) return Number.parseFloat(token) / 100;
+				if (token === 'left' || token === 'top') return 0;
+				if (token === 'right' || token === 'bottom') return 1;
+				if (token === 'center') return 0.5;
+				return axis === 'y' && token === 'bottom' ? 1 : 0.5;
+			};
+			const getObjectPosition = (style) => {
+				const tokens = style.objectPosition.trim().split(/\s+/);
+				if (tokens.length === 1) return { x: getPositionRatio(tokens[0], 'x'), y: 0.5 };
+				return { x: getPositionRatio(tokens[0], 'x'), y: getPositionRatio(tokens[1], 'y') };
+			};
+			const getScale = (style) => {
+				const matrix = new DOMMatrixReadOnly(style.transform === 'none' ? undefined : style.transform);
+				return Math.hypot(matrix.a, matrix.b) || 1;
+			};
+			const getPaintedImageRect = (containerRect, image) => {
+				const style = getComputedStyle(image);
+				const naturalRatio = image.naturalWidth && image.naturalHeight ? image.naturalWidth / image.naturalHeight : 1;
+				const containerRatio = containerRect.width / containerRect.height;
+				const base = containerRatio > naturalRatio
+					? { width: containerRect.width, height: containerRect.width / naturalRatio }
+					: { width: containerRect.height * naturalRatio, height: containerRect.height };
+				const position = getObjectPosition(style);
+				const scale = getScale(style);
+				const [originX = '0', originY = '0'] = style.transformOrigin.split(/\s+/);
+				const origin = {
+					x: containerRect.x + Number.parseFloat(originX),
+					y: containerRect.y + Number.parseFloat(originY),
+				};
+				const baseRect = {
+					x: containerRect.x + (containerRect.width - base.width) * position.x,
+					y: containerRect.y + (containerRect.height - base.height) * position.y,
+					width: base.width,
+					height: base.height,
+				};
+
+				return {
+					x: origin.x + (baseRect.x - origin.x) * scale,
+					y: origin.y + (baseRect.y - origin.y) * scale,
+					width: baseRect.width * scale,
+					height: baseRect.height * scale,
+				};
+			};
+			const coverOverlayRect = (imageRect, frameRect, bleed = 3) => {
+				const minX = -bleed;
+				const minY = -bleed;
+				const maxX = frameRect.width + bleed;
+				const maxY = frameRect.height + bleed;
+				const scale = Math.max(
+					(maxX - minX) / imageRect.width,
+					(maxY - minY) / imageRect.height,
+					1,
+				);
+				let width = imageRect.width * scale;
+				let height = imageRect.height * scale;
+				let x = imageRect.x + (imageRect.width - width) / 2;
+				let y = imageRect.y + (imageRect.height - height) / 2;
+
+				if (x > minX) x = minX;
+				if (y > minY) y = minY;
+				if (x + width < maxX) x = maxX - width;
+				if (y + height < maxY) y = maxY - height;
+
+				return { x, y, width, height };
+			};
+
+			const initHomeHeroProofTransition = () => {
+				const stage = document.querySelector('[data-home-hero-proof-stage]');
+				if (!(stage instanceof HTMLElement) || stage.dataset.transitionReady === 'true') return;
+
+				const heroFrame = stage.querySelector('[data-home-hero-frame]');
+				const heroImage = stage.querySelector('[data-home-hero-image]');
+				const heroActions = stage.querySelector('[data-home-hero-actions]');
+				const siteHeader = document.querySelector('.garna-header');
+				const proofSection = stage.querySelector('.home-proof-section');
+				const targetCard = stage.querySelector('[data-home-proof-card="featured"]');
+				const targetImage = stage.querySelector('[data-home-proof-image="featured"]');
+				const overlay = stage.querySelector('[data-home-proof-transition]');
+				const overlayImage = stage.querySelector('[data-home-transition-image]');
+				if (
+					!(heroFrame instanceof HTMLElement) ||
+					!(heroImage instanceof HTMLImageElement) ||
+					!(heroActions instanceof HTMLElement) ||
+					!(proofSection instanceof HTMLElement) ||
+					!(targetCard instanceof HTMLElement) ||
+					!(targetImage instanceof HTMLImageElement) ||
+					!(overlay instanceof HTMLElement) ||
+					!(overlayImage instanceof HTMLImageElement)
+				) return;
+
+				stage.dataset.transitionReady = 'true';
+				const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+				const desktop = window.matchMedia('(min-width: 901px)');
+				let frame = 0;
+
+				const setOverlay = (rect, imageRect, opacity, borderOpacity, borderWidth, radius) => {
+					overlay.style.setProperty('--home-transition-x', `${rect.x}px`);
+					overlay.style.setProperty('--home-transition-y', `${rect.y}px`);
+					overlay.style.setProperty('--home-transition-w', `${rect.width}px`);
+					overlay.style.setProperty('--home-transition-h', `${rect.height}px`);
+					overlay.style.setProperty('--home-transition-radius', `${radius}px`);
+					overlay.style.setProperty('--home-transition-opacity-duration', opacity > 0 ? '0ms' : '180ms');
+					overlay.style.setProperty('--home-transition-opacity', String(opacity));
+					overlay.style.setProperty('--home-transition-border-opacity', String(borderOpacity));
+					overlay.style.setProperty('--home-transition-border-width', `${borderWidth}px`);
+					overlay.style.setProperty('--home-transition-img-x', `${imageRect.x}px`);
+					overlay.style.setProperty('--home-transition-img-y', `${imageRect.y}px`);
+					overlay.style.setProperty('--home-transition-img-w', `${imageRect.width}px`);
+					overlay.style.setProperty('--home-transition-img-h', `${imageRect.height}px`);
+				};
+				const getViewportCenter = () => {
+					const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
+					return window.innerHeight / 2 + headerHeight / 2;
+				};
+
+				const render = () => {
+					frame = 0;
+
+					if (reduceMotion.matches || !desktop.matches) {
+						stage.style.setProperty('--home-hero-actions-opacity', '1');
+						stage.style.setProperty('--home-hero-frame-opacity', '1');
+						stage.style.setProperty('--home-hero-backdrop-progress', '0');
+						stage.style.setProperty('--home-proof-featured-image-opacity', '1');
+						stage.style.setProperty('--home-proof-featured-card-opacity', '1');
+						stage.style.setProperty('--home-proof-featured-notice-opacity', '1');
+						stage.style.setProperty('--home-proof-header-opacity', '1');
+						overlay.style.setProperty('--home-transition-opacity', '0');
+						return;
+					}
+
+					const stageRect = stage.getBoundingClientRect();
+					const stageTop = window.scrollY + stageRect.top;
+					const targetRect = targetCard.getBoundingClientRect();
+					const proofRect = proofSection.getBoundingClientRect();
+					const proofTop = window.scrollY + proofRect.top;
+					const transitionEndScroll = Math.max(0, proofTop + proofRect.height / 2 - getViewportCenter());
+					const distance = Math.max(1, transitionEndScroll - stageTop);
+					const startOffset = 0;
+					const progress = clamp((-stageRect.top - startOffset) / Math.max(1, distance - startOffset));
+					const eased = smoothstep(0, 1, progress);
+
+					const heroRect = heroFrame.getBoundingClientRect();
+					const heroCoverRect = heroImage.parentElement?.getBoundingClientRect() ?? heroImage.getBoundingClientRect();
+					const heroImgRect = getPaintedImageRect(heroCoverRect, heroImage);
+					const targetImgRect = getPaintedImageRect(targetRect, targetImage);
+					const heroStyle = getComputedStyle(heroFrame);
+					const targetStyle = getComputedStyle(targetCard);
+					const heroRadius = Number.parseFloat(heroStyle.borderTopLeftRadius) || 24;
+					const targetRadius = Number.parseFloat(targetStyle.borderTopLeftRadius) || 22;
+
+					const rect = {
+						x: mix(heroRect.x, targetRect.x, eased),
+						y: mix(heroRect.y, targetRect.y, eased),
+						width: mix(heroRect.width, targetRect.width, eased),
+						height: mix(heroRect.height, targetRect.height, eased),
+					};
+					const viewportMargin = clamp(window.innerHeight * 0.08, 36, 84);
+					const safeBottomY = window.innerHeight - viewportMargin - rect.height;
+					const bottomOverflow = Math.max(0, rect.y - safeBottomY);
+					const safeBottomStrength = smoothstep(0.08, 0.24, progress) * (1 - smoothstep(0.82, 1, progress));
+					rect.y -= bottomOverflow * safeBottomStrength;
+					const imageRect = {
+						x: mix(heroImgRect.x - heroRect.x, targetImgRect.x - targetRect.x, eased),
+						y: mix(heroImgRect.y - heroRect.y, targetImgRect.y - targetRect.y, eased),
+						width: mix(heroImgRect.width, targetImgRect.width, eased),
+						height: mix(heroImgRect.height, targetImgRect.height, eased),
+					};
+					const overlayBleed = mix(3, 0, smoothstep(0.82, 0.98, progress));
+					const coveredImageRect = coverOverlayRect(imageRect, rect, overlayBleed);
+					const isSettled = progress >= 1;
+					const overlayOpacity = progress > 0.004 && !isSettled ? 1 : 0;
+					const borderProgress = smoothstep(0.22, 0.92, progress);
+					const borderOpacity = mix(0.54, 0.12, borderProgress);
+					const borderWidth = mix(1, 1, borderProgress);
+					const heroFrameOpacity = 1 - smoothstep(0.015, 0.08, progress);
+					const actionsOpacity = 1 - smoothstep(0.035, 0.18, progress);
+					const heroBackdropProgress = smoothstep(0.05, 0.46, progress);
+					const proofImageOpacity = isSettled ? 1 : 0;
+					const proofCardOpacity = isSettled ? 1 : 0;
+					const proofNoticeOpacity = isSettled ? 1 : 0;
+					const proofHeaderOpacity = smoothstep(0.58, 0.86, progress);
+
+					setOverlay(rect, coveredImageRect, overlayOpacity, borderOpacity, borderWidth, mix(heroRadius, targetRadius, eased));
+					stage.style.setProperty('--home-hero-frame-opacity', String(heroFrameOpacity));
+					stage.style.setProperty('--home-hero-actions-opacity', String(actionsOpacity));
+					stage.style.setProperty('--home-hero-backdrop-progress', String(heroBackdropProgress));
+					stage.style.setProperty('--home-proof-featured-image-opacity', String(proofImageOpacity));
+					stage.style.setProperty('--home-proof-featured-card-opacity', String(proofCardOpacity));
+					stage.style.setProperty('--home-proof-featured-notice-opacity', String(proofNoticeOpacity));
+					stage.style.setProperty('--home-proof-header-opacity', String(proofHeaderOpacity));
+				};
+
+				const schedule = () => {
+					if (!frame) frame = window.requestAnimationFrame(render);
+				};
+
+				window.addEventListener('scroll', schedule, { passive: true });
+				window.addEventListener('resize', schedule, { passive: true });
+				reduceMotion.addEventListener?.('change', schedule);
+				desktop.addEventListener?.('change', schedule);
+				heroImage.addEventListener('load', schedule, { once: true });
+				targetImage.addEventListener('load', schedule, { once: true });
+				render();
+			};
+
+			initHomeHeroProofTransition();
+			window.addEventListener('garna:page-content-updated', initHomeHeroProofTransition);
+		})();
+	</script>
 	<Fragment slot="widgets">
 		<PayrollSolutionInteractions />
 		<GarnaBookingWidget
@@ -172,244 +384,253 @@ const homeFaqItems = [
 	</Fragment>
 </BaseLayout>
 
-<script is:inline>
-	(() => {
-		const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
-		const range = (value, start, end) => clamp((value - start) / (end - start));
-		const ease = (value) => value * value * (3 - 2 * value);
-
-		const initHomeHeroScroll = () => {
-			const stage = document.querySelector('[data-home-scroll-stage]');
-			if (!(stage instanceof HTMLElement) || stage.dataset.scrollSceneReady === 'true') return;
-
-			const hero = stage.querySelector('.payroll-solution-new-hero');
-			const video = stage.querySelector('[data-home-hero-scrub-video]');
-			const reveal = document.querySelector('[data-home-manage-reveal]');
-			const foreground = hero?.querySelector(':scope > div.relative.z-10');
-			if (!(hero instanceof HTMLElement) || !(video instanceof HTMLVideoElement)) return;
-
-			stage.dataset.scrollSceneReady = 'true';
-			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-			let frame = 0;
-			let scrubFrame = 0;
-			let targetTime = 0;
-
-			video.pause();
-
-			const render = () => {
-				frame = 0;
-
-				const stageRect = stage.getBoundingClientRect();
-				const headerHeight = document.querySelector('.garna-header')?.getBoundingClientRect().height || 64;
-				const scrollDistance = Math.max(1, stage.offsetHeight - window.innerHeight);
-				const progress = clamp(-stageRect.top / scrollDistance);
-				const scrubProgress = reduceMotion.matches ? 0 : ease(range(progress, 0.025, 0.94));
-				const duration = Number.isFinite(video.duration) ? video.duration : 0;
-
-				if (duration > 0) {
-					targetTime = Math.min(duration - 0.001, duration * scrubProgress);
-					if (!scrubFrame) scrubFrame = window.requestAnimationFrame(renderScrub);
-				}
-
-				const revealRect = reveal instanceof HTMLElement ? reveal.getBoundingClientRect() : null;
-				const seamProgress = revealRect ? ease(range(headerHeight - revealRect.top, 0, 3)) : ease(range(progress, 0.999, 1));
-				const revealProgress = reduceMotion.matches ? 1 : seamProgress;
-				const hazeIn = ease(range(progress, 0.16, 0.32));
-				const hazeOut = 1 - ease(range(progress, 0.54, 0.78));
-				const sideBlurIn = ease(range(progress, 0.04, 0.16));
-				const sideBlurOut = 1 - ease(range(progress, 0.82, 0.96));
-				const sideBlurExpand = ease(range(progress, 0.08, 0.42));
-				const sideBlurRetreat = 1 - ease(range(progress, 0.38, 0.62));
-				const sideBlurSpread = sideBlurExpand * sideBlurRetreat;
-				document.documentElement.style.setProperty('--home-header-height', `${headerHeight}px`);
-				stage.style.setProperty('--home-copy-opacity', String(1 - ease(range(progress, 0, 0.12))));
-				stage.style.setProperty('--home-video-opacity', String(1 - revealProgress));
-				stage.style.setProperty('--home-still-opacity', String(1 - ease(range(progress, 0.005, 0.035))));
-				stage.style.setProperty('--home-zoom-haze-opacity', String(Math.max(0, hazeIn * hazeOut)));
-				stage.style.setProperty('--home-side-blur-opacity', String(Math.max(0, sideBlurIn * sideBlurOut * (1 - revealProgress))));
-				stage.style.setProperty('--home-side-blur-width', `${Math.round(40 + sideBlurSpread * 440)}px`);
-				stage.style.setProperty('--home-side-blur-radius', `${Math.round(12 + sideBlurSpread * 18)}px`);
-				document.documentElement.style.setProperty('--home-manage-reveal-opacity', String(revealProgress));
-				if (foreground instanceof HTMLElement) foreground.style.pointerEvents = progress > 0.2 ? 'none' : '';
-			};
-
-			const renderScrub = () => {
-				scrubFrame = 0;
-				const duration = Number.isFinite(video.duration) ? video.duration : 0;
-				if (duration <= 0) return;
-
-				const diff = targetTime - video.currentTime;
-				if (Math.abs(diff) <= 0.006) {
-					video.currentTime = targetTime;
-					return;
-				}
-
-				video.currentTime += diff * 0.14;
-				scrubFrame = window.requestAnimationFrame(renderScrub);
-			};
-
-			const schedule = () => {
-				if (!frame) frame = window.requestAnimationFrame(render);
-			};
-
-			window.addEventListener('scroll', schedule, { passive: true });
-			window.addEventListener('resize', schedule, { passive: true });
-			reduceMotion.addEventListener?.('change', schedule);
-			video.addEventListener('loadedmetadata', schedule, { once: true });
-			video.load();
-			render();
-		};
-
-		initHomeHeroScroll();
-		window.addEventListener('garna:page-content-updated', initHomeHeroScroll);
-	})();
-</script>
-
-<style>
-	.home-hero-scroll-stage {
-		--home-header-height: 64px;
-		--home-copy-opacity: 1;
-		--home-video-opacity: 1;
-		--home-still-opacity: 1;
-		--home-zoom-haze-opacity: 0;
-		--home-side-blur-opacity: 0;
-		--home-side-blur-width: 150px;
-		--home-side-blur-radius: 12px;
-		position: relative;
-		height: 500svh;
-	}
-
-	.home-hero-scroll-stage :global(.payroll-solution-new-hero) {
-		position: sticky;
-		top: 0;
-	}
-
-	.home-hero-scroll-stage :global(.payroll-solution-new-hero > div.relative.z-10) {
-		opacity: var(--home-copy-opacity);
-		transition: opacity 120ms linear;
-	}
-
-	.home-hero-laptop-scene {
-		position: absolute;
-		inset: 0;
-		z-index: 0;
-		width: 100%;
-		height: 100%;
-		margin: 0;
-		isolation: isolate;
-	}
-
-	.home-hero-laptop-scene::before {
-		position: absolute;
-		z-index: 4;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		width: min(var(--home-side-blur-width), 38vw);
-		content: "";
-		background: linear-gradient(90deg, rgb(5 7 9 / 0.16), rgb(5 7 9 / 0));
-		backdrop-filter: blur(var(--home-side-blur-radius)) saturate(1.03);
-		-webkit-backdrop-filter: blur(var(--home-side-blur-radius)) saturate(1.03);
-		mask-image: linear-gradient(90deg, #000 0%, #000 42%, rgb(0 0 0 / 0.78) 66%, transparent 100%);
-		-webkit-mask-image: linear-gradient(90deg, #000 0%, #000 42%, rgb(0 0 0 / 0.78) 66%, transparent 100%);
-		opacity: var(--home-side-blur-opacity);
-		pointer-events: none;
-		transition: opacity 120ms linear;
-	}
-
-	.home-hero-laptop-scene::after {
-		position: absolute;
-		z-index: 4;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		width: min(var(--home-side-blur-width), 38vw);
-		content: "";
-		background: linear-gradient(270deg, rgb(5 7 9 / 0.16), rgb(5 7 9 / 0));
-		backdrop-filter: blur(var(--home-side-blur-radius)) saturate(1.03);
-		-webkit-backdrop-filter: blur(var(--home-side-blur-radius)) saturate(1.03);
-		mask-image: linear-gradient(270deg, #000 0%, #000 42%, rgb(0 0 0 / 0.78) 66%, transparent 100%);
-		-webkit-mask-image: linear-gradient(270deg, #000 0%, #000 42%, rgb(0 0 0 / 0.78) 66%, transparent 100%);
-		opacity: var(--home-side-blur-opacity);
-		pointer-events: none;
-		transition: opacity 120ms linear;
-	}
-
-	.home-hero-scrub-video {
-		position: absolute;
-		z-index: 1;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: 54% center;
-		opacity: var(--home-video-opacity);
-		pointer-events: none;
-		transition: opacity 120ms linear;
-	}
-
-	.home-hero-sharp-still {
-		position: absolute;
-		z-index: 2;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: 54% center;
-		opacity: var(--home-still-opacity);
-		pointer-events: none;
-		transition: opacity 120ms linear;
-	}
-
-	.home-manage-reveal {
-		position: relative;
-		z-index: 6;
-		margin-top: calc(-125svh + var(--home-header-height, 64px));
-		padding-bottom: 24svh;
-		opacity: var(--home-manage-reveal-opacity, 0);
-		pointer-events: none;
-	}
-
-	.home-manage-reveal-sticky {
-		position: sticky;
-		top: var(--home-header-height, 64px);
-	}
-
-	.home-manage-reveal-sticky :global(section) {
-		min-height: 100svh;
-		background: #101010;
-	}
-
-	.home-manage-reveal[style],
-	:root[style] .home-manage-reveal {
-		pointer-events: auto;
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.home-hero-scroll-stage {
-			height: auto;
-		}
-
-		.home-hero-scroll-stage :global(.payroll-solution-new-hero) {
-			position: relative;
-		}
-
-		.home-manage-reveal {
-			margin-top: 0;
-			padding-bottom: 0;
-			opacity: 1;
-		}
-
-		.home-manage-reveal-sticky {
-			position: relative;
-			top: auto;
-		}
-	}
-</style>
-
 <style is:global>
 	astro-dev-toolbar {
 		display: none !important;
+	}
+
+	.home-hero-proof-stage {
+		position: relative;
+		--home-hero-actions-opacity: 1;
+		--home-hero-frame-opacity: 1;
+		--home-hero-backdrop-progress: 0;
+		--home-proof-featured-image-opacity: 1;
+		--home-proof-featured-card-opacity: 1;
+		--home-proof-featured-notice-opacity: 1;
+		--home-proof-header-opacity: 1;
+	}
+
+	.home-hero-proof-transition {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 6;
+		width: var(--home-transition-w, 0);
+		height: var(--home-transition-h, 0);
+		overflow: hidden;
+		border: 0;
+		border-radius: var(--home-transition-radius, 24px);
+		opacity: var(--home-transition-opacity, 0);
+		transform: translate3d(var(--home-transition-x, 0), var(--home-transition-y, 0), 0);
+		transition: opacity var(--home-transition-opacity-duration, 0ms) cubic-bezier(0.16, 1, 0.3, 1);
+		pointer-events: none;
+		backface-visibility: hidden;
+		contain: layout paint;
+		will-change: transform, width, height, opacity;
+	}
+
+	.home-hero-proof-transition::after {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		box-sizing: border-box;
+		content: "";
+		border: var(--home-transition-border-width, 1px) solid rgba(255, 255, 255, var(--home-transition-border-opacity, 0.54));
+		border-radius: inherit;
+		pointer-events: none;
+	}
+
+	.home-hero-proof-transition img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 0;
+		width: var(--home-transition-img-w, 100vw);
+		max-width: none;
+		height: var(--home-transition-img-h, 100vh);
+		max-height: none;
+		transform: translate(var(--home-transition-img-x, 0), var(--home-transition-img-y, 0));
+		transform-origin: top left;
+		backface-visibility: hidden;
+		will-change: transform, width, height;
+	}
+
+	.home-hero-proof-stage [data-home-proof-image='featured'] {
+		opacity: var(--home-proof-featured-image-opacity, 1) !important;
+		transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+	}
+
+	.home-hero-proof-stage [data-home-proof-card='featured'] {
+		border-color: rgba(255, 255, 255, calc(0.12 * var(--home-proof-featured-card-opacity, 1))) !important;
+		background: rgba(10, 10, 10, var(--home-proof-featured-card-opacity, 1)) !important;
+		box-shadow: 0 30px 90px -60px rgba(0, 0, 0, calc(0.98 * var(--home-proof-featured-card-opacity, 1))) !important;
+	}
+
+	.home-hero-proof-stage [data-home-proof-card='featured'] .home-proof-card__notice {
+		opacity: var(--home-proof-featured-notice-opacity, 1);
+		transform: translateY(calc((1 - var(--home-proof-featured-notice-opacity, 1)) * 0.6rem));
+		transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1), transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.home-hero-proof-stage .home-proof-section header {
+		opacity: var(--home-proof-header-opacity, 1);
+		transform: translateY(calc((1 - var(--home-proof-header-opacity, 1)) * 1.1rem));
+	}
+
+	.home-hero-cover {
+		--home-hero-image-scale: 1;
+		--home-hero-media-inset: calc(var(--home-hero-backdrop-progress, 0) * clamp(1rem, 2.4vw, 2.75rem));
+		--home-hero-media-radius: calc(var(--home-hero-backdrop-progress, 0) * 1.65rem);
+		--home-hero-frame-width: min(24rem, 36vh, 28vw);
+		--home-hero-frame-radius: clamp(1.2rem, 2.5vh, 1.65rem);
+		--home-hero-action-inset: clamp(0.72rem, 1.6vh, 1.08rem);
+		--home-hero-action-gap: clamp(0.34rem, 0.75vh, 0.5rem);
+		--home-hero-pill-height: clamp(1.88rem, 3.9vh, 2.38rem);
+		--home-hero-logo-tile-size: clamp(1.72rem, 3.58vh, 2.18rem);
+		--home-hero-pill-padding-x: clamp(0.66rem, 1.45vh, 0.9rem);
+		--home-hero-pill-font-size: clamp(0.66rem, 1.32vh, 0.78rem);
+		--home-hero-logo-width: clamp(0.62rem, 1.3vh, 0.8rem);
+		--home-hero-logo-height: clamp(1rem, 2.1vh, 1.28rem);
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		overflow: hidden;
+		background: var(--color-garna-page, #101010);
+		pointer-events: none;
+	}
+
+	.home-hero-cover__media {
+		position: absolute;
+		inset: var(--home-hero-media-inset);
+		z-index: 0;
+		overflow: hidden;
+		border-radius: var(--home-hero-media-radius);
+		background: var(--color-garna-page, #101010);
+	}
+
+	.home-hero-cover__media::before {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		content: "";
+		background: rgba(0, 0, 0, calc(var(--home-hero-backdrop-progress, 0) * 0.34));
+		pointer-events: none;
+	}
+
+	.home-hero-cover__media::after {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		content: "";
+		border: 1px solid rgba(255, 255, 255, calc(var(--home-hero-backdrop-progress, 0) * 0.12));
+		border-radius: inherit;
+		box-shadow: 0 30px 90px rgba(0, 0, 0, calc(var(--home-hero-backdrop-progress, 0) * 0.18));
+		opacity: var(--home-hero-backdrop-progress, 0);
+		pointer-events: none;
+	}
+
+	.home-hero-cover__media img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center bottom;
+		transform: scale(var(--home-hero-image-scale));
+		transform-origin: center bottom;
+	}
+
+	.home-hero-focus-frame {
+		position: absolute;
+		left: 50%;
+		bottom: clamp(1rem, 2.4vh, 2rem);
+		z-index: 2;
+		width: var(--home-hero-frame-width);
+		aspect-ratio: 0.66;
+		border: 1px solid rgba(255, 255, 255, 0.58);
+		border-radius: var(--home-hero-frame-radius);
+		opacity: var(--home-hero-frame-opacity, 1);
+		transform: translateX(-50%);
+	}
+
+	.home-hero-focus-frame::before {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		content: "";
+		border-radius: inherit;
+		background: transparent;
+		backdrop-filter: brightness(1.025) saturate(1.01);
+	}
+
+	.home-hero-focus-frame__actions {
+		position: absolute;
+		right: var(--home-hero-action-inset);
+		bottom: var(--home-hero-action-inset);
+		display: flex;
+		align-items: center;
+		gap: var(--home-hero-action-gap);
+		opacity: var(--home-hero-actions-opacity, 1);
+		transform: translateY(calc((1 - var(--home-hero-actions-opacity, 1)) * 0.75rem)) scale(calc(0.96 + var(--home-hero-actions-opacity, 1) * 0.04));
+		transform-origin: right bottom;
+	}
+
+	.home-hero-focus-frame__actions span {
+		display: inline-flex;
+		min-height: var(--home-hero-pill-height);
+		align-items: center;
+		justify-content: center;
+		border-radius: 9999px;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		background: rgb(7 8 10 / 0.72);
+		padding: 0 var(--home-hero-pill-padding-x);
+		color: rgba(255, 255, 255, 0.82);
+		font-family: Manrope, sans-serif;
+		font-size: var(--home-hero-pill-font-size);
+		font-weight: 600;
+		line-height: 1;
+		box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
+		backdrop-filter: blur(12px);
+	}
+
+	.home-hero-focus-frame__actions span:last-child {
+		width: var(--home-hero-logo-tile-size);
+		min-height: var(--home-hero-logo-tile-size);
+		padding: 0;
+		border-radius: clamp(0.48rem, 1vh, 0.62rem);
+		border-color: rgba(203, 243, 0, 0.72);
+		background: #cbf300;
+		color: #101010;
+	}
+
+	.home-hero-focus-frame__actions svg {
+		width: var(--home-hero-logo-width);
+		height: var(--home-hero-logo-height);
+		fill: currentColor;
+	}
+
+	@media (max-width: 900px) {
+		.home-hero-cover {
+			--home-hero-frame-width: min(20rem, 38vh, 58vw);
+		}
+
+		.home-hero-focus-frame {
+			bottom: clamp(1rem, 3vw, 1.75rem);
+		}
+	}
+
+	@media (max-aspect-ratio: 1.65) and (min-width: 901px) {
+		.home-hero-cover {
+			--home-hero-image-scale: 1.28;
+		}
+	}
+
+	@media (min-aspect-ratio: 1.72) and (min-width: 901px) {
+		.home-hero-cover {
+			--home-hero-frame-width: min(24rem, 35vh, 24vw);
+		}
+	}
+
+	@media (min-aspect-ratio: 1.95) and (min-width: 901px) {
+		.home-hero-cover {
+			--home-hero-frame-width: min(24rem, 34vh, 23vw);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.home-hero-focus-frame {
+			display: none;
+		}
 	}
 
 	html[lang='ru'] .payroll-solution-new-hero h1,

@@ -4,26 +4,157 @@ import Section from '../../../layout/Section.astro';
 
 <Section
 	spacing="default"
-	class="overflow-hidden"
-	contentClass="mx-auto max-w-6xl"
+	class="spendbase-quote-section overflow-hidden"
+	contentClass="mx-auto flex min-h-[58svh] max-w-6xl items-center justify-center"
 >
-	<figure class="px-0 py-4 sm:py-6 lg:py-8">
-		<div class="mb-10 grid h-[4.5rem] w-[4.5rem] place-items-center rounded-full bg-white sm:h-20 sm:w-20 lg:mb-12">
+	<figure class="spendbase-quote">
+		<div class="spendbase-quote__mark">
 			<img
 				src="/images/spendbase-mark.svg"
 				alt="Spendbase"
 				width="32"
 				height="32"
-				class="h-14 w-14 sm:h-16 sm:w-16"
 			/>
 		</div>
 
-		<blockquote class="w-full max-w-none font-manrope text-[clamp(1.5rem,2.1vw,1.75rem)] font-medium leading-[1.28] tracking-[-0.035em] text-white">
-			“Garna offers an efficient solution for worldwide payments with seamless transactions across multiple regions. Their team is responsive, professional, and proactive. We highly appreciate their exceptional service and look forward to continuing our partnership.”
+		<blockquote class="spendbase-quote__text">
+			Garna offers an efficient solution for worldwide payments with seamless transactions across multiple regions. Their team is responsive, professional, and proactive
 		</blockquote>
 
-		<figcaption class="mt-8 font-manrope text-base font-medium text-white/80 sm:mt-10 sm:text-lg">
-			Serge L. <span class="mx-1.5 text-[#CBF300]">•</span> CFO, Spendbase
+		<figcaption class="spendbase-quote__caption">
+			<span>Serge L.</span>
+			<span aria-hidden="true"></span>
+			<span>CFO, Spendbase</span>
 		</figcaption>
 	</figure>
 </Section>
+
+<style>
+	.spendbase-quote-section {
+		background:
+			radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.035), transparent 27rem),
+			#101010;
+	}
+
+	.spendbase-quote {
+		position: relative;
+		display: grid;
+		width: 100%;
+		justify-items: center;
+		gap: clamp(1.45rem, 3vw, 2.5rem);
+		padding-block: clamp(2rem, 5vw, 4rem);
+		text-align: center;
+	}
+
+	.spendbase-quote__text::before,
+	.spendbase-quote__text::after {
+		position: absolute;
+		z-index: 0;
+		width: clamp(3.2rem, 5.2vw, 5.6rem);
+		height: clamp(3.2rem, 5.2vw, 5.6rem);
+		content: '';
+		pointer-events: none;
+	}
+
+	.spendbase-quote__text::before {
+		top: clamp(-1.3rem, -1.7vw, -0.95rem);
+		left: clamp(-1.25rem, -1.65vw, -0.75rem);
+		border-top: 1px solid rgba(255, 255, 255, 0.78);
+		border-left: 1px solid rgba(255, 255, 255, 0.78);
+		border-top-left-radius: 1.15rem;
+	}
+
+	.spendbase-quote__text::after {
+		right: clamp(-1.25rem, -1.65vw, -0.75rem);
+		bottom: clamp(-1.3rem, -1.7vw, -0.95rem);
+		border-right: 1px solid rgba(255, 255, 255, 0.78);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.78);
+		border-bottom-right-radius: 1.15rem;
+	}
+
+	.spendbase-quote__mark {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		width: clamp(3.9rem, 5.4vw, 5rem);
+		height: clamp(3.9rem, 5.4vw, 5rem);
+		place-items: center;
+		border-radius: 50%;
+		background: #ffffff;
+	}
+
+	.spendbase-quote__mark img {
+		width: 72%;
+		height: 72%;
+	}
+
+	.spendbase-quote__caption {
+		position: relative;
+		z-index: 1;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.7rem;
+		color: rgba(255, 255, 255, 0.78);
+		font-family: Manrope, sans-serif;
+		font-size: clamp(0.95rem, 1.2vw, 1.08rem);
+		font-weight: 560;
+		line-height: 1.3;
+	}
+
+	.spendbase-quote__caption span:first-child {
+		color: inherit;
+		font-weight: inherit;
+	}
+
+	.spendbase-quote__caption span:nth-child(2) {
+		width: 0.32rem;
+		height: 0.32rem;
+		border-radius: 50%;
+		background: #cbf300;
+	}
+
+	.spendbase-quote__text {
+		position: relative;
+		z-index: 1;
+		max-width: 58rem;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1.65rem, 2.85vw, 3.35rem);
+		font-weight: 420;
+		letter-spacing: 0;
+		line-height: 1.08;
+		text-wrap: balance;
+	}
+
+	@media (max-width: 860px) {
+		.spendbase-quote {
+			padding-block: 2rem;
+		}
+
+		.spendbase-quote__text {
+			max-width: 100%;
+			font-size: clamp(1.65rem, 7vw, 2.75rem);
+		}
+	}
+
+	@media (max-width: 520px) {
+		.spendbase-quote-section :global(.garna-container) {
+			padding-inline: 1.25rem;
+		}
+
+		.spendbase-quote {
+			gap: 2rem;
+		}
+
+		.spendbase-quote__caption {
+			display: grid;
+			justify-items: center;
+			gap: 0.45rem;
+		}
+
+		.spendbase-quote__caption span:nth-child(2) {
+			width: 0.28rem;
+			height: 0.28rem;
+		}
+	}
+</style>

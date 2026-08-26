@@ -1,0 +1,299 @@
+---
+import Section from '../../../layout/Section.astro';
+
+const stats = [
+	{
+		value: '400+',
+		label: 'businesses using Garna',
+		image: '/pages/payroll-solution-new/assets/home-proof-mountain-man-v1.png',
+		alt: 'A remote professional standing in the mountains at sunrise',
+		imagePosition: 'center bottom',
+		imageOrigin: 'center center',
+		imageScale: 1.36,
+		notice: {
+			icon: 'check',
+			title: 'Invoice approved',
+			meta: 'Brand Studio LLC',
+			amount: '+4,820 $',
+			tone: 'bank',
+		},
+	},
+	{
+		value: '$110M+',
+		label: 'paid to specialists',
+		image: '/pages/payroll-solution-new/assets/home-hero-profile-clouds-v2.jpg',
+		alt: 'A global professional in profile against a clear blue sky',
+		featured: true,
+		imagePosition: 'center bottom',
+		imageOrigin: 'bottom center',
+		imageScale: 1.45,
+		notice: {
+			icon: 'receipt',
+			title: 'Salary batch sent',
+			meta: '38 specialists',
+			amount: '+96,400 $',
+			tone: 'card',
+		},
+	},
+	{
+		value: '38,000+',
+		label: 'talents already use Garna',
+		image: '/pages/payroll-solution-new/assets/home-proof-coffee-man-v2.png',
+		alt: 'A man in a white shirt holding coffee near a window',
+		imagePosition: 'center center',
+		imageOrigin: 'center center',
+		notice: {
+			icon: 'transfer',
+			title: 'Transfer completed',
+			meta: 'EUR account',
+			amount: '-2,350 €',
+			tone: 'crypto',
+		},
+	},
+];
+---
+
+<Section
+	class="home-proof-section overflow-hidden"
+	containerClass="relative"
+	width="wide"
+	spacing="default"
+	title={{ text: 'Payroll for work without borders' }}
+	description={{ text: 'Support teams, contractors, and specialists wherever work happens' }}
+	headerClass="mb-16 max-w-4xl lg:mb-20"
+	titleClass="lg:text-5xl"
+	contained={true}
+>
+	<div class="home-proof-grid">
+		{stats.map((stat) => (
+			<article
+				class:list={['home-proof-card', stat.featured && 'home-proof-card--featured']}
+				data-home-proof-card={stat.featured ? 'featured' : undefined}
+			>
+				<img
+					src={stat.image}
+					alt={stat.alt}
+					loading="lazy"
+					data-home-proof-image={stat.featured ? 'featured' : undefined}
+					style={[
+						stat.imagePosition ? `object-position: ${stat.imagePosition};` : '',
+						stat.imageOrigin ? `--proof-image-origin: ${stat.imageOrigin};` : '',
+						stat.imageOffsetY ? `--proof-image-y: ${stat.imageOffsetY};` : '',
+						stat.imageScale ? `--proof-image-scale: ${stat.imageScale};` : '',
+					]
+						.filter(Boolean)
+						.join(' ')}
+				/>
+				<div class="home-proof-card__scrim" aria-hidden="true"></div>
+				<div class:list={['home-proof-card__notice', `home-proof-card__notice--${stat.notice.tone}`]} aria-hidden="true">
+					<span class="home-proof-card__notice-icon">
+						{stat.notice.icon === 'check' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M20 7 9 18l-5-5"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'receipt' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M7 3h10a2 2 0 0 1 2 2v16l-3-2-2 2-2-2-2 2-2-2-3 2V5a2 2 0 0 1 2-2Z"></path>
+								<path d="M9 8h6"></path>
+								<path d="M9 12h6"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'transfer' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M5 8h13"></path>
+								<path d="m15 5 3 3-3 3"></path>
+								<path d="M19 16H6"></path>
+								<path d="m9 13-3 3 3 3"></path>
+							</svg>
+						)}
+					</span>
+					<span class="home-proof-card__notice-copy">
+						<span class="home-proof-card__notice-top">
+							<strong>{stat.notice.title}</strong>
+							<em>{stat.notice.amount}</em>
+						</span>
+						<small>{stat.notice.meta}</small>
+					</span>
+				</div>
+			</article>
+		))}
+	</div>
+</Section>
+
+<style>
+	.home-proof-section {
+		background: #101010;
+	}
+
+	.home-proof-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-items: center;
+		width: min(100%, 910px);
+		margin-inline: auto;
+		gap: 1.25rem;
+	}
+
+	.home-proof-card {
+		position: relative;
+		min-height: clamp(20rem, 28vw, 26rem);
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.11);
+		border-radius: 22px;
+		background: #0a0a0a;
+		box-shadow: 0 22px 70px -54px rgba(0, 0, 0, 0.95);
+		isolation: isolate;
+	}
+
+	.home-proof-card--featured {
+		min-height: clamp(23rem, 33vw, 30rem);
+		border-color: rgba(255, 255, 255, 0.12);
+		box-shadow: 0 30px 90px -60px rgba(0, 0, 0, 0.98);
+	}
+
+	.home-proof-card > img {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 1;
+		transform: translateY(var(--proof-image-y, 0)) scale(var(--proof-image-scale, 1.03));
+		transform-origin: var(--proof-image-origin, center center);
+		transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 700ms ease;
+	}
+
+	.home-proof-card:hover > img {
+		opacity: 1;
+		transform: translateY(var(--proof-image-y, 0)) scale(calc(var(--proof-image-scale, 1.03) + 0.05));
+	}
+
+	.home-proof-card__scrim {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		background: transparent;
+		pointer-events: none;
+	}
+
+	.home-proof-card__notice {
+		position: absolute;
+		right: clamp(0.85rem, 1.5vw, 1.1rem);
+		bottom: clamp(0.85rem, 1.5vw, 1.1rem);
+		left: clamp(0.85rem, 1.5vw, 1.1rem);
+		z-index: 2;
+		display: grid;
+		grid-template-columns: 2.1rem minmax(0, 1fr);
+		align-items: center;
+		column-gap: 0.74rem;
+		min-height: 4.15rem;
+		overflow: hidden;
+		padding: 0.68rem 0.72rem 0.68rem 0.7rem;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 14px;
+		background: rgb(7 8 10 / 0.72);
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		box-shadow: 0 0.65rem 1.8rem rgb(0 0 0 / 0.2);
+		backdrop-filter: blur(12px);
+	}
+
+	.home-proof-card__notice-icon {
+		display: grid;
+		width: 2.1rem;
+		height: 2.1rem;
+		place-items: center;
+		border-radius: 9px;
+		background: #cbf300;
+		color: #101010;
+	}
+
+	.home-proof-card__notice-icon svg {
+		display: block;
+		width: 1.18rem;
+		height: 1.18rem;
+	}
+
+	.home-proof-card__notice--card .home-proof-card__notice-icon {
+		background: #cbf300;
+	}
+
+	.home-proof-card__notice--crypto .home-proof-card__notice-icon {
+		background: #cbf300;
+	}
+
+	.home-proof-card__notice-copy {
+		display: grid;
+		min-width: 0;
+		gap: 0.22rem;
+	}
+
+	.home-proof-card__notice-top {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: baseline;
+		column-gap: 0.58rem;
+		min-width: 0;
+	}
+
+	.home-proof-card__notice strong {
+		overflow: hidden;
+		color: #ffffff;
+		font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+		font-weight: 650;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.home-proof-card__notice small {
+		overflow: hidden;
+		color: rgb(255 255 255 / 0.58);
+		font-size: clamp(0.66rem, 0.74vw, 0.72rem);
+		font-weight: 500;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.home-proof-card__notice em {
+		color: #ffffff;
+		font-size: clamp(0.7rem, 0.82vw, 0.8rem);
+		font-style: normal;
+		font-weight: 560;
+		line-height: 1.15;
+		white-space: nowrap;
+	}
+
+	@media (max-width: 980px) {
+		.home-proof-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.home-proof-card,
+		.home-proof-card--featured {
+			min-height: 22rem;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.home-proof-card,
+		.home-proof-card--featured {
+			min-height: 18rem;
+			border-radius: 18px;
+		}
+
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.home-proof-card > img {
+			transition: none;
+		}
+
+		.home-proof-card:hover > img {
+			transform: scale(1.03);
+		}
+	}
+</style>
