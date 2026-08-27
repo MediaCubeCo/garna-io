@@ -254,7 +254,7 @@ export const pageHeroes = {
 		titleClass:
 			'garna-hero-title-gradient mb-3 text-[2.75rem] leading-[1.06] tracking-tight md:mb-4 md:text-[3.35rem] lg:mb-5 lg:text-[70px] lg:whitespace-nowrap',
 		descriptionClass:
-			'mx-auto mb-5 max-w-3xl text-center font-manrope text-base leading-relaxed !text-white opacity-70 [text-shadow:0_2px_18px_rgba(0,0,0,0.72)] md:mb-6 md:text-lg lg:mb-7 lg:text-xl lg:whitespace-nowrap',
+			'mx-auto mb-5 max-w-3xl text-center font-manrope text-lg leading-relaxed !text-white opacity-70 [text-shadow:0_2px_18px_rgba(0,0,0,0.72)] md:mb-6 md:text-lg lg:mb-7 lg:text-xl lg:whitespace-nowrap',
 		title: [{ text: 'The All in One Payroll Platform', translateKey: 'hero.titleMain' }],
 		description: 'Hire, pay, and manage global teams without setting up local entities',
 		descriptionTranslateKey: 'hero.description',

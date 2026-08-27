@@ -124,9 +124,9 @@ export const pageFinalCtas = {
 		class: 'overflow-hidden lg:pt-40 lg:pb-40 text-center pt-32 pb-32 relative',
 		containerClass: 'z-10 max-w-4xl mr-auto ml-auto pr-6 pl-6 relative',
 		titleClass:
-			'garna-hero-title-gradient md:text-7xl lg:text-6xl text-5xl font-normal text-white tracking-tight font-manrope mb-8',
+			'garna-hero-title-gradient text-[2.75rem] leading-[1.06] tracking-tight md:text-[3.35rem] lg:text-[70px] font-normal text-white font-manrope mb-8',
 		descriptionClass:
-			'md:text-xl lg:text-2xl text-lg font-light text-gray-400 font-manrope max-w-2xl mr-auto mb-12 ml-auto',
+			'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
 	},
 	eor: {
 		title: [{ text: 'Global Employer of Record is A Modern Hiring Process Done Stress-Free', translateKey: 'finalCta.title' }],

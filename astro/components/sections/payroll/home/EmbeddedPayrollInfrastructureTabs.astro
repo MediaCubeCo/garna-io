@@ -6,12 +6,12 @@ import Section from '../../../layout/Section.astro';
   <div class="embedded" data-embedded>
     <div class="stage">
       <article class="panel" data-panel="api">
-        <img class="panel-image" src="/images/embedded-api-people-v9.png" alt="" loading="lazy" decoding="async" />
+        <img class="panel-image" src="/images/embedded-api-people-v10.jpg" alt="" loading="lazy" decoding="async" />
         <div class="panel-shade" aria-hidden="true"></div>
         <div class="copy"><span class="copy-tag">Built for product teams</span><h3>API contractor management and payments</h3><p>Integrate global contractor payments directly into your platform</p><a class="learn-more" href="/form"><span>Learn more</span><span aria-hidden="true">→</span></a></div>
       </article>
       <article class="panel" data-panel="brand" hidden>
-        <img class="panel-image" src="/images/embedded-white-label-people-v2.png" alt="" loading="lazy" decoding="async" />
+        <img class="panel-image" src="/images/embedded-white-label-people-v3.jpg" alt="" loading="lazy" decoding="async" />
         <div class="panel-shade" aria-hidden="true"></div>
         <div class="copy"><span class="copy-tag">Built for payroll brands</span><h3>White-label contractor dashboard and payments</h3><p>Launch payroll under your own brand, powered by Garna</p><a class="learn-more" href="/form"><span>Learn more</span><span aria-hidden="true">→</span></a></div>
       </article>
@@ -120,6 +120,7 @@ import Section from '../../../layout/Section.astro';
   .learn-more span:last-child{transition:transform .2s ease}
   .learn-more:hover span:last-child,.learn-more:focus-visible span:last-child{transform:translateX(4px)}
   .learn-more:focus-visible{outline:0}
-  @media(max-width:800px){.tabs{margin:20px auto 0}.panel{min-height:620px}.panel-image{object-position:center}.panel-shade{background:linear-gradient(0deg,#050606c2 0%,#05060626 72%,transparent 100%)}.copy{bottom:24px}}
+  @media(min-width:801px) and (max-width:1079px){.embedded{width:calc(100vw - 32px);margin-inline:calc(50% - 50vw + 16px)}.panel[data-panel="brand"] .copy{width:min(460px,calc(100% - 36px));padding:24px}}
+  @media(max-width:800px){.tabs{margin:20px auto 0}.panel{min-height:620px}.panel-image{object-position:center}.panel[data-panel="api"] .panel-image{object-position:72% center}.panel-shade{background:linear-gradient(0deg,#050606c2 0%,#05060626 72%,transparent 100%)}.copy{bottom:24px}}
   @media(max-width:520px){.tabs{display:grid;width:100%;grid-template-columns:1fr 1fr}.tab{min-width:0;padding:10px 12px}.stage{border-radius:20px}.panel{min-height:610px}.copy{left:14px;bottom:14px;width:calc(100% - 28px);padding:20px}.copy h3{font-size:23px}}
 </style>

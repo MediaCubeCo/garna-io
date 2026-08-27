@@ -20,6 +20,11 @@ const {
 	titleClass = '',
 	descriptionClass = '',
 } = Astro.props;
+
+const titleWords = title.text.trim().split(/\s+/);
+const titleHasWidowGuard = titleWords.length > 2;
+const titleLead = titleHasWidowGuard ? titleWords.slice(0, -2).join(' ') : title.text;
+const titleTail = titleHasWidowGuard ? titleWords.slice(-2).join('\u00a0') : '';
 ---
 
 <header class:list={[
@@ -34,7 +39,12 @@ const {
 		]}
 		data-translate={title.translateKey}
 	>
-		{title.text}
+		{titleHasWidowGuard ? (
+			<>
+				{titleLead}{' '}
+				<span class="whitespace-nowrap">{titleTail}</span>
+			</>
+		) : title.text}
 	</h2>
 	{description && (
 		<p

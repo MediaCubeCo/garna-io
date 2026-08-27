@@ -1,7 +1,7 @@
-<!-- Dashboard Mockup with Dynamic Sizing -->
-            <div class="dashboard-v2 relative mx-auto h-[330px] max-w-6xl overflow-visible perspective-1000 md:h-[620px] lg:h-[780px]">
+<!-- Dashboard Mockup scaled from one desktop reference size -->
+            <div class="dashboard-v2 relative mx-auto overflow-visible perspective-1000" data-dashboard-scale-root>
                 <div
-                    class="garna-product-window glass overflow-visible origin-top -translate-x-1/2 md:w-[160%] md:scale-[0.625] lg:w-full lg:scale-[0.85] bg-[#0A0A0A] w-[320%] border-white/10 border rounded-xl pt-2 pr-2 pb-2 pl-2 relative left-1/2 shadow-2xl scale-[0.3125]">
+                    class="garna-product-window glass overflow-visible bg-[#0A0A0A] border-white/10 border rounded-xl pt-2 pr-2 pb-2 pl-2 relative shadow-2xl">
                     
                     <!-- Script for number counting -->
                     
@@ -753,3 +753,40 @@
                             animation: growBar 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
                         }
                     </style>
+
+<style>
+    .dashboard-v2 {
+        --dashboard-reference-width: 1152;
+        --dashboard-scale: 0.85;
+        width: min(100%, 61.2rem);
+        height: var(--dashboard-scaled-height, auto);
+    }
+
+    .dashboard-v2 > .garna-product-window {
+        left: 50%;
+        width: 72rem;
+        max-width: none;
+        transform: translateX(-50%) scale(var(--dashboard-scale));
+        transform-origin: top center;
+    }
+</style>
+
+<script>
+    document.querySelectorAll('[data-dashboard-scale-root]').forEach((root) => {
+        if (!(root instanceof HTMLElement) || root.dataset.scaleReady === 'true') return;
+        root.dataset.scaleReady = 'true';
+		const productWindow = root.querySelector('.garna-product-window');
+		if (!(productWindow instanceof HTMLElement)) return;
+
+        const updateScale = () => {
+			const scale = root.clientWidth / 1152;
+			root.style.setProperty('--dashboard-scale', String(scale));
+			root.style.setProperty('--dashboard-scaled-height', `${productWindow.scrollHeight * scale}px`);
+        };
+
+        const observer = new ResizeObserver(updateScale);
+        observer.observe(root);
+		observer.observe(productWindow);
+        updateScale();
+    });
+</script>

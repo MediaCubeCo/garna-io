@@ -36,19 +36,21 @@
 		<div class="globe-light absolute inset-0"></div>
 	</div>
 
-	<div class="currency-pill currency-pill--gbp absolute left-[7%] top-[36%] z-10">
+	<div class="currency-pill-layer absolute left-1/2 top-[4%] z-10 aspect-square w-[86%] -translate-x-1/2" aria-hidden="true">
+	<div class="currency-pill currency-pill--gbp">
 		<span class="flag-pair"><img src="/images/flags/gb.png" alt="United Kingdom"><img src="/images/flags/us.png" alt="United States"></span>
 		<span class="transfer-details"><strong>GBP <span>→</span> USD</strong><small>£7,607 <i>→</i> $10,000</small></span>
 	</div>
 
-	<div class="currency-pill currency-pill--eur absolute left-[43%] top-[58%] z-20">
+	<div class="currency-pill currency-pill--eur">
 		<span class="flag-pair"><img src="/images/flags/de.png" alt="Germany"><img src="/images/flags/ch.png" alt="Switzerland"></span>
 		<span class="transfer-details"><strong>EUR <span>→</span> CHF</strong><small>€5,037 <i>→</i> CHF 4,850</small></span>
 	</div>
 
-	<div class="currency-pill currency-pill--jpy absolute right-[8%] top-[27%] z-10">
+	<div class="currency-pill currency-pill--jpy">
 		<span class="flag-pair"><img src="/images/flags/jp.png" alt="Japan"><img src="/images/flags/ca.png" alt="Canada"></span>
 		<span class="transfer-details"><strong>JPY <span>→</span> CAD</strong><small>¥227,910 <i>→</i> C$2,100</small></span>
+	</div>
 	</div>
 </div>
 
@@ -93,7 +95,15 @@
 			linear-gradient(110deg, rgb(0 0 0 / 0.1) 0%, rgb(0 0 0 / 0.26) 62%, rgb(0 0 0 / 0.62));
 	}
 
+	.currency-pill-layer {
+		--currency-globe-reference-width: 430px;
+		--currency-pill-scale: min(1, calc(100cqw / var(--currency-globe-reference-width)));
+		container-type: inline-size;
+		pointer-events: none;
+	}
+
 	.currency-pill {
+		position: absolute;
 		display: flex;
 		align-items: center;
 		gap: 0.4rem;
@@ -105,6 +115,24 @@
 		font-family: Manrope, sans-serif;
 		font-size: 1.03rem;
 		color: rgb(209 213 219);
+		transform: translate(-50%, -50%) scale(var(--currency-pill-scale));
+		transform-origin: center;
+		backface-visibility: hidden;
+	}
+
+	.currency-pill--gbp {
+		left: 21%;
+		top: 45%;
+	}
+
+	.currency-pill--eur {
+		left: 61%;
+		top: 67%;
+	}
+
+	.currency-pill--jpy {
+		left: 73%;
+		top: 35%;
 	}
 
 	.transfer-details { min-width: 0; flex: 1; }
