@@ -24,7 +24,7 @@ import '../styles/eor-cost-calculator.css';
 						<span data-translate="calculator.employees">Employees on EOR</span>
 						<span class="eor-stepper">
 							<button type="button" data-step="-1" aria-label="Decrease employee count">−</button>
-							<input id="eor-headcount" type="number" min="1" max="500" value="5" />
+							<input id="eor-headcount" type="number" min="0" step="1" value="5" />
 							<button type="button" data-step="1" aria-label="Increase employee count">+</button>
 						</span>
 					</label>
@@ -42,7 +42,7 @@ import '../styles/eor-cost-calculator.css';
 
 					<label class="eor-field" for="eor-fee">
 						<span data-translate="calculator.fee">Service fee per employee</span>
-						<span class="eor-money-input"><b aria-hidden="true">$</b><input id="eor-fee" type="number" min="0" step="1" value="599" /></span>
+						<span class="eor-money-input"><b aria-hidden="true">$</b><input id="eor-fee" type="number" min="0" max="10000" step="1" value="599" /></span>
 						<small data-translate="calculator.feeHint">Monthly provider fee per employee, excluding salary and employer taxes.</small>
 					</label>
 
@@ -135,6 +135,8 @@ import '../styles/eor-cost-calculator.css';
 </style>
 
 <script>
+	import { normalizeEorEmployeeCount, normalizeEorServiceFee } from '../../src/utils/eor-cost-inputs';
+
 	const root = document.querySelector<HTMLElement>('#eor-cost-calculator');
 	const headcount = document.querySelector<HTMLInputElement>('#eor-headcount');
 	const provider = document.querySelector<HTMLSelectElement>('#eor-provider');
@@ -159,9 +161,8 @@ import '../styles/eor-cost-calculator.css';
 	const flag = (code: string) => code.replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
 
 	const update = () => {
-		const count = Math.min(500, Math.max(1, Math.round(numberValue(headcount, 1))));
-		const currentFee = numberValue(fee);
-		if (headcount && Number(headcount.value) !== count) headcount.value = String(count);
+		const count = normalizeEorEmployeeCount(headcount?.value);
+		const currentFee = normalizeEorServiceFee(fee?.value);
 		const currentMonthly = currentFee * count;
 		const garnaMonthly = GARNA_FEE * count;
 		const yearlySaving = (currentFee - GARNA_FEE) * count * 12;
@@ -190,10 +191,20 @@ import '../styles/eor-cost-calculator.css';
 		}
 	};
 
-	root?.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((button) => button.addEventListener('click', () => { if (headcount) headcount.value = String(Math.min(500, Math.max(1, numberValue(headcount, 1) + Number(button.dataset.step)))); update(); }));
+	root?.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((button) => button.addEventListener('click', () => {
+		if (headcount) {
+			const nextCount = normalizeEorEmployeeCount(headcount.value) + Number(button.dataset.step);
+			headcount.value = String(Math.max(0, nextCount));
+		}
+		update();
+	}));
 	provider?.addEventListener('change', () => { const listedFee = provider.selectedOptions[0]?.dataset.fee; if (fee) { fee.value = listedFee || ''; if (!listedFee) fee.focus(); } update(); });
-	fee?.addEventListener('input', () => { const listedFee = provider?.selectedOptions[0]?.dataset.fee; if (provider && listedFee && fee.value !== listedFee) provider.value = 'other'; update(); });
-	headcount?.addEventListener('input', update); salary?.addEventListener('input', update);
+	fee?.addEventListener('input', () => { const normalizedFee = normalizeEorServiceFee(fee.value); if (fee.value && Number(fee.value) !== normalizedFee) fee.value = String(normalizedFee); const listedFee = provider?.selectedOptions[0]?.dataset.fee; if (provider && listedFee && fee.value !== listedFee) provider.value = 'other'; update(); });
+	const commitHeadcount = () => { if (headcount) headcount.value = String(normalizeEorEmployeeCount(headcount.value)); update(); };
+	headcount?.addEventListener('input', update);
+	headcount?.addEventListener('change', commitHeadcount);
+	headcount?.addEventListener('blur', commitHeadcount);
+	salary?.addEventListener('input', update);
 	toggle?.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') !== 'true'; toggle.setAttribute('aria-expanded', String(open)); if (moreFields) moreFields.hidden = !open; root?.querySelectorAll<HTMLElement>('[data-full-cost]').forEach((row) => { row.hidden = !open; }); update(); });
 
 	const filterCountries = (value = countryInput?.value || '') => {
