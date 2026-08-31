@@ -412,6 +412,7 @@ export const payrollSolutionNewPt = {
 			'"Tive problemas com as autoridades fiscais locais antes de usar a Garna. Agora tenho todos os documentos fiscais em ordem."',
 		'Marketing Consultant': 'Marketing Consultant',
 	},
+	...homePt,
 	footer: homePt.footer,
 	bookingWidget: homePt.bookingWidget,
 };

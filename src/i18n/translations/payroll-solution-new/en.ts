@@ -81,6 +81,7 @@ export const payrollSolutionNewEn = {
 		description: 'Pay your team in 150+ countries with just a few clicks. No red tape, just fast payments',
 		button: 'Book a demo',
 	},
+	...homeEn,
 	footer: homeEn.footer,
 	bookingWidget: homeEn.bookingWidget,
 };

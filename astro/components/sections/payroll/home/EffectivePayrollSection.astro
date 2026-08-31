@@ -6,8 +6,8 @@ import ContractorDashboardVisual from '../../../visuals/ContractorDashboardVisua
 
 <Section
 	spacing="default"
-	title={{ text: 'Effective Payroll For Your Team Starts Here' }}
-	description={{ text: "CSV mass payments or single transfers, no delays, no extra fees. Automate it once it's set up" }}
+	title={{ text: 'Effective Payroll For Your Team Starts Here', translateKey: 'sectionHeadings.effectivePayroll' }}
+	description={{ text: "CSV mass payments or single transfers, no delays, no extra fees. Automate it once it's set up", translateKey: 'sectionDescriptions.effectivePayroll' }}
 	headerClass="mb-8 max-w-4xl lg:mb-10"
 	titleClass="lg:text-5xl"
 	contentClass="relative mx-auto max-w-6xl overflow-visible perspective-1000"
@@ -20,9 +20,9 @@ import ContractorDashboardVisual from '../../../visuals/ContractorDashboardVisua
 			effect="none"
 			icon="none"
 			onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'effective_payroll_demo' });"
-		>
-			Book a demo
-		</Button>
+	>
+			<span data-translate="cta.bookDemo">Book a demo</span>
+	</Button>
 	</div>
 	<ContractorDashboardVisual />
 </Section>

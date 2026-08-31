@@ -5,6 +5,10 @@ import { getHeaderTranslations } from '../i18n/translations/header';
 
 const FOOTER_LANG_SELECT_PLACEHOLDER = '<!-- FOOTER_LANG_SELECT -->';
 const FOOTER_LEGAL_LINKS_PLACEHOLDER = '<!-- FOOTER_LEGAL_LINKS -->';
+const FOOTER_LANG_SELECT_START = '<!-- FOOTER_LANG_SELECT_START -->';
+const FOOTER_LANG_SELECT_END = '<!-- FOOTER_LANG_SELECT_END -->';
+const FOOTER_LEGAL_LINKS_START = '<!-- FOOTER_LEGAL_LINKS_START -->';
+const FOOTER_LEGAL_LINKS_END = '<!-- FOOTER_LEGAL_LINKS_END -->';
 
 /**
  * Builds the same-page URL for a given language (worker-side).
@@ -58,7 +62,7 @@ function getLanguagePagePath(pageName: string, lang: string): string {
  * Custom dropdown with styles and animation copied entirely from SelectForm (selectForm.module.css).
  * Injected server-side; on option click navigates to the same page in the selected language.
  */
-function buildFooterLangSelectHtml(
+export function buildFooterLangSelectHtml(
 	pageName: string,
 	currentLanguage: string,
 	languageLabel: string,
@@ -147,6 +151,19 @@ function buildFooterLangSelectHtml(
 	);
 }
 
+export function buildFooterLegalLinksHtml(currentLanguage: string): string {
+	const langParam = currentLanguage.toLowerCase();
+	const agreementUrl = `https://app.garna.io/api/documents/agreement?lang=${escapeHtml(langParam)}`;
+	const privacyUrl = `https://app.garna.io/api/documents/privacy?lang=${escapeHtml(langParam)}`;
+
+	return (
+		'<nav class="footer-legal-links flex flex-wrap items-center gap-x-3 gap-y-1 mt-3 md:mt-4 text-sm text-gray-500 font-manrope" aria-label="Legal">' +
+		`<a href="${agreementUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.termsOfService">Terms of Service</a>` +
+		`<a href="${privacyUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.privacyPolicy">Privacy Policy</a>` +
+		'</nav>'
+	);
+}
+
 export function injectPageTranslations(
 	html: string,
 	pageName: string,
@@ -209,19 +226,16 @@ export function injectPageTranslations(
 		);
 		if (html.includes(FOOTER_LANG_SELECT_PLACEHOLDER)) {
 			html = html.replace(FOOTER_LANG_SELECT_PLACEHOLDER, footerLangSelectHtml);
+		} else {
+			html = replaceMarkedBlock(html, FOOTER_LANG_SELECT_START, FOOTER_LANG_SELECT_END, footerLangSelectHtml);
 		}
 
 		// Footer legal links (Privacy Policy, Terms of Service) with current lang in URL
-		const langParam = currentLanguage.toLowerCase();
-		const agreementUrl = `https://app.garna.io/api/documents/agreement?lang=${escapeHtml(langParam)}`;
-		const privacyUrl = `https://app.garna.io/api/documents/privacy?lang=${escapeHtml(langParam)}`;
-		const footerLegalLinksHtml =
-			'<nav class="footer-legal-links flex flex-wrap items-center gap-x-3 gap-y-1 mt-3 md:mt-4 text-sm text-gray-500 font-manrope" aria-label="Legal">' +
-			`<a href="${agreementUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.termsOfService">Terms of Service</a>` +
-			`<a href="${privacyUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.privacyPolicy">Privacy Policy</a>` +
-			'</nav>';
+		const footerLegalLinksHtml = buildFooterLegalLinksHtml(currentLanguage);
 		if (html.includes(FOOTER_LEGAL_LINKS_PLACEHOLDER)) {
 			html = html.replace(FOOTER_LEGAL_LINKS_PLACEHOLDER, footerLegalLinksHtml);
+		} else {
+			html = replaceMarkedBlock(html, FOOTER_LEGAL_LINKS_START, FOOTER_LEGAL_LINKS_END, footerLegalLinksHtml);
 		}
 
 		{
@@ -490,6 +504,14 @@ export function injectPageTranslations(
 	} catch {
 		return html; // Return original HTML on error
 	}
+}
+
+function replaceMarkedBlock(html: string, startMarker: string, endMarker: string, replacement: string): string {
+	const startIndex = html.indexOf(startMarker);
+	const endIndex = html.indexOf(endMarker, startIndex + startMarker.length);
+	if (startIndex < 0 || endIndex < 0) return html;
+
+	return `${html.slice(0, startIndex + startMarker.length)}${replacement}${html.slice(endIndex)}`;
 }
 
 /**

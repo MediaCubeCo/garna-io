@@ -98,6 +98,7 @@
 	.currency-pill-layer {
 		--currency-globe-reference-width: 430px;
 		--currency-pill-scale: min(1, calc(100cqw / var(--currency-globe-reference-width)));
+		--currency-pill-offset-y: 0%;
 		container-type: inline-size;
 		pointer-events: none;
 	}
@@ -122,17 +123,67 @@
 
 	.currency-pill--gbp {
 		left: 21%;
-		top: 45%;
+		top: calc(45% + var(--currency-pill-offset-y));
 	}
 
 	.currency-pill--eur {
 		left: 61%;
-		top: 67%;
+		top: calc(67% + var(--currency-pill-offset-y));
 	}
 
 	.currency-pill--jpy {
 		left: 73%;
-		top: 35%;
+		top: calc(35% + var(--currency-pill-offset-y));
+	}
+
+	:global(html[lang='ru']) .currency-pill-layer {
+		--currency-pill-offset-y: -6%;
+	}
+
+	:global(html[lang='es']) .currency-pill-layer {
+		--currency-pill-offset-y: -8%;
+	}
+
+	:global(html[lang='pt']) .currency-pill-layer {
+		--currency-pill-offset-y: -6%;
+	}
+
+	@media (min-width: 1080px) {
+		:global(html[lang='en']) .currency-pill-layer {
+			--currency-pill-offset-y: -4%;
+		}
+	}
+
+	@media (max-width: 1079.98px) {
+		:global(html[lang='en']) .currency-pill-layer {
+			--currency-pill-offset-y: -12%;
+		}
+
+		:global(html[lang='pt']) .currency-pill-layer {
+			--currency-pill-offset-y: -16%;
+		}
+
+		:global(html[lang='ru']) .currency-pill-layer {
+			--currency-pill-offset-y: -22%;
+		}
+
+		:global(html[lang='es']) .currency-pill-layer {
+			--currency-pill-offset-y: -18%;
+		}
+	}
+
+	@media (max-width: 560px) {
+		:global(html[lang='ru']) .currency-pill-layer {
+			--currency-pill-offset-y: -10%;
+		}
+
+		:global(html[lang='es']) .currency-pill-layer {
+			--currency-pill-offset-y: -10%;
+		}
+
+		:global(html[lang='pt']) .currency-pill-layer {
+			--currency-pill-offset-y: -9%;
+		}
 	}
 
 	.transfer-details { min-width: 0; flex: 1; }

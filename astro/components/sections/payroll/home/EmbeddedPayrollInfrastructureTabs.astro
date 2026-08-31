@@ -1,126 +1,35 @@
 ---
-import Section from '../../../layout/Section.astro';
+import TabbedImageFeatureSection from '../../TabbedImageFeatureSection.astro';
+
+const panels = [
+	{
+		key: 'api',
+		tab: { text: 'API integration', translateKey: 'embeddedPayroll.tabs.api' },
+		image: '/images/embedded-api-people-v10.jpg',
+		imagePosition: 'center 42%',
+		imagePositionMobile: '72% 42%',
+		tag: { text: 'Built for product teams', translateKey: 'embeddedPayroll.panels.api.tag' },
+		title: { text: 'API contractor management and payments', translateKey: 'embeddedPayroll.panels.api.title' },
+		description: { text: 'Integrate global contractor payments directly into your platform', translateKey: 'embeddedPayroll.panels.api.description' },
+		cta: { text: 'Learn more', translateKey: 'cta.learnMore', href: '/form' },
+	},
+	{
+		key: 'brand',
+		tab: { text: 'White Label', translateKey: 'embeddedPayroll.tabs.brand' },
+		image: '/images/embedded-white-label-people-v3.jpg',
+		copyWidthTablet: '460px',
+		tag: { text: 'Built for payroll brands', translateKey: 'embeddedPayroll.panels.brand.tag' },
+		title: { text: 'White-label contractor dashboard and payments', translateKey: 'embeddedPayroll.panels.brand.title' },
+		description: { text: 'Launch payroll under your own brand, powered by Garna', translateKey: 'embeddedPayroll.panels.brand.description' },
+		cta: { text: 'Learn more', translateKey: 'cta.learnMore', href: '/form' },
+	},
+];
 ---
 
-<Section spacing="default" title={{ text: 'Embedded Payroll Infrastructure', translateKey: 'sectionHeadings.embeddedPayrollInfrastructure' }} description={{ text: 'Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand', translateKey: 'sectionDescriptions.embeddedPayrollInfrastructure' }} headerClass="mb-12 max-w-5xl lg:mb-16" titleClass="lg:text-5xl">
-  <div class="embedded" data-embedded>
-    <div class="stage">
-      <article class="panel" data-panel="api">
-        <img class="panel-image" src="/images/embedded-api-people-v10.jpg" alt="" loading="lazy" decoding="async" />
-        <div class="panel-shade" aria-hidden="true"></div>
-        <div class="copy"><span class="copy-tag">Built for product teams</span><h3>API contractor management and payments</h3><p>Integrate global contractor payments directly into your platform</p><a class="learn-more" href="/form"><span>Learn more</span><span aria-hidden="true">→</span></a></div>
-      </article>
-      <article class="panel" data-panel="brand" hidden>
-        <img class="panel-image" src="/images/embedded-white-label-people-v3.jpg" alt="" loading="lazy" decoding="async" />
-        <div class="panel-shade" aria-hidden="true"></div>
-        <div class="copy"><span class="copy-tag">Built for payroll brands</span><h3>White-label contractor dashboard and payments</h3><p>Launch payroll under your own brand, powered by Garna</p><a class="learn-more" href="/form"><span>Learn more</span><span aria-hidden="true">→</span></a></div>
-      </article>
-    </div>
-    <div class="tabs" role="tablist" aria-label="Embedded payroll solutions">
-      <button class="tab active" type="button" role="tab" aria-selected="true" data-tab="api"><span>API integration</span></button>
-      <button class="tab" type="button" role="tab" aria-selected="false" data-tab="brand"><span>White Label</span></button>
-    </div>
-  </div>
-</Section>
-
-<script>
-  document.querySelectorAll('[data-embedded]').forEach((root) => {
-    const tabs = Array.from(root.querySelectorAll('[data-tab]'));
-    const panels = root.querySelectorAll('[data-panel]');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const duration = 14000;
-    let activeIndex = 0;
-    let startedAt = 0;
-    let elapsed = 0;
-    let frame = 0;
-    let inViewport = false;
-
-    const show = (index, restart = true) => {
-      activeIndex = index;
-      tabs.forEach((item, itemIndex) => {
-        const active = itemIndex === index;
-        item.classList.toggle('active', active);
-        item.setAttribute('aria-selected', String(active));
-        if (item instanceof HTMLElement) item.style.setProperty('--progress', active && reduceMotion ? '1' : '0');
-      });
-      const key = tabs[index]?.getAttribute('data-tab');
-      panels.forEach((panel) => { if (panel instanceof HTMLElement) panel.hidden = panel.getAttribute('data-panel') !== key; });
-      if (restart) {
-        elapsed = 0;
-        startedAt = performance.now();
-      }
-    };
-
-    const tick = (now) => {
-      if (!inViewport || document.hidden || reduceMotion) return;
-      const progress = Math.min((elapsed + now - startedAt) / duration, 1);
-      const activeTab = tabs[activeIndex];
-      if (activeTab instanceof HTMLElement) activeTab.style.setProperty('--progress', String(progress));
-      if (progress >= 1) show((activeIndex + 1) % tabs.length);
-      frame = requestAnimationFrame(tick);
-    };
-
-    const start = () => {
-      if (!inViewport || document.hidden || reduceMotion || frame) return;
-      startedAt = performance.now();
-      frame = requestAnimationFrame(tick);
-    };
-
-    const pause = () => {
-      if (frame) cancelAnimationFrame(frame);
-      frame = 0;
-      if (startedAt) elapsed = Math.min(elapsed + performance.now() - startedAt, duration);
-      startedAt = 0;
-    };
-
-    tabs.forEach((tab, index) => tab.addEventListener('click', () => {
-      pause();
-      show(index);
-      start();
-    }));
-
-    const observer = new IntersectionObserver(([entry]) => {
-      const nextInViewport = Boolean(entry?.isIntersecting);
-      if (nextInViewport && !inViewport) {
-        inViewport = true;
-        pause();
-        show(0);
-        start();
-        return;
-      }
-      inViewport = nextInViewport;
-      if (!inViewport) pause();
-    }, { threshold: 0.25 });
-    observer.observe(root);
-    document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); else start(); });
-    show(0);
-  });
-</script>
-
-<style>
-  .embedded{width:100%}
-  .tabs{display:flex;width:max-content;justify-content:center;gap:4px;margin:28px auto 0;border:1px solid rgb(255 255 255 / .1);border-radius:999px;background:rgb(255 255 255 / .035);padding:4px}
-  .tab{--progress:0;position:relative;min-width:160px;overflow:hidden;padding:10px 22px;border:0;border-radius:999px;background:transparent;color:rgb(255 255 255 / .6);font:600 15px/1.2 Manrope,sans-serif;transition:background-color .2s ease,color .2s ease}
-  .tab::before{position:absolute;z-index:0;inset:0;content:"";border-radius:0;background:#cbf300;opacity:0;transform:scaleX(var(--progress));transform-origin:left center;will-change:transform}
-  .tab span{position:relative;z-index:1}
-  .tab:hover{color:rgb(255 255 255 / .88)}
-  .tab:focus-visible{outline:2px solid rgb(255 255 255 / .35);outline-offset:3px}
-  .tab.active{background:rgb(203 243 0 / .78);color:#080a08}
-  .tab.active::before{opacity:1}
-  .stage{overflow:hidden;border:1px solid #ffffff1f;border-radius:28px;background:#0d1014;box-shadow:0 34px 90px #0005}
-  .panel{position:relative;min-height:clamp(420px,42vw,540px);overflow:hidden;background:#090b0d}
-  .panel[hidden]{display:none}
-  .panel-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .panel-shade{position:absolute;inset:0;background:linear-gradient(90deg,#0506068f 0%,#05060630 48%,transparent 76%),linear-gradient(0deg,#05060645 0%,transparent 55%)}
-  .copy{position:absolute;z-index:2;left:clamp(18px,3vw,40px);bottom:clamp(18px,3vw,40px);width:min(520px,calc(100% - 36px));padding:clamp(22px,3vw,34px);border:1px solid rgb(255 255 255 / .1);border-radius:22px;background:rgb(7 8 10 / .72);box-shadow:0 22px 60px #0008;backdrop-filter:blur(12px)}
-  .copy-tag{display:block;margin-bottom:12px;color:#cbf300;font:600 12px/1.2 Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase}
-  .copy h3{max-width:460px;margin:0 0 14px;color:#fff;font:400 clamp(24px,2.2vw,32px)/1.12 Manrope,sans-serif;letter-spacing:-.035em}
-  .copy p{max-width:460px;color:#bdc3ca;font:400 16px/1.55 Manrope,sans-serif}
-  .learn-more{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:0;border:0;background:transparent;color:#bfe900;font:600 14px/1.2 Manrope,sans-serif;text-decoration:none}
-  .learn-more span:last-child{transition:transform .2s ease}
-  .learn-more:hover span:last-child,.learn-more:focus-visible span:last-child{transform:translateX(4px)}
-  .learn-more:focus-visible{outline:0}
-  @media(min-width:801px) and (max-width:1079px){.embedded{width:calc(100vw - 32px);margin-inline:calc(50% - 50vw + 16px)}.panel[data-panel="brand"] .copy{width:min(460px,calc(100% - 36px));padding:24px}}
-  @media(max-width:800px){.tabs{margin:20px auto 0}.panel{min-height:620px}.panel-image{object-position:center}.panel[data-panel="api"] .panel-image{object-position:72% center}.panel-shade{background:linear-gradient(0deg,#050606c2 0%,#05060626 72%,transparent 100%)}.copy{bottom:24px}}
-  @media(max-width:520px){.tabs{display:grid;width:100%;grid-template-columns:1fr 1fr}.tab{min-width:0;padding:10px 12px}.stage{border-radius:20px}.panel{min-height:610px}.copy{left:14px;bottom:14px;width:calc(100% - 28px);padding:20px}.copy h3{font-size:23px}}
-</style>
+<TabbedImageFeatureSection
+	id="home-embedded-payroll"
+	title={{ text: 'Embedded Payroll Infrastructure', translateKey: 'sectionHeadings.embeddedPayrollInfrastructure' }}
+	description={{ text: 'Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand', translateKey: 'sectionDescriptions.embeddedPayrollInfrastructure' }}
+	panels={panels}
+	tabsAriaLabel={{ text: 'Embedded payroll solutions', translateKey: 'embeddedPayroll.tabs.ariaLabel' }}
+/>

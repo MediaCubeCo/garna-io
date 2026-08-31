@@ -651,7 +651,7 @@ export const forCreatorsRu = {
 		'$ 1,000,000.00 available for team payouts': '$ 1,000,000.00 доступно для выплат команде',
 		'Pay your contractors now — repay later with flexible terms': 'Платите подрядчикам сейчас, а возвращайте позже на гибких условиях',
 		'Request': 'Запросить',
-		'Pay contractors now, settle later': 'Платите подрядчикам сейчас, рассчитывайтесь позже',
+		'Pay contractors now, settle later': 'Выплаты сейчас, расчет позже',
 		'Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow':
 			'Выполняйте глобальные выплаты сразу и возвращайте средства Garna по графику, который подходит денежному потоку вашего бизнеса',
 		'Immediate payouts, deferred settlement': 'Мгновенные выплаты, отложенный расчет',

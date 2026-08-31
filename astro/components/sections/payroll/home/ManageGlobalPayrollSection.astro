@@ -7,32 +7,32 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 ---
 
 <Section
-	title={{ text: 'Manage Global Payroll Effortlessly' }}
-	description={{ text: 'One platform to run payroll for freelancers, remote employees, and full-time teams' }}
+	title={{ text: 'Manage Global Payroll Effortlessly', translateKey: 'sectionHeadings.manageGlobalPayroll' }}
+	description={{ text: 'One platform to run payroll for freelancers, remote employees, and full-time teams', translateKey: 'sectionDescriptions.manageGlobalPayroll' }}
 	spacing="default"
 	headerClass="mb-16 max-w-4xl lg:mb-20"
 	titleClass="lg:text-5xl"
 	contentClass="grid grid-cols-1 gap-4 min-[1080px]:grid-cols-2"
 >
 	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
-		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white">Automated Payroll Platform</h3>
-		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed">Automate global payout processes with a flexible, user-friendly platform</p>
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-translate="manageGlobalPayroll.cards.automation.title">Automated Payroll Platform</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.automation.description">Automate global payout processes with a flexible, user-friendly platform</p>
 		<div class="payroll-feature-card__visual payroll-feature-card__visual--automation mt-6 flex min-h-0 flex-1 items-start justify-center overflow-hidden pt-2">
 			<div class="payroll-feature-card__visual-scale flex h-full w-full items-start justify-center"><GarnaModularPlatformVisual /></div>
 		</div>
 	</article>
 
 	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
-		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white">Global Reach</h3>
-		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed">Pay in 150+ countries with local currencies and crypto</p>
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-translate="manageGlobalPayroll.cards.globalReach.title">Global Reach</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.globalReach.description">Pay in 150+ countries with local currencies and crypto</p>
 		<div class="-mx-8 -mb-8 mt-8 flex min-h-0 flex-1 items-start justify-center overflow-hidden lg:-mx-12">
 			<div class="global-reach-frame h-full w-full"><GlobalReachVisual /></div>
 		</div>
 	</article>
 
 	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
-		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white">Flexible Payout Methods</h3>
-		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed">Pay teams by bank transfer, card, electronic wallet, or crypto</p>
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-translate="manageGlobalPayroll.cards.payoutMethods.title">Flexible Payout Methods</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.payoutMethods.description">Pay teams by bank transfer, card, electronic wallet, or crypto</p>
 		<div class="payroll-feature-card__methods-visual mt-10 flex min-h-0 flex-1 items-end justify-center overflow-visible px-8 pt-8">
 			<div class="payroll-feature-card__methods-fit w-full max-w-md">
 				<div class="payroll-feature-card__methods-scale"><PayoutMethodsPhoneVisual /></div>
@@ -41,9 +41,9 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 	</article>
 
 	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
-		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white">No hidden Fees</h3>
-		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed">Transparent pricing, zero setup cost</p>
-		<div class="payroll-feature-card__visual mt-10 flex min-h-0 flex-1 items-center justify-center overflow-hidden py-8">
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-translate="manageGlobalPayroll.cards.fees.title">No hidden Fees</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.fees.description">Transparent pricing, zero setup cost</p>
+		<div class="payroll-feature-card__visual payroll-feature-card__visual--fees mt-10 flex min-h-0 flex-1 items-center justify-center overflow-hidden py-8">
 			<div class="w-full"><TransparentFeesVisual /></div>
 		</div>
 	</article>
@@ -92,9 +92,113 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 		max-width: min(100%, 32rem);
 	}
 
-	@media (max-width: 1079px) {
+	.payroll-feature-card__visual--automation {
+		--payroll-automation-scale: 1;
+	}
+
+	:global(html[lang='pt']) .payroll-feature-card__visual--automation {
+		--payroll-automation-scale: 0.9;
+	}
+
+	.payroll-feature-card__visual--automation .payroll-feature-card__visual-scale {
+		width: calc(100% / var(--payroll-visual-scale, var(--payroll-automation-scale)));
+		max-width: calc(100% / var(--payroll-visual-scale, var(--payroll-automation-scale)));
+		transform: scale(var(--payroll-visual-scale, var(--payroll-automation-scale)));
+		transform-origin: top center;
+	}
+
+	@media (min-width: 1080px) and (max-width: 1099.98px) {
+		.payroll-feature-card__visual--automation {
+			--payroll-automation-scale: 0.88;
+		}
+	}
+
+	@media (min-width: 1080px) and (max-width: 1280px) {
+		:global(html[lang='ru']) .payroll-feature-card__visual--automation {
+			--payroll-automation-scale: 0.88;
+		}
+
+		:global(html[lang='ru']) .payroll-feature-card__methods-visual {
+			--payroll-methods-natural-width: 450px;
+			--payroll-methods-natural-height: 461px;
+			--payroll-methods-fit-scale: 0.88;
+			margin-bottom: -2rem;
+		}
+
+		:global(html[lang='ru']) .payroll-feature-card__methods-fit {
+			position: relative;
+			flex: 0 0 auto;
+			width: calc(var(--payroll-methods-natural-width) * var(--payroll-methods-fit-scale));
+			max-width: none;
+			height: calc(var(--payroll-methods-natural-height) * var(--payroll-methods-fit-scale));
+		}
+
+		:global(html[lang='ru']) .payroll-feature-card__methods-scale {
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			width: var(--payroll-methods-natural-width);
+			height: var(--payroll-methods-natural-height);
+			transform: translateX(-50%) scale(var(--payroll-methods-fit-scale));
+			transform-origin: bottom center;
+		}
+	}
+
+	@media (min-width: 1080px) {
+		:global(html[lang='pt']) .payroll-feature-card__methods-visual {
+			--payroll-methods-natural-width: 450px;
+			--payroll-methods-natural-height: 461px;
+			--payroll-methods-fit-scale: 0.84;
+			margin-bottom: -2rem;
+		}
+
+		:global(html[lang='pt']) .payroll-feature-card__methods-fit {
+			position: relative;
+			flex: 0 0 auto;
+			width: calc(var(--payroll-methods-natural-width) * var(--payroll-methods-fit-scale));
+			max-width: none;
+			height: calc(var(--payroll-methods-natural-height) * var(--payroll-methods-fit-scale));
+		}
+
+		:global(html[lang='pt']) .payroll-feature-card__methods-scale {
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			width: var(--payroll-methods-natural-width);
+			height: var(--payroll-methods-natural-height);
+			transform: translateX(-50%) scale(var(--payroll-methods-fit-scale));
+			transform-origin: bottom center;
+		}
+	}
+
+	@media (max-width: 1079.98px) {
 		.payroll-feature-card {
 			padding-inline: clamp(1.25rem, 5vw, 2rem);
+		}
+
+		:global(html[lang='pt']) .payroll-feature-card__methods-visual {
+			--payroll-methods-natural-width: 450px;
+			--payroll-methods-natural-height: 461px;
+			--payroll-methods-fit-scale: 0.82;
+			margin-bottom: -2rem;
+		}
+
+		:global(html[lang='pt']) .payroll-feature-card__methods-fit {
+			position: relative;
+			flex: 0 0 auto;
+			width: calc(var(--payroll-methods-natural-width) * var(--payroll-methods-fit-scale));
+			max-width: none;
+			height: calc(var(--payroll-methods-natural-height) * var(--payroll-methods-fit-scale));
+		}
+
+		:global(html[lang='pt']) .payroll-feature-card__methods-scale {
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			width: var(--payroll-methods-natural-width);
+			height: var(--payroll-methods-natural-height);
+			transform: translateX(-50%) scale(var(--payroll-methods-fit-scale));
+			transform-origin: bottom center;
 		}
 
 		.payroll-feature-card__visual > div,
@@ -112,30 +216,50 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 		.payroll-feature-card__visual--automation {
 			--payroll-automation-scale: 0.91;
 		}
-
-		.payroll-feature-card__visual--automation .payroll-feature-card__visual-scale {
-			width: calc(100% / var(--payroll-visual-scale, var(--payroll-automation-scale)));
-			max-width: calc(100% / var(--payroll-visual-scale, var(--payroll-automation-scale)));
-			transform: scale(var(--payroll-visual-scale, var(--payroll-automation-scale)));
-		}
-
-		.payroll-feature-card__visual--automation .payroll-feature-card__visual-scale {
-			--payroll-visual-scale: var(--payroll-automation-scale);
-			transform-origin: top center;
-		}
 	}
 
 	@media (max-width: 560px) {
+		:global(html[lang='ru']) .payroll-feature-card__visual--automation {
+			--payroll-automation-scale: 0.84;
+		}
+
+		:global(html[lang='ru']) .payroll-feature-card__visual--fees {
+			--payroll-fees-scale: 0.86;
+		}
+
+		:global(html[lang='es']) .payroll-feature-card__visual--fees {
+			--payroll-fees-scale: 0.9;
+		}
+
+		:global(html[lang='pt']) .payroll-feature-card__visual--fees {
+			--payroll-fees-scale: 0.9;
+		}
+
+		:global(html[lang='ru']) .payroll-feature-card__visual--fees > div,
+		:global(html[lang='es']) .payroll-feature-card__visual--fees > div,
+		:global(html[lang='pt']) .payroll-feature-card__visual--fees > div {
+			width: calc(100% / var(--payroll-fees-scale));
+			max-width: calc(100% / var(--payroll-fees-scale));
+			transform: scale(var(--payroll-fees-scale));
+			transform-origin: center center;
+		}
+
 		.payroll-feature-card__methods-visual {
 			--payroll-methods-natural-width: 450px;
 			--payroll-methods-natural-height: 461px;
+			--payroll-methods-fit-bleed: 0px;
 			--payroll-methods-fit-scale: min(
 				1,
-				calc(100cqw / var(--payroll-methods-natural-width))
+				calc((100cqw + var(--payroll-methods-fit-bleed)) / var(--payroll-methods-natural-width))
 			);
 			container-type: inline-size;
 			margin-bottom: -2rem;
 			padding-inline: 0;
+		}
+
+		:global(html[lang='en']) .payroll-feature-card__methods-visual,
+		:global(html[lang='es']) .payroll-feature-card__methods-visual {
+			--payroll-methods-fit-bleed: 26px;
 		}
 
 		.payroll-feature-card__methods-fit {

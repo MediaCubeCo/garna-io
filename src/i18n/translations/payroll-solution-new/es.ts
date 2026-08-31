@@ -380,6 +380,7 @@ export const payrollSolutionNewEs = {
 		'Full Stack Developer': 'Full Stack Developer',
 		'Marketing Consultant': 'Marketing Consultant',
 	},
+	...homeEs,
 	footer: homeEs.footer,
 	bookingWidget: homeEs.bookingWidget,
 };

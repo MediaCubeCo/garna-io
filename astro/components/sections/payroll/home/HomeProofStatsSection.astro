@@ -5,6 +5,7 @@ const stats = [
 	{
 		value: '400+',
 		label: 'businesses using Garna',
+		labelKey: 'homeProof.stats.businesses.label',
 		image: '/pages/payroll-solution-new/assets/home-proof-mountain-man-v1.png',
 		alt: 'A remote professional standing in the mountains at sunrise',
 		imagePosition: 'center bottom',
@@ -13,7 +14,9 @@ const stats = [
 		notice: {
 			icon: 'check',
 			title: 'Invoice approved',
+			titleKey: 'homeProof.stats.businesses.notice.title',
 			meta: 'Brand Studio LLC',
+			metaKey: 'homeProof.stats.businesses.notice.meta',
 			amount: '+4,820 $',
 			tone: 'bank',
 		},
@@ -21,6 +24,7 @@ const stats = [
 	{
 		value: '$110M+',
 		label: 'paid to specialists',
+		labelKey: 'homeProof.stats.paid.label',
 		image: '/pages/payroll-solution-new/assets/home-hero-profile-clouds-v2.jpg',
 		alt: 'A global professional in profile against a clear blue sky',
 		featured: true,
@@ -30,7 +34,9 @@ const stats = [
 		notice: {
 			icon: 'receipt',
 			title: 'Salary batch sent',
+			titleKey: 'homeProof.stats.paid.notice.title',
 			meta: '38 specialists',
+			metaKey: 'homeProof.stats.paid.notice.meta',
 			amount: '+96,400 $',
 			tone: 'card',
 		},
@@ -38,6 +44,7 @@ const stats = [
 	{
 		value: '38,000+',
 		label: 'talents already use Garna',
+		labelKey: 'homeProof.stats.talents.label',
 		image: '/pages/payroll-solution-new/assets/home-proof-coffee-man-v2.png',
 		alt: 'A man in a white shirt holding coffee near a window',
 		imagePosition: 'center center',
@@ -45,7 +52,9 @@ const stats = [
 		notice: {
 			icon: 'transfer',
 			title: 'Transfer completed',
+			titleKey: 'homeProof.stats.talents.notice.title',
 			meta: 'EUR account',
+			metaKey: 'homeProof.stats.talents.notice.meta',
 			amount: '-2,350 €',
 			tone: 'crypto',
 		},
@@ -58,11 +67,11 @@ const stats = [
 	containerClass="relative"
 	width="wide"
 	spacing="default"
-	title={{ text: 'Payroll for work without borders' }}
-	description={{ text: 'Support teams, contractors, and specialists wherever work happens' }}
+	title={{ text: 'Payroll for work without borders', translateKey: 'sectionHeadings.homeProof' }}
+	description={{ text: 'Support teams, contractors, and specialists wherever work happens', translateKey: 'sectionDescriptions.homeProof' }}
 	headerClass="mb-16 max-w-4xl lg:mb-20"
 	titleClass="lg:text-5xl"
-	descriptionClass="mx-auto max-w-[34rem]"
+	descriptionClass="mx-auto max-w-4xl"
 	contained={true}
 >
 	<div class="home-proof-carousel" data-home-proof-carousel>
@@ -115,10 +124,10 @@ const stats = [
 					</span>
 					<span class="home-proof-card__notice-copy">
 						<span class="home-proof-card__notice-top">
-							<strong>{stat.notice.title}</strong>
+							<strong data-translate={stat.notice.titleKey}>{stat.notice.title}</strong>
 							<em>{stat.notice.amount}</em>
 						</span>
-						<small>{stat.notice.meta}</small>
+						<small data-translate={stat.notice.metaKey}>{stat.notice.meta}</small>
 					</span>
 					</span>
 				</div>
@@ -171,17 +180,17 @@ const stats = [
 					</span>
 					<span class="home-proof-card__notice-copy">
 						<span class="home-proof-card__notice-top">
-							<strong>{stat.notice.title}</strong>
+							<strong data-translate={stat.notice.titleKey}>{stat.notice.title}</strong>
 							<em>{stat.notice.amount}</em>
 						</span>
-						<small>{stat.notice.meta}</small>
+						<small data-translate={stat.notice.metaKey}>{stat.notice.meta}</small>
 					</span>
 					</span>
 				</div>
 			</article>
 		))}
 	</div>
-	<div class="home-proof-dots" aria-label="Choose a payroll proof card">
+	<div class="home-proof-dots" aria-label="Choose a payroll proof card" data-translate-aria-label="homeProof.carousel.ariaLabel">
 		{stats.map((stat, index) => (
 			<button
 				type="button"

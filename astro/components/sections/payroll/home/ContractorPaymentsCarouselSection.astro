@@ -1,316 +1,114 @@
 ---
-import Section from '../../../layout/Section.astro';
-import Button from '../../../ui/Button.astro';
+import ScrollVisualCarouselSection from '../../ScrollVisualCarouselSection.astro';
 
-const features = [
-	{ title: 'Hire Contractors\nWorldwide', description: 'Manage contractors, invoices, and approvals\nfrom one platform', image: '/pages/payroll-solution-new/assets/contractor-hired-original.jpg' },
-	{ title: 'Flexible Global\nPayments', description: 'Pay in 80+ currencies across 150+ countries\nby bank, card, e-wallet, or crypto', image: '/pages/payroll-solution-new/assets/flexible-global-payments.png' },
-	{ title: 'Get Misclassification\nProtection', description: 'Garna acts as contractor or agent of record\nand bears misclassification risks', image: '/pages/payroll-solution-new/assets/misclassification-protection.png' },
-];
-
-const carouselSlides = [
-	{ ...features[features.length - 1], index: features.length - 1 },
-	...features.map((feature, index) => ({ ...feature, index })),
-	{ ...features[0], index: 0 },
-	{ ...features[1], index: 1 },
-];
+const slides = [
+	{
+		key: 'hire',
+		title: {
+			text: 'Hire Contractors\nWorldwide',
+			translateKey: 'contractorCarousel.features.hire.title',
+		},
+		description: {
+			text: 'Manage contractors, invoices, and approvals\nfrom one platform',
+			translateKey: 'contractorCarousel.features.hire.description',
+		},
+		image: '/pages/payroll-solution-new/assets/contractor-hired-original.jpg',
+		overlay: {
+			type: 'hire',
+			avatarImage: '/pages/payroll-solution-new/assets/contractor-avatar-maya.png',
+			name: {
+				text: 'Maya Chen',
+				translateKey: 'contractorCarousel.notifications.hire.name',
+			},
+			status: {
+				text: 'Contractor onboarded',
+				translateKey: 'contractorCarousel.notifications.hire.status',
+			},
+			badge: {
+				text: 'Active',
+				translateKey: 'contractorCarousel.notifications.hire.badge',
+			},
+		},
+	},
+	{
+		key: 'payments',
+		title: {
+			text: 'Flexible Global\nPayments',
+			translateKey: 'contractorCarousel.features.payments.title',
+		},
+		description: {
+			text: 'Pay in 80+ currencies across 150+ countries\nby bank, card, e-wallet, or crypto',
+			translateKey: 'contractorCarousel.features.payments.description',
+		},
+		image: '/pages/payroll-solution-new/assets/flexible-global-payments.png',
+		overlay: {
+			type: 'payment',
+			appName: {
+				text: 'Garna',
+				translateKey: 'brand.name',
+			},
+			time: {
+				text: '2 min ago',
+				translateKey: 'contractorCarousel.notifications.payment.time',
+			},
+			title: {
+				text: 'Payment sent',
+				translateKey: 'contractorCarousel.notifications.payment.title',
+			},
+			description: {
+				text: '1,000 USD was converted to 900 EUR',
+				translateKey: 'contractorCarousel.notifications.payment.description',
+			},
+		},
+	},
+	{
+		key: 'protection',
+		title: {
+			text: 'Get Misclassification\nProtection',
+			translateKey: 'contractorCarousel.features.protection.title',
+		},
+		description: {
+			text: 'Garna acts as contractor or agent of record\nand bears misclassification risks',
+			translateKey: 'contractorCarousel.features.protection.description',
+		},
+		image: '/pages/payroll-solution-new/assets/misclassification-protection.png',
+		overlay: {
+			type: 'compliance',
+			riskLabel: {
+				text: 'Classification risk',
+				translateKey: 'contractorCarousel.notifications.compliance.riskLabel',
+			},
+			riskValue: {
+				text: 'Low',
+				translateKey: 'contractorCarousel.notifications.compliance.riskValue',
+			},
+			reviewLabel: {
+				text: 'Contract review',
+				translateKey: 'contractorCarousel.notifications.compliance.reviewLabel',
+			},
+			reviewValue: {
+				text: 'Complete',
+				translateKey: 'contractorCarousel.notifications.compliance.reviewValue',
+			},
+			footerTitle: {
+				text: 'Protected by Garna',
+				translateKey: 'contractorCarousel.notifications.compliance.footerTitle',
+			},
+			footerMeta: {
+				text: 'updated now',
+				translateKey: 'contractorCarousel.notifications.compliance.footerMeta',
+			},
+		},
+	},
+] as const;
 ---
 
-<Section
-	spacing="default"
-	contentClass="contractor-carousel-content"
->
-	<div class="contractor-carousel" data-contractor-carousel>
-		<div class="contractor-carousel__copy" aria-live="polite">
-			<h3 data-carousel-title>{features[0].title}</h3>
-			<p data-carousel-description>{features[0].description}</p>
-
-			<div class="contractor-carousel__controls">
-				<Button
-					href="#"
-					size="header"
-					variant="primary"
-					effect="none"
-					icon="none"
-					onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'contractor_carousel_demo' });"
-				>
-					Book a demo
-				</Button>
-			</div>
-		</div>
-
-		<div class="contractor-carousel__viewport">
-			<div class="contractor-carousel__rail" data-carousel-rail>
-				{carouselSlides.map((feature, sequenceIndex) => (
-					<button type="button" class:list={['contractor-carousel__slide', { 'is-active': sequenceIndex === 1 }]} data-carousel-slide data-index={feature.index} data-sequence={sequenceIndex} aria-label={`Show ${feature.title}`}>
-						<img src={feature.image} alt="" loading="lazy" />
-						{feature.index === 0 && (
-							<span class="contractor-carousel__hire-notification" aria-hidden="true">
-								<span class="contractor-carousel__hire-avatar">
-									<img src="/pages/payroll-solution-new/assets/contractor-avatar-maya.png" alt="" />
-									<span>✓</span>
-								</span>
-								<span class="contractor-carousel__hire-copy">
-									<strong>Maya Chen</strong>
-									<small>Contractor onboarded</small>
-								</span>
-								<span class="contractor-carousel__hire-status">Active</span>
-							</span>
-						)}
-						{feature.index === 1 && (
-							<span class="contractor-carousel__payment-notification" aria-hidden="true">
-								<span class="contractor-carousel__payment-header">
-									<span class="contractor-carousel__payment-icon">
-										<img src="/images/garna-g-mark-dark.svg" alt="" />
-									</span>
-									<span class="contractor-carousel__payment-app">Garna</span>
-									<span class="contractor-carousel__payment-time">2 min ago</span>
-								</span>
-								<span class="contractor-carousel__payment-copy">
-									<strong>Payment sent</strong>
-									<small>1,000 USD was converted to 900 EUR</small>
-								</span>
-							</span>
-						)}
-						{feature.index === 2 && (
-							<span class="contractor-carousel__compliance-notification" aria-hidden="true">
-								<span class="contractor-carousel__compliance-table">
-									<span class="contractor-carousel__compliance-row">
-										<small>Classification risk</small>
-										<strong>
-											Low
-										</strong>
-									</span>
-									<span class="contractor-carousel__compliance-row">
-										<small>Contract review</small>
-										<strong>
-											Complete
-										</strong>
-									</span>
-								</span>
-								<span class="contractor-carousel__compliance-footer">
-									<strong>Protected by Garna</strong>
-									<small>updated now</small>
-								</span>
-							</span>
-						)}
-						<span></span>
-					</button>
-				))}
-			</div>
-			<div class="contractor-carousel__image-controls">
-				<div class="contractor-carousel__dots">
-					{features.map((feature, index) => (
-						<button type="button" class:list={{ 'is-active': index === 0 }} data-carousel-dot data-index={index} aria-label={feature.title} aria-current={index === 0 ? 'true' : undefined}></button>
-					))}
-				</div>
-			</div>
-		</div>
-	</div>
-</Section>
-
-<script define:vars={{ features }}>
-	for (const carousel of document.querySelectorAll('[data-contractor-carousel]')) {
-		if (!(carousel instanceof HTMLElement) || carousel.dataset.ready === 'true') continue;
-		carousel.dataset.ready = 'true';
-		const rail = carousel.querySelector('[data-carousel-rail]');
-		const title = carousel.querySelector('[data-carousel-title]');
-		const description = carousel.querySelector('[data-carousel-description]');
-		const dots = [...carousel.querySelectorAll('[data-carousel-dot]')];
-		const slides = [...carousel.querySelectorAll('[data-carousel-slide]')];
-		const scrollArea = carousel.parentElement;
-		const siteHeader = document.querySelector('.garna-header');
-		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-		const scrollMode = window.matchMedia('(min-width: 0px)');
-		let activeIndex = 0;
-		let frame = 0;
-
-		const getStickyTop = () => {
-			const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
-			const carouselHeight = carousel.getBoundingClientRect().height;
-			const availableHeight = window.innerHeight - headerHeight;
-			return Math.max(headerHeight, headerHeight + ((availableHeight - carouselHeight) / 2));
-		};
-
-		const syncStickyTop = () => {
-			carousel.style.setProperty('--contractor-carousel-sticky-top', `${getStickyTop()}px`);
-		};
-
-		const updateContent = (nextIndex) => {
-			activeIndex = (nextIndex + features.length) % features.length;
-			const feature = features[activeIndex];
-			if (title) title.textContent = feature.title;
-			if (description) description.textContent = feature.description;
-			dots.forEach((dot, index) => {
-				dot.classList.toggle('is-active', index === activeIndex);
-				if (index === activeIndex) dot.setAttribute('aria-current', 'true'); else dot.removeAttribute('aria-current');
-			});
-			slides.forEach((slide) => {
-				if (!(slide instanceof HTMLElement)) return;
-				slide.classList.toggle('is-active', Number(slide.dataset.sequence ?? 0) === activeIndex + 1);
-			});
-		};
-
-		const getStep = () => {
-			if (!(rail instanceof HTMLElement)) return 0;
-			const firstSlide = slides[0];
-			if (!(firstSlide instanceof HTMLElement)) return 0;
-			const gap = Number.parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap) || 0;
-			const firstSlideStyle = getComputedStyle(firstSlide);
-			return firstSlide.offsetWidth
-				+ (Number.parseFloat(firstSlideStyle.marginLeft) || 0)
-				+ (Number.parseFloat(firstSlideStyle.marginRight) || 0)
-				+ gap;
-		};
-
-		const setProgress = (progress) => {
-			const clamped = Math.min(1, Math.max(0, progress));
-			const progressStep = clamped * features.length;
-			const nextIndex = clamped >= 1 ? features.length - 1 : Math.floor(progressStep);
-			const stepProgress = clamped >= 1 ? 1 : progressStep - nextIndex;
-			updateContent(nextIndex);
-
-			if (!(rail instanceof HTMLElement)) return;
-			const step = getStep();
-			rail.style.transform = `translateX(-${step * (activeIndex + 1)}px)`;
-
-			dots.forEach((dot, index) => {
-				if (!(dot instanceof HTMLElement)) return;
-				dot.style.setProperty('--carousel-dot-progress', String(index === activeIndex ? stepProgress : 0));
-			});
-		};
-
-		const render = () => {
-			frame = 0;
-			syncStickyTop();
-			if (reduceMotion.matches || !scrollMode.matches || !(scrollArea instanceof HTMLElement)) {
-				setProgress(activeIndex / Math.max(1, features.length - 1));
-				return;
-			}
-
-			const rect = scrollArea.getBoundingClientRect();
-			const stickyTop = getStickyTop();
-			const scrollable = Math.max(1, rect.height - stickyTop - carousel.offsetHeight);
-			setProgress(Math.min(1, Math.max(0, (stickyTop - rect.top) / scrollable)));
-		};
-
-		const schedule = () => {
-			if (!frame) frame = window.requestAnimationFrame(render);
-		};
-
-		const scrollToIndex = (index) => {
-			const normalizedIndex = Math.min(features.length - 1, Math.max(0, index));
-			if (scrollMode.matches && scrollArea instanceof HTMLElement) {
-				const rect = scrollArea.getBoundingClientRect();
-				const areaTop = window.scrollY + rect.top;
-				const stickyTop = getStickyTop();
-				const scrollable = Math.max(1, rect.height - stickyTop - carousel.offsetHeight);
-				window.scrollTo({ top: areaTop - stickyTop + scrollable * (normalizedIndex / features.length), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
-				return;
-			}
-			updateContent(normalizedIndex);
-			if (rail instanceof HTMLElement) rail.style.transform = `translateX(-${getStep() * (normalizedIndex + 1)}px)`;
-		};
-
-		dots.forEach((dot) => dot.addEventListener('click', () => scrollToIndex(Number(dot.dataset.index ?? 0))));
-		slides.forEach((slide) => slide.addEventListener('click', () => scrollToIndex(Number(slide.dataset.index ?? 0))));
-		window.addEventListener('scroll', schedule, { passive: true });
-		window.addEventListener('resize', schedule, { passive: true });
-		reduceMotion.addEventListener?.('change', schedule);
-		scrollMode.addEventListener?.('change', () => {
-			if (!(rail instanceof HTMLElement)) return;
-			rail.classList.add('is-resetting');
-			rail.style.transform = 'translateX(0)';
-			updateContent(0);
-			requestAnimationFrame(() => rail.classList.remove('is-resetting'));
-			schedule();
-		});
-		render();
-	}
-</script>
-
-<style>
-	:global(.contractor-carousel-content) { display: block; }
-	.contractor-carousel { display: grid; grid-template-columns: minmax(17rem, .72fr) minmax(0, 1.28fr); align-items: center; gap: clamp(2.5rem, 6vw, 6.5rem); min-height: 34rem; margin-right: calc(50% - 50vw); overflow: hidden; }
-	.contractor-carousel__copy { max-width: 28rem; padding-left: clamp(0rem, 2vw, 1.5rem); text-align: left; }
-	.contractor-carousel__copy h3 { margin: 0; color: #fff; font-size: clamp(2.4rem, 3.65vw, 4.25rem); font-weight: 500; letter-spacing: -.055em; line-height: .98; white-space: pre-line; }
-	.contractor-carousel__copy p { height: 3.2em; max-width: 31rem; margin: 1.5rem 0 0; color: rgb(229 231 235 / .84); font-size: clamp(1rem, 1.3vw, 1.2rem); line-height: 1.6; white-space: pre-line; }
-	.contractor-carousel__controls { display: flex; align-items: center; margin-top: 2.5rem; }
-	.contractor-carousel__image-controls { display: flex; width: 39%; justify-content: center; margin-top: 1.35rem; }
-	.contractor-carousel__dots { display: flex; align-items: center; gap: .45rem; }
-	.contractor-carousel__dots button { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 9999px; background: rgb(255 255 255 / .24); padding: 0; cursor: pointer; transition: width 220ms ease, background 220ms ease; }
-	.contractor-carousel__dots button:hover { background: rgb(255 255 255 / .44); }
-	.contractor-carousel__dots button.is-active { width: 3.4rem; background: rgb(203 243 0 / .18); box-shadow: inset 0 0 0 1px rgb(203 243 0 / .18); }
-	.contractor-carousel__dots button.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #cbf300; box-shadow: 0 0 14px rgb(203 243 0 / .52); content: ''; transform: scaleX(var(--carousel-dot-progress, 1)); transform-origin: left center; }
-	.contractor-carousel__viewport { width: 100%; overflow: hidden; padding-block: .6rem; }
-	.contractor-carousel__rail { display: flex; gap: 1.15rem; width: 100%; transform: translateX(0); transition: transform 520ms cubic-bezier(.22, 1, .36, 1); will-change: transform; }
-	.contractor-carousel__rail.is-resetting { transition: none; }
-	.contractor-carousel__slide { --notice-reference-card-width: 18.25rem; --notice-scale: min(1, calc(100cqw / var(--notice-reference-card-width))); --notice-inset: calc(1rem * var(--notice-scale)); position: relative; container-type: inline-size; flex: 0 0 39%; height: 31.5rem; margin-right: -2.34%; overflow: hidden; border: 1px solid rgb(255 255 255 / .08); border-radius: 1.75rem; background: #0a0a0a; padding: 0; cursor: pointer; opacity: .55; transform: scale(.94); transform-origin: center left; transition: opacity 420ms ease, transform 520ms cubic-bezier(.22, 1, .36, 1), border-color 220ms ease; }
-	.contractor-carousel__slide.is-active { margin-right: 0; opacity: 1; transform: none; }
-	.contractor-carousel__slide:hover { border-color: rgb(255 255 255 / .16); }
-	.contractor-carousel__slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.86) contrast(1.04) saturate(.94); }
-	.contractor-carousel__slide > span { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 0 0 / .02), rgb(0 0 0 / .22)); pointer-events: none; }
-	.contractor-carousel__slide.is-active img { filter: none; }
-	.contractor-carousel__slide.is-active > span { background: none; }
-	.contractor-carousel__slide > .contractor-carousel__hire-notification { position: absolute; z-index: 2; top: auto; right: auto; bottom: var(--notice-inset); left: var(--notice-inset); display: flex; width: calc(var(--notice-reference-card-width) - 2rem); min-height: 4.6rem; align-items: center; gap: .82rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(7 8 10 / .72); padding: .62rem .85rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(12px); pointer-events: none; transform: scale(var(--notice-scale)); transform-origin: bottom left; }
-	.contractor-carousel__hire-avatar { position: relative; flex: 0 0 3rem; width: 3rem; height: 3rem; }
-	.contractor-carousel__hire-avatar > img { position: static; width: 100%; height: 100%; border-radius: 9999px; object-fit: cover; filter: none; }
-	.contractor-carousel__hire-avatar > span { position: absolute; right: -.12rem; bottom: -.08rem; display: grid; width: 1rem; height: 1rem; place-items: center; border-radius: 9999px; background: #cbf300; color: #080808; font-size: .58rem; font-weight: 800; }
-	.contractor-carousel__hire-copy { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: .2rem; }
-	.contractor-carousel__hire-copy strong { overflow: hidden; padding-right: 2.8rem; color: #fff; font-size: .96rem; font-weight: 600; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
-	.contractor-carousel__hire-copy small { color: rgb(255 255 255 / .58); font-size: .74rem; line-height: 1.2; white-space: nowrap; }
-	.contractor-carousel__hire-status { position: absolute; top: .92rem; right: .82rem; border-radius: 9999px; background: #cbf300; padding: .31rem .44rem; color: #080808; font-size: .51rem; font-weight: 700; line-height: 1; letter-spacing: .02em; text-transform: uppercase; }
-	.contractor-carousel__slide > .contractor-carousel__payment-notification { position: absolute; z-index: 2; top: auto; right: auto; bottom: var(--notice-inset); left: var(--notice-inset); display: flex; width: calc(var(--notice-reference-card-width) - 2rem); min-height: 5.65rem; flex-direction: column; gap: .5rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(22 23 26 / .72); padding: .68rem .82rem .78rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(18px) saturate(1.18); pointer-events: none; transform: scale(var(--notice-scale)); transform-origin: bottom left; }
-	.contractor-carousel__slide.is-active > .contractor-carousel__hire-notification,
-	.contractor-carousel__slide.is-active > .contractor-carousel__payment-notification { background: rgb(7 8 10 / .72); }
-	.contractor-carousel__payment-header { display: flex; align-items: center; gap: .48rem; }
-	.contractor-carousel__payment-icon { display: grid; flex: 0 0 1.45rem; width: 1.45rem; height: 1.45rem; place-items: center; border-radius: .4rem; background: #cbf300; }
-	.contractor-carousel__slide .contractor-carousel__payment-icon img { position: static; width: .72rem; height: .95rem; object-fit: contain; filter: none; }
-	.contractor-carousel__payment-app { min-width: 0; flex: 1; color: rgb(255 255 255 / .62); font-size: .64rem; font-weight: 600; line-height: 1; letter-spacing: .035em; text-transform: uppercase; }
-	.contractor-carousel__payment-copy { display: flex; min-width: 0; flex-direction: column; gap: .22rem; padding-left: .08rem; }
-	.contractor-carousel__payment-copy strong { overflow: hidden; color: #fff; font-size: .9rem; font-weight: 650; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
-	.contractor-carousel__payment-copy small { overflow: hidden; color: rgb(255 255 255 / .7); font-size: .69rem; line-height: 1.28; text-overflow: ellipsis; white-space: nowrap; }
-	.contractor-carousel__payment-time { flex: 0 0 auto; color: rgb(255 255 255 / .46); font-size: .61rem; font-weight: 500; line-height: 1; letter-spacing: .01em; text-transform: lowercase; }
-	.contractor-carousel__slide > .contractor-carousel__compliance-notification { position: absolute; z-index: 2; top: auto; right: auto; bottom: var(--notice-inset); left: var(--notice-inset); display: flex; width: calc(var(--notice-reference-card-width) - 2rem); flex-direction: column; gap: .52rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(7 8 10 / .72); padding: .68rem .82rem .78rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(12px); pointer-events: none; transform: scale(var(--notice-scale)); transform-origin: bottom left; }
-	.contractor-carousel__slide.is-active > .contractor-carousel__compliance-notification { background: rgb(7 8 10 / .72); }
-	.contractor-carousel__compliance-table { display: flex; flex-direction: column; gap: .52rem; }
-	.contractor-carousel__compliance-row { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
-	.contractor-carousel__compliance-row small { min-width: 0; overflow: hidden; color: #fff; font-size: .68rem; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
-	.contractor-carousel__compliance-row strong { flex: 0 0 auto; color: #fff; font-size: .76rem; font-weight: 560; line-height: 1.2; white-space: nowrap; }
-	.contractor-carousel__compliance-row:first-child strong { color: #cbf300; }
-	.contractor-carousel__compliance-footer { display: flex; align-items: center; justify-content: space-between; gap: .75rem; border-radius: .72rem; background: rgb(203 243 0 / .12); padding: .5rem .58rem; }
-	.contractor-carousel__compliance-footer strong { min-width: 0; overflow: hidden; color: #cbf300; font-size: .66rem; font-weight: 650; line-height: 1; text-overflow: ellipsis; white-space: nowrap; }
-	.contractor-carousel__compliance-footer small { flex: 0 0 auto; overflow: hidden; color: #fff; font-size: .56rem; line-height: 1; text-overflow: ellipsis; white-space: nowrap; }
-	:global(.contractor-carousel-content) { min-height: 260vh; }
-	.contractor-carousel { position: sticky; top: var(--contractor-carousel-sticky-top, calc(4rem + ((100svh - 4rem - 34rem) / 2))); }
-	@media (max-width: 1079px) {
-		.contractor-carousel { grid-template-columns: 1fr; gap: 2.25rem; min-height: auto; margin-right: 0; overflow: visible; }
-		.contractor-carousel__copy { width: 100%; max-width: none; padding-left: 0; }
-		.contractor-carousel__copy h3,
-		.contractor-carousel__copy p { height: auto; max-width: none; white-space: normal; }
-		.contractor-carousel__copy h3 { width: 100%; max-width: none; font-size: 3rem; font-weight: 400; letter-spacing: -.025em; line-height: 1.25; }
-		.contractor-carousel__copy p { margin-top: 1.5rem; color: var(--garna-subtitle-color); font-size: 1.25rem; font-weight: var(--garna-subtitle-weight); line-height: 1.625; }
-		.contractor-carousel__controls { margin-top: 2rem; }
-		.contractor-carousel__viewport { width: auto; margin-right: calc(50% - 50vw); }
-		.contractor-carousel__image-controls { width: clamp(15rem, min(36%, 35vh), 20rem); }
-		.contractor-carousel__slide { flex-basis: clamp(15rem, min(36%, 35vh), 20rem); height: auto; margin-right: -2%; aspect-ratio: .78; }
-		.contractor-carousel__slide.is-active { margin-right: 0; }
-	}
-	@media (min-width: 1080px) and (max-width: 1199px) {
-		.contractor-carousel__copy p { height: auto; white-space: normal; }
-	}
-	@media (max-width: 767px) {
-		.contractor-carousel { gap: 2rem; }
-		.contractor-carousel__copy h3 { height: auto; font-size: 2.25rem; }
-		.contractor-carousel__copy p { height: auto; margin-top: 1.5rem; font-size: 1.125rem; }
-		.contractor-carousel__controls { margin-top: 2rem; }
-		.contractor-carousel__image-controls { width: clamp(12.5rem, min(62vw, 30svh), 20.5rem); margin-top: 1rem; }
-		.contractor-carousel__slide { flex-basis: clamp(12.5rem, min(62vw, 30svh), 20.5rem); height: auto; margin-right: 0; aspect-ratio: .78; border-radius: 1.25rem; }
-		.contractor-carousel__slide.is-active { margin-right: 0; }
-		.contractor-carousel__slide > .contractor-carousel__hire-notification,
-		.contractor-carousel__slide > .contractor-carousel__payment-notification,
-		.contractor-carousel__slide > .contractor-carousel__compliance-notification { top: auto; }
-		.contractor-carousel__rail { gap: .8rem; transform: translateX(0); }
-	}
-	@media (prefers-reduced-motion: reduce) { .contractor-carousel__rail, .contractor-carousel__slide { transition: none; } }
-</style>
+<ScrollVisualCarouselSection
+	id="home-contractor-payments-carousel"
+	slides={slides}
+	cta={{
+		text: 'Book a demo',
+		translateKey: 'cta.bookDemo',
+		trackingCta: 'contractor_carousel_demo',
+	}}
+/>

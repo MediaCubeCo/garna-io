@@ -107,7 +107,7 @@
 
                         <!-- Main Content -->
                         <div class="garna-product-window__canvas col-span-9 bg-[#050505] pt-6 pr-8 pb-6 pl-8 relative">
-                            <div class="flex anim-fade-up mb-6 items-center justify-between">
+                            <div class="garna-product-window__topbar flex anim-fade-up mb-6 items-center justify-between">
                                 <div class="text-xl font-normal text-white tracking-tight font-sans"
                                     data-translate="dashboard.balance">Balance</div>
                                 <div
@@ -235,7 +235,7 @@
                                                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                                             </svg>
                                         </div>
-                                        <div class="text-xs font-medium text-white tracking-tight mb-2 font-sans"
+                                        <div class="mt-auto flex min-h-[2.1em] items-end text-xs font-medium text-white tracking-tight mb-2 font-sans"
                                             data-translate="templates.transactionByEmail">Transaction by email</div>
                                         <div
                                             class="h-1.5 group-hover:bg-white/15 transition-colors bg-white/10 w-16 rounded-full">
@@ -258,7 +258,7 @@
                                                 <line x1="10" x2="8" y1="9" y2="9"></line>
                                             </svg>
                                         </div>
-                                        <div class="text-xs font-medium text-white mb-2 tracking-tight font-sans"
+                                        <div class="mt-auto flex min-h-[2.1em] items-end text-xs font-medium text-white mb-2 tracking-tight font-sans"
                                             data-translate="templates.csvPayment">CSV payment</div>
                                         <div
                                             class="w-16 h-1.5 bg-white/10 rounded-full group-hover:bg-white/15 transition-colors">
@@ -278,7 +278,7 @@
                                                 <path d="m16.71 13.88.7.71-2.82 2.82"></path>
                                             </svg>
                                         </div>
-                                        <div class="text-xs font-medium text-white mb-2 tracking-tight font-sans"
+                                        <div class="mt-auto flex min-h-[2.1em] items-end text-xs font-medium text-white mb-2 tracking-tight font-sans"
                                             data-translate="templates.topUpUsdt">Top up with USDT</div>
                                         <div
                                             class="w-16 h-1.5 bg-white/10 rounded-full group-hover:bg-white/15 transition-colors">
@@ -300,7 +300,7 @@
                                                 <polygon points="12 2 20 7 4 7"></polygon>
                                             </svg>
                                         </div>
-                                        <div class="text-xs font-medium text-white mb-2 tracking-tight font-sans"
+                                        <div class="mt-auto flex min-h-[2.1em] items-end text-xs font-medium text-white mb-2 tracking-tight font-sans"
                                             data-translate="templates.topUpBank">Top up with Bank transfer</div>
                                         <div
                                             class="w-16 h-1.5 bg-white/10 rounded-full group-hover:bg-white/15 transition-colors">
@@ -534,7 +534,16 @@
                         }
 
                         .dashboard-v2 .garna-product-window__canvas {
-                            padding: 32px 38px;
+                            padding: 20px 38px 28px;
+                        }
+
+                        .dashboard-v2 .garna-product-window__topbar {
+                            min-height: 32px;
+                            margin-bottom: 20px;
+                        }
+
+                        .dashboard-v2 .garna-product-window__topbar [data-translate="dashboard.balance"] {
+                            line-height: 32px;
                         }
 
                         .dashboard-v2 .garna-product-panel {
