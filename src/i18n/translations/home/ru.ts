@@ -325,7 +325,7 @@
 		},
 	},
 	dashboard: {
-		url: 'garna.io/dashboard',
+		url: 'garna.io/balance',
 		balance: 'Баланс',
 		company: 'Компания',
 		notifications: 'Уведомления',

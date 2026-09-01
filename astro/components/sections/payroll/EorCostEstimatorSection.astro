@@ -1,0 +1,990 @@
+---
+import Section from '../../layout/Section.astro';
+import Button from '../../ui/Button.astro';
+import { eorCostCountries } from '../../../../src/data/eor-cost-countries';
+
+const regionGroups = [
+	{
+		country: 'Canada',
+		regions: [
+			'Ontario',
+			'Alberta',
+			'British Columbia',
+			'Manitoba',
+			'New Brunswick',
+			'Newfoundland and Labrador',
+			'Northwest Territories',
+			'Nova Scotia',
+			'Nunavut',
+			'Prince Edward Island',
+			'Quebec',
+			'Saskatchewan',
+			'Yukon',
+		],
+	},
+	{
+		country: 'United States',
+		regions: [
+			'Alabama',
+			'Alaska',
+			'Arizona',
+			'Arkansas',
+			'California',
+			'Colorado',
+			'Connecticut',
+			'Delaware',
+			'Florida',
+			'Georgia',
+			'Hawaii',
+			'Idaho',
+			'Illinois',
+			'Indiana',
+			'Iowa',
+			'Kansas',
+			'Kentucky',
+			'Louisiana',
+			'Maine',
+			'Maryland',
+			'Massachusetts',
+			'Michigan',
+			'Minnesota',
+			'Mississippi',
+			'Missouri',
+			'Montana',
+			'Nebraska',
+			'Nevada',
+			'New Hampshire',
+			'New Jersey',
+			'New Mexico',
+			'New York',
+			'North Carolina',
+			'North Dakota',
+			'Ohio',
+			'Oklahoma',
+			'Oregon',
+			'Pennsylvania',
+			'Rhode Island',
+			'South Carolina',
+			'South Dakota',
+			'Tennessee',
+			'Texas',
+			'Utah',
+			'Vermont',
+			'Virginia',
+			'Washington',
+			'West Virginia',
+			'Wisconsin',
+			'Wyoming',
+		],
+	},
+	{
+		country: 'Australia',
+		regions: [
+			'Australian Capital Territory',
+			'New South Wales',
+			'Northern Territory',
+			'Queensland',
+			'South Australia',
+			'Tasmania',
+			'Victoria',
+			'Western Australia',
+		],
+	},
+];
+
+const flatRegions = regionGroups.flatMap(({ country, regions }) => regions.map((region) => ({ country, region })));
+const countryCurrencyRows = [
+	['AL', 'ALL', 'Albania', 'al'], ['AR', 'ARS', 'Argentina', 'ar'], ['AM', 'AMD', 'Armenia', 'am'], ['AU', 'AUD', 'Australia', 'au'],
+	['AT', 'EUR', 'European Union', 'eu'], ['AZ', 'AZN', 'Azerbaijan', 'az'], ['BH', 'BHD', 'Bahrain', 'bh'], ['BD', 'BDT', 'Bangladesh', 'bd'],
+	['BY', 'BYN', 'Belarus', 'by'], ['BE', 'EUR', 'European Union', 'eu'], ['BZ', 'BZD', 'Belize', 'bz'], ['BO', 'BOB', 'Bolivia', 'bo'],
+	['BA', 'BAM', 'Bosnia and Herzegovina', 'ba'], ['BR', 'BRL', 'Brazil', 'br'], ['BG', 'BGN', 'Bulgaria', 'bg'], ['KH', 'KHR', 'Cambodia', 'kh'],
+	['CM', 'XAF', 'Cameroon', 'cm'], ['CA', 'CAD', 'Canada', 'ca'], ['CL', 'CLP', 'Chile', 'cl'], ['CN', 'CNY', 'China', 'cn'],
+	['CO', 'COP', 'Colombia', 'co'], ['CR', 'CRC', 'Costa Rica', 'cr'], ['CI', 'XOF', "Cote D'Ivoire", 'ci'], ['HR', 'EUR', 'European Union', 'eu'],
+	['CY', 'EUR', 'European Union', 'eu'], ['CZ', 'CZK', 'Czech Republic', 'cz'], ['DK', 'DKK', 'Denmark', 'dk'], ['DO', 'DOP', 'Dominican Republic', 'do'],
+	['EC', 'USD', 'United States', 'us'], ['EG', 'EGP', 'Egypt', 'eg'], ['SV', 'USD', 'United States', 'us'], ['EE', 'EUR', 'European Union', 'eu'],
+	['ET', 'ETB', 'Ethiopia', 'et'], ['FI', 'EUR', 'European Union', 'eu'], ['FR', 'EUR', 'European Union', 'eu'], ['GE', 'GEL', 'Georgia', 'ge'],
+	['DE', 'EUR', 'European Union', 'eu'], ['GH', 'GHS', 'Ghana', 'gh'], ['GR', 'EUR', 'European Union', 'eu'], ['GT', 'GTQ', 'Guatemala', 'gt'],
+	['HN', 'HNL', 'Honduras', 'hn'], ['HK', 'HKD', 'Hong Kong', 'hk'], ['HU', 'HUF', 'Hungary', 'hu'], ['IS', 'ISK', 'Iceland', 'is'],
+	['IN', 'INR', 'India', 'in'], ['ID', 'IDR', 'Indonesia', 'id'], ['IE', 'EUR', 'European Union', 'eu'], ['IL', 'ILS', 'Israel', 'il'],
+	['IT', 'EUR', 'European Union', 'eu'], ['JM', 'JMD', 'Jamaica', 'jm'], ['JP', 'JPY', 'Japan', 'jp'], ['JO', 'JOD', 'Jordan', 'jo'],
+	['KZ', 'KZT', 'Kazakhstan', 'kz'], ['KE', 'KES', 'Kenya', 'ke'], ['XK', 'EUR', 'European Union', 'eu'], ['LV', 'EUR', 'European Union', 'eu'],
+	['LT', 'EUR', 'European Union', 'eu'], ['LU', 'EUR', 'European Union', 'eu'], ['MO', 'MOP', 'Macao', 'mo'], ['MG', 'MGA', 'Madagascar', 'mg'],
+	['MY', 'MYR', 'Malaysia', 'my'], ['MT', 'EUR', 'European Union', 'eu'], ['MU', 'MUR', 'Mauritius', 'mu'], ['MX', 'MXN', 'Mexico', 'mx'],
+	['MD', 'MDL', 'Moldova, Republic of', 'md'], ['MN', 'MNT', 'Mongolia', 'mn'], ['ME', 'EUR', 'European Union', 'eu'], ['MA', 'MAD', 'Morocco', 'ma'],
+	['MZ', 'MZN', 'Mozambique', 'mz'], ['NA', 'NAD', 'Namibia', 'na'], ['NP', 'NPR', 'Nepal', 'np'], ['NL', 'EUR', 'European Union', 'eu'],
+	['NZ', 'NZD', 'New Zealand', 'nz'], ['NI', 'NIO', 'Nicaragua', 'ni'], ['NG', 'NGN', 'Nigeria', 'ng'], ['MK', 'MKD', 'North Macedonia', 'mk'],
+	['NO', 'NOK', 'Norway', 'no'], ['OM', 'OMR', 'Oman', 'om'], ['PK', 'PKR', 'Pakistan', 'pk'], ['PA', 'PAB', 'Panama', 'pa'],
+	['PY', 'PYG', 'Paraguay', 'py'], ['PE', 'PEN', 'Peru', 'pe'], ['PH', 'PHP', 'Philippines', 'ph'], ['PL', 'PLN', 'Poland', 'pl'],
+	['PT', 'EUR', 'European Union', 'eu'], ['PR', 'USD', 'United States', 'us'], ['QA', 'QAR', 'Qatar', 'qa'], ['RO', 'RON', 'Romania', 'ro'],
+	['RW', 'RWF', 'Rwanda', 'rw'], ['SA', 'SAR', 'Saudi Arabia', 'sa'], ['SN', 'XOF', 'Senegal', 'sn'], ['RS', 'RSD', 'Serbia', 'rs'],
+	['SG', 'SGD', 'Singapore', 'sg'], ['SK', 'EUR', 'European Union', 'eu'], ['SI', 'EUR', 'European Union', 'eu'], ['ZA', 'ZAR', 'South Africa', 'za'],
+	['KR', 'KRW', 'South Korea', 'kr'], ['ES', 'EUR', 'European Union', 'eu'], ['LK', 'LKR', 'Sri Lanka', 'lk'], ['SR', 'SRD', 'Suriname', 'sr'],
+	['SE', 'SEK', 'Sweden', 'se'], ['CH', 'CHF', 'Switzerland', 'ch'], ['TW', 'TWD', 'Taiwan', 'tw'], ['TH', 'THB', 'Thailand', 'th'],
+	['TN', 'TND', 'Tunisia', 'tn'], ['TR', 'TRY', 'Turkey', 'tr'], ['UG', 'UGX', 'Uganda', 'ug'], ['UA', 'UAH', 'Ukraine', 'ua'],
+	['AE', 'AED', 'United Arab Emirates', 'ae'], ['GB', 'GBP', 'United Kingdom', 'gb'], ['US', 'USD', 'United States', 'us'], ['UY', 'UYU', 'Uruguay', 'uy'],
+	['UZ', 'UZS', 'Uzbekistan', 'uz'], ['VN', 'VND', 'Vietnam', 'vn'], ['ZM', 'ZMW', 'Zambia', 'zm'],
+] as const;
+const countryCurrencyByCode = new Map(countryCurrencyRows.map(([countryCode, currencyCode]) => [countryCode, currencyCode]));
+const currencies = Array.from(new Map(countryCurrencyRows.map(([, code, country, flagCode]) => [code, { code, country, flagCode }])).values());
+const defaultCurrencyForCountry = (countryCode: string) => countryCurrencyByCode.get(countryCode) || '';
+const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}.png`;
+---
+
+<Section id="eor-cost-estimator" contained={false} spacing="none" class="eor-estimator-section py-20 lg:py-36">
+	<div class="eor-estimator-container mx-auto max-w-7xl px-6">
+		<div class="eor-estimator-shell">
+			<div class="eor-estimator-copy">
+				<h2 data-translate="costEstimator.title">See What Your Hire Will Really Cost</h2>
+				<p data-garna-subtitle data-translate="costEstimator.description">
+					Garna starts from $200 per employee per month with no hidden fees or local entity setup costs. Enter the country and salary to estimate taxes, benefits, and the full cost of hiring
+				</p>
+			</div>
+
+			<form class="eor-estimator-card" action="#" onsubmit="event.preventDefault();" data-eor-estimator-form>
+				<div class="eor-estimator-card__header">
+					<h3 data-translate="costEstimator.form.title">Global Hiring Cost Estimator</h3>
+				</div>
+
+				<div class="eor-estimator-group">
+					<p data-translate="costEstimator.form.hireIn">I want to hire in</p>
+					<div class="eor-estimator-select" data-estimator-select data-country-select>
+						<input type="hidden" name="country" required />
+						<button type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Country" data-select-trigger>
+							<span data-select-label data-placeholder data-translate="costEstimator.form.country">Country</span>
+							<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+						</button>
+						<button class="eor-estimator-select__clear" type="button" aria-label="Clear country" data-select-clear>
+							<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg>
+						</button>
+						<div class="eor-estimator-select__menu" role="listbox" hidden data-select-menu>
+							{eorCostCountries.map((country) => (
+								<button type="button" role="option" data-select-option value={country.name} data-select-label-text={country.name} data-country-currency={defaultCurrencyForCountry(country.code)}>
+									<span class="eor-estimator-country-flag" aria-hidden="true">
+										<img src={flagSrc(country.code)} alt="" loading="lazy" />
+									</span>
+									<span>{country.name}</span>
+								</button>
+							))}
+						</div>
+					</div>
+					<div class="eor-estimator-select" data-estimator-select data-region-select data-disabled="true">
+						<input type="hidden" name="region" />
+						<button type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="State / province" aria-disabled="true" disabled data-select-trigger>
+							<span data-select-label data-placeholder data-translate="costEstimator.form.region">State / province</span>
+							<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+						</button>
+						<button class="eor-estimator-select__clear" type="button" aria-label="Clear state or province" data-select-clear>
+							<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg>
+						</button>
+						<div class="eor-estimator-select__menu" role="listbox" hidden data-select-menu>
+							{flatRegions.map(({ country, region }) => (
+								<button type="button" role="option" data-select-option data-region-country={country} value={region}>{region}</button>
+							))}
+						</div>
+					</div>
+				</div>
+
+				<div class="eor-estimator-group">
+					<p data-translate="costEstimator.form.salary">Gross annual salary</p>
+					<div class="eor-estimator-salary">
+						<div class="eor-estimator-select" data-estimator-select data-currency-select>
+							<input type="hidden" name="currency" required />
+							<button type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Currency" data-select-trigger>
+								<span data-select-label data-placeholder data-translate="costEstimator.form.currency">Currency</span>
+								<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+							</button>
+							<button class="eor-estimator-select__clear" type="button" aria-label="Clear currency" data-select-clear>
+								<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg>
+							</button>
+							<div class="eor-estimator-select__menu" role="listbox" hidden data-select-menu>
+								{currencies.map((currency) => (
+									<button type="button" role="option" data-select-option value={currency.code} data-select-label-text={currency.code}>
+										<span class="eor-estimator-country-flag" aria-hidden="true">
+											<img src={flagSrc(currency.flagCode)} alt="" loading="lazy" />
+										</span>
+										<span class="eor-estimator-currency-copy">
+											<strong>{currency.code}</strong>
+											<small>{currency.country}</small>
+										</span>
+									</button>
+								))}
+							</div>
+						</div>
+						<label>
+							<div class="eor-estimator-amount">
+								<input name="salary" type="text" inputmode="numeric" placeholder="Annual salary" data-translate-placeholder="costEstimator.form.amountPlaceholder" aria-label="Gross annual salary amount" required>
+								<span class="eor-estimator-amount__currency" hidden data-salary-currency aria-hidden="true"></span>
+							</div>
+						</label>
+					</div>
+				</div>
+
+				<Button type="button" variant="primary" effect="none" icon="none" size="mobile" class="eor-estimator-submit">
+					<span data-translate="costEstimator.form.button">Calculate total cost</span>
+				</Button>
+			</form>
+		</div>
+	</div>
+</Section>
+
+<style>
+	:global(.eor-estimator-section) {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		background: #101010;
+	}
+
+	:global(.eor-estimator-section)::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -2;
+		background: url("/pages/payroll-solution-new/assets/eor-cost-estimator-human-phone-v3.png") center center / cover no-repeat;
+		filter: saturate(0.82) sepia(0.08) brightness(0.92);
+	}
+
+	:global(.eor-estimator-section)::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: rgb(16 16 16 / 0.55);
+		pointer-events: none;
+	}
+
+	.eor-estimator-container {
+		position: relative;
+	}
+
+	.eor-estimator-shell {
+		display: grid;
+		justify-items: center;
+		gap: clamp(2rem, 4vw, 3rem);
+		align-items: start;
+		text-align: center;
+	}
+
+	.eor-estimator-copy {
+		display: grid;
+		justify-items: center;
+		max-width: 48rem;
+	}
+
+	.eor-estimator-copy h2 {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(2.25rem, 4vw, 3rem);
+		font-weight: 400;
+		line-height: 1.1;
+		letter-spacing: 0;
+	}
+
+	.eor-estimator-copy p {
+		max-width: 44rem;
+		margin-top: 1.5rem;
+		color: rgb(255 255 255 / 0.8) !important;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1rem, 1.2vw, 1.125rem);
+		font-weight: var(--garna-subtitle-weight);
+		line-height: 1.55;
+	}
+
+	.eor-estimator-card {
+		position: relative;
+		display: grid;
+		gap: 1.35rem;
+		width: 100%;
+		max-width: 40rem;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 18px;
+		background: rgb(26 26 26 / 0.9);
+		backdrop-filter: blur(18px);
+		padding: clamp(1.1rem, 2.4vw, 1.5rem);
+		box-shadow: 0 28px 70px -58px rgb(0 0 0 / 0.9);
+		color: #ffffff;
+		text-align: left;
+	}
+
+	.eor-estimator-card__header {
+		display: block;
+	}
+
+	.eor-estimator-card h3 {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1.35rem, 1.8vw, 1.75rem);
+		font-weight: 500;
+		line-height: 1.1;
+		letter-spacing: 0;
+		text-align: center;
+	}
+
+	.eor-estimator-group {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.eor-estimator-group > p {
+		width: 100%;
+		justify-self: start;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 0.93rem;
+		font-weight: 600;
+		line-height: 1.2;
+		text-align: left;
+	}
+
+	.eor-estimator-card label {
+		display: grid;
+		gap: 0.42rem;
+		min-width: 0;
+		color: rgb(255 255 255 / 0.58);
+		font-family: Manrope, sans-serif;
+		font-size: 0.8rem;
+		font-weight: 600;
+	}
+
+	.eor-estimator-select > button[data-select-trigger],
+	.eor-estimator-amount {
+		width: 100%;
+		min-height: 3.45rem;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 12px;
+		background: #101010;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: 0.95rem;
+		font-weight: 600;
+		transition:
+			border-color 160ms ease,
+			box-shadow 160ms ease;
+	}
+
+	.eor-estimator-select {
+		position: relative;
+		min-width: 0;
+		font-family: Manrope, sans-serif;
+	}
+
+	.eor-estimator-select > button[data-select-trigger] {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		outline: none;
+		padding: 0 4.7rem 0 1rem;
+		text-align: left;
+	}
+
+	.eor-estimator-select > button[data-select-trigger] svg {
+		position: absolute;
+		top: 50%;
+		right: 1rem;
+		flex: 0 0 auto;
+		width: 1.125rem;
+		height: 1.125rem;
+		color: #8a8a8a;
+		transform: translateY(-50%);
+		transition:
+			color 160ms ease,
+			transform 160ms ease;
+	}
+
+	.eor-estimator-select > button[data-select-trigger] svg path {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.eor-estimator-select [data-select-label] {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.eor-estimator-select [data-placeholder] {
+		color: rgb(255 255 255 / 0.44);
+	}
+
+	.eor-estimator-select[data-open="true"] > button[data-select-trigger],
+	.eor-estimator-select > button[data-select-trigger]:focus-visible,
+	.eor-estimator-amount:focus-within {
+		border-color: rgb(203 243 0 / 0.68);
+		box-shadow: 0 0 0 1px rgb(203 243 0 / 0.14);
+	}
+
+	.eor-estimator-select[data-disabled="true"] > button[data-select-trigger] {
+		cursor: not-allowed;
+		border-color: rgb(255 255 255 / 0.07);
+		background: rgb(16 16 16 / 0.56);
+		color: rgb(255 255 255 / 0.28);
+	}
+
+	.eor-estimator-select[data-disabled="true"] > button[data-select-trigger] svg {
+		color: rgb(255 255 255 / 0.22);
+	}
+
+	.eor-estimator-select[data-open="true"] > button[data-select-trigger] svg,
+	.eor-estimator-select > button[data-select-trigger]:focus-visible svg {
+		color: #cbf300;
+	}
+
+	.eor-estimator-select[data-open="true"] > button[data-select-trigger] svg {
+		transform: translateY(-50%) rotate(180deg);
+	}
+
+	.eor-estimator-select__clear {
+		position: absolute;
+		z-index: 2;
+		top: 50%;
+		right: 2.65rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.75rem;
+		height: 1.75rem;
+		border: 0;
+		background: transparent;
+		color: rgb(255 255 255 / 0.48);
+		opacity: 0;
+		padding: 0;
+		pointer-events: none;
+		transform: translateY(-50%);
+		transition:
+			color 140ms ease,
+			opacity 140ms ease;
+	}
+
+	.eor-estimator-select[data-has-value="true"]:hover .eor-estimator-select__clear,
+	.eor-estimator-select[data-has-value="true"]:focus-within .eor-estimator-select__clear {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.eor-estimator-select__clear:hover,
+	.eor-estimator-select__clear:focus-visible {
+		color: #ffffff;
+		outline: none;
+	}
+
+	.eor-estimator-select__clear svg {
+		width: 0.95rem;
+		height: 0.95rem;
+	}
+
+	.eor-estimator-select__clear svg path {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+	}
+
+	.eor-estimator-select__menu {
+		position: absolute;
+		z-index: 10;
+		top: calc(100% + 0.5rem);
+		right: 0;
+		left: 0;
+		display: grid;
+		max-height: 15rem;
+		overflow-y: auto;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 10px;
+		background: #101010;
+		padding: 0.35rem;
+		box-shadow: 0 24px 54px -36px rgb(0 0 0 / 0.92);
+		scrollbar-color: rgb(255 255 255 / 0.18) transparent;
+		scrollbar-width: thin;
+	}
+
+	.eor-estimator-select__menu[hidden] {
+		display: none;
+	}
+
+	.eor-estimator-select__menu::-webkit-scrollbar {
+		width: 1.05rem;
+	}
+
+	.eor-estimator-select__menu::-webkit-scrollbar-track {
+		margin-block: 0.65rem;
+		background: transparent;
+	}
+
+	.eor-estimator-select__menu::-webkit-scrollbar-thumb {
+		border: 0.2rem solid #101010;
+		border-right-width: 0.68rem;
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.2);
+	}
+
+	.eor-estimator-select__menu::-webkit-scrollbar-thumb:hover {
+		background: rgb(255 255 255 / 0.32);
+	}
+
+	.eor-estimator-select__menu button {
+		display: flex;
+		width: 100%;
+		min-height: 2.85rem;
+		align-items: center;
+		gap: 0.85rem;
+		border: 1px solid transparent;
+		border-radius: 8px;
+		padding: 0 1.45rem 0 0.8rem;
+		color: rgb(255 255 255 / 0.68);
+		font-family: Manrope, sans-serif;
+		font-size: 0.95rem;
+		font-weight: 600;
+		text-align: left;
+		transition:
+			background-color 140ms ease,
+			border-color 140ms ease,
+			color 140ms ease;
+	}
+
+	.eor-estimator-select__menu button:hover,
+	.eor-estimator-select__menu button:focus-visible {
+		background: rgb(255 255 255 / 0.06);
+		color: #ffffff;
+		outline: none;
+	}
+
+	.eor-estimator-select__menu button[aria-selected="true"] {
+		border-color: rgb(203 243 0 / 0.42);
+		background: rgb(203 243 0 / 0.08);
+		color: #ffffff;
+	}
+
+	.eor-estimator-country-flag {
+		display: inline-flex;
+		width: 1.5rem;
+		height: 1.5rem;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		border-radius: 999px;
+		background: transparent;
+		box-shadow: none;
+	}
+
+	.eor-estimator-country-flag img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.eor-estimator-currency-copy {
+		display: grid;
+		min-width: 0;
+		gap: 0.12rem;
+		line-height: 1.15;
+	}
+
+	.eor-estimator-currency-copy strong {
+		color: #ffffff;
+		font-size: 0.95rem;
+		font-weight: 750;
+		line-height: 1.1;
+	}
+
+	.eor-estimator-currency-copy small {
+		color: rgb(255 255 255 / 0.5);
+		font-size: 0.82rem;
+		font-weight: 500;
+		line-height: 1.15;
+	}
+
+	.eor-estimator-amount input::placeholder {
+		color: rgb(255 255 255 / 0.44);
+	}
+
+	.eor-estimator-salary {
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	@media (min-width: 640px) {
+		.eor-estimator-salary {
+			grid-template-columns: minmax(10.5rem, 0.72fr) minmax(0, 1fr);
+		}
+	}
+
+	@media (max-width: 920px) {
+		.eor-estimator-card {
+			justify-self: center;
+		}
+	}
+
+	.eor-estimator-amount {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0 1rem;
+	}
+
+	.eor-estimator-amount input {
+		min-width: 0;
+		border: 0;
+		background: transparent;
+		color: #ffffff;
+		font: inherit;
+		outline: none;
+	}
+
+	.eor-estimator-amount__currency {
+		color: rgb(255 255 255 / 0.82);
+		font-family: Manrope, sans-serif;
+		font-size: 1rem;
+		font-weight: 650;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	:global(.eor-estimator-submit.garna-button-primary) {
+		min-height: 3.25rem;
+		margin-top: -0.15rem;
+		padding: 0.75rem 1rem;
+		box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.2);
+	}
+
+	:global(.eor-estimator-submit.garna-button-primary:hover) {
+		transform: none;
+		box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.28);
+	}
+
+	:global(.eor-estimator-submit.garna-button-primary:active) {
+		transform: none;
+	}
+
+	@media (max-width: 767px) {
+		.eor-estimator-card {
+			border-radius: 16px;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.eor-estimator-shell {
+			justify-items: center;
+			text-align: center;
+		}
+
+		.eor-estimator-copy {
+			justify-items: center;
+			max-width: 48rem;
+		}
+
+		.eor-estimator-card {
+			max-width: 40rem;
+		}
+	}
+</style>
+
+<script>
+	const estimatorForms = document.querySelectorAll('[data-eor-estimator-form]');
+
+	for (const form of estimatorForms) {
+		const customSelects = Array.from(form.querySelectorAll('[data-estimator-select]'));
+		const selectApis = new Map();
+
+		const closeSelect = (select) => {
+			if (!(select instanceof HTMLElement)) return;
+
+			const trigger = select.querySelector('[data-select-trigger]');
+			const menu = select.querySelector('[data-select-menu]');
+			select.dataset.open = 'false';
+			trigger?.setAttribute('aria-expanded', 'false');
+			if (menu instanceof HTMLElement) menu.hidden = true;
+		};
+
+		const closeOtherSelects = (currentSelect) => {
+			for (const select of customSelects) {
+				if (select !== currentSelect) closeSelect(select);
+			}
+		};
+
+		const updateSubmitState = () => {
+			submitButton.disabled = !controls.every((control) => {
+				if (control instanceof HTMLInputElement) {
+					return control.value.trim().length > 0;
+				}
+
+				return false;
+			});
+		};
+
+		for (const select of customSelects) {
+			if (!(select instanceof HTMLElement)) continue;
+
+			const input = select.querySelector('input[type="hidden"]');
+			const trigger = select.querySelector('[data-select-trigger]');
+			const clearButton = select.querySelector('[data-select-clear]');
+			const label = select.querySelector('[data-select-label]');
+			const menu = select.querySelector('[data-select-menu]');
+			const options = Array.from(select.querySelectorAll('[data-select-option]'));
+
+			if (!(input instanceof HTMLInputElement) || !(trigger instanceof HTMLButtonElement) || !(label instanceof HTMLElement) || !(menu instanceof HTMLElement)) continue;
+
+			const placeholderText = label.textContent?.trim() || trigger.getAttribute('aria-label') || '';
+			const setHasValue = () => {
+				select.dataset.hasValue = input.value.trim().length > 0 ? 'true' : 'false';
+			};
+
+			const updateMenuPlacement = () => {
+				const isCurrencySelect = select.hasAttribute('data-currency-select');
+				const triggerRect = trigger.getBoundingClientRect();
+				const sectionRect = select.closest('.eor-estimator-section')?.getBoundingClientRect();
+				const bottomBoundary = Math.min(window.innerHeight, sectionRect?.bottom ?? window.innerHeight);
+				const topBoundary = Math.max(0, sectionRect?.top ?? 0);
+				const availableBelow = bottomBoundary - triggerRect.bottom - 12;
+				const availableAbove = triggerRect.top - topBoundary - 12;
+				const shouldOpenAbove = isCurrencySelect || (availableBelow < 152 && availableAbove > availableBelow);
+				const availableHeight = shouldOpenAbove ? availableAbove : availableBelow;
+				const maxMenuHeight = isCurrencySelect ? 336 : 240;
+
+				menu.style.top = shouldOpenAbove ? 'auto' : 'calc(100% + 0.5rem)';
+				menu.style.bottom = shouldOpenAbove ? 'calc(100% + 0.5rem)' : 'auto';
+				menu.style.maxHeight = `${Math.max(96, Math.min(maxMenuHeight, availableHeight))}px`;
+			};
+
+			const scrollSelectedOptionIntoView = () => {
+				window.requestAnimationFrame(() => {
+					const selected = options.find((option) => option instanceof HTMLElement && !option.hidden && option.getAttribute('aria-selected') === 'true');
+					const fallback = options.find((option) => option instanceof HTMLElement && !option.hidden && !option.disabled);
+					const target = selected instanceof HTMLElement ? selected : fallback;
+					if (!(target instanceof HTMLElement)) return;
+
+					menu.scrollTop = Math.max(0, target.offsetTop - ((menu.clientHeight - target.offsetHeight) / 2));
+				});
+			};
+
+			const openSelect = () => {
+				if (trigger.disabled || select.dataset.disabled === 'true') return;
+
+				closeOtherSelects(select);
+				select.dataset.open = 'true';
+				trigger.setAttribute('aria-expanded', 'true');
+				updateMenuPlacement();
+				menu.hidden = false;
+				scrollSelectedOptionIntoView();
+			};
+
+			const clearValue = (focusTrigger = true) => {
+				input.value = '';
+				input.defaultValue = '';
+				input.removeAttribute('value');
+				label.textContent = placeholderText;
+				label.setAttribute('data-placeholder', '');
+
+				for (const item of options) {
+					item.setAttribute('aria-selected', 'false');
+				}
+
+				setHasValue();
+				closeSelect(select);
+				form.dispatchEvent(new CustomEvent('estimator-select-change', {
+					bubbles: true,
+					detail: { name: input.name, value: '' },
+				}));
+				input.dispatchEvent(new Event('change', { bubbles: true }));
+				if (focusTrigger) trigger.focus();
+			};
+
+			const chooseOption = (option) => {
+				if (!(option instanceof HTMLButtonElement)) return;
+				if (option.hidden || option.disabled) return;
+
+				const optionValue = option.getAttribute('value') || option.value;
+				input.value = optionValue;
+				input.defaultValue = optionValue;
+				input.setAttribute('value', optionValue);
+				label.textContent = option.dataset.selectLabelText || option.textContent?.trim() || optionValue;
+				label.removeAttribute('data-placeholder');
+				setHasValue();
+
+				for (const item of options) {
+					item.setAttribute('aria-selected', String(item === option));
+				}
+
+				closeSelect(select);
+				form.dispatchEvent(new CustomEvent('estimator-select-change', {
+					bubbles: true,
+					detail: { name: input.name, value: optionValue },
+				}));
+				input.dispatchEvent(new Event('change', { bubbles: true }));
+			};
+
+			const chooseValue = (value) => {
+				const option = options.find((item) => {
+					if (!(item instanceof HTMLButtonElement)) return false;
+					return (item.getAttribute('value') || item.value) === value;
+				});
+
+				if (option instanceof HTMLButtonElement) chooseOption(option);
+			};
+
+			const chooseFirstVisible = () => {
+				const option = options.find((item) => item instanceof HTMLButtonElement && !item.hidden && !item.disabled);
+				if (option instanceof HTMLButtonElement) chooseOption(option);
+			};
+
+			const setDisabled = (disabled) => {
+				select.dataset.disabled = disabled ? 'true' : 'false';
+				trigger.disabled = disabled;
+				trigger.setAttribute('aria-disabled', String(disabled));
+				if (disabled) closeSelect(select);
+			};
+
+			const filterOptions = (predicate) => {
+				let visibleCount = 0;
+
+				for (const option of options) {
+					const isVisible = predicate(option);
+					option.hidden = !isVisible;
+					option.disabled = !isVisible;
+					if (isVisible) visibleCount += 1;
+				}
+
+				return visibleCount;
+			};
+
+			selectApis.set(input.name, {
+				chooseFirstVisible,
+				chooseValue,
+				clearValue,
+				filterOptions,
+				input,
+				setDisabled,
+			});
+
+			trigger.addEventListener('click', () => {
+				if (select.dataset.open === 'true') {
+					closeSelect(select);
+					return;
+				}
+
+				openSelect();
+			});
+
+			if (clearButton instanceof HTMLButtonElement) {
+				clearButton.addEventListener('click', (event) => {
+					event.preventDefault();
+					event.stopPropagation();
+					clearValue();
+				});
+			}
+
+			trigger.addEventListener('keydown', (event) => {
+				if (event.key !== 'ArrowDown' && event.key !== 'Enter' && event.key !== ' ') return;
+
+				event.preventDefault();
+				openSelect();
+				const selected = options.find((option) => option.getAttribute('aria-selected') === 'true');
+				const target = selected instanceof HTMLElement ? selected : options[0];
+				target?.focus();
+			});
+
+			for (const option of options) {
+				option.addEventListener('click', () => chooseOption(option));
+				option.addEventListener('keydown', (event) => {
+					if (!(option instanceof HTMLButtonElement)) return;
+
+					const currentIndex = options.indexOf(option);
+
+					if (event.key === 'ArrowDown') {
+						event.preventDefault();
+						options[(currentIndex + 1) % options.length]?.focus();
+					}
+
+					if (event.key === 'ArrowUp') {
+						event.preventDefault();
+						options[(currentIndex - 1 + options.length) % options.length]?.focus();
+					}
+
+					if (event.key === 'Enter' || event.key === ' ') {
+						event.preventDefault();
+						chooseOption(option);
+						trigger.focus();
+					}
+
+					if (event.key === 'Escape') {
+						closeSelect(select);
+						trigger.focus();
+					}
+				});
+			}
+
+			setHasValue();
+		}
+
+		const countryInput = form.querySelector('input[name="country"]');
+		const regionApi = selectApis.get('region');
+		const currencyApi = selectApis.get('currency');
+		const salaryCurrency = form.querySelector('[data-salary-currency]');
+		const syncSalaryCurrency = (currencyValue) => {
+			if (!(salaryCurrency instanceof HTMLElement)) return;
+
+			salaryCurrency.textContent = currencyValue || '';
+			salaryCurrency.hidden = !currencyValue;
+		};
+		const syncRegionSelect = (countryValue) => {
+			if (!(countryInput instanceof HTMLInputElement) || !regionApi) return;
+
+			const selectedCountry = countryValue ?? countryInput.value;
+			const visibleCount = regionApi.filterOptions((option) => option.dataset.regionCountry === selectedCountry);
+			const hasRegions = visibleCount > 0;
+
+			regionApi.clearValue(false);
+			regionApi.input.required = hasRegions;
+			regionApi.setDisabled(!hasRegions);
+			if (hasRegions) regionApi.chooseFirstVisible();
+		};
+		const syncCurrencySelect = (countryValue) => {
+			if (!(countryInput instanceof HTMLInputElement) || !currencyApi) return;
+
+			const selectedCountry = countryValue ?? countryInput.value;
+			const countryOption = form.querySelector(`[data-country-select] [data-select-option][value="${CSS.escape(selectedCountry)}"]`);
+			const currency = countryOption instanceof HTMLElement ? countryOption.dataset.countryCurrency || '' : '';
+
+			if (currency) currencyApi.chooseValue(currency);
+			else currencyApi.clearValue(false);
+		};
+
+		syncRegionSelect();
+		syncCurrencySelect();
+		syncSalaryCurrency(currencyApi?.input?.value || '');
+		form.addEventListener('estimator-select-change', (event) => {
+			if (!(event instanceof CustomEvent)) return;
+
+			if (event.detail?.name === 'country') {
+				syncRegionSelect(event.detail.value);
+				syncCurrencySelect(event.detail.value);
+			}
+
+			if (event.detail?.name === 'currency') {
+				syncSalaryCurrency(event.detail.value || '');
+			}
+		});
+
+		document.addEventListener('click', (event) => {
+			if (event.target instanceof Node && form.contains(event.target)) {
+				for (const select of customSelects) {
+					if (select instanceof HTMLElement && !select.contains(event.target)) closeSelect(select);
+				}
+
+				return;
+			}
+
+			for (const select of customSelects) closeSelect(select);
+		});
+		document.addEventListener('keydown', (event) => {
+			if (event.key !== 'Escape') return;
+			for (const select of customSelects) closeSelect(select);
+		});
+	}
+</script>

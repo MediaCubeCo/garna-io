@@ -1,20 +1,60 @@
 ---
 import Section from '../../layout/Section.astro';
+
+const stats = [
+	{
+		value: '400+',
+		label: 'businesses using Garna',
+		labelKey: 'stats.businesses',
+	},
+	{
+		value: '150+',
+		label: 'countries coverage',
+		labelKey: 'stats.coverage',
+	},
+	{
+		value: '$200',
+		label: 'starting from',
+		labelKey: 'stats.startingFrom',
+	},
+];
 ---
 
-<Section contained={false} spacing="none" class="border-y border-white/5 bg-[#080808] py-8">
-            <div class="mx-auto grid max-w-7xl gap-8 px-6 sm:grid-cols-3">
-                <div class="flex items-center justify-between rounded-xl border border-white/10 px-5 py-4">
-                    <span class="text-3xl font-semibold text-white">400+</span>
-                    <span class="max-w-[9rem] text-right text-sm text-gray-400" data-translate="stats.businesses">businesses using Garna</span>
-                </div>
-                <div class="flex items-center justify-between rounded-xl border border-white/10 px-5 py-4">
-                    <span class="text-3xl font-semibold text-white">24/7</span>
-                    <span class="max-w-[10rem] text-right text-sm text-gray-400" data-translate="stats.availability">global payroll service availability</span>
-                </div>
-                <div class="flex items-center justify-between rounded-xl border border-white/10 px-5 py-4">
-                    <span class="text-3xl font-semibold text-white">150+</span>
-                    <span class="max-w-[8rem] text-right text-sm text-gray-400" data-translate="stats.countries">countries covered</span>
-                </div>
-            </div>
-        </Section>
+<Section contained={false} spacing="none" class="overflow-hidden bg-[#101010] py-6 lg:py-8">
+	<div class="mx-auto grid max-w-7xl divide-y divide-white/[0.08] px-6 md:grid-cols-3 md:divide-x md:divide-y-0">
+		{stats.map((stat) => (
+			<article class="eor-proof-card">
+				<strong>{stat.value}</strong>
+				<span data-translate={stat.labelKey}>{stat.label}</span>
+			</article>
+		))}
+	</div>
+</Section>
+
+<style>
+	.eor-proof-card {
+		display: grid;
+		justify-items: center;
+		gap: 0.75rem;
+		padding: 1rem;
+		text-align: center;
+	}
+
+	.eor-proof-card strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(2.25rem, 4vw, 3.25rem);
+		font-weight: 400;
+		line-height: 0.95;
+		letter-spacing: 0;
+	}
+
+	.eor-proof-card span {
+		max-width: 12rem;
+		color: rgb(255 255 255 / 0.58);
+		font-family: Manrope, sans-serif;
+		font-size: 0.95rem;
+		font-weight: 500;
+		line-height: 1.28;
+	}
+</style>

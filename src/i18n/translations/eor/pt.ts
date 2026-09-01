@@ -8,12 +8,80 @@ export const eorPt = {
 		"badge": "Employer of Record para equipas globais",
 		"title": "Contratação global simples, rápida e sem falhas",
 		"description": "Contratar os melhores talentos em qualquer parte do mundo não deve significar lidar com regras complexas de conformidade, sistemas de payroll separados ou criação de múltiplas entidades legais em cada país. Na Garna, oferecemos uma solução Employer of Record simples e moderna, concebida para ajudar empresas a expandirem-se globalmente sem ficarem presas em dificuldades operacionais",
-		"cta": "Marcar demo"
+		"cta": "Marcar demo",
+		"slides": {
+			"hire": {
+				"title": "Contrate globalmente com a Garna EOR",
+				"description": "A Garna torna-se a empregadora legal da sua equipa no estrangeiro: trata de contratos, payroll, impostos e compliance, enquanto gere o trabalho"
+			},
+			"entities": {
+				"title": "Contrate sem entidades locais",
+				"description": "Entre em novos mercados enquanto a Garna gere emprego local, contratos, payroll, impostos e compliance para cada contratação"
+			},
+			"onboarding": {
+				"title": "Integre equipas globais com segurança",
+				"description": "Mantenha termos locais, benefícios, documentos e pagamentos salariais alinhados desde o primeiro dia"
+			}
+		}
 	},
 	"stats": {
 		"businesses": "empresas utilizam a Garna",
-		"availability": "disponibilidade global de folha de pagamento",
-		"countries": "países abrangidos"
+		"coverage": "países abrangidos",
+		"startingFrom": "a partir de"
+	},
+	"transparentPricing": {
+		"title": "Preços transparentes EOR",
+		"description": "A partir de $200 por mês por funcionário.",
+		"note": "Sem taxas ocultas. Sem custos de criação de entidade local. Receba uma cotação personalizada de acordo com as suas necessidades de contratação.",
+		"button": "Calcular opções",
+		"panel": {
+			"from": "A partir de",
+			"period": "por funcionário / mês"
+		}
+	},
+	"countries": {
+		"title": "Contrate funcionários em todo o mundo",
+		"description": "Contrate funcionários em mais de 150 países com a Garna",
+		"button": "Book a demo",
+		"showAll": "Mostrar tudo",
+		"showLess": "Mostrar menos",
+		"regions": {
+			"europe": "Europa",
+			"americas": "Américas",
+			"asiaPacific": "Ásia-Pacífico",
+			"africa": "África"
+		}
+	},
+	"eorProof": {
+		"title": "Contrate no estrangeiro sem suposições",
+		"description": "A Garna torna a contratação internacional transparente, de contratos locais a payroll e compliance. Quando estiver pronto, compare as suas opções no calculador de custos",
+		"button": "Calcular opções",
+		"carousel": {
+			"ariaLabel": "Escolher um cartão EOR"
+		},
+		"stats": {
+			"countries": {
+				"label": "países abrangidos",
+				"notice": {
+					"title": "Contrato pronto",
+					"meta": "Condições verificadas"
+				}
+			},
+			"platform": {
+				"label": "plataforma para contratação global",
+				"notice": {
+					"title": "Perfil de payroll pronto",
+					"meta": "Salário, impostos, benefícios"
+				}
+			},
+			"entities": {
+				"label": "entidades locais a abrir",
+				"notice": {
+					"title": "Estimativa pronta",
+					"meta": "Custos locais incluídos"
+				}
+			}
+		}
 	},
 	"sectionTags": {
 		"growFaster": "Cresça mais depressa",
@@ -51,21 +119,30 @@ export const eorPt = {
 			"hiringChecksReady": "Verificações internacionais prontas",
 			"newEmployee": "Novo colaborador",
 			"inviteSent": "Convite enviado",
+			"onboardingWorkflow": "Workflow de onboarding",
+			"countryStepsReady": "Etapas locais prontas",
 			"growthLead": "Responsável de crescimento",
 			"localContractPrepared": "Contrato local preparado",
 			"payrollProfileReady": "Perfil de payroll pronto",
 			"complianceVault": "Arquivo de conformidade",
 			"documentsStored": "Documentos guardados",
+			"contractHub": "Centro de contratos",
+			"complianceDocsReady": "Docs de conformidade prontas",
 			"signed": "Assinado",
 			"taxForms": "Formulários fiscais",
 			"stored": "Guardado",
 			"payrollRecords": "Registos de payroll",
 			"synced": "Sincronizado",
+			"globalPayroll": "Execução de payroll global",
+			"payrollRunReady": "Pagamentos multi-moeda prontos",
 			"workforceCosts": "Custos da equipa",
 			"liveReport": "Relatório em tempo real",
+			"workforceAnalytics": "Analytics da equipa",
+			"costsInView": "Custos visíveis",
 			"countries": "Países",
 			"complianceChecks": "Verificações de conformidade",
 			"offboarding": "Offboarding",
+			"compliantOffboarding": "Offboarding conforme",
 			"noticeRulesChecked": "Regras de aviso verificadas",
 			"finalPayrollCalculated": "Payroll final calculado",
 			"documentsArchived": "Documentos arquivados"
@@ -140,8 +217,8 @@ export const eorPt = {
 		}
 	},
 	"why": {
-		"title": "A resposta para porque as empresas escolhem a Garna",
-		"description": "A Garna facilita às empresas a gestão de cada etapa do emprego global — desde encontrar as pessoas certas para contratar até integrá-las, efetuar pagamentos e organizar toda a documentação",
+		"title": "Funcionalidades da plataforma Employer of Record",
+		"description": "Do onboarding ao offboarding, o EOR da Garna cobre todo o ciclo de emprego numa única plataforma",
 		"tabs": {
 			"sourcing": {
 				"label": "Recrutamento",
@@ -153,19 +230,19 @@ export const eorPt = {
 				"label": "Onboarding",
 				"title": "Automatização do onboarding internacional de funcionários",
 				"problem": "O onboarding de um novo funcionário pode ser um desafio quando se contrata pessoas de diferentes partes do mundo",
-				"solution": "A Garna torna o onboarding internacional mais simples através de workflows especiais que garantem que tudo é feito corretamente em cada país. Em vez de lidar com diferentes sistemas e documentação, pode integrar funcionários em todo o mundo através de uma única plataforma e reduzir significativamente o trabalho manual de RH"
+				"solution": "A Garna simplifica o onboarding internacional com workflows que garantem que tudo é feito corretamente em cada país. Integre funcionários em todo o mundo através de uma só plataforma e reduza o trabalho manual de RH"
 			},
 			"documents": {
-				"label": "Documentos",
+				"label": "Contratos",
 				"title": "Centralização de contratos e documentação de conformidade",
 				"problem": "Tentar acompanhar diferentes contratos, formulários fiscais, registos de payroll e documentos de conformidade pode transformar-se tanto num pesadelo operacional como num risco para qualquer equipa internacional",
-				"solution": "A Garna facilita manter tudo num único lugar através da nossa plataforma segura, para que possa gerir conformidade internacional e todos os workflows globais de RH das suas equipas distribuídas com menos complicações"
+				"solution": "A Garna mantém tudo num único lugar numa plataforma segura, para que possa gerir conformidade laboral internacional e workflows globais de RH de forma eficiente"
 			},
 			"payroll": {
 				"label": "Payroll",
-				"title": "Gerir payroll global sem todo o stress",
+				"title": "Gerir payroll global sem stress",
 				"problem": "Garantir payroll correto para funcionários em todo o mundo e lidar com diferentes moedas e regras fiscais é uma das partes mais complicadas da expansão internacional de um negócio",
-				"solution": "A Garna reduz a complexidade da gestão de payroll internacional através de workflows automatizados. Com o nosso sistema, a sua empresa pode pagar rapidamente a pessoas em todo o mundo, eliminando erros de payroll e trabalho adicional"
+				"solution": "A Garna simplifica o payroll internacional com workflows automatizados. Pague pessoas em todo o mundo rapidamente, reduzindo erros de payroll e trabalho adicional"
 			},
 			"timeOff": {
 				"label": "Férias e despesas",
@@ -176,14 +253,34 @@ export const eorPt = {
 				"label": "Relatórios",
 				"title": "Obter uma visão clara da sua força de trabalho global",
 				"problem": "A Garna oferece visibilidade clara sobre payroll, conformidade, onboarding e custos da força de trabalho para quem pretende gerir operações de RH de forma eficiente",
-				"solution": "A nossa plataforma de analytics e relatórios fornece insights detalhados e ajuda a manter os custos da força de trabalho sob controlo. Além disso, com a nossa infraestrutura API-first, grandes empresas podem integrar as nossas ferramentas de relatórios nos dashboards já existentes"
+				"solution": "A nossa plataforma de analytics e relatórios oferece insights e ajuda a manter os custos da equipa sob controlo. Com infraestrutura API-first, as empresas podem integrar ferramentas de reporting nos dashboards existentes"
 			},
 			"termination": {
-				"label": "Rescisão",
+				"label": "Offboarding",
 				"title": "Realizar offboarding em conformidade num mercado global",
 				"problem": "O offboarding de funcionários não é simples, especialmente quando envolve diferentes países e diferentes regras. Um erro pode resultar em sérios riscos legais e de conformidade",
-				"solution": "Os nossos workflows de rescisão são adaptados às leis laborais específicas de cada país para que possa realizar offboarding com total confiança"
+				"solution": "Os nossos workflows de rescisão são adaptados às leis laborais de cada país para que possa realizar offboarding de funcionários com confiança"
 			}
+		}
+	},
+	"costEstimator": {
+		"kicker": "Estimador de custos",
+		"title": "Veja o custo real da sua contratação",
+		"description": "A Garna começa a partir de $200 por mês por funcionário, sem taxas ocultas nem custos de criação de entidade local. Indique o país e o salário para estimar impostos, benefícios obrigatórios e o custo total da contratação",
+		"proof": {
+			"countries": "países abrangidos",
+			"payroll": "disponibilidade de payroll"
+		},
+		"form": {
+			"title": "Global Hiring Cost Estimator",
+			"hireIn": "Quero contratar em",
+			"country": "País",
+			"region": "Estado / província",
+			"salary": "Salário bruto anual",
+			"currency": "Moeda",
+			"amount": "Valor",
+			"amountPlaceholder": "Salário anual",
+			"button": "Calcular custo total"
 		}
 	},
 	"fit": {
@@ -251,8 +348,13 @@ export const eorPt = {
 		}
 	},
 	"finalCta": {
-		"title": "Global Employer of Record é um processo moderno de contratação sem stress",
-		"description": "A Garna oferece suporte especializado 24/7 e todas as funcionalidades necessárias para garantir uma experiência de contratação global sem crises inesperadas nem problemas operacionais",
-		"button": "Começar expansão global"
+		"title": "Contrate funcionários globalmente sem abrir entidades locais",
+		"description": "A Garna torna-se a empregadora legal da sua equipa internacional e trata de contratos, payroll, impostos, benefícios e conformidade local, enquanto gere o trabalho diário de cada funcionário",
+		"button": "Marcar uma demo"
+	},
+	"dashboardCta": {
+		"title": "Comece com a Garna",
+		"description": "Contrate funcionários no estrangeiro sem abrir entidades locais. A Garna trata de contratos, payroll, impostos e conformidade numa só plataforma",
+		"button": "Marcar uma demo"
 	}
 };

@@ -1,5 +1,13 @@
+---
+interface Props {
+	class?: string;
+}
+
+const { class: className = 'mt-8' } = Astro.props;
+---
+
 <!-- Dashboard Mockup with Dynamic Sizing -->
-            <div class="mt-8 overflow-visible max-w-6xl mr-auto ml-auto relative perspective-1000"
+            <div class:list={[className, 'overflow-visible max-w-6xl mr-auto ml-auto relative perspective-1000 eor-dashboard-scale-root']} data-eor-dashboard-scale-root
                 >
                 <div
                     class="garna-product-window glass overflow-visible origin-top -translate-x-1/2 md:w-[160%] md:scale-[0.625] lg:w-full lg:scale-[0.85] bg-[#0A0A0A] w-[320%] border-white/10 border rounded-xl pt-2 pr-2 pb-2 pl-2 relative left-1/2 shadow-2xl scale-[0.3125]">
@@ -466,4 +474,29 @@
                         .anim-bar {
                             animation: growBar 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
                         }
+
+                        .eor-dashboard-scale-root {
+                            height: var(--eor-dashboard-scaled-height, auto);
+                        }
+
+                        .eor-dashboard-scale-root > .garna-product-window {
+                            position: absolute;
+                            top: 0;
+                        }
                     </style>
+<script>
+    const syncEorDashboardVisualHeight = () => {
+        document.querySelectorAll<HTMLElement>('[data-eor-dashboard-scale-root]').forEach((root) => {
+            const productWindow = root.querySelector<HTMLElement>(':scope > .garna-product-window');
+            if (!productWindow) return;
+            const matrix = new DOMMatrixReadOnly(getComputedStyle(productWindow).transform);
+            const scale = Math.hypot(matrix.a, matrix.b) || 1;
+            root.style.setProperty('--eor-dashboard-scaled-height', `${productWindow.scrollHeight * scale}px`);
+        });
+    };
+
+    syncEorDashboardVisualHeight();
+    window.addEventListener('resize', syncEorDashboardVisualHeight, { passive: true });
+    document.addEventListener('astro:page-load', syncEorDashboardVisualHeight);
+    window.addEventListener('garna:page-content-updated', syncEorDashboardVisualHeight);
+</script>

@@ -206,7 +206,7 @@ export const pageHeroes = {
 			'Scale your business without operational chaos: automate compliance and global contractor payments under your own brand',
 		descriptionTranslateKey: 'hero.description',
 		cta: {
-			label: 'Try Demo Version',
+			label: 'Book a demo',
 			translateKey: 'hero.cta',
 			kind: 'demo',
 			trackingCta: 'hero_demo',
@@ -276,12 +276,13 @@ export const pageHeroes = {
 		contentClass: 'mx-auto flex max-w-4xl flex-col items-center text-center',
 		titleClass: 'garna-hero-title-gradient font-manrope text-5xl font-normal leading-[1.05] tracking-tight md:text-[64px]',
 		descriptionClass: 'mx-auto mt-7 max-w-3xl text-lg leading-relaxed md:text-xl',
-		title: [{ text: 'Worldwide Employment Made Simple, Quick & Flawless', translateKey: 'hero.title' }],
+		title: [{ text: 'Employer of Record Hire in 150+ Countries', translateKey: 'hero.title' }],
+		titleBreakAfterWords: 3,
 		description:
-			"Hiring the best talent from around the globe doesn't have to be a set of complex compliance rules, separate payroll systems where you have to create multiple legal entities in each country. At Garna, we provide a simple, modern employer of record solution designed to help businesses expand globally without getting stuck in operational hassles",
+			'Garna becomes the legal employer for your team abroad. We run contracts, payroll, tax, and compliance, you manage the work',
 		descriptionTranslateKey: 'hero.description',
 		cta: {
-			label: 'Book demo',
+			label: 'Book a demo',
 			translateKey: 'hero.cta',
 			kind: 'demo',
 			trackingCta: 'eor_hero_book_demo',

@@ -1,0 +1,41 @@
+---
+import Button from '../../ui/Button.astro';
+import ContractorDashboardVisual from '../../visuals/ContractorDashboardVisual.astro';
+---
+
+<section class="relative overflow-hidden py-16 text-center lg:py-32" data-eor-dashboard-cta>
+	<div class="garna-container relative z-10">
+		<div class="mx-auto max-w-4xl">
+			<h2
+				class="font-manrope text-4xl font-normal leading-tight text-white md:text-5xl lg:text-[70px]"
+				data-translate="dashboardCta.title"
+			>
+				Get started with Garna
+			</h2>
+			<p
+				data-garna-subtitle
+				class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-gray-400"
+				data-translate="dashboardCta.description"
+			>
+				Hire employees abroad without opening local entities. Garna handles contracts, payroll, taxes, and compliance in one platform
+			</p>
+			<div class="mt-8 flex justify-center">
+				<Button
+					href="#"
+					onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'eor_final_cta' });"
+					variant="primary"
+					effect="none"
+					icon="none"
+					size="header"
+					class="w-fit"
+				>
+					<span data-translate="dashboardCta.button">Book a demo</span>
+				</Button>
+			</div>
+		</div>
+
+		<div class="relative mx-auto mt-12 max-w-6xl overflow-visible perspective-1000">
+			<ContractorDashboardVisual />
+		</div>
+	</div>
+</section>

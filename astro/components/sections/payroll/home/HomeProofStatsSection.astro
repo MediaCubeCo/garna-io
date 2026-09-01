@@ -1,7 +1,51 @@
 ---
 import Section from '../../../layout/Section.astro';
+import Button from '../../../ui/Button.astro';
 
-const stats = [
+type ProofStat = {
+	value: string;
+	label: string;
+	labelKey?: string;
+	image: string;
+	alt: string;
+	featured?: boolean;
+	imagePosition?: string;
+	imageOrigin?: string;
+	imageOffsetY?: string;
+	imageScale?: number;
+	notice: {
+		icon: 'check' | 'receipt' | 'transfer' | 'contract' | 'payroll' | 'calculator';
+		title: string;
+		titleKey?: string;
+		meta: string;
+		metaKey?: string;
+		amount?: string;
+		tone: 'bank' | 'card' | 'crypto';
+	};
+};
+
+type LocalizedText = {
+	text: string;
+	translateKey?: string;
+};
+
+interface Props {
+	title?: LocalizedText;
+	description?: LocalizedText;
+	action?: {
+		label: LocalizedText;
+		href: string;
+		variant?: 'primary' | 'secondary' | 'ghost' | 'glow';
+		icon?: 'none' | 'arrow-up-right' | 'arrow-right';
+		effect?: 'none' | 'rotating-flare';
+	};
+	stats?: ProofStat[];
+	carouselLabel?: string;
+	carouselLabelKey?: string;
+	class?: string;
+}
+
+const defaultStats: ProofStat[] = [
 	{
 		value: '400+',
 		label: 'businesses using Garna',
@@ -60,20 +104,45 @@ const stats = [
 		},
 	},
 ];
+
+const {
+	title = { text: 'Payroll for work without borders', translateKey: 'sectionHeadings.homeProof' },
+	description = { text: 'Support teams, contractors, and specialists wherever work happens', translateKey: 'sectionDescriptions.homeProof' },
+	action,
+	stats = defaultStats,
+	carouselLabel = 'Choose a payroll proof card',
+	carouselLabelKey = 'homeProof.carousel.ariaLabel',
+	class: className = '',
+} = Astro.props;
+
+const sectionClass = ['home-proof-section overflow-hidden', className].filter(Boolean).join(' ');
+const actionScrollTarget = action?.href?.startsWith('#') ? action.href : undefined;
+const noticeIcons = {
+	contract: 'solar:document-text-linear',
+	payroll: 'solar:wallet-money-linear',
+	calculator: 'solar:calculator-minimalistic-linear',
+};
 ---
 
 <Section
-	class="home-proof-section overflow-hidden"
+	class={sectionClass}
 	containerClass="relative"
 	width="wide"
 	spacing="default"
-	title={{ text: 'Payroll for work without borders', translateKey: 'sectionHeadings.homeProof' }}
-	description={{ text: 'Support teams, contractors, and specialists wherever work happens', translateKey: 'sectionDescriptions.homeProof' }}
+	title={title}
+	description={description}
 	headerClass="mb-16 max-w-4xl lg:mb-20"
 	titleClass="lg:text-5xl"
 	descriptionClass="mx-auto max-w-4xl"
 	contained={true}
 >
+	{action && (
+		<div slot="controls" class="home-proof-action">
+			<Button href={action.href} variant={action.variant} icon={action.icon} effect={action.effect} size="hero" data-translate={action.label.translateKey} data-smooth-scroll-target={actionScrollTarget}>
+				{action.label.text}
+			</Button>
+		</div>
+	)}
 	<div class="home-proof-carousel" data-home-proof-carousel>
 	<div class="home-proof-grid" data-home-proof-track>
 		{stats.map((stat, index) => (
@@ -121,11 +190,14 @@ const stats = [
 								<path d="m9 13-3 3 3 3"></path>
 							</svg>
 						)}
+						{stat.notice.icon in noticeIcons && (
+							<iconify-icon icon={noticeIcons[stat.notice.icon]} width="18" height="18" aria-hidden="true"></iconify-icon>
+						)}
 					</span>
 					<span class="home-proof-card__notice-copy">
 						<span class="home-proof-card__notice-top">
 							<strong data-translate={stat.notice.titleKey}>{stat.notice.title}</strong>
-							<em>{stat.notice.amount}</em>
+							{stat.notice.amount && <em>{stat.notice.amount}</em>}
 						</span>
 						<small data-translate={stat.notice.metaKey}>{stat.notice.meta}</small>
 					</span>
@@ -177,11 +249,14 @@ const stats = [
 								<path d="m9 13-3 3 3 3"></path>
 							</svg>
 						)}
+						{stat.notice.icon in noticeIcons && (
+							<iconify-icon icon={noticeIcons[stat.notice.icon]} width="18" height="18" aria-hidden="true"></iconify-icon>
+						)}
 					</span>
 					<span class="home-proof-card__notice-copy">
 						<span class="home-proof-card__notice-top">
 							<strong data-translate={stat.notice.titleKey}>{stat.notice.title}</strong>
-							<em>{stat.notice.amount}</em>
+							{stat.notice.amount && <em>{stat.notice.amount}</em>}
 						</span>
 						<small data-translate={stat.notice.metaKey}>{stat.notice.meta}</small>
 					</span>
@@ -190,7 +265,7 @@ const stats = [
 			</article>
 		))}
 	</div>
-	<div class="home-proof-dots" aria-label="Choose a payroll proof card" data-translate-aria-label="homeProof.carousel.ariaLabel">
+	<div class="home-proof-dots" aria-label={carouselLabel} data-translate-aria-label={carouselLabelKey}>
 		{stats.map((stat, index) => (
 			<button
 				type="button"
@@ -205,6 +280,23 @@ const stats = [
 </Section>
 
 <script>
+	document.querySelectorAll('[data-smooth-scroll-target]').forEach((button) => {
+		if (!(button instanceof HTMLAnchorElement) || button.dataset.smoothScrollReady === 'true') return;
+		button.dataset.smoothScrollReady = 'true';
+
+		button.addEventListener('click', (event) => {
+			const targetSelector = button.dataset.smoothScrollTarget;
+			if (!targetSelector) return;
+
+			const target = document.querySelector(targetSelector);
+			if (!(target instanceof HTMLElement)) return;
+
+			event.preventDefault();
+			target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			window.history.pushState(null, '', targetSelector);
+		});
+	});
+
 	document.querySelectorAll('[data-home-proof-carousel]').forEach((root) => {
 		if (!(root instanceof HTMLElement) || root.dataset.carouselReady === 'true') return;
 		const track = root.querySelector('[data-home-proof-track]');
@@ -327,6 +419,12 @@ const stats = [
 		background: #101010;
 	}
 
+	.home-proof-action {
+		display: flex;
+		justify-content: center;
+		margin: -2.5rem 0 3.5rem;
+	}
+
 	.home-proof-grid {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -440,7 +538,8 @@ const stats = [
 		color: #101010;
 	}
 
-	.home-proof-card__notice-icon svg {
+	.home-proof-card__notice-icon svg,
+	.home-proof-card__notice-icon iconify-icon {
 		display: block;
 		width: 1.18rem;
 		height: 1.18rem;

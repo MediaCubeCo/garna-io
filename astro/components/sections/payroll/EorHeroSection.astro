@@ -1,0 +1,393 @@
+---
+import Button from '../../ui/Button.astro';
+
+const stats = [
+	{
+		value: '400+',
+		label: 'businesses using Garna',
+		labelKey: 'stats.businesses',
+	},
+	{
+		value: '150+',
+		label: 'countries coverage',
+		labelKey: 'stats.coverage',
+	},
+	{
+		value: '$200',
+		label: 'starting from',
+		labelKey: 'stats.startingFrom',
+	},
+];
+
+const heroSlides = [
+	{
+		image: '/pages/payroll-solution-new/assets/eor-hero-hiring-call-v4.png',
+		objectPosition: '22% 43%',
+		title: 'Hire Globally With Garna EOR',
+		titleKey: 'hero.slides.hire.title',
+		description: 'Garna becomes the legal employer for your team abroad. We run contracts, payroll, tax, and compliance, you manage the work',
+		descriptionKey: 'hero.slides.hire.description',
+	},
+	{
+		image: '/pages/payroll-solution-new/assets/eor-hero-global-hiring-v1.png',
+		objectPosition: '48% 50%',
+		title: 'Hire Without Local Entities',
+		titleKey: 'hero.slides.entities.title',
+		description: 'Enter new markets while Garna handles local employment, contracts, payroll, taxes, and compliance for every hire',
+		descriptionKey: 'hero.slides.entities.description',
+	},
+	{
+		image: '/pages/payroll-solution-new/assets/eor-hero-employee-onboarding-v2.png',
+		objectPosition: '54% 50%',
+		title: 'Onboard Global Teams Safely',
+		titleKey: 'hero.slides.onboarding.title',
+		description: 'Keep country terms, benefits, documents, and salary payments aligned from the first day of employment',
+		descriptionKey: 'hero.slides.onboarding.description',
+	},
+];
+---
+
+<section class="eor-hero" data-section-kind="hero" data-eor-hero-slider>
+	<div class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)] lg:items-center lg:gap-10">
+		<div class="eor-hero__copy">
+			<div class="eor-hero__text">
+				<h1 class="garna-hero-title-gradient" data-eor-hero-title data-translate={heroSlides[0].titleKey}>{heroSlides[0].title}</h1>
+				<p data-garna-subtitle data-eor-hero-description data-translate={heroSlides[0].descriptionKey}>
+					{heroSlides[0].description}
+				</p>
+			</div>
+			<Button
+				href="#"
+				variant="primary"
+				size="hero"
+				effect="rotating-flare"
+				icon="arrow-up-right"
+				class="eor-hero__cta w-fit"
+				onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'eor_hero_book_demo' });"
+			>
+				<span data-translate="hero.cta">Book a demo</span>
+			</Button>
+
+			<div class="eor-hero__stats" aria-label="Garna EOR proof points">
+				{stats.map((stat) => (
+					<article>
+						<strong>{stat.value}</strong>
+						<span data-translate={stat.labelKey}>{stat.label}</span>
+					</article>
+				))}
+			</div>
+		</div>
+
+		<div class="eor-hero__timeline" aria-hidden="true">
+			<span></span>
+		</div>
+
+		<div class="eor-hero__visual" aria-label="Global hiring dashboard preview">
+			{heroSlides.map((slide, index) => (
+				<img
+					class:list={['eor-hero__image', index === 0 && 'is-active']}
+					src={slide.image}
+					alt=""
+					loading={index === 0 ? 'eager' : 'lazy'}
+					style={`object-position: ${slide.objectPosition};`}
+					data-eor-hero-image={index}
+				/>
+			))}
+		</div>
+	</div>
+
+	<div class="eor-hero__slide-sources" hidden>
+		{heroSlides.map((slide, index) => (
+			<article
+				data-eor-hero-slide-source
+				data-slide-index={index}
+				data-image={slide.image}
+				data-object-position={slide.objectPosition}
+			>
+				<span data-slide-title data-translate={slide.titleKey}>{slide.title}</span>
+				<span data-slide-description data-translate={slide.descriptionKey}>{slide.description}</span>
+			</article>
+		))}
+	</div>
+</section>
+
+<script>
+	document.querySelectorAll('[data-eor-hero-slider]').forEach((root) => {
+		if (!(root instanceof HTMLElement) || root.dataset.eorHeroReady === 'true') return;
+		root.dataset.eorHeroReady = 'true';
+
+		const sources = Array.from(root.querySelectorAll('[data-eor-hero-slide-source]'));
+		const images = Array.from(root.querySelectorAll('[data-eor-hero-image]'));
+		const title = root.querySelector('[data-eor-hero-title]');
+		const description = root.querySelector('[data-eor-hero-description]');
+
+		if (!sources.length || !title || !description) return;
+
+		const readText = (source, selector) => source.querySelector(selector)?.textContent?.trim() || '';
+
+		const applySlide = (nextIndex) => {
+			const source = sources[nextIndex];
+			if (!(source instanceof HTMLElement)) return;
+
+			root.dataset.eorHeroActive = String(nextIndex);
+			images.forEach((image, index) => image.classList.toggle('is-active', index === nextIndex));
+			title.textContent = readText(source, '[data-slide-title]');
+			description.textContent = readText(source, '[data-slide-description]');
+		};
+
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+		let activeIndex = 0;
+		window.setInterval(() => {
+			activeIndex = (activeIndex + 1) % sources.length;
+			applySlide(activeIndex);
+		}, 5200);
+	});
+</script>
+
+<style>
+	.eor-hero {
+		position: relative;
+		overflow: hidden;
+		background: transparent;
+		padding: clamp(8.5rem, 13vw, 12rem) 0 clamp(4.5rem, 8vw, 7rem);
+		color: #ffffff;
+	}
+
+	.eor-hero__copy,
+	.eor-hero__visual {
+		position: relative;
+		z-index: 1;
+	}
+
+	.eor-hero__copy {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+	}
+
+	.eor-hero__text {
+		width: 100%;
+	}
+
+	.eor-hero__timeline {
+		position: relative;
+		display: none;
+		width: 1px;
+		min-height: clamp(29rem, 44vw, 40rem);
+		align-self: stretch;
+		overflow: hidden;
+		border-radius: 999px;
+		background: transparent;
+	}
+
+	.eor-hero__timeline span {
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background: #cbf300;
+		box-shadow: 0 0 18px rgb(203 243 0 / 0.45);
+		transform: scaleY(0);
+		transform-origin: top;
+		animation: eor-hero-progress 15600ms linear infinite;
+	}
+
+	.eor-hero__copy h1 {
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		margin: 0;
+		font-family: Manrope, sans-serif;
+		font-size: 2.75rem;
+		font-weight: 400;
+		line-height: 1.06;
+		letter-spacing: 0;
+	}
+
+	@media (min-width: 768px) {
+		.eor-hero__copy h1 {
+			font-size: 3.35rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.eor-hero__copy {
+			min-height: clamp(29rem, 44vw, 40rem);
+		}
+
+		.eor-hero__timeline {
+			display: block;
+		}
+
+		.eor-hero__copy h1 {
+			font-size: 70px;
+			min-height: 2.12em;
+		}
+	}
+
+	.eor-hero__copy p {
+		display: -webkit-box;
+		max-width: 36rem;
+		min-height: 4.74em;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		margin: 1.25rem 0 0;
+		color: rgb(255 255 255 / 0.62);
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1rem, 1.35vw, 1.25rem);
+		font-weight: 500;
+		line-height: 1.58;
+	}
+
+	:global(.eor-hero__cta) {
+		margin-top: 2.5rem;
+	}
+
+	.eor-hero__stats {
+		display: flex;
+		width: 100%;
+		max-width: none;
+		align-items: flex-start;
+		gap: clamp(1.35rem, 3vw, 2.15rem);
+		margin-top: clamp(2rem, 3.5vw, 3rem);
+	}
+
+	.eor-hero__stats article {
+		position: relative;
+		display: grid;
+		gap: 0.32rem;
+	}
+
+	.eor-hero__stats article + article {
+		padding-left: clamp(1.35rem, 3vw, 2.15rem);
+	}
+
+	.eor-hero__stats article + article::before {
+		content: "";
+		position: absolute;
+		top: 0.12rem;
+		left: 0;
+		width: 1px;
+		height: 2.4rem;
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.14);
+	}
+
+	.eor-hero__stats strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1.35rem, 2.1vw, 1.95rem);
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.eor-hero__stats span {
+		color: rgb(255 255 255 / 0.56);
+		font-family: Manrope, sans-serif;
+		font-size: 0.74rem;
+		font-weight: 500;
+		line-height: 1.35;
+		white-space: nowrap;
+	}
+
+	@media (min-width: 1024px) {
+		.eor-hero__copy .eor-hero__stats {
+			margin-top: auto;
+		}
+	}
+
+	.eor-hero__visual {
+		width: 100%;
+		min-height: clamp(29rem, 44vw, 40rem);
+		border-radius: 24px;
+		background: #1a1a1a;
+		box-shadow: 0 34px 90px -55px rgb(0 0 0 / 0.86);
+		isolation: isolate;
+		overflow: hidden;
+	}
+
+	.eor-hero__image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0;
+		transform: scale(1.015);
+		transition: opacity 780ms ease, transform 1200ms ease;
+	}
+
+	.eor-hero__image.is-active {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	.eor-hero__visual::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		background:
+			linear-gradient(90deg, rgb(16 16 16 / 0.06), transparent 45%),
+			linear-gradient(0deg, rgb(16 16 16 / 0.18), transparent 46%);
+		pointer-events: none;
+	}
+
+	@keyframes eor-hero-progress {
+		from {
+			transform: scaleY(0);
+		}
+
+		to {
+			transform: scaleY(1);
+		}
+	}
+
+	@media (max-width: 1023px) {
+		.eor-hero__copy {
+			max-width: 47rem;
+		}
+
+		.eor-hero__visual {
+			max-width: 44rem;
+			width: 100%;
+			margin: 0 auto;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.eor-hero {
+			padding-top: 7rem;
+		}
+
+		.eor-hero__stats {
+			flex-direction: column;
+			gap: 1.1rem;
+		}
+
+		.eor-hero__stats article + article {
+			padding-left: 0;
+		}
+
+		.eor-hero__stats article + article::before {
+			display: none;
+		}
+
+		.eor-hero__visual {
+			min-height: 32rem;
+			border-radius: 18px;
+		}
+
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.eor-hero__timeline span {
+			animation: none;
+			transform: scaleY(0.333);
+		}
+	}
+</style>

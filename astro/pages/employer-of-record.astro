@@ -1,78 +1,160 @@
 ---
-import HeroSection from '../components/sections/HeroSection.astro';
 import FAQSection from '../components/sections/FAQSection.astro';
+import FinalCTASection from '../components/sections/FinalCTASection.astro';
 import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { pageHeroes } from '../content/page-heroes';
+import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
-import EorTrustStripSection from '../components/sections/payroll/EorTrustStripSection.astro';
+import EorHeroSection from '../components/sections/payroll/EorHeroSection.astro';
+import HomeProofStatsSection from '../components/sections/payroll/home/HomeProofStatsSection.astro';
+import EorCountriesSection from '../components/sections/payroll/EorCountriesSection.astro';
 import GlobalWorkforceBenefitsSection from '../components/sections/payroll/GlobalWorkforceBenefitsSection.astro';
-import GlobalHiringFeaturesSection from '../components/sections/payroll/GlobalHiringFeaturesSection.astro';
 import EorWhyGarnaSection from '../components/sections/payroll/EorWhyGarnaSection.astro';
-import EorFitSection from '../components/sections/payroll/EorFitSection.astro';
-import EorStepsSection from '../components/sections/payroll/EorStepsSection.astro';
+import EorCostEstimatorSection from '../components/sections/payroll/EorCostEstimatorSection.astro';
+import EorDashboardCtaSection from '../components/sections/payroll/EorDashboardCtaSection.astro';
 import EmployerOfRecordSectionStyles from '../components/sections/payroll/EmployerOfRecordSectionStyles.astro';
 import EmployerOfRecordInteractions from '../components/sections/payroll/EmployerOfRecordInteractions.astro';
-import EmployerOfRecordVisual from '../components/visuals/EmployerOfRecordVisual.astro';
+
+const eorProofStats = [
+	{
+		value: '150+',
+		label: 'countries covered',
+		labelKey: 'eorProof.stats.countries.label',
+		image: '/pages/payroll-solution-new/assets/home-proof-mountain-man-v1.png',
+		alt: 'A remote professional standing in the mountains at sunrise',
+		imagePosition: 'center bottom',
+		imageOrigin: 'center center',
+		imageScale: 1.36,
+		notice: {
+			icon: 'contract',
+			title: 'Contract ready',
+			titleKey: 'eorProof.stats.countries.notice.title',
+			meta: 'Country terms checked',
+			metaKey: 'eorProof.stats.countries.notice.meta',
+			tone: 'bank',
+		},
+	},
+	{
+		value: '1',
+		label: 'platform for global hiring',
+		labelKey: 'eorProof.stats.platform.label',
+		image: '/pages/payroll-solution-new/assets/home-hero-profile-clouds-v2.jpg',
+		alt: 'A global professional in profile against a clear blue sky',
+		featured: true,
+		imagePosition: 'center bottom',
+		imageOrigin: 'bottom center',
+		imageScale: 1.62,
+		notice: {
+			icon: 'payroll',
+			title: 'Payroll profile set',
+			titleKey: 'eorProof.stats.platform.notice.title',
+			meta: 'Salary, tax, benefits',
+			metaKey: 'eorProof.stats.platform.notice.meta',
+			tone: 'card',
+		},
+	},
+	{
+		value: '0',
+		label: 'local entities to open',
+		labelKey: 'eorProof.stats.entities.label',
+		image: '/pages/payroll-solution-new/assets/home-proof-coffee-man-v2.png',
+		alt: 'A man in a white shirt holding coffee near a window',
+		imagePosition: 'center center',
+		imageOrigin: 'center center',
+		notice: {
+			icon: 'calculator',
+			title: 'Cost estimate ready',
+			titleKey: 'eorProof.stats.entities.notice.title',
+			meta: 'Local costs included',
+			metaKey: 'eorProof.stats.entities.notice.meta',
+			tone: 'crypto',
+		},
+	},
+];
 
 const eorFaqItems = [
 	{
-		question: 'What is an Employer of Record (EoR)?',
+		question: 'What is an Employer of Record (EOR)?',
 		answer:
-			"An Employer of Record (EoR) is a third-party company that legally employs workers on behalf of another business. They're the ones responsible for handling things, like payroll, taxes, compliance, contracts, and making sure the local employment rules are followed",
+			"An Employer of Record lets you hire full-time employees in countries where you don't have a legal entity. Garna becomes the legal employer, handling payroll, contracts, taxes, and local compliance, while you manage an employee's day-to-day work.",
 		questionTranslateKey: 'faq.items.q1.question',
 		answerTranslateKey: 'faq.items.q1.answer',
 	},
 	{
-		question: 'How is an EoR different from a professional employer organization (PEO)?',
+		question: 'Who manages the employee?',
 		answer:
-			"A PEO is a type of company that uses the 'co-employment' model. They work together with the client company to manage the employees. They usually need the client company to already have a local setup. An EoR, on the other hand, acts as the official employer so you don't need to set up a business in every country you want to work in",
+			'You do. You set their responsibilities, working hours, goals, and career path. Garna handles contracts, statutory benefits, salary payments, and local compliance.',
 		questionTranslateKey: 'faq.items.q2.question',
 		answerTranslateKey: 'faq.items.q2.answer',
 	},
 	{
-		question: 'When should you use an EoR?',
+		question: "What's the difference between hiring through an EOR and a contractor?",
 		answer:
-			"If you want to start hiring people in countries you aren't already set up to do business in, an EoR is your solution. It lets you expand internationally without having to go through a tiring process of starting a subsidiary in each place and sorting out all the local labour rules",
+			'An EOR employee is a full-time employee under local labor law, with statutory benefits, legal protections, and full compliance, ideal for long-term, full-time roles. A contractor is self-employed, without those protections, and treating someone working full-time hours under your direction as a contractor can lead to compliance risk and penalties.',
 		questionTranslateKey: 'faq.items.q3.question',
 		answerTranslateKey: 'faq.items.q3.answer',
 	},
 	{
-		question: 'EoR vs own international entity setup: which is better?',
+		question: 'EOR vs setting up your own entity, which is better?',
 		answer:
-			"Setting up a local entity can be expensive and tiring, especially if you're just starting out in a new market. An EoR is usually faster to set up and way more flexible for businesses that need to hire globally. You can try out new regions, scale your team without any complexities",
+			"Your own entity means you own incorporation, tax filings, and local compliance. An EOR is faster to start and more flexible if you're still testing where to grow.",
 		questionTranslateKey: 'faq.items.q4.question',
 		answerTranslateKey: 'faq.items.q4.answer',
 	},
 	{
-		question: 'What EoR model does Garna have?',
-		answer: 'Garna has a flexible global EoR solution that includes all the necessary features you need, like payroll, compliance, and onboarding in a single platform. We also have API integrations and white-label options as well as support for teams that work across multiple countries',
+		question: 'How quickly can I start hiring through Garna?',
+		answer: 'In most countries, we can onboard your new employee in as little as X business day(s), once the offer is confirmed and onboarding documents are signed.',
 		questionTranslateKey: 'faq.items.q5.question',
 		answerTranslateKey: 'faq.items.q5.answer',
+	},
+	{
+		question: 'Can I hire international workers without an EOR?',
+		answer:
+			"Yes, by setting up a local legal entity or hiring the person as a contractor. Both have trade-offs: an entity is slow and expensive, a contractor role carries compliance risk if it resembles full-time employment. Garna's EOR is the faster, fully compliant alternative.",
+		questionTranslateKey: 'faq.items.q6.question',
+		answerTranslateKey: 'faq.items.q6.answer',
+	},
+	{
+		question: 'Is it legally compliant to hire through an EOR?',
+		answer: 'Yes, EOR is a legally recognized employment model in most countries.',
+		questionTranslateKey: 'faq.items.q7.question',
+		answerTranslateKey: 'faq.items.q7.answer',
+	},
+	{
+		question: 'How much does an Employer of Record cost?',
+		answer:
+			'Pricing starts at $200 but may vary depending on the country, salary level, and team size. There are no hidden fees or FX markups. Get a quote based on your team.',
+		questionTranslateKey: 'faq.items.q8.question',
+		answerTranslateKey: 'faq.items.q8.answer',
 	},
 ] satisfies FAQItem[];
 ---
 
 <BaseLayout shell={pageShells.eor}>
-	<HeroSection {...pageHeroes.eor}>
-		<EmployerOfRecordVisual />
-	</HeroSection>
-	<EorTrustStripSection />
+	<EorHeroSection />
+	<HomeProofStatsSection
+		title={{ text: 'Hire Abroad Without Guesswork', translateKey: 'eorProof.title' }}
+		description={{ text: 'Garna keeps international hiring transparent, from local contracts to payroll and compliance. When you are ready, compare your options in the cost calculator', translateKey: 'eorProof.description' }}
+		action={{ label: { text: 'Calculate your options', translateKey: 'eorProof.button' }, href: '#eor-cost-estimator', variant: 'primary', icon: 'arrow-right', effect: 'none' }}
+		stats={eorProofStats}
+		carouselLabel="Choose an EOR proof card"
+		carouselLabelKey="eorProof.carousel.ariaLabel"
+	/>
+	<EorCountriesSection />
 	<GlobalWorkforceBenefitsSection />
-	<GlobalHiringFeaturesSection />
 	<EorWhyGarnaSection />
-	<EorFitSection />
-	<EorStepsSection />
 	<EmployerOfRecordSectionStyles />
+	<EorCostEstimatorSection />
+	<EorDashboardCtaSection />
 	<FAQSection
-		kicker={{ text: 'FAQ', translateKey: 'faq.kicker' }}
 		title={{ text: 'FAQ on Employer of Record', translateKey: 'faq.title' }}
 		items={eorFaqItems}
 		variant="eor"
-		class="py-24"
+		class="py-16 lg:py-32"
 		containerClass="garna-container"
 	/>
+	<FinalCTASection {...pageFinalCtas.eor} />
 	<Fragment slot="widgets">
 		<EmployerOfRecordInteractions />
 		<GarnaBookingWidget

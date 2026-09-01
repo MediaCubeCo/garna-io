@@ -325,7 +325,7 @@
 		},
 	},
 	dashboard: {
-		url: 'garna.io/dashboard',
+		url: 'garna.io/balance',
 		balance: 'Saldo',
 		company: 'Empresa',
 		notifications: 'Notificaciones',

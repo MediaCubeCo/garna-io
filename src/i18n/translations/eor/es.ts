@@ -8,12 +8,80 @@ export const eorEs = {
 		"badge": "Empleador oficial para equipos globales",
 		"title": "Contratación internacional sencilla, rápida y sin complicaciones",
 		"description": "Contratar a los mejores talentos de todo el mundo no tiene por qué implicar un conjunto de complejas normas de cumplimiento ni sistemas de nóminas independientes en los que haya que crear múltiples entidades jurídicas en cada país. En Garna, ofrecemos una solución sencilla y moderna de empleador oficial diseñada para ayudar a las empresas a expandirse a nivel mundial sin verse atrapadas en complicaciones operativas",
-		"cta": "Solicita un demo"
+		"cta": "Solicita un demo",
+		"slides": {
+			"hire": {
+				"title": "Contrata globalmente con Garna EOR",
+				"description": "Garna se convierte en el empleador legal de tu equipo en el extranjero: gestiona contratos, payroll, impuestos y compliance, mientras tú diriges el trabajo"
+			},
+			"entities": {
+				"title": "Contrata sin entidades locales",
+				"description": "Entra en nuevos mercados mientras Garna gestiona empleo local, contratos, payroll, impuestos y compliance para cada contratación"
+			},
+			"onboarding": {
+				"title": "Incorpora equipos globales con seguridad",
+				"description": "Mantén condiciones locales, beneficios, documentos y pagos salariales alineados desde el primer día"
+			}
+		}
 	},
 	"stats": {
 		"businesses": "empresas utilizan Garna",
-		"availability": "disponibilidad global de nómina",
-		"countries": "países cubiertos"
+		"coverage": "países cubiertos",
+		"startingFrom": "desde"
+	},
+	"transparentPricing": {
+		"title": "Precios transparentes EOR",
+		"description": "Desde $200 al mes por empleado.",
+		"note": "Sin tarifas ocultas. Sin costes de crear una entidad local. Obtén una cotización personalizada según tus necesidades de contratación.",
+		"button": "Calcular tus opciones",
+		"panel": {
+			"from": "Desde",
+			"period": "por empleado / mes"
+		}
+	},
+	"countries": {
+		"title": "Contrata empleados en todo el mundo",
+		"description": "Contrata empleados en más de 150 países con Garna",
+		"button": "Book a demo",
+		"showAll": "Ver todo",
+		"showLess": "Ver menos",
+		"regions": {
+			"europe": "Europa",
+			"americas": "Américas",
+			"asiaPacific": "Asia Pacífico",
+			"africa": "África"
+		}
+	},
+	"eorProof": {
+		"title": "Contrata en el extranjero sin conjeturas",
+		"description": "Garna hace que la contratación internacional sea transparente, desde contratos locales hasta payroll y compliance. Cuando estés listo, compara tus opciones en el calculador de costes",
+		"button": "Calcular tus opciones",
+		"carousel": {
+			"ariaLabel": "Elegir una tarjeta EOR"
+		},
+		"stats": {
+			"countries": {
+				"label": "países cubiertos",
+				"notice": {
+					"title": "Contrato listo",
+					"meta": "Condiciones revisadas"
+				}
+			},
+			"platform": {
+				"label": "plataforma para contratación global",
+				"notice": {
+					"title": "Perfil de payroll listo",
+					"meta": "Salario, impuestos, beneficios"
+				}
+			},
+			"entities": {
+				"label": "entidades locales que abrir",
+				"notice": {
+					"title": "Coste estimado listo",
+					"meta": "Costes locales incluidos"
+				}
+			}
+		}
 	},
 	"sectionTags": {
 		"growFaster": "Crece más rápido",
@@ -51,21 +119,30 @@ export const eorEs = {
 			"hiringChecksReady": "Verificaciones internacionales listas",
 			"newEmployee": "Nuevo empleado",
 			"inviteSent": "Invitación enviada",
+			"onboardingWorkflow": "Flujo de incorporación",
+			"countryStepsReady": "Pasos del país listos",
 			"growthLead": "Líder de crecimiento",
 			"localContractPrepared": "Contrato local preparado",
 			"payrollProfileReady": "Perfil de nómina listo",
 			"complianceVault": "Archivo de cumplimiento",
 			"documentsStored": "Documentos guardados",
+			"contractHub": "Centro de contratos",
+			"complianceDocsReady": "Docs de cumplimiento listas",
 			"signed": "Firmado",
 			"taxForms": "Formularios fiscales",
 			"stored": "Guardado",
 			"payrollRecords": "Registros de nómina",
 			"synced": "Sincronizado",
+			"globalPayroll": "Proceso de nómina global",
+			"payrollRunReady": "Pagos multidivisa listos",
 			"workforceCosts": "Costes de personal",
 			"liveReport": "Informe en vivo",
+			"workforceAnalytics": "Analítica de plantilla",
+			"costsInView": "Costes visibles",
 			"countries": "Países",
 			"complianceChecks": "Verificaciones de cumplimiento",
 			"offboarding": "Salida",
+			"compliantOffboarding": "Salida conforme",
 			"noticeRulesChecked": "Reglas de aviso verificadas",
 			"finalPayrollCalculated": "Nómina final calculada",
 			"documentsArchived": "Documentos archivados"
@@ -140,8 +217,8 @@ export const eorEs = {
 		}
 	},
 	"why": {
-		"title": "La respuesta a por qué las empresas eligen Garna",
-		"description": "Garna facilita a las empresas la gestión de todos los aspectos de su plantilla global, desde la búsqueda de los candidatos adecuados hasta su incorporación, la gestión de sus salarios y la tramitación de la documentación",
+		"title": "Funciones de la plataforma Employer of Record",
+		"description": "Desde la incorporación hasta la salida, el EOR de Garna cubre todo el ciclo laboral en una sola plataforma",
 		"tabs": {
 			"sourcing": {
 				"label": "Búsqueda de talento",
@@ -153,19 +230,19 @@ export const eorEs = {
 				"label": "Incorporación",
 				"title": "Automatización de la incorporación de empleados internacionales",
 				"problem": "La incorporación de un nuevo empleado puede ser un reto cuando se contrata desde diferentes lugares del mundo",
-				"solution": "Garna simplifica la incorporación de empleados internacionales con flujos de trabajo específicos que garantizan que todo se haga correctamente en cada país. En lugar de tener que lidiar con diferentes sistemas y trámites, puedes incorporar a empleados de todo el mundo a través de una sola plataforma y reducir todo el trabajo manual de RR. HH"
+				"solution": "Garna simplifica la incorporación de empleados internacionales con flujos de trabajo que garantizan que todo se haga correctamente en cada país. Incorpora empleados de todo el mundo desde una sola plataforma y reduce el trabajo manual de RR. HH"
 			},
 			"documents": {
-				"label": "Documentos",
+				"label": "Contratos",
 				"title": "Centralización de contratos y documentación de cumplimiento",
 				"problem": "Intentar llevar un control de todos los diferentes contratos, formularios fiscales, registros de nóminas y documentos de cumplimiento normativo puede ser tanto una pesadilla como un riesgo operativo para cualquier equipo internacional",
-				"solution": "Garna facilita mantener todo en un solo lugar gracias a nuestra plataforma segura, para que puedas gestionar el cumplimiento normativo laboral internacional y todos los flujos de trabajo de tus operaciones globales de RR. HH. en tus equipos distribuidos con menos complicaciones"
+				"solution": "Garna mantiene todo en un solo lugar con una plataforma segura, para que puedas gestionar el cumplimiento laboral internacional y los flujos de trabajo de RR. HH. globales de forma eficiente"
 			},
 			"payroll": {
 				"label": "Nóminas",
 				"title": "Gestiona tu nómina global sin estrés",
 				"problem": "Gestionar correctamente las nóminas de los empleados de todo el mundo y lidiar con diferentes divisas y normas fiscales es uno de los aspectos más complicados de la internacionalización de una empresa",
-				"solution": "Garna alivia la carga de gestionar la nómina internacional mediante la configuración de flujos de trabajo automatizados. Con nuestro sistema, tu empresa puede pagar a personas de todo el mundo rápidamente, evitando errores en la nómina y trabajo extra"
+				"solution": "Garna simplifica la nómina internacional con flujos de trabajo automatizados. Paga a personas en todo el mundo rápidamente mientras reduces errores de nómina y trabajo adicional"
 			},
 			"timeOff": {
 				"label": "Permisos y gastos",
@@ -176,14 +253,34 @@ export const eorEs = {
 				"label": "Informes",
 				"title": "Obtenga una visión clara de su plantilla global",
 				"problem": "Garna ofrece una visibilidad clara de las nóminas, el cumplimiento normativo, la incorporación de nuevos empleados y los costes de personal si desea gestionar las operaciones de RR. HH. de forma eficiente",
-				"solution": "Nuestra plataforma de análisis y generación de informes te proporciona la información necesaria y mantiene tus costes de personal bajo control. Además, gracias a nuestra infraestructura basada en API, las grandes empresas pueden integrar nuestras herramientas de generación de informes en sus paneles de control existentes"
+				"solution": "Nuestra plataforma de análisis e informes ofrece insights y mantiene los costes de personal bajo control. Con nuestra infraestructura API-first, las empresas pueden integrar herramientas de reporting en sus dashboards existentes"
 			},
 			"termination": {
-				"label": "Rescisión",
+				"label": "Offboarding",
 				"title": "Gestión de bajas conforme a la normativa en un mercado global",
 				"problem": "La salida de empleados no es fácil de por sí, especialmente cuando se trata de diferentes países y normativas. Si se comete un error, podría enfrentarse a graves riesgos legales y de cumplimiento normativo",
-				"solution": "Nuestros flujos de trabajo de rescisión se adaptan a la legislación laboral específica de cada país para que puedas gestionar la salida de empleados con confianza"
+				"solution": "Nuestros flujos de terminación se adaptan a las leyes laborales de cada país para que puedas gestionar la salida de empleados con confianza"
 			}
+		}
+	},
+	"costEstimator": {
+		"kicker": "Estimador de costes",
+		"title": "Descubre el coste real de tu contratación",
+		"description": "Garna empieza desde $200 al mes por empleado, sin tarifas ocultas ni costes de crear una entidad local. Indica el país y el salario para estimar impuestos, beneficios obligatorios y el coste total de contratación",
+		"proof": {
+			"countries": "países cubiertos",
+			"payroll": "disponibilidad de nómina"
+		},
+		"form": {
+			"title": "Global Hiring Cost Estimator",
+			"hireIn": "Quiero contratar en",
+			"country": "País",
+			"region": "Estado / provincia",
+			"salary": "Salario bruto anual",
+			"currency": "Divisa",
+			"amount": "Importe",
+			"amountPlaceholder": "Salario anual",
+			"button": "Calcular coste total"
 		}
 	},
 	"fit": {
@@ -251,8 +348,13 @@ export const eorEs = {
 		}
 	},
 	"finalCta": {
-		"title": "El empleador de referencia global es un proceso de contratación moderno y sin estrés",
-		"description": "Garna ofrece un excepcional soporte de expertos 24/7 y todas las funciones necesarias que te permiten gestionar la experiencia de tus empleados en todo el mundo sin que surjan crisis ni problemas inesperados en el camino",
-		"button": "Empieza a expandirte a nivel global"
+		"title": "Contrata empleados globalmente sin abrir entidades locales",
+		"description": "Garna se convierte en el empleador legal de tu equipo internacional y gestiona contratos, nóminas, impuestos, beneficios y cumplimiento local mientras tú diriges el trabajo diario de cada empleado",
+		"button": "Solicita una demo"
+	},
+	"dashboardCta": {
+		"title": "Empieza con Garna",
+		"description": "Contrata empleados en el extranjero sin abrir entidades locales. Garna gestiona contratos, nómina, impuestos y cumplimiento en una sola plataforma",
+		"button": "Solicita una demo"
 	}
 };
