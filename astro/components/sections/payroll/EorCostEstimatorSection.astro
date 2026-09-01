@@ -240,17 +240,11 @@ const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}
 		position: absolute;
 		inset: 0;
 		z-index: -2;
-		background: url("/pages/payroll-solution-new/assets/eor-cost-estimator-human-phone-v3.png") center center / cover no-repeat;
-		filter: saturate(0.82) sepia(0.08) brightness(0.92);
+		background: url("/pages/payroll-solution-new/assets/eor-cost-estimator-planning-desk-v6.png") center center / cover no-repeat;
 	}
 
 	:global(.eor-estimator-section)::after {
-		content: "";
-		position: absolute;
-		inset: 0;
-		z-index: -1;
-		background: rgb(16 16 16 / 0.55);
-		pointer-events: none;
+		display: none;
 	}
 
 	.eor-estimator-container {

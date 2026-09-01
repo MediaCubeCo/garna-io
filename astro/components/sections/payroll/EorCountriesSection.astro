@@ -108,13 +108,6 @@ const fallingFlags: Country[] = [
 	{ code: 'au', name: 'Australia' },
 	{ code: 'dk', name: 'Denmark' },
 	{ code: 'ma', name: 'Morocco' },
-	{ code: 'fr', name: 'France' },
-	{ code: 'nl', name: 'Netherlands' },
-	{ code: 'in', name: 'India' },
-	{ code: 'za', name: 'South Africa' },
-	{ code: 'no', name: 'Norway' },
-	{ code: 'ae', name: 'United Arab Emirates' },
-	{ code: 'ke', name: 'Kenya' },
 ];
 ---
 
@@ -407,9 +400,14 @@ const fallingFlags: Country[] = [
 		opacity: 1;
 	}
 
+	.eor-country-orb.is-settled {
+		will-change: auto;
+	}
+
 	.eor-country-orb.is-dragging {
 		z-index: 5 !important;
 		cursor: grabbing;
+		will-change: transform;
 	}
 
 	@media (max-width: 760px) {
@@ -485,6 +483,8 @@ const fallingFlags: Country[] = [
 			lastPointerY: 0,
 			lastPointerTime: 0,
 			simulationStartedAt: 0,
+			stillSince: 0,
+			lastReleaseAt: 0,
 			width: 0,
 			height: 0,
 			orbs: [],
@@ -632,6 +632,7 @@ const fallingFlags: Country[] = [
 				orb.vx = 0;
 				orb.vy = 0;
 				orb.sleeping = true;
+				orb.element.classList.add('is-settled');
 			}
 
 			render();
@@ -657,14 +658,24 @@ const fallingFlags: Country[] = [
 		const settleIfStill = () => {
 			if (state.dragged) return false;
 			if (state.orbs.some((orb) => !orb.released)) return false;
-			if (state.orbs.some((orb) => !orbHasSupport(orb))) return false;
 
 			const maxSpeed = state.orbs.reduce((speed, orb) => {
 				const orbSpeed = Math.hypot(orb.vx, orb.vy);
 				return Math.max(speed, orbSpeed);
 			}, 0);
 
-			if (maxSpeed > 58) return false;
+			const now = performance.now();
+			const allSupported = state.orbs.every((orb) => orbHasSupport(orb));
+			const isAlmostStill = maxSpeed <= 72;
+			const isSettled = maxSpeed <= 58 && allSupported;
+
+			if (!isAlmostStill) {
+				state.stillSince = 0;
+				return false;
+			}
+
+			if (!state.stillSince) state.stillSince = now;
+			if (!isSettled && now - state.stillSince < 420) return false;
 
 			for (const orb of state.orbs) {
 				orb.vx = 0;
@@ -686,6 +697,7 @@ const fallingFlags: Country[] = [
 				if (!orb.released) {
 					if (elapsedMilliseconds < orb.releaseDelay) continue;
 					orb.released = true;
+					state.lastReleaseAt = performance.now();
 					orb.element.classList.add('is-ready');
 				}
 
@@ -719,6 +731,8 @@ const fallingFlags: Country[] = [
 		const wakeSimulation = () => {
 			if (state.animationFrame) return;
 			state.simulationStartedAt = performance.now();
+			state.stillSince = 0;
+			state.lastReleaseAt = state.orbs.every((orb) => orb.released) ? state.simulationStartedAt : 0;
 
 			const tick = (now) => {
 				if (!state.lastFrame) state.lastFrame = now;
@@ -728,6 +742,14 @@ const fallingFlags: Country[] = [
 
 				stepPhysics(deltaSeconds, elapsedMilliseconds);
 				render();
+
+				const allReleased = state.orbs.every((orb) => orb.released);
+				const releaseSettledLongEnough = allReleased && state.lastReleaseAt && now - state.lastReleaseAt > 2600;
+				if (!state.dragged && releaseSettledLongEnough) {
+					compactPile();
+					stopSimulation();
+					return;
+				}
 
 				if (!state.dragged && settleIfStill()) {
 					compactPile();
@@ -768,6 +790,7 @@ const fallingFlags: Country[] = [
 				orb.vx = 0;
 				orb.vy = 0;
 				orb.sleeping = false;
+				element.classList.remove('is-settled');
 				element.classList.add('is-dragging');
 				element.setPointerCapture(event.pointerId);
 				wakeSimulation();
