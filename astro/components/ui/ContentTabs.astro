@@ -18,6 +18,7 @@ const { class: className } = Astro.props;
 	}
 
 	[data-content-tabs] .why-garna-tab {
+		position: relative;
 		display: block;
 		cursor: pointer;
 		border-bottom: 2px solid transparent;
@@ -27,6 +28,18 @@ const { class: className } = Astro.props;
 		font-weight: 600;
 		transition: color 0.18s ease, border-color 0.18s ease;
 		white-space: normal;
+	}
+
+	[data-content-tabs] .why-garna-tabs[data-tabs-wrapped='true'] .why-garna-tab[data-tabs-separator='true']::before {
+		content: "";
+		position: absolute;
+		top: 0.18rem;
+		left: var(--content-tab-separator-offset, -0.75rem);
+		width: 1px;
+		height: 1.05rem;
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.16);
+		pointer-events: none;
 	}
 
 	[data-content-tabs] .why-garna-tab:hover,
@@ -41,6 +54,10 @@ const { class: className } = Astro.props;
 
 	[data-content-tabs] .why-garna-panel {
 		display: none;
+	}
+
+	[data-content-tabs] .why-garna-tabs[data-hide-border-on-wrap][data-tabs-wrapped='true'] {
+		border-bottom-color: transparent;
 	}
 
 	[data-content-tabs] > #why-garna-onboarding:checked ~ .why-garna-tabs label[for='why-garna-onboarding'],
@@ -131,6 +148,27 @@ const { class: className } = Astro.props;
 
 		root.querySelector<HTMLElement>('.why-garna-tabs')?.setAttribute('role', 'tablist');
 		select(inputs.find((input) => input.checked) ?? inputs[0]);
+
+		const tabList = root.querySelector<HTMLElement>('.why-garna-tabs[data-hide-border-on-wrap]');
+		const tabRow = tabList?.firstElementChild instanceof HTMLElement ? tabList.firstElementChild : null;
+		if (tabList && tabRow) {
+			const updateWrappedState = () => {
+				const rowItems = Array.from(tabRow.children).filter(
+					(child): child is HTMLElement => child instanceof HTMLElement
+				);
+				const firstTop = rowItems[0]?.offsetTop ?? 0;
+				const isWrapped = rowItems.some((item) => Math.abs(item.offsetTop - firstTop) > 1);
+				tabList.dataset.tabsWrapped = String(isWrapped);
+				rowItems.forEach((item, index) => {
+					const previousItem = rowItems[index - 1];
+					const hasSeparator = isWrapped && Boolean(previousItem) && Math.abs(item.offsetTop - previousItem.offsetTop) <= 1;
+					item.dataset.tabsSeparator = String(hasSeparator);
+				});
+			};
+			updateWrappedState();
+			new ResizeObserver(updateWrappedState).observe(tabRow);
+			for (const tab of tabs) new ResizeObserver(updateWrappedState).observe(tab);
+		}
 	};
 
 	const initializeAllContentTabs = () => {

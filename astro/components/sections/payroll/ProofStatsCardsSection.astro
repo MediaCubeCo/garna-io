@@ -1,6 +1,6 @@
 ---
-import Section from '../../../layout/Section.astro';
-import Button from '../../../ui/Button.astro';
+import Section from '../../layout/Section.astro';
+import Button from '../../ui/Button.astro';
 
 type ProofStat = {
 	value: string;
@@ -467,7 +467,7 @@ const actionScrollTarget = action?.href?.startsWith('#') ? action.href : undefin
 
 <style>
 	.home-proof-section {
-		background: #101010;
+		background: transparent;
 	}
 
 	.home-proof-action {
@@ -534,14 +534,13 @@ const actionScrollTarget = action?.href?.startsWith('#') ? action.href : undefin
 		height: 100%;
 		object-fit: cover;
 		opacity: 1;
-		transform: translateY(var(--proof-image-y, 0)) scale(var(--proof-image-scale, 1.03));
+		transform: translate3d(0, var(--proof-image-y, 0), 0) scale(var(--proof-image-scale, 1.03));
 		transform-origin: var(--proof-image-origin, center center);
-		transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 700ms ease;
+		transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.home-proof-card:hover > img {
-		opacity: 1;
-		transform: translateY(var(--proof-image-y, 0)) scale(calc(var(--proof-image-scale, 1.03) + 0.05));
+		transform: translate3d(0, var(--proof-image-y, 0), 0) scale(calc(var(--proof-image-scale, 1.03) + 0.05));
 	}
 
 	.home-proof-card__scrim {
@@ -732,9 +731,8 @@ const actionScrollTarget = action?.href?.startsWith('#') ? action.href : undefin
 			contain: paint;
 			transform: scale(0.94);
 			transform-origin: center left;
-			transition: opacity 220ms ease, transform 520ms cubic-bezier(.22, 1, .36, 1);
+			transition: transform 520ms cubic-bezier(.22, 1, .36, 1);
 			backface-visibility: hidden;
-			will-change: transform, opacity;
 		}
 
 		.home-proof-card::after {
@@ -757,15 +755,12 @@ const actionScrollTarget = action?.href?.startsWith('#') ? action.href : undefin
 			transform: none;
 		}
 
-		.home-proof-card:not(.is-active) { opacity: 0.82; }
-
 		.home-proof-card:hover > img {
-			transform: translateY(var(--proof-image-y, 0)) scale(var(--proof-image-scale, 1.03));
+			transform: translate3d(0, var(--proof-image-y, 0), 0) scale(var(--proof-image-scale, 1.03));
 		}
 
 		.home-proof-card > img {
 			backface-visibility: hidden;
-			will-change: transform;
 		}
 
 		.home-proof-card__notice-frame {

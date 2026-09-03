@@ -1,0 +1,58 @@
+---
+import Section from '../layout/Section.astro';
+import Button from '../ui/Button.astro';
+import ContractorDashboardVisual from '../visuals/ContractorDashboardVisual.astro';
+import type { LocalizedText } from '../../types/localized-text';
+
+interface Props {
+	title: LocalizedText;
+	description: LocalizedText;
+	button: LocalizedText;
+	trackingCta: string;
+	class?: string;
+	headerClass?: string;
+	titleClass?: string;
+	descriptionClass?: string;
+	contentClass?: string;
+	buttonClass?: string;
+}
+
+const {
+	title,
+	description,
+	button,
+	trackingCta,
+	class: className = 'overflow-visible',
+	headerClass = 'mb-8 max-w-4xl lg:mb-10',
+	titleClass = '',
+	descriptionClass = '',
+	contentClass = 'relative mx-auto max-w-6xl overflow-visible perspective-1000',
+	buttonClass = '',
+} = Astro.props;
+---
+
+<Section
+	class={className}
+	spacing="default"
+	title={title}
+	description={description}
+	headerClass={headerClass}
+	titleClass={titleClass}
+	descriptionClass={descriptionClass}
+	contentClass={contentClass}
+>
+	<div class="mb-12 flex justify-center lg:mb-16">
+		<Button
+			href="#"
+			onclick={`event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: '${trackingCta}' });`}
+			variant="primary"
+			effect="none"
+			icon="none"
+			size="header"
+			class={buttonClass}
+		>
+			<span data-translate={button.translateKey}>{button.text}</span>
+		</Button>
+	</div>
+	<ContractorDashboardVisual />
+</Section>

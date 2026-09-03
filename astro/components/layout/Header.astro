@@ -741,6 +741,29 @@ const mobileLinkClass = (path: string) =>
 			document.body.className = targetDoc.body.className;
 		};
 
+		const syncRainbowBackground = (targetDoc) => {
+			const currentRainbow = document.querySelector('[data-rainbow-bg]');
+			const targetRainbow = targetDoc.querySelector('[data-rainbow-bg]');
+
+			if (!targetRainbow) {
+				currentRainbow?.remove();
+				return;
+			}
+
+			const clone = targetRainbow.cloneNode(true);
+			if (currentRainbow) {
+				currentRainbow.replaceWith(clone);
+				return;
+			}
+
+			const header = document.querySelector('.garna-header');
+			if (header) {
+				header.before(clone);
+			} else {
+				document.body.prepend(clone);
+			}
+		};
+
 		const syncManagedHeadStyles = (targetDoc) => {
 			document.head.querySelectorAll('[data-garna-spa-head-style]').forEach((element) => element.remove());
 
@@ -961,6 +984,7 @@ const mobileLinkClass = (path: string) =>
 					const previousPath = getPagePath();
 					if (shouldPushState) history.pushState({}, '', url.href);
 					await syncHead(targetDoc);
+					syncRainbowBackground(targetDoc);
 					window.dispatchEvent(new CustomEvent('garna:page-will-unmount', { detail: { path: previousPath } }));
 					localizeHeaderLinks();
 					setNavActiveState();

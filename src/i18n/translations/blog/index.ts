@@ -91,33 +91,33 @@ export const blogTranslations = {
 	en: {
 		...blogContent,
 		meta: {
-			title: 'Garna Insights Hub',
+			title: 'Global Hiring & Payroll Insights | Garna Blog',
 			description:
-				'Expert insights on global hiring, payroll, workforce management, practical guides, industry trends, and international employment updates.',
+				'Discover expert articles, practical guides, industry trends, and compliance updates on global employment. Hire, pay, and manage international teams with ease.',
 		},
 	},
 	es: {
 		...blogContent,
 		meta: {
-			title: 'Garna Insights Hub',
+			title: 'Perspectivas sobre contratación global y nóminas | Blog de Garna',
 			description:
-				'Expert insights on global hiring, payroll, workforce management, practical guides, industry trends, and international employment updates.',
+				'Descubre artículos de expertos, guías prácticas, tendencias del sector y actualizaciones sobre cumplimiento normativo en el empleo internacional. Contrata, paga y gestiona equipos globales con facilidad.',
 		},
 	},
 	pt: {
 		...blogContent,
 		meta: {
-			title: 'Garna Insights Hub',
+			title: 'Insights sobre Contratação Global e Payroll | Blog da Garna',
 			description:
-				'Expert insights on global hiring, payroll, workforce management, practical guides, industry trends, and international employment updates.',
+				'Descubra artigos especializados, guias práticos, tendências do setor e atualizações de conformidade sobre emprego global. Contrate, pague e gira equipas internacionais com facilidade.',
 		},
 	},
 	ru: {
 		...blogContent,
 		meta: {
-			title: 'Garna Insights Hub',
+			title: 'Аналитика международного рекрутинга и Global Payroll | Блог Garna',
 			description:
-				'Expert insights on global hiring, payroll, workforce management, practical guides, industry trends, and international employment updates.',
+				'Откройте для себя экспертные статьи, практические руководства, отраслевые тенденции и обновления нормативных требований в сфере международного трудоустройства. Нанимайте, оплачивайте и управляйте международными командами с легкостью.',
 		},
 	},
 };
@@ -126,29 +126,33 @@ export const blogAuthorTranslations = {
 	en: {
 		...blogAuthorContent,
 		meta: {
-			title: 'Garna Blog Author',
-			description: 'Author profile and articles from the Garna Insights Hub.',
+			title: 'Global Hiring & Payroll Insights | Garna Blog',
+			description:
+				'Discover expert articles, practical guides, industry trends, and compliance updates on global employment. Hire, pay, and manage international teams with ease.',
 		},
 	},
 	es: {
 		...blogAuthorContent,
 		meta: {
-			title: 'Garna Blog Author',
-			description: 'Author profile and articles from the Garna Insights Hub.',
+			title: 'Perspectivas sobre contratación global y nóminas | Blog de Garna',
+			description:
+				'Descubre artículos de expertos, guías prácticas, tendencias del sector y actualizaciones sobre cumplimiento normativo en el empleo internacional. Contrata, paga y gestiona equipos globales con facilidad.',
 		},
 	},
 	pt: {
 		...blogAuthorContent,
 		meta: {
-			title: 'Garna Blog Author',
-			description: 'Author profile and articles from the Garna Insights Hub.',
+			title: 'Insights sobre Contratação Global e Payroll | Blog da Garna',
+			description:
+				'Descubra artigos especializados, guias práticos, tendências do setor e atualizações de conformidade sobre emprego global. Contrate, pague e gira equipas internacionais com facilidade.',
 		},
 	},
 	ru: {
 		...blogAuthorContent,
 		meta: {
-			title: 'Garna Blog Author',
-			description: 'Author profile and articles from the Garna Insights Hub.',
+			title: 'Аналитика международного рекрутинга и Global Payroll | Блог Garna',
+			description:
+				'Откройте для себя экспертные статьи, практические руководства, отраслевые тенденции и обновления нормативных требований в сфере международного трудоустройства. Нанимайте, оплачивайте и управляйте международными командами с легкостью.',
 		},
 	},
 };
@@ -157,29 +161,33 @@ export const blogArticleTranslations = {
 	en: {
 		...blogArticleContent,
 		meta: {
-			title: 'Garna Blog Article',
-			description: 'Article page from the Garna Insights Hub.',
+			title: 'Global Hiring & Payroll Insights | Garna Blog',
+			description:
+				'Discover expert articles, practical guides, industry trends, and compliance updates on global employment. Hire, pay, and manage international teams with ease.',
 		},
 	},
 	es: {
 		...blogArticleContent,
 		meta: {
-			title: 'Garna Blog Article',
-			description: 'Article page from the Garna Insights Hub.',
+			title: 'Perspectivas sobre contratación global y nóminas | Blog de Garna',
+			description:
+				'Descubre artículos de expertos, guías prácticas, tendencias del sector y actualizaciones sobre cumplimiento normativo en el empleo internacional. Contrata, paga y gestiona equipos globales con facilidad.',
 		},
 	},
 	pt: {
 		...blogArticleContent,
 		meta: {
-			title: 'Garna Blog Article',
-			description: 'Article page from the Garna Insights Hub.',
+			title: 'Insights sobre Contratação Global e Payroll | Blog da Garna',
+			description:
+				'Descubra artigos especializados, guias práticos, tendências do setor e atualizações de conformidade sobre emprego global. Contrate, pague e gira equipas internacionais com facilidade.',
 		},
 	},
 	ru: {
 		...blogArticleContent,
 		meta: {
-			title: 'Garna Blog Article',
-			description: 'Article page from the Garna Insights Hub.',
+			title: 'Аналитика международного рекрутинга и Global Payroll | Блог Garna',
+			description:
+				'Откройте для себя экспертные статьи, практические руководства, отраслевые тенденции и обновления нормативных требований в сфере международного трудоустройства. Нанимайте, оплачивайте и управляйте международными командами с легкостью.',
 		},
 	},
 };

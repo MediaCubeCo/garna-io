@@ -1,0 +1,305 @@
+---
+import Section from '../layout/Section.astro';
+import SectionHeader from '../layout/SectionHeader.astro';
+import type { LocalizedText } from '../../types/localized-text';
+
+type BadgePosition = 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
+
+export type TabbedFeaturePanel = {
+	id: string;
+	tab: LocalizedText;
+	title: LocalizedText;
+	description: LocalizedText;
+	image: {
+		src: string;
+		alt: string;
+		position?: string;
+		scale?: number;
+		loading?: 'eager' | 'lazy';
+	};
+	badge?: {
+		icon: string;
+		title: LocalizedText;
+		description: LocalizedText;
+		position?: BadgePosition;
+	};
+};
+
+interface Props {
+	id?: string;
+	class?: string;
+	containerClass?: string;
+	tabsClass?: string;
+	title: LocalizedText;
+	description?: LocalizedText;
+	panels: TabbedFeaturePanel[];
+}
+
+const {
+	id,
+	class: className = '',
+	containerClass = 'mx-auto max-w-7xl px-6',
+	tabsClass = '',
+	title,
+	description,
+	panels,
+} = Astro.props;
+
+const badgePositionClasses: Record<BadgePosition, string> = {
+	'bottom-left': 'bottom-5 left-5',
+	'bottom-right': 'bottom-5 right-5',
+	'top-left': 'left-5 top-5',
+	'top-right': 'right-5 top-5',
+};
+---
+
+<Section contained={false} spacing="none" id={id} class={className}>
+	<div class={containerClass}>
+		<SectionHeader
+			class="mx-auto max-w-4xl"
+			title={title}
+			description={description}
+			descriptionClass="mx-auto max-w-3xl"
+		/>
+
+		<div class="tabbed-feature mt-12" data-tabbed-feature-section>
+			<div class:list={['tabbed-feature__tabs overflow-visible border-b border-white/10 md:overflow-x-auto', tabsClass]} data-tabbed-feature-tabs>
+				<div class="flex flex-wrap justify-center gap-x-10 gap-y-6 md:min-w-max md:flex-nowrap md:justify-center md:gap-12">
+					{panels.map((panel, index) => (
+						<button
+							type="button"
+							class:list={['tabbed-feature__tab', index === 0 && 'is-active']}
+							role="tab"
+							aria-selected={index === 0 ? 'true' : 'false'}
+							aria-controls={`tabbed-feature-${panel.id}-panel`}
+							id={`tabbed-feature-${panel.id}-tab`}
+							tabindex={index === 0 ? '0' : '-1'}
+							data-tabbed-feature-tab={panel.id}
+							data-translate={panel.tab.translateKey}
+						>
+							{panel.tab.text}
+						</button>
+					))}
+				</div>
+			</div>
+
+			<div class="tabbed-feature__panels mt-12">
+				{panels.map((panel, index) => (
+					<article
+						class="tabbed-feature__panel grid gap-6 md:grid-cols-2"
+						role="tabpanel"
+						id={`tabbed-feature-${panel.id}-panel`}
+						aria-labelledby={`tabbed-feature-${panel.id}-tab`}
+						data-tabbed-feature-panel={panel.id}
+						hidden={index !== 0}
+					>
+						<div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#1A1A1A] p-8 md:p-10">
+							<h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate={panel.title.translateKey}>{panel.title.text}</h3>
+							<p class="mt-5 text-base leading-relaxed text-gray-300" data-translate={panel.description.translateKey}>{panel.description.text}</p>
+						</div>
+						<div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+							<img
+								src={panel.image.src}
+								alt={panel.image.alt}
+								class="absolute inset-0 h-full w-full object-cover"
+								style={[
+									panel.image.position ? `object-position: ${panel.image.position};` : '',
+									panel.image.scale ? `transform: scale(${panel.image.scale}); transform-origin: center center;` : '',
+								].filter(Boolean).join(' ')}
+								loading={panel.image.loading ?? 'eager'}
+							/>
+							{panel.badge && (
+								<div class:list={['tabbed-feature-badge absolute z-10', badgePositionClasses[panel.badge.position ?? 'bottom-left']]}>
+									<span class="tabbed-feature-badge__icon"><iconify-icon icon={panel.badge.icon} width="19"></iconify-icon></span>
+									<span class="tabbed-feature-badge__copy">
+										<strong data-translate={panel.badge.title.translateKey}>{panel.badge.title.text}</strong>
+										<small data-translate={panel.badge.description.translateKey}>{panel.badge.description.text}</small>
+									</span>
+								</div>
+							)}
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</div>
+</Section>
+
+<style>
+	.tabbed-feature__tab {
+		position: relative;
+		display: block;
+		cursor: pointer;
+		border: 0;
+		border-bottom: 2px solid transparent;
+		padding: 0 0 0.7rem;
+		background: transparent;
+		color: #71717a;
+		font-family: Manrope, sans-serif;
+		font-size: 0.9rem;
+		font-weight: 600;
+		transition: color 0.18s ease, border-color 0.18s ease;
+		white-space: normal;
+	}
+
+	.tabbed-feature__tab:hover,
+	.tabbed-feature__tab:focus-visible,
+	.tabbed-feature__tab.is-active {
+		color: #fff;
+	}
+
+	.tabbed-feature__tab.is-active {
+		border-color: #cbf300;
+	}
+
+	.tabbed-feature__tab:focus-visible {
+		outline: 2px solid #cbf300;
+		outline-offset: 4px;
+	}
+
+	.tabbed-feature__tabs[data-tabs-wrapped='true'] {
+		border-bottom-color: transparent;
+	}
+
+	.tabbed-feature__panel[hidden] {
+		display: none;
+	}
+
+	.tabbed-feature-badge {
+		display: grid;
+		grid-template-columns: 2.1rem minmax(0, 1fr);
+		align-items: center;
+		column-gap: 0.74rem;
+		min-height: 4.15rem;
+		max-width: min(18.125rem, calc(100% - 2.5rem));
+		overflow: hidden;
+		padding: 0.68rem 0.72rem 0.68rem 0.7rem;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 14px;
+		background: rgb(7 8 10 / 0.72);
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		box-shadow: 0 0.65rem 1.8rem rgb(0 0 0 / 0.2);
+		backdrop-filter: blur(12px);
+		pointer-events: none;
+	}
+
+	.tabbed-feature-badge__icon {
+		display: grid;
+		width: 2.1rem;
+		height: 2.1rem;
+		place-items: center;
+		border-radius: 9px;
+		background: #cbf300;
+		color: #101010;
+	}
+
+	.tabbed-feature-badge__icon iconify-icon {
+		display: block;
+		width: 1.18rem;
+		height: 1.18rem;
+	}
+
+	.tabbed-feature-badge__copy {
+		display: grid;
+		min-width: 0;
+		gap: 0.22rem;
+	}
+
+	.tabbed-feature-badge strong {
+		overflow: hidden;
+		color: #ffffff;
+		font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+		font-weight: 650;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.tabbed-feature-badge small {
+		overflow: hidden;
+		color: rgb(255 255 255 / 0.58);
+		font-size: clamp(0.66rem, 0.74vw, 0.72rem);
+		font-weight: 500;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	@media (min-width: 768px) {
+		.tabbed-feature__tab {
+			padding-bottom: 1rem;
+			font-size: 1rem;
+			white-space: nowrap;
+		}
+	}
+</style>
+
+<script>
+	const initializeTabbedFeatureSection = (root: HTMLElement) => {
+		if (root.dataset.tabbedFeatureReady === 'true') return;
+		root.dataset.tabbedFeatureReady = 'true';
+
+		const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-tabbed-feature-tab]'));
+		const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-tabbed-feature-panel]'));
+		const tabList = root.querySelector<HTMLElement>('[data-tabbed-feature-tabs]');
+		const tabRow = tabList?.firstElementChild instanceof HTMLElement ? tabList.firstElementChild : null;
+
+		const select = (targetIndex: number, moveFocus = false) => {
+			const normalizedIndex = ((targetIndex % tabs.length) + tabs.length) % tabs.length;
+			const activeTab = tabs[normalizedIndex];
+			if (!activeTab) return;
+
+			const activeKey = activeTab.dataset.tabbedFeatureTab;
+			for (const [index, tab] of tabs.entries()) {
+				const isActive = index === normalizedIndex;
+				tab.classList.toggle('is-active', isActive);
+				tab.setAttribute('aria-selected', String(isActive));
+				tab.tabIndex = isActive ? 0 : -1;
+				if (isActive && moveFocus) tab.focus();
+			}
+			for (const panel of panels) panel.hidden = panel.dataset.tabbedFeaturePanel !== activeKey;
+		};
+
+		for (const [index, tab] of tabs.entries()) {
+			tab.addEventListener('click', () => select(index));
+			tab.addEventListener('keydown', (event) => {
+				if (event.key === 'ArrowRight') {
+					event.preventDefault();
+					select(index + 1, true);
+				} else if (event.key === 'ArrowLeft') {
+					event.preventDefault();
+					select(index - 1, true);
+				} else if (event.key === 'Home') {
+					event.preventDefault();
+					select(0, true);
+				} else if (event.key === 'End') {
+					event.preventDefault();
+					select(tabs.length - 1, true);
+				}
+			});
+		}
+
+		if (tabList && tabRow) {
+			const updateWrappedState = () => {
+				const rowItems = Array.from(tabRow.children).filter((child): child is HTMLElement => child instanceof HTMLElement);
+				const firstTop = rowItems[0]?.offsetTop ?? 0;
+				const isWrapped = rowItems.some((item) => Math.abs(item.offsetTop - firstTop) > 1);
+				tabList.dataset.tabsWrapped = String(isWrapped);
+			};
+
+			updateWrappedState();
+			new ResizeObserver(updateWrappedState).observe(tabRow);
+			for (const tab of tabs) new ResizeObserver(updateWrappedState).observe(tab);
+		}
+
+		select(0);
+	};
+
+	const initializeAllTabbedFeatureSections = () => {
+		document.querySelectorAll<HTMLElement>('[data-tabbed-feature-section]').forEach(initializeTabbedFeatureSection);
+	};
+
+	initializeAllTabbedFeatureSections();
+	document.addEventListener('astro:page-load', initializeAllTabbedFeatureSections);
+</script>

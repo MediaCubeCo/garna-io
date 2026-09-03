@@ -1,238 +1,115 @@
 ---
-import Section from '../../layout/Section.astro';
-import ContentTabs from '../../ui/ContentTabs.astro';
+import TabbedFeatureSection, { type TabbedFeaturePanel } from '../TabbedFeatureSection.astro';
+
+const panels: TabbedFeaturePanel[] = [
+	{
+		id: 'onboarding',
+		tab: { text: 'Onboarding', translateKey: 'why.tabs.onboarding.label' },
+		title: { text: 'Automating International Employee Onboarding', translateKey: 'why.tabs.onboarding.title' },
+		description: {
+			text: 'Garna makes international employee onboarding simpler with workflows that make sure everything is done the right way in each country. Onboard employees all over the world through one platform and cut down on manual HR work',
+			translateKey: 'why.tabs.onboarding.solution',
+		},
+		image: {
+			src: '/pages/payroll-solution-new/assets/eor-onboarding-global-workflow-v1.png',
+			alt: 'HR specialist guiding a new international employee through onboarding',
+			position: 'center 58%',
+		},
+		badge: {
+			icon: 'lucide:user-round-check',
+			title: { text: 'Onboarding workflow', translateKey: 'visual.why.onboardingWorkflow' },
+			description: { text: 'Country steps ready', translateKey: 'visual.why.countryStepsReady' },
+			position: 'bottom-left',
+		},
+	},
+	{
+		id: 'documents',
+		tab: { text: 'Contracts', translateKey: 'why.tabs.documents.label' },
+		title: { text: 'Centralizing Contracts and Compliance Documentation', translateKey: 'why.tabs.documents.title' },
+		description: {
+			text: 'Garna keeps everything in one place with a secure platform, so you can manage international employment compliance and workflows for global HR operations efficiently',
+			translateKey: 'why.tabs.documents.solution',
+		},
+		image: {
+			src: '/pages/payroll-solution-new/assets/eor-contracts-document-review-v1.png',
+			alt: 'Professionals reviewing and signing employment contract documents',
+			position: 'center center',
+		},
+		badge: {
+			icon: 'lucide:shield-check',
+			title: { text: 'Contract hub', translateKey: 'visual.why.contractHub' },
+			description: { text: 'Compliance docs ready', translateKey: 'visual.why.complianceDocsReady' },
+			position: 'bottom-right',
+		},
+	},
+	{
+		id: 'payroll',
+		tab: { text: 'Payroll', translateKey: 'why.tabs.payroll.label' },
+		title: { text: 'Running Your Global Payroll Without Stress', translateKey: 'why.tabs.payroll.title' },
+		description: {
+			text: 'Garna eases international payroll with automated workflows. Pay people around the world quickly while excluding payroll errors and extra work',
+			translateKey: 'why.tabs.payroll.solution',
+		},
+		image: {
+			src: '/pages/payroll-solution-new/assets/eor-payroll-presentation-distant-v1.png',
+			alt: 'Payroll planning presentation in a realistic meeting room',
+			position: 'center center',
+		},
+		badge: {
+			icon: 'lucide:wallet-cards',
+			title: { text: 'Global payroll run', translateKey: 'visual.why.globalPayroll' },
+			description: { text: 'Multi-currency payouts ready', translateKey: 'visual.why.payrollRunReady' },
+			position: 'bottom-right',
+		},
+	},
+	{
+		id: 'reporting',
+		tab: { text: 'Reporting', translateKey: 'why.tabs.reporting.label' },
+		title: { text: 'Getting A Clear View Of Your Global Workforce', translateKey: 'why.tabs.reporting.title' },
+		description: {
+			text: 'Our analytics and reporting platform gives you insights and keeps workforce costs under control. With our API-first infrastructure, businesses can integrate reporting tools into existing dashboards',
+			translateKey: 'why.tabs.reporting.solution',
+		},
+		image: {
+			src: '/pages/payroll-solution-new/assets/eor-reporting-team-review-v4.png',
+			alt: 'Professionals reviewing global workforce reporting materials',
+			position: 'center center',
+		},
+		badge: {
+			icon: 'lucide:chart-no-axes-column-increasing',
+			title: { text: 'Workforce analytics', translateKey: 'visual.why.workforceAnalytics' },
+			description: { text: 'Costs in view', translateKey: 'visual.why.costsInView' },
+			position: 'bottom-left',
+		},
+	},
+	{
+		id: 'termination',
+		tab: { text: 'Offboarding', translateKey: 'why.tabs.termination.label' },
+		title: { text: 'Offboarding Compliantly In A Global Market', translateKey: 'why.tabs.termination.title' },
+		description: {
+			text: 'Our termination workflows are tailored to employment laws in each country so you can offboard employees with confidence',
+			translateKey: 'why.tabs.termination.solution',
+		},
+		image: {
+			src: '/pages/payroll-solution-new/assets/eor-offboarding-folder-handoff-v2.png',
+			alt: 'HR manager coordinating a respectful employee offboarding folder handoff',
+			position: 'center center',
+			scale: 1.08,
+		},
+		badge: {
+			icon: 'lucide:file-check-2',
+			title: { text: 'Compliant offboarding', translateKey: 'visual.why.compliantOffboarding' },
+			description: { text: 'Notice rules checked', translateKey: 'visual.why.noticeRulesChecked' },
+			position: 'bottom-left',
+		},
+	},
+];
 ---
 
-<Section contained={false} spacing="none" id="why-garna" class="py-16 lg:py-32">
-            <div class="mx-auto max-w-7xl px-6">
-                <div class="mx-auto max-w-4xl text-center">
-                    <h2 class="font-manrope text-4xl font-normal leading-tight text-white lg:text-5xl" data-translate="why.title">Employer of Record Platform Features</h2>
-                    <p data-garna-subtitle class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-gray-400" data-translate="why.description">From onboarding to offboarding, Garna's EOR covers the full employment lifecycle in one platform</p>
-                </div>
-
-                <ContentTabs class="why-garna mt-12">
-                    <input id="why-garna-onboarding" type="radio" name="why-garna-tab" checked>
-                    <input id="why-garna-documents" type="radio" name="why-garna-tab">
-                    <input id="why-garna-payroll" type="radio" name="why-garna-tab">
-                    <input id="why-garna-reporting" type="radio" name="why-garna-tab">
-                    <input id="why-garna-termination" type="radio" name="why-garna-tab">
-
-                    <div class="why-garna-tabs overflow-visible border-b border-white/10 md:overflow-x-auto">
-                        <div class="flex flex-wrap justify-center gap-x-6 gap-y-4 md:min-w-max md:flex-nowrap md:gap-8 md:justify-center">
-                            <label for="why-garna-onboarding" class="why-garna-tab" data-translate="why.tabs.onboarding.label">Onboarding</label>
-                            <label for="why-garna-documents" class="why-garna-tab" data-translate="why.tabs.documents.label">Contracts</label>
-                            <label for="why-garna-payroll" class="why-garna-tab" data-translate="why.tabs.payroll.label">Payroll</label>
-                            <label for="why-garna-reporting" class="why-garna-tab" data-translate="why.tabs.reporting.label">Reporting</label>
-                            <label for="why-garna-termination" class="why-garna-tab" data-translate="why.tabs.termination.label">Offboarding</label>
-                        </div>
-                    </div>
-
-                    <div class="why-garna-panels mt-12">
-                    <article data-content-panel="onboarding" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#1A1A1A] p-8 md:p-10">
-                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.onboarding.title">Automating International Employee Onboarding</h3>
-                            <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.onboarding.solution">Garna makes international employee onboarding simpler with workflows that make sure everything is done the right way in each country. Onboard employees all over the world through one platform and cut down on manual HR work</p>
-                        </div>
-                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
-                            <img src="/pages/payroll-solution-new/assets/eor-onboarding-global-workflow-v1.png" alt="HR specialist guiding a new international employee through onboarding" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 58%;" loading="eager">
-                            <div data-eor-photo-badge class="eor-feature-badge absolute bottom-5 left-5 z-10">
-                                <span class="eor-feature-badge__icon"><iconify-icon icon="lucide:user-round-check" width="19"></iconify-icon></span>
-                                <span class="eor-feature-badge__copy">
-                                    <strong data-translate="visual.why.onboardingWorkflow">Onboarding workflow</strong>
-                                    <small data-translate="visual.why.countryStepsReady">Country steps ready</small>
-                                </span>
-                            </div>
-                            <div class="hidden absolute left-5 top-5 w-60 space-y-2">
-                                <div class="rounded-2xl border border-white/10 bg-[#141414]/90 p-5">
-                                    <p class="text-sm font-semibold text-white" data-translate="visual.why.newEmployee">New employee</p>
-                                    <div class="mt-5 flex items-center gap-3">
-                                        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-[#CBF300]/20 text-[#CBF300]"><iconify-icon icon="lucide:user-round-check" width="24"></iconify-icon></span>
-                                        <div><p class="font-semibold text-white">Sara K.</p><p class="text-xs text-gray-400"><span data-translate="visual.why.growthLead">Growth lead</span> &middot; UAE</p></div>
-                                    </div>
-                                </div>
-                                <div class="space-y-3">
-                                    <div class="rounded-xl border border-white/10 bg-[#141414]/95 p-4"><span class="text-xs text-[#CBF300]">01</span><p class="mt-1 text-sm font-semibold text-white" data-translate="visual.why.inviteSent">Invite sent</p></div>
-                                    <div class="rounded-xl border border-white/10 bg-[#141414]/90 p-4"><span class="text-xs text-[#CBF300]">02</span><p class="mt-1 text-sm font-semibold text-white" data-translate="visual.why.localContractPrepared">Local contract prepared</p></div>
-                                    <div class="rounded-xl border border-white/10 bg-[#141414]/85 p-4"><span class="text-xs text-[#CBF300]">03</span><p class="mt-1 text-sm font-semibold text-white" data-translate="visual.why.payrollProfileReady">Payroll profile ready</p></div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article data-content-panel="documents" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#1A1A1A] p-8 md:p-10">
-                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.documents.title">Centralizing Contracts and Compliance Documentation</h3>
-                            <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.documents.solution">Garna keeps everything in one place with a secure platform, so you can manage international employment compliance and workflows for global HR operations efficiently</p>
-                        </div>
-                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
-                            <img src="/pages/payroll-solution-new/assets/eor-contracts-document-review-v1.png" alt="Professionals reviewing and signing employment contract documents" class="absolute inset-0 h-full w-full object-cover" style="object-position: center center;" loading="eager">
-                            <div data-eor-photo-badge class="eor-feature-badge absolute bottom-5 right-5 z-10">
-                                <span class="eor-feature-badge__icon"><iconify-icon icon="lucide:shield-check" width="19"></iconify-icon></span>
-                                <span class="eor-feature-badge__copy">
-                                    <strong data-translate="visual.why.contractHub">Contract hub</strong>
-                                    <small data-translate="visual.why.complianceDocsReady">Compliance docs ready</small>
-                                </span>
-                            </div>
-                            <div class="hidden absolute left-5 top-5 w-64">
-                                <div class="w-full rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50">
-                                    <div class="mb-5 flex items-center justify-between">
-                                        <p class="font-semibold text-white" data-translate="visual.why.complianceVault">Compliance vault</p>
-                                        <iconify-icon icon="lucide:shield-check" width="24" class="text-[#CBF300]"></iconify-icon>
-                                    </div>
-                                    <div class="space-y-3">
-                                        <div class="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3"><span class="text-sm text-gray-300" data-translate="visual.steps.eorContract">EoR contract</span><span class="text-xs text-[#CBF300]" data-translate="visual.why.signed">Signed</span></div>
-                                        <div class="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3"><span class="text-sm text-gray-300" data-translate="visual.why.taxForms">Tax forms</span><span class="text-xs text-[#CBF300]" data-translate="visual.why.stored">Stored</span></div>
-                                        <div class="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3"><span class="text-sm text-gray-300" data-translate="visual.why.payrollRecords">Payroll records</span><span class="text-xs text-[#CBF300]" data-translate="visual.why.synced">Synced</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article data-content-panel="payroll" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#1A1A1A] p-8 md:p-10">
-                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.payroll.title">Running Your Global Payroll Without Stress</h3>
-                            <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.payroll.solution">Garna eases international payroll with automated workflows. Pay people around the world quickly while excluding payroll errors and extra work</p>
-                        </div>
-                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
-                            <img src="/pages/payroll-solution-new/assets/eor-payroll-presentation-distant-v1.png" alt="Payroll planning presentation in a realistic meeting room" class="absolute inset-0 h-full w-full object-cover" style="object-position: center center;" loading="eager">
-                            <div data-eor-photo-badge class="eor-feature-badge absolute bottom-5 right-5 z-10">
-                                <span class="eor-feature-badge__icon"><iconify-icon icon="lucide:wallet-cards" width="19"></iconify-icon></span>
-                                <span class="eor-feature-badge__copy">
-                                    <strong data-translate="visual.why.globalPayroll">Global payroll run</strong>
-                                    <small data-translate="visual.why.payrollRunReady">Multi-currency payouts ready</small>
-                                </span>
-                            </div>
-                            <div class="hidden absolute left-5 top-5 w-64 rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50">
-                                <div class="flex items-start justify-between">
-                                    <div><p class="text-sm text-gray-400" data-translate="visual.cards.payrollRun">Payroll run</p><p class="mt-1 text-3xl font-semibold text-white">$84,250</p></div>
-                                    <span class="rounded-full bg-[#CBF300]/20 px-3 py-1 text-xs font-semibold text-[#CBF300]" data-translate="visual.cards.ready">Ready</span>
-                                </div>
-                                <div class="mt-8 grid grid-cols-3 gap-3">
-                                    <div class="rounded-xl bg-white/5 p-4"><p class="text-xs text-gray-500">SWIFT</p><p class="mt-1 font-semibold text-white">42%</p></div>
-                                    <div class="rounded-xl bg-white/5 p-4"><p class="text-xs text-gray-500">SEPA</p><p class="mt-1 font-semibold text-white">36%</p></div>
-                                    <div class="rounded-xl bg-white/5 p-4"><p class="text-xs text-gray-500" data-translate="visual.steps.crypto">Crypto</p><p class="mt-1 font-semibold text-white">22%</p></div>
-                                </div>
-                                <div class="mt-8 h-3 overflow-hidden rounded-full bg-white/10"><div class="h-full w-[82%] rounded-full bg-[#CBF300]"></div></div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article data-content-panel="reporting" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#1A1A1A] p-8 md:p-10">
-                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.reporting.title">Getting A Clear View Of Your Global Workforce</h3>
-                            <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.reporting.solution">Our analytics and reporting platform gives you insights and keeps workforce costs under control. With our API-first infrastructure, businesses can integrate reporting tools into existing dashboards</p>
-                        </div>
-                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
-                            <img src="/pages/payroll-solution-new/assets/eor-reporting-team-review-v4.png" alt="Professionals reviewing global workforce reporting materials" class="absolute inset-0 h-full w-full object-cover" style="object-position: center center;" loading="eager">
-                            <div data-eor-photo-badge class="eor-feature-badge absolute bottom-5 left-5 z-10">
-                                <span class="eor-feature-badge__icon"><iconify-icon icon="lucide:chart-no-axes-column-increasing" width="19"></iconify-icon></span>
-                                <span class="eor-feature-badge__copy">
-                                    <strong data-translate="visual.why.workforceAnalytics">Workforce analytics</strong>
-                                    <small data-translate="visual.why.costsInView">Costs in view</small>
-                                </span>
-                            </div>
-                            <div class="hidden absolute left-5 top-5 grid w-64 gap-3">
-                                <div class="rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50">
-                                    <p class="text-sm text-gray-400" data-translate="visual.why.workforceCosts">Workforce costs</p>
-                                    <p class="mt-2 text-3xl font-semibold text-white">$678,200</p>
-                                    <div class="mt-8 flex h-28 items-end gap-3">
-                                        <span class="h-10 flex-1 rounded bg-[#CBF300]/35"></span><span class="h-16 flex-1 rounded bg-[#CBF300]/50"></span><span class="h-20 flex-1 rounded bg-[#CBF300]/70"></span><span class="h-28 flex-1 rounded bg-[#CBF300]"></span>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div class="rounded-xl border border-white/10 bg-[#141414]/90 p-4"><p class="text-xs text-gray-500" data-translate="visual.why.countries">Countries</p><p class="mt-1 text-2xl font-semibold text-white">150+</p></div>
-                                    <div class="rounded-xl border border-white/10 bg-[#141414]/85 p-4"><p class="text-xs text-gray-500" data-translate="visual.why.complianceChecks">Compliance checks</p><p class="mt-1 text-2xl font-semibold text-white">24/7</p></div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article data-content-panel="termination" class="why-garna-panel grid gap-6 md:grid-cols-2">
-                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#1A1A1A] p-8 md:p-10">
-                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.termination.title">Offboarding Compliantly In A Global Market</h3>
-                            <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.termination.solution">Our termination workflows are tailored to employment laws in each country so you can offboard employees with confidence</p>
-                        </div>
-                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
-                            <img src="/pages/payroll-solution-new/assets/eor-offboarding-folder-handoff-v2.png" alt="HR manager coordinating a respectful employee offboarding folder handoff" class="absolute inset-0 h-full w-full object-cover" style="object-position: center center; transform: scale(1.08); transform-origin: center center;" loading="eager">
-                            <div data-eor-photo-badge class="eor-feature-badge absolute bottom-5 left-5 z-10">
-                                <span class="eor-feature-badge__icon"><iconify-icon icon="lucide:file-check-2" width="19"></iconify-icon></span>
-                                <span class="eor-feature-badge__copy">
-                                    <strong data-translate="visual.why.compliantOffboarding">Compliant offboarding</strong>
-                                    <small data-translate="visual.why.noticeRulesChecked">Notice rules checked</small>
-                                </span>
-                            </div>
-                            <div class="hidden absolute left-5 top-5 flex w-64 flex-col space-y-2">
-                                <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#CBF300]/20 text-xs text-[#CBF300]">1</span><p class="text-sm font-semibold text-[#101010]" data-translate="visual.why.noticeRulesChecked">Notice rules checked</p></div>
-                                <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#CBF300]/20 text-xs text-[#CBF300]">2</span><p class="text-sm font-semibold text-[#101010]" data-translate="visual.why.finalPayrollCalculated">Final payroll calculated</p></div>
-                                <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#CBF300]/20 text-xs text-[#CBF300]">3</span><p class="text-sm font-semibold text-[#101010]" data-translate="visual.why.documentsArchived">Documents archived</p></div>
-                            </div>
-                        </div>
-                    </article>
-					</div>
-                </ContentTabs>
-            </div>
-        </Section>
-
-<style>
-    .eor-feature-badge {
-        display: grid;
-        grid-template-columns: 2.1rem minmax(0, 1fr);
-        align-items: center;
-        column-gap: 0.74rem;
-        min-height: 4.15rem;
-        max-width: min(18.125rem, calc(100% - 2.5rem));
-        overflow: hidden;
-        padding: 0.68rem 0.72rem 0.68rem 0.7rem;
-        border: 1px solid rgb(255 255 255 / 0.1);
-        border-radius: 14px;
-        background: rgb(7 8 10 / 0.72);
-        color: #ffffff;
-        font-family: Manrope, sans-serif;
-        box-shadow: 0 0.65rem 1.8rem rgb(0 0 0 / 0.2);
-        backdrop-filter: blur(12px);
-        pointer-events: none;
-    }
-
-    .eor-feature-badge__icon {
-        display: grid;
-        width: 2.1rem;
-        height: 2.1rem;
-        place-items: center;
-        border-radius: 9px;
-        background: #cbf300;
-        color: #101010;
-    }
-
-    .eor-feature-badge__icon iconify-icon {
-        display: block;
-        width: 1.18rem;
-        height: 1.18rem;
-    }
-
-    .eor-feature-badge__copy {
-        display: grid;
-        min-width: 0;
-        gap: 0.22rem;
-    }
-
-    .eor-feature-badge strong {
-        overflow: hidden;
-        color: #ffffff;
-        font-size: clamp(0.8rem, 0.9vw, 0.9rem);
-        font-weight: 650;
-        line-height: 1.15;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .eor-feature-badge small {
-        overflow: hidden;
-        color: rgb(255 255 255 / 0.58);
-        font-size: clamp(0.66rem, 0.74vw, 0.72rem);
-        font-weight: 500;
-        line-height: 1.15;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-</style>
+<TabbedFeatureSection
+	id="why-garna"
+	class="py-16 lg:py-32"
+	title={{ text: 'Employer of Record Platform Features', translateKey: 'why.title' }}
+	description={{ text: "From onboarding to offboarding, Garna's EOR covers the full employment lifecycle in one platform", translateKey: 'why.description' }}
+	panels={panels}
+/>

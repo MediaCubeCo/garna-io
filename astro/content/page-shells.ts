@@ -27,13 +27,35 @@ export const pageShells = {
 		iconLibrary: 'lucide',
 	},
 	contractorOfRecord: {
-		"title": "Global Payroll and Payments in 150+ Countries | Garna",
-		"description": "Reliable payroll software for international businesses. Automate international payroll, taxes, and compliance. Make fast payments to your team in any currency or cryptocurrency.",
-		"keywords": "global payroll, contractor payments, international payroll, Garna, fintech, cross-border payments, payroll solutions",
+		"title": "Contractor of Record Solutions for Global Teams | Garna",
+		"description": "Hire and manage international contractors with compliant agreements, onboarding, invoices, and secure global payouts through Garna.",
+		"keywords": "contractor of record, contractor management, global contractors, contractor payments, compliant contractor agreements, Garna",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth",
 		"bodyClass": "antialiased selection:bg-[#CBF300] selection:text-black overflow-x-hidden z-10 text-gray-300 bg-garna-page",
 		"iconLibrary": "lucide",
+	},
+	enterprisePayroll: {
+		title: 'International Payroll System for Large Companies | Garna',
+		description:
+			'Explore the opportunities of partnering with Garna, the system that offers an efficient global payroll solution.',
+		keywords:
+			'enterprise payroll, international payroll, global payroll system, payroll for large companies, Garna',
+		ogImage: 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
+		htmlClass: 'scroll-smooth',
+		bodyClass: 'antialiased selection:bg-[#CBF300] selection:text-black overflow-x-hidden z-10 text-gray-300 bg-garna-page',
+		iconLibrary: 'lucide',
+	},
+	midSize: {
+		title: 'Flexible Payroll Solutions for Growing Businesses | Garna',
+		description:
+			'Automate payroll processing, handle employees and contractors from all over the world without headaches, but with Garna.',
+		keywords:
+			'mid size business payroll, growing business payroll, flexible payroll solutions, global payroll, Garna',
+		ogImage: 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
+		htmlClass: 'scroll-smooth',
+		bodyClass: 'antialiased selection:bg-[#CBF300] selection:text-black overflow-x-hidden z-10 text-gray-300 bg-garna-page',
+		iconLibrary: 'lucide',
 	},
 	home: {
 		title: 'Global Payroll and Payments in 150+ Countries | Garna',

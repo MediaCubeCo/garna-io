@@ -111,47 +111,46 @@ const fallingFlags: Country[] = [
 ];
 ---
 
-<Section contained={false} spacing="none" class="eor-countries-section pt-16 pb-0 lg:pt-28 lg:pb-0">
-	<div class="mx-auto max-w-7xl px-6">
-		<div class="eor-countries-heading">
-			<h2 data-translate="countries.title">Hire Employees Worldwide</h2>
-			<p data-garna-subtitle data-translate="countries.description">Hire full-time employees in 150+ countries with Garna</p>
-		</div>
-
-		<div class="eor-countries-panel">
-			<div class="eor-countries-list" aria-label="Countries where Garna supports hiring">
-				{regions.map((region) => (
-					<div class="eor-countries-region" data-countries-region>
-						<span class="eor-countries-region-title" data-translate={region.nameKey}>{region.name}</span>
-						<div class="eor-countries-grid">
-							{region.countries.map((country) => (
-								<div class="eor-country-item">
-									<span class="eor-country-flag" aria-hidden="true">
-										<img src={flagSrc(country.code)} alt="" loading="lazy" />
-									</span>
-									<span>{country.name}</span>
-								</div>
-							))}
-						</div>
-						<button class="eor-countries-summary" type="button" data-countries-toggle-button aria-expanded="false">
-							<span class="eor-countries-toggle">
-								<span class="eor-countries-toggle__closed" data-translate="countries.showAll">Show all</span>
-								<span class="eor-countries-toggle__open" data-translate="countries.showLess">Show less</span>
-							</span>
-						</button>
+<Section
+	spacing="none"
+	class="eor-countries-section pt-16 pb-0 lg:pt-28 lg:pb-0"
+	title={{ text: 'Hire Employees Worldwide', translateKey: 'countries.title' }}
+	description={{ text: 'Hire full-time employees in 150+ countries with Garna', translateKey: 'countries.description' }}
+	descriptionClass="mx-auto max-w-3xl"
+>
+	<div class="eor-countries-panel">
+		<div class="eor-countries-list" aria-label="Countries where Garna supports hiring" data-translate-aria-label="countries.listAriaLabel">
+			{regions.map((region) => (
+				<div class="eor-countries-region" data-countries-region>
+					<span class="eor-countries-region-title" data-translate={region.nameKey}>{region.name}</span>
+					<div class="eor-countries-grid">
+						{region.countries.map((country) => (
+							<div class="eor-country-item">
+								<span class="eor-country-flag" aria-hidden="true">
+									<img src={flagSrc(country.code)} alt="" loading="lazy" />
+								</span>
+								<span data-translate={`countryNames.${country.code}`}>{country.name}</span>
+							</div>
+						))}
 					</div>
-				))}
-			</div>
-
-			<div class="eor-country-playground" data-eor-country-playground aria-label="Draggable country flags">
-				{fallingFlags.map((country) => (
-					<button class="eor-country-orb" type="button" data-country-orb aria-label={`Drag ${country.name} flag`}>
-						<span>
-							<img src={flagSrc(country.code)} alt="" loading="lazy" />
+					<button class="eor-countries-summary" type="button" data-countries-toggle-button aria-expanded="false">
+						<span class="eor-countries-toggle">
+							<span class="eor-countries-toggle__closed" data-translate="countries.showAll">Show all</span>
+							<span class="eor-countries-toggle__open" data-translate="countries.showLess">Show less</span>
 						</span>
 					</button>
-				))}
-			</div>
+				</div>
+			))}
+		</div>
+
+		<div class="eor-country-playground" data-eor-country-playground aria-label="Draggable country flags">
+			{fallingFlags.map((country) => (
+				<button class="eor-country-orb" type="button" data-country-orb aria-label={`Drag ${country.name} flag`}>
+					<span>
+						<img src={flagSrc(country.code)} alt="" loading="lazy" />
+					</span>
+				</button>
+			))}
 		</div>
 	</div>
 </Section>
@@ -167,33 +166,11 @@ const fallingFlags: Country[] = [
 		overflow: visible;
 	}
 
-	.eor-countries-heading {
-		display: grid;
-		position: relative;
-		z-index: 2;
-		justify-items: center;
-		gap: 1.25rem;
-		text-align: center;
-	}
-
-	.eor-countries-heading h2 {
-		margin: 0;
-		color: #ffffff;
-		font-family: Manrope, sans-serif;
-		font-size: clamp(2.25rem, 4vw, 3rem);
-		font-weight: 400;
-		line-height: 1.1;
-		letter-spacing: 0;
-	}
-
-	.eor-countries-heading p {
-		max-width: 48rem;
-		margin: 0;
-		color: rgb(156 163 175 / 1);
-		font-family: Manrope, sans-serif;
-		font-size: 1.125rem;
-		font-weight: 400;
-		line-height: 1.625;
+	@media (max-width: 1279px) {
+		:global(.eor-countries-section) {
+			min-height: var(--eor-countries-section-height, clamp(42rem, 67vw, calc(100vh - 64px)));
+			min-height: var(--eor-countries-section-height, clamp(42rem, 67vw, calc(100svh - 64px)));
+		}
 	}
 
 	.eor-countries-panel {
@@ -210,9 +187,9 @@ const fallingFlags: Country[] = [
 
 	.eor-countries-region {
 		display: grid;
-		grid-template-columns: minmax(7rem, 8.5rem) minmax(0, 1fr) 6.25rem;
+		grid-template-columns: minmax(7rem, 8.5rem) minmax(0, 1fr) max-content;
 		align-items: start;
-		gap: 1rem;
+		gap: 0.85rem;
 		overflow: hidden;
 		border-radius: 16px;
 		border: 1px solid rgb(255 255 255 / 0.06);
@@ -245,6 +222,7 @@ const fallingFlags: Country[] = [
 		text-align: right;
 		font-weight: 700;
 		line-height: 1;
+		white-space: nowrap;
 	}
 
 	.eor-countries-summary::after {
@@ -265,21 +243,27 @@ const fallingFlags: Country[] = [
 	}
 
 	.eor-countries-toggle {
-		display: inline-flex;
+		display: inline-grid;
 		align-items: center;
 		justify-self: end;
 		color: rgb(255 255 255 / 0.56);
 		font-weight: 600;
 		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.eor-countries-toggle__closed,
+	.eor-countries-toggle__open {
+		grid-area: 1 / 1;
 	}
 
 	.eor-countries-toggle__open,
 	.eor-countries-region.is-expanded .eor-countries-toggle__closed {
-		display: none;
+		visibility: hidden;
 	}
 
 	.eor-countries-region.is-expanded .eor-countries-toggle__open {
-		display: inline;
+		visibility: visible;
 	}
 
 	.eor-countries-region:not(.is-expanded) .eor-countries-grid {
@@ -317,6 +301,12 @@ const fallingFlags: Country[] = [
 			transform 460ms cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
+	.eor-country-item > span:last-child {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
 	.eor-countries-region.is-expanded .eor-country-item:nth-child(n + 4) {
 		transition-delay: 90ms;
 	}
@@ -329,6 +319,7 @@ const fallingFlags: Country[] = [
 
 	.eor-country-flag {
 		display: inline-flex;
+		flex: 0 0 1.75rem;
 		width: 1.75rem;
 		height: 1.75rem;
 		align-items: center;
@@ -400,17 +391,17 @@ const fallingFlags: Country[] = [
 		opacity: 1;
 	}
 
-	.eor-country-orb.is-settled {
-		will-change: auto;
-	}
-
 	.eor-country-orb.is-dragging {
 		z-index: 5 !important;
 		cursor: grabbing;
 		will-change: transform;
 	}
 
-	@media (max-width: 760px) {
+	@media (max-width: 980px) {
+		.eor-countries-panel {
+			padding-bottom: clamp(2.5rem, 12vw, 4.75rem);
+		}
+
 		.eor-countries-region {
 			grid-template-columns: minmax(0, 1fr) auto;
 		}
@@ -423,6 +414,19 @@ const fallingFlags: Country[] = [
 		.eor-countries-grid {
 			grid-column: 1 / -1;
 			grid-row: 2;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.3rem 1.15rem;
+		}
+	}
+
+	@media (max-width: 520px) {
+		.eor-countries-panel {
+			padding-bottom: clamp(7.5rem, 26vw, 10rem);
+		}
+	}
+
+	@media (max-width: 430px) {
+		.eor-countries-grid {
 			grid-template-columns: 1fr;
 		}
 	}
@@ -430,6 +434,71 @@ const fallingFlags: Country[] = [
 
 <script>
 	const countryRegions = document.querySelectorAll('[data-countries-region]');
+	const countrySections = document.querySelectorAll('.eor-countries-section');
+	const adaptiveCountriesQuery = window.matchMedia('(max-width: 1279px)');
+	const compactCountriesQuery = window.matchMedia('(max-width: 980px)');
+
+	const setCountryRegionExpanded = (region, isExpanded) => {
+		if (!(region instanceof HTMLElement)) return;
+
+		region.classList.toggle('is-expanded', isExpanded);
+		region.querySelector('[data-countries-toggle-button]')?.setAttribute('aria-expanded', String(isExpanded));
+	};
+
+	const syncDefaultCountryRegions = () => {
+		const regions = Array.from(countryRegions).filter((region) => region instanceof HTMLElement);
+
+		regions.forEach((region, index) => {
+			setCountryRegionExpanded(region, compactCountriesQuery.matches && index === 0);
+		});
+
+		requestAnimationFrame(syncCountrySectionHeights);
+	};
+
+	const syncCountrySectionHeights = () => {
+		for (const section of countrySections) {
+			if (!(section instanceof HTMLElement)) continue;
+
+			if (!adaptiveCountriesQuery.matches) {
+				section.style.removeProperty('--eor-countries-section-height');
+				continue;
+			}
+
+			const list = section.querySelector('.eor-countries-list');
+			const firstOrb = section.querySelector('[data-country-orb]');
+			if (!(list instanceof HTMLElement) || !(firstOrb instanceof HTMLElement)) continue;
+
+			const sectionRect = section.getBoundingClientRect();
+			const panel = section.querySelector('.eor-countries-panel');
+			const panelStyles = panel instanceof HTMLElement ? window.getComputedStyle(panel) : null;
+			const panelBottomPadding = panelStyles ? parseFloat(panelStyles.paddingBottom) || 0 : 0;
+			const regions = Array.from(section.querySelectorAll('.eor-countries-region')).filter((region) => region instanceof HTMLElement);
+			const referenceRegion = regions[regions.length - 1];
+			const listRect = list.getBoundingClientRect();
+			const listStyles = window.getComputedStyle(list);
+			const listGap = parseFloat(listStyles.rowGap || listStyles.gap) || 0;
+			const referenceListHeight = regions.reduce((total, region, index) => {
+				const grid = region.querySelector('.eor-countries-grid');
+				if (!(grid instanceof HTMLElement)) return total + region.offsetHeight;
+
+				const gridRect = grid.getBoundingClientRect();
+				const collapsedGridHeight = parseFloat(grid.style.getPropertyValue('--countries-grid-collapsed-height')) || gridRect.height;
+				const expandedGridHeight = grid.scrollHeight;
+				const chromeHeight = region.offsetHeight - gridRect.height;
+				const targetGridHeight = region === referenceRegion ? expandedGridHeight : collapsedGridHeight;
+				const gap = index > 0 ? listGap : 0;
+
+				return total + gap + chromeHeight + targetGridHeight;
+			}, 0);
+			const referenceRegionBottom = listRect.top + referenceListHeight;
+			const orbSize = firstOrb.offsetWidth || 64;
+			const pileDepth = orbSize * 2.24;
+			const expandedBorderOverlap = Math.min(orbSize * 0.18, 12);
+			const sectionHeight = Math.ceil((referenceRegionBottom - sectionRect.top) + panelBottomPadding + pileDepth - expandedBorderOverlap);
+
+			section.style.setProperty('--eor-countries-section-height', `${sectionHeight}px`);
+		}
+	};
 
 	for (const region of countryRegions) {
 		if (!(region instanceof HTMLElement) || region.dataset.toggleReady === 'true') continue;
@@ -445,7 +514,11 @@ const fallingFlags: Country[] = [
 			const items = Array.from(grid.querySelectorAll('.eor-country-item')).filter((item) => item instanceof HTMLElement);
 			if (!items.length) return;
 
-			const visibleDefaultCount = window.matchMedia('(max-width: 760px)').matches ? 1 : 3;
+			const visibleDefaultCount = window.matchMedia('(max-width: 430px)').matches
+				? 1
+				: window.matchMedia('(max-width: 980px)').matches
+					? 2
+					: 3;
 			const defaultItems = items.slice(0, visibleDefaultCount);
 			const firstTop = Math.min(...defaultItems.map((item) => item.offsetTop));
 			const firstBottom = Math.max(...defaultItems.map((item) => item.offsetTop + item.offsetHeight));
@@ -455,14 +528,34 @@ const fallingFlags: Country[] = [
 		};
 
 		syncGridHeights();
-		window.addEventListener('resize', syncGridHeights);
+		syncCountrySectionHeights();
+		window.addEventListener('resize', () => {
+			syncGridHeights();
+			syncCountrySectionHeights();
+		});
 
 		button.addEventListener('click', () => {
 			syncGridHeights();
-			const isExpanded = region.classList.toggle('is-expanded');
-			button.setAttribute('aria-expanded', String(isExpanded));
+			const willExpand = !region.classList.contains('is-expanded');
+
+			if (willExpand) {
+				const list = region.closest('.eor-countries-list');
+				const siblingRegions = list ? Array.from(list.querySelectorAll('[data-countries-region]')) : [];
+
+				for (const sibling of siblingRegions) {
+					if (!(sibling instanceof HTMLElement) || sibling === region) continue;
+
+					setCountryRegionExpanded(sibling, false);
+				}
+			}
+
+			setCountryRegionExpanded(region, willExpand);
+			requestAnimationFrame(syncCountrySectionHeights);
 		});
 	}
+
+	syncDefaultCountryRegions();
+	compactCountriesQuery.addEventListener('change', syncDefaultCountryRegions);
 
 	const playgrounds = document.querySelectorAll('[data-eor-country-playground]');
 
@@ -484,7 +577,6 @@ const fallingFlags: Country[] = [
 			lastPointerTime: 0,
 			simulationStartedAt: 0,
 			stillSince: 0,
-			lastReleaseAt: 0,
 			width: 0,
 			height: 0,
 			orbs: [],
@@ -505,6 +597,7 @@ const fallingFlags: Country[] = [
 		};
 
 		const resize = () => {
+			syncCountrySectionHeights();
 			syncPlaygroundTop();
 			const rect = simulationBounds.getBoundingClientRect();
 			state.width = rect.width;
@@ -540,7 +633,6 @@ const fallingFlags: Country[] = [
 					lastAngleNudgeAt: 0,
 					releaseDelay: Math.floor(index / 4) * 46 + Math.abs(seeded) * 52,
 					released: false,
-					sleeping: false,
 				};
 			});
 		};
@@ -584,11 +676,9 @@ const fallingFlags: Country[] = [
 						if (aFixed && !bFixed) {
 							b.x += nx * overlap;
 							b.y += ny * overlap;
-							b.sleeping = false;
 						} else if (bFixed && !aFixed) {
 							a.x -= nx * overlap;
 							a.y -= ny * overlap;
-							a.sleeping = false;
 						} else {
 							a.x -= nx * overlap * 0.5;
 							a.y -= ny * overlap * 0.5;
@@ -599,7 +689,7 @@ const fallingFlags: Country[] = [
 						if (!aFixed && !bFixed) {
 							const relativeVelocity = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
 							if (relativeVelocity < 0) {
-								const impulse = -relativeVelocity * 0.28;
+								const impulse = -relativeVelocity * 0.42;
 								a.vx -= impulse * nx;
 								a.vy -= impulse * ny;
 								b.vx += impulse * nx;
@@ -617,6 +707,14 @@ const fallingFlags: Country[] = [
 									target.lastAngleNudgeAt = now;
 								}
 							}
+						} else if (aFixed !== bFixed) {
+							const moving = aFixed ? b : a;
+							const direction = aFixed ? 1 : -1;
+							const velocityAlongNormal = (moving.vx * nx + moving.vy * ny) * direction;
+							if (velocityAlongNormal < 0) {
+								moving.vx -= velocityAlongNormal * nx * direction * 0.3;
+								moving.vy -= velocityAlongNormal * ny * direction * 0.3;
+							}
 						}
 
 						clampOrb(a);
@@ -626,16 +724,12 @@ const fallingFlags: Country[] = [
 			}
 		};
 
-		const compactPile = () => {
+		const freezeOrbs = () => {
 			for (const orb of state.orbs) {
-				clampOrb(orb);
 				orb.vx = 0;
 				orb.vy = 0;
 				orb.sleeping = true;
-				orb.element.classList.add('is-settled');
 			}
-
-			render();
 		};
 
 		const orbHasSupport = (orb) => {
@@ -655,6 +749,20 @@ const fallingFlags: Country[] = [
 			});
 		};
 
+		const hasFilledFloor = () => {
+			const floorOrbs = state.orbs.filter((orb) => {
+				const floor = state.height - orb.radius - 3;
+				return orb.released && orb.y >= floor - 6;
+			});
+
+			if (floorOrbs.length < 14) return false;
+
+			const leftEdge = Math.min(...floorOrbs.map((orb) => orb.x - orb.radius));
+			const rightEdge = Math.max(...floorOrbs.map((orb) => orb.x + orb.radius));
+
+			return leftEdge <= 6 && rightEdge >= state.width - 6;
+		};
+
 		const settleIfStill = () => {
 			if (state.dragged) return false;
 			if (state.orbs.some((orb) => !orb.released)) return false;
@@ -665,9 +773,18 @@ const fallingFlags: Country[] = [
 			}, 0);
 
 			const now = performance.now();
+			const elapsed = now - state.simulationStartedAt;
 			const allSupported = state.orbs.every((orb) => orbHasSupport(orb));
-			const isAlmostStill = maxSpeed <= 72;
-			const isSettled = maxSpeed <= 58 && allSupported;
+			const hasFilledBottomRow = elapsed > 1900 && hasFilledFloor();
+			const hasHadFullSettlingTime = elapsed > 2600;
+			const isAlmostStill =
+				(elapsed > 2300 && maxSpeed <= 220) ||
+				hasFilledBottomRow ||
+				hasHadFullSettlingTime;
+			const isSettled =
+				hasFilledBottomRow ||
+				(elapsed > 2300 && allSupported && maxSpeed <= 190) ||
+				hasHadFullSettlingTime;
 
 			if (!isAlmostStill) {
 				state.stillSince = 0;
@@ -675,29 +792,22 @@ const fallingFlags: Country[] = [
 			}
 
 			if (!state.stillSince) state.stillSince = now;
-			if (!isSettled && now - state.stillSince < 420) return false;
+			if (!isSettled) return false;
 
-			for (const orb of state.orbs) {
-				orb.vx = 0;
-				orb.vy = 0;
-				orb.sleeping = true;
-			}
-
-			compactPile();
+			freezeOrbs();
 			return true;
 		};
 
 		const stepPhysics = (deltaSeconds, elapsedMilliseconds) => {
 			const gravity = 5600;
-			const floorFriction = 0.76;
-			const airDrag = 0.982;
+			const floorFriction = 0.91;
+			const airDrag = 0.992;
 
 			for (const orb of state.orbs) {
 				if (orb === state.dragged) continue;
 				if (!orb.released) {
 					if (elapsedMilliseconds < orb.releaseDelay) continue;
 					orb.released = true;
-					state.lastReleaseAt = performance.now();
 					orb.element.classList.add('is-ready');
 				}
 
@@ -721,18 +831,39 @@ const fallingFlags: Country[] = [
 					orb.y = floor;
 					orb.vy = Math.abs(orb.vy) > 920 ? -orb.vy * 0.05 : 0;
 					orb.vx *= floorFriction;
-					if (Math.abs(orb.vx) < 32) orb.vx = 0;
+					if (Math.abs(orb.vx) < 2) orb.vx = 0;
 				}
 			}
 
 			resolveCollisions({ allowAngleNudge: true });
+
+			const allReleased = state.orbs.every((orb) => orb.released);
+			if (allReleased) {
+				const settleProgress = Math.max(0, Math.min(1, (elapsedMilliseconds - 6200) / 3000));
+				const supportedDampingX = 0.94 - (settleProgress * 0.18);
+				const supportedDampingY = 0.94 - (settleProgress * 0.24);
+
+				for (const orb of state.orbs) {
+					if (orb === state.dragged || !orbHasSupport(orb)) continue;
+
+					const speed = Math.hypot(orb.vx, orb.vy);
+					if (speed < 40) {
+						orb.vx *= supportedDampingX;
+						orb.vy *= supportedDampingY;
+					}
+
+					if (settleProgress > 0.86 && speed < 14) {
+						orb.vx = 0;
+						orb.vy = 0;
+					}
+				}
+			}
 		};
 
 		const wakeSimulation = () => {
 			if (state.animationFrame) return;
 			state.simulationStartedAt = performance.now();
 			state.stillSince = 0;
-			state.lastReleaseAt = state.orbs.every((orb) => orb.released) ? state.simulationStartedAt : 0;
 
 			const tick = (now) => {
 				if (!state.lastFrame) state.lastFrame = now;
@@ -743,16 +874,7 @@ const fallingFlags: Country[] = [
 				stepPhysics(deltaSeconds, elapsedMilliseconds);
 				render();
 
-				const allReleased = state.orbs.every((orb) => orb.released);
-				const releaseSettledLongEnough = allReleased && state.lastReleaseAt && now - state.lastReleaseAt > 2600;
-				if (!state.dragged && releaseSettledLongEnough) {
-					compactPile();
-					stopSimulation();
-					return;
-				}
-
 				if (!state.dragged && settleIfStill()) {
-					compactPile();
 					stopSimulation();
 					return;
 				}
@@ -789,8 +911,6 @@ const fallingFlags: Country[] = [
 				state.lastPointerTime = performance.now();
 				orb.vx = 0;
 				orb.vy = 0;
-				orb.sleeping = false;
-				element.classList.remove('is-settled');
 				element.classList.add('is-dragging');
 				element.setPointerCapture(event.pointerId);
 				wakeSimulation();

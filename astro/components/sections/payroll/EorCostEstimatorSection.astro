@@ -1,5 +1,6 @@
 ---
 import Section from '../../layout/Section.astro';
+import SectionHeader from '../../layout/SectionHeader.astro';
 import Button from '../../ui/Button.astro';
 import { eorCostCountries } from '../../../../src/data/eor-cost-countries';
 
@@ -128,17 +129,21 @@ const countryCurrencyByCode = new Map(countryCurrencyRows.map(([countryCode, cur
 const currencies = Array.from(new Map(countryCurrencyRows.map(([, code, country, flagCode]) => [code, { code, country, flagCode }])).values());
 const defaultCurrencyForCountry = (countryCode: string) => countryCurrencyByCode.get(countryCode) || '';
 const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}.png`;
+const optionKey = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+const countryTranslationKey = (countryCode: string) => `costEstimator.countries.${countryCode.toLowerCase()}`;
+const regionTranslationKey = (country: string, region: string) => `costEstimator.regions.${optionKey(country)}.${optionKey(region)}`;
+const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 'costEstimator.currencyCountries.eu' : countryTranslationKey(flagCode);
 ---
 
 <Section id="eor-cost-estimator" contained={false} spacing="none" class="eor-estimator-section py-20 lg:py-36">
 	<div class="eor-estimator-container mx-auto max-w-7xl px-6">
 		<div class="eor-estimator-shell">
-			<div class="eor-estimator-copy">
-				<h2 data-translate="costEstimator.title">See What Your Hire Will Really Cost</h2>
-				<p data-garna-subtitle data-translate="costEstimator.description">
-					Garna starts from $200 per employee per month with no hidden fees or local entity setup costs. Enter the country and salary to estimate taxes, benefits, and the full cost of hiring
-				</p>
-			</div>
+			<SectionHeader
+				class="eor-estimator-copy"
+				title={{ text: 'See What Your Hire Will Really Cost', translateKey: 'costEstimator.title' }}
+				description={{ text: 'Garna starts from $200 per employee per month with no hidden fees or local entity setup costs. Enter the country and salary to estimate taxes, benefits, and the full cost of hiring', translateKey: 'costEstimator.description' }}
+				descriptionClass="eor-estimator-copy__description"
+			/>
 
 			<form class="eor-estimator-card" action="#" onsubmit="event.preventDefault();" data-eor-estimator-form>
 				<div class="eor-estimator-card__header">
@@ -149,51 +154,51 @@ const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}
 					<p data-translate="costEstimator.form.hireIn">I want to hire in</p>
 					<div class="eor-estimator-select" data-estimator-select data-country-select>
 						<input type="hidden" name="country" required />
-						<button type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Country" data-select-trigger>
+						<button type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Country" data-translate-aria-label="costEstimator.form.country" data-select-trigger>
 							<span data-select-label data-placeholder data-translate="costEstimator.form.country">Country</span>
 							<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
 						</button>
-						<button class="eor-estimator-select__clear" type="button" aria-label="Clear country" data-select-clear>
+						<button class="eor-estimator-select__clear" type="button" aria-label="Clear country" data-translate-aria-label="costEstimator.form.clearCountry" data-select-clear>
 							<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg>
 						</button>
 						<div class="eor-estimator-select__menu" role="listbox" hidden data-select-menu>
 							{eorCostCountries.map((country) => (
-								<button type="button" role="option" data-select-option value={country.name} data-select-label-text={country.name} data-country-currency={defaultCurrencyForCountry(country.code)}>
+								<button type="button" role="option" data-select-option value={country.name} data-select-label-text={country.name} data-translate-select-label-text={countryTranslationKey(country.code)} data-country-currency={defaultCurrencyForCountry(country.code)}>
 									<span class="eor-estimator-country-flag" aria-hidden="true">
 										<img src={flagSrc(country.code)} alt="" loading="lazy" />
 									</span>
-									<span>{country.name}</span>
+									<span data-translate={countryTranslationKey(country.code)}>{country.name}</span>
 								</button>
 							))}
 						</div>
 					</div>
 					<div class="eor-estimator-select" data-estimator-select data-region-select data-disabled="true">
 						<input type="hidden" name="region" />
-						<button type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="State / province" aria-disabled="true" disabled data-select-trigger>
+						<button type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="State / province" data-translate-aria-label="costEstimator.form.region" aria-disabled="true" disabled data-select-trigger>
 							<span data-select-label data-placeholder data-translate="costEstimator.form.region">State / province</span>
 							<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
 						</button>
-						<button class="eor-estimator-select__clear" type="button" aria-label="Clear state or province" data-select-clear>
+						<button class="eor-estimator-select__clear" type="button" aria-label="Clear state or province" data-translate-aria-label="costEstimator.form.clearRegion" data-select-clear>
 							<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg>
 						</button>
 						<div class="eor-estimator-select__menu" role="listbox" hidden data-select-menu>
 							{flatRegions.map(({ country, region }) => (
-								<button type="button" role="option" data-select-option data-region-country={country} value={region}>{region}</button>
+								<button type="button" role="option" data-select-option data-region-country={country} value={region} data-select-label-text={region} data-translate-select-label-text={regionTranslationKey(country, region)} data-translate={regionTranslationKey(country, region)}>{region}</button>
 							))}
 						</div>
 					</div>
 				</div>
 
 				<div class="eor-estimator-group">
-					<p data-translate="costEstimator.form.salary">Gross annual salary</p>
+					<p data-translate="costEstimator.form.salary">Gross Salary</p>
 					<div class="eor-estimator-salary">
 						<div class="eor-estimator-select" data-estimator-select data-currency-select>
 							<input type="hidden" name="currency" required />
-							<button type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Currency" data-select-trigger>
+							<button type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Currency" data-translate-aria-label="costEstimator.form.currency" data-select-trigger>
 								<span data-select-label data-placeholder data-translate="costEstimator.form.currency">Currency</span>
 								<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
 							</button>
-							<button class="eor-estimator-select__clear" type="button" aria-label="Clear currency" data-select-clear>
+							<button class="eor-estimator-select__clear" type="button" aria-label="Clear currency" data-translate-aria-label="costEstimator.form.clearCurrency" data-select-clear>
 								<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg>
 							</button>
 							<div class="eor-estimator-select__menu" role="listbox" hidden data-select-menu>
@@ -204,7 +209,7 @@ const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}
 										</span>
 										<span class="eor-estimator-currency-copy">
 											<strong>{currency.code}</strong>
-											<small>{currency.country}</small>
+											<small data-translate={currencyCountryTranslationKey(currency.flagCode)}>{currency.country}</small>
 										</span>
 									</button>
 								))}
@@ -212,7 +217,8 @@ const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}
 						</div>
 						<label>
 							<div class="eor-estimator-amount">
-								<input name="salary" type="text" inputmode="numeric" placeholder="Annual salary" data-translate-placeholder="costEstimator.form.amountPlaceholder" aria-label="Gross annual salary amount" required>
+								<span class="eor-estimator-amount__prefix" hidden data-salary-currency-prefix aria-hidden="true"></span>
+								<input name="salary" type="text" inputmode="numeric" placeholder="Gross Salary" data-translate-placeholder="costEstimator.form.amountPlaceholder" aria-label="Gross salary amount" data-translate-aria-label="costEstimator.form.amountPlaceholder" required>
 								<span class="eor-estimator-amount__currency" hidden data-salary-currency aria-hidden="true"></span>
 							</div>
 						</label>
@@ -240,7 +246,7 @@ const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}
 		position: absolute;
 		inset: 0;
 		z-index: -2;
-		background: url("/pages/payroll-solution-new/assets/eor-cost-estimator-planning-desk-v6.png") center center / cover no-repeat;
+		background: url("/pages/payroll-solution-new/assets/eor-cost-estimator-business-desk-v9.png") center center / cover no-repeat;
 	}
 
 	:global(.eor-estimator-section)::after {
@@ -259,29 +265,12 @@ const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}
 		text-align: center;
 	}
 
-	.eor-estimator-copy {
-		display: grid;
-		justify-items: center;
-		max-width: 48rem;
-	}
-
-	.eor-estimator-copy h2 {
-		color: #ffffff;
-		font-family: Manrope, sans-serif;
-		font-size: clamp(2.25rem, 4vw, 3rem);
-		font-weight: 400;
-		line-height: 1.1;
-		letter-spacing: 0;
-	}
-
-	.eor-estimator-copy p {
+	:global(.eor-estimator-copy) {
 		max-width: 44rem;
-		margin-top: 1.5rem;
+	}
+
+	:global(.eor-estimator-copy__description) {
 		color: rgb(255 255 255 / 0.8) !important;
-		font-family: Manrope, sans-serif;
-		font-size: clamp(1rem, 1.2vw, 1.125rem);
-		font-weight: var(--garna-subtitle-weight);
-		line-height: 1.55;
 	}
 
 	.eor-estimator-card {
@@ -615,14 +604,14 @@ const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}
 	}
 
 	.eor-estimator-amount {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr) auto;
+		position: relative;
+		display: flex;
 		align-items: center;
-		gap: 0.75rem;
-		padding: 0 1rem;
+		padding: 0 4.15rem 0 1rem;
 	}
 
 	.eor-estimator-amount input {
+		width: 100%;
 		min-width: 0;
 		border: 0;
 		background: transparent;
@@ -631,6 +620,7 @@ const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}
 		outline: none;
 	}
 
+	.eor-estimator-amount__prefix,
 	.eor-estimator-amount__currency {
 		color: rgb(255 255 255 / 0.82);
 		font-family: Manrope, sans-serif;
@@ -638,6 +628,25 @@ const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}
 		font-weight: 650;
 		line-height: 1;
 		white-space: nowrap;
+	}
+
+	.eor-estimator-amount__prefix {
+		display: none;
+		flex: 0 0 auto;
+		margin-right: 0.55rem;
+		padding-right: 0.55rem;
+		border-right: 1px solid rgb(255 255 255 / 0.28);
+	}
+
+	.eor-estimator-amount:focus-within .eor-estimator-amount__prefix:not([hidden]) {
+		display: inline;
+	}
+
+	.eor-estimator-amount__currency {
+		position: absolute;
+		top: 50%;
+		right: 1rem;
+		transform: translateY(-50%);
 	}
 
 	:global(.eor-estimator-submit.garna-button-primary) {
@@ -666,11 +675,6 @@ const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}
 		.eor-estimator-shell {
 			justify-items: center;
 			text-align: center;
-		}
-
-		.eor-estimator-copy {
-			justify-items: center;
-			max-width: 48rem;
 		}
 
 		.eor-estimator-card {
@@ -920,11 +924,44 @@ const flagSrc = (code: string) => `https://flagcdn.com/w80/${code.toLowerCase()}
 		const regionApi = selectApis.get('region');
 		const currencyApi = selectApis.get('currency');
 		const salaryCurrency = form.querySelector('[data-salary-currency]');
+		const salaryCurrencyPrefix = form.querySelector('[data-salary-currency-prefix]');
+		const currencySymbols = {
+			AUD: 'A$',
+			CAD: 'C$',
+			HKD: 'HK$',
+			MXN: 'MX$',
+			NZD: 'NZ$',
+			SGD: 'S$',
+			USD: '$',
+			EUR: '€',
+			GBP: '£',
+			JPY: '¥',
+			CNY: '¥',
+			CHF: 'CHF',
+			SEK: 'kr',
+			NOK: 'kr',
+			DKK: 'kr',
+			PLN: 'zł',
+			BRL: 'R$',
+			INR: '₹',
+			ZAR: 'R',
+			ILS: '₪',
+			KRW: '₩',
+			TRY: '₺',
+			UAH: '₴',
+		};
 		const syncSalaryCurrency = (currencyValue) => {
-			if (!(salaryCurrency instanceof HTMLElement)) return;
+			const currencySymbol = currencySymbols[currencyValue] || currencyValue || '';
 
-			salaryCurrency.textContent = currencyValue || '';
-			salaryCurrency.hidden = !currencyValue;
+			if (salaryCurrency instanceof HTMLElement) {
+				salaryCurrency.textContent = currencyValue || '';
+				salaryCurrency.hidden = !currencyValue;
+			}
+
+			if (salaryCurrencyPrefix instanceof HTMLElement) {
+				salaryCurrencyPrefix.textContent = currencySymbol;
+				salaryCurrencyPrefix.hidden = !currencySymbol;
+			}
 		};
 		const syncRegionSelect = (countryValue) => {
 			if (!(countryInput instanceof HTMLInputElement) || !regionApi) return;

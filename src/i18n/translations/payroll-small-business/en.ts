@@ -1,7 +1,7 @@
 export const payrollSmallBusinessEn = {
 	meta: {
-		title: "Payroll for Small Business | Garna",
-		description: "Hire employees, pay contractors, automate taxes, contracts, and bulk payments for small businesses in one Garna payroll platform."
+		title: "Global Payroll Services for Small Businesses | Garna",
+		description: "Run payroll, hire globally, and stay compliant in 150+ countries. Garna helps small businesses manage international teams without local entities."
 	},
 	images: {},
 	hero: {

@@ -1,3 +1,7 @@
+import { getEorCostEstimatorOptions } from './cost-estimator-options';
+
+const costEstimatorOptions = getEorCostEstimatorOptions('en');
+
 export const eorEn = {
 	"images": {},
 	"meta": {
@@ -26,7 +30,8 @@ export const eorEn = {
 	},
 	"stats": {
 		"businesses": "businesses using Garna",
-		"coverage": "countries coverage",
+		"coverage": "countries covered",
+		"startingValue": "$200",
 		"startingFrom": "starting from"
 	},
 	"transparentPricing": {
@@ -42,6 +47,7 @@ export const eorEn = {
 	"countries": {
 		"title": "Hire Employees Worldwide",
 		"description": "Hire full-time employees in 150+ countries with Garna",
+		"listAriaLabel": "Countries where Garna supports hiring",
 		"button": "Book a demo",
 		"showAll": "Show all",
 		"showLess": "Show less",
@@ -63,7 +69,7 @@ export const eorEn = {
 			"countries": {
 				"label": "countries covered",
 				"notice": {
-					"title": "Contract ready",
+					"title": "Contract complete",
 					"meta": "Country terms checked"
 				}
 			},
@@ -82,6 +88,44 @@ export const eorEn = {
 				}
 			}
 		}
+	},
+	"countryNames": {
+		"dk": "Denmark",
+		"ie": "Ireland",
+		"gb": "United Kingdom",
+		"fi": "Finland",
+		"is": "Iceland",
+		"lt": "Lithuania",
+		"md": "Moldova",
+		"se": "Sweden",
+		"ua": "Ukraine",
+		"br": "Brazil",
+		"ca": "Canada",
+		"us": "United States",
+		"mx": "Mexico",
+		"cl": "Chile",
+		"co": "Colombia",
+		"ar": "Argentina",
+		"pe": "Peru",
+		"uy": "Uruguay",
+		"au": "Australia",
+		"in": "India",
+		"ph": "Philippines",
+		"sg": "Singapore",
+		"jp": "Japan",
+		"kr": "South Korea",
+		"th": "Thailand",
+		"vn": "Vietnam",
+		"my": "Malaysia",
+		"eg": "Egypt",
+		"ma": "Morocco",
+		"za": "South Africa",
+		"ng": "Nigeria",
+		"gh": "Ghana",
+		"ke": "Kenya",
+		"tn": "Tunisia",
+		"ci": "Cote d Ivoire",
+		"rw": "Rwanda"
 	},
 	"sectionTags": {
 		"growFaster": "Grow faster",
@@ -123,7 +167,7 @@ export const eorEn = {
 			"countryStepsReady": "Country steps ready",
 			"growthLead": "Growth lead",
 			"localContractPrepared": "Local contract prepared",
-			"payrollProfileReady": "Payroll profile ready",
+			"payrollProfileReady": "Payroll profile set",
 			"complianceVault": "Compliance vault",
 			"documentsStored": "Documents stored",
 			"contractHub": "Contract hub",
@@ -188,31 +232,31 @@ export const eorEn = {
 	},
 	"hirePay": {
 		"title": "Everything You Need to Hire and Pay Globally",
-		"description": "We offer a super flexible hiring system that helps companies to hire international staff without having to walk the bureaucratic extra mile",
+		"description": "Garna offers a flexible hiring system that helps companies hire international staff without walking the bureaucratic extra mile",
 		"cards": {
 			"entities": {
 				"title": "Hire globally without opening new entities",
-				"description": "You can hire employees around the globe in no time. No need to open a local office and navigate its legal infrastructure"
+				"description": "Hire employees around the globe without opening a local office or navigating its legal infrastructure"
 			},
 			"workforce": {
-				"title": "Employ any type of the workforce",
-				"description": "Manage a team of full-timers, contractors, freelancers, and distributed staff all from a single place"
+				"title": "Employ any type of workforce",
+				"description": "Manage full-timers, contractors, freelancers, and distributed staff from a single place"
 			},
 			"payroll": {
 				"title": "Offer payroll that runs smoothly",
-				"description": "Pay international staff, contractors, taxes, and multi-currency payouts automatically and without stress"
+				"description": "Pay staff, contractors, taxes, and multi-currency payouts automatically and without stress"
 			},
 			"compliance": {
-				"title": "Ensure law compliance for every market",
-				"description": "When it comes to the different regulations and rules that arise with hiring globally, we're in control of the correspondence to local labor laws, tax regulations and county-specific rules"
+				"title": "Ensure compliance in every market",
+				"description": "Stay aligned with local labor laws, tax regulations, and country-specific rules"
 			},
 			"integrations": {
-				"title": "Integrate EoR to your tools and systems",
-				"description": "Our system connects seamlessly with your existing HR, finance and workforce management tools, so you don't have to disrupt existing processes"
+				"title": "Integrate EoR into your tools",
+				"description": "Connect with existing HR, finance, and workforce management tools without disrupting your processes"
 			},
 			"fastMoving": {
-				"title": "Built for the fast-moving companies",
-				"description": "Whether you're a startup making its way in a new market or a big company trying to manage a global workforce, Garna's here to help you out by simplifying HR processes"
+				"title": "Built for fast-moving companies",
+				"description": "Support startups entering new markets and larger teams managing global workforce operations"
 			}
 		}
 	},
@@ -271,51 +315,55 @@ export const eorEn = {
 			"countries": "countries covered",
 			"payroll": "payroll availability"
 		},
+		...costEstimatorOptions,
 		"form": {
 			"title": "Global Hiring Cost Estimator",
 			"hireIn": "I want to hire in",
 			"country": "Country",
 			"region": "State / province",
-			"salary": "Gross annual salary",
+			"salary": "Gross Salary",
 			"currency": "Currency",
 			"amount": "Amount",
-			"amountPlaceholder": "Annual salary",
+			"amountPlaceholder": "Gross Salary",
+			"clearCountry": "Clear country",
+			"clearRegion": "Clear state or province",
+			"clearCurrency": "Clear currency",
 			"button": "Calculate total cost"
 		}
 	},
 	"fit": {
 		"title": "Is Garna Employer of Record the Right Fit for Your Business?",
 		"items": {
-			"1": "You want to bring on international staff without going through the trouble of setting up an office in every country",
-			"2": "You want to automate your global payroll, taxes, and compliance and never return to fiddling with manual work flows across multiple systems",
-			"3": "You already have international talent you want to hire but you need some help with paperwork, from contracts to onboarding to full compliance",
-			"4": "You want to scale up your distributed teams fast and avoid building the internal HR and payroll infrastructure",
+			"1": "You want to bring on international staff without setting up an office in every country",
+			"2": "You want to automate global payroll, taxes, and compliance instead of juggling manual workflows",
+			"3": "You already have international talent to hire and need help with contracts, onboarding, and compliance",
+			"4": "You want to scale distributed teams fast without building internal HR and payroll infrastructure",
 			"5": "You want to get contractors or full-time employees onboard and working quickly but without dealing with local labor laws",
-			"6": "You want a global employment partner that can handle all your multi-country payroll needs, contractor management, bank transfers, and cryptocurrency payouts wrapped up in one easy-to-use platform"
+			"6": "You need contractor management, bank transfers, cryptocurrency payouts, and multi-country payroll in one platform"
 		}
 	},
 	"steps": {
-		"title": "Steps to take with Garna:",
+		"title": "Steps to take with Garna",
 		"items": {
 			"companyAccount": {
 				"title": "Set up your company account",
-				"description": "Make a quick profile check and verification, fill in the required fields and get access to the service. We will customize it to your needs and wishes in a couple of clicks"
+				"description": "Complete a quick profile check, fill in the required fields, and get access to a customized service flow"
 			},
 			"financialContact": {
-				"title": "Assign a financial contact person",
-				"description": "Specify the person who will be responsible for financial matters. This may be the finance director, the head of the finance department, or yourself"
+				"title": "Assign a financial contact",
+				"description": "Choose the person responsible for financial matters, from a finance director to yourself"
 			},
 			"contract": {
 				"title": "Create your first EoR contract",
-				"description": "Enter the employee's details: country of employment, position, salary, start date, salary currency, and work visa requirements"
+				"description": "Add country, position, salary, start date, currency, and work visa requirements"
 			},
 			"invite": {
 				"title": "Invite an employee",
-				"description": "After your request in the personal account, the employee receives a personal invitation by e-mail and creates an account in Garna to receive payments"
+				"description": "The employee receives an invitation by email and creates a Garna account to receive payments"
 			},
 			"fundWallet": {
-				"title": "Fund your wallet and run first payroll",
-				"description": "You can do this in any convenient way: from SWIFT and SEPA to crypto. Start paying your salary today"
+				"title": "Fund your wallet and run payroll",
+				"description": "Use SWIFT, SEPA, or crypto funding and start paying salary today"
 			}
 		}
 	},
@@ -368,6 +416,11 @@ export const eorEn = {
 		"title": "Get started with Garna",
 		"description": "Hire employees abroad without opening local entities. Garna handles contracts, payroll, taxes, and compliance in one platform",
 		"button": "Book a demo"
+	},
+	"advance": {
+		"title": "$ 1,000,000.00 available for team payouts",
+		"description": "Pay your contractors now — repay later with flexible terms",
+		"button": "Request"
 	},
 	"footer": {
 		"brand": "garna",

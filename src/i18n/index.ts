@@ -1,5 +1,5 @@
-﻿import { homeTranslations as contractorOfRecordTranslations } from './translations/home';
 import { offerTranslations } from './translations/offer';
+import { contractorOfRecordTranslations as contractorOfRecordPageTranslations } from './translations/contractor-of-record';
 import { notFoundTranslations } from './translations/404';
 import { formTranslations } from './translations/form';
 import { aiHiringTranslations } from './translations/ai-hiring';
@@ -19,7 +19,7 @@ export type PageTranslations = typeof homeTranslations.en;
 
 type AnyPageTranslations =
 	| typeof homeTranslations.en
-	| typeof contractorOfRecordTranslations.en
+	| typeof contractorOfRecordPageTranslations.en
 	| typeof offerTranslations.en
 	| typeof notFoundTranslations.en
 	| typeof formTranslations.en
@@ -40,7 +40,7 @@ type AnyPageTranslations =
 
 const translations = {
 	home: homeTranslations,
-	'contractor-of-record': contractorOfRecordTranslations,
+	'contractor-of-record': contractorOfRecordPageTranslations,
 	offer: offerTranslations,
 	'404': notFoundTranslations,
 	form: formTranslations,

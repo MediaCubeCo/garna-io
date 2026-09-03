@@ -14,3 +14,114 @@ const rainbows = Array.from({ length: count });
 		<div class="v"></div>
 	</div>
 </div>
+
+<style is:global>
+	/* Shared low-density aurora background. Keep these styles with the component so first paint cannot miss them. */
+	.rainbow-bg {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 0;
+		height: 100vh;
+		overflow: hidden;
+		pointer-events: none;
+		background-color: #101010;
+		-webkit-mask-image: linear-gradient(168deg, #000 0%, #000 28%, rgba(0, 0, 0, 0.72) 44%, rgba(0, 0, 0, 0.18) 60%, transparent 76%);
+		mask-image: linear-gradient(168deg, #000 0%, #000 28%, rgba(0, 0, 0, 0.72) 44%, rgba(0, 0, 0, 0.18) 60%, transparent 76%);
+	}
+
+	.rainbow-bg::before {
+		content: "";
+		position: absolute;
+		inset: -12%;
+		background:
+			radial-gradient(ellipse at 18% 12%, rgba(203, 243, 0, 0.3), transparent 35%),
+			radial-gradient(ellipse at 58% 0%, rgba(0, 190, 88, 0.22), transparent 38%),
+			radial-gradient(ellipse at 92% 22%, rgba(153, 187, 0, 0.26), transparent 34%);
+		opacity: 0.95;
+	}
+
+	.rainbow-bg__parallax {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		contain: strict;
+	}
+
+	.rainbow-bg .rainbow {
+		--aurora-left: rgba(153, 187, 0, 0.56);
+		--aurora-center: rgba(203, 243, 0, 0.64);
+		--aurora-right: rgba(0, 190, 88, 0.58);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0;
+		height: 100%;
+		transform: translate3d(125vw, 0, 0) rotate(10deg);
+		transform-origin: top right;
+		box-shadow:
+			-220px 0 135px 72px rgba(5, 5, 5, 0.9),
+			-110px 0 105px 58px var(--aurora-left),
+			0 0 105px 58px var(--aurora-center),
+			110px 0 105px 58px var(--aurora-right),
+			220px 0 135px 72px rgba(5, 5, 5, 0.9);
+		animation: aurora-slide 24s linear infinite;
+		will-change: transform;
+	}
+
+	.rainbow-bg .rainbow:nth-child(1) { animation-delay: 0s; }
+	.rainbow-bg .rainbow:nth-child(2) {
+		--aurora-left: rgba(0, 190, 88, 0.58);
+		--aurora-center: rgba(153, 187, 0, 0.56);
+		--aurora-right: rgba(203, 243, 0, 0.64);
+		animation-delay: -4s;
+	}
+	.rainbow-bg .rainbow:nth-child(3) {
+		--aurora-left: rgba(203, 243, 0, 0.64);
+		--aurora-center: rgba(0, 190, 88, 0.58);
+		--aurora-right: rgba(153, 187, 0, 0.56);
+		animation-delay: -8s;
+	}
+	.rainbow-bg .rainbow:nth-child(4) { animation-delay: -12s; }
+	.rainbow-bg .rainbow:nth-child(5) {
+		--aurora-left: rgba(0, 190, 88, 0.58);
+		--aurora-center: rgba(153, 187, 0, 0.56);
+		--aurora-right: rgba(203, 243, 0, 0.64);
+		animation-delay: -16s;
+	}
+	.rainbow-bg .rainbow:nth-child(6) {
+		--aurora-left: rgba(203, 243, 0, 0.64);
+		--aurora-center: rgba(0, 190, 88, 0.58);
+		--aurora-right: rgba(153, 187, 0, 0.56);
+		animation-delay: -20s;
+	}
+
+	@keyframes aurora-slide {
+		from { transform: translate3d(125vw, 0, 0) rotate(10deg); }
+		to { transform: translate3d(-25vw, 0, 0) rotate(10deg); }
+	}
+
+	@media (prefers-reduced-motion: reduce), (update: slow) {
+		.rainbow-bg .rainbow {
+			animation: none;
+			transform: translate3d(45vw, 0, 0) rotate(10deg);
+			will-change: auto;
+		}
+	}
+
+	.rainbow-bg .h {
+		display: none;
+	}
+
+	.rainbow-bg .v {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0;
+		height: 100%;
+		box-shadow: 0 0 35vw 25vw #101010;
+		transform: rotate(45deg) translate(-190px, 10px);
+	}
+</style>

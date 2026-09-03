@@ -1,8 +1,8 @@
 export const aiHiringEs = {
 	meta: {
-		title: 'Garna - Plataforma de contratación con IA',
+		title: 'Plataforma de contratación con IA para el reclutamiento global | Garna',
 		description:
-			'Olvida las pre-entrevistas. Contrata talento verificado al instante con reclutamiento impulsado por IA e informes de candidatos verificados.',
+			'Encuentra y contrata a los mejores talentos más rápido gracias a la búsqueda inteligente de candidatos y la automatización del proceso de selección mediante inteligencia artificial.',
 	},
 	images: {},
 	hero: {

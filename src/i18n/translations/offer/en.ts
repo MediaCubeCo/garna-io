@@ -1,7 +1,7 @@
 export const offerEn = {
 	meta: {
-		title: 'Garna for Contractors - Get Paid Globally',
-		description: 'Receive payments from clients worldwide with transparent fees and instant withdrawals.',
+		title: 'Get Paid Globally as an Independent Contractor | Garna',
+		description: 'Work with international clients and get access to secure payouts, multiple withdrawal options, automated invoices, and compliance support.',
 	},
 	images: {},
 	nav: {

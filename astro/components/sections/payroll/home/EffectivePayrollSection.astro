@@ -1,28 +1,11 @@
 ---
-import Section from '../../../layout/Section.astro';
-import Button from '../../../ui/Button.astro';
-import ContractorDashboardVisual from '../../../visuals/ContractorDashboardVisual.astro';
+import DashboardCtaSection from '../../DashboardCtaSection.astro';
 ---
 
-<Section
-	spacing="default"
+<DashboardCtaSection
 	title={{ text: 'Effective Payroll For Your Team Starts Here', translateKey: 'sectionHeadings.effectivePayroll' }}
 	description={{ text: "CSV mass payments or single transfers, no delays, no extra fees. Automate it once it's set up", translateKey: 'sectionDescriptions.effectivePayroll' }}
-	headerClass="mb-8 max-w-4xl lg:mb-10"
+	button={{ text: 'Book a demo', translateKey: 'cta.bookDemo' }}
+	trackingCta="effective_payroll_demo"
 	titleClass="lg:text-5xl"
-	contentClass="relative mx-auto max-w-6xl overflow-visible perspective-1000"
->
-	<div class="mb-12 flex justify-center lg:mb-16">
-		<Button
-			href="#"
-			size="header"
-			variant="primary"
-			effect="none"
-			icon="none"
-			onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'effective_payroll_demo' });"
-	>
-			<span data-translate="cta.bookDemo">Book a demo</span>
-	</Button>
-	</div>
-	<ContractorDashboardVisual />
-</Section>
+/>

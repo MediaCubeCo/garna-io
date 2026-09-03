@@ -360,17 +360,25 @@ export function injectPageTranslations(
 			};
 
 			html = html.replace(
-				/<([a-zA-Z][a-zA-Z0-9:-]*)([^>]*\sdata-translate-(alt|placeholder|value)=["']([^"']+)["'][^>]*)>/gi,
-				(match: string, tagName: string, attributes: string, target: string, key: string) => {
-					const translation = getNestedValue(currentTranslations, key);
-					if (translation === undefined || translation === null) return match;
+				/<([a-zA-Z][a-zA-Z0-9:-]*)([^>]*\sdata-translate-(?:alt|aria-label|placeholder|title|value|select-label-text)=["'][^"']+["'][^>]*)>/gi,
+				(match: string, tagName: string, attributes: string) => {
+					let nextAttributes = attributes;
+					const translationAttributePattern = /\sdata-translate-(alt|aria-label|placeholder|title|value|select-label-text)=["']([^"']+)["']/gi;
+					let markerMatch: RegExpExecArray | null;
 
-					const targetAttribute = target === 'alt' ? 'alt' : target;
-					const escapedTranslation = escapeHtml(String(translation));
-					const attributePattern = new RegExp(`\\s${targetAttribute}=["'][^"']*["']`, 'i');
-					const nextAttributes = attributePattern.test(attributes)
-						? attributes.replace(attributePattern, ` ${targetAttribute}="${escapedTranslation}"`)
-						: `${attributes} ${targetAttribute}="${escapedTranslation}"`;
+					while ((markerMatch = translationAttributePattern.exec(attributes)) !== null) {
+						const [, target, key] = markerMatch;
+						const translation = getNestedValue(currentTranslations, key);
+						if (translation === undefined || translation === null) continue;
+
+						const targetAttribute = target === 'select-label-text' ? 'data-select-label-text' : target;
+						const escapedTargetAttribute = targetAttribute.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+						const escapedTranslation = escapeHtml(String(translation));
+						const attributePattern = new RegExp(`\\s${escapedTargetAttribute}=["'][^"']*["']`, 'i');
+						nextAttributes = attributePattern.test(nextAttributes)
+							? nextAttributes.replace(attributePattern, ` ${targetAttribute}="${escapedTranslation}"`)
+							: `${nextAttributes} ${targetAttribute}="${escapedTranslation}"`;
+					}
 
 					return `<${tagName}${nextAttributes}>`;
 				}

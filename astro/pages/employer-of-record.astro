@@ -7,7 +7,7 @@ import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
 import EorHeroSection from '../components/sections/payroll/EorHeroSection.astro';
-import HomeProofStatsSection from '../components/sections/payroll/home/HomeProofStatsSection.astro';
+import ProofStatsCardsSection from '../components/sections/payroll/ProofStatsCardsSection.astro';
 import EorCountriesSection from '../components/sections/payroll/EorCountriesSection.astro';
 import GlobalWorkforceBenefitsSection from '../components/sections/payroll/GlobalWorkforceBenefitsSection.astro';
 import EorWhyGarnaSection from '../components/sections/payroll/EorWhyGarnaSection.astro';
@@ -21,11 +21,11 @@ const eorProofStats = [
 		value: '150+',
 		label: 'countries covered',
 		labelKey: 'eorProof.stats.countries.label',
-		image: '/pages/payroll-solution-new/assets/home-proof-mountain-man-v1.png',
-		alt: 'A remote professional standing in the mountains at sunrise',
-		imagePosition: 'center bottom',
+		image: '/pages/payroll-solution-new/assets/eor-proof-phone-hands-cafe-v1.png',
+		alt: 'Professional hands using a smartphone at a cafe table',
+		imagePosition: 'center center',
 		imageOrigin: 'center center',
-		imageScale: 1.36,
+		imageScale: 1.03,
 		notice: {
 			icon: 'contract',
 			title: 'Contract ready',
@@ -39,12 +39,12 @@ const eorProofStats = [
 		value: '1',
 		label: 'platform for global hiring',
 		labelKey: 'eorProof.stats.platform.label',
-		image: '/pages/payroll-solution-new/assets/home-hero-profile-clouds-v2.jpg',
-		alt: 'A global professional in profile against a clear blue sky',
+		image: '/pages/payroll-solution-new/assets/eor-proof-running-water-light-v1.png',
+		alt: 'A man with a backpack running through shallow coastal water',
 		featured: true,
-		imagePosition: 'center bottom',
-		imageOrigin: 'bottom center',
-		imageScale: 1.62,
+		imagePosition: '58% center',
+		imageOrigin: 'center center',
+		imageScale: 1.03,
 		notice: {
 			icon: 'payroll',
 			title: 'Payroll profile set',
@@ -58,8 +58,8 @@ const eorProofStats = [
 		value: '0',
 		label: 'local entities to open',
 		labelKey: 'eorProof.stats.entities.label',
-		image: '/pages/payroll-solution-new/assets/home-proof-coffee-man-v2.png',
-		alt: 'A man in a white shirt holding coffee near a window',
+		image: '/pages/payroll-solution-new/assets/eor-proof-sofa-laptop-woman-final.jpg',
+		alt: 'A woman working on a laptop while sitting on a sofa',
 		imagePosition: 'center center',
 		imageOrigin: 'center center',
 		notice: {
@@ -133,7 +133,7 @@ const eorFaqItems = [
 
 <BaseLayout shell={pageShells.eor}>
 	<EorHeroSection />
-	<HomeProofStatsSection
+	<ProofStatsCardsSection
 		title={{ text: 'Hire Abroad Without Guesswork', translateKey: 'eorProof.title' }}
 		description={{ text: 'Garna keeps international hiring transparent, from local contracts to payroll and compliance. When you are ready, compare your options in the cost calculator', translateKey: 'eorProof.description' }}
 		action={{ label: { text: 'Calculate your options', translateKey: 'eorProof.button' }, href: '#eor-cost-estimator', variant: 'primary', icon: 'arrow-right', effect: 'none' }}
