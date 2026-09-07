@@ -1,0 +1,254 @@
+---
+import Button from '../../ui/Button.astro';
+
+const stats = [
+	{
+		value: '400+',
+		label: 'businesses using Garna',
+		labelKey: 'homeProof.stats.businesses.label',
+	},
+	{
+		value: '$110M+',
+		label: 'paid to specialists',
+		labelKey: 'homeProof.stats.paid.label',
+	},
+	{
+		value: '38 000+',
+		label: 'talents already use Garna',
+		labelKey: 'homeProof.stats.talents.label',
+	},
+];
+---
+
+<section class="contractor-hero" data-section-kind="hero">
+	<div class="contractor-hero__grid mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,0.38fr)] lg:items-center lg:gap-14">
+		<div class="contractor-hero__copy">
+			<div class="contractor-hero__text">
+				<h1 class="garna-hero-title-gradient" data-translate="hero.title">Pay Contractors Anywhere, Without the Hassle</h1>
+				<p data-garna-subtitle data-translate="hero.description">
+					One transfer — countless possibilities. Pay remunerations in over 150 countries with minimal effort
+				</p>
+			</div>
+
+			<Button
+				href="#"
+				variant="primary"
+				size="hero"
+				effect="rotating-flare"
+				icon="arrow-up-right"
+				class="contractor-hero__cta w-fit"
+				onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'hero_demo' });"
+			>
+				<span data-translate="hero.cta">Book a demo</span>
+			</Button>
+
+			<div class="contractor-hero__stats" aria-label="Garna contractor proof points">
+				{stats.map((stat) => (
+					<article>
+						<strong>{stat.value}</strong>
+						<span data-translate={stat.labelKey}>{stat.label}</span>
+					</article>
+				))}
+			</div>
+		</div>
+
+		<div class="contractor-hero__space" aria-hidden="true"></div>
+	</div>
+</section>
+
+<style>
+	.contractor-hero {
+		position: relative;
+		overflow: hidden;
+		padding: clamp(8.5rem, 13vw, 12rem) 0 clamp(4.5rem, 8vw, 7rem);
+		color: #ffffff;
+		isolation: isolate;
+		background: #101010;
+	}
+
+	.contractor-hero::before {
+		content: none;
+	}
+
+	.contractor-hero::after {
+		content: none;
+	}
+
+	.contractor-hero__grid,
+	.contractor-hero__copy,
+	.contractor-hero__space {
+		position: relative;
+		z-index: 1;
+	}
+
+	.contractor-hero__copy {
+		display: flex;
+		width: 100%;
+		min-height: clamp(29rem, 44vw, 40rem);
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+	}
+
+	.contractor-hero__text {
+		width: 100%;
+	}
+
+	.contractor-hero__copy h1 {
+		margin: 0;
+		max-width: 18ch;
+		padding-bottom: 0.1em;
+		font-family: Manrope, sans-serif;
+		font-size: 2.75rem;
+		font-weight: 400;
+		line-height: 1.1;
+		letter-spacing: 0;
+	}
+
+	.contractor-hero__copy p {
+		max-width: 36rem;
+		margin: 1.25rem 0 0;
+		color: rgb(255 255 255 / 0.62);
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1rem, 1.35vw, 1.25rem);
+		font-weight: 500;
+		line-height: 1.58;
+	}
+
+	:global(.contractor-hero__cta) {
+		margin-top: 2.5rem;
+	}
+
+	.contractor-hero__stats {
+		display: flex;
+		width: 100%;
+		align-items: flex-start;
+		gap: clamp(1.35rem, 3vw, 2.15rem);
+		margin-top: auto;
+	}
+
+	.contractor-hero__stats article {
+		position: relative;
+		display: grid;
+		gap: 0.32rem;
+	}
+
+	.contractor-hero__stats article + article {
+		padding-left: clamp(1.35rem, 3vw, 2.15rem);
+	}
+
+	.contractor-hero__stats article + article::before {
+		content: "";
+		position: absolute;
+		top: 0.12rem;
+		left: 0;
+		width: 1px;
+		height: 2.4rem;
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.14);
+	}
+
+	.contractor-hero__stats strong {
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1.35rem, 2.1vw, 1.95rem);
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.contractor-hero__stats span {
+		color: rgb(255 255 255 / 0.56);
+		font-family: Manrope, sans-serif;
+		font-size: 0.74rem;
+		font-weight: 500;
+		line-height: 1.35;
+		white-space: nowrap;
+	}
+
+	.contractor-hero__space {
+		min-height: clamp(29rem, 44vw, 40rem);
+	}
+
+	@media (min-width: 768px) {
+		.contractor-hero__copy h1 {
+			font-size: 3.35rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.contractor-hero__copy h1 {
+			font-size: 54px;
+		}
+	}
+
+	@media (min-width: 1100px) {
+		.contractor-hero__copy h1 {
+			font-size: 58px;
+		}
+	}
+
+	@media (min-width: 1280px) {
+		.contractor-hero__copy h1 {
+			font-size: 64px;
+		}
+	}
+
+	@media (max-width: 1023px) {
+		.contractor-hero {
+			padding: 7rem 0 clamp(4rem, 9vw, 5.5rem);
+		}
+
+		.contractor-hero__grid {
+			gap: clamp(2.65rem, 7vw, 4rem);
+		}
+
+		.contractor-hero__copy {
+			min-height: 0;
+			max-width: 47rem;
+		}
+
+		.contractor-hero__stats {
+			margin-top: clamp(2.65rem, 5vw, 3.35rem);
+		}
+
+		.contractor-hero__stats strong {
+			font-size: clamp(1.65rem, 3.25vw, 2rem);
+		}
+
+		.contractor-hero__stats span {
+			font-size: clamp(0.8rem, 1.45vw, 0.88rem);
+		}
+
+		.contractor-hero__space {
+			min-height: clamp(10rem, 28vw, 16rem);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.contractor-hero__stats {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			--contractor-hero-stat-gap: clamp(1rem, 4.5vw, 1.5rem);
+			column-gap: var(--contractor-hero-stat-gap);
+			row-gap: 0;
+		}
+
+		.contractor-hero__stats article + article {
+			padding-left: 0;
+		}
+
+		.contractor-hero__stats article + article::before {
+			height: 2.15rem;
+			left: calc(var(--contractor-hero-stat-gap) / -2);
+		}
+
+		.contractor-hero__stats strong {
+			font-size: clamp(1.2rem, 6vw, 1.55rem);
+		}
+
+		.contractor-hero__stats span {
+			font-size: clamp(0.62rem, 2.8vw, 0.74rem);
+			white-space: normal;
+		}
+	}
+</style>

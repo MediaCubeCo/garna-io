@@ -577,6 +577,7 @@ const fallingFlags: Country[] = [
 			lastPointerTime: 0,
 			simulationStartedAt: 0,
 			stillSince: 0,
+			floorFilledSince: 0,
 			width: 0,
 			height: 0,
 			orbs: [],
@@ -618,7 +619,7 @@ const fallingFlags: Country[] = [
 				const radius = element.offsetWidth / 2;
 				const seeded = (Math.sin(index * 12.9898) * 43758.5453) % 1;
 				const centerX = state.width / 2;
-				const chuteWidth = Math.min(state.width * 0.34, Math.max(orbWidth * 5, state.width * 0.22));
+				const chuteWidth = Math.min(state.width * 0.74, Math.max(orbWidth * 8, state.width * 0.48));
 				const startX = Math.max(radius, Math.min(state.width - radius, centerX + (Math.abs(seeded) - 0.5) * chuteWidth));
 
 				return {
@@ -626,7 +627,7 @@ const fallingFlags: Country[] = [
 					radius,
 					x: startX,
 					y: radius + ((index % 4) * 8),
-					vx: Math.sin(index * 2.43) * 145,
+					vx: Math.sin(index * 2.43) * 220,
 					vy: 860 + ((index * 41) % 320),
 					angle: (seeded * 180) % 360,
 					angleNudgeCount: 0,
@@ -724,6 +725,39 @@ const fallingFlags: Country[] = [
 			}
 		};
 
+		const getRequiredFloorOrbCount = () => {
+			const averageRadius =
+				state.orbs.reduce((total, orb) => total + orb.radius, 0) / Math.max(1, state.orbs.length);
+			const diameter = averageRadius * 2;
+			const rowGap = 2.5;
+			const packedStep = diameter + rowGap;
+
+			return Math.min(
+				state.orbs.length,
+				Math.max(2, Math.floor((state.width + rowGap) / packedStep))
+			);
+		};
+
+		const lockBottomRow = () => {
+			const floorCount = getRequiredFloorOrbCount();
+			const floorOrbs = state.orbs
+				.slice()
+				.sort((a, b) => b.y - a.y)
+				.slice(0, floorCount)
+				.sort((a, b) => a.x - b.x);
+
+			floorOrbs.forEach((orb, index) => {
+				const start = orb.radius;
+				const end = state.width - orb.radius;
+				const progress = floorOrbs.length === 1 ? 0.5 : index / (floorOrbs.length - 1);
+
+				orb.x = start + (end - start) * progress;
+				orb.y = state.height - orb.radius - 3;
+			});
+
+			resolveCollisions();
+		};
+
 		const freezeOrbs = () => {
 			for (const orb of state.orbs) {
 				orb.vx = 0;
@@ -755,12 +789,23 @@ const fallingFlags: Country[] = [
 				return orb.released && orb.y >= floor - 6;
 			});
 
-			if (floorOrbs.length < 14) return false;
+			const requiredFloorCount = getRequiredFloorOrbCount();
+			if (floorOrbs.length < requiredFloorCount) return false;
 
 			const leftEdge = Math.min(...floorOrbs.map((orb) => orb.x - orb.radius));
 			const rightEdge = Math.max(...floorOrbs.map((orb) => orb.x + orb.radius));
+			const sortedEdges = floorOrbs
+				.map((orb) => ({
+					left: orb.x - orb.radius,
+					right: orb.x + orb.radius,
+				}))
+				.sort((a, b) => a.left - b.left);
+			const maxGap = sortedEdges.reduce((gap, edge, index) => {
+				if (index === 0) return Math.max(gap, Math.max(0, edge.left));
+				return Math.max(gap, Math.max(0, edge.left - sortedEdges[index - 1].right));
+			}, Math.max(0, state.width - sortedEdges[sortedEdges.length - 1].right));
 
-			return leftEdge <= 6 && rightEdge >= state.width - 6;
+			return leftEdge <= 6 && rightEdge >= state.width - 6 && maxGap <= 4;
 		};
 
 		const settleIfStill = () => {
@@ -775,16 +820,19 @@ const fallingFlags: Country[] = [
 			const now = performance.now();
 			const elapsed = now - state.simulationStartedAt;
 			const allSupported = state.orbs.every((orb) => orbHasSupport(orb));
-			const hasFilledBottomRow = elapsed > 1900 && hasFilledFloor();
-			const hasHadFullSettlingTime = elapsed > 2600;
+			const hasFilledBottomRow = elapsed > 1900 && hasFilledFloor() && allSupported;
+			const hasCalmedStack = elapsed > 3200 && allSupported && maxSpeed <= 150;
+			const hasHadFullSettlingTime = elapsed > 12000 && allSupported && maxSpeed <= 140;
+			const hasReachedFallbackStop = elapsed > 18000;
+			state.floorFilledSince = hasFilledBottomRow
+				? state.floorFilledSince || now
+				: 0;
+
 			const isAlmostStill =
-				(elapsed > 2300 && maxSpeed <= 220) ||
 				hasFilledBottomRow ||
-				hasHadFullSettlingTime;
-			const isSettled =
-				hasFilledBottomRow ||
-				(elapsed > 2300 && allSupported && maxSpeed <= 190) ||
-				hasHadFullSettlingTime;
+				hasCalmedStack ||
+				hasHadFullSettlingTime ||
+				hasReachedFallbackStop;
 
 			if (!isAlmostStill) {
 				state.stillSince = 0;
@@ -792,15 +840,22 @@ const fallingFlags: Country[] = [
 			}
 
 			if (!state.stillSince) state.stillSince = now;
+			const isSettled =
+				(hasFilledBottomRow && now - state.floorFilledSince > 120) ||
+				(hasCalmedStack && now - state.stillSince > 90) ||
+				hasHadFullSettlingTime ||
+				hasReachedFallbackStop;
+
 			if (!isSettled) return false;
 
 			freezeOrbs();
+			render();
 			return true;
 		};
 
 		const stepPhysics = (deltaSeconds, elapsedMilliseconds) => {
 			const gravity = 5600;
-			const floorFriction = 0.91;
+			const floorFriction = 0.84;
 			const airDrag = 0.992;
 
 			for (const orb of state.orbs) {
@@ -831,7 +886,7 @@ const fallingFlags: Country[] = [
 					orb.y = floor;
 					orb.vy = Math.abs(orb.vy) > 920 ? -orb.vy * 0.05 : 0;
 					orb.vx *= floorFriction;
-					if (Math.abs(orb.vx) < 2) orb.vx = 0;
+					if (Math.abs(orb.vx) < 8) orb.vx = 0;
 				}
 			}
 
@@ -839,20 +894,20 @@ const fallingFlags: Country[] = [
 
 			const allReleased = state.orbs.every((orb) => orb.released);
 			if (allReleased) {
-				const settleProgress = Math.max(0, Math.min(1, (elapsedMilliseconds - 6200) / 3000));
-				const supportedDampingX = 0.94 - (settleProgress * 0.18);
-				const supportedDampingY = 0.94 - (settleProgress * 0.24);
+				const settleProgress = Math.max(0, Math.min(1, (elapsedMilliseconds - 2600) / 1800));
+				const supportedDampingX = 0.86 - (settleProgress * 0.28);
+				const supportedDampingY = 0.86 - (settleProgress * 0.32);
 
 				for (const orb of state.orbs) {
 					if (orb === state.dragged || !orbHasSupport(orb)) continue;
 
 					const speed = Math.hypot(orb.vx, orb.vy);
-					if (speed < 40) {
+					if (speed < 180) {
 						orb.vx *= supportedDampingX;
 						orb.vy *= supportedDampingY;
 					}
 
-					if (settleProgress > 0.86 && speed < 14) {
+					if (settleProgress > 0.3 && speed < 32) {
 						orb.vx = 0;
 						orb.vy = 0;
 					}
@@ -864,6 +919,7 @@ const fallingFlags: Country[] = [
 			if (state.animationFrame) return;
 			state.simulationStartedAt = performance.now();
 			state.stillSince = 0;
+			state.floorFilledSince = 0;
 
 			const tick = (now) => {
 				if (!state.lastFrame) state.lastFrame = now;

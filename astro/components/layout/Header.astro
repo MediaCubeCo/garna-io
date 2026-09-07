@@ -36,9 +36,11 @@ const mobileLinkClass = (path: string) =>
 	[
 		'garna-header-mobile-link',
 	].join(' ');
+
+const startsTransparent = currentPath === '' || currentPath === contractorOfRecordPath;
 ---
 
-<nav class:list={['garna-header fixed z-50 w-full top-0', { 'is-scrolled': currentPath !== '' }]}>
+<nav class:list={['garna-header fixed z-50 w-full top-0', { 'is-scrolled': !startsTransparent }]}>
 	<div class="garna-container garna-header-container">
 		<a href={homeHref} data-garna-home data-localized-path="" class="garna-header-brand">
 			<img
@@ -510,8 +512,9 @@ const mobileLinkClass = (path: string) =>
 
 		const syncHeaderSurface = () => {
 			if (!(header instanceof HTMLElement)) return;
-			const isHomePage = getPagePath() === '';
-			header.classList.toggle('is-scrolled', !isHomePage || window.scrollY > 1);
+			const transparentAtTopPaths = new Set(['', 'contractor-of-record']);
+			const startsTransparentAtTop = transparentAtTopPaths.has(getPagePath());
+			header.classList.toggle('is-scrolled', !startsTransparentAtTop || window.scrollY > 1);
 
 			const hero = document.querySelector('.payroll-solution-new-hero');
 			const usesLightTheme = document.documentElement.dataset.theme === 'light';

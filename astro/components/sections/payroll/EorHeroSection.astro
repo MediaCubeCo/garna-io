@@ -1,5 +1,6 @@
 ---
 import Button from '../../ui/Button.astro';
+import HeroStatsRow from '../../ui/HeroStatsRow.astro';
 
 const stats = [
 	{
@@ -72,14 +73,7 @@ const heroSlides = [
 				<span data-translate="hero.cta">Book a demo</span>
 			</Button>
 
-			<div class="eor-hero__stats" aria-label="Garna EOR proof points">
-				{stats.map((stat) => (
-					<article>
-						<strong data-translate={stat.valueKey}>{stat.value}</strong>
-						<span data-translate={stat.labelKey}>{stat.label}</span>
-					</article>
-				))}
-			</div>
+			<HeroStatsRow stats={stats} ariaLabel="Garna EOR proof points" />
 		</div>
 
 		<div class="eor-hero__timeline" aria-hidden="true">
@@ -143,10 +137,57 @@ const heroSlides = [
 		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
 		let activeIndex = 0;
-		window.setInterval(() => {
+		let slideTimer = 0;
+		let isVisible = false;
+
+		const showNextSlide = () => {
 			activeIndex = (activeIndex + 1) % sources.length;
 			applySlide(activeIndex);
-		}, 5200);
+		};
+
+		const startSlider = () => {
+			if (slideTimer || !isVisible || document.hidden) return;
+
+			root.classList.add('is-hero-playing');
+			slideTimer = window.setInterval(showNextSlide, 5200);
+		};
+
+		const stopSlider = () => {
+			if (slideTimer) {
+				window.clearInterval(slideTimer);
+				slideTimer = 0;
+			}
+
+			root.classList.remove('is-hero-playing');
+		};
+
+		if ('IntersectionObserver' in window) {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					isVisible = entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.35);
+
+					if (isVisible) {
+						startSlider();
+					} else {
+						stopSlider();
+					}
+				},
+				{ threshold: [0, 0.35] }
+			);
+
+			observer.observe(root);
+		} else {
+			isVisible = true;
+			startSlider();
+		}
+
+		document.addEventListener('visibilitychange', () => {
+			if (document.hidden) {
+				stopSlider();
+			} else {
+				startSlider();
+			}
+		});
 	});
 </script>
 
@@ -197,6 +238,11 @@ const heroSlides = [
 		transform: scaleY(0);
 		transform-origin: top;
 		animation: eor-hero-progress 15600ms linear infinite;
+		animation-play-state: paused;
+	}
+
+	.eor-hero.is-hero-playing .eor-hero__timeline span {
+		animation-play-state: running;
 	}
 
 	.eor-hero__copy h1 {
@@ -275,59 +321,6 @@ const heroSlides = [
 
 	:global(.eor-hero__cta) {
 		margin-top: 2.5rem;
-	}
-
-	.eor-hero__stats {
-		display: flex;
-		width: 100%;
-		max-width: none;
-		align-items: flex-start;
-		gap: clamp(1.35rem, 3vw, 2.15rem);
-		margin-top: clamp(2rem, 3.5vw, 3rem);
-	}
-
-	.eor-hero__stats article {
-		position: relative;
-		display: grid;
-		gap: 0.32rem;
-	}
-
-	.eor-hero__stats article + article {
-		padding-left: clamp(1.35rem, 3vw, 2.15rem);
-	}
-
-	.eor-hero__stats article + article::before {
-		content: "";
-		position: absolute;
-		top: 0.12rem;
-		left: 0;
-		width: 1px;
-		height: 2.4rem;
-		border-radius: 999px;
-		background: rgb(255 255 255 / 0.14);
-	}
-
-	.eor-hero__stats strong {
-		color: #ffffff;
-		font-family: Manrope, sans-serif;
-		font-size: clamp(1.35rem, 2.1vw, 1.95rem);
-		font-weight: 400;
-		line-height: 1;
-	}
-
-	.eor-hero__stats span {
-		color: rgb(255 255 255 / 0.56);
-		font-family: Manrope, sans-serif;
-		font-size: 0.74rem;
-		font-weight: 500;
-		line-height: 1.35;
-		white-space: nowrap;
-	}
-
-	@media (min-width: 1024px) {
-		.eor-hero__copy .eor-hero__stats {
-			margin-top: auto;
-		}
 	}
 
 	.eor-hero__visual {
@@ -428,18 +421,6 @@ const heroSlides = [
 			margin-top: clamp(1.75rem, 4vw, 2.25rem);
 		}
 
-		.eor-hero__stats {
-			margin-top: clamp(2.65rem, 5vw, 3.35rem);
-		}
-
-		.eor-hero__stats strong {
-			font-size: clamp(1.65rem, 3.25vw, 2rem);
-		}
-
-		.eor-hero__stats span {
-			font-size: clamp(0.8rem, 1.45vw, 0.88rem);
-		}
-
 		.eor-hero__visual {
 			order: 1;
 			max-width: none;
@@ -456,33 +437,6 @@ const heroSlides = [
 	@media (max-width: 640px) {
 		.eor-hero {
 			padding-top: 7rem;
-		}
-
-		.eor-hero__stats {
-			display: grid;
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			--eor-hero-stat-gap: clamp(1rem, 4.5vw, 1.5rem);
-			column-gap: var(--eor-hero-stat-gap);
-			row-gap: 0;
-		}
-
-		.eor-hero__stats article + article {
-			padding-left: 0;
-		}
-
-		.eor-hero__stats article + article::before {
-			display: block;
-			height: 2.15rem;
-			left: calc(var(--eor-hero-stat-gap) / -2);
-		}
-
-		.eor-hero__stats strong {
-			font-size: clamp(1.2rem, 6vw, 1.55rem);
-		}
-
-		.eor-hero__stats span {
-			font-size: clamp(0.62rem, 2.8vw, 0.74rem);
-			white-space: normal;
 		}
 
 		.eor-hero__visual {

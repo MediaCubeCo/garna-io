@@ -16,7 +16,7 @@
 	},
 	hero: {
 		badge: 'Enterprise Payroll',
-		title: 'Global Payroll Solutions for your business',
+		title: 'Pay Contractors Anywhere, Without the Hassle',
 		tagline: 'for your business',
 		description: 'One transfer — countless possibilities. Pay remunerations in over 150 countries with minimal effort',
 		bookDemo: 'Book a demo',
@@ -100,28 +100,22 @@
 		},
 	},
 	whyGarna: {
-		title: 'Why Garna stands out',
-		description: 'Discover the key benefits that make payroll simple, global, and secure',
+		title: "Build to Simplify Contractors' Operations",
+		description: 'Discover the key benefits that make payroll simple, secure, and global',
 		cards: {
-			adminTime: {
-				title: 'Cut admin time',
-				description: 'Automated contracts and payroll reduce admin work by up to 70%',
+			management: {
+				title: 'Simplify Contractor Management',
+				description: 'Handle contracts, onboarding, invoices, approvals, and documentation from one platform',
 			},
-			topUp: {
-				title: 'Top up via bank or crypto',
-				description: 'Fund payouts using bank transfers or crypto',
+			payments: {
+				title: 'Pay Globally, Your Way',
+				description:
+					'Pay contractors in USD and 80+ local currencies through bank transfers, cards, e-wallets, or crypto',
 			},
-			reporting: {
-				title: 'Perfect reporting',
-				description: 'Agreements, invoices, transactions, and exports in one place',
-			},
-			ip: {
-				title: 'Full ownership of IP',
-				description: 'All contractor work results belong entirely to you',
-			},
-			api: {
-				title: 'Scale with API',
-				description: 'Run mass payouts and workflows programmatically',
+			risk: {
+				title: 'Avoid misclassification',
+				description:
+					'With us as your Contractor and Agent of Record, legal liability and talent-related risks stay on our side, protecting your business from legal complications',
 			},
 		},
 		cta: {
@@ -241,12 +235,11 @@
 		},
 	},
 	contractorBenefits: {
-		title: 'Benefits for your contractors',
-		description: 'Give your team the flexibility and convenience they deserve',
+		title: 'Everything You Need to Manage Contractors',
+		description: 'With Garna, you can manage contractor engagement and global payments from one platform',
 		methods: {
-			title: 'Multiple payout methods',
-			description:
-				'Contractors receive payouts via bank transfers in 80+ currencies, cards, wallets, or cryptocurrencies',
+			title: 'One Contract Instead of Dozens',
+			description: 'Manage everything through one contract and a single consolidated invoice',
 			items: {
 				bankTransfer: 'Bank transfer',
 				cardTransfer: 'Transfer to a card',
@@ -256,8 +249,8 @@
 			},
 		},
 		mobile: {
-			title: 'Mobile first experience',
-			description: 'Get notified when your payout is credited and manage balances and payouts in one app',
+			title: 'Cut administrative costs',
+			description: 'Garna handles all paperwork for you: from agreements execution to invoices and custom documents',
 			lte: 'LTE',
 			date: 'Tuesday, January 10',
 			appName: 'Garna',
@@ -266,8 +259,8 @@
 			notificationBody: 'Your January payout has been credited to your balance',
 		},
 		earlyPayout: {
-			title: 'Early payout access',
-			description: 'Request early access to earned payouts through a simple and transparent approval flow',
+			title: 'Direct Intellectual Property transition',
+			description: 'We make sure that all IPs created by contractors are transferred directly and carefully to you',
 			employeeLabel: 'Employee',
 			employeeName: 'Sarah Lewis',
 			newBadge: 'New',

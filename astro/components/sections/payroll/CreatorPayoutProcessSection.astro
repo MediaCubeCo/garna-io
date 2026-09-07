@@ -1,0 +1,1447 @@
+---
+import Section from '../../layout/Section.astro';
+---
+
+<Section
+	title={{ text: 'How to get started', translateKey: 'howTo.title' }}
+	description={{ text: 'Start using Garna in a few simple steps', translateKey: 'howTo.description' }}
+	spacing="none"
+	class="creator-process-section pt-16 pb-8 lg:pt-32 lg:pb-0"
+	headerClass="mb-14 max-w-4xl lg:mb-16"
+	titleClass="mx-auto max-w-4xl lg:text-5xl"
+	contentClass="creator-process-scroll"
+>
+	<div class="creator-process-pin" data-creator-process>
+		<div class="creator-process-visual-stage" aria-label="Creator payout setup visual">
+			<div class="creator-process-visual is-active" data-process-visual="0">
+				<div class="creator-mini-window">
+					<h4 class="creator-mini-title" data-translate="howTo.panel.signup.title">Sign up in Garna</h4>
+					<div class="creator-mini-form">
+						<div class="creator-mini-fields">
+							<label class="creator-mini-field creator-mini-field--wide">
+								<span data-translate="howTo.panel.signup.companyNameLabel">Company name</span>
+								<strong>Northstar Labs Ltd.</strong>
+							</label>
+							<div class="creator-mini-grid">
+								<label class="creator-mini-field">
+									<span data-translate="howTo.panel.signup.registrationNumberLabel">Registration number</span>
+									<strong>HE 482913</strong>
+								</label>
+								<label class="creator-mini-field">
+									<span data-translate="howTo.panel.signup.countryLabel">Country of registration</span>
+									<strong>Cyprus</strong>
+								</label>
+							</div>
+							<label class="creator-mini-field creator-mini-field--wide">
+								<span data-translate="howTo.panel.signup.businessEmailLabel">Business email</span>
+								<strong>finance@northstarlabs.io</strong>
+							</label>
+							<label class="creator-mini-field creator-mini-field--wide">
+								<span data-translate="howTo.panel.signup.registrationDateLabel">Date of registration</span>
+								<strong>02.02.2022</strong>
+							</label>
+						</div>
+						<button class="creator-mini-button" type="button" data-translate="howTo.panel.signup.continueButton">Continue</button>
+					</div>
+				</div>
+			</div>
+			<div class="creator-process-visual" data-process-visual="1">
+				<div class="creator-mini-window creator-team-window">
+					<h4 class="creator-mini-title" data-translate="howTo.panel.invite.title">Invite contractors</h4>
+					<div class="creator-mini-form">
+						<div class="creator-mini-fields">
+							<label class="creator-mini-field creator-mini-field--wide">
+								<span data-translate="howTo.panel.invite.roleLabel">Role</span>
+								<strong data-translate="howTo.panel.invite.roleValue">Design contractor</strong>
+							</label>
+							<label class="creator-mini-field creator-mini-field--wide">
+								<span data-translate="howTo.panel.invite.emailLabel">Email</span>
+								<div class="creator-invite-emails" aria-hidden="true">
+								<span>maya@northstarlabs.io</span>
+								<span>alex@northstarlabs.io</span>
+								<span>sarah@northstarlabs.io</span>
+								<span>leo@northstarlabs.io</span>
+							</div>
+						</label>
+							<label class="creator-mini-field creator-mini-field--wide">
+								<span data-translate="howTo.panel.invite.agreementLabel">Agreement</span>
+								<strong data-translate="howTo.panel.invite.agreementValue">Client terms</strong>
+							</label>
+							<label class="creator-mini-field creator-mini-field--wide">
+								<span data-translate="howTo.panel.invite.accessLabel">Access</span>
+								<strong data-translate="howTo.panel.invite.accessValue">Contractor dashboard</strong>
+							</label>
+						</div>
+						<button class="creator-mini-button" type="button" data-translate="howTo.panel.invite.sendInvitesButton">Send invites</button>
+					</div>
+				</div>
+			</div>
+			<div class="creator-process-visual" data-process-visual="2">
+				<div class="creator-mini-window creator-wallet-panel">
+					<div class="creator-wallet-header">
+						<h4 class="creator-mini-title" data-translate="howTo.panel.fund.title">Balance</h4>
+						<div class="creator-wallet-currency" aria-hidden="true">
+							<span>USD</span>
+							<span>EUR</span>
+						</div>
+					</div>
+					<div class="creator-wallet-account">
+						<div class="creator-wallet-account-top">
+							<span data-translate="howTo.panel.fund.paymentAccount">Payment account USD</span>
+						</div>
+						<strong data-process-wallet-counter data-process-wallet-value="10000">10 000.00 $</strong>
+						<div class="creator-wallet-number">
+							<span data-translate="howTo.panel.fund.accountNumber">Account number</span>
+							<b>PT52 7869 1200 9000 2124</b>
+						</div>
+						<div class="creator-wallet-actions" aria-hidden="true">
+							<span data-translate="howTo.panel.fund.actions.send">Send</span>
+							<span data-translate="howTo.panel.fund.actions.withdraw">Withdraw</span>
+							<span data-translate="howTo.panel.fund.actions.topUp">Top up</span>
+						</div>
+					</div>
+					<div class="creator-wallet-templates" aria-hidden="true">
+						<div class="creator-wallet-section-head">
+							<span data-translate="howTo.panel.fund.templates">Templates</span>
+							<strong data-translate="howTo.panel.fund.all">All</strong>
+						</div>
+						<div class="creator-wallet-template-list">
+							<div>
+								<span data-translate="howTo.panel.fund.n26Card">N26 card</span>
+								<b><i></i><i></i></b>
+							</div>
+							<div>
+								<span data-translate="howTo.panel.fund.designerPayout">Designer payout</span>
+								<b><i></i><i></i></b>
+							</div>
+							<div>
+								<span data-translate="howTo.panel.fund.lewisAccount">M. Lewis account</span>
+								<b><i></i><i></i></b>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="creator-process-visual" data-process-visual="3">
+				<div class="creator-bulk-panel">
+					<div class="creator-bulk-header">
+						<h4 class="creator-mini-title" data-translate="howTo.panel.send.title">Mass transfer</h4>
+					</div>
+					<p class="creator-bulk-note" data-translate="howTo.panel.send.description">Upload a file and send multiple payouts in one flow</p>
+					<div class="creator-bulk-file">
+						<div>
+							<span data-translate="howTo.panel.send.uploadedFile">Uploaded file</span>
+							<strong data-translate="howTo.panel.send.fileName">New transactions.csv</strong>
+						</div>
+						<b>CSV</b>
+					</div>
+					<div class="creator-bulk-stats">
+						<div>
+							<span data-translate="howTo.panel.send.transactions">Transactions</span>
+							<strong>100</strong>
+						</div>
+						<div>
+							<span data-translate="howTo.panel.send.totalAmount">Total amount</span>
+							<strong>$3,882,884</strong>
+						</div>
+					</div>
+					<div class="creator-visual-action" data-translate="howTo.panel.send.sendTransfers">Send transfers</div>
+				</div>
+			</div>
+			<div class="creator-process-progress" aria-hidden="true">
+				<span class="is-active"></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
+	<div class="creator-process-copy">
+		<article class="creator-process-step is-active" data-process-step="0">
+			<span>01</span>
+			<h3 data-translate="howTo.steps.step1.title">Setup your account</h3>
+			<p data-translate="howTo.steps.step1.description">Create your company profile and verify your business details to get access to the platform</p>
+		</article>
+		<article class="creator-process-step" data-process-step="1">
+			<span>02</span>
+			<h3 data-translate="howTo.steps.step2.title">Invite your team</h3>
+			<p data-translate="howTo.steps.step2.description">Add contractors to the dashboard and assign roles, access, and agreement terms</p>
+		</article>
+		<article class="creator-process-step" data-process-step="2">
+			<span>03</span>
+			<h3 data-translate="howTo.steps.step3.title">Fund your balance</h3>
+			<p data-translate="howTo.steps.step3.description">Top up your corporate wallet using bank transfer, SWIFT, SEPA, or crypto assets</p>
+		</article>
+		<article class="creator-process-step" data-process-step="3">
+			<span>04</span>
+			<h3 data-translate="howTo.steps.step4.title">Send payouts</h3>
+			<p data-translate="howTo.steps.step4.description">Execute global payrolls in one click with automated tax handling and compliance</p>
+		</article>
+	</div>
+	<div class="creator-process-fallback" data-process-fallback></div>
+</Section>
+
+<script is:inline>
+	(() => {
+		const creatorProcess = document.querySelector('[data-creator-process]');
+		const creatorProcessSteps = Array.from(document.querySelectorAll('[data-process-step]'));
+		const creatorProcessVisuals = Array.from(document.querySelectorAll('[data-process-visual]'));
+		const creatorProcessProgress = Array.from(document.querySelectorAll('.creator-process-progress span'));
+		const creatorProcessFallback = document.querySelector('[data-process-fallback]');
+		const reduceCreatorProcessMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+		const formatWalletCounter = (value) => {
+			const [integerPart, decimalPart] = value.toFixed(2).split('.');
+			return `${integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}.${decimalPart} $`;
+		};
+
+		const animateWalletCounter = (visual) => {
+			if (!(visual instanceof HTMLElement)) return;
+			const counter = visual.querySelector('[data-process-wallet-counter]');
+			if (!(counter instanceof HTMLElement)) return;
+
+			const target = Number(counter.getAttribute('data-process-wallet-value')) || 10000;
+			if (reduceCreatorProcessMotion.matches) {
+				counter.textContent = formatWalletCounter(target);
+				return;
+			}
+
+			let startedAt = null;
+			const delay = 420;
+			const duration = 1250;
+			counter.textContent = formatWalletCounter(0);
+
+			const animate = (timestamp) => {
+				startedAt ??= timestamp;
+				const elapsed = Math.max(0, timestamp - startedAt - delay);
+				const progress = Math.min(1, elapsed / duration);
+				const easedProgress = 1 - Math.pow(1 - progress, 3);
+				counter.textContent = formatWalletCounter(target * easedProgress);
+				if (progress < 1 && visual.classList.contains('is-content-active')) {
+					window.requestAnimationFrame(animate);
+				}
+			};
+
+			window.requestAnimationFrame(animate);
+		};
+
+		const completeWalletCounter = (visual) => {
+			if (!(visual instanceof HTMLElement)) return;
+			const counter = visual.querySelector('[data-process-wallet-counter]');
+			if (!(counter instanceof HTMLElement)) return;
+			const target = Number(counter.getAttribute('data-process-wallet-value')) || 10000;
+			counter.textContent = formatWalletCounter(target);
+		};
+
+		if (creatorProcess && creatorProcessSteps.length && creatorProcessVisuals.length) {
+			const creatorProcessScroll = creatorProcess.closest('.creator-process-scroll');
+			let creatorProcessFrame = null;
+			let creatorProcessCurrentIndex = -1;
+			let creatorProcessContentIndex = -1;
+
+			const restartCreatorProcessContent = (visual) => {
+				if (!(visual instanceof HTMLElement)) return;
+				visual.classList.remove('is-content-active');
+				void visual.offsetWidth;
+				visual.classList.add('is-content-active');
+				animateWalletCounter(visual);
+			};
+
+			const setCreatorProcessStep = (index, stepProgress = 1, shouldAnimateContent = true) => {
+				if (index !== creatorProcessCurrentIndex) {
+					creatorProcessCurrentIndex = index;
+					creatorProcessContentIndex = -1;
+				}
+
+				const clampedStepProgress = Math.min(1, Math.max(0, stepProgress));
+				const progressTrack = creatorProcessProgress[0]?.parentElement;
+				if (progressTrack instanceof HTMLElement) {
+					progressTrack.style.setProperty('--creator-process-step-progress', `${clampedStepProgress * 100}%`);
+				}
+
+				creatorProcessSteps.forEach((step) => {
+					step.classList.toggle('is-active', step.getAttribute('data-process-step') === String(index));
+				});
+
+				creatorProcessVisuals.forEach((visual, visualIndex) => {
+					const isActiveVisual = visual.getAttribute('data-process-visual') === String(index);
+					const stackDistance = (visualIndex - index + creatorProcessVisuals.length) % creatorProcessVisuals.length;
+
+					visual.classList.toggle('is-active', isActiveVisual);
+					visual.classList.toggle('is-stack-one', !isActiveVisual && stackDistance === 1);
+					visual.classList.toggle('is-stack-two', !isActiveVisual && stackDistance === 2);
+					visual.classList.toggle('is-stack-three', !isActiveVisual && stackDistance === 3);
+					visual.classList.toggle('is-stack-four', !isActiveVisual && stackDistance === 4);
+					visual.classList.toggle('is-stack-five', !isActiveVisual && stackDistance === 5);
+
+					if (!isActiveVisual) {
+						visual.classList.remove('is-content-active');
+						completeWalletCounter(visual);
+					} else if (shouldAnimateContent && creatorProcessContentIndex !== index) {
+						restartCreatorProcessContent(visual);
+						creatorProcessContentIndex = index;
+					}
+				});
+
+				creatorProcessProgress.forEach((dot, dotIndex) => {
+					dot.classList.toggle('is-active', dotIndex === index);
+				});
+			};
+
+			const updateCreatorProcessStep = () => {
+				creatorProcessFrame = null;
+				if (!creatorProcessScroll) return;
+
+				const rect = creatorProcessScroll.getBoundingClientRect();
+				const scrollDistance = Math.max(1, rect.height - window.innerHeight);
+				const processStyles = window.getComputedStyle(creatorProcessScroll);
+				const cssStickyOffset = Number.parseFloat(processStyles.getPropertyValue('--creator-process-top-offset'));
+				const computedStickyTop =
+					creatorProcess instanceof HTMLElement
+						? Number.parseFloat(window.getComputedStyle(creatorProcess).top)
+						: Number.NaN;
+				const stickyOffset =
+					window.innerWidth > 980
+						? Number.isFinite(computedStickyTop)
+							? computedStickyTop
+							: Number.isFinite(cssStickyOffset)
+								? cssStickyOffset
+								: 0
+						: 0;
+				const progress = Math.min(1, Math.max(0, (stickyOffset - rect.top) / scrollDistance));
+				const rawStepProgress = progress * creatorProcessSteps.length;
+				const index = Math.min(creatorProcessSteps.length - 1, Math.floor(rawStepProgress));
+				const stepProgress = Math.min(1, rawStepProgress - index);
+				const shouldAnimateContent = rect.top < window.innerHeight && rect.bottom > stickyOffset;
+
+				setCreatorProcessStep(index, stepProgress, shouldAnimateContent);
+			};
+
+			const requestCreatorProcessUpdate = () => {
+				if (creatorProcessFrame !== null) return;
+				creatorProcessFrame = window.requestAnimationFrame(updateCreatorProcessStep);
+			};
+
+			updateCreatorProcessStep();
+			window.addEventListener('scroll', requestCreatorProcessUpdate, { passive: true });
+			window.addEventListener('resize', requestCreatorProcessUpdate);
+		}
+
+		if (creatorProcessFallback && creatorProcessSteps.length && creatorProcessVisuals.length) {
+			creatorProcessSteps.forEach((step, index) => {
+				const visual = creatorProcessVisuals[index];
+				const visualContent = visual?.firstElementChild?.cloneNode(true);
+				const stepContent = step.cloneNode(true);
+				const fallbackItem = document.createElement('article');
+				const visualShell = document.createElement('div');
+
+				fallbackItem.className = 'creator-process-fallback-item';
+				visualShell.className = 'creator-process-fallback-visual';
+				visualShell.setAttribute('data-process-fallback-visual', String(index));
+				stepContent.className = 'creator-process-fallback-copy';
+				stepContent.removeAttribute('data-process-step');
+
+				if (visualContent) {
+					visualShell.appendChild(visualContent);
+				}
+
+				fallbackItem.append(stepContent, visualShell);
+				creatorProcessFallback.appendChild(fallbackItem);
+			});
+
+			const activateCreatorFallbackVisual = (visual) => {
+				if (!(visual instanceof HTMLElement)) return;
+				visual.classList.add('is-active', 'is-content-active');
+				animateWalletCounter(visual);
+			};
+			const creatorFallbackVisuals = Array.from(
+				creatorProcessFallback.querySelectorAll('.creator-process-fallback-visual'),
+			);
+
+			if (reduceCreatorProcessMotion.matches || !('IntersectionObserver' in window)) {
+				creatorFallbackVisuals.forEach(activateCreatorFallbackVisual);
+			} else {
+				const creatorFallbackObserver = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) return;
+							activateCreatorFallbackVisual(entry.target);
+							creatorFallbackObserver.unobserve(entry.target);
+						});
+					},
+					{ threshold: 0.28, rootMargin: '0px 0px -12% 0px' },
+				);
+
+				creatorFallbackVisuals.forEach((visual) => creatorFallbackObserver.observe(visual));
+			}
+		}
+
+	})();
+</script>
+
+<style>
+	:global(.creator-process-scroll) {
+		--creator-process-card-height: 360px;
+		--creator-process-top-offset: 124px;
+		--creator-process-bottom-offset: 64px;
+		--creator-process-content-height: calc(var(--creator-process-card-height) + 120px);
+		--creator-process-sticky-offset: calc((100vh - var(--creator-process-content-height)) / 2 + 36px);
+		--creator-process-visual-offset-y: -28px;
+		display: grid;
+		min-height: 540vh;
+		grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
+		align-items: start;
+		gap: clamp(28px, 5vw, 72px);
+	}
+
+	.creator-process-pin {
+		position: sticky;
+		top: var(--creator-process-sticky-offset);
+		display: grid;
+		min-width: 0;
+	}
+
+	.creator-process-visual-stage {
+		--creator-process-progress-y: calc(50% + 180px + 32px + var(--creator-process-visual-offset-y));
+		position: relative;
+		width: 100%;
+		height: var(--creator-process-content-height);
+		min-height: 420px;
+		overflow: hidden;
+		border-radius: 28px;
+		background: transparent;
+	}
+
+	.creator-process-visual {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		display: grid;
+		place-items: center;
+		overflow: hidden;
+		padding: clamp(34px, 5vw, 74px);
+		opacity: 0.06;
+		filter: brightness(0.64) saturate(0.86);
+		transform: translateY(calc(-70px + var(--creator-process-visual-offset-y))) scale(0.84);
+		transform-origin: center center;
+		transition:
+			filter 720ms cubic-bezier(0.22, 1, 0.36, 1),
+			transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.creator-process-visual.is-active {
+		z-index: 5;
+		opacity: 1;
+		filter: none;
+		transform: translateY(var(--creator-process-visual-offset-y)) scale(1);
+	}
+
+	.creator-process-visual.is-stack-one {
+		z-index: 4;
+		opacity: 1;
+		filter: brightness(0.94) saturate(0.98);
+		transform: translateY(calc(-26px + var(--creator-process-visual-offset-y))) scale(0.92);
+	}
+
+	.creator-process-visual.is-stack-two {
+		z-index: 3;
+		opacity: 1;
+		filter: brightness(0.9) saturate(0.96);
+		transform: translateY(calc(-50px + var(--creator-process-visual-offset-y))) scale(0.84);
+	}
+
+	.creator-process-visual.is-stack-three {
+		z-index: 2;
+		opacity: 1;
+		filter: brightness(0.86) saturate(0.94);
+		transform: translateY(calc(-70px + var(--creator-process-visual-offset-y))) scale(0.77);
+	}
+
+	.creator-process-visual.is-stack-four {
+		z-index: 1;
+		opacity: 1;
+		filter: brightness(0.82) saturate(0.92);
+		transform: translateY(calc(-88px + var(--creator-process-visual-offset-y))) scale(0.71);
+	}
+
+	.creator-process-visual.is-stack-five {
+		z-index: 0;
+		opacity: 1;
+		filter: brightness(0.78) saturate(0.9);
+		transform: translateY(calc(-104px + var(--creator-process-visual-offset-y))) scale(0.66);
+	}
+
+	.creator-process-progress {
+		--creator-process-step-progress: 0%;
+		position: absolute;
+		left: 50%;
+		top: clamp(22px, var(--creator-process-progress-y), calc(100% - 10px));
+		z-index: 6;
+		display: flex;
+		justify-content: center;
+		gap: 8px;
+		pointer-events: none;
+		transform: translate(-50%, -50%);
+	}
+
+	.creator-process-progress span {
+		width: 8px;
+		height: 8px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.16);
+		transition:
+			width 240ms ease,
+			background 180ms ease;
+	}
+
+	.creator-process-progress span.is-active {
+		width: 76px;
+		background:
+			linear-gradient(
+				90deg,
+				#CBF300 0 var(--creator-process-step-progress),
+				rgba(203, 243, 0, 0.18) var(--creator-process-step-progress) 100%
+			);
+		box-shadow: inset 0 0 0 1px rgba(203, 243, 0, 0.18);
+	}
+
+	.creator-process-copy {
+		position: sticky;
+		top: var(--creator-process-sticky-offset);
+		min-width: 0;
+		height: var(--creator-process-content-height);
+		min-height: 420px;
+	}
+
+	.creator-process-step {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		padding: clamp(104px, calc((var(--creator-process-content-height) - 244px) / 2), 132px) 0 0;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 280ms ease;
+	}
+
+	.creator-process-step.is-active {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.creator-process-step > span,
+	.creator-process-fallback-copy > span {
+		display: inline-flex;
+		width: fit-content;
+		margin-bottom: 22px;
+		border: 1px solid rgba(203, 243, 0, 0.16);
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.07);
+		padding: 7px 10px;
+		color: #CBF300;
+		font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+	}
+
+	.creator-process-step h3,
+	.creator-process-fallback-copy h3 {
+		max-width: 560px;
+		margin: 0;
+		color: #fff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(2rem, 3.8vw, 3.8rem);
+		font-weight: 400;
+		line-height: 1.08;
+		letter-spacing: 0;
+	}
+
+	.creator-process-step p,
+	.creator-process-fallback-copy p {
+		max-width: 520px;
+		margin: 22px 0 0;
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1rem, 1.4vw, 1.2rem);
+		line-height: 1.55;
+	}
+
+	.creator-process-fallback {
+		display: none;
+	}
+
+	:global(.creator-process-fallback-item) {
+		min-width: 0;
+	}
+
+	:global(.creator-process-fallback-visual),
+	:global(.creator-process-fallback-copy) {
+		min-width: 0;
+	}
+
+	.creator-mini-window,
+	.creator-balance-card,
+	.creator-chat-card,
+	.creator-details-sheet,
+	.creator-wallet-panel,
+	.creator-bulk-panel,
+	.creator-withdraw-panel,
+	.creator-invoice-doc {
+		display: flex;
+		width: min(100%, 430px);
+		height: var(--creator-process-card-height);
+		max-height: calc(100% - 72px);
+		box-sizing: border-box;
+		flex-direction: column;
+		justify-content: space-between;
+		margin: auto;
+		border: 1px solid var(--garna-border);
+		border-radius: 24px;
+		background: #0c0c0c;
+		padding: 24px;
+		color: #fff;
+		font-family: Manrope, sans-serif;
+	}
+
+	.creator-mini-row,
+	.creator-balance-top,
+	.creator-chat-meta,
+	.creator-details-header,
+	.creator-bulk-header,
+	.creator-withdraw-header,
+	.creator-doc-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	.creator-mini-row span,
+	.creator-balance-top span,
+	.creator-chat-meta span,
+	.creator-details-header span,
+	.creator-bulk-header span,
+	.creator-withdraw-header span,
+	.creator-visual-list span,
+	.creator-details-grid span,
+	.creator-visual-section-label,
+	.creator-withdraw-select span,
+	.creator-withdraw-note span {
+		color: #71717a;
+		font-size: 11px;
+		font-weight: 600;
+	}
+
+	.creator-mini-row strong,
+	.creator-chat-meta strong,
+	.creator-details-header strong,
+	.creator-bulk-header strong,
+	.creator-withdraw-header strong,
+	.creator-visual-list strong,
+	.creator-details-grid strong,
+	.creator-withdraw-select strong,
+	.creator-withdraw-note strong {
+		color: #fff;
+		font-size: 12px;
+		font-weight: 700;
+	}
+
+	.creator-mini-title {
+		margin: 0;
+		color: #fff;
+		font-family: Manrope, sans-serif;
+		font-size: 18px;
+		font-weight: 600;
+		line-height: 1.18;
+		text-align: center;
+	}
+
+	.creator-mini-form {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 14px;
+		justify-content: space-between;
+		min-height: 0;
+	}
+
+	.creator-mini-fields {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 0;
+	}
+
+	.creator-mini-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 8px;
+	}
+
+	.creator-mini-field {
+		display: grid;
+		gap: 4px;
+		min-width: 0;
+	}
+
+	.creator-mini-field span {
+		display: block;
+		color: #71717a;
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.01em;
+		line-height: 1.1;
+	}
+
+	.creator-mini-field strong {
+		display: flex;
+		min-height: 32px;
+		align-items: center;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 10px;
+		background: #1A1A1A;
+		padding: 0 10px;
+		color: rgb(255 255 255 / 0.84);
+		font-size: 11px;
+		font-weight: 700;
+		line-height: 1;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-process-visual[data-process-visual='0'] .creator-mini-window,
+	.creator-process-visual[data-process-visual='1'] .creator-mini-window,
+	:global(.creator-process-fallback-visual[data-process-fallback-visual='0']) .creator-mini-window,
+	:global(.creator-process-fallback-visual[data-process-fallback-visual='1']) .creator-mini-window {
+		justify-content: flex-start;
+		gap: 14px;
+		padding: 20px;
+	}
+
+	.creator-process-visual[data-process-visual='0'] .creator-mini-field strong,
+	:global(.creator-process-fallback-visual[data-process-fallback-visual='0']) .creator-mini-field strong {
+		min-height: 34px;
+	}
+
+	.creator-team-window {
+		gap: 14px;
+	}
+
+	.creator-invite-emails {
+		display: flex;
+		min-height: 48px;
+		flex-wrap: wrap;
+		align-content: flex-start;
+		align-items: center;
+		gap: 5px;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 10px;
+		background: #1A1A1A;
+		padding: 6px 10px;
+	}
+
+	.creator-invite-emails span {
+		display: inline-flex;
+		align-items: center;
+		max-width: calc((100% - 5px) / 2);
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.08);
+		padding: 4px 7px;
+		color: rgb(236 255 156 / 0.88);
+		font-size: 9px;
+		font-weight: 700;
+		line-height: 1;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.creator-mini-button,
+	.creator-visual-action,
+	.creator-doc-attach {
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		max-width: none;
+		height: 36px;
+		border: 1px solid rgba(203, 243, 0, 0.24);
+		border-radius: 12px;
+		background: rgba(203, 243, 0, 0.08);
+		padding: 0 16px;
+		color: #CBF300;
+		font-family: Manrope, sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		line-height: 1;
+	}
+
+	.creator-mini-button {
+		flex: 0 0 auto;
+	}
+
+	.creator-mini-amount,
+	.creator-visual-list div,
+	.creator-details-status div,
+	.creator-withdraw-select,
+	.creator-withdraw-note {
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.045);
+		padding: 10px 12px;
+	}
+
+	.creator-mini-amount strong {
+		display: block;
+		margin-top: 4px;
+		font-size: 20px;
+		font-weight: 600;
+		letter-spacing: 0;
+	}
+
+	.creator-mini-verification,
+	.creator-detail-tags,
+	.creator-balance-methods,
+	.creator-details-status {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	.creator-mini-verification span,
+	.creator-detail-tags span,
+	.creator-balance-methods span {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		border: 1px solid rgba(203, 243, 0, 0.16);
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.07);
+		padding: 8px 10px;
+		color: #CBF300;
+		font-size: 11px;
+		font-weight: 700;
+	}
+
+	.creator-mini-verification i {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: #CBF300;
+	}
+
+	.creator-visual-list {
+		display: grid;
+		gap: 8px;
+	}
+
+	.creator-visual-list div,
+	.creator-details-status div,
+	.creator-withdraw-select,
+	.creator-withdraw-note {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	.creator-chat-card {
+		gap: 10px;
+		justify-content: center;
+	}
+
+	.creator-chat-bubble {
+		max-width: 82%;
+		border-radius: 14px;
+		padding: 10px 12px;
+		font-size: 12px;
+		line-height: 1.35;
+	}
+
+	.creator-chat-bubble.user {
+		align-self: flex-end;
+		background: #CBF300;
+		color: #101010;
+		font-weight: 700;
+	}
+
+	.creator-chat-bubble.manager {
+		align-self: flex-start;
+		background: rgba(255, 255, 255, 0.08);
+		color: #fff;
+	}
+
+	.creator-details-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+		gap: 8px 16px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		background: rgba(255, 255, 255, 0.045);
+		padding: 16px;
+	}
+
+	.creator-wallet-panel {
+		justify-content: space-between;
+		gap: 11px;
+		padding: 20px;
+	}
+
+	.creator-wallet-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	.creator-wallet-header .creator-mini-title {
+		margin: 0;
+	}
+
+	.creator-wallet-currency {
+		display: inline-grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		width: 72px;
+		height: 26px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.045);
+		padding: 3px;
+	}
+
+	.creator-wallet-currency span {
+		box-sizing: border-box;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 8px;
+		color: #a1a1aa;
+		font-size: 9px;
+		font-weight: 850;
+		line-height: 1;
+		padding-top: 1px;
+	}
+
+	.creator-wallet-currency span:first-child {
+		background: rgba(203, 243, 0, 0.14);
+		color: #CBF300;
+	}
+
+	.creator-wallet-actions {
+		display: flex;
+		align-items: center;
+	}
+
+	.creator-wallet-actions span {
+		white-space: nowrap;
+		font-weight: 800;
+		line-height: 1;
+	}
+
+	.creator-wallet-account {
+		display: grid;
+		min-height: 178px;
+		gap: 13px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.045);
+		padding: 18px 12px 12px;
+	}
+
+	.creator-wallet-account-top,
+	.creator-wallet-section-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	.creator-wallet-account-top > span,
+	.creator-wallet-number span,
+	.creator-wallet-section-head span {
+		color: #8B8B96;
+		font-size: 10px;
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+
+	.creator-wallet-account > strong {
+		color: #fff;
+		font-size: 31px;
+		font-weight: 650;
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
+	}
+
+	.creator-wallet-number {
+		display: grid;
+		gap: 4px;
+		min-width: 0;
+	}
+
+	.creator-wallet-number b {
+		overflow: hidden;
+		color: #fff;
+		font-size: 12px;
+		font-weight: 700;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-wallet-actions {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 8px;
+	}
+
+	.creator-wallet-actions span {
+		min-width: 0;
+		overflow: hidden;
+		border: 1px solid rgba(203, 243, 0, 0.24);
+		border-radius: 8px;
+		background: rgba(203, 243, 0, 0.08);
+		padding: 8px 7px;
+		color: #CBF300;
+		font-size: 10px;
+		text-align: center;
+		text-overflow: ellipsis;
+	}
+
+	.creator-wallet-templates {
+		display: grid;
+		gap: 7px;
+		min-width: 0;
+	}
+
+	.creator-wallet-section-head strong {
+		color: #a1a1aa;
+		font-size: 10px;
+		font-weight: 800;
+	}
+
+	.creator-wallet-template-list {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 8px;
+	}
+
+	.creator-wallet-template-list div {
+		min-width: 0;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 10px;
+		background: #1A1A1A;
+		padding: 11px 10px;
+	}
+
+	.creator-wallet-template-list span {
+		display: block;
+		overflow: hidden;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-wallet-template-list span {
+		color: rgb(255 255 255 / 0.84);
+		font-size: 11px;
+		font-weight: 700;
+	}
+
+	:global(html[lang='pt']) .creator-wallet-template-list span {
+		line-height: 1.3;
+	}
+
+	.creator-wallet-template-list b {
+		display: grid;
+		gap: 5px;
+		margin-top: 10px;
+	}
+
+	.creator-wallet-template-list i {
+		display: block;
+		height: 5px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.14);
+	}
+
+	.creator-wallet-template-list i:last-child {
+		width: 68%;
+	}
+
+	.creator-bulk-panel {
+		justify-content: flex-start;
+		gap: 12px;
+		padding: 20px;
+	}
+
+	.creator-bulk-header {
+		justify-content: center;
+		text-align: center;
+	}
+
+	.creator-bulk-header .creator-mini-title {
+		margin: 0;
+	}
+
+	.creator-bulk-note {
+		margin: 0;
+		color: #a1a1aa;
+		font-size: 13px;
+		font-weight: 600;
+		line-height: 1.35;
+		text-align: center;
+	}
+
+	.creator-bulk-file,
+	.creator-bulk-stats div {
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.045);
+	}
+
+	.creator-bulk-file {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		min-height: 68px;
+		padding: 14px;
+	}
+
+	.creator-bulk-file div {
+		min-width: 0;
+	}
+
+	.creator-bulk-file span,
+	.creator-bulk-stats span {
+		display: block;
+		color: #71717a;
+		font-size: 10px;
+		font-weight: 700;
+		line-height: 1.15;
+	}
+
+	.creator-bulk-file strong,
+	.creator-bulk-stats strong {
+		display: block;
+		overflow: hidden;
+		margin-top: 5px;
+		color: #fff;
+		font-size: 13px;
+		font-weight: 750;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.creator-bulk-file b {
+		flex: 0 0 auto;
+		border: 1px solid rgba(203, 243, 0, 0.24);
+		border-radius: 8px;
+		background: rgba(203, 243, 0, 0.08);
+		padding: 8px 9px;
+		color: #CBF300;
+		font-size: 10px;
+		font-weight: 900;
+		line-height: 1;
+	}
+
+	.creator-bulk-stats {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 12px;
+	}
+
+	.creator-bulk-stats div {
+		min-height: 56px;
+		padding: 11px 14px;
+	}
+
+	.creator-bulk-stats strong {
+		font-size: 15px;
+	}
+
+	.creator-bulk-panel .creator-visual-action {
+		flex: 0 0 auto;
+		min-height: 36px;
+		margin-top: auto;
+	}
+
+	.creator-process-visual.is-content-active[data-process-visual='0'] .creator-mini-fields > *,
+	.creator-process-visual.is-content-active[data-process-visual='1'] .creator-mini-fields > *,
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-account-top,
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-account > strong,
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-number,
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-section-head,
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-template-list div,
+	.creator-process-visual.is-content-active[data-process-visual='3'] .creator-bulk-file,
+	.creator-process-visual.is-content-active[data-process-visual='3'] .creator-bulk-stats div,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='0'] .creator-mini-fields > *,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='1'] .creator-mini-fields > *,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-account-top,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-account > strong,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-number,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-section-head,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-template-list div,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='3'] .creator-bulk-file,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='3'] .creator-bulk-stats div {
+		animation: creator-process-content-in 780ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+		will-change: opacity, transform;
+	}
+
+	.creator-process-visual.is-content-active[data-process-visual='0'] .creator-mini-fields > *:nth-child(1),
+	.creator-process-visual.is-content-active[data-process-visual='1'] .creator-mini-fields > *:nth-child(1),
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-account-top,
+	.creator-process-visual.is-content-active[data-process-visual='3'] .creator-bulk-file,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='0'] .creator-mini-fields > *:nth-child(1),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='1'] .creator-mini-fields > *:nth-child(1),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-account-top,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='3'] .creator-bulk-file {
+		animation-delay: 0.24s;
+	}
+
+	.creator-process-visual.is-content-active[data-process-visual='0'] .creator-mini-fields > *:nth-child(2),
+	.creator-process-visual.is-content-active[data-process-visual='1'] .creator-mini-fields > *:nth-child(2),
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-account > strong,
+	.creator-process-visual.is-content-active[data-process-visual='3'] .creator-bulk-stats div:nth-child(1),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='0'] .creator-mini-fields > *:nth-child(2),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='1'] .creator-mini-fields > *:nth-child(2),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-account > strong,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='3'] .creator-bulk-stats div:nth-child(1) {
+		animation-delay: 0.42s;
+	}
+
+	.creator-process-visual.is-content-active[data-process-visual='0'] .creator-mini-fields > *:nth-child(3),
+	.creator-process-visual.is-content-active[data-process-visual='1'] .creator-mini-fields > *:nth-child(3),
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-number,
+	.creator-process-visual.is-content-active[data-process-visual='3'] .creator-bulk-stats div:nth-child(2),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='0'] .creator-mini-fields > *:nth-child(3),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='1'] .creator-mini-fields > *:nth-child(3),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-number,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='3'] .creator-bulk-stats div:nth-child(2) {
+		animation-delay: 0.6s;
+	}
+
+	.creator-process-visual.is-content-active[data-process-visual='0'] .creator-mini-fields > *:nth-child(4),
+	.creator-process-visual.is-content-active[data-process-visual='1'] .creator-mini-fields > *:nth-child(4),
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-section-head,
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='0'] .creator-mini-fields > *:nth-child(4),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='1'] .creator-mini-fields > *:nth-child(4),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-section-head {
+		animation-delay: 0.78s;
+	}
+
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-template-list div:nth-child(1),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-template-list div:nth-child(1) {
+		animation-delay: 0.96s;
+	}
+
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-template-list div:nth-child(2),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-template-list div:nth-child(2) {
+		animation-delay: 1.12s;
+	}
+
+	.creator-process-visual.is-content-active[data-process-visual='2'] .creator-wallet-template-list div:nth-child(3),
+	.creator-process-fallback-visual.is-content-active[data-process-fallback-visual='2'] .creator-wallet-template-list div:nth-child(3) {
+		animation-delay: 1.28s;
+	}
+
+	@keyframes creator-process-content-in {
+		0% {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.creator-doc-title {
+		color: #fff;
+		font-size: 18px;
+		font-weight: 700;
+	}
+
+	.creator-doc-corner,
+	.creator-balance-top em {
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.12);
+		padding: 6px 9px;
+		color: #CBF300;
+		font-size: 10px;
+		font-style: normal;
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+
+	.creator-doc-lines {
+		display: grid;
+		gap: 8px;
+	}
+
+	.creator-doc-lines span {
+		height: 8px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.14);
+	}
+
+	.creator-balance-card > strong {
+		color: #fff;
+		font-size: clamp(1.95rem, 3.4vw, 2.7rem);
+		font-weight: 650;
+		line-height: 1;
+		letter-spacing: 0;
+	}
+
+	.creator-balance-bar {
+		height: 10px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.12);
+		overflow: hidden;
+	}
+
+	.creator-balance-bar::before {
+		content: "";
+		display: block;
+		width: calc(var(--creator-balance-progress, 0) * 100%);
+		height: 100%;
+		border-radius: inherit;
+		background: #CBF300;
+	}
+
+	@media (min-width: 1181px) {
+		:global(.creator-process-scroll) {
+			--creator-process-content-height: calc(var(--creator-process-card-height) + 220px);
+		}
+	}
+
+	@media (min-width: 981px) and (max-width: 1180px) {
+		:global(.creator-process-scroll) {
+			--creator-process-content-height: calc(var(--creator-process-card-height) + 220px);
+		}
+	}
+
+	@media (max-width: 980px) {
+		:global(.creator-process-scroll) {
+			--creator-process-top-offset: 72px;
+			--creator-process-bottom-offset: 48px;
+			min-height: auto;
+			grid-template-columns: 1fr;
+			gap: 0;
+		}
+
+		.creator-process-pin,
+		.creator-process-copy {
+			display: none;
+		}
+
+		.creator-process-fallback {
+			display: grid;
+			gap: clamp(56px, 9vw, 88px);
+		}
+
+		:global(.creator-process-fallback-item) {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 28px;
+			align-items: center;
+		}
+
+		:global(.creator-process-fallback-copy) {
+			order: 1;
+		}
+
+		:global(.creator-process-fallback-visual) {
+			order: 2;
+			width: 100%;
+		}
+
+		:global(.creator-process-fallback-copy) h3 {
+			font-size: clamp(1.8rem, 7.4vw, 2.7rem);
+		}
+
+		:global(.creator-process-fallback-visual) .creator-mini-window,
+		:global(.creator-process-fallback-visual) .creator-chat-card,
+		:global(.creator-process-fallback-visual) .creator-details-sheet,
+		:global(.creator-process-fallback-visual) .creator-wallet-panel,
+		:global(.creator-process-fallback-visual) .creator-bulk-panel,
+		:global(.creator-process-fallback-visual) .creator-withdraw-panel,
+		:global(.creator-process-fallback-visual) .creator-invoice-doc,
+		:global(.creator-process-fallback-visual) .creator-balance-card {
+			width: min(100%, 430px);
+			height: var(--creator-process-card-height);
+			max-height: none;
+		}
+	}
+
+	@media (min-width: 760px) and (max-width: 980px) {
+		:global(.creator-process-fallback-item) {
+			grid-template-columns: minmax(340px, 1fr) minmax(280px, 0.92fr);
+			gap: clamp(28px, 5vw, 56px);
+		}
+
+		:global(.creator-process-fallback-item:nth-child(even)) {
+			grid-template-columns: minmax(280px, 0.92fr) minmax(340px, 1fr);
+		}
+
+		:global(.creator-process-fallback-item:nth-child(even) .creator-process-fallback-visual) {
+			order: 2;
+		}
+
+		:global(.creator-process-fallback-item:nth-child(even) .creator-process-fallback-copy) {
+			order: 1;
+		}
+
+		:global(.creator-process-fallback-item:nth-child(odd) .creator-process-fallback-visual) {
+			order: 1;
+		}
+
+		:global(.creator-process-fallback-item:nth-child(odd) .creator-process-fallback-copy) {
+			order: 2;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.creator-process-visual.is-content-active .creator-mini-title,
+		.creator-process-visual.is-content-active .creator-mini-field,
+		.creator-process-visual.is-content-active .creator-mini-button,
+		.creator-process-visual.is-content-active .creator-wallet-header,
+		.creator-process-visual.is-content-active .creator-wallet-account-top,
+		.creator-process-visual.is-content-active .creator-wallet-account > strong,
+		.creator-process-visual.is-content-active .creator-wallet-number,
+		.creator-process-visual.is-content-active .creator-wallet-actions span,
+		.creator-process-visual.is-content-active .creator-wallet-section-head,
+		.creator-process-visual.is-content-active .creator-wallet-template-list div,
+		.creator-process-visual.is-content-active .creator-bulk-header,
+		.creator-process-visual.is-content-active .creator-bulk-note,
+		.creator-process-visual.is-content-active .creator-bulk-file,
+		.creator-process-visual.is-content-active .creator-bulk-stats div,
+		.creator-process-visual.is-content-active .creator-visual-action,
+		.creator-process-fallback-visual.is-content-active .creator-mini-title,
+		.creator-process-fallback-visual.is-content-active .creator-mini-field,
+		.creator-process-fallback-visual.is-content-active .creator-mini-button,
+		.creator-process-fallback-visual.is-content-active .creator-wallet-header,
+		.creator-process-fallback-visual.is-content-active .creator-wallet-account-top,
+		.creator-process-fallback-visual.is-content-active .creator-wallet-account > strong,
+		.creator-process-fallback-visual.is-content-active .creator-wallet-number,
+		.creator-process-fallback-visual.is-content-active .creator-wallet-actions span,
+		.creator-process-fallback-visual.is-content-active .creator-wallet-section-head,
+		.creator-process-fallback-visual.is-content-active .creator-wallet-template-list div,
+		.creator-process-fallback-visual.is-content-active .creator-bulk-header,
+		.creator-process-fallback-visual.is-content-active .creator-bulk-note,
+		.creator-process-fallback-visual.is-content-active .creator-bulk-file,
+		.creator-process-fallback-visual.is-content-active .creator-bulk-stats div,
+		.creator-process-fallback-visual.is-content-active .creator-visual-action {
+			animation: none;
+		}
+	}
+</style>

@@ -9,7 +9,7 @@ export const forCreatorsEn = {
 	images: {},
 	hero: {
 		badge: 'Early Access for selected creators',
-		titleMain: 'Get paid from every creator platform in one place',
+		titleMain: 'Get paid from every creator platform in one\u00A0place',
 		titleAccent: 'in one place',
 	description:
 			'Receive income from Marketplace, platforms, and freelance services, then manage your balance and withdrawals with guided setup',

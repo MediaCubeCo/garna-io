@@ -1,6 +1,12 @@
 ---
 import ScrollVisualCarouselSection from '../../ScrollVisualCarouselSection.astro';
 
+interface Props {
+	copyVariant?: 'carousel' | 'section';
+}
+
+const { copyVariant = 'carousel' } = Astro.props;
+
 const slides = [
 	{
 		key: 'hire',
@@ -111,4 +117,5 @@ const slides = [
 		translateKey: 'cta.bookDemo',
 		trackingCta: 'contractor_carousel_demo',
 	}}
+	copyVariant={copyVariant}
 />

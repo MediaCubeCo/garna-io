@@ -2,17 +2,19 @@ import type { FinalCTASectionConfig } from '../types/final-cta-section';
 
 export const pageFinalCtas = {
 	contractorOfRecord: {
-		title: [{ text: 'Ready to get started?', translateKey: 'whyGarna.cta.title' }],
+		title: [{ text: 'Pay Every Contractor Through One Compliant Flow', translateKey: 'contractorFinalCta.title' }],
 		description: {
-			text: 'Join thousands of businesses streamlining their global payroll today',
-			translateKey: 'whyGarna.cta.description',
+			text: 'Garna keeps contractor agreements, invoices, approvals, and cross-border payouts in one place, so your team can scale without local entities or payment chaos',
+			translateKey: 'contractorFinalCta.description',
 		},
 		button: {
 			label: 'Book a demo',
-			translateKey: 'whyGarna.cta.button',
+			translateKey: 'contractorFinalCta.button',
 			kind: 'demo',
 			trackingCta: 'final_demo',
 		},
+		titleClass: 'mb-8 font-manrope text-4xl font-normal leading-tight tracking-tight text-white md:text-[52px]',
+		descriptionClass: 'mx-auto mb-12 max-w-2xl text-lg font-light leading-relaxed text-gray-400 md:text-xl',
 	},
 	enterprisePayroll: {
 		title: [{ text: 'Global Payroll Is Easy When Made By Using Garna', translateKey: 'enterpriseFinalCta.title' }],

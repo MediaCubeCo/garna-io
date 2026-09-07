@@ -1,43 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSection from '../components/sections/HeroSection.astro';
-import FAQSection from '../components/sections/FAQSection.astro';
 import FinalCTASection from '../components/sections/FinalCTASection.astro';
 import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
-import ContractorDashboardVisual from '../components/visuals/ContractorDashboardVisual.astro';
-import ContractorTrustStripSection from '../components/sections/payroll/ContractorTrustStripSection.astro';
-import ContractorPayrollPlatformSection from '../components/sections/payroll/ContractorPayrollPlatformSection.astro';
+import ContractorOfRecordHeroSection from '../components/sections/payroll/ContractorOfRecordHeroSection.astro';
 import GarnaDifferentiatorsSection from '../components/sections/payroll/GarnaDifferentiatorsSection.astro';
-import ContractorOnboardingStepsSection from '../components/sections/payroll/ContractorOnboardingStepsSection.astro';
-import DeferredPaymentsSection from '../components/sections/payroll/DeferredPaymentsSection.astro';
+import ContractorWorldwideFeatureSection from '../components/sections/payroll/ContractorWorldwideFeatureSection.astro';
+import CreatorPayoutProcessSection from '../components/sections/payroll/CreatorPayoutProcessSection.astro';
+import DeferredContractorPaymentsSection from '../components/sections/payroll/home/DeferredPaymentsStackSection.astro';
+import TrustedByBuildersSection from '../components/sections/payroll/home/TrustedByBuildersSection.astro';
 import ContractorBenefitsSection from '../components/sections/payroll/ContractorBenefitsSection.astro';
 import ContractorOfRecordSectionStyles from '../components/sections/payroll/ContractorOfRecordSectionStyles.astro';
 import ContractorOfRecordInteractions from '../components/sections/payroll/ContractorOfRecordInteractions.astro';
 import PayrollLandingEnhancements from '../components/sections/payroll/PayrollLandingEnhancements.astro';
-import { contractorOfRecordFaqItems } from '../content/payroll-landing-faqs';
 import { pageFinalCtas } from '../content/page-final-ctas';
-import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 ---
 
-<BaseLayout shell={pageShells.contractorOfRecord}>
-	<HeroSection {...pageHeroes.contractorOfRecord}>
-		<ContractorDashboardVisual />
-	</HeroSection>
-	<ContractorTrustStripSection />
-	<ContractorPayrollPlatformSection />
-	<GarnaDifferentiatorsSection ctaVariant="compact" />
-	<ContractorOnboardingStepsSection />
-	<DeferredPaymentsSection />
+<BaseLayout shell={pageShells.contractorOfRecord} showRainbow={false}>
+	<ContractorOfRecordHeroSection />
+	<GarnaDifferentiatorsSection />
+	<ContractorWorldwideFeatureSection />
+	<DeferredContractorPaymentsSection />
 	<ContractorBenefitsSection />
+	<CreatorPayoutProcessSection />
+	<TrustedByBuildersSection />
 	<ContractorOfRecordSectionStyles />
-	<FAQSection
-		title={{ text: 'Frequently asked questions', translateKey: 'faqHome.title' }}
-		subtitle={{ text: "Got Questions? We've Got Answers", translateKey: 'faqHome.subtitle' }}
-		items={contractorOfRecordFaqItems}
-		class="pt-16 pb-16 lg:pt-32 lg:pb-32"
-		containerClass="garna-container"
-	/>
 	<FinalCTASection {...pageFinalCtas.contractorOfRecord} />
 	<PayrollLandingEnhancements />
 	<Fragment slot="widgets">

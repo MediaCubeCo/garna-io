@@ -593,6 +593,38 @@ Rules:
 - Do not add card scaling, heavy glow or background swaps to the trigger list.
 - Keep the visual area stationary; only the panel content state changes.
 
+### Sticky step process pattern
+
+Use the For Creators and Contractor of Record process blocks as references for long scroll-driven process sections where each step is paired with a custom product visual.
+
+Scope:
+
+- Use this when a page needs a narrative setup/onboarding/payment process with a sticky desktop visual and step text that changes during scroll.
+- This is a reusable interaction pattern, not a single fixed component.
+- The section can have different step counts, such as four or six steps.
+- The breakpoint where sticky mode changes to fallback is page-specific because visual density and card sizes differ between pages.
+
+Systemized parts:
+
+- Outer section uses the approved section header pattern: H2 and subtitle through the shared section wrapper.
+- Step copy uses the repeated structure: number, title and description.
+- Desktop behavior can use a sticky visual stage with one active step and one active visual.
+- Fallback behavior stacks each step with its related visual: step text first, visual directly below it, then the next step.
+- Progress indicators may be reused when they match the page behavior, but they should not force a shared step count.
+
+Page-specific parts:
+
+- Product mockups, forms, cards, wallet states, payout panels and other visual content stay custom to the page.
+- Visual sizing, transparency, internal animation and scroll thresholds stay custom to the section.
+- Do not merge two existing process sections into one hard component unless both pages are visually verified at all supported breakpoints.
+
+Rules:
+
+- Do not change an existing process block's breakpoint behavior just to match another page.
+- Do not make tablet layouts alternate text and visual unless that behavior is explicitly approved for that page.
+- On narrow layouts, prefer the clear vertical reading order: step, visual, next step, visual.
+- Respect `prefers-reduced-motion` for scroll and visual reveal behavior.
+
 ### How it works diagram
 
 Use the AI Hiring / `How it works` block as the reference for static four-step process diagrams with animated flow.
