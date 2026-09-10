@@ -24,6 +24,6 @@ jobs:
       - run: npx tsc --noEmit
       # The pre-existing ForCreators architecture failure is documented in
       # docs/blog-engine-rollout.md; this job verifies the integration scope.
-      - run: npx vitest run test/blog.spec.ts test/index.spec.ts test/eor-cost-inputs.spec.ts
+      - run: npx vitest run test/blog.spec.ts test/index.spec.ts test/eor-cost-inputs.spec.ts test/typescript-boundary.spec.ts
       - run: npm run build
       - run: npx wrangler deploy --dry-run
