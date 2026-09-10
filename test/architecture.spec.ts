@@ -153,7 +153,7 @@ describe('native Astro architecture', () => {
 
 	it('does not reintroduce legacy runtime composition', async () => {
 		expect(await getArchitectureViolations()).toEqual([]);
-		const blogAdmin = await readFile(path.join(root, 'src/blog/admin.ts'), 'utf8');
+		const blogAdmin = await readFile(path.join(root, 'src/blog/engine.ts'), 'utf8');
 		expect(blogAdmin).not.toContain('/admin/blog/design-preview');
 		expect(blogAdmin).not.toContain('Legacy designs');
 	});
@@ -437,7 +437,7 @@ describe('native Astro architecture', () => {
 		const hero = await readFile(path.join(root, 'astro/components/sections/HeroSection.astro'), 'utf8');
 		const sectionHeader = await readFile(path.join(root, 'astro/components/layout/SectionHeader.astro'), 'utf8');
 		const card = await readFile(path.join(root, 'astro/components/ui/Card.astro'), 'utf8');
-		const blogArticleShell = await readFile(path.join(root, 'astro/pages/blog-article-shell.astro'), 'utf8');
+		const blogArticleShell = await readFile(path.join(root, 'node_modules/@mediacubeco/blog-engine/dist/templates/article.html'), 'utf8');
 		const sectionFiles = (await walk(path.join(root, 'astro/components/sections')))
 			.filter((file) => file.endsWith('.astro') && !file.includes(`${path.sep}blog${path.sep}`));
 		const unmarkedSubtitles: string[] = [];

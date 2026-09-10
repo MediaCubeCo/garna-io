@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import GarnaBookingWidget from '../../ui/GarnaBookingWidget.astro';
+import TrustedDynamicHead from './TrustedDynamicHead.astro';
+import { pageShells } from '../../../content/page-shells';
+const shell = { ...pageShells.blogArticle, title: '%%BLOG_PAGE_TITLE%%', description: '%%BLOG_PAGE_DESCRIPTION%%', ogImage: '%%BLOG_OG_IMAGE%%' };
+---
+<BaseLayout shell={shell}>
+  <TrustedDynamicHead slot="head" html="%%BLOG_DYNAMIC_HEAD%%" />
+  %%BLOG_PACKAGE_BODY%%
+  <Fragment slot="widgets">
+    <GarnaBookingWidget trackingSource="blog" trackingPage="blog" titleFallback="Start your journey with Garna" subtitleFallback="Fill in your details to book a demo" />
+  </Fragment>
+</BaseLayout>
