@@ -7,32 +7,34 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 ---
 
 <Section
-	title={{ text: 'Manage Global Payroll Effortlessly', translateKey: 'sectionHeadings.manageGlobalPayroll' }}
-	description={{ text: 'One platform to run payroll for freelancers, remote employees, and full-time teams', translateKey: 'sectionDescriptions.manageGlobalPayroll' }}
 	spacing="default"
-	headerClass="mb-16 max-w-4xl lg:mb-20"
-	titleClass="lg:text-5xl"
+	controlsClass="mx-auto mb-16 max-w-4xl text-center lg:mb-20"
 	contentClass="grid grid-cols-1 gap-4 min-[1080px]:grid-cols-2"
 >
-	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
-		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-translate="manageGlobalPayroll.cards.automation.title">Automated Payroll Platform</h3>
-		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.automation.description">Automate global payout processes with a flexible, user-friendly platform</p>
-		<div class="payroll-feature-card__visual payroll-feature-card__visual--automation mt-6 flex min-h-0 flex-1 items-start justify-center overflow-hidden pt-2">
-			<div class="payroll-feature-card__visual-scale flex h-full w-full items-start justify-center"><GarnaModularPlatformVisual /></div>
+	<header slot="controls" class="mx-auto text-center">
+		<h2 class="font-manrope text-4xl font-normal leading-tight tracking-tight text-white md:text-5xl lg:text-5xl" data-translate="sectionHeadings.manageGlobalPayroll">Manage Global Payroll Effortlessly</h2>
+		<p data-garna-subtitle class="mt-6 font-manrope text-lg leading-relaxed md:text-xl" data-translate="sectionDescriptions.manageGlobalPayroll">Run payroll, mass payouts, and single transfers for freelancers, contractors, and employees from one place</p>
+	</header>
+
+	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-automation-card data-card-glow="true" data-interactive="true" data-href="">
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-automation-title data-translate="manageGlobalPayroll.cards.automation.title">Automated Payroll Runs</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.automation.description">Set up salary accruals, approvals, and payouts in one repeatable flow</p>
+		<div class="payroll-feature-card__visual payroll-feature-card__visual--automation mt-6 flex min-h-0 flex-1 items-center justify-center overflow-hidden pt-2">
+			<div class="payroll-feature-card__visual-scale flex h-full w-full items-center justify-center"><GarnaModularPlatformVisual /></div>
 		</div>
 	</article>
 
-	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
-		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-translate="manageGlobalPayroll.cards.globalReach.title">Global Reach</h3>
-		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.globalReach.description">Pay in 150+ countries with local currencies and crypto</p>
+	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-card-glow="true" data-interactive="true" data-href="">
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-translate="manageGlobalPayroll.cards.globalReach.title">Global Payroll Coverage</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.globalReach.description">Run payroll across 150+ countries with local currencies and crypto</p>
 		<div class="-mx-8 -mb-8 mt-8 flex min-h-0 flex-1 items-start justify-center overflow-hidden lg:-mx-12">
 			<div class="global-reach-frame h-full w-full"><GlobalReachVisual /></div>
 		</div>
 	</article>
 
-	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
-		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-translate="manageGlobalPayroll.cards.payoutMethods.title">Flexible Payout Methods</h3>
-		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.payoutMethods.description">Pay teams by bank transfer, card, electronic wallet, or crypto</p>
+	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-methods-card data-card-glow="true" data-interactive="true" data-href="">
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-methods-title data-translate="manageGlobalPayroll.cards.payoutMethods.title">Team Payout Methods</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.payoutMethods.description">Send mass payments or single transfers by bank, card, wallet, or crypto</p>
 		<div class="payroll-feature-card__methods-visual mt-10 flex min-h-0 flex-1 items-end justify-center overflow-visible px-8 pt-8">
 			<div class="payroll-feature-card__methods-fit w-full max-w-md">
 				<div class="payroll-feature-card__methods-scale"><PayoutMethodsPhoneVisual /></div>
@@ -40,16 +42,94 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 		</div>
 	</article>
 
-	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-href="">
-		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-translate="manageGlobalPayroll.cards.fees.title">No hidden Fees</h3>
-		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.fees.description">Transparent pricing, zero setup cost</p>
+	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" role="link" tabindex="0" data-feature-card data-fees-card data-card-glow="true" data-interactive="true" data-href="">
+		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-fees-title data-translate="manageGlobalPayroll.cards.fees.title">Transparent Payment Costs</h3>
+		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.fees.description">See rates, fees, and total charge before each payout</p>
 		<div class="payroll-feature-card__visual payroll-feature-card__visual--fees mt-10 flex min-h-0 flex-1 items-center justify-center overflow-hidden py-8">
-			<div class="w-full"><TransparentFeesVisual /></div>
+			<div class="payroll-feature-card__fees-scale w-full"><TransparentFeesVisual /></div>
 		</div>
 	</article>
 </Section>
 
 <script>
+	if (!window.__garnaCardGlowInitialized) {
+		window.__garnaCardGlowInitialized = true;
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const lightFieldRadius = 352;
+		const lightFields = new WeakMap();
+		let activeCard = null;
+		let activeLightField = null;
+		let activeLightScope = null;
+		let activeLightScopeBounds = null;
+
+		const getLightField = (scope) => {
+			const existing = lightFields.get(scope);
+			if (existing) return existing;
+
+			const field = document.createElement('span');
+			field.className = 'garna-card-light-field';
+			field.setAttribute('aria-hidden', 'true');
+			scope.classList.add('garna-card-light-scope');
+			scope.prepend(field);
+			lightFields.set(scope, field);
+			return field;
+		};
+
+		const clearActiveCard = () => {
+			activeCard?.removeAttribute('data-pointer-active');
+			activeLightField?.removeAttribute('data-active');
+			activeCard = null;
+			activeLightField = null;
+			activeLightScope = null;
+			activeLightScopeBounds = null;
+		};
+
+		document.addEventListener('pointermove', (event) => {
+			if (reducedMotion.matches || !(event.target instanceof Element)) return;
+
+			const card = event.target.closest('[data-card-glow="true"]');
+			if (!(card instanceof HTMLElement)) {
+				clearActiveCard();
+				return;
+			}
+
+			if (activeCard !== card) {
+				clearActiveCard();
+				activeCard = card;
+				activeCard.setAttribute('data-pointer-active', 'true');
+
+				if (document.documentElement.dataset.theme === 'light' && card.parentElement) {
+					activeLightScope = card.parentElement;
+					activeLightField = getLightField(activeLightScope);
+					activeLightScopeBounds = activeLightScope.getBoundingClientRect();
+					const field = activeLightField;
+					if (field.dataset.ready === 'true') {
+						field.setAttribute('data-active', 'true');
+					} else {
+						window.requestAnimationFrame(() => {
+							field.dataset.ready = 'true';
+							if (activeLightField === field) field.setAttribute('data-active', 'true');
+						});
+					}
+				}
+			}
+
+			const bounds = card.getBoundingClientRect();
+			const localX = event.clientX - bounds.left;
+			const localY = event.clientY - bounds.top;
+			card.style.setProperty('--garna-card-glow-x', `${localX}px`);
+			card.style.setProperty('--garna-card-glow-y', `${localY}px`);
+
+			if (activeLightField && activeLightScopeBounds) {
+				activeLightField.style.setProperty('--garna-card-light-x', `${event.clientX - activeLightScopeBounds.left - lightFieldRadius}px`);
+				activeLightField.style.setProperty('--garna-card-light-y', `${event.clientY - activeLightScopeBounds.top - lightFieldRadius}px`);
+			}
+		}, { passive: true });
+
+		window.addEventListener('blur', clearActiveCard);
+		window.addEventListener('scroll', clearActiveCard, { passive: true });
+	}
+
 	for (const card of document.querySelectorAll('[data-feature-card]')) {
 		if (!(card instanceof HTMLElement) || card.dataset.clickableReady === 'true') continue;
 		card.dataset.clickableReady = 'true';
@@ -68,16 +148,191 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 			openCard(event);
 		});
 	}
+
+	const feesCard = document.querySelector('[data-fees-card]');
+	const feesTitle = feesCard?.querySelector('[data-fees-title]');
+	const feesSubtitle = feesCard?.querySelector('[data-garna-subtitle]');
+	if (
+		feesCard instanceof HTMLElement
+		&& feesTitle instanceof HTMLElement
+		&& feesSubtitle instanceof HTMLElement
+	) {
+		const hasWrapped = (element) => {
+			const lineHeight = Number.parseFloat(getComputedStyle(element).lineHeight);
+			return element.getBoundingClientRect().height > lineHeight * 1.5;
+		};
+		const syncFeesCopyWrap = () => {
+			const titleWrapped = hasWrapped(feesTitle);
+			feesCard.dataset.feesTitleWrapped = String(titleWrapped);
+			feesCard.dataset.feesCopyWrapped = String(titleWrapped || hasWrapped(feesSubtitle));
+		};
+
+		const resizeObserver = new ResizeObserver(syncFeesCopyWrap);
+		resizeObserver.observe(feesTitle);
+		resizeObserver.observe(feesSubtitle);
+		const mutationObserver = new MutationObserver(syncFeesCopyWrap);
+		mutationObserver.observe(feesTitle, { childList: true, characterData: true, subtree: true });
+		mutationObserver.observe(feesSubtitle, { childList: true, characterData: true, subtree: true });
+		document.fonts?.ready.then(syncFeesCopyWrap);
+		syncFeesCopyWrap();
+	}
+
+	const automationCard = document.querySelector('[data-automation-card]');
+	const automationTitle = automationCard?.querySelector('[data-automation-title]');
+	const automationSubtitle = automationCard?.querySelector('[data-garna-subtitle]');
+	if (
+		automationCard instanceof HTMLElement
+		&& automationTitle instanceof HTMLElement
+		&& automationSubtitle instanceof HTMLElement
+	) {
+		const getLineCount = (element) => {
+			const lineHeight = Number.parseFloat(getComputedStyle(element).lineHeight);
+			return Math.round(element.getBoundingClientRect().height / lineHeight);
+		};
+		const syncAutomationCopyWrap = () => {
+			const titleLines = getLineCount(automationTitle);
+			const subtitleLines = getLineCount(automationSubtitle);
+			automationCard.dataset.automationCopyWrapped = String(
+				titleLines > 1 || subtitleLines > 1,
+			);
+			automationCard.dataset.automationCopyDense = String(titleLines >= 2 && subtitleLines >= 3);
+			automationCard.dataset.automationCopyExtraDense = String(titleLines >= 3 && subtitleLines >= 3);
+			automationCard.dataset.automationTitleDense = String(titleLines >= 3);
+		};
+
+		const resizeObserver = new ResizeObserver(syncAutomationCopyWrap);
+		resizeObserver.observe(automationTitle);
+		resizeObserver.observe(automationSubtitle);
+		const mutationObserver = new MutationObserver(syncAutomationCopyWrap);
+		mutationObserver.observe(automationTitle, { childList: true, characterData: true, subtree: true });
+		mutationObserver.observe(automationSubtitle, { childList: true, characterData: true, subtree: true });
+		document.fonts?.ready.then(syncAutomationCopyWrap);
+		syncAutomationCopyWrap();
+	}
+
+	const methodsCard = document.querySelector('[data-methods-card]');
+	const methodsTitle = methodsCard?.querySelector('[data-methods-title]');
+	const methodsSubtitle = methodsCard?.querySelector('[data-garna-subtitle]');
+	if (
+		methodsCard instanceof HTMLElement
+		&& methodsTitle instanceof HTMLElement
+		&& methodsSubtitle instanceof HTMLElement
+	) {
+		const getLineCount = (element) => {
+			const lineHeight = Number.parseFloat(getComputedStyle(element).lineHeight);
+			return Math.round(element.getBoundingClientRect().height / lineHeight);
+		};
+		const syncMethodsCopyWrap = () => {
+			const titleLines = getLineCount(methodsTitle);
+			const subtitleLines = getLineCount(methodsSubtitle);
+			methodsCard.dataset.methodsCopyWrapped = String(
+				titleLines > 1 || subtitleLines > 1,
+			);
+			methodsCard.dataset.methodsCopyDense = String(titleLines >= 2 && subtitleLines >= 3);
+		};
+
+		const resizeObserver = new ResizeObserver(syncMethodsCopyWrap);
+		resizeObserver.observe(methodsTitle);
+		resizeObserver.observe(methodsSubtitle);
+		const mutationObserver = new MutationObserver(syncMethodsCopyWrap);
+		mutationObserver.observe(methodsTitle, { childList: true, characterData: true, subtree: true });
+		mutationObserver.observe(methodsSubtitle, { childList: true, characterData: true, subtree: true });
+		document.fonts?.ready.then(syncMethodsCopyWrap);
+		syncMethodsCopyWrap();
+	}
 </script>
 
 <style>
 	.payroll-feature-card {
+		--garna-card-glow-x: 50%;
+		--garna-card-glow-y: 50%;
+		--garna-card-glow-radius: 60vw;
+		--garna-card-border-glow-radius: 14rem;
+		position: relative;
+		isolation: isolate;
 		cursor: pointer;
+		transition: border-color 300ms ease;
+	}
+
+	.payroll-feature-card::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		border-radius: inherit;
+		background: radial-gradient(
+			circle var(--garna-card-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+			rgba(255, 255, 255, 0.12) 0%,
+			rgba(255, 255, 255, 0.075) 18%,
+			rgba(255, 255, 255, 0.035) 40%,
+			transparent 70%
+		);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 300ms ease;
+	}
+
+	.payroll-feature-card > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+		.payroll-feature-card::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			z-index: 2;
+			padding: 1px;
+			border-radius: inherit;
+			background: radial-gradient(
+				circle var(--garna-card-border-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+				rgba(255, 255, 255, 0.9) 0%,
+				rgba(255, 255, 255, 0.52) 24%,
+				rgba(255, 255, 255, 0.2) 50%,
+				transparent 76%
+			);
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 300ms ease;
+			-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+			-webkit-mask-composite: xor;
+			mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+			mask-composite: exclude;
+		}
+	}
+
+	.payroll-feature-card[data-interactive='true']:is(:hover, :focus-within, [data-pointer-active='true']) {
+		border-color: rgba(255, 255, 255, 0.15);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.payroll-feature-card[data-card-glow='true']:is(:hover, :focus-within, [data-pointer-active='true'])::before {
+			opacity: 1;
+		}
+
+		@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+			.payroll-feature-card[data-card-glow='true']:is(:hover, :focus-within, [data-pointer-active='true'])::after {
+				opacity: 1;
+			}
+		}
 	}
 
 	.payroll-feature-card:focus-visible {
 		outline: 2px solid rgb(203 243 0 / 0.4);
 		outline-offset: 3px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.payroll-feature-card {
+			--garna-card-glow-x: 50% !important;
+			--garna-card-glow-y: 50% !important;
+		}
+
+		.payroll-feature-card::before,
+		.payroll-feature-card::after {
+			transition: none;
+		}
 	}
 
 	.payroll-feature-card__visual {
@@ -96,36 +351,59 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 		--payroll-automation-scale: 1;
 	}
 
-	:global(html[lang='pt']) .payroll-feature-card__visual--automation {
+	.payroll-feature-card[data-automation-copy-wrapped='true'] .payroll-feature-card__visual--automation {
+		--payroll-automation-scale: 0.91;
+	}
+
+	:global(html[lang='pt']) .payroll-feature-card[data-automation-copy-wrapped='true'] .payroll-feature-card__visual--automation {
 		--payroll-automation-scale: 0.9;
+	}
+
+	:global(html[lang='ru']) .payroll-feature-card[data-automation-copy-wrapped='true'] .payroll-feature-card__visual--automation {
+		--payroll-automation-scale: 0.88;
 	}
 
 	.payroll-feature-card__visual--automation .payroll-feature-card__visual-scale {
 		width: calc(100% / var(--payroll-visual-scale, var(--payroll-automation-scale)));
 		max-width: calc(100% / var(--payroll-visual-scale, var(--payroll-automation-scale)));
 		transform: scale(var(--payroll-visual-scale, var(--payroll-automation-scale)));
-		transform-origin: top center;
+		transform-origin: center center;
+	}
+
+	.payroll-feature-card__visual--fees {
+		--payroll-fees-scale: 1;
+	}
+
+	.payroll-feature-card[data-fees-copy-wrapped='true'] .payroll-feature-card__visual--fees {
+		--payroll-fees-scale: 0.9;
+	}
+
+	.payroll-feature-card[data-fees-title-wrapped='true'] .payroll-feature-card__visual--fees {
+		--payroll-fees-scale: 0.84;
+	}
+
+	.payroll-feature-card__visual--fees > div {
+		width: calc(100% / var(--payroll-fees-scale));
+		max-width: calc(100% / var(--payroll-fees-scale));
+		transform: scale(var(--payroll-fees-scale));
+		transform-origin: center center;
 	}
 
 	@media (min-width: 1080px) and (max-width: 1099.98px) {
-		.payroll-feature-card__visual--automation {
+		.payroll-feature-card[data-automation-copy-wrapped='true'] .payroll-feature-card__visual--automation {
 			--payroll-automation-scale: 0.88;
 		}
 	}
 
-	@media (min-width: 1080px) and (max-width: 1280px) {
-		:global(html[lang='ru']) .payroll-feature-card__visual--automation {
-			--payroll-automation-scale: 0.88;
-		}
-
-		:global(html[lang='ru']) .payroll-feature-card__methods-visual {
+	@media (min-width: 561px) {
+		.payroll-feature-card[data-methods-copy-wrapped='true'] .payroll-feature-card__methods-visual {
 			--payroll-methods-natural-width: 450px;
 			--payroll-methods-natural-height: 461px;
 			--payroll-methods-fit-scale: 0.88;
 			margin-bottom: -2rem;
 		}
 
-		:global(html[lang='ru']) .payroll-feature-card__methods-fit {
+		.payroll-feature-card[data-methods-copy-wrapped='true'] .payroll-feature-card__methods-fit {
 			position: relative;
 			flex: 0 0 auto;
 			width: calc(var(--payroll-methods-natural-width) * var(--payroll-methods-fit-scale));
@@ -133,7 +411,7 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 			height: calc(var(--payroll-methods-natural-height) * var(--payroll-methods-fit-scale));
 		}
 
-		:global(html[lang='ru']) .payroll-feature-card__methods-scale {
+		.payroll-feature-card[data-methods-copy-wrapped='true'] .payroll-feature-card__methods-scale {
 			position: absolute;
 			left: 50%;
 			bottom: 0;
@@ -142,32 +420,9 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 			transform: translateX(-50%) scale(var(--payroll-methods-fit-scale));
 			transform-origin: bottom center;
 		}
-	}
 
-	@media (min-width: 1080px) {
-		:global(html[lang='pt']) .payroll-feature-card__methods-visual {
-			--payroll-methods-natural-width: 450px;
-			--payroll-methods-natural-height: 461px;
+		:global(html[lang='pt']) .payroll-feature-card[data-methods-copy-wrapped='true'] .payroll-feature-card__methods-visual {
 			--payroll-methods-fit-scale: 0.84;
-			margin-bottom: -2rem;
-		}
-
-		:global(html[lang='pt']) .payroll-feature-card__methods-fit {
-			position: relative;
-			flex: 0 0 auto;
-			width: calc(var(--payroll-methods-natural-width) * var(--payroll-methods-fit-scale));
-			max-width: none;
-			height: calc(var(--payroll-methods-natural-height) * var(--payroll-methods-fit-scale));
-		}
-
-		:global(html[lang='pt']) .payroll-feature-card__methods-scale {
-			position: absolute;
-			left: 50%;
-			bottom: 0;
-			width: var(--payroll-methods-natural-width);
-			height: var(--payroll-methods-natural-height);
-			transform: translateX(-50%) scale(var(--payroll-methods-fit-scale));
-			transform-origin: bottom center;
 		}
 	}
 
@@ -176,29 +431,8 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 			padding-inline: clamp(1.25rem, 5vw, 2rem);
 		}
 
-		:global(html[lang='pt']) .payroll-feature-card__methods-visual {
-			--payroll-methods-natural-width: 450px;
-			--payroll-methods-natural-height: 461px;
-			--payroll-methods-fit-scale: 0.82;
-			margin-bottom: -2rem;
-		}
-
-		:global(html[lang='pt']) .payroll-feature-card__methods-fit {
-			position: relative;
-			flex: 0 0 auto;
-			width: calc(var(--payroll-methods-natural-width) * var(--payroll-methods-fit-scale));
-			max-width: none;
-			height: calc(var(--payroll-methods-natural-height) * var(--payroll-methods-fit-scale));
-		}
-
-		:global(html[lang='pt']) .payroll-feature-card__methods-scale {
-			position: absolute;
-			left: 50%;
-			bottom: 0;
-			width: var(--payroll-methods-natural-width);
-			height: var(--payroll-methods-natural-height);
-			transform: translateX(-50%) scale(var(--payroll-methods-fit-scale));
-			transform-origin: bottom center;
+		.payroll-feature-card > :is(h3, p[data-garna-subtitle]) {
+			max-width: 100%;
 		}
 
 		.payroll-feature-card__visual > div,
@@ -213,14 +447,44 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 	}
 
 	@media (max-width: 480px) {
-		.payroll-feature-card__visual--automation {
+		.payroll-feature-card[data-automation-copy-wrapped='true'] .payroll-feature-card__visual--automation {
 			--payroll-automation-scale: 0.91;
 		}
 	}
 
+	@media (max-width: 503.98px) {
+		:global(html[lang='en']) .payroll-feature-card__visual--fees {
+			--payroll-fees-scale: 0.9;
+		}
+	}
+
+	@media (max-width: 497.98px) {
+		:global(html[lang='en']) .payroll-feature-card__visual--fees {
+			--payroll-fees-scale: 0.75;
+		}
+	}
+
+	@media (max-width: 359.98px) {
+		:global(html[lang='en']) .payroll-feature-card__visual--fees {
+			--payroll-fees-scale: 0.65;
+		}
+	}
+
 	@media (max-width: 560px) {
-		:global(html[lang='ru']) .payroll-feature-card__visual--automation {
+		:global(html[lang='ru']) .payroll-feature-card[data-automation-copy-wrapped='true'] .payroll-feature-card__visual--automation {
 			--payroll-automation-scale: 0.84;
+		}
+
+		.payroll-feature-card[data-automation-copy-dense='true'] .payroll-feature-card__visual--automation {
+			--payroll-automation-scale: 0.8;
+		}
+
+		:global(html[lang='pt']) .payroll-feature-card[data-automation-title-dense='true'] .payroll-feature-card__visual--automation {
+			--payroll-automation-scale: 0.82;
+		}
+
+		.payroll-feature-card[data-automation-copy-wrapped='true'][data-automation-copy-dense='true'][data-automation-copy-extra-dense='true'] .payroll-feature-card__visual--automation {
+			--payroll-automation-scale: 0.68;
 		}
 
 		:global(html[lang='ru']) .payroll-feature-card__visual--fees {
@@ -231,16 +495,32 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 			--payroll-fees-scale: 0.9;
 		}
 
+		:global(html[lang='es']) .payroll-feature-card[data-fees-title-wrapped='true'] .payroll-feature-card__visual--fees {
+			--payroll-fees-scale: 0.8;
+		}
+
 		:global(html[lang='pt']) .payroll-feature-card__visual--fees {
 			--payroll-fees-scale: 0.9;
 		}
 
-		:global(html[lang='ru']) .payroll-feature-card__visual--fees > div,
-		:global(html[lang='es']) .payroll-feature-card__visual--fees > div,
-		:global(html[lang='pt']) .payroll-feature-card__visual--fees > div {
-			width: calc(100% / var(--payroll-fees-scale));
-			max-width: calc(100% / var(--payroll-fees-scale));
-			transform: scale(var(--payroll-fees-scale));
+		:global(html[lang='pt']) .payroll-feature-card[data-fees-title-wrapped='true'] .payroll-feature-card__visual--fees {
+			--payroll-fees-scale: 0.78;
+		}
+
+		.payroll-feature-card__visual--fees {
+			--payroll-fees-natural-width: 420px;
+			--payroll-fees-fit-scale: min(
+				var(--payroll-fees-scale),
+				calc(100cqw / var(--payroll-fees-natural-width))
+			);
+			container-type: inline-size;
+		}
+
+		.payroll-feature-card__visual--fees > .payroll-feature-card__fees-scale {
+			flex: 0 0 auto;
+			width: var(--payroll-fees-natural-width);
+			max-width: none;
+			transform: scale(var(--payroll-fees-fit-scale));
 			transform-origin: center center;
 		}
 
@@ -248,13 +528,22 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 			--payroll-methods-natural-width: 450px;
 			--payroll-methods-natural-height: 461px;
 			--payroll-methods-fit-bleed: 0px;
+			--payroll-methods-copy-scale: 1;
 			--payroll-methods-fit-scale: min(
-				1,
+				var(--payroll-methods-copy-scale),
 				calc((100cqw + var(--payroll-methods-fit-bleed)) / var(--payroll-methods-natural-width))
 			);
 			container-type: inline-size;
 			margin-bottom: -2rem;
 			padding-inline: 0;
+		}
+
+		.payroll-feature-card[data-methods-copy-wrapped='true'] .payroll-feature-card__methods-visual {
+			--payroll-methods-copy-scale: 0.88;
+		}
+
+		.payroll-feature-card[data-methods-copy-dense='true'] .payroll-feature-card__methods-visual {
+			--payroll-methods-copy-scale: 0.76;
 		}
 
 		:global(html[lang='en']) .payroll-feature-card__methods-visual,
@@ -280,4 +569,5 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 			transform-origin: bottom center;
 		}
 	}
+
 </style>

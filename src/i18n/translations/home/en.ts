@@ -35,16 +35,16 @@
 		homeProof: 'Payroll for work without borders',
 		manageGlobalPayroll: 'Manage Global Payroll Effortlessly',
 		hireEmployeesWorldwide: 'Hire Employees Worldwide',
-		effectivePayroll: 'Effective Payroll For Your Team Starts Here',
+		effectivePayroll: 'Your Global Payroll Workspace',
 		deferredPayments: 'Pay contractors now, settle later',
 		embeddedPayrollInfrastructure: 'Embedded Payroll Infrastructure',
 		trustedByBuilders: 'Trusted by 400+ Businesses Worldwide',
 	},
 	sectionDescriptions: {
 		homeProof: 'Support teams, contractors, and specialists wherever work happens',
-		manageGlobalPayroll: 'One platform to run payroll for freelancers, remote employees, and full-time teams',
+		manageGlobalPayroll: 'Run payroll, mass payouts, and single transfers for freelancers, contractors, and employees from one place',
 		hireEmployeesWorldwide: "Find and hire talents that you couldn't find locally without setting up a local legal entity",
-		effectivePayroll: "CSV mass payments or single transfers, no delays, no extra fees. Automate it once it's set up",
+		effectivePayroll: 'Manage balances, payout templates, transactions, and team funding from one clear dashboard',
 		deferredPayments:
 			'Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow',
 		embeddedPayrollInfrastructure:
@@ -80,27 +80,55 @@
 			ariaLabel: 'Choose a payroll proof card',
 		},
 	},
+	homeWorkflows: {
+		ariaLabel: 'Garna global team workflows',
+		pay: {
+			title: 'Pay global teams with ease',
+			description: 'Run payroll, mass payouts, and single transfers across countries, currencies, and payment methods',
+			imageAlt: 'A global professional against a clear blue sky',
+			status: 'Payroll completed',
+			statusMeta: '38 team members paid',
+			statusAmount: '$96,400',
+		},
+		contractors: {
+			title: 'Manage contractors with confidence',
+			description: 'Onboard contractors, approve invoices, and stay compliant from one platform',
+			imageAlt: 'A remote contractor working from anywhere',
+			status: 'Contractor agreement',
+			statusMeta: 'Both parties signed',
+			statusAmount: 'Complete',
+		},
+		hire: {
+			title: 'Hire employees worldwide with ease',
+			description: 'Hire employees abroad without local entities, with contracts and onboarding handled in one place',
+			imageAlt: 'A new employee joining a global team',
+			status: 'Employee hired',
+			statusMeta: 'Start date confirmed',
+			statusAmount: 'Ready',
+		},
+	},
 	manageGlobalPayroll: {
 		cards: {
 			automation: {
-				title: 'Automated Payroll Platform',
-				description: 'Automate global payout processes with a flexible, user-friendly platform',
+				title: 'Automated Payroll Runs',
+				description: 'Set up salary accruals, approvals, and payouts in one repeatable flow',
 			},
 			globalReach: {
-				title: 'Global Reach',
-				description: 'Pay in 150+ countries with local currencies and crypto',
+				title: 'Global Payroll Coverage',
+				description: 'Run payroll across 150+ countries with local currencies and crypto',
 			},
 			payoutMethods: {
-				title: 'Flexible Payout Methods',
-				description: 'Pay teams by bank transfer, card, electronic wallet, or crypto',
+				title: 'Team Payout Methods',
+				description: 'Send mass payments or single transfers by bank, card, wallet, or crypto',
 			},
 			fees: {
-				title: 'No hidden Fees',
-				description: 'Transparent pricing, zero setup cost',
+				title: 'Transparent Payment Costs',
+				description: 'See rates, fees, and total charge before each payout',
 			},
 		},
 		visual: {
 			automation: {
+				ariaLabel: 'Automated salary accrual stack',
 				taxesCalculated: 'Taxes calculated',
 				autoCheck: 'Auto-check',
 				timesheetsSynced: 'Timesheets synced',
@@ -128,6 +156,7 @@
 				noHiddenFees: 'No hidden fees',
 			},
 			methods: {
+				back: 'Back',
 				withdrawFunds: 'Withdraw funds',
 				bankTransfer: 'Bank transfer',
 				transferToCard: 'Transfer to card',
@@ -159,36 +188,36 @@
 	contractorCarousel: {
 		features: {
 			hire: {
-				title: 'Hire Contractors\nWorldwide',
-				description: 'Manage contractors, invoices, and approvals from one platform',
+				title: 'Contractor Onboarding\nand Management',
+				description: 'Onboard contractors, manage profiles and agreements, and keep every record organized in one workspace',
 			},
 			payments: {
-				title: 'Flexible Global\nPayments',
-				description: 'Pay in 80+ currencies across 150+ countries by bank, card, e-wallet, or crypto',
+				title: 'Contractor Invoice\nApprovals',
+				description: 'Review contractor invoices, approve amounts, and prepare payouts in the same workflow',
 			},
 			protection: {
-				title: 'Get Misclassification\nProtection',
-				description: 'Garna acts as contractor or agent of record and bears misclassification risks',
+				title: 'Misclassification\nProtection',
+				description: 'Protect your business from misclassification risk with Contractor and Agent of Record support',
 			},
 		},
 		notifications: {
 			hire: {
 				name: 'Maya Chen',
-				status: 'Contractor onboarded',
+				status: 'Onboarding complete',
 				badge: 'Active',
 			},
 			payment: {
 				time: '2 min ago',
-				title: 'Payment sent',
-				description: '1,000 USD was converted to 900 EUR',
+				title: 'Invoice approved',
+				description: '1,000 USD ready for payout',
 			},
 			compliance: {
 				riskLabel: 'Classification risk',
 				riskValue: 'Low',
-				reviewLabel: 'Contract review',
-				reviewValue: 'Complete',
+				reviewLabel: 'Agreement review',
+				reviewValue: 'Passed',
 				footerTitle: 'Protected by Garna',
-				footerMeta: 'updated now',
+				footerMeta: 'Active',
 			},
 		},
 	},

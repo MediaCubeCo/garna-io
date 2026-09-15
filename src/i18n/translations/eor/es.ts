@@ -10,8 +10,14 @@ export const eorEs = {
 	},
 	"hero": {
 		"badge": "Empleador oficial para equipos globales",
-		"title": "Contratación internacional sencilla, rápida y sin complicaciones",
-		"description": "Contratar a los mejores talentos de todo el mundo no tiene por qué implicar un conjunto de complejas normas de cumplimiento ni sistemas de nóminas independientes en los que haya que crear múltiples entidades jurídicas en cada país. En Garna, ofrecemos una solución sencilla y moderna de empleador oficial diseñada para ayudar a las empresas a expandirse a nivel mundial sin verse atrapadas en complicaciones operativas",
+		"title": "Employer of Record\nContrata en más de 150 países",
+		"description": "Garna se convierte en el empleador legal de tu equipo en el extranjero. Gestionamos los contratos, las nóminas, los impuestos y el cumplimiento normativo; tú diriges el trabajo",
+		"notifications": {
+			"startsToday": "Empieza hoy",
+			"startsMonday": "Empieza el lunes",
+			"productDesigner": "Diseñadora de producto",
+			"softwareEngineer": "Ingeniero de software"
+		},
 		"cta": "Solicita un demo",
 		"slides": {
 			"hire": {

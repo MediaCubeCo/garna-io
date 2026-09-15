@@ -996,6 +996,15 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 
 					jumpToPageTop();
 					currentContent.replaceWith(targetContent);
+					// Media adopted from DOMParser may not start loading in the live document.
+					for (const video of targetContent.querySelectorAll('video[autoplay][muted]')) {
+						if (!(video instanceof HTMLVideoElement)) continue;
+						video.muted = true;
+						video.load();
+						void video.play().catch(() => {
+							// Autoplay can still be denied by the browser's playback policy.
+						});
+					}
 					currentScripts.replaceWith(targetScripts);
 					jumpToPageTop();
 					await runScripts(targetContent);

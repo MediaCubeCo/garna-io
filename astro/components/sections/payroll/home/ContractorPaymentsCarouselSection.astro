@@ -5,17 +5,17 @@ interface Props {
 	copyVariant?: 'carousel' | 'section';
 }
 
-const { copyVariant = 'carousel' } = Astro.props;
+const { copyVariant = 'section' } = Astro.props;
 
 const slides = [
 	{
 		key: 'hire',
 		title: {
-			text: 'Hire Contractors\nWorldwide',
+			text: 'Contractor Onboarding\nand Management',
 			translateKey: 'contractorCarousel.features.hire.title',
 		},
 		description: {
-			text: 'Manage contractors, invoices, and approvals\nfrom one platform',
+			text: 'Onboard contractors, manage profiles and agreements,\nand keep every record organized in one workspace',
 			translateKey: 'contractorCarousel.features.hire.description',
 		},
 		image: '/pages/payroll-solution-new/assets/contractor-hired-original.jpg',
@@ -27,7 +27,7 @@ const slides = [
 				translateKey: 'contractorCarousel.notifications.hire.name',
 			},
 			status: {
-				text: 'Contractor onboarded',
+				text: 'Onboarding complete',
 				translateKey: 'contractorCarousel.notifications.hire.status',
 			},
 			badge: {
@@ -39,11 +39,11 @@ const slides = [
 	{
 		key: 'payments',
 		title: {
-			text: 'Flexible Global\nPayments',
+			text: 'Contractor Invoice\nApprovals',
 			translateKey: 'contractorCarousel.features.payments.title',
 		},
 		description: {
-			text: 'Pay in 80+ currencies across 150+ countries\nby bank, card, e-wallet, or crypto',
+			text: 'Review contractor invoices, approve amounts,\nand prepare payouts in the same workflow',
 			translateKey: 'contractorCarousel.features.payments.description',
 		},
 		image: '/pages/payroll-solution-new/assets/flexible-global-payments.png',
@@ -58,11 +58,11 @@ const slides = [
 				translateKey: 'contractorCarousel.notifications.payment.time',
 			},
 			title: {
-				text: 'Payment sent',
+				text: 'Invoice approved',
 				translateKey: 'contractorCarousel.notifications.payment.title',
 			},
 			description: {
-				text: '1,000 USD was converted to 900 EUR',
+				text: '1,000 USD ready for payout',
 				translateKey: 'contractorCarousel.notifications.payment.description',
 			},
 		},
@@ -70,11 +70,11 @@ const slides = [
 	{
 		key: 'protection',
 		title: {
-			text: 'Get Misclassification\nProtection',
+			text: 'Misclassification\nProtection',
 			translateKey: 'contractorCarousel.features.protection.title',
 		},
 		description: {
-			text: 'Garna acts as contractor or agent of record\nand bears misclassification risks',
+			text: 'Protect your business from misclassification risk\nwith Contractor and Agent of Record support',
 			translateKey: 'contractorCarousel.features.protection.description',
 		},
 		image: '/pages/payroll-solution-new/assets/misclassification-protection.png',
@@ -89,11 +89,11 @@ const slides = [
 				translateKey: 'contractorCarousel.notifications.compliance.riskValue',
 			},
 			reviewLabel: {
-				text: 'Contract review',
+				text: 'Agreement review',
 				translateKey: 'contractorCarousel.notifications.compliance.reviewLabel',
 			},
 			reviewValue: {
-				text: 'Complete',
+				text: 'Passed',
 				translateKey: 'contractorCarousel.notifications.compliance.reviewValue',
 			},
 			footerTitle: {
@@ -101,7 +101,7 @@ const slides = [
 				translateKey: 'contractorCarousel.notifications.compliance.footerTitle',
 			},
 			footerMeta: {
-				text: 'updated now',
+				text: 'Active',
 				translateKey: 'contractorCarousel.notifications.compliance.footerMeta',
 			},
 		},

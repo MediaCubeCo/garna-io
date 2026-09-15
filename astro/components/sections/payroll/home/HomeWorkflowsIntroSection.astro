@@ -1,0 +1,698 @@
+---
+import Section from '../../../layout/Section.astro';
+import Button from '../../../ui/Button.astro';
+
+const activeWorkflowKey = 'pay';
+
+const workflows = [
+	{
+		key: 'pay',
+		title: { text: 'Pay global teams with ease', translateKey: 'homeWorkflows.pay.title' },
+		description: {
+			text: 'Run payroll, mass payouts, and single transfers across countries, currencies, and payment methods',
+			translateKey: 'homeWorkflows.pay.description',
+		},
+		image: '/pages/payroll-solution-new/assets/home-hero-profile-clouds-v2.jpg',
+		alt: 'A global professional against a clear blue sky',
+		altKey: 'homeWorkflows.pay.imageAlt',
+			notice: {
+				icon: 'receipt',
+				title: 'Payroll completed',
+				titleKey: 'homeWorkflows.pay.status',
+				meta: '38 team members paid',
+				metaKey: 'homeWorkflows.pay.statusMeta',
+				amount: '$96,400',
+				amountKey: 'homeWorkflows.pay.statusAmount',
+			},
+	},
+	{
+		key: 'contractors',
+		title: { text: 'Manage contractors with confidence', translateKey: 'homeWorkflows.contractors.title' },
+		description: {
+			text: 'Onboard contractors, approve invoices, and stay compliant from one platform',
+			translateKey: 'homeWorkflows.contractors.description',
+		},
+		image: '/pages/payroll-solution-new/assets/home-proof-mountain-man-v1.png',
+		alt: 'A remote contractor working from anywhere',
+		altKey: 'homeWorkflows.contractors.imageAlt',
+		notice: {
+			icon: 'contract',
+			title: 'Contractor agreement',
+			titleKey: 'homeWorkflows.contractors.status',
+			meta: 'Both parties signed',
+			metaKey: 'homeWorkflows.contractors.statusMeta',
+			amount: 'Complete',
+			amountKey: 'homeWorkflows.contractors.statusAmount',
+		},
+	},
+	{
+		key: 'hire',
+		title: { text: 'Hire employees worldwide with ease', translateKey: 'homeWorkflows.hire.title' },
+		description: {
+			text: 'Hire employees abroad without local entities, with contracts and onboarding handled in one place',
+			translateKey: 'homeWorkflows.hire.description',
+		},
+		image: '/pages/payroll-solution-new/assets/home-workflows-hire-upscaled.jpg',
+		alt: 'A new employee joining a global team',
+		altKey: 'homeWorkflows.hire.imageAlt',
+		notice: {
+			icon: 'employee',
+			title: 'Employee hired',
+			titleKey: 'homeWorkflows.hire.status',
+			meta: 'Start date confirmed',
+			metaKey: 'homeWorkflows.hire.statusMeta',
+			amount: 'Ready',
+			amountKey: 'homeWorkflows.hire.statusAmount',
+		},
+	},
+] as const;
+
+const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkflowKey) ?? workflows[0];
+---
+
+<Section
+	class="home-proof-section home-workflows-intro overflow-hidden"
+	containerClass="home-workflows-intro__container"
+	width="content"
+	spacing="default"
+	layout="split"
+	align="left"
+	splitClass="home-workflows-intro__split"
+	headerClass="home-workflows-intro__header"
+	descriptionClass="home-workflows-intro__description"
+	contentClass="home-workflows-intro__visual-column"
+>
+	<Button
+		slot="action"
+		data-workflow-cta
+		href="#"
+		size="header"
+		variant="primary"
+		effect="none"
+		icon="none"
+		onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'home_workflows_demo' });"
+	>
+		<span data-translate="cta.bookDemo">Book a demo</span>
+	</Button>
+	<div slot="controls" class="home-workflows-headings">
+		{workflows.map((workflow) => <div data-workflow-heading={workflow.key} aria-hidden={workflow.key === activeWorkflowKey ? undefined : 'true'} style={workflow.key === activeWorkflowKey ? undefined : 'opacity:0;visibility:hidden'}>
+			<header class="text-left home-workflows-intro__header">
+				<h2 class="font-manrope text-4xl font-normal leading-tight tracking-tight text-white md:text-5xl" data-translate={workflow.title.translateKey}>
+					{workflow.title.text}
+				</h2>
+				<p data-garna-subtitle class="mt-6 font-manrope text-lg leading-relaxed md:text-xl home-workflows-intro__description" data-translate={workflow.description.translateKey}>
+					{workflow.description.text}
+				</p>
+			</header>
+		</div>)}
+	</div>
+	<div class="home-workflows-stack" aria-label="Garna global team workflows" data-translate-aria-label="homeWorkflows.ariaLabel">
+		{workflows.map((workflow) => {
+			const isActive = workflow.key === activeWorkflow.key;
+
+			return <div
+				class:list={[
+					'home-workflows-stack__card',
+					`home-workflows-stack__card--${workflow.key}`,
+					isActive && 'is-active',
+				]}
+				data-home-proof-card={isActive ? 'featured' : undefined}
+				data-workflow-card={workflow.key}
+				aria-hidden={isActive ? undefined : 'true'}
+			>
+			<img src={workflow.image} alt={workflow.alt} loading="eager" data-home-proof-image={isActive ? 'featured' : undefined} data-translate-alt={workflow.altKey} />
+			<div class="home-workflows-stack__status">
+				<span class="home-workflows-stack__status-icon" aria-hidden="true">
+					{workflow.notice.icon === 'receipt' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10a2 2 0 0 1 2 2v16l-3-2-2 2-2-2-2 2-2-2-3 2V5a2 2 0 0 1 2-2Z"></path><path d="M9 8h6"></path><path d="M9 12h6"></path></svg>}
+					{workflow.notice.icon === 'check' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"></path></svg>}
+					{workflow.notice.icon === 'contract' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M8 13h8"></path><path d="M8 17h5"></path></svg>}
+					{workflow.notice.icon === 'employee' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="3.5"></circle><path d="M3.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M19 10v6"></path><path d="M16 13h6"></path></svg>}
+				</span>
+				<span>
+					<strong data-translate={workflow.notice.titleKey}>{workflow.notice.title}</strong>
+					<small data-translate={workflow.notice.metaKey}>{workflow.notice.meta}</small>
+				</span>
+				{workflow.notice.amount && <em class:list={{ 'home-workflows-stack__badge': workflow.key !== 'pay' }} data-translate={workflow.notice.amountKey ?? undefined}>{workflow.notice.amount}</em>}
+			</div>
+			</div>;
+		})}
+	</div>
+	<div class="home-workflows-progress" aria-hidden="true">
+		{workflows.map((workflow, index) => <span data-workflow-progress={workflow.key} class:list={{ 'is-active': index === 0 }}></span>)}
+	</div>
+</Section>
+
+<style>
+	:global(.home-workflows-mobile-rail) { display: none; }
+	.home-workflows-progress { display: flex; justify-content: center; align-items: center; gap: .45rem; margin-top: 24px; }
+	.home-workflows-progress span { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 9999px; background: rgb(255 255 255 / .24); padding: 0; transition: width 220ms ease, background 220ms ease; }
+	.home-workflows-progress span:hover { background: rgb(255 255 255 / .44); }
+	.home-workflows-progress span.is-active { width: 3.4rem; background: rgb(203 243 0 / .18); box-shadow: inset 0 0 0 1px rgb(203 243 0 / .18); }
+	.home-workflows-progress span.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #cbf300; box-shadow: 0 0 14px rgb(203 243 0 / .52); content: ''; transform: scaleX(var(--step-fill, 0)); transform-origin: left center; }
+	.home-workflows-headings { display: grid; overflow: visible; }
+	.home-workflows-headings > div { grid-area: 1 / 1; }
+	@media (min-width: 841px) {
+		:global(.home-workflows-intro__split) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+		:global(.home-workflows-intro__visual-column) { margin-top: 0; }
+	}
+	.home-workflows-intro {
+		background: #0a0a0a;
+	}
+
+	:global(.home-workflows-intro__header) {
+		max-width: 56rem;
+	}
+	:global(.home-workflows-intro__header h2) {
+		max-width: 20ch;
+		text-wrap: balance;
+	}
+
+	:global(.home-workflows-intro__description) {
+		max-width: 42rem;
+		margin-inline: 0;
+		text-wrap: balance;
+	}
+
+	.home-workflows-intro__visual-column {
+		min-width: 0;
+		margin-top: clamp(3rem, 6vw, 4.5rem);
+	}
+
+	.home-workflows-stack {
+		position: relative;
+		width: min(76%, 26rem);
+		aspect-ratio: 0.813;
+		margin-inline: auto;
+	}
+
+	.home-workflows-stack__card {
+		container-type: inline-size;
+		position: absolute;
+		inset: 12% 3% 0;
+		overflow: hidden;
+		border: 0;
+		border-radius: 28px;
+		background: #121212;
+		box-shadow: none;
+		opacity: 0;
+		transform-origin: center bottom;
+	}
+	@media (min-width: 841px) {
+		.home-workflows-stack { width: min(92%, 29rem, calc((100svh - var(--home-workflows-header-height, 64px) - 64px) * .813)); }
+	}
+
+	.home-workflows-stack__card--hire {
+		z-index: 0;
+		opacity: 0;
+		transform: translateY(-3rem) scale(0.94);
+	}
+
+	.home-workflows-stack__card--contractors {
+		z-index: 1;
+		opacity: 0;
+		transform: translateY(-1.5rem) scale(0.97);
+	}
+
+	.home-workflows-stack__card--pay {
+		z-index: 0;
+	}
+
+	.home-workflows-stack__card.is-active {
+		z-index: 2;
+		opacity: 1;
+		transform: none;
+	}
+
+	.home-workflows-stack__card > img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.home-workflows-stack__card--hire > img {
+		object-position: 5% center;
+	}
+
+	.home-workflows-stack__card--contractors > img {
+		object-position: center 64%;
+		transform: scale(1.36);
+		transform-origin: center center;
+	}
+
+	.home-workflows-stack__card--pay > img {
+		object-position: center bottom;
+		transform: scale(1.95);
+		transform-origin: center bottom;
+	}
+
+	.home-workflows-stack__status {
+		--home-workflows-status-title-size: .96rem;
+		position: absolute;
+		right: 1rem;
+		bottom: 1rem;
+		left: 1rem;
+		min-height: 4.6rem;
+		box-sizing: border-box;
+		display: grid;
+		grid-template-columns: 3rem minmax(0, 1fr) auto;
+		align-items: center;
+		gap: .82rem;
+		padding: .62rem .85rem;
+		border: 1px solid rgb(255 255 255 / 0.13);
+		border-radius: 1.25rem;
+		line-height: 1.2;
+		white-space: nowrap;
+		background: rgb(8 9 10 / 0.75);
+		color: #fff;
+		backdrop-filter: blur(12px);
+	}
+
+	.home-workflows-stack__status-icon {
+		display: grid;
+		width: 3rem;
+		height: 3rem;
+		place-items: center;
+		border-radius: .78rem;
+		background: #cbf300;
+		color: #0a0a0a;
+	}
+
+	.home-workflows-stack__status-icon svg {
+		width: 1.45rem;
+		height: 1.45rem;
+	}
+	/* Optical correction for the more open person/plus outline. */
+	.home-workflows-stack__card--hire .home-workflows-stack__status-icon svg {
+		stroke-width: 1.9;
+	}
+
+	.home-workflows-stack__status strong,
+	.home-workflows-stack__status small {
+		display: block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.home-workflows-stack__status strong {
+		font-size: var(--home-workflows-status-title-size);
+		font-weight: 650;
+		line-height: 1.15;
+	}
+
+	.home-workflows-stack__status small {
+		margin-top: .22rem;
+		color: rgb(255 255 255 / 0.54);
+		font-size: .74rem;
+	}
+
+	.home-workflows-stack__status em {
+		align-self: start;
+		margin-top: .5rem;
+		font-size: .9rem;
+		font-style: normal;
+		font-weight: 620;
+		line-height: calc(var(--home-workflows-status-title-size) * 1.15);
+		white-space: nowrap;
+	}
+
+	.home-workflows-stack__status em.home-workflows-stack__badge {
+		margin-top: .45rem;
+		padding: .31rem .44rem;
+		border: 1px solid rgb(255 255 255 / 0.18);
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.08);
+		color: rgb(255 255 255 / 0.9);
+		font-size: .64rem;
+		font-weight: 650;
+		line-height: 1;
+	}
+
+	@container (max-width: 430px) {
+		.home-workflows-stack__status {
+			--home-workflows-status-title-size: .88rem;
+			right: .85rem;
+			bottom: .85rem;
+			left: .85rem;
+			min-height: 4.05rem;
+			grid-template-columns: 2.55rem minmax(0, 1fr) auto;
+			gap: .68rem;
+			padding: .52rem .72rem;
+			border-radius: 1.08rem;
+		}
+
+		.home-workflows-stack__status-icon {
+			width: 2.55rem;
+			height: 2.55rem;
+			border-radius: .68rem;
+		}
+
+		.home-workflows-stack__status-icon svg {
+			width: 1.24rem;
+			height: 1.24rem;
+		}
+
+		.home-workflows-stack__status small {
+			margin-top: .18rem;
+			font-size: .68rem;
+		}
+
+		.home-workflows-stack__status em {
+			margin-top: .43rem;
+			font-size: .82rem;
+		}
+
+		.home-workflows-stack__status em.home-workflows-stack__badge {
+			margin-top: .38rem;
+			padding: .27rem .38rem;
+			font-size: .58rem;
+		}
+	}
+
+	@container (max-width: 360px) {
+		.home-workflows-stack__status {
+			--home-workflows-status-title-size: .82rem;
+			right: .72rem;
+			bottom: .72rem;
+			left: .72rem;
+			min-height: 3.65rem;
+			grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+			gap: .56rem;
+			padding: .45rem .62rem;
+			border-radius: .95rem;
+		}
+
+		.home-workflows-stack__status-icon {
+			width: 2.25rem;
+			height: 2.25rem;
+			border-radius: .6rem;
+		}
+
+		.home-workflows-stack__status-icon svg {
+			width: 1.08rem;
+			height: 1.08rem;
+		}
+
+		.home-workflows-stack__status small {
+			margin-top: .15rem;
+			font-size: .62rem;
+		}
+
+		.home-workflows-stack__status em {
+			margin-top: .4rem;
+			font-size: .76rem;
+		}
+
+		.home-workflows-stack__status em.home-workflows-stack__badge {
+			margin-top: .34rem;
+			padding: .24rem .34rem;
+			font-size: .54rem;
+		}
+	}
+
+	@media (max-width: 520px) {
+		:global(.home-workflows-intro__header h2) {
+			font-size: 2.25rem;
+			line-height: 1.25;
+		}
+
+		.home-workflows-stack {
+			width: 70%;
+			aspect-ratio: 0.74;
+		}
+
+		.home-workflows-stack__card {
+			inset: 12% 1% 0;
+			border-radius: 20px;
+		}
+
+		.home-workflows-stack__card--hire {
+			transform: translateY(-2rem) scale(0.94);
+		}
+
+		.home-workflows-stack__card--contractors {
+			transform: translateY(-1rem) scale(0.97);
+		}
+
+	}
+	@media (max-width: 840px) {
+		:global(.home-workflows-intro__header h2) { width: 100%; text-wrap: wrap; }
+		.home-workflows-stack > [data-workflow-card] { display: none; }
+		:global(.home-workflows-mobile-rail) { display: block; position: absolute; inset: 0; transition: transform 520ms cubic-bezier(.22, 1, .36, 1); will-change: transform; }
+		:global(.home-workflows-mobile-rail .home-workflows-mobile-card) { width: 100%; right: auto; opacity: .55; visibility: visible; transform: scale(.94); transform-origin: center left; transition: opacity 420ms ease, transform 520ms cubic-bezier(.22, 1, .36, 1), left 520ms cubic-bezier(.22, 1, .36, 1); }
+		:global(.home-workflows-mobile-rail .home-workflows-mobile-card.is-mobile-active) { opacity: 1; transform: none; }
+		:global(.home-workflows-mobile-card > img) { filter: brightness(.86) contrast(1.04) saturate(.94); }
+		:global(.home-workflows-mobile-card.is-mobile-active > img) { filter: none; }
+		:global(.home-workflows-mobile-card .home-workflows-stack__status) { opacity: 1 !important; }
+		:global(.home-workflows-intro__split) { grid-template-columns: minmax(0, 1fr); row-gap: 2.25rem; }
+		:global(.home-workflows-intro__header), :global(.home-workflows-intro__header h2), :global(.home-workflows-intro__description) { max-width: none; }
+		:global(.home-workflows-intro__visual-column) { margin-top: 0; clip-path: inset(-2px -100vw -2px 0); }
+		.home-workflows-stack { width: clamp(15rem, min(36vw, 35svh), 20rem); aspect-ratio: .78; margin-inline: 0; }
+		.home-workflows-stack__card { inset: 0; }
+		.home-workflows-progress { width: clamp(15rem, min(36vw, 35svh), 20rem); margin-top: 1rem; }
+	}
+	@media (max-width: 767px) {
+		.home-workflows-stack, .home-workflows-progress { width: clamp(12.5rem, min(62vw, 30svh), 20.5rem); }
+		:global(.home-workflows-intro__split) { row-gap: 2rem; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		:global(.home-workflows-mobile-rail), :global(.home-workflows-mobile-card) { transition: none; }
+	}
+	@media (max-width: 840px) {
+		.home-workflows-stack, .home-workflows-progress { width: var(--home-workflows-mobile-card-width, min(36vw, 30svh)); }
+		:global(.home-workflows-intro__split) { row-gap: 2.25rem; }
+		:global(.home-workflows-intro__description) { margin-top: 1.5rem; }
+		:global(.home-workflows-intro__split > div:first-child > .mt-10) { margin-top: 2rem; }
+	}
+	@media (max-width: 767px) {
+		:global(.home-workflows-intro__split) { row-gap: 2rem; }
+		:global(.home-workflows-intro__description) { margin-top: 1.25rem; }
+	}
+	@media (max-width: 822px) {
+		:global(.home-workflows-stack__card),
+		:global(.home-workflows-mobile-card) {
+			--home-workflows-status-reference-card-width: 18.5rem;
+			--home-workflows-status-scale: min(1, calc(100cqw / var(--home-workflows-status-reference-card-width)));
+			--home-workflows-status-inset: .72rem;
+			container-type: inline-size;
+		}
+
+		:global(.home-workflows-stack__status),
+		:global(.home-workflows-mobile-card .home-workflows-stack__status) {
+			--home-workflows-status-title-size: .82rem;
+			right: auto;
+			bottom: var(--home-workflows-status-inset);
+			left: var(--home-workflows-status-inset);
+			width: 17.05rem;
+			min-height: 3.65rem;
+			grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+			gap: .56rem;
+			padding: .45rem .62rem;
+			border-radius: .95rem;
+			transform: scale(var(--home-workflows-status-scale)) !important;
+			transform-origin: bottom left;
+		}
+
+		:global(.home-workflows-stack__status-icon),
+		:global(.home-workflows-mobile-card .home-workflows-stack__status-icon) {
+			width: 2.25rem;
+			height: 2.25rem;
+			border-radius: .6rem;
+		}
+
+		:global(.home-workflows-stack__status-icon svg),
+		:global(.home-workflows-mobile-card .home-workflows-stack__status-icon svg) {
+			width: 1.08rem;
+			height: 1.08rem;
+		}
+
+		:global(.home-workflows-stack__status small),
+		:global(.home-workflows-mobile-card .home-workflows-stack__status small) {
+			margin-top: .15rem;
+			font-size: .62rem;
+		}
+
+		:global(.home-workflows-stack__status em),
+		:global(.home-workflows-mobile-card .home-workflows-stack__status em) {
+			margin-top: .4rem;
+			font-size: .76rem;
+		}
+
+		:global(.home-workflows-stack__status em.home-workflows-stack__badge),
+		:global(.home-workflows-mobile-card .home-workflows-stack__status em.home-workflows-stack__badge) {
+			margin-top: .34rem;
+			padding: .24rem .34rem;
+			font-size: .54rem;
+		}
+	}
+	@media (max-width: 904px) {
+		:global(html[lang^="ru"] .home-workflows-stack__card),
+		:global(html[lang^="ru"] .home-workflows-mobile-card) {
+			--home-workflows-status-reference-card-width: 20.08rem;
+			--home-workflows-status-scale: min(1, calc(100cqw / var(--home-workflows-status-reference-card-width)));
+			--home-workflows-status-inset: .72rem;
+			container-type: inline-size;
+		}
+
+		:global(html[lang^="ru"] .home-workflows-stack__status),
+		:global(html[lang^="ru"] .home-workflows-mobile-card .home-workflows-stack__status) {
+			--home-workflows-status-title-size: .82rem;
+			right: auto;
+			bottom: var(--home-workflows-status-inset);
+			left: var(--home-workflows-status-inset);
+			width: calc(var(--home-workflows-status-reference-card-width) - 1.44rem);
+			min-height: 3.65rem;
+			grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+			gap: .56rem;
+			padding: .45rem .62rem;
+			border-radius: .95rem;
+			transform: scale(var(--home-workflows-status-scale)) !important;
+			transform-origin: bottom left;
+		}
+
+		:global(html[lang^="ru"] .home-workflows-stack__status-icon),
+		:global(html[lang^="ru"] .home-workflows-mobile-card .home-workflows-stack__status-icon) {
+			width: 2.25rem;
+			height: 2.25rem;
+			border-radius: .6rem;
+		}
+
+		:global(html[lang^="ru"] .home-workflows-stack__status-icon svg),
+		:global(html[lang^="ru"] .home-workflows-mobile-card .home-workflows-stack__status-icon svg) {
+			width: 1.08rem;
+			height: 1.08rem;
+		}
+
+		:global(html[lang^="ru"] .home-workflows-stack__status small),
+		:global(html[lang^="ru"] .home-workflows-mobile-card .home-workflows-stack__status small) {
+			margin-top: .15rem;
+			font-size: .62rem;
+		}
+
+		:global(html[lang^="ru"] .home-workflows-stack__status em),
+		:global(html[lang^="ru"] .home-workflows-mobile-card .home-workflows-stack__status em) {
+			margin-top: .4rem;
+			font-size: .76rem;
+		}
+
+		:global(html[lang^="ru"] .home-workflows-stack__status em.home-workflows-stack__badge),
+		:global(html[lang^="ru"] .home-workflows-mobile-card .home-workflows-stack__status em.home-workflows-stack__badge) {
+			margin-top: .34rem;
+			padding: .24rem .34rem;
+			font-size: .54rem;
+		}
+	}
+	@media (max-width: 856px) {
+		:global(html[lang^="es"] .home-workflows-stack__card),
+		:global(html[lang^="es"] .home-workflows-mobile-card) {
+			--home-workflows-status-reference-card-width: 18.912rem;
+			--home-workflows-status-scale: min(1, calc(100cqw / var(--home-workflows-status-reference-card-width)));
+			--home-workflows-status-inset: calc(.72rem * var(--home-workflows-status-scale));
+			container-type: inline-size;
+		}
+
+		:global(html[lang^="es"] .home-workflows-stack__status),
+		:global(html[lang^="es"] .home-workflows-mobile-card .home-workflows-stack__status) {
+			--home-workflows-status-title-size: .82rem;
+			right: auto;
+			bottom: var(--home-workflows-status-inset);
+			left: var(--home-workflows-status-inset);
+			width: calc(var(--home-workflows-status-reference-card-width) - 1.44rem);
+			min-height: 3.65rem;
+			grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+			gap: .56rem;
+			padding: .45rem .62rem;
+			border-radius: .95rem;
+			transform: scale(var(--home-workflows-status-scale)) !important;
+			transform-origin: bottom left;
+		}
+
+		:global(html[lang^="es"] .home-workflows-stack__status-icon),
+		:global(html[lang^="es"] .home-workflows-mobile-card .home-workflows-stack__status-icon) {
+			width: 2.25rem;
+			height: 2.25rem;
+			border-radius: .6rem;
+		}
+
+		:global(html[lang^="es"] .home-workflows-stack__status-icon svg),
+		:global(html[lang^="es"] .home-workflows-mobile-card .home-workflows-stack__status-icon svg) {
+			width: 1.08rem;
+			height: 1.08rem;
+		}
+
+		:global(html[lang^="es"] .home-workflows-stack__status small),
+		:global(html[lang^="es"] .home-workflows-mobile-card .home-workflows-stack__status small) {
+			margin-top: .15rem;
+			font-size: .62rem;
+		}
+
+		:global(html[lang^="es"] .home-workflows-stack__status em),
+		:global(html[lang^="es"] .home-workflows-mobile-card .home-workflows-stack__status em) {
+			margin-top: .4rem;
+			font-size: .76rem;
+		}
+
+		:global(html[lang^="es"] .home-workflows-stack__status em.home-workflows-stack__badge),
+		:global(html[lang^="es"] .home-workflows-mobile-card .home-workflows-stack__status em.home-workflows-stack__badge) {
+			margin-top: .34rem;
+			padding: .24rem .34rem;
+			font-size: .54rem;
+		}
+	}
+	@media (max-width: 828px) {
+		:global(html[lang^="pt"] .home-workflows-stack__card),
+		:global(html[lang^="pt"] .home-workflows-mobile-card) {
+			--home-workflows-status-reference-card-width: 18.6075rem;
+			--home-workflows-status-scale: min(1, calc(100cqw / var(--home-workflows-status-reference-card-width)));
+			--home-workflows-status-inset: calc(.72rem * var(--home-workflows-status-scale));
+			container-type: inline-size;
+		}
+
+		:global(html[lang^="pt"] .home-workflows-stack__status),
+		:global(html[lang^="pt"] .home-workflows-mobile-card .home-workflows-stack__status) {
+			--home-workflows-status-title-size: .82rem;
+			right: auto;
+			bottom: var(--home-workflows-status-inset);
+			left: var(--home-workflows-status-inset);
+			width: calc(var(--home-workflows-status-reference-card-width) - 1.44rem);
+			min-height: 3.65rem;
+			grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+			gap: .56rem;
+			padding: .45rem .62rem;
+			border-radius: .95rem;
+			transform: scale(var(--home-workflows-status-scale)) !important;
+			transform-origin: bottom left;
+		}
+
+		:global(html[lang^="pt"] .home-workflows-stack__status-icon),
+		:global(html[lang^="pt"] .home-workflows-mobile-card .home-workflows-stack__status-icon) {
+			width: 2.25rem;
+			height: 2.25rem;
+			border-radius: .6rem;
+		}
+
+		:global(html[lang^="pt"] .home-workflows-stack__status-icon svg),
+		:global(html[lang^="pt"] .home-workflows-mobile-card .home-workflows-stack__status-icon svg) {
+			width: 1.08rem;
+			height: 1.08rem;
+		}
+
+		:global(html[lang^="pt"] .home-workflows-stack__status small),
+		:global(html[lang^="pt"] .home-workflows-mobile-card .home-workflows-stack__status small) {
+			margin-top: .15rem;
+			font-size: .62rem;
+		}
+
+		:global(html[lang^="pt"] .home-workflows-stack__status em),
+		:global(html[lang^="pt"] .home-workflows-mobile-card .home-workflows-stack__status em) {
+			margin-top: .4rem;
+			font-size: .76rem;
+		}
+
+		:global(html[lang^="pt"] .home-workflows-stack__status em.home-workflows-stack__badge),
+		:global(html[lang^="pt"] .home-workflows-mobile-card .home-workflows-stack__status em.home-workflows-stack__badge) {
+			margin-top: .34rem;
+			padding: .24rem .34rem;
+			font-size: .54rem;
+		}
+	}
+</style>

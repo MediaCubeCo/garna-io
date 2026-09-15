@@ -10,9 +10,15 @@ export const eorEn = {
 	},
 	"hero": {
 		"badge": "Employer of Record for global teams",
-		"title": "Employer of Record Hire in 150+ Countries",
+		"title": "Employer of Record\nHire in 150+ Countries",
 		"description": "Garna becomes the legal employer for your team abroad. We run contracts, payroll, tax, and compliance, you manage the work",
 		"cta": "Book a demo",
+		"notifications": {
+			"startsToday": "Starts today",
+			"startsMonday": "Starts Monday",
+			"productDesigner": "Product Designer",
+			"softwareEngineer": "Software Engineer"
+		},
 		"slides": {
 			"hire": {
 				"title": "Hire Globally With Garna EOR",

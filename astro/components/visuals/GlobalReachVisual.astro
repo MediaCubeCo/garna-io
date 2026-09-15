@@ -98,7 +98,7 @@
 	.currency-pill-layer {
 		--currency-globe-reference-width: 430px;
 		--currency-pill-scale: min(1, calc(100cqw / var(--currency-globe-reference-width)));
-		--currency-pill-offset-y: 0%;
+		--currency-pill-offset-y: -8%;
 		container-type: inline-size;
 		pointer-events: none;
 	}
@@ -137,20 +137,20 @@
 	}
 
 	:global(html[lang='ru']) .currency-pill-layer {
-		--currency-pill-offset-y: -6%;
+		--currency-pill-offset-y: -10%;
 	}
 
 	:global(html[lang='es']) .currency-pill-layer {
-		--currency-pill-offset-y: -8%;
+		--currency-pill-offset-y: -10%;
 	}
 
 	:global(html[lang='pt']) .currency-pill-layer {
-		--currency-pill-offset-y: -6%;
+		--currency-pill-offset-y: -10%;
 	}
 
 	@media (min-width: 1080px) {
 		:global(html[lang='en']) .currency-pill-layer {
-			--currency-pill-offset-y: -4%;
+			--currency-pill-offset-y: -12%;
 		}
 	}
 

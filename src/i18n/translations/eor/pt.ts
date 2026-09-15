@@ -10,8 +10,14 @@ export const eorPt = {
 	},
 	"hero": {
 		"badge": "Employer of Record para equipas globais",
-		"title": "Contratação global simples, rápida e sem falhas",
-		"description": "Contratar os melhores talentos em qualquer parte do mundo não deve significar lidar com regras complexas de conformidade, sistemas de folha de pagamento separados ou criação de múltiplas entidades legais em cada país. Na Garna, oferecemos uma solução Employer of Record simples e moderna, concebida para ajudar empresas a expandirem-se globalmente sem ficarem presas em dificuldades operacionais",
+		"title": "Employer of Record\nContrate em mais de 150 países",
+		"description": "A Garna torna-se a empregadora legal da sua equipa no estrangeiro. Tratamos dos contratos, salários, impostos e conformidade legal; a gestão do trabalho fica consigo",
+		"notifications": {
+			"startsToday": "Começa hoje",
+			"startsMonday": "Começa na segunda",
+			"productDesigner": "Designer de produto",
+			"softwareEngineer": "Engenheiro de software"
+		},
 		"cta": "Marcar demo",
 		"slides": {
 			"hire": {

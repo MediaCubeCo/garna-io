@@ -64,7 +64,7 @@ const { stats, ariaLabel, ariaLabelKey, class: className = '' } = Astro.props;
 	.garna-hero-stats-row strong {
 		color: #ffffff;
 		font-family: Manrope, sans-serif;
-		font-size: clamp(1.35rem, 2.1vw, 1.95rem);
+		font-size: var(--garna-hero-stat-value-size, clamp(1.35rem, 2.1vw, 1.95rem));
 		font-weight: 400;
 		line-height: 1;
 	}
@@ -72,7 +72,7 @@ const { stats, ariaLabel, ariaLabelKey, class: className = '' } = Astro.props;
 	.garna-hero-stats-row span {
 		color: rgb(255 255 255 / 0.56);
 		font-family: Manrope, sans-serif;
-		font-size: 0.74rem;
+		font-size: var(--garna-hero-stat-label-size, 0.74rem);
 		font-weight: 500;
 		line-height: 1.35;
 		white-space: nowrap;
@@ -80,15 +80,15 @@ const { stats, ariaLabel, ariaLabelKey, class: className = '' } = Astro.props;
 
 	@media (max-width: 1023px) {
 		.garna-hero-stats-row {
-			margin-top: clamp(2.65rem, 5vw, 3.35rem);
+			margin-top: var(--garna-hero-stats-margin-top-tablet, clamp(2.65rem, 5vw, 3.35rem));
 		}
 
 		.garna-hero-stats-row strong {
-			font-size: clamp(1.65rem, 3.25vw, 2rem);
+			font-size: var(--garna-hero-stat-value-size-tablet, clamp(1.65rem, 3.25vw, 2rem));
 		}
 
 		.garna-hero-stats-row span {
-			font-size: clamp(0.8rem, 1.45vw, 0.88rem);
+			font-size: var(--garna-hero-stat-label-size-tablet, clamp(0.8rem, 1.45vw, 0.88rem));
 		}
 	}
 

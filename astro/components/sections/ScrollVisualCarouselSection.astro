@@ -101,9 +101,9 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 		contentClass={contentClass}
 	>
 		<div class="contractor-carousel" data-contractor-carousel data-scroll-visual-carousel-id={carouselId}>
-			<div class:list={['contractor-carousel__copy', copyVariant === 'section' && 'contractor-carousel__copy--section']} aria-live="polite">
+			<div class="contractor-carousel__copy" aria-live="polite">
 				<HeadingTag data-carousel-title data-translate={firstFeature.title.translateKey}>{firstFeature.title.text}</HeadingTag>
-				<p data-carousel-description data-translate={firstFeature.description.translateKey}>{firstFeature.description.text}</p>
+				<p data-garna-subtitle data-carousel-description data-translate={firstFeature.description.translateKey}>{firstFeature.description.text}</p>
 
 				<div class="contractor-carousel__controls">
 					<Button
@@ -227,6 +227,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 		const scrollMode = window.matchMedia('(min-width: 0px)');
 		let activeIndex = 0;
 		let frame = 0;
+		let copyIndex = -1;
 
 		const getStickyTop = () => {
 			const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
@@ -243,10 +244,13 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 			activeIndex = (nextIndex + features.length) % features.length;
 			const feature = features[activeIndex];
 			const localizedFeature = localizedFeatureCopy.get(feature.key);
-			if (title) title.textContent = localizedFeature?.title || feature.titleText;
-			if (description) description.textContent = localizedFeature?.description || feature.descriptionText;
-			if (title instanceof HTMLElement) title.dataset.translate = feature.title.translateKey || '';
-			if (description instanceof HTMLElement) description.dataset.translate = feature.description.translateKey || '';
+			if (copyIndex !== activeIndex || reduceMotion.matches) {
+				copyIndex = activeIndex;
+					if (title) title.textContent = localizedFeature?.title || feature.titleText;
+					if (description) description.textContent = localizedFeature?.description || feature.descriptionText;
+					if (title instanceof HTMLElement) title.dataset.translate = feature.title.translateKey || '';
+					if (description instanceof HTMLElement) description.dataset.translate = feature.description.translateKey || '';
+			}
 			dots.forEach((dot, index) => {
 				dot.classList.toggle('is-active', index === activeIndex);
 				if (index === activeIndex) dot.setAttribute('aria-current', 'true'); else dot.removeAttribute('aria-current');
@@ -339,10 +343,8 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 	:global(.contractor-carousel-content) { display: block; }
 	.contractor-carousel { display: grid; grid-template-columns: minmax(17rem, .82fr) minmax(0, 1.18fr); align-items: center; gap: clamp(2.5rem, 6vw, 6.5rem); min-height: 34rem; margin-right: calc(50% - 50vw); overflow: hidden; }
 	.contractor-carousel__copy { width: min(100%, 32rem); max-width: none; padding-left: clamp(0rem, 2vw, 1.5rem); text-align: left; }
-	.contractor-carousel__copy :is(h2, h3) { margin: 0; color: #fff; font-size: clamp(2rem, 2.75vw, 3rem); font-weight: 400; letter-spacing: 0; line-height: 1.08; white-space: pre-line; }
-	.contractor-carousel__copy p { min-height: 3.2em; max-width: none; margin: 1.5rem 0 0; color: rgb(229 231 235 / .84); font-size: clamp(1rem, 1.3vw, 1.2rem); line-height: 1.6; white-space: pre-line; }
-	.contractor-carousel__copy--section :is(h2, h3) { max-width: 12ch; font-size: clamp(2.25rem, 4vw, 3rem); line-height: 1.18; white-space: normal; text-wrap: balance; }
-	.contractor-carousel__copy--section p { max-width: 31rem; min-height: 0; margin-top: 1.5rem; color: var(--garna-subtitle-color); font-size: clamp(1.125rem, 1.6vw, 1.25rem); font-weight: var(--garna-subtitle-weight); line-height: 1.6; white-space: normal; }
+	.contractor-carousel__copy :is(h2, h3) { margin: 0; color: #fff; font-size: 3rem; font-weight: 400; letter-spacing: 0; line-height: 1.25; white-space: normal; text-wrap: balance; }
+	.contractor-carousel__copy p { max-width: 31rem; min-height: 0; margin: 1.5rem 0 0; color: var(--garna-subtitle-color); font-size: 1.25rem; font-weight: var(--garna-subtitle-weight); line-height: 1.625; white-space: normal; }
 	.contractor-carousel__controls { display: flex; align-items: center; margin-top: 2.5rem; }
 	.contractor-carousel__image-controls { display: flex; width: 39%; justify-content: center; margin-top: 1.35rem; }
 	.contractor-carousel__dots { display: flex; align-items: center; gap: .45rem; }
@@ -396,8 +398,8 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 		.contractor-carousel__copy { width: 100%; max-width: none; padding-left: 0; }
 		.contractor-carousel__copy :is(h2, h3),
 		.contractor-carousel__copy p { height: auto; max-width: none; white-space: normal; }
-		.contractor-carousel__copy :is(h2, h3) { width: 100%; max-width: none; font-size: clamp(2rem, 4.45vw, 3rem); font-weight: 400; letter-spacing: 0; line-height: 1.16; }
-		.contractor-carousel__copy p { display: inline-block; width: auto; max-width: 100%; min-height: 0; margin-top: 1.5rem; color: var(--garna-subtitle-color); font-size: clamp(1.05rem, 1.9vw, 1.25rem); font-weight: var(--garna-subtitle-weight); line-height: 1.58; }
+		.contractor-carousel__copy :is(h2, h3) { width: 100%; max-width: none; font-size: 3rem; font-weight: 400; letter-spacing: 0; line-height: 1.25; }
+		.contractor-carousel__copy p { display: inline-block; width: auto; max-width: 100%; min-height: 0; margin-top: 1.5rem; color: var(--garna-subtitle-color); font-size: 1.25rem; font-weight: var(--garna-subtitle-weight); line-height: 1.625; }
 		.contractor-carousel__controls { margin-top: 2rem; }
 		.contractor-carousel__viewport { width: auto; margin-right: calc(50% - 50vw); }
 		.contractor-carousel__image-controls { width: clamp(15rem, min(36%, 35vh), 20rem); }
@@ -410,7 +412,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 	@media (max-width: 767px) {
 		.contractor-carousel { gap: 2rem; }
 		.contractor-carousel__copy :is(h2, h3) { height: auto; font-size: 2.25rem; line-height: 1.25; }
-		.contractor-carousel__copy p { height: auto; min-height: 0; margin-top: 1.25rem; font-size: clamp(1rem, 3.25vw, 1.125rem); line-height: 1.55; }
+		.contractor-carousel__copy p { height: auto; min-height: 0; margin-top: 1.25rem; font-size: 1.125rem; line-height: 1.625; }
 		.contractor-carousel__controls { margin-top: 2rem; }
 		.contractor-carousel__image-controls { width: clamp(12.5rem, min(62vw, 30svh), 20.5rem); margin-top: 1rem; }
 		.contractor-carousel__slide { flex-basis: clamp(12.5rem, min(62vw, 30svh), 20.5rem); height: auto; margin-right: 0; aspect-ratio: .78; border-radius: 1.25rem; }

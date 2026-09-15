@@ -63,8 +63,8 @@ const badgePositionClasses: Record<BadgePosition, string> = {
 		/>
 
 		<div class="tabbed-feature mt-12" data-tabbed-feature-section>
-			<div class:list={['tabbed-feature__tabs overflow-visible border-b border-white/10 md:overflow-x-auto', tabsClass]} data-tabbed-feature-tabs>
-				<div class="flex flex-wrap justify-center gap-x-10 gap-y-6 md:min-w-max md:flex-nowrap md:justify-center md:gap-12">
+			<div class:list={['tabbed-feature__tabs overflow-visible border-b border-white/10', tabsClass]} data-tabbed-feature-tabs>
+				<div class="flex min-w-0 flex-wrap justify-center gap-y-6">
 					{panels.map((panel, index) => (
 						<button
 							type="button"
@@ -140,6 +140,10 @@ const badgePositionClasses: Record<BadgePosition, string> = {
 		font-weight: 600;
 		transition: color 0.18s ease, border-color 0.18s ease;
 		white-space: normal;
+	}
+
+	.tabbed-feature__tabs > div {
+		column-gap: clamp(1.75rem, 3.5vw, 3rem);
 	}
 
 	.tabbed-feature__tab:hover,
@@ -233,6 +237,12 @@ const badgePositionClasses: Record<BadgePosition, string> = {
 			white-space: nowrap;
 		}
 	}
+
+	@media (min-width: 768px) {
+		:global(html[lang='ru']) :global(#why-garna) .tabbed-feature[data-tabs-wrapped='true'] .tabbed-feature__panel {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
 </style>
 
 <script>
@@ -286,6 +296,7 @@ const badgePositionClasses: Record<BadgePosition, string> = {
 				const firstTop = rowItems[0]?.offsetTop ?? 0;
 				const isWrapped = rowItems.some((item) => Math.abs(item.offsetTop - firstTop) > 1);
 				tabList.dataset.tabsWrapped = String(isWrapped);
+				root.dataset.tabsWrapped = String(isWrapped);
 			};
 
 			updateWrappedState();

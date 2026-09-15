@@ -100,10 +100,10 @@ export const payrollSolutionNewRu = {
 		'countries covered': 'стран',
 		'Manage Global Payroll Effortlessly': 'Управляйте расчетом заработной платы по всему миру без лишних усилий',
 		'One platform to run payroll for freelancers, remote employees, and full-time teams':
-			'Единая платформа для выплат фрилансерам, удалённым сотрудникам и штатным командам',
+			'Единая платформа для выплат фрилансерам, удаленным сотрудникам и штатным командам',
 		'Flexible Payout Methods': 'Гибкие способы выплат',
 		'Pay teams by bank transfer, card, electronic wallet, or crypto':
-			'Выплачивайте командам банковским переводом, на карту, электронный кошелёк или в криптовалюте',
+			'Выплачивайте командам банковским переводом, на карту, электронный кошелек или в криптовалюте',
 		'We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries':
 			'Мы оптимизируем процесс оплаты труда, предлагая гибкие и надежные решения для компаний любого размера и из любых отраслей',
 		'Automated Payroll Platform': 'Автоматизированная платформа выплат',
@@ -229,7 +229,7 @@ export const payrollSolutionNewRu = {
 		'Shared dashboard': 'Общая панель управления',
 		'Garna Payroll vs Other Payroll': 'Garna и другие системы оплаты труда',
 		'Everything is relative, right? Take a look at the comparison table, we believe our transparency speaks louder than words. We offer, and we offer a lot, because we want to be the best':
-			'Всё относительно, верно? Взгляните на сравнительную таблицу — мы уверены, что факты говорят громче слов',
+			'Все относительно, верно? Взгляните на сравнительную таблицу — мы уверены, что факты говорят громче слов',
 		'Feature': 'Функция',
 		'Other Payroll': 'Другая система',
 		'Garna Payroll': 'Garna',

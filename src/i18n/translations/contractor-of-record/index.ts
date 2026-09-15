@@ -75,6 +75,8 @@ const enOverrides = {
 			description: 'We make sure that all IPs created by contractors are transferred directly and carefully to you',
 		},
 		visual: {
+			contractsFolder: 'Contracts',
+			folderTag: 'All in one',
 			clientAgreement: 'Client agreement',
 			signed: 'Signed',
 			client: 'Client',
@@ -239,6 +241,8 @@ const esOverrides = {
 			description: 'La IP creada por contratistas pasa directo a tu empresa',
 		},
 		visual: {
+			contractsFolder: 'Contratos',
+			folderTag: 'Todo en uno',
 			clientAgreement: 'Acuerdo con cliente',
 			signed: 'Firmado',
 			client: 'Cliente',
@@ -403,6 +407,7 @@ const ptOverrides = {
 			description: 'Transferimos a IP criada por contratados diretamente para a sua empresa',
 		},
 		visual: {
+			contractsFolder: 'Contratos',
 			clientAgreement: 'Contrato do cliente',
 			signed: 'Assinado',
 			client: 'Cliente',
@@ -418,6 +423,7 @@ const ptOverrides = {
 			invoices: 'Faturas',
 			docs: 'Docs',
 			agreements: 'Contratos',
+			folderTag: 'Tudo em um',
 			ipAssignment: 'Cessão de IP',
 			filed: 'Arquivado',
 			rightsTransfer: 'Transferência de direitos',
@@ -567,6 +573,8 @@ const ruOverrides = {
 			description: 'Права на IP переходят напрямую к вам',
 		},
 		visual: {
+			contractsFolder: 'Договоры',
+			folderTag: 'Все в одном',
 			clientAgreement: 'Клиентский договор',
 			signed: 'Подписано',
 			client: 'Клиент',
