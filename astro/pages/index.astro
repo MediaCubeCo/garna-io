@@ -365,14 +365,10 @@ const homeFaqItems = [
 					});
 				};
 				let deckPosition = 0;
-				let deckDestination = 0;
-				let deckFrom = 0;
-				let deckStartedAt = 0;
 				const renderQuietStack = (progress, landed = true) => {
-					const now = performance.now();
 					const requested = Math.min(2, Math.floor(progress * 3));
 					if (!desktop.matches) {
-						deckPosition = deckDestination = deckFrom = requested;
+						deckPosition = requested;
 						// Use painted widths: inactive cards are scaled to 94%, so their
 						// layout slots must shrink too to preserve equal visible gaps.
 						const referenceRail = document.querySelector('[data-scroll-visual-carousel-id="home-contractor-payments-carousel"] .contractor-carousel__rail');
@@ -399,18 +395,7 @@ const homeFaqItems = [
 						});
 						return;
 					}
-					const immediate = !landed || reduceMotion.matches;
-					if (immediate) {
-						deckPosition = deckDestination = deckFrom = landed ? requested : 0;
-					} else {
-						deckPosition = mix(deckFrom, deckDestination, smootherstep(0, 620, now - deckStartedAt));
-						if (requested !== deckDestination) {
-							deckFrom = deckPosition;
-							deckDestination = requested;
-							deckStartedAt = now;
-						}
-						if (now - deckStartedAt < 620 && deckFrom !== deckDestination) schedule();
-					}
+					deckPosition = landed ? requested : 0;
 					const current = Math.min(1, Math.floor(deckPosition));
 					const next = current + 1;
 					const turn = clamp(deckPosition - current);
@@ -420,8 +405,6 @@ const homeFaqItems = [
 						indicator.classList.toggle('is-active', index === active);
 						indicator.style.setProperty('--step-fill', String(clamp(progress * 3 - index)));
 					});
-					const departure = 1 - smoothstep(0.08, 0.48, turn);
-					const arrival = smoothstep(0.52, 0.94, turn);
 					deckHeadings.forEach((heading, index) => {
 						heading.style.display = index === active ? 'block' : 'none';
 						heading.style.opacity = '1';
@@ -436,23 +419,27 @@ const homeFaqItems = [
 						// All three move together. Layers swap at matching depths (2t = 1-t),
 						// so a smaller incoming image never covers the larger outgoing one.
 						const depth = mix(fromDepth, toDepth, movement);
+						const cardScale = 1 - 0.03 * depth;
 						const visible = index === current || landed;
 						card.style.visibility = visible ? 'visible' : 'hidden';
 						card.style.opacity = '1';
 						card.style.zIndex = String(5 - (movement >= 1 / 3 ? toDepth : fromDepth));
 						// Match the travelling stack exactly at the landing handoff.
 						card.style.transformOrigin = 'center top';
-						card.style.transform = `translateY(${-8 * depth}px) scale(${1 - 0.03 * depth})`;
+						card.style.transform = `translate3d(0, ${-8 * depth}px, 0) scale(${cardScale})`;
 						if (!desktop.matches) {
 							card.style.transformOrigin = 'center center';
-							card.style.transform = `translateX(${(index - deckPosition) * (card.offsetWidth + 16)}px) scale(${1 - 0.04 * Math.min(1, Math.abs(index - deckPosition))})`;
+							card.style.transform = `translate3d(${(index - deckPosition) * (card.offsetWidth + 16)}px, 0, 0) scale(${1 - 0.04 * Math.min(1, Math.abs(index - deckPosition))})`;
 						}
 						card.setAttribute('aria-hidden', String(index !== active));
 						const notice = card.querySelector('.home-workflows-stack__status');
 						if (notice instanceof HTMLElement) {
 							notice.style.opacity = 'var(--home-proof-featured-notice-opacity, 1)';
-							notice.style.transform = 'none';
-							notice.style.transition = '';
+							notice.style.transformOrigin = 'bottom left';
+							notice.style.transform = desktop.matches
+								? `translate3d(0, ${8 * depth / cardScale}px, 0) scale(${1 / cardScale})`
+								: 'none';
+							notice.style.transition = 'opacity 320ms cubic-bezier(0.16, 1, 0.3, 1)';
 						}
 					});
 				};
@@ -889,7 +876,7 @@ const homeFaqItems = [
 	.home-hero-proof-stage [data-home-proof-card='featured'] .home-workflows-stack__status {
 		opacity: var(--home-proof-featured-notice-opacity, 1);
 		transform: translateY(calc((1 - var(--home-proof-featured-notice-opacity, 1)) * 0.42rem));
-		transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1), transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+		transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
 	.home-hero-proof-stage .home-proof-section header {
