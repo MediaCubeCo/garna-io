@@ -118,6 +118,13 @@ export const basePaths: PageConfig[] = [
 		languages: ['en', 'es', 'pt', 'ru'],
 	},
 	{
+		path: 'business-account',
+		mode: 'static',
+		searchable: false,
+		showHeader: true,
+		languages: ['en', 'es', 'pt', 'ru'],
+	},
+	{
 		path: 'employee-cost-calculator',
 		mode: 'static',
 		searchable: true,

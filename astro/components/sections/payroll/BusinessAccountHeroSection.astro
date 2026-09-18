@@ -1,0 +1,795 @@
+---
+import Button from '../../ui/Button.astro';
+import HeroStatsRow from '../../ui/HeroStatsRow.astro';
+
+const stats = [
+	{
+		value: '63+',
+		label: 'local currencies',
+		labelKey: 'stats.localCurrencies',
+	},
+	{
+		value: '200+',
+		label: 'countries covered with USD',
+		labelKey: 'stats.usdCoverage',
+	},
+	{
+		value: 'Up to 1,000',
+		valueKey: 'stats.batchContactsValue',
+		label: 'contacts in one batch payment',
+		labelKey: 'stats.batchContactsLabel',
+	},
+];
+
+const hero = {
+	image: '/pages/payroll-solution-new/assets/eor-hero-phone-portrait-upscaled-v1.jpg',
+	objectPosition: 'center 24%',
+	narrowObjectPosition: 'center 10%',
+	title: 'Business Account\nfor Going Global',
+	titleKey: 'hero.title',
+	description: 'Fund your account, get paid, pay your team, and hold multiple currencies. Save time, money, and hassle with the all-in-one Garna business account',
+	descriptionKey: 'hero.description',
+};
+
+const flagSrc = (code: string) => `https://flagcdn.com/${code}.svg`;
+
+const newHires = [
+	{
+		position: 'top-right',
+		avatar: '/pages/payroll-solution-new/assets/eor-hero-avatar-samantha-v3.png',
+		flagCode: 'pt',
+		status: 'Starts today',
+		statusKey: 'hero.notifications.startsToday',
+		name: 'Samantha R.',
+		role: 'Product Designer',
+		roleKey: 'hero.notifications.productDesigner',
+	},
+	{
+		position: 'bottom-right',
+		avatar: '/pages/payroll-solution-new/assets/contractor-avatar-alex-v2.webp',
+		flagCode: 'de',
+		status: 'Starts Monday',
+		statusKey: 'hero.notifications.startsMonday',
+		name: 'Henrik C.',
+		role: 'Software Engineer',
+		roleKey: 'hero.notifications.softwareEngineer',
+	},
+];
+
+const payrollRows = [
+	{ flagCode: 'hr', name: 'Emilia Novak', amount: 'EUR 128,450,900' },
+	{ flagCode: 'ca', name: 'Noah Williams', amount: 'CAD 24,875,600' },
+];
+---
+
+<section class="eor-hero" data-section-kind="hero">
+	<div class="eor-hero__grid mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center lg:gap-20">
+		<div class="eor-hero__copy">
+			<div class="eor-hero__text">
+				<h1 class="garna-hero-title-gradient" data-translate={hero.titleKey}>{hero.title}</h1>
+				<p data-garna-subtitle data-translate={hero.descriptionKey}>
+					{hero.description}
+				</p>
+			</div>
+			<div class="eor-hero__actions">
+				<Button
+					href="https://app.garna.io/en/auth/sign-up"
+					variant="primary"
+					size="hero"
+					effect="rotating-flare"
+					icon="arrow-up-right"
+					class="eor-hero__cta w-fit"
+					data-garna-signup
+				>
+					<span data-translate="hero.ctaPrimary">Open an account</span>
+				</Button>
+				<Button
+					href="#"
+					variant="secondary"
+					size="hero"
+					class="eor-hero__cta w-fit"
+					onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'business_account_hero_book_demo' });"
+				>
+					<span data-translate="hero.ctaSecondary">Book a demo</span>
+				</Button>
+			</div>
+
+			<div class="eor-hero__stats">
+				<HeroStatsRow stats={stats} ariaLabel="Garna Business Account proof points" />
+			</div>
+		</div>
+
+		<div class="eor-hero__visual" aria-label="Global hiring dashboard preview">
+			<div class="eor-hero__media">
+				<img
+					class="eor-hero__image"
+					src={hero.image}
+					alt=""
+					loading="eager"
+					style={`--eor-hero-object-position: ${hero.objectPosition}; --eor-hero-narrow-object-position: ${hero.narrowObjectPosition};`}
+				/>
+			</div>
+			<div class="eor-hero__notifications" aria-hidden="true">
+				{newHires.map((hire) => (
+					<div
+						class:list={['eor-hero-notification', 'eor-hero-notification--hire', `eor-hero-notification--${hire.position}`]}
+					>
+						<span class="eor-hero-notification__avatar-wrap">
+							<img class="eor-hero-notification__avatar" src={hire.avatar} alt="" loading="eager" />
+							<span class="eor-hero-notification__flag">
+								<img src={flagSrc(hire.flagCode)} alt="" loading="eager" />
+							</span>
+						</span>
+						<span class="eor-hero-notification__copy">
+							<small class="eor-hero-notification__status" data-translate={hire.statusKey}>{hire.status}</small>
+							<strong>{hire.name}</strong>
+							<small class="eor-hero-notification__role" data-translate={hire.roleKey}>{hire.role}</small>
+						</span>
+					</div>
+				))}
+
+				<div class="eor-hero-notification eor-hero-notification--payments eor-hero-notification--bottom-left">
+					{payrollRows.map((payment) => (
+						<div class="eor-hero-notification__payment-row">
+							<span class="eor-hero-notification__payment-flag">
+								<img src={flagSrc(payment.flagCode)} alt="" loading="eager" />
+							</span>
+							<span class="eor-hero-notification__payment-copy">
+								<small>{payment.name}</small>
+								<strong>{payment.amount}</strong>
+							</span>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+<style>
+	.eor-hero {
+		position: relative;
+		overflow: visible;
+		background: transparent;
+		padding: clamp(8.5rem, 13vw, 12rem) 0 clamp(4.5rem, 8vw, 7rem);
+		color: #ffffff;
+	}
+
+	.eor-hero__copy,
+	.eor-hero__visual {
+		position: relative;
+		z-index: 1;
+	}
+
+	.eor-hero__copy {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+	}
+
+	.eor-hero__text {
+		width: 100%;
+	}
+
+	.eor-hero__copy h1 {
+		overflow: hidden;
+		margin: 0;
+		padding-bottom: 0.16em;
+		font-family: Manrope, sans-serif;
+		font-size: 2.75rem;
+		font-weight: 400;
+		line-height: 1.1;
+		letter-spacing: 0;
+	}
+
+	@media (min-width: 768px) {
+		.eor-hero__copy h1 {
+			font-size: 3rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.eor-hero__copy {
+			min-height: clamp(29rem, 44vw, 40rem);
+		}
+
+		.eor-hero__copy h1 {
+			font-size: 54px;
+		}
+	}
+
+	@media (min-width: 1100px) {
+		.eor-hero__copy h1 {
+			font-size: 58px;
+		}
+	}
+
+	@media (min-width: 1280px) {
+		.eor-hero__copy h1 {
+			font-size: 64px;
+		}
+
+		:global(html[lang='ru']) .eor-hero__copy h1 {
+			font-size: 64px;
+		}
+	}
+
+	.eor-hero__copy h1 {
+		white-space: pre-line;
+	}
+
+	@media (min-width: 1024px) {
+		.eor-hero__grid {
+			grid-template-columns: minmax(0, 1.24fr) minmax(0, 0.76fr);
+			column-gap: 2.5rem;
+		}
+	}
+
+	@media (min-width: 1280px) {
+		.eor-hero__grid {
+			grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+			column-gap: 4rem;
+		}
+	}
+
+	.eor-hero__copy p {
+		max-width: 36rem;
+		overflow: hidden;
+		margin: 1.25rem 0 0;
+		color: rgb(255 255 255 / 0.62);
+		font-family: Manrope, sans-serif;
+		font-size: 1.125rem;
+		font-weight: 500;
+		line-height: 1.58;
+	}
+
+	@media (min-width: 768px) {
+		.eor-hero__copy p {
+			font-size: 1.25rem;
+		}
+	}
+
+	.eor-hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 2.5rem;
+	}
+
+	:global(.eor-hero__cta) {
+		margin-top: 0;
+	}
+
+	@media (min-width: 641px) {
+		.eor-hero__stats :global(.garna-hero-stats-row) {
+			--garna-hero-stat-gap: clamp(1rem, 1.8vw, 1.5rem);
+			width: max-content;
+			max-width: 100%;
+		}
+
+		.eor-hero__stats :global(.garna-hero-stats-row article) {
+			width: max-content;
+			min-width: 0;
+			flex: 0 0 auto;
+		}
+
+		.eor-hero__stats :global(.garna-hero-stats-row span) {
+			white-space: nowrap;
+		}
+	}
+
+	.eor-hero__stats {
+		width: 100%;
+		margin-top: auto;
+	}
+
+	@media (min-width: 1024px) {
+		.eor-hero__stats {
+			padding-top: 3rem;
+		}
+	}
+
+	.eor-hero__visual {
+		width: 100%;
+		min-height: clamp(29rem, 44vw, 40rem);
+		border-radius: 24px;
+		box-shadow: 0 34px 90px -55px rgb(0 0 0 / 0.86);
+		container-type: inline-size;
+		overflow: visible;
+	}
+
+	.eor-hero__media {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		border-radius: inherit;
+		background: #1a1a1a;
+		isolation: isolate;
+	}
+
+	.eor-hero__image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: var(--eor-hero-object-position, center center);
+	}
+
+	.eor-hero__media::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		border-radius: inherit;
+		background:
+			linear-gradient(90deg, rgb(16 16 16 / 0.06), transparent 45%),
+			linear-gradient(0deg, rgb(16 16 16 / 0.18), transparent 46%);
+		pointer-events: none;
+	}
+
+	.eor-hero__notifications {
+		--eor-notifications-scale: 1;
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		pointer-events: none;
+	}
+
+	@media (min-width: 1024px) and (max-width: 1099.98px) {
+		.eor-hero__notifications {
+			--eor-notifications-scale: 0.72;
+		}
+	}
+
+	@media (min-width: 846px) and (max-width: 1023.98px) {
+		.eor-hero__grid {
+			--eor-hero-tablet-column-height: clamp(25rem, 46vw, 29rem);
+			grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+			align-items: center;
+			gap: clamp(1.75rem, 3vw, 2.25rem);
+		}
+
+		.eor-hero__copy h1 {
+			font-size: 3rem;
+		}
+
+		.eor-hero__copy {
+			--garna-hero-stat-value-size-tablet: clamp(1.35rem, 2.1vw, 1.95rem);
+			--garna-hero-stat-label-size-tablet: 0.74rem;
+			--garna-hero-stats-margin-top-tablet: 0;
+			align-self: stretch;
+			min-height: var(--eor-hero-tablet-column-height);
+		}
+
+		.eor-hero__stats {
+			padding-top: 3.25rem;
+		}
+
+		.eor-hero__visual {
+			width: 92%;
+			min-height: var(--eor-hero-tablet-column-height);
+			margin-left: auto;
+		}
+
+		.eor-hero__notifications {
+			--eor-notifications-scale: 0.66;
+		}
+
+		:global(html[lang='ru']) .eor-hero__stats :global(.garna-hero-stats-row) {
+			--garna-hero-stat-gap: clamp(0.75rem, 1.6vw, 1rem);
+		}
+
+		:global(html[lang='ru']) .eor-hero__stats :global(.garna-hero-stats-row article) {
+			min-width: 0;
+			flex: 1 1 0;
+		}
+
+		:global(html[lang='ru']) .eor-hero__stats :global(.garna-hero-stats-row span) {
+			white-space: normal;
+		}
+
+	}
+
+	@media (min-width: 1100px) and (max-width: 1199.98px) {
+		.eor-hero__notifications {
+			--eor-notifications-scale: 0.82;
+		}
+	}
+
+	@media (min-width: 1200px) and (max-width: 1279.98px) {
+		.eor-hero__notifications {
+			--eor-notifications-scale: 0.92;
+		}
+	}
+
+	.eor-hero-notification {
+		--eor-notification-delay: 0s;
+		position: absolute;
+		width: 15rem;
+		overflow: visible;
+		padding: 0.72rem;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 14px;
+		background: rgb(7 8 10 / 0.82);
+		box-shadow: 0 0.65rem 1.8rem rgb(0 0 0 / 0.26);
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		backdrop-filter: blur(12px);
+		opacity: 0;
+		transform: scale(var(--eor-notifications-scale));
+		animation: eor-notification-pulse 7.2s ease-in-out infinite;
+		animation-delay: var(--eor-notification-delay);
+	}
+
+	.eor-hero-notification--hire {
+		display: flex;
+		width: 10rem;
+		min-height: 11.25rem;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.72rem;
+		padding: 1rem 0.85rem 0.9rem;
+		text-align: center;
+	}
+
+	.eor-hero-notification--top-right {
+		--eor-notification-delay: 0s;
+		top: 1.35rem;
+		right: -2.7rem;
+		z-index: 1;
+		transform-origin: top right;
+	}
+
+	.eor-hero-notification--bottom-right {
+		--eor-notification-delay: 4.6s;
+		right: -1.85rem;
+		bottom: 1rem;
+		z-index: 3;
+		transform-origin: bottom right;
+	}
+
+	.eor-hero-notification--bottom-left {
+		--eor-notification-delay: 2.3s;
+		bottom: 0.8rem;
+		left: -4.5rem;
+		transform-origin: bottom left;
+	}
+
+	:global(html[lang='ru']) .eor-hero-notification--bottom-right {
+		width: 12rem;
+	}
+
+	@media (min-width: 846px) and (max-width: 1023.98px) {
+		.eor-hero-notification--top-right {
+			right: -1.35rem;
+		}
+	}
+
+	@keyframes eor-notification-pulse {
+		0%,
+		6% {
+			opacity: 0;
+		}
+
+		12% {
+			opacity: 1;
+		}
+
+		22%,
+		40% {
+			opacity: 1;
+		}
+
+		46%,
+		100% {
+			opacity: 0;
+		}
+	}
+
+	.eor-hero-notification__avatar-wrap {
+		position: relative;
+		display: block;
+		width: 5rem;
+		height: 5rem;
+		flex: 0 0 auto;
+	}
+
+	.eor-hero-notification__avatar {
+		display: block;
+		width: 100%;
+		height: 100%;
+		border: 1px solid rgb(255 255 255 / 0.18);
+		border-radius: 50%;
+		object-fit: cover;
+	}
+
+	.eor-hero-notification__flag {
+		position: absolute;
+		right: -0.28rem;
+		bottom: -0.18rem;
+		display: grid;
+		width: 1.58rem;
+		height: 1.58rem;
+		place-items: center;
+		border: 2px solid #101010;
+		border-radius: 50%;
+		background: #ffffff;
+		font-size: 0.75rem;
+		line-height: 1;
+	}
+
+	.eor-hero-notification__flag img,
+	.eor-hero-notification__payment-flag img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		border-radius: inherit;
+		object-fit: cover;
+	}
+
+	.eor-hero-notification__copy {
+		display: grid;
+		min-width: 0;
+		gap: 0.22rem;
+		justify-items: center;
+	}
+
+	.eor-hero-notification__copy strong {
+		color: #ffffff;
+		font-size: 1.08rem;
+		font-weight: 650;
+		line-height: 1.15;
+	}
+
+	.eor-hero-notification__copy small {
+		color: rgb(255 255 255 / 0.58);
+		font-size: 0.7rem;
+		font-weight: 500;
+		line-height: 1.15;
+	}
+
+	.eor-hero-notification__status {
+		color: #cbf300 !important;
+		font-size: 0.62rem !important;
+		font-weight: 700 !important;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	.eor-hero-notification--payments {
+		width: 18rem;
+		padding: 0.82rem 0.9rem;
+	}
+
+	.eor-hero-notification__payment-row {
+		display: grid;
+		grid-template-columns: 2.5rem minmax(0, 1fr);
+		align-items: center;
+		gap: 0.72rem;
+		padding: 0.62rem 0;
+	}
+
+	.eor-hero-notification__payment-row + .eor-hero-notification__payment-row {
+		border-top: 1px solid rgb(255 255 255 / 0.1);
+	}
+
+	.eor-hero-notification__payment-flag {
+		display: grid;
+		width: 2.5rem;
+		height: 2.5rem;
+		place-items: center;
+		border-radius: 50%;
+		border: 1px solid rgb(255 255 255 / 0.14);
+		background: rgb(255 255 255 / 0.09);
+		overflow: hidden;
+	}
+
+	.eor-hero-notification__payment-copy {
+		display: grid;
+		min-width: 0;
+		gap: 0.16rem;
+	}
+
+	.eor-hero-notification__payment-copy small {
+		color: rgb(255 255 255 / 0.58);
+		font-size: 0.76rem;
+		line-height: 1.1;
+	}
+
+	.eor-hero-notification__payment-copy strong {
+		font-size: 1.02rem;
+		font-weight: 650;
+		line-height: 1.1;
+	}
+
+	@media (max-width: 845.98px) {
+		.eor-hero__grid {
+			gap: clamp(3rem, 7vw, 4rem);
+		}
+
+		.eor-hero__copy {
+			--garna-hero-stats-margin-top-tablet: clamp(3.5rem, 7vw, 4rem);
+			max-width: 47rem;
+			margin-inline: auto;
+			align-items: center;
+			text-align: center;
+		}
+
+		.eor-hero__copy h1 {
+			min-height: 0;
+			max-width: none;
+			white-space: normal;
+			overflow-wrap: normal;
+			word-break: normal;
+			text-wrap: wrap;
+		}
+
+		.eor-hero__copy p {
+			min-height: 0;
+			margin-inline: auto;
+		}
+
+		.eor-hero__stats :global(.garna-hero-stats-row) {
+			justify-content: center;
+		}
+
+		.eor-hero__stats :global(.garna-hero-stats-row article) {
+			justify-items: center;
+			text-align: center;
+		}
+
+		.eor-hero__actions {
+			margin-top: clamp(1.75rem, 4vw, 2.25rem);
+			justify-content: center;
+		}
+
+		.eor-hero__visual {
+			max-width: none;
+			width: min(100%, 32rem);
+			margin: 0 auto;
+			min-height: 0;
+			aspect-ratio: 7 / 8;
+		}
+
+		.eor-hero__image {
+			object-position: var(--eor-hero-narrow-object-position, var(--eor-hero-object-position, center center));
+		}
+	}
+
+	@media (max-width: 640px) {
+		.eor-hero {
+			padding-top: 7rem;
+		}
+
+		.eor-hero__visual {
+			min-height: 0;
+			border-radius: 18px;
+		}
+
+		.eor-hero-notification {
+			width: 12rem;
+			padding: 0.55rem;
+		}
+
+		.eor-hero-notification--hire {
+			width: 8.75rem;
+			min-height: 9.3rem;
+			gap: 0.55rem;
+			padding: 0.75rem 0.6rem 0.7rem;
+		}
+
+		:global(html[lang='ru']) .eor-hero-notification--bottom-right {
+			width: 10.75rem;
+		}
+
+		.eor-hero-notification__avatar-wrap {
+			width: 4.05rem;
+			height: 4.05rem;
+		}
+
+		.eor-hero-notification__copy strong {
+			font-size: 0.88rem;
+		}
+
+		.eor-hero-notification__copy small {
+			font-size: 0.62rem;
+		}
+
+		.eor-hero-notification__status {
+			font-size: 0.56rem !important;
+		}
+
+		.eor-hero-notification--payments {
+			width: 12.75rem;
+			padding: 0.6rem 0.66rem 0.64rem;
+		}
+
+		.eor-hero-notification__payment-row {
+			grid-template-columns: 2rem minmax(0, 1fr);
+			gap: 0.55rem;
+			padding: 0.44rem 0;
+		}
+
+		.eor-hero-notification__payment-flag {
+			width: 2rem;
+			height: 2rem;
+		}
+
+		.eor-hero-notification__payment-copy small {
+			font-size: 0.62rem;
+		}
+
+		.eor-hero-notification__payment-copy strong {
+			font-size: 0.78rem;
+		}
+
+		.eor-hero-notification--top-right {
+			top: 0.95rem;
+			right: -0.85rem;
+		}
+
+		.eor-hero-notification--bottom-right {
+			right: -0.75rem;
+			bottom: 0.55rem;
+		}
+
+		.eor-hero-notification--bottom-left {
+			bottom: 2rem;
+			left: -0.55rem;
+		}
+
+	}
+
+	@media (max-width: 559px) {
+		@container (max-width: 420px) {
+			.eor-hero__notifications {
+				--eor-notifications-scale: 0.9;
+			}
+		}
+
+		@container (max-width: 360px) {
+			.eor-hero__notifications {
+				--eor-notifications-scale: 0.78;
+			}
+		}
+
+		@container (max-width: 300px) {
+			.eor-hero__notifications {
+				--eor-notifications-scale: 0.64;
+			}
+		}
+	}
+
+	@media (max-width: 767px) {
+		.eor-hero__visual {
+			width: min(100%, 28rem);
+			height: auto;
+			aspect-ratio: 56 / 73;
+		}
+	}
+
+	@media (min-width: 560px) and (max-width: 767px) {
+		.eor-hero-notification--top-right,
+		.eor-hero-notification--bottom-right {
+			right: -1.75rem;
+		}
+
+		.eor-hero-notification--bottom-left {
+			left: -2.5rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.eor-hero-notification {
+			animation: none;
+			opacity: 1;
+			transform: scale(var(--eor-notifications-scale));
+		}
+	}
+
+</style>

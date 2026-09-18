@@ -1,0 +1,115 @@
+---
+import TabbedFeatureSection, { type TabbedFeaturePanel } from '../TabbedFeatureSection.astro';
+
+const panels: TabbedFeaturePanel[] = [
+	{
+		id: 'onboarding',
+		tab: { text: 'Onboarding', translateKey: 'why.tabs.onboarding.label' },
+		title: { text: 'Automating International Employee Onboarding', translateKey: 'why.tabs.onboarding.title' },
+		description: {
+			text: 'Garna makes international employee onboarding simpler with workflows that make sure everything is done the right way in each country. Onboard employees all over the world through one platform and cut down on manual HR work',
+			translateKey: 'why.tabs.onboarding.solution',
+		},
+		image: {
+			src: '/pages/payroll-solution-new/assets/eor-onboarding-global-workflow-v1.png',
+			alt: 'HR specialist guiding a new international employee through onboarding',
+			position: 'center 58%',
+		},
+		badge: {
+			icon: 'lucide:user-round-check',
+			title: { text: 'Onboarding workflow', translateKey: 'visual.why.onboardingWorkflow' },
+			description: { text: 'Country steps ready', translateKey: 'visual.why.countryStepsReady' },
+			position: 'bottom-left',
+		},
+	},
+	{
+		id: 'documents',
+		tab: { text: 'Contracts', translateKey: 'why.tabs.documents.label' },
+		title: { text: 'Centralizing Contracts and Compliance Documentation', translateKey: 'why.tabs.documents.title' },
+		description: {
+			text: 'Garna keeps everything in one place with a secure platform, so you can manage international employment compliance and workflows for global HR operations efficiently',
+			translateKey: 'why.tabs.documents.solution',
+		},
+		image: {
+			src: '/pages/payroll-solution-new/assets/eor-contracts-document-review-v1.png',
+			alt: 'Professionals reviewing and signing employment contract documents',
+			position: 'center center',
+		},
+		badge: {
+			icon: 'lucide:shield-check',
+			title: { text: 'Contract hub', translateKey: 'visual.why.contractHub' },
+			description: { text: 'Compliance docs ready', translateKey: 'visual.why.complianceDocsReady' },
+			position: 'bottom-right',
+		},
+	},
+	{
+		id: 'payroll',
+		tab: { text: 'Payroll', translateKey: 'why.tabs.payroll.label' },
+		title: { text: 'Running Your Global Payroll Without Stress', translateKey: 'why.tabs.payroll.title' },
+		description: {
+			text: 'Garna eases international payroll with automated workflows. Pay people around the world quickly while excluding payroll errors and extra work',
+			translateKey: 'why.tabs.payroll.solution',
+		},
+		image: {
+			src: '/pages/payroll-solution-new/assets/eor-payroll-presentation-distant-v1.png',
+			alt: 'Payroll planning presentation in a realistic meeting room',
+			position: 'center center',
+		},
+		badge: {
+			icon: 'lucide:wallet-cards',
+			title: { text: 'Global payroll run', translateKey: 'visual.why.globalPayroll' },
+			description: { text: 'Multi-currency payouts ready', translateKey: 'visual.why.payrollRunReady' },
+			position: 'bottom-right',
+		},
+	},
+	{
+		id: 'reporting',
+		tab: { text: 'Reporting', translateKey: 'why.tabs.reporting.label' },
+		title: { text: 'Getting A Clear View Of Your Global Workforce', translateKey: 'why.tabs.reporting.title' },
+		description: {
+			text: 'Our analytics and reporting platform gives you insights and keeps workforce costs under control. With our API-first infrastructure, businesses can integrate reporting tools into existing dashboards',
+			translateKey: 'why.tabs.reporting.solution',
+		},
+		image: {
+			src: '/pages/payroll-solution-new/assets/eor-reporting-team-review-v4.png',
+			alt: 'Professionals reviewing global workforce reporting materials',
+			position: 'center center',
+		},
+		badge: {
+			icon: 'lucide:chart-no-axes-column-increasing',
+			title: { text: 'Workforce analytics', translateKey: 'visual.why.workforceAnalytics' },
+			description: { text: 'Costs in view', translateKey: 'visual.why.costsInView' },
+			position: 'bottom-left',
+		},
+	},
+	{
+		id: 'termination',
+		tab: { text: 'Offboarding', translateKey: 'why.tabs.termination.label' },
+		title: { text: 'Offboarding Compliantly In A Global Market', translateKey: 'why.tabs.termination.title' },
+		description: {
+			text: 'Our termination workflows are tailored to employment laws in each country so you can offboard employees with confidence',
+			translateKey: 'why.tabs.termination.solution',
+		},
+		image: {
+			src: '/pages/payroll-solution-new/assets/eor-offboarding-folder-handoff-v2.png',
+			alt: 'HR manager coordinating a respectful employee offboarding folder handoff',
+			position: '58% center',
+			scale: 1.08,
+		},
+		badge: {
+			icon: 'lucide:file-check-2',
+			title: { text: 'Compliant offboarding', translateKey: 'visual.why.compliantOffboarding' },
+			description: { text: 'Notice rules checked', translateKey: 'visual.why.noticeRulesChecked' },
+			position: 'bottom-left',
+		},
+	},
+];
+---
+
+<TabbedFeatureSection
+	id="why-garna"
+	class="py-16 lg:py-32"
+	title={{ text: 'Employer of Record Platform Features', translateKey: 'why.title' }}
+	description={{ text: "From onboarding to offboarding, Garna's EOR covers the full employment lifecycle in one platform", translateKey: 'why.description' }}
+	panels={panels}
+/>

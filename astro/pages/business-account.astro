@@ -1,0 +1,162 @@
+---
+import FAQSection from '../components/sections/FAQSection.astro';
+import FinalCTASection from '../components/sections/FinalCTASection.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import { pageShells } from '../content/page-shells';
+import type { FAQItem } from '../types/faq-section';
+import BusinessAccountHeroSection from '../components/sections/payroll/BusinessAccountHeroSection.astro';
+import BusinessAccountProofStatsCardsSection from '../components/sections/payroll/BusinessAccountProofStatsCardsSection.astro';
+import BusinessAccountBenefitsSection from '../components/sections/payroll/BusinessAccountBenefitsSection.astro';
+import BusinessAccountCostEstimatorSection from '../components/sections/payroll/BusinessAccountCostEstimatorSection.astro';
+import BusinessAccountSectionStyles from '../components/sections/payroll/BusinessAccountSectionStyles.astro';
+import BusinessAccountInteractions from '../components/sections/payroll/BusinessAccountInteractions.astro';
+
+const businessAccountProofStats = [
+	{
+		value: '150+',
+		label: 'countries covered',
+		labelKey: 'eorProof.stats.countries.label',
+		image: '/pages/payroll-solution-new/assets/eor-proof-phone-hands-cafe-v1.png',
+		alt: 'Professional hands using a smartphone at a cafe table',
+		imagePosition: 'center center',
+		imageOrigin: 'center center',
+		imageScale: 1.03,
+		notice: {
+			icon: 'contract',
+			title: 'Contract ready',
+			titleKey: 'eorProof.stats.countries.notice.title',
+			meta: 'Country terms checked',
+			metaKey: 'eorProof.stats.countries.notice.meta',
+			tone: 'bank',
+		},
+	},
+	{
+		value: '1',
+		label: 'platform for global hiring',
+		labelKey: 'eorProof.stats.platform.label',
+		image: '/pages/payroll-solution-new/assets/eor-proof-running-water-light-v1.png',
+		alt: 'A man with a backpack running through shallow coastal water',
+		featured: true,
+		imagePosition: '58% center',
+		imageOrigin: 'center center',
+		imageScale: 1.03,
+		notice: {
+			icon: 'payroll',
+			title: 'Payroll profile set',
+			titleKey: 'eorProof.stats.platform.notice.title',
+			meta: 'Salary, tax, benefits',
+			metaKey: 'eorProof.stats.platform.notice.meta',
+			tone: 'card',
+		},
+	},
+	{
+		value: '0',
+		label: 'local entities to open',
+		labelKey: 'eorProof.stats.entities.label',
+		image: '/pages/payroll-solution-new/assets/eor-proof-sofa-laptop-woman-final.jpg',
+		alt: 'A woman working on a laptop while sitting on a sofa',
+		imagePosition: 'center center',
+		imageOrigin: 'center center',
+		notice: {
+			icon: 'calculator',
+			title: 'Cost estimate ready',
+			titleKey: 'eorProof.stats.entities.notice.title',
+			meta: 'Local costs included',
+			metaKey: 'eorProof.stats.entities.notice.meta',
+			tone: 'crypto',
+		},
+	},
+];
+
+const businessAccountFaqItems = [
+	{
+		question: 'Who can open a Garna business account?',
+		answer:
+			'Garna works with businesses across a wide range of industries and jurisdictions. Every applicant goes through our onboarding and compliance review.',
+		questionTranslateKey: 'faq.items.q1.question',
+		answerTranslateKey: 'faq.items.q1.answer',
+	},
+	{
+		question: 'What documents do I need to open a Garna business account?',
+		answer:
+			"To open a business account with Garna, you'll need to complete a short KYB (Know Your Business) application and submit a set of supporting documents. The exact requirements depend on your company's structure and jurisdiction, and our team reviews each application individually — we'll let you know exactly what's needed to get you fully verified and ready to go.",
+		questionTranslateKey: 'faq.items.q2.question',
+		answerTranslateKey: 'faq.items.q2.answer',
+	},
+	{
+		question: 'How do you keep funds secure?',
+		answer:
+			'Garna uses bank-level encryption and follows GDPR requirements and industry-standard data security practices to help protect your funds and data.',
+		questionTranslateKey: 'faq.items.q3.question',
+		answerTranslateKey: 'faq.items.q3.answer',
+	},
+	{
+		question: 'Can I receive payments in multiple currencies?',
+		answer:
+			'We support more than 80 national currencies, including USD, EUR, and a wide range of local options.',
+		questionTranslateKey: 'faq.items.q4.question',
+		answerTranslateKey: 'faq.items.q4.answer',
+	},
+	{
+		question: 'Can I send international payments from my Garna account?',
+		answer:
+			'We support bank transfers (SWIFT, SEPA, and local-currency bank transfers), card payments in local currency, PayPal, and crypto payments (USDT/USDC).',
+		questionTranslateKey: 'faq.items.q5.question',
+		answerTranslateKey: 'faq.items.q5.answer',
+	},
+	{
+		question: 'Can I pay employees and contractors through Garna?',
+		answer:
+			'Yes. Through Garna, you can pay employees, contractors, and freelancers using the payment method that works best for them.',
+		questionTranslateKey: 'faq.items.q6.question',
+		answerTranslateKey: 'faq.items.q6.answer',
+	},
+	{
+		question: 'What is the average payment processing time?',
+		answer:
+			'Processing typically ranges from instant to three business days, depending on the payment method. Most crypto payments are instant, e-wallet payments take up to one day, and bank transfers take up to three business days.',
+		questionTranslateKey: 'faq.items.q7.question',
+		answerTranslateKey: 'faq.items.q7.answer',
+	},
+	{
+		question: 'Can I access my money at any time?',
+		answer: 'Yes. Your balance is available whenever you need it for payroll, payments, or transfers.',
+		questionTranslateKey: 'faq.items.q8.question',
+		answerTranslateKey: 'faq.items.q8.answer',
+	},
+] satisfies FAQItem[];
+---
+
+<BaseLayout shell={pageShells.businessAccount}>
+	<BusinessAccountHeroSection />
+	<BusinessAccountProofStatsCardsSection
+		title={{ text: 'Hire Abroad Without Guesswork', translateKey: 'eorProof.title' }}
+		description={{ text: 'Garna keeps international hiring transparent, from local contracts to payroll and compliance. When you are ready, compare your options in the cost calculator', translateKey: 'eorProof.description' }}
+		action={{ label: { text: 'Calculate your options', translateKey: 'eorProof.button' }, href: '#eor-cost-estimator', variant: 'primary', icon: 'arrow-right', effect: 'none' }}
+		stats={businessAccountProofStats}
+		carouselLabel="Choose an EOR proof card"
+		carouselLabelKey="eorProof.carousel.ariaLabel"
+	/>
+	<BusinessAccountBenefitsSection />
+	<BusinessAccountSectionStyles />
+	<BusinessAccountCostEstimatorSection />
+	<FAQSection
+		title={{ text: 'FAQ on Business Account', translateKey: 'faq.title' }}
+		items={businessAccountFaqItems}
+		variant="eor"
+		class="py-16 lg:py-32"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...pageFinalCtas.businessAccount} />
+	<Fragment slot="widgets">
+		<BusinessAccountInteractions />
+		<GarnaBookingWidget
+			trackingSource="business-account"
+			trackingPage="business-account"
+			titleFallback="Book a Business Account demo"
+			subtitleFallback="Get all your questions answered by our experts"
+		/>
+	</Fragment>
+</BaseLayout>

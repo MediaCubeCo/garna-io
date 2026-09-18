@@ -116,6 +116,17 @@ export const pageShells = {
 		"bodyClass": "antialiased overflow-x-hidden selection:bg-[#CBF300]/40 selection:text-white bg-garna-page",
 		"iconLibrary": "iconify",
 	},
+	businessAccount: {
+		title: 'Business Account | Garna',
+		description:
+			'Open a Garna business account to manage balances, transfers, global team payouts, and everyday financial operations from one platform.',
+		keywords:
+			'business account, global business account, multi-currency account, international payments, Garna',
+		ogImage: 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
+		htmlClass: 'scroll-smooth dark',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300]/40 selection:text-white bg-garna-page',
+		iconLibrary: 'iconify',
+	},
 	blog: {
 		title: 'Garna Insights Hub',
 		description:

@@ -149,4 +149,24 @@ export const pageFinalCtas = {
 		descriptionClass:
 			'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
 	},
+	businessAccount: {
+		title: [{ text: 'One Account. One Platform. Less Financial Admin', translateKey: 'finalCta.title' }],
+		description: {
+			text: 'Manage your business globally with an own-name IBAN, transparent fees, and fast international payments',
+			translateKey: 'finalCta.description',
+		},
+		button: {
+			label: 'Open an account',
+			translateKey: 'finalCta.button',
+			kind: 'signup',
+			href: 'https://app.garna.io/en/auth/sign-up',
+			effect: 'rotating-flare',
+		},
+		class: 'overflow-hidden lg:pt-40 lg:pb-40 text-center pt-32 pb-32 relative',
+		containerClass: 'z-10 max-w-4xl mr-auto ml-auto pr-6 pl-6 relative',
+		titleClass:
+			'garna-hero-title-gradient text-[2.75rem] leading-[1.06] tracking-tight md:text-[3.35rem] lg:text-[62px] font-normal text-white font-manrope mb-8',
+		descriptionClass:
+			'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
+	},
 } satisfies Record<string, FinalCTASectionConfig>;

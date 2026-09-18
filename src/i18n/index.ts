@@ -11,6 +11,7 @@ import { payrollSolutionNewTranslations as homeTranslations } from './translatio
 import { forCreatorsTranslations } from './translations/for-creators';
 import { blogArticleTranslations, blogAuthorTranslations, blogTranslations } from './translations/blog';
 import { enterprisePayrollTranslations } from './translations/enterprise-payroll';
+import { businessAccountTranslations } from './translations/business-account';
 import { taxCalculatorTranslations } from './translations/tax-calculator';
 import { eorCostCalculatorTranslations } from './translations/eor-cost-calculator';
 import { gamescom2026Translations } from './translations/gamescom-2026-side-events';
@@ -31,6 +32,7 @@ type AnyPageTranslations =
 	| typeof homeTranslations.en
 	| typeof forCreatorsTranslations.en
 	| typeof enterprisePayrollTranslations.en
+	| typeof businessAccountTranslations.en
 	| typeof blogTranslations.en
 	| typeof blogAuthorTranslations.en
 	| typeof blogArticleTranslations.en
@@ -52,6 +54,7 @@ const translations = {
 	'mid-size': midSizeTranslations,
 	'mid-size-business-payroll': midSizeTranslations,
 	'enterprise-payroll': enterprisePayrollTranslations,
+	'business-account': businessAccountTranslations,
 	'payroll-small-business': payrollSmallBusinessTranslations,
 	blog: blogTranslations,
 	'blog-author': blogAuthorTranslations,

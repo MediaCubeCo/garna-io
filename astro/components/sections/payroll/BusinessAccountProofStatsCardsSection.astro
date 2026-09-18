@@ -1,0 +1,826 @@
+---
+import Section from '../../layout/Section.astro';
+import Button from '../../ui/Button.astro';
+
+type ProofStat = {
+	value: string;
+	label: string;
+	labelKey?: string;
+	image: string;
+	alt: string;
+	featured?: boolean;
+	imagePosition?: string;
+	imageOrigin?: string;
+	imageOffsetY?: string;
+	imageScale?: number;
+	notice: {
+		icon: 'check' | 'receipt' | 'transfer' | 'contract' | 'payroll' | 'calculator';
+		title: string;
+		titleKey?: string;
+		meta: string;
+		metaKey?: string;
+		amount?: string;
+		tone: 'bank' | 'card' | 'crypto';
+	};
+};
+
+type LocalizedText = {
+	text: string;
+	translateKey?: string;
+};
+
+interface Props {
+	title?: LocalizedText;
+	description?: LocalizedText;
+	action?: {
+		label: LocalizedText;
+		href: string;
+		variant?: 'primary' | 'secondary' | 'ghost' | 'glow';
+		icon?: 'none' | 'arrow-up-right' | 'arrow-right';
+		effect?: 'none' | 'rotating-flare';
+	};
+	stats?: ProofStat[];
+	carouselLabel?: string;
+	carouselLabelKey?: string;
+	class?: string;
+}
+
+const defaultStats: ProofStat[] = [
+	{
+		value: '400+',
+		label: 'businesses using Garna',
+		labelKey: 'homeProof.stats.businesses.label',
+		image: '/pages/payroll-solution-new/assets/home-proof-mountain-man-v1.png',
+		alt: 'A remote professional standing in the mountains at sunrise',
+		imagePosition: 'center bottom',
+		imageOrigin: 'center center',
+		imageScale: 1.36,
+		notice: {
+			icon: 'check',
+			title: 'Invoice approved',
+			titleKey: 'homeProof.stats.businesses.notice.title',
+			meta: 'Brand Studio LLC',
+			metaKey: 'homeProof.stats.businesses.notice.meta',
+			amount: '+4,820 $',
+			tone: 'bank',
+		},
+	},
+	{
+		value: '$110M+',
+		label: 'paid to specialists',
+		labelKey: 'homeProof.stats.paid.label',
+		image: '/pages/payroll-solution-new/assets/home-hero-profile-clouds-v2.jpg',
+		alt: 'A global professional in profile against a clear blue sky',
+		featured: true,
+		imagePosition: 'center bottom',
+		imageOrigin: 'bottom center',
+		imageScale: 1.62,
+		notice: {
+			icon: 'receipt',
+			title: 'Salary batch sent',
+			titleKey: 'homeProof.stats.paid.notice.title',
+			meta: '38 specialists',
+			metaKey: 'homeProof.stats.paid.notice.meta',
+			amount: '+96,400 $',
+			tone: 'card',
+		},
+	},
+	{
+		value: '38,000+',
+		label: 'talents already use Garna',
+		labelKey: 'homeProof.stats.talents.label',
+		image: '/pages/payroll-solution-new/assets/home-proof-coffee-man-v2.png',
+		alt: 'A man in a white shirt holding coffee near a window',
+		imagePosition: 'center center',
+		imageOrigin: 'center center',
+		notice: {
+			icon: 'transfer',
+			title: 'Transfer completed',
+			titleKey: 'homeProof.stats.talents.notice.title',
+			meta: 'EUR account',
+			metaKey: 'homeProof.stats.talents.notice.meta',
+			amount: '-2,350 €',
+			tone: 'crypto',
+		},
+	},
+];
+
+const {
+	title = { text: 'Payroll for work without borders', translateKey: 'sectionHeadings.homeProof' },
+	description = { text: 'Support teams, contractors, and specialists wherever work happens', translateKey: 'sectionDescriptions.homeProof' },
+	action,
+	stats = defaultStats,
+	carouselLabel = 'Choose a payroll proof card',
+	carouselLabelKey = 'homeProof.carousel.ariaLabel',
+	class: className = '',
+} = Astro.props;
+
+const sectionClass = ['home-proof-section overflow-hidden', className].filter(Boolean).join(' ');
+const actionScrollTarget = action?.href?.startsWith('#') ? action.href : undefined;
+---
+
+<Section
+	class={sectionClass}
+	containerClass="relative"
+	width="content"
+	spacing="default"
+	title={title}
+	description={description}
+	headerClass="mb-16 max-w-4xl lg:mb-20"
+	titleClass="lg:text-5xl"
+	descriptionClass="mx-auto max-w-4xl"
+	contained={true}
+>
+	{action && (
+		<div slot="controls" class="home-proof-action">
+			<Button href={action.href} variant={action.variant} icon={action.icon} effect={action.effect} size="hero" data-translate={action.label.translateKey} data-smooth-scroll-target={actionScrollTarget}>
+				{action.label.text}
+			</Button>
+		</div>
+	)}
+	<div class="home-proof-carousel" data-home-proof-carousel>
+	<div class="home-proof-grid" data-home-proof-track>
+		{stats.map((stat, index) => (
+			<article
+				class:list={['home-proof-card', stat.featured && 'home-proof-card--featured', index === 0 && 'is-active']}
+				data-home-proof-card={stat.featured ? 'featured' : undefined}
+				data-home-proof-slide={index}
+				tabindex="-1"
+			>
+				<img
+					src={stat.image}
+					alt={stat.alt}
+					loading="lazy"
+					data-home-proof-image={stat.featured ? 'featured' : undefined}
+					style={[
+						stat.imagePosition ? `object-position: ${stat.imagePosition};` : '',
+						stat.imageOrigin ? `--proof-image-origin: ${stat.imageOrigin};` : '',
+						stat.imageOffsetY ? `--proof-image-y: ${stat.imageOffsetY};` : '',
+						stat.imageScale ? `--proof-image-scale: ${stat.imageScale};` : '',
+					]
+						.filter(Boolean)
+						.join(' ')}
+				/>
+				<div class="home-proof-card__scrim" aria-hidden="true"></div>
+				<div class:list={['home-proof-card__notice', `home-proof-card__notice--${stat.notice.tone}`]} aria-hidden="true">
+					<span class="home-proof-card__notice-frame">
+					<span class="home-proof-card__notice-icon">
+						{stat.notice.icon === 'check' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M20 7 9 18l-5-5"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'receipt' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M7 3h10a2 2 0 0 1 2 2v16l-3-2-2 2-2-2-2 2-2-2-3 2V5a2 2 0 0 1 2-2Z"></path>
+								<path d="M9 8h6"></path>
+								<path d="M9 12h6"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'transfer' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M5 8h13"></path>
+								<path d="m15 5 3 3-3 3"></path>
+								<path d="M19 16H6"></path>
+								<path d="m9 13-3 3 3 3"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'contract' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+								<path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+								<path d="M8 13h8"></path>
+								<path d="M8 17h5"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'payroll' && (
+							<svg class="home-proof-card__notice-icon--payroll" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<rect width="18" height="14" x="3" y="5" rx="2"></rect>
+								<path d="M3 10h18"></path>
+								<path d="M7 15h.01"></path>
+								<path d="M11 15h2"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'calculator' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<rect width="16" height="20" x="4" y="2" rx="2"></rect>
+								<path d="M8 6h8"></path>
+								<path d="M8 10h.01"></path>
+								<path d="M12 10h.01"></path>
+								<path d="M16 10h.01"></path>
+								<path d="M8 14h.01"></path>
+								<path d="M12 14h.01"></path>
+								<path d="M16 14h.01"></path>
+								<path d="M8 18h.01"></path>
+								<path d="M12 18h.01"></path>
+								<path d="M16 18h.01"></path>
+							</svg>
+						)}
+					</span>
+					<span class="home-proof-card__notice-copy">
+						<span class="home-proof-card__notice-top">
+							<strong data-translate={stat.notice.titleKey}>{stat.notice.title}</strong>
+							{stat.notice.amount && <em>{stat.notice.amount}</em>}
+						</span>
+						<small data-translate={stat.notice.metaKey}>{stat.notice.meta}</small>
+					</span>
+					</span>
+				</div>
+			</article>
+		))}
+		{stats.map((stat, index) => (
+			<article
+				class:list={['home-proof-card', 'home-proof-card--clone', stat.featured && 'home-proof-card--featured']}
+				data-home-proof-clone={index}
+				aria-hidden="true"
+				tabindex="0"
+			>
+				<img
+					src={stat.image}
+					alt=""
+					loading="lazy"
+					style={[
+						stat.imagePosition ? `object-position: ${stat.imagePosition};` : '',
+						stat.imageOrigin ? `--proof-image-origin: ${stat.imageOrigin};` : '',
+						stat.imageOffsetY ? `--proof-image-y: ${stat.imageOffsetY};` : '',
+						stat.imageScale ? `--proof-image-scale: ${stat.imageScale};` : '',
+					]
+						.filter(Boolean)
+						.join(' ')}
+				/>
+				<div class="home-proof-card__scrim" aria-hidden="true"></div>
+				<div class:list={['home-proof-card__notice', `home-proof-card__notice--${stat.notice.tone}`]} aria-hidden="true">
+					<span class="home-proof-card__notice-frame">
+					<span class="home-proof-card__notice-icon">
+						{stat.notice.icon === 'check' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M20 7 9 18l-5-5"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'receipt' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M7 3h10a2 2 0 0 1 2 2v16l-3-2-2 2-2-2-2 2-2-2-3 2V5a2 2 0 0 1 2-2Z"></path>
+								<path d="M9 8h6"></path>
+								<path d="M9 12h6"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'transfer' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M5 8h13"></path>
+								<path d="m15 5 3 3-3 3"></path>
+								<path d="M19 16H6"></path>
+								<path d="m9 13-3 3 3 3"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'contract' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+								<path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+								<path d="M8 13h8"></path>
+								<path d="M8 17h5"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'payroll' && (
+							<svg class="home-proof-card__notice-icon--payroll" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<rect width="18" height="14" x="3" y="5" rx="2"></rect>
+								<path d="M3 10h18"></path>
+								<path d="M7 15h.01"></path>
+								<path d="M11 15h2"></path>
+							</svg>
+						)}
+						{stat.notice.icon === 'calculator' && (
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<rect width="16" height="20" x="4" y="2" rx="2"></rect>
+								<path d="M8 6h8"></path>
+								<path d="M8 10h.01"></path>
+								<path d="M12 10h.01"></path>
+								<path d="M16 10h.01"></path>
+								<path d="M8 14h.01"></path>
+								<path d="M12 14h.01"></path>
+								<path d="M16 14h.01"></path>
+								<path d="M8 18h.01"></path>
+								<path d="M12 18h.01"></path>
+								<path d="M16 18h.01"></path>
+							</svg>
+						)}
+					</span>
+					<span class="home-proof-card__notice-copy">
+						<span class="home-proof-card__notice-top">
+							<strong data-translate={stat.notice.titleKey}>{stat.notice.title}</strong>
+							{stat.notice.amount && <em>{stat.notice.amount}</em>}
+						</span>
+						<small data-translate={stat.notice.metaKey}>{stat.notice.meta}</small>
+					</span>
+					</span>
+				</div>
+			</article>
+		))}
+	</div>
+	<div class="home-proof-dots" aria-label={carouselLabel} data-translate-aria-label={carouselLabelKey}>
+		{stats.map((stat, index) => (
+			<button
+				type="button"
+				class:list={['home-proof-dot', index === 0 && 'is-active']}
+				aria-label={`Show card ${index + 1}`}
+				aria-pressed={index === 0 ? 'true' : 'false'}
+				data-home-proof-dot={index}
+			></button>
+		))}
+	</div>
+	</div>
+</Section>
+
+<script>
+	document.querySelectorAll('[data-smooth-scroll-target]').forEach((button) => {
+		if (!(button instanceof HTMLAnchorElement) || button.dataset.smoothScrollReady === 'true') return;
+		button.dataset.smoothScrollReady = 'true';
+
+		button.addEventListener('click', (event) => {
+			const targetSelector = button.dataset.smoothScrollTarget;
+			if (!targetSelector) return;
+
+			const target = document.querySelector(targetSelector);
+			if (!(target instanceof HTMLElement)) return;
+
+			event.preventDefault();
+			target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			window.history.pushState(null, '', targetSelector);
+		});
+	});
+
+	document.querySelectorAll('[data-home-proof-carousel]').forEach((root) => {
+		if (!(root instanceof HTMLElement) || root.dataset.carouselReady === 'true') return;
+		const track = root.querySelector('[data-home-proof-track]');
+		const slides = Array.from(root.querySelectorAll('[data-home-proof-slide]:not([data-home-proof-clone])'));
+		const cloneSlides = Array.from(root.querySelectorAll('[data-home-proof-clone]'));
+		const dots = Array.from(root.querySelectorAll('[data-home-proof-dot]'));
+		const carouselMode = window.matchMedia('(max-width: 840px)');
+		if (!(track instanceof HTMLElement)) return;
+		root.dataset.carouselReady = 'true';
+		let activeIndex = 0;
+		let isMoving = false;
+
+		const updateState = (index) => {
+			activeIndex = (index + slides.length) % slides.length;
+			slides.forEach((item, slideIndex) => {
+				if (!(item instanceof HTMLElement)) return;
+				item.classList.toggle('is-active', slideIndex === activeIndex);
+			});
+			cloneSlides.forEach((item) => {
+				if (!(item instanceof HTMLElement)) return;
+				const cloneIndex = Number(item.dataset.homeProofClone || 0);
+				item.classList.toggle('is-active', cloneIndex === activeIndex);
+			});
+			dots.forEach((dot, dotIndex) => {
+				if (!(dot instanceof HTMLElement)) return;
+				const active = dotIndex === activeIndex;
+				dot.classList.toggle('is-active', active);
+				dot.setAttribute('aria-pressed', String(active));
+			});
+		};
+
+		const scrollToSlide = (target, behavior = 'smooth', onDone = () => {}) => {
+			const firstSlide = slides[0];
+			if (!(target instanceof HTMLElement) || !(firstSlide instanceof HTMLElement)) return;
+			const maxOffset = Math.max(0, track.scrollWidth - track.clientWidth);
+			const targetOffset = Math.max(0, target.offsetLeft - firstSlide.offsetLeft);
+			const left = Math.min(targetOffset, maxOffset);
+			if (behavior !== 'smooth') {
+				track.scrollTo({ left, behavior: 'auto' });
+				onDone();
+				return;
+			}
+			const start = track.scrollLeft;
+			const distance = left - start;
+			const duration = 260;
+			const startedAt = performance.now();
+			const animate = (now) => {
+				const progress = Math.min((now - startedAt) / duration, 1);
+				const eased = 1 - Math.pow(1 - progress, 3);
+				track.scrollLeft = start + distance * eased;
+				if (progress < 1) {
+					requestAnimationFrame(animate);
+				} else {
+					onDone();
+				}
+			};
+			requestAnimationFrame(animate);
+		};
+
+		const move = (nextIndex, useClone = false) => {
+			if (!carouselMode.matches || isMoving) return;
+			isMoving = true;
+			const normalizedIndex = (nextIndex + slides.length) % slides.length;
+			const target = useClone ? cloneSlides[normalizedIndex] : slides[normalizedIndex];
+			updateState(normalizedIndex);
+			requestAnimationFrame(() => {
+				scrollToSlide(target, 'smooth', () => {
+					if (useClone) scrollToSlide(slides[normalizedIndex], 'auto');
+					isMoving = false;
+				});
+			});
+		};
+
+		const select = (index) => {
+			const normalizedIndex = (index + slides.length) % slides.length;
+			if (normalizedIndex === activeIndex) return;
+			const continuesCycle = activeIndex === slides.length - 1 && normalizedIndex === 0;
+			move(normalizedIndex, continuesCycle);
+		};
+
+		const selectClone = (index) => {
+			const normalizedIndex = (index + slides.length) % slides.length;
+			if (!carouselMode.matches || isMoving) return;
+			move(normalizedIndex, true);
+		};
+
+		slides.forEach((slide, index) => {
+			slide.addEventListener('click', () => select(index));
+			slide.addEventListener('keydown', (event) => {
+				if (event.key === 'Enter' || event.key === ' ') {
+					event.preventDefault();
+					select(index);
+				}
+			});
+		});
+		cloneSlides.forEach((slide) => {
+			const index = Number((slide instanceof HTMLElement && slide.dataset.homeProofClone) || 0);
+			slide.addEventListener('click', () => selectClone(index));
+			slide.addEventListener('keydown', (event) => {
+				if (event.key === 'Enter' || event.key === ' ') {
+					event.preventDefault();
+					selectClone(index);
+				}
+			});
+		});
+		dots.forEach((dot, index) => dot.addEventListener('click', () => select(index)));
+		const reset = () => {
+			updateState(0);
+			track.scrollTo({ left: 0, behavior: 'auto' });
+			isMoving = false;
+		};
+		carouselMode.addEventListener?.('change', reset);
+		window.addEventListener('resize', reset, { passive: true });
+		requestAnimationFrame(reset);
+	});
+</script>
+
+<style>
+	.home-proof-section {
+		background: transparent;
+	}
+
+	.home-proof-action {
+		display: flex;
+		justify-content: center;
+		margin: -2.5rem 0 3.5rem;
+	}
+
+	.home-proof-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-items: center;
+		width: min(100%, 910px);
+		margin-inline: auto;
+		gap: 1.25rem;
+	}
+
+	.home-proof-dots {
+		display: none;
+	}
+
+	.home-proof-card--clone {
+		display: none;
+	}
+
+	.home-proof-card {
+		--home-proof-notice-reference-width: 18.125rem;
+		--home-proof-notice-scale: min(1, calc(100cqw / var(--home-proof-notice-reference-width)));
+		--home-proof-notice-inset: calc(1rem * var(--home-proof-notice-scale));
+		position: relative;
+		container-type: inline-size;
+		min-height: clamp(20rem, 28vw, 26rem);
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.11);
+		border-radius: 22px;
+		background: #0a0a0a;
+		box-shadow: 0 22px 70px -54px rgba(0, 0, 0, 0.95);
+		isolation: isolate;
+	}
+
+	.home-proof-card--featured {
+		min-height: clamp(23rem, 33vw, 30rem);
+		border-color: rgba(255, 255, 255, 0.12);
+		box-shadow: 0 30px 90px -60px rgba(0, 0, 0, 0.98);
+	}
+
+	@media (min-width: 841px) {
+		.home-proof-card {
+			min-height: 0;
+			aspect-ratio: 0.77;
+		}
+
+		.home-proof-card--featured {
+			min-height: 0;
+			aspect-ratio: 0.67;
+		}
+	}
+
+	.home-proof-card > img {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 1;
+		transform: translate3d(0, var(--proof-image-y, 0), 0) scale(var(--proof-image-scale, 1.03));
+		transform-origin: var(--proof-image-origin, center center);
+		transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.home-proof-card:hover > img {
+		transform: translate3d(0, var(--proof-image-y, 0), 0) scale(calc(var(--proof-image-scale, 1.03) + 0.05));
+	}
+
+	.home-proof-card__scrim {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		background: transparent;
+		pointer-events: none;
+	}
+
+	.home-proof-card__notice {
+		position: absolute;
+		right: clamp(0.85rem, 1.5vw, 1.1rem);
+		bottom: clamp(0.85rem, 1.5vw, 1.1rem);
+		left: clamp(0.85rem, 1.5vw, 1.1rem);
+		z-index: 2;
+		display: grid;
+		grid-template-columns: 2.1rem minmax(0, 1fr);
+		align-items: center;
+		column-gap: 0.74rem;
+		min-height: 4.15rem;
+		overflow: hidden;
+		padding: 0.68rem 0.72rem 0.68rem 0.7rem;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 14px;
+		background: rgb(7 8 10 / 0.72);
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		box-shadow: 0 0.65rem 1.8rem rgb(0 0 0 / 0.2);
+		backdrop-filter: blur(12px);
+		pointer-events: none;
+	}
+
+	.home-proof-card__notice-frame {
+		display: contents;
+	}
+
+	.home-proof-card__notice-icon {
+		display: grid;
+		width: 2.1rem;
+		height: 2.1rem;
+		place-items: center;
+		border-radius: 9px;
+		background: #cbf300;
+		color: #101010;
+	}
+
+	.home-proof-card__notice-icon svg {
+		display: block;
+		width: 1.18rem;
+		height: 1.18rem;
+	}
+
+	.home-proof-card__notice-icon .home-proof-card__notice-icon--payroll {
+		width: 1.34rem;
+		height: 1.34rem;
+	}
+
+	.home-proof-card__notice--card .home-proof-card__notice-icon {
+		background: #cbf300;
+	}
+
+	.home-proof-card__notice--crypto .home-proof-card__notice-icon {
+		background: #cbf300;
+	}
+
+	.home-proof-card__notice-copy {
+		display: grid;
+		min-width: 0;
+		gap: 0.22rem;
+	}
+
+	.home-proof-card__notice-top {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: baseline;
+		column-gap: 0.58rem;
+		min-width: 0;
+	}
+
+	.home-proof-card__notice strong {
+		overflow: hidden;
+		color: #ffffff;
+		font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+		font-weight: 650;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.home-proof-card__notice small {
+		overflow: hidden;
+		color: rgb(255 255 255 / 0.58);
+		font-size: clamp(0.66rem, 0.74vw, 0.72rem);
+		font-weight: 500;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.home-proof-card__notice em {
+		color: #ffffff;
+		font-size: clamp(0.7rem, 0.82vw, 0.8rem);
+		font-style: normal;
+		font-weight: 560;
+		line-height: 1.15;
+		white-space: nowrap;
+	}
+
+	@media (max-width: 1079px) {
+		.home-proof-card {
+			--home-proof-notice-scale: calc(100cqw / var(--home-proof-notice-reference-width));
+			--home-proof-notice-inset: calc(1rem * var(--home-proof-notice-scale));
+		}
+
+		.home-proof-card__notice {
+			right: auto;
+			bottom: var(--home-proof-notice-inset);
+			left: var(--home-proof-notice-inset);
+			display: block;
+			width: calc(100cqw - (var(--home-proof-notice-inset) * 2));
+			height: calc(4.15rem * var(--home-proof-notice-scale));
+			min-height: 0;
+			overflow: visible;
+			padding: 0;
+			border: 0;
+			border-radius: 0;
+			background: transparent;
+			box-shadow: none;
+			backdrop-filter: none;
+		}
+
+		.home-proof-card__notice-frame {
+			display: grid;
+			width: calc(var(--home-proof-notice-reference-width) - 2rem);
+			grid-template-columns: 2.1rem minmax(0, 1fr);
+			align-items: center;
+			column-gap: 0.74rem;
+			min-height: 4.15rem;
+			overflow: hidden;
+			padding: 0.68rem 0.72rem 0.68rem 0.7rem;
+			border: 1px solid rgb(255 255 255 / 0.1);
+			border-radius: 14px;
+			background: rgb(7 8 10 / 0.72);
+			box-shadow: 0 0.65rem 1.8rem rgb(0 0 0 / 0.2);
+			backdrop-filter: blur(12px);
+			transform: translateZ(0) scale(var(--home-proof-notice-scale));
+			transform-origin: top left;
+		}
+	}
+
+	@media (max-width: 840px) {
+		:global(.home-proof-section) {
+			overflow: visible !important;
+		}
+
+		.home-proof-carousel {
+			--home-proof-active-width: min(42vw, 19rem);
+			width: auto;
+			margin-right: calc(50% - 50vw);
+		}
+
+		.home-proof-grid {
+			display: flex;
+			width: 100%;
+			max-width: none;
+			overflow: hidden;
+			align-items: center;
+			gap: 1.15rem;
+			padding: 0 1rem;
+			transform: translateX(0);
+			transition: transform 520ms cubic-bezier(.22, 1, .36, 1);
+		}
+
+		.home-proof-grid.is-resetting { transition: none; }
+
+		.home-proof-grid::-webkit-scrollbar {
+			display: none;
+		}
+
+		.home-proof-card {
+			flex: 0 0 var(--home-proof-active-width);
+			min-height: 0;
+			aspect-ratio: 0.77;
+			border-color: transparent;
+			scroll-snap-align: start;
+			cursor: pointer;
+			contain: paint;
+			transform: scale(0.94);
+			transform-origin: center left;
+			transition: transform 520ms cubic-bezier(.22, 1, .36, 1);
+			backface-visibility: hidden;
+		}
+
+		.home-proof-card::after {
+			position: absolute;
+			inset: 0;
+			z-index: 4;
+			border: 1px solid rgba(255, 255, 255, 0.11);
+			border-radius: inherit;
+			content: '';
+			pointer-events: none;
+			transform: translateZ(0);
+		}
+
+		.home-proof-card--clone {
+			display: block;
+		}
+
+		.home-proof-card.is-active {
+			opacity: 1;
+			transform: none;
+		}
+
+		.home-proof-card:hover > img {
+			transform: translate3d(0, var(--proof-image-y, 0), 0) scale(var(--proof-image-scale, 1.03));
+		}
+
+		.home-proof-card > img {
+			backface-visibility: hidden;
+		}
+
+		.home-proof-card__notice-frame {
+			backface-visibility: hidden;
+			transform: translateZ(0) scale(var(--home-proof-notice-scale));
+			will-change: transform;
+		}
+
+		.home-proof-dots {
+			display: flex;
+			width: var(--home-proof-active-width);
+			justify-content: center;
+			gap: 0.55rem;
+			margin-top: 1.35rem;
+			margin-left: 1rem;
+		}
+
+		.home-proof-dot {
+			width: 0.55rem;
+			height: 0.55rem;
+			padding: 0;
+			border: 0;
+			border-radius: 999px;
+			background: rgb(255 255 255 / 0.22);
+			transition: width 180ms ease, background-color 180ms ease;
+		}
+
+		.home-proof-dot.is-active {
+			width: 1.45rem;
+			background: #cbf300;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.home-proof-carousel {
+			--home-proof-active-width: clamp(14rem, 64vw, 21.5rem);
+		}
+
+		.home-proof-grid {
+			gap: .8rem;
+			padding-inline: 1.25rem;
+		}
+
+		.home-proof-dots { margin-left: 1.25rem; }
+
+		.home-proof-card,
+		.home-proof-card--featured {
+			min-height: 0;
+			border-radius: 18px;
+		}
+
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.home-proof-card > img {
+			transition: none;
+		}
+
+		.home-proof-card:hover > img {
+			transform: scale(1.03);
+		}
+	}
+</style>
