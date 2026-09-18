@@ -5,7 +5,6 @@ import HeroSection from '../sections/HeroSection.astro';
 import Section from '../layout/Section.astro';
 import Card from '../ui/Card.astro';
 import Button from '../ui/Button.astro';
-import CardIconVisual from '../visuals/CardIconVisual.astro';
 import PayrollSolutionInteractions from '../sections/payroll/PayrollSolutionInteractions.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { pageHeroes } from '../../content/page-heroes';
@@ -907,7 +906,10 @@ const forCreatorsFaqItems = [
 			title={{ text: 'Designers & illustrators', translateKey: 'creatorTypes.cards.designers.title' }}
 			description={{ text: 'For creators selling graphics, templates, fonts, digital assets and visual products', translateKey: 'creatorTypes.cards.designers.description' }}
 		>
-			<CardIconVisual slot="visual" icon="lucide:palette" />
+			<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M12 22a1 1 0 0 1 0-20a10 9 0 0 1 10 9a5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path>
+				<circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+			</svg>
 		</Card>
 		<Card
 			class="p-6"
@@ -916,7 +918,9 @@ const forCreatorsFaqItems = [
 			title={{ text: 'Photographers & stock contributors', translateKey: 'creatorTypes.cards.photographers.title' }}
 			description={{ text: 'For contributors receiving royalties or payouts from stock photo and media platforms', translateKey: 'creatorTypes.cards.photographers.description' }}
 		>
-			<CardIconVisual slot="visual" icon="lucide:camera" />
+			<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"></path><circle cx="12" cy="13" r="3"></circle>
+			</svg>
 		</Card>
 		<Card
 			class="p-6"
@@ -925,7 +929,9 @@ const forCreatorsFaqItems = [
 			title={{ text: '3D artists & game asset creators', translateKey: 'creatorTypes.cards.gameAssets.title' }}
 			description={{ text: 'For creators selling 3D models, plugins, textures, game assets and marketplace products', translateKey: 'creatorTypes.cards.gameAssets.description' }}
 		>
-			<CardIconVisual slot="visual" icon="lucide:box" />
+			<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5M12 22V12"></path>
+			</svg>
 		</Card>
 		<Card
 			class="p-6"
@@ -934,7 +940,9 @@ const forCreatorsFaqItems = [
 			title={{ text: 'Freelancers & digital sellers', translateKey: 'creatorTypes.cards.freelancers.title' }}
 			description={{ text: 'For people earning from freelance platforms, subscriptions, courses, music, content or digital products', translateKey: 'creatorTypes.cards.freelancers.description' }}
 		>
-			<CardIconVisual slot="visual" icon="lucide:store" />
+			<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5m8.774-10.69a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"></path><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"></path>
+			</svg>
 		</Card>
 	</Section>
 	<Section
@@ -11312,8 +11320,8 @@ const forCreatorsFaqItems = [
 		place-items: center;
 		overflow: hidden;
 		padding: clamp(34px, 5vw, 74px);
-		opacity: 0.06;
-		filter: brightness(0.64) saturate(0.86);
+		opacity: 1;
+		filter: none;
 		transform: translateY(calc(-70px + var(--creator-process-visual-offset-y))) scale(0.84);
 		transform-origin: center center;
 		transition:
@@ -11331,44 +11339,44 @@ const forCreatorsFaqItems = [
 	.creator-process-visual.is-stack-one {
 		z-index: 4;
 		opacity: 1;
-		filter: brightness(0.94) saturate(0.98);
+		filter: none;
 		transform: translateY(calc(-26px + var(--creator-process-visual-offset-y))) scale(0.92);
 	}
 
 	.creator-process-visual.is-stack-two {
 		z-index: 3;
 		opacity: 1;
-		filter: brightness(0.9) saturate(0.96);
+		filter: none;
 		transform: translateY(calc(-50px + var(--creator-process-visual-offset-y))) scale(0.84);
 	}
 
 	.creator-process-visual.is-stack-three {
 		z-index: 2;
 		opacity: 1;
-		filter: brightness(0.86) saturate(0.94);
+		filter: none;
 		transform: translateY(calc(-70px + var(--creator-process-visual-offset-y))) scale(0.77);
 	}
 
 	.creator-process-visual.is-stack-four {
 		z-index: 1;
 		opacity: 1;
-		filter: brightness(0.82) saturate(0.92);
+		filter: none;
 		transform: translateY(calc(-88px + var(--creator-process-visual-offset-y))) scale(0.71);
 	}
 
 	.creator-process-visual.is-stack-five {
 		z-index: 0;
 		opacity: 1;
-		filter: brightness(0.78) saturate(0.9);
+		filter: none;
 		transform: translateY(calc(-104px + var(--creator-process-visual-offset-y))) scale(0.66);
 	}
 
-	.creator-process-visual.is-active .creator-mini-window,
-	.creator-process-visual.is-active .creator-chat-card,
-	.creator-process-visual.is-active .creator-details-sheet,
-	.creator-process-visual.is-active .creator-withdraw-panel,
-	.creator-process-visual.is-active .creator-invoice-doc,
-	.creator-process-visual.is-active .creator-balance-card {
+	.creator-process-visual-stage .creator-mini-window,
+	.creator-process-visual-stage .creator-chat-card,
+	.creator-process-visual-stage .creator-details-sheet,
+	.creator-process-visual-stage .creator-withdraw-panel,
+	.creator-process-visual-stage .creator-invoice-doc,
+	.creator-process-visual-stage .creator-balance-card {
 		background: #0c0c0c;
 		backdrop-filter: none;
 		-webkit-backdrop-filter: none;
