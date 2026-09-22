@@ -19,34 +19,30 @@ const meta = {
 	ru: {
 		title: 'Business Account | Garna',
 		description:
-			'Откройте бизнес-аккаунт Garna, чтобы управлять балансами, переводами, выплатами глобальной команде и ежедневными финансовыми операциями на одной платформе.',
+			'Откройте платежный счет Garna, чтобы управлять балансами, переводами, выплатами глобальной команде и ежедневными финансовыми операциями на одной платформе.',
 	},
 };
 
 const finalCta = {
 	en: {
-		title: 'One Account. One Platform. Less Financial Admin',
-		description:
-			'Manage your business globally with an own-name IBAN, transparent fees, and fast international payments',
+		title: 'Take Your Business Payments Global',
+		description: 'Open one account for international transfers, multi-currency balances, and team payouts',
 		button: 'Open an account',
 	},
 	es: {
-		title: 'Una cuenta. Una plataforma. Menos gestión financiera',
-		description:
-			'Gestiona tu negocio globalmente con un IBAN a nombre de tu empresa, tarifas transparentes y pagos internacionales rápidos',
+		title: 'Lleva los pagos de tu empresa al mundo',
+		description: 'Abre una cuenta para transferencias internacionales, saldos multidivisa y pagos a tu equipo',
 		button: 'Abrir una cuenta',
 	},
 	pt: {
-		title: 'Uma conta. Uma plataforma. Menos gestão financeira',
-		description:
-			'Gerencie seu negócio globalmente com um IBAN em nome da empresa, tarifas transparentes e pagamentos internacionais rápidos',
+		title: 'Leve os pagamentos da sua empresa para o mundo',
+		description: 'Abra uma conta para transferências internacionais, saldos em várias moedas e pagamentos à sua equipe',
 		button: 'Abrir uma conta',
 	},
 	ru: {
-		title: 'Один счёт. Одна платформа. Меньше финансовой рутины',
-		description:
-			'Управляйте международными финансами с IBAN на имя компании, прозрачными комиссиями и быстрыми зарубежными платежами',
-		button: 'Открыть счёт',
+		title: 'Выведите платежи вашего бизнеса на глобальный уровень',
+		description: 'Откройте один счет для международных переводов, мультивалютных балансов и выплат команде',
+		button: 'Открыть счет',
 	},
 };
 
@@ -70,9 +66,9 @@ const hero = {
 		ctaSecondary: 'Agendar uma demo',
 	},
 	ru: {
-		title: 'Бизнес-счёт\nдля выхода на глобальный рынок',
-		description: 'Пополняйте счёт, получайте платежи, платите команде и храните разные валюты. Экономьте время и деньги с универсальным бизнес-счётом Garna',
-		ctaPrimary: 'Открыть счёт',
+		title: 'Платежный счет\nдля выхода на глобальный рынок',
+		description: 'Пополняйте счет, получайте платежи, платите команде и храните разные валюты. Экономьте время и деньги с универсальным платежным счетом Garna',
+		ctaPrimary: 'Открыть счет',
 		ctaSecondary: 'Записаться на демо',
 	},
 };
@@ -101,6 +97,65 @@ const stats = {
 		usdCoverage: 'стран с выплатами в USD',
 		batchContactsValue: 'До 1 000',
 		batchContactsLabel: 'получателей в одном массовом платеже',
+	},
+};
+
+const financialAdminCarousel = {
+	en: {
+		features: {
+			iban: { title: "An IBAN in your company's name", description: 'Keep business payments clearly tied to your company with account details in its own name' },
+			fees: { title: 'Know every fee before you send', description: 'Review the exchange rate, transfer fee, and final amount before you approve a payment' },
+			balances: { title: 'Every balance in one place', description: 'Hold and manage multiple currencies from one account without switching between platforms' },
+			payments: { title: 'Move money across borders faster', description: 'Send international payments with delivery times that match the method and destination' },
+		},
+		notifications: {
+			iban: { time: 'Just now', title: 'Business account active', description: 'IBAN issued in your company name' },
+			fees: { summary: 'Payment summary', sendLabel: 'You send', feeLabel: 'Transfer fee', recipientLabel: 'Recipient gets' },
+			balances: { title: 'Balances', updated: 'Updated now', footerLabel: 'Available balance', footerAction: 'View all' },
+			payments: { transferLabel: 'International transfer', status: 'Delivered', recipientMeta: 'United Kingdom' },
+		},
+	},
+	es: {
+		features: {
+			iban: { title: 'Un IBAN a nombre de tu empresa', description: 'Mantén los pagos vinculados a tu empresa con datos bancarios emitidos a su nombre' },
+			fees: { title: 'Conoce cada comisión antes de enviar', description: 'Revisa el tipo de cambio, la comisión y el importe final antes de aprobar un pago' },
+			balances: { title: 'Todos tus saldos en un solo lugar', description: 'Mantén y gestiona varias divisas desde una cuenta sin cambiar de plataforma' },
+			payments: { title: 'Mueve dinero entre países más rápido', description: 'Envía pagos internacionales con plazos adaptados al método y al destino' },
+		},
+		notifications: {
+			iban: { time: 'Ahora', title: 'Cuenta empresarial activa', description: 'IBAN emitido a nombre de tu empresa' },
+			fees: { summary: 'Resumen del pago', sendLabel: 'Tú envías', feeLabel: 'Comisión', recipientLabel: 'El destinatario recibe' },
+			balances: { title: 'Saldos', updated: 'Actualizado ahora', footerLabel: 'Saldo disponible', footerAction: 'Ver todo' },
+			payments: { transferLabel: 'Pago internacional', status: 'Entregada', recipientMeta: 'Reino Unido' },
+		},
+	},
+	pt: {
+		features: {
+			iban: { title: 'Um IBAN em nome da sua empresa', description: 'Mantenha os pagamentos ligados à sua empresa com dados bancários em nome dela' },
+			fees: { title: 'Saiba todas as tarifas antes de enviar', description: 'Revise a taxa de câmbio, a tarifa e o valor final antes de aprovar um pagamento' },
+			balances: { title: 'Todos os saldos em um só lugar', description: 'Mantenha e gerencie várias moedas em uma conta sem alternar entre plataformas' },
+			payments: { title: 'Movimente dinheiro entre países mais rápido', description: 'Envie pagamentos internacionais com prazos adequados ao método e ao destino' },
+		},
+		notifications: {
+			iban: { time: 'Agora', title: 'Conta empresarial ativa', description: 'IBAN emitido em nome da sua empresa' },
+			fees: { summary: 'Resumo do pagamento', sendLabel: 'Você envia', feeLabel: 'Tarifa', recipientLabel: 'Destinatário recebe' },
+			balances: { title: 'Saldos', updated: 'Atualizado agora', footerLabel: 'Saldo disponível', footerAction: 'Ver tudo' },
+			payments: { transferLabel: 'Pagamento global', status: 'Entregue', recipientMeta: 'Reino Unido' },
+		},
+	},
+	ru: {
+		features: {
+			iban: { title: 'IBAN на имя вашей компании', description: 'Платежи напрямую связаны с вашей компанией благодаря банковским реквизитам на ее имя' },
+			fees: { title: 'Все комиссии известны заранее', description: 'Проверьте курс, комиссию и итоговую сумму перед подтверждением платежа' },
+			balances: { title: 'Все балансы в одном месте', description: 'Храните и управляйте несколькими валютами на одном счете, не переключаясь между платформами' },
+			payments: { title: 'Быстрые международные переводы', description: 'Отправляйте деньги за границу со сроками доставки, зависящими от способа и направления перевода' },
+		},
+		notifications: {
+			iban: { time: 'Только что', title: 'Платежный счет активен', description: 'IBAN оформлен на имя компании' },
+			fees: { summary: 'Сводка платежа', sendLabel: 'Вы платите', feeLabel: 'Комиссия', recipientLabel: 'Получатель получит' },
+			balances: { title: 'Балансы', updated: 'Обновлено сейчас', footerLabel: 'Доступный баланс', footerAction: 'Показать все' },
+			payments: { transferLabel: 'Перевод за рубеж', status: 'Доставлен', recipientMeta: 'Великобритания' },
+		},
 	},
 };
 
@@ -166,7 +221,144 @@ const costEstimator = {
 	ru: {
 		title: 'Отправляйте деньги по всему миру',
 		description: 'Совершайте международные платежи более чем в 60 локальных валютах, включая USD, EUR и другие',
-		cta: 'Открыть счёт',
+		cta: 'Открыть счет',
+	},
+};
+
+const apiPayments = {
+	en: {
+		eyebrow: 'API infrastructure',
+		title: 'Connect Global Payments to Your Platform',
+		description: 'Integrate Garna Business Account into your own platform and manage payments seamlessly under the hood',
+		button: 'Learn more',
+		carouselLabel: 'Choose an API payments card',
+		cards: {
+			integration: { label: 'API payment', status: '201 Created', title: 'Status', completed: 'Payment created', meta: 'Payment ID', detail: 'Created via API and confirmed automatically', time: 'Processed' },
+			automation: { title: 'Payment automated', meta: 'Approval workflow' },
+			global: { title: 'Transfer completed', meta: 'Cross-border payout' },
+		},
+	},
+	es: {
+		eyebrow: 'Infraestructura API',
+		title: 'Conecta pagos globales a tu plataforma',
+		description: 'Integra la cuenta empresarial de Garna en tu propia plataforma y gestiona los pagos de forma fluida en segundo plano',
+		button: 'Más información',
+		carouselLabel: 'Elige una tarjeta de pagos por API',
+		cards: {
+			integration: { label: 'Pago por API', status: '201 Creado', title: 'Estado', completed: 'Pago creado', meta: 'ID de pago', detail: 'Creado por API y confirmado', time: 'Procesado' },
+			automation: { title: 'Pago automatizado', meta: 'Flujo de aprobación' },
+			global: { title: 'Transferencia completada', meta: 'Pago internacional' },
+		},
+	},
+	pt: {
+		eyebrow: 'Infraestrutura de API',
+		title: 'Conecte pagamentos globais à sua plataforma',
+		description: 'Integre a conta empresarial Garna à sua própria plataforma e gerencie pagamentos de forma integrada nos bastidores',
+		button: 'Saiba mais',
+		carouselLabel: 'Escolha um cartão de pagamentos via API',
+		cards: {
+			integration: { label: 'Pagamento via API', status: '201 Criado', title: 'Status', completed: 'Pagamento criado', meta: 'ID do pagamento', detail: 'Criado via API e confirmado', time: 'Processado' },
+			automation: { title: 'Pagamento automatizado', meta: 'Fluxo de aprovação' },
+			global: { title: 'Transferência concluída', meta: 'Pagamento internacional' },
+		},
+	},
+	ru: {
+		eyebrow: 'API-инфраструктура',
+		title: 'Подключите глобальные платежи к своей платформе',
+		description: 'Интегрируйте платежный счет Garna в собственную платформу и незаметно управляйте платежами на внутреннем уровне',
+		button: 'Подробнее',
+		carouselLabel: 'Выберите карточку API-платежей',
+		cards: {
+			integration: { label: 'API-платеж', status: '201 Создано', title: 'Статус', completed: 'Платеж создан', meta: 'ID платежа', detail: 'Создан и подтвержден через API', time: 'Обработан' },
+			automation: { title: 'Платеж автоматизирован', meta: 'Процесс согласования' },
+			global: { title: 'Перевод выполнен', meta: 'Международная выплата' },
+		},
+	},
+};
+
+const security = {
+	en: {
+		kicker: 'Security and support',
+		title: 'Built to Keep Your Funds Safe',
+		description: 'Garna is designed to keep your business funds and payments protected with security controls built into every part of the platform',
+		button: 'Book a demo',
+		features: {
+			safeguarded: { title: 'Safeguarded funds', description: 'All funds are deposited with reputable banking institutions.', tags: ['Protected funds', 'Trusted banks', 'Secure holding'] },
+			aml: { title: 'AML screening', description: 'We check recipients and transactions as part of our ongoing AML compliance program.', tags: ['Recipient checks', 'Transaction checks', 'Ongoing monitoring'] },
+			manager: { title: 'Dedicated account manager', description: 'Get hands-on support from your specialized account manager.', tags: ['Personal support', 'Dedicated contact', 'Expert guidance'] },
+		},
+	},
+	es: {
+		kicker: 'Seguridad y soporte',
+		title: 'Creado para proteger tus fondos',
+		description: 'Garna está diseñado para proteger los fondos y pagos de tu empresa con controles de seguridad integrados en toda la plataforma',
+		button: 'Reservar una demo',
+		features: {
+			safeguarded: { title: 'Fondos protegidos', description: 'Todos los fondos se depositan en instituciones bancarias de confianza.', tags: ['Fondos protegidos', 'Bancos de confianza', 'Custodia segura'] },
+			aml: { title: 'Control AML', description: 'Verificamos destinatarios y transacciones como parte de nuestro programa continuo de cumplimiento AML.', tags: ['Destinatarios', 'Transacciones', 'Supervisión continua'] },
+			manager: { title: 'Gestor de cuenta dedicado', description: 'Recibe asistencia personalizada de tu gestor de cuenta especializado.', tags: ['Soporte personal', 'Contacto dedicado', 'Asesoramiento experto'] },
+		},
+	},
+	pt: {
+		kicker: 'Segurança e suporte',
+		title: 'Criado para manter seus fundos seguros',
+		description: 'A Garna foi projetada para proteger os fundos e pagamentos da sua empresa com controles de segurança integrados em toda a plataforma',
+		button: 'Agendar uma demo',
+		features: {
+			safeguarded: { title: 'Fundos protegidos', description: 'Todos os fundos são depositados em instituições bancárias confiáveis.', tags: ['Fundos protegidos', 'Bancos confiáveis', 'Custódia segura'] },
+			aml: { title: 'Verificação AML', description: 'Verificamos destinatários e transações como parte do nosso programa contínuo de conformidade AML.', tags: ['Destinatários', 'Transações', 'Monitoramento AML'] },
+			manager: { title: 'Gerente de conta dedicado', description: 'Receba suporte personalizado do seu gerente de conta especializado.', tags: ['Suporte pessoal', 'Contato dedicado', 'Orientação especializada'] },
+		},
+	},
+	ru: {
+		kicker: 'Безопасность и поддержка',
+		title: 'Ваши средства под надежной защитой',
+		description: 'Garna защищает средства и платежи вашего бизнеса с помощью механизмов безопасности, встроенных во все уровни платформы',
+		button: 'Записаться на демо',
+		features: {
+			safeguarded: { title: 'Защита средств', description: 'Все средства размещаются в надежных банковских учреждениях.', tags: ['Защита средств', 'Надежные банки', 'Хранение средств'] },
+			aml: { title: 'AML-проверки', description: 'Мы проверяем получателей и транзакции в рамках постоянной программы AML-комплаенса.', tags: ['Получатели', 'Транзакции', 'AML-мониторинг'] },
+			manager: { title: 'Персональный аккаунт-менеджер', description: 'Получайте индивидуальную поддержку от профильного аккаунт-менеджера.', tags: ['Поддержка', 'Личный контакт', 'Экспертная помощь'] },
+		},
+	},
+};
+
+const moreThanAccount = {
+	en: {
+		title: 'More than a Business Account',
+		description: 'One platform to run payroll for freelancers, remote employees, and full-time teams',
+		products: {
+			eor: { title: 'Employer of Record', description: 'Scale your team faster with EOR solution', link: 'Explore EOR', fileLabel: 'Personnel file', role: 'Product Designer', country: 'Germany', status: 'Hired', providerLabel: 'Employer of record' },
+			perks: { title: 'Business Perks & Discounts', description: 'Get discounts for 100+ services that eat your budget', offerLabel: 'Partner service', benefitLabel: 'Discount', discount: '20% off', benefitMeta: 'Annual team plan', serviceCount: '100+ services', subscription: 'Business subscription', available: 'Available with Garna' },
+			cor: { title: 'Contractor of Record', description: 'Onboard, contract and pay your contractors globally', link: 'Explore COR', agreementLabel: 'Contractor agreement', status: 'Signed', client: 'Client', contractor: 'Contractor', scope: 'Scope of services', term: 'Term', termValue: '12 months', signature: 'E-signature', fileLabel: 'Contractor file', agreementTab: 'Agreement', invoiceTab: 'Invoice', payoutTab: 'Payout', contents: 'Payables · Agreements · Invoices', managedBy: 'Managed by' },
+		},
+	},
+	es: {
+		title: 'Más que una cuenta empresarial',
+		description: 'Una plataforma para gestionar pagos a freelancers, empleados remotos y equipos a tiempo completo',
+		products: {
+			eor: { title: 'Employer of Record', description: 'Amplía tu equipo más rápido con la solución EOR', link: 'Conocer EOR', fileLabel: 'Ficha laboral', role: 'Product Designer', country: 'Alemania', status: 'Contratada', providerLabel: 'Empleador legal' },
+			perks: { title: 'Ventajas y descuentos para empresas', description: 'Obtén descuentos en más de 100 servicios que consumen tu presupuesto', offerLabel: 'Servicio asociado', benefitLabel: 'Descuento', discount: '20% de descuento', benefitMeta: 'Plan anual para equipos', serviceCount: '100+ servicios', subscription: 'Suscripción empresarial', available: 'Disponible con Garna' },
+			cor: { title: 'Contractor of Record', description: 'Incorpora, contrata y paga a tus contratistas en todo el mundo', link: 'Conocer COR', agreementLabel: 'Contrato de contratista', status: 'Firmado', client: 'Cliente', contractor: 'Contratista', scope: 'Alcance de servicios', term: 'Plazo', termValue: '12 meses', signature: 'Firma electrónica', fileLabel: 'Expediente del contratista', agreementTab: 'Acuerdo', invoiceTab: 'Factura', payoutTab: 'Pago', contents: 'Pagos · Acuerdos · Facturas', managedBy: 'Gestionado por' },
+		},
+	},
+	pt: {
+		title: 'Mais do que uma conta empresarial',
+		description: 'Uma plataforma para gerenciar pagamentos de freelancers, funcionários remotos e equipes em tempo integral',
+		products: {
+			eor: { title: 'Employer of Record', description: 'Expanda sua equipe mais rapidamente com a solução EOR', link: 'Conhecer EOR', fileLabel: 'Ficha funcional', role: 'Product Designer', country: 'Alemanha', status: 'Contratada', providerLabel: 'Empregador legal' },
+			perks: { title: 'Benefícios e descontos empresariais', description: 'Obtenha descontos em mais de 100 serviços que consomem seu orçamento', offerLabel: 'Serviço parceiro', benefitLabel: 'Desconto', discount: '20% de desconto', benefitMeta: 'Plano anual para equipes', serviceCount: '100+ serviços', subscription: 'Assinatura empresarial', available: 'Disponível com a Garna' },
+			cor: { title: 'Contractor of Record', description: 'Integre, contrate e pague seus prestadores globalmente', link: 'Conhecer COR', agreementLabel: 'Contrato de prestador', status: 'Assinado', client: 'Cliente', contractor: 'Prestador', scope: 'Escopo dos serviços', term: 'Prazo', termValue: '12 meses', signature: 'Assinatura eletrônica', fileLabel: 'Pasta do prestador', agreementTab: 'Contrato', invoiceTab: 'Fatura', payoutTab: 'Pagamento', contents: 'Pagamentos · Contratos · Faturas', managedBy: 'Gerenciado por' },
+		},
+	},
+	ru: {
+		title: 'Больше, чем платежный счет',
+		description: 'Одна платформа для выплат фрилансерам, удаленным сотрудникам и штатным командам',
+		products: {
+			eor: { title: 'Employer of Record', description: 'Быстрее расширяйте команду с решением EOR', link: 'Узнать об EOR', fileLabel: 'Личное дело', role: 'Product Designer', country: 'Германия', status: 'Нанята', providerLabel: 'Официальный работодатель' },
+			perks: { title: 'Бизнес-привилегии и скидки', description: 'Получайте скидки на 100+ сервисов, которые занимают значительную часть бюджета', offerLabel: 'Партнерский сервис', benefitLabel: 'Скидка', discount: 'Скидка 20%', benefitMeta: 'Годовой план для команд', serviceCount: '100+ сервисов', subscription: 'Бизнес-подписка', available: 'Доступно с Garna' },
+			cor: { title: 'Contractor of Record', description: 'Подключайте, оформляйте и оплачивайте подрядчиков по всему миру', link: 'Узнать о COR', agreementLabel: 'Договор с подрядчиком', status: 'Подписан', client: 'Заказчик', contractor: 'Подрядчик', scope: 'Предмет договора', term: 'Срок', termValue: '12 месяцев', signature: 'Электронная подпись', fileLabel: 'Досье подрядчика', agreementTab: 'Договор', invoiceTab: 'Счет', payoutTab: 'Выплата', contents: 'Выплаты · Договоры · Счета', managedBy: 'Ведет' },
+		},
 	},
 };
 
@@ -235,23 +427,23 @@ const faq = {
 		},
 	},
 	ru: {
-		title: 'FAQ о бизнес-счёте',
+		title: 'FAQ о платежном счете',
 		items: {
-			q1: { question: 'Кто может открыть бизнес-счёт Garna?', answer: 'Garna работает с компаниями из разных отраслей и юрисдикций. Каждый заявитель проходит процедуру онбординга и комплаенс-проверку.' },
-			q2: { question: 'Какие документы нужны для открытия бизнес-счёта Garna?', answer: 'Чтобы открыть бизнес-счёт Garna, необходимо заполнить короткую заявку KYB (Know Your Business) и предоставить подтверждающие документы. Точные требования зависят от структуры и юрисдикции компании, поэтому наша команда рассматривает каждую заявку индивидуально.' },
+			q1: { question: 'Кто может открыть платежный счет Garna?', answer: 'Garna работает с компаниями из разных отраслей и юрисдикций. Каждый заявитель проходит процедуру онбординга и комплаенс-проверку.' },
+			q2: { question: 'Какие документы нужны для открытия платежного счета Garna?', answer: 'Чтобы открыть платежный счет Garna, необходимо заполнить короткую заявку KYB (Know Your Business) и предоставить подтверждающие документы. Точные требования зависят от структуры и юрисдикции компании, поэтому наша команда рассматривает каждую заявку индивидуально.' },
 			q3: { question: 'Как вы обеспечиваете безопасность средств?', answer: 'Garna использует шифрование банковского уровня и соблюдает требования GDPR и отраслевые стандарты безопасности данных, чтобы защитить ваши средства и информацию.' },
 			q4: { question: 'Могу ли я получать платежи в разных валютах?', answer: 'Мы поддерживаем более 80 национальных валют, включая USD, EUR и широкий выбор локальных валют.' },
-			q5: { question: 'Могу ли я отправлять международные платежи со счёта Garna?', answer: 'Мы поддерживаем банковские переводы SWIFT, SEPA и локальные переводы, платежи на карты в местной валюте, PayPal и криптовалютные платежи в USDT и USDC.' },
+			q5: { question: 'Могу ли я отправлять международные платежи со счета Garna?', answer: 'Мы поддерживаем банковские переводы SWIFT, SEPA и локальные переводы, платежи на карты в местной валюте, PayPal и криптовалютные платежи в USDT и USDC.' },
 			q6: { question: 'Могу ли я платить сотрудникам и подрядчикам через Garna?', answer: 'Да. Через Garna можно платить сотрудникам, подрядчикам и фрилансерам наиболее удобным для них способом.' },
-			q7: { question: 'Каково среднее время обработки платежа?', answer: 'Обработка обычно занимает от нескольких секунд до трёх рабочих дней в зависимости от способа оплаты. Большинство криптовалютных платежей проходит мгновенно, электронные кошельки — до одного дня, а банковские переводы — до трёх рабочих дней.' },
-			q8: { question: 'Могу ли я получить доступ к деньгам в любое время?', answer: 'Да. Баланс доступен в любое время для расчёта зарплаты, платежей и переводов.' },
+			q7: { question: 'Каково среднее время обработки платежа?', answer: 'Обработка обычно занимает от нескольких секунд до трех рабочих дней в зависимости от способа оплаты. Большинство криптовалютных платежей проходит мгновенно, электронные кошельки — до одного дня, а банковские переводы — до трех рабочих дней.' },
+			q8: { question: 'Могу ли я получить доступ к деньгам в любое время?', answer: 'Да. Баланс доступен в любое время для расчета зарплаты, платежей и переводов.' },
 		},
 	},
 };
 
 export const businessAccountTranslations = {
-	en: { ...eorTranslations.en, meta: meta.en, hero: { ...eorTranslations.en.hero, ...hero.en }, stats: { ...eorTranslations.en.stats, ...stats.en }, globalWorkforce: globalWorkforce.en, costEstimator: { ...eorTranslations.en.costEstimator, ...costEstimator.en }, faq: faq.en, finalCta: finalCta.en },
-	es: { ...eorTranslations.es, meta: meta.es, hero: { ...eorTranslations.es.hero, ...hero.es }, stats: { ...eorTranslations.es.stats, ...stats.es }, globalWorkforce: globalWorkforce.es, costEstimator: { ...eorTranslations.es.costEstimator, ...costEstimator.es }, faq: faq.es, finalCta: finalCta.es },
-	pt: { ...eorTranslations.pt, meta: meta.pt, hero: { ...eorTranslations.pt.hero, ...hero.pt }, stats: { ...eorTranslations.pt.stats, ...stats.pt }, globalWorkforce: globalWorkforce.pt, costEstimator: { ...eorTranslations.pt.costEstimator, ...costEstimator.pt }, faq: faq.pt, finalCta: finalCta.pt },
-	ru: { ...eorTranslations.ru, meta: meta.ru, hero: { ...eorTranslations.ru.hero, ...hero.ru }, stats: { ...eorTranslations.ru.stats, ...stats.ru }, globalWorkforce: globalWorkforce.ru, costEstimator: { ...eorTranslations.ru.costEstimator, ...costEstimator.ru }, faq: faq.ru, finalCta: finalCta.ru },
+	en: { ...eorTranslations.en, meta: meta.en, hero: { ...eorTranslations.en.hero, ...hero.en }, stats: { ...eorTranslations.en.stats, ...stats.en }, financialAdminCarousel: financialAdminCarousel.en, globalWorkforce: globalWorkforce.en, costEstimator: { ...eorTranslations.en.costEstimator, ...costEstimator.en }, apiPayments: apiPayments.en, security: security.en, moreThanAccount: moreThanAccount.en, faq: faq.en, finalCta: finalCta.en },
+	es: { ...eorTranslations.es, meta: meta.es, hero: { ...eorTranslations.es.hero, ...hero.es }, stats: { ...eorTranslations.es.stats, ...stats.es }, financialAdminCarousel: financialAdminCarousel.es, globalWorkforce: globalWorkforce.es, costEstimator: { ...eorTranslations.es.costEstimator, ...costEstimator.es }, apiPayments: apiPayments.es, security: security.es, moreThanAccount: moreThanAccount.es, faq: faq.es, finalCta: finalCta.es },
+	pt: { ...eorTranslations.pt, meta: meta.pt, hero: { ...eorTranslations.pt.hero, ...hero.pt }, stats: { ...eorTranslations.pt.stats, ...stats.pt }, financialAdminCarousel: financialAdminCarousel.pt, globalWorkforce: globalWorkforce.pt, costEstimator: { ...eorTranslations.pt.costEstimator, ...costEstimator.pt }, apiPayments: apiPayments.pt, security: security.pt, moreThanAccount: moreThanAccount.pt, faq: faq.pt, finalCta: finalCta.pt },
+	ru: { ...eorTranslations.ru, meta: meta.ru, hero: { ...eorTranslations.ru.hero, ...hero.ru }, stats: { ...eorTranslations.ru.stats, ...stats.ru }, financialAdminCarousel: financialAdminCarousel.ru, globalWorkforce: globalWorkforce.ru, costEstimator: { ...eorTranslations.ru.costEstimator, ...costEstimator.ru }, apiPayments: apiPayments.ru, security: security.ru, moreThanAccount: moreThanAccount.ru, faq: faq.ru, finalCta: finalCta.ru },
 };

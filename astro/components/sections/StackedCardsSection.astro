@@ -279,9 +279,26 @@ const stackStyle = `--stacked-cards-top:${stackTop}px;--stacked-cards-gap:${card
 		}
 	}
 
+	@media (max-width: 929px) {
+		[data-stacked-cards-section="business-account-security"] .stacked-cards-card__bottom {
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+			margin-top: 1rem;
+		}
+
+		[data-stacked-cards-section="business-account-security"] .stacked-cards-card__footer {
+			margin-top: auto;
+		}
+	}
+
 	@media (max-width: 640px) {
 		.stacked-cards-card {
 			min-height: 210px;
+		}
+
+		[data-stacked-cards-section="business-account-security"] .stacked-cards-card {
+			min-height: 232px;
 		}
 
 		[data-stacked-cards-section="home-deferred-payments-stack"] .stacked-cards-card {

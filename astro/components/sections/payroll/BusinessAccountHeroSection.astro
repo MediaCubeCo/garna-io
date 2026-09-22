@@ -1,68 +1,17 @@
 ---
 import Button from '../../ui/Button.astro';
-import HeroStatsRow from '../../ui/HeroStatsRow.astro';
-
-const stats = [
-	{
-		value: '63+',
-		label: 'local currencies',
-		labelKey: 'stats.localCurrencies',
-	},
-	{
-		value: '200+',
-		label: 'countries covered with USD',
-		labelKey: 'stats.usdCoverage',
-	},
-	{
-		value: 'Up to 1,000',
-		valueKey: 'stats.batchContactsValue',
-		label: 'contacts in one batch payment',
-		labelKey: 'stats.batchContactsLabel',
-	},
-];
+import BusinessHeroBackdrop from '../../visuals/BusinessHeroBackdrop.astro';
 
 const hero = {
-	image: '/pages/payroll-solution-new/assets/eor-hero-phone-portrait-upscaled-v1.jpg',
-	objectPosition: 'center 24%',
-	narrowObjectPosition: 'center 10%',
 	title: 'Business Account\nfor Going Global',
 	titleKey: 'hero.title',
 	description: 'Fund your account, get paid, pay your team, and hold multiple currencies. Save time, money, and hassle with the all-in-one Garna business account',
 	descriptionKey: 'hero.description',
 };
-
-const flagSrc = (code: string) => `https://flagcdn.com/${code}.svg`;
-
-const newHires = [
-	{
-		position: 'top-right',
-		avatar: '/pages/payroll-solution-new/assets/eor-hero-avatar-samantha-v3.png',
-		flagCode: 'pt',
-		status: 'Starts today',
-		statusKey: 'hero.notifications.startsToday',
-		name: 'Samantha R.',
-		role: 'Product Designer',
-		roleKey: 'hero.notifications.productDesigner',
-	},
-	{
-		position: 'bottom-right',
-		avatar: '/pages/payroll-solution-new/assets/contractor-avatar-alex-v2.webp',
-		flagCode: 'de',
-		status: 'Starts Monday',
-		statusKey: 'hero.notifications.startsMonday',
-		name: 'Henrik C.',
-		role: 'Software Engineer',
-		roleKey: 'hero.notifications.softwareEngineer',
-	},
-];
-
-const payrollRows = [
-	{ flagCode: 'hr', name: 'Emilia Novak', amount: 'EUR 128,450,900' },
-	{ flagCode: 'ca', name: 'Noah Williams', amount: 'CAD 24,875,600' },
-];
 ---
 
 <section class="eor-hero" data-section-kind="hero">
+	<BusinessHeroBackdrop />
 	<div class="eor-hero__grid mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center lg:gap-20">
 		<div class="eor-hero__copy">
 			<div class="eor-hero__text">
@@ -93,56 +42,47 @@ const payrollRows = [
 					<span data-translate="hero.ctaSecondary">Book a demo</span>
 				</Button>
 			</div>
-
-			<div class="eor-hero__stats">
-				<HeroStatsRow stats={stats} ariaLabel="Garna Business Account proof points" />
-			</div>
 		</div>
 
-		<div class="eor-hero__visual" aria-label="Global hiring dashboard preview">
-			<div class="eor-hero__media">
+		<div class="business-hero-devices" aria-label="Garna business account overview">
+			<article class="business-hero-phone business-hero-phone--left" aria-hidden="true">
 				<img
-					class="eor-hero__image"
-					src={hero.image}
+					class="business-hero-phone__image"
+					data-business-hero-image
+					data-src-default="/images/business-account/hero-phone-left.png"
+					data-src-ru="/images/business-account/hero-phone-left-ru.png?v=1"
 					alt=""
-					loading="eager"
-					style={`--eor-hero-object-position: ${hero.objectPosition}; --eor-hero-narrow-object-position: ${hero.narrowObjectPosition};`}
 				/>
-			</div>
-			<div class="eor-hero__notifications" aria-hidden="true">
-				{newHires.map((hire) => (
-					<div
-						class:list={['eor-hero-notification', 'eor-hero-notification--hire', `eor-hero-notification--${hire.position}`]}
-					>
-						<span class="eor-hero-notification__avatar-wrap">
-							<img class="eor-hero-notification__avatar" src={hire.avatar} alt="" loading="eager" />
-							<span class="eor-hero-notification__flag">
-								<img src={flagSrc(hire.flagCode)} alt="" loading="eager" />
-							</span>
-						</span>
-						<span class="eor-hero-notification__copy">
-							<small class="eor-hero-notification__status" data-translate={hire.statusKey}>{hire.status}</small>
-							<strong>{hire.name}</strong>
-							<small class="eor-hero-notification__role" data-translate={hire.roleKey}>{hire.role}</small>
-						</span>
-					</div>
-				))}
+			</article>
 
-				<div class="eor-hero-notification eor-hero-notification--payments eor-hero-notification--bottom-left">
-					{payrollRows.map((payment) => (
-						<div class="eor-hero-notification__payment-row">
-							<span class="eor-hero-notification__payment-flag">
-								<img src={flagSrc(payment.flagCode)} alt="" loading="eager" />
-							</span>
-							<span class="eor-hero-notification__payment-copy">
-								<small>{payment.name}</small>
-								<strong>{payment.amount}</strong>
-							</span>
-						</div>
-					))}
-				</div>
-			</div>
+			<article class="business-hero-phone business-hero-phone--center">
+				<img
+					class="business-hero-phone__image"
+					data-business-hero-image
+					data-src-default="/images/business-account/hero-phone-center.png?v=3"
+					data-src-ru="/images/business-account/hero-phone-center-ru.png?v=1"
+					data-alt-default="Garna business account balance and widgets"
+					data-alt-ru="Баланс и виджеты платежного счета Garna"
+					alt=""
+				/>
+				<span
+					class="business-hero-balance"
+					data-business-balance-counter
+					aria-label="Balance: 10,000 US dollars"
+				>0,00 $</span>
+			</article>
+
+			<article class="business-hero-phone business-hero-phone--right" aria-hidden="true">
+				<img
+					class="business-hero-phone__image"
+					data-business-hero-image
+					data-src-default="/images/business-account/hero-phone-right.png?v=4"
+					data-src-ru="/images/business-account/hero-phone-right-ru.png?v=1"
+					alt=""
+				/>
+			</article>
 		</div>
+
 	</div>
 
 </section>
@@ -150,10 +90,18 @@ const payrollRows = [
 <style>
 	.eor-hero {
 		position: relative;
-		overflow: visible;
+		isolation: isolate;
+		overflow: hidden;
 		background: transparent;
-		padding: clamp(8.5rem, 13vw, 12rem) 0 clamp(4.5rem, 8vw, 7rem);
+		padding: clamp(8.5rem, 13vw, 12rem) 0 0;
+		margin-bottom: 4rem;
 		color: #ffffff;
+	}
+
+	@media (min-width: 1024px) {
+		.eor-hero {
+			margin-bottom: 8rem;
+		}
 	}
 
 	.eor-hero__copy,
@@ -261,6 +209,18 @@ const payrollRows = [
 
 	:global(.eor-hero__cta) {
 		margin-top: 0;
+	}
+
+	@media (max-width: 640px) {
+		.eor-hero__actions {
+			display: grid;
+			grid-template-columns: max-content;
+			justify-content: center;
+		}
+
+		.eor-hero__actions :global(.eor-hero__cta) {
+			width: 100%;
+		}
 	}
 
 	@media (min-width: 641px) {
@@ -792,4 +752,224 @@ const payrollRows = [
 		}
 	}
 
+	/* Centered product composition built from the approved Figma screens. */
+	.eor-hero__grid {
+		display: block;
+		max-width: 72rem;
+	}
+
+	.eor-hero__copy {
+		width: min(100%, 58rem);
+		min-height: 0;
+		margin-inline: auto;
+		align-items: center;
+		text-align: center;
+	}
+
+	.eor-hero__copy p {
+		max-width: 48rem;
+		margin-inline: auto;
+	}
+
+	.eor-hero__actions {
+		justify-content: center;
+	}
+
+	.business-hero-devices {
+		--business-phone-visible-width: 20.20881rem;
+		--business-phone-canvas-size: 43rem;
+		--business-phone-side-center: max(24%, calc(var(--business-phone-visible-width) / 2));
+		--business-balance-scale: .83;
+		position: relative;
+		display: flex;
+		width: min(100%, 61rem);
+		height: calc(clamp(24rem, 42vw, 35rem) + 11px);
+		align-items: flex-start;
+		justify-content: center;
+		margin: clamp(3.5rem, 7vw, 5.5rem) auto 0;
+	}
+
+	.business-hero-phone {
+		position: absolute;
+		top: .85rem;
+		width: var(--business-phone-canvas-size);
+		aspect-ratio: 1;
+	}
+
+	.business-hero-phone--left {
+		top: calc(.85rem - 1px);
+		left: calc(var(--business-phone-side-center) - (var(--business-phone-canvas-size) / 2));
+	}
+
+	.business-hero-phone--right {
+		top: calc(.85rem - 1px);
+		right: calc(var(--business-phone-side-center) - (var(--business-phone-canvas-size) / 2));
+	}
+
+	.business-hero-phone--center {
+		top: -1.9rem;
+		left: 50%;
+		z-index: 2;
+		transform: translateX(-50%);
+	}
+
+	@media (max-width: 900px) {
+		.business-hero-devices {
+			--business-phone-visible-width: 17.8125rem;
+			--business-phone-canvas-size: 37.89894rem;
+			--business-balance-scale: .732;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.business-hero-devices {
+			--business-phone-visible-width: 17.5rem;
+			--business-phone-canvas-size: 37.23404rem;
+			--business-balance-scale: .719;
+		}
+	}
+
+	@media (max-width: 520px) {
+		.business-hero-devices {
+			--business-phone-visible-width: 14.5rem;
+			--business-phone-canvas-size: 30.85106rem;
+			--business-balance-scale: .596;
+			height: calc(clamp(21rem, 74vw, 24rem) + 11px);
+		}
+
+		.business-hero-phone--left,
+		.business-hero-phone--right {
+			display: none;
+		}
+	}
+
+	.business-hero-phone__image {
+		position: absolute;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+
+	.business-hero-balance {
+		position: absolute;
+		top: 23.55%;
+		left: 50%;
+		z-index: 1;
+		display: block;
+		width: 20rem;
+		color: #fff;
+		font-family: Manrope, sans-serif;
+		font-size: 36px;
+		font-variant-numeric: tabular-nums;
+		font-weight: 700;
+		letter-spacing: -.4px;
+		line-height: 40px;
+		text-align: center;
+		translate: -50% -50%;
+		scale: var(--business-balance-scale);
+		transform-origin: center;
+		white-space: nowrap;
+	}
+
+	.eor-hero__stats {
+		width: auto;
+		margin-top: clamp(3.5rem, 7vw, 5.5rem);
+		padding-top: 0;
+	}
+
+	.eor-hero__stats :global(.garna-hero-stats-row) {
+		width: max-content;
+		max-width: 100%;
+		justify-content: center;
+	}
+
+	.eor-hero__stats :global(.garna-hero-stats-row article) {
+		justify-items: center;
+		text-align: center;
+	}
+
+	@media (max-width: 640px) {
+		.eor-hero {
+			padding-top: 7rem;
+		}
+		.business-hero-devices {
+			width: 100%;
+			margin-top: 3rem;
+		}
+		.eor-hero__stats {
+			width: 100%;
+			margin-top: 3rem;
+		}
+
+		.eor-hero__stats :global(.garna-hero-stats-row) {
+			width: 100%;
+		}
+	}
+
 </style>
+
+<script>
+	const syncBusinessHeroImages = () => {
+		const isRussian = document.documentElement.lang.toLowerCase().split('-')[0] === 'ru';
+
+		document.querySelectorAll<HTMLImageElement>('[data-business-hero-image]').forEach((image) => {
+			const nextSource = isRussian ? image.dataset.srcRu : image.dataset.srcDefault;
+			const nextAlt = isRussian ? image.dataset.altRu : image.dataset.altDefault;
+
+			if (nextSource && image.getAttribute('src') !== nextSource) image.src = nextSource;
+			image.alt = nextAlt || '';
+			image.lang = isRussian ? 'ru' : '';
+		});
+	};
+
+	const formatBusinessBalance = (value: number) => {
+		const integer = Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+		return `${integer},00 $`;
+	};
+
+	const initBusinessBalanceCounters = () => {
+		document.querySelectorAll<HTMLElement>('[data-business-balance-counter]').forEach((counter) => {
+			if (counter.dataset.counterReady === 'true') return;
+			counter.dataset.counterReady = 'true';
+
+			const renderFinalValue = () => {
+				counter.textContent = formatBusinessBalance(10000);
+			};
+
+			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				renderFinalValue();
+				return;
+			}
+
+			const observer = new IntersectionObserver((entries) => {
+				if (!entries.some((entry) => entry.isIntersecting)) return;
+				observer.disconnect();
+
+				const duration = 1500;
+				let startedAt: number | null = null;
+
+				const update = (timestamp: number) => {
+					startedAt ??= timestamp;
+					const progress = Math.min((timestamp - startedAt) / duration, 1);
+					const easedProgress = 1 - Math.pow(1 - progress, 3);
+					counter.textContent = formatBusinessBalance(10000 * easedProgress);
+
+					if (progress < 1) requestAnimationFrame(update);
+					else renderFinalValue();
+				};
+
+				requestAnimationFrame(update);
+			}, { threshold: .35 });
+
+			observer.observe(counter);
+		});
+	};
+
+	syncBusinessHeroImages();
+	initBusinessBalanceCounters();
+	document.addEventListener('astro:page-load', syncBusinessHeroImages);
+	document.addEventListener('astro:page-load', initBusinessBalanceCounters);
+	window.addEventListener('garna:page-mounted', syncBusinessHeroImages);
+</script>

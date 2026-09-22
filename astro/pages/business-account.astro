@@ -7,65 +7,34 @@ import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
 import BusinessAccountHeroSection from '../components/sections/payroll/BusinessAccountHeroSection.astro';
+import BusinessAccountFinancialAdminCarouselSection from '../components/sections/payroll/BusinessAccountFinancialAdminCarouselSection.astro';
 import BusinessAccountProofStatsCardsSection from '../components/sections/payroll/BusinessAccountProofStatsCardsSection.astro';
 import BusinessAccountBenefitsSection from '../components/sections/payroll/BusinessAccountBenefitsSection.astro';
 import BusinessAccountCostEstimatorSection from '../components/sections/payroll/BusinessAccountCostEstimatorSection.astro';
+import BusinessAccountSecuritySection from '../components/sections/payroll/BusinessAccountSecuritySection.astro';
+import BusinessAccountMoreThanAccountSection from '../components/sections/payroll/BusinessAccountMoreThanAccountSection.astro';
 import BusinessAccountSectionStyles from '../components/sections/payroll/BusinessAccountSectionStyles.astro';
 import BusinessAccountInteractions from '../components/sections/payroll/BusinessAccountInteractions.astro';
 
-const businessAccountProofStats = [
+const businessAccountApiPaymentCards = [
 	{
-		value: '150+',
-		label: 'countries covered',
-		labelKey: 'eorProof.stats.countries.label',
-		image: '/pages/payroll-solution-new/assets/eor-proof-phone-hands-cafe-v1.png',
-		alt: 'Professional hands using a smartphone at a cafe table',
+		value: '',
+		label: '',
+		image: '/images/business-account/api-payments-integration-upscaled.jpg',
+		alt: 'A woman using her phone in a bright cafe',
 		imagePosition: 'center center',
-		imageOrigin: 'center center',
-		imageScale: 1.03,
 		notice: {
-			icon: 'contract',
-			title: 'Contract ready',
-			titleKey: 'eorProof.stats.countries.notice.title',
-			meta: 'Country terms checked',
-			metaKey: 'eorProof.stats.countries.notice.meta',
-			tone: 'bank',
-		},
-	},
-	{
-		value: '1',
-		label: 'platform for global hiring',
-		labelKey: 'eorProof.stats.platform.label',
-		image: '/pages/payroll-solution-new/assets/eor-proof-running-water-light-v1.png',
-		alt: 'A man with a backpack running through shallow coastal water',
-		featured: true,
-		imagePosition: '58% center',
-		imageOrigin: 'center center',
-		imageScale: 1.03,
-		notice: {
-			icon: 'payroll',
-			title: 'Payroll profile set',
-			titleKey: 'eorProof.stats.platform.notice.title',
-			meta: 'Salary, tax, benefits',
-			metaKey: 'eorProof.stats.platform.notice.meta',
-			tone: 'card',
-		},
-	},
-	{
-		value: '0',
-		label: 'local entities to open',
-		labelKey: 'eorProof.stats.entities.label',
-		image: '/pages/payroll-solution-new/assets/eor-proof-sofa-laptop-woman-final.jpg',
-		alt: 'A woman working on a laptop while sitting on a sofa',
-		imagePosition: 'center center',
-		imageOrigin: 'center center',
-		notice: {
-			icon: 'calculator',
-			title: 'Cost estimate ready',
-			titleKey: 'eorProof.stats.entities.notice.title',
-			meta: 'Local costs included',
-			metaKey: 'eorProof.stats.entities.notice.meta',
-			tone: 'crypto',
+			icon: 'contract' as const,
+			label: 'API payment',
+			labelKey: 'apiPayments.cards.integration.label',
+			timestamp: 'Processed',
+			timestampKey: 'apiPayments.cards.integration.time',
+			title: 'Payment created',
+			titleKey: 'apiPayments.cards.integration.completed',
+			meta: 'Created via API and confirmed automatically',
+			metaKey: 'apiPayments.cards.integration.detail',
+			amount: '$12,680',
+			tone: 'bank' as const,
 		},
 	},
 ];
@@ -131,17 +100,26 @@ const businessAccountFaqItems = [
 
 <BaseLayout shell={pageShells.businessAccount}>
 	<BusinessAccountHeroSection />
-	<BusinessAccountProofStatsCardsSection
-		title={{ text: 'Hire Abroad Without Guesswork', translateKey: 'eorProof.title' }}
-		description={{ text: 'Garna keeps international hiring transparent, from local contracts to payroll and compliance. When you are ready, compare your options in the cost calculator', translateKey: 'eorProof.description' }}
-		action={{ label: { text: 'Calculate your options', translateKey: 'eorProof.button' }, href: '#eor-cost-estimator', variant: 'primary', icon: 'arrow-right', effect: 'none' }}
-		stats={businessAccountProofStats}
-		carouselLabel="Choose an EOR proof card"
-		carouselLabelKey="eorProof.carousel.ariaLabel"
-	/>
-	<BusinessAccountBenefitsSection />
-	<BusinessAccountSectionStyles />
+	<BusinessAccountFinancialAdminCarouselSection />
 	<BusinessAccountCostEstimatorSection />
+	<BusinessAccountBenefitsSection />
+	<BusinessAccountSecuritySection />
+	<BusinessAccountSectionStyles />
+	<BusinessAccountProofStatsCardsSection
+		title={{ text: 'Connect Global Payments to Your Platform', translateKey: 'apiPayments.title' }}
+		description={{
+			text: 'Integrate Garna Business Account into your own platform and manage payments seamlessly under the hood',
+			translateKey: 'apiPayments.description',
+		}}
+		action={{
+			label: { text: 'Learn more', translateKey: 'apiPayments.button' },
+			href: '/white-label',
+			variant: 'primary',
+			icon: 'none',
+		}}
+		stats={businessAccountApiPaymentCards}
+	/>
+	<BusinessAccountMoreThanAccountSection />
 	<FAQSection
 		title={{ text: 'FAQ on Business Account', translateKey: 'faq.title' }}
 		items={businessAccountFaqItems}

@@ -1,0 +1,122 @@
+---
+import ScrollVisualCarouselSection from '../ScrollVisualCarouselSection.astro';
+
+const slides = [
+	{
+		key: 'iban',
+		title: {
+			text: "An IBAN in your company's name",
+			translateKey: 'financialAdminCarousel.features.iban.title',
+		},
+		description: {
+			text: 'Keep business payments clearly tied to your company with account details in its own name',
+			translateKey: 'financialAdminCarousel.features.iban.description',
+		},
+		image: '/images/business-account/financial-admin-order-studio-upscaled.jpg',
+		imageAlt: 'A small business owner reviewing an order on a tablet in her packing studio',
+		overlay: {
+			type: 'payment',
+			appName: { text: 'Garna', translateKey: 'brand.name' },
+			time: { text: 'Just now', translateKey: 'financialAdminCarousel.notifications.iban.time' },
+			title: { text: 'Business account active', translateKey: 'financialAdminCarousel.notifications.iban.title' },
+			description: { text: 'IBAN issued in your company name', translateKey: 'financialAdminCarousel.notifications.iban.description' },
+		},
+	},
+	{
+		key: 'balances',
+		title: {
+			text: 'Every balance in one place',
+			translateKey: 'financialAdminCarousel.features.balances.title',
+		},
+		description: {
+			text: 'Hold and manage multiple currencies from one account without switching between platforms',
+			translateKey: 'financialAdminCarousel.features.balances.description',
+		},
+		image: '/pages/payroll-solution-new/assets/flexible-global-payments.png',
+		imageAlt: 'A travel table with a phone, card holder, earbuds, and coffee',
+		overlay: {
+			type: 'balances',
+			title: { text: 'Balances', translateKey: 'financialAdminCarousel.notifications.balances.title' },
+			currencies: [
+				{ code: 'USD', amount: '$24,800.00' },
+				{ code: 'EUR', amount: '€18,450.00' },
+				{ code: 'GBP', amount: '£9,720.00' },
+			],
+			action: { text: 'View all', translateKey: 'financialAdminCarousel.notifications.balances.footerAction' },
+		},
+	},
+	{
+		key: 'payments',
+		title: {
+			text: 'Move money across borders faster',
+			translateKey: 'financialAdminCarousel.features.payments.title',
+		},
+		description: {
+			text: 'Send international payments with delivery times that match the method and destination',
+			translateKey: 'financialAdminCarousel.features.payments.description',
+		},
+		image: '/images/business-account/cross-border-laptop-original-v6.jpg',
+		imageAlt: 'A business professional managing payments from her laptop',
+		overlay: {
+			type: 'transfer',
+			label: { text: 'International transfer', translateKey: 'financialAdminCarousel.notifications.payments.transferLabel' },
+			status: { text: 'Delivered', translateKey: 'financialAdminCarousel.notifications.payments.status' },
+			recipient: 'Atelier North',
+			recipientLogo: '/images/business-account/atelier-north-mark.svg',
+			recipientMeta: { text: 'United Kingdom', translateKey: 'financialAdminCarousel.notifications.payments.recipientMeta' },
+			targetCurrency: 'GBP',
+			 targetAmount: '£7,225.10',
+		},
+	},
+	{
+		key: 'fees',
+		title: {
+			text: 'Know every fee before you send',
+			translateKey: 'financialAdminCarousel.features.fees.title',
+		},
+		description: {
+			text: 'Review the exchange rate, transfer fee, and final amount before you approve a payment',
+			translateKey: 'financialAdminCarousel.features.fees.description',
+		},
+		image: '/images/business-account/fees-upfront-documents-v4.png',
+		imageAlt: 'Business documents, a calculator, and a pen arranged on a stone desk',
+		imageClass: 'contractor-carousel__image--documents',
+		overlay: {
+			type: 'quote',
+			title: { text: 'Payment summary', translateKey: 'financialAdminCarousel.notifications.fees.summary' },
+			amountLabel: { text: 'Recipient gets', translateKey: 'financialAdminCarousel.notifications.fees.recipientLabel' },
+			amount: '£3,612.40',
+			sendLabel: { text: 'You send', translateKey: 'financialAdminCarousel.notifications.fees.sendLabel' },
+			sendAmount: '€4,250.00',
+			feeLabel: { text: 'Fee', translateKey: 'financialAdminCarousel.notifications.fees.feeLabel' },
+			feeAmount: '€12.50',
+		},
+	},
+] as const;
+---
+
+<ScrollVisualCarouselSection
+	id="business-account-financial-admin-carousel"
+	slides={slides}
+	cta={{
+		text: 'Open an account',
+		translateKey: 'finalCta.button',
+		trackingCta: 'business_account_financial_admin',
+		href: 'https://app.garna.io/en/auth/sign-up',
+		opensWidget: false,
+	}}
+	copyVariant="section"
+/>
+
+<style is:global>
+	[data-scroll-visual-carousel-id="business-account-financial-admin-carousel"] .contractor-carousel__slide > .contractor-carousel__payment-notification {
+		min-height: 6.35rem;
+	}
+
+	[data-scroll-visual-carousel-id="business-account-financial-admin-carousel"] .contractor-carousel__payment-copy strong,
+	[data-scroll-visual-carousel-id="business-account-financial-admin-carousel"] .contractor-carousel__payment-copy small {
+		overflow: visible;
+		text-overflow: clip;
+		white-space: normal;
+	}
+</style>

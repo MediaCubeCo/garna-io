@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-labelledby="title">
+  <title id="title">Atelier North</title>
+  <rect width="40" height="40" rx="11" fill="#F2F1ED"/>
+  <path fill="#0B0C0D" fill-rule="evenodd" d="M20 6.5c-7.46 0-13.5 6.04-13.5 13.5v12.5h8V20a5.5 5.5 0 0 1 11 0v12.5h8V20c0-7.46-6.04-13.5-13.5-13.5Zm-13.5 20h8v2.8h-8v-2.8Zm19 0h8v2.8h-8v-2.8Z" clip-rule="evenodd"/>
+</svg>

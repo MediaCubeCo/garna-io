@@ -150,9 +150,9 @@ export const pageFinalCtas = {
 			'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
 	},
 	businessAccount: {
-		title: [{ text: 'One Account. One Platform. Less Financial Admin', translateKey: 'finalCta.title' }],
+		title: [{ text: 'Take Your Business Payments Global', translateKey: 'finalCta.title' }],
 		description: {
-			text: 'Manage your business globally with an own-name IBAN, transparent fees, and fast international payments',
+			text: 'Open one account for international transfers, multi-currency balances, and team payouts',
 			translateKey: 'finalCta.description',
 		},
 		button: {

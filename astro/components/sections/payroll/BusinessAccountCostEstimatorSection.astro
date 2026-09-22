@@ -145,15 +145,6 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 					description={{ text: 'Make international payments in 60+ local currencies, including USD, EUR, and more', translateKey: 'costEstimator.description' }}
 					descriptionClass="eor-estimator-copy__description"
 				/>
-				<Button
-					href="https://app.garna.io/en/auth/sign-up"
-					variant="primary"
-					size="header"
-					class="eor-estimator-cta w-fit"
-					data-garna-signup
-				>
-					<span data-translate="costEstimator.cta">Open an account</span>
-				</Button>
 			</div>
 
 			<form class="eor-estimator-card" action="#" onsubmit="event.preventDefault();" data-eor-estimator-form>
@@ -257,7 +248,9 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 		position: absolute;
 		inset: 0;
 		z-index: -2;
-		background: url("/pages/payroll-solution-new/assets/eor-cost-estimator-business-desk-v9.png") center center / cover no-repeat;
+		background:
+			linear-gradient(rgb(7 8 8 / 0.39), rgb(7 8 8 / 0.45)),
+			url("/images/business-account/send-money-worldwide-background.png") center center / cover no-repeat;
 	}
 
 	:global(.eor-estimator-section)::after {
@@ -271,10 +264,6 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 	.eor-estimator-intro {
 		display: grid;
 		justify-items: center;
-	}
-
-	:global(.eor-estimator-cta) {
-		margin-top: 2rem;
 	}
 
 	.eor-estimator-shell {

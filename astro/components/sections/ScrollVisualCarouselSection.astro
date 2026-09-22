@@ -34,7 +34,48 @@ interface ComplianceOverlay {
 	footerMeta: CarouselText;
 }
 
-type SlideOverlay = HireOverlay | PaymentOverlay | ComplianceOverlay;
+interface BalancesOverlay {
+	type: 'balances';
+	title: CarouselText;
+	currencies: ReadonlyArray<{
+		code: string;
+		amount: string;
+	}>;
+	action: CarouselText;
+}
+
+interface QuoteOverlay {
+	type: 'quote';
+	title: CarouselText;
+	amountLabel: CarouselText;
+	amount: string;
+	sendLabel: CarouselText;
+	sendAmount: string;
+	feeLabel: CarouselText;
+	feeAmount: string;
+}
+
+interface RouteOverlay {
+	type: 'route';
+	title: CarouselText;
+	from: string;
+	to: string;
+	method: CarouselText;
+	eta: CarouselText;
+}
+
+interface TransferOverlay {
+	type: 'transfer';
+	label: CarouselText;
+	status: CarouselText;
+	recipient: string;
+	recipientLogo: string;
+	recipientMeta: CarouselText;
+	targetCurrency: string;
+	targetAmount: string;
+}
+
+type SlideOverlay = HireOverlay | PaymentOverlay | ComplianceOverlay | BalancesOverlay | QuoteOverlay | RouteOverlay | TransferOverlay;
 
 interface CarouselSlide {
 	key: string;
@@ -42,6 +83,7 @@ interface CarouselSlide {
 	description: CarouselText;
 	image: string;
 	imageAlt?: string;
+	imageClass?: string;
 	overlay?: SlideOverlay;
 }
 
@@ -51,6 +93,7 @@ interface Props {
 	cta?: CarouselText & {
 		trackingCta?: string;
 		href?: string;
+		opensWidget?: boolean;
 	};
 	contentClass?: string;
 	spacing?: 'none' | 'compact' | 'default' | 'spacious';
@@ -65,6 +108,7 @@ const {
 		translateKey: 'cta.bookDemo',
 		trackingCta: 'scroll_visual_carousel_demo',
 		href: '#',
+		opensWidget: true,
 	},
 	contentClass = 'contractor-carousel-content',
 	spacing = 'default',
@@ -112,7 +156,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 						variant="primary"
 						effect="none"
 						icon="none"
-						onclick={`event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: '${ctaTracking}' });`}
+						onclick={cta.opensWidget === false ? undefined : `event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: '${ctaTracking}' });`}
 					>
 						<span data-translate={cta.translateKey}>{cta.text}</span>
 					</Button>
@@ -131,7 +175,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 				<div class="contractor-carousel__rail" data-carousel-rail>
 					{carouselSlides.map((feature, sequenceIndex) => (
 						<button type="button" class:list={['contractor-carousel__slide', { 'is-active': sequenceIndex === 1 }]} data-carousel-slide data-index={feature.index} data-sequence={sequenceIndex} aria-label={`Show ${feature.title.text}`}>
-							<img src={feature.image} alt={feature.imageAlt || ''} loading="lazy" />
+							<img class={feature.imageClass} src={feature.image} alt={feature.imageAlt || ''} loading="lazy" />
 							{feature.overlay?.type === 'hire' && (
 								<span class="contractor-carousel__hire-notification" aria-hidden="true">
 									<span class="contractor-carousel__hire-avatar">
@@ -179,6 +223,69 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 									<span class="contractor-carousel__compliance-footer">
 										<strong data-translate={feature.overlay.footerTitle.translateKey}>{feature.overlay.footerTitle.text}</strong>
 										<small data-translate={feature.overlay.footerMeta.translateKey}>{feature.overlay.footerMeta.text}</small>
+									</span>
+								</span>
+							)}
+							{feature.overlay?.type === 'balances' && (
+								<span class="contractor-carousel__balances-panel" aria-hidden="true">
+								<span class="contractor-carousel__balances-header">
+									<strong data-translate={feature.overlay.title.translateKey}>{feature.overlay.title.text}</strong>
+									<small data-translate={feature.overlay.action.translateKey}>{feature.overlay.action.text}</small>
+								</span>
+									<span class="contractor-carousel__balances-list">
+										{feature.overlay.currencies.map((currency) => (
+											<span class="contractor-carousel__balance-row">
+												<strong>{currency.code}</strong>
+												<span>{currency.amount}</span>
+											</span>
+										))}
+									</span>
+							</span>
+							)}
+							{feature.overlay?.type === 'quote' && (
+								<span class="contractor-carousel__quote-panel" aria-hidden="true">
+									<span class="contractor-carousel__quote-header">
+										<strong data-translate={feature.overlay.title.translateKey}>{feature.overlay.title.text}</strong>
+									</span>
+									<span class="contractor-carousel__quote-main">
+										<small data-translate={feature.overlay.amountLabel.translateKey}>{feature.overlay.amountLabel.text}</small>
+										<strong>{feature.overlay.amount}</strong>
+									</span>
+									<span class="contractor-carousel__quote-meta">
+										<span><small data-translate={feature.overlay.sendLabel.translateKey}>{feature.overlay.sendLabel.text}</small><strong>{feature.overlay.sendAmount}</strong></span>
+										<span><small data-translate={feature.overlay.feeLabel.translateKey}>{feature.overlay.feeLabel.text}</small><strong>{feature.overlay.feeAmount}</strong></span>
+									</span>
+								</span>
+							)}
+							{feature.overlay?.type === 'route' && (
+								<span class="contractor-carousel__route-panel" aria-hidden="true">
+									<span class="contractor-carousel__route-header">
+										<strong data-translate={feature.overlay.title.translateKey}>{feature.overlay.title.text}</strong>
+										<small data-translate={feature.overlay.eta.translateKey}>{feature.overlay.eta.text}</small>
+									</span>
+									<span class="contractor-carousel__route-map">
+										<strong>{feature.overlay.from}</strong>
+										<span class="contractor-carousel__route-line"><i></i></span>
+										<strong>{feature.overlay.to}</strong>
+									</span>
+									<span class="contractor-carousel__route-method" data-translate={feature.overlay.method.translateKey}>{feature.overlay.method.text}</span>
+								</span>
+							)}
+							{feature.overlay?.type === 'transfer' && (
+								<span class="contractor-carousel__transfer-panel" aria-hidden="true">
+									<span class="contractor-carousel__transfer-header">
+										<small data-translate={feature.overlay.label.translateKey}>{feature.overlay.label.text}</small>
+										<strong data-translate={feature.overlay.status.translateKey}>{feature.overlay.status.text}</strong>
+									</span>
+									<span class="contractor-carousel__transfer-body">
+										<span class="contractor-carousel__transfer-recipient">
+											<img src={feature.overlay.recipientLogo} alt="" />
+											<span><strong>{feature.overlay.recipient}</strong><small data-translate={feature.overlay.recipientMeta.translateKey}>{feature.overlay.recipientMeta.text}</small></span>
+										</span>
+										<span class="contractor-carousel__transfer-amount">
+											<small>{feature.overlay.targetCurrency}</small>
+											<strong>{feature.overlay.targetAmount}</strong>
+										</span>
 									</span>
 								</span>
 							)}
@@ -355,13 +462,14 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 	.contractor-carousel__viewport { width: 100%; overflow: hidden; padding-block: .6rem; }
 	.contractor-carousel__rail { display: flex; gap: 1.15rem; width: 100%; transform: translateX(0); transition: transform 520ms cubic-bezier(.22, 1, .36, 1); will-change: transform; }
 	.contractor-carousel__rail.is-resetting { transition: none; }
-	.contractor-carousel__slide { --notice-reference-card-width: 18.25rem; --notice-scale: min(1, calc(100cqw / var(--notice-reference-card-width))); --notice-inset: calc(1rem * var(--notice-scale)); position: relative; container-type: inline-size; flex: 0 0 39%; height: 31.5rem; margin-right: -2.34%; overflow: hidden; border: 1px solid rgb(255 255 255 / .08); border-radius: 1.75rem; background: #0a0a0a; padding: 0; cursor: pointer; opacity: .55; transform: scale(.94); transform-origin: center left; transition: opacity 420ms ease, transform 520ms cubic-bezier(.22, 1, .36, 1), border-color 220ms ease; }
-	.contractor-carousel__slide.is-active { margin-right: 0; opacity: 1; transform: none; }
+	.contractor-carousel__slide { --notice-reference-card-width: 18.25rem; --notice-scale: min(1, calc(100cqw / var(--notice-reference-card-width))); --notice-inset: calc(1rem * var(--notice-scale)); position: relative; container-type: inline-size; flex: 0 0 39%; height: 31.5rem; margin-right: -2.34%; overflow: hidden; border: 1px solid rgb(255 255 255 / .08); border-radius: 1.75rem; background: #0a0a0a; padding: 0; cursor: pointer; transform: scale(.94); transform-origin: center left; transition: transform 520ms cubic-bezier(.22, 1, .36, 1), border-color 220ms ease; }
+	.contractor-carousel__slide.is-active { margin-right: 0; transform: none; }
 	.contractor-carousel__slide:hover { border-color: rgb(255 255 255 / .16); }
-	.contractor-carousel__slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.86) contrast(1.04) saturate(.94); }
-	.contractor-carousel__slide > span { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 0 0 / .02), rgb(0 0 0 / .22)); pointer-events: none; }
+	.contractor-carousel__slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.68) contrast(1.04) saturate(.9); }
+	.contractor-carousel__slide img.contractor-carousel__image--documents { transform: scale(1.21); transform-origin: center top; }
+	.contractor-carousel__slide > span:last-child { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 0 0 / .08), rgb(0 0 0 / .32)); pointer-events: none; }
 	.contractor-carousel__slide.is-active img { filter: none; }
-	.contractor-carousel__slide.is-active > span { background: none; }
+	.contractor-carousel__slide.is-active > span:last-child { background: none; }
 	.contractor-carousel__slide > .contractor-carousel__hire-notification { position: absolute; z-index: 2; top: auto; right: auto; bottom: var(--notice-inset); left: var(--notice-inset); display: flex; width: calc(var(--notice-reference-card-width) - 2rem); min-height: 4.6rem; align-items: center; gap: .82rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(7 8 10 / .72); padding: .62rem .85rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(12px); pointer-events: none; transform: scale(var(--notice-scale)); transform-origin: bottom left; }
 	.contractor-carousel__hire-avatar { position: relative; flex: 0 0 3rem; width: 3rem; height: 3rem; }
 	.contractor-carousel__hire-avatar > img { position: static; width: 100%; height: 100%; border-radius: 9999px; object-fit: cover; filter: none; }
@@ -391,6 +499,52 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 	.contractor-carousel__compliance-footer { display: flex; align-items: center; justify-content: space-between; gap: .75rem; border-radius: .72rem; background: rgb(203 243 0 / .12); padding: .5rem .58rem; }
 	.contractor-carousel__compliance-footer strong { min-width: 0; overflow: hidden; color: #cbf300; font-size: .66rem; font-weight: 650; line-height: 1; text-overflow: ellipsis; white-space: nowrap; }
 	.contractor-carousel__compliance-footer small { flex: 0 0 auto; overflow: hidden; color: #fff; font-size: .56rem; line-height: 1; text-overflow: ellipsis; white-space: nowrap; }
+	.contractor-carousel__slide > .contractor-carousel__balances-panel { position: absolute; z-index: 2; top: auto; right: auto; bottom: var(--notice-inset); left: var(--notice-inset); display: flex; width: calc(var(--notice-reference-card-width) - 2rem); flex-direction: column; gap: .34rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(22 23 26 / .72); padding: .58rem .82rem .62rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(18px) saturate(1.18); pointer-events: none; transform: scale(var(--notice-scale)); transform-origin: bottom left; }
+	.contractor-carousel__slide.is-active > .contractor-carousel__balances-panel { background: rgb(7 8 10 / .72); }
+	.contractor-carousel__balances-header { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+	.contractor-carousel__balances-header strong { font-size: .86rem; font-weight: 650; line-height: 1.1; }
+	.contractor-carousel__balances-header small { color: #cbf300; font-size: .62rem; font-weight: 650; line-height: 1; }
+	.contractor-carousel__balances-list { display: grid; }
+	.contractor-carousel__balance-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: .75rem; padding: .2rem 0; }
+	.contractor-carousel__balance-row + .contractor-carousel__balance-row { border-top: 1px solid rgb(255 255 255 / .09); }
+	.contractor-carousel__balance-row strong { color: rgb(255 255 255 / .68); font-size: .66rem; font-weight: 650; letter-spacing: .04em; }
+	.contractor-carousel__balance-row span { font-size: .76rem; font-weight: 620; line-height: 1; font-variant-numeric: tabular-nums; }
+	.contractor-carousel__slide > .contractor-carousel__quote-panel { position: absolute; z-index: 2; top: auto; right: auto; bottom: var(--notice-inset); left: var(--notice-inset); display: flex; width: calc(var(--notice-reference-card-width) - 2rem); flex-direction: column; gap: .2rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(7 8 10 / .72); padding: .64rem .82rem .7rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(18px) saturate(1.18); pointer-events: none; transform: scale(var(--notice-scale)); transform-origin: bottom left; }
+	.contractor-carousel__quote-header { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+	.contractor-carousel__quote-header strong { overflow: hidden; color: rgb(255 255 255 / .72); font-size: .68rem; font-weight: 650; line-height: 1.1; letter-spacing: .025em; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
+	.contractor-carousel__quote-main { display: flex; align-items: end; justify-content: space-between; gap: .75rem; padding: 0 0 .4rem; border-bottom: 1px solid rgb(255 255 255 / .1); }
+	.contractor-carousel__quote-main small { color: rgb(255 255 255 / .56); font-size: .59rem; line-height: 1.1; }
+	.contractor-carousel__quote-main strong { color: #cbf300; font-size: 1.18rem; font-weight: 660; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+	.contractor-carousel__quote-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; padding-top: .18rem; }
+	.contractor-carousel__quote-meta > span { display: flex; min-width: 0; align-items: center; justify-content: space-between; gap: .3rem; }
+	.contractor-carousel__quote-meta small { overflow: hidden; color: rgb(255 255 255 / .52); font-size: .6rem; line-height: 1; text-overflow: ellipsis; white-space: nowrap; }
+	.contractor-carousel__quote-meta strong { color: rgb(255 255 255 / .88); font-size: .65rem; font-weight: 620; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+	.contractor-carousel__slide > .contractor-carousel__route-panel { position: absolute; z-index: 2; right: auto; bottom: var(--notice-inset); left: var(--notice-inset); display: flex; width: calc(var(--notice-reference-card-width) - 2rem); flex-direction: column; gap: .62rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.05rem; background: rgb(7 8 10 / .82); padding: .72rem .82rem .76rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .22); color: #fff; text-align: left; backdrop-filter: blur(14px); pointer-events: none; transform: scale(var(--notice-scale)); transform-origin: bottom left; }
+	.contractor-carousel__route-header { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+	.contractor-carousel__route-header strong { color: rgb(255 255 255 / .62); font-size: .61rem; font-weight: 650; line-height: 1; letter-spacing: .045em; text-transform: uppercase; }
+	.contractor-carousel__route-header small { color: #cbf300; font-size: .62rem; font-weight: 650; line-height: 1; }
+	.contractor-carousel__route-map { display: grid; grid-template-columns: 2.55rem minmax(0, 1fr) 2.55rem; align-items: center; gap: .55rem; }
+	.contractor-carousel__route-map > strong { display: grid; height: 2.15rem; place-items: center; border: 1px solid rgb(255 255 255 / .12); border-radius: .62rem; background: rgb(255 255 255 / .05); font-size: .69rem; font-weight: 680; letter-spacing: .035em; }
+	.contractor-carousel__route-map > strong:last-child { border-color: rgb(203 243 0 / .28); }
+	.contractor-carousel__route-line { position: relative; height: 1px; background: rgb(255 255 255 / .2); }
+	.contractor-carousel__route-line::before, .contractor-carousel__route-line::after { position: absolute; top: 50%; width: .38rem; height: .38rem; border-radius: 50%; background: #fff; content: ''; transform: translateY(-50%); }
+	.contractor-carousel__route-line::before { left: 0; }
+	.contractor-carousel__route-line::after { right: 0; background: #cbf300; box-shadow: 0 0 .65rem rgb(203 243 0 / .55); }
+	.contractor-carousel__route-line i { position: absolute; top: 50%; right: .18rem; width: .38rem; height: .38rem; border-top: 1px solid #cbf300; border-right: 1px solid #cbf300; transform: translateY(-50%) rotate(45deg); }
+	.contractor-carousel__route-method { align-self: center; color: rgb(255 255 255 / .5); font-size: .57rem; font-weight: 560; line-height: 1; }
+	.contractor-carousel__slide > .contractor-carousel__transfer-panel { position: absolute; z-index: 2; top: auto; right: auto; bottom: var(--notice-inset); left: var(--notice-inset); display: flex; width: calc(var(--notice-reference-card-width) - 2rem); flex-direction: column; gap: .52rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(7 8 10 / .72); padding: .62rem .82rem .68rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(18px) saturate(1.18); pointer-events: none; transform: scale(var(--notice-scale)); transform-origin: bottom left; }
+	.contractor-carousel__transfer-header { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+	.contractor-carousel__transfer-header small { overflow: hidden; color: rgb(255 255 255 / .52); font-size: .65rem; font-weight: 620; line-height: 1; letter-spacing: .04em; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
+	.contractor-carousel__transfer-header strong { flex: 0 0 auto; color: #cbf300; font-size: .68rem; font-weight: 700; line-height: 1; }
+	.contractor-carousel__transfer-body { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: .9rem; }
+	.contractor-carousel__transfer-recipient { display: flex; min-width: 0; align-items: center; gap: .68rem; }
+	.contractor-carousel__slide .contractor-carousel__transfer-recipient > img { position: static; flex: 0 0 2.05rem; width: 2.05rem; height: 2.05rem; border-radius: .58rem; object-fit: cover; filter: none; }
+	.contractor-carousel__transfer-recipient > span { display: flex; min-width: 0; flex-direction: column; gap: .2rem; }
+	.contractor-carousel__transfer-recipient strong { overflow: hidden; font-size: .82rem; font-weight: 650; line-height: 1.1; text-overflow: ellipsis; white-space: nowrap; }
+	.contractor-carousel__transfer-recipient small { color: rgb(255 255 255 / .52); font-size: .62rem; line-height: 1.1; }
+	.contractor-carousel__transfer-amount { display: flex; align-items: flex-end; flex-direction: column; gap: .24rem; }
+	.contractor-carousel__transfer-amount small { color: rgb(255 255 255 / .46); font-size: .58rem; font-weight: 650; line-height: 1; letter-spacing: .045em; }
+	.contractor-carousel__transfer-amount strong { color: #fff; font-size: .86rem; font-weight: 680; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
 	:global(.contractor-carousel-content) { min-height: 260vh; }
 	.contractor-carousel { position: sticky; top: var(--contractor-carousel-sticky-top, calc(4rem + ((100svh - 4rem - 34rem) / 2))); }
 	@media (max-width: 1079px) {
@@ -419,7 +573,11 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 		.contractor-carousel__slide.is-active { margin-right: 0; }
 		.contractor-carousel__slide > .contractor-carousel__hire-notification,
 		.contractor-carousel__slide > .contractor-carousel__payment-notification,
-		.contractor-carousel__slide > .contractor-carousel__compliance-notification { top: auto; }
+		.contractor-carousel__slide > .contractor-carousel__compliance-notification,
+		.contractor-carousel__slide > .contractor-carousel__balances-panel,
+		.contractor-carousel__slide > .contractor-carousel__quote-panel,
+		.contractor-carousel__slide > .contractor-carousel__route-panel,
+		.contractor-carousel__slide > .contractor-carousel__transfer-panel { top: auto; }
 		.contractor-carousel__rail { gap: .8rem; transform: translateX(0); }
 	}
 	@media (prefers-reduced-motion: reduce) { .contractor-carousel__rail, .contractor-carousel__slide { transition: none; } }

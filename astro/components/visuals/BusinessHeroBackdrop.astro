@@ -1,0 +1,94 @@
+<business-hero-backdrop aria-hidden="true">
+	<canvas></canvas>
+</business-hero-backdrop>
+
+<style>
+	business-hero-backdrop {
+		position: absolute;
+		inset: min(50svh, 50%) clamp(0.75rem, 1.75vw, 1.5rem) 0;
+		z-index: -1;
+		overflow: hidden;
+		border-radius: 0 0 clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem);
+		pointer-events: none;
+		background: linear-gradient(to bottom, rgb(10 10 10 / 0), #0a0a0a);
+	}
+
+	business-hero-backdrop[data-painted] { background: none; }
+	canvas { display: block; width: 100%; height: 100%; }
+</style>
+
+<script>
+	// Dither the premultiplied color as well as alpha. At #0a0a0a,
+	// an ordinary translucent gradient has only ten premultiplied RGB
+	// levels. Adding CSS stops or a low-opacity texture cannot restore them.
+	class BusinessHeroBackdrop extends HTMLElement {
+		private observer?: ResizeObserver;
+		private frame = 0;
+		private resolution?: MediaQueryList;
+		private schedule = () => {
+			cancelAnimationFrame(this.frame);
+			this.frame = requestAnimationFrame(() => this.paint());
+		};
+		private watchResolution = () => {
+			this.resolution?.removeEventListener('change', this.watchResolution);
+			this.resolution = matchMedia(`(resolution: ${devicePixelRatio}dppx)`);
+			this.resolution.addEventListener('change', this.watchResolution);
+			this.schedule();
+		};
+
+		connectedCallback() {
+			this.observer = new ResizeObserver(this.schedule);
+			this.observer.observe(this);
+			this.watchResolution();
+		}
+
+		disconnectedCallback() {
+			this.observer?.disconnect();
+			this.resolution?.removeEventListener('change', this.watchResolution);
+			cancelAnimationFrame(this.frame);
+		}
+
+		private paint() {
+			const canvas = this.querySelector('canvas');
+			const context = canvas?.getContext('2d');
+			if (!canvas || !context) return;
+			const bounds = this.getBoundingClientRect();
+			const width = Math.round(bounds.width * devicePixelRatio);
+			const height = Math.round(bounds.height * devicePixelRatio);
+			if (!width || height < 2) return;
+			if (canvas.width === width && canvas.height === height && this.hasAttribute('data-painted')) return;
+			canvas.width = width;
+			canvas.height = height;
+			const pixels = context.createImageData(width, height);
+			// Stable, non-repeating per-pixel noise; redraw only on resize,
+			// never on animation frames, so the backdrop does not shimmer.
+			let seed = 0x71a93f25;
+			const random = () => {
+				seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5;
+				return (seed >>> 0) / 4294967296;
+			};
+			for (let y = 0; y < height; y++) {
+				const t = y / (height - 1);
+				const envelope = Math.min(1, t * 32, (1 - t) * 32);
+				for (let x = 0; x < width; x++) {
+					const offset = (y * width + x) * 4;
+					const alpha = Math.max(0, Math.min(255,
+						Math.round(t * 255 + (random() - 0.5) * 8 * envelope)));
+					const premultiplied = 10 * alpha / 255;
+					const rounded = Math.floor(premultiplied + random());
+					const color = alpha ? Math.round(rounded * 255 / alpha) : 10;
+					pixels.data[offset] = color;
+					pixels.data[offset + 1] = color;
+					pixels.data[offset + 2] = color;
+					pixels.data[offset + 3] = alpha;
+				}
+			}
+			context.putImageData(pixels, 0, 0);
+			this.setAttribute('data-painted', '');
+		}
+	}
+
+	if (!customElements.get('business-hero-backdrop')) {
+		customElements.define('business-hero-backdrop', BusinessHeroBackdrop);
+	}
+</script>
