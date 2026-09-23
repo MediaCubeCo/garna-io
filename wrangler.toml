@@ -68,3 +68,71 @@ run_worker_first = [
 	"/es/blog-article",
 	"/pt/blog-article",
 ]
+
+# Preview worker: garna-io-preview on workers.dev. Does not touch production routes.
+[env.preview]
+workers_dev = true
+preview_urls = true
+
+[env.preview.vars]
+USE_STATIC_ASSETS = "true"
+PUBLIC_ORIGIN = "https://garna-io-preview.mediacube.workers.dev"
+EMAIL_FROM = "noreply@garna.io"
+ADMIN_EMAILS = "info@mediacube.network,sol@mediacube.io,angelm@mediacube.io,dariab@mediacube.io"
+
+[[env.preview.d1_databases]]
+binding = "DB"
+database_name = "garna-blog-preview"
+database_id = "8fdef6e5-8ca8-4b2e-9a57-9265c6358054"
+migrations_dir = "migrations"
+
+[[env.preview.r2_buckets]]
+binding = "BLOG_MEDIA"
+bucket_name = "garna-blog-media-preview"
+
+[[env.preview.send_email]]
+name = "EMAIL"
+
+[env.preview.assets]
+directory = "./dist"
+binding = "ASSETS"
+run_worker_first = [
+	"/",
+	"/index.html",
+	"/for-contractors",
+	"/for-contractors.html",
+	"/for-creators",
+	"/for-creators.html",
+	"/en/for-creators",
+	"/ru/for-creators",
+	"/es/for-creators",
+	"/pt/for-creators",
+	"/form",
+	"/form.html",
+	"/ai-hiring",
+	"/ai-hiring.html",
+	"/white-label",
+	"/white-label.html",
+	"/payroll-small-business",
+	"/payroll-small-business.html",
+	"/eor",
+	"/eor.html",
+	"/blog",
+	"/blog.html",
+	"/en/blog",
+	"/ru/blog",
+	"/es/blog",
+	"/pt/blog",
+	"/blog-author",
+	"/blog-author.html",
+	"/en/blog-author",
+	"/ru/blog-author",
+	"/es/blog-author",
+	"/pt/blog-author",
+	"/blog-article",
+	"/blog-article.html",
+	"/en/blog-article",
+	"/ru/blog-article",
+	"/es/blog-article",
+	"/pt/blog-article",
+]
