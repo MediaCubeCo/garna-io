@@ -100,7 +100,14 @@ describe('native Astro architecture', () => {
 		expect(instantMeet).toContain('Jump on a video call right now');
 		expect(instantMeet).toContain('getTimeUntilNextOpening');
 		expect(instantMeet).toContain("import { animate, spring } from 'motion'");
-		expect(instantMeet).toContain('data-instant-meet-morph');
+		expect(instantMeet).toContain('data-instant-meet-surface');
+		expect(instantMeet).toMatch(/<section[^>]*data-instant-meet-surface[^>]*data-instant-meet-trigger/);
+		expect(instantMeet).not.toContain('<button class="instant-meet__launcher"');
+		expect(instantMeet).not.toContain('data-instant-meet-morph');
+		expect(instantMeet).toContain('animate(surface, expandedStyle');
+		expect(instantMeet).toContain('visualDuration: 0.28');
+		expect(instantMeet).toContain("root.classList.toggle('is-dialog-scrollable', dialogScrollable)");
+		expect(instantMeet).toContain('.is-dialog-scrollable .instant-meet__dialog { overflow-y: auto; }');
 		expect(instantMeet).toContain("backdropFilter: 'blur(10px)'");
 		expect(instantMeet).toContain('z-index: 90');
 		expect(instantMeet).not.toContain('10:00 Minsk');
