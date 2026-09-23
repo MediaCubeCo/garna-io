@@ -37,10 +37,11 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 			<p class="instant-meet__note" data-instant-meet-note>A product specialist — not a bot or a calendar — will answer during live hours.</p>
 		</section>
 	</div>
+	<div class="instant-meet__morph" data-instant-meet-morph aria-hidden="true" hidden></div>
 </aside>
 
 <script>
-	import { animateView, spring } from 'motion';
+	import { animate, spring } from 'motion';
 
 	(() => {
 		const root = document.querySelector('[data-instant-meet]');
@@ -50,6 +51,7 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 		const trigger = root.querySelector('[data-instant-meet-trigger]');
 		const backdrop = root.querySelector('[data-instant-meet-backdrop]');
 		const dialog = root.querySelector('.instant-meet__dialog');
+		const morph = root.querySelector('[data-instant-meet-morph]');
 		const label = root.querySelector('[data-instant-meet-label]');
 		const status = root.querySelector('[data-instant-meet-status]');
 		const title = root.querySelector('[data-instant-meet-title]');
@@ -65,7 +67,7 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 		let pending = false;
 		let previousFocus = null;
 		let dialogOpen = false;
-		let dialogTransitionId = 0;
+		let dialogTransitioning = false;
 		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 		const translations = {
@@ -164,73 +166,118 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 		};
 
 		const transitionDialog = async (open) => {
-			if (!(trigger instanceof HTMLButtonElement) || !(backdrop instanceof HTMLElement) || !(dialog instanceof HTMLElement)) return;
-			const transitionId = ++dialogTransitionId;
-			const update = () => {
-				trigger.hidden = open;
-				backdrop.hidden = !open;
-				document.body.classList.toggle('instant-meet-open', open);
+			if (
+				dialogTransitioning ||
+				!(trigger instanceof HTMLButtonElement) ||
+				!(backdrop instanceof HTMLElement) ||
+				!(dialog instanceof HTMLElement) ||
+				!(morph instanceof HTMLElement)
+			) return;
+
+			dialogTransitioning = true;
+			const launcherStyle = getComputedStyle(trigger);
+			const dialogStyle = getComputedStyle(dialog);
+			const setMorphGeometry = (rect) => {
+				morph.style.left = `${rect.left}px`;
+				morph.style.top = `${rect.top}px`;
+				morph.style.width = `${rect.width}px`;
+				morph.style.height = `${rect.height}px`;
+			};
+			const clearAnimatedStyles = () => {
+				for (const element of [backdrop, dialog, morph]) element.removeAttribute('style');
+				morph.replaceChildren();
 			};
 
-			if (reducedMotion.matches) {
-				update();
-			} else {
-				const from = open ? trigger : dialog;
-				const to = open ? dialog : trigger;
-				const transition = animateView(update, {
-					type: spring,
-					bounce: 0.14,
-					visualDuration: 0.52,
-					interrupt: 'immediate',
-				})
-					.add(from, to)
-					.group(false)
-					.class('instant-meet-card')
-					.old({ opacity: [1, 0] }, { duration: 0.22 })
-					.new({ opacity: 1 }, { duration: 0.26 })
-					.add(backdrop)
-					.class('instant-meet-overlay');
+			try {
+				if (reducedMotion.matches) {
+					trigger.hidden = open;
+					backdrop.hidden = !open;
+					document.body.classList.toggle('instant-meet-open', open);
+				} else if (open) {
+					const launcherRect = trigger.getBoundingClientRect();
+					morph.innerHTML = trigger.innerHTML;
+					setMorphGeometry(launcherRect);
+					morph.style.borderRadius = launcherStyle.borderRadius;
+					morph.style.backgroundColor = launcherStyle.backgroundColor;
+					morph.style.borderColor = launcherStyle.borderColor;
+					morph.style.boxShadow = launcherStyle.boxShadow;
+					morph.hidden = false;
 
-				if (open) {
-					transition.enter({
-						opacity: [0, 1],
-						backgroundColor: ['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.6)'],
-						backdropFilter: ['blur(0px)', 'blur(10px)'],
-					}, { duration: 0.46, ease: [0.22, 1, 0.36, 1] });
+					backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+					backdrop.style.backdropFilter = 'blur(0px)';
+					backdrop.style.webkitBackdropFilter = 'blur(0px)';
+					dialog.style.opacity = '0';
+					backdrop.hidden = false;
+					trigger.hidden = true;
+					document.body.classList.add('instant-meet-open');
+
+					const dialogRect = dialog.getBoundingClientRect();
+					const animations = [
+						animate(morph, {
+							left: `${dialogRect.left}px`, top: `${dialogRect.top}px`,
+							width: `${dialogRect.width}px`, height: `${dialogRect.height}px`,
+							borderRadius: dialogStyle.borderRadius,
+							backgroundColor: '#101010', borderColor: dialogStyle.borderColor,
+							boxShadow: dialogStyle.boxShadow,
+						}, { type: spring, bounce: 0.12, visualDuration: 0.56 }),
+						animate(backdrop, {
+							backgroundColor: 'rgba(0, 0, 0, 0.6)',
+							backdropFilter: 'blur(10px)',
+						}, { duration: 0.5, ease: [0.22, 1, 0.36, 1] }),
+						animate(morph.children, { opacity: [1, 0] }, { duration: 0.18, ease: 'easeOut' }),
+						animate(dialog, { opacity: [0, 1] }, { duration: 0.2, delay: 0.34, ease: 'easeOut' }),
+						animate(morph, { opacity: [1, 0] }, { duration: 0.2, delay: 0.34, ease: 'easeOut' }),
+					];
+					await Promise.all(animations.map((animation) => animation.finished));
+					morph.hidden = true;
+					clearAnimatedStyles();
 				} else {
-					transition.exit({
-						opacity: [1, 0],
-						backgroundColor: ['rgba(0, 0, 0, 0.6)', 'rgba(0, 0, 0, 0)'],
-						backdropFilter: ['blur(10px)', 'blur(0px)'],
-					}, { duration: 0.34, ease: [0.4, 0, 1, 1] });
-				}
+					trigger.hidden = false;
+					trigger.style.visibility = 'hidden';
+					const launcherRect = trigger.getBoundingClientRect();
+					const dialogRect = dialog.getBoundingClientRect();
+					morph.innerHTML = trigger.innerHTML;
+					setMorphGeometry(dialogRect);
+					morph.style.borderRadius = dialogStyle.borderRadius;
+					morph.style.backgroundColor = '#101010';
+					morph.style.borderColor = dialogStyle.borderColor;
+					morph.style.boxShadow = dialogStyle.boxShadow;
+					for (const child of morph.children) child.style.opacity = '0';
+					morph.hidden = false;
 
-				const content = transition
-					.add('.instant-meet__dialog > *')
-					.class('instant-meet-content');
-				if (open) {
-					content.enter({
-						opacity: [0, 1],
-						transform: ['translateY(10px)', 'translateY(0px)'],
-					}, { duration: 0.3, delay: 0.18, ease: [0.22, 1, 0.36, 1] });
-				} else {
-					content.exit({
-						opacity: [1, 0],
-						transform: ['translateY(0px)', 'translateY(6px)'],
-					}, { duration: 0.16, ease: [0.4, 0, 1, 1] });
+					const animations = [
+						animate(morph, {
+							left: `${launcherRect.left}px`, top: `${launcherRect.top}px`,
+							width: `${launcherRect.width}px`, height: `${launcherRect.height}px`,
+							borderRadius: launcherStyle.borderRadius,
+							backgroundColor: launcherStyle.backgroundColor,
+							borderColor: launcherStyle.borderColor,
+							boxShadow: launcherStyle.boxShadow,
+						}, { type: spring, bounce: 0.08, visualDuration: 0.48 }),
+						animate(backdrop, {
+							backgroundColor: 'rgba(0, 0, 0, 0)',
+							backdropFilter: 'blur(0px)',
+						}, { duration: 0.38, ease: [0.4, 0, 1, 1] }),
+						animate(dialog, { opacity: [1, 0] }, { duration: 0.16, ease: 'easeIn' }),
+						animate(morph.children, { opacity: [0, 1] }, { duration: 0.18, delay: 0.24, ease: 'easeOut' }),
+					];
+					await Promise.all(animations.map((animation) => animation.finished));
+					backdrop.hidden = true;
+					morph.hidden = true;
+					document.body.classList.remove('instant-meet-open');
+					trigger.style.visibility = '';
+					clearAnimatedStyles();
 				}
-
-				const controls = await transition;
-				await controls.finished;
+			} finally {
+				dialogTransitioning = false;
 			}
 
-			if (transitionId !== dialogTransitionId) return;
 			if (open) dialog.focus();
 			else if (previousFocus instanceof HTMLElement) previousFocus.focus();
 		};
 
 		const openDialog = (mode = 'offline') => {
-			if (dialogOpen || !(backdrop instanceof HTMLElement) || !(dialog instanceof HTMLElement)) return;
+			if (dialogOpen || dialogTransitioning || !(backdrop instanceof HTMLElement) || !(dialog instanceof HTMLElement)) return;
 			const copy = translations[getLanguage()];
 			if (mode === 'error') {
 				if (title) title.textContent = copy.errorTitle;
@@ -242,7 +289,7 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 		};
 
 		const closeDialog = () => {
-			if (!dialogOpen || !(backdrop instanceof HTMLElement)) return;
+			if (!dialogOpen || dialogTransitioning || !(backdrop instanceof HTMLElement)) return;
 			dialogOpen = false;
 			void transitionDialog(false);
 		};
@@ -320,6 +367,9 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 	.instant-meet__signal span { position: absolute; inset: -5px; border: 1px solid currentColor; border-radius: inherit; opacity: .35; animation: instant-meet-pulse 1.8s ease-out infinite; }
 	.instant-meet__backdrop { position: fixed; inset: 0; z-index: 80; display: grid; place-items: end center; padding: 24px; background: rgba(0,0,0,.6); pointer-events: auto; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 	.instant-meet__backdrop[hidden] { display: none; }
+	.instant-meet__morph { position: fixed; z-index: 90; box-sizing: border-box; display: flex; overflow: hidden; align-items: center; gap: 12px; padding: 10px 12px 10px 14px; border: 1px solid; color: #101010; pointer-events: none; text-align: left; }
+	.instant-meet__morph[hidden] { display: none; }
+	.instant-meet__morph > svg { width: 28px; height: 28px; margin-left: auto; flex: 0 0 auto; }
 	.instant-meet__dialog { position: relative; width: min(100%, 510px); overflow: hidden; padding: clamp(28px, 5vw, 48px); border: 1px solid rgba(255,255,255,.1); border-radius: 28px; background: radial-gradient(circle at 92% 6%, rgba(203,243,0,.12), transparent 34%), #101010; color: #fff; box-shadow: 0 30px 100px rgba(0,0,0,.6); }
 	.instant-meet__dialog:focus { outline: none; }
 	.instant-meet__dialog::after { content: ''; position: absolute; right: -60px; bottom: -80px; width: 220px; height: 220px; border: 1px solid rgba(203,243,0,.12); border-radius: 50%; box-shadow: 0 0 0 34px rgba(203,243,0,.025), 0 0 0 68px rgba(203,243,0,.018); pointer-events: none; }
