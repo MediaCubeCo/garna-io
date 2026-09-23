@@ -1,0 +1,64 @@
+---
+import '../../styles/header.css';
+import Button from '../ui/Button.astro';
+
+const signUpUrl = 'https://app.garna.io/en/auth/sign-up';
+const logInUrl = 'https://app.garna.io/en/auth/sign-in';
+---
+
+<nav class="garna-header ads-landing-header is-scrolled fixed z-50 w-full top-0" data-ads-landing-header>
+	<div class="garna-container garna-header-container">
+		<a href="#top" class="garna-header-brand" aria-label="Garna — back to top">
+			<img
+				src="/garna_logo.svg"
+				alt="Garna"
+				class="garna-header-logo"
+				data-translate-alt="header.brand"
+			/>
+		</a>
+
+		<div class="garna-header-desktop-nav ads-landing-header__nav" aria-label="Landing page navigation">
+			<a href="#landing-benefits" class="garna-header-nav-link" data-translate="landingHeader.benefits">Benefits</a>
+			<a href="#how-global-invoicing-works" class="garna-header-nav-link" data-translate="landingHeader.howItWorks">How it works</a>
+			<a href="#eor-cost-estimator" class="garna-header-nav-link" data-translate="landingHeader.pricing">Pricing</a>
+			<a href="#landing-faq" class="garna-header-nav-link" data-translate="landingHeader.faq">FAQ</a>
+		</div>
+
+		<div class="garna-header-actions ads-landing-header__actions">
+			<Button href={logInUrl} variant="secondary" size="header" class="garna-header-login" data-garna-signin>
+				<svg
+					class="garna-header-login-icon"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.75"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+					<polyline points="10 17 15 12 10 7"></polyline>
+					<line x1="15" x2="3" y1="12" y2="12"></line>
+				</svg>
+				<span data-translate="header.logIn">Log In</span>
+			</Button>
+
+			<Button href={signUpUrl} class="garna-header-signup" data-garna-signup data-translate="header.signUp">
+				Sign Up
+			</Button>
+		</div>
+	</div>
+</nav>
+
+<style>
+	.ads-landing-header__nav {
+		position: static;
+		margin-left: auto;
+		transform: none;
+	}
+
+	.ads-landing-header__actions {
+		margin-left: clamp(24px, 2.5vw, 40px);
+	}
+</style>

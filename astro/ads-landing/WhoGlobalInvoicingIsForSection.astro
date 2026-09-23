@@ -1,0 +1,81 @@
+---
+import Section from '../components/layout/Section.astro';
+import Card from '../components/ui/Card.astro';
+
+const audiences = [
+	{
+		title: 'Freelancers',
+		titleKey: 'audience.cards.freelancers.title',
+		description: 'You work directly with business clients in different countries',
+		descriptionKey: 'audience.cards.freelancers.description',
+		icon: 'freelancer',
+	},
+	{
+		title: 'Remote Contractors',
+		titleKey: 'audience.cards.contractors.title',
+		description: 'You work with a global company as an independent contractor',
+		descriptionKey: 'audience.cards.contractors.description',
+		icon: 'contractor',
+	},
+	{
+		title: 'Digital Nomads',
+		titleKey: 'audience.cards.nomads.title',
+		description: 'You move between countries while working with clients worldwide',
+		descriptionKey: 'audience.cards.nomads.description',
+		icon: 'nomad',
+	},
+	{
+		title: 'Startups and Agencies',
+		titleKey: 'audience.cards.teams.title',
+		description: 'You deliver projects as a team and need one clear payment workflow',
+		descriptionKey: 'audience.cards.teams.description',
+		icon: 'team',
+	},
+] as const;
+---
+
+<Section
+	id="who-global-invoicing-is-for"
+	spacing="default"
+	title={{ text: 'Who Global Invoicing Is For', translateKey: 'audience.title' }}
+	description={{
+		text: 'A simple way to invoice international clients, wherever and however you work',
+		translateKey: 'audience.description',
+	}}
+	headerClass="mb-8 max-w-5xl lg:mb-10"
+	titleClass="mx-auto max-w-4xl lg:text-5xl"
+	contentClass="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+>
+	{audiences.map((audience) => (
+		<Card
+			title={{ text: audience.title, translateKey: audience.titleKey }}
+			description={{ text: audience.description, translateKey: audience.descriptionKey }}
+		>
+			{audience.icon === 'freelancer' && (
+				<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<circle cx="12" cy="8" r="4"></circle>
+						<path d="M4.5 21a7.5 7.5 0 0 1 15 0"></path>
+				</svg>
+			)}
+			{audience.icon === 'contractor' && (
+				<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<rect x="3" y="7" width="18" height="13" rx="2"></rect>
+						<path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"></path>
+				</svg>
+			)}
+			{audience.icon === 'nomad' && (
+				<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<circle cx="12" cy="12" r="9"></circle>
+						<path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"></path>
+				</svg>
+			)}
+			{audience.icon === 'team' && (
+				<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+						<circle cx="9" cy="7" r="4"></circle>
+						<path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+				</svg>
+			)}
+		</Card>
+	))}
+</Section>

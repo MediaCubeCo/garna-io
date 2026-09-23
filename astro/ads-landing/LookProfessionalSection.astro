@@ -1,0 +1,279 @@
+---
+import Section from '../components/layout/Section.astro';
+import SectionHeader from '../components/layout/SectionHeader.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<Section id="look-professional" spacing="default" contentClass="look-professional-content">
+	<div class="look-professional">
+		<div class="look-professional__visual" data-professional-invoice-visual aria-hidden="true">
+			<img src="/pages/payroll-solution-new/assets/contractor-cost-human-upscaled.jpg" alt="" loading="lazy" />
+			<div class="look-professional__shade"></div>
+			<div class="look-professional__notice look-professional__notice--quote">
+				<div class="look-professional__quote-top">
+					<span><span data-translate="professional.visual.invoice">Invoice</span> #0148</span>
+					<strong data-translate="professional.visual.status">Ready to send</strong>
+				</div>
+				<div class="look-professional__quote-main">
+					<strong>$2,400</strong>
+					<span>Northstar Studio LLC<br />Invoice in USD</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="look-professional__copy">
+			<SectionHeader
+				align="left"
+				title={{ text: 'Look Professional to Clients', translateKey: 'professional.title' }}
+			/>
+			<p class="look-professional__subtitle look-professional__subtitle--first" data-garna-subtitle data-translate="professional.description">
+				Send clients professional invoices with one clear way to pay — no company setup required
+			</p>
+			<p class="look-professional__subtitle" data-garna-subtitle data-translate="professional.followUp">
+				Garna keeps invoices, payment details, and documents together from the start
+			</p>
+			<div class="look-professional__controls">
+				<Button
+					href="https://app.garna.io/en/auth/sign-up"
+					size="header"
+					variant="primary"
+					effect="none"
+					icon="none"
+					data-garna-signup
+				>
+					<span data-translate="professional.button">Create account</span>
+				</Button>
+			</div>
+		</div>
+	</div>
+</Section>
+
+<script>
+	const setupProfessionalInvoiceNotice = () => {
+		const visuals = document.querySelectorAll<HTMLElement>('[data-professional-invoice-visual]');
+		if (!visuals.length) return;
+
+		const designWidth = 438;
+		const designLeft = 32;
+		const designBottom = 28;
+
+		const syncNoticeScale = (visual: HTMLElement) => {
+			const width = visual.getBoundingClientRect().width;
+			const isAdaptiveStackedLayout = window.matchMedia('(min-width: 561px) and (max-width: 900px)').matches;
+			const scale = !isAdaptiveStackedLayout && width > 0 ? width / designWidth : 1;
+			visual.style.setProperty('--professional-invoice-scale', scale.toString());
+			visual.style.setProperty('--professional-invoice-left', `${designLeft * scale}px`);
+			visual.style.setProperty('--professional-invoice-bottom', `${designBottom * scale}px`);
+		};
+
+		visuals.forEach((visual) => {
+			syncNoticeScale(visual);
+
+			if ('ResizeObserver' in window) {
+				const observer = new ResizeObserver(() => syncNoticeScale(visual));
+				observer.observe(visual);
+				return;
+			}
+
+			window.addEventListener('resize', () => syncNoticeScale(visual), { passive: true });
+		});
+	};
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', setupProfessionalInvoiceNotice, { once: true });
+	} else {
+		setupProfessionalInvoiceNotice();
+	}
+</script>
+
+<style>
+	:global(.look-professional-content) { display: block; }
+
+	.look-professional {
+		display: grid;
+		grid-template-columns: minmax(0, 0.88fr) minmax(18rem, 1.12fr);
+		align-items: center;
+		gap: clamp(2.5rem, 7vw, 7rem);
+	}
+
+	.look-professional__copy { max-width: 34rem; text-align: left; }
+
+	.look-professional__subtitle {
+		max-width: 31rem;
+		margin-top: 1rem;
+		font-family: Manrope, sans-serif;
+		font-size: 1.125rem;
+		line-height: 1.625;
+	}
+
+	.look-professional__subtitle--first { margin-top: 1.5rem; }
+
+	@media (min-width: 768px) {
+		.look-professional__subtitle { font-size: 1.25rem; }
+	}
+
+	.look-professional__controls { display: flex; margin-top: 2.5rem; }
+
+	.look-professional__visual {
+		--professional-invoice-scale: 1;
+		--professional-invoice-left: 2rem;
+		--professional-invoice-bottom: 1.75rem;
+		position: relative;
+		min-height: clamp(30rem, 47vw, 38rem);
+		overflow: hidden;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 1.75rem;
+		background: #0a0a0a;
+		box-shadow: 0 32px 90px -56px rgb(0 0 0 / 0.95);
+	}
+
+	.look-professional__visual > img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: 34% center;
+		transform: scale(1.24);
+		transform-origin: center bottom;
+		filter: brightness(0.94) contrast(1.04) saturate(0.98);
+	}
+
+	.look-professional__shade {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgb(0 0 0 / 0.02), rgb(0 0 0 / 0.2)),
+			linear-gradient(90deg, rgb(0 0 0 / 0.02), rgb(0 0 0 / 0.16));
+	}
+
+	.look-professional__notice {
+		position: absolute;
+		right: clamp(1rem, 3vw, 2rem);
+		bottom: clamp(1rem, 3vw, 2rem);
+		left: clamp(1rem, 3vw, 2rem);
+		z-index: 2;
+		display: flex;
+		min-height: 4.7rem;
+		align-items: center;
+		gap: 0.85rem;
+		border: 1px solid rgb(255 255 255 / 0.12);
+		border-radius: 1.25rem;
+		background: rgb(7 8 10 / 0.72);
+		padding: 0.68rem 0.9rem;
+		color: #fff;
+		text-align: left;
+		backdrop-filter: blur(14px);
+	}
+
+	.look-professional__notice--quote {
+		display: grid;
+		right: auto;
+		bottom: var(--professional-invoice-bottom);
+		left: var(--professional-invoice-left);
+		width: 23.5rem;
+		height: 6rem;
+		box-sizing: border-box;
+		min-height: 0;
+		align-items: stretch;
+		gap: 0.44rem;
+		border-radius: 1.25rem;
+		padding: 0.88rem 1rem;
+		transform: scale(var(--professional-invoice-scale));
+		transform-origin: left bottom;
+	}
+
+	.look-professional__quote-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+	}
+
+	.look-professional__quote-top span {
+		color: rgb(255 255 255 / 0.58);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.look-professional__quote-top strong {
+		border-radius: 9999px;
+		background: #cbf300;
+		padding: 0.34rem 0.58rem;
+		color: #080808;
+		font-size: 0.62rem;
+		font-weight: 800;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.look-professional__quote-main {
+		display: grid;
+		grid-template-columns: 10.9rem minmax(0, 1fr);
+		align-items: end;
+		gap: 0.75rem;
+	}
+
+	.look-professional__quote-main strong {
+		color: #fff;
+		font-family: Manrope, sans-serif;
+		font-size: 2.55rem;
+		font-weight: 700;
+		line-height: 1;
+		letter-spacing: 0;
+	}
+
+	.look-professional__quote-main span {
+		justify-self: end;
+		width: 9.35rem;
+		color: rgb(255 255 255 / 0.68);
+		font-size: 0.78rem;
+		font-weight: 600;
+		line-height: 1.28;
+		text-align: right;
+	}
+
+	@media (max-width: 900px) {
+		.look-professional { grid-template-columns: 1fr; gap: 2.5rem; }
+		.look-professional__copy { order: 1; max-width: 38rem; }
+		.look-professional__visual { order: 2; min-height: auto; aspect-ratio: 1.18; border-radius: 1.35rem; }
+		.look-professional__notice--quote {
+			right: clamp(1rem, 3vw, 2rem);
+			bottom: clamp(1rem, 3vw, 2rem);
+			left: clamp(1rem, 3vw, 2rem);
+			width: auto;
+			height: auto;
+			min-height: 6.3rem;
+			transform: none;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.look-professional { gap: 2rem; }
+		.look-professional__controls { margin-top: 2rem; }
+		.look-professional__visual { aspect-ratio: 0.9; border-radius: 1.25rem; }
+		.look-professional__notice { border-radius: 1rem; }
+		.look-professional__notice--quote {
+			right: auto;
+			bottom: var(--professional-invoice-bottom);
+			left: var(--professional-invoice-left);
+			width: 23.5rem;
+			height: 6rem;
+			border-radius: 1.25rem;
+			min-height: 0;
+			padding: 0.88rem 1rem;
+			transform: scale(var(--professional-invoice-scale));
+		}
+		.look-professional__quote-main {
+			grid-template-columns: 10.9rem minmax(0, 1fr);
+			gap: 0.75rem;
+		}
+		.look-professional__quote-main span {
+			justify-self: end;
+			width: 9.35rem;
+			text-align: right;
+		}
+	}
+</style>

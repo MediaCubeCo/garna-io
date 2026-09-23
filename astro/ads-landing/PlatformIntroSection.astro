@@ -1,0 +1,19 @@
+---
+import Section from '../components/layout/Section.astro';
+import ContractorDashboardVisual from './ContractorDashboardVisual.astro';
+---
+
+<Section
+	id="platform-intro"
+	spacing="spacious"
+	title={{ text: 'One Platform Instead of a Dozen Workarounds', translateKey: 'platformIntro.title' }}
+	description={{
+		text: 'No foreign cards, blocked accounts, or payment workarounds — Garna helps you invoice overseas business clients and receive the money through one clear workflow',
+		translateKey: 'platformIntro.description',
+	}}
+	headerClass="mb-12 max-w-4xl lg:mb-16"
+	descriptionClass="mx-auto max-w-3xl"
+	contentClass="relative mx-auto max-w-6xl overflow-visible perspective-1000"
+>
+	<ContractorDashboardVisual />
+</Section>

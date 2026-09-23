@@ -1,0 +1,146 @@
+---
+import '../styles/global.css';
+import '../styles/faq.css';
+import '../styles/themes.css';
+import AdsLandingHeader from '../components/layout/AdsLandingHeader.astro';
+import AdsLandingFooter from '../components/layout/AdsLandingFooter.astro';
+import RainbowBackground from '../components/visuals/RainbowBackground.astro';
+import type { PageShellConfig } from '../types/page-shell';
+import { getPagePathFromPathname } from '../utils/page-path';
+
+interface Props {
+	shell: PageShellConfig;
+	showHeader?: boolean;
+	showFooter?: boolean;
+	showRainbow?: boolean;
+	rainbowCount?: number;
+}
+
+const {
+	shell,
+	showHeader = true,
+	showFooter = true,
+	showRainbow = true,
+	rainbowCount = 6,
+} = Astro.props;
+
+const currentPath = getPagePathFromPathname(Astro.url.pathname);
+
+const {
+	title,
+	description = '',
+	keywords = '',
+	ogImage = 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
+	htmlClass = 'scroll-smooth',
+	bodyClass = 'antialiased overflow-x-hidden bg-garna-page',
+	iconLibrary = 'iconify',
+} = shell;
+---
+
+<!doctype html>
+<html lang="en" class={htmlClass} data-theme="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#101010" />
+		<meta name="robots" content="noindex, nofollow, noarchive" />
+		<script is:inline>
+			(() => {
+				const requestedTheme = new URLSearchParams(window.location.search).get('theme');
+				const theme = requestedTheme === 'light' ? 'light' : 'dark';
+				const root = document.documentElement;
+				root.dataset.theme = theme;
+				root.style.colorScheme = theme;
+				root.classList.toggle('garna-light-theme', theme === 'light');
+				const themeColor = document.querySelector('meta[name="theme-color"]');
+				if (themeColor) themeColor.setAttribute('content', theme === 'light' ? '#F4F5EF' : '#101010');
+			})();
+		</script>
+		<title>{title}</title>
+		{description && <meta name="description" content={description} />}
+		{keywords && <meta name="keywords" content={keywords} />}
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Garna" />
+		<meta property="og:title" content={title} />
+		{description && <meta property="og:description" content={description} />}
+		{ogImage && <meta property="og:image" content={ogImage} />}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		{description && <meta name="twitter:description" content={description} />}
+		{ogImage && <meta name="twitter:image" content={ogImage} />}
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon_180.png" />
+		<link rel="icon" type="image/x-icon" href="/favicon_32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon_16.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon_32.png" />
+		<slot name="head" />
+		{
+			iconLibrary === 'lucide' ? (
+				<script is:inline src="https://unpkg.com/lucide@latest"></script>
+			) : (
+				<script
+					is:inline
+					src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"
+				></script>
+			)
+		}
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body id="top" class={bodyClass} data-garna-page data-ads-landing>
+		{showRainbow && <RainbowBackground count={rainbowCount} />}
+		{showHeader && <AdsLandingHeader />}
+		<main id="astro-page-content" data-astro-page-content data-current-path={currentPath}>
+			<slot />
+		</main>
+		{showFooter && <AdsLandingFooter />}
+		<div id="astro-page-scripts" data-astro-page-scripts>
+			<slot name="widgets" />
+		</div>
+		<script is:inline>
+			(() => {
+				const theme = new URLSearchParams(window.location.search).get('theme');
+				if (theme !== 'light' && theme !== 'dark') return;
+
+				const preserveTheme = (scope = document) => {
+					scope.querySelectorAll('a[href]').forEach((link) => {
+						const href = link.getAttribute('href');
+						if (!href || href.startsWith('#')) return;
+						try {
+							const url = new URL(href, window.location.href);
+							if (url.origin !== window.location.origin || !['http:', 'https:'].includes(url.protocol)) return;
+							url.searchParams.set('theme', theme);
+							link.setAttribute('href', `${url.pathname}${url.search}${url.hash}`);
+						} catch {
+							// Ignore non-navigation protocols and malformed legacy links.
+						}
+					});
+				};
+
+				preserveTheme();
+				let preserveQueued = false;
+				const queuePreserveTheme = () => {
+					if (preserveQueued) return;
+					preserveQueued = true;
+					window.requestAnimationFrame(() => {
+						preserveQueued = false;
+						preserveTheme();
+					});
+				};
+				new MutationObserver(queuePreserveTheme).observe(document.documentElement, {
+					attributes: true,
+					attributeFilter: ['href'],
+					childList: true,
+					subtree: true,
+				});
+				window.addEventListener('load', queuePreserveTheme, { once: true });
+				document.addEventListener('click', (event) => {
+					const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+					if (link) preserveTheme(link.parentElement || document);
+				}, true);
+				window.addEventListener('garna:page-content-updated', queuePreserveTheme);
+			})();
+		</script>
+	</body>
+</html>

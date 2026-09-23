@@ -1,0 +1,136 @@
+---
+import FAQSection from '../ads-landing/FAQSection.astro';
+import FinalCTASection from '../ads-landing/FinalCTASection.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
+import AdsLandingLayout from '../layouts/AdsLandingLayout.astro';
+import type { FAQItem } from '../types/faq-section';
+import EorHeroSection from '../ads-landing/EorHeroSection.astro';
+import WhoGlobalInvoicingIsForSection from '../ads-landing/WhoGlobalInvoicingIsForSection.astro';
+import ProblemsWeSolveSection from '../ads-landing/ProblemsWeSolveSection.astro';
+import LookProfessionalSection from '../ads-landing/LookProfessionalSection.astro';
+import GlobalInvoicingStepsSection from '../ads-landing/GlobalInvoicingStepsSection.astro';
+import TwoWaysToGetPaidSection from '../ads-landing/TwoWaysToGetPaidSection.astro';
+import PlatformIntroSection from '../ads-landing/PlatformIntroSection.astro';
+import WhatElseYouGetSection from '../ads-landing/WhatElseYouGetSection.astro';
+import EorCostEstimatorSection from '../ads-landing/EorCostEstimatorSection.astro';
+import WhyGarnaComparisonSection from '../ads-landing/WhyGarnaComparisonSection.astro';
+import EmployerOfRecordSectionStyles from '../ads-landing/EmployerOfRecordSectionStyles.astro';
+import EmployerOfRecordInteractions from '../ads-landing/EmployerOfRecordInteractions.astro';
+
+const adsLandingShell = {
+	title: 'Global Invoicing for Independent Professionals | Garna',
+	description: 'Invoice business clients worldwide and receive international payments with Garna, without opening your own company.',
+	keywords: 'global invoicing, international client payments, B2B invoices, freelancer payments, contractor invoicing, Garna',
+	ogImage: 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
+	htmlClass: 'scroll-smooth dark',
+	bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300]/40 selection:text-white bg-garna-page',
+	iconLibrary: 'iconify' as const,
+};
+
+const adsLandingFinalCta = {
+	title: [{ text: 'Hire Employees Globally Without Opening Local Entities', translateKey: 'finalCta.title' }],
+	description: {
+		text: "Garna becomes the legal employer for your international team, handling contracts, payroll, taxes, benefits, and local compliance while you manage each employee's day-to-day work",
+		translateKey: 'finalCta.description',
+	},
+	button: {
+		label: 'Book a demo',
+		translateKey: 'finalCta.button',
+		kind: 'demo' as const,
+		trackingCta: 'ads_landing_final_cta',
+	},
+	class: 'overflow-hidden lg:pt-40 lg:pb-40 text-center pt-32 pb-32 relative',
+	containerClass: 'z-10 max-w-4xl mr-auto ml-auto pr-6 pl-6 relative',
+	titleClass: 'garna-hero-title-gradient text-[2.75rem] leading-[1.06] tracking-tight md:text-[3.35rem] lg:text-[62px] font-normal text-white font-manrope mb-8',
+	descriptionClass: 'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
+};
+
+const eorFaqItems = [
+	{
+		question: 'What is an Employer of Record (EOR)?',
+		answer:
+			"An Employer of Record lets you hire full-time employees in countries where you don't have a legal entity. Garna becomes the legal employer, handling payroll, contracts, taxes, and local compliance, while you manage an employee's day-to-day work.",
+		questionTranslateKey: 'faq.items.q1.question',
+		answerTranslateKey: 'faq.items.q1.answer',
+	},
+	{
+		question: 'Who manages the employee?',
+		answer:
+			'You do. You set their responsibilities, working hours, goals, and career path. Garna handles contracts, statutory benefits, salary payments, and local compliance.',
+		questionTranslateKey: 'faq.items.q2.question',
+		answerTranslateKey: 'faq.items.q2.answer',
+	},
+	{
+		question: "What's the difference between hiring through an EOR and a contractor?",
+		answer:
+			'An EOR employee is a full-time employee under local labor law, with statutory benefits, legal protections, and full compliance, ideal for long-term, full-time roles. A contractor is self-employed, without those protections, and treating someone working full-time hours under your direction as a contractor can lead to compliance risk and penalties.',
+		questionTranslateKey: 'faq.items.q3.question',
+		answerTranslateKey: 'faq.items.q3.answer',
+	},
+	{
+		question: 'EOR vs setting up your own entity, which is better?',
+		answer:
+			"Your own entity means you own incorporation, tax filings, and local compliance. An EOR is faster to start and more flexible if you're still testing where to grow.",
+		questionTranslateKey: 'faq.items.q4.question',
+		answerTranslateKey: 'faq.items.q4.answer',
+	},
+	{
+		question: 'How quickly can I start hiring through Garna?',
+		answer: 'In most countries, we can onboard your new employee in as little as X business day(s), once the offer is confirmed and onboarding documents are signed.',
+		questionTranslateKey: 'faq.items.q5.question',
+		answerTranslateKey: 'faq.items.q5.answer',
+	},
+	{
+		question: 'Can I hire international workers without an EOR?',
+		answer:
+			"Yes, by setting up a local legal entity or hiring the person as a contractor. Both have trade-offs: an entity is slow and expensive, a contractor role carries compliance risk if it resembles full-time employment. Garna's EOR is the faster, fully compliant alternative.",
+		questionTranslateKey: 'faq.items.q6.question',
+		answerTranslateKey: 'faq.items.q6.answer',
+	},
+	{
+		question: 'Is it legally compliant to hire through an EOR?',
+		answer: 'Yes, EOR is a legally recognized employment model in most countries.',
+		questionTranslateKey: 'faq.items.q7.question',
+		answerTranslateKey: 'faq.items.q7.answer',
+	},
+	{
+		question: 'How much does an Employer of Record cost?',
+		answer:
+			'Pricing starts at $200 but may vary depending on the country, salary level, and team size. There are no hidden fees or FX markups. Get a quote based on your team.',
+		questionTranslateKey: 'faq.items.q8.question',
+		answerTranslateKey: 'faq.items.q8.answer',
+	},
+] satisfies FAQItem[];
+---
+
+<AdsLandingLayout shell={adsLandingShell}>
+	<EorHeroSection />
+	<ProblemsWeSolveSection />
+	<WhoGlobalInvoicingIsForSection />
+	<LookProfessionalSection />
+	<GlobalInvoicingStepsSection />
+	<TwoWaysToGetPaidSection />
+	<WhatElseYouGetSection />
+	<PlatformIntroSection />
+	<EmployerOfRecordSectionStyles />
+	<EorCostEstimatorSection />
+	<WhyGarnaComparisonSection />
+	<FAQSection
+		id="landing-faq"
+		title={{ text: 'FAQ on Employer of Record', translateKey: 'faq.title' }}
+		items={eorFaqItems}
+		variant="eor"
+		class="py-16 lg:py-32"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...adsLandingFinalCta} />
+	<Fragment slot="widgets">
+		<EmployerOfRecordInteractions />
+		<GarnaBookingWidget
+			trackingSource="ads-landing"
+			trackingPage="ads-landing"
+			titleFallback="Book a free 30-minute product demo"
+			subtitleFallback="Get all your questions answered by our experts"
+		/>
+	</Fragment>
+</AdsLandingLayout>

@@ -118,6 +118,13 @@ export const basePaths: PageConfig[] = [
 		languages: ['en', 'es', 'pt', 'ru'],
 	},
 	{
+		path: 'ads-landing',
+		mode: 'static',
+		searchable: false,
+		showHeader: false,
+		languages: ['en', 'es', 'pt', 'ru'],
+	},
+	{
 		path: 'business-account',
 		mode: 'static',
 		searchable: false,

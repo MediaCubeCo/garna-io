@@ -54,6 +54,9 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'eor' || pageName === 'employer-of-record') {
 		return `/${segment}/employer-of-record`;
 	}
+	if (pageName === 'ads-landing') {
+		return `/${segment}/ads-landing`;
+	}
 	if (pageName === 'business-account') {
 		return `/${segment}/business-account`;
 	}

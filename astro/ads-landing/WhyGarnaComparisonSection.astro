@@ -1,0 +1,308 @@
+---
+import Section from '../components/layout/Section.astro';
+import Button from '../components/ui/Button.astro';
+
+type Status = 'yes' | 'no' | 'depends';
+
+const columns = [
+	{ key: 'garna', label: 'Garna', primary: true },
+	{ key: 'foreignCard', label: 'Foreign card' },
+	{ key: 'foreignCompany', label: 'Foreign legal entity' },
+	{ key: 'otherCard', label: "Friends’ cards" },
+	{ key: 'crypto', label: 'Cryptocurrency' },
+];
+
+const rows: Array<{ key: string; label: string; values: Status[] }> = [
+	{ key: 'noCompany', label: 'No need to set up a company', values: ['yes', 'yes', 'no', 'yes', 'yes'] },
+	{ key: 'clientPayments', label: 'Easy payments for clients', values: ['yes', 'no', 'depends', 'no', 'no'] },
+	{ key: 'documents', label: 'Official contract and invoice', values: ['yes', 'no', 'depends', 'no', 'no'] },
+	{ key: 'guarantee', label: 'Payment guarantee', values: ['yes', 'no', 'no', 'no', 'no'] },
+	{ key: 'withdrawals', label: 'Easy withdrawals, your way', values: ['yes', 'no', 'no', 'no', 'no'] },
+	{ key: 'accountBlocks', label: 'No sudden account blocks', values: ['yes', 'no', 'no', 'no', 'no'] },
+	{ key: 'fees', label: 'Transparent fee', values: ['yes', 'depends', 'depends', 'depends', 'depends'] },
+];
+
+const statusLabel: Record<Status, string> = {
+	yes: 'Yes',
+	no: 'No',
+	depends: 'Varies',
+};
+---
+
+<Section
+	id="why-garna"
+	contained={false}
+	spacing="none"
+	class="why-garna-comparison py-20 lg:py-36"
+	title={{ text: 'Why Garna', translateKey: 'comparisonTable.title' }}
+	headerClass="mb-12 lg:mb-16"
+	titleClass="lg:text-5xl"
+>
+	<div class="garna-container">
+		<div class="comparison-table__scroller" tabindex="0" aria-label="Garna payment options comparison">
+			<table class="comparison-table">
+				<caption class="sr-only" data-translate="comparisonTable.caption">Why Garna comparison</caption>
+				<colgroup>
+					<col class="comparison-table__feature-column" />
+					{columns.map(() => <col class="comparison-table__option-column" />)}
+				</colgroup>
+				<thead>
+					<tr>
+						<th class="comparison-table__corner" scope="col" aria-label=""></th>
+						{columns.map((column) => (
+							<th class:list={['comparison-table__header', column.primary && 'comparison-table__header--primary']} scope="col">
+								{column.primary ? (
+									<img src="/garna_logo.svg" alt="Garna" />
+								) : (
+									<span data-translate={`comparisonTable.columns.${column.key}`}>{column.label}</span>
+								)}
+							</th>
+						))}
+					</tr>
+				</thead>
+				<tbody>
+					{rows.map((row) => (
+						<tr>
+							<th scope="row"><span data-translate={`comparisonTable.rows.${row.key}`}>{row.label}</span></th>
+							{row.values.map((status, index) => (
+								<td class:list={[index === 0 && 'comparison-table__primary-cell']}>
+									<span class:list={['comparison-status', `comparison-status--${status}`]} aria-label={statusLabel[status]}>
+										{status === 'yes' ? (
+											<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 12.5 3.5 3.5 7.5-8" /></svg>
+										) : status === 'no' ? (
+											<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 8 8M16 8l-8 8" /></svg>
+										) : (
+											<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 12h10" /></svg>
+										)}
+										<span class="sr-only" data-translate={`comparisonTable.status.${status}`}>{statusLabel[status]}</span>
+									</span>
+								</td>
+							))}
+						</tr>
+					))}
+				</tbody>
+			</table>
+			<div class="comparison-table__footer">
+				<div class="comparison-table__footer-primary">
+					<Button href="https://app.garna.io/en/auth/sign-up" variant="primary" size="header" effect="none" icon="none" data-garna-signup>
+						<span data-translate="comparisonTable.button">Sign Up</span>
+					</Button>
+				</div>
+			</div>
+		</div>
+	</div>
+</Section>
+
+<style>
+	.why-garna-comparison {
+		isolation: isolate;
+	}
+
+	.comparison-table__scroller {
+		overflow: visible;
+	}
+
+	.comparison-table {
+		width: 100%;
+		min-width: 1080px;
+		border-collapse: separate;
+		border-spacing: 0;
+		table-layout: fixed;
+		font-family: Manrope, sans-serif;
+	}
+
+	.comparison-table__feature-column {
+		width: 25%;
+	}
+
+	.comparison-table__option-column {
+		width: 15%;
+	}
+
+	.comparison-table th,
+	.comparison-table td {
+		height: 92px;
+		box-sizing: border-box;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		padding: 20px;
+		vertical-align: middle;
+	}
+
+	.comparison-table thead th {
+		position: sticky;
+		top: 64px;
+		z-index: 10;
+		height: 116px;
+		background: #101010;
+		box-shadow: none;
+		color: #d4d4d8;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.4;
+		text-align: center;
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+	}
+
+	.comparison-table thead th:first-child {
+		border-top-left-radius: 0;
+	}
+
+	.comparison-table thead th:last-child {
+		border-top-right-radius: 0;
+	}
+
+	.comparison-table__corner {
+		z-index: 12 !important;
+		color: #71717a !important;
+		font-size: 11px !important;
+		letter-spacing: 0.1em;
+		text-align: left !important;
+		text-transform: uppercase;
+	}
+
+	.comparison-table__primary-cell {
+		border-right: 1px solid rgba(255, 255, 255, 0.08);
+		border-left: 1px solid rgba(255, 255, 255, 0.08);
+		background: #050505 !important;
+	}
+
+	.comparison-table__header--primary {
+		z-index: 11 !important;
+		border-right: 1px solid rgba(255, 255, 255, 0.08);
+		border-left: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 18px 18px 0 0;
+		background: #050505 !important;
+		box-shadow: none !important;
+	}
+
+	.comparison-table__header--primary img {
+		display: block;
+		width: auto;
+		height: 30px;
+		margin: 0 auto;
+	}
+
+	.comparison-table tbody th {
+		color: #f4f4f5;
+		font-size: 15px;
+		font-weight: 600;
+		line-height: 1.45;
+		text-align: left;
+	}
+
+	.comparison-table tbody td {
+		color: #a1a1aa;
+		text-align: center;
+	}
+
+	.comparison-status {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.comparison-status svg {
+		width: 27px;
+		height: 27px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2.1;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.comparison-status--yes {
+		color: #CBF300;
+	}
+
+	.comparison-status--no {
+		color: #ff626b;
+	}
+
+	.comparison-status--depends {
+		color: #f2c94c;
+	}
+
+	.comparison-table__footer {
+		display: grid;
+		width: 100%;
+		min-width: 1080px;
+		grid-template-columns: 25% repeat(5, 15%);
+	}
+
+	.comparison-table__footer-primary {
+		display: flex;
+		grid-column: 2;
+		align-items: center;
+		justify-content: center;
+		border-right: 1px solid rgba(255, 255, 255, 0.08);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		border-left: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 0 0 18px 18px;
+		background: #050505;
+		padding: 18px 20px 20px;
+	}
+
+	.comparison-table__footer-primary :global(.garna-button) {
+		width: 100%;
+		white-space: nowrap;
+	}
+
+	@media (max-width: 1120px) {
+		.comparison-table__scroller {
+			overflow-x: auto;
+			overflow-y: visible;
+			overscroll-behavior-inline: contain;
+			scrollbar-color: rgba(203, 243, 0, 0.35) rgba(255, 255, 255, 0.04);
+		}
+
+		.comparison-table tbody th {
+			position: sticky;
+			left: 0;
+			z-index: 9;
+			background: #0b0b0b;
+		}
+
+		.comparison-table__corner {
+			position: sticky;
+			left: 0;
+			z-index: 13 !important;
+			background: #101010;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.comparison-table__scroller {
+			margin-inline: -24px;
+		}
+
+		.comparison-table {
+			min-width: 980px;
+		}
+
+		.comparison-table__footer {
+			min-width: 980px;
+			grid-template-columns: 230px repeat(5, 150px);
+		}
+
+		.comparison-table th,
+		.comparison-table td {
+			height: 82px;
+			padding: 16px;
+		}
+
+		.comparison-table thead th {
+			top: 64px;
+			height: 104px;
+		}
+
+		.comparison-table__feature-column {
+			width: 230px;
+		}
+
+		.comparison-table__option-column {
+			width: 150px;
+		}
+	}
+</style>

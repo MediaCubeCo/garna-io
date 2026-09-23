@@ -5,6 +5,7 @@ import { formTranslations } from './translations/form';
 import { aiHiringTranslations } from './translations/ai-hiring';
 import { whiteLabelTranslations } from './translations/white-label';
 import { eorTranslations } from './translations/eor';
+import { adsLandingTranslations } from './translations/ads-landing';
 import { payrollSmallBusinessTranslations } from './translations/payroll-small-business';
 import { midSizeTranslations } from './translations/mid-size';
 import { payrollSolutionNewTranslations as homeTranslations } from './translations/payroll-solution-new';
@@ -27,6 +28,7 @@ type AnyPageTranslations =
 	| typeof aiHiringTranslations.en
 	| typeof whiteLabelTranslations.en
 	| typeof eorTranslations.en
+	| typeof adsLandingTranslations.en
 	| typeof payrollSmallBusinessTranslations.en
 	| typeof midSizeTranslations.en
 	| typeof homeTranslations.en
@@ -50,6 +52,7 @@ const translations = {
 	'white-label': whiteLabelTranslations,
 	eor: eorTranslations,
 	'employer-of-record': eorTranslations,
+	'ads-landing': adsLandingTranslations,
 	'for-creators': forCreatorsTranslations,
 	'mid-size': midSizeTranslations,
 	'mid-size-business-payroll': midSizeTranslations,
