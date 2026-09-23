@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../../node_modules/@mediacubeco/blog-engine/dist";
 
 /* Garna design system shared by all native Astro components. */
 

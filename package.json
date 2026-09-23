@@ -23,5 +23,8 @@
 		"typescript": "^5.5.2",
 		"vitest": "~3.0.7",
 		"wrangler": "^4.59.2"
+	},
+	"dependencies": {
+		"@mediacubeco/blog-engine": "1.0.0"
 	}
 }
