@@ -4,6 +4,7 @@ import '../styles/faq.css';
 import '../styles/themes.css';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import InstantMeet from '../components/ui/InstantMeet.astro';
 import RainbowBackground from '../components/visuals/RainbowBackground.astro';
 import type { PageShellConfig } from '../types/page-shell';
 import { getPagePathFromPathname } from '../utils/page-path';
@@ -93,6 +94,7 @@ const {
 			<slot />
 		</main>
 		{showFooter && <Footer />}
+		<InstantMeet />
 		<div id="astro-page-scripts" data-astro-page-scripts>
 			<slot name="widgets" />
 		</div>

@@ -88,6 +88,25 @@ describe('native Astro architecture', () => {
 		expect(themes).not.toContain('var(--garna-card-x');
 	});
 
+	it('renders a tracked instant-meet CTA globally and keeps demo booking secondary', async () => {
+		const baseLayout = await readFile(path.join(root, 'astro/layouts/BaseLayout.astro'), 'utf8');
+		const instantMeet = await readFile(path.join(root, 'astro/components/ui/InstantMeet.astro'), 'utf8');
+		const hero = await readFile(path.join(root, 'astro/components/sections/HeroSection.astro'), 'utf8');
+		const finalCta = await readFile(path.join(root, 'astro/components/sections/FinalCTASection.astro'), 'utf8');
+
+		expect(baseLayout).toContain('<InstantMeet />');
+		expect(instantMeet).toContain('Europe/Minsk');
+		expect(instantMeet).toContain("track('instant_meet_click')");
+		expect(instantMeet).toContain('right: 0; bottom: clamp(16px, 2.2vw, 32px); left: 0');
+		expect(instantMeet).toContain('justify-content: center');
+		expect(instantMeet).toContain("response.headers.get('meeting_url')");
+		expect(instantMeet).toContain('await response.json()');
+		expect(instantMeet).toContain("'meeting_url' in payload");
+		expect(instantMeet).toContain("widget.open({ trackingCta: 'instant_meet_after_hours' })");
+		expect(hero).toContain("cta?.kind === 'demo' ? 'secondary'");
+		expect(finalCta).toContain("button.kind === 'demo' ? 'secondary'");
+	});
+
 	it('uses the shared dashboard visual instead of duplicating its markup on the homepage', async () => {
 		const section = await readFile(
 			path.join(root, 'astro/components/sections/payroll/home/EffectivePayrollSection.astro'),

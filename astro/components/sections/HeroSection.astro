@@ -33,8 +33,8 @@ const ctaOnclick =
 		? `event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: '${cta.trackingCta || 'hero_demo'}' });`
 		: undefined;
 const ctaClass = cta?.class || '';
-const ctaVariant = cta?.variant || 'primary';
-const ctaEffect = cta?.effect || (cta?.kind === 'demo' ? 'rotating-flare' : 'none');
+const ctaVariant = cta?.kind === 'demo' ? 'secondary' : (cta?.variant || 'primary');
+const ctaEffect = cta?.kind === 'demo' ? 'none' : (cta?.effect || 'none');
 const ctaIcon = cta?.icon || (cta?.kind === 'signup' || cta?.kind === 'external' ? 'arrow-up-right' : 'arrow-up-right');
 const ctaSecondaryHref = ctaSecondary?.href || '#';
 const ctaSecondaryTarget = ctaSecondary?.target;
