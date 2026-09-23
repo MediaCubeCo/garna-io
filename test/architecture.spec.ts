@@ -96,6 +96,14 @@ describe('native Astro architecture', () => {
 
 		expect(baseLayout).toContain('<InstantMeet />');
 		expect(instantMeet).toContain('Europe/Minsk');
+		expect(instantMeet).toContain('Talk to a human');
+		expect(instantMeet).toContain('Jump on a video call right now');
+		expect(instantMeet).toContain('getTimeUntilNextOpening');
+		expect(instantMeet).not.toContain('10:00 Minsk');
+		expect(instantMeet).not.toContain('hora de Minsk');
+		expect(instantMeet).not.toContain('horário de Minsk');
+		expect(instantMeet).not.toContain('по Минску');
+		expect(instantMeet).not.toContain('.is-offline .instant-meet__launcher');
 		expect(instantMeet).toContain("track('instant_meet_click')");
 		expect(instantMeet).toContain('right: 0; bottom: clamp(16px, 2.2vw, 32px); left: 0');
 		expect(instantMeet).toContain('justify-content: center');
