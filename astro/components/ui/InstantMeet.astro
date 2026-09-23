@@ -40,6 +40,8 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 </aside>
 
 <script>
+	import { animateView, spring } from 'motion';
+
 	(() => {
 		const root = document.querySelector('[data-instant-meet]');
 		if (!(root instanceof HTMLElement) || root.dataset.initialized === 'true') return;
@@ -62,6 +64,9 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 		let available = false;
 		let pending = false;
 		let previousFocus = null;
+		let dialogOpen = false;
+		let dialogTransitionId = 0;
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 		const translations = {
 			en: {
@@ -158,24 +163,88 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 			});
 		};
 
+		const transitionDialog = async (open) => {
+			if (!(trigger instanceof HTMLButtonElement) || !(backdrop instanceof HTMLElement) || !(dialog instanceof HTMLElement)) return;
+			const transitionId = ++dialogTransitionId;
+			const update = () => {
+				trigger.hidden = open;
+				backdrop.hidden = !open;
+				document.body.classList.toggle('instant-meet-open', open);
+			};
+
+			if (reducedMotion.matches) {
+				update();
+			} else {
+				const from = open ? trigger : dialog;
+				const to = open ? dialog : trigger;
+				const transition = animateView(update, {
+					type: spring,
+					bounce: 0.14,
+					visualDuration: 0.52,
+					interrupt: 'immediate',
+				})
+					.add(from, to)
+					.group(false)
+					.class('instant-meet-card')
+					.old({ opacity: [1, 0] }, { duration: 0.22 })
+					.new({ opacity: 1 }, { duration: 0.26 })
+					.add(backdrop)
+					.class('instant-meet-overlay');
+
+				if (open) {
+					transition.enter({
+						opacity: [0, 1],
+						backgroundColor: ['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.6)'],
+						backdropFilter: ['blur(0px)', 'blur(10px)'],
+					}, { duration: 0.46, ease: [0.22, 1, 0.36, 1] });
+				} else {
+					transition.exit({
+						opacity: [1, 0],
+						backgroundColor: ['rgba(0, 0, 0, 0.6)', 'rgba(0, 0, 0, 0)'],
+						backdropFilter: ['blur(10px)', 'blur(0px)'],
+					}, { duration: 0.34, ease: [0.4, 0, 1, 1] });
+				}
+
+				const content = transition
+					.add('.instant-meet__dialog > *')
+					.class('instant-meet-content');
+				if (open) {
+					content.enter({
+						opacity: [0, 1],
+						transform: ['translateY(10px)', 'translateY(0px)'],
+					}, { duration: 0.3, delay: 0.18, ease: [0.22, 1, 0.36, 1] });
+				} else {
+					content.exit({
+						opacity: [1, 0],
+						transform: ['translateY(0px)', 'translateY(6px)'],
+					}, { duration: 0.16, ease: [0.4, 0, 1, 1] });
+				}
+
+				const controls = await transition;
+				await controls.finished;
+			}
+
+			if (transitionId !== dialogTransitionId) return;
+			if (open) dialog.focus();
+			else if (previousFocus instanceof HTMLElement) previousFocus.focus();
+		};
+
 		const openDialog = (mode = 'offline') => {
-			if (!(backdrop instanceof HTMLElement) || !(dialog instanceof HTMLElement)) return;
+			if (dialogOpen || !(backdrop instanceof HTMLElement) || !(dialog instanceof HTMLElement)) return;
 			const copy = translations[getLanguage()];
 			if (mode === 'error') {
 				if (title) title.textContent = copy.errorTitle;
 				if (message) message.textContent = copy.errorMessage;
 			}
 			previousFocus = document.activeElement;
-			backdrop.hidden = false;
-			document.body.classList.add('instant-meet-open');
-			dialog.focus();
+			dialogOpen = true;
+			void transitionDialog(true);
 		};
 
 		const closeDialog = () => {
-			if (!(backdrop instanceof HTMLElement)) return;
-			backdrop.hidden = true;
-			document.body.classList.remove('instant-meet-open');
-			if (previousFocus instanceof HTMLElement) previousFocus.focus();
+			if (!dialogOpen || !(backdrop instanceof HTMLElement)) return;
+			dialogOpen = false;
+			void transitionDialog(false);
 		};
 
 		const startMeet = async () => {
@@ -249,7 +318,7 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 	.instant-meet__copy small { font-size: 10px; font-weight: 600; line-height: 1.3; opacity: .7; white-space: nowrap; }
 	.instant-meet__signal { position: relative; display: inline-flex; width: 10px; height: 10px; flex: 0 0 auto; border: 2px solid rgba(16,16,16,.2); border-radius: 50%; background: #101010; }
 	.instant-meet__signal span { position: absolute; inset: -5px; border: 1px solid currentColor; border-radius: inherit; opacity: .35; animation: instant-meet-pulse 1.8s ease-out infinite; }
-	.instant-meet__backdrop { position: fixed; inset: 0; z-index: 80; display: grid; place-items: end; padding: 24px; background: rgba(0,0,0,.6); pointer-events: auto; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+	.instant-meet__backdrop { position: fixed; inset: 0; z-index: 80; display: grid; place-items: end center; padding: 24px; background: rgba(0,0,0,.6); pointer-events: auto; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 	.instant-meet__backdrop[hidden] { display: none; }
 	.instant-meet__dialog { position: relative; width: min(100%, 510px); overflow: hidden; padding: clamp(28px, 5vw, 48px); border: 1px solid rgba(255,255,255,.1); border-radius: 28px; background: radial-gradient(circle at 92% 6%, rgba(203,243,0,.12), transparent 34%), #101010; color: #fff; box-shadow: 0 30px 100px rgba(0,0,0,.6); }
 	.instant-meet__dialog:focus { outline: none; }

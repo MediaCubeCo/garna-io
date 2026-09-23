@@ -99,6 +99,9 @@ describe('native Astro architecture', () => {
 		expect(instantMeet).toContain('Talk to a human');
 		expect(instantMeet).toContain('Jump on a video call right now');
 		expect(instantMeet).toContain('getTimeUntilNextOpening');
+		expect(instantMeet).toContain("import { animateView, spring } from 'motion'");
+		expect(instantMeet).toContain('.add(from, to)');
+		expect(instantMeet).toContain("backdropFilter: ['blur(0px)', 'blur(10px)']");
 		expect(instantMeet).not.toContain('10:00 Minsk');
 		expect(instantMeet).not.toContain('hora de Minsk');
 		expect(instantMeet).not.toContain('horário de Minsk');
