@@ -431,7 +431,7 @@
 	overflow: hidden;
 	border-top: 1px solid rgba(255, 255, 255, 0.1);
 	background: #050505;
-	padding: 0 24px 24px;
+	padding: 0 var(--garna-container-gutter) 24px;
 }
 
 .garna-header-mobile-menu.hidden {
@@ -491,7 +491,7 @@
 	color: #ffffff;
 	font-family: Manrope, sans-serif;
 	font-size: 24px;
-	font-weight: 300;
+	font-weight: 500;
 	line-height: 1.1;
 	text-decoration: none;
 }
@@ -503,7 +503,7 @@
 	align-items: start;
 	column-gap: 12px;
 	row-gap: 2px;
-	padding: 6px 4px;
+	padding: 6px 0;
 	border-radius: 12px;
 	font-size: 16px;
 	line-height: 1.25;
@@ -539,7 +539,7 @@
 	color: #ffffff;
 	font-family: Manrope, sans-serif;
 	font-size: 16px;
-	font-weight: 300;
+	font-weight: 500;
 	line-height: 1.25;
 }
 

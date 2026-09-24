@@ -10,6 +10,8 @@ interface TabbedImageFeaturePanel {
 	imageAlt?: string;
 	imagePosition?: string;
 	imagePositionMobile?: string;
+	imageTransform?: string;
+	imageTransformMobile?: string;
 	copyWidthTablet?: string;
 	tag: LocalizedText;
 	title: LocalizedText;
@@ -63,7 +65,7 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 					role="tabpanel"
 					aria-labelledby={`${featureId}-tab-${panel.key}`}
 					data-tabbed-image-panel={panel.key}
-					style={`--tabbed-image-position:${panel.imagePosition || 'center'};--tabbed-image-mobile-position:${panel.imagePositionMobile || panel.imagePosition || 'center'};--tabbed-copy-tablet-width:${panel.copyWidthTablet || '460px'};`}
+					style={`--tabbed-image-position:${panel.imagePosition || 'center'};--tabbed-image-mobile-position:${panel.imagePositionMobile || panel.imagePosition || 'center'};--tabbed-image-transform:${panel.imageTransform || 'none'};--tabbed-image-mobile-transform:${panel.imageTransformMobile || panel.imageTransform || 'none'};--tabbed-copy-tablet-width:${panel.copyWidthTablet || '460px'};`}
 					hidden={index > 0}
 				>
 					<img class="tabbed-image-feature__image" src={panel.image} alt={panel.imageAlt || ''} loading="lazy" decoding="async" />
@@ -217,6 +219,8 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 		height: 100%;
 		object-fit: cover;
 		object-position: var(--tabbed-image-position, center);
+		transform: var(--tabbed-image-transform, none);
+		transform-origin: center;
 	}
 
 	.tabbed-image-feature__shade {
@@ -349,6 +353,7 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 
 		.tabbed-image-feature__image {
 			object-position: var(--tabbed-image-mobile-position, center);
+			transform: var(--tabbed-image-mobile-transform, none);
 		}
 
 		.tabbed-image-feature__shade {
@@ -356,7 +361,16 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 		}
 
 		.tabbed-image-feature__copy {
+			left: 24px;
+			right: 24px;
 			bottom: 24px;
+			width: auto;
+		}
+
+		.tabbed-image-feature__copy h3,
+		.tabbed-image-feature__copy p {
+			width: 100%;
+			max-width: none;
 		}
 	}
 
@@ -382,8 +396,9 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 
 		.tabbed-image-feature__copy {
 			left: 14px;
+			right: 14px;
 			bottom: 14px;
-			width: calc(100% - 28px);
+			width: auto;
 			padding: 20px;
 		}
 
