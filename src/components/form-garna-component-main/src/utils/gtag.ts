@@ -5,6 +5,7 @@
 declare global {
 	interface Window {
 		dataLayer?: unknown[];
+		garnaPrivacy?: { hasConsent(category: string): boolean };
 	}
 }
 
@@ -14,6 +15,10 @@ export function sendGtagEvent(eventName: string, params?: Record<string, unknown
 	const safeParams = params ?? {};
 	if (typeof window === 'undefined') {
 		console.log(`${LOG_PREFIX} skipped (no window):`, { eventName, params: safeParams });
+		return;
+	}
+	if (!window.garnaPrivacy?.hasConsent('analytics')) {
+		console.log(`${LOG_PREFIX} skipped (analytics consent missing):`, { eventName, params: safeParams });
 		return;
 	}
 	if (!Array.isArray(window.dataLayer)) {

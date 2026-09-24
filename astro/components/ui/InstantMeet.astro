@@ -168,6 +168,7 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 		};
 
 		const track = (event, extra = {}) => {
+			if (!window.garnaPrivacy?.hasConsent?.('analytics')) return;
 			window.dataLayer = Array.isArray(window.dataLayer) ? window.dataLayer : [];
 			window.dataLayer.push({
 				event,
