@@ -1,193 +1,175 @@
 ---
 import Section from '../components/layout/Section.astro';
-import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
 
 const problems = [
-	{
-		problem: "My client is ready to pay, but doesn't know how to send money to my country",
-		problemKey: 'problems.items.paymentRoute.problem',
-		solution: 'The client pays through Garna, then the funds appear in your Garna balance',
-		solutionKey: 'problems.items.paymentRoute.solution',
-		avatar: '/pages/payroll-solution-new/assets/contractor-avatar-sarah-v1.webp',
-	},
-	{
-		problem: "My client can only pay a legal entity, but I'm an individual",
-		problemKey: 'problems.items.legalEntity.problem',
-		solution: 'Invoice business clients through Garna without opening your own company',
-		solutionKey: 'problems.items.legalEntity.solution',
-		avatar: '/pages/payroll-solution-new/assets/contractor-avatar-maya-v2.webp',
-	},
-	{
-		problem: 'My client and I need an official invoice and payment documents',
-		problemKey: 'problems.items.documents.problem',
-		solution: 'Create the invoice in Garna and keep the payment documents in one place',
-		solutionKey: 'problems.items.documents.solution',
-		avatar: '/pages/payroll-solution-new/assets/contractor-avatar-alex-v2.webp',
-	},
-	{
-		problem: 'I work with several international clients and need one clear workflow',
-		problemKey: 'problems.items.workflow.problem',
-		solution: 'Manage invoices, incoming payments, and withdrawals from one Garna account',
-		solutionKey: 'problems.items.workflow.solution',
-		avatar: '/pages/payroll-solution-new/assets/eor-hero-avatar-samantha-v3.png',
-	},
-	{
-		problem: "I'm losing money to unclear fees and unexpected charges",
-		problemKey: 'problems.items.fees.problem',
-		solution: 'See payment details and fees before you confirm each transaction',
-		solutionKey: 'problems.items.fees.solution',
-		avatar: '/images/creator-avatar-headphones.jpg',
-	},
+	{ title: 'Getting Paid Across Borders', titleKey: 'problems.items.paymentRoute.title', problem: "My client is ready to pay, but doesn't know how to send money to my country", problemKey: 'problems.items.paymentRoute.problem', solution: 'The client pays through Garna, then the funds appear in your Garna balance', solutionKey: 'problems.items.paymentRoute.solution', avatar: '/pages/payroll-solution-new/assets/contractor-avatar-sarah-v1.webp' },
+	{ title: 'No Legal Entity Required', titleKey: 'problems.items.legalEntity.title', problem: "My client can only pay a legal entity, but I'm an individual", problemKey: 'problems.items.legalEntity.problem', solution: 'Invoice business clients through Garna without opening your own company', solutionKey: 'problems.items.legalEntity.solution', avatar: '/pages/payroll-solution-new/assets/contractor-avatar-maya-v2.webp' },
+	{ title: 'Business-Ready Documents', titleKey: 'problems.items.documents.title', problem: 'My client and I need an official invoice and payment documents', problemKey: 'problems.items.documents.problem', solution: 'Create the invoice in Garna and keep the payment documents in one place', solutionKey: 'problems.items.documents.solution', avatar: '/pages/payroll-solution-new/assets/contractor-avatar-alex-v2.webp' },
+	{ title: 'Managing Multiple Clients', titleKey: 'problems.items.workflow.title', problem: 'I work with several international clients and need one clear workflow', problemKey: 'problems.items.workflow.problem', solution: 'Manage invoices, incoming payments, and withdrawals from one Garna account', solutionKey: 'problems.items.workflow.solution', avatar: '/pages/payroll-solution-new/assets/eor-hero-avatar-samantha-v3.png' },
+	{ title: 'Clear Fees Upfront, No Surprises', titleKey: 'problems.items.fees.title', problem: "I'm losing money to unclear fees and unexpected charges", problemKey: 'problems.items.fees.problem', solution: 'See payment details and fees before you confirm each transaction', solutionKey: 'problems.items.fees.solution', avatar: '/images/creator-avatar-headphones.jpg' },
 ] as const;
+
+const carouselSlides = [
+	{ ...problems[problems.length - 1], index: problems.length - 1 },
+	...problems.map((problem, index) => ({ ...problem, index })),
+	{ ...problems[0], index: 0 },
+	{ ...problems[1], index: 1 },
+];
 ---
 
-<Section
-	id="problems-we-solve"
-	spacing="spacious"
-	title={{ text: 'Problems We Solve', translateKey: 'problems.title' }}
-	headerClass="mb-14 max-w-4xl lg:mb-16"
->
-	<div class="problems-grid">
-		{problems.map((item, index) => (
-			<Card class={`problem-chat-card p-6 ${index === 3 ? 'problem-chat-card--bottom-left' : index === 4 ? 'problem-chat-card--bottom-right' : ''}`}>
-				<div class="problem-chat problem-chat--customer">
-					<span class="problem-avatar" aria-hidden="true">
-						<img src={item.avatar} alt="" loading="lazy" />
-					</span>
-					<p data-translate={item.problemKey}>{item.problem}</p>
-				</div>
+<Section id="problems-we-solve" spacing="default" contentClass="problems-carousel-content">
+	<div class="problems-carousel" data-problems-carousel>
+		<div class="problems-carousel__copy">
+			<h2 data-translate="problems.title">Problems We Solve</h2>
+			<p data-garna-subtitle data-translate="problems.description">Five common barriers between independent professionals and international client payments&nbsp;— solved in one Garna workflow</p>
+			<Button href="https://app.garna.io/en/auth/sign-up" size="header" variant="primary" effect="none" icon="none" data-garna-signup>
+				<span data-translate="problems.button">Create account</span>
+			</Button>
+		</div>
 
-				<div class="problem-chat problem-chat--garna">
-					<p data-translate={item.solutionKey}>{item.solution}</p>
-					<span class="problem-garna-mark" aria-hidden="true">
-						<img src="/images/garna-g-mark-dark.svg" alt="" />
-					</span>
-				</div>
-			</Card>
-		))}
+		<div class="problems-carousel__viewport">
+			<div class="problems-carousel__rail" data-problems-rail>
+				{carouselSlides.map((item, sequenceIndex) => (
+					<button type="button" class:list={['problem-carousel-card', 'garna-glass-card', sequenceIndex === 1 && 'is-active']} data-problem-slide data-card-glow="true" data-index={item.index} data-sequence={sequenceIndex} aria-label={item.title} data-translate-aria-label={item.titleKey}>
+						<span class="problem-carousel-card__header">
+							<small>{String(item.index + 1).padStart(2, '0')}</small>
+							<strong data-translate={item.titleKey}>{item.title}</strong>
+						</span>
+						<span class="problem-carousel-card__conversation">
+							<span class="problem-chat problem-chat--customer">
+								<span class="problem-avatar" aria-hidden="true"><img src={item.avatar} alt="" loading="lazy" /></span>
+								<span data-translate={item.problemKey}>{item.problem}</span>
+							</span>
+							<span class="problem-chat problem-chat--garna">
+								<span data-translate={item.solutionKey}>{item.solution}</span>
+								<span class="problem-garna-mark" aria-hidden="true"><img src="/images/garna-g-mark-dark.svg" alt="" /></span>
+							</span>
+						</span>
+					</button>
+				))}
+			</div>
+			<div class="problems-carousel__controls">
+				{problems.map((item, index) => (
+					<button type="button" class:list={index === 0 && 'is-active'} data-problem-dot data-index={index} aria-label={item.title} data-translate-aria-label={item.titleKey} aria-current={index === 0 ? 'true' : undefined}></button>
+				))}
+			</div>
+		</div>
 	</div>
 </Section>
 
+<script define:vars={{ problemCount: problems.length }}>
+	for (const carousel of document.querySelectorAll('[data-problems-carousel]')) {
+		if (!(carousel instanceof HTMLElement) || carousel.dataset.ready === 'true') continue;
+		carousel.dataset.ready = 'true';
+		const rail = carousel.querySelector('[data-problems-rail]');
+		const slides = [...carousel.querySelectorAll('[data-problem-slide]')];
+		const dots = [...carousel.querySelectorAll('[data-problem-dot]')];
+		const scrollArea = carousel.parentElement;
+		const siteHeader = document.querySelector('.garna-header');
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		let activeIndex = 0;
+		let frame = 0;
+
+		const getStickyTop = () => {
+			const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
+			const availableHeight = window.innerHeight - headerHeight;
+			return Math.max(headerHeight, headerHeight + ((availableHeight - carousel.getBoundingClientRect().height) / 2));
+		};
+		const syncStickyTop = () => carousel.style.setProperty('--problems-carousel-sticky-top', `${getStickyTop()}px`);
+		const updateContent = (nextIndex, progress = 1) => {
+			activeIndex = (nextIndex + problemCount) % problemCount;
+			const activeSlide = slides[activeIndex + 1];
+			if (rail instanceof HTMLElement && activeSlide instanceof HTMLElement) rail.style.transform = `translateX(${-activeSlide.offsetLeft + 1}px)`;
+			slides.forEach((slide) => {
+				if (slide instanceof HTMLElement) slide.classList.toggle('is-active', Number(slide.dataset.sequence) === activeIndex + 1);
+			});
+			dots.forEach((dot, index) => {
+				dot.classList.toggle('is-active', index === activeIndex);
+				if (index === activeIndex) dot.setAttribute('aria-current', 'true'); else dot.removeAttribute('aria-current');
+				if (dot instanceof HTMLElement) dot.style.setProperty('--problem-dot-progress', String(index === activeIndex ? progress : 0));
+			});
+		};
+		const render = () => {
+			frame = 0;
+			syncStickyTop();
+			if (!(scrollArea instanceof HTMLElement)) return;
+			if (reduceMotion.matches) { updateContent(activeIndex); return; }
+			const rect = scrollArea.getBoundingClientRect();
+			const stickyTop = getStickyTop();
+			const scrollable = Math.max(1, rect.height - stickyTop - carousel.offsetHeight);
+			const progress = Math.min(1, Math.max(0, (stickyTop - rect.top) / scrollable));
+			const progressStep = progress * problemCount;
+			const nextIndex = progress >= 1 ? problemCount - 1 : Math.floor(progressStep);
+			updateContent(nextIndex, progress >= 1 ? 1 : progressStep - nextIndex);
+		};
+		const schedule = () => { if (!frame) frame = requestAnimationFrame(render); };
+		const scrollToIndex = (index) => {
+			if (!(scrollArea instanceof HTMLElement)) return;
+			const nextIndex = Math.min(problemCount - 1, Math.max(0, index));
+			const rect = scrollArea.getBoundingClientRect();
+			const scrollable = Math.max(1, rect.height - getStickyTop() - carousel.offsetHeight);
+			window.scrollTo({ top: window.scrollY + rect.top - getStickyTop() + scrollable * (nextIndex / problemCount), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+		};
+		dots.forEach((dot) => dot.addEventListener('click', () => scrollToIndex(Number(dot.dataset.index || 0))));
+		slides.forEach((slide) => slide.addEventListener('click', () => scrollToIndex(Number(slide.dataset.index || 0))));
+		window.addEventListener('scroll', schedule, { passive: true });
+		window.addEventListener('resize', schedule, { passive: true });
+		reduceMotion.addEventListener?.('change', schedule);
+		render();
+	}
+</script>
+
 <style>
-	:global(.problems-grid) {
-		display: grid;
-		grid-template-columns: repeat(6, minmax(0, 1fr));
-		gap: 18px;
+	:global(.problems-carousel-content) { min-height: 300vh; }
+	.problems-carousel { position: sticky; top: var(--problems-carousel-sticky-top, 5rem); display: grid; grid-template-columns: minmax(17rem, .82fr) minmax(0, 1.18fr); min-height: 34rem; align-items: center; gap: clamp(2.5rem, 6vw, 6.5rem); margin-right: calc(50% - 50vw); overflow: hidden; }
+	.problems-carousel__copy { width: min(100%, 32rem); padding-left: clamp(0rem, 2vw, 1.5rem); text-align: left; }
+	.problems-carousel__copy h2 { margin: 0; color: #fff; font: 400 3rem / 1.25 Manrope, sans-serif; text-wrap: balance; }
+	.problems-carousel__copy p { max-width: 31rem; margin: 1.5rem 0 2.5rem; color: var(--garna-subtitle-color); font-size: 1.25rem; font-weight: var(--garna-subtitle-weight); line-height: 1.625; }
+	.problems-carousel__viewport { width: 100%; overflow: hidden; padding-block: .65rem; }
+	.problems-carousel__rail { display: flex; gap: 1.15rem; width: 100%; transition: transform 520ms cubic-bezier(.22, 1, .36, 1); will-change: transform; }
+	.problem-carousel-card { --garna-card-glow-x: 50%; --garna-card-glow-y: 50%; --garna-card-glow-radius: 32rem; position: relative; isolation: isolate; display: flex; flex: 0 0 43%; height: 28rem; flex-direction: column; justify-content: space-between; overflow: hidden; border-radius: 1.75rem; padding: clamp(1.35rem, 2.4vw, 2rem); color: #fff; cursor: pointer; text-align: left; transform: scale(.94); transform-origin: center left; transition: transform 520ms cubic-bezier(.22, 1, .36, 1), border-color 220ms ease, box-shadow 220ms ease, opacity 220ms ease; }
+	.problem-carousel-card::before { position: absolute; inset: 0; z-index: 0; border-radius: inherit; background: radial-gradient(circle var(--garna-card-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y), rgb(255 255 255 / .12) 0%, rgb(255 255 255 / .075) 18%, rgb(255 255 255 / .035) 40%, transparent 70%); content: ''; opacity: 0; pointer-events: none; transition: opacity 300ms ease; }
+	.problem-carousel-card > * { position: relative; z-index: 1; }
+	.problem-carousel-card:is(:hover, :focus-visible, [data-pointer-active='true']) { border-color: rgb(255 255 255 / .15); box-shadow: 0 18px 45px rgb(0 0 0 / .28); }
+	.problem-carousel-card:is(:hover, :focus-visible, [data-pointer-active='true'])::before { opacity: 1; }
+	.problem-carousel-card.is-active { transform: none; }
+	.problem-carousel-card:not(.is-active) { opacity: .68; }
+	.problem-carousel-card__header { display: flex; flex-direction: column; gap: .75rem; }
+	.problem-carousel-card__header small { color: #cbf300; font: 700 .72rem / 1 Manrope, sans-serif; letter-spacing: .12em; }
+	.problem-carousel-card__header strong { max-width: 15rem; font: 500 clamp(1.3rem, 2vw, 1.75rem) / 1.2 Manrope, sans-serif; letter-spacing: -.02em; }
+	.problem-carousel-card[data-index='4'] .problem-carousel-card__header strong { max-width: 18rem; font-size: clamp(1.25rem, 1.75vw, 1.55rem); text-wrap: balance; }
+	.problem-carousel-card__conversation { display: flex; flex-direction: column; gap: 1.35rem; }
+	.problem-chat { display: flex; align-items: flex-end; gap: .7rem; }
+	.problem-chat > span:not(.problem-avatar, .problem-garna-mark) { padding: .9rem 1rem; border-radius: 1rem; font: 500 .8rem / 1.48 Manrope, sans-serif; }
+	.problem-chat--customer > span:last-child { border-bottom-left-radius: .3rem; background: rgb(255 255 255 / .075); color: #f4f4f5; }
+	.problem-chat--garna { justify-content: flex-end; }
+	.problem-chat--garna > span:first-child { border: 1px solid rgb(203 243 0 / .16); border-bottom-right-radius: .3rem; background: rgb(203 243 0 / .075); color: #e4e4e7; }
+	.problem-avatar, .problem-garna-mark { display: grid; width: 2.5rem; height: 2.5rem; flex: 0 0 2.5rem; place-items: center; border-radius: 50%; }
+	.problem-avatar { overflow: hidden; border: 1px solid rgb(255 255 255 / .09); background: #202020; }
+	.problem-avatar img { width: 100%; height: 100%; object-fit: cover; }
+	.problem-garna-mark { background: #cbf300; }
+	.problem-garna-mark img { width: .8rem; height: 1.3rem; }
+	.problems-carousel__controls { display: flex; width: 43%; justify-content: center; align-items: center; gap: .45rem; margin-top: 1.35rem; }
+	.problems-carousel__controls button { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 999px; background: rgb(255 255 255 / .24); padding: 0; cursor: pointer; transition: width 220ms ease, background 220ms ease; }
+	.problems-carousel__controls button.is-active { width: 3.4rem; background: rgb(203 243 0 / .18); box-shadow: inset 0 0 0 1px rgb(203 243 0 / .18); }
+	.problems-carousel__controls button.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #cbf300; box-shadow: 0 0 14px rgb(203 243 0 / .52); content: ''; transform: scaleX(var(--problem-dot-progress, 1)); transform-origin: left center; }
+	@media (max-width: 1079px) {
+		.problems-carousel { grid-template-columns: 1fr; gap: 2.25rem; margin-right: 0; overflow: visible; }
+		.problems-carousel__copy { width: 100%; padding-left: 0; }
+		.problems-carousel__viewport { width: auto; margin-right: calc(50% - 50vw); }
+		.problem-carousel-card { flex-basis: clamp(15rem, min(36%, 35vh), 20rem); height: auto; aspect-ratio: .72; }
+		.problems-carousel__controls { width: clamp(15rem, min(36%, 35vh), 20rem); }
 	}
-
-	:global(.problem-chat-card) {
-		position: relative;
-		display: flex;
-		min-height: 312px;
-		grid-column: span 2;
-		flex-direction: column;
-		justify-content: center;
-		gap: 26px;
+	@media (max-width: 767px) {
+		.problems-carousel__copy h2 { font-size: 2.25rem; }
+		.problems-carousel__copy p { margin: 1.25rem 0 2rem; font-size: 1.125rem; }
+		.problem-carousel-card { flex-basis: clamp(16rem, min(72vw, 34vh), 20.5rem); margin-right: 0; border-radius: 1.25rem; aspect-ratio: .78; }
+		.problems-carousel__controls { width: clamp(16rem, min(72vw, 34vh), 20.5rem); margin-top: 1rem; }
+		.problem-chat > span:not(.problem-avatar, .problem-garna-mark) { font-size: .875rem; }
 	}
-
-	:global(.problem-chat-card--bottom-left) {
-		grid-column: 2 / span 2;
+	@media (max-width: 420px) {
+		.problem-carousel-card { aspect-ratio: .72; }
 	}
-
-	:global(.problem-chat-card--bottom-right) {
-		grid-column: 4 / span 2;
-	}
-
-	.problem-chat {
-		position: relative;
-		z-index: 1;
-		display: flex;
-		align-items: flex-end;
-		gap: 11px;
-	}
-
-	.problem-chat p {
-		margin: 0;
-		padding: 15px 17px;
-		border-radius: 16px;
-		font: 500 14px / 1.48 Manrope, sans-serif;
-	}
-
-	.problem-chat--customer p {
-		border-bottom-left-radius: 5px;
-		background: rgba(255, 255, 255, 0.075);
-		color: #f4f4f5;
-	}
-
-	.problem-chat--garna {
-		justify-content: flex-end;
-	}
-
-	.problem-chat--garna p {
-		border: 1px solid rgba(203, 243, 0, 0.16);
-		border-bottom-right-radius: 5px;
-		background: rgba(203, 243, 0, 0.075);
-		color: #e4e4e7;
-	}
-
-	.problem-avatar,
-	.problem-garna-mark {
-		display: grid;
-		width: 42px;
-		height: 42px;
-		flex: 0 0 42px;
-		place-items: center;
-		border-radius: 50%;
-	}
-
-	.problem-avatar {
-		border: 1px solid rgba(255, 255, 255, 0.09);
-		background: #202020;
-		overflow: hidden;
-	}
-
-	.problem-avatar img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-
-	.problem-garna-mark {
-		background: #cbf300;
-	}
-
-	.problem-garna-mark img {
-		width: 13px;
-		height: 21px;
-	}
-
-	@media (max-width: 1023px) {
-		:global(.problems-grid) {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-
-		:global(.problem-chat-card),
-		:global(.problem-chat-card--bottom-left),
-		:global(.problem-chat-card--bottom-right) {
-			grid-column: auto;
-		}
-
-		:global(.problem-chat-card--bottom-right) {
-			width: calc(50% - 9px);
-			grid-column: 1 / -1;
-			justify-self: center;
-		}
-	}
-
-	@media (max-width: 640px) {
-		:global(.problems-grid) {
-			grid-template-columns: 1fr;
-		}
-
-		:global(.problem-chat-card),
-		:global(.problem-chat-card--bottom-right) {
-			width: auto;
-			min-height: 280px;
-			grid-column: auto;
-		}
-
-		.problem-chat p {
-			font-size: 13px;
-		}
-	}
+	@media (prefers-reduced-motion: reduce) { .problems-carousel__rail, .problem-carousel-card { transition: none; } }
 </style>

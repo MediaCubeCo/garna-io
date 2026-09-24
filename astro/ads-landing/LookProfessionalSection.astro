@@ -16,7 +16,7 @@ import Button from '../components/ui/Button.astro';
 				</div>
 				<div class="look-professional__quote-main">
 					<strong>$2,400</strong>
-					<span>Northstar Studio LLC<br />Invoice in USD</span>
+					<span>Northstar Studio LLC<br /><span data-translate="professional.visual.invoiceCurrency">Invoice in USD</span></span>
 				</div>
 			</div>
 		</div>
@@ -225,7 +225,7 @@ import Button from '../components/ui/Button.astro';
 		letter-spacing: 0;
 	}
 
-	.look-professional__quote-main span {
+	.look-professional__quote-main > span {
 		justify-self: end;
 		width: 9.35rem;
 		color: rgb(255 255 255 / 0.68);
@@ -270,7 +270,7 @@ import Button from '../components/ui/Button.astro';
 			grid-template-columns: 10.9rem minmax(0, 1fr);
 			gap: 0.75rem;
 		}
-		.look-professional__quote-main span {
+		.look-professional__quote-main > span {
 			justify-self: end;
 			width: 9.35rem;
 			text-align: right;

@@ -73,7 +73,13 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 						<h3 data-translate={panel.title.translateKey}>{panel.title.text}</h3>
 						<p data-translate={panel.description.translateKey}>{panel.description.text}</p>
 						{panel.cta && (
-							<Button href={panel.cta.href || '#'} variant="inline-accent" size="inline" class="mt-6">
+							<Button
+								href={panel.cta.href || '#'}
+								variant="inline-accent"
+								size="inline"
+								class="mt-6"
+								data-garna-signup={panel.cta.href?.includes('/auth/sign-up') ? true : undefined}
+							>
 								<span data-translate={panel.cta.translateKey}>{panel.cta.text}</span>
 								<span class="garna-button-arrow-glyph" aria-hidden="true">→</span>
 							</Button>
@@ -356,7 +362,12 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 		}
 
 		.tabbed-image-feature__copy {
+			left: 24px;
+			right: 24px;
 			bottom: 24px;
+			width: auto;
+			max-width: none;
+			border-radius: 22px;
 		}
 	}
 
@@ -382,9 +393,10 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 
 		.tabbed-image-feature__copy {
 			left: 14px;
+			right: 14px;
 			bottom: 14px;
-			width: calc(100% - 28px);
 			padding: 20px;
+			border-radius: 20px;
 		}
 
 		.tabbed-image-feature__copy h3 {

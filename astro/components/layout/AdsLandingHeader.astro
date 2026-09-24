@@ -8,7 +8,7 @@ const logInUrl = 'https://app.garna.io/en/auth/sign-in';
 
 <nav class="garna-header ads-landing-header is-scrolled fixed z-50 w-full top-0" data-ads-landing-header>
 	<div class="garna-container garna-header-container">
-		<a href="#top" class="garna-header-brand" aria-label="Garna — back to top">
+		<a href="#top" class="garna-header-brand" aria-label="Garna — back to top" data-translate-aria-label="landingHeader.backToTop">
 			<img
 				src="/garna_logo.svg"
 				alt="Garna"
@@ -17,7 +17,7 @@ const logInUrl = 'https://app.garna.io/en/auth/sign-in';
 			/>
 		</a>
 
-		<div class="garna-header-desktop-nav ads-landing-header__nav" aria-label="Landing page navigation">
+		<div class="garna-header-desktop-nav ads-landing-header__nav" aria-label="Landing page navigation" data-translate-aria-label="landingHeader.navAriaLabel">
 			<a href="#who-global-invoicing-is-for" class="garna-header-nav-link" data-translate="landingHeader.whoItsFor">Who it’s for</a>
 			<a href="#how-global-invoicing-works" class="garna-header-nav-link" data-translate="landingHeader.howItWorks">How it works</a>
 			<a href="#payout-calculator" class="garna-header-nav-link" data-translate="landingHeader.calculator">Calculator</a>
@@ -47,9 +47,78 @@ const logInUrl = 'https://app.garna.io/en/auth/sign-in';
 			<Button href={signUpUrl} class="garna-header-signup" data-garna-signup data-translate="header.signUp">
 				Sign Up
 			</Button>
+
+			<Button
+				type="button"
+				variant="icon"
+				size="icon"
+				class="ads-landing-header__menu-toggle"
+				aria-label="Menu"
+				aria-controls="ads-landing-mobile-menu"
+				aria-expanded="false"
+				data-mobile-nav-toggle
+				data-translate-aria-label="landingHeader.menu"
+			>
+				<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+					<path d="M4 7h16M4 12h16M4 17h16"></path>
+				</svg>
+				<svg class="close-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+					<path d="m6 6 12 12M18 6 6 18"></path>
+				</svg>
+			</Button>
+		</div>
+	</div>
+
+	<div id="ads-landing-mobile-menu" class="garna-header-mobile-menu ads-landing-header__mobile-menu hidden">
+		<div class="garna-header-mobile-scroll">
+			<a href="#who-global-invoicing-is-for" class="garna-header-mobile-link" data-ads-mobile-link data-translate="landingHeader.whoItsFor">Who it’s for</a>
+			<a href="#how-global-invoicing-works" class="garna-header-mobile-link" data-ads-mobile-link data-translate="landingHeader.howItWorks">How it works</a>
+			<a href="#payout-calculator" class="garna-header-mobile-link" data-ads-mobile-link data-translate="landingHeader.calculator">Calculator</a>
+			<a href="#global-invoicing-faq" class="garna-header-mobile-link" data-ads-mobile-link data-translate="landingHeader.faq">FAQ</a>
+		</div>
+		<div class="garna-header-mobile-actions">
+			<div class="garna-header-mobile-divider"></div>
+			<div class="garna-header-mobile-buttons">
+				<Button href={logInUrl} variant="secondary" size="header" data-garna-signin>
+					<span data-translate="header.logIn">Log In</span>
+				</Button>
+				<Button href={signUpUrl} size="header" data-garna-signup>
+					<span data-translate="header.signUp">Sign Up</span>
+				</Button>
+			</div>
 		</div>
 	</div>
 </nav>
+
+<script>
+	for (const header of document.querySelectorAll('[data-ads-landing-header]')) {
+		if (!(header instanceof HTMLElement) || header.dataset.mobileMenuReady === 'true') continue;
+		header.dataset.mobileMenuReady = 'true';
+		const toggle = header.querySelector('[data-mobile-nav-toggle]');
+		const menu = header.querySelector('#ads-landing-mobile-menu');
+		const signup = header.querySelector('.garna-header-signup');
+		if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) continue;
+
+		const setOpen = (open) => {
+			toggle.setAttribute('aria-expanded', String(open));
+			menu.classList.toggle('hidden', !open);
+			header.classList.toggle('is-mobile-open', open);
+			document.body.classList.toggle('overflow-hidden', open);
+			toggle.querySelector('.menu-icon')?.classList.toggle('hidden', open);
+			toggle.querySelector('.close-icon')?.classList.toggle('hidden', !open);
+			signup?.classList.toggle('hidden', open);
+		};
+
+		toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+		menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+		window.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') setOpen(false);
+		});
+		window.matchMedia('(min-width: 961px)').addEventListener('change', (event) => {
+			if (event.matches) setOpen(false);
+		});
+	}
+</script>
 
 <style>
 	.ads-landing-header__nav {
@@ -60,6 +129,43 @@ const logInUrl = 'https://app.garna.io/en/auth/sign-in';
 
 	.ads-landing-header__actions {
 		margin-left: clamp(24px, 2.5vw, 40px);
+	}
+
+	:global(.ads-landing-header__menu-toggle) {
+		display: none !important;
+	}
+
+	.ads-landing-header__menu-toggle svg {
+		width: 24px;
+		height: 24px;
+	}
+
+	.ads-landing-header__mobile-menu {
+		gap: 0;
+		padding-right: var(--garna-container-gutter);
+		padding-left: var(--garna-container-gutter);
+	}
+
+	.ads-landing-header__mobile-menu .garna-header-mobile-scroll {
+		gap: 1.25rem;
+	}
+
+	.ads-landing-header__mobile-menu .garna-header-mobile-link {
+		font-family: Manrope, sans-serif;
+		font-size: 20px;
+		font-weight: 600;
+		line-height: 1.25;
+	}
+
+	.ads-landing-header__mobile-menu .garna-header-mobile-buttons :global(.garna-button) {
+		width: 100%;
+		justify-content: center;
+	}
+
+	@media (max-width: 960px) {
+		:global(.ads-landing-header__menu-toggle) {
+			display: inline-flex !important;
+		}
 	}
 
 	:global(#who-global-invoicing-is-for),

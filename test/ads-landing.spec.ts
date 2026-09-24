@@ -1,12 +1,49 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { adsLandingTranslations } from '../src/i18n/translations/ads-landing';
 
 const root = path.resolve(import.meta.dirname, '..');
 
 const read = (relativePath: string) => readFile(path.join(root, relativePath), 'utf8');
 
+const translationKeys = (value: unknown, prefix = ''): string[] => {
+	if (!value || typeof value !== 'object' || Array.isArray(value)) return [prefix];
+	return Object.entries(value).flatMap(([key, nestedValue]) =>
+		translationKeys(nestedValue, prefix ? `${prefix}.${key}` : key));
+};
+
 describe('isolated advertising landing', () => {
+	it('keeps complete Russian, Spanish, and Portuguese translation keys', () => {
+		const englishKeys = translationKeys(adsLandingTranslations.en).sort();
+
+		for (const locale of ['ru', 'es', 'pt'] as const) {
+			expect(translationKeys(adsLandingTranslations[locale]).sort()).toEqual(englishKeys);
+		}
+	});
+
+	it('keeps Russian copy free of ё and preserves sample names and professions in English', () => {
+		const russianCopy = JSON.stringify(adsLandingTranslations.ru);
+
+		expect(russianCopy).not.toMatch(/[Ёё]/);
+		expect(adsLandingTranslations.ru.globalInvoicingHowTo.panel.signup.firstNameValue).toBe('Maya');
+		expect(adsLandingTranslations.ru.globalInvoicingHowTo.panel.signup.lastNameValue).toBe('Lewis');
+		expect(adsLandingTranslations.ru.visual.why.productDesigner).toBe('Product designer');
+		expect(adsLandingTranslations.ru.visual.why.backendEngineer).toBe('Backend engineer');
+		expect(adsLandingTranslations.ru.visual.why.growthLead).toBe('Growth lead');
+	});
+
+	it('resolves every literal translation key used by the global invoicing workflow', async () => {
+		const source = await read('astro/ads-landing/GlobalInvoicingStepsSection.astro');
+		const referencedKeys = [
+			...source.matchAll(/data-translate(?:-aria-label|-alt|-placeholder)?="([^"]+)"/g),
+		].map((match) => match[1]);
+		const availableKeys = new Set(translationKeys(adsLandingTranslations.en));
+
+		expect(referencedKeys.length).toBeGreaterThan(0);
+		expect(referencedKeys.filter((key) => !availableKeys.has(key))).toEqual([]);
+	});
+
 	it('has its own route, asset and translation family', async () => {
 		const [pages, dynamicRoute, i18n] = await Promise.all([
 			read('src/config/pages.ts'),
@@ -69,7 +106,7 @@ describe('isolated advertising landing', () => {
 		expect(translations).toContain('Global Invoicing for Independent Professionals');
 	});
 
-	it('places five Garna chat cards in the Problems We Solve section after the hero', async () => {
+	it('presents five named Garna chat problems in a sticky visual carousel after the hero', async () => {
 		const [page, problems] = await Promise.all([
 			read('astro/pages/ads-landing.astro'),
 			read('astro/ads-landing/ProblemsWeSolveSection.astro'),
@@ -79,16 +116,21 @@ describe('isolated advertising landing', () => {
 		expect(page.indexOf('<ProblemsWeSolveSection />')).toBeGreaterThan(page.indexOf('<EorHeroSection />'));
 		expect(page.indexOf('<ProblemsWeSolveSection />')).toBeLessThan(page.indexOf('<WhoGlobalInvoicingIsForSection />'));
 		expect(problems).toContain('Problems We Solve');
+		expect(problems).toContain('problems.description');
+		expect(problems).toContain('problems.button');
 		expect(problems.match(/problemKey:/g)).toHaveLength(5);
 		expect(problems.match(/solutionKey:/g)).toHaveLength(5);
-		expect(problems).toContain('grid-template-columns: repeat(6, minmax(0, 1fr))');
+		expect(problems.match(/titleKey:/g)).toHaveLength(5);
+		expect(problems).toContain('data-problems-carousel');
+		expect(problems).toContain('data-problem-slide');
+		expect(problems).toContain('data-problem-dot');
+		expect(problems).toContain('position: sticky');
+		expect(problems).toContain('min-height: 300vh');
+		expect(problems).toContain('grid-template-columns: minmax(17rem, .82fr) minmax(0, 1.18fr)');
 		expect(problems.match(/avatar:/g)).toHaveLength(5);
 		expect(problems).toContain('/images/garna-g-mark-dark.svg');
-		expect(problems).not.toContain('problem-avatar--lime');
-		expect(problems).toContain("import Card from '../components/ui/Card.astro'");
-		expect(problems).toContain('problem-chat-card--bottom-left');
-		expect(problems).toContain('problem-chat-card--bottom-right');
-		expect(problems).not.toContain('var(--garna-surface-raised)');
+		expect(problems).toContain("import Button from '../components/ui/Button.astro'");
+		expect(problems).toContain('data-garna-signup');
 	});
 
 	it('introduces the invoicing audience with the home-page feature-card pattern', async () => {
@@ -218,6 +260,8 @@ describe('isolated advertising landing', () => {
 		expect(comparison.match(/values: \[/g)).toHaveLength(7);
 		expect(comparison).toContain('position: sticky');
 		expect(comparison).toContain('top: 64px');
+		expect(comparison).toContain('overflow: clip');
+		expect(comparison).not.toContain('overflow: hidden;');
 		expect(comparison).toContain('comparison-table__primary-header-surface');
 		expect(comparison).toContain('background: #101010 !important');
 		expect(comparison).not.toContain('comparison-table__cta-row');

@@ -39,7 +39,8 @@ const statusLabel: Record<Status, string> = {
 	titleClass="lg:text-5xl"
 >
 	<div class="garna-container">
-		<div class="comparison-table__scroller" tabindex="0" aria-label="Garna payment options comparison">
+		<div class="comparison-table__scroller" tabindex="0" aria-label="Garna payment options comparison" data-translate-aria-label="comparisonTable.ariaLabel">
+			<div class="comparison-table__stage" data-comparison-table-stage>
 			<table class="comparison-table">
 				<caption class="sr-only" data-translate="comparisonTable.caption">Why Garna comparison</caption>
 				<colgroup>
@@ -91,9 +92,29 @@ const statusLabel: Record<Status, string> = {
 					</Button>
 				</div>
 			</div>
+			</div>
 		</div>
 	</div>
 </Section>
+
+<script>
+	const comparisonMobileQuery = window.matchMedia('(max-width: 900px)');
+	for (const scroller of document.querySelectorAll('.comparison-table__scroller')) {
+		if (!(scroller instanceof HTMLElement) || scroller.dataset.scaleReady === 'true') continue;
+		const stage = scroller.querySelector('[data-comparison-table-stage]');
+		if (!(stage instanceof HTMLElement)) continue;
+		scroller.dataset.scaleReady = 'true';
+
+		const syncScale = () => {
+			const scale = comparisonMobileQuery.matches ? 1 : Math.min(1, scroller.clientWidth / 1080);
+			stage.style.setProperty('zoom', String(scale));
+		};
+
+		new ResizeObserver(syncScale).observe(scroller);
+		comparisonMobileQuery.addEventListener('change', syncScale);
+		syncScale();
+	}
+</script>
 
 <style>
 	.why-garna-comparison {
@@ -102,6 +123,10 @@ const statusLabel: Record<Status, string> = {
 
 	.comparison-table__scroller {
 		overflow: visible;
+	}
+
+	.comparison-table__stage {
+		width: 100%;
 	}
 
 	.comparison-table {
@@ -263,41 +288,41 @@ const statusLabel: Record<Status, string> = {
 		white-space: nowrap;
 	}
 
-	@media (max-width: 1120px) {
+	@media (min-width: 901px) and (max-width: 1120px) {
 		.comparison-table__scroller {
-			overflow-x: auto;
-			overflow-y: visible;
-			overscroll-behavior-inline: contain;
-			scrollbar-color: rgba(203, 243, 0, 0.35) rgba(255, 255, 255, 0.04);
+			overflow: clip;
 		}
 
-		.comparison-table tbody th {
-			position: sticky;
-			left: 0;
-			z-index: 9;
-			background: #0b0b0b;
-		}
-
-		.comparison-table__corner {
-			position: sticky;
-			left: 0;
-			z-index: 13 !important;
-			background: #101010;
+		.comparison-table__stage {
+			width: 1080px;
 		}
 	}
 
-	@media (max-width: 640px) {
+	@media (max-width: 900px) {
 		.comparison-table__scroller {
 			margin-inline: -24px;
+			overflow-x: auto;
+			overflow-y: visible;
+			overscroll-behavior-inline: contain;
+			-webkit-overflow-scrolling: touch;
+			scrollbar-width: none;
+		}
+
+		.comparison-table__scroller::-webkit-scrollbar {
+			display: none;
 		}
 
 		.comparison-table {
-			min-width: 980px;
+			min-width: 900px;
+		}
+
+		.comparison-table__stage {
+			width: 900px;
 		}
 
 		.comparison-table__footer {
-			min-width: 980px;
-			grid-template-columns: 230px repeat(5, 150px);
+			min-width: 900px;
+			grid-template-columns: 150px repeat(5, 150px);
 		}
 
 		.comparison-table th,
@@ -307,12 +332,38 @@ const statusLabel: Record<Status, string> = {
 		}
 
 		.comparison-table thead th {
-			top: 64px;
+			position: static;
+			top: auto;
+			height: 104px;
+		}
+
+		.comparison-table tbody th {
+			position: sticky;
+			left: 0;
+			z-index: 9 !important;
+			background: #101010;
+		}
+
+		.comparison-table__corner {
+			position: sticky;
+			left: 0;
+			z-index: 12 !important;
+			background: #101010;
+		}
+
+		.comparison-table .comparison-table__header--primary {
+			position: static;
+			z-index: auto !important;
+		}
+
+		.comparison-table .comparison-table__primary-header-surface {
+			position: static;
+			inset: auto;
 			height: 104px;
 		}
 
 		.comparison-table__feature-column {
-			width: 230px;
+			width: 150px;
 		}
 
 		.comparison-table__option-column {

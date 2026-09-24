@@ -1,9 +1,12 @@
 export const eorPt = {
 	"landingHeader": {
+		"backToTop": "Garna — voltar ao início",
+		"navAriaLabel": "Navegação da página",
 		"whoItsFor": "Para quem",
 		"howItWorks": "Como funciona",
 		"calculator": "Calculadora",
 		"faq": "FAQ",
+		"menu": "Menu",
 		"cta": "Agendar uma demonstração"
 	},
 	"images": {},
@@ -12,6 +15,7 @@ export const eorPt = {
 		"description": "Fature a clientes empresariais em todo o mundo e receba pagamentos internacionais com a Garna sem abrir uma empresa."
 	},
 	"hero": {
+		"visualAriaLabel": "Pré-visualização de um pagamento de faturação global",
 		"badge": "Faturação global para profissionais independentes",
 		"title": "Fature a clientes globais sem abrir uma empresa",
 		"description": "Fature a empresas de todo o mundo e receba pagamentos internacionais com a Garna num processo simples",
@@ -77,24 +81,31 @@ export const eorPt = {
 	},
 	"problems": {
 		"title": "Problemas que resolvemos",
+		"description": "Cinco obstáculos comuns entre profissionais independentes e pagamentos internacionais de clientes, resolvidos num único processo Garna",
+		"button": "Criar conta",
 		"items": {
 			"paymentRoute": {
+				"title": "Receber pagamentos internacionais",
 				"problem": "O meu cliente está pronto para pagar, mas não sabe como enviar dinheiro para o meu país",
 				"solution": "O cliente paga através da Garna e os fundos aparecem no seu saldo Garna"
 			},
 			"legalEntity": {
+				"title": "Sem entidade jurídica",
 				"problem": "O meu cliente só pode pagar a uma entidade legal, mas sou uma pessoa singular",
 				"solution": "Fature clientes empresariais através da Garna sem abrir a sua própria empresa"
 			},
 			"documents": {
+				"title": "Documentos para trabalhar com empresas",
 				"problem": "Eu e o meu cliente precisamos de uma fatura oficial e documentos de pagamento",
 				"solution": "Crie a fatura na Garna e mantenha os documentos de pagamento num só lugar"
 			},
 			"workflow": {
+				"title": "Gestão de vários clientes",
 				"problem": "Trabalho com vários clientes internacionais e preciso de um processo claro",
-				"solution": "Gerencie faturas, pagamentos recebidos e levantamentos numa única conta Garna"
+				"solution": "Faça a gestão de faturas, pagamentos recebidos e levantamentos numa única conta Garna"
 			},
 			"fees": {
+				"title": "Taxas claras desde o início",
 				"problem": "Perco dinheiro com taxas pouco claras e cobranças inesperadas",
 				"solution": "Veja os detalhes e as taxas antes de confirmar cada transação"
 			}
@@ -129,18 +140,21 @@ export const eorPt = {
 		"button": "Criar conta",
 		"visual": {
 			"invoice": "Fatura",
+			"invoiceCurrency": "Fatura em USD",
 			"status": "Pronta para enviar",
 			"client": "Cliente"
 		}
 	},
 	"platformIntro": {
 		"title": "Uma plataforma em vez de dezenas de alternativas improvisadas",
-		"description": "Sem cartões estrangeiros, contas bloqueadas ou soluções de pagamento improvisadas — a Garna ajuda você a faturar clientes empresariais no exterior e receber o dinheiro em um fluxo claro",
+		"description": "Sem cartões estrangeiros, contas bloqueadas ou soluções de pagamento improvisadas — a Garna ajuda a faturar clientes empresariais no estrangeiro e a receber o dinheiro num processo claro",
 		"visualAriaLabel": "Faturação global com a Garna"
 	},
 	"globalInvoicingHowTo": {
 		"title": "Como funciona a faturação global",
 		"description": "Da criação da conta ao levantamento em quatro passos claros",
+		"visualAriaLabel": "Passos da faturação global",
+		"passwordHidden": "Palavra-passe oculta",
 		"panel": {
 			"signup": {
 				"title": "Registe-se na Garna",
@@ -176,6 +190,19 @@ export const eorPt = {
 				"consultingService": "Consultoria",
 				"managementService": "Gestão do projeto"
 			},
+			"balance": {
+				"title": "Saldo",
+				"paymentAccount": "Conta de pagamento em USD",
+				"accountNumber": "Número da conta",
+				"send": "Enviar",
+				"withdraw": "Levantar",
+				"topUp": "Adicionar fundos",
+				"templates": "Modelos",
+				"all": "Todos",
+				"n26Card": "Cartão N26",
+				"designerPayout": "Pagamento a designer",
+				"lewisAccount": "Conta de M. Lewis"
+			},
 			"withdraw": {
 				"title": "Levantar fundos",
 				"availableBalance": "Saldo disponível",
@@ -204,13 +231,13 @@ export const eorPt = {
 			"invoice": {
 				"tag": "Para trabalhos concluídos",
 				"title": "Envie uma fatura profissional ao cliente",
-				"description": "Crie uma fatura na Garna e envie-a ao cliente. O cliente recebe instruções de pagamento claras e você mantém a fatura e os dados de pagamento no mesmo lugar",
+				"description": "Crie uma fatura na Garna e envie-a ao cliente. O cliente recebe instruções de pagamento claras, enquanto mantém a fatura e os dados de pagamento no mesmo lugar",
 				"cta": "Criar fatura"
 			},
 			"transfer": {
 				"tag": "Para pagamentos acordados com clientes",
 				"title": "Receba um pagamento empresarial direto",
-				"description": "Compartilhe os dados de pagamento da Garna com o valor e a moeda acordados. Quando o cliente paga, os fundos são creditados no seu saldo Garna",
+				"description": "Partilhe os dados de pagamento da Garna com o valor e a moeda acordados. Quando o cliente paga, os fundos são creditados no seu saldo Garna",
 				"cta": "Criar conta"
 			}
 		}
@@ -382,13 +409,14 @@ export const eorPt = {
 			"visa": {
 				"title": "Visto para nómadas digitais",
 				"description": "Utilize os seus documentos de pagamento da Garna para apoiar o pedido de visto para nómadas digitais",
-				"tags": ["Documentos de pagamento", "Comprovativo de rendimentos", "Apoio para o visto"]
+				"tags": ["Docs. de pagamento", "Prova de rendimentos", "Apoio ao visto"]
 			}
 		}
 	},
 	"comparisonTable": {
 		"title": "Porquê a Garna",
 		"caption": "Comparação da Garna",
+		"ariaLabel": "Comparação da Garna com outras opções de pagamento",
 		"button": "Registar-se",
 		"columns": {
 			"foreignCard": "Cartão estrangeiro",
@@ -493,13 +521,13 @@ export const eorPt = {
 		"description": "Calcule o seu pagamento antes de enviar uma fatura. Escolha como o cliente paga e quem cobre a taxa — os levantamentos são sempre gratuitos.",
 		"details": {
 			"paymentFee": "A Garna cobra 5% quando o cliente paga por transferência bancária e 8% quando paga por cartão",
-			"feePayer": "Você escolhe quem cobre a taxa — você ou o cliente",
-			"withdrawalMethods": "Levante em USD, EUR, na sua moeda local ou numa criptomoeda suportada",
+			"feePayer": "Escolha se a taxa é paga por si ou pelo cliente",
+			"withdrawalMethods": "Levante em USD, EUR, na moeda local ou em criptomoeda",
 			"withdrawalFee": "Os levantamentos são sempre gratuitos — taxa de 0%"
 		},
 		"button": "Criar conta",
 		"form": {
-			"title": "Calculadora de pagamentos",
+			"title": "Calculadora de ganhos",
 			"currency": "Moeda",
 			"feePaidBy": "A taxa é paga por",
 			"freelancer": "Freelancer",
@@ -508,7 +536,7 @@ export const eorPt = {
 			"bank": "Transferência bancária",
 			"card": "Cartão",
 			"amount": "Valor cobrado",
-			"youReceive": "Você recebe",
+			"youReceive": "Recebe",
 			"clientPays": "O cliente paga",
 			"note": "Taxa Garna: 5% por transferência bancária ou 8% por cartão. Taxa de levantamento: 0%."
 		}

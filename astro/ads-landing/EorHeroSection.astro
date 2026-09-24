@@ -42,7 +42,7 @@ const hero = {
 			</div>
 		</div>
 
-		<div class="eor-hero__visual" aria-label="Global invoicing payment preview">
+		<div class="eor-hero__visual" aria-label="Global invoicing payment preview" data-translate-aria-label="hero.visualAriaLabel">
 			<div class="eor-hero__media">
 				<img
 					class="eor-hero__image"
@@ -135,13 +135,12 @@ const hero = {
 		}
 
 		.eor-hero__copy h1 {
-			font-size: 54px;
+			font-size: clamp(54px, calc(14px + 3.90625vw), 64px);
 		}
-	}
 
-	@media (min-width: 1100px) {
-		.eor-hero__copy h1 {
-			font-size: 58px;
+		.eor-hero__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			column-gap: clamp(2.5rem, 6.25vw, 5rem);
 		}
 	}
 
@@ -157,20 +156,6 @@ const hero = {
 
 	.eor-hero__copy h1 {
 		white-space: pre-line;
-	}
-
-	@media (min-width: 1024px) {
-		.eor-hero__grid {
-			grid-template-columns: minmax(0, 1.24fr) minmax(0, 0.76fr);
-			column-gap: 2.5rem;
-		}
-	}
-
-	@media (min-width: 1280px) {
-		.eor-hero__grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			column-gap: 5rem;
-		}
 	}
 
 	.eor-hero__copy p {
@@ -273,7 +258,7 @@ const hero = {
 
 	@media (min-width: 1024px) and (max-width: 1099.98px) {
 		.eor-hero__notifications {
-			--eor-notifications-scale: 0.72;
+			--eor-notifications-scale: 0.84;
 		}
 	}
 
@@ -287,6 +272,15 @@ const hero = {
 
 		.eor-hero__copy h1 {
 			font-size: 3rem;
+		}
+
+		.eor-hero__copy p {
+			margin-top: 0.75rem;
+		}
+
+		:global(.eor-hero__cta) {
+			margin-top: 1.75rem;
+			margin-bottom: 2rem;
 		}
 
 		.eor-hero__copy {
@@ -312,13 +306,13 @@ const hero = {
 
 	@media (min-width: 1100px) and (max-width: 1199.98px) {
 		.eor-hero__notifications {
-			--eor-notifications-scale: 0.82;
+			--eor-notifications-scale: 0.9;
 		}
 	}
 
 	@media (min-width: 1200px) and (max-width: 1279.98px) {
 		.eor-hero__notifications {
-			--eor-notifications-scale: 0.92;
+			--eor-notifications-scale: 0.96;
 		}
 	}
 
@@ -567,7 +561,11 @@ const hero = {
 			width: 100%;
 			justify-content: center;
 			margin-top: clamp(3.5rem, 7vw, 4rem);
-			text-align: left;
+			text-align: center;
+		}
+
+		.eor-hero__note p {
+			margin: 0;
 		}
 
 		:global(.eor-hero__cta) {
@@ -674,7 +672,7 @@ const hero = {
 	@media (max-width: 559px) {
 		@container (max-width: 420px) {
 			.eor-hero__notifications {
-				--eor-notifications-scale: 0.9;
+				--eor-notifications-scale: 0.82;
 			}
 		}
 
@@ -736,7 +734,7 @@ const hero = {
 
 	.hero-finance-card--income {
 		top: 2.2rem;
-		right: -3.5rem;
+		right: clamp(-3.5rem, calc(5rem - 7.5vw), -1rem);
 		width: 13.5rem;
 		padding: 1.05rem 1.1rem 0.8rem;
 		transform: scale(var(--eor-notifications-scale)) scale(0.84);
@@ -862,25 +860,43 @@ const hero = {
 		text-align: center;
 	}
 
-	@media (max-width: 845.98px) {
+	@media (min-width: 1200px) and (max-width: 1439.98px) {
 		.hero-finance-card--income {
-			right: -0.8rem;
+			right: -2.75rem;
+		}
+	}
+
+	@media (min-width: 846px) and (max-width: 1100px) {
+		.hero-finance-card--income {
+			right: -2rem;
 		}
 
 		.hero-finance-card--balance {
-			left: -0.8rem;
+			left: -2rem;
+		}
+	}
+
+	@media (max-width: 845.98px) {
+		.hero-finance-card--income {
+			right: -4rem;
+		}
+
+		.hero-finance-card--balance {
+			left: -3rem;
 		}
 	}
 
 	@media (max-width: 559px) {
 		.hero-finance-card--income {
 			top: 1rem;
-			right: -0.45rem;
+			right: -1.35rem;
+			transform: scale(var(--eor-notifications-scale)) scale(0.66);
 		}
 
 		.hero-finance-card--balance {
-			left: -0.45rem;
+			left: -1rem;
 			bottom: 0.65rem;
+			transform: scale(var(--eor-notifications-scale)) scale(0.8);
 		}
 	}
 

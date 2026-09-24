@@ -1,9 +1,12 @@
 export const eorEn = {
 	"landingHeader": {
+		"backToTop": "Garna — back to top",
+		"navAriaLabel": "Landing page navigation",
 		"whoItsFor": "Who it’s for",
 		"howItWorks": "How it works",
 		"calculator": "Calculator",
 		"faq": "FAQ",
+		"menu": "Menu",
 		"cta": "Book a demo"
 	},
 	"images": {},
@@ -12,6 +15,7 @@ export const eorEn = {
 		"description": "Invoice business clients worldwide and receive international payments with Garna, without opening your own company."
 	},
 	"hero": {
+		"visualAriaLabel": "Global invoicing payment preview",
 		"badge": "Global invoicing for independent professionals",
 		"title": "Invoice Clients Globally Without a Company",
 		"description": "Invoice business clients worldwide and receive international payments with Garna in one clear workflow",
@@ -77,24 +81,31 @@ export const eorEn = {
 	},
 	"problems": {
 		"title": "Problems We Solve",
+		"description": "Five common barriers between independent professionals and international client payments\u00A0— solved in one Garna workflow",
+		"button": "Create account",
 		"items": {
 			"paymentRoute": {
+				"title": "Getting Paid Across Borders",
 				"problem": "My client is ready to pay, but doesn't know how to send money to my country",
 				"solution": "The client pays through Garna, then the funds appear in your Garna balance"
 			},
 			"legalEntity": {
+				"title": "No Legal Entity Required",
 				"problem": "My client can only pay a legal entity, but I'm an individual",
 				"solution": "Invoice business clients through Garna without opening your own company"
 			},
 			"documents": {
+				"title": "Business-Ready Documents",
 				"problem": "My client and I need an official invoice and payment documents",
 				"solution": "Create the invoice in Garna and keep the payment documents in one place"
 			},
 			"workflow": {
+				"title": "Managing Multiple Clients",
 				"problem": "I work with several international clients and need one clear workflow",
 				"solution": "Manage invoices, incoming payments, and withdrawals from one Garna account"
 			},
 			"fees": {
+				"title": "Clear Fees Upfront, No Surprises",
 				"problem": "I'm losing money to unclear fees and unexpected charges",
 				"solution": "See payment details and fees before you confirm each transaction"
 			}
@@ -129,6 +140,7 @@ export const eorEn = {
 		"button": "Create account",
 		"visual": {
 			"invoice": "Invoice",
+			"invoiceCurrency": "Invoice in USD",
 			"status": "Ready to send",
 			"client": "Client"
 		}
@@ -141,6 +153,8 @@ export const eorEn = {
 	"globalInvoicingHowTo": {
 		"title": "How Global Invoicing Works",
 		"description": "From account setup to withdrawal in four clear steps",
+		"visualAriaLabel": "Global invoicing steps visual",
+		"passwordHidden": "Password hidden",
 		"panel": {
 			"signup": {
 				"title": "Sign up in Garna",
@@ -175,6 +189,19 @@ export const eorEn = {
 				"designService": "Brand design",
 				"consultingService": "Consulting",
 				"managementService": "Project management"
+			},
+			"balance": {
+				"title": "Balance",
+				"paymentAccount": "Payment account USD",
+				"accountNumber": "Account number",
+				"send": "Send",
+				"withdraw": "Withdraw",
+				"topUp": "Top up",
+				"templates": "Templates",
+				"all": "All",
+				"n26Card": "N26 card",
+				"designerPayout": "Designer payout",
+				"lewisAccount": "M. Lewis account"
 			},
 			"withdraw": {
 				"title": "Withdraw funds",
@@ -389,6 +416,7 @@ export const eorEn = {
 	"comparisonTable": {
 		"title": "Why Garna",
 		"caption": "Why Garna comparison",
+		"ariaLabel": "Garna payment options comparison",
 		"button": "Sign Up",
 		"columns": {
 			"foreignCard": "Foreign card",

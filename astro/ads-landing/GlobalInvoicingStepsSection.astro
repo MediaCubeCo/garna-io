@@ -13,7 +13,7 @@ import Section from '../components/layout/Section.astro';
 	contentClass="creator-process-scroll"
 >
 	<div class="creator-process-pin" data-creator-process>
-		<div class="creator-process-visual-stage" aria-label="Global invoicing steps visual">
+		<div class="creator-process-visual-stage" aria-label="Global invoicing steps visual" data-translate-aria-label="globalInvoicingHowTo.visualAriaLabel">
 			<div class="creator-process-visual is-active" data-process-visual="0">
 				<div class="creator-mini-window">
 					<h4 class="creator-mini-title" data-translate="globalInvoicingHowTo.panel.signup.title">Sign up in Garna</h4>
@@ -39,7 +39,7 @@ import Section from '../components/layout/Section.astro';
 							</label>
 							<label class="creator-mini-field creator-mini-field--wide">
 								<span data-translate="globalInvoicingHowTo.panel.signup.passwordLabel">Password</span>
-								<strong aria-label="Password hidden">••••••••••</strong>
+								<strong aria-label="Password hidden" data-translate-aria-label="globalInvoicingHowTo.passwordHidden">••••••••••</strong>
 							</label>
 						</div>
 						<button class="creator-mini-button" type="button" data-translate="globalInvoicingHowTo.panel.signup.createButton">Create account</button>
@@ -81,7 +81,7 @@ import Section from '../components/layout/Section.astro';
 			<div class="creator-process-visual" data-process-visual="2">
 				<div class="creator-mini-window creator-wallet-panel">
 					<div class="creator-wallet-header">
-						<h4 class="creator-mini-title" data-translate="howTo.panel.fund.title">Balance</h4>
+					<h4 class="creator-mini-title" data-translate="globalInvoicingHowTo.panel.balance.title">Balance</h4>
 						<div class="creator-wallet-currency" aria-hidden="true">
 							<span>USD</span>
 							<span>EUR</span>
@@ -89,35 +89,35 @@ import Section from '../components/layout/Section.astro';
 					</div>
 					<div class="creator-wallet-account">
 						<div class="creator-wallet-account-top">
-							<span data-translate="howTo.panel.fund.paymentAccount">Payment account USD</span>
+							<span data-translate="globalInvoicingHowTo.panel.balance.paymentAccount">Payment account USD</span>
 						</div>
 						<strong data-process-wallet-counter data-process-wallet-value="2800">2 800.00 $</strong>
 						<div class="creator-wallet-number">
-							<span data-translate="howTo.panel.fund.accountNumber">Account number</span>
+							<span data-translate="globalInvoicingHowTo.panel.balance.accountNumber">Account number</span>
 							<b>PT52 7869 1200 9000 2124</b>
 						</div>
 						<div class="creator-wallet-actions" aria-hidden="true">
-							<span data-translate="howTo.panel.fund.actions.send">Send</span>
-							<span data-translate="howTo.panel.fund.actions.withdraw">Withdraw</span>
-							<span data-translate="howTo.panel.fund.actions.topUp">Top up</span>
+							<span data-translate="globalInvoicingHowTo.panel.balance.send">Send</span>
+							<span data-translate="globalInvoicingHowTo.panel.balance.withdraw">Withdraw</span>
+							<span data-translate="globalInvoicingHowTo.panel.balance.topUp">Top up</span>
 						</div>
 					</div>
 					<div class="creator-wallet-templates" aria-hidden="true">
 						<div class="creator-wallet-section-head">
-							<span data-translate="howTo.panel.fund.templates">Templates</span>
-							<strong data-translate="howTo.panel.fund.all">All</strong>
+							<span data-translate="globalInvoicingHowTo.panel.balance.templates">Templates</span>
+							<strong data-translate="globalInvoicingHowTo.panel.balance.all">All</strong>
 						</div>
 						<div class="creator-wallet-template-list">
 							<div>
-								<span data-translate="howTo.panel.fund.n26Card">N26 card</span>
+								<span data-translate="globalInvoicingHowTo.panel.balance.n26Card">N26 card</span>
 								<b><i></i><i></i></b>
 							</div>
 							<div>
-								<span data-translate="howTo.panel.fund.designerPayout">Designer payout</span>
+								<span data-translate="globalInvoicingHowTo.panel.balance.designerPayout">Designer payout</span>
 								<b><i></i><i></i></b>
 							</div>
 							<div>
-								<span data-translate="howTo.panel.fund.lewisAccount">M. Lewis account</span>
+								<span data-translate="globalInvoicingHowTo.panel.balance.lewisAccount">M. Lewis account</span>
 								<b><i></i><i></i></b>
 							</div>
 						</div>
