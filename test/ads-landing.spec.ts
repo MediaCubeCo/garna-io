@@ -22,6 +22,12 @@ describe('isolated advertising landing', () => {
 		}
 	});
 
+	it('keeps em dashes attached to the preceding word in every locale', () => {
+		for (const locale of ['en', 'es', 'pt', 'ru'] as const) {
+			expect(JSON.stringify(adsLandingTranslations[locale])).not.toContain(' — ');
+		}
+	});
+
 	it('keeps Russian copy free of ё and preserves sample names and professions in English', () => {
 		const russianCopy = JSON.stringify(adsLandingTranslations.ru);
 
@@ -172,7 +178,7 @@ describe('isolated advertising landing', () => {
 
 		expect(page).toContain('<GlobalInvoicingStepsSection />');
 		expect(page.indexOf('<GlobalInvoicingStepsSection />')).toBeGreaterThan(page.indexOf('<LookProfessionalSection />'));
-		expect(page.indexOf('<GlobalInvoicingStepsSection />')).toBeLessThan(page.indexOf('<PlatformIntroSection />'));
+		expect(page.indexOf('<GlobalInvoicingStepsSection />')).toBeLessThan(page.indexOf('<TwoWaysToGetPaidSection />'));
 		expect(steps).toContain('How Global Invoicing Works');
 		expect(steps.match(/data-process-step=/g)).toHaveLength(4);
 		expect(steps).toContain("import Section from '../components/layout/Section.astro'");
@@ -238,6 +244,8 @@ describe('isolated advertising landing', () => {
 		expect(calculator).toContain('min-height: 2.75rem');
 		expect(calculator).toContain('min-height: calc(2.75rem + 2px)');
 		expect(calculator).toContain('grid-template-columns: minmax(0, 1.05fr) minmax(27rem, 0.95fr)');
+		expect(calculator).toContain('@media (max-width: 900px)');
+		expect(calculator).not.toContain('@media (min-width: 901px) and (max-width: 1079px)');
 		expect(calculator).toContain('background: rgb(0 0 0 / 0.55)');
 		expect(calculator).toContain('margin-top: calc((var(--detail-line-height) - 1.25rem) / 2)');
 		expect(calculator.match(/costEstimator\.details\./g)).toHaveLength(4);
@@ -260,7 +268,9 @@ describe('isolated advertising landing', () => {
 		expect(comparison.match(/values: \[/g)).toHaveLength(7);
 		expect(comparison).toContain('position: sticky');
 		expect(comparison).toContain('top: 64px');
-		expect(comparison).toContain('overflow: clip');
+		expect(comparison).toContain("window.matchMedia('(max-width: 1120px)')");
+		expect(comparison).toContain('@media (max-width: 1120px)');
+		expect(comparison).toContain('overflow-x: auto');
 		expect(comparison).not.toContain('overflow: hidden;');
 		expect(comparison).toContain('comparison-table__primary-header-surface');
 		expect(comparison).toContain('background: #101010 !important');
@@ -293,7 +303,6 @@ describe('isolated advertising landing', () => {
 			'<GlobalInvoicingStepsSection />',
 			'<TwoWaysToGetPaidSection />',
 			'<WhatElseYouGetSection />',
-			'<PlatformIntroSection />',
 			'<EorCostEstimatorSection />',
 			'<WhyGarnaComparisonSection />',
 			'<FAQSection',
@@ -314,17 +323,17 @@ describe('isolated advertising landing', () => {
 		expect(page).not.toContain('Hire Employees Globally Without Opening Local Entities');
 	});
 
-	it('follows the hero with a focused invoicing platform introduction', async () => {
+	it('keeps the demo platform component available without rendering it', async () => {
 		const [page, intro] = await Promise.all([
 			read('astro/pages/ads-landing.astro'),
 			read('astro/ads-landing/PlatformIntroSection.astro'),
 		]);
 
-		expect(page).toContain('<PlatformIntroSection />');
+		expect(page).not.toContain("import PlatformIntroSection from '../ads-landing/PlatformIntroSection.astro'");
+		expect(page).not.toContain('<PlatformIntroSection />');
+		expect(page).toContain('Demo platform section is temporarily removed');
 		expect(page).not.toContain('<EorWhyGarnaSection />');
 		expect(page).not.toContain('Hire Abroad Without Guesswork');
-		expect(page.indexOf('<PlatformIntroSection />')).toBeGreaterThan(page.indexOf('<WhatElseYouGetSection />'));
-		expect(page.indexOf('<PlatformIntroSection />')).toBeLessThan(page.indexOf('<EorCostEstimatorSection />'));
 		expect(page).not.toContain('<EorDashboardCtaSection />');
 		expect(intro).toContain('One Platform Instead of a Dozen Workarounds');
 		expect(intro).toContain("import Section from '../components/layout/Section.astro'");

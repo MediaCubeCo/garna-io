@@ -179,11 +179,17 @@ const hero = {
 		margin-top: 2.5rem;
 	}
 
+	@media (min-width: 846px) {
+		:global(.eor-hero__cta) {
+			margin-bottom: 2rem;
+		}
+	}
+
 	.eor-hero__note {
 		display: flex;
 		width: 100%;
 		align-items: center;
-		gap: 0.8rem;
+		gap: clamp(0.4rem, 1.2vw, 0.8rem);
 		margin-top: auto;
 		padding-top: 1.3rem;
 		border-top: 1px solid rgb(255 255 255 / 0.16);
@@ -207,6 +213,7 @@ const hero = {
 		font-size: 0.92rem;
 		font-weight: 600;
 		line-height: 1.4;
+		white-space: nowrap;
 	}
 
 	.eor-hero__visual {
@@ -280,7 +287,6 @@ const hero = {
 
 		:global(.eor-hero__cta) {
 			margin-top: 1.75rem;
-			margin-bottom: 2rem;
 		}
 
 		.eor-hero__copy {
@@ -676,6 +682,15 @@ const hero = {
 			}
 		}
 
+		.eor-hero__note svg {
+			width: clamp(1.1rem, 4.5vw, 1.45rem);
+			height: clamp(1.1rem, 4.5vw, 1.45rem);
+		}
+
+		.eor-hero__note p {
+			font-size: clamp(0.82rem, 3.4vw, 0.92rem);
+		}
+
 		@container (max-width: 360px) {
 			.eor-hero__notifications {
 				--eor-notifications-scale: 0.78;
@@ -866,9 +881,16 @@ const hero = {
 		}
 	}
 
+	@media (min-width: 1440px) {
+		.hero-finance-card--income {
+			right: -4rem;
+		}
+	}
+
 	@media (min-width: 846px) and (max-width: 1100px) {
 		.hero-finance-card--income {
-			right: -2rem;
+			top: 1rem;
+			right: -2.5rem;
 		}
 
 		.hero-finance-card--balance {
@@ -897,6 +919,12 @@ const hero = {
 			left: -1rem;
 			bottom: 0.65rem;
 			transform: scale(var(--eor-notifications-scale)) scale(0.8);
+		}
+	}
+
+	@media (max-width: 420px) {
+		.hero-finance-card--income {
+			right: -0.7rem;
 		}
 	}
 

@@ -80,10 +80,16 @@ const carouselSlides = [
 		const updateContent = (nextIndex, progress = 1) => {
 			activeIndex = (nextIndex + problemCount) % problemCount;
 			const activeSlide = slides[activeIndex + 1];
-			if (rail instanceof HTMLElement && activeSlide instanceof HTMLElement) rail.style.transform = `translateX(${-activeSlide.offsetLeft + 1}px)`;
 			slides.forEach((slide) => {
-				if (slide instanceof HTMLElement) slide.classList.toggle('is-active', Number(slide.dataset.sequence) === activeIndex + 1);
+				if (!(slide instanceof HTMLElement)) return;
+				const isActive = Number(slide.dataset.sequence) === activeIndex + 1;
+				slide.classList.toggle('is-active', isActive);
+				const scaleCompensation = window.matchMedia('(max-width: 1079px)').matches && !isActive
+					? slide.offsetWidth * .06
+					: 0;
+				slide.style.marginRight = `${-scaleCompensation}px`;
 			});
+			if (rail instanceof HTMLElement && activeSlide instanceof HTMLElement) rail.style.transform = `translateX(${-activeSlide.offsetLeft + 1}px)`;
 			dots.forEach((dot, index) => {
 				dot.classList.toggle('is-active', index === activeIndex);
 				if (index === activeIndex) dot.setAttribute('aria-current', 'true'); else dot.removeAttribute('aria-current');
@@ -137,8 +143,8 @@ const carouselSlides = [
 	.problem-carousel-card:not(.is-active) { opacity: .68; }
 	.problem-carousel-card__header { display: flex; flex-direction: column; gap: .75rem; }
 	.problem-carousel-card__header small { color: #cbf300; font: 700 .72rem / 1 Manrope, sans-serif; letter-spacing: .12em; }
-	.problem-carousel-card__header strong { max-width: 15rem; font: 500 clamp(1.3rem, 2vw, 1.75rem) / 1.2 Manrope, sans-serif; letter-spacing: -.02em; }
-	.problem-carousel-card[data-index='4'] .problem-carousel-card__header strong { max-width: 18rem; font-size: clamp(1.25rem, 1.75vw, 1.55rem); text-wrap: balance; }
+	.problem-carousel-card__header strong { max-width: 15rem; font: 500 clamp(1.25rem, 1.75vw, 1.55rem) / 1.2 Manrope, sans-serif; letter-spacing: -.02em; }
+	.problem-carousel-card[data-index='4'] .problem-carousel-card__header strong { max-width: 18rem; text-wrap: balance; }
 	.problem-carousel-card__conversation { display: flex; flex-direction: column; gap: 1.35rem; }
 	.problem-chat { display: flex; align-items: flex-end; gap: .7rem; }
 	.problem-chat > span:not(.problem-avatar, .problem-garna-mark) { padding: .9rem 1rem; border-radius: 1rem; font: 500 .8rem / 1.48 Manrope, sans-serif; }
@@ -154,6 +160,9 @@ const carouselSlides = [
 	.problems-carousel__controls button { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 999px; background: rgb(255 255 255 / .24); padding: 0; cursor: pointer; transition: width 220ms ease, background 220ms ease; }
 	.problems-carousel__controls button.is-active { width: 3.4rem; background: rgb(203 243 0 / .18); box-shadow: inset 0 0 0 1px rgb(203 243 0 / .18); }
 	.problems-carousel__controls button.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #cbf300; box-shadow: 0 0 14px rgb(203 243 0 / .52); content: ''; transform: scaleX(var(--problem-dot-progress, 1)); transform-origin: left center; }
+	@media (min-width: 1080px) {
+		.problem-carousel-card { transform: none; }
+	}
 	@media (max-width: 1079px) {
 		.problems-carousel { grid-template-columns: 1fr; gap: 2.25rem; margin-right: 0; overflow: visible; }
 		.problems-carousel__copy { width: 100%; padding-left: 0; }
@@ -165,11 +174,104 @@ const carouselSlides = [
 		.problems-carousel__copy h2 { font-size: 2.25rem; }
 		.problems-carousel__copy p { margin: 1.25rem 0 2rem; font-size: 1.125rem; }
 		.problem-carousel-card { flex-basis: clamp(16rem, min(72vw, 34vh), 20.5rem); margin-right: 0; border-radius: 1.25rem; aspect-ratio: .78; }
+		:global(html[lang='es']) .problem-carousel-card { aspect-ratio: .74; }
+		:global(html[lang='pt']) .problem-carousel-card { aspect-ratio: .72; }
+		:global(html[lang='ru']) .problem-carousel-card { aspect-ratio: .66; }
 		.problems-carousel__controls { width: clamp(16rem, min(72vw, 34vh), 20.5rem); margin-top: 1rem; }
 		.problem-chat > span:not(.problem-avatar, .problem-garna-mark) { font-size: .875rem; }
 	}
+	@media (min-width: 768px) and (max-width: 900px) {
+		:global(html[lang='es']) .problem-carousel-card { aspect-ratio: .74; padding: 1.125rem; }
+		:global(html[lang='es']) .problem-carousel-card__header { gap: .5rem; }
+		:global(html[lang='es']) .problem-carousel-card__conversation { gap: .875rem; }
+		:global(html[lang='es']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) { padding: .625rem .875rem; }
+		:global(html[lang='pt']) .problem-carousel-card { aspect-ratio: .62; }
+		:global(html[lang='ru']) .problem-carousel-card { aspect-ratio: .82; padding: 1.125rem; }
+		:global(html[lang='ru']) .problem-carousel-card__header { gap: .65rem; }
+		:global(html[lang='ru']) .problem-carousel-card__conversation { gap: 1.05rem; }
+		:global(html[lang='ru']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) { padding-block: .78rem; }
+	}
+	@media (min-width: 768px) and (max-width: 900px) and (max-height: 750px) {
+		:global(html[lang='es']) .problem-carousel-card {
+			container-type: inline-size;
+			flex-basis: clamp(11rem, min(36%, calc((100vh - 26.25rem) * .8)), 19rem);
+			padding: clamp(.75rem, 2.4vh, 1.125rem);
+		}
+		:global(html[lang='es']) .problems-carousel__controls { width: clamp(11rem, min(36%, calc((100vh - 26.25rem) * .8)), 19rem); }
+		:global(html[lang='es']) .problem-carousel-card__header { gap: 3.5cqi; }
+		:global(html[lang='es']) .problem-carousel-card__header small { font-size: 5.1cqi; }
+		:global(html[lang='es']) .problem-carousel-card__header strong { font-size: 8.6cqi; }
+		:global(html[lang='es']) .problem-carousel-card__conversation { gap: 6.17cqi; }
+		:global(html[lang='es']) .problem-chat { gap: 4.93cqi; }
+		:global(html[lang='es']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) {
+			border-radius: 7cqi;
+			padding: 4.4cqi 6.17cqi;
+			font-size: 5.64cqi;
+			line-height: 1.48;
+		}
+		:global(html[lang='es']) .problem-avatar,
+		:global(html[lang='es']) .problem-garna-mark { width: 17.6cqi; height: 17.6cqi; flex-basis: 17.6cqi; }
+		:global(html[lang='es']) .problem-garna-mark img { width: 5.8cqi; height: 9.5cqi; }
+	}
+	@media (min-width: 768px) and (max-width: 900px) and (max-height: 780px) {
+		:global(html[lang='ru']) .problem-carousel-card {
+			container-type: inline-size;
+			flex-basis: clamp(11rem, min(36%, calc((100vh - 26.25rem) * .72)), 19rem);
+			padding: clamp(.8rem, 2.31vh, 1.125rem);
+		}
+		:global(html[lang='ru']) .problems-carousel__controls { width: clamp(11rem, min(36%, calc((100vh - 26.25rem) * .72)), 19rem); }
+		:global(html[lang='ru']) .problem-carousel-card__header { gap: 4.7cqi; }
+		:global(html[lang='ru']) .problem-carousel-card__header small { font-size: 5.2cqi; }
+		:global(html[lang='ru']) .problem-carousel-card__header strong { font-size: 8.9cqi; }
+		:global(html[lang='ru']) .problem-carousel-card__conversation { gap: 7.5cqi; }
+		:global(html[lang='ru']) .problem-chat { gap: 5.1cqi; }
+		:global(html[lang='ru']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) {
+			border-radius: 7.3cqi;
+			padding: 5.6cqi 7.17cqi;
+			font-size: 5.74cqi;
+			line-height: 1.48;
+		}
+		:global(html[lang='ru']) .problem-avatar,
+		:global(html[lang='ru']) .problem-garna-mark { width: 17.9cqi; height: 17.9cqi; flex-basis: 17.9cqi; }
+		:global(html[lang='ru']) .problem-garna-mark img { width: 5.8cqi; height: 9.5cqi; }
+	}
+	@media (min-width: 421px) and (max-width: 767px) {
+		:global(html[lang='ru']) .problem-carousel-card { aspect-ratio: .82; padding: 1.125rem; }
+		:global(html[lang='ru']) .problem-carousel-card__header { gap: .65rem; }
+		:global(html[lang='ru']) .problem-carousel-card__conversation { gap: 1.05rem; }
+		:global(html[lang='ru']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) { padding-block: .78rem; }
+	}
+	@media (min-width: 421px) and (max-width: 767px) and (max-height: 780px) {
+		:global(html[lang='ru']) .problem-carousel-card {
+			container-type: inline-size;
+			flex-basis: clamp(11rem, min(72vw, calc((100vh - 26rem) * .82)), 20.5rem);
+			aspect-ratio: .78;
+			padding: clamp(.7rem, 2.3vh, 1.125rem);
+		}
+		:global(html[lang='ru']) .problems-carousel__controls { width: clamp(11rem, min(72vw, calc((100vh - 26rem) * .82)), 20.5rem); }
+		:global(html[lang='ru']) .problem-carousel-card__header { gap: 4cqi; }
+		:global(html[lang='ru']) .problem-carousel-card__header small { font-size: 4.5cqi; }
+		:global(html[lang='ru']) .problem-carousel-card__header strong { font-size: 7.8cqi; }
+		:global(html[lang='ru']) .problem-carousel-card__conversation { gap: 6.5cqi; }
+		:global(html[lang='ru']) .problem-chat { gap: 4.5cqi; }
+		:global(html[lang='ru']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) {
+			border-radius: 6cqi;
+			padding: 4.7cqi 6cqi;
+			font-size: 5.3cqi;
+			line-height: 1.48;
+		}
+		:global(html[lang='ru']) .problem-avatar,
+		:global(html[lang='ru']) .problem-garna-mark { width: 15cqi; height: 15cqi; flex-basis: 15cqi; }
+		:global(html[lang='ru']) .problem-garna-mark img { width: 4.8cqi; height: 8cqi; }
+	}
+	@media (min-width: 901px) and (max-width: 1079px) {
+		.problem-carousel-card { aspect-ratio: .84; }
+	}
 	@media (max-width: 420px) {
 		.problem-carousel-card { aspect-ratio: .72; }
+		:global(html[lang='es']) .problem-carousel-card { aspect-ratio: .68; }
+		:global(html[lang='pt']) .problem-carousel-card { aspect-ratio: .65; }
+		:global(html[lang='ru']) .problem-carousel-card { aspect-ratio: .68; }
 	}
 	@media (prefers-reduced-motion: reduce) { .problems-carousel__rail, .problem-carousel-card { transition: none; } }
 </style>

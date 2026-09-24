@@ -88,7 +88,8 @@ const statusLabel: Record<Status, string> = {
 			<div class="comparison-table__footer">
 				<div class="comparison-table__footer-primary">
 					<Button href="https://app.garna.io/en/auth/sign-up" variant="primary" size="header" effect="none" icon="none" data-garna-signup>
-						<span data-translate="comparisonTable.button">Sign Up</span>
+						<span class="comparison-table__button-label comparison-table__button-label--full" data-translate="comparisonTable.button">Sign Up</span>
+						<span class="comparison-table__button-label comparison-table__button-label--compact" data-translate="comparisonTable.buttonCompact">Start</span>
 					</Button>
 				</div>
 			</div>
@@ -98,7 +99,7 @@ const statusLabel: Record<Status, string> = {
 </Section>
 
 <script>
-	const comparisonMobileQuery = window.matchMedia('(max-width: 900px)');
+	const comparisonMobileQuery = window.matchMedia('(max-width: 1120px)');
 	for (const scroller of document.querySelectorAll('.comparison-table__scroller')) {
 		if (!(scroller instanceof HTMLElement) || scroller.dataset.scaleReady === 'true') continue;
 		const stage = scroller.querySelector('[data-comparison-table-stage]');
@@ -288,17 +289,19 @@ const statusLabel: Record<Status, string> = {
 		white-space: nowrap;
 	}
 
-	@media (min-width: 901px) and (max-width: 1120px) {
-		.comparison-table__scroller {
-			overflow: clip;
-		}
-
-		.comparison-table__stage {
-			width: 1080px;
-		}
+	.comparison-table__button-label--compact {
+		display: none;
 	}
 
-	@media (max-width: 900px) {
+	@media (max-width: 1120px) {
+		.comparison-table__button-label--full {
+			display: none;
+		}
+
+		.comparison-table__button-label--compact {
+			display: inline;
+		}
+
 		.comparison-table__scroller {
 			margin-inline: -24px;
 			overflow-x: auto;
@@ -344,6 +347,13 @@ const statusLabel: Record<Status, string> = {
 			background: #101010;
 		}
 
+		.comparison-table tbody .comparison-table__primary-cell {
+			position: sticky;
+			left: 150px;
+			z-index: 8;
+			box-shadow: 14px 0 22px -20px rgb(0 0 0 / 0.9);
+		}
+
 		.comparison-table__corner {
 			position: sticky;
 			left: 0;
@@ -351,9 +361,11 @@ const statusLabel: Record<Status, string> = {
 			background: #101010;
 		}
 
-		.comparison-table .comparison-table__header--primary {
-			position: static;
-			z-index: auto !important;
+		.comparison-table thead .comparison-table__header--primary {
+			position: sticky !important;
+			left: 150px;
+			z-index: 11 !important;
+			box-shadow: 14px 0 22px -20px rgb(0 0 0 / 0.9) !important;
 		}
 
 		.comparison-table .comparison-table__primary-header-surface {
@@ -368,6 +380,13 @@ const statusLabel: Record<Status, string> = {
 
 		.comparison-table__option-column {
 			width: 150px;
+		}
+
+		.comparison-table__footer-primary {
+			position: sticky;
+			left: 150px;
+			z-index: 8;
+			box-shadow: 14px 0 22px -20px rgb(0 0 0 / 0.9);
 		}
 	}
 </style>

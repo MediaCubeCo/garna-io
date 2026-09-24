@@ -1,6 +1,6 @@
 export const eorEs = {
 	"landingHeader": {
-		"backToTop": "Garna — volver al inicio",
+		"backToTop": "Garna\u00A0— volver al inicio",
 		"navAriaLabel": "Navegación de la página",
 		"whoItsFor": "Para quién",
 		"howItWorks": "Cómo funciona",
@@ -19,7 +19,7 @@ export const eorEs = {
 		"badge": "Facturación global para profesionales independientes",
 		"title": "Factura a clientes globales sin abrir una empresa",
 		"description": "Factura a empresas de todo el mundo y recibe pagos internacionales con Garna mediante un proceso sencillo",
-		"note": "Creado para freelancers con clientes globales",
+		"note": "Para freelancers con clientes globales",
 		"cards": {
 			"monthlyIncome": "Ingresos mensuales",
 			"monthlyGrowth": "↑ 18% este mes",
@@ -101,7 +101,7 @@ export const eorEs = {
 			},
 			"workflow": {
 				"title": "Gestión de varios clientes",
-				"problem": "Trabajo con varios clientes internacionales y necesito un proceso claro",
+				"problem": "Tengo varios clientes internacionales y quiero un único proceso",
 				"solution": "Gestiona facturas, pagos recibidos y retiros desde una sola cuenta de Garna"
 			},
 			"fees": {
@@ -147,7 +147,7 @@ export const eorEs = {
 	},
 	"platformIntro": {
 		"title": "Una plataforma en lugar de decenas de soluciones improvisadas",
-		"description": "Sin tarjetas extranjeras, cuentas bloqueadas ni soluciones de pago improvisadas — Garna te ayuda a facturar a clientes empresariales en el extranjero y recibir el dinero mediante un flujo claro",
+		"description": "Sin tarjetas extranjeras, cuentas bloqueadas ni soluciones de pago improvisadas\u00A0— Garna te ayuda a facturar a clientes empresariales en el extranjero y recibir el dinero mediante un flujo claro",
 		"visualAriaLabel": "Facturación global con Garna"
 	},
 	"globalInvoicingHowTo": {
@@ -409,7 +409,7 @@ export const eorEs = {
 			"visa": {
 				"title": "Visado para nómadas digitales",
 				"description": "Utiliza tus documentos de pago de Garna para respaldar tu solicitud de visado para nómadas digitales",
-				"tags": ["Documentos de pago", "Justificante de ingresos", "Apoyo para el visado"]
+				"tags": ["Docs. de pago", "Prueba de ingresos", "Apoyo de visado"]
 			}
 		}
 	},
@@ -418,6 +418,7 @@ export const eorEs = {
 		"caption": "Comparación de Garna",
 		"ariaLabel": "Comparación de Garna con otras opciones de pago",
 		"button": "Registrarse",
+		"buttonCompact": "Empezar",
 		"columns": {
 			"foreignCard": "Tarjeta extranjera",
 			"foreignCompany": "Entidad jurídica extranjera",

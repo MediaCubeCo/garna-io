@@ -1,6 +1,6 @@
 export const eorEn = {
 	"landingHeader": {
-		"backToTop": "Garna — back to top",
+		"backToTop": "Garna\u00A0— back to top",
 		"navAriaLabel": "Landing page navigation",
 		"whoItsFor": "Who it’s for",
 		"howItWorks": "How it works",
@@ -19,7 +19,7 @@ export const eorEn = {
 		"badge": "Global invoicing for independent professionals",
 		"title": "Invoice Clients Globally Without a Company",
 		"description": "Invoice business clients worldwide and receive international payments with Garna in one clear workflow",
-		"note": "Built for freelancers with global clients",
+		"note": "For freelancers with global clients",
 		"cards": {
 			"monthlyIncome": "Monthly Income",
 			"monthlyGrowth": "↑ 18% this month",
@@ -135,7 +135,7 @@ export const eorEn = {
 	},
 	"professional": {
 		"title": "Look Professional to Clients",
-		"description": "Send clients professional invoices with one clear way to pay — no company setup required",
+		"description": "Send clients professional invoices with one clear way to pay\u00A0— no company setup required",
 		"followUp": "Garna keeps invoices, payment details, and documents together from the start",
 		"button": "Create account",
 		"visual": {
@@ -147,7 +147,7 @@ export const eorEn = {
 	},
 	"platformIntro": {
 		"title": "One Platform Instead of a Dozen Workarounds",
-		"description": "No foreign cards, blocked accounts, or payment workarounds — Garna helps you invoice overseas business clients and receive the money through one clear workflow",
+		"description": "No foreign cards, blocked accounts, or payment workarounds\u00A0— Garna helps you invoice overseas business clients and receive the money through one clear workflow",
 		"visualAriaLabel": "Garna global invoicing"
 	},
 	"globalInvoicingHowTo": {
@@ -418,6 +418,7 @@ export const eorEn = {
 		"caption": "Why Garna comparison",
 		"ariaLabel": "Garna payment options comparison",
 		"button": "Sign Up",
+		"buttonCompact": "Start",
 		"columns": {
 			"foreignCard": "Foreign card",
 			"foreignCompany": "Foreign legal entity",
@@ -511,19 +512,19 @@ export const eorEn = {
 			"termination": {
 				"label": "Offboarding",
 				"title": "Offboarding Compliantly In A Global Market",
-				"problem": "Offboarding employees is not easy per se, especially when you're dealing with different countries and different rules. Get it wrong — and you could be looking at some serious legal and compliance risks",
+				"problem": "Offboarding employees is not easy per se, especially when you're dealing with different countries and different rules. Get it wrong\u00A0— and you could be looking at some serious legal and compliance risks",
 				"solution": "Our termination workflows are tailored to employment laws in each country so you can offboard employees with confidence"
 			}
 		}
 	},
 	"costEstimator": {
 		"title": "Always Know What You’ll Get",
-		"description": "Calculate your payout before you send an invoice. Choose how your client pays and who covers the fee — withdrawals are always free",
+		"description": "Calculate your payout before you send an invoice. Choose how your client pays and who covers the fee\u00A0— withdrawals are always free",
 		"details": {
 			"paymentFee": "Garna charges 5% when your client pays by bank transfer and 8% when they pay by card",
-			"feePayer": "Choose who pays the fee — you or your client",
+			"feePayer": "Choose who pays the fee\u00A0— you or your client",
 			"withdrawalMethods": "Withdraw in USD, EUR, local currency, or crypto",
-			"withdrawalFee": "Withdrawals are always free — 0% fee"
+			"withdrawalFee": "Withdrawals are always free\u00A0— 0% fee"
 		},
 		"button": "Create account",
 		"form": {
@@ -633,7 +634,7 @@ export const eorEn = {
 	},
 	"advance": {
 		"title": "$ 1,000,000.00 available for team payouts",
-		"description": "Pay your contractors now — repay later with flexible terms",
+		"description": "Pay your contractors now\u00A0— repay later with flexible terms",
 		"button": "Request"
 	},
 	"footer": {

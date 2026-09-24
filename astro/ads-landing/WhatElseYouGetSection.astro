@@ -40,8 +40,30 @@ const cards = [
 	title={{ text: 'What Else You Get', translateKey: 'whatElseYouGet.title' }}
 	description={{ text: 'Practical tools and support for managing international client payments beyond the invoice itself', translateKey: 'whatElseYouGet.description' }}
 	cards={cards}
-	class="pt-20 pb-24 md:pt-24 lg:pt-48 lg:pb-32"
+	class="what-else-you-get-section pt-20 pb-24 md:pt-24 lg:pt-48 lg:pb-32"
 	splitClass="stacked-cards-grid gap-12 md:grid-cols-[0.88fr_1.12fr] md:items-start"
 	stackBreakpoint="768px"
+	stackBreakpointByLocale={{ ru: '900px' }}
 	timings={[[0.08, 0.5], [0.43, 0.92]]}
 />
+
+<style is:global>
+	@media (min-width: 1024px) {
+		.what-else-you-get-section .stacked-cards-card__footer {
+			flex-wrap: nowrap;
+			gap: clamp(6px, 0.7vw, 10px);
+		}
+
+		.what-else-you-get-section .stacked-cards-card__footer span {
+			padding-inline: clamp(8px, 0.8vw, 12px);
+			font-size: clamp(11px, 0.9vw, 13px);
+		}
+	}
+
+	@media (min-width: 768px) and (max-width: 899.98px) {
+		html[lang='ru'] .what-else-you-get-section .stacked-cards-grid {
+			grid-template-columns: minmax(0, 1fr);
+			align-items: start;
+		}
+	}
+</style>

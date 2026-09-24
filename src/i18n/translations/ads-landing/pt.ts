@@ -1,6 +1,6 @@
 export const eorPt = {
 	"landingHeader": {
-		"backToTop": "Garna — voltar ao início",
+		"backToTop": "Garna\u00A0— voltar ao início",
 		"navAriaLabel": "Navegação da página",
 		"whoItsFor": "Para quem",
 		"howItWorks": "Como funciona",
@@ -19,7 +19,7 @@ export const eorPt = {
 		"badge": "Faturação global para profissionais independentes",
 		"title": "Fature a clientes globais sem abrir uma empresa",
 		"description": "Fature a empresas de todo o mundo e receba pagamentos internacionais com a Garna num processo simples",
-		"note": "Criado para freelancers com clientes globais",
+		"note": "Para freelancers com clientes globais",
 		"cards": {
 			"monthlyIncome": "Rendimento mensal",
 			"monthlyGrowth": "↑ 18% este mês",
@@ -147,7 +147,7 @@ export const eorPt = {
 	},
 	"platformIntro": {
 		"title": "Uma plataforma em vez de dezenas de alternativas improvisadas",
-		"description": "Sem cartões estrangeiros, contas bloqueadas ou soluções de pagamento improvisadas — a Garna ajuda a faturar clientes empresariais no estrangeiro e a receber o dinheiro num processo claro",
+		"description": "Sem cartões estrangeiros, contas bloqueadas ou soluções de pagamento improvisadas\u00A0— a Garna ajuda a faturar clientes empresariais no estrangeiro e a receber o dinheiro num processo claro",
 		"visualAriaLabel": "Faturação global com a Garna"
 	},
 	"globalInvoicingHowTo": {
@@ -418,6 +418,7 @@ export const eorPt = {
 		"caption": "Comparação da Garna",
 		"ariaLabel": "Comparação da Garna com outras opções de pagamento",
 		"button": "Registar-se",
+		"buttonCompact": "Começar",
 		"columns": {
 			"foreignCard": "Cartão estrangeiro",
 			"foreignCompany": "Entidade jurídica estrangeira",
@@ -518,12 +519,12 @@ export const eorPt = {
 	},
 	"costEstimator": {
 		"title": "Saiba sempre quanto vai receber",
-		"description": "Calcule o seu pagamento antes de enviar uma fatura. Escolha como o cliente paga e quem cobre a taxa — os levantamentos são sempre gratuitos.",
+		"description": "Calcule o seu pagamento antes de enviar uma fatura. Escolha como o cliente paga e quem cobre a taxa\u00A0— os levantamentos são sempre gratuitos.",
 		"details": {
 			"paymentFee": "A Garna cobra 5% quando o cliente paga por transferência bancária e 8% quando paga por cartão",
 			"feePayer": "Escolha se a taxa é paga por si ou pelo cliente",
 			"withdrawalMethods": "Levante em USD, EUR, na moeda local ou em criptomoeda",
-			"withdrawalFee": "Os levantamentos são sempre gratuitos — taxa de 0%"
+			"withdrawalFee": "Os levantamentos são sempre gratuitos\u00A0— taxa de 0%"
 		},
 		"button": "Criar conta",
 		"form": {

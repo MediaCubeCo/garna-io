@@ -26,6 +26,7 @@ interface Props {
 	cardGap?: number;
 	cardPeek?: number;
 	stackBreakpoint?: string;
+	stackBreakpointByLocale?: Record<string, string>;
 	minScrollDistance?: number;
 	distanceMultiplier?: number;
 	timings?: [number, number][];
@@ -49,6 +50,7 @@ const {
 	cardGap = 18,
 	cardPeek = 76,
 	stackBreakpoint = '1024px',
+	stackBreakpointByLocale = {},
 	minScrollDistance = 900,
 	distanceMultiplier = 3.1,
 	timings,
@@ -348,7 +350,7 @@ const stackStyle = `--stacked-cards-top:${stackTop}px;--stacked-cards-gap:${card
 	}
 </style>
 
-<script define:vars={{ stackId, stackTop, cardGap, cardPeek, stackBreakpoint, minScrollDistance, distanceMultiplier, timings, requireSingleLineTitles }}>
+<script define:vars={{ stackId, stackTop, cardGap, cardPeek, stackBreakpoint, stackBreakpointByLocale, minScrollDistance, distanceMultiplier, timings, requireSingleLineTitles }}>
 	const cardGlowWindow = window;
 
 	if (!cardGlowWindow.__garnaCardGlowInitialized) {
@@ -439,7 +441,9 @@ const stackStyle = `--stacked-cards-top:${stackTop}px;--stacked-cards-gap:${card
 		section.style.setProperty('--stacked-cards-gap', `${cardGap}px`);
 		section.style.setProperty('--stacked-cards-peek', `${cardPeek}px`);
 
-		const stackMode = matchMedia(`(min-width:${stackBreakpoint})`);
+		const locale = document.documentElement.lang.toLowerCase().split('-')[0];
+		const localizedStackBreakpoint = stackBreakpointByLocale[locale] || stackBreakpoint;
+		const stackMode = matchMedia(`(min-width:${localizedStackBreakpoint})`);
 		const reduced = matchMedia('(prefers-reduced-motion:reduce)');
 		let frame = null;
 

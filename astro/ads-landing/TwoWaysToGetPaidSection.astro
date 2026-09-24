@@ -49,4 +49,21 @@ const panels = [
 			transform-origin: center top;
 		}
 	}
+
+	@media (max-width: 800px) {
+		[data-tabbed-image-feature='two-ways-to-get-paid'] .tabbed-image-feature__copy :is(h3, p) {
+			width: 100%;
+			max-width: none;
+		}
+	}
+
+	@media (max-width: 520px) {
+		#two-ways-to-get-paid-panel-invoice .tabbed-image-feature__image {
+			object-position: 85% top;
+		}
+
+		#two-ways-to-get-paid-panel-transfer .tabbed-image-feature__image {
+			object-position: 79% 48%;
+		}
+	}
 </style>
