@@ -1,13 +1,9 @@
-import { getEorCostEstimatorOptions } from './cost-estimator-options';
-
-const costEstimatorOptions = getEorCostEstimatorOptions('es');
-
 export const eorEs = {
 	"landingHeader": {
-		"benefits": "Ventajas",
+		"whoItsFor": "Para quién",
 		"howItWorks": "Cómo funciona",
-		"pricing": "Precios",
-		"faq": "Preguntas frecuentes",
+		"calculator": "Calculadora",
+		"faq": "FAQ",
 		"cta": "Reservar una demo"
 	},
 	"images": {},
@@ -370,24 +366,23 @@ export const eorEs = {
 	},
 	"whatElseYouGet": {
 		"title": "Qué más obtienes",
-		"description": "Herramientas y registros prácticos para gestionar los pagos de clientes internacionales más allá de la propia factura",
+		"description": "Herramientas prácticas y asistencia para gestionar los pagos de clientes internacionales más allá de la propia factura",
 		"button": "Crear una cuenta",
 		"benefits": {
 			"withdrawals": {
 				"title": "Retiros flexibles",
-				"description": "Elige entre los métodos de retiro disponibles, incluidas cuentas bancarias, tarjetas, monederos electrónicos y criptomonedas"
+				"description": "Divide tus retiros entre diferentes tarjetas y cuentas",
+				"tags": ["Tarjetas", "Cuentas bancarias", "Retiros divididos"]
 			},
-			"taxRecords": {
-				"title": "Registros para tus impuestos",
-				"description": "Mantén organizadas las facturas y los registros de pago cuando llegue el momento de declarar tus ingresos internacionales"
+			"taxGuidance": {
+				"title": "Asesoramiento fiscal",
+				"description": "Recibe orientación gratuita de nuestro equipo fiscal para pagar correctamente los impuestos en tu país",
+				"tags": ["Impuestos locales", "Asesoramiento experto", "Incluido"]
 			},
-			"visaProof": {
-				"title": "Justificantes de ingresos para visados",
-				"description": "Utiliza tus facturas oficiales y el historial de pagos como documentación para solicitudes de visado para nómadas digitales"
-			},
-			"tracking": {
-				"title": "Seguimiento de pagos",
-				"description": "Consulta el estado de las facturas, los pagos recibidos y los fondos disponibles desde una sola cuenta de Garna"
+			"visa": {
+				"title": "Visado para nómadas digitales",
+				"description": "Utiliza tus documentos de pago de Garna para respaldar tu solicitud de visado para nómadas digitales",
+				"tags": ["Documentos de pago", "Justificante de ingresos", "Apoyo para el visado"]
 			}
 		}
 	},
@@ -494,27 +489,28 @@ export const eorEs = {
 		}
 	},
 	"costEstimator": {
-		"kicker": "Estimador de costes",
-		"title": "Descubre el coste real de tu contratación",
-		"description": "Garna empieza desde $200 al mes por empleado, sin tarifas ocultas ni costes de crear una entidad local. Indica el país y el salario para estimar impuestos, beneficios obligatorios y el coste total de contratación",
-		"proof": {
-			"countries": "países cubiertos",
-			"payroll": "disponibilidad de nómina"
+		"title": "Sabe siempre cuánto recibirás",
+		"description": "Calcula tu pago antes de enviar una factura. Elige cómo paga tu cliente y quién cubre la comisión; los retiros siempre son gratuitos.",
+		"details": {
+			"paymentFee": "Garna cobra un 5% si tu cliente paga por transferencia bancaria y un 8% si paga con tarjeta",
+			"feePayer": "Tú eliges quién cubre la comisión: tú o tu cliente",
+			"withdrawalMethods": "Retira fondos en USD, EUR, tu moneda local o una criptomoneda compatible",
+			"withdrawalFee": "Los retiros siempre son gratuitos: 0% de comisión"
 		},
-		...costEstimatorOptions,
+		"button": "Crear cuenta",
 		"form": {
-			"title": "Estimador de costes de contratación global",
-			"hireIn": "Quiero contratar en",
-			"country": "País",
-			"region": "Estado / provincia",
-			"salary": "Salario bruto",
+			"title": "Calculadora de pagos",
 			"currency": "Divisa",
-			"amount": "Importe",
-			"amountPlaceholder": "Salario bruto",
-			"clearCountry": "Borrar país",
-			"clearRegion": "Borrar estado o provincia",
-			"clearCurrency": "Borrar divisa",
-			"button": "Calcular coste total"
+			"feePaidBy": "La comisión la paga",
+			"freelancer": "Freelancer",
+			"client": "Cliente",
+			"paymentMethod": "Cómo paga tu cliente",
+			"bank": "Transferencia bancaria",
+			"card": "Tarjeta",
+			"amount": "Importe que cobras",
+			"youReceive": "Tú recibes",
+			"clientPays": "El cliente paga",
+			"note": "Comisión de Garna: 5% por transferencia bancaria u 8% con tarjeta. Comisión de retiro: 0%."
 		}
 	},
 	"fit": {
@@ -557,46 +553,50 @@ export const eorEs = {
 		"title": "Orgullosos de contribuir a sus excelentes y fluidos flujos de trabajo"
 	},
 	"faq": {
-		"title": "Preguntas frecuentes sobre el empleador oficial",
+		"title": "Preguntas frecuentes sobre facturación global",
 		"items": {
 			"q1": {
-				"question": "¿Qué es un Employer of Record (EOR)?",
-				"answer": "Un Employer of Record te permite contratar empleados a tiempo completo en países donde no tienes una entidad legal. Garna se convierte en el empleador legal y gestiona nóminas, contratos, impuestos y cumplimiento local, mientras tú diriges el trabajo diario del empleado."
+				"question": "¿Cómo cobro de un cliente extranjero?",
+				"answer": "Regístrate en Garna, crea una factura en una moneda compatible y envíasela a tu cliente empresarial. El cliente facilita los datos requeridos de su empresa y paga mediante el método disponible. Cuando el pago se recibe y verifica, los fondos aparecen en tu saldo de Garna para retirarlos."
 			},
 			"q2": {
-				"question": "¿Quién gestiona al empleado?",
-				"answer": "Tú. Defines sus responsabilidades, horario de trabajo, objetivos y desarrollo profesional. Garna gestiona contratos, beneficios obligatorios, pagos salariales y cumplimiento local."
+				"question": "¿Necesito registrar una empresa?",
+				"answer": "No. Garna proporciona el proceso de facturación y pago que necesitas para trabajar con clientes empresariales sin abrir tu propia empresa. La disponibilidad y la estructura exacta pueden depender de tu país y de la ruta de pago del cliente."
 			},
 			"q3": {
-				"question": "¿Cuál es la diferencia entre contratar mediante EOR y contratar a un contratista?",
-				"answer": "Un empleado EOR es un empleado a tiempo completo según la legislación laboral local, con beneficios obligatorios, protecciones legales y pleno cumplimiento, ideal para puestos permanentes y de largo plazo. Un contratista trabaja por cuenta propia, sin esas protecciones, y tratar como contratista a alguien que trabaja a tiempo completo bajo tu dirección puede generar riesgos de cumplimiento y sanciones."
+				"question": "¿Dónde puedo retirar el dinero?",
+				"answer": "Los métodos disponibles pueden incluir cuentas bancarias, tarjetas, monederos electrónicos y criptomonedas. Las opciones exactas dependen de tu país y tu cuenta y aparecen en el panel de Garna. Cuando sea compatible, puedes dividir los fondos entre distintos destinos."
 			},
 			"q4": {
-				"question": "EOR o abrir tu propia entidad: ¿qué es mejor?",
-				"answer": "Con una entidad propia, asumes la constitución, las declaraciones fiscales y el cumplimiento local. Un EOR es más rápido para empezar y más flexible si todavía estás probando dónde crecer."
+				"question": "¿En qué moneda recibiré el pago?",
+				"answer": "Tu cliente paga la factura en una moneda compatible, como dólares estadounidenses o euros. Las monedas de retiro disponibles dependen de tu país y del método seleccionado y se muestran antes de confirmar la transacción."
 			},
 			"q5": {
-				"question": "¿Con qué rapidez puedo empezar a contratar a través de Garna?",
-				"answer": "En la mayoría de los países, podemos incorporar a tu nuevo empleado en tan solo X día(s) laborable(s), una vez confirmada la oferta y firmados los documentos de incorporación."
+				"question": "¿Puedo retirar fondos en criptomonedas?",
+				"answer": "Los retiros en criptomonedas pueden estar disponibles para cuentas y jurisdicciones compatibles. Consulta tu panel de Garna para ver las monedas, redes, límites y requisitos disponibles."
 			},
 			"q6": {
-				"question": "¿Puedo contratar trabajadores internacionales sin un EOR?",
-				"answer": "Sí, abriendo una entidad legal local o contratando a la persona como contratista. Ambas opciones tienen compromisos: una entidad es lenta y costosa, y una relación de contratista implica riesgo de cumplimiento si se parece a un empleo a tiempo completo. El EOR de Garna es la alternativa más rápida y plenamente conforme."
+				"question": "¿Cuánto tarda en llegar el dinero?",
+				"answer": "El plazo depende del método de pago del cliente, la ruta bancaria y cualquier verificación necesaria. Muchos pagos llegan rápidamente, mientras que los controles adicionales o los bancos intermediarios pueden ampliar el plazo. Puedes seguir el estado en tu cuenta de Garna."
 			},
 			"q7": {
-				"question": "¿Es legalmente conforme contratar mediante un EOR?",
-				"answer": "Sí, el EOR es un modelo de empleo legalmente reconocido en la mayoría de los países."
+				"question": "¿Cómo sé que el cliente pagará?",
+				"answer": "Una factura registra el importe y las condiciones, pero no obliga al cliente a pagar. Antes de empezar, acuerda condiciones claras y utiliza cualquier opción de protección disponible para tu cuenta. Garna muestra el estado cuando los fondos entran en el proceso de pago."
 			},
 			"q8": {
-				"question": "¿Cuánto cuesta un Employer of Record?",
-				"answer": "Los precios empiezan desde $200, pero pueden variar según el país, el nivel salarial y el tamaño del equipo. No hay tarifas ocultas ni recargos de FX. Solicita una cotización basada en tu equipo."
+				"question": "¿Qué comisiones cobra Garna?",
+				"answer": "Las comisiones dependen del método de pago del cliente, la ruta de moneda y la opción de retiro. Garna muestra el tipo, la comisión y el total aplicables antes de confirmar una transacción."
+			},
+			"q9": {
+				"question": "¿Qué documentos recibiré?",
+				"answer": "Tu cuenta de Garna mantiene juntas la factura y los registros de pago disponibles. El conjunto exacto depende del proceso de pago y de tu país y puede consultarse o descargarse desde la transacción correspondiente."
 			}
 		}
 	},
 	"finalCta": {
-		"title": "Contrata empleados globalmente sin abrir entidades locales",
-		"description": "Garna se convierte en el empleador legal de tu equipo internacional y gestiona contratos, nóminas, impuestos, beneficios y cumplimiento local mientras tú diriges el trabajo diario de cada empleado",
-		"button": "Solicita una demo"
+		"title": "Recibe tu primer pago con la facturación global",
+		"description": "Crea tu cuenta de Garna gratis y paga solo cuando recibas el pago de un cliente",
+		"button": "Crear cuenta"
 	},
 	"dashboardCta": {
 		"title": "Empieza con Garna",

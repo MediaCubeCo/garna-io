@@ -1,12 +1,8 @@
-import { getEorCostEstimatorOptions } from './cost-estimator-options';
-
-const costEstimatorOptions = getEorCostEstimatorOptions('en');
-
 export const eorEn = {
 	"landingHeader": {
-		"benefits": "Benefits",
+		"whoItsFor": "Who it’s for",
 		"howItWorks": "How it works",
-		"pricing": "Pricing",
+		"calculator": "Calculator",
 		"faq": "FAQ",
 		"cta": "Book a demo"
 	},
@@ -370,24 +366,23 @@ export const eorEn = {
 	},
 	"whatElseYouGet": {
 		"title": "What Else You Get",
-		"description": "Practical tools and records that make international client payments easier to manage beyond the invoice itself",
+		"description": "Practical tools and support for managing international client payments beyond the invoice itself",
 		"button": "Create account",
 		"benefits": {
 			"withdrawals": {
 				"title": "Flexible Withdrawals",
-				"description": "Choose from the payout methods available to you, including bank accounts, cards, e-wallets, and crypto"
+				"description": "Split your withdrawals across different cards and accounts",
+				"tags": ["Cards", "Bank accounts", "Split payouts"]
 			},
-			"taxRecords": {
-				"title": "Tax-Ready Records",
-				"description": "Keep invoices and payment records organized when it is time to report your international income"
+			"taxGuidance": {
+				"title": "Tax Guidance",
+				"description": "Get free guidance from our tax team on paying taxes correctly in your country",
+				"tags": ["Local taxes", "Expert guidance", "Included"]
 			},
-			"visaProof": {
-				"title": "Visa-Ready Income Proof",
-				"description": "Use your official invoices and payment history as supporting records for digital nomad and visa applications"
-			},
-			"tracking": {
-				"title": "Payment Tracking",
-				"description": "Follow invoice status, incoming payments, and available funds from one Garna account"
+			"visa": {
+				"title": "Digital Nomad Visa",
+				"description": "Use your Garna payment documents to support your digital nomad visa application",
+				"tags": ["Payment documents", "Income proof", "Visa support"]
 			}
 		}
 	},
@@ -494,27 +489,28 @@ export const eorEn = {
 		}
 	},
 	"costEstimator": {
-		"kicker": "Cost estimator",
-		"title": "See What Your Hire Will Really Cost",
-		"description": "Garna starts from $200 per employee per month with no hidden fees or local entity setup costs. Enter the country and salary to estimate taxes, benefits, and the full cost of hiring",
-		"proof": {
-			"countries": "countries covered",
-			"payroll": "payroll availability"
+		"title": "Always Know What You’ll Get",
+		"description": "Calculate your payout before you send an invoice. Choose how your client pays and who covers the fee — withdrawals are always free",
+		"details": {
+			"paymentFee": "Garna charges 5% when your client pays by bank transfer and 8% when they pay by card",
+			"feePayer": "Choose who pays the fee — you or your client",
+			"withdrawalMethods": "Withdraw in USD, EUR, local currency, or crypto",
+			"withdrawalFee": "Withdrawals are always free — 0% fee"
 		},
-		...costEstimatorOptions,
+		"button": "Create account",
 		"form": {
-			"title": "Global Hiring Cost Estimator",
-			"hireIn": "I want to hire in",
-			"country": "Country",
-			"region": "State / province",
-			"salary": "Gross Salary",
+			"title": "Payout Calculator",
 			"currency": "Currency",
-			"amount": "Amount",
-			"amountPlaceholder": "Gross Salary",
-			"clearCountry": "Clear country",
-			"clearRegion": "Clear state or province",
-			"clearCurrency": "Clear currency",
-			"button": "Calculate total cost"
+			"feePaidBy": "Fee paid by",
+			"freelancer": "Freelancer",
+			"client": "Client",
+			"paymentMethod": "How your client pays",
+			"bank": "Bank transfer",
+			"card": "Card",
+			"amount": "Amount you’re charging",
+			"youReceive": "You receive",
+			"clientPays": "Client pays",
+			"note": "Garna fee: 5% by bank transfer or 8% by card. Withdrawal fee: 0%."
 		}
 	},
 	"fit": {
@@ -557,46 +553,50 @@ export const eorEn = {
 		"title": "Proud to influence their stellar and smooth workflows"
 	},
 	"faq": {
-		"title": "FAQ on Employer of Record",
+		"title": "Global Invoicing FAQ",
 		"items": {
 			"q1": {
-				"question": "What is an Employer of Record (EOR)?",
-				"answer": "An Employer of Record lets you hire full-time employees in countries where you don't have a legal entity. Garna becomes the legal employer, handling payroll, contracts, taxes, and local compliance, while you manage an employee's day-to-day work."
+				"question": "How do I get paid by a foreign client?",
+				"answer": "Sign up for Garna, create an invoice in a supported currency, and send it to your business client. The client provides the required company details and pays using the available method. Once the payment is received and verified, the funds appear in your Garna balance for withdrawal."
 			},
 			"q2": {
-				"question": "Who manages the employee?",
-				"answer": "You do. You set their responsibilities, working hours, goals, and career path. Garna handles contracts, statutory benefits, salary payments, and local compliance."
+				"question": "Do I need to register a company?",
+				"answer": "No. Garna provides the invoicing and payment workflow you need to work with business clients without opening your own company. Availability and the exact arrangement may depend on your country and the client payment route."
 			},
 			"q3": {
-				"question": "What's the difference between hiring through an EOR and a contractor?",
-				"answer": "An EOR employee is a full-time employee under local labor law, with statutory benefits, legal protections, and full compliance, ideal for long-term, full-time roles. A contractor is self-employed, without those protections, and treating someone working full-time hours under your direction as a contractor can lead to compliance risk and penalties."
+				"question": "Where can I withdraw money to?",
+				"answer": "Available withdrawal methods can include bank accounts, cards, e-wallets, and cryptocurrency. The exact options depend on your country and account, and are shown in your Garna dashboard. Where supported, you can split funds between different withdrawal destinations."
 			},
 			"q4": {
-				"question": "EOR vs setting up your own entity, which is better?",
-				"answer": "Your own entity means you own incorporation, tax filings, and local compliance. An EOR is faster to start and more flexible if you're still testing where to grow."
+				"question": "What currency will I get paid in?",
+				"answer": "Your client pays the invoice in a supported currency such as US dollars or euros. Available withdrawal currencies depend on your country and selected payout method and are shown before you confirm the transaction."
 			},
 			"q5": {
-				"question": "How quickly can I start hiring through Garna?",
-				"answer": "In most countries, we can onboard your new employee in as little as X business day(s), once the offer is confirmed and onboarding documents are signed."
+				"question": "Can I withdraw funds in cryptocurrency?",
+				"answer": "Cryptocurrency withdrawals may be available for supported accounts and jurisdictions. Check your Garna dashboard for the currencies, networks, limits, and compliance requirements available to you."
 			},
 			"q6": {
-				"question": "Can I hire international workers without an EOR?",
-				"answer": "Yes, by setting up a local legal entity or hiring the person as a contractor. Both have trade-offs: an entity is slow and expensive, a contractor role carries compliance risk if it resembles full-time employment. Garna's EOR is the faster, fully compliant alternative."
+				"question": "How fast will I get the money?",
+				"answer": "Payment time depends on the client payment method, banking route, and any required verification. Many payments arrive quickly, while additional checks or intermediary banks can extend the processing time. You can track the status in your Garna account."
 			},
 			"q7": {
-				"question": "Is it legally compliant to hire through an EOR?",
-				"answer": "Yes, EOR is a legally recognized employment model in most countries."
+				"question": "How do I know the client will pay?",
+				"answer": "An invoice records the amount and payment terms but does not force a client to pay. Before starting work, agree on clear terms and use any payment-protection option available for your account. Garna shows the payment status as soon as funds enter the payment flow."
 			},
 			"q8": {
-				"question": "How much does an Employer of Record cost?",
-				"answer": "Pricing starts at $200 but may vary depending on the country, salary level, and team size. There are no hidden fees or FX markups. Get a quote based on your team."
+				"question": "What fees does Garna charge?",
+				"answer": "Fees depend on the client payment method, currency route, and withdrawal option. Garna shows the applicable rate, fee, and total before you confirm a transaction, so you can see the full cost in advance."
+			},
+			"q9": {
+				"question": "What documents will I get?",
+				"answer": "Your Garna account keeps the invoice and available payment records together. The exact set of documents depends on the payment flow and your country, and can be viewed or downloaded from the relevant transaction in your dashboard."
 			}
 		}
 	},
 	"finalCta": {
-		"title": "Hire Employees Globally Without Opening Local Entities",
-		"description": "Garna becomes the legal employer for your international team, handling contracts, payroll, taxes, benefits, and local compliance while you manage each employee's day-to-day work",
-		"button": "Book a demo"
+		"title": "Get Your First Payment With Global Invoicing",
+		"description": "Create your Garna account for free and pay only when you receive a client payment",
+		"button": "Create account"
 	},
 	"dashboardCta": {
 		"title": "Get started with Garna",

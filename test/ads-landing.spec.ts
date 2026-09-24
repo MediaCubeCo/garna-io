@@ -29,14 +29,28 @@ describe('isolated advertising landing', () => {
 		expect(page).not.toContain('components/sections/payroll');
 		expect(page).not.toContain('pageShells.eor');
 		expect(page).not.toContain('pageFinalCtas.eor');
+		expect(page).toContain("effect: 'rotating-flare' as const");
 	});
 
 	it('keeps header navigation inside the landing page', async () => {
 		const header = await read('astro/components/layout/AdsLandingHeader.astro');
 		const hrefs = [...header.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+		const navigationTargets = [
+			'#who-global-invoicing-is-for',
+			'#how-global-invoicing-works',
+			'#payout-calculator',
+			'#global-invoicing-faq',
+		];
 
 		expect(hrefs.length).toBeGreaterThan(0);
 		expect(hrefs.every((href) => href === '#' || href.startsWith('#'))).toBe(true);
+		expect(navigationTargets.every((target) => hrefs.includes(target))).toBe(true);
+		expect(header).not.toContain('data-landing-nav-link');
+		expect(header).not.toContain('aria-current');
+		expect(header).not.toContain('IntersectionObserver');
+		expect(header).not.toContain('#eor-');
+		expect(header).not.toContain('#landing-');
+		expect(header).not.toContain('window.location.hash');
 		expect(header).not.toContain('data-localized-path');
 		expect(header).not.toContain('data-garna-home');
 	});
@@ -137,7 +151,7 @@ describe('isolated advertising landing', () => {
 		expect(paymentWays).toContain('twoWays.panels.transfer.description');
 	});
 
-	it('presents four additional global invoicing benefits after the payment flows', async () => {
+	it('presents three stacked global invoicing benefits after the payment flows', async () => {
 		const [page, benefits, translations] = await Promise.all([
 			read('astro/pages/ads-landing.astro'),
 			read('astro/ads-landing/WhatElseYouGetSection.astro'),
@@ -147,12 +161,48 @@ describe('isolated advertising landing', () => {
 		expect(page).toContain('<WhatElseYouGetSection />');
 		expect(page.indexOf('<WhatElseYouGetSection />')).toBeGreaterThan(page.indexOf('<TwoWaysToGetPaidSection />'));
 		expect(benefits).toContain('What Else You Get');
-		expect(benefits.match(/<Card /g)).toHaveLength(4);
+		expect(benefits).toContain("from '../components/sections/StackedCardsSection.astro'");
+		expect(benefits.match(/key: '/g)).toHaveLength(3);
 		expect(benefits).toContain('Flexible Withdrawals');
-		expect(benefits).toContain('Tax-Ready Records');
-		expect(benefits).toContain('Visa-Ready Income Proof');
-		expect(benefits).toContain('Payment Tracking');
+		expect(benefits).toContain('Tax Guidance');
+		expect(benefits).toContain('Digital Nomad Visa');
+		expect(benefits).not.toContain('Payment Tracking');
 		expect(translations).toContain('"whatElseYouGet"');
+	});
+
+	it('uses a working global invoicing payout calculator instead of an EOR hiring estimator', async () => {
+		const [calculator, translations] = await Promise.all([
+			read('astro/ads-landing/EorCostEstimatorSection.astro'),
+			read('src/i18n/translations/ads-landing/en.ts'),
+		]);
+
+		expect(calculator).toContain('Always Know What You’ll Get');
+		expect(calculator).toContain('Payout Calculator');
+		expect(calculator).toContain('data-payout-calculator');
+		expect(calculator).toContain("method === 'card' ? 0.08 : 0.05");
+		expect(calculator).toContain("feePayer === 'freelancer'");
+		expect(calculator).toContain('data-garna-signup');
+		expect(calculator).toContain("import SectionHeader from '../components/layout/SectionHeader.astro'");
+		expect(calculator).toContain('eor-cost-estimator-business-desk-v9.png');
+		expect(calculator).toContain('max-width: 36rem');
+		expect(calculator).toContain('gap: 1.2rem');
+		expect(calculator).toContain('padding: clamp(1.15rem, 2vw, 1.55rem)');
+		expect(calculator).toContain('icon="none"');
+		expect(calculator).toContain('eor-estimator-segments--currency');
+		expect(calculator.match(/role="radiogroup"/g)).toHaveLength(3);
+		expect(calculator).toContain(':has(label:nth-child(2) input:checked)::before');
+		expect(calculator).toContain('background: #cbf300');
+		expect(calculator).toContain('inset: 0 auto 0 0');
+		expect(calculator).toContain('min-height: 2.75rem');
+		expect(calculator).toContain('min-height: calc(2.75rem + 2px)');
+		expect(calculator).toContain('grid-template-columns: minmax(0, 1.05fr) minmax(27rem, 0.95fr)');
+		expect(calculator).toContain('background: rgb(0 0 0 / 0.55)');
+		expect(calculator).toContain('margin-top: calc((var(--detail-line-height) - 1.25rem) / 2)');
+		expect(calculator.match(/costEstimator\.details\./g)).toHaveLength(4);
+		expect(calculator).toContain('Garna charges 5%');
+		expect(calculator).not.toContain('Global Hiring Cost Estimator');
+		expect(calculator).not.toContain('payout-section__facts');
+		expect(translations).toContain('"title": "Always Know What You’ll Get"');
 	});
 
 	it('compares Garna with alternative payment setups after the calculator', async () => {
@@ -168,9 +218,25 @@ describe('isolated advertising landing', () => {
 		expect(comparison.match(/values: \[/g)).toHaveLength(7);
 		expect(comparison).toContain('position: sticky');
 		expect(comparison).toContain('top: 64px');
+		expect(comparison).toContain('comparison-table__primary-header-surface');
+		expect(comparison).toContain('background: #101010 !important');
 		expect(comparison).not.toContain('comparison-table__cta-row');
 		expect(comparison).toContain('comparison-table__footer-primary');
 		expect(comparison).toContain('data-garna-signup');
+	});
+
+	it('answers nine global invoicing questions instead of reusing the EOR FAQ', async () => {
+		const [page, translations] = await Promise.all([
+			read('astro/pages/ads-landing.astro'),
+			read('src/i18n/translations/ads-landing/en.ts'),
+		]);
+
+		expect(page).toContain('Global Invoicing FAQ');
+		expect(page).toContain('How do I get paid by a foreign client?');
+		expect(page).toContain('What documents will I get?');
+		expect(page.match(/questionTranslateKey: 'faq\.items\.q\d\.question'/g)).toHaveLength(9);
+		expect(page).not.toContain('What is an Employer of Record (EOR)?');
+		expect(translations).toContain('"q9"');
 	});
 
 	it('keeps the approved landing-page section sequence', async () => {
@@ -193,6 +259,15 @@ describe('isolated advertising landing', () => {
 
 		expect(positions.every((position) => position >= 0)).toBe(true);
 		expect(positions).toEqual([...positions].sort((a, b) => a - b));
+	});
+
+	it('ends with a global invoicing account-creation CTA', async () => {
+		const page = await read('astro/pages/ads-landing.astro');
+
+		expect(page).toContain('Get Your First Payment With Global Invoicing');
+		expect(page).toContain("label: 'Create account'");
+		expect(page).toContain("kind: 'signup' as const");
+		expect(page).not.toContain('Hire Employees Globally Without Opening Local Entities');
 	});
 
 	it('follows the hero with a focused invoicing platform introduction', async () => {

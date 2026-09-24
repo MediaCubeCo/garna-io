@@ -18,10 +18,10 @@ const logInUrl = 'https://app.garna.io/en/auth/sign-in';
 		</a>
 
 		<div class="garna-header-desktop-nav ads-landing-header__nav" aria-label="Landing page navigation">
-			<a href="#landing-benefits" class="garna-header-nav-link" data-translate="landingHeader.benefits">Benefits</a>
+			<a href="#who-global-invoicing-is-for" class="garna-header-nav-link" data-translate="landingHeader.whoItsFor">Who it’s for</a>
 			<a href="#how-global-invoicing-works" class="garna-header-nav-link" data-translate="landingHeader.howItWorks">How it works</a>
-			<a href="#eor-cost-estimator" class="garna-header-nav-link" data-translate="landingHeader.pricing">Pricing</a>
-			<a href="#landing-faq" class="garna-header-nav-link" data-translate="landingHeader.faq">FAQ</a>
+			<a href="#payout-calculator" class="garna-header-nav-link" data-translate="landingHeader.calculator">Calculator</a>
+			<a href="#global-invoicing-faq" class="garna-header-nav-link" data-translate="landingHeader.faq">FAQ</a>
 		</div>
 
 		<div class="garna-header-actions ads-landing-header__actions">
@@ -60,5 +60,12 @@ const logInUrl = 'https://app.garna.io/en/auth/sign-in';
 
 	.ads-landing-header__actions {
 		margin-left: clamp(24px, 2.5vw, 40px);
+	}
+
+	:global(#who-global-invoicing-is-for),
+	:global(#how-global-invoicing-works),
+	:global(#payout-calculator),
+	:global(#global-invoicing-faq) {
+		scroll-margin-top: 6rem;
 	}
 </style>

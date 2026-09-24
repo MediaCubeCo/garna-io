@@ -52,7 +52,9 @@ const statusLabel: Record<Status, string> = {
 						{columns.map((column) => (
 							<th class:list={['comparison-table__header', column.primary && 'comparison-table__header--primary']} scope="col">
 								{column.primary ? (
-									<img src="/garna_logo.svg" alt="Garna" />
+									<div class="comparison-table__primary-header-surface">
+										<img src="/garna_logo.svg" alt="Garna" />
+									</div>
 								) : (
 									<span data-translate={`comparisonTable.columns.${column.key}`}>{column.label}</span>
 								)}
@@ -169,18 +171,30 @@ const statusLabel: Record<Status, string> = {
 
 	.comparison-table__header--primary {
 		z-index: 11 !important;
-		border-right: 1px solid rgba(255, 255, 255, 0.08);
-		border-left: 1px solid rgba(255, 255, 255, 0.08);
-		border-radius: 18px 18px 0 0;
-		background: #050505 !important;
+		border-right: 0;
+		border-left: 0;
+		border-radius: 0;
+		background: #101010 !important;
+		padding: 0 !important;
 		box-shadow: none !important;
 	}
 
-	.comparison-table__header--primary img {
+	.comparison-table__primary-header-surface {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-right: 1px solid rgba(255, 255, 255, 0.08);
+		border-left: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 18px 18px 0 0;
+		background: #050505;
+	}
+
+	.comparison-table__primary-header-surface img {
 		display: block;
 		width: auto;
 		height: 30px;
-		margin: 0 auto;
 	}
 
 	.comparison-table tbody th {

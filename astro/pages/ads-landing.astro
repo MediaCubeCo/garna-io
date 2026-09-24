@@ -28,16 +28,16 @@ const adsLandingShell = {
 };
 
 const adsLandingFinalCta = {
-	title: [{ text: 'Hire Employees Globally Without Opening Local Entities', translateKey: 'finalCta.title' }],
+	title: [{ text: 'Get Your First Payment With Global Invoicing', translateKey: 'finalCta.title' }],
 	description: {
-		text: "Garna becomes the legal employer for your international team, handling contracts, payroll, taxes, benefits, and local compliance while you manage each employee's day-to-day work",
+		text: 'Create your Garna account for free and pay only when you receive a client payment',
 		translateKey: 'finalCta.description',
 	},
 	button: {
-		label: 'Book a demo',
+		label: 'Create account',
 		translateKey: 'finalCta.button',
-		kind: 'demo' as const,
-		trackingCta: 'ads_landing_final_cta',
+		kind: 'signup' as const,
+		effect: 'rotating-flare' as const,
 	},
 	class: 'overflow-hidden lg:pt-40 lg:pb-40 text-center pt-32 pb-32 relative',
 	containerClass: 'z-10 max-w-4xl mr-auto ml-auto pr-6 pl-6 relative',
@@ -45,60 +45,66 @@ const adsLandingFinalCta = {
 	descriptionClass: 'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
 };
 
-const eorFaqItems = [
+const globalInvoicingFaqItems = [
 	{
-		question: 'What is an Employer of Record (EOR)?',
+		question: 'How do I get paid by a foreign client?',
 		answer:
-			"An Employer of Record lets you hire full-time employees in countries where you don't have a legal entity. Garna becomes the legal employer, handling payroll, contracts, taxes, and local compliance, while you manage an employee's day-to-day work.",
+			'Sign up for Garna, create an invoice in a supported currency, and send it to your business client. The client provides the required company details and pays using the available method. Once the payment is received and verified, the funds appear in your Garna balance for withdrawal.',
 		questionTranslateKey: 'faq.items.q1.question',
 		answerTranslateKey: 'faq.items.q1.answer',
 	},
 	{
-		question: 'Who manages the employee?',
+		question: 'Do I need to register a company?',
 		answer:
-			'You do. You set their responsibilities, working hours, goals, and career path. Garna handles contracts, statutory benefits, salary payments, and local compliance.',
+			'No. Garna provides the invoicing and payment workflow you need to work with business clients without opening your own company. Availability and the exact arrangement may depend on your country and the client payment route.',
 		questionTranslateKey: 'faq.items.q2.question',
 		answerTranslateKey: 'faq.items.q2.answer',
 	},
 	{
-		question: "What's the difference between hiring through an EOR and a contractor?",
+		question: 'Where can I withdraw money to?',
 		answer:
-			'An EOR employee is a full-time employee under local labor law, with statutory benefits, legal protections, and full compliance, ideal for long-term, full-time roles. A contractor is self-employed, without those protections, and treating someone working full-time hours under your direction as a contractor can lead to compliance risk and penalties.',
+			'Available withdrawal methods can include bank accounts, cards, e-wallets, and cryptocurrency. The exact options depend on your country and account, and are shown in your Garna dashboard. Where supported, you can split funds between different withdrawal destinations.',
 		questionTranslateKey: 'faq.items.q3.question',
 		answerTranslateKey: 'faq.items.q3.answer',
 	},
 	{
-		question: 'EOR vs setting up your own entity, which is better?',
+		question: 'What currency will I get paid in?',
 		answer:
-			"Your own entity means you own incorporation, tax filings, and local compliance. An EOR is faster to start and more flexible if you're still testing where to grow.",
+			'Your client pays the invoice in a supported currency such as US dollars or euros. Available withdrawal currencies depend on your country and selected payout method and are shown before you confirm the transaction.',
 		questionTranslateKey: 'faq.items.q4.question',
 		answerTranslateKey: 'faq.items.q4.answer',
 	},
 	{
-		question: 'How quickly can I start hiring through Garna?',
-		answer: 'In most countries, we can onboard your new employee in as little as X business day(s), once the offer is confirmed and onboarding documents are signed.',
+		question: 'Can I withdraw funds in cryptocurrency?',
+		answer: 'Cryptocurrency withdrawals may be available for supported accounts and jurisdictions. Check your Garna dashboard for the currencies, networks, limits, and compliance requirements available to you.',
 		questionTranslateKey: 'faq.items.q5.question',
 		answerTranslateKey: 'faq.items.q5.answer',
 	},
 	{
-		question: 'Can I hire international workers without an EOR?',
+		question: 'How fast will I get the money?',
 		answer:
-			"Yes, by setting up a local legal entity or hiring the person as a contractor. Both have trade-offs: an entity is slow and expensive, a contractor role carries compliance risk if it resembles full-time employment. Garna's EOR is the faster, fully compliant alternative.",
+			'Payment time depends on the client payment method, banking route, and any required verification. Many payments arrive quickly, while additional checks or intermediary banks can extend the processing time. You can track the status in your Garna account.',
 		questionTranslateKey: 'faq.items.q6.question',
 		answerTranslateKey: 'faq.items.q6.answer',
 	},
 	{
-		question: 'Is it legally compliant to hire through an EOR?',
-		answer: 'Yes, EOR is a legally recognized employment model in most countries.',
+		question: 'How do I know the client will pay?',
+		answer: 'An invoice records the amount and payment terms but does not force a client to pay. Before starting work, agree on clear terms and use any payment-protection option available for your account. Garna shows the payment status as soon as funds enter the payment flow.',
 		questionTranslateKey: 'faq.items.q7.question',
 		answerTranslateKey: 'faq.items.q7.answer',
 	},
 	{
-		question: 'How much does an Employer of Record cost?',
+		question: 'What fees does Garna charge?',
 		answer:
-			'Pricing starts at $200 but may vary depending on the country, salary level, and team size. There are no hidden fees or FX markups. Get a quote based on your team.',
+			'Fees depend on the client payment method, currency route, and withdrawal option. Garna shows the applicable rate, fee, and total before you confirm a transaction, so you can see the full cost in advance.',
 		questionTranslateKey: 'faq.items.q8.question',
 		answerTranslateKey: 'faq.items.q8.answer',
+	},
+	{
+		question: 'What documents will I get?',
+		answer: 'Your Garna account keeps the invoice and available payment records together. The exact set of documents depends on the payment flow and your country, and can be viewed or downloaded from the relevant transaction in your dashboard.',
+		questionTranslateKey: 'faq.items.q9.question',
+		answerTranslateKey: 'faq.items.q9.answer',
 	},
 ] satisfies FAQItem[];
 ---
@@ -116,9 +122,9 @@ const eorFaqItems = [
 	<EorCostEstimatorSection />
 	<WhyGarnaComparisonSection />
 	<FAQSection
-		id="landing-faq"
-		title={{ text: 'FAQ on Employer of Record', translateKey: 'faq.title' }}
-		items={eorFaqItems}
+		id="global-invoicing-faq"
+		title={{ text: 'Global Invoicing FAQ', translateKey: 'faq.title' }}
+		items={globalInvoicingFaqItems}
 		variant="eor"
 		class="py-16 lg:py-32"
 		containerClass="garna-container"
