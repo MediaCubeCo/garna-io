@@ -13,8 +13,6 @@ const problems = [
 const carouselSlides = [
 	{ ...problems[problems.length - 1], index: problems.length - 1 },
 	...problems.map((problem, index) => ({ ...problem, index })),
-	{ ...problems[0], index: 0 },
-	{ ...problems[1], index: 1 },
 ];
 ---
 
@@ -71,16 +69,22 @@ const carouselSlides = [
 		const siteHeader = document.querySelector('.garna-header');
 		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const compactLayout = window.matchMedia('(max-width: 1079.98px)');
+		const verticalLayout = window.matchMedia('(max-width: 699.98px)');
 		let activeIndex = 0;
 		let freeScroll = false;
 		let sizeDirty = true;
 		let measuredWidth = 0;
 		let frame = 0;
+		let dragPointerId = -1;
+		let dragStartX = 0;
+		let dragStartScrollLeft = 0;
+		let didDrag = false;
+		let suppressClick = false;
 
 		const getStickyTop = () => {
 			const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
 			const availableHeight = window.innerHeight - headerHeight;
-			return Math.max(headerHeight, headerHeight + ((availableHeight - carousel.getBoundingClientRect().height) / 2));
+			return headerHeight + ((availableHeight - carousel.getBoundingClientRect().height) / 2);
 		};
 		const syncCardHeight = () => {
 			if (!compactLayout.matches) {
@@ -123,13 +127,17 @@ const carouselSlides = [
 			if (!(target instanceof HTMLElement)) return;
 			viewport.scrollTo({ left: target.offsetLeft, behavior });
 		};
+		const syncViewportScrollable = () => {
+			if (!(viewport instanceof HTMLElement)) return;
+			viewport.toggleAttribute('data-scrollable', freeScroll && viewport.scrollWidth > viewport.clientWidth + 1);
+		};
 		const syncLayoutMode = () => {
 			const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
 			const copy = carousel.querySelector('.problems-carousel__copy');
 			const rowGap = Number.parseFloat(getComputedStyle(carousel).rowGap) || 0;
 			const copyHeight = copy instanceof HTMLElement ? copy.offsetHeight : 0;
 			const viewportHeight = viewport instanceof HTMLElement ? viewport.offsetHeight : 0;
-			const requiredHeight = compactLayout.matches
+			const requiredHeight = verticalLayout.matches
 				? copyHeight + viewportHeight + rowGap
 				: Math.max(copyHeight, viewportHeight);
 			const shouldFreeScroll = compactLayout.matches && requiredHeight > window.innerHeight - headerHeight;
@@ -137,7 +145,19 @@ const carouselSlides = [
 			freeScroll = shouldFreeScroll;
 			carousel.dataset.shortViewport = String(freeScroll);
 			if (scrollArea instanceof HTMLElement) scrollArea.dataset.shortViewport = String(freeScroll);
-			if (freeScroll) requestAnimationFrame(() => scrollNativeToIndex(activeIndex, 'auto'));
+			if (freeScroll) {
+				slides.forEach((slide) => {
+					if (slide instanceof HTMLElement) slide.style.marginRight = '0px';
+				});
+				requestAnimationFrame(() => {
+					syncViewportScrollable();
+					scrollNativeToIndex(activeIndex, 'auto');
+				});
+			} else if (viewport instanceof HTMLElement) {
+				viewport.removeAttribute('data-scrollable');
+				viewport.removeAttribute('data-dragging');
+				dragPointerId = -1;
+			}
 		};
 		const updateNativeContent = () => {
 			if (!(viewport instanceof HTMLElement)) return;
@@ -170,7 +190,7 @@ const carouselSlides = [
 			frame = 0;
 			if (sizeDirty) { syncCardHeight(); sizeDirty = false; }
 			syncLayoutMode();
-			if (freeScroll) { updateNativeContent(); return; }
+			if (freeScroll) { syncViewportScrollable(); updateNativeContent(); return; }
 			syncStickyTop();
 			if (!(scrollArea instanceof HTMLElement)) return;
 			if (reduceMotion.matches) { updateContent(activeIndex); return; }
@@ -191,6 +211,56 @@ const carouselSlides = [
 			const scrollable = Math.max(1, rect.height - getStickyTop() - carousel.offsetHeight);
 			window.scrollTo({ top: window.scrollY + rect.top - getStickyTop() + scrollable * (nextIndex / problemCount), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
 		};
+		const stopDragging = (event) => {
+			if (!(viewport instanceof HTMLElement) || event.pointerId !== dragPointerId) return;
+			if (didDrag) {
+				suppressClick = true;
+				setTimeout(() => { suppressClick = false; }, 0);
+			}
+			if (viewport.hasPointerCapture(event.pointerId)) viewport.releasePointerCapture(event.pointerId);
+			dragPointerId = -1;
+			didDrag = false;
+			viewport.removeAttribute('data-dragging');
+		};
+		viewport?.addEventListener('pointerdown', (event) => {
+			if (
+				!(viewport instanceof HTMLElement) ||
+				event.pointerType !== 'mouse' ||
+				event.button !== 0 ||
+				!freeScroll ||
+				!viewport.hasAttribute('data-scrollable') ||
+				!(event.target instanceof Element && event.target.closest('[data-problems-rail]'))
+			) return;
+			dragPointerId = event.pointerId;
+			dragStartX = event.clientX;
+			dragStartScrollLeft = viewport.scrollLeft;
+			didDrag = false;
+			viewport.setPointerCapture(event.pointerId);
+			viewport.setAttribute('data-dragging', 'true');
+		});
+		viewport?.addEventListener('pointermove', (event) => {
+			if (!(viewport instanceof HTMLElement) || event.pointerId !== dragPointerId) return;
+			const distance = event.clientX - dragStartX;
+			if (Math.abs(distance) > 3) didDrag = true;
+			if (!didDrag) return;
+			event.preventDefault();
+			viewport.scrollLeft = dragStartScrollLeft - distance;
+		});
+		viewport?.addEventListener('pointerup', stopDragging);
+		viewport?.addEventListener('pointercancel', stopDragging);
+		viewport?.addEventListener('lostpointercapture', () => {
+			dragPointerId = -1;
+			didDrag = false;
+			if (viewport instanceof HTMLElement) viewport.removeAttribute('data-dragging');
+		});
+		viewport?.addEventListener('click', (event) => {
+			if (!suppressClick) return;
+			event.preventDefault();
+			event.stopPropagation();
+		}, true);
+		viewport?.addEventListener('dragstart', (event) => {
+			if (freeScroll && event.target instanceof Element && event.target.closest('[data-problems-rail]')) event.preventDefault();
+		});
 		dots.forEach((dot) => dot.addEventListener('click', () => scrollToIndex(Number(dot.dataset.index || 0))));
 		slides.forEach((slide) => slide.addEventListener('click', () => scrollToIndex(Number(slide.dataset.index || 0))));
 		window.addEventListener('scroll', schedule, { passive: true });
@@ -245,20 +315,25 @@ const carouselSlides = [
 	.problems-carousel__controls button { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 999px; background: rgb(255 255 255 / .24); padding: 0; cursor: pointer; transition: width 220ms ease, background 220ms ease; }
 	.problems-carousel__controls button.is-active { width: 3.4rem; background: rgb(203 243 0 / .18); box-shadow: inset 0 0 0 1px rgb(203 243 0 / .18); }
 	.problems-carousel__controls button.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #cbf300; box-shadow: 0 0 14px rgb(203 243 0 / .52); content: ''; transform: scaleX(var(--problem-dot-progress, 1)); transform-origin: left center; }
-	@media (max-width: 1079.98px) {
-		.problems-carousel { grid-template-columns: 1fr; gap: 2.25rem; margin-right: 0; overflow: visible; }
+	@media (min-width: 700px) and (max-width: 1079.98px) {
+		.problems-carousel { grid-template-columns: minmax(15rem, .9fr) minmax(0, 1.1fr); gap: clamp(1.5rem, 3vw, 2.5rem); }
 		.problems-carousel__copy { width: 100%; padding-left: 0; }
-		.problems-carousel__viewport { width: auto; margin-right: calc(50% - 50vw); }
-		.problem-carousel-card { --problem-card-content-gap: 2rem; flex-basis: clamp(15rem, 36%, 20rem); }
+		.problem-carousel-card { --problem-card-content-gap: 2rem; flex-basis: min(72%, 20rem); }
 		.problem-carousel-card__header,
 		.problem-carousel-card__conversation { flex-shrink: 0; }
 		.problem-carousel-card__conversation { margin-top: auto; }
-		.problems-carousel__controls { width: clamp(15rem, 36%, 20rem); }
+		.problems-carousel__controls { width: min(72%, 20rem); }
 	}
-	@media (max-width: 767px) {
+	@media (max-width: 699px) {
+		.problems-carousel { grid-template-columns: 1fr; gap: 2.25rem; margin-right: 0; overflow: visible; }
+		.problems-carousel__copy { width: 100%; padding-left: 0; }
+		.problems-carousel__viewport { width: auto; margin-right: calc(50% - 50vw); }
 		.problems-carousel__copy h2 { font-size: 2.25rem; }
 		.problems-carousel__copy p { margin: 1.25rem 0 2rem; font-size: 1.125rem; }
 		.problem-carousel-card { --problem-card-content-gap: 1.5rem; flex-basis: clamp(16rem, 72vw, 20.5rem); margin-right: 0; border-radius: 1.25rem; }
+		.problem-carousel-card__header,
+		.problem-carousel-card__conversation { flex-shrink: 0; }
+		.problem-carousel-card__conversation { margin-top: auto; }
 		.problems-carousel__controls { width: clamp(16rem, 72vw, 20.5rem); margin-top: 1rem; }
 		.problem-chat > span:not(.problem-avatar, .problem-garna-mark) { font-size: .875rem; }
 	}
@@ -311,10 +386,10 @@ const carouselSlides = [
 	.problems-carousel[data-short-viewport='true'] { position: relative; top: auto; min-height: 0; overflow: visible; }
 	.problems-carousel[data-short-viewport='true'] .problems-carousel__viewport { overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: inline mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 	.problems-carousel[data-short-viewport='true'] .problems-carousel__viewport::-webkit-scrollbar { display: none; }
+	.problems-carousel[data-short-viewport='true'] .problems-carousel__viewport[data-scrollable] .problems-carousel__rail { cursor: grab; }
+	.problems-carousel[data-short-viewport='true'] .problems-carousel__viewport[data-scrollable][data-dragging='true'] .problems-carousel__rail { cursor: grabbing; user-select: none; }
 	.problems-carousel[data-short-viewport='true'] .problems-carousel__rail { width: max-content; align-items: stretch; transform: none !important; transition: none; will-change: auto; }
 	.problems-carousel[data-short-viewport='true'] .problem-carousel-card { height: var(--problem-card-height, 28rem); min-height: 0; align-self: stretch; scroll-snap-align: start; scroll-snap-stop: always; }
-	.problems-carousel[data-short-viewport='true'] .problem-carousel-card[data-sequence='0'],
-	.problems-carousel[data-short-viewport='true'] .problem-carousel-card[data-sequence='6'],
-	.problems-carousel[data-short-viewport='true'] .problem-carousel-card[data-sequence='7'] { display: none; }
+	.problems-carousel[data-short-viewport='true'] .problem-carousel-card[data-sequence='0'] { display: none; }
 	@media (prefers-reduced-motion: reduce) { .problems-carousel__rail, .problem-carousel-card { transition: none; } }
 </style>
