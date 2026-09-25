@@ -6,6 +6,8 @@ import { resolveRoute } from './utils/routes';
 import { handleBlogAdmin } from './blog/admin';
 import { handleBlogMedia, handleBlogPublic, handleLegacyBlogRedirect } from './blog/public';
 import { handleTaxCalculator } from './routes/tax-calculator';
+import { handlePrivacyContextRequest } from './utils/privacy';
+import { injectPrivacyIntoResponse } from './utils/privacy-ui';
 
 const CANONICAL_ORIGIN = 'https://garna.io';
 const DEFAULT_LANGUAGE = 'en';
@@ -15,6 +17,8 @@ export default {
 		try {
 			const url = new URL(request.url);
 			const country = (request as any).cf?.country || 'US';
+			const privacyContextResponse = handlePrivacyContextRequest(request);
+			if (privacyContextResponse) return privacyContextResponse;
 
 			const taxCalculatorResponse = await handleTaxCalculator(request);
 			if (taxCalculatorResponse) return taxCalculatorResponse;
@@ -59,17 +63,17 @@ export default {
 
 			const blogPublicResponse = await handleBlogPublic(request, env);
 			if (blogPublicResponse) {
-				return blogPublicResponse;
+				return injectPrivacyIntoResponse(blogPublicResponse, request);
 			}
 
 			// 5. Handle static page routes
 			const dynamicResponse = await handleDynamic(request, routeInfo, env);
 			if (dynamicResponse) {
-				return dynamicResponse;
+				return injectPrivacyIntoResponse(dynamicResponse, request);
 			}
 
 			// If we reach here, show 404
-			return await show404Page(request, url.pathname, country, env);
+			return injectPrivacyIntoResponse(await show404Page(request, url.pathname, country, env), request);
 		} catch (error: any) {
 			const errorMessage = error?.message || String(error) || 'Unknown error';
 			const errorStack = error?.stack || 'No stack trace';

@@ -3,6 +3,12 @@ const UTM_PREFIX = 'utm_';
 /** Cookie max-age for UTM persistence: 1 year (seconds). */
 const UTM_COOKIE_MAX_AGE = 365 * 24 * 60 * 60;
 
+declare global {
+	interface Window {
+		garnaPrivacy?: { hasConsent(category: string): boolean };
+	}
+}
+
 /**
  * Parses URL query string and returns all utm_* params (keys lowercased).
  */
@@ -49,6 +55,12 @@ function setUtmLocalStorage(utm: Record<string, string>): void {
  * Call this as soon as the user lands on the site (e.g. when the widget script loads).
  */
 export function persistUtmFromUrl(): void {
+	if (typeof window === 'undefined') return;
+	if (!window.garnaPrivacy) {
+		window.addEventListener('garna:privacy-updated', persistUtmFromUrl, { once: true });
+		return;
+	}
+	if (!window.garnaPrivacy.hasConsent('marketing')) return;
 	const utm = getUtmFromUrl();
 	if (Object.keys(utm).length === 0) return;
 	setUtmCookies(utm);
