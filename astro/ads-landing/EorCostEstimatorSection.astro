@@ -362,6 +362,30 @@ import Button from '../components/ui/Button.astro';
 		font: 400 0.75rem/1.5 Manrope, sans-serif;
 	}
 
+	@media (min-width: 901px) and (max-width: 1120px) {
+		.eor-estimator-shell {
+			grid-template-columns: minmax(0, 1fr) minmax(24rem, .88fr);
+			gap: clamp(2rem, 3.5vw, 2.5rem);
+		}
+
+		.eor-estimator-card { max-width: 32rem; }
+		.eor-estimator-card__header { gap: 0.75rem; }
+
+		.eor-estimator-card h3 {
+			min-width: 0;
+			font-size: 1.125rem;
+			white-space: nowrap;
+		}
+
+		.eor-estimator-segments--currency { width: 8.5rem; }
+
+		.eor-estimator-segments span {
+			padding-inline: 0.55rem;
+			font-size: 0.88rem;
+			white-space: nowrap;
+		}
+	}
+
 	@media (max-width: 560px) {
 		.eor-estimator-card { gap: 1rem; }
 		.eor-estimator-card__header { align-items: flex-start; }

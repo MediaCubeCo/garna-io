@@ -1,0 +1,430 @@
+---
+const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a4ba-550c234f9524';
+---
+
+<aside class="instant-meet" data-instant-meet data-webhook={webhookUrl} aria-label="Talk to a human">
+	<div class="instant-meet__backdrop" data-instant-meet-backdrop hidden></div>
+
+	<section class="instant-meet__surface" data-instant-meet-surface data-instant-meet-trigger role="button" tabindex="0" aria-haspopup="dialog" aria-label="Talk to a human">
+		<div class="instant-meet__launcher" aria-hidden="true">
+			<span class="instant-meet__signal" aria-hidden="true"><span></span></span>
+			<span class="instant-meet__copy">
+				<strong data-instant-meet-label>Talk to a human</strong>
+				<small data-instant-meet-status>Jump on a video call right now</small>
+			</span>
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M15 10l4.55-2.28A1 1 0 0 1 21 8.62v6.76a1 1 0 0 1-1.45.9L15 14" />
+				<rect x="3" y="6" width="12" height="12" rx="3" />
+			</svg>
+		</div>
+
+		<div class="instant-meet__dialog" data-instant-meet-dialog hidden>
+			<button class="instant-meet__close" type="button" data-instant-meet-close aria-label="Close">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+			</button>
+			<div class="instant-meet__eyebrow">
+				<span class="instant-meet__signal" aria-hidden="true"><span></span></span>
+				<span data-instant-meet-eyebrow>Instant meet</span>
+			</div>
+			<h2 id="instant-meet-title" data-instant-meet-title>Our team is offline right now</h2>
+			<p data-instant-meet-message>Sorry, our specialists are offline right now. Leave your details and choose a convenient time — or come back when a real person is online.</p>
+			<p class="instant-meet__local-time" data-instant-meet-local-time></p>
+			<div class="instant-meet__actions">
+				<a class="instant-meet__book" href="/en/form" data-instant-meet-book>
+					<span data-instant-meet-book-label>Leave details · Book a time</span>
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
+				</a>
+				<button class="instant-meet__tomorrow" type="button" data-instant-meet-dismiss>I'll come back</button>
+			</div>
+			<p class="instant-meet__note" data-instant-meet-note>A product specialist — not a bot or a calendar — will answer during live hours.</p>
+		</div>
+	</section>
+</aside>
+
+<script>
+	import { animate, spring } from 'motion';
+
+	(() => {
+		const root = document.querySelector('[data-instant-meet]');
+		if (!(root instanceof HTMLElement) || root.dataset.initialized === 'true') return;
+		root.dataset.initialized = 'true';
+
+		const trigger = root.querySelector('[data-instant-meet-trigger]');
+		const backdrop = root.querySelector('[data-instant-meet-backdrop]');
+		const surface = root.querySelector('[data-instant-meet-surface]');
+		const launcher = root.querySelector('.instant-meet__launcher');
+		const dialog = root.querySelector('[data-instant-meet-dialog]');
+		const label = root.querySelector('[data-instant-meet-label]');
+		const status = root.querySelector('[data-instant-meet-status]');
+		const title = root.querySelector('[data-instant-meet-title]');
+		const message = root.querySelector('[data-instant-meet-message]');
+		const eyebrow = root.querySelector('[data-instant-meet-eyebrow]');
+		const localTime = root.querySelector('[data-instant-meet-local-time]');
+		const book = root.querySelector('[data-instant-meet-book]');
+		const bookLabel = root.querySelector('[data-instant-meet-book-label]');
+		const dismiss = root.querySelector('[data-instant-meet-dismiss]');
+		const note = root.querySelector('[data-instant-meet-note]');
+		const close = root.querySelector('[data-instant-meet-close]');
+		let available = false;
+		let pending = false;
+		let previousFocus = null;
+		let dialogOpen = false;
+		let dialogTransitioning = false;
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const compactSurfaceStyle = surface instanceof HTMLElement ? (() => {
+			const rect = surface.getBoundingClientRect();
+			const style = getComputedStyle(surface);
+			return {
+				width: `${rect.width}px`, height: `${rect.height}px`,
+				borderRadius: style.borderRadius,
+				backgroundColor: style.backgroundColor,
+				borderColor: style.borderColor,
+				boxShadow: style.boxShadow,
+			};
+		})() : null;
+
+		const translations = {
+			en: {
+				label: 'Talk to a human', subtitle: 'Jump on a video call right now',
+				eyebrow: 'Instant meet', title: 'Our team is offline right now',
+				message: 'Sorry, our specialists are offline right now. Leave your details and choose a convenient time — or come back when a real person is online.',
+				book: 'Leave details · Book a time', dismiss: "I'll come back", note: 'A product specialist — not a bot or a calendar — will answer during live hours.',
+				connecting: 'Finding an expert…', errorTitle: 'We could not start the instant call', errorMessage: 'Please leave your details in the current booking form. Our team will get back to you.',
+				next: (value) => `A human will be available again in ${value}.`,
+			},
+			es: {
+				label: 'Habla con una persona', subtitle: 'Únete a una videollamada ahora mismo',
+				eyebrow: 'Reunión instantánea', title: 'Nuestro equipo no está disponible ahora',
+				message: 'Lo sentimos, nuestros especialistas no están disponibles ahora. Déjanos tus datos y elige una hora, o vuelve cuando haya una persona conectada.',
+				book: 'Dejar datos · Reservar hora', dismiss: 'Volveré después', note: 'Durante el horario en línea responde un especialista real, no un bot ni un calendario.',
+				connecting: 'Buscando un experto…', errorTitle: 'No pudimos iniciar la llamada', errorMessage: 'Déjanos tus datos en el formulario actual. Nuestro equipo se pondrá en contacto contigo.',
+				next: (value) => `Una persona volverá a estar disponible dentro de ${value}.`,
+			},
+			pt: {
+				label: 'Fale com uma pessoa', subtitle: 'Entre numa videochamada agora mesmo',
+				eyebrow: 'Reunião instantânea', title: 'A nossa equipa está offline agora',
+				message: 'Desculpe, os nossos especialistas estão offline agora. Deixe os seus dados e escolha um horário, ou volte quando uma pessoa estiver online.',
+				book: 'Deixar dados · Agendar horário', dismiss: 'Volto depois', note: 'Durante o horário online, responde um especialista real — não um bot nem um calendário.',
+				connecting: 'A encontrar um especialista…', errorTitle: 'Não foi possível iniciar a chamada', errorMessage: 'Deixe os seus dados no formulário atual. A nossa equipa entrará em contacto.',
+				next: (value) => `Uma pessoa estará disponível novamente dentro de ${value}.`,
+			},
+			ru: {
+				label: 'Поговорить с человеком', subtitle: 'Подключиться к видеозвонку прямо сейчас',
+				eyebrow: 'Мгновенная встреча', title: 'Сейчас наша команда не на связи',
+				message: 'Извините, сейчас наши специалисты не на связи. Оставьте контакты и выберите удобное время — или вернитесь, когда вам ответит живой человек.',
+				book: 'Оставить контакты · Выбрать время', dismiss: 'Вернусь позже', note: 'В рабочее время отвечает специалист по продукту — не бот и не календарь.',
+				connecting: 'Ищем свободного специалиста…', errorTitle: 'Не удалось начать мгновенный звонок', errorMessage: 'Оставьте контакты в текущей форме бронирования, и команда свяжется с вами.',
+				next: (value) => `Сотрудники снова будут на связи через ${value}.`,
+			},
+		};
+
+		const getLanguage = () => {
+			const candidate = window.location.pathname.split('/').filter(Boolean)[0]?.toLowerCase();
+			return candidate && candidate in translations ? candidate : 'en';
+		};
+
+		const getMinskParts = (date = new Date()) => Object.fromEntries(
+			new Intl.DateTimeFormat('en-CA', {
+				timeZone: 'Europe/Minsk', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', hourCycle: 'h23',
+			}).formatToParts(date).filter((part) => part.type !== 'literal').map((part) => [part.type, Number(part.value)]),
+		);
+
+		const getNextOpening = (now = new Date()) => {
+			const parts = getMinskParts(now);
+			const dayOffset = parts.hour >= 19 ? 1 : 0;
+			return new Date(Date.UTC(parts.year, parts.month - 1, parts.day + dayOffset, 7, 0, 0));
+		};
+
+		const getTimeUntilNextOpening = (language) => {
+			const now = new Date();
+			const totalMinutes = Math.max(1, Math.ceil((getNextOpening(now).getTime() - now.getTime()) / 60_000));
+			const hours = Math.floor(totalMinutes / 60);
+			const minutes = totalMinutes % 60;
+			const units = [];
+			if (hours) units.push(new Intl.NumberFormat(language, { style: 'unit', unit: 'hour', unitDisplay: 'long' }).format(hours));
+			if (minutes) units.push(new Intl.NumberFormat(language, { style: 'unit', unit: 'minute', unitDisplay: 'long' }).format(minutes));
+			return new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(units);
+		};
+
+		const updateState = () => {
+			const language = getLanguage();
+			const copy = translations[language];
+			const parts = getMinskParts();
+			available = parts.hour >= 10 && parts.hour < 19;
+			root.classList.toggle('is-live', available);
+			root.classList.toggle('is-offline', !available);
+			if (label) label.textContent = copy.label;
+			if (status) status.textContent = copy.subtitle;
+			if (eyebrow) eyebrow.textContent = copy.eyebrow;
+			if (title) title.textContent = copy.title;
+			if (message) message.textContent = copy.message;
+			if (bookLabel) bookLabel.textContent = copy.book;
+			if (dismiss) dismiss.textContent = copy.dismiss;
+			if (note) note.textContent = copy.note;
+			if (book instanceof HTMLAnchorElement) book.href = `/${language}/form`;
+			if (localTime) {
+				localTime.textContent = available ? '' : copy.next(getTimeUntilNextOpening(language));
+			}
+		};
+
+		const track = (event, extra = {}) => {
+			if (!window.garnaPrivacy?.hasConsent?.('analytics')) return;
+			window.dataLayer = Array.isArray(window.dataLayer) ? window.dataLayer : [];
+			window.dataLayer.push({
+				event,
+				instant_meet_availability: available ? 'online' : 'offline',
+				instant_meet_page: window.location.pathname,
+				instant_meet_locale: getLanguage(),
+				...extra,
+			});
+		};
+
+		const transitionDialog = async (open) => {
+			if (
+				dialogTransitioning ||
+				!(trigger instanceof HTMLElement) ||
+				!(backdrop instanceof HTMLElement) ||
+				!(surface instanceof HTMLElement) ||
+				!(launcher instanceof HTMLElement) ||
+				!(dialog instanceof HTMLElement) ||
+				!(root instanceof HTMLElement) ||
+				!compactSurfaceStyle
+			) return;
+
+			dialogTransitioning = true;
+			const compactStyle = { ...compactSurfaceStyle };
+			const viewportInset = window.innerWidth <= 640 ? 24 : 48;
+			const openWidth = Math.min(510, window.innerWidth - viewportInset);
+			surface.style.width = `${openWidth}px`;
+			dialog.hidden = false;
+			dialog.style.visibility = 'hidden';
+			const availableHeight = window.innerHeight - viewportInset;
+			const naturalHeight = dialog.scrollHeight;
+			const surfaceStyle = getComputedStyle(surface);
+			const surfaceBorderHeight = parseFloat(surfaceStyle.borderTopWidth) + parseFloat(surfaceStyle.borderBottomWidth);
+			const naturalSurfaceHeight = naturalHeight + surfaceBorderHeight + 1;
+			const dialogScrollable = naturalSurfaceHeight > availableHeight;
+			const openHeight = dialogScrollable ? availableHeight : naturalSurfaceHeight;
+			root.classList.toggle('is-dialog-scrollable', dialogScrollable);
+			root.style.setProperty('--instant-meet-open-height', `${openHeight}px`);
+			surface.style.width = compactStyle.width;
+			dialog.style.visibility = '';
+			const expandedStyle = {
+				width: `${openWidth}px`, height: `${openHeight}px`,
+				borderRadius: window.innerWidth <= 640 ? '24px' : '28px',
+				backgroundColor: '#101010',
+				borderColor: 'rgba(255, 255, 255, 0.1)',
+				boxShadow: 'rgba(0, 0, 0, 0.6) 0px 30px 100px 0px',
+			};
+			const clearAnimatedStyles = () => {
+				for (const element of [backdrop, dialog, launcher, surface]) element.removeAttribute('style');
+			};
+			const updateSurfaceSemantics = (expanded) => {
+				trigger.setAttribute('role', expanded ? 'dialog' : 'button');
+				trigger.toggleAttribute('aria-modal', expanded);
+				if (expanded) trigger.setAttribute('aria-labelledby', 'instant-meet-title');
+				else trigger.removeAttribute('aria-labelledby');
+			};
+
+			try {
+				if (reducedMotion.matches) {
+					clearAnimatedStyles();
+					root.classList.toggle('is-dialog-open', open);
+					launcher.hidden = open;
+					dialog.hidden = !open;
+					backdrop.hidden = !open;
+					document.body.classList.toggle('instant-meet-open', open);
+					updateSurfaceSemantics(open);
+					if (!open) {
+						root.style.removeProperty('--instant-meet-open-height');
+						root.classList.remove('is-dialog-scrollable');
+					}
+				} else if (open) {
+					Object.assign(surface.style, compactStyle);
+					surface.style.pointerEvents = 'none';
+					backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+					backdrop.style.backdropFilter = 'blur(0px)';
+					backdrop.style.webkitBackdropFilter = 'blur(0px)';
+					dialog.style.opacity = '0';
+					backdrop.hidden = false;
+					root.classList.add('is-dialog-open');
+					document.body.classList.add('instant-meet-open');
+
+					const animations = [
+						animate(surface, expandedStyle, { type: spring, bounce: 0.1, visualDuration: 0.28 }),
+						animate(backdrop, {
+							backgroundColor: 'rgba(0, 0, 0, 0.6)',
+							backdropFilter: 'blur(10px)',
+						}, { duration: 0.25, ease: [0.22, 1, 0.36, 1] }),
+						animate(launcher, { opacity: [1, 0] }, { duration: 0.09, ease: 'easeOut' }),
+						animate(dialog, { opacity: [0, 1] }, { duration: 0.14, delay: 0.06, ease: 'easeOut' }),
+					];
+					await Promise.all(animations.map((animation) => animation.finished));
+					launcher.hidden = true;
+					clearAnimatedStyles();
+					updateSurfaceSemantics(true);
+				} else {
+					Object.assign(surface.style, expandedStyle);
+					surface.style.pointerEvents = 'none';
+					root.classList.remove('is-dialog-open');
+					launcher.hidden = false;
+					launcher.style.opacity = '0';
+					dialog.style.opacity = '1';
+
+					const animations = [
+						animate(surface, compactStyle, { type: spring, bounce: 0.06, visualDuration: 0.24 }),
+						animate(backdrop, {
+							backgroundColor: 'rgba(0, 0, 0, 0)',
+							backdropFilter: 'blur(0px)',
+						}, { duration: 0.19, ease: [0.4, 0, 1, 1] }),
+						animate(dialog, { opacity: [1, 0] }, { duration: 0.08, ease: 'easeIn' }),
+						animate(launcher, { opacity: [0, 1] }, { duration: 0.09, delay: 0.12, ease: 'easeOut' }),
+					];
+					await Promise.all(animations.map((animation) => animation.finished));
+					backdrop.hidden = true;
+					dialog.hidden = true;
+					document.body.classList.remove('instant-meet-open');
+					root.style.removeProperty('--instant-meet-open-height');
+					root.classList.remove('is-dialog-scrollable');
+					clearAnimatedStyles();
+					updateSurfaceSemantics(false);
+				}
+			} finally {
+				dialogTransitioning = false;
+			}
+
+			if (open) trigger.focus();
+			else if (previousFocus instanceof HTMLElement) previousFocus.focus();
+		};
+
+		const openDialog = (mode = 'offline') => {
+			if (dialogOpen || dialogTransitioning || !(backdrop instanceof HTMLElement) || !(dialog instanceof HTMLElement)) return;
+			const copy = translations[getLanguage()];
+			if (mode === 'error') {
+				if (title) title.textContent = copy.errorTitle;
+				if (message) message.textContent = copy.errorMessage;
+			}
+			previousFocus = document.activeElement;
+			dialogOpen = true;
+			void transitionDialog(true);
+		};
+
+		const closeDialog = () => {
+			if (!dialogOpen || dialogTransitioning || !(backdrop instanceof HTMLElement)) return;
+			dialogOpen = false;
+			void transitionDialog(false);
+		};
+
+		const startMeet = async () => {
+			if (pending || !(trigger instanceof HTMLElement)) return;
+			updateState();
+			track('instant_meet_click');
+			if (!available) {
+				openDialog();
+				return;
+			}
+
+			pending = true;
+			trigger.setAttribute('aria-disabled', 'true');
+			root.classList.add('is-pending');
+			if (label) label.textContent = translations[getLanguage()].connecting;
+			try {
+				const response = await fetch(root.dataset.webhook || '', { method: 'POST', headers: { Accept: 'application/json' } });
+				if (!response.ok) throw new Error(`Instant meet request failed with status ${response.status}`);
+				let meetingUrl = response.headers.get('meeting_url');
+				if (!meetingUrl) {
+					const payload = await response.json().catch(() => null);
+					if (payload && typeof payload === 'object' && 'meeting_url' in payload && typeof payload.meeting_url === 'string') {
+						meetingUrl = payload.meeting_url.trim();
+					}
+				}
+				if (!meetingUrl) throw new Error('Meeting URL was not returned');
+				const destination = new URL(meetingUrl);
+				if (destination.protocol !== 'https:') throw new Error('Meeting URL is not secure');
+				track('instant_meet_redirect');
+				window.location.assign(destination.toString());
+			} catch (error) {
+				track('instant_meet_error', { instant_meet_error: error instanceof Error ? error.message : 'unknown' });
+				pending = false;
+				trigger.removeAttribute('aria-disabled');
+				root.classList.remove('is-pending');
+				updateState();
+				openDialog('error');
+			}
+		};
+
+		trigger?.addEventListener('click', (event) => {
+			if (!dialogOpen && !(event.target instanceof Element && event.target.closest('[data-instant-meet-dialog]'))) void startMeet();
+		});
+		trigger?.addEventListener('keydown', (event) => {
+			if (!dialogOpen && (event.key === 'Enter' || event.key === ' ')) {
+				event.preventDefault();
+				void startMeet();
+			}
+		});
+		close?.addEventListener('click', closeDialog);
+		dismiss?.addEventListener('click', closeDialog);
+		backdrop?.addEventListener('click', (event) => { if (event.target === backdrop) closeDialog(); });
+		book?.addEventListener('click', (event) => {
+			track('instant_meet_booking_click');
+			const widget = window.GarnaWidget;
+			if (widget?.open) {
+				event.preventDefault();
+				closeDialog();
+				widget.open({ trackingCta: 'instant_meet_after_hours' });
+			}
+		});
+		document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && backdrop && !backdrop.hidden) closeDialog(); });
+		window.addEventListener('garna:page-content-updated', updateState);
+		updateState();
+		window.setInterval(updateState, 60_000);
+	})();
+</script>
+
+<style>
+	:global(body.instant-meet-open) { overflow: hidden; }
+	.instant-meet { position: fixed; right: 0; bottom: clamp(16px, 2.2vw, 32px); left: 0; z-index: 70; display: flex; justify-content: center; font-family: Manrope, sans-serif; pointer-events: none; }
+	.instant-meet__surface { position: relative; z-index: 90; width: min(250px, calc(100vw - 24px)); height: 54px; overflow: hidden; border: 1px solid rgba(203,243,0,.62); border-radius: 18px; background-color: #cbf300; color: #101010; box-shadow: 0 18px 50px rgba(0,0,0,.32), 0 0 0 1px rgba(203,243,0,.12), 0 0 34px rgba(203,243,0,.12); pointer-events: auto; isolation: isolate; transition: transform .22s ease, box-shadow .22s ease; }
+	.instant-meet__surface::after { content: ''; position: absolute; right: -60px; bottom: -80px; z-index: -1; width: 220px; height: 220px; border: 1px solid rgba(203,243,0,.12); border-radius: 50%; opacity: 0; box-shadow: 0 0 0 34px rgba(203,243,0,.025), 0 0 0 68px rgba(203,243,0,.018); pointer-events: none; transition: opacity .1s ease; }
+	.is-dialog-open .instant-meet__surface { width: min(510px, calc(100vw - 48px)); height: var(--instant-meet-open-height); border-color: rgba(255,255,255,.1); border-radius: 28px; background-color: #101010; color: #fff; box-shadow: 0 30px 100px rgba(0,0,0,.6); }
+	.is-dialog-open .instant-meet__surface::after { opacity: 1; }
+	.instant-meet:not(.is-dialog-open) .instant-meet__surface:hover { transform: translateY(-2px); box-shadow: 0 22px 56px rgba(0,0,0,.4), 0 0 40px rgba(203,243,0,.2); }
+	.instant-meet__surface:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+	.instant-meet__surface[aria-disabled='true'] { cursor: wait; opacity: .82; }
+	.instant-meet__launcher { position: absolute; inset: 0; display: flex; width: 100%; height: 100%; align-items: center; gap: 12px; padding: 10px 12px 10px 14px; color: inherit; cursor: pointer; pointer-events: none; text-align: left; }
+	.instant-meet__launcher[hidden] { display: none; }
+	.instant-meet__launcher > svg { width: 28px; height: 28px; margin-left: auto; flex: 0 0 auto; }
+	.instant-meet__copy { display: flex; flex: 1; flex-direction: column; gap: 1px; min-width: 0; }
+	.instant-meet__copy strong { font-size: 15px; font-weight: 800; line-height: 1.2; letter-spacing: -.015em; }
+	.instant-meet__copy small { font-size: 10px; font-weight: 600; line-height: 1.3; opacity: .7; white-space: nowrap; }
+	.instant-meet__signal { position: relative; display: inline-flex; width: 10px; height: 10px; flex: 0 0 auto; border: 2px solid rgba(16,16,16,.2); border-radius: 50%; background: #101010; }
+	.instant-meet__signal span { position: absolute; inset: -5px; border: 1px solid currentColor; border-radius: inherit; opacity: .35; animation: instant-meet-pulse 1.8s ease-out infinite; }
+	.instant-meet__backdrop { position: fixed; inset: 0; z-index: 80; background: rgba(0,0,0,.6); pointer-events: auto; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+	.instant-meet__backdrop[hidden] { display: none; }
+	.instant-meet__dialog { position: absolute; inset: 0; box-sizing: border-box; overflow: hidden; padding: clamp(28px, 5vw, 48px); background: radial-gradient(circle at 92% 6%, rgba(203,243,0,.12), transparent 34%); color: #fff; }
+	.is-dialog-scrollable .instant-meet__dialog { overflow-y: auto; }
+	.instant-meet__dialog[hidden] { display: none; }
+	.instant-meet__dialog:focus { outline: none; }
+	.instant-meet__close { position: absolute; top: 18px; right: 18px; z-index: 2; display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid rgba(255,255,255,.1); border-radius: 12px; background: rgba(255,255,255,.04); color: #fff; cursor: pointer; }
+	.instant-meet__close svg { width: 18px; height: 18px; }
+	.instant-meet__eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; color: #cbf300; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; }
+	.instant-meet__eyebrow .instant-meet__signal { border-color: rgba(203,243,0,.2); background: #cbf300; }
+	.instant-meet__dialog h2 { max-width: 420px; margin: 0 0 16px; font-size: clamp(30px, 6vw, 48px); font-weight: 500; line-height: 1.03; letter-spacing: -.045em; }
+	.instant-meet__dialog > p { position: relative; z-index: 1; max-width: 430px; margin: 0; color: #a1a1aa; font-size: 15px; line-height: 1.65; }
+	.instant-meet__local-time { margin-top: 16px !important; color: #fff !important; font-size: 12px !important; font-weight: 700; }
+	.instant-meet__actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 28px; }
+	.instant-meet__book { display: inline-flex; min-height: 48px; align-items: center; gap: 12px; padding: 12px 18px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: #30312f; color: #fff; font-size: 13px; font-weight: 700; text-decoration: none; transition: background .2s ease, border-color .2s ease; }
+	.instant-meet__book:hover { border-color: rgba(255,255,255,.25); background: #3a3b39; }
+	.instant-meet__book svg { width: 18px; height: 18px; }
+	.instant-meet__tomorrow { min-height: 48px; padding: 12px 14px; border: 0; background: transparent; color: #a1a1aa; font-size: 13px; cursor: pointer; }
+	.instant-meet__note { margin-top: 22px !important; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08); font-size: 11px !important; }
+	@keyframes instant-meet-pulse { from { transform: scale(.65); opacity: .5; } to { transform: scale(1.65); opacity: 0; } }
+	@media (max-width: 640px) {
+		.instant-meet { bottom: 12px; padding: 0 12px; }
+		.instant-meet__surface { border-radius: 16px; }
+		.is-dialog-open .instant-meet__surface { width: min(510px, calc(100vw - 24px)); border-radius: 24px; }
+		.instant-meet__dialog { padding: 30px 24px 26px; }
+		.instant-meet__dialog h2 { padding-right: 28px; }
+	}
+	@media (prefers-reduced-motion: reduce) { .instant-meet__signal span { animation: none; } .instant-meet__surface { transition: none; } }
+</style>

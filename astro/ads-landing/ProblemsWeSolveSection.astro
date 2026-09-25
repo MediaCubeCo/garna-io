@@ -63,12 +63,18 @@ const carouselSlides = [
 		if (!(carousel instanceof HTMLElement) || carousel.dataset.ready === 'true') continue;
 		carousel.dataset.ready = 'true';
 		const rail = carousel.querySelector('[data-problems-rail]');
+		const viewport = carousel.querySelector('.problems-carousel__viewport');
 		const slides = [...carousel.querySelectorAll('[data-problem-slide]')];
+		const realSlides = slides.slice(1, problemCount + 1);
 		const dots = [...carousel.querySelectorAll('[data-problem-dot]')];
 		const scrollArea = carousel.parentElement;
 		const siteHeader = document.querySelector('.garna-header');
 		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const compactLayout = window.matchMedia('(max-width: 1079.98px)');
 		let activeIndex = 0;
+		let freeScroll = false;
+		let sizeDirty = true;
+		let measuredWidth = 0;
 		let frame = 0;
 
 		const getStickyTop = () => {
@@ -76,7 +82,77 @@ const carouselSlides = [
 			const availableHeight = window.innerHeight - headerHeight;
 			return Math.max(headerHeight, headerHeight + ((availableHeight - carousel.getBoundingClientRect().height) / 2));
 		};
+		const syncCardHeight = () => {
+			if (!compactLayout.matches) {
+				carousel.style.removeProperty('--problem-card-height');
+				slides.forEach((slide) => {
+					if (slide instanceof HTMLElement) slide.style.setProperty('--problem-card-unit', `${slide.offsetWidth / 100}px`);
+				});
+				return;
+			}
+			if (viewport instanceof HTMLElement) viewport.style.removeProperty('zoom');
+			let requiredHeight = 0;
+			realSlides.forEach((slide) => {
+				if (!(slide instanceof HTMLElement)) return;
+				const header = slide.querySelector('.problem-carousel-card__header');
+				const conversation = slide.querySelector('.problem-carousel-card__conversation');
+				if (!(header instanceof HTMLElement) || !(conversation instanceof HTMLElement)) return;
+				const style = getComputedStyle(slide);
+				const naturalHeight = header.scrollHeight
+					+ conversation.scrollHeight
+					+ (Number.parseFloat(style.rowGap) || 0)
+					+ (Number.parseFloat(style.paddingTop) || 0)
+					+ (Number.parseFloat(style.paddingBottom) || 0)
+					+ (Number.parseFloat(style.borderTopWidth) || 0)
+					+ (Number.parseFloat(style.borderBottomWidth) || 0);
+				requiredHeight = Math.max(requiredHeight, naturalHeight);
+			});
+			if (requiredHeight) carousel.style.setProperty('--problem-card-height', `${Math.ceil(requiredHeight + 1)}px`);
+		};
 		const syncStickyTop = () => carousel.style.setProperty('--problems-carousel-sticky-top', `${getStickyTop()}px`);
+		const updateDots = (progress = 1) => {
+			dots.forEach((dot, index) => {
+				dot.classList.toggle('is-active', index === activeIndex);
+				if (index === activeIndex) dot.setAttribute('aria-current', 'true'); else dot.removeAttribute('aria-current');
+				if (dot instanceof HTMLElement) dot.style.setProperty('--problem-dot-progress', String(index === activeIndex ? progress : 0));
+			});
+		};
+		const scrollNativeToIndex = (index, behavior = 'smooth') => {
+			if (!(viewport instanceof HTMLElement)) return;
+			const target = realSlides[index];
+			if (!(target instanceof HTMLElement)) return;
+			viewport.scrollTo({ left: target.offsetLeft, behavior });
+		};
+		const syncLayoutMode = () => {
+			const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
+			const copy = carousel.querySelector('.problems-carousel__copy');
+			const rowGap = Number.parseFloat(getComputedStyle(carousel).rowGap) || 0;
+			const copyHeight = copy instanceof HTMLElement ? copy.offsetHeight : 0;
+			const viewportHeight = viewport instanceof HTMLElement ? viewport.offsetHeight : 0;
+			const requiredHeight = compactLayout.matches
+				? copyHeight + viewportHeight + rowGap
+				: Math.max(copyHeight, viewportHeight);
+			const shouldFreeScroll = compactLayout.matches && requiredHeight > window.innerHeight - headerHeight;
+			if (shouldFreeScroll === freeScroll) return;
+			freeScroll = shouldFreeScroll;
+			carousel.dataset.shortViewport = String(freeScroll);
+			if (scrollArea instanceof HTMLElement) scrollArea.dataset.shortViewport = String(freeScroll);
+			if (freeScroll) requestAnimationFrame(() => scrollNativeToIndex(activeIndex, 'auto'));
+		};
+		const updateNativeContent = () => {
+			if (!(viewport instanceof HTMLElement)) return;
+			const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
+			let nearestIndex = 0;
+			let nearestDistance = Number.POSITIVE_INFINITY;
+			realSlides.forEach((slide, index) => {
+				if (!(slide instanceof HTMLElement)) return;
+				const distance = Math.abs(slide.offsetLeft + slide.offsetWidth / 2 - viewportCenter);
+				if (distance < nearestDistance) { nearestDistance = distance; nearestIndex = index; }
+			});
+			activeIndex = nearestIndex;
+			realSlides.forEach((slide, index) => slide.classList.toggle('is-active', index === activeIndex));
+			updateDots();
+		};
 		const updateContent = (nextIndex, progress = 1) => {
 			activeIndex = (nextIndex + problemCount) % problemCount;
 			const activeSlide = slides[activeIndex + 1];
@@ -84,20 +160,17 @@ const carouselSlides = [
 				if (!(slide instanceof HTMLElement)) return;
 				const isActive = Number(slide.dataset.sequence) === activeIndex + 1;
 				slide.classList.toggle('is-active', isActive);
-				const scaleCompensation = window.matchMedia('(max-width: 1079px)').matches && !isActive
-					? slide.offsetWidth * .06
-					: 0;
+				const scaleCompensation = !isActive ? slide.offsetWidth * .06 : 0;
 				slide.style.marginRight = `${-scaleCompensation}px`;
 			});
 			if (rail instanceof HTMLElement && activeSlide instanceof HTMLElement) rail.style.transform = `translateX(${-activeSlide.offsetLeft + 1}px)`;
-			dots.forEach((dot, index) => {
-				dot.classList.toggle('is-active', index === activeIndex);
-				if (index === activeIndex) dot.setAttribute('aria-current', 'true'); else dot.removeAttribute('aria-current');
-				if (dot instanceof HTMLElement) dot.style.setProperty('--problem-dot-progress', String(index === activeIndex ? progress : 0));
-			});
+			updateDots(progress);
 		};
 		const render = () => {
 			frame = 0;
+			if (sizeDirty) { syncCardHeight(); sizeDirty = false; }
+			syncLayoutMode();
+			if (freeScroll) { updateNativeContent(); return; }
 			syncStickyTop();
 			if (!(scrollArea instanceof HTMLElement)) return;
 			if (reduceMotion.matches) { updateContent(activeIndex); return; }
@@ -111,8 +184,9 @@ const carouselSlides = [
 		};
 		const schedule = () => { if (!frame) frame = requestAnimationFrame(render); };
 		const scrollToIndex = (index) => {
-			if (!(scrollArea instanceof HTMLElement)) return;
 			const nextIndex = Math.min(problemCount - 1, Math.max(0, index));
+			if (freeScroll) { scrollNativeToIndex(nextIndex, reduceMotion.matches ? 'auto' : 'smooth'); return; }
+			if (!(scrollArea instanceof HTMLElement)) return;
 			const rect = scrollArea.getBoundingClientRect();
 			const scrollable = Math.max(1, rect.height - getStickyTop() - carousel.offsetHeight);
 			window.scrollTo({ top: window.scrollY + rect.top - getStickyTop() + scrollable * (nextIndex / problemCount), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
@@ -120,9 +194,20 @@ const carouselSlides = [
 		dots.forEach((dot) => dot.addEventListener('click', () => scrollToIndex(Number(dot.dataset.index || 0))));
 		slides.forEach((slide) => slide.addEventListener('click', () => scrollToIndex(Number(slide.dataset.index || 0))));
 		window.addEventListener('scroll', schedule, { passive: true });
-		window.addEventListener('resize', schedule, { passive: true });
+		window.addEventListener('resize', () => { sizeDirty = true; schedule(); }, { passive: true });
+		viewport?.addEventListener('scroll', schedule, { passive: true });
 		reduceMotion.addEventListener?.('change', schedule);
+		new MutationObserver(() => { sizeDirty = true; schedule(); }).observe(carousel, { subtree: true, childList: true, characterData: true });
+		new ResizeObserver(() => {
+			if (carousel.clientWidth === measuredWidth) return;
+			measuredWidth = carousel.clientWidth;
+			sizeDirty = true;
+			schedule();
+		}).observe(carousel);
+		window.addEventListener('load', () => { sizeDirty = true; schedule(); }, { once: true });
+		document.fonts?.ready.then(() => { sizeDirty = true; schedule(); });
 		render();
+		requestAnimationFrame(() => requestAnimationFrame(() => { sizeDirty = true; schedule(); }));
 	}
 </script>
 
@@ -134,7 +219,7 @@ const carouselSlides = [
 	.problems-carousel__copy p { max-width: 31rem; margin: 1.5rem 0 2.5rem; color: var(--garna-subtitle-color); font-size: 1.25rem; font-weight: var(--garna-subtitle-weight); line-height: 1.625; }
 	.problems-carousel__viewport { width: 100%; overflow: hidden; padding-block: .65rem; }
 	.problems-carousel__rail { display: flex; gap: 1.15rem; width: 100%; transition: transform 520ms cubic-bezier(.22, 1, .36, 1); will-change: transform; }
-	.problem-carousel-card { --garna-card-glow-x: 50%; --garna-card-glow-y: 50%; --garna-card-glow-radius: 32rem; position: relative; isolation: isolate; display: flex; flex: 0 0 43%; height: 28rem; flex-direction: column; justify-content: space-between; overflow: hidden; border-radius: 1.75rem; padding: clamp(1.35rem, 2.4vw, 2rem); color: #fff; cursor: pointer; text-align: left; transform: scale(.94); transform-origin: center left; transition: transform 520ms cubic-bezier(.22, 1, .36, 1), border-color 220ms ease, box-shadow 220ms ease, opacity 220ms ease; }
+	.problem-carousel-card { --garna-card-glow-x: 50%; --garna-card-glow-y: 50%; --garna-card-glow-radius: 32rem; --problem-card-content-gap: 2.5rem; position: relative; isolation: isolate; display: flex; flex: 0 0 43%; height: var(--problem-card-height, 28rem); flex-direction: column; justify-content: space-between; gap: var(--problem-card-content-gap); overflow: hidden; border-radius: 1.75rem; padding: clamp(1.35rem, 2.4vw, 2rem); color: #fff; cursor: pointer; text-align: left; transform: scale(.94); transform-origin: center left; transition: transform 520ms cubic-bezier(.22, 1,.36, 1), border-color 220ms ease, box-shadow 220ms ease, opacity 220ms ease; }
 	.problem-carousel-card::before { position: absolute; inset: 0; z-index: 0; border-radius: inherit; background: radial-gradient(circle var(--garna-card-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y), rgb(255 255 255 / .12) 0%, rgb(255 255 255 / .075) 18%, rgb(255 255 255 / .035) 40%, transparent 70%); content: ''; opacity: 0; pointer-events: none; transition: opacity 300ms ease; }
 	.problem-carousel-card > * { position: relative; z-index: 1; }
 	.problem-carousel-card:is(:hover, :focus-visible, [data-pointer-active='true']) { border-color: rgb(255 255 255 / .15); box-shadow: 0 18px 45px rgb(0 0 0 / .28); }
@@ -160,118 +245,76 @@ const carouselSlides = [
 	.problems-carousel__controls button { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 999px; background: rgb(255 255 255 / .24); padding: 0; cursor: pointer; transition: width 220ms ease, background 220ms ease; }
 	.problems-carousel__controls button.is-active { width: 3.4rem; background: rgb(203 243 0 / .18); box-shadow: inset 0 0 0 1px rgb(203 243 0 / .18); }
 	.problems-carousel__controls button.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #cbf300; box-shadow: 0 0 14px rgb(203 243 0 / .52); content: ''; transform: scaleX(var(--problem-dot-progress, 1)); transform-origin: left center; }
-	@media (min-width: 1080px) {
-		.problem-carousel-card { transform: none; }
-	}
-	@media (max-width: 1079px) {
+	@media (max-width: 1079.98px) {
 		.problems-carousel { grid-template-columns: 1fr; gap: 2.25rem; margin-right: 0; overflow: visible; }
 		.problems-carousel__copy { width: 100%; padding-left: 0; }
 		.problems-carousel__viewport { width: auto; margin-right: calc(50% - 50vw); }
-		.problem-carousel-card { flex-basis: clamp(15rem, min(36%, 35vh), 20rem); height: auto; aspect-ratio: .72; }
-		.problems-carousel__controls { width: clamp(15rem, min(36%, 35vh), 20rem); }
+		.problem-carousel-card { --problem-card-content-gap: 2rem; flex-basis: clamp(15rem, 36%, 20rem); }
+		.problem-carousel-card__header,
+		.problem-carousel-card__conversation { flex-shrink: 0; }
+		.problem-carousel-card__conversation { margin-top: auto; }
+		.problems-carousel__controls { width: clamp(15rem, 36%, 20rem); }
 	}
 	@media (max-width: 767px) {
 		.problems-carousel__copy h2 { font-size: 2.25rem; }
 		.problems-carousel__copy p { margin: 1.25rem 0 2rem; font-size: 1.125rem; }
-		.problem-carousel-card { flex-basis: clamp(16rem, min(72vw, 34vh), 20.5rem); margin-right: 0; border-radius: 1.25rem; aspect-ratio: .78; }
-		:global(html[lang='es']) .problem-carousel-card { aspect-ratio: .74; }
-		:global(html[lang='pt']) .problem-carousel-card { aspect-ratio: .72; }
-		:global(html[lang='ru']) .problem-carousel-card { aspect-ratio: .66; }
-		.problems-carousel__controls { width: clamp(16rem, min(72vw, 34vh), 20.5rem); margin-top: 1rem; }
+		.problem-carousel-card { --problem-card-content-gap: 1.5rem; flex-basis: clamp(16rem, 72vw, 20.5rem); margin-right: 0; border-radius: 1.25rem; }
+		.problems-carousel__controls { width: clamp(16rem, 72vw, 20.5rem); margin-top: 1rem; }
 		.problem-chat > span:not(.problem-avatar, .problem-garna-mark) { font-size: .875rem; }
 	}
 	@media (min-width: 768px) and (max-width: 900px) {
-		:global(html[lang='es']) .problem-carousel-card { aspect-ratio: .74; padding: 1.125rem; }
+		:global(html[lang='es']) .problem-carousel-card { padding: 1.125rem; }
 		:global(html[lang='es']) .problem-carousel-card__header { gap: .5rem; }
 		:global(html[lang='es']) .problem-carousel-card__conversation { gap: .875rem; }
 		:global(html[lang='es']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) { padding: .625rem .875rem; }
-		:global(html[lang='pt']) .problem-carousel-card { aspect-ratio: .62; }
-		:global(html[lang='ru']) .problem-carousel-card { aspect-ratio: .82; padding: 1.125rem; }
+		:global(html[lang='ru']) .problem-carousel-card { padding: 1.125rem; }
 		:global(html[lang='ru']) .problem-carousel-card__header { gap: .65rem; }
 		:global(html[lang='ru']) .problem-carousel-card__conversation { gap: 1.05rem; }
 		:global(html[lang='ru']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) { padding-block: .78rem; }
-	}
-	@media (min-width: 768px) and (max-width: 900px) and (max-height: 750px) {
-		:global(html[lang='es']) .problem-carousel-card {
-			container-type: inline-size;
-			flex-basis: clamp(11rem, min(36%, calc((100vh - 26.25rem) * .8)), 19rem);
-			padding: clamp(.75rem, 2.4vh, 1.125rem);
-		}
-		:global(html[lang='es']) .problems-carousel__controls { width: clamp(11rem, min(36%, calc((100vh - 26.25rem) * .8)), 19rem); }
-		:global(html[lang='es']) .problem-carousel-card__header { gap: 3.5cqi; }
-		:global(html[lang='es']) .problem-carousel-card__header small { font-size: 5.1cqi; }
-		:global(html[lang='es']) .problem-carousel-card__header strong { font-size: 8.6cqi; }
-		:global(html[lang='es']) .problem-carousel-card__conversation { gap: 6.17cqi; }
-		:global(html[lang='es']) .problem-chat { gap: 4.93cqi; }
-		:global(html[lang='es']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) {
-			border-radius: 7cqi;
-			padding: 4.4cqi 6.17cqi;
-			font-size: 5.64cqi;
-			line-height: 1.48;
-		}
-		:global(html[lang='es']) .problem-avatar,
-		:global(html[lang='es']) .problem-garna-mark { width: 17.6cqi; height: 17.6cqi; flex-basis: 17.6cqi; }
-		:global(html[lang='es']) .problem-garna-mark img { width: 5.8cqi; height: 9.5cqi; }
-	}
-	@media (min-width: 768px) and (max-width: 900px) and (max-height: 780px) {
-		:global(html[lang='ru']) .problem-carousel-card {
-			container-type: inline-size;
-			flex-basis: clamp(11rem, min(36%, calc((100vh - 26.25rem) * .72)), 19rem);
-			padding: clamp(.8rem, 2.31vh, 1.125rem);
-		}
-		:global(html[lang='ru']) .problems-carousel__controls { width: clamp(11rem, min(36%, calc((100vh - 26.25rem) * .72)), 19rem); }
-		:global(html[lang='ru']) .problem-carousel-card__header { gap: 4.7cqi; }
-		:global(html[lang='ru']) .problem-carousel-card__header small { font-size: 5.2cqi; }
-		:global(html[lang='ru']) .problem-carousel-card__header strong { font-size: 8.9cqi; }
-		:global(html[lang='ru']) .problem-carousel-card__conversation { gap: 7.5cqi; }
-		:global(html[lang='ru']) .problem-chat { gap: 5.1cqi; }
-		:global(html[lang='ru']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) {
-			border-radius: 7.3cqi;
-			padding: 5.6cqi 7.17cqi;
-			font-size: 5.74cqi;
-			line-height: 1.48;
-		}
-		:global(html[lang='ru']) .problem-avatar,
-		:global(html[lang='ru']) .problem-garna-mark { width: 17.9cqi; height: 17.9cqi; flex-basis: 17.9cqi; }
-		:global(html[lang='ru']) .problem-garna-mark img { width: 5.8cqi; height: 9.5cqi; }
 	}
 	@media (min-width: 421px) and (max-width: 767px) {
-		:global(html[lang='ru']) .problem-carousel-card { aspect-ratio: .82; padding: 1.125rem; }
+		:global(html[lang='ru']) .problem-carousel-card { padding: 1.125rem; }
 		:global(html[lang='ru']) .problem-carousel-card__header { gap: .65rem; }
 		:global(html[lang='ru']) .problem-carousel-card__conversation { gap: 1.05rem; }
 		:global(html[lang='ru']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) { padding-block: .78rem; }
 	}
-	@media (min-width: 421px) and (max-width: 767px) and (max-height: 780px) {
-		:global(html[lang='ru']) .problem-carousel-card {
-			container-type: inline-size;
-			flex-basis: clamp(11rem, min(72vw, calc((100vh - 26rem) * .82)), 20.5rem);
-			aspect-ratio: .78;
-			padding: clamp(.7rem, 2.3vh, 1.125rem);
+	@media (min-width: 1080px) {
+		.problem-carousel-card {
+			--problem-desktop-ratio: .7599;
+			flex-basis: min(43%, 35svh);
+			height: auto;
+			aspect-ratio: var(--problem-desktop-ratio);
+			border-radius: calc(var(--problem-card-unit, 3.07px) * 9.12);
+			gap: calc(var(--problem-card-unit, 3.07px) * 13.03);
+			padding: calc(var(--problem-card-unit, 3.07px) * 10.42);
 		}
-		:global(html[lang='ru']) .problems-carousel__controls { width: clamp(11rem, min(72vw, calc((100vh - 26rem) * .82)), 20.5rem); }
-		:global(html[lang='ru']) .problem-carousel-card__header { gap: 4cqi; }
-		:global(html[lang='ru']) .problem-carousel-card__header small { font-size: 4.5cqi; }
-		:global(html[lang='ru']) .problem-carousel-card__header strong { font-size: 7.8cqi; }
-		:global(html[lang='ru']) .problem-carousel-card__conversation { gap: 6.5cqi; }
-		:global(html[lang='ru']) .problem-chat { gap: 4.5cqi; }
-		:global(html[lang='ru']) .problem-chat > span:not(.problem-avatar, .problem-garna-mark) {
-			border-radius: 6cqi;
-			padding: 4.7cqi 6cqi;
-			font-size: 5.3cqi;
-			line-height: 1.48;
-		}
-		:global(html[lang='ru']) .problem-avatar,
-		:global(html[lang='ru']) .problem-garna-mark { width: 15cqi; height: 15cqi; flex-basis: 15cqi; }
-		:global(html[lang='ru']) .problem-garna-mark img { width: 4.8cqi; height: 8cqi; }
+		:global(html[lang='es']) .problem-carousel-card { --problem-desktop-ratio: .709; }
+		:global(html[lang='pt']) .problem-carousel-card { --problem-desktop-ratio: .6792; }
+		:global(html[lang='ru']) .problem-carousel-card { --problem-desktop-ratio: .709; }
+		.problem-carousel-card__header { gap: calc(var(--problem-card-unit, 3.07px) * 3.91); }
+		.problem-carousel-card__header small { font-size: calc(var(--problem-card-unit, 3.07px) * 3.75); }
+		.problem-carousel-card__header strong { max-width: calc(var(--problem-card-unit, 3.07px) * 78.18); font-size: calc(var(--problem-card-unit, 3.07px) * 8.08); }
+		.problem-carousel-card[data-index='4'] .problem-carousel-card__header strong { max-width: calc(var(--problem-card-unit, 3.07px) * 93.81); }
+		.problem-carousel-card__conversation { gap: calc(var(--problem-card-unit, 3.07px) * 7.04); }
+		.problem-chat { gap: calc(var(--problem-card-unit, 3.07px) * 3.65); }
+		.problem-chat > span:not(.problem-avatar, .problem-garna-mark) { border-radius: calc(var(--problem-card-unit, 3.07px) * 5.21); padding: calc(var(--problem-card-unit, 3.07px) * 4.69) calc(var(--problem-card-unit, 3.07px) * 5.21); font-size: calc(var(--problem-card-unit, 3.07px) * 4.17); }
+		.problem-avatar,
+		.problem-garna-mark { width: calc(var(--problem-card-unit, 3.07px) * 13.03); height: calc(var(--problem-card-unit, 3.07px) * 13.03); flex-basis: calc(var(--problem-card-unit, 3.07px) * 13.03); }
+		.problem-garna-mark img { width: calc(var(--problem-card-unit, 3.07px) * 4.17); height: calc(var(--problem-card-unit, 3.07px) * 6.78); }
+		.problems-carousel__controls { width: min(43%, 35svh); }
 	}
-	@media (min-width: 901px) and (max-width: 1079px) {
-		.problem-carousel-card { aspect-ratio: .84; }
+	@media (min-width: 1080px) and (max-height: 640px) {
+		.problems-carousel { min-height: 0; }
 	}
-	@media (max-width: 420px) {
-		.problem-carousel-card { aspect-ratio: .72; }
-		:global(html[lang='es']) .problem-carousel-card { aspect-ratio: .68; }
-		:global(html[lang='pt']) .problem-carousel-card { aspect-ratio: .65; }
-		:global(html[lang='ru']) .problem-carousel-card { aspect-ratio: .68; }
-	}
+	:global(.problems-carousel-content[data-short-viewport='true']) { min-height: auto; }
+	.problems-carousel[data-measuring-cards='true'] .problem-carousel-card { height: auto !important; min-height: 0; overflow: visible; aspect-ratio: auto; }
+	.problems-carousel[data-short-viewport='true'] { position: relative; top: auto; min-height: 0; overflow: visible; }
+	.problems-carousel[data-short-viewport='true'] .problems-carousel__viewport { overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: inline mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+	.problems-carousel[data-short-viewport='true'] .problems-carousel__viewport::-webkit-scrollbar { display: none; }
+	.problems-carousel[data-short-viewport='true'] .problems-carousel__rail { width: max-content; align-items: stretch; transform: none !important; transition: none; will-change: auto; }
+	.problems-carousel[data-short-viewport='true'] .problem-carousel-card { height: var(--problem-card-height, 28rem); min-height: 0; align-self: stretch; scroll-snap-align: start; scroll-snap-stop: always; }
+	.problems-carousel[data-short-viewport='true'] .problem-carousel-card[data-sequence='0'],
+	.problems-carousel[data-short-viewport='true'] .problem-carousel-card[data-sequence='6'],
+	.problems-carousel[data-short-viewport='true'] .problem-carousel-card[data-sequence='7'] { display: none; }
 	@media (prefers-reduced-motion: reduce) { .problems-carousel__rail, .problem-carousel-card { transition: none; } }
 </style>

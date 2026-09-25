@@ -106,10 +106,65 @@ const statusLabel: Record<Status, string> = {
 		if (!(stage instanceof HTMLElement)) continue;
 		scroller.dataset.scaleReady = 'true';
 
+		const syncScrollable = () => {
+			scroller.toggleAttribute(
+				'data-scrollable',
+				comparisonMobileQuery.matches && scroller.scrollWidth > scroller.clientWidth + 1,
+			);
+		};
+
 		const syncScale = () => {
 			const scale = comparisonMobileQuery.matches ? 1 : Math.min(1, scroller.clientWidth / 1080);
 			stage.style.setProperty('zoom', String(scale));
+			requestAnimationFrame(syncScrollable);
 		};
+
+		let dragPointerId = -1;
+		let dragStartX = 0;
+		let dragStartScrollLeft = 0;
+		let didDrag = false;
+		const stopDragging = (event: PointerEvent) => {
+			if (event.pointerId !== dragPointerId) return;
+			if (scroller.hasPointerCapture(event.pointerId)) scroller.releasePointerCapture(event.pointerId);
+			dragPointerId = -1;
+			scroller.removeAttribute('data-dragging');
+		};
+
+		scroller.addEventListener('pointerdown', (event) => {
+			if (
+				event.pointerType !== 'mouse' ||
+				event.button !== 0 ||
+				!comparisonMobileQuery.matches ||
+				scroller.scrollWidth <= scroller.clientWidth ||
+				(event.target instanceof Element && event.target.closest('a, button, input, select, textarea'))
+			) return;
+
+			dragPointerId = event.pointerId;
+			dragStartX = event.clientX;
+			dragStartScrollLeft = scroller.scrollLeft;
+			didDrag = false;
+			scroller.setPointerCapture(event.pointerId);
+			scroller.setAttribute('data-dragging', 'true');
+		});
+
+		scroller.addEventListener('pointermove', (event) => {
+			if (event.pointerId !== dragPointerId) return;
+			const distance = event.clientX - dragStartX;
+			if (Math.abs(distance) > 3) didDrag = true;
+			if (!didDrag) return;
+			event.preventDefault();
+			scroller.scrollLeft = dragStartScrollLeft - distance;
+		});
+
+		scroller.addEventListener('pointerup', stopDragging);
+		scroller.addEventListener('pointercancel', stopDragging);
+		scroller.addEventListener('lostpointercapture', () => {
+			dragPointerId = -1;
+			scroller.removeAttribute('data-dragging');
+		});
+		scroller.addEventListener('dragstart', (event) => {
+			if (comparisonMobileQuery.matches && !(event.target instanceof Element && event.target.closest('a, button'))) event.preventDefault();
+		});
 
 		new ResizeObserver(syncScale).observe(scroller);
 		comparisonMobileQuery.addEventListener('change', syncScale);
@@ -294,11 +349,11 @@ const statusLabel: Record<Status, string> = {
 	}
 
 	@media (max-width: 1120px) {
-		.comparison-table__button-label--full {
+		:global(html[lang='ru']) .comparison-table__button-label--full {
 			display: none;
 		}
 
-		.comparison-table__button-label--compact {
+		:global(html[lang='ru']) .comparison-table__button-label--compact {
 			display: inline;
 		}
 
@@ -311,6 +366,15 @@ const statusLabel: Record<Status, string> = {
 			scrollbar-width: none;
 		}
 
+		.comparison-table__scroller[data-scrollable] {
+			cursor: grab;
+		}
+
+		.comparison-table__scroller[data-scrollable][data-dragging='true'] {
+			cursor: grabbing;
+			user-select: none;
+		}
+
 		.comparison-table__scroller::-webkit-scrollbar {
 			display: none;
 		}
@@ -320,12 +384,13 @@ const statusLabel: Record<Status, string> = {
 		}
 
 		.comparison-table__stage {
-			width: 900px;
+			width: max(900px, 100%);
 		}
 
 		.comparison-table__footer {
+			width: 100%;
 			min-width: 900px;
-			grid-template-columns: 150px repeat(5, 150px);
+			grid-template-columns: repeat(6, minmax(150px, 1fr));
 		}
 
 		.comparison-table th,
@@ -349,7 +414,7 @@ const statusLabel: Record<Status, string> = {
 
 		.comparison-table tbody .comparison-table__primary-cell {
 			position: sticky;
-			left: 150px;
+			left: max(150px, calc(100% / 6));
 			z-index: 8;
 			box-shadow: 14px 0 22px -20px rgb(0 0 0 / 0.9);
 		}
@@ -363,7 +428,7 @@ const statusLabel: Record<Status, string> = {
 
 		.comparison-table thead .comparison-table__header--primary {
 			position: sticky !important;
-			left: 150px;
+			left: max(150px, calc(100% / 6));
 			z-index: 11 !important;
 			box-shadow: 14px 0 22px -20px rgb(0 0 0 / 0.9) !important;
 		}
@@ -384,7 +449,7 @@ const statusLabel: Record<Status, string> = {
 
 		.comparison-table__footer-primary {
 			position: sticky;
-			left: 150px;
+			left: max(150px, calc(100% / 6));
 			z-index: 8;
 			box-shadow: 14px 0 22px -20px rgb(0 0 0 / 0.9);
 		}
