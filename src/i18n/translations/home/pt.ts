@@ -118,7 +118,7 @@
 				description: 'Execute payroll em mais de 150 países com moedas locais e cripto',
 			},
 			payoutMethods: {
-				title: 'Métodos de pagamento da equipa',
+				title: 'Múltiplos métodos de pagamento',
 				description: 'Envie pagamentos em massa ou transferências individuais por banco, cartão, carteira ou cripto',
 			},
 			fees: {
@@ -324,7 +324,7 @@
 			q6: {
 				question: 'Por que escolher a Garna em vez de outros provedores?',
 				answer:
-					'1. Serviço tudo em um: contrate colaboradores via EOR, trabalhe com contratados de qualquer tipo (pessoas singulares, trabalhadores independentes ou entidades legais) e opere o seu business banking diário¹ a partir de uma única plataforma.\n\n2. Preços transparentes sem taxas ocultas.\n\n3. Pagamentos verdadeiramente globais: pague para mais de 150 países em mais de 80 moedas locais usando transferências bancárias, cartões, PayPal, e-wallets locais ou cripto.\n\n4. Business banking incluído: IBANs multimoeda em nome da sua empresa e transferências para mais de 150 destinos, fornecidos por uma entidade licenciada separada.\n\n5. Infraestrutura de pagamentos fiável: uma das maiores redes de pagamento do setor, com mais de 20 parceiros bancários e sistemas de pagamento.\n\n6. Cartões virtuais: emita um cartão na app, adicione-o ao Apple Pay ou Google Pay e pague diretamente do seu saldo Garna².\n\n7. Suporte humano com tempo médio de resposta de 67 segundos.\n\n¹ Serviços de business banking são fornecidos por uma entidade/provedor de pagamentos licenciado separado.\n² Emissão de cartões e pagamentos com cartão são fornecidos por um provedor de pagamentos terceirizado licenciado e estão sujeitos a KYC, elegibilidade e termos aplicáveis.',
+					'1. Serviço tudo em um: contrate colaboradores via EOR, trabalhe com contratados de qualquer tipo (pessoas singulares, trabalhadores independentes ou entidades legais) e opere o seu business banking diário¹ a partir de uma única plataforma.\n\n2. Preços transparentes sem taxas ocultas.\n\n3. Pagamentos verdadeiramente globais: pague para mais de 150 países em mais de 80 moedas locais usando transferências bancárias, cartões, PayPal, e-wallets locais ou cripto.\n\n4. Business banking incluído: IBANs multimoeda em nome da sua empresa e transferências para mais de 150 destinos, fornecidos por uma entidade licenciada separada.\n\n5. Infraestrutura de pagamentos fiável: uma das maiores redes de pagamento do setor, com mais de 20 parceiros bancários e sistemas de pagamento.\n\n6. Cartões virtuais: emita um cartão na app, adicione-o ao Apple Pay ou Google Pay e pague diretamente do seu saldo Garna².\n\n7. Suporte humano ágil sempre que precisar de ajuda.\n\n¹ Serviços de business banking são fornecidos por uma entidade/provedor de pagamentos licenciado separado.\n² Emissão de cartões e pagamentos com cartão são fornecidos por um provedor de pagamentos terceirizado licenciado e estão sujeitos a KYC, elegibilidade e termos aplicáveis.',
 			},
 			q7: {
 				question: 'Quanto tempo leva para fazer o onboarding de um funcionário?',

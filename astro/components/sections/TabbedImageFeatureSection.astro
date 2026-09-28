@@ -31,6 +31,7 @@ interface Props {
 	headerClass?: string;
 	titleClass?: string;
 	duration?: number;
+	interaction?: 'timed' | 'scroll';
 }
 
 const {
@@ -43,19 +44,23 @@ const {
 	headerClass = 'mb-12 max-w-5xl lg:mb-16',
 	titleClass = 'lg:text-5xl',
 	duration = 14000,
+	interaction = 'timed',
 } = Astro.props;
 
 const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key).join('-')}`;
+const scrollDriven = interaction === 'scroll';
+const resolvedSectionClass = [className, scrollDriven ? 'tabbed-image-feature-section--scroll' : ''].filter(Boolean).join(' ');
 ---
 
 <Section
 	spacing="default"
 	title={title}
 	description={description}
-	class={className}
+	class={resolvedSectionClass}
 	headerClass={headerClass}
 	titleClass={titleClass}
 >
+	{scrollDriven && <div class="tabbed-image-feature__scroll-start" data-tabbed-scroll-start={featureId} aria-hidden="true"></div>}
 	<div class="tabbed-image-feature" data-tabbed-image-feature={featureId} style={`--tabbed-tabs-count:${panels.length};`}>
 		<div class="tabbed-image-feature__stage">
 			{panels.map((panel, index) => (
@@ -100,9 +105,14 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 			))}
 		</div>
 	</div>
+	{scrollDriven && (
+		<div class="tabbed-image-feature__scroll-spacer" aria-hidden="true">
+			<span data-tabbed-scroll-end={featureId}></span>
+		</div>
+	)}
 </Section>
 
-<script define:vars={{ featureId, duration }}>
+<script define:vars={{ featureId, duration, interaction }}>
 	for (const root of document.querySelectorAll(`[data-tabbed-image-feature="${featureId}"]`)) {
 		if (!(root instanceof HTMLElement) || root.dataset.ready === 'true') continue;
 		root.dataset.ready = 'true';
@@ -115,6 +125,23 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 		let elapsed = 0;
 		let frame = 0;
 		let inViewport = false;
+		const scrollDriven = interaction === 'scroll';
+		const section = root.closest('section');
+		const scrollStart = section?.querySelector(`[data-tabbed-scroll-start="${featureId}"]`);
+		const scrollEnd = section?.querySelector(`[data-tabbed-scroll-end="${featureId}"]`);
+		const siteHeader = document.querySelector('.garna-header');
+
+		const getStickyTop = () => {
+			const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
+			const availableHeight = window.innerHeight - headerHeight;
+			return Math.max(headerHeight + 8, headerHeight + ((availableHeight - root.getBoundingClientRect().height) / 2));
+		};
+
+		const syncStickyTop = () => {
+			if (root instanceof HTMLElement && scrollDriven) {
+				root.style.setProperty('--tabbed-sticky-top', `${getStickyTop()}px`);
+			}
+		};
 
 		const show = (index, restart = true) => {
 			activeIndex = index;
@@ -144,7 +171,7 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 		};
 
 		const start = () => {
-			if (!inViewport || document.hidden || reduceMotion || frame) return;
+			if (scrollDriven || !inViewport || document.hidden || reduceMotion || frame) return;
 			startedAt = performance.now();
 			frame = requestAnimationFrame(tick);
 		};
@@ -156,7 +183,45 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 			startedAt = 0;
 		};
 
+		const setScrollProgress = (progress) => {
+			const clamped = Math.min(1, Math.max(0, progress));
+			const progressStep = clamped * tabs.length;
+			const nextIndex = clamped >= 1 ? tabs.length - 1 : Math.floor(progressStep);
+			const stepProgress = clamped >= 1 ? 1 : progressStep - nextIndex;
+			if (nextIndex !== activeIndex) show(nextIndex, false);
+			const activeTab = tabs[activeIndex];
+			if (activeTab instanceof HTMLElement) activeTab.style.setProperty('--progress', String(stepProgress));
+		};
+
+		const renderScroll = () => {
+			frame = 0;
+			if (!scrollDriven || !(scrollStart instanceof HTMLElement) || !(scrollEnd instanceof HTMLElement)) return;
+			syncStickyTop();
+			const startRect = scrollStart.getBoundingClientRect();
+			const endRect = scrollEnd.getBoundingClientRect();
+			const distance = Math.max(1, endRect.top - startRect.top - root.getBoundingClientRect().height);
+			setScrollProgress((getStickyTop() - startRect.top) / distance);
+		};
+
+		const scheduleScroll = () => {
+			if (!frame) frame = requestAnimationFrame(renderScroll);
+		};
+
+		const scrollToIndex = (index) => {
+			if (!(scrollStart instanceof HTMLElement) || !(scrollEnd instanceof HTMLElement)) return;
+			const startRect = scrollStart.getBoundingClientRect();
+			const endRect = scrollEnd.getBoundingClientRect();
+			const distance = Math.max(1, endRect.top - startRect.top - root.getBoundingClientRect().height);
+			const startY = window.scrollY + startRect.top - getStickyTop();
+			const indexProgress = index === 0 ? 0 : Math.min(1, index / tabs.length + 0.01);
+			window.scrollTo({ top: startY + distance * indexProgress, behavior: reduceMotion ? 'auto' : 'smooth' });
+		};
+
 		tabs.forEach((tab, index) => tab.addEventListener('click', () => {
+			if (scrollDriven) {
+				scrollToIndex(index);
+				return;
+			}
 			pause();
 			show(index);
 			start();
@@ -175,7 +240,14 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 			if (!inViewport) pause();
 		}, { threshold: 0.25 });
 
-		observer.observe(root);
+		show(0, !scrollDriven);
+		if (scrollDriven) {
+			window.addEventListener('scroll', scheduleScroll, { passive: true });
+			window.addEventListener('resize', scheduleScroll, { passive: true });
+			renderScroll();
+		} else {
+			observer.observe(root);
+		}
 		document.addEventListener('visibilitychange', () => {
 			if (document.hidden) pause();
 			else start();
@@ -183,14 +255,37 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 		window.addEventListener('garna:page-will-unmount', () => {
 			pause();
 			observer.disconnect();
+			window.removeEventListener('scroll', scheduleScroll);
+			window.removeEventListener('resize', scheduleScroll);
 		}, { once: true });
-		show(0);
 	}
 </script>
 
 <style is:global>
 	.tabbed-image-feature {
 		width: 100%;
+	}
+
+	.tabbed-image-feature-section--scroll .tabbed-image-feature {
+		position: sticky;
+		z-index: 2;
+		top: var(--tabbed-sticky-top, 5rem);
+	}
+
+	.tabbed-image-feature__scroll-start {
+		height: 0;
+	}
+
+	.tabbed-image-feature__scroll-spacer {
+		position: relative;
+		height: 100svh;
+		pointer-events: none;
+	}
+
+	.tabbed-image-feature__scroll-spacer > span {
+		position: absolute;
+		inset: auto 0 0;
+		height: 0;
 	}
 
 	.tabbed-image-feature__stage {
@@ -349,6 +444,10 @@ const featureId = id || `tabbed-image-feature-${panels.map((panel) => panel.key)
 
 		.tabbed-image-feature__panel {
 			min-height: 620px;
+		}
+
+		.tabbed-image-feature-section--scroll .tabbed-image-feature__panel {
+			min-height: min(620px, calc(100svh - 10rem));
 		}
 
 		.tabbed-image-feature__image {

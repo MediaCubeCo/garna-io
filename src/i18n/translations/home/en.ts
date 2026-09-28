@@ -118,7 +118,7 @@
 				description: 'Run payroll across 150+ countries with local currencies and crypto',
 			},
 			payoutMethods: {
-				title: 'Team Payout Methods',
+				title: 'Multiple Payout Methods',
 				description: 'Send mass payments or single transfers by bank, card, wallet, or crypto',
 			},
 			fees: {
@@ -324,7 +324,7 @@
 			q6: {
 				question: 'Why should I choose Garna over other providers?',
 				answer:
-					'1. All-in-one service in one place: hire employees via EOR, work with contractors of any type (individuals, sole proprietors, or legal entities), and run your everyday banking¹ from a single platform.\n\n2. Transparent pricing without hidden fees.\n\n3. Truly global payouts: pay to 150+ countries in 80+ local currencies using bank transfers, cards, PayPal, local e-wallets, or crypto.\n\n4. Business banking included: multi-currency IBANs in your company name and transfers to 150+ destinations, provided by a separate licensed entity.\n\n5. Reliable payment infrastructure: one of the largest payment networks in the industry, with 20+ banking partners and payment systems.\n\n6. Virtual cards: issue a card in the app, add it to Apple Pay or Google Pay, and pay directly from your Garna balance².\n\n7. Human support with an average reply time of 67 seconds.\n\n¹ Business banking services are provided through a separate licensed payment entity/provider.\n² Card issuance and card payment services are provided through a licensed third-party payment provider and are subject to KYC, eligibility, and applicable terms.',
+					'1. All-in-one service in one place: hire employees via EOR, work with contractors of any type (individuals, sole proprietors, or legal entities), and run your everyday banking¹ from a single platform.\n\n2. Transparent pricing without hidden fees.\n\n3. Truly global payouts: pay to 150+ countries in 80+ local currencies using bank transfers, cards, PayPal, local e-wallets, or crypto.\n\n4. Business banking included: multi-currency IBANs in your company name and transfers to 150+ destinations, provided by a separate licensed entity.\n\n5. Reliable payment infrastructure: one of the largest payment networks in the industry, with 20+ banking partners and payment systems.\n\n6. Virtual cards: issue a card in the app, add it to Apple Pay or Google Pay, and pay directly from your Garna balance².\n\n7. Responsive human support whenever you need help.\n\n¹ Business banking services are provided through a separate licensed payment entity/provider.\n² Card issuance and card payment services are provided through a licensed third-party payment provider and are subject to KYC, eligibility, and applicable terms.',
 			},
 			q7: {
 				question: 'How long does it take to onboard an employee?',

@@ -118,7 +118,7 @@
 				description: 'Gestiona nóminas en más de 150 países con monedas locales y cripto',
 			},
 			payoutMethods: {
-				title: 'Métodos de pago para equipos',
+				title: 'Múltiples métodos de pago',
 				description: 'Envía pagos masivos o transferencias individuales por banco, tarjeta, monedero o cripto',
 			},
 			fees: {
@@ -324,7 +324,7 @@
 			q6: {
 				question: '¿Por qué elegir Garna frente a otros proveedores?',
 				answer:
-					'1. Servicio todo en uno: contrata empleados mediante EOR, trabaja con contratistas de cualquier tipo (personas físicas, autónomos o entidades legales) y gestiona tu banca diaria¹ desde una sola plataforma.\n\n2. Precios transparentes sin comisiones ocultas.\n\n3. Pagos verdaderamente globales: paga a más de 150 países en más de 80 monedas locales mediante transferencias bancarias, tarjetas, PayPal, e-wallets locales o cripto.\n\n4. Banca empresarial incluida: IBAN multidivisa a nombre de tu empresa y transferencias a más de 150 destinos, proporcionados por una entidad autorizada separada.\n\n5. Infraestructura de pagos fiable: una de las redes de pago más grandes del sector, con más de 20 socios bancarios y sistemas de pago.\n\n6. Tarjetas virtuales: emite una tarjeta en la app, añádela a Apple Pay o Google Pay y paga directamente desde tu saldo de Garna².\n\n7. Soporte humano con un tiempo medio de respuesta de 67 segundos.\n\n¹ Los servicios de banca empresarial se prestan a través de una entidad/proveedor de pagos autorizado independiente.\n² La emisión de tarjetas y los pagos con tarjeta son proporcionados por un proveedor de pagos externo autorizado y están sujetos a KYC, elegibilidad y términos aplicables.',
+					'1. Servicio todo en uno: contrata empleados mediante EOR, trabaja con contratistas de cualquier tipo (personas físicas, autónomos o entidades legales) y gestiona tu banca diaria¹ desde una sola plataforma.\n\n2. Precios transparentes sin comisiones ocultas.\n\n3. Pagos verdaderamente globales: paga a más de 150 países en más de 80 monedas locales mediante transferencias bancarias, tarjetas, PayPal, e-wallets locales o cripto.\n\n4. Banca empresarial incluida: IBAN multidivisa a nombre de tu empresa y transferencias a más de 150 destinos, proporcionados por una entidad autorizada separada.\n\n5. Infraestructura de pagos fiable: una de las redes de pago más grandes del sector, con más de 20 socios bancarios y sistemas de pago.\n\n6. Tarjetas virtuales: emite una tarjeta en la app, añádela a Apple Pay o Google Pay y paga directamente desde tu saldo de Garna².\n\n7. Soporte humano ágil siempre que necesites ayuda.\n\n¹ Los servicios de banca empresarial se prestan a través de una entidad/proveedor de pagos autorizado independiente.\n² La emisión de tarjetas y los pagos con tarjeta son proporcionados por un proveedor de pagos externo autorizado y están sujetos a KYC, elegibilidad y términos aplicables.',
 			},
 			q7: {
 				question: '¿Cuánto tarda el onboarding de un empleado?',
