@@ -90,7 +90,7 @@ export const payrollSmallBusinessEn = {
 		title: "Everything You Need to Manage Small Business Payroll",
 		description: "We have separated the important processes to make it easier for you to manage both full-time employees and freelancers",
 		eor: {
-			label: "1. Hire and pay employees (EoR)",
+			label: "1. Hire and pay employees (EOR)",
 			title: "Full-time recruitment without opening legal entities and hiring legal and accounting consultants abroad",
 			feature1: {
 				title: "Employer of Record",
@@ -106,7 +106,7 @@ export const payrollSmallBusinessEn = {
 			}
 		},
 		cor: {
-			label: "2. Pay contractors and freelancers (CoR)",
+			label: "2. Pay contractors and freelancers (COR)",
 			title: "Scale payments to team members in one click wherever they are",
 			feature1: {
 				title: "Flexible payments",
@@ -131,7 +131,7 @@ export const payrollSmallBusinessEn = {
 		},
 		item2: {
 			title: "Add your team",
-			description: "Invite employees (EoR) or contractors (CoR) and assign them roles"
+			description: "Invite employees (EOR) or contractors (COR) and assign them roles"
 		},
 		item3: {
 			title: "Top up your balance",
@@ -199,7 +199,7 @@ export const payrollSmallBusinessEn = {
 			},
 			q4: {
 				question: "What taxes do I need to file?",
-				answer: "With Garna, you don't need to worry about taxes. When using the Garna EoR solution, we calculate everything automatically."
+				answer: "With Garna, you don't need to worry about taxes. When using the Garna EOR solution, we calculate everything automatically."
 			},
 			q5: {
 				question: "Can I pay contractors and employees in one system?",

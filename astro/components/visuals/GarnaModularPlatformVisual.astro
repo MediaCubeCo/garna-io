@@ -1,34 +1,35 @@
-<div class="payroll-platform-visual relative mx-auto flex h-[320px] w-full max-w-[430px] items-center justify-center overflow-visible font-sans" aria-label="Automated salary accrual stack" data-translate-aria-label="manageGlobalPayroll.visual.automation.ariaLabel">
+<div class="payroll-platform-visual relative mx-auto flex h-[320px] w-full max-w-[430px] items-center justify-center overflow-visible font-sans" aria-label="Contractor payout summary" data-translate-aria-label="manageGlobalPayroll.visual.automation.ariaLabel">
 	<div class="salary-stack relative h-[235px] w-full max-w-[376px]">
 		<article class="salary-card salary-card--layer salary-card--layer-1" aria-hidden="true">
-			<span data-translate="manageGlobalPayroll.visual.automation.taxesCalculated">Taxes calculated</span>
-			<i data-translate="manageGlobalPayroll.visual.automation.autoCheck">Auto-check</i>
+		<span data-translate="manageGlobalPayroll.visual.automation.contractVerified">Contract verified</span>
+		<i data-translate="manageGlobalPayroll.visual.automation.approved">Approved</i>
 		</article>
 		<article class="salary-card salary-card--layer salary-card--layer-2" aria-hidden="true">
-			<span data-translate="manageGlobalPayroll.visual.automation.timesheetsSynced">Timesheets synced</span>
-			<i data-translate="manageGlobalPayroll.visual.automation.done">Done</i>
+		<span data-translate="manageGlobalPayroll.visual.automation.invoiceApproved">Invoice approved</span>
+		<i data-translate="manageGlobalPayroll.visual.automation.ready">Ready</i>
 		</article>
 
 		<article class="salary-card salary-card--front">
 			<div class="salary-head">
 				<img class="salary-avatar" src="/pages/payroll-solution-new/assets/07-photo-1487412720507-e7ab37603c6f.jpg" alt="" loading="lazy" aria-hidden="true" />
 				<div>
-					<strong data-translate="manageGlobalPayroll.visual.automation.salaryAccrued">Salary accrued</strong>
-					<small data-translate="manageGlobalPayroll.visual.automation.employeeRole">Eva Miller · Product designer</small>
+					<strong data-translate="manageGlobalPayroll.visual.automation.contractorName">Eva Miller</strong>
+					<small data-translate="manageGlobalPayroll.visual.automation.contractorRole">Product designer</small>
 				</div>
+				<em data-translate="manageGlobalPayroll.visual.automation.contractorType">Contractor</em>
 			</div>
 			<div class="salary-amount" aria-hidden="true">
-				<span data-translate="manageGlobalPayroll.visual.automation.netPayout">Net payout</span>
+				<span data-translate="manageGlobalPayroll.visual.automation.contractorReceives">Contractor receives</span>
 				<strong>$3,840.00</strong>
 			</div>
 			<div class="salary-breakdown" aria-hidden="true">
-				<span><i data-translate="manageGlobalPayroll.visual.automation.baseSalary">Base salary</i><b>$4,200.00</b></span>
-				<span><i data-translate="manageGlobalPayroll.visual.automation.taxesFees">Taxes & fees</i><b>−$360.00</b></span>
+				<span><i data-translate="manageGlobalPayroll.visual.automation.payoutDestination">Payout destination</i><b data-translate="manageGlobalPayroll.visual.automation.payoutDestinationValue">Portugal</b></span>
+				<span><i data-translate="manageGlobalPayroll.visual.automation.payoutCurrency">Payout currency</i><b data-translate="manageGlobalPayroll.visual.automation.payoutCurrencyValue">USD</b></span>
 				<span><i data-translate="manageGlobalPayroll.visual.automation.payDate">Pay date</i><b data-translate="manageGlobalPayroll.visual.automation.payDateValue">28 June</b></span>
 			</div>
 			<div class="salary-footer" aria-hidden="true">
-				<span data-translate="manageGlobalPayroll.visual.automation.automatedBy">Automated by Garna</span>
-				<button data-translate="manageGlobalPayroll.visual.automation.runPayroll">Run payroll</button>
+				<span data-translate="manageGlobalPayroll.visual.automation.managedWith">Managed with Garna</span>
+				<button data-translate="manageGlobalPayroll.visual.automation.sendPayment">Send payment</button>
 			</div>
 		</article>
 	</div>
@@ -326,17 +327,22 @@
 
 	.salary-card em {
 		display: inline-flex;
-		min-height: 1.2rem;
+		height: 21px;
+		min-height: 21px;
+		box-sizing: border-box;
 		align-items: center;
 		justify-content: center;
+		align-self: start;
+		margin-top: -0.08rem;
+		border: 1px solid rgb(203 243 0 / 0.2);
 		border-radius: 9999px;
-		background: rgb(203 243 0 / 0.1);
-		padding: 0 0.56rem;
+		background: rgb(203 243 0 / 0.08);
+		padding: 0 0.5rem;
 		color: #CBF300;
-		font-size: 0.56rem;
+		font-size: 0.52rem;
 		font-style: normal;
 		font-weight: 800;
-		line-height: 1;
+		line-height: 1.5;
 		text-transform: uppercase;
 	}
 

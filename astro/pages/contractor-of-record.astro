@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FinalCTASection from '../components/sections/FinalCTASection.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
 import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
 import ContractorOfRecordHeroSection from '../components/sections/payroll/ContractorOfRecordHeroSection.astro';
 import GarnaDifferentiatorsSection from '../components/sections/payroll/GarnaDifferentiatorsSection.astro';
@@ -14,17 +15,70 @@ import ContractorOfRecordInteractions from '../components/sections/payroll/Contr
 import PayrollLandingEnhancements from '../components/sections/payroll/PayrollLandingEnhancements.astro';
 import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageShells } from '../content/page-shells';
+import type { FAQItem } from '../types/faq-section';
+
+const contractorFaqItems = [
+	{
+		question: 'What is a Contractor of Record (COR)?',
+		answer:
+			'A Contractor of Record helps businesses work with independent contractors without setting up a local entity. It supports contracts, onboarding, invoicing, payments, and documentation while the contractor remains self-employed.',
+		questionTranslateKey: 'faq.items.q1.question',
+		answerTranslateKey: 'faq.items.q1.answer',
+	},
+	{
+		question: 'Who is COR a good fit for?',
+		answer:
+			'COR is ideal for companies working with independent contractors across multiple countries, including startups, SaaS companies, digital marketing and creative agencies, and marketplaces. International contractor management gets easier without requiring a local entity in every market.',
+		questionTranslateKey: 'faq.items.q2.question',
+		answerTranslateKey: 'faq.items.q2.answer',
+	},
+	{
+		question: 'Which countries, currencies, and payout methods are supported?',
+		answer:
+			'Garna supports contractor payments in 150+ countries and 80+ currencies. Payout options include SWIFT, SEPA, local bank transfers, PayPal, Payoneer, USDT, and USDC, depending on the country and payment method.',
+		questionTranslateKey: 'faq.items.q3.question',
+		answerTranslateKey: 'faq.items.q3.answer',
+	},
+	{
+		question: 'How do I fund my balance?',
+		answer:
+			'You can fund your Garna balance via the available payment options in your account and use it to pay contractors. Funding options vary depending on your account and payment method.',
+		questionTranslateKey: 'faq.items.q4.question',
+		answerTranslateKey: 'faq.items.q4.answer',
+	},
+	{
+		question: 'Can I pay many contractors at once?',
+		answer:
+			'Yes, Garna supports bulk payments, so you can pay multiple contractors through a single workflow instead of processing each international transfer separately.',
+		questionTranslateKey: 'faq.items.q5.question',
+		answerTranslateKey: 'faq.items.q5.answer',
+	},
+	{
+		question: 'Why should I choose Garna over other COR providers?',
+		answer:
+			'Choose Garna because it combines contractor management and global payments in one platform. You can manage contracts, invoices, and payouts across 150+ countries and 80+ currencies, with multiple payment methods and 24/7 support.',
+		questionTranslateKey: 'faq.items.q6.question',
+		answerTranslateKey: 'faq.items.q6.answer',
+	},
+] satisfies FAQItem[];
 ---
 
 <BaseLayout shell={pageShells.contractorOfRecord} showRainbow={false}>
 	<ContractorOfRecordHeroSection />
 	<GarnaDifferentiatorsSection />
 	<ContractorWorldwideFeatureSection />
-	<DeferredContractorPaymentsSection />
 	<ContractorBenefitsSection />
+	<DeferredContractorPaymentsSection />
 	<CreatorPayoutProcessSection />
 	<TrustedByBuildersSection />
 	<ContractorOfRecordSectionStyles />
+	<FAQSection
+		title={{ text: 'FAQ on Contractor of Record', translateKey: 'faq.title' }}
+		items={contractorFaqItems}
+		variant="eor"
+		class="py-16 lg:py-32"
+		containerClass="garna-container"
+	/>
 	<FinalCTASection {...pageFinalCtas.contractorOfRecord} />
 	<PayrollLandingEnhancements />
 	<Fragment slot="widgets">

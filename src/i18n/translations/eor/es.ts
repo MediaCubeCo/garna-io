@@ -65,8 +65,8 @@ export const eorEs = {
 		}
 	},
 	"eorProof": {
-		"title": "Contrata en el extranjero sin conjeturas",
-		"description": "Garna hace que la contratación internacional sea transparente, desde contratos locales hasta nómina y cumplimiento. Cuando estés listo, compara tus opciones en el calculador de costes",
+		"title": "Precios transparentes de EOR",
+		"description": "Desde $200 al mes por empleado. Sin comisiones ocultas ni costes de constitución de una entidad local. Obtén una oferta personalizada según tus necesidades de contratación",
 		"button": "Calcular tus opciones",
 		"carousel": {
 			"ariaLabel": "Elegir una tarjeta EOR"
@@ -75,15 +75,15 @@ export const eorEs = {
 			"countries": {
 				"label": "países cubiertos",
 				"notice": {
-					"title": "Contrato completado",
-					"meta": "Condiciones revisadas"
+					"title": "Desde $200 al mes",
+					"meta": "Por empleado"
 				}
 			},
 			"platform": {
 				"label": "plataforma para contratación global",
 				"notice": {
-					"title": "Perfil salarial listo",
-					"meta": "Salario, impuestos, beneficios"
+					"title": "Sin costes de constitución",
+					"meta": "Contrata a través de Garna"
 				}
 			},
 			"entities": {
@@ -203,7 +203,7 @@ export const eorEs = {
 			"start": "Iniciar",
 			"access": "Acceso",
 			"portugal": "Portugal",
-			"eorContract": "Contrato EoR",
+			"eorContract": "Contrato EOR",
 			"invite": "Invitación",
 			"employeeEmail": "Email del empleado",
 			"account": "Cuenta",
@@ -215,16 +215,16 @@ export const eorEs = {
 	},
 	"globalWorkforce": {
 		"title": "Haz crecer tu plantilla global más rápido",
-		"description": "Un «empleador de referencia» (EoR) ayuda a las empresas a contratar empleados internacionales sin necesidad de abrir entidades locales. El proveedor de EoR contrata legalmente al trabajador en su nombre, mientras usted gestiona su trabajo diario, sus responsabilidades y su rendimiento",
+		"description": "Un «empleador de referencia» (EOR) ayuda a las empresas a contratar empleados internacionales sin necesidad de abrir entidades locales. El proveedor de EOR contrata legalmente al trabajador en su nombre, mientras usted gestiona su trabajo diario, sus responsabilidades y su rendimiento",
 		"intro": "Todo esto significa que puedes:",
 		"benefits": {
 			"hireGlobally": {
 				"title": "Contratar a nivel global más rápido",
-				"description": "Atraer a personas con talento de todo el mundo y hacerlo más rápido que antes"
+				"description": "Atrae talento de cualquier parte del mundo y agiliza su incorporación"
 			},
 			"newMarkets": {
 				"title": "Expandirse a nuevos mercados",
-				"description": "Probar y entrar en nuevas regiones sin gastos operativos"
+				"description": "Crea un equipo local en nuevos países sin constituir de inmediato tu propia entidad empleadora."
 			},
 			"reduceRisks": {
 				"title": "Reduce los costes de contratación global",
@@ -232,7 +232,7 @@ export const eorEs = {
 			},
 			"compliance": {
 				"title": "Mantén el cumplimiento legal",
-				"description": "Legislación laboral local, impuestos y contribuciones sociales gestionados por país"
+				"description": "Legislación laboral local, impuestos relacionados con el empleo y contribuciones sociales gestionados por país"
 			}
 		}
 	},
@@ -257,7 +257,7 @@ export const eorEs = {
 				"description": "Mantente alineado con las leyes laborales locales, las normas fiscales y las reglas específicas de cada país"
 			},
 			"integrations": {
-				"title": "Integra EoR en tus herramientas",
+				"title": "Integra EOR en tus herramientas",
 				"description": "Conecta tus herramientas actuales de RR. HH., finanzas y gestión de personal sin interrumpir tus procesos"
 			},
 			"fastMoving": {
@@ -292,7 +292,7 @@ export const eorEs = {
 				"label": "Nóminas",
 				"title": "Gestiona tu nómina global sin estrés",
 				"problem": "Gestionar correctamente las nóminas de los empleados de todo el mundo y lidiar con diferentes divisas y normas fiscales es uno de los aspectos más complicados de la internacionalización de una empresa",
-				"solution": "Garna simplifica la nómina internacional con flujos de trabajo automatizados. Paga a personas en todo el mundo rápidamente mientras reduces errores de nómina y trabajo adicional"
+				"solution": "Garna simplifica la nómina internacional con flujos de trabajo automatizados. Paga a personas en todo el mundo rápidamente y sin trabajo adicional."
 			},
 			"timeOff": {
 				"label": "Permisos y gastos",
@@ -360,7 +360,7 @@ export const eorEs = {
 				"description": "Elige a la persona responsable de los asuntos financieros, desde un director financiero hasta tú mismo"
 			},
 			"contract": {
-				"title": "Crea tu primer contrato EoR",
+				"title": "Crea tu primer contrato EOR",
 				"description": "Añade país, puesto, salario, fecha de inicio, moneda y requisitos de visado de trabajo"
 			},
 			"invite": {
@@ -381,11 +381,11 @@ export const eorEs = {
 		"items": {
 			"q1": {
 				"question": "¿Qué es un Employer of Record (EOR)?",
-				"answer": "Un Employer of Record te permite contratar empleados a tiempo completo en países donde no tienes una entidad legal. Garna se convierte en el empleador legal y gestiona nóminas, contratos, impuestos y cumplimiento local, mientras tú diriges el trabajo diario del empleado."
+				"answer": "Un Employer of Record te permite contratar empleados a tiempo completo en países donde no tienes una entidad legal. Garna se convierte en el empleador legal y gestiona nóminas, contratos, pagos obligatorios y cumplimiento local, mientras tú diriges las actividades del negocio."
 			},
 			"q2": {
 				"question": "¿Quién gestiona al empleado?",
-				"answer": "Tú. Defines sus responsabilidades, horario de trabajo, objetivos y desarrollo profesional. Garna gestiona contratos, beneficios obligatorios, pagos salariales y cumplimiento local."
+				"answer": "Tu empresa sigue gestionando las actividades diarias del empleado relacionadas con el negocio, incluidos los objetivos de su puesto, los proyectos y la evaluación de su desempeño. El EOR gestiona la relación laboral, incluidas las nóminas, los beneficios obligatorios, la administración de personal y el cumplimiento de los requisitos aplicables en materia de empleo según la legislación local."
 			},
 			"q3": {
 				"question": "¿Cuál es la diferencia entre contratar mediante EOR y contratar a un contratista?",
@@ -393,15 +393,15 @@ export const eorEs = {
 			},
 			"q4": {
 				"question": "EOR o abrir tu propia entidad: ¿qué es mejor?",
-				"answer": "Con una entidad propia, asumes la constitución, las declaraciones fiscales y el cumplimiento local. Un EOR es más rápido para empezar y más flexible si todavía estás probando dónde crecer."
+				"answer": "Con una entidad propia, asumes la constitución, las declaraciones fiscales y el cumplimiento local. Esta opción es más adecuada cuando necesitas operar un negocio en un nuevo mercado. Si solo necesitas contratar especialistas que no pueden o no quieren trasladarse, un EOR es una opción más rápida y adecuada."
 			},
 			"q5": {
 				"question": "¿Con qué rapidez puedo empezar a contratar a través de Garna?",
-				"answer": "En la mayoría de los países, podemos incorporar a tu nuevo empleado en tan solo X día(s) laborable(s), una vez confirmada la oferta y firmados los documentos de incorporación."
+				"answer": "En la mayoría de los países, la incorporación de nuevos empleados tarda alrededor de 1–2 semanas, una vez confirmada la oferta y firmados los documentos de incorporación. Sin embargo, los plazos dependen del país, la documentación local y los requisitos de inmigración aplicables."
 			},
 			"q6": {
 				"question": "¿Puedo contratar trabajadores internacionales sin un EOR?",
-				"answer": "Sí, abriendo una entidad legal local o contratando a la persona como contratista. Ambas opciones tienen compromisos: una entidad es lenta y costosa, y una relación de contratista implica riesgo de cumplimiento si se parece a un empleo a tiempo completo. El EOR de Garna es la alternativa más rápida y plenamente conforme."
+				"answer": "Sí, abriendo una entidad legal local o contratando a la persona como contratista. Ambas opciones tienen compromisos: una entidad es lenta y costosa, y una relación de contratista implica riesgo de cumplimiento si se parece a un empleo a tiempo completo. El EOR de Garna es la alternativa más rápida y conforme."
 			},
 			"q7": {
 				"question": "¿Es legalmente conforme contratar mediante un EOR?",

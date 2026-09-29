@@ -1,24 +1,33 @@
 <div class="global-reach-visual relative h-full min-h-[250px] w-full overflow-hidden" data-global-reach-visual>
-	<div class="globe-shell absolute left-1/2 top-[4%] z-0 aspect-square w-[86%] -translate-x-1/2 overflow-hidden rounded-full" aria-hidden="true">
+	<div class="globe-shell absolute left-1/2 top-[8%] z-0 aspect-square w-[86%] -translate-x-1/2 overflow-hidden rounded-full" aria-hidden="true">
 		<img src="/pages/payroll-solution-new/assets/world-map-equirectangular-4k.png" class="globe-map-fallback" alt="" />
 		<canvas class="globe-canvas" data-global-reach-globe></canvas>
 		<div class="globe-light absolute inset-0"></div>
 	</div>
 
-	<div class="currency-pill-layer absolute left-1/2 top-[4%] z-10 aspect-square w-[86%] -translate-x-1/2" aria-hidden="true">
-	<div class="currency-pill currency-pill--gbp">
-		<span class="flag-pair"><img src="/images/flags/gb.png" alt="United Kingdom"><img src="/images/flags/us.png" alt="United States"></span>
-		<span class="transfer-details"><strong>GBP <span>→</span> USD</strong><small>£7,607 <i>→</i> $10,000</small></span>
+	<div class="employee-pill-layer absolute left-1/2 top-[8%] z-10 aspect-square w-[86%] -translate-x-1/2" aria-hidden="true">
+	<div class="employee-pill employee-pill--germany">
+		<span class="employee-avatar">
+			<img class="employee-avatar__photo" src="/pages/payroll-solution-new/assets/contractor-avatar-sarah-v1.webp" alt="">
+			<img class="employee-avatar__flag" src="/images/flags/de.png" alt="">
+		</span>
+		<span class="employee-details"><strong>Anna Keller</strong><small data-translate="manageGlobalPayroll.visual.employees.germany">Germany · EOR active</small></span>
 	</div>
 
-	<div class="currency-pill currency-pill--eur">
-		<span class="flag-pair"><img src="/images/flags/de.png" alt="Germany"><img src="/images/flags/ch.png" alt="Switzerland"></span>
-		<span class="transfer-details"><strong>EUR <span>→</span> CHF</strong><small>€5,037 <i>→</i> CHF 4,850</small></span>
+	<div class="employee-pill employee-pill--canada">
+		<span class="employee-avatar">
+			<img class="employee-avatar__photo" src="/pages/payroll-solution-new/assets/alex-rivera-avatar-light.png" alt="">
+			<img class="employee-avatar__flag" src="/images/flags/ca.png" alt="">
+		</span>
+		<span class="employee-details"><strong>Liam Carter</strong><small data-translate="manageGlobalPayroll.visual.employees.canada">Canada · EOR active</small></span>
 	</div>
 
-	<div class="currency-pill currency-pill--jpy">
-		<span class="flag-pair"><img src="/images/flags/jp.png" alt="Japan"><img src="/images/flags/ca.png" alt="Canada"></span>
-		<span class="transfer-details"><strong>JPY <span>→</span> CAD</strong><small>¥227,910 <i>→</i> C$2,100</small></span>
+	<div class="employee-pill employee-pill--japan">
+		<span class="employee-avatar">
+			<img class="employee-avatar__photo" src="/pages/payroll-solution-new/assets/contractor-avatar-maya.png" alt="">
+			<img class="employee-avatar__flag" src="/images/flags/jp.png" alt="">
+		</span>
+		<span class="employee-details"><strong>Aiko Tanaka</strong><small data-translate="manageGlobalPayroll.visual.employees.japan">Japan · EOR active</small></span>
 	</div>
 	</div>
 </div>
@@ -337,7 +346,7 @@
 			linear-gradient(110deg, rgb(0 0 0 / 0.1) 0%, rgb(0 0 0 / 0.26) 62%, rgb(0 0 0 / 0.62));
 	}
 
-	.currency-pill-layer {
+	.employee-pill-layer {
 		--currency-globe-reference-width: 430px;
 		--currency-pill-scale: min(1, calc(100cqw / var(--currency-globe-reference-width)));
 		--currency-pill-offset-y: -8%;
@@ -345,7 +354,7 @@
 		pointer-events: none;
 	}
 
-	.currency-pill {
+	.employee-pill {
 		position: absolute;
 		display: flex;
 		align-items: center;
@@ -363,92 +372,104 @@
 		backface-visibility: hidden;
 	}
 
-	.currency-pill--gbp {
+	.employee-pill--germany {
 		left: 21%;
 		top: calc(45% + var(--currency-pill-offset-y));
 	}
 
-	.currency-pill--eur {
+	.employee-pill--canada {
 		left: 61%;
 		top: calc(67% + var(--currency-pill-offset-y));
 	}
 
-	.currency-pill--jpy {
+	.employee-pill--japan {
 		left: 73%;
 		top: calc(35% + var(--currency-pill-offset-y));
 	}
 
-	:global(html[lang='ru']) .currency-pill-layer {
+	:global(html[lang='ru']) .employee-pill-layer {
 		--currency-pill-offset-y: -10%;
 	}
 
-	:global(html[lang='es']) .currency-pill-layer {
+	:global(html[lang='es']) .employee-pill-layer {
 		--currency-pill-offset-y: -10%;
 	}
 
-	:global(html[lang='pt']) .currency-pill-layer {
+	:global(html[lang='pt']) .employee-pill-layer {
 		--currency-pill-offset-y: -10%;
 	}
 
 	@media (min-width: 1080px) {
-		:global(html[lang='en']) .currency-pill-layer {
+		:global(html[lang='en']) .employee-pill-layer {
 			--currency-pill-offset-y: -12%;
 		}
 	}
 
 	@media (max-width: 1079.98px) {
-		:global(html[lang='en']) .currency-pill-layer {
+		:global(html[lang='en']) .employee-pill-layer {
 			--currency-pill-offset-y: -12%;
 		}
 
-		:global(html[lang='pt']) .currency-pill-layer {
+		:global(html[lang='pt']) .employee-pill-layer {
 			--currency-pill-offset-y: -16%;
 		}
 
-		:global(html[lang='ru']) .currency-pill-layer {
+		:global(html[lang='ru']) .employee-pill-layer {
 			--currency-pill-offset-y: -22%;
 		}
 
-		:global(html[lang='es']) .currency-pill-layer {
+		:global(html[lang='es']) .employee-pill-layer {
 			--currency-pill-offset-y: -18%;
 		}
 	}
 
 	@media (max-width: 560px) {
-		:global(html[lang='ru']) .currency-pill-layer {
+		:global(html[lang='ru']) .employee-pill-layer {
 			--currency-pill-offset-y: -10%;
 		}
 
-		:global(html[lang='es']) .currency-pill-layer {
+		:global(html[lang='es']) .employee-pill-layer {
 			--currency-pill-offset-y: -10%;
 		}
 
-		:global(html[lang='pt']) .currency-pill-layer {
+		:global(html[lang='pt']) .employee-pill-layer {
 			--currency-pill-offset-y: -9%;
 		}
 	}
 
-	.transfer-details { min-width: 0; flex: 1; }
-	.transfer-details strong { display: block; color: white; font-size: 1.03rem; font-weight: 600; white-space: nowrap; }
-	.transfer-details strong span { margin: 0 0.15rem; color: rgb(107 114 128); font-weight: 400; }
-	.transfer-details small { display: block; margin-top: 0.12rem; color: rgb(107 114 128); font-size: 0.78rem; white-space: nowrap; }
-	.transfer-details small i { margin: 0 0.13rem; color: rgb(75 85 99); font-style: normal; }
-	.flag-pair {
-		display: flex;
-		align-items: center;
+	.employee-details { min-width: 0; flex: 1; text-align: left; }
+	.employee-details strong { display: block; color: white; font-size: 1.03rem; font-weight: 600; white-space: nowrap; }
+	.employee-details small { display: block; margin-top: 0.12rem; color: rgb(107 114 128); font-size: 0.78rem; white-space: nowrap; }
+	.employee-avatar {
+		position: relative;
+		display: block;
+		height: 2.35rem;
+		width: 2.35rem;
 		flex: 0 0 auto;
 	}
 
-	.flag-pair img {
-		height: 2.15rem;
-		width: 2.15rem;
+	.employee-avatar__photo {
+		display: block;
+		height: 100%;
+		width: 100%;
 		max-width: none;
 		object-fit: cover;
 		border-radius: 9999px;
-		border: 2px solid #0a0a0a;
+		border: 1px solid rgb(255 255 255 / 0.12);
 	}
 
-	.flag-pair img + img { margin-left: -0.78rem; }
+	.employee-avatar__flag {
+		position: absolute;
+		right: -0.12rem;
+		bottom: -0.12rem;
+		height: 1.15rem;
+		width: 1.15rem;
+		max-width: none;
+		border: 2px solid #050505;
+		border-radius: 9999px;
+		object-fit: cover;
+	}
+
 
 	@media (prefers-reduced-motion: reduce) {
 		.globe-canvas {

@@ -126,7 +126,7 @@ export const payrollSolutionNewPt = {
 			eorEmployeeGrossSalary: 'Salário bruto do funcionário',
 			eorChecklist: 'Checklist de integração',
 			eorCompanyProfileVerified: 'Perfil da empresa verificado',
-			eorContractSigned: 'Contrato EoR assinado',
+			eorContractSigned: 'Contrato EOR assinado',
 			eorEmployeeOnboarded: 'Funcionário integrado',
 			eorFirstPayrollEstimate: 'Estimativa da primeira folha de pagamento',
 			eorFundWalletRunPayroll: 'Adicionar fundos à carteira e processar folha de pagamento',
@@ -309,7 +309,7 @@ export const payrollSolutionNewPt = {
 		'Assign a financial contact person': 'Defina um contacto financeiro responsável',
 		'SSpecify the person who will be responsible for financial matters':
 			'Indique a pessoa responsável pelas questões financeiras',
-		'Create your first EoR contract': 'Crie o seu primeiro contrato EoR',
+		'Create your first EOR contract': 'Crie o seu primeiro contrato EOR',
 		"Enter the employee's details":
 			'Introduza os dados do funcionário',
 		'Invite an employee': 'Convide um funcionário',
@@ -325,7 +325,7 @@ export const payrollSolutionNewPt = {
 		'Employee Gross Salary': 'Salário bruto do funcionário',
 		'Onboarding Checklist': 'Checklist de integração',
 		'Company Profile Verified': 'Perfil da empresa verificado',
-		'EoR Contract Signed': 'Contrato EoR assinado',
+		'EOR Contract Signed': 'Contrato EOR assinado',
 		'Employee Onboarded': 'Funcionário integrado',
 		'First Payroll Estimate': 'Estimativa da primeira folha de pagamento',
 		'Fund Wallet &amp; Run Payroll': 'Adicionar fundos à carteira e processar folha de pagamento',

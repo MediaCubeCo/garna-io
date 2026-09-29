@@ -680,7 +680,7 @@ export const forCreatorsRu = {
 		'Assign a financial contact person': 'Назначьте ответственное лицо по финансовым вопросам',
 		'SSpecify the person who will be responsible for financial matters':
 			'Укажите лицо, которое будет отвечать за финансовые вопросы',
-		'Create your first EoR contract': 'Составьте свой первый договор о предоставлении услуг официального работодателя',
+		'Create your first EOR contract': 'Составьте свой первый договор о предоставлении услуг официального работодателя',
 		"Enter the employee's details":
 			'Введите данные сотрудника',
 		'Invite an employee': 'Пригласите сотрудника',
@@ -822,7 +822,7 @@ export const forCreatorsRu = {
 		'Onboarding': 'Онбординг',
 		'Onboarding Checklist': 'Чек-лист онбординга',
 		'Employee Onboarded': 'Сотрудник подключен',
-		'EoR Contract Signed': 'EoR-контракт подписан',
+		'EOR Contract Signed': 'EOR-контракт подписан',
 		'First Payroll Estimate': 'Первый расчет payroll',
 		'Employee Gross Salary': 'Валовая зарплата сотрудника',
 		'Employment Country': 'Страна трудоустройства',

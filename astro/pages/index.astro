@@ -106,7 +106,7 @@ const homeFaqItems = [
 		<HeroSection {...pageHeroes.home}>
 			<div slot="background" class="home-hero-cover" aria-hidden="true">
 				<div class="home-hero-cover__media">
-					<img data-home-hero-image src="/pages/payroll-solution-new/assets/home-hero-profile-clouds-v2.jpg" alt="" />
+					<img data-home-hero-image src="/pages/payroll-solution-new/assets/home-hero-editorial-preview-3-optimized.webp" alt="" />
 				</div>
 				<div class="home-hero-focus-frame" data-home-hero-frame>
 					<div class="home-hero-focus-frame__actions" data-home-hero-actions>
@@ -132,7 +132,7 @@ const homeFaqItems = [
 				<img src="/pages/payroll-solution-new/assets/home-proof-mountain-man-v1.png" alt="" />
 			</div>
 			<div class="home-transition-front">
-			<img src="/pages/payroll-solution-new/assets/home-hero-profile-clouds-v2.jpg" alt="" data-home-transition-image />
+				<img src="/pages/payroll-solution-new/assets/home-hero-editorial-preview-3-optimized.webp" alt="" data-home-transition-image />
 			</div>
 		</div>
 	</div>
@@ -229,6 +229,7 @@ const homeFaqItems = [
 				const heroImage = stage.querySelector('[data-home-hero-image]');
 				const heroActions = stage.querySelector('[data-home-hero-actions]');
 				const heroSection = heroFrame?.closest('[data-section-kind="hero"]');
+				const heroButton = heroSection?.querySelector('.garna-button');
 				const heroCta = heroSection?.querySelector('.garna-button')?.parentElement;
 				const siteHeader = document.querySelector('.garna-header');
 				const proofSection = stage.querySelector('.home-proof-section');
@@ -255,6 +256,7 @@ const homeFaqItems = [
 				const desktop = window.matchMedia('(min-width: 841px)');
 				let frame = 0;
 				let mobileFrameViewportKey = '';
+				let frameClearanceViewportKey = '';
 				const deckCards = Array.from(stage.querySelectorAll('[data-workflow-card]'));
 				const deckHeadings = Array.from(stage.querySelectorAll('[data-workflow-heading]'));
 				const deckIndicators = Array.from(stage.querySelectorAll('[data-workflow-progress]'));
@@ -465,6 +467,27 @@ const homeFaqItems = [
 					const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
 					return window.innerHeight / 2 + headerHeight / 2;
 				};
+				const updateHeroFrameClearance = () => {
+					const viewportKey = `${window.innerWidth}x${window.innerHeight}`;
+					if (viewportKey === frameClearanceViewportKey) return;
+					frameClearanceViewportKey = viewportKey;
+					stage.style.removeProperty('--home-hero-frame-max-height');
+					stage.style.removeProperty('--home-hero-frame-min-height');
+
+					if (!(heroButton instanceof HTMLElement)) return;
+					const frameRect = heroFrame.getBoundingClientRect();
+					const buttonRect = heroButton.getBoundingClientRect();
+					const minimumGap = 20.5;
+					const maximumGap = 30;
+					const currentGap = frameRect.top - buttonRect.bottom;
+					if (currentGap < minimumGap) {
+						const safeHeight = Math.max(112, frameRect.height - (minimumGap - currentGap));
+						stage.style.setProperty('--home-hero-frame-max-height', `${safeHeight}px`);
+					} else if (currentGap > maximumGap) {
+						const safeHeight = frameRect.height + (currentGap - maximumGap);
+						stage.style.setProperty('--home-hero-frame-min-height', `${safeHeight}px`);
+					}
+				};
 				const updateMobileHeroFrame = () => {
 					if (desktop.matches) {
 						mobileFrameViewportKey = '';
@@ -472,11 +495,15 @@ const homeFaqItems = [
 						stage.style.removeProperty('--home-hero-mobile-frame-height');
 						stage.style.removeProperty('--home-hero-mobile-frame-bottom');
 						stage.style.removeProperty('--home-hero-actions-height-scale');
+						updateHeroFrameClearance();
 						return;
 					}
 
 					const viewportKey = `${window.innerWidth}x${window.innerHeight}`;
-					if (viewportKey === mobileFrameViewportKey) return;
+					if (viewportKey === mobileFrameViewportKey) {
+						updateHeroFrameClearance();
+						return;
+					}
 					mobileFrameViewportKey = viewportKey;
 
 					const ctaRect = heroCta instanceof HTMLElement ? heroCta.getBoundingClientRect() : null;
@@ -495,6 +522,7 @@ const homeFaqItems = [
 					stage.style.setProperty('--home-hero-mobile-frame-height', `${frameHeight}px`);
 					stage.style.setProperty('--home-hero-mobile-frame-bottom', `${bottomGap}px`);
 					stage.style.setProperty('--home-hero-actions-height-scale', String(actionsHeightScale));
+					updateHeroFrameClearance();
 				};
 				const fitMobileDeck = (progress) => {
 					if (desktop.matches) return;
@@ -834,10 +862,19 @@ const homeFaqItems = [
 		transform-origin: center center;
 	}
 
-	.home-transition-front::after {
+	.home-transition-front::before {
 		position: absolute;
 		inset: 0;
 		z-index: 1;
+		content: "";
+		background: rgb(0 0 0 / 5%);
+		pointer-events: none;
+	}
+
+	.home-transition-front::after {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
 		box-sizing: border-box;
 		content: "";
 		border: var(--home-transition-border-width, 1px) solid rgba(255, 255, 255, var(--home-transition-border-opacity, 0.54));
@@ -929,7 +966,7 @@ const homeFaqItems = [
 		inset: 0;
 		z-index: 1;
 		content: "";
-		background: rgba(0, 0, 0, calc(var(--home-hero-backdrop-progress, 0) * 0.34));
+		background: rgba(0, 0, 0, calc(0.05 + var(--home-hero-backdrop-progress, 0) * 0.29));
 		pointer-events: none;
 	}
 
@@ -962,6 +999,8 @@ const homeFaqItems = [
 		bottom: clamp(1rem, 2.4vh, 2rem);
 		z-index: 2;
 		width: var(--home-hero-frame-width);
+		min-height: var(--home-hero-frame-min-height, 0);
+		max-height: var(--home-hero-frame-max-height, none);
 		aspect-ratio: 0.66;
 		border: 1px solid rgba(255, 255, 255, 0.58);
 		border-radius: var(--home-hero-frame-radius);
@@ -1107,9 +1146,54 @@ const homeFaqItems = [
 		}
 	}
 
+	@media (max-width: 640px) {
+		.home-hero-cover {
+			--home-hero-image-scale: 1.18;
+		}
+	}
+
+	@media (min-width: 841px) and (max-width: 900px) and (max-aspect-ratio: 1.2) {
+		.home-hero-focus-frame {
+			height: min(29.75rem, 54.5vh);
+			aspect-ratio: auto;
+		}
+	}
+
 	@media (max-aspect-ratio: 1.65) and (min-width: 901px) {
 		.home-hero-cover {
-			--home-hero-image-scale: 1.28;
+			--home-hero-image-scale: 1.04;
+		}
+	}
+
+	@media (max-aspect-ratio: 1.58) and (min-width: 901px) {
+		.home-hero-cover {
+			--home-hero-image-scale: 1.16;
+		}
+	}
+
+	@media (max-aspect-ratio: 1.35) and (min-width: 901px) {
+		.home-hero-cover {
+			--home-hero-image-scale: 1.17;
+		}
+	}
+
+	@media (min-width: 901px) and (max-height: 800px) {
+		.payroll-solution-new-hero {
+			padding-top: clamp(4rem, 8vh, 5rem);
+		}
+	}
+
+	@media (min-width: 901px) and (max-width: 1279px) and (max-aspect-ratio: 1.65) {
+		.home-hero-focus-frame {
+			height: min(27.5rem, 50vh);
+			aspect-ratio: auto;
+		}
+	}
+
+	@media (min-width: 1280px) and (max-aspect-ratio: 1.65) {
+		.home-hero-focus-frame {
+			height: min(36.1rem, 54vh);
+			aspect-ratio: auto;
 		}
 	}
 

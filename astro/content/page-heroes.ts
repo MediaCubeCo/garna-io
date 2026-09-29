@@ -256,7 +256,7 @@ export const pageHeroes = {
 		descriptionClass:
 			'mx-auto mb-5 max-w-6xl text-center font-manrope text-lg leading-relaxed !text-white opacity-70 [text-shadow:0_2px_18px_rgba(0,0,0,0.72)] md:mb-6 md:text-xl lg:mb-7 lg:text-xl lg:whitespace-nowrap',
 		title: [{ text: 'The All in One Payroll Platform', translateKey: 'hero.titleMain' }],
-		description: 'Hire, pay, and manage global teams without setting up local entities',
+		description: 'Pay contractors and hire employees in 150+ countries — fully compliant, without extra costs of a local entity',
 		descriptionTranslateKey: 'hero.description',
 		cta: {
 			label: 'Book a demo',

@@ -21,7 +21,7 @@ const stats = [
 ];
 
 const heroMedia = {
-	video: '/pages/payroll-solution-new/assets/contractor-hero-background.mp4',
+	video: '/pages/payroll-solution-new/assets/contractor-hero-background.mp4?v=5d095151',
 };
 ---
 
@@ -34,7 +34,7 @@ const heroMedia = {
 			muted
 			loop
 			playsinline
-			preload="metadata"
+			preload="auto"
 		></video>
 	</div>
 
@@ -70,15 +70,23 @@ const heroMedia = {
 	.contractor-hero {
 		--contractor-hero-video-right: 0px;
 		--contractor-hero-video-width: min(82.08rem, 84.24vw);
-		--contractor-hero-video-reveal-start: clamp(5rem, 8vw, 11rem);
-		--contractor-hero-video-reveal-end: calc(var(--contractor-hero-video-reveal-start) + clamp(20rem, 28vw, 34rem));
+		--contractor-hero-video-reveal-start: clamp(18rem, 28vw, 24rem);
+		--contractor-hero-video-reveal-end: calc(var(--contractor-hero-video-reveal-start) + clamp(24rem, 36vw, 32rem));
 		--contractor-hero-video-mask-solid: 52%;
 		--contractor-hero-video-mask-clear: 82%;
+		--garna-hero-stat-value-size: clamp(1.55rem, 1.8vw, 1.95rem);
+		--garna-hero-stat-label-size: clamp(0.82rem, 0.9vw, 0.875rem);
+		--garna-hero-stat-value-size-tablet: clamp(1.4rem, 2.4vw, 1.55rem);
+		--garna-hero-stat-label-size-tablet: clamp(0.8rem, 1.2vw, 0.82rem);
+		--garna-hero-stat-value-size-mobile: clamp(1.25rem, 4.4vw, 1.4rem);
+		--garna-hero-stat-label-size-mobile: clamp(0.75rem, 2.8vw, 0.8rem);
 		position: relative;
 		display: flex;
 		box-sizing: border-box;
+		width: 100%;
+		height: auto;
 		min-height: 100vh;
-		min-height: 100svh;
+		min-height: 100dvh;
 		align-items: stretch;
 		overflow: hidden;
 		padding: clamp(8.5rem, 13vw, 12rem) 0 clamp(4.5rem, 8vw, 7rem);
@@ -125,10 +133,10 @@ const heroMedia = {
 		right: var(--contractor-hero-video-right);
 		bottom: auto;
 		left: auto;
-		width: var(--contractor-hero-video-width);
-		height: calc(100% + 14rem);
+		width: 100%;
+		height: 100%;
 		object-fit: cover;
-		object-position: 70% 42%;
+		object-position: 32% 50%;
 		opacity: 1;
 		-webkit-mask-image: linear-gradient(
 			90deg,
@@ -184,13 +192,18 @@ const heroMedia = {
 		margin: 1.25rem 0 0;
 		color: rgb(255 255 255 / 0.62);
 		font-family: Manrope, sans-serif;
-		font-size: clamp(1rem, 1.35vw, 1.25rem);
+		font-size: 1.125rem;
 		font-weight: 500;
 		line-height: 1.58;
 	}
 
 	:global(.contractor-hero__cta) {
 		margin-top: 2.5rem;
+	}
+
+	:global(.contractor-hero .garna-hero-stats-row) {
+		margin-top: auto;
+		padding-top: clamp(3.5rem, 8svh, 6rem);
 	}
 
 	.contractor-hero__space {
@@ -200,6 +213,10 @@ const heroMedia = {
 	@media (min-width: 768px) {
 		.contractor-hero__copy h1 {
 			font-size: 3.35rem;
+		}
+
+		.contractor-hero__copy p {
+			font-size: 1.25rem;
 		}
 	}
 
@@ -227,14 +244,39 @@ const heroMedia = {
 		}
 	}
 
+	@media (min-width: 1200px) and (max-width: 1279px) {
+		.contractor-hero__video {
+			object-position: 42% 50%;
+		}
+	}
+
+	@media (min-width: 1100px) and (max-width: 1199px) {
+		.contractor-hero__video {
+			object-position: 50% 50%;
+		}
+	}
+
+	@media (min-width: 1024px) and (max-width: 1099px) {
+		.contractor-hero__video {
+			object-position: 60% 50%;
+		}
+	}
+
+	@media (min-width: 1600px) {
+		.contractor-hero__video {
+			transform: translateX(clamp(3rem, 3.25vw, 4rem));
+		}
+	}
+
 	@media (max-width: 1023px) {
 		.contractor-hero {
 			--contractor-hero-video-reveal-start: 20%;
 			--contractor-hero-video-reveal-end: 68%;
 			--contractor-hero-video-mask-solid: 42%;
 			--contractor-hero-video-mask-clear: 82%;
+			height: auto;
 			min-height: 100vh;
-			min-height: 100svh;
+			min-height: 100dvh;
 			padding: 7rem 0 clamp(4rem, 9vw, 5.5rem);
 		}
 
@@ -294,7 +336,7 @@ const heroMedia = {
 
 		:global(.contractor-hero .garna-hero-stats-row) {
 			margin-top: auto;
-			padding-top: clamp(1.75rem, 4svh, 2.5rem);
+			padding-top: clamp(3.5rem, 8svh, 5rem);
 		}
 	}
 
@@ -353,11 +395,11 @@ const heroMedia = {
 		}
 	}
 
-	@media (max-width: 1023px) and (max-height: 520px) {
+	@media (orientation: landscape) and (max-height: 680px) {
 		.contractor-hero {
-			height: 100vh;
-			height: 100svh;
-			min-height: 0;
+			height: auto;
+			min-height: 100vh;
+			min-height: 100dvh;
 			padding: clamp(5.5rem, 22svh, 7rem) 0 clamp(1rem, 5svh, 2rem);
 		}
 	}

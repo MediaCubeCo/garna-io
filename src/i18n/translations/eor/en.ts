@@ -65,8 +65,8 @@ export const eorEn = {
 		}
 	},
 	"eorProof": {
-		"title": "Hire Abroad Without Guesswork",
-		"description": "Garna keeps international hiring transparent, from local contracts to payroll and compliance. When you are ready, compare your options in the cost calculator",
+		"title": "Transparent EOR Pricing",
+		"description": "Starting from $200/month per employee. No hidden fees. No local entity setup costs. Get a custom quote based on your hiring needs",
 		"button": "Calculate your options",
 		"carousel": {
 			"ariaLabel": "Choose an EOR proof card"
@@ -75,15 +75,15 @@ export const eorEn = {
 			"countries": {
 				"label": "countries covered",
 				"notice": {
-					"title": "Contract complete",
-					"meta": "Country terms checked"
+					"title": "From $200/month",
+					"meta": "Per employee"
 				}
 			},
 			"platform": {
 				"label": "platform for global hiring",
 				"notice": {
-					"title": "Payroll profile set",
-					"meta": "Salary, tax, benefits"
+					"title": "No entity setup costs",
+					"meta": "Hire through Garna"
 				}
 			},
 			"entities": {
@@ -203,7 +203,7 @@ export const eorEn = {
 			"start": "Start",
 			"access": "Access",
 			"portugal": "Portugal",
-			"eorContract": "EoR contract",
+			"eorContract": "EOR contract",
 			"invite": "Invite",
 			"employeeEmail": "Employee email",
 			"account": "Account",
@@ -220,11 +220,11 @@ export const eorEn = {
 		"benefits": {
 			"hireGlobally": {
 				"title": "Hire Globally Faster",
-				"description": "Bring in talent from anywhere and onboard in days, not months"
+				"description": "Bring in talent from anywhere and onboard them faster"
 			},
 			"newMarkets": {
 				"title": "Expand Into New Markets",
-				"description": "Test and enter new regions without operational overhead"
+				"description": "Build a local team in new countries without immediately establishing your own employing entity."
 			},
 			"reduceRisks": {
 				"title": "Reduce Global Hiring Costs",
@@ -232,7 +232,7 @@ export const eorEn = {
 			},
 			"compliance": {
 				"title": "Maintain Law Compliance",
-				"description": "Local labor law, tax, and social contributions, handled per country"
+				"description": "Local labor law, employment related taxes, and social contributions, handled per country"
 			}
 		}
 	},
@@ -257,7 +257,7 @@ export const eorEn = {
 				"description": "Stay aligned with local labor laws, tax regulations, and country-specific rules"
 			},
 			"integrations": {
-				"title": "Integrate EoR into your tools",
+				"title": "Integrate EOR into your tools",
 				"description": "Connect with existing HR, finance, and workforce management tools without disrupting your processes"
 			},
 			"fastMoving": {
@@ -292,7 +292,7 @@ export const eorEn = {
 				"label": "Payroll",
 				"title": "Running Your Global Payroll Without Stress",
 				"problem": "Getting payroll right for employees all over the world and dealing with different currencies and tax rules is one of the most headache-inducing bits about taking a business global",
-				"solution": "Garna eases international payroll with automated workflows. Pay people around the world quickly while excluding payroll errors and extra work"
+				"solution": "Garna eases international payroll with automated workflows. Pay people around the world quickly while excluding extra work."
 			},
 			"timeOff": {
 				"label": "Time Off and Expenses",
@@ -360,7 +360,7 @@ export const eorEn = {
 				"description": "Choose the person responsible for financial matters, from a finance director to yourself"
 			},
 			"contract": {
-				"title": "Create your first EoR contract",
+				"title": "Create your first EOR contract",
 				"description": "Add country, position, salary, start date, currency, and work visa requirements"
 			},
 			"invite": {
@@ -381,11 +381,11 @@ export const eorEn = {
 		"items": {
 			"q1": {
 				"question": "What is an Employer of Record (EOR)?",
-				"answer": "An Employer of Record lets you hire full-time employees in countries where you don't have a legal entity. Garna becomes the legal employer, handling payroll, contracts, taxes, and local compliance, while you manage an employee's day-to-day work."
+				"answer": "An Employer of Record lets you hire full-time employees in countries where you don't have a legal entity. Garna becomes the legal employer, handling payroll, contracts, mandatory payments and local compliance, while you manage business activities."
 			},
 			"q2": {
 				"question": "Who manages the employee?",
-				"answer": "You do. You set their responsibilities, working hours, goals, and career path. Garna handles contracts, statutory benefits, salary payments, and local compliance."
+				"answer": "Your company continues to manage the employee's day-to-day business activities, including role-related objectives, projects, and performance feedback. The EOR manages the employment relationship, including payroll, statutory benefits, employment administration, and applicable employment-related compliance requirements under local law."
 			},
 			"q3": {
 				"question": "What's the difference between hiring through an EOR and a contractor?",
@@ -393,15 +393,15 @@ export const eorEn = {
 			},
 			"q4": {
 				"question": "EOR vs setting up your own entity, which is better?",
-				"answer": "Your own entity means you own incorporation, tax filings, and local compliance. An EOR is faster to start and more flexible if you're still testing where to grow."
+				"answer": "Your own entity means you own incorporation, tax filings, and local compliance, it works better when you need to run a business on a new market. If you only need to hire specialists who can’t or don’t want to relocate, EOR is a faster and more suitable way."
 			},
 			"q5": {
 				"question": "How quickly can I start hiring through Garna?",
-				"answer": "In most countries, we can onboard your new employee in as little as X business day(s), once the offer is confirmed and onboarding documents are signed."
+				"answer": "In most countries, onboarding new employees takes around 1-2 weeks, once the offer is confirmed and onboarding documents are signed. However, timeframes depend on the country, local documentation, and any applicable immigration requirements."
 			},
 			"q6": {
 				"question": "Can I hire international workers without an EOR?",
-				"answer": "Yes, by setting up a local legal entity or hiring the person as a contractor. Both have trade-offs: an entity is slow and expensive, a contractor role carries compliance risk if it resembles full-time employment. Garna's EOR is the faster, fully compliant alternative."
+				"answer": "Yes, by setting up a local legal entity or hiring the person as a contractor. Both have trade-offs: an entity is slow and expensive, a contractor role carries compliance risk if it resembles full-time employment. Garna's EOR is the faster, compliant alternative."
 			},
 			"q7": {
 				"question": "Is it legally compliant to hire through an EOR?",
