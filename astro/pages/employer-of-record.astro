@@ -27,10 +27,10 @@ const eorProofStats = [
 		imageOrigin: 'center center',
 		imageScale: 1.03,
 		notice: {
-			icon: 'contract',
-			title: 'Contract ready',
+			icon: 'tag',
+			title: "From $200/month",
 			titleKey: 'eorProof.stats.countries.notice.title',
-			meta: 'Country terms checked',
+			meta: "Per employee",
 			metaKey: 'eorProof.stats.countries.notice.meta',
 			tone: 'bank',
 		},
@@ -46,10 +46,10 @@ const eorProofStats = [
 		imageOrigin: 'center center',
 		imageScale: 1.03,
 		notice: {
-			icon: 'payroll',
-			title: 'Payroll profile set',
+			icon: 'building-2',
+			title: "No entity setup costs",
 			titleKey: 'eorProof.stats.platform.notice.title',
-			meta: 'Salary, tax, benefits',
+			meta: "Hire through Garna",
 			metaKey: 'eorProof.stats.platform.notice.meta',
 			tone: 'card',
 		},
@@ -77,14 +77,14 @@ const eorFaqItems = [
 	{
 		question: 'What is an Employer of Record (EOR)?',
 		answer:
-			"An Employer of Record lets you hire full-time employees in countries where you don't have a legal entity. Garna becomes the legal employer, handling payroll, contracts, taxes, and local compliance, while you manage an employee's day-to-day work.",
+			"An Employer of Record lets you hire full-time employees in countries where you don't have a legal entity. Garna becomes the legal employer, handling payroll, contracts, mandatory payments and local compliance, while you manage business activities.",
 		questionTranslateKey: 'faq.items.q1.question',
 		answerTranslateKey: 'faq.items.q1.answer',
 	},
 	{
 		question: 'Who manages the employee?',
 		answer:
-			'You do. You set their responsibilities, working hours, goals, and career path. Garna handles contracts, statutory benefits, salary payments, and local compliance.',
+			"Your company continues to manage the employee's day-to-day business activities, including role-related objectives, projects, and performance feedback. The EOR manages the employment relationship, including payroll, statutory benefits, employment administration, and applicable employment-related compliance requirements under local law.",
 		questionTranslateKey: 'faq.items.q2.question',
 		answerTranslateKey: 'faq.items.q2.answer',
 	},
@@ -98,20 +98,20 @@ const eorFaqItems = [
 	{
 		question: 'EOR vs setting up your own entity, which is better?',
 		answer:
-			"Your own entity means you own incorporation, tax filings, and local compliance. An EOR is faster to start and more flexible if you're still testing where to grow.",
+			"Your own entity means you own incorporation, tax filings, and local compliance, it works better when you need to run a business on a new market. If you only need to hire specialists who can’t or don’t want to relocate, EOR is a faster and more suitable way.",
 		questionTranslateKey: 'faq.items.q4.question',
 		answerTranslateKey: 'faq.items.q4.answer',
 	},
 	{
 		question: 'How quickly can I start hiring through Garna?',
-		answer: 'In most countries, we can onboard your new employee in as little as X business day(s), once the offer is confirmed and onboarding documents are signed.',
+		answer: 'In most countries, onboarding new employees takes around 1-2 weeks, once the offer is confirmed and onboarding documents are signed. However, timeframes depend on the country, local documentation, and any applicable immigration requirements.',
 		questionTranslateKey: 'faq.items.q5.question',
 		answerTranslateKey: 'faq.items.q5.answer',
 	},
 	{
 		question: 'Can I hire international workers without an EOR?',
 		answer:
-			"Yes, by setting up a local legal entity or hiring the person as a contractor. Both have trade-offs: an entity is slow and expensive, a contractor role carries compliance risk if it resembles full-time employment. Garna's EOR is the faster, fully compliant alternative.",
+			"Yes, by setting up a local legal entity or hiring the person as a contractor. Both have trade-offs: an entity is slow and expensive, a contractor role carries compliance risk if it resembles full-time employment. Garna's EOR is the faster, compliant alternative.",
 		questionTranslateKey: 'faq.items.q6.question',
 		answerTranslateKey: 'faq.items.q6.answer',
 	},
@@ -134,8 +134,8 @@ const eorFaqItems = [
 <BaseLayout shell={pageShells.eor}>
 	<EorHeroSection />
 	<ProofStatsCardsSection
-		title={{ text: 'Hire Abroad Without Guesswork', translateKey: 'eorProof.title' }}
-		description={{ text: 'Garna keeps international hiring transparent, from local contracts to payroll and compliance. When you are ready, compare your options in the cost calculator', translateKey: 'eorProof.description' }}
+		title={{ text: "Transparent EOR Pricing", translateKey: 'eorProof.title' }}
+		description={{ text: "Starting from $200/month per employee. No hidden fees. No local entity setup costs. Get a custom quote based on your hiring needs", translateKey: 'eorProof.description' }}
 		action={{ label: { text: 'Calculate your options', translateKey: 'eorProof.button' }, href: '#eor-cost-estimator', variant: 'primary', icon: 'arrow-right', effect: 'none' }}
 		stats={eorProofStats}
 		carouselLabel="Choose an EOR proof card"

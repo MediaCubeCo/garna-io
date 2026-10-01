@@ -1,90 +1,341 @@
-<div class="global-reach-visual relative h-full min-h-[250px] w-full overflow-hidden">
-	<div class="globe-shell absolute left-1/2 top-[4%] z-0 aspect-square w-[86%] -translate-x-1/2 overflow-hidden rounded-full" aria-hidden="true">
-		<div class="globe-map-track absolute -left-[27.5%] top-1/2 flex w-[310%]">
-			<img src="/pages/payroll-solution-new/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png" class="globe-map w-1/2 max-w-none flex-none" alt="" />
-			<img src="/pages/payroll-solution-new/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png" class="globe-map w-1/2 max-w-none flex-none" alt="" />
-		</div>
-		<svg class="globe-grid absolute left-1/2 top-[-0.5%] h-[101%] w-[101%] -translate-x-1/2" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-			<defs>
-				<clipPath id="global-reach-grid-clip">
-					<circle cx="50" cy="50" r="49.6" />
-				</clipPath>
-			</defs>
-			<g clip-path="url(#global-reach-grid-clip)">
-				<g class="globe-grid-static-meridians">
-					<path d="M50 0V100" />
-					<path d="M50 0C41.2 14.5 37.8 31.5 37.8 50C37.8 68.5 41.2 85.5 50 100" />
-					<path d="M50 0C58.8 14.5 62.2 31.5 62.2 50C62.2 68.5 58.8 85.5 50 100" />
-					<path d="M50 0C31.6 13.2 23.8 31.2 23.8 50C23.8 68.8 31.6 86.8 50 100" />
-					<path d="M50 0C68.4 13.2 76.2 31.2 76.2 50C76.2 68.8 68.4 86.8 50 100" />
-					<path d="M50 0C20.8 12.4 10.5 31.3 10.5 50C10.5 68.7 20.8 87.6 50 100" />
-					<path d="M50 0C79.2 12.4 89.5 31.3 89.5 50C89.5 68.7 79.2 87.6 50 100" />
-					<path d="M50 0C10.8 12.2 1 31.6 1 50C1 68.4 10.8 87.8 50 100" />
-					<path d="M50 0C89.2 12.2 99 31.6 99 50C99 68.4 89.2 87.8 50 100" />
-				</g>
-				<g class="globe-grid-latitudes">
-					<path d="M29.6 4.8C39.2 11.8 60.8 11.8 70.4 4.8" />
-					<path d="M5.6 13.6C25.8 27.2 74.2 27.2 94.4 13.6" />
-					<path d="M7.8 26.4C25 39.8 75 39.8 92.2 26.4" />
-					<path d="M2 39.6C23.5 51.8 76.5 51.8 98 39.6" />
-					<path d="M0 53C23.8 63.4 76.2 63.4 100 53" />
-					<path d="M3 66.4C25.2 75.6 74.8 75.6 97 66.4" />
-					<path d="M10.4 79.8C28.8 86.8 71.2 86.8 89.6 79.8" />
-				</g>
-			</g>
-		</svg>
+<div class="global-reach-visual relative h-full min-h-[250px] w-full overflow-hidden" data-global-reach-visual>
+	<div class="globe-shell absolute left-1/2 top-[8%] z-0 aspect-square w-[86%] -translate-x-1/2 overflow-hidden rounded-full" aria-hidden="true">
+		<img src="/pages/payroll-solution-new/assets/world-map-equirectangular-4k.png" class="globe-map-fallback" alt="" />
+		<canvas class="globe-canvas" data-global-reach-globe></canvas>
 		<div class="globe-light absolute inset-0"></div>
 	</div>
 
-	<div class="currency-pill-layer absolute left-1/2 top-[4%] z-10 aspect-square w-[86%] -translate-x-1/2" aria-hidden="true">
-	<div class="currency-pill currency-pill--gbp">
-		<span class="flag-pair"><img src="/images/flags/gb.png" alt="United Kingdom"><img src="/images/flags/us.png" alt="United States"></span>
-		<span class="transfer-details"><strong>GBP <span>→</span> USD</strong><small>£7,607 <i>→</i> $10,000</small></span>
+	<div class="employee-pill-layer absolute left-1/2 top-[8%] z-10 aspect-square w-[86%] -translate-x-1/2" aria-hidden="true">
+	<div class="employee-pill employee-pill--germany">
+		<span class="employee-avatar">
+			<img class="employee-avatar__photo" src="/pages/payroll-solution-new/assets/contractor-avatar-sarah-v1.webp" alt="">
+			<img class="employee-avatar__flag" src="/images/flags/de.png" alt="">
+		</span>
+		<span class="employee-details"><strong>Anna Keller</strong><small data-translate="manageGlobalPayroll.visual.employees.germany">Germany · EOR active</small></span>
 	</div>
 
-	<div class="currency-pill currency-pill--eur">
-		<span class="flag-pair"><img src="/images/flags/de.png" alt="Germany"><img src="/images/flags/ch.png" alt="Switzerland"></span>
-		<span class="transfer-details"><strong>EUR <span>→</span> CHF</strong><small>€5,037 <i>→</i> CHF 4,850</small></span>
+	<div class="employee-pill employee-pill--canada">
+		<span class="employee-avatar">
+			<img class="employee-avatar__photo" src="/pages/payroll-solution-new/assets/alex-rivera-avatar-light.png" alt="">
+			<img class="employee-avatar__flag" src="/images/flags/ca.png" alt="">
+		</span>
+		<span class="employee-details"><strong>Liam Carter</strong><small data-translate="manageGlobalPayroll.visual.employees.canada">Canada · EOR active</small></span>
 	</div>
 
-	<div class="currency-pill currency-pill--jpy">
-		<span class="flag-pair"><img src="/images/flags/jp.png" alt="Japan"><img src="/images/flags/ca.png" alt="Canada"></span>
-		<span class="transfer-details"><strong>JPY <span>→</span> CAD</strong><small>¥227,910 <i>→</i> C$2,100</small></span>
+	<div class="employee-pill employee-pill--japan">
+		<span class="employee-avatar">
+			<img class="employee-avatar__photo" src="/pages/payroll-solution-new/assets/contractor-avatar-maya.png" alt="">
+			<img class="employee-avatar__flag" src="/images/flags/jp.png" alt="">
+		</span>
+		<span class="employee-details"><strong>Aiko Tanaka</strong><small data-translate="manageGlobalPayroll.visual.employees.japan">Japan · EOR active</small></span>
 	</div>
 	</div>
 </div>
 
+<script>
+	const MAP_TEXTURE_URL = '/pages/payroll-solution-new/assets/world-map-equirectangular-4k.png';
+	const FULL_ROTATION_MS = 80000;
+
+	for (const visual of document.querySelectorAll('[data-global-reach-visual]')) {
+		if (!(visual instanceof HTMLElement) || visual.dataset.globeReady === 'true') continue;
+		visual.dataset.globeReady = 'true';
+
+		const canvas = visual.querySelector('[data-global-reach-globe]');
+		const fallback = visual.querySelector('.globe-map-fallback');
+		if (!(canvas instanceof HTMLCanvasElement)) continue;
+
+		const gl = canvas.getContext('webgl', {
+			alpha: true,
+			antialias: true,
+			depth: false,
+			premultipliedAlpha: true,
+		});
+		if (!gl) continue;
+
+		const vertexSource = `
+			attribute vec2 aPosition;
+			varying vec2 vPosition;
+			void main() {
+				vPosition = aPosition;
+				gl_Position = vec4(aPosition, 0.0, 1.0);
+			}
+		`;
+		const supportsDerivatives = Boolean(gl.getExtension('OES_standard_derivatives'));
+		const fragmentSource = `
+			${supportsDerivatives ? '#extension GL_OES_standard_derivatives : enable' : ''}
+			precision highp float;
+			varying vec2 vPosition;
+			uniform sampler2D uMap;
+			uniform float uRotation;
+			uniform float uPixelDensity;
+
+			const float PI = 3.141592653589793;
+			const float TAU = 6.283185307179586;
+			const float AXIS_TILT_X = 0.0;
+			const float AXIS_TILT_Z = 0.0;
+
+			${supportsDerivatives ? `float filteredGridLine(float wave) {
+				// Measure distance in CSS pixels, independent of line orientation
+				// and canvas density. Differentiate the signed wave before abs.
+				float gradient = max(length(vec2(dFdx(wave), dFdy(wave))), 0.000001);
+				float distance = abs(wave) / (gradient * uPixelDensity);
+				// A soft, energy-stable profile spans adjacent samples instead of
+				// flashing as a subpixel line crosses their centers.
+				float normalizedDistance = distance / 0.38;
+				return 0.5 * exp(-0.5 * normalizedDistance * normalizedDistance);
+			}` : ''}
+
+			void main() {
+				vec2 point = vPosition;
+				float radiusSquared = dot(point, point);
+				if (radiusSquared > 1.0) discard;
+
+				float depth = sqrt(max(0.0, 1.0 - radiusSquared));
+				vec3 normal = normalize(vec3(point.x, point.y, depth));
+				float tiltZCosine = cos(AXIS_TILT_Z);
+				float tiltZSine = sin(AXIS_TILT_Z);
+				vec3 globeNormal = vec3(
+					tiltZCosine * normal.x + tiltZSine * normal.y,
+					-tiltZSine * normal.x + tiltZCosine * normal.y,
+					normal.z
+				);
+				float tiltXCosine = cos(AXIS_TILT_X);
+				float tiltXSine = sin(AXIS_TILT_X);
+				globeNormal = vec3(
+					globeNormal.x,
+					tiltXCosine * globeNormal.y + tiltXSine * globeNormal.z,
+					-tiltXSine * globeNormal.y + tiltXCosine * globeNormal.z
+				);
+				float cosine = cos(uRotation);
+				float sine = sin(uRotation);
+				vec3 rotated = vec3(
+					cosine * globeNormal.x + sine * globeNormal.z,
+					globeNormal.y,
+					-sine * globeNormal.x + cosine * globeNormal.z
+				);
+
+				float longitude = atan(rotated.x, rotated.z);
+				float latitude = asin(clamp(rotated.y, -1.0, 1.0));
+				float gridCurve = (0.04 + 0.13 * abs(point.y)) * (1.0 - point.x * point.x);
+				float gridLatitude = asin(clamp(point.y + gridCurve, -0.999, 0.999));
+				vec2 textureCoordinates = vec2(
+					fract(longitude / TAU + 0.5),
+					latitude / PI + 0.5
+				);
+
+				vec2 halfTexel = vec2(0.5 / 4096.0, 0.5 / 2048.0);
+				float land = texture2D(uMap, textureCoordinates + vec2(-halfTexel.x, -halfTexel.y)).r;
+				land += texture2D(uMap, textureCoordinates + vec2(halfTexel.x, -halfTexel.y)).r;
+				land += texture2D(uMap, textureCoordinates + vec2(-halfTexel.x, halfTexel.y)).r;
+				land += texture2D(uMap, textureCoordinates + vec2(halfTexel.x, halfTexel.y)).r;
+				land *= 0.25;
+				float edgeFade = smoothstep(0.02, 0.28, depth);
+				vec3 lightDirection = normalize(vec3(-0.42, 0.5, 0.76));
+				float light = 0.62 + 0.38 * max(dot(normal, lightDirection), 0.0);
+				vec3 landColor = vec3(0.62, 0.64, 0.66) * light;
+				float longitudeWave = sin(longitude * 6.0);
+				float latitudeWave = sin(gridLatitude * 6.0);
+				float longitudeDistance = abs(longitudeWave);
+				float latitudeDistance = abs(latitudeWave);
+				${supportsDerivatives
+					? `float longitudeLine = filteredGridLine(longitudeWave);
+				float latitudeLine = filteredGridLine(latitudeWave);`
+					: `float longitudeLine = 1.0 - smoothstep(0.0, 0.018, longitudeDistance);
+				float latitudeLine = 1.0 - smoothstep(0.0, 0.018, latitudeDistance);`}
+				float grid = max(longitudeLine, latitudeLine);
+				float landAlpha = land * 0.19 * edgeFade;
+				float gridEdgeFade = smoothstep(0.005, 0.12, depth);
+				float gridAlpha = grid * 0.23 * gridEdgeFade;
+				float alpha = max(landAlpha, gridAlpha);
+				vec3 color = mix(landColor, vec3(0.82, 0.84, 0.86), grid * 0.72);
+
+				gl_FragColor = vec4(color, alpha);
+			}
+		`;
+
+		const compileShader = (type: number, source: string) => {
+			const shader = gl.createShader(type);
+			if (!shader) return null;
+			gl.shaderSource(shader, source);
+			gl.compileShader(shader);
+			if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+				gl.deleteShader(shader);
+				return null;
+			}
+			return shader;
+		};
+
+		const vertexShader = compileShader(gl.VERTEX_SHADER, vertexSource);
+		const fragmentShader = compileShader(gl.FRAGMENT_SHADER, fragmentSource);
+		if (!vertexShader || !fragmentShader) continue;
+
+		const program = gl.createProgram();
+		if (!program) continue;
+		gl.attachShader(program, vertexShader);
+		gl.attachShader(program, fragmentShader);
+		gl.linkProgram(program);
+		if (!gl.getProgramParameter(program, gl.LINK_STATUS)) continue;
+
+		const buffer = gl.createBuffer();
+		const texture = gl.createTexture();
+		const positionLocation = gl.getAttribLocation(program, 'aPosition');
+		const rotationLocation = gl.getUniformLocation(program, 'uRotation');
+		const pixelDensityLocation = gl.getUniformLocation(program, 'uPixelDensity');
+		if (!buffer || !texture || positionLocation < 0 || !rotationLocation) continue;
+
+		gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+		gl.bufferData(
+			gl.ARRAY_BUFFER,
+			new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
+			gl.STATIC_DRAW,
+		);
+		gl.useProgram(program);
+		gl.enableVertexAttribArray(positionLocation);
+		gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+		gl.enable(gl.BLEND);
+		gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		let textureLoaded = false;
+		let visible = false;
+		let frame = 0;
+		let rotation = 0.34;
+		let previousTime = 0;
+
+		const draw = () => {
+			if (!textureLoaded) return;
+			gl.clearColor(0, 0, 0, 0);
+			gl.clear(gl.COLOR_BUFFER_BIT);
+			gl.useProgram(program);
+			gl.uniform1f(rotationLocation, rotation);
+			gl.drawArrays(gl.TRIANGLES, 0, 6);
+		};
+
+		const resize = () => {
+			const bounds = canvas.getBoundingClientRect();
+			const density = Math.min(Math.max(window.devicePixelRatio || 1, 2), 3);
+			const width = Math.max(1, Math.round(bounds.width * density));
+			const height = Math.max(1, Math.round(bounds.height * density));
+			gl.uniform1f(pixelDensityLocation, density);
+			if (canvas.width !== width || canvas.height !== height) {
+				canvas.width = width;
+				canvas.height = height;
+				gl.viewport(0, 0, width, height);
+				draw();
+			}
+		};
+
+		const tick = (time: number) => {
+			if (!visible || reduceMotion.matches || document.hidden) {
+				frame = 0;
+				previousTime = 0;
+				return;
+			}
+			if (previousTime) rotation = (rotation + ((time - previousTime) / FULL_ROTATION_MS) * Math.PI * 2) % (Math.PI * 2);
+			previousTime = time;
+			draw();
+			frame = requestAnimationFrame(tick);
+		};
+
+		const start = () => {
+			if (!textureLoaded || !visible || reduceMotion.matches || document.hidden || frame) return;
+			previousTime = 0;
+			frame = requestAnimationFrame(tick);
+		};
+
+		const stop = () => {
+			if (frame) cancelAnimationFrame(frame);
+			frame = 0;
+			previousTime = 0;
+		};
+
+		const image = new Image();
+		image.decoding = 'async';
+		image.addEventListener('load', () => {
+			gl.bindTexture(gl.TEXTURE_2D, texture);
+			gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
+			// The 4096 x 2048 map is periodic in longitude: filter across the
+			// antimeridian so its texture edges do not reveal a seam as it turns.
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+			gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+			textureLoaded = true;
+			canvas.classList.add('is-ready');
+			if (fallback instanceof HTMLImageElement) fallback.hidden = true;
+			resize();
+			draw();
+			start();
+		}, { once: true });
+		image.src = MAP_TEXTURE_URL;
+
+		const visibilityObserver = new IntersectionObserver(([entry]) => {
+			visible = Boolean(entry?.isIntersecting);
+			if (visible) start(); else stop();
+		}, { threshold: 0.08 });
+		visibilityObserver.observe(visual);
+
+		const resizeObserver = new ResizeObserver(resize);
+		resizeObserver.observe(canvas);
+		reduceMotion.addEventListener?.('change', () => {
+			stop();
+			draw();
+			start();
+		});
+		document.addEventListener('visibilitychange', () => {
+			if (document.hidden) stop(); else start();
+		});
+		canvas.addEventListener('webglcontextlost', (event) => {
+			event.preventDefault();
+			stop();
+			canvas.classList.remove('is-ready');
+			if (fallback instanceof HTMLImageElement) fallback.hidden = false;
+		});
+		window.addEventListener('garna:page-will-unmount', () => {
+			stop();
+			visibilityObserver.disconnect();
+			resizeObserver.disconnect();
+			gl.deleteTexture(texture);
+			gl.deleteBuffer(buffer);
+			gl.deleteProgram(program);
+			gl.deleteShader(vertexShader);
+			gl.deleteShader(fragmentShader);
+		}, { once: true });
+	}
+</script>
+
 <style>
 	.globe-shell {
-		border: 1px solid rgb(255 255 255 / 0.08);
 		background: radial-gradient(circle at 34% 28%, #101010 0%, #070707 48%, #030303 100%);
 	}
 
-	.globe-map {
+	.globe-map-fallback {
+		position: absolute;
+		z-index: 0;
+		top: 50%;
+		left: 50%;
+		width: 155%;
+		max-width: none;
 		opacity: 0.18;
 		filter: grayscale(1) brightness(0.96) contrast(1.08);
 		mix-blend-mode: screen;
+		transform: translate(-50%, -50%);
 	}
 
-	.globe-map-track {
-		animation: global-reach-axis-spin 34s linear infinite;
-		z-index: 0;
-		transform: translateY(-50%);
-	}
-
-	.globe-grid {
+	.globe-canvas {
+		position: absolute;
 		z-index: 2;
-		color: rgb(255 255 255 / 0.125);
-		mix-blend-mode: screen;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: opacity 500ms ease;
 	}
 
-	.globe-grid ellipse,
-	.globe-grid path {
-		stroke: currentColor;
-		stroke-linecap: round;
-		stroke-linejoin: round;
-		stroke-width: 0.48;
-		vector-effect: non-scaling-stroke;
+	.globe-canvas.is-ready {
+		opacity: 1;
 	}
 
 	.globe-light {
@@ -95,7 +346,7 @@
 			linear-gradient(110deg, rgb(0 0 0 / 0.1) 0%, rgb(0 0 0 / 0.26) 62%, rgb(0 0 0 / 0.62));
 	}
 
-	.currency-pill-layer {
+	.employee-pill-layer {
 		--currency-globe-reference-width: 430px;
 		--currency-pill-scale: min(1, calc(100cqw / var(--currency-globe-reference-width)));
 		--currency-pill-offset-y: -8%;
@@ -103,7 +354,7 @@
 		pointer-events: none;
 	}
 
-	.currency-pill {
+	.employee-pill {
 		position: absolute;
 		display: flex;
 		align-items: center;
@@ -121,107 +372,108 @@
 		backface-visibility: hidden;
 	}
 
-	.currency-pill--gbp {
+	.employee-pill--germany {
 		left: 21%;
 		top: calc(45% + var(--currency-pill-offset-y));
 	}
 
-	.currency-pill--eur {
+	.employee-pill--canada {
 		left: 61%;
 		top: calc(67% + var(--currency-pill-offset-y));
 	}
 
-	.currency-pill--jpy {
+	.employee-pill--japan {
 		left: 73%;
 		top: calc(35% + var(--currency-pill-offset-y));
 	}
 
-	:global(html[lang='ru']) .currency-pill-layer {
+	:global(html[lang='ru']) .employee-pill-layer {
 		--currency-pill-offset-y: -10%;
 	}
 
-	:global(html[lang='es']) .currency-pill-layer {
+	:global(html[lang='es']) .employee-pill-layer {
 		--currency-pill-offset-y: -10%;
 	}
 
-	:global(html[lang='pt']) .currency-pill-layer {
+	:global(html[lang='pt']) .employee-pill-layer {
 		--currency-pill-offset-y: -10%;
 	}
 
 	@media (min-width: 1080px) {
-		:global(html[lang='en']) .currency-pill-layer {
+		:global(html[lang='en']) .employee-pill-layer {
 			--currency-pill-offset-y: -12%;
 		}
 	}
 
 	@media (max-width: 1079.98px) {
-		:global(html[lang='en']) .currency-pill-layer {
+		:global(html[lang='en']) .employee-pill-layer {
 			--currency-pill-offset-y: -12%;
 		}
 
-		:global(html[lang='pt']) .currency-pill-layer {
+		:global(html[lang='pt']) .employee-pill-layer {
 			--currency-pill-offset-y: -16%;
 		}
 
-		:global(html[lang='ru']) .currency-pill-layer {
+		:global(html[lang='ru']) .employee-pill-layer {
 			--currency-pill-offset-y: -22%;
 		}
 
-		:global(html[lang='es']) .currency-pill-layer {
+		:global(html[lang='es']) .employee-pill-layer {
 			--currency-pill-offset-y: -18%;
 		}
 	}
 
 	@media (max-width: 560px) {
-		:global(html[lang='ru']) .currency-pill-layer {
+		:global(html[lang='ru']) .employee-pill-layer {
 			--currency-pill-offset-y: -10%;
 		}
 
-		:global(html[lang='es']) .currency-pill-layer {
+		:global(html[lang='es']) .employee-pill-layer {
 			--currency-pill-offset-y: -10%;
 		}
 
-		:global(html[lang='pt']) .currency-pill-layer {
+		:global(html[lang='pt']) .employee-pill-layer {
 			--currency-pill-offset-y: -9%;
 		}
 	}
 
-	.transfer-details { min-width: 0; flex: 1; }
-	.transfer-details strong { display: block; color: white; font-size: 1.03rem; font-weight: 600; white-space: nowrap; }
-	.transfer-details strong span { margin: 0 0.15rem; color: rgb(107 114 128); font-weight: 400; }
-	.transfer-details small { display: block; margin-top: 0.12rem; color: rgb(107 114 128); font-size: 0.78rem; white-space: nowrap; }
-	.transfer-details small i { margin: 0 0.13rem; color: rgb(75 85 99); font-style: normal; }
-	.flag-pair {
-		display: flex;
-		align-items: center;
+	.employee-details { min-width: 0; flex: 1; text-align: left; }
+	.employee-details strong { display: block; color: white; font-size: 1.03rem; font-weight: 600; white-space: nowrap; }
+	.employee-details small { display: block; margin-top: 0.12rem; color: rgb(107 114 128); font-size: 0.78rem; white-space: nowrap; }
+	.employee-avatar {
+		position: relative;
+		display: block;
+		height: 2.35rem;
+		width: 2.35rem;
 		flex: 0 0 auto;
 	}
 
-	.flag-pair img {
-		height: 2.15rem;
-		width: 2.15rem;
+	.employee-avatar__photo {
+		display: block;
+		height: 100%;
+		width: 100%;
 		max-width: none;
 		object-fit: cover;
 		border-radius: 9999px;
-		border: 2px solid #0a0a0a;
+		border: 1px solid rgb(255 255 255 / 0.12);
 	}
 
-	.flag-pair img + img { margin-left: -0.78rem; }
-
-	@keyframes global-reach-axis-spin {
-		from {
-			transform: translate3d(0, -50%, 0);
-		}
-
-		to {
-			transform: translate3d(-50%, -50%, 0);
-		}
+	.employee-avatar__flag {
+		position: absolute;
+		right: -0.12rem;
+		bottom: -0.12rem;
+		height: 1.15rem;
+		width: 1.15rem;
+		max-width: none;
+		border: 2px solid #050505;
+		border-radius: 9999px;
+		object-fit: cover;
 	}
+
 
 	@media (prefers-reduced-motion: reduce) {
-		.globe-map-track {
-			animation: none;
-			transform: translateY(-50%);
+		.globe-canvas {
+			transition: none;
 		}
 	}
 </style>

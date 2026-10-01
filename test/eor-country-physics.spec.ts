@@ -10,23 +10,37 @@ function createWorld(width: number, height: number, diameter: number) {
 	let sectionTop = 0;
 	let topOffset = 0;
 	let frame: ((time: number) => void) | undefined;
+	let reducedMotion = false;
+	const handlers = new Map<string, (event: any) => void>();
 	class Element {
 		constructor(private isSection = false) {}
 		style = { setProperty(_name: string, value: string) { topOffset = Number.parseFloat(value); } };
 		offsetWidth = diameter;
-		classList = { add() {} };
+		classList = { add() {}, remove() {} };
 		closest() { return new Element(true); }
-		getBoundingClientRect() { return { width, height: this.isSection ? height : height - topOffset, top: sectionTop + (this.isSection ? 0 : topOffset) }; }
+		addEventListener(type: string, handler: (event: any) => void) { handlers.set(type, handler); }
+		getBoundingClientRect() { return { left: 0, width, height: this.isSection ? height : height - topOffset, top: sectionTop + (this.isSection ? 0 : topOffset) }; }
 	}
-	const world = new Function('playground', 'elements', 'HTMLElement', 'document', 'window', 'performance', 'syncCountrySectionHeights', `${simulation}\nreturn { state, layoutOrbs, stepPhysics, settleIfStill, wakeSimulation, resize, releaseDragged, resolveCollisions, syncPlaygroundTop };`)(
+	const world = new Function('playground', 'elements', 'HTMLElement', 'document', 'window', 'performance', 'syncCountrySectionHeights', 'signal', `${simulation}\nreturn { state, layoutOrbs, stepPhysics, settleIfStill, wakeSimulation, resize, resolveCollisions, syncPlaygroundTop, pushFromCursor };`)(
 		new Element(), Array.from({ length: 32 }, () => new Element()), Element,
 		{ querySelector: () => null },
-		{ requestAnimationFrame: (fn: (time: number) => void) => { frame = fn; return 1; }, cancelAnimationFrame: () => { frame = undefined; } },
-		{ now: () => now }, () => {},
+		{
+			requestAnimationFrame: (fn: (time: number) => void) => { frame = fn; return 1; },
+			cancelAnimationFrame: () => { frame = undefined; },
+			addEventListener: (type: string, handler: (event: any) => void) => handlers.set(type, handler),
+			matchMedia: () => ({ matches: reducedMotion }),
+		},
+		{ now: () => now }, () => {}, new AbortController().signal,
 	);
 	world.layoutOrbs();
 	return {
 		...world,
+		setReducedMotion(value: boolean) { reducedMotion = value; },
+		pointerMove(x: number, y: number, options = {}) {
+			now += 16;
+			handlers.get('pointermove')?.({ clientX: x, clientY: y, pointerType: 'mouse', buttons: 0, ...options });
+		},
+		dispatch(type: string) { handlers.get(type)?.({}); },
 		setSectionTop(top: number) { sectionTop = top; world.syncPlaygroundTop(); },
 		setBounds(nextWidth: number, nextHeight: number) {
 			width = nextWidth;
@@ -49,6 +63,92 @@ function createWorld(width: number, height: number, diameter: number) {
 }
 
 describe('EOR flag settling', () => {
+	for (const width of [320, 768, 1440]) {
+		it(`bounds repeated cursor impulses and settles after sweeps at ${width}px`, () => {
+			const world = createWorld(width, 1150, 48);
+			world.run();
+			for (let i = 0; i < 180; i++) {
+				const orb = world.state.orbs[i % 32];
+				const angle = i * 2.4;
+				const from = { x: orb.x - Math.cos(angle) * 100, y: orb.y - Math.sin(angle) * 100 };
+				const to = { x: orb.x + Math.cos(angle) * 100, y: orb.y + Math.sin(angle) * 100 };
+				const speedBefore = Math.hypot(orb.vx, orb.vy);
+				world.pushFromCursor(from, to, 0.001);
+				// Gravity may already exceed the cursor cap; a sweep must not increase it.
+				expect(Math.hypot(orb.vx, orb.vy)).toBeLessThanOrEqual(Math.max(speedBefore, 1550) + 0.000001);
+				world.stepPhysics(1 / 120, 40000);
+				for (const a of world.state.orbs) {
+					expect([a.x, a.y, a.vx, a.vy].every(Number.isFinite)).toBe(true);
+					expect(a.x).toBeGreaterThanOrEqual(a.radius);
+					expect(a.x).toBeLessThanOrEqual(width - a.radius);
+					expect(a.y).toBeLessThanOrEqual(1150 - a.radius - 3);
+					for (const b of world.state.orbs) {
+						if (a !== b) expect(Math.hypot(a.x - b.x, a.y - b.y)).toBeGreaterThan(48);
+					}
+				}
+			}
+			expect(world.run().stopped).toBe(true);
+		});
+	}
+	it('pushes flags to both sides of a fast cursor sweep without a click', () => {
+		const world = createWorld(1440, 836, 72);
+		world.run();
+		world.state.started = true;
+		const [left, right, distant] = world.state.orbs;
+		Object.assign(left, { x: 680, y: 400, vx: 0, vy: 0 });
+		Object.assign(right, { x: 760, y: 400, vx: 0, vy: 0 });
+		Object.assign(distant, { x: 1100, y: 400, vx: 0, vy: 0 });
+		world.pointerMove(720, 250);
+		world.pointerMove(720, 550);
+		expect(left.vx).toBeLessThan(-200);
+		expect(right.vx).toBeGreaterThan(200);
+		expect(distant.vx).toBe(0);
+		expect(world.state.dragged).toBeUndefined();
+		const before = left.x;
+		world.run(60, 0.1);
+		expect(left.x).toBeLessThan(before);
+		expect(world.run().stopped).toBe(true);
+	});
+	it('does not repel on touch, with a pressed button, or with reduced motion', () => {
+		const world = createWorld(1440, 836, 72);
+		world.run();
+		world.state.started = true;
+		const orb = world.state.orbs[0];
+		Object.assign(orb, { x: 680, y: 400, vx: 0, vy: 0 });
+		for (const options of [{ pointerType: 'touch' }, { buttons: 1 }]) {
+			world.pointerMove(720, 250, options);
+			world.pointerMove(720, 550, options);
+			expect(orb.vx).toBe(0);
+		}
+		world.setReducedMotion(true);
+		world.pointerMove(720, 250);
+		world.pointerMove(720, 550);
+		expect(orb.vx).toBe(0);
+	});
+	it('clears hover trails on leaving, scrolling and losing focus', () => {
+		const world = createWorld(1440, 836, 72);
+		world.run();
+		world.state.started = true;
+		const orb = world.state.orbs[0];
+		Object.assign(orb, { x: 680, y: 400, vx: 0, vy: 0 });
+		for (const event of ['pointerleave', 'scroll', 'blur', 'pointerdown', 'pointercancel']) {
+			world.pointerMove(720, 250);
+			world.dispatch(event);
+			world.pointerMove(720, 550);
+			expect(orb.vx).toBe(0);
+			world.dispatch(event);
+		}
+	});
+	it('handles exact centre hits, ignores stationary cursors', () => {
+		const world = createWorld(1440, 836, 72);
+		world.run();
+		const orb = world.state.orbs[0];
+		Object.assign(orb, { x: 720, y: 400, vx: 0, vy: 0 });
+		world.pushFromCursor({ x: 720, y: 250 }, { x: 720, y: 550 }, 0.016);
+		expect(Number.isFinite(orb.vx)).toBe(true);
+		expect(Math.abs(orb.vx)).toBeGreaterThan(0);
+		expect(world.pushFromCursor({ x: 720, y: 400 }, { x: 720, y: 400 }, 0.016)).toBe(false);
+	});
 	it('never sleeps with overlapping flags even when velocities are zero', () => {
 		const world = createWorld(320, 1150, 48);
 		world.run();
@@ -89,101 +189,16 @@ describe('EOR flag settling', () => {
 			expect(pending.entered).toBe(false);
 		}
 	});
-	it('follows a free drag target gradually, including reversals', () => {
-		const world = createWorld(768, 1150, 48);
-		world.run();
-		const orb = world.state.orbs.reduce((a: any, b: any) => a.y < b.y ? a : b);
-		world.state.dragged = orb;
-		for (const target of [{ x: orb.x, y: 400 }, { x: 100, y: 400 }, { x: 650, y: 400 }]) {
-			world.state.dragTarget = target;
-			for (let step = 0; step < 120; step++) {
-				const { x, y } = orb;
-				world.stepPhysics(1 / 120, 40000);
-				expect(Math.hypot(orb.x - x, orb.y - y)).toBeLessThanOrEqual(7.501);
-			}
-			expect(Math.hypot(orb.x - target.x, orb.y - target.y)).toBeLessThan(0.1);
-		}
-	});
-	for (const [width, diameter] of [[1440, 72], [768, 48], [390, 48], [320, 48]]) {
-		it(`extracts every bottom-row flag through its neighbours at ${width}px`, () => {
-			const world = createWorld(width, 1150, diameter);
-			world.run();
-			const bottom = world.state.orbs.filter((orb: any) => orb.y > 1150 - diameter / 2 - 4);
-			for (const orb of bottom) {
-				world.state.dragged = orb;
-				world.state.dragTarget = { x: Math.max(diameter / 2, orb.x - diameter * 2), y: 600 };
-				for (let step = 0; step < 120; step++) {
-					world.stepPhysics(1 / 120, 40000);
-					let gap = Infinity;
-					for (const a of world.state.orbs) for (const b of world.state.orbs) {
-						if (a !== b) gap = Math.min(gap, Math.hypot(a.x - b.x, a.y - b.y) - diameter);
-					}
-					expect(gap).toBeGreaterThan(2);
-				}
-				expect(orb.y).toBeCloseTo(600);
-				expect(orb.x).toBeCloseTo(world.state.dragTarget.x);
-				world.releaseDragged(true);
-				world.run();
-			}
-		});
-		it(`keeps gaps while forcing a flag through the bottom row at ${width}px`, () => {
-			const world = createWorld(width, 1150, diameter);
-			world.run();
-			const orb = world.state.orbs.reduce((a: any, b: any) => a.y < b.y ? a : b);
-			world.state.dragged = orb;
-			orb.vx = orb.vy = 0;
-			for (const x of [width / 2, diameter / 2, width - diameter / 2, width / 3]) {
-				world.state.dragTarget = { x, y: 1150 - diameter / 2 - 3 };
-				for (const a of world.state.orbs) {
-					for (const b of world.state.orbs) {
-						if (a !== b) expect(Math.hypot(a.x - b.x, a.y - b.y)).toBeGreaterThan(diameter + 2);
-					}
-				}
-				for (let step = 0; step < 120; step++) {
-					const previous = world.state.orbs.map((a: any) => ({ x: a.x, y: a.y }));
-					world.stepPhysics(1 / 120, 40000);
-					let minimumDistance = Infinity;
-					for (const [index, a] of world.state.orbs.entries()) {
-						expect(Math.hypot(a.x - previous[index].x, a.y - previous[index].y)).toBeLessThan(15);
-						for (const b of world.state.orbs) {
-							if (a !== b) minimumDistance = Math.min(minimumDistance, Math.hypot(a.x - b.x, a.y - b.y));
-						}
-						expect(a.y).toBeGreaterThanOrEqual(a.radius);
-						expect(a.y).toBeLessThanOrEqual(1150 - a.radius - 3);
-					}
-					expect(minimumDistance).toBeGreaterThan(diameter + 2);
-				}
-			}
-			world.releaseDragged(true);
-			expect(world.run().stopped).toBe(true);
-		});
-	}
-	it('discards stale drag velocity and caps a fresh throw', () => {
-		const world = createWorld(390, 1150, 48);
-		const orb = world.state.orbs[0];
-		world.state.dragged = orb;
-		world.state.lastPointerTime = -200;
-		orb.vy = -10000;
-		world.releaseDragged();
-		expect(Math.abs(orb.vy)).toBe(0);
-		world.state.dragged = orb;
-		world.state.lastPointerTime = 0;
-		orb.vy = -10000;
-		world.releaseDragged();
-		expect(Math.hypot(orb.vx, orb.vy)).toBeLessThanOrEqual(480);
-	});
 	it('separates coincident flags without launching them', () => {
 		const world = createWorld(390, 1150, 48);
 		world.run();
 		const [a, b] = world.state.orbs;
 		a.x = b.x = 195;
 		a.y = b.y = 500;
-		world.state.dragged = a;
 		world.resolveCollisions();
 		expect(Math.hypot(a.x - b.x, a.y - b.y)).toBeGreaterThan(50);
 		world.stepPhysics(1 / 120, 40000);
 		expect(Math.hypot(b.vx, b.vy)).toBeLessThan(180);
-		world.releaseDragged(true);
 		expect(world.run().stopped).toBe(true);
 	});
 	for (const [width, height, diameter] of [[1440, 836, 72], [1920, 1016, 72], [1280, 836, 61], [768, 950, 48], [390, 1150, 48], [320, 1150, 48]]) {
@@ -225,18 +240,6 @@ describe('EOR flag settling', () => {
 				expect(Math.hypot(orb.x - positions[index].x, orb.y - positions[index].y)).toBeLessThan(0.1);
 			});
 		}
-	});
-	it('releases the pile when its supporting flag is dragged away', () => {
-		const world = createWorld(390, 1150, 48);
-		world.run();
-		const positions = world.state.orbs.map((orb: any) => ({ x: orb.x, y: orb.y }));
-		const orb = world.state.orbs.find((item: any) => item.y === 1123 && item.x > 100 && item.x < 290);
-		world.state.dragged = orb;
-		orb.y = 100;
-		world.run(60, 2);
-		expect(world.state.orbs.some((item: any, index: number) => item !== orb && item.y > positions[index].y + 5)).toBe(true);
-		world.state.dragged = null;
-		expect(world.run().stopped).toBe(true);
 	});
 	it('wakes and settles again after the floor moves on resize', () => {
 		const world = createWorld(390, 1150, 48);

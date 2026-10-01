@@ -126,21 +126,22 @@ describe('native Astro architecture', () => {
 		expect(finalCta).toContain("button.kind === 'demo' ? 'secondary'");
 	});
 
-	it('uses the shared dashboard visual instead of duplicating its markup on the homepage', async () => {
+	it('uses the dedicated product demo video instead of duplicating player markup on the homepage', async () => {
 		const section = await readFile(
 			path.join(root, 'astro/components/sections/payroll/home/EffectivePayrollSection.astro'),
 			'utf8',
 		);
-		const dashboard = await readFile(
-			path.join(root, 'astro/components/visuals/ContractorDashboardVisual.astro'),
+		const productDemo = await readFile(
+			path.join(root, 'astro/components/visuals/ProductDemoVideo.astro'),
 			'utf8',
 		);
 
-		expect(section).toContain("import ContractorDashboardVisual from '../../../visuals/ContractorDashboardVisual.astro'");
-		expect(section).toContain('<ContractorDashboardVisual />');
-		expect(section).not.toContain('garna.io/dashboard');
-		expect(dashboard).toContain('garna-product-window');
-		expect(dashboard).toContain('garna-product-window__chrome');
+		expect(section).toContain("import ProductDemoVideo from '../../../visuals/ProductDemoVideo.astro'");
+		expect(section).toContain('<ProductDemoVideo />');
+		expect(section).not.toContain('<video');
+		expect(productDemo).toContain('garna-product-demo.mp4');
+		expect(productDemo).toContain('garna-product-demo-cover.webp');
+		expect(productDemo).toContain('data-product-demo-open');
 	});
 
 	it('keeps custom-styled payroll visuals theme-aware', async () => {

@@ -3,6 +3,7 @@ import Section from '../../layout/Section.astro';
 import SectionHeader from '../../layout/SectionHeader.astro';
 import Button from '../../ui/Button.astro';
 import { eorCostCountries } from '../../../../src/data/eor-cost-countries';
+import { calculatorCountryNames } from '../../../../src/data/calculator-countries';
 
 const regionGroups = [
 	{
@@ -145,7 +146,7 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 				descriptionClass="eor-estimator-copy__description"
 			/>
 
-			<form class="eor-estimator-card" action="#" onsubmit="event.preventDefault();" data-eor-estimator-form>
+			<form class="eor-estimator-card" action="/en/employee-cost-calculator" data-eor-estimator-form>
 				<div class="eor-estimator-card__header">
 					<h3 data-translate="costEstimator.form.title">Global Hiring Cost Estimator</h3>
 				</div>
@@ -162,8 +163,8 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 							<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg>
 						</button>
 						<div class="eor-estimator-select__menu" role="listbox" hidden data-select-menu>
-							{eorCostCountries.map((country) => (
-								<button type="button" role="option" data-select-option value={country.name} data-select-label-text={country.name} data-translate-select-label-text={countryTranslationKey(country.code)} data-country-currency={defaultCurrencyForCountry(country.code)}>
+							{eorCostCountries.filter((country) => calculatorCountryNames.has(country.code)).map((country) => (
+								<button type="button" role="option" data-select-option value={country.name} data-country-code={country.code} data-select-label-text={country.name} data-translate-select-label-text={countryTranslationKey(country.code)} data-country-currency={defaultCurrencyForCountry(country.code)}>
 									<span class="eor-estimator-country-flag" aria-hidden="true">
 										<img src={flagSrc(country.code)} alt="" loading="lazy" />
 									</span>
@@ -190,7 +191,7 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 				</div>
 
 				<div class="eor-estimator-group">
-					<p data-translate="costEstimator.form.salary">Gross Salary</p>
+					<p data-translate="costEstimator.form.salary">Gross annual salary</p>
 					<div class="eor-estimator-salary">
 						<div class="eor-estimator-select" data-estimator-select data-currency-select>
 							<input type="hidden" name="currency" required />
@@ -225,7 +226,7 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 					</div>
 				</div>
 
-				<Button type="button" variant="primary" effect="none" icon="none" size="mobile" class="eor-estimator-submit">
+				<Button type="submit" variant="primary" effect="none" icon="none" size="mobile" class="eor-estimator-submit">
 					<span data-translate="costEstimator.form.button">Calculate total cost</span>
 				</Button>
 			</form>
@@ -687,6 +688,30 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 	const estimatorForms = document.querySelectorAll('[data-eor-estimator-form]');
 
 	for (const form of estimatorForms) {
+		if (!(form instanceof HTMLFormElement)) continue;
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const values = new FormData(form);
+			const countryName = String(values.get('country') || '');
+			const option = form.querySelector<HTMLElement>(`[data-country-code][value="${CSS.escape(countryName)}"]`);
+			const salaryInput = form.querySelector<HTMLInputElement>('[name="salary"]')!;
+			const salary = salaryInput.value.replace(/[\s,]/g, '');
+			salaryInput.setCustomValidity(/^\d+$/.test(salary) && Number.isSafeInteger(Number(salary)) && Number(salary) >= 12 ? '' : 'Enter a gross annual salary of 12 or more.');
+			if (!option || !values.get('currency')) {
+				form.querySelector<HTMLButtonElement>(!option ? '[data-country-select] [data-select-trigger]' : '[data-currency-select] [data-select-trigger]')?.click();
+				return;
+			}
+			if (!form.reportValidity()) return;
+			const regionInput = form.querySelector<HTMLInputElement>('[name="region"]');
+			if (regionInput?.required && !regionInput.value) {
+				form.querySelector<HTMLButtonElement>('[data-region-select] [data-select-trigger]')?.click();
+				return;
+			}
+			const target = new URL('/en/employee-cost-calculator', window.location.origin);
+			target.search = new URLSearchParams({ country: option.dataset.countryCode!, state: String(values.get('region') || ''), currency: String(values.get('currency')), salary, calculate: '1' }).toString();
+			window.location.assign(target.href);
+		});
+		form.querySelector<HTMLInputElement>('[name="salary"]')?.addEventListener('input', (event) => (event.target as HTMLInputElement).setCustomValidity(''));
 		const customSelects = Array.from(form.querySelectorAll('[data-estimator-select]'));
 		const selectApis = new Map();
 
@@ -704,16 +729,6 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 			for (const select of customSelects) {
 				if (select !== currentSelect) closeSelect(select);
 			}
-		};
-
-		const updateSubmitState = () => {
-			submitButton.disabled = !controls.every((control) => {
-				if (control instanceof HTMLInputElement) {
-					return control.value.trim().length > 0;
-				}
-
-				return false;
-			});
 		};
 
 		for (const select of customSelects) {

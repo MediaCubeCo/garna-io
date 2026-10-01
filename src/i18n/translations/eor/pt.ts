@@ -65,8 +65,8 @@ export const eorPt = {
 		}
 	},
 	"eorProof": {
-		"title": "Contrate no estrangeiro sem suposições",
-		"description": "A Garna torna a contratação internacional transparente, de contratos locais a folha de pagamento e conformidade. Quando estiver pronto, compare as suas opções no calculador de custos",
+		"title": "Preços transparentes de EOR",
+		"description": "A partir de $200 por mês por colaborador. Sem taxas ocultas nem custos de constituição de uma entidade local. Receba uma proposta personalizada de acordo com as suas necessidades de contratação",
 		"button": "Calcular opções",
 		"carousel": {
 			"ariaLabel": "Escolher um cartão EOR"
@@ -75,15 +75,15 @@ export const eorPt = {
 			"countries": {
 				"label": "países abrangidos",
 				"notice": {
-					"title": "Contrato concluído",
-					"meta": "Condições verificadas"
+					"title": "A partir de $200/mês",
+					"meta": "Por colaborador"
 				}
 			},
 			"platform": {
 				"label": "plataforma para contratação global",
 				"notice": {
-					"title": "Perfil salarial pronto",
-					"meta": "Salário, impostos, benefícios"
+					"title": "Sem custos de constituição",
+					"meta": "Contrate através da Garna"
 				}
 			},
 			"entities": {
@@ -203,7 +203,7 @@ export const eorPt = {
 			"start": "Iniciar",
 			"access": "Acesso",
 			"portugal": "Portugal",
-			"eorContract": "Contrato EoR",
+			"eorContract": "Contrato EOR",
 			"invite": "Convite",
 			"employeeEmail": "Email do colaborador",
 			"account": "Conta",
@@ -215,16 +215,16 @@ export const eorPt = {
 	},
 	"globalWorkforce": {
 		"title": "Expanda a sua equipa global mais rapidamente",
-		"description": "Um Employer of Record (EoR) ajuda empresas a contratar funcionários internacionais sem abrir entidades locais. O fornecedor EoR emprega legalmente o trabalhador em seu nome, enquanto gere o trabalho diário, responsabilidades e desempenho",
+		"description": "Um Employer of Record (EOR) ajuda empresas a contratar funcionários internacionais sem abrir entidades locais. O fornecedor EOR emprega legalmente o trabalhador em seu nome, enquanto gere o trabalho diário, responsabilidades e desempenho",
 		"intro": "Tudo isto significa que pode:",
 		"benefits": {
 			"hireGlobally": {
 				"title": "Contratar globalmente mais rápido",
-				"description": "Contrate talentos de qualquer parte do mundo de forma mais rápida do que nunca"
+				"description": "Contrate talentos de qualquer parte do mundo e agilize a sua integração"
 			},
 			"newMarkets": {
 				"title": "Expandir para novos mercados",
-				"description": "Teste e entre em novas regiões sem sobrecarga operacional"
+				"description": "Crie uma equipa local em novos países sem constituir de imediato a sua própria entidade empregadora."
 			},
 			"reduceRisks": {
 				"title": "Reduzir custos de contratação global",
@@ -232,7 +232,7 @@ export const eorPt = {
 			},
 			"compliance": {
 				"title": "Manter conformidade legal",
-				"description": "Leis laborais locais, impostos e contribuições sociais tratados por país"
+				"description": "Leis laborais locais, impostos relacionados com o emprego e contribuições sociais tratados por país"
 			}
 		}
 	},
@@ -257,7 +257,7 @@ export const eorPt = {
 				"description": "Mantenha alinhamento com leis laborais locais, regulamentos fiscais e regras específicas de cada país"
 			},
 			"integrations": {
-				"title": "Integre EoR nas suas ferramentas",
+				"title": "Integre EOR nas suas ferramentas",
 				"description": "Ligue ferramentas existentes de RH, finanças e gestão de equipas sem interromper os seus processos"
 			},
 			"fastMoving": {
@@ -292,7 +292,7 @@ export const eorPt = {
 				"label": "Folha de pagamento",
 				"title": "Gerir folha de pagamento global sem stress",
 				"problem": "Garantir pagamentos corretos para funcionários em todo o mundo e lidar com diferentes moedas e regras fiscais é uma das partes mais complicadas da expansão internacional de um negócio",
-				"solution": "A Garna simplifica a folha de pagamento internacional com fluxos automatizados. Pague pessoas em todo o mundo rapidamente, reduzindo erros salariais e trabalho adicional"
+				"solution": "A Garna simplifica a folha de pagamento internacional com fluxos automatizados. Pague pessoas em todo o mundo rapidamente e sem trabalho adicional."
 			},
 			"timeOff": {
 				"label": "Férias e despesas",
@@ -327,10 +327,10 @@ export const eorPt = {
 			"hireIn": "Quero contratar em",
 			"country": "País",
 			"region": "Estado / província",
-			"salary": "Salário bruto",
+			"salary": "Salário bruto anual",
 			"currency": "Moeda",
 			"amount": "Valor",
-			"amountPlaceholder": "Salário bruto",
+			"amountPlaceholder": "Salário bruto anual",
 			"clearCountry": "Limpar país",
 			"clearRegion": "Limpar estado ou província",
 			"clearCurrency": "Limpar moeda",
@@ -360,7 +360,7 @@ export const eorPt = {
 				"description": "Escolha a pessoa responsável por questões financeiras, desde o diretor financeiro até si próprio"
 			},
 			"contract": {
-				"title": "Crie o seu primeiro contrato EoR",
+				"title": "Crie o seu primeiro contrato EOR",
 				"description": "Adicione país, cargo, salário, data de início, moeda e requisitos de visto de trabalho"
 			},
 			"invite": {
@@ -380,12 +380,12 @@ export const eorPt = {
 		"title": "Perguntas frequentes sobre Employer of Record",
 		"items": {
 			"q1": {
-				"question": "O que é um Employer of Record (EoR)?",
-				"answer": "Um Employer of Record permite contratar colaboradores a tempo inteiro em países onde a sua empresa não tem uma entidade legal. A Garna torna-se a empregadora legal e trata de folha de pagamento, contratos, impostos e conformidade local, enquanto a sua empresa gere o trabalho diário do colaborador."
+				"question": "O que é um Employer of Record (EOR)?",
+				"answer": "Um Employer of Record permite contratar colaboradores a tempo inteiro em países onde a sua empresa não tem uma entidade legal. A Garna torna-se a empregadora legal e trata de folha de pagamento, contratos, pagamentos obrigatórios e conformidade local, enquanto a sua empresa gere as atividades do negócio."
 			},
 			"q2": {
 				"question": "Quem gere o colaborador?",
-				"answer": "A sua empresa. Define responsabilidades, horário de trabalho, objetivos e percurso de carreira. A Garna trata dos contratos, benefícios obrigatórios, pagamentos salariais e conformidade local."
+				"answer": "A sua empresa continua a gerir as atividades diárias do colaborador relacionadas com o negócio, incluindo objetivos da função, projetos e feedback sobre o desempenho. O EOR gere a relação laboral, incluindo folha de pagamento, benefícios obrigatórios, administração de pessoal e cumprimento dos requisitos aplicáveis em matéria de emprego ao abrigo da legislação local."
 			},
 			"q3": {
 				"question": "Qual é a diferença entre contratar via EOR e contratar um contratado?",
@@ -393,15 +393,15 @@ export const eorPt = {
 			},
 			"q4": {
 				"question": "EOR ou abrir a sua própria entidade: qual é melhor?",
-				"answer": "Com uma entidade própria, a sua empresa assume constituição, declarações fiscais e conformidade local. Um EOR é mais rápido para começar e mais flexível quando ainda está a testar onde crescer."
+				"answer": "Com uma entidade própria, a sua empresa assume a constituição, as declarações fiscais e a conformidade local. Esta opção é mais adequada quando precisa de operar um negócio num novo mercado. Se apenas precisa de contratar especialistas que não podem ou não querem mudar de país, um EOR é uma opção mais rápida e adequada."
 			},
 			"q5": {
 				"question": "Com que rapidez posso começar a contratar através da Garna?",
-				"answer": "Na maioria dos países, conseguimos integrar o novo colaborador em apenas X dia(s) útil(eis), assim que a oferta for confirmada e os documentos de integração forem assinados."
+				"answer": "Na maioria dos países, a integração de novos colaboradores demora cerca de 1–2 semanas, assim que a oferta for confirmada e os documentos de integração forem assinados. No entanto, os prazos dependem do país, da documentação local e dos requisitos de imigração aplicáveis."
 			},
 			"q6": {
 				"question": "Posso contratar trabalhadores internacionais sem um EOR?",
-				"answer": "Sim, abrindo uma entidade legal local ou contratando a pessoa como contratado. Ambas as opções têm compromissos: uma entidade é lenta e cara, e uma função de contratado traz risco de conformidade se se assemelhar a emprego a tempo inteiro. O EOR da Garna é a alternativa mais rápida e totalmente conforme."
+				"answer": "Sim, abrindo uma entidade legal local ou contratando a pessoa como contratado. Ambas as opções têm compromissos: uma entidade é lenta e cara, e uma função de contratado traz risco de conformidade se se assemelhar a emprego a tempo inteiro. O EOR da Garna é a alternativa mais rápida e conforme."
 			},
 			"q7": {
 				"question": "É legalmente conforme contratar através de um EOR?",
@@ -422,6 +422,11 @@ export const eorPt = {
 		"title": "Comece com a Garna",
 		"description": "Contrate funcionários no estrangeiro sem abrir entidades locais. A Garna trata de contratos, folha de pagamento, impostos e conformidade numa só plataforma",
 		"button": "Marcar uma demo"
+	},
+	"productDemo": {
+		"play": "Ver demo do produto",
+		"ariaLabel": "Reproduzir a demo do produto Garna",
+		"videoLabel": "Demo do produto Garna"
 	},
 	"advance": {
 		"title": "$ 1.000.000,00 disponíveis para pagamentos da equipa",

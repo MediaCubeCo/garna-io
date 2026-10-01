@@ -226,7 +226,7 @@ export const payrollSolutionNewEs = {
 		'Assign a financial contact person': 'Designa a una persona de contacto para asuntos financieros',
 		'SSpecify the person who will be responsible for financial matters':
 			'Especifica quién será la persona responsable de los asuntos financieros',
-		'Create your first EoR contract': 'Crea tu primer contrato EoR',
+		'Create your first EOR contract': 'Crea tu primer contrato EOR',
 		"Enter the employee's details":
 			'Introduce los datos del empleado',
 		'Invite an employee': 'Invita a un empleado',
@@ -242,7 +242,7 @@ export const payrollSolutionNewEs = {
 		'Germany': 'Alemania',
 		'Onboarding Checklist': 'Lista de incorporación',
 		'Company Profile Verified': 'Perfil de la empresa verificado',
-		'EoR Contract Signed': 'Contrato EoR firmado',
+		'EOR Contract Signed': 'Contrato EOR firmado',
 		'Employee Onboarded': 'Empleado incorporado',
 		'First Payroll Estimate': 'Estimación de la primera nómina',
 		'Fund Wallet &amp; Run Payroll': 'Recargar monedero y procesar nómina',

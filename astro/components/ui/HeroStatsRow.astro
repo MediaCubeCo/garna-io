@@ -111,11 +111,11 @@ const { stats, ariaLabel, ariaLabelKey, class: className = '' } = Astro.props;
 		}
 
 		.garna-hero-stats-row strong {
-			font-size: clamp(1.2rem, 6vw, 1.55rem);
+			font-size: var(--garna-hero-stat-value-size-mobile, clamp(1.2rem, 6vw, 1.55rem));
 		}
 
 		.garna-hero-stats-row span {
-			font-size: clamp(0.62rem, 2.8vw, 0.74rem);
+			font-size: var(--garna-hero-stat-label-size-mobile, clamp(0.62rem, 2.8vw, 0.74rem));
 			white-space: normal;
 		}
 	}

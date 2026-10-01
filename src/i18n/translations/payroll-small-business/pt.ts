@@ -90,7 +90,7 @@ export const payrollSmallBusinessPt = {
 		title: "Tudo o que precisa para gerir payroll numa pequena empresa",
 		description: "Separámos os processos importantes para facilitar a gestão tanto de funcionários permanentes como de freelancers",
 		eor: {
-			label: "1. Contratar e pagar funcionários (EoR)",
+			label: "1. Contratar e pagar funcionários (EOR)",
 			title: "Contratação full-time sem abrir entidades legais nem contratar consultores jurídicos e contabilísticos no estrangeiro",
 			feature1: {
 				title: "Employer of Record",
@@ -106,7 +106,7 @@ export const payrollSmallBusinessPt = {
 			}
 		},
 		cor: {
-			label: "2.  Pagar contratados e freelancers (CoR)",
+			label: "2.  Pagar contratados e freelancers (COR)",
 			title: "Escalone pagamentos para membros da equipa com um clique, independentemente de onde estejam",
 			feature1: {
 				title: "Pagamentos flexíveis",
@@ -131,7 +131,7 @@ export const payrollSmallBusinessPt = {
 		},
 		item2: {
 			title: "Adicione a sua equipa",
-			description: "Convide funcionários (EoR) ou contratados (CoR) e atribua funções"
+			description: "Convide funcionários (EOR) ou contratados (COR) e atribua funções"
 		},
 		item3: {
 			title: "Adicione fundos ao saldo",
@@ -199,7 +199,7 @@ export const payrollSmallBusinessPt = {
 			},
 			q4: {
 				question: "Que impostos preciso declarar?",
-				answer: "Com a Garna, não precisa preocupar-se com impostos. Ao utilizar a solução EoR, calculamos tudo automaticamente."
+				answer: "Com a Garna, não precisa preocupar-se com impostos. Ao utilizar a solução EOR, calculamos tudo automaticamente."
 			},
 			q5: {
 				question: "Posso pagar contratados e funcionários no mesmo sistema?",

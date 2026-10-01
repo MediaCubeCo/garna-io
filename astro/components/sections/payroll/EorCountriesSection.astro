@@ -143,13 +143,13 @@ const fallingFlags: Country[] = [
 			))}
 		</div>
 
-		<div class="eor-country-playground" data-eor-country-playground aria-label="Draggable country flags">
+		<div class="eor-country-playground" data-eor-country-playground aria-hidden="true">
 			{fallingFlags.map((country) => (
-				<button class="eor-country-orb" type="button" data-country-orb aria-label={`Drag ${country.name} flag`}>
+				<div class="eor-country-orb" data-country-orb>
 					<span>
 						<img src={flagSrc(country.code)} alt="" loading="lazy" />
 					</span>
-				</button>
+				</div>
 			))}
 		</div>
 	</div>
@@ -348,7 +348,6 @@ const fallingFlags: Country[] = [
 		margin-top: 0;
 		background: transparent;
 		pointer-events: none;
-		touch-action: none;
 	}
 
 	.eor-country-orb {
@@ -366,9 +365,8 @@ const fallingFlags: Country[] = [
 		background: transparent;
 		box-shadow: 0 20px 38px -28px rgb(0 0 0 / 0.86);
 		clip-path: circle(50%);
-		cursor: grab;
 		opacity: 0;
-		pointer-events: auto;
+		pointer-events: none;
 		transform: translate3d(0, -6rem, 0);
 		will-change: transform;
 	}
@@ -389,12 +387,6 @@ const fallingFlags: Country[] = [
 
 	.eor-country-orb.is-ready {
 		opacity: 1;
-	}
-
-	.eor-country-orb.is-dragging {
-		z-index: 5 !important;
-		cursor: grabbing;
-		will-change: transform;
 	}
 
 	@media (max-width: 980px) {
@@ -511,8 +503,7 @@ const fallingFlags: Country[] = [
 	};
 
 	for (const region of countryRegions) {
-		if (!(region instanceof HTMLElement) || region.dataset.toggleReady === 'true') continue;
-		region.dataset.toggleReady = 'true';
+		if (!(region instanceof HTMLElement)) continue;
 
 		const button = region.querySelector('[data-countries-toggle-button]');
 		const grid = region.querySelector('.eor-countries-grid');
@@ -580,14 +571,7 @@ const fallingFlags: Country[] = [
 			lastFrame: 0,
 			accumulator: 0,
 			elapsed: 0,
-			dragged: null,
-			dragTarget: null,
-			pointerId: null,
-			dragOffsetX: 0,
-			dragOffsetY: 0,
-			lastPointerX: 0,
-			lastPointerY: 0,
-			lastPointerTime: 0,
+			hoverPointer: null,
 			quietTime: 0,
 			width: 0,
 			height: 0,
@@ -615,13 +599,13 @@ const fallingFlags: Country[] = [
 				orb.y += shift;
 				if (orb.previousY !== undefined) orb.previousY += shift;
 			}
-			if (state.dragTarget) state.dragTarget.y += shift;
 			state.topOffset = topOffset;
 			state.height = simulationBounds.getBoundingClientRect().height;
 			state.spawnTop = -simulationBounds.getBoundingClientRect().top;
 		};
 
 		const resize = () => {
+			state.hoverPointer = null;
 			syncCountrySectionHeights();
 			syncPlaygroundTop();
 			const rect = simulationBounds.getBoundingClientRect();
@@ -639,8 +623,8 @@ const fallingFlags: Country[] = [
 		const clampOrb = (orb) => {
 			orb.x = Math.max(orb.radius, Math.min(state.width - orb.radius, orb.x));
 			orb.y = Math.min(state.height - orb.radius - 3, orb.y);
-			if (orb.entered || orb === state.dragged) orb.y = Math.max(orb.radius, orb.y);
-			if (orb !== state.dragged) {
+			if (orb.entered) orb.y = Math.max(orb.radius, orb.y);
+			{
 				if (orb.y >= state.height - orb.radius - 3 && orb.vy > 0) orb.vy = 0;
 				if ((orb.x <= orb.radius && orb.vx < 0) || (orb.x >= state.width - orb.radius && orb.vx > 0)) orb.vx = 0;
 			}
@@ -652,6 +636,7 @@ const fallingFlags: Country[] = [
 			const orbWidth = firstOrb instanceof HTMLElement ? firstOrb.offsetWidth : 64;
 
 			state.orbs = elements.map((element, index) => {
+				element.classList.remove('is-ready');
 				const radius = element.offsetWidth / 2;
 				const seeded = (Math.sin(index * 12.9898) * 43758.5453) % 1;
 				const centerX = state.width / 2;
@@ -678,7 +663,6 @@ const fallingFlags: Country[] = [
 		const render = () => {
 			for (const orb of state.orbs) {
 				orb.element.style.transform = `translate3d(${orb.x - orb.radius}px, ${orb.y - orb.radius}px, 0) rotate(${orb.angle}deg)`;
-				orb.element.style.zIndex = orb === state.dragged ? '5' : '1';
 			}
 		};
 
@@ -692,12 +676,12 @@ const fallingFlags: Country[] = [
 			const minimumGap = 2.5;
 			const now = allowAngleNudge ? performance.now() : 0;
 
-			for (let iteration = 0; iteration < (state.dragged ? 80 : 32); iteration += 1) {
+			for (let iteration = 0; iteration < 32; iteration += 1) {
 				for (let i = 0; i < state.orbs.length; i += 1) {
 					const a = state.orbs[i];
 					for (let j = i + 1; j < state.orbs.length; j += 1) {
 						const b = state.orbs[j];
-						if ((a !== state.dragged && !a.released) || (b !== state.dragged && !b.released)) continue;
+						if (!a.released || !b.released) continue;
 						const dx = b.x - a.x;
 						const dy = b.y - a.y;
 						const minDistance = a.radius + b.radius + minimumGap;
@@ -709,23 +693,11 @@ const fallingFlags: Country[] = [
 						const nx = distanceSquared < 0.000001 ? 1 : dx / distance;
 						const ny = distanceSquared < 0.000001 ? 0 : dy / distance;
 						const overlap = Math.max(0, minDistance - distance - 0.01);
-						const aFixed = a === state.dragged;
-						const bFixed = b === state.dragged;
-
-						if (aFixed && !bFixed) {
-							b.x += nx * overlap;
-							b.y += ny * overlap;
-						} else if (bFixed && !aFixed) {
-							a.x -= nx * overlap;
-							a.y -= ny * overlap;
-						} else {
-							a.x -= nx * overlap * 0.5;
-							a.y -= ny * overlap * 0.5;
-							b.x += nx * overlap * 0.5;
-							b.y += ny * overlap * 0.5;
-						}
-
-						if (!aFixed && !bFixed) {
+						a.x -= nx * overlap * 0.5;
+						a.y -= ny * overlap * 0.5;
+						b.x += nx * overlap * 0.5;
+						b.y += ny * overlap * 0.5;
+						{
 							const relativeVelocity = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
 							if (relativeVelocity < 0) {
 								const impulse = -relativeVelocity * 0.5;
@@ -746,14 +718,6 @@ const fallingFlags: Country[] = [
 									target.lastAngleNudgeAt = now;
 								}
 							}
-						} else if (aFixed !== bFixed) {
-							const moving = aFixed ? b : a;
-							const direction = aFixed ? 1 : -1;
-							const velocityAlongNormal = (moving.vx * nx + moving.vy * ny) * direction;
-							if (velocityAlongNormal < 0) {
-								moving.vx -= velocityAlongNormal * nx * direction;
-								moving.vy -= velocityAlongNormal * ny * direction;
-							}
 						}
 
 						clampOrb(a);
@@ -762,42 +726,6 @@ const fallingFlags: Country[] = [
 				}
 			}
 
-		};
-
-		const moveDragged = (deltaSeconds) => {
-			const orb = state.dragged;
-			if (!orb || !state.dragTarget) return;
-			const dx = state.dragTarget.x - orb.x;
-			const dy = state.dragTarget.y - orb.y;
-			const distance = Math.hypot(dx, dy);
-			const travel = Math.min(distance, 900 * deltaSeconds);
-			const steps = Math.ceil(travel / 2);
-			if (!steps) return;
-			const startX = orb.x;
-			const startY = orb.y;
-			for (let step = 0; step < steps; step += 1) {
-				const previous = state.orbs.map((item) => ({ x: item.x, y: item.y, vx: item.vx, vy: item.vy }));
-				const stepX = dx / distance * travel / steps;
-				const stepY = dy / distance * travel / steps;
-				let moved = false;
-				// Slide along a blocked contact instead of cancelling the whole diagonal motion.
-				for (const [x, y] of [[stepX, stepY], [0, stepY], [stepX, 0]]) {
-					if (Math.hypot(x, y) < 0.0001) continue;
-					orb.x += x;
-					orb.y += y;
-					resolveCollisions();
-					const blocked = state.orbs.some((a, i) => a.released && (
-						Math.hypot(a.x - previous[i].x, a.y - previous[i].y) > 3 ||
-						state.orbs.some((b, j) => j > i && b.released &&
-							Math.hypot(a.x - b.x, a.y - b.y) < a.radius + b.radius + 2.1)
-					));
-					if (!blocked) { moved = true; break; }
-					state.orbs.forEach((item, i) => Object.assign(item, previous[i]));
-				}
-				if (!moved) break;
-			}
-			orb.vx = (orb.x - startX) / deltaSeconds;
-			orb.vy = (orb.y - startY) / deltaSeconds;
 		};
 
 		const orbHasSupport = (orb) => {
@@ -819,7 +747,7 @@ const fallingFlags: Country[] = [
 
 		// Sleep only after the solved positions and velocities stay quiet on a support.
 		const settleIfStill = (deltaSeconds) => {
-			const isQuiet = !state.dragged && state.orbs.every((orb, index) =>
+			const isQuiet = state.orbs.every((orb, index) =>
 				orb.released && orbHasSupport(orb) &&
 				Math.hypot(orb.vx, orb.vy) < 3 &&
 				Math.hypot(orb.x - orb.previousX, orb.y - orb.previousY) < 0.025 &&
@@ -831,7 +759,6 @@ const fallingFlags: Country[] = [
 		};
 
 		const stepPhysics = (deltaSeconds, elapsedMilliseconds) => {
-			moveDragged(deltaSeconds);
 			const gravity = 5600;
 			const floorFriction = Math.pow(0.84, deltaSeconds * 60);
 			const airDrag = Math.pow(0.992, deltaSeconds * 60);
@@ -839,7 +766,6 @@ const fallingFlags: Country[] = [
 			for (const orb of state.orbs) {
 				orb.previousX = orb.x;
 				orb.previousY = orb.y;
-				if (orb === state.dragged) continue;
 				if (!orb.released) {
 					if (elapsedMilliseconds < orb.releaseDelay) continue;
 					if (state.height - state.spawnTop < getHeaderHeight() + orb.radius * 4) continue;
@@ -883,7 +809,7 @@ const fallingFlags: Country[] = [
 			// At resting contacts, use the motion permitted by the position solver.
 			// Otherwise blocked velocity accumulates and pushes the pile again next step.
 			for (const orb of state.orbs) {
-				if (orb === state.dragged || !orb.released || !orbHasSupport(orb)) continue;
+				if (!orb.released || !orbHasSupport(orb)) continue;
 				if (Math.hypot(orb.vx, orb.vy) < 180) {
 					// Separation can remove motion, but must not inject energy into the pile.
 					const speed = Math.hypot(orb.vx, orb.vy);
@@ -932,21 +858,67 @@ const fallingFlags: Country[] = [
 			state.animationFrame = window.requestAnimationFrame(tick);
 		};
 
-		const releaseDragged = (cancelled = false) => {
-			const orb = state.dragged;
-			if (!orb) return;
-			const age = performance.now() - state.lastPointerTime;
-			const decay = cancelled ? 0 : Math.max(0, 1 - age / 100);
-			const speed = Math.hypot(orb.vx, orb.vy);
-			const scale = Math.min(0.62, 480 / (speed || 1)) * decay;
-			orb.vx *= scale;
-			orb.vy *= scale;
-			state.dragged = null;
-			state.dragTarget = null;
-			state.pointerId = null;
-			resolveCollisions();
-			wakeSimulation();
+		// Sweep the cursor's path so a quick pass cannot skip flags between events.
+		// Only movement adds energy; a stationary cursor lets the pile settle and sleep.
+		const pushFromCursor = (from, to, deltaSeconds) => {
+			const dx = to.x - from.x;
+			const dy = to.y - from.y;
+			const lengthSquared = dx * dx + dy * dy;
+			if (lengthSquared < 0.25) return false;
+			const length = Math.sqrt(lengthSquared);
+			const speed = Math.min(1800, length / Math.max(1 / 120, deltaSeconds));
+			let pushed = false;
+			for (const [index, orb] of state.orbs.entries()) {
+				if (!orb.released || !orb.entered) continue;
+				const along = Math.max(0, Math.min(1, ((orb.x - from.x) * dx + (orb.y - from.y) * dy) / lengthSquared));
+				const offsetX = orb.x - (from.x + dx * along);
+				const offsetY = orb.y - (from.y + dy * along);
+				const distance = Math.hypot(offsetX, offsetY);
+				const reach = orb.radius + 48;
+				if (distance >= reach) continue;
+				// Split exact centre hits to either side instead of dividing by zero.
+				const side = index % 2 ? 1 : -1;
+				const nx = distance > 0.01 ? offsetX / distance : -dy / length * side;
+				const ny = distance > 0.01 ? offsetY / distance : dx / length * side;
+				const falloff = 1 - distance / reach;
+				const targetSpeed = (920 + speed * 0.3) * falloff;
+				const impulse = Math.max(0, targetSpeed - (orb.vx * nx + orb.vy * ny));
+				if (impulse < 1) continue;
+				orb.vx += nx * impulse;
+				orb.vy += ny * impulse;
+				const velocityScale = Math.min(1, 1550 / (Math.hypot(orb.vx, orb.vy) || 1));
+				orb.vx *= velocityScale;
+				orb.vy *= velocityScale;
+				orb.angle += Math.max(-7, Math.min(7, (dx * ny - dy * nx) * falloff * 0.08));
+				pushed = true;
+			}
+			if (pushed) wakeSimulation();
+			return pushed;
 		};
+
+		const clearHoverPointer = () => { state.hoverPointer = null; };
+		sectionBounds.addEventListener('pointermove', (event) => {
+			if (!state.started || event.pointerType !== 'mouse' || event.buttons !== 0 ||
+				window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				clearHoverPointer();
+				return;
+			}
+			const now = performance.now();
+			const previous = state.hoverPointer;
+			state.hoverPointer = { x: event.clientX, y: event.clientY, time: now };
+			if (!previous || now - previous.time > 120) return;
+			const rect = simulationBounds.getBoundingClientRect();
+			pushFromCursor(
+				{ x: previous.x - rect.left, y: previous.y - rect.top },
+				{ x: event.clientX - rect.left, y: event.clientY - rect.top },
+				(now - previous.time) / 1000,
+			);
+		}, { passive: true, signal });
+		sectionBounds.addEventListener('pointerleave', clearHoverPointer, { signal });
+		sectionBounds.addEventListener('pointerdown', clearHoverPointer, { signal });
+		sectionBounds.addEventListener('pointercancel', clearHoverPointer, { signal });
+		window.addEventListener('scroll', clearHoverPointer, { passive: true, signal });
+		window.addEventListener('blur', clearHoverPointer, { signal });
 
 		const start = () => {
 			if (state.started) return;
@@ -956,62 +928,6 @@ const fallingFlags: Country[] = [
 			render();
 			wakeSimulation();
 		};
-
-		for (const element of elements) {
-			// All interaction handlers belong to this mounted instance.
-			element.addEventListener('pointerdown', (event) => {
-				if (!state.started) start();
-
-				const orb = state.orbs.find((item) => item.element === element);
-				if (!orb) return;
-
-				const rect = simulationBounds.getBoundingClientRect();
-				state.dragged = orb;
-				state.dragTarget = { x: orb.x, y: orb.y };
-				state.pointerId = event.pointerId;
-				state.dragOffsetX = event.clientX - rect.left - orb.x;
-				state.dragOffsetY = event.clientY - rect.top - orb.y;
-				state.lastPointerX = event.clientX;
-				state.lastPointerY = event.clientY;
-				state.lastPointerTime = performance.now();
-				orb.vx = 0;
-				orb.vy = 0;
-				element.classList.add('is-dragging');
-				element.setPointerCapture(event.pointerId);
-				wakeSimulation();
-			}, { signal });
-
-			element.addEventListener('pointermove', (event) => {
-				if (state.pointerId !== event.pointerId || !state.dragged) return;
-
-				const rect = simulationBounds.getBoundingClientRect();
-				const orb = state.dragged;
-				const now = performance.now();
-				const deltaTime = Math.max(16, now - state.lastPointerTime) / 1000;
-				const dragTorque = ((orb.vx * state.dragOffsetY) - (orb.vy * state.dragOffsetX)) / Math.max(orb.radius, 1);
-				orb.angle += Math.max(-4, Math.min(4, dragTorque * deltaTime * 0.015));
-				state.dragTarget = {
-					x: Math.max(orb.radius, Math.min(state.width - orb.radius, event.clientX - rect.left - state.dragOffsetX)),
-					y: Math.max(orb.radius, Math.min(state.height - orb.radius - 3, event.clientY - rect.top - state.dragOffsetY)),
-				};
-				state.lastPointerX = event.clientX;
-				state.lastPointerY = event.clientY;
-				state.lastPointerTime = now;
-			}, { signal });
-
-			element.addEventListener('pointerup', (event) => {
-				if (state.pointerId !== event.pointerId) return;
-
-				element.classList.remove('is-dragging');
-				element.releasePointerCapture(event.pointerId);
-				releaseDragged();
-			}, { signal });
-
-			element.addEventListener('pointercancel', () => {
-				element.classList.remove('is-dragging');
-				releaseDragged(true);
-			}, { signal });
-		}
 
 		const maybeStartWhenSectionReachesTriggerLine = () => {
 			if (state.started) return;

@@ -1,11 +1,29 @@
 ---
-import DashboardCtaSection from '../../DashboardCtaSection.astro';
+import Section from '../../../layout/Section.astro';
+import Button from '../../../ui/Button.astro';
+import ProductDemoVideo from '../../../visuals/ProductDemoVideo.astro';
 ---
 
-<DashboardCtaSection
-	title={{ text: 'Your Global Payroll Workspace', translateKey: 'sectionHeadings.effectivePayroll' }}
-	description={{ text: 'Manage balances, payout templates, transactions, and team funding from one clear dashboard', translateKey: 'sectionDescriptions.effectivePayroll' }}
-	button={{ text: 'Book a demo', translateKey: 'cta.bookDemo' }}
-	trackingCta="effective_payroll_demo"
+<Section
+	class="overflow-visible"
+	spacing="default"
+	title={{ text: 'Effective Payroll For Your Team Starts Here', translateKey: 'sectionHeadings.effectivePayroll' }}
+	description={{ text: "CSV mass payments or single transfers, no delays, no extra fees. Automate it once it's set up", translateKey: 'sectionDescriptions.effectivePayroll' }}
+	headerClass="mb-8 max-w-4xl lg:mb-10"
 	titleClass="lg:text-5xl"
-/>
+	contentClass="relative mx-auto max-w-6xl overflow-visible"
+>
+	<div class="mb-12 flex justify-center lg:mb-16">
+		<Button
+			href="#"
+			onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'effective_payroll_demo' });"
+			variant="primary"
+			effect="none"
+			icon="none"
+			size="header"
+		>
+			<span data-translate="cta.bookDemo">Book a demo</span>
+		</Button>
+	</div>
+	<ProductDemoVideo />
+</Section>

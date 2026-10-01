@@ -32,6 +32,41 @@ const enOverrides = {
 			'Garna keeps contractor agreements, invoices, approvals, and cross-border payouts in one place, so your team can scale without local entities or payment chaos',
 		button: 'Book a demo',
 	},
+	faq: {
+		title: 'FAQ on Contractor of Record',
+		items: {
+			q1: {
+				question: 'What is a Contractor of Record (COR)?',
+				answer:
+					'A Contractor of Record helps businesses work with independent contractors without setting up a local entity. It supports contracts, onboarding, invoicing, payments, and documentation while the contractor remains self-employed.',
+			},
+			q2: {
+				question: 'Who is COR a good fit for?',
+				answer:
+					'COR is ideal for companies working with independent contractors across multiple countries, including startups, SaaS companies, digital marketing and creative agencies, and marketplaces. International contractor management gets easier without requiring a local entity in every market.',
+			},
+			q3: {
+				question: 'Which countries, currencies, and payout methods are supported?',
+				answer:
+					'Garna supports contractor payments in 150+ countries and 80+ currencies. Payout options include SWIFT, SEPA, local bank transfers, PayPal, Payoneer, USDT, and USDC, depending on the country and payment method.',
+			},
+			q4: {
+				question: 'How do I fund my balance?',
+				answer:
+					'You can fund your Garna balance via the available payment options in your account and use it to pay contractors. Funding options vary depending on your account and payment method.',
+			},
+			q5: {
+				question: 'Can I pay many contractors at once?',
+				answer:
+					'Yes, Garna supports bulk payments, so you can pay multiple contractors through a single workflow instead of processing each international transfer separately.',
+			},
+			q6: {
+				question: 'Why should I choose Garna over other COR providers?',
+				answer:
+					'Choose Garna because it combines contractor management and global payments in one platform. You can manage contracts, invoices, and payouts across 150+ countries and 80+ currencies, with multiple payment methods and 24/7 support.',
+			},
+		},
+	},
 	whyGarna: {
 		...homeEn.whyGarna,
 		title: "Build to Simplify Contractors' Operations",
@@ -56,8 +91,8 @@ const enOverrides = {
 	},
 	contractorBenefits: {
 		...homeEn.contractorBenefits,
-		title: 'Contractor Agreements, Invoices, and IP Rights in One Flow',
-		description: 'Bring contractor paperwork, consolidated billing, and rights transfer into one managed platform',
+		title: 'Everything You Need to Manage Contractors',
+		description: 'With Garna, you can manage contractor engagement and global payments from one platform',
 		methods: {
 			...homeEn.contractorBenefits.methods,
 			title: 'One Contract Instead of\u00a0Dozens',
@@ -88,7 +123,7 @@ const enOverrides = {
 			monthlyInvoice: 'Monthly invoice',
 			timeSaved: 'Time saved',
 			timeSavedValue: '8.5h',
-			perCycle: 'per cycle',
+			onAdminTasks: 'on admin tasks',
 			invoices: 'Invoices',
 			docs: 'Docs',
 			agreements: 'Agreements',
@@ -102,8 +137,9 @@ const enOverrides = {
 		},
 	},
 	howTo: {
-		title: 'How to get started',
-		description: 'Start using Garna in a few simple steps',
+		title: 'How Garna Contractor of Record Works',
+		description:
+			'From invoice approval to the final payout, manage the entire contractor payment workflow in one place',
 		steps: {
 			step1: {
 				title: 'Setup your account',
@@ -162,7 +198,7 @@ const enOverrides = {
 				title: 'Mass transfer',
 				description: 'Upload CSV and send payouts',
 				uploadedFile: 'Uploaded file',
-				fileName: 'New transactions.csv',
+				fileName: 'Salary_to_all_contractors.csv',
 				transactions: 'Transactions',
 				totalAmount: 'Total amount',
 				sendTransfers: 'Send transfers',
@@ -200,6 +236,41 @@ const esOverrides = {
 			'Garna mantiene acuerdos, facturas, aprobaciones y pagos internacionales a contratistas en un solo lugar, para que tu equipo escale sin entidades locales ni caos de pagos',
 		button: 'Reservar demo',
 	},
+	faq: {
+		title: 'Preguntas frecuentes sobre Contractor of Record',
+		items: {
+			q1: {
+				question: '¿Qué es un Contractor of Record (COR)?',
+				answer:
+					'Un Contractor of Record ayuda a las empresas a trabajar con contratistas independientes sin crear una entidad local. Gestiona contratos, onboarding, facturación, pagos y documentación, mientras el contratista continúa siendo autónomo.',
+			},
+			q2: {
+				question: '¿Para quién es adecuado un COR?',
+				answer:
+					'Un COR es ideal para empresas que trabajan con contratistas independientes en varios países, como startups, empresas SaaS, agencias de marketing digital y creativas, y marketplaces. Facilita la gestión internacional de contratistas sin necesidad de crear una entidad local en cada mercado.',
+			},
+			q3: {
+				question: '¿Qué países, monedas y métodos de pago son compatibles?',
+				answer:
+					'Garna permite pagar a contratistas en más de 150 países y en más de 80 monedas. Las opciones de pago incluyen SWIFT, SEPA, transferencias bancarias locales, PayPal, Payoneer, USDT y USDC, según el país y el método de pago.',
+			},
+			q4: {
+				question: '¿Cómo puedo financiar mi saldo?',
+				answer:
+					'Puedes financiar tu saldo de Garna mediante las opciones de pago disponibles en tu cuenta y utilizarlo para pagar a contratistas. Las opciones de financiación varían según tu cuenta y el método de pago.',
+			},
+			q5: {
+				question: '¿Puedo pagar a muchos contratistas a la vez?',
+				answer:
+					'Sí. Garna permite realizar pagos masivos para pagar a varios contratistas mediante un único flujo, en lugar de procesar cada transferencia internacional por separado.',
+			},
+			q6: {
+				question: '¿Por qué elegir Garna frente a otros proveedores de COR?',
+				answer:
+					'Garna combina la gestión de contratistas y los pagos globales en una sola plataforma. Puedes gestionar contratos, facturas y pagos en más de 150 países y más de 80 monedas, con múltiples métodos de pago y soporte 24/7.',
+			},
+		},
+	},
 	whyGarna: {
 		...homeEs.whyGarna,
 		title: 'Creado para simplificar la gestión de contratistas',
@@ -223,8 +294,8 @@ const esOverrides = {
 	},
 	contractorBenefits: {
 		...homeEs.contractorBenefits,
-		title: 'Acuerdos, facturas y derechos de IP en un solo flujo',
-		description: 'Reúne documentos, facturas y cesión de derechos en una plataforma gestionada',
+		title: 'Todo lo que necesitas para gestionar contratistas',
+		description: 'Con Garna, puedes gestionar la relación con contratistas y los pagos globales desde una sola plataforma',
 		methods: {
 			...homeEs.contractorBenefits.methods,
 			title: 'Un contrato en lugar de\u00a0decenas',
@@ -254,7 +325,7 @@ const esOverrides = {
 			monthlyInvoice: 'Factura mensual',
 			timeSaved: 'Tiempo ahorrado',
 			timeSavedValue: '8.5h',
-			perCycle: 'por ciclo',
+			onAdminTasks: 'en tareas administrativas',
 			invoices: 'Facturas',
 			docs: 'Docs',
 			agreements: 'Acuerdos',
@@ -268,8 +339,9 @@ const esOverrides = {
 		},
 	},
 	howTo: {
-		title: 'Cómo empezar',
-		description: 'Empieza a usar Garna en unos pocos pasos',
+		title: 'Cómo funciona Contractor of Record de Garna',
+		description:
+			'Desde la aprobación de la factura hasta el pago final, gestiona todo el flujo de pagos a contratistas en un solo lugar.',
 		steps: {
 			step1: {
 				title: 'Configura tu cuenta',
@@ -328,7 +400,7 @@ const esOverrides = {
 				title: 'Transferencia masiva',
 				description: 'Sube CSV y envía pagos',
 				uploadedFile: 'Archivo subido',
-				fileName: 'Nuevas transacciones.csv',
+				fileName: 'Salary_to_all_contractors.csv',
 				transactions: 'Transacciones',
 				totalAmount: 'Importe total',
 				sendTransfers: 'Enviar',
@@ -366,6 +438,41 @@ const ptOverrides = {
 			'A Garna mantém contratos, faturas, aprovações e pagamentos internacionais a contratados em um só lugar, para que a sua equipa escale sem entidades locais nem caos de pagamentos',
 		button: 'Agendar demo',
 	},
+	faq: {
+		title: 'Perguntas frequentes sobre Contractor of Record',
+		items: {
+			q1: {
+				question: 'O que é um Contractor of Record (COR)?',
+				answer:
+					'Um Contractor of Record ajuda as empresas a trabalhar com contratados independentes sem criar uma entidade local. Dá suporte a contratos, onboarding, faturação, pagamentos e documentação, enquanto o contratado continua a trabalhar por conta própria.',
+			},
+			q2: {
+				question: 'Para quem é indicado um COR?',
+				answer:
+					'Um COR é ideal para empresas que trabalham com contratados independentes em vários países, incluindo startups, empresas SaaS, agências de marketing digital e criativas e marketplaces. A gestão internacional de contratados torna-se mais simples, sem exigir uma entidade local em cada mercado.',
+			},
+			q3: {
+				question: 'Que países, moedas e métodos de pagamento são suportados?',
+				answer:
+					'A Garna suporta pagamentos a contratados em mais de 150 países e mais de 80 moedas. As opções de pagamento incluem SWIFT, SEPA, transferências bancárias locais, PayPal, Payoneer, USDT e USDC, dependendo do país e do método de pagamento.',
+			},
+			q4: {
+				question: 'Como posso financiar o meu saldo?',
+				answer:
+					'Pode financiar o seu saldo Garna através das opções de pagamento disponíveis na sua conta e utilizá-lo para pagar a contratados. As opções de financiamento variam consoante a sua conta e o método de pagamento.',
+			},
+			q5: {
+				question: 'Posso pagar a vários contratados ao mesmo tempo?',
+				answer:
+					'Sim. A Garna suporta pagamentos em massa, permitindo pagar a vários contratados num único fluxo, em vez de processar cada transferência internacional separadamente.',
+			},
+			q6: {
+				question: 'Por que devo escolher a Garna em vez de outros fornecedores de COR?',
+				answer:
+					'A Garna combina gestão de contratados e pagamentos globais numa única plataforma. Pode gerir contratos, faturas e pagamentos em mais de 150 países e mais de 80 moedas, com vários métodos de pagamento e suporte 24/7.',
+			},
+		},
+	},
 	whyGarna: {
 		...homePt.whyGarna,
 		title: 'Criado para simplificar a gestão de contratados',
@@ -389,8 +496,8 @@ const ptOverrides = {
 	},
 	contractorBenefits: {
 		...homePt.contractorBenefits,
-		title: 'Contratos, faturas e direitos de IP em um só fluxo',
-		description: 'Reúna documentos, faturas e cessão de direitos em uma plataforma gerida',
+		title: 'Tudo o que precisa para gerir contratados',
+		description: 'Com a Garna, pode gerir a colaboração com contratados e os pagamentos globais numa única plataforma',
 		methods: {
 			...homePt.contractorBenefits.methods,
 			title: 'Um contrato em vez de\u00a0dezenas',
@@ -419,7 +526,7 @@ const ptOverrides = {
 			monthlyInvoice: 'Fatura mensal',
 			timeSaved: 'Tempo poupado',
 			timeSavedValue: '8.5h',
-			perCycle: 'por ciclo',
+			onAdminTasks: 'em tarefas administrativas',
 			invoices: 'Faturas',
 			docs: 'Docs',
 			agreements: 'Contratos',
@@ -434,8 +541,9 @@ const ptOverrides = {
 		},
 	},
 	howTo: {
-		title: 'Como começar',
-		description: 'Comece a usar a Garna em poucos passos',
+		title: 'Como funciona o Contractor of Record da Garna',
+		description:
+			'Da aprovação da fatura ao pagamento final, gira todo o fluxo de pagamentos a contratados num único lugar.',
 		steps: {
 			step1: {
 				title: 'Configure a sua conta',
@@ -494,7 +602,7 @@ const ptOverrides = {
 				title: 'Transferência em massa',
 				description: 'Carregue CSV e envie pagamentos',
 				uploadedFile: 'Ficheiro carregado',
-				fileName: 'Novas transações.csv',
+				fileName: 'Salary_to_all_contractors.csv',
 				transactions: 'Transações',
 				totalAmount: 'Valor total',
 				sendTransfers: 'Enviar',
@@ -532,6 +640,41 @@ const ruOverrides = {
 			'Garna держит договоры, инвойсы, согласования и международные выплаты подрядчикам в одном месте, чтобы команда росла без локальных юрлиц и платежного хаоса',
 		button: 'Забронировать демо',
 	},
+	faq: {
+		title: 'Часто задаваемые вопросы о Contractor of Record',
+		items: {
+			q1: {
+				question: 'Что такое Contractor of Record (COR)?',
+				answer:
+					'Contractor of Record помогает компаниям работать с независимыми подрядчиками без открытия местного юридического лица. Сервис охватывает договоры, онбординг, выставление счетов, выплаты и документацию, при этом подрядчик сохраняет статус независимого специалиста.',
+			},
+			q2: {
+				question: 'Кому подходит COR?',
+				answer:
+					'COR подходит компаниям, которые работают с независимыми подрядчиками в нескольких странах, включая стартапы, SaaS-компании, агентства цифрового маркетинга, креативные агентства и маркетплейсы. Управлять международными подрядчиками становится проще без открытия местного юридического лица на каждом рынке.',
+			},
+			q3: {
+				question: 'Какие страны, валюты и способы выплат поддерживаются?',
+				answer:
+					'Garna поддерживает выплаты подрядчикам в 150+ странах и 80+ валютах. В зависимости от страны и способа выплаты доступны SWIFT, SEPA, местные банковские переводы, PayPal, Payoneer, USDT и USDC.',
+			},
+			q4: {
+				question: 'Как пополнить баланс?',
+				answer:
+					'Вы можете пополнить баланс Garna с помощью доступных в вашем аккаунте способов оплаты и использовать его для выплат подрядчикам. Варианты пополнения зависят от аккаунта и выбранного способа оплаты.',
+			},
+			q5: {
+				question: 'Можно ли платить нескольким подрядчикам одновременно?',
+				answer:
+					'Да. Garna поддерживает массовые выплаты, поэтому вы можете платить нескольким подрядчикам в рамках одного процесса вместо обработки каждого международного перевода отдельно.',
+			},
+			q6: {
+				question: 'Почему стоит выбрать Garna среди других COR-провайдеров?',
+				answer:
+					'Garna объединяет управление подрядчиками и глобальные выплаты на одной платформе. Вы можете управлять договорами, счетами и выплатами в 150+ странах и 80+ валютах, использовать разные способы оплаты и получать поддержку 24/7.',
+			},
+		},
+	},
 	whyGarna: {
 		...homeRu.whyGarna,
 		title: 'Создано, чтобы упростить работу с подрядчиками',
@@ -555,8 +698,8 @@ const ruOverrides = {
 	},
 	contractorBenefits: {
 		...homeRu.contractorBenefits,
-		title: 'Договоры, инвойсы и права на IP в одном процессе',
-		description: 'Соберите документы, счета и передачу прав подрядчиков в одной платформе',
+		title: 'Всё необходимое для управления подрядчиками',
+		description: 'С Garna вы можете управлять взаимодействием с подрядчиками и глобальными выплатами на одной платформе',
 		methods: {
 			...homeRu.contractorBenefits.methods,
 			title: 'Один договор вместо\u00a0десятков',
@@ -586,7 +729,7 @@ const ruOverrides = {
 			monthlyInvoice: 'Месячный инвойс',
 			timeSaved: 'Сэкономлено',
 			timeSavedValue: '8.5ч',
-			perCycle: 'за цикл',
+			onAdminTasks: 'на административных задачах',
 			invoices: 'Инвойсы',
 			docs: 'Документы',
 			agreements: 'Договоры',
@@ -600,8 +743,9 @@ const ruOverrides = {
 		},
 	},
 	howTo: {
-		title: 'Как начать',
-		description: 'Начните пользоваться Garna за несколько простых шагов',
+		title: 'Как работает Contractor of Record от Garna',
+		description:
+			'От согласования инвойса до финальной выплаты — управляйте всем процессом выплат подрядчикам в одном месте.',
 		steps: {
 			step1: {
 				title: 'Настройте аккаунт',
@@ -660,7 +804,7 @@ const ruOverrides = {
 				title: 'Массовый перевод',
 				description: 'Загрузите CSV и отправьте выплаты',
 				uploadedFile: 'Загруженный файл',
-				fileName: 'Новые транзакции.csv',
+				fileName: 'Salary_to_all_contractors.csv',
 				transactions: 'Транзакции',
 				totalAmount: 'Общая сумма',
 				sendTransfers: 'Отправить',
