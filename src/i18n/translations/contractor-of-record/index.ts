@@ -139,7 +139,7 @@ const enOverrides = {
 	howTo: {
 		title: 'How Garna Contractor of Record Works',
 		description:
-			'From invoice approval to the final payout, manage the entire contractor payment workflow in one place.',
+			'From invoice approval to the final payout, manage the entire contractor payment workflow in one place',
 		steps: {
 			step1: {
 				title: 'Setup your account',

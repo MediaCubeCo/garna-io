@@ -21,6 +21,12 @@
 	hero: {
 		badge: 'Enterprise Payroll',
 		titleMain: 'The All in One Payroll Platform',
+		stats: {
+			ariaLabel: 'Garna in numbers',
+			businesses: 'businesses trust Garna',
+			paid: 'paid to specialists',
+			professionals: 'professionals use Garna',
+		},
 		title: 'Global Payroll Solutions for your business',
 		tagline: 'for your business',
 		description: 'Pay contractors and hire employees in 150+ countries — fully compliant, without extra costs of a local entity',
@@ -44,13 +50,18 @@
 		homeProof: 'Support teams, contractors, and specialists wherever work happens',
 		manageGlobalPayroll: 'One platform to run payroll for freelancers, remote employees, and full-time teams',
 		hireEmployeesWorldwide: "Find and hire talents that you couldn't find locally without setting up a local legal entity",
-		effectivePayroll: "CSV mass payments or single transfers, no delays, no extra fees. Automate it once it's set up.",
+		effectivePayroll: "CSV mass payments or single transfers, no delays, no extra fees. Automate it once it's set up",
 		deferredPayments:
 			'Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow',
 		embeddedPayrollInfrastructure:
 			'Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand',
 		trustedByBuilders:
 			'Find out why large companies and middle-sized businesses are switching to Garna. We set the standard for international payroll, trusted by professionals in over 150 countries',
+	},
+	productDemo: {
+		play: 'Watch product demo',
+		ariaLabel: 'Play the Garna product demo',
+		videoLabel: 'Garna product demo',
 	},
 	homeProof: {
 		stats: {

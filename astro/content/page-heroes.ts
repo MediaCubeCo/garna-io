@@ -250,7 +250,7 @@ export const pageHeroes = {
 		class: 'payroll-solution-new-hero relative mb-16 h-[100svh] min-h-[100svh] max-h-[100svh] overflow-hidden pt-24 pb-24 md:mb-24 md:pt-28 md:pb-32 lg:mb-32 lg:pt-32 lg:pb-40',
 		containerClass:
 			'relative z-10 mx-auto h-full max-w-7xl overflow-visible px-6 pb-8 pt-4 text-center md:px-12 md:pt-5',
-		contentClass: 'relative z-10 pb-16 md:pb-24 lg:pb-32',
+		contentClass: 'relative z-10 pt-2 pb-16 md:pb-24 lg:pb-32',
 		titleClass:
 			'garna-hero-title-gradient mb-3 text-[2.75rem] leading-[1.06] tracking-tight md:mb-4 md:text-[3.35rem] lg:mb-5 lg:text-[70px] lg:whitespace-nowrap',
 		descriptionClass:
@@ -265,7 +265,7 @@ export const pageHeroes = {
 			trackingCta: 'payroll_solution_new_hero_demo',
 			variant: 'primary',
 			effect: 'rotating-flare',
-			wrapperClass: 'relative z-20 flex justify-center',
+			wrapperClass: 'relative z-20 flex flex-col items-center justify-center',
 		},
 		tone: 'neutral',
 		align: 'center',

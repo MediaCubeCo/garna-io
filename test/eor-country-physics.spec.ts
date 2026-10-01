@@ -75,7 +75,7 @@ describe('EOR flag settling', () => {
 				const speedBefore = Math.hypot(orb.vx, orb.vy);
 				world.pushFromCursor(from, to, 0.001);
 				// Gravity may already exceed the cursor cap; a sweep must not increase it.
-				expect(Math.hypot(orb.vx, orb.vy)).toBeLessThanOrEqual(Math.max(speedBefore, 1200) + 0.000001);
+				expect(Math.hypot(orb.vx, orb.vy)).toBeLessThanOrEqual(Math.max(speedBefore, 1550) + 0.000001);
 				world.stepPhysics(1 / 120, 40000);
 				for (const a of world.state.orbs) {
 					expect([a.x, a.y, a.vx, a.vy].every(Number.isFinite)).toBe(true);

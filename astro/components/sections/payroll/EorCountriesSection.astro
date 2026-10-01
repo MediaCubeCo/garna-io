@@ -881,15 +881,15 @@ const fallingFlags: Country[] = [
 				const nx = distance > 0.01 ? offsetX / distance : -dy / length * side;
 				const ny = distance > 0.01 ? offsetY / distance : dx / length * side;
 				const falloff = 1 - distance / reach;
-				const targetSpeed = (700 + speed * 0.22) * falloff;
+				const targetSpeed = (920 + speed * 0.3) * falloff;
 				const impulse = Math.max(0, targetSpeed - (orb.vx * nx + orb.vy * ny));
 				if (impulse < 1) continue;
 				orb.vx += nx * impulse;
 				orb.vy += ny * impulse;
-				const velocityScale = Math.min(1, 1200 / (Math.hypot(orb.vx, orb.vy) || 1));
+				const velocityScale = Math.min(1, 1550 / (Math.hypot(orb.vx, orb.vy) || 1));
 				orb.vx *= velocityScale;
 				orb.vy *= velocityScale;
-				orb.angle += Math.max(-5, Math.min(5, (dx * ny - dy * nx) * falloff * 0.06));
+				orb.angle += Math.max(-7, Math.min(7, (dx * ny - dy * nx) * falloff * 0.08));
 				pushed = true;
 			}
 			if (pushed) wakeSimulation();

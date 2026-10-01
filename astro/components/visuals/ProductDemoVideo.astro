@@ -1,0 +1,208 @@
+---
+const videoSrc = '/pages/payroll-solution-new/assets/garna-product-demo.mp4';
+const posterSrc = '/pages/payroll-solution-new/assets/garna-product-demo-cover.webp';
+---
+
+<div id="product-demo" class="product-demo" data-product-demo>
+	<button
+		type="button"
+		class="product-demo__cover"
+		data-product-demo-open
+		aria-label="Play the Garna product demo"
+		data-translate-aria-label="productDemo.ariaLabel"
+	>
+		<img src={posterSrc} alt="" loading="lazy" decoding="async" />
+		<span class="product-demo__shade" aria-hidden="true"></span>
+		<span class="product-demo__action">
+			<span class="product-demo__play" aria-hidden="true">
+				<svg viewBox="0 0 24 24" fill="none">
+					<path d="M5.7 4.15c0-.3.33-.49.59-.32l12.37 7.73c.34.21.34.67 0 .88L6.29 20.17a.38.38 0 0 1-.59-.32V4.15Z" fill="currentColor" />
+				</svg>
+			</span>
+			<span data-translate="productDemo.play">Watch product demo</span>
+		</span>
+	</button>
+	<video
+		class="product-demo__video"
+		data-product-demo-video
+		controls
+		playsinline
+		preload="none"
+		poster={posterSrc}
+		aria-label="Garna product demo"
+		data-translate-aria-label="productDemo.videoLabel"
+		hidden
+	>
+		<source src={videoSrc} type="video/mp4" />
+	</video>
+</div>
+
+<script>
+	const initProductDemos = () => {
+		document.querySelectorAll('[data-product-demo]').forEach((root) => {
+			if (!(root instanceof HTMLElement) || root.dataset.ready === 'true') return;
+			const cover = root.querySelector('[data-product-demo-open]');
+			const video = root.querySelector('[data-product-demo-video]');
+			if (!(cover instanceof HTMLButtonElement) || !(video instanceof HTMLVideoElement)) return;
+
+			root.dataset.ready = 'true';
+			cover.addEventListener('click', () => {
+				cover.hidden = true;
+				video.hidden = false;
+				video.focus({ preventScroll: true });
+				video.play().catch(() => {});
+			});
+		});
+	};
+
+	initProductDemos();
+	document.addEventListener('astro:page-load', initProductDemos);
+</script>
+
+<style>
+	.product-demo {
+		position: relative;
+		isolation: isolate;
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		border: 1px solid rgb(255 255 255 / 0.12);
+		border-radius: clamp(1rem, 2.2vw, 1.75rem);
+		background: #0b0c0e;
+		box-shadow: 0 36px 100px rgb(0 0 0 / 0.34), 0 0 0 1px rgb(255 255 255 / 0.025) inset;
+	}
+
+	.product-demo::before {
+		position: absolute;
+		z-index: -1;
+		inset: -20%;
+		background: radial-gradient(circle at 48% 40%, rgb(203 243 0 / 0.15), transparent 48%);
+		content: '';
+	}
+
+	.product-demo__cover,
+	.product-demo__video {
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
+	.product-demo__cover {
+		position: relative;
+		display: block;
+		cursor: pointer;
+		padding: 0;
+		background: #eef0f6;
+		color: #fff;
+		font: inherit;
+		text-align: left;
+	}
+
+	.product-demo__cover[hidden] {
+		display: none;
+	}
+
+	.product-demo__cover img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 700ms cubic-bezier(.22, 1, .36, 1), filter 500ms ease;
+	}
+
+	.product-demo__shade {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgb(8 10 14 / 0.1), transparent 42%, rgb(8 10 14 / 0.58)),
+			radial-gradient(circle at 50% 50%, transparent 12%, rgb(8 10 14 / 0.14) 100%);
+		transition: background-color 300ms ease;
+	}
+
+	.product-demo__action {
+		position: absolute;
+		bottom: clamp(1rem, 3vw, 2rem);
+		left: 50%;
+		display: inline-flex;
+		align-items: center;
+		gap: clamp(0.8rem, 1.5vw, 1rem);
+		min-height: clamp(3rem, 5vw, 3.35rem);
+		border: 1px solid rgb(255 255 255 / 0.14);
+		border-radius: 0.75rem;
+		background: rgb(8 10 14 / 0.94);
+		padding: 0.5rem clamp(0.95rem, 2vw, 1.15rem);
+		box-shadow: 0 18px 52px rgb(0 0 0 / 0.38);
+		color: #fff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(0.9rem, 1.75vw, 1.15rem);
+		font-weight: 500;
+		white-space: nowrap;
+		transform: translateX(-50%);
+		transition: transform 280ms cubic-bezier(.22, 1, .36, 1), border-color 280ms ease, background-color 280ms ease, box-shadow 280ms ease;
+		backdrop-filter: blur(14px);
+	}
+
+	.product-demo__play {
+		display: grid;
+		width: clamp(1.35rem, 2.8vw, 1.75rem);
+		aspect-ratio: 1;
+		place-items: center;
+		color: #cbf300;
+		filter: drop-shadow(0 0 0.5rem rgb(203 243 0 / 0.2));
+		transition: filter 280ms ease, transform 280ms ease;
+	}
+
+	.product-demo__play svg {
+		width: 100%;
+		height: 100%;
+	}
+
+	.product-demo__cover:hover img {
+		filter: saturate(1.03) contrast(1.015);
+		transform: scale(1.012);
+	}
+
+	.product-demo__cover:hover .product-demo__action,
+	.product-demo__cover:focus-visible .product-demo__action {
+		background: rgb(8 10 14 / 0.96);
+		box-shadow: 0 20px 56px rgb(0 0 0 / 0.42);
+		transform: translateX(-50%) translateY(-0.18rem);
+	}
+
+	.product-demo__cover:hover .product-demo__play,
+	.product-demo__cover:focus-visible .product-demo__play {
+		filter: none;
+		transform: scale(1.035);
+	}
+
+	.product-demo__cover:focus-visible {
+		outline: 3px solid #cbf300;
+		outline-offset: -3px;
+	}
+
+	.product-demo__video {
+		display: block;
+		background: #050505;
+		object-fit: contain;
+	}
+
+	.product-demo__video[hidden] {
+		display: none;
+	}
+
+	@media (max-width: 520px) {
+		.product-demo__action {
+			bottom: 0.75rem;
+			min-height: 2.75rem;
+			padding: 0.45rem 0.85rem;
+			font-size: 0.8rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.product-demo__cover img,
+		.product-demo__action,
+		.product-demo__play {
+			transition: none;
+		}
+	}
+</style>

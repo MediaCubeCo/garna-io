@@ -423,6 +423,11 @@ export const eorPt = {
 		"description": "Contrate funcionários no estrangeiro sem abrir entidades locais. A Garna trata de contratos, folha de pagamento, impostos e conformidade numa só plataforma",
 		"button": "Marcar uma demo"
 	},
+	"productDemo": {
+		"play": "Ver demo do produto",
+		"ariaLabel": "Reproduzir a demo do produto Garna",
+		"videoLabel": "Demo do produto Garna"
+	},
 	"advance": {
 		"title": "$ 1.000.000,00 disponíveis para pagamentos da equipa",
 		"description": "Pague aos seus contratados agora e reembolse mais tarde com termos flexíveis",

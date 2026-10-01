@@ -423,6 +423,11 @@ export const eorEn = {
 		"description": "Hire employees abroad without opening local entities. Garna handles contracts, payroll, taxes, and compliance in one platform",
 		"button": "Book a demo"
 	},
+	"productDemo": {
+		"play": "Watch product demo",
+		"ariaLabel": "Play the Garna product demo",
+		"videoLabel": "Garna product demo"
+	},
 	"advance": {
 		"title": "$ 1,000,000.00 available for team payouts",
 		"description": "Pay your contractors now — repay later with flexible terms",

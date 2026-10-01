@@ -17,7 +17,7 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 	</header>
 
 	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" data-automation-card data-card-glow="true" data-interactive="true">
-		<a class="payroll-feature-card__link" href="/en/contractor-of-record" aria-label="Pay Contractors Globally"></a>
+		<a class="payroll-feature-card__link" href="/en/contractor-of-record" data-localized-path="contractor-of-record" aria-label="Pay Contractors Globally"></a>
 		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-automation-title data-translate="manageGlobalPayroll.cards.automation.title">Pay Contractors Globally</h3>
 		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.automation.description">Onboard and pay contractors worldwide with ease</p>
 		<div class="payroll-feature-card__visual payroll-feature-card__visual--automation mt-6 flex min-h-0 flex-1 items-center justify-center overflow-hidden pt-2">
@@ -26,7 +26,7 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 	</article>
 
 	<article class="payroll-feature-card flex h-[560px] min-w-0 flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0c0c]/[0.72] px-8 pb-8 pt-14 text-center lg:px-12" data-card-glow="true" data-interactive="true">
-		<a class="payroll-feature-card__link" href="/en/employer-of-record" aria-label="Hire Employees Worldwide"></a>
+		<a class="payroll-feature-card__link" href="/en/employer-of-record" data-localized-path="employer-of-record" aria-label="Hire Employees Worldwide"></a>
 		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-translate="manageGlobalPayroll.cards.globalReach.title">Hire Employees Worldwide</h3>
 		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.globalReach.description">Scale your team faster with a compliant EOR solution</p>
 		<div class="payroll-feature-card__global-visual -mx-8 -mb-8 mt-8 flex min-h-0 flex-1 items-start justify-center overflow-hidden lg:-mx-12">
@@ -495,7 +495,7 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 		cursor: pointer;
 	}
 
-	.payroll-feature-card__link {
+	.payroll-feature-card > .payroll-feature-card__link {
 		position: absolute;
 		inset: 0;
 		z-index: 3;

@@ -46,32 +46,6 @@ import Section from '../../../layout/Section.astro';
 		text-align: center;
 	}
 
-	.spendbase-quote__text::before,
-	.spendbase-quote__text::after {
-		position: absolute;
-		z-index: 0;
-		width: clamp(3.2rem, 5.2vw, 5.6rem);
-		height: clamp(3.2rem, 5.2vw, 5.6rem);
-		content: '';
-		pointer-events: none;
-	}
-
-	.spendbase-quote__text::before {
-		top: clamp(-1.3rem, -1.7vw, -0.95rem);
-		left: clamp(-1.25rem, -1.65vw, -0.75rem);
-		border-top: 1px solid rgba(255, 255, 255, 0.78);
-		border-left: 1px solid rgba(255, 255, 255, 0.78);
-		border-top-left-radius: 1.15rem;
-	}
-
-	.spendbase-quote__text::after {
-		right: clamp(-1.25rem, -1.65vw, -0.75rem);
-		bottom: clamp(-1.3rem, -1.7vw, -0.95rem);
-		border-right: 1px solid rgba(255, 255, 255, 0.78);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.78);
-		border-bottom-right-radius: 1.15rem;
-	}
-
 	.spendbase-quote__mark {
 		position: relative;
 		z-index: 1;

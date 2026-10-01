@@ -21,6 +21,12 @@
 	hero: {
 		badge: 'Nómina para grandes empresas',
 		titleMain: 'La plataforma de nómina todo en uno',
+		stats: {
+			ariaLabel: 'Garna en cifras',
+			businesses: 'empresas confían en Garna',
+			paid: 'pagados a especialistas',
+			professionals: 'profesionales usan Garna',
+		},
 		title: 'Soluciones de Nómina Global para tu negocio',
 		tagline: 'para tu negocio',
 		description: 'Paga a contratistas y contrata empleados en más de 150 países, con total cumplimiento y sin los costes adicionales de una entidad local',
@@ -51,6 +57,11 @@
 			'Usa Garna como tu proveedor backend: integra gestión y pagos de contratistas en tu producto o lanza servicios completos de nómina bajo tu propia marca',
 		trustedByBuilders:
 			'Descubre por qué grandes compañías y empresas medianas se están pasando a Garna. Marcamos el estándar de la nómina internacional, con la confianza de profesionales en más de 150 países',
+	},
+	productDemo: {
+		play: 'Ver demo del producto',
+		ariaLabel: 'Reproducir la demo del producto Garna',
+		videoLabel: 'Demo del producto Garna',
 	},
 	homeProof: {
 		stats: {

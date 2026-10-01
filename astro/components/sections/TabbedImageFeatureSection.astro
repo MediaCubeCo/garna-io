@@ -18,6 +18,7 @@ interface TabbedImageFeaturePanel {
 	description: LocalizedText;
 	cta?: LocalizedText & {
 		href?: string;
+		localizedPath?: string;
 	};
 }
 
@@ -80,7 +81,13 @@ const resolvedSectionClass = [className, scrollDriven ? 'tabbed-image-feature-se
 						<h3 data-translate={panel.title.translateKey}>{panel.title.text}</h3>
 						<p data-translate={panel.description.translateKey}>{panel.description.text}</p>
 						{panel.cta && (
-							<Button href={panel.cta.href || '#'} variant="inline-accent" size="inline" class="mt-6">
+							<Button
+								href={panel.cta.href || '#'}
+								data-localized-path={panel.cta.localizedPath}
+								variant="inline-accent"
+								size="inline"
+								class="mt-6"
+							>
 								<span data-translate={panel.cta.translateKey}>{panel.cta.text}</span>
 								<span class="garna-button-arrow-glyph" aria-hidden="true">→</span>
 							</Button>

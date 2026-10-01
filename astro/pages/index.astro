@@ -104,21 +104,27 @@ const homeFaqItems = [
 <BaseLayout shell={pageShells.home} showRainbow={false}>
 	<div class="home-hero-proof-stage" data-home-hero-proof-stage>
 		<HeroSection {...pageHeroes.home}>
-			<div slot="background" class="home-hero-cover" aria-hidden="true">
-				<div class="home-hero-cover__media">
+			<div slot="before-title" class="home-hero-proof-rotator" aria-label="Garna in numbers" data-translate-aria-label="hero.stats.ariaLabel">
+				<div class="home-hero-proof-rotator__track">
+					<span class="home-hero-proof-rotator__item">
+						<strong>400+</strong>
+						<span data-translate="hero.stats.businesses">businesses trust Garna</span>
+					</span>
+					<span class="home-hero-proof-rotator__item">
+						<strong>$110M+</strong>
+						<span data-translate="hero.stats.paid">paid to specialists</span>
+					</span>
+					<span class="home-hero-proof-rotator__item">
+						<strong>38K+</strong>
+						<span data-translate="hero.stats.professionals">professionals use Garna</span>
+					</span>
+				</div>
+			</div>
+			<div slot="background" class="home-hero-cover">
+				<div class="home-hero-cover__media" aria-hidden="true">
 					<img data-home-hero-image src="/pages/payroll-solution-new/assets/home-hero-editorial-preview-3-optimized.webp" alt="" />
 				</div>
-				<div class="home-hero-focus-frame" data-home-hero-frame>
-					<div class="home-hero-focus-frame__actions" data-home-hero-actions>
-						<span data-translate="hero.visual.payroll">Payroll</span>
-						<span data-translate="hero.visual.globalPayouts">Global payouts</span>
-						<span>
-							<svg viewBox="0 0 13 21" aria-hidden="true">
-								<path d="M11.4746 14.7227C11.4275 15.5537 11.2163 16.3675 10.8525 17.1162C10.0307 18.7581 8.70591 19.7429 6.90425 20.0733C5.69763 20.2945 4.51044 20.1991 3.37495 19.7168C1.85099 19.0695 0.86664 17.9207 0.339801 16.3662C0.139741 15.7559 0.0279696 15.1196 0.00874611 14.4776C0.00684991 14.4314 0.0087461 14.385 0.00874611 14.3321H3.00777C3.0243 14.5458 3.03371 14.7549 3.05757 14.9619C3.10582 15.4803 3.25312 15.9843 3.49116 16.4473C3.95449 17.3081 4.67246 17.7533 5.65425 17.7686C6.07065 17.775 6.47795 17.734 6.86226 17.5596C7.41667 17.308 7.79767 16.8839 8.05952 16.3447C8.29209 15.8435 8.42793 15.3026 8.46089 14.751C8.47202 14.613 8.47777 14.4745 8.48628 14.3311H11.4932C11.4872 14.4642 11.4839 14.5936 11.4746 14.7227ZM11.5449 1.16602C11.7043 1.3011 11.8639 1.43594 12.0322 1.57813L10.2383 3.70215C10.2425 3.713 10.2478 3.72352 10.2539 3.7334C10.8744 4.54768 11.273 5.50908 11.4111 6.52344C11.5791 7.65883 11.5135 8.78028 11.1269 9.86524C10.4697 11.71 9.20303 12.9244 7.29195 13.3994C5.74263 13.7845 4.2315 13.6402 2.81929 12.8555C1.5815 12.1676 0.782316 11.1098 0.337847 9.77735C0.059096 8.91898 -0.0490815 8.01407 0.0204649 7.11426C0.0817073 6.18439 0.306447 5.29789 0.758746 4.47949C1.56472 3.02129 2.79412 2.12177 4.42085 1.78028C5.63517 1.51384 6.90175 1.61637 8.05757 2.07422C8.07377 2.08059 8.09019 2.0874 8.1064 2.09375C8.17573 2.12094 8.25148 2.17872 8.31245 2.16602C8.36926 2.15407 8.41133 2.06798 8.45796 2.0127C9.00725 1.3629 9.55666 0.712741 10.1055 0.0625C10.1221 0.0427899 10.137 0.020795 10.1523 0H10.1689C10.6274 0.388706 11.0864 0.777334 11.5449 1.16602ZM5.51167 4.0586C5.19448 4.069 4.88273 4.14498 4.59566 4.28028C4.00652 4.55998 3.62387 5.03063 3.37202 5.61719C3.09821 6.25495 3.015 6.92884 3.02144 7.61621C3.02143 7.73798 3.01589 7.86003 3.02241 7.98145C3.0535 8.55888 3.15117 9.12344 3.38863 9.65528C3.65578 10.2535 4.05942 10.7237 4.67378 10.9893C5.06109 11.1566 5.46927 11.1886 5.88472 11.1787C6.77375 11.1576 7.45241 10.7698 7.91988 10.0147C8.12885 9.66554 8.27656 9.28275 8.3564 8.88379C8.49588 8.21172 8.52413 7.52099 8.43941 6.83985C8.39161 6.35369 8.25726 5.8794 8.04292 5.44043C7.74657 4.85268 7.31184 4.41419 6.68062 4.18946C6.30092 4.05435 5.90773 4.04298 5.51167 4.0586Z" />
-							</svg>
-						</span>
-					</div>
-				</div>
+				<div class="home-hero-focus-frame" data-home-hero-frame aria-hidden="true"></div>
 			</div>
 		</HeroSection>
 		<div class="home-workflows-scroll" data-home-workflows-scroll>
@@ -227,7 +233,6 @@ const homeFaqItems = [
 
 				const heroFrame = stage.querySelector('[data-home-hero-frame]');
 				const heroImage = stage.querySelector('[data-home-hero-image]');
-				const heroActions = stage.querySelector('[data-home-hero-actions]');
 				const heroSection = heroFrame?.closest('[data-section-kind="hero"]');
 				const heroButton = heroSection?.querySelector('.garna-button');
 				const heroCta = heroSection?.querySelector('.garna-button')?.parentElement;
@@ -242,7 +247,6 @@ const homeFaqItems = [
 				if (
 					!(heroFrame instanceof HTMLElement) ||
 					!(heroImage instanceof HTMLImageElement) ||
-					!(heroActions instanceof HTMLElement) ||
 					!(proofSection instanceof HTMLElement) ||
 					!(targetCard instanceof HTMLElement) ||
 					!(targetImage instanceof HTMLImageElement) ||
@@ -476,7 +480,7 @@ const homeFaqItems = [
 
 					if (!(heroButton instanceof HTMLElement)) return;
 					const frameRect = heroFrame.getBoundingClientRect();
-					const buttonRect = heroButton.getBoundingClientRect();
+					const buttonRect = heroCta instanceof HTMLElement ? heroCta.getBoundingClientRect() : heroButton.getBoundingClientRect();
 					const minimumGap = 20.5;
 					const maximumGap = 30;
 					const currentGap = frameRect.top - buttonRect.bottom;
@@ -567,9 +571,11 @@ const homeFaqItems = [
 						const mobileProgress = clamp((stickyTop - scrollRect.top) / scrollDistance);
 						renderDeck(mobileProgress, true);
 						fitMobileDeck(mobileProgress);
-						updateMobileHeroFrame();
-						stage.style.setProperty('--home-hero-actions-opacity', '1');
-						stage.style.setProperty('--home-hero-frame-opacity', '1');
+					updateMobileHeroFrame();
+					stage.style.setProperty('--home-hero-actions-opacity', '1');
+					const reducedHeroProgress = clamp(-stage.getBoundingClientRect().top / Math.max(1, window.innerHeight * .12));
+					stage.style.setProperty('--home-hero-stats-opacity', String(1 - reducedHeroProgress));
+					stage.style.setProperty('--home-hero-frame-opacity', '1');
 						stage.style.setProperty('--home-hero-backdrop-progress', '0');
 						stage.style.setProperty('--home-proof-featured-image-opacity', '1');
 						stage.style.setProperty('--home-proof-featured-card-opacity', '1');
@@ -645,6 +651,7 @@ const homeFaqItems = [
 						landingCard.style.visibility = transitionStarted && !transitionComplete ? 'hidden' : '';
 						stage.style.setProperty('--home-hero-frame-opacity', String(transitionStarted ? 0 : 1));
 						stage.style.setProperty('--home-hero-actions-opacity', String(1 - smoothstep(.035, .18, progress)));
+						stage.style.setProperty('--home-hero-stats-opacity', String(1 - smoothstep(.008, .09, progress)));
 						stage.style.setProperty('--home-hero-backdrop-progress', String(smoothstep(.05, .46, progress)));
 						stage.style.setProperty('--home-proof-header-opacity', String(smootherstep(.58, .9, progress)));
 						stage.style.setProperty('--home-proof-featured-image-opacity', '1');
@@ -727,6 +734,7 @@ const homeFaqItems = [
 					setOverlay(rect, imageRect, overlayOpacity, borderOpacity, borderWidth, mix(heroRadius, targetRadius, sizeProgress));
 					stage.style.setProperty('--home-hero-frame-opacity', String(heroFrameOpacity));
 					stage.style.setProperty('--home-hero-actions-opacity', String(actionsOpacity));
+					stage.style.setProperty('--home-hero-stats-opacity', String(1 - smoothstep(.008, .09, progress)));
 					stage.style.setProperty('--home-hero-backdrop-progress', String(heroBackdropProgress));
 					stage.style.setProperty('--home-proof-featured-image-opacity', String(proofImageOpacity));
 					stage.style.setProperty('--home-proof-featured-card-opacity', String(proofCardOpacity));
@@ -771,6 +779,7 @@ const homeFaqItems = [
 	.home-hero-proof-stage {
 		position: relative;
 		--home-hero-actions-opacity: 1;
+		--home-hero-stats-opacity: 1;
 		--home-hero-frame-opacity: 1;
 		--home-hero-backdrop-progress: 0;
 		--home-proof-featured-image-opacity: 1;
@@ -952,6 +961,97 @@ const homeFaqItems = [
 		pointer-events: none;
 	}
 
+	.home-hero-proof-rotator {
+		position: absolute;
+		top: -1.65rem;
+		left: 50%;
+		z-index: 2;
+		display: grid;
+		width: max-content;
+		max-width: calc(100vw - 3rem);
+		height: 1.62rem;
+		overflow: hidden;
+		place-items: center;
+		border: 1px solid rgb(255 255 255 / 0.17);
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.08);
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 8px 24px rgb(0 0 0 / 0.08);
+		color: #fff;
+		font-family: Manrope, sans-serif;
+		opacity: var(--home-hero-stats-opacity, 1);
+		transform: translate(-50%, calc((1 - var(--home-hero-stats-opacity, 1)) * 0.45rem));
+		backdrop-filter: blur(12px);
+		will-change: opacity, transform;
+	}
+
+	.home-hero-proof-rotator__item {
+		display: flex;
+		grid-area: 1 / 1;
+		width: auto;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+		gap: 0.42rem;
+		box-sizing: border-box;
+		padding: 0.08rem 1rem 0;
+		opacity: 0;
+		transform: translateY(100%);
+		animation: home-hero-proof-drum 9s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+		text-shadow: 0 1px 10px rgb(0 0 0 / 0.3);
+		text-align: center;
+		white-space: nowrap;
+	}
+
+	.home-hero-proof-rotator__track {
+		display: grid;
+		height: 100%;
+		place-items: center;
+	}
+
+	.home-hero-proof-rotator__item:nth-child(2) { animation-delay: -6s; }
+	.home-hero-proof-rotator__item:nth-child(3) { animation-delay: -3s; }
+
+	.home-hero-proof-rotator__item strong {
+		color: #cbf300;
+		font-size: 0.9rem;
+		font-weight: 700;
+		letter-spacing: -0.025em;
+		line-height: 1;
+	}
+
+	.home-hero-proof-rotator__item span {
+		color: rgb(255 255 255 / 0.72);
+		font-size: 0.74rem;
+		font-weight: 520;
+		line-height: 1;
+	}
+
+	@keyframes home-hero-proof-drum {
+		0%, 28% { opacity: 1; transform: translateY(0); }
+		33.333%, 95% { opacity: 0; transform: translateY(-100%); }
+		95.001% { opacity: 0; transform: translateY(100%); }
+		100% { opacity: 1; transform: translateY(0); }
+	}
+
+	@media (max-width: 480px) {
+		.home-hero-proof-rotator {
+			top: -2.1rem;
+			height: 1.58rem;
+		}
+
+		.home-hero-proof-rotator__item {
+			padding: 0.07rem 0.85rem 0;
+		}
+
+		.home-hero-proof-rotator__item strong { font-size: 0.82rem; }
+		.home-hero-proof-rotator__item span { font-size: 0.66rem; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.home-hero-proof-rotator__item { animation: none; }
+		.home-hero-proof-rotator__item:first-child { opacity: 1; transform: none; }
+	}
+
 	.home-hero-cover__media {
 		position: absolute;
 		inset: var(--home-hero-media-inset);
@@ -1007,58 +1107,6 @@ const homeFaqItems = [
 		opacity: var(--home-hero-frame-opacity, 1);
 		transform: translateX(-50%);
 		container-type: inline-size;
-	}
-
-	.home-hero-focus-frame__actions {
-		position: absolute;
-		right: var(--home-hero-action-inset);
-		bottom: var(--home-hero-action-inset);
-		display: flex;
-		width: var(--home-hero-actions-reference-width);
-		align-items: center;
-		justify-content: flex-end;
-		gap: var(--home-hero-action-gap);
-		opacity: var(--home-hero-actions-opacity, 1);
-		transform: translateY(calc((1 - var(--home-hero-actions-opacity, 1)) * 0.75rem)) scale(calc((0.96 + var(--home-hero-actions-opacity, 1) * 0.04) * var(--home-hero-actions-scale) * var(--home-hero-actions-height-scale) * var(--home-hero-frame-content-scale) * var(--home-hero-locale-actions-scale)));
-		transform-origin: right bottom;
-	}
-
-	.home-hero-focus-frame__actions span {
-		display: inline-flex;
-		min-height: var(--home-hero-pill-height);
-		align-items: center;
-		justify-content: center;
-		border-radius: 9999px;
-		border: 1px solid rgb(255 255 255 / 0.1);
-		background: rgb(7 8 10 / 0.72);
-		padding: 0 var(--home-hero-pill-padding-x);
-		color: rgba(255, 255, 255, 0.82);
-		font-family: Manrope, sans-serif;
-		font-size: var(--home-hero-pill-font-size);
-		font-weight: 600;
-		line-height: 1;
-		white-space: nowrap;
-		box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
-		backdrop-filter: blur(12px);
-	}
-
-	.home-hero-focus-frame__actions span:last-child {
-		flex: 0 0 var(--home-hero-logo-tile-size);
-		width: var(--home-hero-logo-tile-size);
-		height: var(--home-hero-logo-tile-size);
-		min-height: 0;
-		aspect-ratio: 1;
-		padding: 0;
-		border-radius: clamp(0.48rem, 1vh, 0.62rem);
-		border-color: rgba(203, 243, 0, 0.72);
-		background: #cbf300;
-		color: #101010;
-	}
-
-	.home-hero-focus-frame__actions svg {
-		width: var(--home-hero-logo-width);
-		height: var(--home-hero-logo-height);
-		fill: currentColor;
 	}
 
 	@media (max-width: 900px) {

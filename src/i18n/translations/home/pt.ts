@@ -21,6 +21,12 @@
 	hero: {
 		badge: 'Payroll para Grandes Empresas',
 		titleMain: 'A plataforma de payroll tudo em um',
+		stats: {
+			ariaLabel: 'A Garna em números',
+			businesses: 'empresas confiam na Garna',
+			paid: 'pagos a especialistas',
+			professionals: 'profissionais usam a Garna',
+		},
 		title: 'Soluções de Payroll Global para o seu negócio',
 		tagline: 'para o seu negócio',
 		description: 'Pague a contratados e contrate colaboradores em mais de 150 países, em conformidade e sem os custos adicionais de uma entidade local',
@@ -51,6 +57,11 @@
 			'Use a Garna como o seu fornecedor backend: integre gestão e pagamentos de contratados no seu produto ou lance serviços completos de payroll com a sua própria marca',
 		trustedByBuilders:
 			'Descubra porque grandes empresas e negócios de média dimensão estão a mudar para a Garna. Definimos o padrão para payroll internacional, com a confiança de profissionais em mais de 150 países',
+	},
+	productDemo: {
+		play: 'Ver demo do produto',
+		ariaLabel: 'Reproduzir a demo do produto Garna',
+		videoLabel: 'Demo do produto Garna',
 	},
 	homeProof: {
 		stats: {
