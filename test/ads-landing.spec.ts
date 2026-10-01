@@ -201,7 +201,7 @@ describe('isolated advertising landing', () => {
 		expect(paymentWays).toContain('interaction="scroll"');
 		expect(paymentWays).not.toContain('cta:');
 		expect(tabbedFeature).toContain('height: 180svh');
-		expect(tabbedFeature).toContain('calc(var(--progress) * 100%)');
+		expect(tabbedFeature).toContain('background: rgb(203 243 0 / 0.78)');
 	});
 
 	it('presents three stacked global invoicing benefits after the payment flows', async () => {

@@ -446,7 +446,6 @@ const resolvedSectionClass = [className, scrollDriven ? 'tabbed-image-feature-se
 	.tabbed-image-feature__tab span {
 		position: relative;
 		z-index: 1;
-		display: block;
 	}
 
 	.tabbed-image-feature__tab:hover {
@@ -459,23 +458,12 @@ const resolvedSectionClass = [className, scrollDriven ? 'tabbed-image-feature-se
 	}
 
 	.tabbed-image-feature__tab.active {
-		background: rgb(203 243 0 / 0.12);
-		color: rgb(255 255 255 / 0.72);
+		background: rgb(203 243 0 / 0.78);
+		color: #080a08;
 	}
 
 	.tabbed-image-feature__tab.active::before {
 		opacity: 1;
-	}
-
-	.tabbed-image-feature__tab.active span {
-		background: linear-gradient(
-			90deg,
-			#080a08 0 calc(var(--progress) * 100%),
-			rgb(255 255 255 / 0.72) calc(var(--progress) * 100%) 100%
-		);
-		background-clip: text;
-		-webkit-background-clip: text;
-		color: transparent;
 	}
 
 	@media (min-width: 801px) and (max-width: 1079px) {
