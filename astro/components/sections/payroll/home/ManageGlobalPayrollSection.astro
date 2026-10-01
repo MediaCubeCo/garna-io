@@ -29,7 +29,7 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 		<a class="payroll-feature-card__link" href="/en/employer-of-record" aria-label="Hire Employees Worldwide"></a>
 		<h3 class="mx-auto max-w-md font-manrope text-3xl font-medium leading-tight text-white" data-translate="manageGlobalPayroll.cards.globalReach.title">Hire Employees Worldwide</h3>
 		<p data-garna-subtitle class="mx-auto mt-4 max-w-md font-manrope text-base leading-relaxed" data-translate="manageGlobalPayroll.cards.globalReach.description">Scale your team faster with a compliant EOR solution</p>
-		<div class="-mx-8 -mb-8 mt-8 flex min-h-0 flex-1 items-start justify-center overflow-hidden lg:-mx-12">
+		<div class="payroll-feature-card__global-visual -mx-8 -mb-8 mt-8 flex min-h-0 flex-1 items-start justify-center overflow-hidden lg:-mx-12">
 			<div class="global-reach-frame h-full w-full"><GlobalReachVisual /></div>
 		</div>
 	</article>
@@ -372,6 +372,34 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 		transform-origin: center center;
 	}
 
+	@media (min-width: 1080px) {
+		:global(html[lang='es']) .payroll-feature-card__global-visual,
+		:global(html[lang='pt']) .payroll-feature-card__global-visual {
+			margin-top: -0.5rem;
+		}
+	}
+
+	@media (min-width: 1080px) and (max-width: 1199.98px) {
+		:global(html[lang='es']) .payroll-feature-card__visual--fees,
+		:global(html[lang='pt']) .payroll-feature-card__visual--fees {
+			--payroll-fees-fit-scale: min(
+				var(--payroll-fees-scale),
+				calc(100cqw / 420px),
+				calc(100cqh / 360px)
+			);
+			container-type: size;
+			padding-block: 0.5rem;
+		}
+
+		:global(html[lang='es']) .payroll-feature-card__visual--fees > .payroll-feature-card__fees-scale,
+		:global(html[lang='pt']) .payroll-feature-card__visual--fees > .payroll-feature-card__fees-scale {
+			flex: 0 0 auto;
+			width: 420px;
+			max-width: none;
+			transform: scale(var(--payroll-fees-fit-scale));
+		}
+	}
+
 	@media (min-width: 1080px) and (max-width: 1099.98px) {
 		.payroll-feature-card[data-automation-copy-wrapped='true'] .payroll-feature-card__visual--automation {
 			--payroll-automation-scale: 0.88;
@@ -542,11 +570,13 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 
 		.payroll-feature-card__visual--fees {
 			--payroll-fees-natural-width: 420px;
+			--payroll-fees-natural-height: 358px;
 			--payroll-fees-fit-scale: min(
 				var(--payroll-fees-scale),
-				calc(100cqw / var(--payroll-fees-natural-width))
+				calc(100cqw / var(--payroll-fees-natural-width)),
+				calc((100cqh + 4rem) / var(--payroll-fees-natural-height))
 			);
-			container-type: inline-size;
+			container-type: size;
 		}
 
 		.payroll-feature-card__visual--fees > .payroll-feature-card__fees-scale {
@@ -580,7 +610,8 @@ import TransparentFeesVisual from '../../../visuals/TransparentFeesVisual.astro'
 		}
 
 		:global(html[lang='en']) .payroll-feature-card__methods-visual,
-		:global(html[lang='es']) .payroll-feature-card__methods-visual {
+		:global(html[lang='es']) .payroll-feature-card__methods-visual,
+		:global(html[lang='pt']) .payroll-feature-card__methods-visual {
 			--payroll-methods-fit-bleed: 26px;
 		}
 

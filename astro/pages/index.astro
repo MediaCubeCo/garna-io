@@ -1152,6 +1152,12 @@ const homeFaqItems = [
 		}
 	}
 
+	@media (max-width: 480px) {
+		.home-hero-cover {
+			--home-hero-image-scale: 1;
+		}
+	}
+
 	@media (min-width: 841px) and (max-width: 900px) and (max-aspect-ratio: 1.2) {
 		.home-hero-focus-frame {
 			height: min(29.75rem, 54.5vh);
@@ -1249,6 +1255,18 @@ const homeFaqItems = [
 		html[lang='ru'] .payroll-deferred-section .payroll-deferred-copy h2 {
 			line-height: 1.08;
 			max-width: 42rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		html[lang='ru'] .payroll-solution-new-hero h1 {
+			font-size: 2.5rem;
+			line-height: 1.05;
+		}
+
+		html[lang='ru'] .payroll-solution-new-hero [data-garna-subtitle] {
+			font-size: 1rem;
+			line-height: 1.35;
 		}
 	}
 </style>
