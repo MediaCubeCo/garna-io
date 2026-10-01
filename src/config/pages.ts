@@ -118,7 +118,7 @@ export const basePaths: PageConfig[] = [
 		languages: ['en', 'es', 'pt', 'ru'],
 	},
 	{
-		path: 'ads-landing',
+		path: 'global-invoicing',
 		mode: 'static',
 		searchable: false,
 		showHeader: false,

@@ -398,17 +398,17 @@ export const eorEn = {
 		"benefits": {
 			"withdrawals": {
 				"title": "Flexible Withdrawals",
-				"description": "Split your withdrawals across different cards and accounts",
+				"description": "Split your withdrawals across different cards and accounts.",
 				"tags": ["Cards", "Bank accounts", "Split payouts"]
 			},
 			"taxGuidance": {
 				"title": "Tax Guidance",
-				"description": "Get free guidance from our tax team on paying taxes correctly in your country",
+				"description": "Get free guidance from our tax team on paying taxes correctly in your country.",
 				"tags": ["Local taxes", "Expert guidance", "Included"]
 			},
 			"visa": {
 				"title": "Digital Nomad Visa",
-				"description": "Use your Garna payment documents to support your digital nomad visa application",
+				"description": "Use your Garna payment documents to support your digital nomad visa application.",
 				"tags": ["Payment documents", "Income proof", "Visa support"]
 			}
 		}

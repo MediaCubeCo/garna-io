@@ -398,17 +398,17 @@ export const eorPt = {
 		"benefits": {
 			"withdrawals": {
 				"title": "Levantamentos flexíveis",
-				"description": "Divida os seus levantamentos entre diferentes cartões e contas",
+				"description": "Divida os seus levantamentos entre diferentes cartões e contas.",
 				"tags": ["Cartões", "Contas bancárias", "Levantamentos divididos"]
 			},
 			"taxGuidance": {
 				"title": "Orientação fiscal",
-				"description": "Receba orientação gratuita da nossa equipa fiscal para pagar corretamente os impostos no seu país",
+				"description": "Receba orientação gratuita da nossa equipa fiscal para pagar corretamente os impostos no seu país.",
 				"tags": ["Impostos locais", "Orientação especializada", "Incluído"]
 			},
 			"visa": {
 				"title": "Visto para nómadas digitais",
-				"description": "Utilize os seus documentos de pagamento da Garna para apoiar o pedido de visto para nómadas digitais",
+				"description": "Utilize os seus documentos de pagamento da Garna para apoiar o pedido de visto para nómadas digitais.",
 				"tags": ["Docs. de pagamento", "Prova de rendimentos", "Apoio ao visto"]
 			}
 		}

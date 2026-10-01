@@ -398,17 +398,17 @@ export const eorEs = {
 		"benefits": {
 			"withdrawals": {
 				"title": "Retiros flexibles",
-				"description": "Divide tus retiros entre diferentes tarjetas y cuentas",
+				"description": "Divide tus retiros entre diferentes tarjetas y cuentas.",
 				"tags": ["Tarjetas", "Cuentas bancarias", "Retiros divididos"]
 			},
 			"taxGuidance": {
 				"title": "Asesoramiento fiscal",
-				"description": "Recibe orientación gratuita de nuestro equipo fiscal para pagar correctamente los impuestos en tu país",
+				"description": "Recibe orientación gratuita de nuestro equipo fiscal para pagar correctamente los impuestos en tu país.",
 				"tags": ["Impuestos locales", "Asesoramiento experto", "Incluido"]
 			},
 			"visa": {
 				"title": "Visado para nómadas digitales",
-				"description": "Utiliza tus documentos de pago de Garna para respaldar tu solicitud de visado para nómadas digitales",
+				"description": "Utiliza tus documentos de pago de Garna para respaldar tu solicitud de visado para nómadas digitales.",
 				"tags": ["Docs. de pago", "Prueba de ingresos", "Apoyo de visado"]
 			}
 		}

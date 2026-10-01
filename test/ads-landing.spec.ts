@@ -57,15 +57,15 @@ describe('isolated advertising landing', () => {
 			read('src/i18n/index.ts'),
 		]);
 
-		expect(pages).toContain("path: 'ads-landing'");
-		expect(pages).toMatch(/path: 'ads-landing',[\s\S]*?searchable: false/);
-		expect(dynamicRoute).toContain("'ads-landing': '/ads-landing.html'");
-		expect(dynamicRoute).toContain("'ads-landing': 'ads-landing'");
+		expect(pages).toContain("path: 'global-invoicing'");
+		expect(pages).toMatch(/path: 'global-invoicing',[\s\S]*?searchable: false/);
+		expect(dynamicRoute).toContain("'global-invoicing': '/global-invoicing.html'");
+		expect(dynamicRoute).toContain("'global-invoicing': 'ads-landing'");
 		expect(i18n).toContain("'ads-landing': adsLandingTranslations");
 	});
 
 	it('does not import EOR page components or shared EOR content configuration', async () => {
-		const page = await read('astro/pages/ads-landing.astro');
+		const page = await read('astro/pages/global-invoicing.astro');
 
 		expect(page).toContain("from '../ads-landing/");
 		expect(page).toContain("from '../layouts/AdsLandingLayout.astro'");
@@ -114,7 +114,7 @@ describe('isolated advertising landing', () => {
 
 	it('presents five named Garna chat problems in a sticky visual carousel after the hero', async () => {
 		const [page, problems] = await Promise.all([
-			read('astro/pages/ads-landing.astro'),
+			read('astro/pages/global-invoicing.astro'),
 			read('astro/ads-landing/ProblemsWeSolveSection.astro'),
 		]);
 
@@ -141,7 +141,7 @@ describe('isolated advertising landing', () => {
 
 	it('introduces the invoicing audience with the home-page feature-card pattern', async () => {
 		const [page, audience] = await Promise.all([
-			read('astro/pages/ads-landing.astro'),
+			read('astro/pages/global-invoicing.astro'),
 			read('astro/ads-landing/WhoGlobalInvoicingIsForSection.astro'),
 		]);
 
@@ -156,7 +156,7 @@ describe('isolated advertising landing', () => {
 
 	it('presents a professional client experience with the Contractor of Record split layout', async () => {
 		const [page, professional] = await Promise.all([
-			read('astro/pages/ads-landing.astro'),
+			read('astro/pages/global-invoicing.astro'),
 			read('astro/ads-landing/LookProfessionalSection.astro'),
 		]);
 
@@ -172,7 +172,7 @@ describe('isolated advertising landing', () => {
 
 	it('keeps an isolated four-step Global Invoicing workflow after the professional client section', async () => {
 		const [page, steps] = await Promise.all([
-			read('astro/pages/ads-landing.astro'),
+			read('astro/pages/global-invoicing.astro'),
 			read('astro/ads-landing/GlobalInvoicingStepsSection.astro'),
 		]);
 
@@ -185,9 +185,10 @@ describe('isolated advertising landing', () => {
 	});
 
 	it('offers two Garna payment flows after the global invoicing steps', async () => {
-		const [page, paymentWays] = await Promise.all([
-			read('astro/pages/ads-landing.astro'),
+		const [page, paymentWays, tabbedFeature] = await Promise.all([
+			read('astro/pages/global-invoicing.astro'),
 			read('astro/ads-landing/TwoWaysToGetPaidSection.astro'),
+			read('astro/components/sections/TabbedImageFeatureSection.astro'),
 		]);
 
 		expect(page).toContain('<TwoWaysToGetPaidSection />');
@@ -197,11 +198,15 @@ describe('isolated advertising landing', () => {
 		expect(paymentWays.match(/key: '(invoice|transfer)'/g)).toHaveLength(2);
 		expect(paymentWays).toContain('twoWays.panels.invoice.description');
 		expect(paymentWays).toContain('twoWays.panels.transfer.description');
+		expect(paymentWays).toContain('interaction="scroll"');
+		expect(paymentWays).not.toContain('cta:');
+		expect(tabbedFeature).toContain('height: 180svh');
+		expect(tabbedFeature).toContain('calc(var(--progress) * 100%)');
 	});
 
 	it('presents three stacked global invoicing benefits after the payment flows', async () => {
 		const [page, benefits, translations] = await Promise.all([
-			read('astro/pages/ads-landing.astro'),
+			read('astro/pages/global-invoicing.astro'),
 			read('astro/ads-landing/WhatElseYouGetSection.astro'),
 			read('src/i18n/translations/ads-landing/en.ts'),
 		]);
@@ -214,8 +219,11 @@ describe('isolated advertising landing', () => {
 		expect(benefits).toContain('Flexible Withdrawals');
 		expect(benefits).toContain('Tax Guidance');
 		expect(benefits).toContain('Digital Nomad Visa');
+		expect(benefits).toContain('Split your withdrawals across different cards and accounts.');
+		expect(benefits).toContain('border-radius: 999px');
 		expect(benefits).not.toContain('Payment Tracking');
 		expect(translations).toContain('"whatElseYouGet"');
+		expect(translations).toContain('"description": "Get free guidance from our tax team on paying taxes correctly in your country."');
 	});
 
 	it('uses a working global invoicing payout calculator instead of an EOR hiring estimator', async () => {
@@ -229,9 +237,9 @@ describe('isolated advertising landing', () => {
 		expect(calculator).toContain('data-payout-calculator');
 		expect(calculator).toContain("method === 'card' ? 0.08 : 0.05");
 		expect(calculator).toContain("feePayer === 'freelancer'");
+		expect(calculator).toContain('/pages/payroll-solution-new/assets/global-invoicing-payout-desk-v10.png');
 		expect(calculator).toContain('data-garna-signup');
 		expect(calculator).toContain("import SectionHeader from '../components/layout/SectionHeader.astro'");
-		expect(calculator).toContain('eor-cost-estimator-business-desk-v9.png');
 		expect(calculator).toContain('max-width: 36rem');
 		expect(calculator).toContain('gap: 1.2rem');
 		expect(calculator).toContain('padding: clamp(1.15rem, 2vw, 1.55rem)');
@@ -257,7 +265,7 @@ describe('isolated advertising landing', () => {
 
 	it('compares Garna with alternative payment setups after the calculator', async () => {
 		const [page, comparison] = await Promise.all([
-			read('astro/pages/ads-landing.astro'),
+			read('astro/pages/global-invoicing.astro'),
 			read('astro/ads-landing/WhyGarnaComparisonSection.astro'),
 		]);
 
@@ -281,7 +289,7 @@ describe('isolated advertising landing', () => {
 
 	it('answers nine global invoicing questions instead of reusing the EOR FAQ', async () => {
 		const [page, translations] = await Promise.all([
-			read('astro/pages/ads-landing.astro'),
+			read('astro/pages/global-invoicing.astro'),
 			read('src/i18n/translations/ads-landing/en.ts'),
 		]);
 
@@ -294,7 +302,7 @@ describe('isolated advertising landing', () => {
 	});
 
 	it('keeps the approved landing-page section sequence', async () => {
-		const page = await read('astro/pages/ads-landing.astro');
+		const page = await read('astro/pages/global-invoicing.astro');
 		const sections = [
 			'<EorHeroSection />',
 			'<ProblemsWeSolveSection />',
@@ -315,7 +323,7 @@ describe('isolated advertising landing', () => {
 	});
 
 	it('ends with a global invoicing account-creation CTA', async () => {
-		const page = await read('astro/pages/ads-landing.astro');
+		const page = await read('astro/pages/global-invoicing.astro');
 
 		expect(page).toContain('Get Your First Payment With Global Invoicing');
 		expect(page).toContain("label: 'Create account'");
@@ -325,7 +333,7 @@ describe('isolated advertising landing', () => {
 
 	it('keeps the demo platform component available without rendering it', async () => {
 		const [page, intro] = await Promise.all([
-			read('astro/pages/ads-landing.astro'),
+			read('astro/pages/global-invoicing.astro'),
 			read('astro/ads-landing/PlatformIntroSection.astro'),
 		]);
 

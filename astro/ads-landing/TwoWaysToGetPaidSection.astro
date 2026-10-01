@@ -14,7 +14,6 @@ const panels = [
 			text: 'Create an invoice in Garna and send it to your client. They follow clear payment instructions, while you keep the invoice and payment details together',
 			translateKey: 'twoWays.panels.invoice.description',
 		},
-		cta: { text: 'Create invoice', translateKey: 'twoWays.panels.invoice.cta', href: 'https://app.garna.io/en/auth/sign-up' },
 	},
 	{
 		key: 'transfer',
@@ -29,7 +28,6 @@ const panels = [
 			text: 'Share the Garna payment details for the agreed amount and currency. Once the client pays, the funds are credited to your Garna balance',
 			translateKey: 'twoWays.panels.transfer.description',
 		},
-		cta: { text: 'Create account', translateKey: 'twoWays.panels.transfer.cta', href: 'https://app.garna.io/en/auth/sign-up' },
 	},
 ];
 ---
@@ -40,6 +38,7 @@ const panels = [
 	description={{ text: 'Choose the right payment flow for each client and project', translateKey: 'twoWays.description' }}
 	panels={panels}
 	tabsAriaLabel={{ text: 'Ways to get paid with Garna', translateKey: 'twoWays.tabs.ariaLabel' }}
+	interaction="scroll"
 />
 
 <style is:global>

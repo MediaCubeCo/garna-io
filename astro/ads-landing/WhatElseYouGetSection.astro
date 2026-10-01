@@ -5,7 +5,7 @@ const cards = [
 	{
 		key: 'withdrawals',
 		title: { text: 'Flexible Withdrawals', translateKey: 'whatElseYouGet.benefits.withdrawals.title' },
-		description: { text: 'Split your withdrawals across different cards and accounts', translateKey: 'whatElseYouGet.benefits.withdrawals.description' },
+		description: { text: 'Split your withdrawals across different cards and accounts.', translateKey: 'whatElseYouGet.benefits.withdrawals.description' },
 		tags: [
 			{ text: 'Cards', translateKey: 'whatElseYouGet.benefits.withdrawals.tags.0' },
 			{ text: 'Bank accounts', translateKey: 'whatElseYouGet.benefits.withdrawals.tags.1' },
@@ -15,7 +15,7 @@ const cards = [
 	{
 		key: 'tax-guidance',
 		title: { text: 'Tax Guidance', translateKey: 'whatElseYouGet.benefits.taxGuidance.title' },
-		description: { text: 'Get free guidance from our tax team on paying taxes correctly in your country', translateKey: 'whatElseYouGet.benefits.taxGuidance.description' },
+		description: { text: 'Get free guidance from our tax team on paying taxes correctly in your country.', translateKey: 'whatElseYouGet.benefits.taxGuidance.description' },
 		tags: [
 			{ text: 'Local taxes', translateKey: 'whatElseYouGet.benefits.taxGuidance.tags.0' },
 			{ text: 'Expert guidance', translateKey: 'whatElseYouGet.benefits.taxGuidance.tags.1' },
@@ -25,7 +25,7 @@ const cards = [
 	{
 		key: 'digital-nomad-visa',
 		title: { text: 'Digital Nomad Visa', translateKey: 'whatElseYouGet.benefits.visa.title' },
-		description: { text: 'Use your Garna payment documents to support your digital nomad visa application', translateKey: 'whatElseYouGet.benefits.visa.description' },
+		description: { text: 'Use your Garna payment documents to support your digital nomad visa application.', translateKey: 'whatElseYouGet.benefits.visa.description' },
 		tags: [
 			{ text: 'Payment documents', translateKey: 'whatElseYouGet.benefits.visa.tags.0' },
 			{ text: 'Income proof', translateKey: 'whatElseYouGet.benefits.visa.tags.1' },
@@ -48,6 +48,14 @@ const cards = [
 />
 
 <style is:global>
+	.what-else-you-get-section .stacked-cards-card__footer span,
+	.what-else-you-get-section .stacked-cards-card__footer span:first-child {
+		border-color: rgba(203, 243, 0, 0.22);
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.075);
+		color: rgba(225, 250, 112, 0.9);
+	}
+
 	@media (min-width: 1024px) {
 		.what-else-you-get-section .stacked-cards-card__footer {
 			flex-wrap: nowrap;
