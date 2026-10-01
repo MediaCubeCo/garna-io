@@ -198,4 +198,30 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 		if (results) results.hidden = true;
 		requestAnimationFrame(() => setCalculatorState('idle'));
 	});
+
+	const restoreEstimate = async () => {
+		const params = new URLSearchParams(window.location.search);
+		if (params.get('calculate') !== '1' || !form || !firstCountrySelect || !salaryDisplay || !salaryValue || !currency) return;
+		const code = params.get('country') || '';
+		const salary = params.get('salary') || '';
+		const currencyCode = params.get('currency') || '';
+		if (![...firstCountrySelect.options].some((option) => option.value === code) || !code || !/^\d+$/.test(salary) || !Number.isSafeInteger(Number(salary)) || Number(salary) < 12) return;
+		firstCountrySelect.value = code;
+		salaryValue.value = salary;
+		salaryDisplay.value = formatSalary(salary);
+		const row = firstCountrySelect.closest<HTMLElement>('.tax-country-row')!;
+		await configureCountryRow(row, code);
+		if (!countryConfigs.has(code)) return;
+		const regionSelect = row.querySelector<HTMLSelectElement>('.tax-region-select');
+		const state = params.get('state');
+		if (regionSelect && state) {
+			const option = [...regionSelect.options].find((option) => option.value === state || option.textContent?.trim() === state);
+			if (option) regionSelect.value = option.value;
+		}
+		if (![...currency.options].some((option) => option.value === currencyCode)) return;
+		currency.value = currencyCode;
+		syncCurrencyCode();
+		if (form.checkValidity()) form.requestSubmit();
+	};
+	void restoreEstimate();
 </script>
