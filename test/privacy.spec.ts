@@ -74,6 +74,9 @@ describe('privacy UI injection', () => {
 		expect(once).toContain('data-garna-privacy');
 		expect(once).toContain('Ваша приватность');
 		expect(twice).toBe(once);
+		const localized = injectPrivacyManager(once, 'en');
+		expect(localized).toContain('LANGUAGE="en"');
+		expect(localized.match(/<script data-garna-privacy>/g)).toHaveLength(1);
 		const script = once.match(/<script data-garna-privacy>([\s\S]*?)<\/script>/)?.[1];
 		expect(script).toBeTruthy();
 		expect(() => new Function(script!)).not.toThrow();

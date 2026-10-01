@@ -28,6 +28,8 @@ export function buildPrivacyManagerSnippet(language = 'en'): string {
 	const normalizedLanguage = ['en', 'es', 'pt', 'ru'].includes(language.slice(0, 2).toLowerCase()) ? language.slice(0, 2).toLowerCase() : 'en';
 	const script = `(function(){
 'use strict';
+if(window.__garnaPrivacyBooted)return;
+window.__garnaPrivacyBooted=true;
 var COOKIE=${safeJson(PRIVACY_COOKIE_NAME)},VERSION=${PRIVACY_POLICY_VERSION},LANGUAGE=${safeJson(normalizedLanguage)};
 var copy={
 en:{eyebrow:'Privacy controls',title:'Your privacy, your choice',body:'Necessary technologies keep Garna secure and working. Optional technologies help us understand the site and remember attribution.',ca:'California residents may opt out of sale or sharing. We also honor Global Privacy Control.',accept:'Accept all',reject:'Reject optional',manage:'Customize',save:'Save choices',close:'Close',necessary:'Strictly necessary',necessaryText:'Security, routing, core site functions and storing this privacy choice.',preferences:'Preferences',preferencesText:'Remember optional interface and booking choices.',analytics:'Analytics',analyticsText:'Measure visits and interactions so we can improve the experience.',marketing:'Marketing and attribution',marketingText:'Remember campaign attribution and support future advertising tools.',gpc:'Global Privacy Control is active. Analytics, sale, sharing and marketing remain disabled.',reopen:'Privacy choices',doNotSell:'Do not sell or share',embed:'This external content is disabled until analytics technologies are allowed.',enable:'Review privacy choices',policy:'Privacy Policy'},
@@ -61,9 +63,12 @@ init();
 	return `${PRIVACY_CSS}\n<script ${PRIVACY_MARKER}>${script}</script>`;
 }
 
+const PRIVACY_SNIPPET = /<style data-garna-privacy-style>[\s\S]*?<\/style>\s*<script data-garna-privacy>[\s\S]*?<\/script>/;
+
 export function injectPrivacyManager(html: string, language = 'en'): string {
-	if (!html || html.includes(`<script ${PRIVACY_MARKER}>`)) return html;
+	if (!html) return html;
 	const snippet = buildPrivacyManagerSnippet(language);
+	if (html.includes(`<script ${PRIVACY_MARKER}>`)) return html.replace(PRIVACY_SNIPPET, snippet);
 	const preparedHtml = deferConsentManagedEmbeds(html);
 	if (/<\/head>/i.test(preparedHtml)) return preparedHtml.replace(/<\/head>/i, `${snippet}\n</head>`);
 	if (/<\/body>/i.test(preparedHtml)) return preparedHtml.replace(/<\/body>/i, `${snippet}\n</body>`);

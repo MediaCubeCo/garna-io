@@ -8,6 +8,7 @@ import InstantMeet from '../components/ui/InstantMeet.astro';
 import RainbowBackground from '../components/visuals/RainbowBackground.astro';
 import type { PageShellConfig } from '../types/page-shell';
 import { getPagePathFromPathname } from '../utils/page-path';
+import { buildPrivacyManagerSnippet } from '../../src/utils/privacy-ui';
 
 interface Props {
 	shell: PageShellConfig;
@@ -26,6 +27,8 @@ const {
 } = Astro.props;
 
 const currentPath = getPagePathFromPathname(Astro.url.pathname);
+const privacyLanguage = Astro.url.pathname.split('/').filter(Boolean)[0]?.toLowerCase() || 'en';
+const privacySnippet = buildPrivacyManagerSnippet(privacyLanguage);
 
 const {
 	title,
@@ -87,6 +90,7 @@ const {
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
 			rel="stylesheet"
 		/>
+		<Fragment set:html={privacySnippet} />
 	</head>
 	<body class={bodyClass} data-garna-page>
 		{showRainbow && <RainbowBackground count={rainbowCount} />}
