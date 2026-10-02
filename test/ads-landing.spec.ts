@@ -109,7 +109,7 @@ describe('isolated advertising landing', () => {
 		expect(hero).toContain('hero.cards.monthlyIncome');
 		expect(hero).toContain('hero.cards.balance');
 		expect(hero).not.toContain('eor_hero_book_demo');
-		expect(translations).toContain('Global Invoicing for Independent Professionals');
+		expect(translations).toContain('Global Invoicing for Contractors');
 	});
 
 	it('presents five named Garna chat problems in a sticky visual carousel after the hero', async () => {

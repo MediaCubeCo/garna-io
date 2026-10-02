@@ -11,8 +11,8 @@ export const eorEs = {
 	},
 	"images": {},
 	"meta": {
-		"title": "Facturación global para profesionales independientes | Garna",
-		"description": "Factura a clientes empresariales de todo el mundo y recibe pagos internacionales con Garna sin abrir tu propia empresa."
+		"title": "Facturación global para contratistas | Garna",
+		"description": "Cobra de clientes empresariales de todo el mundo sin crear una empresa. Para freelancers, trabajadores remotos, nómadas digitales y equipos pequeños."
 	},
 	"hero": {
 		"visualAriaLabel": "Vista previa de un pago de facturación global",

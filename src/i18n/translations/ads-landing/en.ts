@@ -11,8 +11,8 @@ export const eorEn = {
 	},
 	"images": {},
 	"meta": {
-		"title": "Global Invoicing for Independent Professionals | Garna",
-		"description": "Invoice business clients worldwide and receive international payments with Garna, without opening your own company."
+		"title": "Global Invoicing for Contractors | Garna",
+		"description": "Get paid by business clients worldwide without setting up a company. Built for freelancers, remote workers, digital nomads, and small teams."
 	},
 	"hero": {
 		"visualAriaLabel": "Global invoicing payment preview",

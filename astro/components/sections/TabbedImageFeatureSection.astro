@@ -74,7 +74,14 @@ const resolvedSectionClass = [className, scrollDriven ? 'tabbed-image-feature-se
 					data-tabbed-image-panel={panel.key}
 					style={`--tabbed-image-position:${panel.imagePosition || 'center'};--tabbed-image-mobile-position:${panel.imagePositionMobile || panel.imagePosition || 'center'};--tabbed-image-transform:${panel.imageTransform || 'none'};--tabbed-image-mobile-transform:${panel.imageTransformMobile || panel.imageTransform || 'none'};--tabbed-copy-tablet-width:${panel.copyWidthTablet || '460px'};`}
 				>
-					<img class="tabbed-image-feature__image" src={panel.image} alt={panel.imageAlt || ''} loading="lazy" decoding="async" />
+					<img
+						class="tabbed-image-feature__image"
+						src={panel.image}
+						alt={panel.imageAlt || ''}
+						loading="eager"
+						fetchpriority="low"
+						decoding="async"
+					/>
 					<div class="tabbed-image-feature__shade" aria-hidden="true"></div>
 					<div class="tabbed-image-feature__copy">
 						<span class="tabbed-image-feature__tag" data-translate={panel.tag.translateKey}>{panel.tag.text}</span>
