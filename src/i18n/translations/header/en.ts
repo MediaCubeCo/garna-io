@@ -33,7 +33,7 @@
 	contractors: 'For Contractors',
 	contractorsKicker: 'Get paid faster globally',
 	bankAccount: 'Business Account',
-	bankAccountKicker: 'Open accounts for payouts',
+	bankAccountKicker: 'One account for global payments',
 	compliance: 'Compliance',
 	complianceKicker: 'Reduce global employment and payment risks',
 	aiHiringFeatureText: 'Automate talent sourcing',

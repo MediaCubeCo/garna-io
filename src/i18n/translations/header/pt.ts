@@ -33,7 +33,7 @@
 	contractors: 'Para Contratados',
 	contractorsKicker: 'Receba mais rapido globalmente',
 	bankAccount: 'Conta Empresarial',
-	bankAccountKicker: 'Abra contas para pagamentos',
+	bankAccountKicker: 'Uma conta para pagamentos globais',
 	compliance: 'Compliance',
 	complianceKicker: 'Reduza riscos trabalhistas e de pagamentos globais',
 	aiHiringFeatureText: 'Automatize a busca de talentos',

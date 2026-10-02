@@ -350,6 +350,15 @@
 	background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4), transparent);
 }
 
+.garna-header-business-account-feature img {
+	opacity: 0.92;
+	object-position: center 10%;
+}
+
+.garna-header-business-account-feature::after {
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.28) 44%, transparent 76%);
+}
+
 .garna-header-feature-copy {
 	position: absolute;
 	right: 20px;

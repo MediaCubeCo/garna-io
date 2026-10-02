@@ -8,7 +8,8 @@ const currentPath = getPagePathFromPathname(Astro.url.pathname);
 const base = '/en';
 const homeHref = base;
 const offerHref = `${base}/for-contractors`;
-const aiHiringHref = `${base}/ai-hiring`;
+const businessAccountPath = 'business-account';
+const businessAccountHref = `${base}/${businessAccountPath}`;
 const whiteLabelPath = 'white-label-payroll';
 const whiteLabelHref = `${base}/${whiteLabelPath}`;
 const contractorOfRecordPath = 'contractor-of-record';
@@ -178,27 +179,24 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 									<span class="garna-header-link-separator">|</span>
 									<span class="garna-header-link-kicker" data-translate="header.contractorsKicker">Get paid faster globally</span>
 								</a>
-								<a href={aiHiringHref} data-localized-path="ai-hiring" data-nav-link class="garna-header-dropdown-link">
+								<a href={businessAccountHref} data-localized-path={businessAccountPath} data-nav-link class="garna-header-dropdown-link">
 									<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-										<path d="M12 8V4H8"></path>
-										<rect width="16" height="12" x="4" y="8" rx="2"></rect>
-										<path d="M2 14h2"></path>
-										<path d="M20 14h2"></path>
-										<path d="M15 13v2"></path>
-										<path d="M9 13v2"></path>
+										<rect width="18" height="14" x="3" y="5" rx="2"></rect>
+										<path d="M3 10h18"></path>
+										<path d="M7 15h2"></path>
 									</svg>
-									<span class="garna-header-link-main" data-translate="header.aiHiring">AI Hiring</span>
+									<span class="garna-header-link-main" data-translate="header.bankAccount">Business Account</span>
 									<span class="garna-header-link-separator">|</span>
-									<span class="garna-header-link-kicker" data-translate="header.aiHiringFeatureText">Automate talent sourcing</span>
+									<span class="garna-header-link-kicker" data-translate="header.bankAccountKicker">One account for global payments</span>
 								</a>
 							</div>
 						</div>
 
-						<a href={aiHiringHref} data-localized-path="ai-hiring" data-nav-link class="garna-header-dropdown-feature garna-header-solutions-feature" aria-label="AI Hiring">
-							<img src="/images/header-ai-hiring.jpg" alt="" loading="lazy" />
+						<a href={businessAccountHref} data-localized-path={businessAccountPath} data-nav-link class="garna-header-dropdown-feature garna-header-solutions-feature garna-header-business-account-feature" aria-label="Business Account">
+							<img src="/images/header-business-account-v4.webp" alt="" loading="lazy" />
 							<div class="garna-header-feature-copy">
-								<h4 data-translate="header.aiHiring">AI Hiring</h4>
-								<p data-translate="header.aiHiringFeatureText">Automate talent sourcing</p>
+								<h4 data-translate="header.bankAccount">Business Account</h4>
+								<p data-translate="header.bankAccountKicker">One account for global payments</p>
 								<span class="garna-header-feature-link">
 									<span data-translate="header.learnMore">Learn more</span>
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -435,22 +433,19 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 						<span class="garna-header-mobile-link-kicker" data-translate="header.contractorsKicker">Get paid faster globally</span>
 					</a>
 					<a
-						href={aiHiringHref}
-						data-localized-path="ai-hiring"
+						href={businessAccountHref}
+						data-localized-path={businessAccountPath}
 						data-nav-link
 						data-nav-mobile
-						class={`${mobileLinkClass('ai-hiring')} garna-header-mobile-card`}
+						class={`${mobileLinkClass(businessAccountPath)} garna-header-mobile-card`}
 					>
 						<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-							<path d="M12 8V4H8"></path>
-							<rect width="16" height="12" x="4" y="8" rx="2"></rect>
-							<path d="M2 14h2"></path>
-							<path d="M20 14h2"></path>
-							<path d="M15 13v2"></path>
-							<path d="M9 13v2"></path>
+							<rect width="18" height="14" x="3" y="5" rx="2"></rect>
+							<path d="M3 10h18"></path>
+							<path d="M7 15h2"></path>
 						</svg>
-						<span class="garna-header-mobile-link-main" data-translate="header.aiHiring">AI Hiring</span>
-						<span class="garna-header-mobile-link-kicker" data-translate="header.aiHiringFeatureText">Automate talent sourcing</span>
+						<span class="garna-header-mobile-link-main" data-translate="header.bankAccount">Business Account</span>
+						<span class="garna-header-mobile-link-kicker" data-translate="header.bankAccountKicker">One account for global payments</span>
 					</a>
 				</div>
 			</div>
@@ -1065,7 +1060,7 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 		document.addEventListener('click', (event) => {
 			if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 			const link = event.target instanceof Element
-				? event.target.closest('a[data-localized-path]')
+				? event.target.closest('a[data-localized-path], a[data-footer-lang-link]')
 				: null;
 			if (!(link instanceof HTMLAnchorElement)) return;
 			if (link.target && link.target !== '_self') return;
@@ -1074,7 +1069,6 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 			if (link.closest('.garna-header-dropdown')) closeHeaderDropdowns(link);
 			if (url.origin !== window.location.origin) return;
 			if (url.pathname === window.location.pathname && url.search === window.location.search) return;
-			if (getLangFromPath(url.pathname) !== getLangFromPath(window.location.pathname)) return;
 
 			event.preventDefault();
 			closeMobileMenu();

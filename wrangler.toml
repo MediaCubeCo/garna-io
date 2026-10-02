@@ -29,6 +29,7 @@ name = "EMAIL"
 directory = "./dist"
 binding = "ASSETS"
 run_worker_first = [
+	"/api/rates",
 	"/",
 	"/index.html",
 	"/for-contractors",
@@ -41,8 +42,6 @@ run_worker_first = [
 	"/pt/for-creators",
 	"/form",
 	"/form.html",
-	"/ai-hiring",
-	"/ai-hiring.html",
 	"/white-label",
 	"/white-label.html",
 	"/payroll-small-business",
@@ -97,6 +96,7 @@ name = "EMAIL"
 directory = "./dist"
 binding = "ASSETS"
 run_worker_first = [
+	"/api/rates",
 	"/",
 	"/index.html",
 	"/for-contractors",
@@ -109,8 +109,6 @@ run_worker_first = [
 	"/pt/for-creators",
 	"/form",
 	"/form.html",
-	"/ai-hiring",
-	"/ai-hiring.html",
 	"/white-label",
 	"/white-label.html",
 	"/payroll-small-business",

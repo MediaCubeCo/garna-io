@@ -79,12 +79,6 @@ export const basePaths: PageConfig[] = [
 		showHeader: false,
 	},
 	{
-		path: 'ai-hiring',
-		mode: 'static',
-		searchable: true,
-		showHeader: true,
-	},
-	{
 		path: 'white-label-payroll',
 		mode: 'static',
 		searchable: true,

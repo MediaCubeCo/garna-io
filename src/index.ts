@@ -6,6 +6,7 @@ import { resolveRoute } from './utils/routes';
 import { handleBlogAdmin } from './blog/admin';
 import { handleBlogMedia, handleBlogPublic, handleLegacyBlogRedirect } from './blog/public';
 import { handleTaxCalculator } from './routes/tax-calculator';
+import { handleTransferRate } from './routes/rates';
 import { handlePrivacyContextRequest } from './utils/privacy';
 import { injectPrivacyIntoResponse } from './utils/privacy-ui';
 
@@ -22,6 +23,9 @@ export default {
 
 			const taxCalculatorResponse = await handleTaxCalculator(request);
 			if (taxCalculatorResponse) return taxCalculatorResponse;
+
+			const transferRateResponse = await handleTransferRate(request);
+			if (transferRateResponse) return transferRateResponse;
 
 			// 0. Redirect www (http/https) to canonical https://garna.io/en
 			if (url.hostname === 'www.garna.io') {

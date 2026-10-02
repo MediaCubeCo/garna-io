@@ -698,7 +698,7 @@ const ruOverrides = {
 	},
 	contractorBenefits: {
 		...homeRu.contractorBenefits,
-		title: 'Всё необходимое для управления подрядчиками',
+		title: 'Все необходимое для управления подрядчиками',
 		description: 'С Garna вы можете управлять взаимодействием с подрядчиками и глобальными выплатами на одной платформе',
 		methods: {
 			...homeRu.contractorBenefits.methods,

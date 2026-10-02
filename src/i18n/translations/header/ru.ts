@@ -34,7 +34,7 @@
 	contractors: 'Для подрядчиков',
 	contractorsKicker: 'Получайте выплаты быстрее по всему миру',
 	bankAccount: 'Бизнес счета',
-	bankAccountKicker: 'Открывайте счета для выплат',
+	bankAccountKicker: 'Один счет для международных платежей',
 	compliance: 'Соблюдение требований',
 	complianceKicker: 'Снижайте риски найма и выплат по всему миру',
 	aiHiringFeatureText: 'Автоматизируйте поиск талантов',
