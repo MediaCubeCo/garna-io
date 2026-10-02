@@ -59,6 +59,79 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 	const firstCountrySelect = countryRows?.querySelector<HTMLSelectElement>('.tax-country-select');
 	let countryOptions = firstCountrySelect?.innerHTML || '';
 	const currencyCatalog = [...(currency?.options || [])].map((option) => ({ value: option.value, label: option.textContent || option.value }));
+	type TaxSelectWidget = { root: HTMLElement; trigger: HTMLButtonElement; value: HTMLElement; menu: HTMLElement; observer: MutationObserver };
+	const selectWidgets = new Map<HTMLSelectElement, TaxSelectWidget>();
+	let selectWidgetId = 0;
+	const closeTaxSelect = (widget: TaxSelectWidget, restoreFocus = false) => {
+		widget.root.dataset.open = 'false';
+		widget.trigger.setAttribute('aria-expanded', 'false');
+		widget.menu.hidden = true;
+		if (restoreFocus) widget.trigger.focus();
+	};
+	const closeTaxSelects = (except?: TaxSelectWidget) => selectWidgets.forEach((widget) => { if (widget !== except) closeTaxSelect(widget); });
+	const syncTaxSelect = (select: HTMLSelectElement) => {
+		const widget = selectWidgets.get(select); if (!widget) return;
+		const selected = select.selectedOptions[0];
+		widget.value.textContent = selected?.textContent?.trim() || select.getAttribute('aria-label') || '';
+		widget.value.dataset.placeholder = String(!select.value);
+		widget.trigger.disabled = select.disabled;
+		widget.trigger.setAttribute('aria-disabled', String(select.disabled));
+		widget.menu.querySelectorAll<HTMLButtonElement>('[data-tax-select-option]').forEach((option) => option.setAttribute('aria-selected', String(option.dataset.value === select.value)));
+	};
+	const rebuildTaxSelect = (select: HTMLSelectElement) => {
+		const widget = selectWidgets.get(select); if (!widget) return;
+		widget.menu.replaceChildren(...[...select.options].map((option) => {
+			const button = document.createElement('button');
+			button.type = 'button';
+			button.dataset.taxSelectOption = '';
+			button.dataset.value = option.value;
+			button.setAttribute('role', 'option');
+			button.setAttribute('aria-selected', String(option.selected));
+			button.tabIndex = -1;
+			button.textContent = option.textContent?.trim() || option.value;
+			button.disabled = option.disabled;
+			return button;
+		}));
+		syncTaxSelect(select);
+	};
+	const openTaxSelect = (select: HTMLSelectElement, focusSelected = false) => {
+		const widget = selectWidgets.get(select); if (!widget || select.disabled) return;
+		closeTaxSelects(widget);
+		widget.root.dataset.open = 'true';
+		widget.trigger.setAttribute('aria-expanded', 'true');
+		widget.menu.hidden = false;
+		if (focusSelected) window.requestAnimationFrame(() => (widget.menu.querySelector<HTMLButtonElement>('[aria-selected="true"]') || widget.menu.querySelector<HTMLButtonElement>('[data-tax-select-option]'))?.focus());
+	};
+	const enhanceTaxSelect = (select: HTMLSelectElement) => {
+		if (selectWidgets.has(select)) { rebuildTaxSelect(select); return; }
+		const id = `tax-select-list-${++selectWidgetId}`;
+		const root = document.createElement('div'); root.className = 'tax-custom-select'; root.dataset.open = 'false';
+		const trigger = document.createElement('button'); trigger.type = 'button'; trigger.className = 'tax-select-trigger'; trigger.setAttribute('aria-haspopup', 'listbox'); trigger.setAttribute('aria-expanded', 'false'); trigger.setAttribute('aria-controls', id); trigger.setAttribute('aria-label', select.getAttribute('aria-label') || select.title || 'Select an option');
+		const value = document.createElement('span'); value.className = 'tax-select-value';
+		trigger.append(value); trigger.insertAdjacentHTML('beforeend', '<svg aria-hidden="true" viewBox="0 0 16 16"><path d="m3.5 6 4.5 4 4.5-4"/></svg>');
+		const menu = document.createElement('div'); menu.id = id; menu.className = 'tax-select-menu'; menu.setAttribute('role', 'listbox'); menu.setAttribute('aria-label', select.getAttribute('aria-label') || select.title || 'Select an option'); menu.dataset.taxSelectMenu = ''; menu.hidden = true;
+		root.append(trigger, menu); select.insertAdjacentElement('afterend', root); select.classList.add('tax-native-select');
+		const observer = new MutationObserver(() => rebuildTaxSelect(select));
+		const widget = { root, trigger, value, menu, observer }; selectWidgets.set(select, widget); observer.observe(select, { childList: true, subtree: true, characterData: true }); rebuildTaxSelect(select);
+		trigger.addEventListener('click', () => widget.menu.hidden ? openTaxSelect(select) : closeTaxSelect(widget));
+		select.addEventListener('change', () => queueMicrotask(() => syncTaxSelect(select)));
+		select.addEventListener('invalid', (event) => { event.preventDefault(); trigger.focus(); });
+		root.addEventListener('click', (event) => {
+			const option = event.target instanceof Element ? event.target.closest<HTMLButtonElement>('[data-tax-select-option]') : null; if (!option) return;
+			select.value = option.dataset.value || ''; closeTaxSelect(widget, true); select.dispatchEvent(new Event('change', { bubbles: true }));
+		});
+		root.addEventListener('keydown', (event) => {
+			const option = event.target instanceof Element ? event.target.closest<HTMLButtonElement>('[data-tax-select-option]') : null;
+			if (event.target === trigger && ['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(event.key)) { event.preventDefault(); openTaxSelect(select, true); return; }
+			if (event.key === 'Escape') { event.preventDefault(); closeTaxSelect(widget, true); return; }
+			if (!option) return;
+			if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); option.click(); return; }
+			if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+			event.preventDefault(); const options = [...menu.querySelectorAll<HTMLButtonElement>('[data-tax-select-option]:not(:disabled)')]; const index = options.indexOf(option);
+			const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? options.length - 1 : event.key === 'ArrowDown' ? (index + 1) % options.length : (index - 1 + options.length) % options.length; options[nextIndex]?.focus();
+		});
+	};
+	const enhanceTaxSelects = (scope: ParentNode = document) => scope.querySelectorAll<HTMLSelectElement>('.tax-country-select, .tax-region-select, .tax-currency-select').forEach(enhanceTaxSelect);
 	const setCalculatorState = (state: 'idle' | 'loading' | 'results') => {
 		if (!calculator) return;
 		calculator.dataset.calculatorState = state;
@@ -117,13 +190,14 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 		const select = (event.target as HTMLElement).closest<HTMLSelectElement>('.tax-country-select');
 		if (!select) { if (results) results.hidden = true; return; }
 		const otherSelect = [...(countryRows.querySelectorAll<HTMLSelectElement>('.tax-country-select'))].find((item) => item !== select && item.value === select.value);
-		if (select.value && otherSelect) { select.value = ''; if (status) status.textContent = t('duplicateCountry'); return; }
+		if (select.value && otherSelect) { select.value = ''; syncTaxSelect(select); if (status) status.textContent = t('duplicateCountry'); return; }
 		void configureCountryRow(select.closest<HTMLElement>('.tax-country-row')!, select.value);
 	});
 
 	addCountryButton?.addEventListener('click', () => {
 		if (!countryRows || countryRows.querySelectorAll('.tax-country-row').length > 1) return;
 		countryRows.insertAdjacentHTML('beforeend', `<div class="tax-country-row is-comparison" data-country-row="1"><label><span>${esc(t('secondCountry'))}</span><select class="tax-country-select" aria-label="Country 2" required>${countryOptions}</select></label><label class="tax-region-field" hidden><span>${esc(t('state'))}</span><select class="tax-region-select" aria-label="${esc(t('state'))}"></select></label><button type="button" class="tax-remove-comparison" aria-label="${esc(t('remove'))}">×</button></div>`);
+		enhanceTaxSelects(countryRows.lastElementChild || countryRows);
 		addCountryButton.hidden = true;
 	});
 
@@ -207,6 +281,7 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 		const currencyCode = params.get('currency') || '';
 		if (![...firstCountrySelect.options].some((option) => option.value === code) || !code || !/^\d+$/.test(salary) || !Number.isSafeInteger(Number(salary)) || Number(salary) < 12) return;
 		firstCountrySelect.value = code;
+		syncTaxSelect(firstCountrySelect);
 		salaryValue.value = salary;
 		salaryDisplay.value = formatSalary(salary);
 		const row = firstCountrySelect.closest<HTMLElement>('.tax-country-row')!;
@@ -217,11 +292,20 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 		if (regionSelect && state) {
 			const option = [...regionSelect.options].find((option) => option.value === state || option.textContent?.trim() === state);
 			if (option) regionSelect.value = option.value;
+			syncTaxSelect(regionSelect);
 		}
 		if (![...currency.options].some((option) => option.value === currencyCode)) return;
 		currency.value = currencyCode;
+		syncTaxSelect(currency);
 		syncCurrencyCode();
 		if (form.checkValidity()) form.requestSubmit();
 	};
+	document.addEventListener('pointerdown', (event) => {
+		const target = event.target;
+		if (!(target instanceof Node)) return;
+		selectWidgets.forEach((widget) => { if (!widget.root.contains(target)) closeTaxSelect(widget); });
+	});
+	document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeTaxSelects(); });
+	enhanceTaxSelects();
 	void restoreEstimate();
 </script>

@@ -236,6 +236,7 @@ const homeFaqItems = [
 				const heroSection = heroFrame?.closest('[data-section-kind="hero"]');
 				const heroButton = heroSection?.querySelector('.garna-button');
 				const heroCta = heroSection?.querySelector('.garna-button')?.parentElement;
+				const heroStats = heroSection?.querySelector('.home-hero-proof-rotator');
 				const siteHeader = document.querySelector('.garna-header');
 				const proofSection = stage.querySelector('.home-proof-section');
 				const proofScroll = stage.querySelector('[data-home-workflows-scroll]');
@@ -261,6 +262,7 @@ const homeFaqItems = [
 				let frame = 0;
 				let mobileFrameViewportKey = '';
 				let frameClearanceViewportKey = '';
+				let heroTopClearanceViewportKey = '';
 				const deckCards = Array.from(stage.querySelectorAll('[data-workflow-card]'));
 				const deckHeadings = Array.from(stage.querySelectorAll('[data-workflow-heading]'));
 				const deckIndicators = Array.from(stage.querySelectorAll('[data-workflow-progress]'));
@@ -471,6 +473,18 @@ const homeFaqItems = [
 					const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
 					return window.innerHeight / 2 + headerHeight / 2;
 				};
+				const updateHeroTopClearance = () => {
+					if (!(heroStats instanceof HTMLElement) || !(siteHeader instanceof HTMLElement) || !(heroSection instanceof HTMLElement)) return;
+					const headerHeight = siteHeader.getBoundingClientRect().height;
+					const viewportKey = `${window.innerWidth}x${window.innerHeight}x${headerHeight}`;
+					if (viewportKey === heroTopClearanceViewportKey) return;
+					heroTopClearanceViewportKey = viewportKey;
+					stage.style.setProperty('--home-hero-top-adjustment', '0px');
+					const minimumHeaderGap = 12;
+					const statsTopWithinHero = heroStats.getBoundingClientRect().top - heroSection.getBoundingClientRect().top;
+					const topAdjustment = Math.max(0, headerHeight + minimumHeaderGap - statsTopWithinHero);
+					stage.style.setProperty('--home-hero-top-adjustment', `${topAdjustment}px`);
+				};
 				const updateHeroFrameClearance = () => {
 					const viewportKey = `${window.innerWidth}x${window.innerHeight}`;
 					if (viewportKey === frameClearanceViewportKey) return;
@@ -493,6 +507,7 @@ const homeFaqItems = [
 					}
 				};
 				const updateMobileHeroFrame = () => {
+					updateHeroTopClearance();
 					if (desktop.matches) {
 						mobileFrameViewportKey = '';
 						stage.style.removeProperty('--home-hero-mobile-frame-width');
@@ -753,6 +768,12 @@ const homeFaqItems = [
 				desktop.addEventListener?.('change', schedule);
 				heroImage.addEventListener('load', schedule, { once: true });
 				targetImage.addEventListener('load', schedule, { once: true });
+				document.fonts?.ready.then(() => {
+					mobileFrameViewportKey = '';
+					frameClearanceViewportKey = '';
+					heroTopClearanceViewportKey = '';
+					schedule();
+				});
 				render();
 			};
 
@@ -786,6 +807,22 @@ const homeFaqItems = [
 		--home-proof-featured-card-opacity: 1;
 		--home-proof-featured-notice-opacity: 1;
 		--home-proof-header-opacity: 1;
+	}
+
+	.payroll-solution-new-hero {
+		padding-top: calc(6rem + var(--home-hero-top-adjustment, 0px));
+	}
+
+	@media (min-width: 768px) {
+		.payroll-solution-new-hero {
+			padding-top: calc(7rem + var(--home-hero-top-adjustment, 0px));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.payroll-solution-new-hero {
+			padding-top: calc(8rem + var(--home-hero-top-adjustment, 0px));
+		}
 	}
 
 	/* Reading holds surround both scroll-driven deck turns. */
@@ -1163,7 +1200,7 @@ const homeFaqItems = [
 
 	@media (max-width: 640px) and (max-height: 760px) {
 		.payroll-solution-new-hero {
-			padding-top: clamp(4.75rem, 11vh, 5.75rem);
+			padding-top: calc(clamp(4.75rem, 11vh, 5.75rem) + var(--home-hero-top-adjustment, 0px));
 			padding-bottom: 0;
 		}
 
@@ -1233,7 +1270,7 @@ const homeFaqItems = [
 
 	@media (min-width: 901px) and (max-height: 800px) {
 		.payroll-solution-new-hero {
-			padding-top: clamp(4rem, 8vh, 5rem);
+			padding-top: calc(clamp(4rem, 8vh, 5rem) + var(--home-hero-top-adjustment, 0px));
 		}
 	}
 

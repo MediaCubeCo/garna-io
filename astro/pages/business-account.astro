@@ -11,6 +11,7 @@ import BusinessAccountFinancialAdminCarouselSection from '../components/sections
 import BusinessAccountProofStatsCardsSection from '../components/sections/payroll/BusinessAccountProofStatsCardsSection.astro';
 import BusinessAccountBenefitsSection from '../components/sections/payroll/BusinessAccountBenefitsSection.astro';
 import BusinessAccountCostEstimatorSection from '../components/sections/payroll/BusinessAccountCostEstimatorSection.astro';
+import BusinessAccountKybSection from '../components/sections/payroll/BusinessAccountKybSection.astro';
 import BusinessAccountSecuritySection from '../components/sections/payroll/BusinessAccountSecuritySection.astro';
 import BusinessAccountMoreThanAccountSection from '../components/sections/payroll/BusinessAccountMoreThanAccountSection.astro';
 import BusinessAccountSectionStyles from '../components/sections/payroll/BusinessAccountSectionStyles.astro';
@@ -120,6 +121,7 @@ const businessAccountFaqItems = [
 		stats={businessAccountApiPaymentCards}
 	/>
 	<BusinessAccountMoreThanAccountSection />
+	<BusinessAccountKybSection />
 	<FAQSection
 		title={{ text: 'FAQ on Business Account', translateKey: 'faq.title' }}
 		items={businessAccountFaqItems}

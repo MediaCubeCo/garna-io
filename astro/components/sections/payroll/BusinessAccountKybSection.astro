@@ -1,0 +1,703 @@
+---
+import Section from '../../layout/Section.astro';
+import SectionHeader from '../../layout/SectionHeader.astro';
+---
+
+<Section id="business-verification" contained={false} spacing="none" class="kyb-section py-16 lg:py-32">
+	<div class="kyb-container mx-auto max-w-7xl px-4 sm:px-6">
+		<div class="kyb-section-shell">
+			<SectionHeader
+				class="kyb-section-copy"
+				title={{ text: 'Get verified without the paperwork maze', translateKey: 'kyb.title' }}
+				description={{ text: 'One clear question at a time. Save your progress, review every answer, and submit when your application is ready', translateKey: 'kyb.description' }}
+				descriptionClass="kyb-section-description"
+			/>
+			<div class="kyb-app" data-kyb-flow>
+				<div class="kyb-loading" data-translate="kyb.loading">Preparing business verification…</div>
+			</div>
+		</div>
+	</div>
+</Section>
+
+<style>
+	:global(.kyb-section) { overflow: hidden; background: #101010; }
+	.kyb-section-shell { display: grid; justify-items: center; gap: clamp(1.5rem, 2.5vw, 2rem); }
+	:global(.kyb-section-copy) { max-width: 44rem; text-align: center; }
+	:global(.kyb-section-description) { color: rgb(255 255 255 / .78) !important; }
+	.kyb-app { width: min(100%, 46rem); overflow: hidden; border: 1px solid rgb(255 255 255 / .1); border-radius: 20px; background: #0b0b0b; color: #f7f7f7; font-family: Manrope, sans-serif; transition: width 240ms ease; }
+	.kyb-app[data-experience='demo'] { width: min(100%, 72rem); }
+	.kyb-loading { display: grid; padding: 5rem 1.5rem; place-items: center; color: #a1a1aa; }
+	:global(.kyb-start) { display: grid; place-items: center; padding: clamp(2rem, 5vw, 4rem); }
+	:global(.kyb-start__content) { width: min(100%, 35rem); margin: auto; text-align: center; }
+	:global(.kyb-start h3) { margin: 0; color: #fff; font-size: clamp(1.8rem, 2.5vw, 2.35rem); font-weight: 450; line-height: 1.15; letter-spacing: -.025em; }
+	:global(.kyb-start__lead) { max-width: 34rem; margin: 1rem auto 0; color: rgb(255 255 255 / .64); font-size: clamp(1rem, 1.25vw, 1.1rem); line-height: 1.65; }
+	:global(.kyb-start__actions) { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.5rem; }
+	:global(.kyb-start__discard) { margin-top: .9rem; border: 0; background: transparent; padding: .25rem; color: #a1a1aa; cursor: pointer; font: 500 .875rem/1.4 Manrope, sans-serif; transition: color 160ms ease; }
+	:global(.kyb-start__discard:hover) { color: #fff; }
+	:global(.kyb-start__discard:focus-visible) { border-radius: .25rem; outline: 2px solid #cbf300; outline-offset: 2px; }
+	:global(.kyb-shell) { display: grid; grid-template-columns: 13.5rem minmax(0, 1fr); }
+	:global(.kyb-shell[data-customer='true']) { grid-template-columns: minmax(0, 1fr); }
+	:global(.kyb-map) { padding: 1.25rem 1rem; border-right: 1px solid rgb(255 255 255 / .07); background: #080808; }
+	:global(.kyb-map__list) { display: grid; gap: .35rem; }
+	:global(.kyb-map-mobile) { display: none; }
+	:global(.kyb-map button), :global(.kyb-map-mobile button) { display: grid; width: 100%; grid-template-columns: 1.75rem 1fr; gap: .65rem; align-items: center; padding: .6rem; border: 0; border-radius: .7rem; background: transparent; color: #77777d; cursor: pointer; text-align: left; }
+	:global(.kyb-map button:not(:disabled):hover), :global(.kyb-map button[aria-current='step']), :global(.kyb-map-mobile button:not(:disabled):hover), :global(.kyb-map-mobile button[aria-current='step']) { background: rgb(255 255 255 / .045); color: #fff; }
+	:global(.kyb-map button:disabled), :global(.kyb-map-mobile button:disabled) { cursor: default; opacity: .55; }
+	:global(.kyb-map__number) { display: grid; width: 1.75rem; height: 1.75rem; place-items: center; border: 1px solid rgb(255 255 255 / .12); border-radius: .5rem; font-size: .75rem; }
+	:global(.kyb-map button[aria-current='step'] .kyb-map__number), :global(.kyb-map-mobile button[aria-current='step'] .kyb-map__number) { border-color: #cbf300; color: #cbf300; }
+	:global(.kyb-map__copy strong) { display: block; color: inherit; font-size: .875rem; font-weight: 600; line-height: 1.35; }
+	:global(.kyb-main) { min-width: 0; padding: clamp(1.25rem, 3vw, 2rem); }
+	:global(.kyb-customer-progress), :global(.kyb-progress-track), :global(.kyb-scroll), :global(.kyb-actions) { width: 100%; max-width: 46rem; margin-inline: auto; }
+	.kyb-app[data-experience='demo'] :global(.kyb-main) { padding-inline: clamp(1.25rem, 2vw, 1.5rem); }
+	.kyb-app[data-experience='demo'] :global(.kyb-customer-progress),
+	.kyb-app[data-experience='demo'] :global(.kyb-progress-track),
+	.kyb-app[data-experience='demo'] :global(.kyb-scroll),
+	.kyb-app[data-experience='demo'] :global(.kyb-actions),
+	.kyb-app[data-experience='demo'] :global(.kyb-demo-banner) { max-width: none; }
+	:global(.kyb-save-feedback) { display: inline-flex; align-items: center; gap: .65rem; color: #85858b; font-size: .75rem; }
+	:global(.kyb-save-feedback:has([data-kyb-save-state]:empty):has([data-retry-save][hidden])) { display: none; }
+	:global(.kyb-save-retry) { border: 0; border-bottom: 1px solid currentColor; background: transparent; padding: 0; color: #fff; cursor: pointer; font: inherit; }
+	:global(.kyb-customer-progress) { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.15rem; color: #8b8b91; font-size: .875rem; letter-spacing: .06em; text-transform: uppercase; }
+	:global(.kyb-progress__meta) { display: flex; align-items: center; gap: .85rem; }
+	:global(.kyb-progress__count) { color: #b7b7bb; }
+	:global(.kyb-progress-track) { height: 2px; margin-top: -.35rem; margin-bottom: 2.25rem; overflow: hidden; border-radius: 999px; background: rgb(255 255 255 / .08); }
+	:global(.kyb-progress-track span) { display: block; height: 100%; border-radius: inherit; background: #cbf300; transition: width 220ms ease; }
+	:global(.kyb-scroll) { overflow: visible; }
+	:global(.kyb-step) { width: 100%; }
+	:global(.kyb-step h3) { margin: 0; color: #fff; font-size: clamp(1.35rem, 1.8vw, 1.75rem); font-weight: 500; line-height: 1.1; letter-spacing: 0; }
+	:global(.kyb-step__description) { margin: .75rem 0 1.4rem; color: rgb(255 255 255 / .62); font-size: 1rem; line-height: 1.6; }
+	:global(.kyb-fields) { display: grid; gap: 1rem; }
+	:global(.kyb-grid-2) { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	:global(.kyb-field) { display: grid; gap: .45rem; }
+	:global(.kyb-fieldset) { min-width: 0; margin: 0; padding: 0; border: 0; }
+	:global(.kyb-field > label), :global(.kyb-fieldset > legend) { color: #fff; font-size: .875rem; font-weight: 600; }
+	:global(.kyb-fieldset > legend) { margin-bottom: .45rem; padding: 0; }
+	:global(.kyb-field input:not([type='hidden'])), :global(.kyb-field textarea) { width: 100%; min-height: 3.25rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 12px; background: #101010; padding: .76rem .95rem; color: #fff; font: 500 .9rem/1.4 Manrope, sans-serif; transition: border-color 160ms ease, box-shadow 160ms ease; }
+	:global(.kyb-field textarea) { min-height: 6.6rem; resize: vertical; }
+	:global(.kyb-field input:not([type='hidden']):focus), :global(.kyb-field textarea:focus) { border-color: #cbf300; box-shadow: 0 0 0 2px rgb(203 243 0 / .16); outline: none; }
+	:global(.kyb-field input:not([type='hidden'])[aria-invalid='true']), :global(.kyb-field textarea[aria-invalid='true']) { border-color: #ff8f8f; }
+	:global(.kyb-select) { position: relative; min-width: 0; }
+	:global(.kyb-select__trigger) { display: flex; width: 100%; min-height: 3.25rem; align-items: center; gap: .75rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 12px; background: #101010; padding: .76rem .95rem; color: #fff; cursor: pointer; font: 500 .9rem/1.4 Manrope, sans-serif; text-align: left; transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease; }
+	:global(.kyb-select__trigger:hover) { border-color: rgb(255 255 255 / .22); background: #121212; }
+	:global(.kyb-select__trigger:focus-visible), :global(.kyb-select[data-open='true'] .kyb-select__trigger) { border-color: #cbf300; box-shadow: 0 0 0 2px rgb(203 243 0 / .16); outline: none; }
+	:global(.kyb-select__trigger[aria-invalid='true']) { border-color: #ff8f8f; }
+	:global(.kyb-select__value) { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+	:global(.kyb-select__value[data-placeholder='true']) { color: #85858b; }
+	:global(.kyb-select__chevron) { width: 1rem; height: 1rem; flex: 0 0 auto; color: #8b8b91; transition: color 160ms ease, transform 160ms ease; }
+	:global(.kyb-select[data-open='true'] .kyb-select__chevron) { color: #cbf300; transform: rotate(180deg); }
+	:global(.kyb-select__menu) { position: absolute; z-index: 40; top: calc(100% + .5rem); right: 0; left: 0; max-height: 15rem; overflow-y: auto; border: 1px solid rgb(255 255 255 / .12); border-radius: 12px; background: #101010; padding: .35rem; box-shadow: 0 18px 42px rgb(0 0 0 / .42); }
+	:global(.kyb-select__menu[hidden]) { display: none; }
+	:global(.kyb-select__option) { display: flex; width: 100%; min-height: 2.65rem; align-items: center; border: 1px solid transparent; border-radius: 9px; background: transparent; padding: .6rem .7rem; color: #d5d5d8; cursor: pointer; font: 500 .875rem/1.4 Manrope, sans-serif; text-align: left; }
+	:global(.kyb-select__option:hover), :global(.kyb-select__option:focus-visible) { background: rgb(255 255 255 / .055); color: #fff; outline: none; }
+	:global(.kyb-select__option[aria-selected='true']) { border-color: rgb(203 243 0 / .35); background: rgb(203 243 0 / .055); color: #fff; }
+	:global(.kyb-hint) { margin: 0; color: #85858b; font-size: .8125rem; line-height: 1.55; }
+	:global(.kyb-error) { margin: 0; color: #ff9d9d; font-size: .8125rem; line-height: 1.45; }
+	:global(.kyb-error-summary) { margin-bottom: 1rem; padding: .85rem 1rem; border: 1px solid rgb(255 143 143 / .35); border-radius: .75rem; background: rgb(255 86 86 / .07); color: #ffd2d2; font-size: .875rem; line-height: 1.5; }
+	:global(.kyb-error-summary h4) { margin: 0 0 .2rem; color: #fff; font-size: .9rem; }
+	:global(.kyb-error-summary a) { color: #ffd2d2; text-underline-offset: .15em; }
+	:global(.kyb-options) { display: grid; gap: .6rem; }
+	:global(.kyb-options--grid) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	:global(.kyb-option) { display: flex; min-height: 3.1rem; align-items: center; gap: .7rem; padding: .7rem .85rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 12px; background: #101010; color: #d5d5d8; cursor: pointer; font-size: .875rem; }
+	:global(.kyb-option:has(input:checked)) { border-color: rgb(203 243 0 / .55); background: #101010; color: #fff; }
+	:global(.kyb-option:has(input[type='checkbox'])) { min-height: auto; padding: .25rem 0; border: 0; border-radius: 0; background: transparent; }
+	:global(.kyb-option:has(input[type='checkbox']:checked)) { border-color: transparent; background: transparent; }
+	:global(.kyb-option:has(input[type='checkbox']):hover) { color: #fff; }
+	:global(.kyb-option input) { width: 1rem; height: 1rem; accent-color: #cbf300; }
+	:global(.kyb-notice) { margin-bottom: 1.25rem; padding: 1rem; border: 1px solid rgb(255 255 255 / .1); border-radius: .85rem; background: rgb(255 255 255 / .025); }
+	:global(.kyb-notice__label) { display: block; margin-bottom: .35rem; color: #929298; font-size: .63rem; font-weight: 700; letter-spacing: .14em; }
+	:global(.kyb-notice h4) { margin: 0 0 .65rem; color: #fff; font-size: 1.05rem; }
+	:global(.kyb-notice p), :global(.kyb-notice summary) { font-size: .875rem; line-height: 1.65; }
+	:global(.kyb-notice p) { margin: 0; color: #babac0; }
+	:global(.kyb-notice details) { margin-top: .8rem; border-top: 1px solid rgb(255 255 255 / .08); padding-top: .65rem; }
+	:global(.kyb-notice summary) { color: #cbf300; cursor: pointer; font-weight: 650; }
+	:global(.kyb-notice details p) { margin-top: .65rem; }
+	:global(.kyb-jurisdiction-note) { display: grid; gap: .25rem; padding-top: .15rem; color: #a9a9af; font-size: .875rem; line-height: 1.55; }
+	:global(.kyb-jurisdiction-note strong) { color: #fff; font-size: .9rem; font-weight: 650; }
+	:global(.kyb-jurisdiction-note[data-configured='true'] strong) { color: #cbf300; }
+	:global(.kyb-person) { display: grid; gap: .8rem; padding: 1rem; border: 1px solid rgb(255 255 255 / .09); border-radius: .85rem; background: rgb(255 255 255 / .018); }
+	:global(.kyb-person__head) { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+	:global(.kyb-person__head strong) { font-size: .875rem; }
+	:global(.kyb-document) { display: grid; gap: .65rem; padding: 1rem; border: 1px solid rgb(255 255 255 / .1); border-radius: .85rem; background: rgb(255 255 255 / .02); }
+	:global(.kyb-document__head) { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+	:global(.kyb-document__head strong) { display: block; font-size: .875rem; }
+	:global(.kyb-document__head small) { display: block; margin-top: .25rem; color: #85858b; font-size: .8125rem; }
+	:global(.kyb-upload) { position: relative; display: inline-flex; width: max-content; min-height: 2.5rem; align-items: center; justify-content: center; border: 1px solid rgb(255 255 255 / .14); border-radius: 10px; padding: .6rem .9rem; background: rgb(255 255 255 / .035); color: #fff; cursor: pointer; font-size: .8125rem; font-weight: 600; transition: border-color 160ms ease, background 160ms ease; }
+	:global(.kyb-upload:hover) { border-color: rgb(255 255 255 / .25); background: rgb(255 255 255 / .065); }
+	:global(.kyb-upload:focus-within) { outline: 2px solid #cbf300; outline-offset: 2px; }
+	:global(.kyb-upload input) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+	:global(.kyb-document-status) { color: #cbf300; font-size: .8125rem; }
+	:global(.kyb-document-status[data-status='failed']) { color: #ff9d9d; }
+	:global(.kyb-document__controls) { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem; }
+	:global(.kyb-document__controls .kyb-upload) { min-height: 2.25rem; padding: .5rem .75rem; }
+	:global(.kyb-review-grid) { display: grid; gap: .75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	:global(.kyb-review-card) { padding: 1rem; border: 1px solid rgb(255 255 255 / .09); border-radius: .85rem; background: rgb(255 255 255 / .02); }
+	:global(.kyb-review-card__head) { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: .65rem; }
+	:global(.kyb-review-card h4) { margin: 0; font-size: .95rem; }
+	:global(.kyb-review-card p) { margin: 0; color: #a5a5aa; font-size: .875rem; line-height: 1.65; white-space: pre-line; }
+	:global(.kyb-declaration) { display: grid; gap: .85rem; margin-top: 1rem; padding: 1rem; border: 1px solid rgb(203 243 0 / .2); border-radius: .9rem; background: rgb(203 243 0 / .035); }
+	:global(.kyb-declaration h4) { margin: 0; font-size: 1rem; }
+	:global(.kyb-declaration__text) { color: #b6b6bb; font-size: .875rem; line-height: 1.65; }
+	:global(.kyb-actions) { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-top: 1.15rem; }
+	:global(.kyb-actions__right) { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: .75rem; }
+	:global(.kyb-actions [data-back]) { padding-left: 0; }
+	:global(.kyb-button) { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; gap: .55rem; border: 1px solid transparent; border-radius: 12px; padding: .65rem 1.75rem; cursor: pointer; font: 600 .9rem/1 Manrope, sans-serif; transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease; }
+	:global(.kyb-button:focus-visible) { outline: 2px solid #cbf300; outline-offset: 2px; }
+	:global(.kyb-button--primary) { background: #cbf300; color: #101010; }
+	:global(.kyb-button--primary:hover) { background: #d8ff24; }
+	:global(.kyb-button--secondary) { border-color: rgb(255 255 255 / .12); background: rgb(255 255 255 / .035); color: #fff; }
+	:global(.kyb-button--secondary:hover) { border-color: rgb(255 255 255 / .24); background: rgb(255 255 255 / .075); }
+	:global(.kyb-button--ghost) { background: transparent; color: #a1a1aa; }
+	:global(.kyb-button--ghost:hover) { color: #fff; }
+	:global(.kyb-actions__right [data-save-exit]) { min-height: 2.75rem; padding-inline: 1.25rem; }
+	:global(.kyb-demo-banner) { width: 100%; max-width: 46rem; margin: 0 auto .75rem; color: #cbf300; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+	:global(.kyb-button--danger) { border-color: rgb(255 143 143 / .22); background: transparent; color: #ffaaaa; }
+	:global(.kyb-button--danger:hover) { border-color: rgb(255 143 143 / .5); background: rgb(255 143 143 / .09); color: #ffc1c1; }
+	:global(.kyb-button--small) { min-height: 2.25rem; padding: .5rem .75rem; font-size: .75rem; }
+	:global(.kyb-success) { display: grid; padding: clamp(4rem, 9vw, 7rem) 1.5rem; place-items: center; text-align: center; }
+	:global(.kyb-success__icon) { display: grid; width: 4rem; height: 4rem; margin: 0 auto 1rem; place-items: center; border-radius: 50%; background: #cbf300; color: #101010; font-size: 1.7rem; }
+	:global(.kyb-success h3) { margin: 0; font-size: clamp(2rem, 4vw, 3.6rem); font-weight: 450; letter-spacing: -.04em; }
+	:global(.kyb-success p) { max-width: 36rem; margin: 1rem auto; color: #a1a1aa; line-height: 1.65; }
+	:global(.kyb-success__reference) { display: inline-flex; margin: .25rem 0 1rem; padding: .5rem .75rem; border-radius: .6rem; background: rgb(255 255 255 / .05); color: #fff; font: 650 .78rem/1 Geist Mono, monospace; }
+	:global(.kyb-success__next) { max-width: 34rem; margin: 0 auto 1.25rem; color: #a1a1aa; font-size: .875rem; line-height: 1.6; }
+	:global(.kyb-confirm) { width: min(calc(100% - 2rem), 30rem); max-width: none; margin: auto; border: 1px solid rgb(255 255 255 / .12); border-radius: 18px; background: #101010; padding: 0; color: #f7f7f7; box-shadow: 0 28px 90px rgb(0 0 0 / .58); }
+	:global(.kyb-confirm::backdrop) { background: rgb(0 0 0 / .72); backdrop-filter: blur(4px); }
+	:global(.kyb-confirm__panel) { padding: 1.5rem; text-align: center; }
+	:global(.kyb-confirm h3) { margin: 0; color: #fff; font: 600 1.25rem/1.3 Manrope, sans-serif; }
+	:global(.kyb-confirm p) { margin: .75rem 0 0; color: #a1a1aa; font: 400 .95rem/1.6 Manrope, sans-serif; }
+	:global(.kyb-confirm__actions) { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.5rem; }
+	:global(.kyb-confirm__success-icon) { display: grid; width: 2.5rem; height: 2.5rem; margin: 0 auto 1rem; place-items: center; border-radius: 50%; background: #cbf300; color: #101010; font-size: 1rem; font-weight: 800; }
+	@media (max-width: 900px) {
+		:global(.kyb-grid-2), :global(.kyb-review-grid) { grid-template-columns: 1fr; }
+		:global(.kyb-shell) { grid-template-columns: 1fr; }
+		:global(.kyb-map) { display: none; }
+		:global(.kyb-map-mobile) { display: block; padding: 1rem 1.15rem; border-bottom: 1px solid rgb(255 255 255 / .07); background: #080808; }
+		:global(.kyb-map-mobile summary) { color: #fff; cursor: pointer; font-size: .875rem; font-weight: 600; }
+		:global(.kyb-map-mobile .kyb-map__list) { margin-top: .75rem; }
+	}
+	@media (max-width: 640px) {
+		.kyb-container { padding-inline: 1rem; }
+		.kyb-app { border-radius: 18px; }
+		:global(.kyb-start) { padding: 2.5rem 1.5rem; }
+		:global(.kyb-start__actions) { align-items: stretch; flex-direction: column; }
+		:global(.kyb-start__actions .kyb-button--primary) { order: -1; }
+		:global(.kyb-main) { padding: 1.15rem; }
+		:global(.kyb-options--grid) { grid-template-columns: 1fr; }
+		:global(.kyb-button) { padding-inline: 1.2rem; }
+		:global(.kyb-actions) { display: grid; grid-template-columns: 1fr; align-items: stretch; gap: .75rem; }
+		:global(.kyb-actions__right) { display: contents; }
+		:global(.kyb-actions .kyb-button) { width: 100%; justify-content: center; }
+		:global(.kyb-actions__right [data-continue]) { grid-column: 1; order: 1; }
+		:global(.kyb-actions__right [data-save-exit]) { grid-column: 1; order: 2; padding-inline: 1.2rem; }
+		:global(.kyb-actions [data-back]) { grid-column: 1; order: 3; border-color: transparent; background: transparent; padding-inline: 1.2rem; color: #a1a1aa; }
+		:global(.kyb-actions [data-back]:hover) { border-color: transparent; background: transparent; color: #fff; }
+		:global(.kyb-actions__right .kyb-save-feedback) { width: 100%; grid-column: 1; justify-content: center; order: 4; }
+	}
+	@media (prefers-reduced-motion: reduce) { :global(.kyb-button) { transition: none; } }
+</style>
+
+<script>
+	import {
+		KYB_SECTIONS,
+		activeDocumentRequirements,
+		createEmptyKybApplication,
+		countryConfigVersionFor,
+		defaultCanadaKybConfig,
+		demoKybApplication,
+		getKybConfigForCountry,
+		getComputedKybFlow,
+		prepareKybSubmission,
+		riskKeyForMicroId,
+		sanitizeKybForStorage,
+		sectionForMicroId,
+		validateEntireKybApplication,
+		validateKybMicrostep,
+		type ExperienceMode,
+		type KybApplication,
+		type KybConfig,
+		type KybValidationErrors,
+		type MicroId,
+		type Person,
+	} from '../../../../src/utils/kyb-flow';
+	import { createLocalKybConfigAdapter, createLocalKybDraftAdapter, createRemoteKybConfigAdapter, createRemoteKybDraftAdapter, createRemoteKybUploadAdapter } from '../../../../src/utils/kyb-adapters';
+	import { resolveKybLocale, translateKyb } from '../../../../src/i18n/translations/business-account/kyb';
+
+	const DRAFT_KEY = 'garna:kyb:draft:v1';
+	const DRAFT_TTL = 24 * 60 * 60 * 1000;
+	const countries = ['Canada', 'Poland', 'United Kingdom', 'Cyprus', 'United States', 'Germany', 'France', 'Spain', 'Australia'];
+	const identityTypes = ['Passport', 'National identity card', 'Driving licence'];
+	const roleOptions = ['Director', 'Beneficial owner', 'Authorised signatory'];
+	const riskCopy: Record<string, { title: string; question: string; hint?: string }> = {
+		pep: { title: 'Political exposure', question: 'Is any owner, director or representative a politically exposed person (PEP), or a close associate or family member of one?' },
+		sanctions: { title: 'Sanctions and restrictions', question: 'Is the company or any related person subject to sanctions or restrictive measures?' },
+		thirdParty: { title: 'Acting for others', question: 'Will the company use the account on behalf of another person or business?' },
+		offshore: { title: 'Offshore accounts', question: 'Does the company maintain or control any accounts in offshore jurisdictions?' },
+		cash: { title: 'Physical cash', question: 'Does the company use physical cash in its operations?', hint: 'This means banknotes or coins, not card payments.' },
+		crypto: { title: 'Crypto activity', question: 'Does the company use cryptocurrency in its operations?' },
+	};
+	const stepCopy: Record<MicroId, { kicker: string; title: string; description: string }> = {
+		'contact-email': { kicker: 'BUSINESS VERIFICATION', title: 'Where should we send application updates?', description: 'Enter your work email. We’ll only use it to contact you about this KYB application.' },
+		'company-jurisdiction': { kicker: 'COMPANY', title: 'Where is the company registered?', description: 'The registration country determines the verification rules and documents we request.' },
+		'company-registration': { kicker: 'COMPANY', title: 'What is the company called?', description: 'Use the exact legal name and registration number from the official company record.' },
+		'company-incorporation': { kicker: 'COMPANY', title: 'When and where was it incorporated?', description: 'Tell us the incorporation date and province, state, or region.' },
+		'registered-address': { kicker: 'ADDRESSES', title: 'What is the registered office?', description: 'Enter the physical address shown on official company records.' },
+		'operating-choice': { kicker: 'ADDRESSES', title: 'Does the business operate from the same address?', description: 'We only ask for a second address when the company trades somewhere else.' },
+		'operating-address': { kicker: 'ADDRESSES', title: 'What is the operating address?', description: 'Enter the main place where the company carries out business.' },
+		'business-contact': { kicker: 'ADDRESSES', title: 'What is the best phone number for the business?', description: 'Include the country calling code.' },
+		'business-profile': { kicker: 'BUSINESS ACTIVITY', title: 'What does the company do?', description: 'Describe the product or service, customers, and how the company earns revenue.' },
+		'business-website': { kicker: 'BUSINESS ACTIVITY', title: 'Where can we learn about the company online?', description: 'Share a full website URL, or tell us that the company does not have one.' },
+		'business-purpose': { kicker: 'BUSINESS ACTIVITY', title: 'How will the company use Garna?', description: 'Choose every option that applies.' },
+		'representative-personal': { kicker: 'YOUR DETAILS', title: 'Who is completing this application?', description: 'We need the legal identity and residence of the authorised representative.' },
+		'representative-identity': { kicker: 'YOUR DETAILS', title: 'Which identity document will you use?', description: 'Use a current document that can be verified.' },
+		'representative-roles': { kicker: 'YOUR DETAILS', title: 'What is your role in the company?', description: 'Choose all applicable roles and enter your exact title or position.' },
+		'ownership-you': { kicker: 'OWNERSHIP', title: 'How much of the company do you own?', description: 'Enter your direct or indirect ownership percentage.' },
+		'ownership-owners': { kicker: 'OWNERSHIP', title: 'Who else owns or controls the company?', description: 'For Canada, include each person who owns or controls 20% or more.' },
+		'ownership-directors': { kicker: 'OWNERSHIP', title: 'Who are the company’s directors?', description: 'Your details are reused automatically when you are also a director.' },
+		'ownership-structure': { kicker: 'OWNERSHIP', title: 'Is the ownership structure complex?', description: 'Tell us about holding companies, trusts, nominees, or layered control.' },
+		'activity-volume': { kicker: 'ACCOUNT USE', title: 'What will a typical month look like?', description: 'Choose the expected monthly volume and number of transactions.' },
+		'activity-markets': { kicker: 'ACCOUNT USE', title: 'Where will the money move?', description: 'Choose your markets and add up to five main counterparty countries.' },
+		'activity-funds': { kicker: 'ACCOUNT USE', title: 'Where will the account funds come from?', description: 'Choose the primary source and explain it in one or two sentences.' },
+		'compliance-pep': { kicker: 'COMPLIANCE', title: riskCopy.pep.title, description: riskCopy.pep.question },
+		'compliance-sanctions': { kicker: 'COMPLIANCE', title: riskCopy.sanctions.title, description: riskCopy.sanctions.question },
+		'compliance-third-party': { kicker: 'COMPLIANCE', title: riskCopy.thirdParty.title, description: riskCopy.thirdParty.question },
+		'compliance-offshore': { kicker: 'COMPLIANCE', title: riskCopy.offshore.title, description: riskCopy.offshore.question },
+		'compliance-cash': { kicker: 'COMPLIANCE', title: riskCopy.cash.title, description: riskCopy.cash.question },
+		'compliance-crypto': { kicker: 'COMPLIANCE', title: riskCopy.crypto.title, description: riskCopy.crypto.question },
+		documents: { kicker: 'DOCUMENTS', title: 'Add your evidence', description: 'Only the documents required for this application are shown. You can replace any file before submitting.' },
+		review: { kicker: 'REVIEW', title: 'Check before you submit', description: 'You can change any answer without losing the rest of the application.' },
+	};
+
+	const escapeHtml = (value: unknown) => String(value ?? '').replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character] || character);
+	const readPath = (source: any, path: string) => path.split('.').reduce((value, key) => value?.[key], source);
+	const writePath = (source: any, path: string, value: unknown) => {
+		const keys = path.split('.'); let target = source;
+		keys.slice(0, -1).forEach((key) => { target = target[key]; }); target[keys.at(-1)!] = value;
+	};
+	const uid = () => globalThis.crypto?.randomUUID?.() || `kyb-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+	const initializeKybFlows = () => document.querySelectorAll<HTMLElement>('[data-kyb-flow]').forEach((root) => {
+		if (root.dataset.initialized === 'true') return;
+		root.dataset.initialized = 'true';
+		let mode: ExperienceMode = 'customer';
+		let application: KybApplication = createEmptyKybApplication();
+		let current: MicroId = 'contact-email';
+		let errors: KybValidationErrors = {};
+		let saveTimer = 0;
+		let submittedReference = '';
+		let submissionIdempotencyKey = uid();
+		let cachedDraft: KybApplication | null = null;
+		let countryConfig: KybConfig = defaultCanadaKybConfig;
+		const locale = resolveKybLocale(window.location.pathname);
+		const t = (source: string, values: Record<string, string | number> = {}) => translateKyb(locale, source, values);
+		const track = (eventName: string, extra: Record<string, string> = {}) => window.dispatchEvent(new CustomEvent('garna:kyb-analytics', { detail: { event: eventName, mode, microId: current, sectionId: sectionForMicroId(current), configVersion: application.countryConfigVersion, ...extra } }));
+		const localPreview = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
+		const activeConfig = () => countryConfig;
+		const configAdapter = localPreview
+			? createLocalKybConfigAdapter(getKybConfigForCountry)
+			: createRemoteKybConfigAdapter(getKybConfigForCountry);
+		const draftAdapter = localPreview
+			? createLocalKybDraftAdapter(localStorage, DRAFT_KEY, DRAFT_TTL)
+			: createRemoteKybDraftAdapter();
+		const uploadAdapter = localPreview ? null : createRemoteKybUploadAdapter();
+		const loadCountryConfig = async (country: string) => {
+			try { countryConfig = await configAdapter.load(country); }
+			catch { countryConfig = getKybConfigForCountry(country); }
+			application.countryConfigVersion = countryConfig.version;
+			if (!countryConfig.volumeBands.some((band) => band.id === application.activity.monthlyVolumeBandId)) application.activity.monthlyVolumeBandId = '';
+		};
+		const readDraft = async (): Promise<KybApplication | null> => {
+			try { cachedDraft = await draftAdapter.load(); return cachedDraft; }
+			catch { cachedDraft = null; return null; }
+		};
+		const saveDraft = async (immediate = false): Promise<boolean> => {
+			if (mode !== 'customer') return true;
+			window.clearTimeout(saveTimer);
+			const save = async () => {
+				const state = root.querySelector<HTMLElement>('[data-kyb-save-state]');
+				const retry = root.querySelector<HTMLButtonElement>('[data-retry-save]');
+				try {
+					application.updatedAt = new Date().toISOString();
+					await draftAdapter.save(application);
+					cachedDraft = sanitizeKybForStorage(application);
+					track('kyb_draft_saved');
+					if (state) state.textContent = '';
+					if (retry) retry.hidden = true;
+					return true;
+				} catch {
+					if (state) state.textContent = t('Draft could not be saved');
+					if (retry) retry.hidden = false;
+					return false;
+				}
+			};
+			if (immediate) return save();
+			saveTimer = window.setTimeout(() => { void save(); }, 500);
+			return true;
+		};
+		const confirmDraftReset = () => new Promise<boolean>((resolve) => {
+			const dialog = document.createElement('dialog');
+			dialog.className = 'kyb-confirm';
+			dialog.setAttribute('aria-labelledby', 'kyb-confirm-title');
+			dialog.setAttribute('aria-describedby', 'kyb-confirm-description');
+			dialog.innerHTML = `<div class="kyb-confirm__panel"><h3 id="kyb-confirm-title">${escapeHtml(t('Delete saved draft?'))}</h3><p id="kyb-confirm-description">${escapeHtml(t('Your saved answers and uploaded documents will be removed. You cannot undo this action.'))}</p><div class="kyb-confirm__actions"><button type="button" class="kyb-button kyb-button--secondary" data-confirm-cancel>${escapeHtml(t('Cancel'))}</button><button type="button" class="kyb-button kyb-button--danger" data-confirm-delete>${escapeHtml(t('Delete draft'))}</button></div></div>`;
+			let settled = false;
+			const finish = (confirmed: boolean) => {
+				if (settled) return;
+				settled = true;
+				if (dialog.open) dialog.close();
+				dialog.remove();
+				resolve(confirmed);
+			};
+			dialog.addEventListener('cancel', (event) => { event.preventDefault(); finish(false); });
+			dialog.addEventListener('click', (event) => { if (event.target === dialog) finish(false); });
+			dialog.querySelector('[data-confirm-cancel]')?.addEventListener('click', () => finish(false));
+			dialog.querySelector('[data-confirm-delete]')?.addEventListener('click', () => finish(true));
+			document.body.append(dialog);
+			dialog.showModal();
+			window.requestAnimationFrame(() => dialog.querySelector<HTMLButtonElement>('[data-confirm-cancel]')?.focus());
+		});
+		const showDraftSavedConfirmation = () => new Promise<void>((resolve) => {
+			const dialog = document.createElement('dialog');
+			dialog.className = 'kyb-confirm';
+			dialog.setAttribute('aria-labelledby', 'kyb-saved-title');
+			dialog.setAttribute('aria-describedby', 'kyb-saved-description');
+			dialog.innerHTML = `<div class="kyb-confirm__panel"><span class="kyb-confirm__success-icon" aria-hidden="true">✓</span><h3 id="kyb-saved-title">${escapeHtml(t('Progress saved'))}</h3><p id="kyb-saved-description">${escapeHtml(t('Your progress has been saved. You can continue whenever you are ready.'))}</p><div class="kyb-confirm__actions"><button type="button" class="kyb-button kyb-button--primary" data-saved-close>${escapeHtml(t('Close'))}</button></div></div>`;
+			let settled = false;
+			const finish = () => {
+				if (settled) return;
+				settled = true;
+				if (dialog.open) dialog.close();
+				dialog.remove();
+				resolve();
+			};
+			dialog.addEventListener('cancel', (event) => { event.preventDefault(); finish(); });
+			dialog.addEventListener('click', (event) => { if (event.target === dialog) finish(); });
+			dialog.querySelector('[data-saved-close]')?.addEventListener('click', finish);
+			document.body.append(dialog);
+			dialog.showModal();
+			window.requestAnimationFrame(() => dialog.querySelector<HTMLButtonElement>('[data-saved-close]')?.focus());
+		});
+
+		const controlId = (value: string) => `kyb-${value.replace(/[^a-z0-9_-]+/gi, '-')}`;
+		const errorFor = (path: string) => errors[path] ? `<p class="kyb-error" id="error-${escapeHtml(path)}">${escapeHtml(t(errors[path]))}</p>` : '';
+		const inputA11yAttrs = (path: string, hasHint = false) => {
+			const describedBy = [hasHint ? `hint-${path}` : '', errors[path] ? `error-${path}` : ''].filter(Boolean).join(' ');
+			return `${errors[path] ? 'aria-invalid="true"' : ''}${describedBy ? ` aria-describedby="${escapeHtml(describedBy)}"` : ''}`;
+		};
+		const field = (label: string, path: string, type = 'text', hint = '', attributes = '') => {
+			const value = readPath(application, path) ?? '';
+			return `<div class="kyb-field"><label for="${controlId(path)}">${escapeHtml(t(label))}</label><input id="${controlId(path)}" name="${escapeHtml(path)}" type="${type}" value="${escapeHtml(value)}" data-path="${escapeHtml(path)}" ${inputA11yAttrs(path, Boolean(hint))} ${attributes}>${hint ? `<p class="kyb-hint" id="hint-${escapeHtml(path)}">${escapeHtml(t(hint))}</p>` : ''}${errorFor(path)}</div>`;
+		};
+		const textarea = (label: string, path: string, hint = '') => `<div class="kyb-field"><label for="${controlId(path)}">${escapeHtml(t(label))}</label><textarea id="${controlId(path)}" name="${escapeHtml(path)}" data-path="${escapeHtml(path)}" ${inputA11yAttrs(path, Boolean(hint))}>${escapeHtml(readPath(application, path) ?? '')}</textarea>${hint ? `<p class="kyb-hint" id="hint-${escapeHtml(path)}">${escapeHtml(t(hint))}</p>` : ''}${errorFor(path)}</div>`;
+		const customSelect = (label: string, path: string, options: Array<{ value: string; label: string }>, hint = '') => {
+			const selected = String(readPath(application, path) || '');
+			const selectedOption = options.find((option) => option.value === selected);
+			const id = controlId(path);
+			const valueId = `${id}-value`;
+			const listboxId = `${id}-listbox`;
+			const placeholder = t('Select an option');
+			return `<div class="kyb-field"><label id="${id}-label" for="${id}">${escapeHtml(t(label))}</label><div class="kyb-select" data-kyb-select><input id="${id}-input" name="${escapeHtml(path)}" type="hidden" value="${escapeHtml(selected)}" data-path="${escapeHtml(path)}"><button id="${id}" type="button" class="kyb-select__trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="${listboxId}" aria-labelledby="${id}-label ${valueId}" ${inputA11yAttrs(path, Boolean(hint))} data-kyb-select-trigger><span id="${valueId}" class="kyb-select__value" data-placeholder="${selectedOption ? 'false' : 'true'}">${escapeHtml(selectedOption ? t(selectedOption.label) : placeholder)}</span><svg class="kyb-select__chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3.5 6 4.5 4 4.5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div id="${listboxId}" class="kyb-select__menu" role="listbox" aria-labelledby="${id}-label" data-kyb-select-menu hidden>${options.map((option) => `<button type="button" class="kyb-select__option" role="option" aria-selected="${selected === option.value}" data-kyb-select-option data-value="${escapeHtml(option.value)}" tabindex="-1">${escapeHtml(t(option.label))}</button>`).join('')}</div></div>${hint ? `<p class="kyb-hint" id="hint-${escapeHtml(path)}">${escapeHtml(t(hint))}</p>` : ''}${errorFor(path)}</div>`;
+		};
+		const select = (label: string, path: string, options: string[], hint = '') => customSelect(label, path, options.map((option) => ({ value: option, label: option })), hint);
+		const selectPairs = (label: string, path: string, options: Array<{ id: string; label: string }>) => customSelect(label, path, options.map((option) => ({ value: option.id, label: option.label })));
+		const yesNo = (path: string) => `<fieldset id="${controlId(path)}" class="kyb-fieldset"><legend>${escapeHtml(t('Choose one'))}</legend><div class="kyb-options kyb-options--grid">${['yes', 'no'].map((value) => `<label class="kyb-option" for="${controlId(`${path}-${value}`)}"><input id="${controlId(`${path}-${value}`)}" type="radio" name="${escapeHtml(path)}" value="${value}" data-path="${escapeHtml(path)}" ${readPath(application, path) === value ? 'checked' : ''}><span>${escapeHtml(t(value === 'yes' ? 'Yes' : 'No'))}</span></label>`).join('')}</div>${errorFor(path)}</fieldset>`;
+		const checks = (path: string, options: string[]) => `<fieldset id="${controlId(path)}" class="kyb-fieldset"><legend>${escapeHtml(t('Choose all that apply'))}</legend><div class="kyb-options kyb-options--grid">${options.map((option, index) => `<label class="kyb-option" for="${controlId(`${path}-${index}`)}"><input id="${controlId(`${path}-${index}`)}" name="${escapeHtml(path)}[]" type="checkbox" value="${escapeHtml(option)}" data-array-path="${escapeHtml(path)}" ${(readPath(application, path) as string[]).includes(option) ? 'checked' : ''}><span>${escapeHtml(t(option))}</span></label>`).join('')}</div>${errorFor(path)}</fieldset>`;
+		const addressFields = (prefix: string) => `<div class="kyb-fields">${field('Street address', `${prefix}.line1`, 'text', '', 'autocomplete="street-address"')}<div class="kyb-grid-2">${field('City', `${prefix}.city`, 'text', '', 'autocomplete="address-level2"')}${field('Postal code', `${prefix}.postalCode`, 'text', '', 'autocomplete="postal-code"')}</div>${select('Country', `${prefix}.country`, countries)}</div>`;
+		const personEditor = (list: 'beneficialOwners' | 'directors', person: Person, index: number, ownership: boolean) => {
+			const prefix = `ownership.${list}.${index}`;
+			return `<div class="kyb-person"><div class="kyb-person__head"><strong>${escapeHtml(t(ownership ? 'Owner or control person' : 'Director'))} ${index + 1}</strong><button type="button" class="kyb-button kyb-button--danger kyb-button--small" data-remove-person="${list}" data-index="${index}">${escapeHtml(t('Remove'))}</button></div>${field('Full legal name', `${prefix}.fullName`)}<div class="kyb-grid-2">${field('Date of birth', `${prefix}.dateOfBirth`, 'date')}${select('Country of residence', `${prefix}.residenceCountry`, countries)}</div>${ownership ? field('Ownership or control', `${prefix}.ownershipPercent`, 'number', 'Percentage from 0 to 100.', 'min="0.01" max="100" step="0.01"') : ''}</div>`;
+		};
+
+		const jurisdictionNote = () => {
+			if (!application.company.country) return '';
+			const configured = activeConfig().supported;
+			const title = configured ? t('Canada verification rules are ready') : t('Business verification is not yet available for {country}', { country: t(application.company.country) });
+			const description = configured
+				? t('Canadian verification rules and the 20% ownership-or-control threshold apply to this application.')
+				: t('We still need an approved local configuration before we can accept applications from this jurisdiction.');
+			return `<div class="kyb-jurisdiction-note" data-configured="${configured}"><strong>${escapeHtml(title)}</strong><span>${escapeHtml(description)}</span></div>`;
+		};
+
+		const renderBody = (microId: MicroId) => {
+			switch (microId) {
+				case 'contact-email': return `<div class="kyb-notice" aria-labelledby="kyb-notice-title"><h4 id="kyb-notice-title">${escapeHtml(t('Why we collect this information'))}</h4><p>${escapeHtml(t(defaultCanadaKybConfig.verificationNotice.visibleSummary))}</p><details><summary>${escapeHtml(t('Read the full verification notice'))}</summary><p>${escapeHtml(t(defaultCanadaKybConfig.verificationNotice.fullText))} <a href="${escapeHtml(defaultCanadaKybConfig.verificationNotice.privacyNoticeUrl?.replace('lang=en', `lang=${locale}`))}" target="_blank" rel="noreferrer">${escapeHtml(t('Privacy notice'))}</a></p></details></div>${field('Work email address', 'contact.email', 'email', '', 'autocomplete="email"')}`;
+				case 'company-jurisdiction': return `<div class="kyb-grid-2">${select('Registration country', 'company.country', countries)}${select('Entity type', 'company.entityType', activeConfig().entityTypes)}</div>${jurisdictionNote()}`;
+				case 'company-registration': return `<div class="kyb-fields">${field('Legal company name', 'company.legalName', 'text', '', 'autocomplete="organization"')}${field('Registration number', 'company.registrationNumber')}</div>`;
+				case 'company-incorporation': return `<div class="kyb-grid-2">${field('Incorporation date', 'company.incorporationDate', 'date')}${field('Province, state or region', 'company.region')}</div>`;
+				case 'registered-address': return addressFields('contact.registeredAddress');
+				case 'operating-choice': return yesNo('contact.operatingSame');
+				case 'operating-address': return addressFields('contact.operatingAddress');
+				case 'business-contact': return field('Business phone number', 'contact.phone', 'tel', 'Include the country code.', 'autocomplete="tel"');
+				case 'business-profile': return `<div class="kyb-fields">${select('Industry', 'business.industry', activeConfig().industries)}${application.business.industry === 'Other' ? field('Industry name', 'business.industryOther') : ''}${textarea('Business description', 'business.description', 'Explain the product or service, the customer, and the source of revenue.')}</div>`;
+				case 'business-website': return `<div class="kyb-fields">${field('Company website', 'business.website', 'url', '', application.business.noWebsite ? 'disabled' : '')}<label class="kyb-option" for="kyb-business-no-website"><input id="kyb-business-no-website" name="business.noWebsite" type="checkbox" data-boolean-path="business.noWebsite" ${application.business.noWebsite ? 'checked' : ''}><span>${escapeHtml(t('The company has no website'))}</span></label></div>`;
+				case 'business-purpose': return checks('business.accountPurposes', activeConfig().accountPurposes);
+				case 'representative-personal': return `<div class="kyb-fields">${field('Full legal name', 'representative.fullName', 'text', '', 'autocomplete="name"')}<div class="kyb-grid-2">${field('Date of birth', 'representative.dateOfBirth', 'date')}${field('Place of birth', 'representative.placeOfBirth')}</div>${field('Citizenship(s)', 'representative.citizenships', 'text', 'Separate multiple citizenships with commas.', 'data-list-value="true"')}${select('Country of residence', 'representative.residenceCountry', countries)}</div>`;
+				case 'representative-identity': return `<div class="kyb-fields"><div class="kyb-grid-2">${select('Document type', 'representative.identity.documentType', identityTypes)}${field('Document number', 'representative.identity.documentNumber')}</div><div class="kyb-grid-2">${field('Issue date', 'representative.identity.issueDate', 'date')}${field('Expiry date', 'representative.identity.expiryDate', 'date')}</div>${field('Issuing authority', 'representative.identity.issuingAuthority')}</div>`;
+				case 'representative-roles': { const needsAuthority = !application.representative.roles.includes('Director') && !application.representative.roles.includes('Beneficial owner'); return `<div class="kyb-fields">${field('Title or position', 'representative.titlePosition')}${checks('representative.roles', roleOptions)}${needsAuthority ? textarea('Basis of authority', 'representative.authorityBasis', 'For example: board resolution, power of attorney, or signed letter of authorisation.') : ''}</div>`; }
+				case 'ownership-you': return field('Your ownership percentage', 'ownership.representativeOwnershipPercent', 'number', 'Enter direct and indirect ownership combined.', 'min="0.01" max="100" step="0.01"');
+				case 'ownership-owners': return `<div class="kyb-fields">${application.representative.roles.includes('Beneficial owner') ? `<p class="kyb-hint">${escapeHtml(application.representative.fullName || t('The representative'))} ${escapeHtml(t('is included automatically as an owner'))} (${escapeHtml(application.ownership.representativeOwnershipPercent || 0)}%).</p>` : ''}${application.ownership.beneficialOwners.map((person, index) => personEditor('beneficialOwners', person, index, true)).join('')}<button type="button" class="kyb-button kyb-button--secondary" data-add-person="beneficialOwners">${escapeHtml(t('+ Add another owner or control person'))}</button>${errorFor('ownership.beneficialOwners')}</div>`;
+				case 'ownership-directors': return `<div class="kyb-fields">${application.representative.roles.includes('Director') ? `<p class="kyb-hint">${escapeHtml(application.representative.fullName || t('The representative'))} ${escapeHtml(t('is included automatically as a director.'))}</p>` : ''}${application.ownership.directors.map((person, index) => personEditor('directors', person, index, false)).join('')}<button type="button" class="kyb-button kyb-button--secondary" data-add-person="directors">${escapeHtml(t('+ Add another director'))}</button>${errorFor('ownership.directors')}</div>`;
+				case 'ownership-structure': return `<div class="kyb-fields">${yesNo('ownership.complexStructure')}${application.ownership.complexStructure === 'yes' ? textarea('Describe the ownership and control structure', 'ownership.structureDescription') : ''}</div>`;
+				case 'activity-volume': return `<div class="kyb-grid-2">${selectPairs('Monthly volume', 'activity.monthlyVolumeBandId', activeConfig().volumeBands)}${selectPairs('Transactions per month', 'activity.transactionCountBandId', activeConfig().transactionCountBands)}</div>`;
+				case 'activity-markets': return `<div class="kyb-fields">${checks('activity.markets', activeConfig().markets)}${field('Top counterparty countries', 'activity.counterpartyCountries', 'text', 'Add up to five countries, separated with commas.', 'data-list-value="true"')}</div>`;
+				case 'activity-funds': return `<div class="kyb-fields">${select('Primary source of funds', 'activity.sourceOfFunds', activeConfig().sourcesOfFunds)}${textarea('Source of funds details', 'activity.sourceOfFundsDetails', 'One or two sentences is enough.')}</div>`;
+				case 'documents': return `<div class="kyb-fields">${activeDocumentRequirements(application, activeConfig()).map((requirement) => {
+					const document = application.documents.find((item) => item.requirementId === requirement.id);
+					const uploadLabel = document?.status === 'failed' ? 'Try upload again' : document ? 'Replace' : 'Upload';
+					const status = document?.status === 'uploading'
+						? `<span class="kyb-document-status">${escapeHtml(t('Uploading'))}…</span>`
+						: document?.status === 'failed'
+							? `<span class="kyb-document-status" data-status="failed">${escapeHtml(t('Upload failed. Choose the file and try again.'))}</span>`
+							: document ? `<span class="kyb-document-status">✓ ${escapeHtml(document.filename)}</span>` : '';
+					const controls = document?.status === 'uploading' ? '' : `<div class="kyb-document__controls"><label class="kyb-upload" for="${controlId(`document-${requirement.id}`)}"><span>${escapeHtml(t(uploadLabel))}</span><input id="${controlId(`document-${requirement.id}`)}" name="document.${escapeHtml(requirement.id)}" type="file" data-document-requirement="${escapeHtml(requirement.id)}" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-label="${escapeHtml(`${t(uploadLabel)} ${t(requirement.title)}`)}"></label>${document ? `<button type="button" class="kyb-button kyb-button--danger kyb-button--small" data-remove-document="${escapeHtml(requirement.id)}">${escapeHtml(t('Remove'))}</button>` : ''}</div>`;
+					return `<div class="kyb-document"><div class="kyb-document__head"><div><strong>${escapeHtml(t(requirement.title))}</strong><small>${escapeHtml(t(requirement.required ? 'Required' : 'May be requested after review'))}</small></div></div>${status}${controls}${errorFor(`documents.${requirement.id}`)}</div>`;
+				}).join('')}<p class="kyb-hint">${escapeHtml(t('PDF, JPG or PNG · maximum 10 MB per file'))}</p></div>`;
+				case 'review': return renderReview();
+				default: if (microId.startsWith('compliance-')) { const key = riskKeyForMicroId(microId); return `<div class="kyb-fields">${riskCopy[key].hint ? `<p class="kyb-hint">${escapeHtml(t(riskCopy[key].hint))}</p>` : ''}${yesNo(`compliance.${key}.answer`)}${application.compliance[key].answer === 'yes' ? textarea('Please provide details', `compliance.${key}.details`) : ''}</div>`; } return '';
+			}
+		};
+
+		const labelFor = (pairs: Array<{ id: string; label: string }>, id: string) => t(pairs.find((item) => item.id === id)?.label || id || 'Not answered');
+		const join = (items: string[]) => items.length ? items.map((item) => t(item)).join(', ') : t('Not answered');
+		const address = (value: KybApplication['contact']['registeredAddress']) => [value.line1, value.city, value.postalCode, t(value.country)].filter(Boolean).join(', ') || t('Not answered');
+		const reviewCard = (title: string, section: string, text: string) => `<article class="kyb-review-card"><div class="kyb-review-card__head"><h4>${escapeHtml(t(title))}</h4><button type="button" class="kyb-button kyb-button--ghost kyb-button--small" data-edit-section="${section}">${escapeHtml(t('Change'))}</button></div><p>${escapeHtml(text)}</p></article>`;
+		const renderReview = () => {
+			const owners = [application.representative.roles.includes('Beneficial owner') ? `${application.representative.fullName} (${application.ownership.representativeOwnershipPercent || 0}%)` : '', ...application.ownership.beneficialOwners.map((person) => `${person.fullName} (${person.ownershipPercent || 0}%)`)].filter(Boolean);
+			const directors = [application.representative.roles.includes('Director') ? application.representative.fullName : '', ...application.ownership.directors.map((person) => person.fullName)].filter(Boolean);
+			const documents = application.documents.map((document) => document.filename);
+			const config = activeConfig();
+			return `<div class="kyb-review-grid">${reviewCard('Company', 'company', `${t('Legal name')}: ${application.company.legalName}\n${t('Entity type')}: ${t(application.company.entityType)}\n${t('Registration')}: ${application.company.registrationNumber} · ${t(application.company.country)}\n${t('Incorporated')}: ${application.company.incorporationDate} · ${application.company.region}`)}${reviewCard('Addresses and contact', 'contact', `${t('Registered office')}: ${address(application.contact.registeredAddress)}\n${t('Operating office')}: ${application.contact.operatingSame === 'yes' ? t('Same as registered office') : address(application.contact.operatingAddress)}\n${t('Contact')}: ${application.contact.email} · ${application.contact.phone}`)}${reviewCard('Business activity', 'business', `${t('Industry')}: ${application.business.industry === 'Other' ? application.business.industryOther : t(application.business.industry)}\n${application.business.description}\n${t('Website')}: ${application.business.noWebsite ? t('No website') : application.business.website}\n${t('Purpose')}: ${join(application.business.accountPurposes)}`)}${reviewCard('Representative', 'representative', `${t('Name')}: ${application.representative.fullName}\n${t('Birth')}: ${application.representative.dateOfBirth} · ${application.representative.placeOfBirth}\n${t('Citizenship')}: ${join(application.representative.citizenships)} · ${t('Residence')}: ${t(application.representative.residenceCountry)}\n${t('Title')}: ${application.representative.titlePosition}\n${t('Roles')}: ${join(application.representative.roles)}\n${t('Identity')}: ${t(application.representative.identity.documentType)} · ••••${application.representative.identity.documentNumber.slice(-4)}`)}${reviewCard('Ownership and control', 'ownership', `${t('Beneficial owners')}: ${join(owners)}\n${t('Directors')}: ${join(directors)}\n${t('Complex structure')}: ${t(application.ownership.complexStructure || 'Not answered')}`)}${reviewCard('Expected account use', 'activity', `${t('Monthly activity')}: ${labelFor(config.volumeBands, application.activity.monthlyVolumeBandId)} · ${labelFor(config.transactionCountBands, application.activity.transactionCountBandId)} ${t('transactions')}\n${t('Markets')}: ${join(application.activity.markets)}\n${t('Counterparties')}: ${join(application.activity.counterpartyCountries)}\n${t('Source of funds')}: ${t(application.activity.sourceOfFunds)} · ${application.activity.sourceOfFundsDetails}`)}${reviewCard('Compliance', 'compliance', Object.entries(application.compliance).map(([key, value]) => `${t(key === 'cash' ? 'Physical cash' : key)}: ${t(value.answer || 'Not answered')}${value.details ? ` — ${value.details}` : ''}`).join('\n'))}${reviewCard('Documents', 'documents', documents.length ? `${t('Files selected')}: ${documents.join(', ')}` : t('No files selected'))}</div><div class="kyb-declaration"><h4>${escapeHtml(t('Declaration'))}</h4><div class="kyb-declaration__text">${escapeHtml(t('I declare that I am an authorised representative of'))} <strong>${escapeHtml(application.company.legalName || t('the company'))}</strong> ${escapeHtml(t('and that the information provided in this questionnaire is true, accurate and complete.'))}<br><br>${escapeHtml(t('I undertake to promptly inform'))} <strong>${escapeHtml(config.legalEntityName)}</strong> ${escapeHtml(t('of any changes to this information.'))}<br><br>${escapeHtml(t('I acknowledge that this questionnaire is used to comply with Canadian anti-money-laundering and terrorist-financing requirements under the PCMLTFA and applicable FINTRAC guidance.'))}</div>${field('Type your full legal name as your electronic signature', 'declaration.signatureName', 'text', `${t('This must match')} ${application.representative.fullName || t('the representative’s name')}.`)}<label class="kyb-option" for="kyb-declaration-accepted"><input id="kyb-declaration-accepted" name="declaration.accepted" type="checkbox" data-boolean-path="declaration.accepted" ${application.declaration.accepted ? 'checked' : ''}><span>${escapeHtml(t('I have read and agree to the declaration above'))}</span></label>${errorFor('declaration.accepted')}</div>`;
+		};
+
+		const mapItemsHtml = () => `<div class="kyb-map__list">${KYB_SECTIONS.map((section, index) => `<button type="button" data-jump-section="${section.id}" ${sectionForMicroId(current) === section.id ? 'aria-current="step"' : ''}><span class="kyb-map__number">${index + 1}</span><span class="kyb-map__copy"><strong>${escapeHtml(t(section.label))}</strong></span></button>`).join('')}</div>`;
+		const mapHtml = () => `<aside class="kyb-map" aria-label="${escapeHtml(t('Full prototype process'))}">${mapItemsHtml()}</aside><details class="kyb-map-mobile"><summary>${escapeHtml(t('View full process map'))}</summary>${mapItemsHtml()}</details>`;
+
+		const renderStart = async () => {
+			const draft = await readDraft();
+			root.dataset.experience = 'start';
+			root.innerHTML = `<div class="kyb-start"><div class="kyb-start__content"><h3>${escapeHtml(t('Ready to verify your business'))}</h3><p class="kyb-start__lead">${escapeHtml(t('Most applications take about 12 minutes. You can leave at any time and continue later.'))}</p><div class="kyb-start__actions"><button type="button" class="kyb-button kyb-button--secondary" data-start-demo>${escapeHtml(t('View completed example'))}</button><button type="button" class="kyb-button kyb-button--primary" ${draft ? 'data-resume' : 'data-start-customer'}>${escapeHtml(t(draft ? 'Continue application' : 'Start application'))}<span aria-hidden="true">→</span></button></div>${draft ? `<button type="button" class="kyb-start__discard" data-start-over>${escapeHtml(t('Delete saved draft and start over'))}</button>` : ''}</div></div>`;
+		};
+		const scrollFlowIntoView = () => window.requestAnimationFrame(() => root.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' }));
+
+		const renderSuccess = () => {
+			root.dataset.experience = mode;
+			const title = mode === 'demo' ? t('Demo completed') : t('Application sent');
+			const message = mode === 'demo'
+				? t('No application was created and the customer draft was not changed.')
+				: t('Thank you. We’ll contact you at {email} if we need any additional information.', { email: application.contact.email });
+			const next = mode === 'demo' ? '' : `<div class="kyb-success__next">${escapeHtml(t('Next: automated checks, specialist review when needed, then a decision or a request for more information.'))}</div>`;
+			const reference = mode === 'demo' || !submittedReference ? '' : `<span class="kyb-success__reference">${escapeHtml(submittedReference)}</span>`;
+			root.innerHTML = `<div class="kyb-flow"><div class="kyb-main"><div class="kyb-success"><div><span class="kyb-success__icon">✓</span><h3 tabindex="-1" data-success-heading>${escapeHtml(title)}</h3><p>${escapeHtml(message)}</p>${reference}${next}<div><button type="button" class="kyb-button kyb-button--primary" data-exit-flow>${escapeHtml(t(mode === 'demo' ? 'Exit example' : 'Finish'))}</button></div></div></div></div></div>`;
+			window.requestAnimationFrame(() => {
+				root.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+				root.querySelector<HTMLElement>('[data-success-heading]')?.focus({ preventScroll: true });
+			});
+		};
+
+		const renderStep = () => {
+			const flow = getComputedKybFlow(application); if (!flow.includes(current)) current = flow[0]; application.currentMicroId = current;
+			const copy = { ...stepCopy[current] }; const customer = mode === 'customer'; const index = flow.indexOf(current);
+			if (current === 'ownership-owners' && application.company.country && application.company.country !== defaultCanadaKybConfig.country) copy.description = 'Add every person who owns or controls the company. Our team will confirm the applicable ownership threshold for this jurisdiction.';
+			root.dataset.experience = mode;
+			const firstErrorPath = Object.keys(errors)[0];
+			const errorSummary = firstErrorPath ? `<div class="kyb-error-summary" role="alert" tabindex="-1" data-error-summary><h4>${escapeHtml(t('Check this step'))}</h4><a href="#${controlId(firstErrorPath)}">${escapeHtml(t(errors[firstErrorPath]))}</a></div>` : '';
+			const continueLabel = t(current === 'review' ? (mode === 'demo' ? 'Complete demo' : 'Confirm and submit') : 'Continue');
+			const progress = `<div class="kyb-customer-progress"><span>${escapeHtml(t(KYB_SECTIONS.find((section) => section.id === sectionForMicroId(current))?.label || ''))}</span>${customer ? '' : `<div class="kyb-progress__meta"><span class="kyb-progress__count">${index + 1} / ${flow.length}</span></div>`}</div>`;
+			const saveControls = customer ? `<div class="kyb-save-feedback" aria-live="polite"><span data-kyb-save-state></span><button type="button" class="kyb-save-retry" data-retry-save hidden>${escapeHtml(t('Retry save'))}</button></div><button type="button" class="kyb-button kyb-button--secondary" data-save-exit>${escapeHtml(t('Continue later'))}</button>` : '';
+			root.innerHTML = `<div class="kyb-flow"><div class="kyb-shell" data-customer="${customer}">${mode === 'demo' ? mapHtml() : ''}<main class="kyb-main">${mode === 'demo' ? `<div class="kyb-demo-banner">${escapeHtml(t('Demo · fictional data'))}</div>` : ''}${progress}<div class="kyb-progress-track" aria-hidden="true"><span style="width:${Math.max(4, ((index + 1) / flow.length) * 100)}%"></span></div><div class="kyb-scroll" data-kyb-scroll><form class="kyb-step" novalidate data-kyb-form><h3 tabindex="-1" data-step-heading>${escapeHtml(t(copy.title))}</h3><p class="kyb-step__description">${escapeHtml(t(copy.description))}</p>${errorSummary}<div class="kyb-fields">${renderBody(current)}</div></form></div><div class="kyb-actions"><button type="button" class="kyb-button kyb-button--ghost" data-back><span aria-hidden="true">←</span><span>${escapeHtml(t('Back'))}</span></button><div class="kyb-actions__right">${saveControls}<button type="button" class="kyb-button kyb-button--primary" data-continue><span>${escapeHtml(continueLabel)}</span>${current === 'review' ? '' : '<span aria-hidden="true">→</span>'}</button></div></div></main></div></div>`;
+			track('kyb_step_viewed');
+			if (current === 'documents') track('kyb_document_requested');
+			window.requestAnimationFrame(() => { const error = root.querySelector<HTMLElement>('[data-error-summary]'); if (error) error.focus(); else root.querySelector<HTMLElement>('[data-step-heading]')?.focus(); });
+		};
+
+		const start = async (nextMode: ExperienceMode, resume = false) => {
+			if (mode === 'customer' && nextMode === 'demo' && application.contact.email) await saveDraft(true);
+			mode = nextMode; errors = {}; submittedReference = ''; submissionIdempotencyKey = uid();
+			track('kyb_mode_selected');
+			if (mode === 'demo') application = demoKybApplication(); else application = resume ? (cachedDraft || await readDraft() || createEmptyKybApplication()) : createEmptyKybApplication();
+			await loadCountryConfig(application.company.country);
+			current = mode === 'customer' && resume ? application.currentMicroId : 'contact-email';
+			track(resume ? 'kyb_draft_resumed' : 'kyb_started');
+			renderStep();
+		};
+
+		const updateFromControl = (target: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
+			const path = target.dataset.path;
+			if (path) {
+				const previousValue = readPath(application, path);
+				let value: unknown = target.value;
+				if (target instanceof HTMLInputElement && target.type === 'number') value = target.value === '' ? undefined : Number(target.value);
+				if (target.dataset.listValue === 'true') value = target.value.split(',').map((item) => item.trim()).filter(Boolean);
+				writePath(application, path, value);
+				if (path === 'company.country') {
+					countryConfig = getKybConfigForCountry(target.value);
+					const config = countryConfig;
+					application.countryConfigVersion = countryConfigVersionFor(target.value);
+					if (!config.volumeBands.some((band) => band.id === application.activity.monthlyVolumeBandId)) application.activity.monthlyVolumeBandId = '';
+					if (!application.contact.registeredAddress.country || application.contact.registeredAddress.country === previousValue) application.contact.registeredAddress.country = target.value;
+					if (application.contact.operatingSame === 'yes') application.contact.operatingAddress = { ...application.contact.registeredAddress };
+				}
+				if (path === 'business.industry' && value !== 'Other') application.business.industryOther = '';
+				if (path.endsWith('.answer') && value === 'no') writePath(application, path.replace('.answer', '.details'), '');
+				if (path === 'contact.operatingSame' && value === 'yes') application.contact.operatingAddress = { ...application.contact.registeredAddress };
+			}
+			if (target.dataset.arrayPath) {
+				const list = [...(readPath(application, target.dataset.arrayPath) as string[])]; const at = list.indexOf(target.value);
+				if (target.checked && at < 0) list.push(target.value); if (!target.checked && at >= 0) list.splice(at, 1); writePath(application, target.dataset.arrayPath, list);
+			}
+			if (target.dataset.booleanPath) { writePath(application, target.dataset.booleanPath, target.checked); if (target.dataset.booleanPath === 'business.noWebsite' && target.checked) application.business.website = ''; }
+			application.updatedAt = new Date().toISOString(); if (mode === 'customer') saveDraft();
+		};
+		const closeCustomSelect = (picker: HTMLElement, restoreFocus = false) => {
+			const trigger = picker.querySelector<HTMLButtonElement>('[data-kyb-select-trigger]');
+			const menu = picker.querySelector<HTMLElement>('[data-kyb-select-menu]');
+			picker.dataset.open = 'false';
+			if (trigger) trigger.setAttribute('aria-expanded', 'false');
+			if (menu) menu.hidden = true;
+			if (restoreFocus) trigger?.focus();
+		};
+		const closeCustomSelects = (except?: HTMLElement) => {
+			root.querySelectorAll<HTMLElement>('[data-kyb-select]').forEach((picker) => { if (picker !== except) closeCustomSelect(picker); });
+		};
+		const openCustomSelect = (picker: HTMLElement, focusEdge: 'selected' | 'first' | 'last' = 'selected') => {
+			closeCustomSelects(picker);
+			const trigger = picker.querySelector<HTMLButtonElement>('[data-kyb-select-trigger]');
+			const menu = picker.querySelector<HTMLElement>('[data-kyb-select-menu]');
+			const options = [...picker.querySelectorAll<HTMLButtonElement>('[data-kyb-select-option]')];
+			picker.dataset.open = 'true';
+			if (trigger) trigger.setAttribute('aria-expanded', 'true');
+			if (menu) menu.hidden = false;
+			const option = focusEdge === 'first' ? options[0] : focusEdge === 'last' ? options.at(-1) : options.find((item) => item.getAttribute('aria-selected') === 'true') || options[0];
+			window.requestAnimationFrame(() => option?.focus());
+		};
+
+		const submit = async () => {
+			const validation = validateEntireKybApplication(application, activeConfig());
+			if (!validation.valid) { current = validation.microId; errors = validation.errors; track('kyb_validation_failed', { errorCode: Object.keys(errors)[0] }); renderStep(); return; }
+			if (mode === 'demo') { submittedReference = 'DEMO · NO APPLICATION CREATED'; renderSuccess(); return; }
+			const button = root.querySelector<HTMLButtonElement>('[data-continue]'); if (button) { button.disabled = true; button.textContent = `${t('Submitting')}…`; }
+			try {
+				const payload = prepareKybSubmission(application, activeConfig());
+				if (location.hostname === '127.0.0.1' || location.hostname === 'localhost') {
+					await new Promise((resolve) => window.setTimeout(resolve, 450)); submittedReference = `LOCAL-${Date.now().toString(36).toUpperCase()}`;
+				} else {
+					const response = await fetch('/api/kyb/applications', { method: 'POST', headers: { 'content-type': 'application/json', 'idempotency-key': submissionIdempotencyKey }, body: JSON.stringify({ application: payload, clientSchemaVersion: 1 }) });
+					if (!response.ok) throw new Error(t('Secure submission is not configured. Your draft is still saved.'));
+					const result = await response.json() as { reference?: string }; if (!result.reference) throw new Error(t('The server did not return an application reference.')); submittedReference = result.reference;
+				}
+				application.status = 'submitted'; await draftAdapter.discard(); cachedDraft = null; track('kyb_submitted'); renderSuccess();
+			} catch (error) { track('kyb_submit_failed', { errorCode: 'submission_failed' }); errors = { submit: error instanceof Error ? error.message : t('Submission failed. Please try again.') }; renderStep(); }
+		};
+
+		root.addEventListener('input', (event) => { const target = event.target; if (target instanceof HTMLInputElement || target instanceof HTMLSelectElement || target instanceof HTMLTextAreaElement) updateFromControl(target); });
+		root.addEventListener('change', async (event) => {
+			const target = event.target;
+			if (target instanceof HTMLSelectElement && target.dataset.path === 'company.country') { await loadCountryConfig(target.value); errors = {}; renderStep(); return; }
+			if (target instanceof HTMLInputElement && target.type === 'file' && target.dataset.documentRequirement && target.files?.[0]) {
+				const file = target.files[0]; const requirementId = target.dataset.documentRequirement;
+				const uploadConfig = activeConfig().upload;
+				if (!uploadConfig.acceptedMimeTypes.includes(file.type) || file.size > uploadConfig.maxBytes) { errors = { [`documents.${requirementId}`]: file.size > uploadConfig.maxBytes ? 'The file is larger than 10 MB.' : 'Use a PDF, JPG, or PNG file.' }; renderStep(); return; }
+				application.documents = application.documents.filter((document) => document.requirementId !== requirementId);
+				const uploadRecord = { id: uid(), requirementId, fileId: '', filename: file.name, mimeType: file.type, size: file.size, status: 'uploading' as const };
+				application.documents.push(uploadRecord); errors = {}; renderStep();
+				try {
+					const result = uploadAdapter ? await uploadAdapter.upload(requirementId, file) : { fileId: `preview-${uid()}` };
+					const stored = application.documents.find((document) => document.id === uploadRecord.id);
+					if (stored) { stored.fileId = result.fileId; stored.status = 'uploaded'; }
+					track('kyb_document_uploaded');
+					if (mode === 'customer') void saveDraft();
+				} catch {
+					const stored = application.documents.find((document) => document.id === uploadRecord.id);
+					if (stored) stored.status = 'failed';
+				}
+				renderStep();
+			}
+			if (target instanceof HTMLInputElement && (target.type === 'radio' || target.type === 'checkbox') && !target.dataset.documentRequirement) { updateFromControl(target); if (target.dataset.path || target.dataset.booleanPath) { errors = {}; renderStep(); } }
+		});
+		root.addEventListener('click', async (event) => {
+			const target = event.target instanceof Element ? event.target.closest<HTMLElement>('button, [data-edit-section]') : null; if (!target) return;
+			if (target.matches('[data-kyb-select-trigger]')) {
+				const picker = target.closest<HTMLElement>('[data-kyb-select]');
+				if (picker) picker.dataset.open === 'true' ? closeCustomSelect(picker) : openCustomSelect(picker);
+				return;
+			}
+			if (target.matches('[data-kyb-select-option]')) {
+				const picker = target.closest<HTMLElement>('[data-kyb-select]');
+				const input = picker?.querySelector<HTMLInputElement>('input[type="hidden"][data-path]');
+				const trigger = picker?.querySelector<HTMLButtonElement>('[data-kyb-select-trigger]');
+				const value = target.dataset.value || '';
+				if (!picker || !input) return;
+				input.value = value;
+				picker.querySelectorAll<HTMLElement>('[data-kyb-select-option]').forEach((option) => option.setAttribute('aria-selected', String(option === target)));
+				const display = trigger?.querySelector<HTMLElement>('.kyb-select__value');
+				if (display) { display.textContent = target.textContent?.trim() || t('Select an option'); display.dataset.placeholder = 'false'; }
+				closeCustomSelect(picker, true);
+				updateFromControl(input);
+				delete errors[input.dataset.path || ''];
+				if (trigger) {
+					trigger.removeAttribute('aria-invalid');
+					const hint = picker.closest('.kyb-field')?.querySelector<HTMLElement>('.kyb-hint');
+					if (hint?.id) trigger.setAttribute('aria-describedby', hint.id); else trigger.removeAttribute('aria-describedby');
+				}
+				picker.closest('.kyb-field')?.querySelector('.kyb-error')?.remove();
+				if (input.dataset.path === 'company.country') { await loadCountryConfig(value); errors = {}; renderStep(); return; }
+				if (input.dataset.path === 'business.industry') { errors = {}; renderStep(); return; }
+				return;
+			}
+			if (target.matches('[data-start-customer]')) await start('customer');
+			if (target.matches('[data-start-demo]')) await start('demo');
+			if (target.matches('[data-resume]')) await start('customer', true);
+			if (target.matches('[data-start-over]')) {
+				if (!await confirmDraftReset()) return;
+				window.clearTimeout(saveTimer); await draftAdapter.discard(); cachedDraft = null; application = createEmptyKybApplication(); errors = {}; current = 'contact-email'; submissionIdempotencyKey = uid(); await loadCountryConfig(application.company.country); renderStep();
+			}
+			if (target.matches('[data-save-exit]')) {
+				if (mode !== 'customer' || await saveDraft(true)) {
+					if (mode === 'customer') await showDraftSavedConfirmation();
+					await renderStart();
+					scrollFlowIntoView();
+				}
+			}
+			if (target.matches('[data-retry-save]')) await saveDraft(true);
+			if (target.matches('[data-exit-flow]')) { await renderStart(); scrollFlowIntoView(); }
+			if (target.matches('[data-back]')) { const flow = getComputedKybFlow(application); const index = flow.indexOf(current); if (index > 0) { current = flow[index - 1]; errors = {}; renderStep(); } else { if (mode === 'customer') await saveDraft(true); await renderStart(); scrollFlowIntoView(); } }
+			if (target.matches('[data-continue]')) {
+				errors = validateKybMicrostep(application, current, activeConfig());
+				if (Object.keys(errors).length) { track('kyb_validation_failed', { errorCode: Object.keys(errors)[0] }); renderStep(); return; }
+				track('kyb_step_completed');
+				if (current === 'review') { void submit(); return; }
+				const flow = getComputedKybFlow(application); const index = flow.indexOf(current); current = flow[Math.min(index + 1, flow.length - 1)]; application.currentMicroId = current; if (mode === 'customer') void saveDraft(); renderStep();
+				if (current === 'review') track('kyb_review_opened');
+			}
+			if (target.dataset.jumpSection) { const section = KYB_SECTIONS.find((item) => item.id === target.dataset.jumpSection); if (section) { current = section.first; errors = {}; renderStep(); } }
+			if (target.dataset.editSection) { const section = KYB_SECTIONS.find((item) => item.id === target.dataset.editSection); if (section) { current = section.first; errors = {}; renderStep(); } }
+			if (target.dataset.addPerson) { const list = target.dataset.addPerson as 'beneficialOwners' | 'directors'; application.ownership[list].push({ id: uid(), fullName: '', dateOfBirth: '', residenceCountry: '', ...(list === 'beneficialOwners' ? { ownershipPercent: undefined } : {}) }); errors = {}; renderStep(); }
+			if (target.dataset.removePerson) { const list = target.dataset.removePerson as 'beneficialOwners' | 'directors'; application.ownership[list].splice(Number(target.dataset.index), 1); errors = {}; renderStep(); }
+			if (target.dataset.removeDocument) { application.documents = application.documents.filter((document) => document.requirementId !== target.dataset.removeDocument); errors = {}; renderStep(); }
+		});
+		root.addEventListener('keydown', (event) => {
+			const element = event.target instanceof Element ? event.target : null;
+			const picker = element?.closest<HTMLElement>('[data-kyb-select]');
+			if (!picker) return;
+			const trigger = element?.closest<HTMLElement>('[data-kyb-select-trigger]');
+			const option = element?.closest<HTMLButtonElement>('[data-kyb-select-option]');
+			const options = [...picker.querySelectorAll<HTMLButtonElement>('[data-kyb-select-option]')];
+			if (trigger && ['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(event.key)) { event.preventDefault(); openCustomSelect(picker, event.key === 'ArrowUp' ? 'last' : 'selected'); return; }
+			if (!option) { if (event.key === 'Escape') closeCustomSelect(picker, true); return; }
+			if (event.key === 'Escape') { event.preventDefault(); closeCustomSelect(picker, true); return; }
+			if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); option.click(); return; }
+			if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+			event.preventDefault();
+			const index = options.indexOf(option);
+			const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? options.length - 1 : event.key === 'ArrowDown' ? (index + 1) % options.length : (index - 1 + options.length) % options.length;
+			options[nextIndex]?.focus();
+		});
+		document.addEventListener('pointerdown', (event) => {
+			const target = event.target;
+			if (!(target instanceof Node) || !root.contains(target)) { closeCustomSelects(); return; }
+			root.querySelectorAll<HTMLElement>('[data-kyb-select][data-open="true"]').forEach((picker) => { if (!picker.contains(target)) closeCustomSelect(picker); });
+		});
+
+		void renderStart();
+	});
+
+	initializeKybFlows();
+	window.addEventListener('garna:page-mounted', initializeKybFlows);
+</script>

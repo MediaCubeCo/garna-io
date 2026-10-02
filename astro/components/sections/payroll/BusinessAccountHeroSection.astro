@@ -44,13 +44,17 @@ const hero = {
 			</div>
 		</div>
 
-		<div class="business-hero-devices" aria-label="Garna business account overview">
+		<div class="business-hero-devices" data-business-hero-devices aria-label="Garna business account overview">
 			<article class="business-hero-phone business-hero-phone--left" aria-hidden="true">
 				<img
 					class="business-hero-phone__image"
 					data-business-hero-image
-					data-src-default="/images/business-account/hero-phone-left.png"
-					data-src-ru="/images/business-account/hero-phone-left-ru.png?v=1"
+					src="/images/business-account/hero-phone-left.webp"
+					data-src-default="/images/business-account/hero-phone-left.webp"
+					data-src-ru="/images/business-account/hero-phone-left-ru.webp"
+					width="1600"
+					height="1600"
+					decoding="async"
 					alt=""
 				/>
 			</article>
@@ -59,10 +63,15 @@ const hero = {
 				<img
 					class="business-hero-phone__image"
 					data-business-hero-image
-					data-src-default="/images/business-account/hero-phone-center.png?v=3"
-					data-src-ru="/images/business-account/hero-phone-center-ru.png?v=1"
+					src="/images/business-account/hero-phone-center.webp"
+					data-src-default="/images/business-account/hero-phone-center.webp"
+					data-src-ru="/images/business-account/hero-phone-center-ru.webp"
 					data-alt-default="Garna business account balance and widgets"
 					data-alt-ru="Баланс и виджеты платежного счета Garna"
+					width="1600"
+					height="1600"
+					decoding="async"
+					fetchpriority="high"
 					alt=""
 				/>
 				<span
@@ -76,8 +85,12 @@ const hero = {
 				<img
 					class="business-hero-phone__image"
 					data-business-hero-image
-					data-src-default="/images/business-account/hero-phone-right.png?v=4"
-					data-src-ru="/images/business-account/hero-phone-right-ru.png?v=1"
+					src="/images/business-account/hero-phone-right.webp"
+					data-src-default="/images/business-account/hero-phone-right.webp"
+					data-src-ru="/images/business-account/hero-phone-right-ru.webp"
+					width="1600"
+					height="1600"
+					decoding="async"
 					alt=""
 				/>
 			</article>
@@ -745,6 +758,10 @@ const hero = {
 	}
 
 	@media (prefers-reduced-motion: reduce) {
+		.business-hero-devices {
+			transition: none;
+		}
+
 		.eor-hero-notification {
 			animation: none;
 			opacity: 1;
@@ -787,6 +804,17 @@ const hero = {
 		align-items: flex-start;
 		justify-content: center;
 		margin: clamp(3.5rem, 7vw, 5.5rem) auto 0;
+		opacity: 0;
+		transform: translateY(10px);
+		visibility: hidden;
+		transition: opacity 260ms ease, transform 260ms ease, visibility 0s linear 260ms;
+	}
+
+	.business-hero-devices[data-ready='true'] {
+		opacity: 1;
+		transform: translateY(0);
+		visibility: visible;
+		transition-delay: 0s;
 	}
 
 	.business-hero-phone {
@@ -911,16 +939,46 @@ const hero = {
 </style>
 
 <script>
+	const waitForBusinessHeroImage = async (image: HTMLImageElement) => {
+		if (!image.complete) {
+			await new Promise<void>((resolve) => {
+				image.addEventListener('load', () => resolve(), { once: true });
+				image.addEventListener('error', () => resolve(), { once: true });
+			});
+		}
+		if (typeof image.decode === 'function') {
+			try { await image.decode(); } catch { /* The load/error state above is authoritative. */ }
+		}
+	};
+
 	const syncBusinessHeroImages = () => {
 		const isRussian = document.documentElement.lang.toLowerCase().split('-')[0] === 'ru';
 
-		document.querySelectorAll<HTMLImageElement>('[data-business-hero-image]').forEach((image) => {
-			const nextSource = isRussian ? image.dataset.srcRu : image.dataset.srcDefault;
-			const nextAlt = isRussian ? image.dataset.altRu : image.dataset.altDefault;
+		document.querySelectorAll<HTMLElement>('[data-business-hero-devices]').forEach((devices) => {
+			const images = [...devices.querySelectorAll<HTMLImageElement>('[data-business-hero-image]')];
+			let sourceChanged = false;
 
-			if (nextSource && image.getAttribute('src') !== nextSource) image.src = nextSource;
-			image.alt = nextAlt || '';
-			image.lang = isRussian ? 'ru' : '';
+			images.forEach((image) => {
+				const nextSource = isRussian ? image.dataset.srcRu : image.dataset.srcDefault;
+				const nextAlt = isRussian ? image.dataset.altRu : image.dataset.altDefault;
+
+				if (nextSource && image.getAttribute('src') !== nextSource) {
+					devices.dataset.ready = 'false';
+					sourceChanged = true;
+					image.src = nextSource;
+				}
+				image.alt = nextAlt || '';
+				image.lang = isRussian ? 'ru' : '';
+			});
+
+			if (!sourceChanged && devices.dataset.ready === 'true') return;
+			devices.setAttribute('aria-busy', 'true');
+			Promise.all(images.map(waitForBusinessHeroImage)).then(() => {
+				window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+					devices.dataset.ready = 'true';
+					devices.removeAttribute('aria-busy');
+				}));
+			});
 		});
 	};
 
