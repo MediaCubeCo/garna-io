@@ -85,7 +85,8 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 	:global(.kyb-select__value[data-placeholder='true']) { color: #85858b; }
 	:global(.kyb-select__chevron) { width: 1rem; height: 1rem; flex: 0 0 auto; color: #8b8b91; transition: color 160ms ease, transform 160ms ease; }
 	:global(.kyb-select[data-open='true'] .kyb-select__chevron) { color: #cbf300; transform: rotate(180deg); }
-	:global(.kyb-select__menu) { position: absolute; z-index: 40; top: calc(100% + .5rem); right: 0; left: 0; max-height: 15rem; overflow-y: auto; border: 1px solid rgb(255 255 255 / .12); border-radius: 12px; background: #101010; padding: .35rem; box-shadow: 0 18px 42px rgb(0 0 0 / .42); }
+	:global(.kyb-select__menu) { position: absolute; z-index: 40; top: calc(100% + .5rem); right: 0; left: 0; box-sizing: border-box; max-height: var(--kyb-select-menu-max-height, 15rem); overflow-y: auto; overscroll-behavior: contain; border: 1px solid rgb(255 255 255 / .12); border-radius: 12px; background: #101010; padding: .35rem; box-shadow: 0 18px 42px rgb(0 0 0 / .42); scrollbar-color: rgb(255 255 255 / .24) transparent; scrollbar-width: thin; }
+	:global(.kyb-select[data-placement='top'] .kyb-select__menu) { top: auto; bottom: calc(100% + .5rem); box-shadow: 0 -18px 42px rgb(0 0 0 / .42); }
 	:global(.kyb-select__menu[hidden]) { display: none; }
 	:global(.kyb-select__option) { display: flex; width: 100%; min-height: 2.65rem; align-items: center; border: 1px solid transparent; border-radius: 9px; background: transparent; padding: .6rem .7rem; color: #d5d5d8; cursor: pointer; font: 500 .875rem/1.4 Manrope, sans-serif; text-align: left; }
 	:global(.kyb-select__option:hover), :global(.kyb-select__option:focus-visible) { background: rgb(255 255 255 / .055); color: #fff; outline: none; }
@@ -553,6 +554,28 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 			if (menu) menu.hidden = true;
 			if (restoreFocus) trigger?.focus();
 		};
+		const positionCustomSelect = (picker: HTMLElement) => {
+			const trigger = picker.querySelector<HTMLButtonElement>('[data-kyb-select-trigger]');
+			const menu = picker.querySelector<HTMLElement>('[data-kyb-select-menu]');
+			const app = picker.closest<HTMLElement>('.kyb-app');
+			if (!trigger || !menu || !app || menu.hidden) return;
+			const edgeGap = 8;
+			const menuGap = 8;
+			const appRect = app.getBoundingClientRect();
+			const triggerRect = trigger.getBoundingClientRect();
+			const header = document.querySelector<HTMLElement>('.garna-header');
+			const headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+			const visibleTop = Math.max(appRect.top + edgeGap, headerBottom + edgeGap, edgeGap);
+			const visibleBottom = Math.min(appRect.bottom - edgeGap, window.innerHeight - edgeGap);
+			if (triggerRect.bottom <= visibleTop || triggerRect.top >= visibleBottom) { closeCustomSelect(picker); return; }
+			const spaceAbove = Math.max(0, triggerRect.top - visibleTop - menuGap);
+			const spaceBelow = Math.max(0, visibleBottom - triggerRect.bottom - menuGap);
+			const desiredHeight = Math.min(240, menu.scrollHeight);
+			const opensUp = spaceBelow < desiredHeight && spaceAbove > spaceBelow;
+			const availableHeight = opensUp ? spaceAbove : spaceBelow;
+			picker.dataset.placement = opensUp ? 'top' : 'bottom';
+			menu.style.setProperty('--kyb-select-menu-max-height', `${Math.max(0, Math.min(desiredHeight, availableHeight))}px`);
+		};
 		const closeCustomSelects = (except?: HTMLElement) => {
 			root.querySelectorAll<HTMLElement>('[data-kyb-select]').forEach((picker) => { if (picker !== except) closeCustomSelect(picker); });
 		};
@@ -563,9 +586,9 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 			const options = [...picker.querySelectorAll<HTMLButtonElement>('[data-kyb-select-option]')];
 			picker.dataset.open = 'true';
 			if (trigger) trigger.setAttribute('aria-expanded', 'true');
-			if (menu) menu.hidden = false;
+			if (menu) { menu.hidden = false; positionCustomSelect(picker); }
 			const option = focusEdge === 'first' ? options[0] : focusEdge === 'last' ? options.at(-1) : options.find((item) => item.getAttribute('aria-selected') === 'true') || options[0];
-			window.requestAnimationFrame(() => option?.focus());
+			window.requestAnimationFrame(() => { option?.focus(); option?.scrollIntoView({ block: 'nearest' }); });
 		};
 
 		const submit = async () => {
@@ -694,6 +717,9 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 			if (!(target instanceof Node) || !root.contains(target)) { closeCustomSelects(); return; }
 			root.querySelectorAll<HTMLElement>('[data-kyb-select][data-open="true"]').forEach((picker) => { if (!picker.contains(target)) closeCustomSelect(picker); });
 		});
+		const repositionOpenCustomSelects = () => root.querySelectorAll<HTMLElement>('[data-kyb-select][data-open="true"]').forEach(positionCustomSelect);
+		window.addEventListener('resize', repositionOpenCustomSelects, { passive: true });
+		window.addEventListener('scroll', repositionOpenCustomSelects, { passive: true });
 
 		void renderStart();
 	});
