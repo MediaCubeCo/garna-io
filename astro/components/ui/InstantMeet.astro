@@ -28,6 +28,16 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 			</div>
 			<h2 id="instant-meet-title" data-instant-meet-title>Our team is offline right now</h2>
 			<p data-instant-meet-message>Sorry, our specialists are offline right now. Leave your details and choose a convenient time — or come back when a real person is online.</p>
+			<form class="instant-meet__email" data-instant-meet-email-form novalidate hidden>
+				<label class="instant-meet__email-label" for="instant-meet-email">
+					<span data-instant-meet-email-label>Work email</span>
+					<input id="instant-meet-email" type="email" name="email" autocomplete="email" inputmode="email" data-instant-meet-email placeholder="name@company.com" />
+				</label>
+				<p class="instant-meet__email-error" data-instant-meet-email-error hidden></p>
+				<button class="instant-meet__start" type="submit" data-instant-meet-start>
+					<span data-instant-meet-start-label>Start the call</span>
+				</button>
+			</form>
 			<p class="instant-meet__local-time" data-instant-meet-local-time></p>
 			<div class="instant-meet__actions">
 				<a class="instant-meet__book" href="/en/form" data-instant-meet-book>
@@ -43,6 +53,7 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 
 <script>
 	import { animate, spring } from 'motion';
+	import { getNextInstantMeetOpening, isInstantMeetLive } from '../../utils/instant-meet-availability';
 
 	(() => {
 		const root = document.querySelector('[data-instant-meet]');
@@ -65,7 +76,15 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 		const dismiss = root.querySelector('[data-instant-meet-dismiss]');
 		const note = root.querySelector('[data-instant-meet-note]');
 		const close = root.querySelector('[data-instant-meet-close]');
+		const emailForm = root.querySelector('[data-instant-meet-email-form]');
+		const emailLabel = root.querySelector('[data-instant-meet-email-label]');
+		const emailInput = root.querySelector('[data-instant-meet-email]');
+		const emailError = root.querySelector('[data-instant-meet-email-error]');
+		const startButton = root.querySelector('[data-instant-meet-start]');
+		const startLabel = root.querySelector('[data-instant-meet-start-label]');
+		const actions = root.querySelector('.instant-meet__actions');
 		let available = false;
+		let dialogMode = 'offline';
 		let pending = false;
 		let previousFocus = null;
 		let dialogOpen = false;
@@ -90,6 +109,8 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 				message: 'Sorry, our specialists are offline right now. Leave your details and choose a convenient time — or come back when a real person is online.',
 				book: 'Leave details · Book a time', dismiss: "I'll come back", note: 'A product specialist — not a bot or a calendar — will answer during live hours.',
 				connecting: 'Finding an expert…', errorTitle: 'We could not start the instant call', errorMessage: 'Please leave your details in the current booking form. Our team will get back to you.',
+				emailTitle: 'Leave your email', emailMessage: 'The specialist needs to know who is joining the call.',
+				emailLabel: 'Work email', emailPlaceholder: 'name@company.com', emailSubmit: 'Start the call', emailInvalid: 'Enter a valid email address.',
 				next: (value) => `A human will be available again in ${value}.`,
 			},
 			es: {
@@ -98,6 +119,8 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 				message: 'Lo sentimos, nuestros especialistas no están disponibles ahora. Déjanos tus datos y elige una hora, o vuelve cuando haya una persona conectada.',
 				book: 'Dejar datos · Reservar hora', dismiss: 'Volveré después', note: 'Durante el horario en línea responde un especialista real, no un bot ni un calendario.',
 				connecting: 'Buscando un experto…', errorTitle: 'No pudimos iniciar la llamada', errorMessage: 'Déjanos tus datos en el formulario actual. Nuestro equipo se pondrá en contacto contigo.',
+				emailTitle: 'Deja tu email', emailMessage: 'Así el especialista sabrá quién se une a la llamada.',
+				emailLabel: 'Email de trabajo', emailPlaceholder: 'name@company.com', emailSubmit: 'Empezar la llamada', emailInvalid: 'Introduce un email válido.',
 				next: (value) => `Una persona volverá a estar disponible dentro de ${value}.`,
 			},
 			pt: {
@@ -106,6 +129,8 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 				message: 'Desculpe, os nossos especialistas estão offline agora. Deixe os seus dados e escolha um horário, ou volte quando uma pessoa estiver online.',
 				book: 'Deixar dados · Agendar horário', dismiss: 'Volto depois', note: 'Durante o horário online, responde um especialista real — não um bot nem um calendário.',
 				connecting: 'A encontrar um especialista…', errorTitle: 'Não foi possível iniciar a chamada', errorMessage: 'Deixe os seus dados no formulário atual. A nossa equipa entrará em contacto.',
+				emailTitle: 'Deixe o seu email', emailMessage: 'Assim o especialista saberá quem entra na chamada.',
+				emailLabel: 'Email de trabalho', emailPlaceholder: 'name@company.com', emailSubmit: 'Iniciar a chamada', emailInvalid: 'Introduza um email válido.',
 				next: (value) => `Uma pessoa estará disponível novamente dentro de ${value}.`,
 			},
 			ru: {
@@ -114,6 +139,8 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 				message: 'Извините, сейчас наши специалисты не на связи. Оставьте контакты и выберите удобное время — или вернитесь, когда вам ответит живой человек.',
 				book: 'Оставить контакты · Выбрать время', dismiss: 'Вернусь позже', note: 'В рабочее время отвечает специалист по продукту — не бот и не календарь.',
 				connecting: 'Ищем свободного специалиста…', errorTitle: 'Не удалось начать мгновенный звонок', errorMessage: 'Оставьте контакты в текущей форме бронирования, и команда свяжется с вами.',
+				emailTitle: 'Оставьте email', emailMessage: 'Так специалист будет знать, кто подключается к звонку.',
+				emailLabel: 'Рабочий email', emailPlaceholder: 'name@company.com', emailSubmit: 'Начать звонок', emailInvalid: 'Введите корректный email.',
 				next: (value) => `Сотрудники снова будут на связи через ${value}.`,
 			},
 		};
@@ -123,21 +150,9 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 			return candidate && candidate in translations ? candidate : 'en';
 		};
 
-		const getMinskParts = (date = new Date()) => Object.fromEntries(
-			new Intl.DateTimeFormat('en-CA', {
-				timeZone: 'Europe/Minsk', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', hourCycle: 'h23',
-			}).formatToParts(date).filter((part) => part.type !== 'literal').map((part) => [part.type, Number(part.value)]),
-		);
-
-		const getNextOpening = (now = new Date()) => {
-			const parts = getMinskParts(now);
-			const dayOffset = parts.hour >= 19 ? 1 : 0;
-			return new Date(Date.UTC(parts.year, parts.month - 1, parts.day + dayOffset, 7, 0, 0));
-		};
-
 		const getTimeUntilNextOpening = (language) => {
 			const now = new Date();
-			const totalMinutes = Math.max(1, Math.ceil((getNextOpening(now).getTime() - now.getTime()) / 60_000));
+			const totalMinutes = Math.max(1, Math.ceil((getNextInstantMeetOpening(now).getTime() - now.getTime()) / 60_000));
 			const hours = Math.floor(totalMinutes / 60);
 			const minutes = totalMinutes % 60;
 			const units = [];
@@ -146,24 +161,53 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 			return new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(units);
 		};
 
+		const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+		const applyDialogMode = (mode) => {
+			const copy = translations[getLanguage()];
+			const emailMode = mode === 'email';
+			dialogMode = mode;
+			root.classList.toggle('is-email-mode', emailMode);
+			if (emailForm instanceof HTMLElement) emailForm.hidden = !emailMode;
+			if (actions instanceof HTMLElement) actions.hidden = emailMode;
+			if (localTime instanceof HTMLElement) localTime.hidden = emailMode || mode === 'error';
+			if (emailError instanceof HTMLElement) {
+				emailError.hidden = true;
+				emailError.textContent = '';
+			}
+			if (emailInput instanceof HTMLInputElement) emailInput.removeAttribute('aria-invalid');
+			if (mode === 'error') {
+				if (title) title.textContent = copy.errorTitle;
+				if (message) message.textContent = copy.errorMessage;
+			} else if (emailMode) {
+				if (title) title.textContent = copy.emailTitle;
+				if (message) message.textContent = copy.emailMessage;
+				if (emailLabel) emailLabel.textContent = copy.emailLabel;
+				if (emailInput instanceof HTMLInputElement) emailInput.placeholder = copy.emailPlaceholder;
+				if (startLabel) startLabel.textContent = copy.emailSubmit;
+			} else {
+				if (title) title.textContent = copy.title;
+				if (message) message.textContent = copy.message;
+				if (localTime instanceof HTMLElement) localTime.textContent = copy.next(getTimeUntilNextOpening(getLanguage()));
+			}
+		};
+
 		const updateState = () => {
 			const language = getLanguage();
 			const copy = translations[language];
-			const parts = getMinskParts();
-			available = parts.hour >= 10 && parts.hour < 19;
+			available = isInstantMeetLive();
 			root.classList.toggle('is-live', available);
 			root.classList.toggle('is-offline', !available);
 			if (label) label.textContent = copy.label;
 			if (status) status.textContent = copy.subtitle;
 			if (eyebrow) eyebrow.textContent = copy.eyebrow;
-			if (title) title.textContent = copy.title;
-			if (message) message.textContent = copy.message;
 			if (bookLabel) bookLabel.textContent = copy.book;
 			if (dismiss) dismiss.textContent = copy.dismiss;
 			if (note) note.textContent = copy.note;
 			if (book instanceof HTMLAnchorElement) book.href = `/${language}/form`;
-			if (localTime) {
-				localTime.textContent = available ? '' : copy.next(getTimeUntilNextOpening(language));
+			if (dialogMode === 'offline') applyDialogMode('offline');
+			if (localTime && !localTime.hidden) {
+				localTime.textContent = copy.next(getTimeUntilNextOpening(language));
 			}
 		};
 
@@ -293,17 +337,14 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 				dialogTransitioning = false;
 			}
 
-			if (open) trigger.focus();
+			if (open && emailInput instanceof HTMLInputElement && emailForm instanceof HTMLElement && !emailForm.hidden) emailInput.focus();
+			else if (open) trigger.focus();
 			else if (previousFocus instanceof HTMLElement) previousFocus.focus();
 		};
 
 		const openDialog = (mode = 'offline') => {
 			if (dialogOpen || dialogTransitioning || !(backdrop instanceof HTMLElement) || !(dialog instanceof HTMLElement)) return;
-			const copy = translations[getLanguage()];
-			if (mode === 'error') {
-				if (title) title.textContent = copy.errorTitle;
-				if (message) message.textContent = copy.errorMessage;
-			}
+			applyDialogMode(mode);
 			previousFocus = document.activeElement;
 			dialogOpen = true;
 			void transitionDialog(true);
@@ -312,24 +353,34 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 		const closeDialog = () => {
 			if (!dialogOpen || dialogTransitioning || !(backdrop instanceof HTMLElement)) return;
 			dialogOpen = false;
+			dialogMode = 'offline';
 			void transitionDialog(false);
 		};
 
-		const startMeet = async () => {
+		const startMeet = async (email) => {
 			if (pending || !(trigger instanceof HTMLElement)) return;
 			updateState();
-			track('instant_meet_click');
 			if (!available) {
-				openDialog();
+				applyDialogMode('offline');
+				if (!dialogOpen) openDialog('offline');
 				return;
 			}
 
 			pending = true;
 			trigger.setAttribute('aria-disabled', 'true');
 			root.classList.add('is-pending');
-			if (label) label.textContent = translations[getLanguage()].connecting;
+			if (startButton instanceof HTMLButtonElement) startButton.disabled = true;
+			if (startLabel) startLabel.textContent = translations[getLanguage()].connecting;
 			try {
-				const response = await fetch(root.dataset.webhook || '', { method: 'POST', headers: { Accept: 'application/json' } });
+				const response = await fetch(root.dataset.webhook || '', {
+					method: 'POST',
+					headers: { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
+					body: new URLSearchParams({
+						email,
+						page: window.location.pathname,
+						locale: getLanguage(),
+					}),
+				});
 				if (!response.ok) throw new Error(`Instant meet request failed with status ${response.status}`);
 				let meetingUrl = response.headers.get('meeting_url');
 				if (!meetingUrl) {
@@ -348,19 +399,52 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 				pending = false;
 				trigger.removeAttribute('aria-disabled');
 				root.classList.remove('is-pending');
+				if (startButton instanceof HTMLButtonElement) startButton.disabled = false;
 				updateState();
-				openDialog('error');
+				applyDialogMode('error');
+				if (!dialogOpen) openDialog('error');
+			}
+		};
+
+		const showEmailError = () => {
+			const copy = translations[getLanguage()];
+			if (emailError instanceof HTMLElement) {
+				emailError.hidden = false;
+				emailError.textContent = copy.emailInvalid;
+			}
+			if (emailInput instanceof HTMLInputElement) {
+				emailInput.setAttribute('aria-invalid', 'true');
+				emailInput.focus();
 			}
 		};
 
 		trigger?.addEventListener('click', (event) => {
-			if (!dialogOpen && !(event.target instanceof Element && event.target.closest('[data-instant-meet-dialog]'))) void startMeet();
+			if (!dialogOpen && !(event.target instanceof Element && event.target.closest('[data-instant-meet-dialog]'))) {
+				updateState();
+				track('instant_meet_click');
+				openDialog(available ? 'email' : 'offline');
+			}
 		});
 		trigger?.addEventListener('keydown', (event) => {
 			if (!dialogOpen && (event.key === 'Enter' || event.key === ' ')) {
 				event.preventDefault();
-				void startMeet();
+				updateState();
+				track('instant_meet_click');
+				openDialog(available ? 'email' : 'offline');
 			}
+		});
+		emailForm?.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const email = emailInput instanceof HTMLInputElement ? emailInput.value.trim() : '';
+			if (!isValidEmail(email)) {
+				showEmailError();
+				return;
+			}
+			void startMeet(email);
+		});
+		emailInput?.addEventListener('input', () => {
+			if (emailError instanceof HTMLElement) emailError.hidden = true;
+			if (emailInput instanceof HTMLInputElement) emailInput.removeAttribute('aria-invalid');
 		});
 		close?.addEventListener('click', closeDialog);
 		dismiss?.addEventListener('click', closeDialog);
@@ -411,6 +495,15 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 	.instant-meet__eyebrow .instant-meet__signal { border-color: rgba(203,243,0,.2); background: #cbf300; }
 	.instant-meet__dialog h2 { max-width: 420px; margin: 0 0 16px; font-size: clamp(30px, 6vw, 48px); font-weight: 500; line-height: 1.03; letter-spacing: -.045em; }
 	.instant-meet__dialog > p { position: relative; z-index: 1; max-width: 430px; margin: 0; color: #a1a1aa; font-size: 15px; line-height: 1.65; }
+	.instant-meet__email { position: relative; z-index: 1; display: grid; gap: 12px; margin-top: 22px; }
+	.instant-meet__email[hidden], .instant-meet__email-error[hidden], .instant-meet__local-time[hidden], .instant-meet__actions[hidden] { display: none; }
+	.instant-meet__email-label { display: grid; gap: 8px; color: #fff; font-size: 12px; font-weight: 700; }
+	.instant-meet__email input { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; background: rgba(255,255,255,.04); color: #fff; font: inherit; font-size: 15px; }
+	.instant-meet__email input::placeholder { color: rgba(255,255,255,.38); }
+	.instant-meet__email input:focus-visible { outline: 2px solid #cbf300; outline-offset: 2px; }
+	.instant-meet__email-error { margin: 0; color: #ff8fa3; font-size: 12px; line-height: 1.4; }
+	.instant-meet__start { display: inline-flex; width: fit-content; min-height: 48px; align-items: center; justify-content: center; padding: 12px 18px; border: 0; border-radius: 12px; background: #cbf300; color: #101010; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
+	.instant-meet__start:disabled { cursor: wait; opacity: .72; }
 	.instant-meet__local-time { margin-top: 16px !important; color: #fff !important; font-size: 12px !important; font-weight: 700; }
 	.instant-meet__actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 28px; }
 	.instant-meet__book { display: inline-flex; min-height: 48px; align-items: center; gap: 12px; padding: 12px 18px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: #30312f; color: #fff; font-size: 13px; font-weight: 700; text-decoration: none; transition: background .2s ease, border-color .2s ease; }

@@ -94,8 +94,14 @@ describe('native Astro architecture', () => {
 		const hero = await readFile(path.join(root, 'astro/components/sections/HeroSection.astro'), 'utf8');
 		const finalCta = await readFile(path.join(root, 'astro/components/sections/FinalCTASection.astro'), 'utf8');
 
+		const availability = await readFile(path.join(root, 'astro/utils/instant-meet-availability.ts'), 'utf8');
+
 		expect(baseLayout).toContain('<InstantMeet />');
-		expect(instantMeet).toContain('Europe/Minsk');
+		expect(availability).toContain('Europe/Minsk');
+		expect(availability).toContain("new Set(['Mon', 'Tue', 'Wed', 'Thu', 'Fri'])");
+		expect(instantMeet).toContain('isInstantMeetLive');
+		expect(instantMeet).toContain('data-instant-meet-email');
+		expect(instantMeet).toContain("openDialog(available ? 'email' : 'offline')");
 		expect(instantMeet).toContain('Talk to a human');
 		expect(instantMeet).toContain('Jump on a video call right now');
 		expect(instantMeet).toContain('getTimeUntilNextOpening');
