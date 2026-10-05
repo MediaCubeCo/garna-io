@@ -27,6 +27,7 @@ const {
 } = Astro.props;
 
 const currentPath = getPagePathFromPathname(Astro.url.pathname);
+const showInstantMeet = false;
 const privacyLanguage = Astro.url.pathname.split('/').filter(Boolean)[0]?.toLowerCase() || 'en';
 const privacySnippet = buildPrivacyManagerSnippet(privacyLanguage);
 
@@ -99,7 +100,7 @@ const {
 			<slot />
 		</main>
 		{showFooter && <Footer />}
-		<InstantMeet />
+		{showInstantMeet && <InstantMeet />}
 		<div id="astro-page-scripts" data-astro-page-scripts>
 			<slot name="widgets" />
 		</div>

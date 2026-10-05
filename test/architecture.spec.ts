@@ -96,7 +96,8 @@ describe('native Astro architecture', () => {
 
 		const availability = await readFile(path.join(root, 'astro/utils/instant-meet-availability.ts'), 'utf8');
 
-		expect(baseLayout).toContain('<InstantMeet />');
+		expect(baseLayout).toContain('const showInstantMeet = false');
+		expect(baseLayout).toContain('{showInstantMeet && <InstantMeet />}');
 		expect(availability).toContain('Europe/Minsk');
 		expect(availability).toContain("new Set(['Mon', 'Tue', 'Wed', 'Thu', 'Fri'])");
 		expect(instantMeet).toContain('isInstantMeetLive');
