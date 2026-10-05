@@ -1,320 +1,591 @@
 ---
 import Section from '../../layout/Section.astro';
+import SectionHeader from '../../layout/SectionHeader.astro';
+import Button from '../../ui/Button.astro';
 ---
 
 <Section contained={false} spacing="none" class="py-16 lg:py-32">
         <div class="h-fit max-w-7xl mr-auto ml-auto pr-6 pl-6">
             <div class="lg:mb-20 text-center mb-16">
-                <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope mb-6"
-                    data-translate="contractorBenefits.title">Benefits for your contractors</h2>
-                <p data-garna-subtitle class="text-xl font-light text-gray-400 font-manrope"
-                    data-translate="contractorBenefits.description">Give your team the flexibility and convenience they
-                    deserve</p>
+                <SectionHeader
+                    title={{ text: 'Everything You Need to Manage Contractors', translateKey: 'contractorBenefits.title' }}
+                    description={{ text: 'With Garna, you can manage contractor engagement and global payments from one platform', translateKey: 'contractorBenefits.description' }}
+                    class="mx-auto max-w-5xl"
+                />
+                <div class="mt-10 flex justify-center">
+                    <Button
+                        href="#"
+                        variant="primary"
+                        size="header"
+                        effect="none"
+                        icon="none"
+                        onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'contractor_benefits_demo' });"
+                    >
+                        <span data-translate="whyGarna.cta.button">Book a demo</span>
+                    </Button>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-8">
+            <div class="contractor-benefits-grid grid grid-cols-1 gap-6 lg:grid-cols-3">
                 <!-- Card 3: Payment Methods (Moved to First) -->
                 <div
-                    class="glass-card flex flex-col overflow-hidden md:items-center md:text-center md:pt-10 md:pr-10 md:pb-10 md:pl-10 lg:items-stretch lg:text-left lg:pl-8 lg:pt-8 lg:pb-8 lg:pr-8 bg-[#0c0c0c] rounded-3xl pt-6 pr-6 pb-6 pl-6 relative">
-                    <h3 class="text-lg font-medium text-white tracking-tight font-manrope mb-3"
-                        data-translate="contractorBenefits.methods.title">Multiple payout methods</h3>
-                    <p class="leading-relaxed md:mb-3 text-sm text-gray-400 font-manrope"
-                        data-translate="contractorBenefits.methods.description">Contractors receive payouts via bank
-                        transfers in 80+ currencies, cards, wallets, or cryptocurrencies</p>
+                    class="contractor-benefits-card glass-card flex flex-col overflow-hidden border border-white/[0.08] bg-[#0c0c0c]/[0.72] md:items-center md:text-center md:pt-10 md:pr-10 md:pb-10 md:pl-10 lg:min-h-[520px] lg:items-stretch lg:text-left lg:pl-8 lg:pt-8 lg:pb-8 lg:pr-8 rounded-3xl pt-6 pr-6 pb-6 pl-6 relative"
+                    data-card-glow="true"
+                    data-interactive="true">
+                    <h3 class="mx-auto max-w-md text-[26px] font-medium leading-tight text-center text-white tracking-tight font-manrope"
+                        data-translate="contractorBenefits.methods.title">One Contract Instead of&nbsp;Dozens</h3>
+                    <p class="mx-auto mt-4 max-w-md leading-relaxed md:mb-3 text-base font-semibold text-center text-gray-400 font-manrope"
+                        data-translate="contractorBenefits.methods.description">Manage everything through one contract and a single consolidated invoice</p>
 
                     <div
-                        class="md:mt-8 lg:mt-auto md:max-w-md lg:max-w-full w-full max-w-md mt-6 mr-auto ml-auto space-y-2.5">
-                        <!-- Bank Transfer -->
-                        <div
-                            class="flex items-center justify-between p-2.5 rounded-xl bg-[#0A0A0A] border border-white/5 text-left group hover:bg-[#141414] cursor-pointer transition-colors duration-200">
-                            <div class="flex items-center gap-3">
-                                <div
-                                    class="w-8 h-8 rounded-lg bg-[#1A1A1A] border border-white/5 flex items-center justify-center text-gray-400 group-hover:text-white group-hover:border-white/10 transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" data-lucide="landmark" aria-hidden="true"
-                                        class="lucide lucide-landmark w-3.5 h-3.5">
-                                        <path d="M10 18v-7"></path>
-                                        <path
-                                            d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z">
-                                        </path>
-                                        <path d="M14 18v-7"></path>
-                                        <path d="M18 18v-7"></path>
-                                        <path d="M3 22h18"></path>
-                                        <path d="M6 18v-7"></path>
-                                    </svg>
+                        class="contractor-benefits-visual-shell md:mt-8 lg:mt-auto md:max-w-md lg:max-w-full w-full max-w-md mt-6 mr-auto ml-auto text-left">
+                        <div class="contractor-benefits-visual-stage contractor-benefits-visual-stage--folder">
+                            <div class="contract-folder-visual relative mx-auto h-[318px] w-full max-w-[318px]">
+                                <div class="contract-folder-papers" aria-hidden="true">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
                                 </div>
-                                <span
-                                    class="text-xs font-medium text-gray-300 font-sans group-hover:text-white transition-colors"
-                                    data-translate="contractorBenefits.methods.items.bankTransfer">Bank transfer</span>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" data-lucide="chevron-right" aria-hidden="true"
-                                class="lucide lucide-chevron-right w-3.5 h-3.5 text-gray-600 group-hover:text-white transition-colors">
-                                <path d="m9 18 6-6-6-6"></path>
-                            </svg>
-                        </div>
-
-                        <!-- Transfer to a card (Highlight) -->
-                        <div class="relative text-left group cursor-pointer">
-                            <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-5-opacity"></div>
-                            <div
-                                class="relative flex items-center justify-between p-2.5 rounded-xl bg-[#121212] border border-white/10 shadow-lg group-hover:bg-[#1A1A1A] transition-colors duration-200">
-                                <div class="flex items-center gap-3">
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" data-lucide="credit-card"
-                                            aria-hidden="true" class="lucide lucide-credit-card w-3.5 h-3.5">
-                                            <rect width="20" height="14" x="2" y="5" rx="2"></rect>
-                                            <line x1="2" x2="22" y1="10" y2="10"></line>
-                                        </svg>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <span
-                                            class="text-xs font-medium text-gray-300 font-sans group-hover:text-white transition-colors"
-                                            data-translate="contractorBenefits.methods.items.cardTransfer">Transfer to a
-                                            card</span>
-                                        <span
-                                            class="text-[8px] font-semibold text-[#CBF300] bg-[#CBF300]/10 px-1.5 py-0.5 rounded border border-[#CBF300]/20 uppercase tracking-wide font-sans"
-                                            data-translate="contractorBenefits.methods.items.newBadge">New</span>
-                                    </div>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round" data-lucide="chevron-right" aria-hidden="true"
-                                    class="lucide lucide-chevron-right w-3.5 h-3.5 text-gray-600 group-hover:text-white transition-colors">
-                                    <path d="m9 18 6-6-6-6"></path>
+                                <svg class="contract-folder-svg" viewBox="0 0 292 292" fill="none" aria-hidden="true">
+                                    <defs>
+                                        <linearGradient id="contract-folder-inner-light" x1="92" y1="78" x2="202" y2="242" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="white" stop-opacity="0.045" />
+                                            <stop offset="0.48" stop-color="white" stop-opacity="0.012" />
+                                            <stop offset="1" stop-color="white" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="contract-folder-inner-depth" x1="154" y1="152" x2="154" y2="262" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#050607" stop-opacity="0" />
+                                            <stop offset="1" stop-color="#050607" stop-opacity="0.36" />
+                                        </linearGradient>
+                                    </defs>
+                                    <g>
+                                        <path d="M61 91C61 83.8 66.8 78 74 78H217C224.2 78 230 83.8 230 91V132C230 137 233.1 141.5 237.8 143.2L245.4 146C250.5 147.9 253.9 152.7 253.9 158.1V204.9C253.9 210.1 250.7 214.8 245.8 216.8L238 220C233.2 222 230 226.7 230 231.9V249C230 256.2 224.2 262 217 262H74C66.8 262 61 256.2 61 249V91Z" fill="#070809" />
+                                        <path d="M61 91C61 83.8 66.8 78 74 78H217C224.2 78 230 83.8 230 91V132C230 137 233.1 141.5 237.8 143.2L245.4 146C250.5 147.9 253.9 152.7 253.9 158.1V204.9C253.9 210.1 250.7 214.8 245.8 216.8L238 220C233.2 222 230 226.7 230 231.9V249C230 256.2 224.2 262 217 262H74C66.8 262 61 256.2 61 249V91Z" fill="url(#contract-folder-inner-light)" />
+                                        <path d="M61 91C61 83.8 66.8 78 74 78H217C224.2 78 230 83.8 230 91V132C230 137 233.1 141.5 237.8 143.2L245.4 146C250.5 147.9 253.9 152.7 253.9 158.1V204.9C253.9 210.1 250.7 214.8 245.8 216.8L238 220C233.2 222 230 226.7 230 231.9V249C230 256.2 224.2 262 217 262H74C66.8 262 61 256.2 61 249V91Z" fill="url(#contract-folder-inner-depth)" />
+                                        <path d="M75 86H216C220.4 86 222 89.6 222 94V132.8C222 143.6 228.7 153.3 238.8 157L241.9 158.1C245 159.2 247 162.1 247 165.3V199.9C247 203.1 245.1 205.9 242.2 207.1L235 210.1C227.1 213.4 222 221.1 222 229.6V246C222 250.4 218.4 254 214 254H75C70.6 254 67 250.4 67 246V94C67 89.6 70.6 86 75 86Z" stroke="white" stroke-opacity="0.075" />
+                                    </g>
                                 </svg>
-                            </div>
-                        </div>
-
-                        <!-- Electronic wallets -->
-                        <div
-                            class="flex items-center justify-between p-2.5 rounded-xl bg-[#0A0A0A] border border-white/5 text-left group hover:bg-[#141414] cursor-pointer transition-colors duration-200">
-                            <div class="flex items-center gap-3">
-                                <div
-                                    class="w-8 h-8 rounded-lg bg-[#1A1A1A] border border-white/5 flex items-center justify-center text-gray-400 group-hover:text-white group-hover:border-white/10 transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" data-lucide="scan-line" aria-hidden="true"
-                                        class="lucide lucide-scan-line w-3.5 h-3.5">
-                                        <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
-                                        <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
-                                        <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
-                                        <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
-                                        <path d="M7 12h10"></path>
-                                    </svg>
+                                <div class="contract-folder-label">
+                                    <em data-translate="contractorBenefits.visual.folderTag">All in one</em>
+                                    <span data-translate="contractorBenefits.visual.contractsFolder">Contracts</span>
+                                    <small>Northstar Labs / Garna</small>
                                 </div>
-                                <span
-                                    class="text-xs font-medium text-gray-300 font-sans group-hover:text-white transition-colors"
-                                    data-translate="contractorBenefits.methods.items.eWallets">Electronic wallets</span>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" data-lucide="chevron-right" aria-hidden="true"
-                                class="lucide lucide-chevron-right w-3.5 h-3.5 text-gray-600 group-hover:text-white transition-colors">
-                                <path d="m9 18 6-6-6-6"></path>
-                            </svg>
-                        </div>
-
-                        <!-- Crypto -->
-                        <div
-                            class="flex items-center justify-between p-2.5 rounded-xl bg-[#0A0A0A] border border-white/5 text-left group hover:bg-[#141414] cursor-pointer transition-colors duration-200">
-                            <div class="flex items-center gap-3">
-                                <div
-                                    class="w-8 h-8 rounded-lg bg-[#1A1A1A] border border-white/5 flex items-center justify-center text-gray-400 group-hover:text-white group-hover:border-white/10 transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" data-lucide="bitcoin" aria-hidden="true"
-                                        class="lucide lucide-bitcoin w-3.5 h-3.5">
-                                        <path
-                                            d="M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042-.347 1.97m1.563-8.864c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 4.26m5.908 1.042.348-1.97M7.48 20.364l3.126-17.727">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <span
-                                    class="text-xs font-medium text-gray-300 font-sans group-hover:text-white transition-colors"
-                                    data-translate="contractorBenefits.methods.items.crypto">Cryptocurrencies</span>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" data-lucide="chevron-right" aria-hidden="true"
-                                class="lucide lucide-chevron-right w-3.5 h-3.5 text-gray-600 group-hover:text-white transition-colors">
-                                <path d="m9 18 6-6-6-6"></path>
-                            </svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 2: All-in-one App (Unchanged) -->
                 <div
-                    class="glass-card flex flex-col overflow-hidden group md:items-center lg:items-stretch md:text-center lg:text-left bg-[#0c0c0c] rounded-3xl pt-8 pr-8 pb-6 pl-8 relative">
-                    <h3 class="text-lg font-medium text-white tracking-tight font-manrope mb-3"
-                        data-translate="contractorBenefits.mobile.title">Mobile first experience</h3>
-                    <p class="leading-relaxed text-sm text-gray-400 font-manrope"
-                        data-translate="contractorBenefits.mobile.description">Get notified when your payout is credited
-                        and manage balances and payouts in one app</p>
+                    class="contractor-benefits-card contractor-savings-card glass-card flex flex-col overflow-hidden border border-white/[0.08] bg-[#0c0c0c]/[0.72] group md:items-center lg:min-h-[520px] lg:items-stretch md:text-center lg:text-left rounded-3xl pt-8 pr-8 pb-6 pl-8 relative"
+                    data-card-glow="true"
+                    data-interactive="true">
+                    <h3 class="mx-auto max-w-md text-[26px] font-medium leading-tight text-center text-white tracking-tight font-manrope"
+                        data-translate="contractorBenefits.mobile.title">Cut administrative costs</h3>
+                    <p class="mx-auto mt-4 max-w-md leading-relaxed text-base font-semibold text-center text-gray-400 font-manrope"
+                        data-translate="contractorBenefits.mobile.description">Garna handles all paperwork for you: from agreements execution to invoices and custom documents</p>
 
-                    <!-- Phone Mockup Container -->
-                    <div class="flex relative justify-center w-full">
-                        <div
-                            class="border-x overflow-hidden hover:translate-y-6 transition-transform duration-300 bg-[#0A0A0A] w-full max-w-[270px] border-white/10 rounded-t-[2.5rem] border-t pt-5 pr-5 pb-5 pl-5 relative shadow-2xl translate-y-12 min-h-[340px]">
-                            <!-- Status Bar -->
-                            <div class="flex mb-3 pt-1 items-center justify-between">
-                                <!-- Network Name -->
-                                <div class="text-[12px] font-medium text-white tracking-tight font-sans ml-1"
-                                    data-translate="contractorBenefits.mobile.lte">LTE</div>
-                                <div class="flex items-center gap-1.5 text-white">
-                                    <!-- Cellular -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="w-3 h-3">
-                                        <path d="M7 20v-4"></path>
-                                        <path d="M12 20v-8"></path>
-                                        <path d="M17 20V8"></path>
-                                        <path d="M22 20V4"></path>
+                    <div class="contractor-benefits-visual-shell md:mt-8 lg:mt-auto w-full max-w-md mt-6 mr-auto ml-auto text-left">
+                        <div class="contractor-benefits-visual-stage contractor-benefits-visual-stage--savings">
+                            <div class="contractor-savings-visual relative mx-auto grid h-[268px] w-full max-w-[292px] place-items-center">
+                                <div class="contractor-savings-ring relative grid h-[270px] w-[270px] -translate-y-2 place-items-center rounded-full shadow-[0_22px_62px_-56px_rgba(203,243,0,0.42)]">
+                                    <svg class="savings-ring-svg absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 270 270" aria-hidden="true">
+                                        <circle cx="135" cy="135" r="118" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="11" />
+                                        <circle class="savings-ring-progress" cx="135" cy="135" r="118" fill="none" stroke="#CBF300" stroke-width="11" stroke-dasharray="574 742" stroke-dashoffset="-7" />
                                     </svg>
-                                    <!-- Wi-Fi (Restored) -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                        stroke-linejoin="round" class="w-3 h-3">
-                                        <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
-                                        <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
-                                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
-                                        <line x1="12" y1="20" x2="12.01" y2="20"></line>
-                                    </svg>
-                                    <!-- Battery -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                        stroke-linejoin="round" class="w-4 h-4 text-white opacity-90">
-                                        <rect width="16" height="10" x="2" y="7" rx="2" ry="2"></rect>
-                                        <line x1="22" x2="22" y1="11" y2="13"></line>
-                                    </svg>
-                                </div>
-                            </div>
-
-                            <!-- Lock Icon -->
-                            <div class="flex mb-2 justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round" class="w-[16px] h-[16px]"
-                                    style="width: 16px; height: 16px; color: rgb(113, 113, 122)">
-                                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                </svg>
-                            </div>
-
-                            <!-- Time & Date -->
-                            <div class="flex flex-col mb-6 items-center">
-                                <span
-                                    class="leading-none text-5xl font-semibold text-white tracking-tighter font-sans mb-1.5">
-                                    9:41</span>
-                                <p class="text-[13px] font-normal text-gray-300 tracking-normal font-sans"
-                                    data-translate="contractorBenefits.mobile.date">Tuesday, January 10</p>
-                            </div>
-
-                            <!-- Notification -->
-                            <div
-                                class="backdrop-blur-xl bg-white/[0.08] border border-white/10 rounded-2xl p-3.5 shadow-xl relative z-10 mx-1">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="flex items-center gap-2">
-                                        <div
-                                            class="flex bg-[#000000] w-5 h-5 border-white/10 border rounded-[5px] items-center justify-center">
-                                            <span
-                                                class="text-[12px] leading-none font-bold text-[#CBF300] font-manrope mb-[3px]">g</span>
+                                    <div class="absolute inset-4 rounded-full bg-[#080808] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]"></div>
+                                    <div class="savings-ring-content relative flex h-[224px] w-[224px] flex-col items-center justify-center rounded-full bg-white/[0.035] px-5 text-center">
+                                        <span class="block text-[10px] font-bold uppercase tracking-[0.14em] text-gray-500" data-translate="contractorBenefits.visual.timeSaved">Time saved</span>
+                                        <strong class="mt-2 block text-5xl font-semibold leading-none text-white font-manrope" data-translate="contractorBenefits.visual.timeSavedValue">8.5h</strong>
+                                        <span class="mt-2 block text-[11px] font-bold uppercase tracking-[0.1em] text-[#CBF300]" data-translate="contractorBenefits.visual.onAdminTasks">on admin tasks</span>
+                                        <div class="mt-4 flex flex-col items-center gap-1.5">
+                                            <div class="flex items-center justify-center gap-1.5">
+                                                <span class="min-w-[54px] rounded-full bg-white/[0.055] px-3 py-1.5 text-center text-[10px] font-bold leading-none text-gray-300" data-translate="contractorBenefits.visual.invoices">Invoices</span>
+                                                <span class="min-w-[54px] rounded-full bg-white/[0.055] px-3 py-1.5 text-center text-[10px] font-bold leading-none text-gray-300" data-translate="contractorBenefits.visual.docs">Docs</span>
+                                            </div>
+                                            <span class="min-w-[76px] rounded-full bg-white/[0.055] px-3 py-1.5 text-center text-[10px] font-bold leading-none text-gray-300" data-translate="contractorBenefits.visual.agreements">Agreements</span>
                                         </div>
-                                        <span
-                                            class="text-[10px] font-semibold text-white/90 uppercase tracking-wide font-sans"
-                                            data-translate="contractorBenefits.mobile.appName">Garna</span>
                                     </div>
-                                    <span class="text-[10px] text-white/50 font-sans"
-                                        data-translate="contractorBenefits.mobile.justNow">just now</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <div class="text-[13px] font-semibold text-white tracking-tight font-sans text-left"
-                                        data-translate="contractorBenefits.mobile.notificationTitle">Payout credited
-                                    </div>
-                                    <p class="text-[13px] leading-snug text-white/80 font-sans text-left"
-                                        data-translate="contractorBenefits.mobile.notificationBody">Your January payout
-                                        has been credited to your balance</p>
                                 </div>
                             </div>
-
-                            <!-- Bottom Gradient -->
-                            <div
-                                class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0A0A0A] to-transparent pointer-events-none">
-                            </div>
-
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 1: Early Payout (Moved to Last) -->
                 <div
-                    class="glass-card flex flex-col overflow-hidden group md:items-center md:text-center md:pt-10 md:pr-10 md:pb-10 md:pl-10 lg:items-stretch lg:text-left lg:pl-8 lg:pr-8 lg:pt-8 lg:pb-8 bg-[#0c0c0c] rounded-3xl pt-6 pr-6 pb-6 pl-6 relative">
-                    <h3 class="text-lg font-medium text-white tracking-tight font-manrope mb-3"
-                        data-translate="contractorBenefits.earlyPayout.title">Early payout access</h3>
-                    <p class="leading-relaxed md:mb-3 text-sm text-gray-400 font-manrope"
-                        data-translate="contractorBenefits.earlyPayout.description">Request early access to earned
-                        payouts through a simple and transparent approval flow</p>
+                    class="contractor-benefits-card glass-card flex flex-col overflow-hidden border border-white/[0.08] bg-[#0c0c0c]/[0.72] group md:items-center md:text-center md:pt-10 md:pr-10 md:pb-10 md:pl-10 lg:min-h-[520px] lg:items-stretch lg:text-left lg:pl-8 lg:pr-8 lg:pt-8 lg:pb-8 rounded-3xl pt-6 pr-6 pb-6 pl-6 relative"
+                    data-card-glow="true"
+                    data-interactive="true">
+                    <h3 class="mx-auto max-w-md text-[26px] font-medium leading-tight text-center text-white tracking-tight font-manrope"
+                        data-translate="contractorBenefits.earlyPayout.title">Direct Intellectual Property transition</h3>
+                    <p class="mx-auto mt-4 max-w-md leading-relaxed md:mb-3 text-base font-semibold text-center text-gray-400 font-manrope"
+                        data-translate="contractorBenefits.earlyPayout.description">We make sure that all IPs created by contractors are transferred directly and carefully to you</p>
 
-                    <div
-                        class="select-none lg:mt-auto lg:max-w-full md:mt-8 md:max-w-md md:ml-auto md:mr-auto bg-[#0A0A0A] w-full max-w-md border-white/10 border rounded-xl mt-6 mr-auto ml-auto px-5 py-5 relative shadow-2xl">
-                        <div class="flex items-center justify-between mb-5">
-                            <div class="flex items-center gap-3">
-                                <div
-                                    class="w-9 h-9 rounded-lg bg-blue-600 overflow-hidden relative border border-white/10">
-                                    <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                                        class="object-cover w-full h-full mix-blend-overlay opacity-80" alt="avatar">
-                                    <div class="absolute inset-0 bg-blue-500/20"></div>
-                                </div>
-                                <div class="text-left">
-                                    <div class="text-[9px] text-gray-500 leading-none mb-1 uppercase tracking-wider font-sans"
-                                        data-translate="contractorBenefits.earlyPayout.employeeLabel">Employee</div>
-                                    <div class="text-xs font-medium text-white leading-none font-sans"
-                                        data-translate="contractorBenefits.earlyPayout.employeeName">Sarah Lewis</div>
-                                </div>
+                    <div class="contractor-benefits-visual-shell contractor-benefits-visual-shell--ip lg:mt-auto lg:max-w-full md:mt-8 md:max-w-md md:ml-auto md:mr-auto w-full max-w-md mt-6 mr-auto ml-auto text-left">
+                        <div class="contractor-benefits-visual-stage contractor-benefits-visual-stage--ip">
+                            <div class="ip-document-visual relative mx-auto grid h-[268px] w-full max-w-[292px] place-items-center">
+                                <article class="ip-document-sheet">
+                                    <div class="ip-document-heading">
+                                        <span data-translate="contractorBenefits.visual.ipAssignment">IP assignment</span>
+                                        <strong data-translate="contractorBenefits.visual.rightsTransfer">Rights transfer</strong>
+                                    </div>
+
+                                    <div class="ip-document-lines" aria-hidden="true">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+
+                                    <div class="ip-document-signatures">
+                                        <div>
+                                            <strong>S. Lewis</strong>
+                                            <span data-translate="contractorBenefits.visual.contractor">Contractor</span>
+                                        </div>
+                                        <div>
+                                            <strong>N. Labs</strong>
+                                            <span data-translate="contractorBenefits.visual.client">Client</span>
+                                        </div>
+                                    </div>
+                                </article>
                             </div>
-                            <span
-                                class="text-[9px] font-semibold text-[#CBF300] bg-[#CBF300]/10 px-2 py-1 rounded border border-[#CBF300]/20 uppercase tracking-wide font-sans"
-                                data-translate="contractorBenefits.earlyPayout.newBadge">New</span>
-                        </div>
-                        <!-- Details -->
-                        <div class="space-y-2.5 mb-5 bg-[#141414] p-3 rounded-lg border border-white/5">
-                            <div class="flex justify-between items-center text-[11px]">
-                                <span class="text-gray-500 font-sans"
-                                    data-translate="contractorBenefits.earlyPayout.amountLabel">Amount requested</span>
-                                <span class="text-white font-semibold font-sans">1 200 $</span>
-                            </div>
-                            <div class="flex justify-between items-start text-[11px]">
-                                <span class="text-gray-500 pt-0.5 font-sans"
-                                    data-translate="contractorBenefits.earlyPayout.reasonLabel">Reason</span>
-                                <span class="text-gray-300 text-right max-w-[120px] leading-tight font-sans"
-                                    data-translate="contractorBenefits.earlyPayout.reasonValue">Personal expenses</span>
-                            </div>
-                            <div class="flex justify-between items-center text-[11px]">
-                                <span class="text-gray-500 font-sans"
-                                    data-translate="contractorBenefits.earlyPayout.statusLabel">Status</span>
-                                <span class="text-yellow-500/90 flex items-center gap-1.5 font-sans">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span> <span
-                                        data-translate="contractorBenefits.earlyPayout.statusPending">Pending</span>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- Buttons -->
-                        <div class="flex gap-2">
-                            <button
-                                class="flex-1 bg-white hover:bg-[#D2D2D2] text-black text-[11px] font-medium py-2 rounded-lg transition-colors font-sans"
-                                data-translate="contractorBenefits.earlyPayout.approve">Approve</button>
-                            <button
-                                class="flex-1 bg-transparent hover:bg-white/5 text-gray-400 text-[11px] font-medium py-2 rounded-lg border border-white/10 transition-colors font-sans"
-                                data-translate="contractorBenefits.earlyPayout.decline">Decline</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </Section>
+
+<style is:global>
+    .contractor-benefits-card {
+        --garna-card-glow-x: 50%;
+        --garna-card-glow-y: 50%;
+        --garna-card-glow-radius: 60vw;
+        --garna-card-border-glow-radius: 14rem;
+        isolation: isolate;
+        transition: border-color 300ms ease;
+    }
+
+    .contractor-benefits-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        border-radius: inherit;
+        background: radial-gradient(
+            circle var(--garna-card-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+            rgba(255, 255, 255, 0.12) 0%,
+            rgba(255, 255, 255, 0.075) 18%,
+            rgba(255, 255, 255, 0.035) 40%,
+            transparent 70%
+        );
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 300ms ease;
+    }
+
+    .contractor-benefits-card > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    @supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+        .contractor-benefits-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            padding: 1px;
+            border-radius: inherit;
+            background: radial-gradient(
+                circle var(--garna-card-border-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+                rgba(255, 255, 255, 0.9) 0%,
+                rgba(255, 255, 255, 0.52) 24%,
+                rgba(255, 255, 255, 0.2) 50%,
+                transparent 76%
+            );
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 300ms ease;
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask-composite: exclude;
+        }
+    }
+
+    .contractor-benefits-card[data-interactive='true']:is(:hover, :focus-within, [data-pointer-active='true']) {
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .contractor-benefits-card[data-card-glow='true']:is(:hover, :focus-within, [data-pointer-active='true'])::before {
+            opacity: 1;
+        }
+
+        @supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+            .contractor-benefits-card[data-card-glow='true']:is(:hover, :focus-within, [data-pointer-active='true'])::after {
+                opacity: 1;
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .contractor-benefits-card {
+            --garna-card-glow-x: 50% !important;
+            --garna-card-glow-y: 50% !important;
+        }
+
+        .contractor-benefits-card::before,
+        .contractor-benefits-card::after {
+            transition: none;
+        }
+    }
+
+    .contractor-benefits-grid {
+        grid-auto-rows: 1fr;
+        --contract-folder-visual-scale: 1.045;
+        --contract-savings-visual-scale: 1;
+        --contract-ip-visual-scale: 1.04;
+    }
+
+    .contractor-benefits-visual-shell {
+        display: grid;
+        /* Fixed-size artwork must not enlarge the track used for centering. */
+        grid-template-columns: minmax(0, 1fr);
+        place-items: center;
+        min-width: 0;
+        container: benefits-visual / inline-size;
+    }
+
+    .contractor-benefits-visual-stage {
+        --contract-visual-fit: clamp(0.88, calc(100cqw / 300px), 1);
+        display: grid;
+        place-items: center;
+        justify-self: center;
+        max-width: none;
+        margin-inline: 0;
+        transform-origin: center;
+    }
+
+    .contractor-benefits-visual-stage--folder {
+        width: 318px;
+        transform: scale(calc(var(--contract-folder-visual-scale) * var(--contract-visual-fit)));
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .contractor-benefits-card {
+            padding: 40px;
+        }
+
+        .contractor-benefits-card > p {
+            margin-bottom: 32px;
+        }
+
+        .contractor-benefits-visual-shell {
+            height: 268px;
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        .contractor-benefits-visual-stage--folder {
+            height: 268px;
+            grid-template-rows: minmax(0, 1fr);
+        }
+    }
+
+    .contractor-benefits-visual-stage--savings {
+        width: 292px;
+        transform: scale(calc(var(--contract-savings-visual-scale) * var(--contract-visual-fit)));
+    }
+
+    .contractor-benefits-visual-stage--ip {
+        width: 292px;
+        transform: scale(calc(var(--contract-ip-visual-scale) * var(--contract-visual-fit)));
+    }
+
+    @media (max-width: 767px) {
+        .contractor-benefits-visual-shell--ip {
+            flex-grow: 1;
+        }
+    }
+
+    .contractor-savings-ring {
+        margin-inline: auto;
+        justify-self: center;
+        box-shadow: 0 22px 64px -54px rgba(203, 243, 0, 0.6);
+    }
+
+    .contractor-savings-card .contractor-savings-visual {
+        width: 292px;
+        max-width: none;
+        margin-inline: auto;
+        justify-items: center;
+    }
+
+    .contract-folder-visual {
+        width: 318px;
+        max-width: none;
+        /* Artwork spans x=62.36..290.56 in the 318px scene, including the fanned papers. */
+        transform: translateX(-17.46px);
+    }
+
+    .ip-document-visual {
+        width: 292px;
+        max-width: none;
+    }
+
+    .savings-ring-content {
+        box-shadow: inset 0 0 34px rgba(203, 243, 0, 0.025);
+    }
+
+    .ip-document-visual {
+        isolation: isolate;
+    }
+
+    .ip-document-visual::before,
+    .ip-document-visual::after {
+        position: absolute;
+        width: 160px;
+        height: 214px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 0.36rem;
+        background: #0a0b0c;
+        content: "";
+        pointer-events: none;
+    }
+
+    .ip-document-visual::before {
+        z-index: 0;
+        transform: translateX(-32px);
+    }
+
+    .ip-document-visual::after {
+        z-index: 1;
+        transform: translateX(32px);
+    }
+
+    .ip-document-sheet {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 188px;
+        height: 252px;
+        grid-template-rows: auto auto 1fr auto;
+        row-gap: 0.82rem;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.36rem;
+        background: #08090a;
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.055),
+            0 26px 54px -42px rgba(0, 0, 0, 0.95);
+        padding: 1.05rem 0.95rem 0.7rem;
+        transform: none;
+    }
+
+    .ip-document-sheet::before {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.018), transparent 22%);
+        content: "";
+        pointer-events: none;
+    }
+
+    .ip-document-sheet > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .ip-document-heading {
+        position: relative;
+        display: grid;
+        gap: 0.28rem;
+    }
+
+    .ip-document-heading span {
+        color: rgba(255, 255, 255, 0.36);
+        font-size: 8px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+    }
+
+    .ip-document-heading strong {
+        color: rgba(255, 255, 255, 0.86);
+        font-family: "Manrope", sans-serif;
+        font-size: 13px;
+        font-weight: 750;
+        line-height: 1.15;
+    }
+
+    .ip-document-lines {
+        display: grid;
+        gap: 0.48rem;
+        align-self: start;
+    }
+
+    .ip-document-lines span {
+        display: block;
+        width: 86%;
+        height: 1.5px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.18);
+    }
+
+    .ip-document-lines span:nth-child(2),
+    .ip-document-lines span:nth-child(6) {
+        width: 78%;
+    }
+
+    .ip-document-lines span:nth-child(3),
+    .ip-document-lines span:nth-child(8) {
+        width: 92%;
+    }
+
+    .ip-document-lines span:nth-child(4),
+    .ip-document-lines span:nth-child(9) {
+        width: 68%;
+    }
+
+    .ip-document-lines span:nth-child(5),
+    .ip-document-lines span:nth-child(7) {
+        width: 82%;
+    }
+
+    .ip-document-signatures {
+        align-self: end;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.65rem;
+        padding-top: 0;
+    }
+
+    .ip-document-signatures div {
+        display: grid;
+        gap: 0.16rem;
+        min-width: 0;
+        padding-top: 0;
+    }
+
+    .ip-document-signatures div::after {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.16);
+        content: "";
+        order: 2;
+    }
+
+    .ip-document-signatures span {
+        display: block;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 8px;
+        font-weight: 700;
+        order: 3;
+    }
+
+    .ip-document-signatures strong {
+        display: block;
+        overflow: hidden;
+        color: #CBF300;
+        font-family: "Brush Script MT", "Segoe Script", cursive;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1;
+        order: 1;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .contract-folder-visual {
+        isolation: isolate;
+    }
+
+    .contract-folder-papers {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .contract-folder-papers span {
+        position: absolute;
+        top: 58px;
+        left: 78px;
+        width: 160px;
+        height: 200px;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 0.38rem;
+        background: #17191b;
+        box-shadow: 0 12px 26px -22px rgba(0, 0, 0, 0.88);
+        transform-origin: 14% 94%;
+    }
+
+    .contract-folder-papers span:nth-child(1) {
+        transform: none;
+    }
+
+    .contract-folder-papers span:nth-child(2) {
+        transform: translate(11px, -4px) rotate(5deg);
+    }
+
+    .contract-folder-papers span:nth-child(3) {
+        transform: translate(22px, -8px) rotate(10deg);
+    }
+
+    .contract-folder-svg {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        z-index: 1;
+        width: 332px;
+        height: 332px;
+        max-width: none;
+        transform: translateX(-50%);
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .contract-folder-label {
+        position: absolute;
+        top: 128px;
+        left: 84px;
+        z-index: 2;
+        display: grid;
+        gap: 0.25rem;
+        width: 142px;
+        font-family: "Manrope", sans-serif;
+    }
+
+    .contract-folder-label span {
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+    }
+
+    .contract-folder-label small {
+        color: rgba(255, 255, 255, 0.42);
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .contract-folder-label em {
+        margin-bottom: 0.38rem;
+        color: #CBF300;
+        font-size: 8px;
+        font-style: normal;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+</style>

@@ -1,0 +1,958 @@
+---
+import Section from '../../layout/Section.astro';
+
+type Country = {
+	code: string;
+	name: string;
+};
+
+const flagSrc = (code: string) => `https://flagcdn.com/${code}.svg`;
+
+const regions: Array<{
+	name: string;
+	nameKey: string;
+	countries: Country[];
+}> = [
+	{
+		name: 'Europe',
+		nameKey: 'countries.regions.europe',
+		countries: [
+			{ code: 'dk', name: 'Denmark' },
+			{ code: 'ie', name: 'Ireland' },
+			{ code: 'gb', name: 'United Kingdom' },
+			{ code: 'fi', name: 'Finland' },
+			{ code: 'is', name: 'Iceland' },
+			{ code: 'lt', name: 'Lithuania' },
+			{ code: 'md', name: 'Moldova' },
+			{ code: 'se', name: 'Sweden' },
+			{ code: 'ua', name: 'Ukraine' },
+		],
+	},
+	{
+		name: 'Americas',
+		nameKey: 'countries.regions.americas',
+		countries: [
+			{ code: 'br', name: 'Brazil' },
+			{ code: 'ca', name: 'Canada' },
+			{ code: 'us', name: 'United States' },
+			{ code: 'mx', name: 'Mexico' },
+			{ code: 'cl', name: 'Chile' },
+			{ code: 'co', name: 'Colombia' },
+			{ code: 'ar', name: 'Argentina' },
+			{ code: 'pe', name: 'Peru' },
+			{ code: 'uy', name: 'Uruguay' },
+		],
+	},
+	{
+		name: 'Asia Pacific',
+		nameKey: 'countries.regions.asiaPacific',
+		countries: [
+			{ code: 'au', name: 'Australia' },
+			{ code: 'in', name: 'India' },
+			{ code: 'ph', name: 'Philippines' },
+			{ code: 'sg', name: 'Singapore' },
+			{ code: 'jp', name: 'Japan' },
+			{ code: 'kr', name: 'South Korea' },
+			{ code: 'th', name: 'Thailand' },
+			{ code: 'vn', name: 'Vietnam' },
+			{ code: 'my', name: 'Malaysia' },
+		],
+	},
+	{
+		name: 'Africa',
+		nameKey: 'countries.regions.africa',
+		countries: [
+			{ code: 'eg', name: 'Egypt' },
+			{ code: 'ma', name: 'Morocco' },
+			{ code: 'za', name: 'South Africa' },
+			{ code: 'ng', name: 'Nigeria' },
+			{ code: 'gh', name: 'Ghana' },
+			{ code: 'ke', name: 'Kenya' },
+			{ code: 'tn', name: 'Tunisia' },
+			{ code: 'ci', name: 'Cote d Ivoire' },
+			{ code: 'rw', name: 'Rwanda' },
+		],
+	},
+];
+
+const fallingFlags: Country[] = [
+	{ code: 'hk', name: 'Hong Kong' },
+	{ code: 'sg', name: 'Singapore' },
+	{ code: 'ca', name: 'Canada' },
+	{ code: 'gb', name: 'United Kingdom' },
+	{ code: 'vn', name: 'Vietnam' },
+	{ code: 'my', name: 'Malaysia' },
+	{ code: 'ci', name: 'Cote d Ivoire' },
+	{ code: 'pt', name: 'Portugal' },
+	{ code: 'eu', name: 'European Union' },
+	{ code: 'il', name: 'Israel' },
+	{ code: 'es', name: 'Spain' },
+	{ code: 'br', name: 'Brazil' },
+	{ code: 'gh', name: 'Ghana' },
+	{ code: 'cl', name: 'Chile' },
+	{ code: 'co', name: 'Colombia' },
+	{ code: 'pl', name: 'Poland' },
+	{ code: 'it', name: 'Italy' },
+	{ code: 'ch', name: 'Switzerland' },
+	{ code: 'ng', name: 'Nigeria' },
+	{ code: 'bh', name: 'Bahrain' },
+	{ code: 'tw', name: 'Taiwan' },
+	{ code: 'nz', name: 'New Zealand' },
+	{ code: 'bg', name: 'Bulgaria' },
+	{ code: 'de', name: 'Germany' },
+	{ code: 'us', name: 'United States' },
+	{ code: 'ie', name: 'Ireland' },
+	{ code: 'se', name: 'Sweden' },
+	{ code: 'jp', name: 'Japan' },
+	{ code: 'th', name: 'Thailand' },
+	{ code: 'au', name: 'Australia' },
+	{ code: 'dk', name: 'Denmark' },
+	{ code: 'ma', name: 'Morocco' },
+];
+---
+
+<Section
+	spacing="none"
+	class="eor-countries-section pt-16 pb-0 lg:pt-28 lg:pb-0"
+	title={{ text: 'Hire Employees Worldwide', translateKey: 'countries.title' }}
+	description={{ text: 'Hire full-time employees in 150+ countries with Garna', translateKey: 'countries.description' }}
+	descriptionClass="mx-auto max-w-3xl"
+>
+	<div class="eor-countries-panel">
+		<div class="eor-countries-list" aria-label="Countries where Garna supports hiring" data-translate-aria-label="countries.listAriaLabel">
+			{regions.map((region) => (
+				<div class="eor-countries-region" data-countries-region>
+					<span class="eor-countries-region-title" data-translate={region.nameKey}>{region.name}</span>
+					<div class="eor-countries-grid">
+						{region.countries.map((country) => (
+							<div class="eor-country-item">
+								<span class="eor-country-flag" aria-hidden="true">
+									<img src={flagSrc(country.code)} alt="" loading="lazy" />
+								</span>
+								<span data-translate={`countryNames.${country.code}`}>{country.name}</span>
+							</div>
+						))}
+					</div>
+					<button class="eor-countries-summary" type="button" data-countries-toggle-button aria-expanded="false">
+						<span class="eor-countries-toggle">
+							<span class="eor-countries-toggle__closed" data-translate="countries.showAll">Show all</span>
+							<span class="eor-countries-toggle__open" data-translate="countries.showLess">Show less</span>
+						</span>
+					</button>
+				</div>
+			))}
+		</div>
+
+		<div class="eor-country-playground" data-eor-country-playground aria-hidden="true">
+			{fallingFlags.map((country) => (
+				<div class="eor-country-orb" data-country-orb>
+					<span>
+						<img src={flagSrc(country.code)} alt="" loading="lazy" />
+					</span>
+				</div>
+			))}
+		</div>
+	</div>
+</Section>
+
+<style>
+	:global(.eor-countries-section) {
+		box-sizing: border-box;
+		position: relative;
+		isolation: isolate;
+		min-height: calc(100vh - 64px);
+		min-height: calc(100svh - 64px);
+		background: linear-gradient(180deg, #101010 0%, #0a0a0a 100%);
+		overflow: visible;
+	}
+
+	@media (max-width: 1279px) {
+		:global(.eor-countries-section) {
+			min-height: var(--eor-countries-section-height, clamp(42rem, 67vw, calc(100vh - 64px)));
+			min-height: var(--eor-countries-section-height, clamp(42rem, 67vw, calc(100svh - 64px)));
+		}
+	}
+
+	.eor-countries-panel {
+		margin-top: clamp(2.5rem, 5vw, 4rem);
+		overflow: visible;
+	}
+
+	.eor-countries-list {
+		display: grid;
+		position: relative;
+		z-index: 2;
+		gap: 0.75rem;
+	}
+
+	.eor-countries-region {
+		display: grid;
+		grid-template-columns: minmax(7rem, 8.5rem) minmax(0, 1fr) max-content;
+		align-items: start;
+		gap: 0.85rem;
+		overflow: hidden;
+		border-radius: 16px;
+		border: 1px solid rgb(255 255 255 / 0.06);
+		background: #1a1a1a;
+		color: #ffffff;
+		padding: 1.35rem 1.25rem;
+	}
+
+	.eor-countries-region-title {
+		font-family: Manrope, sans-serif;
+		font-size: 0.9rem;
+		font-weight: 700;
+		line-height: 1.2;
+		padding-top: 0.32rem;
+	}
+
+	.eor-countries-summary {
+		display: inline-flex;
+		align-items: center;
+		justify-content: flex-end;
+		width: 100%;
+		gap: 0.65rem;
+		border: 0;
+		padding: 0.32rem 0 0;
+		background: transparent;
+		color: inherit;
+		cursor: pointer;
+		font-family: Manrope, sans-serif;
+		font-size: 0.9rem;
+		text-align: right;
+		font-weight: 700;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.eor-countries-summary::after {
+		content: "";
+		display: inline-block;
+		flex: 0 0 auto;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-right: 2px solid currentColor;
+		border-bottom: 2px solid currentColor;
+		opacity: 0.68;
+		transform: translateY(-0.08rem) rotate(45deg);
+		transition: transform 180ms ease;
+	}
+
+	.eor-countries-region.is-expanded .eor-countries-summary::after {
+		transform: translateY(0.08rem) rotate(225deg);
+	}
+
+	.eor-countries-toggle {
+		display: inline-grid;
+		align-items: center;
+		justify-self: end;
+		color: rgb(255 255 255 / 0.56);
+		font-weight: 600;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.eor-countries-toggle__closed,
+	.eor-countries-toggle__open {
+		grid-area: 1 / 1;
+	}
+
+	.eor-countries-toggle__open,
+	.eor-countries-region.is-expanded .eor-countries-toggle__closed {
+		visibility: hidden;
+	}
+
+	.eor-countries-region.is-expanded .eor-countries-toggle__open {
+		visibility: visible;
+	}
+
+	.eor-countries-region:not(.is-expanded) .eor-countries-grid {
+		padding-bottom: 0;
+	}
+
+	.eor-countries-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-items: center;
+		gap: 1.55rem 2rem;
+		max-height: var(--countries-grid-collapsed-height, 1.75rem);
+		overflow: hidden;
+		padding: 0;
+		transition: max-height 700ms cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.eor-countries-region.is-expanded .eor-countries-grid {
+		max-height: var(--countries-grid-expanded-height, 12rem);
+	}
+
+	.eor-country-item {
+		display: flex;
+		min-width: 0;
+		align-items: center;
+		gap: 0.75rem;
+		font-family: Manrope, sans-serif;
+		font-size: 0.95rem;
+		font-weight: 500;
+		color: rgb(255 255 255 / 0.68);
+		opacity: 1;
+		transform: translateY(0);
+		transition:
+			opacity 300ms ease,
+			transform 460ms cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.eor-country-item > span:last-child {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.eor-countries-region.is-expanded .eor-country-item:nth-child(n + 4) {
+		transition-delay: 90ms;
+	}
+
+	.eor-countries-region:not(.is-expanded) .eor-country-item:nth-child(n + 4) {
+		opacity: 0;
+		transform: translateY(-0.35rem);
+		transition-delay: 0ms;
+	}
+
+	.eor-country-flag {
+		display: inline-flex;
+		flex: 0 0 1.75rem;
+		width: 1.75rem;
+		height: 1.75rem;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		border-radius: 999px;
+		background: transparent;
+	}
+
+	.eor-country-flag img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.eor-country-playground {
+		position: absolute;
+		top: var(--eor-country-playground-top, 0px);
+		right: 0;
+		bottom: auto;
+		left: 0;
+		z-index: 3;
+		width: 100%;
+		height: calc(100% - var(--eor-country-playground-top, 0px));
+		overflow: hidden;
+		margin-top: 0;
+		background: transparent;
+		pointer-events: none;
+	}
+
+	.eor-country-orb {
+		position: absolute;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		display: grid;
+		width: clamp(3rem, 4.8vw, 4.5rem);
+		height: clamp(3rem, 4.8vw, 4.5rem);
+		place-items: center;
+		overflow: hidden;
+		border: 0;
+		border-radius: 999px;
+		background: transparent;
+		box-shadow: 0 20px 38px -28px rgb(0 0 0 / 0.86);
+		clip-path: circle(50%);
+		opacity: 0;
+		pointer-events: none;
+		transform: translate3d(0, -6rem, 0);
+		will-change: transform;
+	}
+
+	.eor-country-orb span {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.eor-country-orb img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.eor-country-orb.is-ready {
+		opacity: 1;
+	}
+
+	@media (max-width: 980px) {
+		.eor-countries-panel {
+			padding-bottom: clamp(2.5rem, 12vw, 4.75rem);
+		}
+
+		.eor-countries-region {
+			grid-template-columns: minmax(0, 1fr) auto;
+		}
+
+		.eor-countries-region-title,
+		.eor-countries-summary {
+			padding-top: 0;
+		}
+
+		.eor-countries-grid {
+			grid-column: 1 / -1;
+			grid-row: 2;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.3rem 1.15rem;
+		}
+	}
+
+	@media (max-width: 520px) {
+		.eor-countries-panel {
+			padding-bottom: clamp(7.5rem, 26vw, 10rem);
+		}
+	}
+
+	@media (max-width: 430px) {
+		.eor-countries-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	let cleanupCountries = () => {};
+	const initCountries = () => {
+	cleanupCountries();
+	const controller = new AbortController();
+	const { signal } = controller;
+	const stopSimulations = [];
+	cleanupCountries = () => {
+		controller.abort();
+		for (const stop of stopSimulations) stop();
+	};
+	const countryRegions = document.querySelectorAll('[data-countries-region]');
+	const countrySections = document.querySelectorAll('.eor-countries-section');
+	const adaptiveCountriesQuery = window.matchMedia('(max-width: 1279px)');
+	const compactCountriesQuery = window.matchMedia('(max-width: 980px)');
+
+	const setCountryRegionExpanded = (region, isExpanded) => {
+		if (!(region instanceof HTMLElement)) return;
+
+		region.classList.toggle('is-expanded', isExpanded);
+		region.querySelector('[data-countries-toggle-button]')?.setAttribute('aria-expanded', String(isExpanded));
+	};
+
+	const syncDefaultCountryRegions = () => {
+		const regions = Array.from(countryRegions).filter((region) => region instanceof HTMLElement);
+
+		regions.forEach((region, index) => {
+			setCountryRegionExpanded(region, compactCountriesQuery.matches && index === 0);
+		});
+
+		requestAnimationFrame(syncCountrySectionHeights);
+	};
+
+	const syncCountrySectionHeights = () => {
+		for (const section of countrySections) {
+			if (!(section instanceof HTMLElement)) continue;
+
+			if (!adaptiveCountriesQuery.matches) {
+				section.style.removeProperty('--eor-countries-section-height');
+				continue;
+			}
+
+			const list = section.querySelector('.eor-countries-list');
+			const firstOrb = section.querySelector('[data-country-orb]');
+			if (!(list instanceof HTMLElement) || !(firstOrb instanceof HTMLElement)) continue;
+
+			const sectionRect = section.getBoundingClientRect();
+			const panel = section.querySelector('.eor-countries-panel');
+			const panelStyles = panel instanceof HTMLElement ? window.getComputedStyle(panel) : null;
+			const panelBottomPadding = panelStyles ? parseFloat(panelStyles.paddingBottom) || 0 : 0;
+			const regions = Array.from(section.querySelectorAll('.eor-countries-region')).filter((region) => region instanceof HTMLElement);
+			const referenceRegion = regions[regions.length - 1];
+			const listRect = list.getBoundingClientRect();
+			const listStyles = window.getComputedStyle(list);
+			const listGap = parseFloat(listStyles.rowGap || listStyles.gap) || 0;
+			const referenceListHeight = regions.reduce((total, region, index) => {
+				const grid = region.querySelector('.eor-countries-grid');
+				if (!(grid instanceof HTMLElement)) return total + region.offsetHeight;
+
+				const gridRect = grid.getBoundingClientRect();
+				const collapsedGridHeight = parseFloat(grid.style.getPropertyValue('--countries-grid-collapsed-height')) || gridRect.height;
+				const expandedGridHeight = grid.scrollHeight;
+				const chromeHeight = region.offsetHeight - gridRect.height;
+				const targetGridHeight = region === referenceRegion ? expandedGridHeight : collapsedGridHeight;
+				const gap = index > 0 ? listGap : 0;
+
+				return total + gap + chromeHeight + targetGridHeight;
+			}, 0);
+			const referenceRegionBottom = listRect.top + referenceListHeight;
+			const orbSize = firstOrb.offsetWidth || 64;
+			const pileDepth = orbSize * 2.24;
+			const expandedBorderOverlap = Math.min(orbSize * 0.18, 12);
+			const sectionHeight = Math.ceil((referenceRegionBottom - sectionRect.top) + panelBottomPadding + pileDepth - expandedBorderOverlap);
+
+			section.style.setProperty('--eor-countries-section-height', `${sectionHeight}px`);
+		}
+	};
+
+	for (const region of countryRegions) {
+		if (!(region instanceof HTMLElement)) continue;
+
+		const button = region.querySelector('[data-countries-toggle-button]');
+		const grid = region.querySelector('.eor-countries-grid');
+		if (!(button instanceof Element) || !('addEventListener' in button)) continue;
+
+		const syncGridHeights = () => {
+			if (!(grid instanceof HTMLElement)) return;
+
+			const items = Array.from(grid.querySelectorAll('.eor-country-item')).filter((item) => item instanceof HTMLElement);
+			if (!items.length) return;
+
+			const visibleDefaultCount = window.matchMedia('(max-width: 430px)').matches
+				? 1
+				: window.matchMedia('(max-width: 980px)').matches
+					? 2
+					: 3;
+			const defaultItems = items.slice(0, visibleDefaultCount);
+			const firstTop = Math.min(...defaultItems.map((item) => item.offsetTop));
+			const firstBottom = Math.max(...defaultItems.map((item) => item.offsetTop + item.offsetHeight));
+
+			grid.style.setProperty('--countries-grid-collapsed-height', `${Math.ceil(firstBottom - firstTop)}px`);
+			grid.style.setProperty('--countries-grid-expanded-height', `${Math.ceil(grid.scrollHeight)}px`);
+		};
+
+		syncGridHeights();
+		syncCountrySectionHeights();
+		window.addEventListener('resize', () => {
+			syncGridHeights();
+			syncCountrySectionHeights();
+		}, { signal });
+
+		button.addEventListener('click', () => {
+			syncGridHeights();
+			const willExpand = !region.classList.contains('is-expanded');
+
+			if (willExpand) {
+				const list = region.closest('.eor-countries-list');
+				const siblingRegions = list ? Array.from(list.querySelectorAll('[data-countries-region]')) : [];
+
+				for (const sibling of siblingRegions) {
+					if (!(sibling instanceof HTMLElement) || sibling === region) continue;
+
+					setCountryRegionExpanded(sibling, false);
+				}
+			}
+
+			setCountryRegionExpanded(region, willExpand);
+			requestAnimationFrame(syncCountrySectionHeights);
+		}, { signal });
+	}
+
+	syncDefaultCountryRegions();
+	compactCountriesQuery.addEventListener('change', syncDefaultCountryRegions, { signal });
+
+	const playgrounds = document.querySelectorAll('[data-eor-country-playground]');
+
+	for (const playground of playgrounds) {
+		if (!(playground instanceof HTMLElement) || playground.dataset.ready === 'true') continue;
+		playground.dataset.ready = 'true';
+
+		const elements = Array.from(playground.querySelectorAll('[data-country-orb]')).filter((orb) => orb instanceof HTMLElement);
+		const state = {
+			started: false,
+			animationFrame: null,
+			lastFrame: 0,
+			accumulator: 0,
+			elapsed: 0,
+			hoverPointer: null,
+			quietTime: 0,
+			width: 0,
+			height: 0,
+			topOffset: 0,
+			spawnTop: 0,
+			orbs: [],
+		};
+
+		const section = playground.closest('.eor-countries-section');
+		const sectionBounds = section instanceof HTMLElement ? section : playground;
+		const simulationBounds = playground;
+		const getHeaderHeight = () => {
+			const header = document.querySelector('.garna-header');
+			if (!(header instanceof HTMLElement)) return 64;
+			return Math.ceil(header.getBoundingClientRect().height) || 64;
+		};
+		const syncPlaygroundTop = () => {
+			const rect = sectionBounds.getBoundingClientRect();
+			const topOffset = Math.min(0, -rect.top);
+			const shift = state.topOffset - topOffset;
+			playground.style.setProperty('--eor-country-playground-top', `${topOffset}px`);
+			// Rebase the coordinate system without moving already released flags on the page.
+			for (const orb of state.orbs) {
+				if (!orb.released) continue;
+				orb.y += shift;
+				if (orb.previousY !== undefined) orb.previousY += shift;
+			}
+			state.topOffset = topOffset;
+			state.height = simulationBounds.getBoundingClientRect().height;
+			state.spawnTop = -simulationBounds.getBoundingClientRect().top;
+		};
+
+		const resize = () => {
+			state.hoverPointer = null;
+			syncCountrySectionHeights();
+			syncPlaygroundTop();
+			const rect = simulationBounds.getBoundingClientRect();
+			state.width = rect.width;
+			state.height = rect.height;
+			if (state.started) {
+				for (const orb of state.orbs) {
+					orb.radius = orb.element.offsetWidth / 2;
+					clampOrb(orb);
+				}
+				wakeSimulation();
+			}
+		};
+
+		const clampOrb = (orb) => {
+			orb.x = Math.max(orb.radius, Math.min(state.width - orb.radius, orb.x));
+			orb.y = Math.min(state.height - orb.radius - 3, orb.y);
+			if (orb.entered) orb.y = Math.max(orb.radius, orb.y);
+			{
+				if (orb.y >= state.height - orb.radius - 3 && orb.vy > 0) orb.vy = 0;
+				if ((orb.x <= orb.radius && orb.vx < 0) || (orb.x >= state.width - orb.radius && orb.vx > 0)) orb.vx = 0;
+			}
+		};
+
+		const layoutOrbs = () => {
+			resize();
+			const firstOrb = elements[0];
+			const orbWidth = firstOrb instanceof HTMLElement ? firstOrb.offsetWidth : 64;
+
+			state.orbs = elements.map((element, index) => {
+				element.classList.remove('is-ready');
+				const radius = element.offsetWidth / 2;
+				const seeded = (Math.sin(index * 12.9898) * 43758.5453) % 1;
+				const centerX = state.width / 2;
+				const chuteWidth = Math.min(state.width * 0.74, Math.max(orbWidth * 8, state.width * 0.48));
+				const startX = Math.max(radius, Math.min(state.width - radius, centerX + (Math.abs(seeded) - 0.5) * chuteWidth));
+
+				return {
+					element,
+					radius,
+					x: startX,
+					y: radius + ((index % 4) * 8),
+					vx: Math.sin(index * 2.43) * 220,
+					vy: 860 + ((index * 41) % 320),
+					angle: (seeded * 180) % 360,
+					angleNudgeCount: 0,
+					lastAngleNudgeAt: 0,
+					releaseDelay: Math.floor(index / 4) * 46 + Math.abs(seeded) * 52,
+					released: false,
+					entered: false,
+				};
+			});
+		};
+
+		const render = () => {
+			for (const orb of state.orbs) {
+				orb.element.style.transform = `translate3d(${orb.x - orb.radius}px, ${orb.y - orb.radius}px, 0) rotate(${orb.angle}deg)`;
+			}
+		};
+
+		const stopSimulation = () => {
+			if (state.animationFrame) window.cancelAnimationFrame(state.animationFrame);
+			state.animationFrame = null;
+			state.lastFrame = 0;
+		};
+
+		const resolveCollisions = ({ allowAngleNudge = false } = {}) => {
+			const minimumGap = 2.5;
+			const now = allowAngleNudge ? performance.now() : 0;
+
+			for (let iteration = 0; iteration < 32; iteration += 1) {
+				for (let i = 0; i < state.orbs.length; i += 1) {
+					const a = state.orbs[i];
+					for (let j = i + 1; j < state.orbs.length; j += 1) {
+						const b = state.orbs[j];
+						if (!a.released || !b.released) continue;
+						const dx = b.x - a.x;
+						const dy = b.y - a.y;
+						const minDistance = a.radius + b.radius + minimumGap;
+						const distanceSquared = dx * dx + dy * dy;
+						// Keep resting contacts active even when positional correction separated them.
+						if (distanceSquared > (minDistance + 0.1) * (minDistance + 0.1)) continue;
+
+						const distance = Math.sqrt(distanceSquared) || 0.001;
+						const nx = distanceSquared < 0.000001 ? 1 : dx / distance;
+						const ny = distanceSquared < 0.000001 ? 0 : dy / distance;
+						const overlap = Math.max(0, minDistance - distance - 0.01);
+						a.x -= nx * overlap * 0.5;
+						a.y -= ny * overlap * 0.5;
+						b.x += nx * overlap * 0.5;
+						b.y += ny * overlap * 0.5;
+						{
+							const relativeVelocity = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
+							if (relativeVelocity < 0) {
+								const impulse = -relativeVelocity * 0.5;
+								a.vx -= impulse * nx;
+								a.vy -= impulse * ny;
+								b.vx += impulse * nx;
+								b.vy += impulse * ny;
+								const target = Math.abs(a.vx) + Math.abs(a.vy) > Math.abs(b.vx) + Math.abs(b.vy) ? a : b;
+								if (
+									allowAngleNudge &&
+									impulse > 120 &&
+									target.angleNudgeCount < 2 &&
+									now - target.lastAngleNudgeAt > 320
+								) {
+									const angleNudge = Math.max(-1.4, Math.min(1.4, impulse * (nx - ny) * 0.0035));
+									target.angle += angleNudge;
+									target.angleNudgeCount += 1;
+									target.lastAngleNudgeAt = now;
+								}
+							}
+						}
+
+						clampOrb(a);
+						clampOrb(b);
+					}
+				}
+			}
+
+		};
+
+		const orbHasSupport = (orb) => {
+			const floor = state.height - orb.radius - 3;
+			if (orb.y >= floor - 1) return true;
+
+			return state.orbs.some((other) => {
+				if (other === orb || !other.released) return false;
+
+				const dx = other.x - orb.x;
+				const dy = other.y - orb.y;
+				if (dy <= 0) return false;
+
+				const distance = Math.hypot(dx, dy);
+				const touchingDistance = orb.radius + other.radius + 4;
+				return distance <= touchingDistance && dy > orb.radius * 0.45;
+			});
+		};
+
+		// Sleep only after the solved positions and velocities stay quiet on a support.
+		const settleIfStill = (deltaSeconds) => {
+			const isQuiet = state.orbs.every((orb, index) =>
+				orb.released && orbHasSupport(orb) &&
+				Math.hypot(orb.vx, orb.vy) < 3 &&
+				Math.hypot(orb.x - orb.previousX, orb.y - orb.previousY) < 0.025 &&
+				state.orbs.every((other, otherIndex) => otherIndex <= index ||
+					Math.hypot(orb.x - other.x, orb.y - other.y) >= orb.radius + other.radius + 2)
+			);
+			state.quietTime = isQuiet ? state.quietTime + deltaSeconds : 0;
+			return state.quietTime >= 0.4;
+		};
+
+		const stepPhysics = (deltaSeconds, elapsedMilliseconds) => {
+			const gravity = 5600;
+			const floorFriction = Math.pow(0.84, deltaSeconds * 60);
+			const airDrag = Math.pow(0.992, deltaSeconds * 60);
+
+			for (const orb of state.orbs) {
+				orb.previousX = orb.x;
+				orb.previousY = orb.y;
+				if (!orb.released) {
+					if (elapsedMilliseconds < orb.releaseDelay) continue;
+					if (state.height - state.spawnTop < getHeaderHeight() + orb.radius * 4) continue;
+					orb.released = true;
+					orb.y = state.spawnTop - orb.radius;
+					orb.previousY = orb.y;
+					orb.element.classList.add('is-ready');
+				}
+
+				orb.vy += gravity * deltaSeconds;
+				orb.x += orb.vx * deltaSeconds;
+				orb.y += orb.vy * deltaSeconds;
+				if (!orb.entered && orb.y - orb.radius >= state.spawnTop + getHeaderHeight()) orb.entered = true;
+				orb.vx *= airDrag;
+
+				if (orb.x < orb.radius) {
+					orb.x = orb.radius;
+					orb.vx = Math.abs(orb.vx) * 0.36;
+				}
+
+				if (orb.x > state.width - orb.radius) {
+					orb.x = state.width - orb.radius;
+					orb.vx = -Math.abs(orb.vx) * 0.36;
+				}
+				if (orb.entered && orb.y < orb.radius) {
+					orb.y = orb.radius;
+					orb.vy = Math.max(0, orb.vy);
+				}
+
+				const floor = state.height - orb.radius - 3;
+				if (orb.y > floor) {
+					orb.y = floor;
+					orb.vy = Math.abs(orb.vy) > 920 ? -orb.vy * 0.05 : 0;
+					orb.vx *= floorFriction;
+					if (Math.abs(orb.vx) < 8) orb.vx = 0;
+				}
+			}
+
+			resolveCollisions({ allowAngleNudge: true });
+
+			// At resting contacts, use the motion permitted by the position solver.
+			// Otherwise blocked velocity accumulates and pushes the pile again next step.
+			for (const orb of state.orbs) {
+				if (!orb.released || !orbHasSupport(orb)) continue;
+				if (Math.hypot(orb.vx, orb.vy) < 180) {
+					// Separation can remove motion, but must not inject energy into the pile.
+					const speed = Math.hypot(orb.vx, orb.vy);
+					const vx = (orb.x - orb.previousX) / deltaSeconds;
+					const vy = (orb.y - orb.previousY) / deltaSeconds;
+					const scale = Math.min(1, speed / (Math.hypot(vx, vy) || 1));
+					orb.vx = vx * scale;
+					orb.vy = vy * scale;
+				}
+			}
+		};
+
+		const wakeSimulation = () => {
+			state.quietTime = 0;
+			if (state.animationFrame) return;
+			state.lastFrame = performance.now();
+			state.accumulator = 0;
+
+			const tick = (now) => {
+				const entering = state.orbs.some((orb) => !orb.entered);
+				if (entering) syncPlaygroundTop();
+				// Fixed substeps keep contacts stable at both low and high display refresh rates.
+				const fixedStep = 1 / 120;
+				// Do not skip the visible entrance when scrolling delays a frame.
+				state.accumulator += Math.min(entering ? 1 / 60 : 0.1, (now - state.lastFrame) / 1000);
+				state.lastFrame = now;
+
+				while (state.accumulator >= fixedStep) {
+					state.elapsed += fixedStep * 1000;
+					stepPhysics(fixedStep, state.elapsed);
+					state.accumulator -= fixedStep;
+					if (settleIfStill(fixedStep)) {
+						for (const orb of state.orbs) {
+							orb.vx = 0;
+							orb.vy = 0;
+						}
+						render();
+						stopSimulation();
+						return;
+					}
+				}
+				render();
+				state.animationFrame = window.requestAnimationFrame(tick);
+			};
+
+			state.animationFrame = window.requestAnimationFrame(tick);
+		};
+
+		// Sweep the cursor's path so a quick pass cannot skip flags between events.
+		// Only movement adds energy; a stationary cursor lets the pile settle and sleep.
+		const pushFromCursor = (from, to, deltaSeconds) => {
+			const dx = to.x - from.x;
+			const dy = to.y - from.y;
+			const lengthSquared = dx * dx + dy * dy;
+			if (lengthSquared < 0.25) return false;
+			const length = Math.sqrt(lengthSquared);
+			const speed = Math.min(1800, length / Math.max(1 / 120, deltaSeconds));
+			let pushed = false;
+			for (const [index, orb] of state.orbs.entries()) {
+				if (!orb.released || !orb.entered) continue;
+				const along = Math.max(0, Math.min(1, ((orb.x - from.x) * dx + (orb.y - from.y) * dy) / lengthSquared));
+				const offsetX = orb.x - (from.x + dx * along);
+				const offsetY = orb.y - (from.y + dy * along);
+				const distance = Math.hypot(offsetX, offsetY);
+				const reach = orb.radius + 48;
+				if (distance >= reach) continue;
+				// Split exact centre hits to either side instead of dividing by zero.
+				const side = index % 2 ? 1 : -1;
+				const nx = distance > 0.01 ? offsetX / distance : -dy / length * side;
+				const ny = distance > 0.01 ? offsetY / distance : dx / length * side;
+				const falloff = 1 - distance / reach;
+				const targetSpeed = (920 + speed * 0.3) * falloff;
+				const impulse = Math.max(0, targetSpeed - (orb.vx * nx + orb.vy * ny));
+				if (impulse < 1) continue;
+				orb.vx += nx * impulse;
+				orb.vy += ny * impulse;
+				const velocityScale = Math.min(1, 1550 / (Math.hypot(orb.vx, orb.vy) || 1));
+				orb.vx *= velocityScale;
+				orb.vy *= velocityScale;
+				orb.angle += Math.max(-7, Math.min(7, (dx * ny - dy * nx) * falloff * 0.08));
+				pushed = true;
+			}
+			if (pushed) wakeSimulation();
+			return pushed;
+		};
+
+		const clearHoverPointer = () => { state.hoverPointer = null; };
+		sectionBounds.addEventListener('pointermove', (event) => {
+			if (!state.started || event.pointerType !== 'mouse' || event.buttons !== 0 ||
+				window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				clearHoverPointer();
+				return;
+			}
+			const now = performance.now();
+			const previous = state.hoverPointer;
+			state.hoverPointer = { x: event.clientX, y: event.clientY, time: now };
+			if (!previous || now - previous.time > 120) return;
+			const rect = simulationBounds.getBoundingClientRect();
+			pushFromCursor(
+				{ x: previous.x - rect.left, y: previous.y - rect.top },
+				{ x: event.clientX - rect.left, y: event.clientY - rect.top },
+				(now - previous.time) / 1000,
+			);
+		}, { passive: true, signal });
+		sectionBounds.addEventListener('pointerleave', clearHoverPointer, { signal });
+		sectionBounds.addEventListener('pointerdown', clearHoverPointer, { signal });
+		sectionBounds.addEventListener('pointercancel', clearHoverPointer, { signal });
+		window.addEventListener('scroll', clearHoverPointer, { passive: true, signal });
+		window.addEventListener('blur', clearHoverPointer, { signal });
+
+		const start = () => {
+			if (state.started) return;
+			layoutOrbs();
+			state.started = true;
+
+			render();
+			wakeSimulation();
+		};
+
+		const maybeStartWhenSectionReachesTriggerLine = () => {
+			if (state.started) return;
+
+			const rect = sectionBounds.getBoundingClientRect();
+			const headerHeight = getHeaderHeight();
+			const triggerLine = headerHeight + ((window.innerHeight - headerHeight) * 0.25);
+			if (rect.top > triggerLine || rect.bottom <= 0) return;
+
+			start();
+			window.removeEventListener('scroll', maybeStartWhenSectionReachesTriggerLine);
+			window.removeEventListener('resize', maybeStartWhenSectionReachesTriggerLine);
+		};
+		stopSimulations.push(() => {
+			stopSimulation();
+			delete playground.dataset.ready;
+		});
+
+		window.addEventListener('scroll', maybeStartWhenSectionReachesTriggerLine, { passive: true, signal });
+		window.addEventListener('resize', maybeStartWhenSectionReachesTriggerLine, { signal });
+		window.addEventListener('resize', resize, { signal });
+		maybeStartWhenSectionReachesTriggerLine();
+	}
+	};
+	window.addEventListener('garna:page-mounted', initCountries);
+	window.addEventListener('garna:page-will-unmount', () => cleanupCountries());
+	initCountries();
+</script>

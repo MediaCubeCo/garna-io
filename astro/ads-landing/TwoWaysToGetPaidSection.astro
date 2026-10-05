@@ -1,0 +1,68 @@
+---
+import TabbedImageFeatureSection from '../components/sections/TabbedImageFeatureSection.astro';
+
+const panels = [
+	{
+		key: 'invoice',
+		tab: { text: 'Invoice', translateKey: 'twoWays.tabs.invoice' },
+		image: '/images/ads-invoice-home-freelancer-upscaled-v3.webp',
+		imagePosition: 'center top',
+		imagePositionMobile: '100% top',
+		tag: { text: 'For completed work', translateKey: 'twoWays.panels.invoice.tag' },
+		title: { text: 'Send a professional client invoice', translateKey: 'twoWays.panels.invoice.title' },
+		description: {
+			text: 'Create an invoice in Garna and send it to your client. They follow clear payment instructions, while you keep the invoice and payment details together',
+			translateKey: 'twoWays.panels.invoice.description',
+		},
+	},
+	{
+		key: 'transfer',
+		tab: { text: 'Direct Transfer', translateKey: 'twoWays.tabs.transfer' },
+		image: '/images/ads-direct-transfer-home-upscaled.webp',
+		copyWidthTablet: '500px',
+		imagePosition: 'center 48%',
+		imagePositionMobile: '86% 48%',
+		tag: { text: 'For agreed client payments', translateKey: 'twoWays.panels.transfer.tag' },
+		title: { text: 'Receive a direct business payment', translateKey: 'twoWays.panels.transfer.title' },
+		description: {
+			text: 'Share the Garna payment details for the agreed amount and currency. Once the client pays, the funds are credited to your Garna balance',
+			translateKey: 'twoWays.panels.transfer.description',
+		},
+	},
+];
+---
+
+<TabbedImageFeatureSection
+	id="two-ways-to-get-paid"
+	title={{ text: 'Two Ways to Get Paid', translateKey: 'twoWays.title' }}
+	description={{ text: 'Choose the right payment flow for each client and project', translateKey: 'twoWays.description' }}
+	panels={panels}
+	tabsAriaLabel={{ text: 'Ways to get paid with Garna', translateKey: 'twoWays.tabs.ariaLabel' }}
+	interaction="scroll"
+/>
+
+<style is:global>
+	@media (min-width: 801px) {
+		#two-ways-to-get-paid-panel-invoice .tabbed-image-feature__image {
+			transform: translateX(3.6%) scale(1.08);
+			transform-origin: center top;
+		}
+	}
+
+	@media (max-width: 800px) {
+		[data-tabbed-image-feature='two-ways-to-get-paid'] .tabbed-image-feature__copy :is(h3, p) {
+			width: 100%;
+			max-width: none;
+		}
+	}
+
+	@media (max-width: 520px) {
+		#two-ways-to-get-paid-panel-invoice .tabbed-image-feature__image {
+			object-position: 85% top;
+		}
+
+		#two-ways-to-get-paid-panel-transfer .tabbed-image-feature__image {
+			object-position: 79% 48%;
+		}
+	}
+</style>

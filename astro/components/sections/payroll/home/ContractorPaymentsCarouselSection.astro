@@ -1,0 +1,121 @@
+---
+import ScrollVisualCarouselSection from '../../ScrollVisualCarouselSection.astro';
+
+interface Props {
+	copyVariant?: 'carousel' | 'section';
+}
+
+const { copyVariant = 'section' } = Astro.props;
+
+const slides = [
+	{
+		key: 'hire',
+		title: {
+			text: 'Hire Contractors\nWorldwide',
+			translateKey: 'contractorCarousel.features.hire.title',
+		},
+		description: {
+			text: 'Manage an unlimited amount of contractors\nfrom one platform',
+			translateKey: 'contractorCarousel.features.hire.description',
+		},
+		image: '/pages/payroll-solution-new/assets/contractor-hired-original.jpg',
+		overlay: {
+			type: 'hire',
+			avatarImage: '/pages/payroll-solution-new/assets/contractor-avatar-maya.png',
+			name: {
+				text: 'Maya Chen',
+				translateKey: 'contractorCarousel.notifications.hire.name',
+			},
+			status: {
+				text: 'Onboarding complete',
+				translateKey: 'contractorCarousel.notifications.hire.status',
+			},
+			badge: {
+				text: 'Active',
+				translateKey: 'contractorCarousel.notifications.hire.badge',
+			},
+		},
+	},
+	{
+		key: 'payments',
+		title: {
+			text: 'Flexible Global\nPayments',
+			translateKey: 'contractorCarousel.features.payments.title',
+		},
+		description: {
+			text: 'Pay contractors using 80+ local currencies via bank transfer,\ncard transfer, e-wallet, and crypto',
+			translateKey: 'contractorCarousel.features.payments.description',
+		},
+		image: '/pages/payroll-solution-new/assets/flexible-global-payments.png',
+		overlay: {
+			type: 'payment',
+			appName: {
+				text: 'Garna',
+				translateKey: 'brand.name',
+			},
+			time: {
+				text: 'Just now',
+				translateKey: 'contractorCarousel.notifications.payment.time',
+			},
+			title: {
+				text: 'Payment sent',
+				translateKey: 'contractorCarousel.notifications.payment.title',
+			},
+			description: {
+				text: '1,000 USD · Bank transfer',
+				translateKey: 'contractorCarousel.notifications.payment.description',
+			},
+		},
+	},
+	{
+		key: 'protection',
+		title: {
+			text: 'Misclassification\nProtection',
+			translateKey: 'contractorCarousel.features.protection.title',
+		},
+		description: {
+			text: 'Protect your business from misclassification risk\nwith Contractor and Agent of Record support',
+			translateKey: 'contractorCarousel.features.protection.description',
+		},
+		image: '/pages/payroll-solution-new/assets/misclassification-protection.png',
+		overlay: {
+			type: 'compliance',
+			riskLabel: {
+				text: 'Classification risk',
+				translateKey: 'contractorCarousel.notifications.compliance.riskLabel',
+			},
+			riskValue: {
+				text: 'Low',
+				translateKey: 'contractorCarousel.notifications.compliance.riskValue',
+			},
+			reviewLabel: {
+				text: 'Agreement review',
+				translateKey: 'contractorCarousel.notifications.compliance.reviewLabel',
+			},
+			reviewValue: {
+				text: 'Passed',
+				translateKey: 'contractorCarousel.notifications.compliance.reviewValue',
+			},
+			footerTitle: {
+				text: 'Protected by Garna',
+				translateKey: 'contractorCarousel.notifications.compliance.footerTitle',
+			},
+			footerMeta: {
+				text: 'Active',
+				translateKey: 'contractorCarousel.notifications.compliance.footerMeta',
+			},
+		},
+	},
+] as const;
+---
+
+<ScrollVisualCarouselSection
+	id="home-contractor-payments-carousel"
+	slides={slides}
+	cta={{
+		text: 'Book a demo',
+		translateKey: 'cta.bookDemo',
+		trackingCta: 'contractor_carousel_demo',
+	}}
+	copyVariant={copyVariant}
+/>

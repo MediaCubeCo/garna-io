@@ -9,6 +9,7 @@ const {
 	titleClass = 'garna-hero-title-gradient leading-[1.1] lg:text-8xl lg:mb-12 md:mb-8 md:text-7xl text-6xl font-normal tracking-tight font-manrope mb-8',
 	titleBreakAfterWords,
 	descriptionClass = 'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-lg font-manrope max-w-3xl mr-auto mb-12 ml-auto',
+	descriptionBreakAfterWords,
 	badge,
 	title,
 	description,
@@ -33,8 +34,8 @@ const ctaOnclick =
 		? `event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: '${cta.trackingCta || 'hero_demo'}' });`
 		: undefined;
 const ctaClass = cta?.class || '';
-const ctaVariant = cta?.kind === 'demo' ? 'secondary' : (cta?.variant || 'primary');
-const ctaEffect = cta?.kind === 'demo' ? 'none' : (cta?.effect || 'none');
+const ctaVariant = cta?.variant || 'primary';
+const ctaEffect = cta?.effect || (cta?.kind === 'demo' ? 'rotating-flare' : 'none');
 const ctaIcon = cta?.icon || (cta?.kind === 'signup' || cta?.kind === 'external' ? 'arrow-up-right' : 'arrow-up-right');
 const ctaSecondaryHref = ctaSecondary?.href || '#';
 const ctaSecondaryTarget = ctaSecondary?.target;
@@ -80,12 +81,30 @@ const singleTitleFirstLine = shouldBreakSingleTitle
 const singleTitleSecondLine = shouldBreakSingleTitle
 	? singleTitleWords.slice(defaultTitleBreakWords).join(' ')
 	: '';
+const descriptionBreakAttribute =
+	typeof descriptionBreakAfterWords === 'number'
+		? String(descriptionBreakAfterWords)
+		: descriptionBreakAfterWords
+			? Object.entries(descriptionBreakAfterWords).map(([lang, words]) => `${lang}:${words}`).join(',')
+			: undefined;
+const defaultDescriptionBreakWords =
+	typeof descriptionBreakAfterWords === 'number' ? descriptionBreakAfterWords : descriptionBreakAfterWords?.en;
+const descriptionWords = description?.trim().split(/\s+/) || [];
+const shouldBreakDescription =
+	!!defaultDescriptionBreakWords && defaultDescriptionBreakWords > 0 && descriptionWords.length > defaultDescriptionBreakWords;
+const descriptionFirstLine = shouldBreakDescription
+	? descriptionWords.slice(0, defaultDescriptionBreakWords).join(' ')
+	: description;
+const descriptionSecondLine = shouldBreakDescription
+	? descriptionWords.slice(defaultDescriptionBreakWords).join(' ')
+	: '';
 ---
 
 <section class={className} data-section-kind="hero">
 	{tone === 'green' && align === 'center' && (
 		<div class="garna-hero-green-glow absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#CBF300] opacity-[0.08] blur-[120px] rounded-full pointer-events-none" />
 	)}
+	<slot name="background" />
 	<div class={containerClass}>
 		<div class={contentClass}>
 			{badge && (
@@ -121,8 +140,15 @@ const singleTitleSecondLine = shouldBreakSingleTitle
 			</h1>
 
 			{description && (
-				<p data-garna-subtitle class={descriptionClass} data-translate={descriptionTranslateKey}>
-					{description}
+				<p data-garna-subtitle class={descriptionClass} data-translate={descriptionTranslateKey} data-description-break-after-words={descriptionBreakAttribute}>
+					{descriptionFirstLine}
+					{shouldBreakDescription && (
+						<>
+							<br class="hidden md:block" />
+							<span class="md:hidden"> </span>
+							{descriptionSecondLine}
+						</>
+					)}
 				</p>
 			)}
 

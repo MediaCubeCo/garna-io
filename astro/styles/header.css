@@ -1,14 +1,22 @@
 .garna-header {
 	--garna-header-dropdown-item-width: 320px;
 	--garna-header-feature-width: 330px;
-	background: rgba(5, 5, 5, 0.72);
-	backdrop-filter: blur(16px);
-	-webkit-backdrop-filter: blur(16px);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	background: transparent;
+	backdrop-filter: blur(0);
+	-webkit-backdrop-filter: blur(0);
+	border-bottom: 1px solid transparent;
 	transition:
 		background-color 320ms ease,
 		border-color 320ms ease,
-		box-shadow 320ms ease;
+		box-shadow 320ms ease,
+		backdrop-filter 320ms ease;
+}
+
+.garna-header.is-scrolled {
+	background: rgba(5, 5, 5, 0.72);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
 .garna-header.is-mobile-open {
@@ -342,6 +350,15 @@
 	background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4), transparent);
 }
 
+.garna-header-business-account-feature img {
+	opacity: 0.92;
+	object-position: center 10%;
+}
+
+.garna-header-business-account-feature::after {
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.28) 44%, transparent 76%);
+}
+
 .garna-header-feature-copy {
 	position: absolute;
 	right: 20px;
@@ -423,7 +440,7 @@
 	overflow: hidden;
 	border-top: 1px solid rgba(255, 255, 255, 0.1);
 	background: #050505;
-	padding: 0 24px 24px;
+	padding: 0 var(--garna-container-gutter) 24px;
 }
 
 .garna-header-mobile-menu.hidden {
@@ -483,7 +500,7 @@
 	color: #ffffff;
 	font-family: Manrope, sans-serif;
 	font-size: 24px;
-	font-weight: 300;
+	font-weight: 500;
 	line-height: 1.1;
 	text-decoration: none;
 }
@@ -495,7 +512,7 @@
 	align-items: start;
 	column-gap: 12px;
 	row-gap: 2px;
-	padding: 6px 4px;
+	padding: 6px 0;
 	border-radius: 12px;
 	font-size: 16px;
 	line-height: 1.25;
@@ -531,7 +548,7 @@
 	color: #ffffff;
 	font-family: Manrope, sans-serif;
 	font-size: 16px;
-	font-weight: 300;
+	font-weight: 500;
 	line-height: 1.25;
 }
 
@@ -626,7 +643,7 @@
 
 @media (max-width: 960px) and (min-width: 768px) {
 	.garna-header-container {
-		padding-inline: 20px;
+		padding-inline: var(--garna-container-gutter);
 	}
 
 	.garna-header-logo {

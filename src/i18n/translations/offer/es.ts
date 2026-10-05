@@ -1,7 +1,7 @@
 export const offerEs = {
 	meta: {
-		title: 'Garna para contratistas - Recibe pagos globalmente',
-		description: 'Recibe pagos de clientes en todo el mundo con tarifas transparentes y retiros instantáneos.',
+		title: 'Recibe pagos a nivel internacional como contratista independiente | Garna',
+		description: 'Trabaja con clientes internacionales y accede a pagos seguros, múltiples opciones de retiro, facturación automatizada y soporte para el cumplimiento normativo.',
 	},
 	images: {},
 	nav: {

@@ -1,0 +1,28 @@
+.garna-form-page {
+	position: relative;
+	z-index: 10;
+	isolation: isolate;
+}
+
+.garna-form-page > .garna-container {
+	position: relative;
+	z-index: 2;
+}
+
+.garna-form-page .garna-hero-title-gradient {
+	color: #fff !important;
+	background: none !important;
+	-webkit-text-fill-color: currentColor;
+}
+
+.garna-form-page [data-translate="form.subtitle"] {
+	position: relative;
+	z-index: 2;
+	color: #a1a1aa;
+	opacity: 1;
+}
+
+.garna-form-page #garna-widget-root {
+	position: relative;
+	z-index: 2;
+}

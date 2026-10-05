@@ -1,0 +1,148 @@
+<div class="global-reach-visual relative h-full min-h-[250px] w-full overflow-hidden">
+	<div class="globe-shell absolute left-1/2 top-[4%] z-0 aspect-square w-[86%] -translate-x-1/2 overflow-hidden rounded-full" aria-hidden="true">
+		<div class="globe-map-track absolute -left-[27.5%] top-1/2 flex w-[310%]">
+			<img src="/pages/payroll-solution-new/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png" class="globe-map w-1/2 max-w-none flex-none" alt="" />
+			<img src="/pages/payroll-solution-new/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png" class="globe-map w-1/2 max-w-none flex-none" alt="" />
+		</div>
+		<svg class="globe-grid absolute left-1/2 top-[-0.5%] h-[101%] w-[101%] -translate-x-1/2" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+			<defs>
+				<clipPath id="global-reach-grid-clip">
+					<circle cx="50" cy="50" r="49.6" />
+				</clipPath>
+			</defs>
+			<g clip-path="url(#global-reach-grid-clip)">
+				<g class="globe-grid-static-meridians">
+					<path d="M50 0V100" />
+					<path d="M50 0C41.2 14.5 37.8 31.5 37.8 50C37.8 68.5 41.2 85.5 50 100" />
+					<path d="M50 0C58.8 14.5 62.2 31.5 62.2 50C62.2 68.5 58.8 85.5 50 100" />
+					<path d="M50 0C31.6 13.2 23.8 31.2 23.8 50C23.8 68.8 31.6 86.8 50 100" />
+					<path d="M50 0C68.4 13.2 76.2 31.2 76.2 50C76.2 68.8 68.4 86.8 50 100" />
+					<path d="M50 0C20.8 12.4 10.5 31.3 10.5 50C10.5 68.7 20.8 87.6 50 100" />
+					<path d="M50 0C79.2 12.4 89.5 31.3 89.5 50C89.5 68.7 79.2 87.6 50 100" />
+					<path d="M50 0C10.8 12.2 1 31.6 1 50C1 68.4 10.8 87.8 50 100" />
+					<path d="M50 0C89.2 12.2 99 31.6 99 50C99 68.4 89.2 87.8 50 100" />
+				</g>
+				<g class="globe-grid-latitudes">
+					<path d="M29.6 4.8C39.2 11.8 60.8 11.8 70.4 4.8" />
+					<path d="M5.6 13.6C25.8 27.2 74.2 27.2 94.4 13.6" />
+					<path d="M7.8 26.4C25 39.8 75 39.8 92.2 26.4" />
+					<path d="M2 39.6C23.5 51.8 76.5 51.8 98 39.6" />
+					<path d="M0 53C23.8 63.4 76.2 63.4 100 53" />
+					<path d="M3 66.4C25.2 75.6 74.8 75.6 97 66.4" />
+					<path d="M10.4 79.8C28.8 86.8 71.2 86.8 89.6 79.8" />
+				</g>
+			</g>
+		</svg>
+		<div class="globe-light absolute inset-0"></div>
+	</div>
+
+	<div class="currency-pill currency-pill--gbp absolute left-[7%] top-[36%] z-10">
+		<span class="flag-pair"><img src="/images/flags/gb.png" alt="United Kingdom"><img src="/images/flags/us.png" alt="United States"></span>
+		<span class="transfer-details"><strong>GBP <span>→</span> USD</strong><small>£7,607 <i>→</i> $10,000</small></span>
+	</div>
+
+	<div class="currency-pill currency-pill--eur absolute left-[43%] top-[58%] z-20">
+		<span class="flag-pair"><img src="/images/flags/de.png" alt="Germany"><img src="/images/flags/ch.png" alt="Switzerland"></span>
+		<span class="transfer-details"><strong>EUR <span>→</span> CHF</strong><small>€5,037 <i>→</i> CHF 4,850</small></span>
+	</div>
+
+	<div class="currency-pill currency-pill--jpy absolute right-[8%] top-[27%] z-10">
+		<span class="flag-pair"><img src="/images/flags/jp.png" alt="Japan"><img src="/images/flags/ca.png" alt="Canada"></span>
+		<span class="transfer-details"><strong>JPY <span>→</span> CAD</strong><small>¥227,910 <i>→</i> C$2,100</small></span>
+	</div>
+</div>
+
+<style>
+	.globe-shell {
+		border: 1px solid rgb(255 255 255 / 0.08);
+		background: radial-gradient(circle at 34% 28%, #101010 0%, #070707 48%, #030303 100%);
+	}
+
+	.globe-map {
+		opacity: 0.18;
+		filter: grayscale(1) brightness(0.96) contrast(1.08);
+		mix-blend-mode: screen;
+	}
+
+	.globe-map-track {
+		animation: global-reach-axis-spin 34s linear infinite;
+		z-index: 0;
+		transform: translateY(-50%);
+	}
+
+	.globe-grid {
+		z-index: 2;
+		color: rgb(255 255 255 / 0.125);
+		mix-blend-mode: screen;
+	}
+
+	.globe-grid ellipse,
+	.globe-grid path {
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 0.48;
+		vector-effect: non-scaling-stroke;
+	}
+
+	.globe-light {
+		z-index: 1;
+		background:
+			radial-gradient(circle at 38% 27%, rgb(255 255 255 / 0.024), transparent 32%),
+			linear-gradient(90deg, rgb(0 0 0 / 0.66) 0%, rgb(0 0 0 / 0.12) 24%, transparent 66%, rgb(0 0 0 / 0.66) 100%),
+			linear-gradient(110deg, rgb(0 0 0 / 0.1) 0%, rgb(0 0 0 / 0.26) 62%, rgb(0 0 0 / 0.62));
+	}
+
+	.currency-pill {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		border: 1px solid rgb(255 255 255 / 0.08);
+		border-radius: 0.94rem;
+		background: #050505;
+		width: max-content;
+		padding: 0.7rem 0.68rem 0.7rem 0.72rem;
+		font-family: Manrope, sans-serif;
+		font-size: 1.03rem;
+		color: rgb(209 213 219);
+	}
+
+	.transfer-details { min-width: 0; flex: 1; }
+	.transfer-details strong { display: block; color: white; font-size: 1.03rem; font-weight: 600; white-space: nowrap; }
+	.transfer-details strong span { margin: 0 0.15rem; color: rgb(107 114 128); font-weight: 400; }
+	.transfer-details small { display: block; margin-top: 0.12rem; color: rgb(107 114 128); font-size: 0.78rem; white-space: nowrap; }
+	.transfer-details small i { margin: 0 0.13rem; color: rgb(75 85 99); font-style: normal; }
+	.flag-pair {
+		display: flex;
+		align-items: center;
+		flex: 0 0 auto;
+	}
+
+	.flag-pair img {
+		height: 2.15rem;
+		width: 2.15rem;
+		max-width: none;
+		object-fit: cover;
+		border-radius: 9999px;
+		border: 2px solid #0a0a0a;
+	}
+
+	.flag-pair img + img { margin-left: -0.78rem; }
+
+	@keyframes global-reach-axis-spin {
+		from {
+			transform: translate3d(0, -50%, 0);
+		}
+
+		to {
+			transform: translate3d(-50%, -50%, 0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.globe-map-track {
+			animation: none;
+			transform: translateY(-50%);
+		}
+	}
+</style>

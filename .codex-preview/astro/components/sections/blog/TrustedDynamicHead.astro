@@ -1,0 +1,13 @@
+---
+/**
+ * The single documented set:html allowlist for Worker-provided blog metadata.
+ * The Worker replaces this build-time marker with trusted CMS meta and JSON-LD.
+ */
+interface Props {
+	html: string;
+}
+
+const { html } = Astro.props;
+---
+
+<Fragment set:html={html} />

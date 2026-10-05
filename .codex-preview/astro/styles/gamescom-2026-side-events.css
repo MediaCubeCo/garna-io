@@ -1,0 +1,243 @@
+.gamescom-page {
+	--gc-bg: #050505;
+	--gc-surface: #0c0c0c;
+	--gc-card: rgba(255, 255, 255, 0.04);
+	--gc-card-hover: rgba(255, 255, 255, 0.065);
+	--gc-line: rgba(255, 255, 255, 0.08);
+	--gc-line-strong: rgba(255, 255, 255, 0.14);
+	--gc-text: #fff;
+	--gc-muted: #a1a1aa;
+	--gc-faint: #71717a;
+	--gc-accent: #cbf300;
+	--gc-accent-hover: #6ab901;
+	--gc-accent-soft: rgba(203, 243, 0, 0.08);
+	--gc-accent-line: rgba(203, 243, 0, 0.32);
+	--gc-container: 1152px;
+	--gc-nav-height: 68px;
+	position: relative;
+	isolation: isolate;
+	min-height: 100vh;
+	color: var(--gc-muted);
+	font-family: "Manrope", sans-serif;
+	line-height: 1.6;
+	overflow: clip;
+}
+
+.gamescom-page::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	pointer-events: none;
+	background:
+		radial-gradient(circle at 12% 1%, rgba(203, 243, 0, 0.1), transparent 27rem),
+		radial-gradient(circle at 87% 8%, rgba(203, 243, 0, 0.055), transparent 24rem),
+		linear-gradient(180deg, rgba(5, 5, 5, 0.1), #050505 72%);
+}
+
+.gamescom-grid {
+	position: absolute;
+	inset: 0 0 auto;
+	height: 58rem;
+	z-index: -1;
+	pointer-events: none;
+	background-image:
+		linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+	background-size: 56px 56px;
+	mask-image: radial-gradient(circle at 50% 0%, #000, transparent 70%);
+}
+
+.gamescom-page *, .gamescom-page *::before, .gamescom-page *::after { box-sizing: border-box; }
+.gamescom-page h1, .gamescom-page h2, .gamescom-page h3 { margin: 0; color: var(--gc-text); }
+.gamescom-page p { margin: 0; }
+.gamescom-page a { text-decoration: none; }
+
+.gamescom-container {
+	width: min(calc(100% - (2 * var(--garna-container-gutter))), var(--gc-container));
+	margin-inline: auto;
+}
+
+.gamescom-hero { padding: clamp(8.5rem, 15vw, 12.5rem) 0 3.2rem; }
+
+.gamescom-hero-title {
+	max-width: 14ch;
+	margin-bottom: -0.12em;
+	padding-bottom: 0.12em;
+	font-size: clamp(3rem, 7vw, 5.3rem);
+	line-height: 1.04;
+	letter-spacing: -0.045em !important;
+}
+
+.gamescom-hero-title > span:nth-of-type(2) {
+	color: var(--gc-accent);
+	-webkit-text-fill-color: var(--gc-accent);
+}
+
+.gamescom-hero-lead {
+	max-width: 64ch;
+	margin-top: 1.5rem !important;
+	margin-bottom: 0 !important;
+	color: var(--gc-muted);
+	font-size: clamp(1rem, 1.5vw, 1.18rem);
+	font-weight: 300;
+}
+
+.gamescom-hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.1rem; }
+
+.gamescom-stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem 3rem;
+	margin-top: 3.5rem;
+	padding-top: 1.8rem;
+	border-top: 1px solid var(--gc-line);
+}
+
+.gamescom-stat strong {
+	display: block;
+	color: var(--gc-accent);
+	font-size: 2rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -0.04em;
+	line-height: 1.1;
+}
+
+.gamescom-stat span { color: var(--gc-faint); font-size: 0.82rem; font-weight: 500; }
+.gamescom-hero-meta { margin-top: 1.35rem !important; color: var(--gc-faint); font-size: 0.8rem; }
+
+.gamescom-day-nav {
+	position: sticky;
+	top: 4.25rem;
+	z-index: 30;
+	border-block: 1px solid var(--gc-line);
+	background: rgba(5, 5, 5, 0.86);
+	backdrop-filter: blur(18px);
+}
+
+.gamescom-page .day-nav-inner {
+	display: flex;
+	height: var(--gc-nav-height);
+	align-items: center;
+	gap: 0.5rem;
+	overflow-x: auto;
+	scrollbar-width: none;
+}
+.gamescom-page .day-nav-inner::-webkit-scrollbar { display: none; }
+
+.gamescom-page .day-btn {
+	display: flex;
+	min-width: 5rem;
+	flex: 0 0 auto;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.06rem;
+	padding: 0.48rem 0.85rem;
+	border: 1px solid var(--gc-line);
+	border-radius: 0.75rem;
+	background: transparent;
+	color: var(--gc-muted);
+	font-family: "Manrope", sans-serif;
+	cursor: pointer;
+	transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.gamescom-page .day-btn:hover { border-color: var(--gc-line-strong); background: rgba(255, 255, 255, 0.05); color: #fff; }
+.gamescom-page .day-btn.is-active { border-color: var(--gc-accent); background: var(--gc-accent); color: #101010; }
+.gamescom-page .d-day { color: inherit; font-size: 0.92rem; font-weight: 700; letter-spacing: -0.02em; }
+.gamescom-page .d-count { color: var(--gc-faint); font-size: 0.7rem; font-weight: 500; }
+.gamescom-page .day-btn.is-active .d-count { color: rgba(16, 16, 16, 0.68); }
+
+.gamescom-events-section { padding: 3.5rem 0 2.5rem; }
+.gamescom-page .day-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.9rem; margin-bottom: 1.8rem; }
+.gamescom-page .day-heading h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 400; letter-spacing: -0.035em; }
+.gamescom-page .day-sub { color: var(--gc-faint); font-size: 0.86rem; font-weight: 500; }
+.gamescom-page .event-list { display: grid; gap: 0.85rem; }
+.gamescom-page .event-row { display: grid; grid-template-columns: 7.5rem 1fr; align-items: start; gap: 1.25rem; }
+.gamescom-page .event-time { padding-top: 1.35rem; color: var(--gc-muted); font-size: 0.86rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.gamescom-page .event-card {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
+	gap: 1.15rem 1.8rem;
+	padding: 1.4rem 1.5rem;
+	border: 1px solid var(--gc-line);
+	border-radius: 1rem;
+	background: rgba(12, 12, 12, 0.72);
+	box-shadow: 0 28px 80px -44px rgba(0, 0, 0, 0.95);
+	backdrop-filter: blur(20px);
+	transition: translate 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.gamescom-page .event-card:hover { translate: 0 -1px; border-color: var(--gc-line-strong); background: var(--gc-card-hover); }
+.gamescom-page .event-card.is-featured { border-color: var(--gc-accent-line); background: linear-gradient(155deg, var(--gc-accent-soft), rgba(12, 12, 12, 0.78)); }
+.gamescom-page .event-card.is-closed { opacity: 0.55; }
+.gamescom-page .event-main { min-width: 0; }
+.gamescom-page .event-title { display: flex; flex-wrap: wrap; align-items: center; gap: 0.62rem; margin-bottom: 0.48rem; }
+.gamescom-page .event-title h3 { color: #fff; font-size: 1.08rem; font-weight: 600; letter-spacing: -0.02em; }
+.gamescom-page .event-desc { max-width: 72ch; color: var(--gc-muted); font-size: 0.9rem; }
+
+.gamescom-page .pick,
+.gamescom-page .badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.2rem 0.58rem;
+	border: 1px solid var(--gc-line-strong);
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.04);
+	color: var(--gc-muted);
+	font-size: 0.7rem;
+	font-weight: 600;
+}
+
+.gamescom-page .pick { border-color: var(--gc-accent-line); background: var(--gc-accent-soft); color: var(--gc-accent); font-size: 0.64rem; letter-spacing: 0.07em; text-transform: uppercase; }
+.gamescom-page .badge.badge-free, .gamescom-page .badge.badge-open { border-color: var(--gc-accent-line); background: var(--gc-accent-soft); color: var(--gc-accent); }
+.gamescom-page .badge.badge-closed { color: var(--gc-faint); }
+
+.gamescom-page .event-facts { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin-top: 0.75rem; color: var(--gc-faint); font-size: 0.8rem; }
+.gamescom-page .fact { display: inline-flex; align-items: center; gap: 0.4rem; }
+.gamescom-page .fact svg { width: 0.82rem; height: 0.82rem; flex: 0 0 auto; opacity: 0.75; }
+.gamescom-page .event-cta { flex: 0 0 auto; }
+.gamescom-page .event-cta .garna-button { min-width: 8rem; }
+.gamescom-page .gamescom-event-button { min-height: 2.5rem; padding-inline: 1rem; font-size: 0.82rem; }
+.gamescom-page .gamescom-event-button[aria-disabled="true"] { cursor: not-allowed; opacity: 0.56; pointer-events: none; }
+
+.gamescom-page .empty-state { padding: 3.5rem 1.5rem; border: 1px dashed var(--gc-line-strong); border-radius: 1rem; text-align: center; }
+.gamescom-page .empty-state h3 { margin-bottom: 0.5rem; font-size: 1.2rem; font-weight: 600; }
+.gamescom-page .empty-state p, .gamescom-page .loading { color: var(--gc-faint); font-size: 0.9rem; }
+.gamescom-page .loading { padding: 3.75rem 0; text-align: center; }
+.gamescom-page .source-note { margin-top: 1.8rem; padding: 0.85rem 1rem; border: 1px solid var(--gc-line); border-radius: 0.75rem; color: var(--gc-faint); font-size: 0.78rem; }
+
+.gamescom-offer-section { padding: 2rem 0 6rem; }
+.gamescom-offer-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1.8rem 2.5rem; padding: 2.5rem 2.75rem; border: 1px solid var(--gc-accent-line); border-radius: 1.75rem; background: linear-gradient(150deg, var(--gc-accent-soft), rgba(255, 255, 255, 0.025)); }
+.gamescom-offer-card h2 { margin-bottom: 0.75rem; font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 400; letter-spacing: -0.035em; }
+.gamescom-offer-card p { max-width: 62ch; color: var(--gc-muted); font-size: 0.96rem; }
+.gamescom-offer-eyebrow { display: block; margin-bottom: 0.85rem; color: var(--gc-accent); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+.gamescom-offer-actions { display: flex; min-width: 10.5rem; flex-direction: column; gap: 0.65rem; }
+
+.gamescom-page .reveal { opacity: 1; transform: none; }
+html.js .gamescom-page .reveal { opacity: 0; transform: translateY(0.9rem); transition: opacity 550ms ease, transform 550ms ease; }
+html.js .gamescom-page .reveal.is-visible { opacity: 1; transform: none; }
+
+@media (max-width: 760px) {
+	.gamescom-container { width: min(calc(100% - 2rem), var(--gc-container)); }
+	.gamescom-hero { padding-top: 8.2rem; }
+	.gamescom-hero-title { max-width: none; font-size: clamp(2.7rem, 13vw, 4rem); }
+	.gamescom-stats { gap: 1rem 2rem; }
+	.gamescom-day-nav { top: 4.1rem; }
+	.gamescom-page .day-btn { min-width: 4.4rem; padding-inline: 0.72rem; }
+	.gamescom-page .event-row { grid-template-columns: 1fr; gap: 0; }
+	.gamescom-page .event-time { padding: 0 0 0.5rem 0.15rem; color: var(--gc-accent); font-weight: 700; }
+	.gamescom-page .event-card { grid-template-columns: 1fr; padding: 1.2rem; }
+	.gamescom-page .event-cta .garna-button { width: 100%; }
+	.gamescom-offer-card { grid-template-columns: 1fr; padding: 1.9rem 1.4rem; }
+	.gamescom-offer-actions { flex-direction: row; flex-wrap: wrap; }
+	.gamescom-offer-actions .garna-button { flex: 1 1 auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gamescom-page *, .gamescom-page *::before, .gamescom-page *::after { animation: none !important; transition-duration: 0.01ms !important; }
+	.gamescom-page .reveal, html.js .gamescom-page .reveal { opacity: 1; transform: none; }
+}

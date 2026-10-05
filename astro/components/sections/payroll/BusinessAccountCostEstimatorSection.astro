@@ -1,0 +1,249 @@
+---
+import Section from '../../layout/Section.astro';
+import SectionHeader from '../../layout/SectionHeader.astro';
+import routeData from '../../../../src/data/corpay-routes.json';
+import type { CorpayRoute } from '../../../../src/utils/transfer-calculator';
+
+const routes = routeData.routes as CorpayRoute[];
+const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+const countryCodes = new Map<string, string>();
+for (let first = 65; first <= 90; first += 1) for (let second = 65; second <= 90; second += 1) {
+	const code = String.fromCharCode(first, second);
+	const name = regionNames.of(code);
+	if (name && name !== code) countryCodes.set(name.toLowerCase(), code.toLowerCase());
+}
+const countryCodeAliases: Record<string, string> = { usa: 'us', czech: 'cz', 'slovak republik': 'sk', 'republic of south africa': 'za', 'republic of the congo': 'cg', 'congo, democratic republic': 'cd', salvador: 'sv', macedonia: 'mk', 'falkland islands(malvinas)': 'fk', 'federated states of micronesia': 'fm', 'ivory coast': 'ci', laos: 'la', moldova: 'md', swaziland: 'sz', vatican: 'va', 'antigua and barbuda': 'ag', 'bosnia and herzegovina': 'ba', 'hong kong': 'hk', myanmar: 'mm', 'saint kitts and nevis': 'kn', 'saint lucia': 'lc', 'saint vincent and the grenadines': 'vc', 'sao tome and principe': 'st', 'trinidad and tobago': 'tt', turkey: 'tr', 'wallis and futuna islands': 'wf' };
+const countryFlagCode = (country: string) => countryCodeAliases[country.toLowerCase()] || countryCodes.get(country.toLowerCase()) || 'un';
+const countryFlagSrc = (country: string) => `https://flagcdn.com/w80/${countryFlagCode(country)}.png`;
+const countries = Array.from(new Map(routes.map((route) => [route.country, { country: route.country, region: route.region, flagCode: countryFlagCode(route.country) }])).values()).sort((a, b) => a.country.localeCompare(b.country));
+const initialCountry = 'Poland';
+const initialRoutes = routes.filter((route) => route.country === initialCountry);
+const initialRoute = initialRoutes.find((route) => route.payoutType === 'local') ?? initialRoutes[0];
+const sourceCurrencies = ['AED', 'AUD', 'BHD', 'CAD', 'CHF', 'CNY', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'JPY', 'KWD', 'MUR', 'MXN', 'NOK', 'NZD', 'PLN', 'RON', 'SAR', 'SEK', 'SGD', 'USD', 'ZAR'] as const;
+const popularCurrencies = new Set(['EUR', 'GBP', 'USD']);
+const currencyNames: Record<string, string> = { AED: 'UAE dirham', AUD: 'Australian dollar', BHD: 'Bahraini dinar', CAD: 'Canadian dollar', CHF: 'Swiss franc', CNY: 'Chinese yuan', DKK: 'Danish krone', EUR: 'Euro', GBP: 'British pound', HKD: 'Hong Kong dollar', HUF: 'Hungarian forint', JPY: 'Japanese yen', KWD: 'Kuwaiti dinar', MUR: 'Mauritian rupee', MXN: 'Mexican peso', NOK: 'Norwegian krone', NZD: 'New Zealand dollar', PLN: 'Polish zloty', RON: 'Romanian leu', SAR: 'Saudi riyal', SEK: 'Swedish krona', SGD: 'Singapore dollar', USD: 'US dollar', ZAR: 'South African rand' };
+const currencyAliases: Record<string, string> = { AED: 'United Arab Emirates UAE', AUD: 'Australia', BHD: 'Bahrain', CAD: 'Canada', CHF: 'Switzerland', CNY: 'China', DKK: 'Denmark', EUR: 'European Union Europe Eurozone', GBP: 'United Kingdom Britain', HKD: 'Hong Kong', HUF: 'Hungary', JPY: 'Japan', KWD: 'Kuwait', MUR: 'Mauritius', MXN: 'Mexico', NOK: 'Norway', NZD: 'New Zealand', PLN: 'Poland', RON: 'Romania', SAR: 'Saudi Arabia', SEK: 'Sweden', SGD: 'Singapore', USD: 'United States America USA', ZAR: 'South Africa' };
+const currencyFlagCodes: Record<string, string> = { AED: 'ae', AUD: 'au', BHD: 'bh', CAD: 'ca', CHF: 'ch', CNY: 'cn', DKK: 'dk', EUR: 'eu', GBP: 'gb', HKD: 'hk', HUF: 'hu', JPY: 'jp', KWD: 'kw', MUR: 'mu', MXN: 'mx', NOK: 'no', NZD: 'nz', PLN: 'pl', RON: 'ro', SAR: 'sa', SEK: 'se', SGD: 'sg', USD: 'us', ZAR: 'za' };
+const currencyFlagSrc = (currency: string) => `https://flagcdn.com/w80/${currencyFlagCodes[currency] || 'un'}.png`;
+const routeFlagSrc = (route: CorpayRoute) => `https://flagcdn.com/w80/${currencyFlagCodes[route.currencyCode] || countryFlagCode(route.country)}.png`;
+---
+
+<Section id="transfer-calculator" contained={false} spacing="none" class="transfer-section py-16 lg:py-32">
+	<div class="transfer-container mx-auto max-w-7xl px-6">
+		<div class="transfer-shell">
+			<SectionHeader class="transfer-copy" title={{ text: 'Send Your Money Worldwide', translateKey: 'costEstimator.title' }} description={{ text: 'Make international payments in 60+ local currencies, including USD, EUR, and more', translateKey: 'costEstimator.description' }} descriptionClass="transfer-copy__description" />
+			<div class="transfer-card" data-transfer-calculator>
+				<div class="transfer-card__heading"><h3 data-translate="costEstimator.form.title">Calculate your payout</h3></div>
+
+				<label class="transfer-label" for="transfer-country-trigger" data-translate="costEstimator.form.destination">Destination</label>
+				<div class="transfer-custom-select" data-country-picker>
+					<input type="hidden" value={initialCountry} data-transfer-country />
+					<button id="transfer-country-trigger" type="button" class="transfer-select-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Destination" data-translate-aria-label="costEstimator.form.destination" data-country-trigger>
+						<span class="transfer-trigger-value"><span class="transfer-flag" aria-hidden="true" data-country-trigger-flag><img src={countryFlagSrc(initialCountry)} alt="" /></span><span data-country-label>{initialCountry}</span></span>
+						<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+					</button>
+					<div class="transfer-select-menu" role="listbox" hidden data-country-menu>
+						{countries.map(({ country, region, flagCode }) => <button type="button" role="option" value={country} aria-selected={country === initialCountry} data-country-option data-region={region} data-flag-code={flagCode}><span class="transfer-flag" aria-hidden="true"><img src={`https://flagcdn.com/w80/${flagCode}.png`} alt="" loading="lazy" /></span><span data-country-option-label>{country}</span></button>)}
+					</div>
+				</div>
+
+				<div class="transfer-money-field">
+					<label for="transfer-send-amount" data-translate="costEstimator.form.youSend">You send</label>
+					<div class="transfer-entry-row">
+						<div class="transfer-currency-picker" data-source-picker>
+							<button type="button" class="transfer-currency-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Send currency" data-translate-aria-label="costEstimator.form.sourceCurrency" data-source-trigger><span class="transfer-trigger-value"><span class="transfer-flag" aria-hidden="true" data-source-trigger-flag><img src={currencyFlagSrc('USD')} alt="" /></span><span data-source-label>USD — US dollar</span></span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></button>
+							<div class="transfer-currency-popover" hidden data-source-popover>
+								<label class="transfer-search"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input type="search" placeholder="Type a currency / country" data-translate-placeholder="costEstimator.form.searchCurrency" aria-label="Search source currencies" data-translate-aria-label="costEstimator.form.searchCurrency" data-source-search /></label>
+								<div class="transfer-currency-options" role="listbox" data-source-options>
+									<p data-translate="costEstimator.form.popularCurrencies">Popular currencies</p>
+					{sourceCurrencies.filter((currency) => popularCurrencies.has(currency)).map((currency) => <button type="button" role="option" aria-selected={currency === 'USD'} value={currency} data-source-option data-search={`${currency} ${currencyNames[currency]} ${currencyAliases[currency]}`}><span class="transfer-flag" aria-hidden="true"><img src={currencyFlagSrc(currency)} alt="" loading="lazy" /></span><span class="transfer-currency-copy"><strong>{currency}</strong><small data-currency-option-label>{currencyNames[currency]}</small></span></button>)}
+									<p data-translate="costEstimator.form.allCurrencies">All currencies</p>
+					{sourceCurrencies.filter((currency) => !popularCurrencies.has(currency)).map((currency) => <button type="button" role="option" aria-selected="false" value={currency} data-source-option data-search={`${currency} ${currencyNames[currency]} ${currencyAliases[currency]}`}><span class="transfer-flag" aria-hidden="true"><img src={currencyFlagSrc(currency)} alt="" loading="lazy" /></span><span class="transfer-currency-copy"><strong>{currency}</strong><small data-currency-option-label>{currencyNames[currency]}</small></span></button>)}
+									<span class="transfer-empty" hidden data-source-empty data-translate="costEstimator.form.noCurrencies">No currencies found</span>
+								</div>
+							</div>
+						</div>
+						<div class="transfer-amount-shell"><span data-source-symbol>$</span><input id="transfer-send-amount" value="1000" inputmode="decimal" autocomplete="off" aria-label="You send" data-translate-aria-label="costEstimator.form.youSend" data-transfer-amount /></div>
+					</div>
+					<p class="transfer-field-message" data-amount-message data-translate="costEstimator.form.feesDeducted">Fees are deducted from this amount.</p>
+				</div>
+
+				<div class="transfer-money-field">
+					<label for="transfer-recipient-amount" data-translate="costEstimator.form.recipientGets">Recipient gets</label>
+					<div class="transfer-entry-row">
+						<div class="transfer-custom-select transfer-receive-select" data-receive-picker>
+							<input type="hidden" value={initialRoute.id} data-receive-currency />
+							<button type="button" class="transfer-select-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Receive currency" data-translate-aria-label="costEstimator.form.receiveCurrency" data-receive-trigger><span class="transfer-trigger-value"><span class="transfer-flag" aria-hidden="true" data-receive-trigger-flag><img src={routeFlagSrc(initialRoute)} alt="" /></span><span data-receive-label>{initialRoute.currencyCode} — {initialRoute.currencyName}</span></span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></button>
+							<div class="transfer-select-menu transfer-receive-menu" role="listbox" hidden data-receive-menu>{initialRoutes.map((route) => <button type="button" role="option" value={route.id} aria-selected={route.id === initialRoute.id} data-receive-option><span class="transfer-flag" aria-hidden="true"><img src={routeFlagSrc(route)} alt="" loading="lazy" /></span><span class="transfer-currency-copy"><strong>{route.currencyCode}</strong><small data-receive-currency-label>{route.currencyName}</small></span></button>)}</div>
+						</div>
+						<div class="transfer-amount-shell transfer-output-shell"><span data-recipient-symbol>zł</span><output id="transfer-recipient-amount" aria-live="polite" data-recipient-amount>…</output></div>
+					</div>
+					<p class="transfer-field-message" data-route-message>Available currencies — Poland: PLN, USD.</p>
+				</div>
+
+				<div data-transfer-results>
+					<div class="transfer-rate-line" aria-live="polite"><span data-translate="costEstimator.form.rate">Rate</span><strong data-rate-value data-translate="costEstimator.form.fetchingRate">Fetching estimated rate…</strong></div>
+					<div class="transfer-breakdown"><div><span data-translate="costEstimator.form.transferFee">Transfer fee</span><strong data-transfer-fee>—</strong></div><div><span data-translate="costEstimator.form.delivery">Estimated delivery</span><strong data-translate="costEstimator.form.deliveryTime">1–2 business days</strong></div></div>
+				</div>
+				<button class="transfer-cta" type="button" data-transfer-cta><span data-translate="costEstimator.form.cta">Talk to sales for an individual offer</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></button>
+				<div class="transfer-disclaimers"><p data-translate="costEstimator.form.disclaimerOne">This is an indicative estimate, not a final quote or guarantee. Pricing and route availability depend on the currency pair, destination, payment volume, account profile, compliance review and provider availability.</p><p data-translate="costEstimator.form.disclaimerTwo">The estimated exchange rate may include a currency conversion margin. Rates are not locked and delivery times are estimates. Contact our sales team to confirm availability and receive your exact individual offer before making a payment.</p></div>
+				<div class="transfer-copy-bank" hidden aria-hidden="true"><span data-copy="unavailable" data-translate="costEstimator.form.rateUnavailable">Rate unavailable</span><span data-copy="fetching" data-translate="costEstimator.form.fetchingRate">Fetching estimated rate…</span><span data-copy="enterAmount" data-translate="costEstimator.form.enterAmount">Enter an amount greater than zero.</span><span data-copy="tooLow" data-translate="costEstimator.form.amountTooLow">The send amount must be greater than the transfer fee.</span><span data-copy="feesDeducted" data-translate="costEstimator.form.feesDeducted">Fees are deducted from this amount.</span><span data-copy="availableFor" data-translate="costEstimator.form.availableFor">Available for</span></div>
+			</div>
+		</div>
+	</div>
+</Section>
+
+<style>
+	:global(.transfer-section) { position: relative; isolation: isolate; overflow: hidden; background: #101010; }
+	:global(.transfer-section)::before { content: ""; position: absolute; inset: 0; z-index: -2; background: linear-gradient(rgb(7 8 8 / 0.46), rgb(7 8 8 / 0.6)), url("/images/business-account/send-money-worldwide-background.png") center / cover no-repeat; }
+	:global(.transfer-section)::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at 50% 48%, rgb(203 243 0 / 0.06), transparent 35rem); pointer-events: none; }
+	.transfer-shell { display: grid; justify-items: center; gap: clamp(1.5rem, 2.5vw, 2rem); }
+	:global(.transfer-copy) { max-width: 44rem; text-align: center; }
+	:global(.transfer-copy__description) { color: rgb(255 255 255 / 0.78) !important; }
+	.transfer-card { width: min(100%, 46rem); border: 1px solid rgb(255 255 255 / 0.12); border-radius: 24px; background: rgb(18 18 18 / 0.94); padding: clamp(1rem, 2.2vw, 1.5rem); box-shadow: 0 32px 90px -54px #000; color: #fff; font-family: Manrope, sans-serif; text-align: left; backdrop-filter: blur(20px); }
+	.transfer-card__heading { margin-bottom: 1.1rem; text-align: center; }
+	.transfer-card h3 { margin: 0; color: #fff; font-size: clamp(1.35rem, 1.8vw, 1.75rem); font-weight: 500; line-height: 1.1; letter-spacing: 0; }
+	.transfer-label, .transfer-money-field > label { display: block; margin: 0 0 0.4rem; color: #fff; font-size: 0.93rem; font-weight: 600; line-height: 1.2; }
+	.transfer-custom-select, .transfer-currency-picker { position: relative; min-width: 0; }
+	.transfer-select-trigger, .transfer-currency-trigger { display: flex; align-items: center; gap: .65rem; width: 100%; min-height: 3.25rem; border: 1px solid rgb(255 255 255 / 0.1); border-radius: 12px; outline: 0; background: #101010; padding: 0 .95rem; color: #fff; font: 600 .95rem Manrope, sans-serif; text-align: left; transition: border-color 160ms ease, box-shadow 160ms ease; }
+	.transfer-select-trigger > svg, .transfer-currency-trigger > svg { width: 1.125rem; margin-left: auto; flex: 0 0 auto; color: #8a8a8a; transition: color 160ms ease, transform 160ms ease; }
+	.transfer-select-trigger svg path, .transfer-currency-trigger svg path { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
+	.transfer-custom-select[data-open="true"] .transfer-select-trigger, .transfer-select-trigger:focus-visible, .transfer-currency-picker[data-open="true"] .transfer-currency-trigger, .transfer-currency-trigger:focus-visible, .transfer-amount-shell:focus-within { border-color: rgb(203 243 0 / .68); box-shadow: 0 0 0 1px rgb(203 243 0 / .14); }
+	.transfer-custom-select[data-open="true"] .transfer-select-trigger > svg, .transfer-currency-picker[data-open="true"] .transfer-currency-trigger > svg { color: #cbf300; transform: rotate(180deg); }
+	.transfer-trigger-value { display: flex; align-items: center; gap: .75rem; min-width: 0; }
+	.transfer-trigger-value > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+	.transfer-select-menu { position: absolute; z-index: 35; top: calc(100% + .5rem); right: 0; left: 0; display: grid; max-height: 15rem; overflow-y: auto; border: 1px solid rgb(255 255 255 / .1); border-radius: 10px; background: #101010; padding: .35rem; box-shadow: 0 24px 54px -36px rgb(0 0 0 / .92); scrollbar-color: rgb(255 255 255 / .18) transparent; scrollbar-width: thin; }
+	.transfer-select-menu[hidden] { display: none; }
+	.transfer-select-menu button { display: flex; align-items: center; gap: .85rem; width: 100%; min-height: 2.85rem; border: 1px solid transparent; border-radius: 8px; background: transparent; padding: .35rem .8rem; color: rgb(255 255 255 / .68); font: 600 .95rem Manrope, sans-serif; text-align: left; transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease; }
+	.transfer-select-menu button:hover, .transfer-select-menu button:focus-visible { background: rgb(255 255 255 / .06); color: #fff; outline: 0; }
+	.transfer-select-menu button[aria-selected="true"] { border-color: rgb(203 243 0 / .42); background: rgb(203 243 0 / .08); color: #fff; }
+	.transfer-receive-menu { bottom: calc(100% + .5rem); top: auto; max-height: 12rem; }
+	.transfer-money-field { margin-top: .8rem; }
+	.transfer-entry-row { display: grid; grid-template-columns: minmax(11rem, .72fr) minmax(0, 1fr); gap: .7rem; }
+	.transfer-currency-trigger span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+	.transfer-amount-shell { display: flex; align-items: center; min-width: 0; min-height: 3.25rem; border: 1px solid rgb(255 255 255 / 0.1); border-radius: 12px; background: #101010; padding: 0 1rem; transition: border-color 160ms ease, box-shadow 160ms ease; }
+	.transfer-amount-shell > span { margin-right: .45rem; color: rgb(255 255 255 / .82); font-size: 1.05rem; font-weight: 650; line-height: 1; }
+	.transfer-amount-shell input, .transfer-amount-shell output { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: #fff; font: 600 clamp(1.18rem, 1.5vw, 1.35rem) Manrope, sans-serif; }
+	.transfer-output-shell { background: #101010; }
+	.transfer-currency-popover { position: absolute; z-index: 30; top: calc(100% + .5rem); left: 0; width: min(22rem, calc(100vw - 3rem)); overflow: hidden; border: 1px solid rgb(255 255 255 / .12); border-radius: 15px; background: #111; box-shadow: 0 28px 70px -26px #000; }
+	.transfer-search { display: flex !important; align-items: center; gap: .6rem; margin: 0 !important; border-bottom: 1px solid rgb(255 255 255 / .09); padding: .8rem; }
+	.transfer-search svg { width: 1rem; color: #828282; }.transfer-search svg * { fill: none; stroke: currentColor; stroke-width: 2; }
+	.transfer-search input { width: 100%; border: 0; outline: 0; background: transparent; color: #fff; font: 500 .85rem Manrope, sans-serif; }
+	.transfer-currency-options { max-height: 18rem; overflow-y: auto; padding: .4rem; }
+	.transfer-currency-options > p { margin: 0; padding: .65rem .7rem .35rem; color: #737373; font-size: .65rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+	.transfer-currency-options button { display: grid; grid-template-columns: 1.7rem minmax(0, 1fr); align-items: center; gap: .65rem; width: 100%; min-height: 3rem; border: 1px solid transparent; border-radius: 8px; background: transparent; padding: .35rem .7rem; color: rgb(255 255 255 / .68); text-align: left; }
+	.transfer-currency-options button:hover, .transfer-currency-options button:focus-visible { outline: 0; background: rgb(255 255 255 / .07); }.transfer-currency-options button[aria-selected="true"] { background: rgb(203 243 0 / .08); }
+	.transfer-currency-options button[aria-selected="true"] { border-color: rgb(203 243 0 / .42); color: #fff; }
+	.transfer-flag { display: inline-flex; width: 1.5rem; height: 1.5rem; flex: 0 0 auto; overflow: hidden; border: 1px solid rgb(255 255 255 / .16); border-radius: 50%; }.transfer-flag img { display: block; width: 100%; height: 100%; object-fit: cover; }
+	.transfer-currency-copy { display: grid; min-width: 0; gap: .08rem; }.transfer-currency-copy strong { font-size: .95rem; font-weight: 750; line-height: 1.1; }.transfer-currency-copy small { overflow: hidden; color: rgb(255 255 255 / .5); font-size: .82rem; font-weight: 500; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
+	:global(.transfer-receive-menu [data-receive-option]) { display: flex; align-items: center; gap: .85rem; }
+	:global(.transfer-receive-menu [data-receive-option] .transfer-flag) { display: inline-flex; width: 1.5rem; height: 1.5rem; flex: 0 0 auto; overflow: hidden; border: 1px solid rgb(255 255 255 / .16); border-radius: 50%; }
+	:global(.transfer-receive-menu [data-receive-option] .transfer-flag img) { display: block; width: 100%; height: 100%; object-fit: cover; }
+	:global(.transfer-receive-menu [data-receive-option] .transfer-currency-copy) { display: grid; min-width: 0; gap: .08rem; line-height: 1.15; }
+	:global(.transfer-receive-menu [data-receive-option] .transfer-currency-copy strong) { color: #fff; font-size: .95rem; font-weight: 750; line-height: 1.1; }
+	:global(.transfer-receive-menu [data-receive-option] .transfer-currency-copy small) { color: rgb(255 255 255 / .5); font-size: .82rem; font-weight: 500; line-height: 1.15; }
+	.transfer-empty { display: block; padding: 1rem; color: #888; font-size: .82rem; text-align: center; }
+	.transfer-field-message { min-height: 1rem; margin: .3rem 0 0; color: rgb(255 255 255 / .42); font-size: .68rem; line-height: 1.35; }
+	.transfer-rate-line { display: flex; justify-content: space-between; gap: 1rem; margin-top: .85rem; border-top: 1px solid rgb(255 255 255 / .09); padding-top: .75rem; color: #9a9a9a; font-size: .82rem; }.transfer-rate-line strong { color: #fff; font-weight: 600; text-align: right; }
+	.transfer-breakdown { display: grid; gap: .45rem; margin-top: .55rem; border-radius: 13px; background: rgb(255 255 255 / .035); padding: .7rem .9rem; }.transfer-breakdown > div { display: flex; justify-content: space-between; gap: 1rem; color: #999; font-size: .78rem; }.transfer-breakdown strong { color: #fff; font-weight: 600; text-align: right; }
+	.transfer-cta { display: flex; align-items: center; justify-content: center; gap: .55rem; width: 100%; min-height: 3rem; margin-top: .75rem; border: 1px solid #cbf300; border-radius: 12px; background: #cbf300; color: #0a0a0a; font: 600 1rem/1.2 Manrope, sans-serif; transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease; }.transfer-cta > span { display: inline-flex; min-width: 0; align-items: center; line-height: 1.2; white-space: nowrap; }.transfer-cta:hover { background: #d8ff24; box-shadow: 0 12px 34px -18px rgb(203 243 0 / .78); transform: translateY(-2px); }.transfer-cta:active { transform: translateY(0); }.transfer-cta svg { display: block; width: 1rem; height: 1rem; flex: 0 0 auto; align-self: center; }.transfer-cta svg path { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
+	.transfer-disclaimers { display: grid; gap: .3rem; margin-top: .7rem; color: rgb(255 255 255 / .38); font-size: .6rem; line-height: 1.4; }.transfer-disclaimers p { margin: 0; }
+	@media (max-width: 640px) {
+		.transfer-entry-row { grid-template-columns: 1fr; }
+		.transfer-currency-popover { width: min(22rem, calc(100vw - 5rem)); }
+		.transfer-cta { font-size: .9rem; }
+		:global(html[lang="ru"]) .transfer-cta { font-size: .82rem; }
+	}
+</style>
+
+<style is:global>
+	.transfer-receive-menu [data-receive-option] { display: flex; align-items: center; gap: .85rem; }
+	.transfer-receive-menu [data-receive-option] .transfer-flag { display: inline-flex; width: 1.5rem; height: 1.5rem; flex: 0 0 auto; overflow: hidden; border: 1px solid rgb(255 255 255 / .16); border-radius: 50%; }
+	.transfer-receive-menu [data-receive-option] .transfer-flag img { display: block; width: 100%; height: 100%; object-fit: cover; }
+	.transfer-receive-menu [data-receive-option] .transfer-currency-copy { display: grid; min-width: 0; gap: .08rem; line-height: 1.15; }
+	.transfer-receive-menu [data-receive-option] .transfer-currency-copy strong { color: #fff; font-size: .95rem; font-weight: 750; line-height: 1.1; }
+	.transfer-receive-menu [data-receive-option] .transfer-currency-copy small { color: rgb(255 255 255 / .5); font-size: .82rem; font-weight: 500; line-height: 1.15; }
+</style>
+
+<script>
+	import routeData from '../../../../src/data/corpay-routes.json';
+	import { calculateTransfer, type CorpayRoute } from '../../../../src/utils/transfer-calculator';
+	type RateQuote = { from: string; to: string; rate: number; asOf: string; provider: string };
+	const allRoutes = routeData.routes as CorpayRoute[];
+	const names: Record<string, string> = { AED: 'UAE dirham', AUD: 'Australian dollar', BHD: 'Bahraini dinar', CAD: 'Canadian dollar', CHF: 'Swiss franc', CNY: 'Chinese yuan', DKK: 'Danish krone', EUR: 'Euro', GBP: 'British pound', HKD: 'Hong Kong dollar', HUF: 'Hungarian forint', JPY: 'Japanese yen', KWD: 'Kuwaiti dinar', MUR: 'Mauritian rupee', MXN: 'Mexican peso', NOK: 'Norwegian krone', NZD: 'New Zealand dollar', PLN: 'Polish zloty', RON: 'Romanian leu', SAR: 'Saudi riyal', SEK: 'Swedish krona', SGD: 'Singapore dollar', USD: 'US dollar', ZAR: 'South African rand' };
+	const formatMoney = (amount: number, currency: string) => { try { return new Intl.NumberFormat(document.documentElement.lang || 'en', { style: 'currency', currency, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(amount); } catch { return `${amount.toFixed(2)} ${currency}`; } };
+	const formatPlain = (amount: number) => amount.toLocaleString(document.documentElement.lang || 'en', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+	const formatRate = (rate: number) => rate.toLocaleString(document.documentElement.lang || 'en', { minimumFractionDigits: Math.min(2, rate >= 100 ? 2 : rate >= 1 ? 4 : 6), maximumFractionDigits: rate >= 100 ? 2 : rate >= 1 ? 4 : 6 });
+	const currencySymbol = (currency: string) => { try { return new Intl.NumberFormat(document.documentElement.lang || 'en', { style: 'currency', currency, currencyDisplay: 'narrowSymbol' }).formatToParts(0).find((part) => part.type === 'currency')?.value || currency; } catch { return currency; } };
+	const parseAmount = (value: string) => Number(value.replace(/\s/g, '').replace(',', '.'));
+	const requestRate = async (from: string, to: string, signal: AbortSignal): Promise<RateQuote> => { const response = await fetch(`/api/rates?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`, { signal }); const data = await response.json() as RateQuote & { error?: string }; if (!response.ok) throw new Error(data.error || 'Rate unavailable'); return data; };
+
+	const initializeBusinessTransferCalculators = () => document.querySelectorAll<HTMLElement>('[data-transfer-calculator]').forEach((root) => {
+		if (root.dataset.initialized === 'true') return; root.dataset.initialized = 'true';
+		const activeLocale = document.documentElement.lang || 'en';
+		const countryDisplayNames = new Intl.DisplayNames([activeLocale], { type: 'region' });
+		const currencyDisplayNames = new Intl.DisplayNames([activeLocale], { type: 'currency' });
+		const country = root.querySelector<HTMLInputElement>('[data-transfer-country]')!;
+		const countryPicker = root.querySelector<HTMLElement>('[data-country-picker]')!;
+		const countryTrigger = root.querySelector<HTMLButtonElement>('[data-country-trigger]')!;
+		const countryMenu = root.querySelector<HTMLElement>('[data-country-menu]')!;
+		const countryLabel = root.querySelector<HTMLElement>('[data-country-label]')!;
+		const countryTriggerFlag = root.querySelector<HTMLImageElement>('[data-country-trigger-flag] img')!;
+		const countryOptions = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-country-option]'));
+		const amountInput = root.querySelector<HTMLInputElement>('[data-transfer-amount]')!;
+		const receiveCurrency = root.querySelector<HTMLInputElement>('[data-receive-currency]')!;
+		const receivePicker = root.querySelector<HTMLElement>('[data-receive-picker]')!;
+		const receiveTrigger = root.querySelector<HTMLButtonElement>('[data-receive-trigger]')!;
+		const receiveMenu = root.querySelector<HTMLElement>('[data-receive-menu]')!;
+		const receiveLabel = root.querySelector<HTMLElement>('[data-receive-label]')!;
+		const receiveTriggerFlag = root.querySelector<HTMLImageElement>('[data-receive-trigger-flag] img')!;
+		const recipientAmount = root.querySelector<HTMLOutputElement>('[data-recipient-amount]')!;
+		const transferFee = root.querySelector<HTMLElement>('[data-transfer-fee]')!; const rateValue = root.querySelector<HTMLElement>('[data-rate-value]')!; const amountMessage = root.querySelector<HTMLElement>('[data-amount-message]')!; const routeMessage = root.querySelector<HTMLElement>('[data-route-message]')!; const results = root.querySelector<HTMLElement>('[data-transfer-results]')!; const sourceTrigger = root.querySelector<HTMLButtonElement>('[data-source-trigger]')!; const sourcePopover = root.querySelector<HTMLElement>('[data-source-popover]')!; const sourceSearch = root.querySelector<HTMLInputElement>('[data-source-search]')!; const sourceLabel = root.querySelector<HTMLElement>('[data-source-label]')!; const sourceTriggerFlag = root.querySelector<HTMLImageElement>('[data-source-trigger-flag] img')!; const sourceSymbol = root.querySelector<HTMLElement>('[data-source-symbol]')!; const recipientSymbol = root.querySelector<HTMLElement>('[data-recipient-symbol]')!; const sourceOptions = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-source-option]')); const sourceEmpty = root.querySelector<HTMLElement>('[data-source-empty]')!;
+		const copy = (key: string) => root.querySelector<HTMLElement>(`[data-copy="${key}"]`)?.textContent?.trim() || key;
+		let sourceCurrency = 'USD'; let controller: AbortController | null = null; let timer = 0;
+		const routesForCountry = () => allRoutes.filter((route) => route.country === country.value);
+		const selectedRoute = () => allRoutes.find((route) => route.id === receiveCurrency.value) ?? routesForCountry()[0];
+		const flagUrl = (code: string) => `https://flagcdn.com/w80/${code}.png`;
+		const selectedCountryFlag = () => countryOptions.find((option) => option.value === country.value)?.dataset.flagCode || 'un';
+		const localizedCountryName = (countryName: string) => { const code = countryOptions.find((option) => option.value === countryName)?.dataset.flagCode; if (!code || code === 'un') return countryName; try { return countryDisplayNames.of(code.toUpperCase()) || countryName; } catch { return countryName; } };
+		const localizedCurrencyName = (currencyCode: string, fallback = currencyCode) => { try { return currencyDisplayNames.of(currencyCode) || fallback; } catch { return fallback; } };
+		const routeFlagCode = (route: CorpayRoute) => ({ AED: 'ae', AUD: 'au', BHD: 'bh', CAD: 'ca', CHF: 'ch', CNY: 'cn', DKK: 'dk', EUR: 'eu', GBP: 'gb', HKD: 'hk', HUF: 'hu', JPY: 'jp', KWD: 'kw', MUR: 'mu', MXN: 'mx', NOK: 'no', NZD: 'nz', PLN: 'pl', RON: 'ro', SAR: 'sa', SEK: 'se', SGD: 'sg', USD: 'us', ZAR: 'za' }[route.currencyCode] || selectedCountryFlag());
+		const closePicker = (picker: HTMLElement, trigger: HTMLButtonElement, menu: HTMLElement) => { picker.dataset.open = 'false'; trigger.setAttribute('aria-expanded', 'false'); menu.hidden = true; };
+		const openPicker = (picker: HTMLElement, trigger: HTMLButtonElement, menu: HTMLElement, options: HTMLButtonElement[]) => { closePicker(countryPicker, countryTrigger, countryMenu); closePicker(receivePicker, receiveTrigger, receiveMenu); sourcePopover.hidden = true; sourceTrigger.setAttribute('aria-expanded', 'false'); picker.dataset.open = 'true'; trigger.setAttribute('aria-expanded', 'true'); menu.hidden = false; window.requestAnimationFrame(() => { const selected = options.find((option) => option.getAttribute('aria-selected') === 'true') ?? options[0]; if (selected) menu.scrollTop = Math.max(0, selected.offsetTop - ((menu.clientHeight - selected.offsetHeight) / 2)); }); };
+		const updateRouteMessage = () => { const currentRoutes = routesForCountry(); routeMessage.textContent = `${copy('availableFor')} — ${localizedCountryName(country.value)}: ${currentRoutes.map((route) => route.currencyCode).join(', ')}.`; };
+		const updateRecipientSymbol = () => { const route = selectedRoute(); recipientSymbol.textContent = route ? currencySymbol(route.currencyCode) : ''; };
+		const chooseReceiveRoute = (route: CorpayRoute, option?: HTMLButtonElement) => { receiveCurrency.value = route.id; receiveLabel.textContent = `${route.currencyCode} — ${localizedCurrencyName(route.currencyCode, route.currencyName)}`; receiveTriggerFlag.src = flagUrl(routeFlagCode(route)); Array.from(receiveMenu.querySelectorAll<HTMLButtonElement>('[data-receive-option]')).forEach((item) => item.setAttribute('aria-selected', String(item === option || item.value === route.id))); closePicker(receivePicker, receiveTrigger, receiveMenu); updateRecipientSymbol(); updateRouteMessage(); scheduleCalculation(); };
+		const rebuildReceiveCurrencies = () => {
+			const currentRoutes = routesForCountry(); const preferred = currentRoutes.find((route) => route.payoutType === 'local') ?? currentRoutes[0];
+			const options = currentRoutes.map((route) => { const option = document.createElement('button'); option.type = 'button'; option.value = route.id; option.dataset.receiveOption = ''; option.setAttribute('role', 'option'); option.setAttribute('aria-selected', String(route.id === preferred?.id)); option.innerHTML = `<span class="transfer-flag" aria-hidden="true"><img src="${flagUrl(routeFlagCode(route))}" alt="" loading="lazy"></span><span class="transfer-currency-copy"><strong>${route.currencyCode}</strong><small data-receive-currency-label>${localizedCurrencyName(route.currencyCode, route.currencyName)}</small></span>`; option.addEventListener('click', () => chooseReceiveRoute(route, option)); return option; });
+			receiveMenu.replaceChildren(...options); if (preferred) { receiveCurrency.value = preferred.id; receiveLabel.textContent = `${preferred.currencyCode} — ${localizedCurrencyName(preferred.currencyCode, preferred.currencyName)}`; receiveTriggerFlag.src = flagUrl(routeFlagCode(preferred)); } updateRecipientSymbol(); updateRouteMessage();
+		};
+		const calculate = async () => {
+			const amount = parseAmount(amountInput.value); const route = selectedRoute();
+			if (!route || !Number.isFinite(amount) || amount <= 0) { controller?.abort(); results.hidden = true; recipientAmount.textContent = '—'; transferFee.textContent = '—'; rateValue.textContent = copy('unavailable'); amountMessage.textContent = copy('enterAmount'); return; }
+			controller?.abort(); controller = new AbortController(); results.hidden = false; recipientAmount.textContent = '…'; transferFee.textContent = '—'; rateValue.textContent = copy('fetching'); amountMessage.textContent = copy('feesDeducted');
+			try { const [sourceToDestination, usdToSource] = await Promise.all([requestRate(sourceCurrency, route.currencyCode, controller.signal), requestRate('USD', sourceCurrency, controller.signal)]); const result = calculateTransfer({ amount, sourceCurrency, destinationCurrency: route.currencyCode, providerFixedFeeUsd: route.providerFixedFeeUsd, usdToSourceRate: usdToSource.rate, sourceToDestinationRate: sourceToDestination.rate }); recipientAmount.textContent = formatPlain(result.recipientGets); transferFee.textContent = formatMoney(result.transferFee, sourceCurrency); rateValue.textContent = `1 ${sourceCurrency} = ${formatRate(result.clientRate)} ${route.currencyCode}`; amountMessage.textContent = result.isPayable ? copy('feesDeducted') : copy('tooLow'); } catch { if (controller?.signal.aborted) return; recipientAmount.textContent = '—'; transferFee.textContent = '—'; rateValue.textContent = copy('unavailable'); }
+		};
+		const scheduleCalculation = () => { window.clearTimeout(timer); timer = window.setTimeout(calculate, 220); };
+		countryTrigger.addEventListener('click', () => { if (countryPicker.dataset.open === 'true') closePicker(countryPicker, countryTrigger, countryMenu); else openPicker(countryPicker, countryTrigger, countryMenu, countryOptions); });
+		countryOptions.forEach((option) => option.addEventListener('click', () => { country.value = option.value; countryLabel.textContent = localizedCountryName(option.value); countryTriggerFlag.src = flagUrl(option.dataset.flagCode || 'un'); countryOptions.forEach((item) => item.setAttribute('aria-selected', String(item === option))); closePicker(countryPicker, countryTrigger, countryMenu); rebuildReceiveCurrencies(); scheduleCalculation(); }));
+		receiveTrigger.addEventListener('click', () => { const options = Array.from(receiveMenu.querySelectorAll<HTMLButtonElement>('[data-receive-option]')); if (receivePicker.dataset.open === 'true') closePicker(receivePicker, receiveTrigger, receiveMenu); else openPicker(receivePicker, receiveTrigger, receiveMenu, options); });
+		Array.from(receiveMenu.querySelectorAll<HTMLButtonElement>('[data-receive-option]')).forEach((option) => option.addEventListener('click', () => { const route = allRoutes.find((item) => item.id === option.value); if (route) chooseReceiveRoute(route, option); }));
+		amountInput.addEventListener('input', scheduleCalculation);
+		sourceTrigger.addEventListener('click', () => { const open = sourcePopover.hidden; closePicker(countryPicker, countryTrigger, countryMenu); closePicker(receivePicker, receiveTrigger, receiveMenu); sourcePopover.hidden = !open; root.querySelector<HTMLElement>('[data-source-picker]')!.dataset.open = String(open); sourceTrigger.setAttribute('aria-expanded', String(open)); if (open) window.setTimeout(() => sourceSearch.focus(), 0); });
+		sourceSearch.addEventListener('input', () => { const query = sourceSearch.value.trim().toLowerCase(); let visible = 0; sourceOptions.forEach((option) => { const match = (option.dataset.search || '').toLowerCase().includes(query); option.hidden = !match; if (match) visible += 1; }); sourceEmpty.hidden = visible > 0; });
+		sourceOptions.forEach((option) => option.addEventListener('click', () => { sourceCurrency = option.value; sourceLabel.textContent = `${sourceCurrency} — ${localizedCurrencyName(sourceCurrency, names[sourceCurrency] || sourceCurrency)}`; sourceTriggerFlag.src = option.querySelector<HTMLImageElement>('.transfer-flag img')?.src || sourceTriggerFlag.src; sourceSymbol.textContent = currencySymbol(sourceCurrency); sourceOptions.forEach((item) => item.setAttribute('aria-selected', String(item === option))); sourcePopover.hidden = true; root.querySelector<HTMLElement>('[data-source-picker]')!.dataset.open = 'false'; sourceTrigger.setAttribute('aria-expanded', 'false'); sourceSearch.value = ''; sourceOptions.forEach((item) => { item.hidden = false; }); scheduleCalculation(); }));
+		document.addEventListener('pointerdown', (event) => { if (!(event.target instanceof Node) || !root.contains(event.target)) { closePicker(countryPicker, countryTrigger, countryMenu); closePicker(receivePicker, receiveTrigger, receiveMenu); sourcePopover.hidden = true; root.querySelector<HTMLElement>('[data-source-picker]')!.dataset.open = 'false'; sourceTrigger.setAttribute('aria-expanded', 'false'); return; } if (!countryPicker.contains(event.target)) closePicker(countryPicker, countryTrigger, countryMenu); if (!receivePicker.contains(event.target)) closePicker(receivePicker, receiveTrigger, receiveMenu); if (!root.querySelector('[data-source-picker]')?.contains(event.target)) { sourcePopover.hidden = true; root.querySelector<HTMLElement>('[data-source-picker]')!.dataset.open = 'false'; sourceTrigger.setAttribute('aria-expanded', 'false'); } });
+		document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closePicker(countryPicker, countryTrigger, countryMenu); closePicker(receivePicker, receiveTrigger, receiveMenu); sourcePopover.hidden = true; root.querySelector<HTMLElement>('[data-source-picker]')!.dataset.open = 'false'; sourceTrigger.setAttribute('aria-expanded', 'false'); } });
+		root.querySelector<HTMLButtonElement>('[data-transfer-cta]')?.addEventListener('click', () => { const widget = (window as any).GarnaWidget; if (widget?.open) widget.open({ trackingCta: 'business_account_transfer_calculator' }); });
+		countryOptions.forEach((option) => { const label = option.querySelector<HTMLElement>('[data-country-option-label]'); if (label) label.textContent = localizedCountryName(option.value); });
+		sourceOptions.forEach((option) => { const localizedName = localizedCurrencyName(option.value, names[option.value] || option.value); const label = option.querySelector<HTMLElement>('[data-currency-option-label]'); if (label) label.textContent = localizedName; option.dataset.search = `${option.dataset.search || ''} ${localizedName}`; });
+		Array.from(receiveMenu.querySelectorAll<HTMLButtonElement>('[data-receive-option]')).forEach((option) => { const route = allRoutes.find((item) => item.id === option.value); const label = option.querySelector<HTMLElement>('[data-receive-currency-label]'); if (route && label) label.textContent = localizedCurrencyName(route.currencyCode, route.currencyName); });
+		countryLabel.textContent = localizedCountryName(country.value);
+		sourceLabel.textContent = `${sourceCurrency} — ${localizedCurrencyName(sourceCurrency, names[sourceCurrency] || sourceCurrency)}`;
+		const initialSelectedRoute = selectedRoute(); if (initialSelectedRoute) receiveLabel.textContent = `${initialSelectedRoute.currencyCode} — ${localizedCurrencyName(initialSelectedRoute.currencyCode, initialSelectedRoute.currencyName)}`;
+		updateRecipientSymbol(); updateRouteMessage(); void calculate();
+	});
+	initializeBusinessTransferCalculators();
+	window.addEventListener('garna:page-mounted', initializeBusinessTransferCalculators);
+</script>

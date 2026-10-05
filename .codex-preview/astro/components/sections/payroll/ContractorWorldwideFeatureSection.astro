@@ -1,0 +1,343 @@
+---
+import Section from '../../layout/Section.astro';
+import Button from '../../ui/Button.astro';
+---
+
+<Section spacing="default" contentClass="contractor-worldwide-feature-content">
+	<div class="contractor-worldwide-feature">
+		<div class="contractor-worldwide-feature__visual" aria-hidden="true">
+			<img src="/pages/payroll-solution-new/assets/contractor-cost-human-upscaled.jpg" alt="" loading="lazy" />
+			<div class="contractor-worldwide-feature__shade"></div>
+			<div class="contractor-worldwide-feature__notice contractor-worldwide-feature__notice--quote">
+				<div class="contractor-worldwide-feature__quote-top">
+					<span>Cost estimate</span>
+					<strong>Ready</strong>
+				</div>
+				<div class="contractor-worldwide-feature__quote-main">
+					<strong>$18,420</strong>
+					<span>12 contractors &middot; 8 countries</span>
+				</div>
+				<div class="contractor-worldwide-feature__quote-factors">
+					<span>FX</span>
+					<span>Payments</span>
+					<span>Compliance</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="contractor-worldwide-feature__copy">
+			<h2>See What Global Contractor Management Costs You</h2>
+			<p>Contractor fees are only part of the cost. Consider payment fees, FX, admin time, compliance, and multiple software subscriptions</p>
+			<div class="contractor-worldwide-feature__controls">
+				<Button
+					href="#"
+					size="header"
+					variant="primary"
+					effect="none"
+					icon="none"
+					onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'contractor_worldwide_demo' });"
+				>
+					Get a Custom Quote
+				</Button>
+			</div>
+		</div>
+	</div>
+</Section>
+
+<style>
+	:global(.contractor-worldwide-feature-content) {
+		display: block;
+	}
+
+	.contractor-worldwide-feature {
+		display: grid;
+		grid-template-columns: minmax(0, 0.88fr) minmax(18rem, 1.12fr);
+		align-items: center;
+		gap: clamp(2.5rem, 7vw, 7rem);
+	}
+
+	.contractor-worldwide-feature__copy {
+		max-width: 34rem;
+		text-align: left;
+	}
+
+	.contractor-worldwide-feature__copy h2 {
+		margin: 0;
+		color: #fff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(2.25rem, 4vw, 3rem);
+		font-weight: 400;
+		letter-spacing: 0;
+		line-height: 1.18;
+		text-wrap: balance;
+	}
+
+	.contractor-worldwide-feature__copy p {
+		max-width: 31rem;
+		margin: 1.5rem 0 0;
+		color: var(--garna-subtitle-color);
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1.125rem, 1.6vw, 1.25rem);
+		font-weight: var(--garna-subtitle-weight);
+		line-height: 1.6;
+	}
+
+	.contractor-worldwide-feature__controls {
+		display: flex;
+		margin-top: 2.5rem;
+	}
+
+	.contractor-worldwide-feature__visual {
+		position: relative;
+		min-height: clamp(30rem, 47vw, 38rem);
+		overflow: hidden;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 1.75rem;
+		background: #0a0a0a;
+		box-shadow: 0 32px 90px -56px rgb(0 0 0 / 0.95);
+	}
+
+	.contractor-worldwide-feature__visual > img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 42%;
+		transform: translateY(-10%) scale(1.14);
+		transform-origin: center 42%;
+		filter: brightness(0.94) contrast(1.04) saturate(0.98);
+	}
+
+	.contractor-worldwide-feature__shade {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgb(0 0 0 / 0.02), rgb(0 0 0 / 0.2)),
+			linear-gradient(90deg, rgb(0 0 0 / 0.02), rgb(0 0 0 / 0.16));
+	}
+
+	.contractor-worldwide-feature__notice {
+		position: absolute;
+		right: clamp(1rem, 3vw, 2rem);
+		bottom: clamp(1rem, 3vw, 2rem);
+		left: clamp(1rem, 3vw, 2rem);
+		z-index: 2;
+		display: flex;
+		min-height: 4.7rem;
+		align-items: center;
+		gap: 0.85rem;
+		border: 1px solid rgb(255 255 255 / 0.12);
+		border-radius: 1.25rem;
+		background: rgb(7 8 10 / 0.72);
+		padding: 0.68rem 0.9rem;
+		color: #fff;
+		text-align: left;
+		backdrop-filter: blur(14px);
+	}
+
+	.contractor-worldwide-feature__notice--quote {
+		display: grid;
+		min-height: 7.4rem;
+		align-items: stretch;
+		gap: 0.75rem;
+		padding: 1rem;
+	}
+
+	.contractor-worldwide-feature__quote-top,
+	.contractor-worldwide-feature__quote-main,
+	.contractor-worldwide-feature__quote-factors {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+	}
+
+	.contractor-worldwide-feature__quote-top span {
+		color: rgb(255 255 255 / 0.58);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.contractor-worldwide-feature__quote-top strong {
+		border-radius: 9999px;
+		background: #cbf300;
+		padding: 0.34rem 0.58rem;
+		color: #080808;
+		font-size: 0.62rem;
+		font-weight: 800;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.contractor-worldwide-feature__quote-main strong {
+		color: #fff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1.7rem, 3vw, 2.3rem);
+		font-weight: 700;
+		line-height: 1;
+		letter-spacing: 0;
+	}
+
+	.contractor-worldwide-feature__quote-main span {
+		max-width: 10.5rem;
+		color: rgb(255 255 255 / 0.68);
+		font-size: 0.82rem;
+		font-weight: 600;
+		line-height: 1.25;
+		text-align: right;
+	}
+
+	.contractor-worldwide-feature__quote-factors {
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+
+	.contractor-worldwide-feature__quote-factors span {
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 9999px;
+		background: rgb(255 255 255 / 0.06);
+		padding: 0.34rem 0.56rem;
+		color: rgb(255 255 255 / 0.72);
+		font-size: 0.72rem;
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	.contractor-worldwide-feature__avatar {
+		position: relative;
+		flex: 0 0 3.1rem;
+		width: 3.1rem;
+		height: 3.1rem;
+	}
+
+	.contractor-worldwide-feature__avatar > img {
+		width: 100%;
+		height: 100%;
+		border-radius: 9999px;
+		object-fit: cover;
+	}
+
+	.contractor-worldwide-feature__avatar > span {
+		position: absolute;
+		right: -0.12rem;
+		bottom: -0.08rem;
+		display: grid;
+		width: 1rem;
+		height: 1rem;
+		place-items: center;
+		border-radius: 9999px;
+		background: #cbf300;
+		color: #080808;
+		font-size: 0.58rem;
+		font-weight: 800;
+	}
+
+	.contractor-worldwide-feature__notice-copy {
+		display: flex;
+		min-width: 0;
+		flex: 1;
+		flex-direction: column;
+		gap: 0.22rem;
+	}
+
+	.contractor-worldwide-feature__notice-copy strong {
+		overflow: hidden;
+		color: #fff;
+		font-size: 0.98rem;
+		font-weight: 650;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.contractor-worldwide-feature__notice-copy small {
+		overflow: hidden;
+		color: rgb(255 255 255 / 0.64);
+		font-size: 0.76rem;
+		line-height: 1.2;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.contractor-worldwide-feature__badge {
+		position: absolute;
+		top: 0.95rem;
+		right: 0.9rem;
+		border-radius: 9999px;
+		background: #cbf300;
+		padding: 0.32rem 0.48rem;
+		color: #080808;
+		font-size: 0.55rem;
+		font-weight: 800;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	@media (max-width: 900px) {
+		.contractor-worldwide-feature {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+		}
+
+		.contractor-worldwide-feature__copy {
+			max-width: 38rem;
+		}
+
+		.contractor-worldwide-feature__visual {
+			min-height: auto;
+			aspect-ratio: 1.18;
+			border-radius: 1.35rem;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.contractor-worldwide-feature {
+			gap: 2rem;
+		}
+
+		.contractor-worldwide-feature__copy h2 {
+			font-size: 2.25rem;
+			line-height: 1.2;
+		}
+
+		.contractor-worldwide-feature__copy p {
+			margin-top: 1.25rem;
+			font-size: 1rem;
+		}
+
+		.contractor-worldwide-feature__controls {
+			margin-top: 2rem;
+		}
+
+		.contractor-worldwide-feature__visual {
+			aspect-ratio: 0.9;
+			border-radius: 1.25rem;
+		}
+
+		.contractor-worldwide-feature__notice {
+			right: 0.75rem;
+			bottom: 0.75rem;
+			left: 0.75rem;
+			border-radius: 1rem;
+		}
+
+		.contractor-worldwide-feature__notice--quote {
+			min-height: 7rem;
+			padding: 0.85rem;
+		}
+
+		.contractor-worldwide-feature__quote-main {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 0.4rem;
+		}
+
+		.contractor-worldwide-feature__quote-main span {
+			max-width: none;
+			text-align: left;
+		}
+	}
+</style>

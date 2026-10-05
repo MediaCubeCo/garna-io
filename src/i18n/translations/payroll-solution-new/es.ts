@@ -93,9 +93,16 @@ export const payrollSolutionNewEs = {
 	sourceText: {
 		'Book a demo': 'Solicita un demo',
 		'businesses using Garna': 'empresas usando Garna',
+		'paid to specialists': 'pagados a especialistas',
+		'talents already use Garna': 'talentos ya usan Garna',
 		'global payroll service availability': 'disponibilidad global de nómina',
 		'countries covered': 'países cubiertos',
 		'Manage Global Payroll Effortlessly': 'Gestiona la nómina global sin esfuerzo',
+		'One platform to run payroll for freelancers, remote employees, and full-time teams':
+			'Una plataforma para gestionar la nómina de freelancers, empleados remotos y equipos a tiempo completo',
+		'Flexible Payout Methods': 'Métodos de pago flexibles',
+		'Pay teams by bank transfer, card, electronic wallet, or crypto':
+			'Paga a tus equipos por transferencia bancaria, tarjeta, monedero electrónico o criptomonedas',
 		'We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries':
 			'Optimizamos el procesamiento de nóminas, ofreciendo soluciones flexibles y fiables para empresas de todos los tamaños y sectores',
 		'Automated Payroll Platform': 'Plataforma de nómina automatizada',
@@ -219,7 +226,7 @@ export const payrollSolutionNewEs = {
 		'Assign a financial contact person': 'Designa a una persona de contacto para asuntos financieros',
 		'SSpecify the person who will be responsible for financial matters':
 			'Especifica quién será la persona responsable de los asuntos financieros',
-		'Create your first EoR contract': 'Crea tu primer contrato EoR',
+		'Create your first EOR contract': 'Crea tu primer contrato EOR',
 		"Enter the employee's details":
 			'Introduce los datos del empleado',
 		'Invite an employee': 'Invita a un empleado',
@@ -235,7 +242,7 @@ export const payrollSolutionNewEs = {
 		'Germany': 'Alemania',
 		'Onboarding Checklist': 'Lista de incorporación',
 		'Company Profile Verified': 'Perfil de la empresa verificado',
-		'EoR Contract Signed': 'Contrato EoR firmado',
+		'EOR Contract Signed': 'Contrato EOR firmado',
 		'Employee Onboarded': 'Empleado incorporado',
 		'First Payroll Estimate': 'Estimación de la primera nómina',
 		'Fund Wallet &amp; Run Payroll': 'Recargar monedero y procesar nómina',
@@ -373,6 +380,7 @@ export const payrollSolutionNewEs = {
 		'Full Stack Developer': 'Full Stack Developer',
 		'Marketing Consultant': 'Marketing Consultant',
 	},
+	...homeEs,
 	footer: homeEs.footer,
 	bookingWidget: homeEs.bookingWidget,
 };

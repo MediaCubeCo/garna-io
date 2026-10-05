@@ -8,10 +8,9 @@ export const payrollSolutionNewEn = {
 	},
 	images: {},
 	hero: {
-		titleMain: 'Global Payroll Solution for International Businesses',
+		titleMain: 'The All in One Payroll Platform',
 		titleAccent: 'for International Businesses',
-		description:
-			'Save time and money while working with contractors and hiring employees in 150+ country. Full legal compliance without the extra costs — this and more, with Garna',
+		description: 'Hire, pay, and manage global teams without setting up local entities',
 		cta: 'Book a demo',
 	},
 	sectionHeadings: {
@@ -82,6 +81,7 @@ export const payrollSolutionNewEn = {
 		description: 'Pay your team in 150+ countries with just a few clicks. No red tape, just fast payments',
 		button: 'Book a demo',
 	},
+	...homeEn,
 	footer: homeEn.footer,
 	bookingWidget: homeEn.bookingWidget,
 };

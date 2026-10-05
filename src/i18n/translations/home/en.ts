@@ -14,16 +14,403 @@
 	brand: {
 		name: 'Garna',
 	},
+	cta: {
+		bookDemo: 'Book a demo',
+		learnMore: 'Learn more',
+	},
 	hero: {
 		badge: 'Enterprise Payroll',
+		titleMain: 'The All in One Payroll Platform',
+		stats: {
+			ariaLabel: 'Garna in numbers',
+			businesses: 'businesses trust Garna',
+			paid: 'paid to specialists',
+			professionals: 'professionals use Garna',
+		},
 		title: 'Global Payroll Solutions for your business',
 		tagline: 'for your business',
-		description: 'One transfer — countless possibilities. Pay remunerations in over 150 countries with minimal effort',
+		description: 'Pay contractors and hire employees in 150+ countries — fully compliant, without extra costs of a local entity',
 		bookDemo: 'Book a demo',
 		cta: 'Book a demo',
+		visual: {
+			payroll: 'Payroll',
+			globalPayouts: 'Global payouts',
+		},
+	},
+	sectionHeadings: {
+		homeProof: 'Payroll for work without borders',
+		manageGlobalPayroll: 'Manage Global Payroll Effortlessly',
+		hireEmployeesWorldwide: 'Hire Employees Worldwide',
+		effectivePayroll: 'Effective Payroll For Your Team Starts Here',
+		deferredPayments: 'Pay contractors now, settle later',
+		embeddedPayrollInfrastructure: 'Embedded Payroll Infrastructure',
+		trustedByBuilders: 'Trusted by 400+ Businesses Worldwide',
+	},
+	sectionDescriptions: {
+		homeProof: 'Support teams, contractors, and specialists wherever work happens',
+		manageGlobalPayroll: 'One platform to run payroll for freelancers, remote employees, and full-time teams',
+		hireEmployeesWorldwide: "Find and hire talents that you couldn't find locally without setting up a local legal entity",
+		effectivePayroll: "CSV mass payments or single transfers, no delays, no extra fees. Automate it once it's set up",
+		deferredPayments:
+			'Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow',
+		embeddedPayrollInfrastructure:
+			'Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand',
+		trustedByBuilders:
+			'Find out why large companies and middle-sized businesses are switching to Garna. We set the standard for international payroll, trusted by professionals in over 150 countries',
+	},
+	productDemo: {
+		play: 'Watch product demo',
+		ariaLabel: 'Play the Garna product demo',
+		videoLabel: 'Garna product demo',
+	},
+	homeProof: {
+		stats: {
+			businesses: {
+				label: 'businesses using Garna',
+				notice: {
+					title: 'Invoice approved',
+					meta: 'Brand Studio LLC',
+				},
+			},
+			paid: {
+				label: 'paid to specialists',
+				notice: {
+					title: 'Salary batch sent',
+					meta: '38 specialists',
+				},
+			},
+			talents: {
+				label: 'talents already use Garna',
+				notice: {
+					title: 'Transfer completed',
+					meta: 'EUR account',
+				},
+			},
+		},
+		carousel: {
+			ariaLabel: 'Choose a payroll proof card',
+		},
+	},
+	homeWorkflows: {
+		ariaLabel: 'Garna global team workflows',
+		pay: {
+			title: 'Move money without borders',
+			description: 'Run payroll and payouts across markets without stitching together separate payment tools',
+			imageAlt: 'A group of young professionals against a bright blue sky',
+			status: 'Payroll completed',
+			statusMeta: '38 team members paid',
+			statusAmount: '$96,400',
+		},
+		contractors: {
+			title: 'Manage global talent with confidence',
+			description: 'Keep people, agreements, and day-to-day operations connected in one clear workspace',
+			imageAlt: 'A remote contractor working from anywhere',
+			status: 'Contractor agreement',
+			statusMeta: 'Both parties signed',
+			statusAmount: 'Complete',
+		},
+		hire: {
+			title: 'Build teams wherever opportunity is',
+			description: 'Choose the right way to work with talent in each country as your business grows',
+			imageAlt: 'A new employee joining a global team',
+			status: 'New employee hired',
+			statusMeta: 'Start date confirmed',
+			statusAmount: 'EOR active',
+		},
+	},
+	manageGlobalPayroll: {
+		cards: {
+			automation: {
+				title: 'Pay Contractors Globally',
+				description: 'Onboard and pay contractors worldwide with ease',
+			},
+			globalReach: {
+				title: 'Hire Employees Worldwide',
+				description: 'Scale your team faster with a compliant EOR solution',
+			},
+			payoutMethods: {
+				title: 'Business Perks & Discounts',
+				description: 'Get discounts for Slack, Google Workspace, and 100+ services that eat your budget',
+			},
+			fees: {
+				title: 'Get a Business Bank Account',
+				description: 'Manage global payments with dedicated business accounts',
+			},
+		},
+		visual: {
+			automation: {
+				ariaLabel: 'Contractor payout summary',
+				contractVerified: 'Contract verified',
+				approved: 'Approved',
+				invoiceApproved: 'Invoice approved',
+				ready: 'Ready',
+				contractorName: 'Eva Miller',
+				contractorRole: 'Product designer',
+				contractorType: 'Contractor',
+				contractorReceives: 'Contractor receives',
+				payoutDestination: 'Payout destination',
+				payoutDestinationValue: 'Portugal',
+				payoutCurrency: 'Payout currency',
+				payoutCurrencyValue: 'USD',
+				payDate: 'Pay date',
+				payDateValue: '28 June',
+				managedWith: 'Managed with Garna',
+				sendPayment: 'Send payment',
+			},
+			employees: {
+				germany: 'Germany · EOR active',
+				canada: 'Canada · EOR active',
+				japan: 'Japan · EOR active',
+			},
+			perks: {
+				offerDetails: 'Offer details',
+				partnerOffer: 'Partner offer',
+				available: 'Available',
+				serviceCategory: 'Team communication',
+				exclusiveDeal: 'Exclusive deal',
+				forGarnaCustomers: 'For Garna customers',
+				benefit: 'Benefit',
+				partnerPricing: 'Partner pricing',
+				eligibility: 'Eligibility',
+				businessAccount: 'Business account',
+				access: 'Access',
+				instant: 'Instant',
+				businessPerk: 'Your business perk',
+				unlockOffer: 'Unlock this offer',
+				viewOffer: 'View offer',
+				businessPerks: 'Business perks',
+				toolsYourTeamUses: 'Save on tools your team uses',
+				offersCount: '100+ offers',
+				partner: 'Partner',
+				slackDiscount: 'Exclusive discount for Garna customers',
+				claimPerk: 'Claim perk',
+				availableWithGarna: 'Available with Garna',
+				availableDiscounts: 'Available discounts',
+				choosePerk: 'Choose a perk to activate',
+				teamCollaboration: 'Team collaboration',
+				productivitySuite: 'Business productivity',
+				moreServices: '100+ more services',
+				explorePartnerOffers: 'Explore all partner offers',
+				projectManagement: 'Project management',
+				showMoreOffers: 'Show 100+ offers',
+			},
+			methods: {
+				back: 'Back',
+				withdrawFunds: 'Withdraw funds',
+				bankTransfer: 'Bank transfer',
+				transferToCard: 'Transfer to card',
+				electronicWallets: 'Electronic wallets',
+				cryptocurrencies: 'Cryptocurrencies',
+				internalAccount: 'Internal Garna account',
+				toEurAccount: 'To EUR account',
+				withdrawAll: 'Withdraw all',
+				charged: 'You’ll be charged',
+				received: 'You’ll receive',
+				details: 'Details',
+				businessAccount: 'Business account',
+				balance: 'Balance',
+				send: 'Send',
+				withdraw: 'Withdraw',
+				addFunds: 'Add funds',
+				transfer: 'Transfer',
+				widgets: 'Widgets',
+				templates: 'Templates',
+				templatesSaved: '8 templates saved',
+				currencyExchange: 'Currency exchange',
+				betweenAccounts: 'Between your accounts',
+				accountDetails: 'Account details',
+				savedRecipients: 'Saved recipients',
+				quickAccess: 'Quick access',
+			},
+		},
+	},
+	hireEmployees: {
+		cards: {
+			globalEmployment: {
+				title: 'Quick Global Employment',
+				description: 'Hire employees in 150+ countries without setting up local legal entities',
+			},
+			immigration: {
+				title: 'Immigration Assistance',
+				description: '70+ countries where we provide immigration assistance through authorised partners',
+			},
+			compliance: {
+				title: 'Stay compliant',
+				description:
+					'We tap into local regulatory expertise across markets, so you have freedom to grow wherever you go',
+			},
+		},
+	},
+	contractorCarousel: {
+		features: {
+			hire: {
+				title: 'Hire Contractors\nWorldwide',
+				description: 'Manage an unlimited amount of contractors from one platform',
+			},
+			payments: {
+				title: 'Flexible Global\nPayments',
+				description: 'Pay contractors using 80+ local currencies via bank transfer, card transfer, e-wallet, and crypto',
+			},
+			protection: {
+				title: 'Misclassification\nProtection',
+				description: 'Protect your business from misclassification risk with Contractor and Agent of Record support',
+			},
+		},
+		notifications: {
+			hire: {
+				name: 'Maya Chen',
+				status: 'Onboarding complete',
+				badge: 'Active',
+			},
+			payment: {
+				time: 'Just now',
+				title: 'Payment sent',
+				description: '1,000 USD · Bank transfer',
+			},
+			compliance: {
+				riskLabel: 'Classification risk',
+				riskValue: 'Low',
+				reviewLabel: 'Agreement review',
+				reviewValue: 'Passed',
+				footerTitle: 'Protected by Garna',
+				footerMeta: 'Active',
+			},
+		},
+	},
+	spendbaseQuote: {
+		quote:
+			'Garna offers an efficient solution for worldwide payments with seamless transactions across multiple regions. Their team is responsive, professional, and proactive',
+		author: {
+			name: 'Serge L.',
+			role: 'CFO, Spendbase',
+		},
+	},
+	deferredPayments: {
+		cards: {
+			immediate: {
+				title: 'Immediate payouts, deferred settlement',
+				description: 'Pay your global team today while preserving working capital.',
+				tags: ['Global payouts', 'Pay now', 'Settle later'],
+			},
+			terms: {
+				title: 'Flexible terms: 30, 60, or 90 days',
+				description: 'Choose a repayment schedule that follows your incoming cash flow.',
+				tags: ['Flexible terms', 'Cash flow', 'Your schedule'],
+			},
+			limits: {
+				title: 'Facility limits from $50K to one million',
+				description: 'Scale available funding as your contractor network grows.',
+				tags: ['Scalable limit', 'Team growth', 'More capacity'],
+			},
+			processing: {
+				title: 'Instant allocation & processing',
+				description: 'Move from approved allocation to processed payouts in one flow.',
+				tags: ['Allocation', 'Approval', 'Processing'],
+			},
+		},
+	},
+	embeddedPayroll: {
+		panels: {
+			api: {
+				tag: 'Built for product teams',
+				title: 'API contractor management and payments',
+				description: 'Integrate global contractor payments directly into your platform',
+			},
+			brand: {
+				tag: 'Built for payroll brands',
+				title: 'White-label contractor dashboard and payments',
+				description: 'Launch payroll under your own brand, powered by Garna',
+			},
+		},
+		tabs: {
+			ariaLabel: 'Embedded payroll solutions',
+			api: 'API integration',
+			brand: 'White Label',
+		},
+	},
+	trustedByBuilders: {
+		testimonials: {
+			anna: {
+				quote:
+					'"Garna combines flexible global payroll, reliable payment schedules, responsive support, and effortless withdrawals for contractors worldwide."',
+			},
+			aleksandra: {
+				quote:
+					'"We’ve worked with Garna for over a year. Onboarding and paperwork are fast, payments are reliable across regions, and the team resolves issues proactively."',
+			},
+			serge: {
+				quote:
+					'"Garna makes worldwide payouts efficient and seamless. The team communicates quickly, solves issues proactively, and has been a consistently reliable partner."',
+			},
+		},
+	},
+	finalCta: {
+		title: 'Launch Global Payroll Software on Autopilot Today',
+		description: 'Pay your team in 150+ countries with just a few clicks. No red tape, just fast payments',
+		button: 'Book a demo',
+	},
+	faq: {
+		title: 'FAQ on Payroll Solutions',
+		items: {
+			q1: {
+				question: 'What services does Garna provide?',
+				answer:
+					'Global payroll, Employer of Record, Contractor of Record, business banking, and international payments, all in one platform. You can hire, pay, and manage your whole team, employees, and contractors, without switching between tools.',
+			},
+			q2: {
+				question: 'What is Employer of Record (EOR)?',
+				answer:
+					'An EOR legally employs your team in a country where you have no entity. Garna becomes that legal employer; you manage the day-to-day work.',
+			},
+			q3: {
+				question: 'What is a Contractor of Record?',
+				answer:
+					"Garna manages the contract, compliance, and payments for your freelancers, so you're protected from misclassification risk without having to become their legal employer.",
+			},
+			q4: {
+				question: 'What’s the difference between hiring through an EOR and hiring a contractor?',
+				answer:
+					'An EOR is designed for full-time employees who need local employment contracts, benefits, and payroll compliance. Contractors work independently and are typically hired for specific projects or services without an employment relationship.',
+			},
+			q5: {
+				question: 'Can I hire international talent without an EOR?',
+				answer:
+					"Yes, by opening your own legal entity. It works, but incorporation, local payroll, and ongoing compliance make it slow and expensive at a small headcount. Check at what team size it's cheaper to set up your own company instead of using an EOR.",
+			},
+			q6: {
+				question: 'Why should I choose Garna over other providers?',
+				answer:
+					'1. All-in-one service in one place: hire employees via EOR, work with contractors of any type (individuals, sole proprietors, or legal entities), and run your everyday banking¹ from a single platform.\n\n2. Transparent pricing without hidden fees.\n\n3. Truly global payouts: pay to 150+ countries in 80+ local currencies using bank transfers, cards, PayPal, local e-wallets, or crypto.\n\n4. Business banking included: multi-currency IBANs in your company name and transfers to 150+ destinations, provided by a separate licensed entity.\n\n5. Reliable payment infrastructure: one of the largest payment networks in the industry, with 20+ banking partners and payment systems.\n\n6. Virtual cards: issue a card in the app, add it to Apple Pay or Google Pay, and pay directly from your Garna balance².\n\n7. Responsive human support whenever you need help.\n\n¹ Business banking services are provided through a separate licensed payment entity/provider.\n² Card issuance and card payment services are provided through a licensed third-party payment provider and are subject to KYC, eligibility, and applicable terms.',
+			},
+			q7: {
+				question: 'How long does it take to onboard an employee?',
+				answer:
+					'In most countries, we can hire a new employee in no more than one business day. Once we receive the confirmed offer details and the employee completes the required onboarding steps, including uploading documents and signing the contract, we ensure a smooth and fast start while supporting both you and the new hire.',
+			},
+			q8: {
+				question: 'How long does it take to start using Garna Contractor of Record?',
+				answer:
+					'In most cases, you can have your first contractor onboarded in less than 20 minutes. Once you create a business account and pass verification, you can start inviting contractors. Garna also offers real-time payment options, so contractors can receive their remuneration the same day.',
+			},
+			q9: {
+				question: 'What payment methods does Garna support?',
+				answer:
+					'We support bank transfers (SWIFT, SEPA, and bank transfers in local currencies), card payments in local currency, PayPal, Payoneer, other e-wallets, and cryptocurrency payments¹. With Garna, you can issue a digital card in the app, add it to Apple Pay or Google Pay, and pay directly from your Garna balance².\n\n¹ Cryptocurrency payment services are provided through a licensed third-party provider and are subject to availability, eligibility, and applicable terms.\n² Card issuance and card payment services are provided through a licensed third-party payment provider and are subject to KYC, eligibility, and applicable terms.',
+			},
+			q10: {
+				question: 'Can I use my Garna business account as a daily business account?',
+				answer:
+					'Yes, it works as a regular business account for everyday banking, not just for payroll and contractor payments. With a Garna Business Account, you can get multi-currency IBANs in your company name, receive payments, and send transfers to 150+ destinations¹.\n\n¹ Business banking services are provided through a separate licensed payment entity/provider.',
+			},
+			q11: {
+				question: 'What benefits does a business get access to when using Garna?',
+				answer:
+					'Beyond contractor management and payroll, you can access business benefits and receive discounts for Slack, Google Workspace, AWS, and accounts with over 100 other service providers at no extra cost.',
+			},
+		},
 	},
 	dashboard: {
-		url: 'garna.io/dashboard',
+		url: 'garna.io/balance',
 		balance: 'Balance',
 		company: 'Company',
 		notifications: 'Notifications',

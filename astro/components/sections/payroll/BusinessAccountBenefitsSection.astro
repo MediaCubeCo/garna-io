@@ -1,0 +1,37 @@
+---
+import Section from '../../layout/Section.astro';
+import Card from '../../ui/Card.astro';
+---
+
+<Section
+	title={{ text: 'Pay in currencies and methods you need', translateKey: 'globalWorkforce.title' }}
+	description={{ text: 'Send money the way your business and recipients prefer, not just by bank transfer', translateKey: 'globalWorkforce.description' }}
+	class="border-y border-[#020202]/0"
+	headerClass="mb-14 max-w-5xl lg:mb-16"
+	titleClass="mx-auto max-w-4xl lg:text-5xl"
+	contentClass="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4"
+>
+	<Card class="p-6" titleClass="text-lg" descriptionClass="text-sm" title={{ text: 'Bank transfers', translateKey: 'globalWorkforce.benefits.bankTransfers.title' }} description={{ text: 'Send local and international bank transfers in supported currencies', translateKey: 'globalWorkforce.benefits.bankTransfers.description' }}>
+		<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<path d="m3 10 9-6 9 6"></path>
+			<path d="M5 10v8M9 10v8M15 10v8M19 10v8M3 18h18M2 21h20"></path>
+		</svg>
+	</Card>
+	<Card class="p-6" titleClass="text-lg" descriptionClass="text-sm" title={{ text: 'Bank cards', translateKey: 'globalWorkforce.benefits.bankCards.title' }} description={{ text: 'Pay directly to supported bank cards for fast, convenient payouts', translateKey: 'globalWorkforce.benefits.bankCards.description' }}>
+		<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<rect x="2" y="5" width="20" height="14" rx="2"></rect>
+			<path d="M2 10h20M6 15h4"></path>
+		</svg>
+	</Card>
+	<Card class="p-6" titleClass="text-lg" descriptionClass="text-sm" title={{ text: 'PayPal', translateKey: 'globalWorkforce.benefits.paypal.title' }} description={{ text: 'Send funds to PayPal accounts wherever this payment method is available', translateKey: 'globalWorkforce.benefits.paypal.description' }}>
+		<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<path d="M8.5 3.5h6.1c3.4 0 5.5 1.9 5 4.9-.6 3.6-3.1 5.6-6.7 5.6h-2.2l-1.1 6.5H6.2l2.3-17Z"></path>
+			<path d="M11.8 7h4.8c2.3 0 3.9 1.3 3.6 3.4-.5 3-2.6 4.6-5.6 4.6h-2.1l-.9 5.5"></path>
+		</svg>
+	</Card>
+	<Card class="p-6" titleClass="text-lg" descriptionClass="text-sm" title={{ text: 'Crypto', translateKey: 'globalWorkforce.benefits.crypto.title' }} description={{ text: 'Make fast, flexible cross-border payments in supported cryptocurrencies', translateKey: 'globalWorkforce.benefits.crypto.description' }}>
+		<svg slot="visual" class="mb-5 block h-6 w-6 text-[#CBF300]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<path transform="translate(-7 0)" d="M9 5h6.5a3.5 3.5 0 0 1 0 7H9h7a3.5 3.5 0 0 1 0 7H9M11 3v18M15 3v2M15 19v2"></path>
+		</svg>
+	</Card>
+</Section>

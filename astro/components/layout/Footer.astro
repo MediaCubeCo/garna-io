@@ -1,5 +1,12 @@
 ---
 import '../../styles/footer.css';
+import {
+	buildFooterLangSelectHtml,
+	buildFooterLegalLinksHtml,
+} from '../../../src/utils/page-translations';
+
+const defaultFooterLangSelect = buildFooterLangSelectHtml('home', 'en', 'Language');
+const defaultFooterLegalLinks = buildFooterLegalLinksHtml('en');
 ---
 
 <footer class="garna-footer pt-16 pb-16">
@@ -22,8 +29,8 @@ import '../../styles/footer.css';
 						/>
 					</p>
 					<p class="text-sm text-gray-500 font-manrope" data-translate="footer.copyright">garna.io © 2026</p>
-					<!-- FOOTER_LANG_SELECT -->
-					<!-- FOOTER_LEGAL_LINKS -->
+					<!-- FOOTER_LANG_SELECT_START --><Fragment set:html={defaultFooterLangSelect} /><!-- FOOTER_LANG_SELECT_END -->
+					<!-- FOOTER_LEGAL_LINKS_START --><Fragment set:html={defaultFooterLegalLinks} /><!-- FOOTER_LEGAL_LINKS_END -->
 				</div>
 			</div>
 

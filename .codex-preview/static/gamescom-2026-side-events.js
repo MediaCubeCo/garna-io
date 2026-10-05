@@ -1,0 +1,1857 @@
+/* Gamescom 2026 Side Events — fallback snapshot.
+   Live data comes from the Google Sheet at runtime (see script.js).
+   This snapshot only renders if that fetch fails, so the page is never empty.
+   Generated 30 July 2026 — 105 events. */
+window.GC_EVENTS_SNAPSHOT = [
+{
+"date":"2026-08-23",
+"end_date":"",
+"name":"gamescom dev speaker & VIP beer garden",
+"time":"12:00–18:00",
+"description":"Badge pick-up and a warm-up for speakers and senior guests before the evening reception.",
+"location":"Wolkenburg, Mauritiussteinweg 59",
+"access":"badge",
+"access_note":"VIP ticket or speaker; no separate registration",
+"link":"https://dev.gamescom.global/conference/side-events/",
+"featured":false,
+"score":88
+},
+{
+"date":"2026-08-23",
+"end_date":"",
+"name":"gamescom dev speaker & VIP experiences",
+"time":"From 13:00",
+"description":"Guided city activities for speakers and VIPs, including cathedral and Old Town experiences.",
+"location":"Across Cologne",
+"access":"badge",
+"access_note":"VIP ticket or speaker; no separate registration",
+"link":"https://dev.gamescom.global/conference/side-events/",
+"featured":false,
+"score":82
+},
+{
+"date":"2026-08-23",
+"end_date":"",
+"name":"Offline Craft Club — Terrace Edition",
+"time":"14:00–18:00",
+"description":"Relaxed terrace meetup for designers and creatives.",
+"location":"ecosign Academy of Design, Vogelsanger Str. 250",
+"access":"paid",
+"access_note":"Paid ticket, currently EUR 12.50",
+"link":"https://luma.com/wceg43fi",
+"featured":false,
+"score":55
+},
+{
+"date":"2026-08-23",
+"end_date":"",
+"name":"Indie Hub OnSite Regulars Table",
+"time":"17:00–22:00",
+"description":"The established Cologne indie Stammtisch on the evening before gamescom dev.",
+"location":"Die Wohngemeinschaft, Richard-Wagner-Str. 39",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://tickets.indiehub.de/event/indie-hub-august-onsite-regulars-table-cologne-puuk8p",
+"featured":false,
+"score":67
+},
+{
+"date":"2026-08-23",
+"end_date":"",
+"name":"gamescom dev speaker & VIP reception",
+"time":"18:00–23:00",
+"description":"The main pre-conference evening for C-level guests, speakers and industry VIPs.",
+"location":"Wolkenburg",
+"access":"invite",
+"access_note":"VIP, speaker or invitation only",
+"link":"https://dev.gamescom.global/conference/side-events/",
+"featured":true,
+"score":98
+},
+{
+"date":"2026-08-23",
+"end_date":"",
+"name":"Games [4Diversity] Showcase",
+"time":"20:00–23:00",
+"description":"Showcase and networking around diversity and inclusion in games.",
+"location":"Lost Level, Kyffhäuserstr. 39",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://courage.events/games-4diversity-showcase-cologne/",
+"featured":false,
+"score":58
+},
+{
+"date":"2026-08-24",
+"end_date":"2026-08-28",
+"name":"MeetToMatch — The Cologne Edition 2026",
+"time":"Mon 09:00 – Fri 15:00",
+"description":"Scheduled one-to-one meetings with studios, publishers, investors and service providers; powered by Xsolla.",
+"location":"Koelnmesse, Messeplatz 1",
+"access":"paid",
+"access_note":"Paid pass",
+"link":"https://www.eventbrite.nl/e/meettomatch-the-cologne-edition-2026-powered-by-xsolla-tickets-1984462065458",
+"featured":true,
+"score":96
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"gamescom dev leadership summit",
+"time":"11:00–16:00",
+"description":"Closed C-level track inside the main gamescom dev programme.",
+"location":"Confex, Stage 13",
+"access":"invite",
+"access_note":"VIP ticket or invitation only",
+"link":"https://dev.gamescom.global/leadership-events#lsc",
+"featured":true,
+"score":92
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"FastSpring Beer & Banter",
+"time":"15:00–17:00",
+"description":"Open beer reception with no agenda; useful for quick introductions between conference sessions.",
+"location":"Confex, reception area",
+"access":"badge",
+"access_note":"No separate registration — any gamescom dev ticket",
+"link":"https://dev.gamescom.global/conference/side-events/",
+"featured":false,
+"score":75
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"In Good Company — a Gamescom Mixer",
+"time":"16:00–19:00",
+"description":"Rooftop mixer with a mixed studio, publisher and service-provider crowd.",
+"location":"rooftop58, Hohenzollernring 58",
+"access":"free",
+"access_note":"Free registration; organiser page may require approval",
+"link":"https://gamingpartys.de/1770/2026/05/die-besten-gamescom-partys-2026-in-koeln-dein-guide/",
+"featured":false,
+"score":84
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"gamescom dev awards",
+"time":"16:30–17:30",
+"description":"Six awards covering indie expo titles, people and teams.",
+"location":"Confex, Keynote Stage",
+"access":"badge",
+"access_note":"No separate registration — any gamescom dev ticket",
+"link":"https://dev.gamescom.global/conference/indies#awards",
+"featured":false,
+"score":72
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"gamescom dev speaker & VIP mixer",
+"time":"17:00–19:00",
+"description":"Drinks and networking in the gamescom dev VIP lounge.",
+"location":"Confex, VIP lounge",
+"access":"badge",
+"access_note":"VIP ticket or speaker; no separate registration",
+"link":"https://dev.gamescom.global/conference/side-events/",
+"featured":true,
+"score":91
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"Games Growth Guild",
+"time":"17:00–21:00",
+"description":"Marketing and growth leaders from indie to AAA; short programme followed by networking.",
+"location":"Rheinloft Cologne, Frankenwerft 35",
+"access":"application",
+"access_note":"Application; organiser approval required",
+"link":"https://luma.com/gggatgamescom",
+"featured":true,
+"score":93
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"MIX Game Showcase Cologne",
+"time":"17:00–22:00",
+"description":"Curated indie showcase with publisher, press and industry networking.",
+"location":"Design Post, Deutz-Mülheimer Str. 22A",
+"access":"application",
+"access_note":"Industry / press registration",
+"link":"https://mediaindieexchange.com/showcases/the-mix-cologne-2026",
+"featured":false,
+"score":82
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"Gamescom 1st Happy Hour",
+"time":"18:00–23:00",
+"description":"Informal exhibitor kick-off with beer and pizza; aimed at studios and publishers.",
+"location":"Südermann, Sudermanplatz 3",
+"access":"application",
+"access_note":"Free application; studios and publishers only",
+"link":"https://luma.com/ao4s6g3w",
+"featured":false,
+"score":79
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"Reception Celebrating Women in Games",
+"time":"18:00–21:00",
+"description":"AWS, Helpshift and WIGI reception celebrating women in games.",
+"location":"Helpshift Gamescom Hub, Cologne",
+"access":"application",
+"access_note":"Registration / request access",
+"link":"https://www.helpshift.com/gamescom-2026/",
+"featured":false,
+"score":83
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"GAME:IN Get Together",
+"time":"18:00–23:00",
+"description":"Community evening for FLINTA+ people and allies in games.",
+"location":"Lost Level, Kyffhäuserstr. 39",
+"access":"application",
+"access_note":"Waitlist / approval",
+"link":"https://www.eventbrite.com/e/gamein-get-together-tickets-1993996448053",
+"featured":false,
+"score":62
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"gamescom dev leadership dinner",
+"time":"18:00–23:00",
+"description":"Closed dinner for senior industry executives.",
+"location":"The ASH Köln MesseCity",
+"access":"invite",
+"access_note":"Invitation only — no public registration",
+"link":"https://dev.gamescom.global/conference/side-events/",
+"featured":true,
+"score":97
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"Quebec Publishers Party",
+"time":"18:30–23:30",
+"description":"Evening hosted by the Québec publisher delegation.",
+"location":"Monkey Bar, Im Klapperhof 22–24",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://www.eventbrite.com/e/quebec-publishers-party-tickets-1991722315060",
+"featured":false,
+"score":85
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"Builder’s Beach Club by Sentry & Perforce",
+"time":"19:00–23:00",
+"description":"Beach-club networking for game developers and technical teams.",
+"location":"km 689 Cologne Beach Club",
+"access":"application",
+"access_note":"Registration / approval",
+"link":"https://luma.com/buildersbeach",
+"featured":false,
+"score":86
+},
+{
+"date":"2026-08-24",
+"end_date":"",
+"name":"gamescom dev sunset mixer",
+"time":"19:00–23:00",
+"description":"The large open-air networking evening of gamescom dev.",
+"location":"Confex, outdoor area",
+"access":"badge",
+"access_note":"No separate registration — any gamescom dev ticket",
+"link":"https://dev.gamescom.global/conference/side-events/",
+"featured":false,
+"score":89
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"Representing Games — Pitch Sessions Cologne",
+"time":"11:00–17:30",
+"description":"Twenty-five studios from Switzerland, New Zealand and Spain pitch PC and console projects.",
+"location":"Dorint Hotel am Heumarkt, Pipinstr. 1",
+"access":"application",
+"access_note":"Free application; publishers, investors and platforms only",
+"link":"https://www.eventbrite.nl/e/representing-games-pitch-sessions-cologne-during-gamescom-26-tickets-1992916014447",
+"featured":false,
+"score":89
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"gamescom dev CTO lunch",
+"time":"13:00–15:00",
+"description":"Closed lunch for CTOs and senior technical leaders.",
+"location":"The ASH Köln MesseCity",
+"access":"invite",
+"access_note":"Invitation only — no public registration",
+"link":"https://dev.gamescom.global/conference/side-events/",
+"featured":true,
+"score":90
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"gamescom dev pitch it! mixer",
+"time":"13:00–16:00",
+"description":"Indie teams pitch publishers, followed by open networking.",
+"location":"Confex, Foyer Süd",
+"access":"invite",
+"access_note":"Invitation only",
+"link":"https://dev.gamescom.global/conference/indies/#pitchit",
+"featured":false,
+"score":78
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"Amber beer reception",
+"time":"15:00–17:00",
+"description":"Informal reception hosted by Amber Studio.",
+"location":"Confex Expo Floor, booth D07",
+"access":"badge",
+"access_note":"No separate registration — any gamescom dev ticket",
+"link":"https://dev.gamescom.global/conference/side-events/",
+"featured":false,
+"score":73
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"Paradox PDX Community Mixer",
+"time":"15:00–17:00",
+"description":"Paradox community and partner mixer in a traditional brewhouse.",
+"location":"Brauhaus ohne Namen, Mathildenstr. 42",
+"access":"application",
+"access_note":"Waitlist",
+"link":"https://paradox.confetti.events/pdx-community-mixer",
+"featured":false,
+"score":78
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"WN Connect Cologne 2026",
+"time":"16:00–19:00",
+"description":"Business networking by White Nights and WN Hub for studios, publishers and service providers.",
+"location":"SonnenscheinEtage, Galeria parking B, 14th floor",
+"access":"application",
+"access_note":"Request a ticket; approval required",
+"link":"https://wnhub.io/event-info/cologne26",
+"featured":true,
+"score":91
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"Adyen x Visa — Game Plan",
+"time":"16:00–20:00",
+"description":"Roundtable and networking for games payments, monetisation and commercial leaders.",
+"location":"Sturmfreie Bude, Luxemburger Str. 124–126",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://events.adyen.com/event/adyen-x-visa/register",
+"featured":false,
+"score":88
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"BS Beers — the Legendary Afterworks",
+"time":"17:00–19:00",
+"description":"Long-running informal afterwork with a senior games-industry crowd.",
+"location":"Venue shared with confirmed attendees",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://www.eventbrite.fi/e/bs-beers-the-return-of-the-legendary-afterworks-gamescom-tickets-1992909213104",
+"featured":false,
+"score":83
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"gamescom dev VIP & business mixer",
+"time":"17:00–19:00",
+"description":"Dedicated B2B mixer with complimentary drinks.",
+"location":"Confex business area",
+"access":"badge",
+"access_note":"No separate registration — VIP or Trade ticket",
+"link":"https://dev.gamescom.global/conference/side-events/",
+"featured":true,
+"score":90
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"The Player Experience Reception",
+"time":"17:30–22:00",
+"description":"Helpshift and k-ID host senior leaders in player experience, trust and safety, community, retention and engineering.",
+"location":"Restaurant Augustin, Dagobertstr. 32",
+"access":"application",
+"access_note":"Invitation; request access",
+"link":"https://luma.com/PXreception-gamescom26",
+"featured":true,
+"score":95
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"Accord Community Kölsch",
+"time":"17:30–20:00",
+"description":"Community drinks for games-industry attendees.",
+"location":"Venue to be announced",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://luma.com/kbjxylgo",
+"featured":false,
+"score":69
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"All In — a Night of Poker & Networking",
+"time":"17:30–23:00",
+"description":"Poker tournament by GYLD and Kameha Ventures, supported by mod.io; dinner and prizes included.",
+"location":"rooftop58, Hohenzollernring 58",
+"access":"application",
+"access_note":"Registration / approval",
+"link":"https://luma.com/ns8t3998",
+"featured":false,
+"score":82
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"Pocket Gamer Mobile Games Awards 2026",
+"time":"18:00–22:00",
+"description":"Ninth edition of the awards with Samsung Gaming Hub; 23 categories and a seated dinner.",
+"location":"Gürzenich Köln, Martinstr. 29–37",
+"access":"paid",
+"access_note":"Paid ticket; limited seats",
+"link":"https://www.eventbrite.co.uk/e/pocket-gamer-mobile-games-awards-2026-with-samsung-gaming-hub-tickets-1985568037450",
+"featured":true,
+"score":92
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"Games for Peace Mixer",
+"time":"18:00–23:30",
+"description":"Free non-profit games mixer focused on peace and social impact.",
+"location":"Kulturbunker Köln-Mülheim, Berliner Str. 20",
+"access":"tba",
+"access_note":"Registration not yet published as of 30 Jul 2026",
+"link":"https://rausgegangen.de/events/games-for-peace-mixer-gaming-event-0/",
+"featured":false,
+"score":60
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"Cyprus Nights at Cologne",
+"time":"18:00–23:00",
+"description":"Reception of the Cyprus games delegation.",
+"location":"Brauhaus FRÜH am Dom, Am Hof 12–18",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://luma.com/nxv58hof",
+"featured":false,
+"score":80
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"Gamescom 2026 Mixer by Singular",
+"time":"18:00–21:00",
+"description":"Games-industry mixer hosted by Singular for mobile growth, marketing and product professionals.",
+"location":"Heising & Adelmann, Friesenstr. 58–60",
+"access":"application",
+"access_note":"Registration / approval",
+"link":"https://lp.singular.net/gamescom-mixer-2026-cologne",
+"featured":false,
+"score":88
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"Gamescom from Ukraine Reception",
+"time":"19:00–22:00",
+"description":"Reception for Ukrainian studios, partners and supporters.",
+"location":"Wolkenburg, Alexiana Room and Terrace",
+"access":"tba",
+"access_note":"Registration not yet published as of 30 Jul 2026",
+"link":"https://gamingpartys.de/1770/2026/05/die-besten-gamescom-partys-2026-in-koeln-dein-guide/",
+"featured":false,
+"score":79
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"PvX Private Dinner",
+"time":"19:00",
+"description":"Private dinner for publishing, investment and advisory contacts.",
+"location":"La Fonda",
+"access":"invite",
+"access_note":"Invitation only — no public registration",
+"link":"https://gamingpartys.de/1770/2026/05/die-besten-gamescom-partys-2026-in-koeln-dein-guide/",
+"featured":false,
+"score":87
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"NewGen Marketing Innovators Dinner",
+"time":"19:30–22:30",
+"description":"Closed dinner for marketing leadership.",
+"location":"Mongo’s Köln-Deutz, Ottoplatz 1",
+"access":"application",
+"access_note":"Free application / approval",
+"link":"https://luma.com/dm0pa4yb",
+"featured":false,
+"score":85
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"gamescom Opening Night Live",
+"time":"20:00",
+"description":"Global opening show hosted by Geoff Keighley.",
+"location":"Koelnmesse and livestream",
+"access":"open",
+"access_note":"On-site sold out; livestream free — no registration",
+"link":"https://www.gamescom.global/en/tickets/buy-tickets",
+"featured":false,
+"score":68
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"Courage Cologne",
+"time":"20:00–23:30",
+"description":"More than fifty developers showing playable projects; one of the largest independent side events.",
+"location":"HERBRAND’s ehrenfeld, Herbrandstr. 21",
+"access":"paid",
+"access_note":"Paid ticket",
+"link":"https://www.eventbrite.com/e/1991352595218",
+"featured":false,
+"score":79
+},
+{
+"date":"2026-08-25",
+"end_date":"",
+"name":"gamescom dev community night",
+"time":"20:00–02:00",
+"description":"Official gamescom dev closing party with beer garden and music.",
+"location":"HERBRAND’s ehrenfeld",
+"access":"badge",
+"access_note":"No separate registration — any dev ticket plus EUR 10 cover",
+"link":"https://dev.gamescom.global/conference/side-events/",
+"featured":false,
+"score":81
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Berlin-Brandenburg Reception",
+"time":"All day",
+"description":"Regional networking reception at the joint Berlin-Brandenburg booth.",
+"location":"Hall 4.1, C063g / D078g",
+"access":"badge",
+"access_note":"No separate registration — gamescom trade badge",
+"link":"https://www.gamescom.global/en/tickets/buy-tickets",
+"featured":false,
+"score":72
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"All You Can Coffee",
+"time":"09:00–12:00",
+"description":"Morning coffee and easy first-contact networking at the SwissGames pavilion.",
+"location":"SwissGames Pavilion, Hall 4.1, B030g–C040g",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://www.eventbrite.ch/e/all-you-can-coffee-gamescom-2026-registration-1992823776561",
+"featured":false,
+"score":77
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"The Agent AI Summit",
+"time":"11:00–16:00",
+"description":"Half-day summit on AI agents in games.",
+"location":"Venue shared with confirmed attendees",
+"access":"application",
+"access_note":"Application; approval required",
+"link":"https://luma.com/sf3f90f7",
+"featured":false,
+"score":85
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Rakija Tasting at the Serbian Booth",
+"time":"16:00–17:00",
+"description":"Serbian Games Association reception.",
+"location":"Hall 3.2, booth F030g",
+"access":"badge",
+"access_note":"No separate registration — gamescom trade badge",
+"link":"https://www.gamescom.global/en/tickets/buy-tickets",
+"featured":false,
+"score":68
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Sumo Mixer",
+"time":"16:00–18:00",
+"description":"Open booth mixer hosted by Sumo.",
+"location":"Hall 2.1, aisle D-017 / C-018",
+"access":"badge",
+"access_note":"No separate registration — gamescom trade badge",
+"link":"https://www.gamescom.global/en/tickets/buy-tickets",
+"featured":false,
+"score":66
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"UGC Gaming Mixer",
+"time":"16:00–19:00",
+"description":"Networking for user-generated-content studios, platforms and partners.",
+"location":"Früh am Dom, Am Hof 12–18",
+"access":"free",
+"access_note":"Registration",
+"link":"https://www.maxpowergaming.co/gamescom26",
+"featured":false,
+"score":84
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Dexerto Gamescom Happy Hour",
+"time":"16:00–20:00",
+"description":"Media, creator, marketing and commercial networking.",
+"location":"Dorint Hotel An der Messe, Deutz-Mülheimer Str. 22–24",
+"access":"application",
+"access_note":"Registration / approval",
+"link":"https://luma.com/it0c1o7y",
+"featured":false,
+"score":81
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Spain Happy Hour",
+"time":"16:30–17:30",
+"description":"Spanish pavilion drinks and delegation networking.",
+"location":"Hall 4.1, C050g / B041g",
+"access":"badge",
+"access_note":"No separate registration — gamescom trade badge",
+"link":"https://www.gamescom.global/en/tickets/buy-tickets",
+"featured":false,
+"score":73
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Netherlands Pavilion Happy Hour",
+"time":"17:00–18:00",
+"description":"Dutch Games Association pavilion reception.",
+"location":"Hall 4.1, A021g–B030g",
+"access":"badge",
+"access_note":"No separate registration — gamescom trade badge",
+"link":"https://www.gamescom.global/en/tickets/buy-tickets",
+"featured":false,
+"score":74
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"XR Get-Together",
+"time":"17:00–23:00",
+"description":"Networking for XR and immersive-technology professionals.",
+"location":"Venue to be announced",
+"access":"tba",
+"access_note":"Registration not yet published as of 30 Jul 2026",
+"link":"https://metaverse-podcast.de/newsletter/",
+"featured":false,
+"score":73
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Mobidictum Mixer Cologne",
+"time":"17:30–23:00",
+"description":"Executive mobile-games mixer sponsored by Exmox and Famobi.",
+"location":"Pe 303 Rhein Location, Im Zollhafen 15–17",
+"access":"application",
+"access_note":"Application; approval required",
+"link":"https://luma.com/qyp3p0rb",
+"featured":true,
+"score":90
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"ASUS ROG Party",
+"time":"17:30–04:00",
+"description":"Large hardware-brand party.",
+"location":"E-Werk, Schanzenstr. 37",
+"access":"invite",
+"access_note":"Guest list only — no public registration",
+"link":"https://gamingpartys.de/1770/2026/05/die-besten-gamescom-partys-2026-in-koeln-dein-guide/",
+"featured":false,
+"score":65
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"GameDistribution — Casual Gaming Community Dinner",
+"time":"18:00–21:00",
+"description":"Invitation-only riverside dinner for GameDistribution partners and the casual-games community.",
+"location":"Restaurant maiBeck, Am Frankenturm 5",
+"access":"invite",
+"access_note":"Invitation only; RSVP deadline 26 Jul has passed",
+"link":"https://www.eventbrite.com/e/gamedistribution-casual-gaming-community-dinner-tickets-1990380000160",
+"featured":false,
+"score":89
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"The #MarketersInGaming Meet-up",
+"time":"18:00–21:00",
+"description":"Games-marketing meetup hosted by 1minus1; donations to SpecialEffect welcome.",
+"location":"The Copper Pot, Bolzengasse 7",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://www.eventbrite.co.uk/e/the-marketersingaming-meet-up-gamescom-2026-tickets-1991757371916",
+"featured":false,
+"score":82
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Gateway to Asia at Köln",
+"time":"18:00–22:00",
+"description":"Seminars and mixer focused on the Asian market, presented by Gamirror Games and Shochiku Games.",
+"location":"Maritim Hotel, Heumarkt 20",
+"access":"application",
+"access_note":"RSVP; capacity limited",
+"link":"https://luma.com/b9gqn5fk",
+"featured":false,
+"score":85
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Hivemind World Games Mixer",
+"time":"18:00–00:00",
+"description":"Founders, executives, publishers and investors with roundtables and curated speed networking.",
+"location":"Cologne; venue shared on approval",
+"access":"application",
+"access_note":"Invitation / waitlist",
+"link":"https://luma.com/hivemind-cologne",
+"featured":true,
+"score":94
+},
+{
+"date":"2026-08-26",
+"end_date":"2026-08-30",
+"name":"Bar Citizen",
+"time":"From 18:00 daily",
+"description":"Open Star Citizen community bar running throughout the show.",
+"location":"Brauhaus ohne Namen, Mathildenstr. 42",
+"access":"open",
+"access_note":"Open entry — no registration required",
+"link":"https://robertsspaceindustries.com/spectrum/community/SC/forum/1/thread/join-the-gamescom-2026-bar-citizen/9035957",
+"featured":false,
+"score":51
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Anybrain Supper Club",
+"time":"19:00–22:00",
+"description":"Small dinner around anti-cheat, player behaviour and online safety.",
+"location":"Great Wall Restaurant, Komödienstr. 37",
+"access":"application",
+"access_note":"Registration / approval",
+"link":"https://luma.com/m5p255a1",
+"featured":false,
+"score":83
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Maraoke LIVE!",
+"time":"19:00–00:00",
+"description":"Karaoke night with video-game jokes.",
+"location":"TURISTARAMA, Mauritiussteinweg 102",
+"access":"paid",
+"access_note":"Paid ticket, general admission EUR 18",
+"link":"https://luma.com/0707ykws",
+"featured":false,
+"score":43
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Helpshift’s Hideaway VIP Dinner",
+"time":"19:30–22:30",
+"description":"Invitation-only customer dinner; arrivals at 19:30 and first course at 20:00.",
+"location":"Maison Blue, Im Ferkulum 18–22",
+"access":"application",
+"access_note":"Invitation; request access",
+"link":"https://luma.com/helpshift-customerdinner-gamescom26",
+"featured":false,
+"score":88
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Pocket Gamer 20th Anniversary Party",
+"time":"19:30–23:30",
+"description":"Anniversary edition of the established Pocket Gamer industry party.",
+"location":"Klub Domhof, Hohenzollernbrücke 11",
+"access":"free",
+"access_note":"Free for verified industry professionals; work email required",
+"link":"https://www.eventbrite.co.uk/e/pocket-gamer-20th-anniversary-party-cologne-2026-tickets-1992202585562",
+"featured":false,
+"score":86
+},
+{
+"date":"2026-08-26",
+"end_date":"",
+"name":"Xbox FanFest",
+"time":"20:00–23:00",
+"description":"Xbox 25th-anniversary fan event.",
+"location":"Hall 7.1, Xbox booth",
+"access":"application",
+"access_note":"Registration / sweepstakes entry",
+"link":"https://events.microsoft.com/flow/ms/fanfestcologne/sweepsentryCOLOGNE/page/sweepstakesentry",
+"featured":false,
+"score":57
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Morning Reset",
+"time":"09:00–10:00",
+"description":"Early movement and informal networking session by the Rhine.",
+"location":"Kennedy-Ufer 2a",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://luma.com/wwhaza0b",
+"featured":false,
+"score":55
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"gamescom congress",
+"time":"All day",
+"description":"Conference on the social, cultural and economic impact of games.",
+"location":"Koelnmesse",
+"access":"paid",
+"access_note":"Separate paid ticket",
+"link":"https://congress.gamescom.global/en/",
+"featured":false,
+"score":77
+},
+{
+"date":"2026-08-27",
+"end_date":"2026-08-29",
+"name":"Worlds of Play — The Game Art Exhibition",
+"time":"Thu 11:00 – Sat 19:00",
+"description":"Three-day game-art exhibition presented by Tencent.",
+"location":"Wassermannhalle, Girlitzweg 30",
+"access":"paid",
+"access_note":"Ticket / timed entry",
+"link":"https://www.tickettailor.com/events/worldsofplay/2302561",
+"featured":false,
+"score":54
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Catalan Mixer",
+"time":"13:00–14:30",
+"description":"Catalan delegation mixer.",
+"location":"Hall 4.1, B050 / A041",
+"access":"application",
+"access_note":"RSVP plus gamescom trade badge",
+"link":"https://es.surveymonkey.com/r/R58Z8NM",
+"featured":false,
+"score":80
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Spain Happy Hour",
+"time":"16:00–17:00",
+"description":"Spanish pavilion reception.",
+"location":"Hall 4.1, C050g / B041g",
+"access":"badge",
+"access_note":"No separate registration — gamescom trade badge",
+"link":"https://www.gamescom.global/en/tickets/buy-tickets",
+"featured":false,
+"score":73
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Hessen-Empfang",
+"time":"16:00–17:00",
+"description":"Reception of the German state of Hesse, with regional studios and agencies.",
+"location":"Hall 4.1, D060",
+"access":"badge",
+"access_note":"No separate registration — gamescom trade badge",
+"link":"https://www.gamescom.global/en/tickets/buy-tickets",
+"featured":false,
+"score":76
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Drinks at Games From Portugal Pavilion",
+"time":"16:00–18:00",
+"description":"Portuguese delegation and ecosystem networking.",
+"location":"Hall 4.1, C-020g",
+"access":"free",
+"access_note":"Free registration plus trade badge",
+"link":"https://luma.com/91ntucch",
+"featured":false,
+"score":78
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Overwolf Happy Hour",
+"time":"16:30–18:00",
+"description":"Creator, UGC and in-game monetisation networking at the Overwolf booth.",
+"location":"Koelnmesse business area",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://www.eventbrite.com/e/gamescom-2026-happy-hour-by-overwolf-tickets-1990468052527",
+"featured":false,
+"score":83
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Netherlands Pavilion Happy Hour",
+"time":"17:00–18:00",
+"description":"Dutch pavilion reception.",
+"location":"Hall 4.1, A021g–B030g",
+"access":"badge",
+"access_note":"No separate registration — gamescom trade badge",
+"link":"https://www.gamescom.global/en/tickets/buy-tickets",
+"featured":false,
+"score":74
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Game x Science Meet-up",
+"time":"17:00–18:30",
+"description":"Research-and-industry crossover meetup.",
+"location":"Hall 4.1, Germany booth B-056g / C064g",
+"access":"free",
+"access_note":"Advance registration plus trade badge",
+"link":"https://registration.dlr-pt.de/de/game-science-meet-up/registration",
+"featured":false,
+"score":81
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Meet the Icelandic Gaming Industry",
+"time":"17:00–19:00",
+"description":"Icelandic games delegation reception.",
+"location":"ANNO 1858, Heumarkt 6",
+"access":"free",
+"access_note":"Free registration",
+"link":"https://luma.com/x4oju6iv",
+"featured":false,
+"score":80
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Enchant Gaming Pitch Party",
+"time":"17:00–19:30",
+"description":"Pitch session followed by networking.",
+"location":"VAPIANO Köln Mediapark, Im Mediapark 1",
+"access":"free",
+"access_note":"Registration",
+"link":"https://www.eventbrite.com/e/enchant-gaming-pitch-party-tickets-1985185757039",
+"featured":false,
+"score":73
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Playing for the Planet Drinks Mixer",
+"time":"18:00–20:00",
+"description":"Sustainability-alliance mixer.",
+"location":"Koelnmesse Hall 3, Ottoplatz 7",
+"access":"free",
+"access_note":"Registration plus gamescom access",
+"link":"https://www.eventbrite.com/e/1992430589528",
+"featured":false,
+"score":70
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Gray Zone Warfare Meetup",
+"time":"18:00–22:00",
+"description":"Community meetup hosted around Gray Zone Warfare.",
+"location":"Sticky Fingers, Kennedy-Ufer 2a",
+"access":"tba",
+"access_note":"Registration link is distributed by the organiser",
+"link":"https://gamingpartys.de/1770/2026/05/die-besten-gamescom-partys-2026-in-koeln-dein-guide/",
+"featured":false,
+"score":54
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Above Cologne — Gamescom Networking Night",
+"time":"19:00–23:00",
+"description":"Curated C-level rooftop evening hosted by ROKKY and KLEOS; flying buffet.",
+"location":"Osman 30, Im Mediapark 8",
+"access":"application",
+"access_note":"Application; approval required",
+"link":"https://luma.com/tv7au8wv",
+"featured":true,
+"score":90
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"ZOTAC 20 Years Anniversary Night",
+"time":"19:00–23:30",
+"description":"Hardware-brand anniversary night.",
+"location":"Goldfinger Club, Friesenstr. 54",
+"access":"invite",
+"access_note":"Guest list by organiser email — no public registration",
+"link":"https://gamingpartys.de/1770/2026/05/die-besten-gamescom-partys-2026-in-koeln-dein-guide/",
+"featured":false,
+"score":61
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Enchant After Gaming Party",
+"time":"19:30–23:30",
+"description":"Afterparty following the Enchant pitch session.",
+"location":"VAPIANO Köln Mediapark",
+"access":"free",
+"access_note":"Registration",
+"link":"https://www.eventbrite.com/e/enchant-after-gaming-party-tickets-1985188970651",
+"featured":false,
+"score":60
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"JiggyTones — Gaming Music Live",
+"time":"20:00–22:30",
+"description":"Live game-music concert featuring David Wise.",
+"location":"MTC Cologne, Zülpicher Str. 10",
+"access":"paid",
+"access_note":"Paid ticket",
+"link":"https://www.eventbrite.com/e/jiggytones-gaming-music-live-tickets-1986537130032",
+"featured":false,
+"score":42
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"CD PROJEKT RED Community Party DACH",
+"time":"20:00–23:30",
+"description":"Studio community party for the DACH region.",
+"location":"Venue to be announced",
+"access":"closed",
+"access_note":"Registration closed — deadline was 29 Jul 2026",
+"link":"https://docs.google.com/forms/d/e/1FAIpQLScs7MgS16U9r_jSnkHKEsQrysXhcYb9GzmEf2E50R5AkFbvuw/viewform",
+"featured":false,
+"score":62
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"ANIME SOUNDS by CrispyRob",
+"time":"20:00–02:00",
+"description":"Large anime-music party.",
+"location":"Bootshaus, Auenweg 173",
+"access":"paid",
+"access_note":"Paid ticket",
+"link":"https://bootshaus-club.ticket.io/AVltKz9P/?lang=de",
+"featured":false,
+"score":39
+},
+{
+"date":"2026-08-27",
+"end_date":"",
+"name":"Vex After Dark",
+"time":"22:00–03:00",
+"description":"Late-night techno programme.",
+"location":"Klub Domhof, Hohenzollernbrücke 11",
+"access":"paid",
+"access_note":"Paid ticket",
+"link":"https://www.eventbrite.com/e/1993594653274",
+"featured":false,
+"score":40
+},
+{
+"date":"2026-08-28",
+"end_date":"",
+"name":"Game Audio Lunch Party",
+"time":"13:00–14:30",
+"description":"Lunch format for audio directors, composers and studios.",
+"location":"Hall 3.2, B030g / C031g",
+"access":"free",
+"access_note":"Free registration plus trade badge",
+"link":"https://www.eventbrite.com/e/1992586352419",
+"featured":false,
+"score":68
+},
+{
+"date":"2026-08-28",
+"end_date":"",
+"name":"Remedy Community Event",
+"time":"18:00–23:30",
+"description":"Community event hosted around Remedy Entertainment.",
+"location":"Venue to be announced",
+"access":"tba",
+"access_note":"Registration not yet published as of 30 Jul 2026",
+"link":"https://gamingpartys.de/1770/2026/05/die-besten-gamescom-partys-2026-in-koeln-dein-guide/",
+"featured":false,
+"score":58
+},
+{
+"date":"2026-08-28",
+"end_date":"",
+"name":"Wargaming Community Party",
+"time":"19:00–00:00",
+"description":"Large Wargaming community party.",
+"location":"HERBRAND’s ehrenfeld, Herbrandstr. 21",
+"access":"closed",
+"access_note":"Sold out",
+"link":"https://www.eventbrite.co.uk/e/wargaming-community-party-cologne-2026-tickets-1991050336153",
+"featured":false,
+"score":56
+},
+{
+"date":"2026-08-28",
+"end_date":"",
+"name":"Community MeetUp powered by Twitch",
+"time":"19:00–23:00",
+"description":"Creator and streamer meetup with an AFK zone.",
+"location":"Moxy Cologne Mülheim, Am Kabellager 15",
+"access":"free",
+"access_note":"Registration",
+"link":"https://events.anikeen.com/events/347/tickets",
+"featured":false,
+"score":63
+},
+{
+"date":"2026-08-28",
+"end_date":"",
+"name":"Gamescom Afterparty by TaKeTV",
+"time":"19:00–23:30",
+"description":"Community afterparty at TaKe’s Gaming Bar; note that the venue is in Krefeld.",
+"location":"TaKe’s Gaming Bar, Alte Linner Str. 93–97, Krefeld",
+"access":"free",
+"access_note":"Registration",
+"link":"https://www.eventbrite.de/e/gamescom-afterparty-tickets-1993680087811",
+"featured":false,
+"score":40
+},
+{
+"date":"2026-08-28",
+"end_date":"",
+"name":"GAMING meets JU",
+"time":"19:00–23:59",
+"description":"Politics and gaming community evening.",
+"location":"HEJ LOVE Eventloft, Große Brinkgasse 2b",
+"access":"free",
+"access_note":"Registration",
+"link":"https://www.junge-union.de/termine/community-meet-up-gaming-meets-ju-1/",
+"featured":false,
+"score":49
+},
+{
+"date":"2026-08-28",
+"end_date":"",
+"name":"Beanscom Dosenbeatz 2026",
+"time":"19:00–04:00",
+"description":"Large community music night by Rocket Beans.",
+"location":"DIE HALLE Tor 2, Girlitzweg 30",
+"access":"paid",
+"access_note":"Paid ticket",
+"link":"https://tickets.rocketbeans.tv/gc-dosenbeatz-26/",
+"featured":false,
+"score":38
+},
+{
+"date":"2026-08-28",
+"end_date":"",
+"name":"Game Audio Get Together",
+"time":"19:30–22:30",
+"description":"Main audio-professional gathering of the week.",
+"location":"Salzgasse 2",
+"access":"free",
+"access_note":"Registration",
+"link":"https://www.eventbrite.com.br/e/game-audio-get-together-gamescom-2026-tickets-1632329624849",
+"featured":false,
+"score":69
+},
+{
+"date":"2026-08-28",
+"end_date":"",
+"name":"Gaming trifft Buch",
+"time":"20:00–23:30",
+"description":"Games-and-literature reading evening.",
+"location":"Thalia Mayersche, Neumarkt 2",
+"access":"closed",
+"access_note":"Sold out",
+"link":"https://www.reservix.de/tickets-gaming-trifft-buch-lesung-mit-anabelle-stehl-christoph-schmuck-liza-grimm--mikkel-robrahn-in-koeln-thalia-mayersche-buchhandlung-am-28-8-2026/e2536580",
+"featured":false,
+"score":36
+},
+{
+"date":"2026-08-28",
+"end_date":"2026-08-30",
+"name":"Games Done Quick — European Premiere",
+"time":"Programme varies",
+"description":"GDQ’s European debut with three days of charity speedrunning inside gamescom.",
+"location":"Koelnmesse",
+"access":"badge",
+"access_note":"No separate side-event registration — gamescom ticket required",
+"link":"https://tracker.gamesdonequick.com/tracker/runs/gamescomgdq",
+"featured":false,
+"score":48
+},
+{
+"date":"2026-08-28",
+"end_date":"",
+"name":"C’MON with Rewi, Sarazar & Friends",
+"time":"22:00–04:00",
+"description":"Creator-led club night.",
+"location":"Bootshaus, Auenweg 173",
+"access":"paid",
+"access_note":"Paid ticket",
+"link":"https://bootshaus-club.ticket.io/jNAEFLQG/?lang=de",
+"featured":false,
+"score":35
+},
+{
+"date":"2026-08-28",
+"end_date":"",
+"name":"K-Pop Party — Gamescom Afterparty",
+"time":"22:30–05:00",
+"description":"Late public afterparty.",
+"location":"Electrum Club, Rolshover Str. 384",
+"access":"paid",
+"access_note":"Paid ticket",
+"link":"https://www.koelnticket.de/eventseries/k-pop-party-koeln-gamescom-afterparty-4207893/",
+"featured":false,
+"score":30
+},
+{
+"date":"2026-08-29",
+"end_date":"",
+"name":"Echo RWF Watch Party — Venomous Abyss",
+"time":"13:00–21:00",
+"description":"Esports watch party at SK Gaming.",
+"location":"SK Gaming, Eupener Str. 67",
+"access":"free",
+"access_note":"Registration",
+"link":"https://www.eventbrite.com/e/1992483012326",
+"featured":false,
+"score":43
+},
+{
+"date":"2026-08-29",
+"end_date":"",
+"name":"The PUBG Outpost",
+"time":"18:00–23:30",
+"description":"KRAFTON community activation.",
+"location":"Club Bahnhof Ehrenfeld, Bartholomäus-Schink-Str. 65",
+"access":"free",
+"access_note":"Registration via organiser",
+"link":"https://outpostcologne.com/",
+"featured":false,
+"score":47
+},
+{
+"date":"2026-08-29",
+"end_date":"2026-08-30",
+"name":"Otaku Party — Anime Party Gamescom Edition",
+"time":"Sat 22:00 – Sun 03:00",
+"description":"Anime party closing the week.",
+"location":"die kunstbar, Chargesheimerplatz 1",
+"access":"paid",
+"access_note":"Paid ticket",
+"link":"https://otakuparty.ticket.io/Z07SkDgd/?lang=de",
+"featured":false,
+"score":31
+},
+{
+"date":"2026-08-29",
+"end_date":"2026-08-30",
+"name":"gamescom city festival 2026",
+"time":"Sat and Sun",
+"description":"Free open-air festival with artists, DJ sets, activities and street food; 2026 line-up not yet announced.",
+"location":"Hohenzollernring and Rudolfplatz",
+"access":"open",
+"access_note":"Open entry — no registration required",
+"link":"https://www.gamescom.global/en/program/gamescom-city-festival",
+"featured":false,
+"score":45
+},
+{
+"date":"2026-08-24",
+"end_date":"2026-08-31",
+"name":"gamescom camp",
+"time":"Continuous",
+"description":"Gamescom campsite within walking distance of Koelnmesse.",
+"location":"Youth hostel and campsite by the Rhine",
+"access":"paid",
+"access_note":"Paid accommodation booking",
+"link":"https://gcc.traverise.com/book-now",
+"featured":false,
+"score":34
+},
+{
+"date":"",
+"end_date":"",
+"name":"Games Industry Runners — Gamescom Edition",
+"time":"07:30; date to be announced",
+"description":"Sunrise industry run hosted by Kohort and Newzoo, conversational pace with refreshments afterwards.",
+"location":"Paolozzibrunnen; route along the Rhine",
+"access":"application",
+"access_note":"Registration / approval",
+"link":"https://luma.com/4b2vc69z",
+"featured":false,
+"score":71
+},
+{
+"date":"",
+"end_date":"",
+"name":"MSI BBQ Event",
+"time":"Date and time to be announced",
+"description":"MSI product news and BBQ networking during gamescom week.",
+"location":"The New Yorker HARBOUR.CLUB",
+"access":"tba",
+"access_note":"Registration not yet published as of 30 Jul 2026",
+"link":"https://gamingpartys.de/1770/2026/05/die-besten-gamescom-partys-2026-in-koeln-dein-guide/",
+"featured":false,
+"score":64
+}
+];
+/* ==========================================================================
+   Gamescom 2026 Side Events — garna.io
+   Loads events from a Google Sheet at runtime. Editing a row in the sheet
+   updates the page — no deploy needed.
+   Falls back to the bundled snapshot (events-data.js) if the fetch fails.
+   ========================================================================== */
+
+(function () {
+  "use strict";
+
+  /* ---------------------------------------------------------------- config */
+
+  var CONFIG = {
+    // Google Sheet must be shared as "Anyone with the link — Viewer".
+    sheetId: "1W6bDYdlw_PkTakAaE8MEJHmF57ucJwYo5xmKfZSJ3NE",
+    // Only days inside this window are shown. Multi-day events are clamped to it.
+    windowStart: "2026-08-23",
+    windowEnd: "2026-08-30",
+    fetchTimeoutMs: 8000
+  };
+
+  var UI = {};
+  var uiRoot = document.getElementById("gamescomUiTranslations");
+  if (uiRoot) {
+    Array.prototype.forEach.call(uiRoot.querySelectorAll("[data-gamescom-i18n]"), function (node) {
+      UI[node.getAttribute("data-gamescom-i18n")] = (node.textContent || "").trim();
+    });
+  }
+
+  function t(key, fallback) {
+    return UI[key] || fallback;
+  }
+
+  function eventCountLabel(count) {
+    var lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
+    var form = "many";
+    if (lang === "ru") {
+      var mod10 = count % 10;
+      var mod100 = count % 100;
+      if (mod10 === 1 && mod100 !== 11) form = "one";
+      else if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) form = "few";
+    } else if (count === 1) {
+      form = "one";
+    }
+    return count + " " + t("event." + form, form === "one" ? "event" : "events");
+  }
+
+  /* Access type -> badge label, badge modifier, CTA label. */
+  var ACCESS = {
+    free:        { label: t("access.free", "Free"),     mod: "badge-free",   cta: t("cta.register", "Register") },
+    paid:        { label: t("access.paid", "Paid"),     mod: "",             cta: t("cta.tickets", "Get tickets") },
+    application: { label: t("access.apply", "Apply"),   mod: "",             cta: t("cta.apply", "Apply") },
+    invite:      { label: t("access.invite", "Invite only"), mod: "",         cta: t("cta.details", "Details") },
+    badge:       { label: t("access.badge", "With gamescom badge"), mod: "", cta: t("cta.details", "Details") },
+    open:        { label: t("access.open", "Open entry"), mod: "badge-open", cta: t("cta.details", "Details") },
+    tba:         { label: t("access.tba", "TBA"),       mod: "",             cta: t("cta.details", "Details") },
+    closed:      { label: t("access.closed", "Closed"), mod: "badge-closed", cta: t("cta.details", "Details") }
+  };
+  var ACCESS_FALLBACK = { label: t("cta.details", "Details"), mod: "", cta: t("cta.details", "Details") };
+
+  var WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(function (day, index) {
+    return t("weekday." + index, day);
+  });
+  var MONTHS = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"].map(function (month, index) {
+    return t("month." + index, month);
+  });
+
+  /* ------------------------------------------------------------- utilities */
+
+  function $(sel, root) { return (root || document).querySelector(sel); }
+
+  function esc(str) {
+    return String(str == null ? "" : str)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  /* Only allow http(s) links through to href. */
+  function safeUrl(url) {
+    var u = String(url || "").trim();
+    return /^https?:\/\//i.test(u) ? u : "";
+  }
+
+  function toDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || "").trim());
+    return m ? new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])) : null;
+  }
+
+  function toIso(date) {
+    return date.toISOString().slice(0, 10);
+  }
+
+  function dayId(iso) { return "day-" + iso; }
+
+  /* "17:00–21:00" / "From 13:00" -> minutes since midnight. All-day -> -1. */
+  function startMinutes(time) {
+    var m = /(\d{1,2}):(\d{2})/.exec(String(time || ""));
+    return m ? (+m[1]) * 60 + (+m[2]) : -1;
+  }
+
+  /* ----------------------------------------------------------- data loading */
+
+  /* gviz encodes date cells as the string "Date(2026,7,23)" (month is 0-based). */
+  function normalizeCell(cell) {
+    if (!cell) return "";
+    var v = cell.v;
+    if (v == null) return cell.f != null ? String(cell.f) : "";
+    if (typeof v === "string") {
+      var d = /^Date\((\d+),(\d+),(\d+)/.exec(v);
+      if (d) {
+        return toIso(new Date(Date.UTC(+d[1], +d[2], +d[3])));
+      }
+      return v;
+    }
+    if (v instanceof Date) return toIso(v);
+    return String(v);
+  }
+
+  function parseGviz(text) {
+    var start = text.indexOf("{");
+    var end = text.lastIndexOf("}");
+    if (start < 0 || end < 0) throw new Error("Unexpected gviz payload");
+    var payload = JSON.parse(text.slice(start, end + 1));
+    var table = payload.table;
+    if (!table || !table.rows) throw new Error("No table in gviz payload");
+
+    // Map columns by header label so column order can shift without breaking.
+    var index = {};
+    (table.cols || []).forEach(function (col, i) {
+      var key = String(col.label || col.id || "").trim().toLowerCase().replace(/\s+/g, "_");
+      if (key) index[key] = i;
+    });
+
+    function pick(row, key, position) {
+      var i = index.hasOwnProperty(key) ? index[key] : position;
+      return normalizeCell(row.c && row.c[i]).trim();
+    }
+
+    return table.rows.map(function (row) {
+      return {
+        date: pick(row, "date", 0),
+        end_date: pick(row, "end_date", 1),
+        name: pick(row, "name", 2),
+        time: pick(row, "time", 3),
+        description: pick(row, "description", 4),
+        location: pick(row, "location", 5),
+        access: pick(row, "access", 6).toLowerCase(),
+        access_note: pick(row, "access_note", 7),
+        link: pick(row, "link", 8),
+        featured: pick(row, "featured", 9) === "1" || pick(row, "featured", 9).toLowerCase() === "true",
+        score: parseInt(pick(row, "priority_score", 10), 10) || 0
+      };
+    }).filter(function (e) { return e.name; });
+  }
+
+  function loadFromSheet() {
+    var url = "https://docs.google.com/spreadsheets/d/" + CONFIG.sheetId +
+              "/gviz/tq?tqx=out:json&t=" + Date.now();
+
+    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = controller && setTimeout(function () { controller.abort(); }, CONFIG.fetchTimeoutMs);
+
+    return fetch(url, controller ? { signal: controller.signal } : undefined)
+      .then(function (res) {
+        if (timer) clearTimeout(timer);
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.text();
+      })
+      .then(parseGviz)
+      .then(function (rows) {
+        if (!rows.length) throw new Error("Sheet returned no rows");
+        return { events: rows, live: true };
+      });
+  }
+
+  function loadSnapshot() {
+    var snap = window.GC_EVENTS_SNAPSHOT || [];
+    return { events: snap, live: false };
+  }
+
+  /* ------------------------------------------------------------- day model */
+
+  /* Expand multi-day events so they appear on every day they run. */
+  function buildDays(events) {
+    var winStart = toDate(CONFIG.windowStart);
+    var winEnd = toDate(CONFIG.windowEnd);
+    var buckets = {};
+    var tba = [];
+
+    events.forEach(function (ev) {
+      var start = toDate(ev.date);
+      if (!start) { tba.push(ev); return; }
+
+      var end = toDate(ev.end_date) || start;
+      if (end < start) end = start;
+
+      // clamp to the window we display
+      var from = start < winStart ? winStart : start;
+      var to = end > winEnd ? winEnd : end;
+      if (from > winEnd || to < winStart) return;
+
+      var multi = toIso(start) !== toIso(end);
+      for (var d = new Date(from); d <= to; d.setUTCDate(d.getUTCDate() + 1)) {
+        var iso = toIso(d);
+        (buckets[iso] = buckets[iso] || []).push({ ev: ev, multi: multi });
+      }
+    });
+
+    var days = Object.keys(buckets).sort().map(function (iso) {
+      var items = buckets[iso].sort(function (a, b) {
+        var am = startMinutes(a.ev.time), bm = startMinutes(b.ev.time);
+        if (am !== bm) return am - bm;
+        return b.ev.score - a.ev.score;
+      });
+      var date = toDate(iso);
+      return {
+        iso: iso,
+        date: date,
+        weekday: WEEKDAYS[date.getUTCDay()],
+        dayNum: date.getUTCDate(),
+        month: MONTHS[date.getUTCMonth()],
+        items: items
+      };
+    });
+
+    if (tba.length) {
+      days.push({
+        iso: "tba",
+        date: null,
+        weekday: t("date.label", "Date"),
+        dayNum: t("date.tba", "TBA"),
+        month: "",
+        items: tba.map(function (ev) { return { ev: ev, multi: false }; })
+      });
+    }
+
+    return days;
+  }
+
+  /* ---------------------------------------------------------------- render */
+
+  var ICON_PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
+  var ICON_CAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>';
+
+  /* Live event rows are rendered in the browser, so their CTAs reproduce the
+     shared Button.astro DOM contract instead of introducing page-local button
+     classes. Static page CTAs use Button.astro directly. */
+  function renderEventButton(label, url) {
+    var base = "garna-button inline-flex items-center justify-center font-manrope " +
+      "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 " +
+      "focus-visible:outline-[#CBF300] h-11 rounded-xl px-7 gamescom-event-button";
+    var inner = '<span class="garna-button-inner">' + esc(label) + "</span>";
+
+    if (url) {
+      return '<a class="' + base + ' garna-button-primary text-garna-accent-foreground"' +
+        ' href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + inner + "</a>";
+    }
+
+    return '<span class="' + base + ' garna-button-secondary text-white" aria-disabled="true">' +
+      inner + "</span>";
+  }
+
+  function renderDayNav(days, activeIso) {
+    return days.map(function (day) {
+      var isTba = day.iso === "tba";
+      var top = isTba ? t("date.tba", "TBA") : day.weekday + " " + day.dayNum;
+      var count = eventCountLabel(day.items.length);
+      return '<button type="button" class="day-btn' + (day.iso === activeIso ? " is-active" : "") + '"' +
+             ' data-day="' + esc(day.iso) + '"' +
+             ' aria-pressed="' + (day.iso === activeIso ? "true" : "false") + '">' +
+             '<span class="d-day">' + esc(top) + '</span>' +
+             '<span class="d-count">' + esc(count) + '</span>' +
+             '</button>';
+    }).join("");
+  }
+
+  function renderEvent(item) {
+    var ev = item.ev;
+    var access = ACCESS[ev.access] || ACCESS_FALLBACK;
+    var url = safeUrl(ev.link);
+    var classes = ["event-card"];
+    if (ev.featured) classes.push("is-featured");
+    if (ev.access === "closed") classes.push("is-closed");
+
+    var facts = "";
+    if (ev.location) {
+      facts += '<span class="fact">' + ICON_PIN + esc(ev.location) + "</span>";
+    }
+    if (item.multi) {
+      facts += '<span class="fact">' + ICON_CAL + esc(t("event.multiDay", "Runs across several days")) + "</span>";
+    }
+    facts += '<span class="badge ' + access.mod + '">' + esc(access.label) + "</span>";
+    if (ev.access_note) {
+      facts += '<span class="fact">' + esc(ev.access_note) + "</span>";
+    }
+
+    var cta = renderEventButton(url ? access.cta : t("cta.noLink", "No link yet"), url);
+
+    return '<article class="event-row reveal">' +
+             '<div class="event-time">' + esc(ev.time || t("event.timeTba", "Time TBA")) + "</div>" +
+             '<div class="' + classes.join(" ") + '">' +
+               '<div class="event-main">' +
+                 '<div class="event-title">' +
+                   "<h3>" + esc(ev.name) + "</h3>" +
+                   (ev.featured ? '<span class="pick">' + esc(t("event.featured", "Worth your time")) + "</span>" : "") +
+                 "</div>" +
+                 (ev.description ? '<p class="event-desc">' + esc(ev.description) + "</p>" : "") +
+                 '<div class="event-facts">' + facts + "</div>" +
+               "</div>" +
+               '<div class="event-cta">' + cta + "</div>" +
+             "</div>" +
+           "</article>";
+  }
+
+  function renderDay(day) {
+    if (!day) {
+      return '<div class="empty-state"><h3>' + esc(t("empty.title", "Nothing scheduled here yet")) + "</h3>" +
+             "<p>" + esc(t("empty.description", "Pick another day above. We keep this page updated through the show.")) + "</p></div>";
+    }
+
+    var title, sub;
+    if (day.iso === "tba") {
+      title = t("date.announced", "Date to be announced");
+      sub = eventCountLabel(day.items.length) + ", " +
+            t("date.unannouncedSuffix", "organisers haven't announced a date yet");
+    } else {
+      title = day.weekday + ", " + day.dayNum + " " + day.month;
+      sub = eventCountLabel(day.items.length);
+    }
+
+    return '<div class="day-heading"><h2 id="' + esc(dayId(day.iso)) + '">' + esc(title) + "</h2>" +
+           '<span class="day-sub">' + esc(sub) + "</span></div>" +
+           '<div class="event-list">' + day.items.map(renderEvent).join("") + "</div>";
+  }
+
+  /* ------------------------------------------------------------- reveal obs */
+
+  var observer = null;
+  function observeReveals(root) {
+    var nodes = root.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) {
+      Array.prototype.forEach.call(nodes, function (n) { n.classList.add("is-visible"); });
+      return;
+    }
+    if (!observer) {
+      observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -40px 0px", threshold: 0.05 });
+    }
+    Array.prototype.forEach.call(nodes, function (n) { observer.observe(n); });
+  }
+
+  /* ------------------------------------------------------------------ boot */
+
+  function pickInitialDay(days) {
+    var fromHash = (location.hash || "").replace(/^#day-/, "");
+    if (fromHash && days.some(function (d) { return d.iso === fromHash; })) return fromHash;
+
+    var today = toIso(new Date());
+    if (days.some(function (d) { return d.iso === today; })) return today;
+
+    var firstDated = days.filter(function (d) { return d.iso !== "tba"; })[0];
+    return firstDated ? firstDated.iso : (days[0] && days[0].iso);
+  }
+
+  function init(data) {
+    var events = data.events;
+    var days = buildDays(events);
+
+    var navEl = $("#dayNav");
+    var listEl = $("#eventsBody");
+    var noteEl = $("#sourceNote");
+    var statEvents = $("#statEvents");
+    var statDays = $("#statDays");
+
+    if (statEvents) statEvents.textContent = events.length;
+    if (statDays) statDays.textContent = days.filter(function (d) { return d.iso !== "tba"; }).length;
+
+    if (!days.length) {
+      if (listEl) {
+        listEl.innerHTML = '<div class="empty-state"><h3>' + esc(t("empty.noEventsTitle", "No events loaded")) + "</h3>" +
+          "<p>" + esc(t("empty.noEventsDescription", "The schedule didn't come through. A refresh usually fixes it.")) + "</p></div>";
+      }
+      return;
+    }
+
+    var activeIso = pickInitialDay(days);
+
+    function paint(iso, shouldScroll) {
+      activeIso = iso;
+      var day = days.filter(function (d) { return d.iso === iso; })[0];
+      if (navEl) navEl.innerHTML = renderDayNav(days, iso);
+      if (listEl) {
+        listEl.innerHTML = renderDay(day);
+        observeReveals(listEl);
+      }
+      // Chrome throws a SecurityError for replaceState on file:// URLs, and the
+      // deep link is a nicety — never let it take the page down with it.
+      try {
+        if (history.replaceState) history.replaceState(null, "", "#" + dayId(iso));
+      } catch (e) { /* deep links unavailable here; the page works regardless */ }
+
+      if (shouldScroll && listEl) {
+        try {
+          var top = listEl.getBoundingClientRect().top + window.pageYOffset;
+          var offset = (document.querySelector(".day-nav") || { offsetHeight: 0 }).offsetHeight + 90;
+          window.scrollTo({ top: Math.max(0, top - offset), behavior: "smooth" });
+        } catch (e2) { /* older browsers without smooth scrolling options */ }
+      }
+    }
+
+    if (navEl) {
+      navEl.addEventListener("click", function (e) {
+        var btn = e.target.closest ? e.target.closest(".day-btn") : null;
+        if (!btn) return;
+        paint(btn.getAttribute("data-day"), true);
+      });
+    }
+
+    paint(activeIso, false);
+
+    if (noteEl) {
+      noteEl.textContent = data.live
+        ? t("source.live", "The schedule is read from our events sheet every time this page loads, so it is always the current one.")
+        : t("source.fallback", "We couldn't reach the live sheet, so this is the last saved copy of the schedule.");
+    }
+  }
+
+  /* Last resort: drop the "js" class so every .reveal block becomes visible
+     again, and say what happened where the list would have been. Better a
+     plain page with an honest message than a blank screen. */
+  function bail(err) {
+    if (window.console) console.error("[gamescom]", err);
+    document.documentElement.className =
+      document.documentElement.className.replace(/\bjs\b/, "");
+    var listEl = $("#eventsBody");
+    if (listEl) {
+      listEl.innerHTML = '<div class="empty-state"><h3>' + esc(t("error.title", "The schedule didn't load")) + "</h3>" +
+        "<p>" + esc(t("error.description", "A refresh usually fixes it. If it doesn't, the browser console has the details.")) + "</p></div>";
+    }
+  }
+
+  function start() {
+    var listEl = $("#eventsBody");
+    if (listEl) listEl.innerHTML = '<div class="loading">' + esc(t("loading", "Loading the schedule…")) + "</div>";
+
+    loadFromSheet()
+      .catch(function (err) {
+        if (window.console) console.warn("[gamescom] falling back to snapshot:", err && err.message);
+        return loadSnapshot();
+      })
+      .then(init)
+      .catch(bail);
+
+    // Header: mobile menu
+    var menuBtn = $(".menu-btn");
+    var mobileNav = $(".mobile-nav");
+    if (menuBtn && mobileNav) {
+      menuBtn.addEventListener("click", function () {
+        var open = mobileNav.hasAttribute("hidden");
+        if (open) mobileNav.removeAttribute("hidden");
+        else mobileNav.setAttribute("hidden", "");
+        menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
+
+    // Reveal for static sections
+    observeReveals(document);
+  }
+
+  function boot() {
+    try { start(); } catch (err) { bail(err); }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();

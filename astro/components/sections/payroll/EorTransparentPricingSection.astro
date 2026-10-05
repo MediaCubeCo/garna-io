@@ -1,0 +1,267 @@
+---
+import Section from '../../layout/Section.astro';
+---
+
+<Section contained={false} spacing="none" class="py-16 lg:py-32">
+	<div class="mx-auto max-w-7xl px-6">
+		<div class="eor-pricing-banner" data-card-glow="true" data-interactive="true">
+			<div class="eor-pricing-banner__copy">
+				<h2 data-translate="transparentPricing.title">Transparent EOR Pricing</h2>
+			</div>
+
+			<div class="eor-pricing-banner__rate" aria-label="EOR pricing starts from $200 per employee per month">
+				<strong data-eor-price-count data-count-to="200">$200</strong>
+				<small data-translate="transparentPricing.panel.period">per employee / month</small>
+			</div>
+
+			<div class="eor-pricing-banner__note">
+				<div class="eor-pricing-banner__note-copy">
+					<p data-translate="transparentPricing.description">
+						Starting from $200/month per employee.
+					</p>
+					<p data-translate="transparentPricing.note">No hidden fees. No local entity setup costs. Get a custom quote based on your hiring needs.</p>
+				</div>
+				<a href="#eor-cost-estimator" data-translate="transparentPricing.button">Calculate Your Options</a>
+			</div>
+		</div>
+	</div>
+</Section>
+
+<style>
+	.eor-pricing-banner {
+		position: relative;
+		display: grid;
+		min-height: clamp(330px, 29vw, 390px);
+		grid-template-columns: minmax(0, 60%) minmax(320px, 40%);
+		grid-template-rows: auto 1fr auto;
+		align-items: center;
+		column-gap: clamp(3rem, 7vw, 7rem);
+		row-gap: clamp(1.5rem, 3.2vw, 3rem);
+		overflow: hidden;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 18px;
+		background: rgb(12 12 12 / 0.72);
+		padding: clamp(1.75rem, 3.5vw, 3rem);
+		box-shadow:
+			inset 0 1px 0 rgb(255 255 255 / 0.06),
+			0 28px 72px -62px rgb(0 0 0 / 0.8);
+	}
+
+	.eor-pricing-banner > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	.eor-pricing-banner__copy {
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.eor-pricing-banner__copy {
+		grid-column: 1;
+		grid-row: 1;
+		align-self: end;
+	}
+
+	.eor-pricing-banner__copy h2 {
+		margin: 0;
+		max-width: 34rem;
+		color: #ffffff;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1.85rem, 2.65vw, 3rem);
+		font-weight: 400;
+		line-height: 1.04;
+		letter-spacing: 0;
+	}
+
+	.eor-pricing-banner__note p {
+		margin: 0;
+		color: #a1a1aa;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1rem, 1.08vw, 1.0625rem);
+		line-height: 1.55;
+	}
+
+	.eor-pricing-banner__note p + p {
+		margin-top: 0.75rem;
+		color: rgb(161 161 170 / 0.82);
+		font-size: clamp(0.9375rem, 1vw, 1rem);
+	}
+
+	.eor-pricing-banner__rate {
+		grid-column: 1;
+		grid-row: 3;
+		display: flex;
+		align-items: baseline;
+		align-self: end;
+		justify-self: start;
+		gap: clamp(0.5rem, 1vw, 0.875rem);
+		white-space: nowrap;
+	}
+
+	.eor-pricing-banner__rate small {
+		color: rgb(255 255 255 / 0.58);
+		font-family: Manrope, sans-serif;
+		font-size: clamp(1rem, 1.08vw, 1.0625rem);
+		font-weight: 500;
+		line-height: 1.3;
+	}
+
+	.eor-pricing-banner__rate strong {
+		display: inline-block;
+		min-width: 2.35em;
+		color: #cbf300;
+		font-family: Manrope, sans-serif;
+		font-size: clamp(6rem, 11.81vw, 8.75rem);
+		font-weight: 500;
+		line-height: 0.82;
+		letter-spacing: 0;
+		font-variant-numeric: tabular-nums;
+		text-shadow:
+			0 0 18px rgb(203 243 0 / 0.26),
+			0 0 42px rgb(203 243 0 / 0.12);
+	}
+
+	.eor-pricing-banner__note {
+		grid-column: 2;
+		grid-row: 1 / 4;
+		display: flex;
+		min-width: 0;
+		max-width: none;
+		flex-direction: column;
+		align-items: flex-end;
+		justify-self: stretch;
+		align-self: end;
+		gap: clamp(1.4rem, 2.4vw, 2rem);
+		text-align: right;
+	}
+
+	.eor-pricing-banner__note-copy {
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+		align-items: flex-end;
+	}
+
+	.eor-pricing-banner__note a {
+		position: relative;
+		z-index: 2;
+		display: inline-flex;
+		min-width: 15rem;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgb(203 243 0 / 0.42);
+		border-radius: 12px;
+		padding: 0.9375rem 1.375rem;
+		color: #cbf300;
+		font-family: Manrope, sans-serif;
+		font-size: 1rem;
+		font-weight: 600;
+		white-space: nowrap;
+		text-decoration: none;
+		transition:
+			background 180ms ease,
+			color 180ms ease,
+			border-color 180ms ease;
+	}
+
+	.eor-pricing-banner__note a:hover {
+		border-color: #cbf300;
+		background: #cbf300;
+		color: #050505;
+	}
+
+	@media (max-width: 1180px) {
+		.eor-pricing-banner {
+			min-height: auto;
+			grid-template-columns: 1fr;
+			grid-template-rows: none;
+			text-align: center;
+		}
+
+		.eor-pricing-banner__copy,
+		.eor-pricing-banner__rate,
+		.eor-pricing-banner__note,
+		.eor-pricing-banner__note-copy,
+		.eor-pricing-banner__note a {
+			grid-column: auto;
+			grid-row: auto;
+			align-self: auto;
+			justify-self: center;
+		}
+
+		.eor-pricing-banner__copy,
+		.eor-pricing-banner__note,
+		.eor-pricing-banner__note-copy {
+			align-items: center;
+			max-width: 38.75rem;
+			text-align: center;
+		}
+
+		.eor-pricing-banner__rate {
+			flex-direction: column;
+			align-items: center;
+			gap: 0.75rem;
+		}
+
+		.eor-pricing-banner__note a {
+			margin-top: 1.125rem;
+		}
+	}
+</style>
+
+<script>
+	const counters = document.querySelectorAll('[data-eor-price-count]');
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	const formatPrice = (value) => `$${Math.round(value)}`;
+
+	const animateCounter = (counter) => {
+		if (!(counter instanceof HTMLElement) || counter.dataset.counted === 'true') return;
+
+		const target = Number(counter.dataset.countTo || '200');
+		if (!Number.isFinite(target)) return;
+
+		counter.dataset.counted = 'true';
+
+		if (prefersReducedMotion) {
+			counter.textContent = formatPrice(target);
+			return;
+		}
+
+		const duration = 950;
+		const startTime = performance.now();
+
+		const tick = (now) => {
+			const progress = Math.min(1, (now - startTime) / duration);
+			const eased = 1 - Math.pow(1 - progress, 3);
+			counter.textContent = formatPrice(target * eased);
+
+			if (progress < 1) {
+				window.requestAnimationFrame(tick);
+				return;
+			}
+
+			counter.textContent = formatPrice(target);
+		};
+
+		counter.textContent = formatPrice(0);
+		window.requestAnimationFrame(tick);
+	};
+
+	if ('IntersectionObserver' in window) {
+		const observer = new IntersectionObserver((entries) => {
+			for (const entry of entries) {
+				if (!entry.isIntersecting) continue;
+				animateCounter(entry.target);
+				observer.unobserve(entry.target);
+			}
+		}, { threshold: 0.45 });
+
+		for (const counter of counters) observer.observe(counter);
+	} else {
+		for (const counter of counters) animateCounter(counter);
+	}
+</script>

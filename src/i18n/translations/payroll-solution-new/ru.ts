@@ -94,9 +94,16 @@ export const payrollSolutionNewRu = {
 	sourceText: {
 		'Book a demo': 'Заказать пробную версию',
 		'businesses using Garna': 'компаний используют Garna',
+		'paid to specialists': 'выплачено специалистам',
+		'talents already use Garna': 'специалистов уже используют Garna',
 		'global payroll service availability': 'круглосуточная доступность выплат',
 		'countries covered': 'стран',
 		'Manage Global Payroll Effortlessly': 'Управляйте расчетом заработной платы по всему миру без лишних усилий',
+		'One platform to run payroll for freelancers, remote employees, and full-time teams':
+			'Единая платформа для выплат фрилансерам, удаленным сотрудникам и штатным командам',
+		'Flexible Payout Methods': 'Гибкие способы выплат',
+		'Pay teams by bank transfer, card, electronic wallet, or crypto':
+			'Выплачивайте командам банковским переводом, на карту, электронный кошелек или в криптовалюте',
 		'We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries':
 			'Мы оптимизируем процесс оплаты труда, предлагая гибкие и надежные решения для компаний любого размера и из любых отраслей',
 		'Automated Payroll Platform': 'Автоматизированная платформа выплат',
@@ -167,7 +174,7 @@ export const payrollSolutionNewRu = {
 		'$ 1,000,000.00 available for team payouts': '$ 1,000,000.00 доступно для выплат команде',
 		'Pay your contractors now — repay later with flexible terms': 'Платите подрядчикам сейчас, а возвращайте позже на гибких условиях',
 		'Request': 'Запросить',
-		'Pay contractors now, settle later': 'Платите подрядчикам сейчас, рассчитывайтесь позже',
+		'Pay contractors now, settle later': 'Выплаты сейчас, расчет позже',
 		'Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow':
 			'Выполняйте глобальные выплаты сразу и возвращайте средства Garna по графику, который подходит денежному потоку вашего бизнеса',
 		'Immediate payouts, deferred settlement': 'Мгновенные выплаты, отложенный расчет',
@@ -196,7 +203,7 @@ export const payrollSolutionNewRu = {
 		'Assign a financial contact person': 'Назначьте ответственное лицо по финансовым вопросам',
 		'SSpecify the person who will be responsible for financial matters':
 			'Укажите лицо, которое будет отвечать за финансовые вопросы',
-		'Create your first EoR contract': 'Составьте свой первый договор о предоставлении услуг официального работодателя',
+		'Create your first EOR contract': 'Составьте свой первый договор о предоставлении услуг официального работодателя',
 		"Enter the employee's details":
 			'Введите данные сотрудника',
 		'Invite an employee': 'Пригласите сотрудника',
@@ -222,7 +229,7 @@ export const payrollSolutionNewRu = {
 		'Shared dashboard': 'Общая панель управления',
 		'Garna Payroll vs Other Payroll': 'Garna и другие системы оплаты труда',
 		'Everything is relative, right? Take a look at the comparison table, we believe our transparency speaks louder than words. We offer, and we offer a lot, because we want to be the best':
-			'Всё относительно, верно? Взгляните на сравнительную таблицу — мы уверены, что факты говорят громче слов',
+			'Все относительно, верно? Взгляните на сравнительную таблицу — мы уверены, что факты говорят громче слов',
 		'Feature': 'Функция',
 		'Other Payroll': 'Другая система',
 		'Garna Payroll': 'Garna',
@@ -338,7 +345,7 @@ export const payrollSolutionNewRu = {
 		'Onboarding': 'Онбординг',
 		'Onboarding Checklist': 'Чек-лист онбординга',
 		'Employee Onboarded': 'Сотрудник подключен',
-		'EoR Contract Signed': 'EoR-контракт подписан',
+		'EOR Contract Signed': 'EOR-контракт подписан',
 		'First Payroll Estimate': 'Первый расчет payroll',
 		'Employee Gross Salary': 'Валовая зарплата сотрудника',
 		'Employment Country': 'Страна трудоустройства',
@@ -397,6 +404,7 @@ export const payrollSolutionNewRu = {
 		'"Had an issue with my local tax authorities before started using Garna. Now I have all the tax documents in place."':
 			'"Раньше у меня были проблемы с местной налоговой, пока не начал использовать Garna. Теперь все налоговые документы в порядке."',
 	},
+	...homeRu,
 	footer: homeRu.footer,
 	bookingWidget: homeRu.bookingWidget,
 };

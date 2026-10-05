@@ -1,0 +1,200 @@
+---
+import Section from '../../layout/Section.astro';
+import Button from '../../ui/Button.astro';
+---
+
+<Section contained={false} spacing="none" class="py-16 lg:py-32">
+        <div class="h-fit max-w-7xl mr-auto ml-auto pr-6 pl-6">
+            <div class="lg:mb-20 text-center mb-16">
+                <h2 class="lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope mb-6"
+                    data-translate="contractorBenefits.title">Everything You Need to Manage Contractors</h2>
+                <p data-garna-subtitle class="text-xl font-light text-gray-400 font-manrope"
+                    data-translate="contractorBenefits.description">With Garna, you can manage contractor engagement and global payments from one platform</p>
+                <div class="mt-8 flex justify-center">
+                    <Button
+                        href="#"
+                        variant="primary"
+                        size="header"
+                        effect="none"
+                        icon="none"
+                        onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'contractor_benefits_demo' });"
+                    >
+                        <span data-translate="whyGarna.cta.button">Book a demo</span>
+                    </Button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Card 3: Payment Methods (Moved to First) -->
+                <div
+                    class="glass-card flex flex-col overflow-hidden border border-white/[0.08] bg-[#0c0c0c]/[0.72] md:items-center md:text-center md:pt-10 md:pr-10 md:pb-10 md:pl-10 lg:items-stretch lg:text-left lg:pl-8 lg:pt-8 lg:pb-8 lg:pr-8 rounded-3xl pt-6 pr-6 pb-6 pl-6 relative">
+                    <h3 class="mx-auto max-w-md text-[26px] font-medium leading-tight text-center text-white tracking-tight font-manrope"
+                        data-translate="contractorBenefits.methods.title">One Contract Instead of&nbsp;Dozens</h3>
+                    <p class="mx-auto mt-4 max-w-md leading-relaxed md:mb-3 text-base font-semibold text-center text-gray-400 font-manrope"
+                        data-translate="contractorBenefits.methods.description">Manage everything through one contract and a single consolidated invoice</p>
+
+                    <div
+                        class="md:mt-8 lg:mt-auto md:max-w-md lg:max-w-full w-full max-w-md mt-6 mr-auto ml-auto text-left">
+                        <div class="relative mx-auto w-full max-w-[292px]">
+                            <article class="h-[248px] rounded-[1.2rem] border border-white/10 bg-[#050505] p-3 shadow-2xl">
+                                <div class="flex items-center gap-2">
+                                    <img src="/pages/payroll-solution-new/assets/northstar-labs-logo.svg" alt="" loading="lazy" aria-hidden="true"
+                                        class="h-8 w-8 shrink-0 rounded-lg object-cover" />
+                                    <div class="min-w-0 flex-1">
+                                        <strong class="block text-sm font-semibold leading-tight text-white font-manrope">Northstar Labs</strong>
+                                        <small class="mt-0.5 block text-[11px] leading-tight text-gray-500">Client agreement</small>
+                                    </div>
+                                    <span class="rounded-full bg-[#CBF300]/10 px-2 py-0.5 text-[9px] font-bold text-[#CBF300]">Signed</span>
+                                </div>
+
+                                <div class="mt-3 rounded-xl bg-white/[0.04] p-2.5">
+                                    <div class="grid gap-1.5">
+                                        <div class="flex items-center justify-between gap-3">
+                                            <span class="text-[11px] font-medium text-gray-500">Client</span>
+                                            <strong class="truncate text-[11px] font-semibold text-white">Northstar Labs</strong>
+                                        </div>
+                                        <div class="flex items-center justify-between gap-3">
+                                            <span class="text-[11px] font-medium text-gray-500">Provider</span>
+                                            <strong class="truncate text-[11px] font-semibold text-white">Garna</strong>
+                                        </div>
+                                        <div class="flex items-center justify-between gap-3">
+                                            <span class="text-[11px] font-medium text-gray-500">Effective</span>
+                                            <strong class="truncate text-[11px] font-semibold text-white">Feb 2026</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2.5 grid gap-1.5">
+                                    <div class="flex items-center justify-between rounded-lg bg-white/[0.032] px-2.5 py-1.5">
+                                        <span class="flex items-center gap-1.5 text-[11px] font-medium text-gray-200">
+                                            <img src="/pages/payroll-solution-new/assets/contractor-avatar-maya-v2.webp" alt="" loading="lazy" aria-hidden="true"
+                                                class="h-4 w-4 rounded-full object-cover" />
+                                            Maya Chen
+                                        </span>
+                                        <span class="text-[11px] font-semibold text-gray-500">Design</span>
+                                    </div>
+                                    <div class="flex items-center justify-between rounded-lg bg-white/[0.032] px-2.5 py-1.5">
+                                        <span class="flex items-center gap-1.5 text-[11px] font-medium text-gray-200">
+                                            <img src="/pages/payroll-solution-new/assets/contractor-avatar-alex-v2.webp" alt="" loading="lazy" aria-hidden="true"
+                                                class="h-4 w-4 rounded-full object-cover" />
+                                            Alex Rivera
+                                        </span>
+                                        <span class="text-[11px] font-semibold text-gray-500">Engineering</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2.5 flex items-center justify-between gap-3 rounded-lg border border-[#CBF300]/35 px-2.5 py-2">
+                                    <span class="text-[11px] text-gray-400">Monthly invoice</span>
+                                    <strong class="text-sm font-semibold text-white">$18,420</strong>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: All-in-one App (Unchanged) -->
+                <div
+                    class="glass-card flex flex-col overflow-hidden border border-white/[0.08] bg-[#0c0c0c]/[0.72] group md:items-center lg:items-stretch md:text-center lg:text-left rounded-3xl pt-8 pr-8 pb-6 pl-8 relative">
+                    <h3 class="mx-auto max-w-md text-[26px] font-medium leading-tight text-center text-white tracking-tight font-manrope"
+                        data-translate="contractorBenefits.mobile.title">Cut administrative costs</h3>
+                    <p class="mx-auto mt-4 max-w-md leading-relaxed text-base font-semibold text-center text-gray-400 font-manrope"
+                        data-translate="contractorBenefits.mobile.description">Garna handles all paperwork for you: from agreements execution to invoices and custom documents</p>
+
+                    <div class="md:mt-8 lg:mt-auto w-full max-w-md mt-6 mr-auto ml-auto text-left">
+                        <div class="relative mx-auto grid w-full max-w-[320px] gap-3 rounded-[1.35rem] border border-white/10 bg-[#050505] p-3.5 shadow-2xl">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] font-bold uppercase tracking-[0.12em] text-gray-500">Admin workspace</span>
+                                <span class="rounded-full border border-[#CBF300]/35 bg-[#CBF300]/10 px-2 py-0.5 text-[9px] font-bold text-[#CBF300]">Live</span>
+                            </div>
+
+                            <div class="grid grid-cols-[1fr_auto_1fr] items-stretch gap-2">
+                                <div class="rounded-xl border border-white/[0.07] bg-white/[0.035] p-2.5">
+                                    <span class="text-[10px] font-semibold text-gray-500">Manual queue</span>
+                                    <div class="mt-2 grid gap-1.5">
+                                        <div class="h-6 rounded-lg bg-white/[0.055] px-2 py-1 text-[10px] font-semibold text-gray-400">Agreement</div>
+                                        <div class="h-6 rounded-lg bg-white/[0.055] px-2 py-1 text-[10px] font-semibold text-gray-400">Invoice</div>
+                                        <div class="h-6 rounded-lg bg-white/[0.055] px-2 py-1 text-[10px] font-semibold text-gray-400">Tax form</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <span class="grid h-8 w-8 place-items-center rounded-full border border-[#CBF300]/25 bg-[#CBF300]/10 text-[#CBF300]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                                    </span>
+                                </div>
+
+                                <div class="rounded-xl border border-[#CBF300]/25 bg-[#CBF300]/[0.035] p-2.5">
+                                    <span class="text-[10px] font-semibold text-[#CBF300]">Handled by Garna</span>
+                                    <strong class="mt-2 block text-2xl font-semibold leading-none text-white font-manrope">8.5h</strong>
+                                    <span class="mt-1 block text-[10px] font-medium leading-tight text-gray-500">admin time saved</span>
+                                    <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
+                                        <div class="h-full w-[78%] rounded-full bg-[#CBF300]"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between rounded-xl bg-white/[0.04] px-3 py-2">
+                                <span class="text-[11px] font-medium text-gray-400">Docs linked automatically</span>
+                                <strong class="text-xs font-semibold text-white">24 files</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 1: Early Payout (Moved to Last) -->
+                <div
+                    class="glass-card flex flex-col overflow-hidden border border-white/[0.08] bg-[#0c0c0c]/[0.72] group md:items-center md:text-center md:pt-10 md:pr-10 md:pb-10 md:pl-10 lg:items-stretch lg:text-left lg:pl-8 lg:pr-8 lg:pt-8 lg:pb-8 rounded-3xl pt-6 pr-6 pb-6 pl-6 relative">
+                    <h3 class="mx-auto max-w-md text-[26px] font-medium leading-tight text-center text-white tracking-tight font-manrope"
+                        data-translate="contractorBenefits.earlyPayout.title">Direct Intellectual Property transition</h3>
+                    <p class="mx-auto mt-4 max-w-md leading-relaxed md:mb-3 text-base font-semibold text-center text-gray-400 font-manrope"
+                        data-translate="contractorBenefits.earlyPayout.description">We make sure that all IPs created by contractors are transferred directly and carefully to you</p>
+
+                    <div class="lg:mt-auto lg:max-w-full md:mt-8 md:max-w-md md:ml-auto md:mr-auto w-full max-w-md mt-6 mr-auto ml-auto text-left">
+                        <div class="relative mx-auto w-full max-w-[292px]">
+                            <article class="relative h-[248px] overflow-hidden rounded-[1.2rem] border border-white/10 bg-[#050505] p-3 shadow-2xl">
+                                <div class="flex items-center justify-between gap-3">
+                                    <span class="text-[10px] font-bold uppercase tracking-[0.13em] text-gray-500">IP assignment</span>
+                                    <span class="rounded-full bg-[#CBF300]/10 px-2 py-0.5 text-[9px] font-bold leading-tight text-[#CBF300]">Filed</span>
+                                </div>
+                                <strong class="mt-1 block text-base font-semibold leading-tight text-white font-manrope">Rights transfer</strong>
+
+                                <div class="mt-3 rounded-xl bg-white/[0.04] p-2.5">
+                                    <div class="grid gap-1.5">
+                                        <div class="flex items-center justify-between gap-3">
+                                            <span class="text-[11px] font-medium text-gray-500">Contractor</span>
+                                            <strong class="flex min-w-0 items-center gap-1.5 truncate text-[11px] font-semibold text-white">
+                                                <img src="/pages/payroll-solution-new/assets/contractor-avatar-sarah-v1.webp" alt="" loading="lazy" aria-hidden="true"
+                                                    class="h-4 w-4 rounded-full object-cover" />
+                                                Sarah Lewis
+                                            </strong>
+                                        </div>
+                                        <div class="flex items-center justify-between gap-3">
+                                            <span class="text-[11px] font-medium text-gray-500">Recipient</span>
+                                            <strong class="truncate text-[11px] font-semibold text-white">Northstar Labs</strong>
+                                        </div>
+                                        <div class="flex items-center justify-between gap-3">
+                                            <span class="text-[11px] font-medium text-gray-500">Works</span>
+                                            <strong class="truncate text-[11px] font-semibold text-white">Design files</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2.5 grid grid-cols-2 gap-2">
+                                    <div class="rounded-lg bg-white/[0.032] px-2.5 py-2">
+                                        <span class="text-[10px] font-semibold text-gray-500">Contractor</span>
+                                        <span class="mt-1.5 block h-5 overflow-hidden text-[18px] font-normal leading-none text-white" style="font-family: 'Brush Script MT', 'Segoe Script', cursive;">S. Lewis</span>
+                                        <strong class="mt-0.5 block truncate text-[11px] font-semibold text-[#CBF300]">Sarah Lewis</strong>
+                                    </div>
+                                    <div class="rounded-lg bg-white/[0.032] px-2.5 py-2">
+                                        <span class="text-[10px] font-semibold text-gray-500">Client</span>
+                                        <span class="mt-1.5 block h-5 overflow-hidden text-[18px] font-normal leading-none text-white" style="font-family: 'Brush Script MT', 'Segoe Script', cursive;">N. Labs</span>
+                                        <strong class="mt-0.5 block truncate text-[11px] font-semibold text-[#CBF300]">Northstar Labs</strong>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Section>

@@ -1,0 +1,22 @@
+---
+import Section from '../../layout/Section.astro';
+import Card from '../../ui/Card.astro';
+import EorCompanyAccountStepVisual from '../../visuals/EorCompanyAccountStepVisual.astro';
+import EorFinancialContactStepVisual from '../../visuals/EorFinancialContactStepVisual.astro';
+import EorContractStepVisual from '../../visuals/EorContractStepVisual.astro';
+import EorInviteStepVisual from '../../visuals/EorInviteStepVisual.astro';
+import EorWalletStepVisual from '../../visuals/EorWalletStepVisual.astro';
+---
+
+<Section contained={false} spacing="none" id="how-it-works" class="py-24">
+	<div class="mx-auto max-w-7xl px-6">
+		<div class="mx-auto max-w-3xl text-center"><h2 class="font-manrope text-4xl font-normal leading-tight text-white lg:text-5xl" data-translate="steps.title">Steps to take with Garna</h2></div>
+		<div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-6" data-eor-step-cards>
+			<Card class="p-5 lg:col-span-2" visualClass="mb-6" eyebrow="01" title={{ text: 'Set up your company account', translateKey: 'steps.items.companyAccount.title' }} description={{ text: 'Complete a quick profile check, fill in the required fields, and get access to a customized service flow', translateKey: 'steps.items.companyAccount.description' }}><EorCompanyAccountStepVisual slot="visual" /></Card>
+			<Card class="p-5 lg:col-span-2" visualClass="mb-6" eyebrow="02" title={{ text: 'Assign a financial contact', translateKey: 'steps.items.financialContact.title' }} description={{ text: 'Choose the person responsible for financial matters, from a finance director to yourself', translateKey: 'steps.items.financialContact.description' }}><EorFinancialContactStepVisual slot="visual" /></Card>
+			<Card class="p-5 lg:col-span-2" visualClass="mb-6" eyebrow="03" title={{ text: 'Create your first EoR contract', translateKey: 'steps.items.contract.title' }} description={{ text: 'Add country, position, salary, start date, currency, and work visa requirements', translateKey: 'steps.items.contract.description' }}><EorContractStepVisual slot="visual" /></Card>
+			<Card class="p-5 lg:col-span-3" visualClass="mb-6" eyebrow="04" title={{ text: 'Invite an employee', translateKey: 'steps.items.invite.title' }} description={{ text: 'The employee receives an invitation by email and creates a Garna account to receive payments', translateKey: 'steps.items.invite.description' }}><EorInviteStepVisual slot="visual" /></Card>
+			<Card class="p-5 lg:col-span-3" visualClass="mb-6" eyebrow="05" title={{ text: 'Fund your wallet and run payroll', translateKey: 'steps.items.fundWallet.title' }} description={{ text: 'Use SWIFT, SEPA, or crypto funding and start paying salary today', translateKey: 'steps.items.fundWallet.description' }}><EorWalletStepVisual slot="visual" /></Card>
+		</div>
+	</div>
+</Section>

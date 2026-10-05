@@ -1,0 +1,66 @@
+<!-- Phone Mockup Container -->
+<div class="flex relative justify-center w-full">
+    <div class="border-x overflow-hidden hover:translate-y-6 transition-transform duration-300 bg-[#0A0A0A] w-full max-w-[270px] border-white/10 rounded-t-[2.5rem] border-t pt-5 pr-5 pb-5 pl-5 relative shadow-2xl translate-y-12 min-h-[340px]">
+        <!-- Status Bar -->
+        <div class="flex mb-3 pt-1 items-center justify-between">
+            <!-- Network Name -->
+            <div class="text-[12px] font-medium text-white tracking-tight font-sans ml-1">LTE</div>
+            <div class="flex items-center gap-1.5 text-white">
+                <!-- Cellular -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="                        &lt;path d=" m2="" 20h.01"="">
+                    <path d="M7 20v-4"></path>
+                    <path d="M12 20v-8"></path>
+                    <path d="M17 20V8"></path>
+                    <path d="M22 20V4"></path>
+                </svg>
+                <!-- Wi-Fi (Restored) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3">
+                    <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                    <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                </svg>
+                <!-- Battery -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white opacity-90">
+                    <rect width="16" height="10" x="2" y="7" rx="2" ry="2"></rect>
+                    <line x1="22" x2="22" y1="11" y2="13"></line>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Lock Icon -->
+        <div class="flex mb-2 justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-[16px] h-[16px]" style="width: 16px; height: 16px; color: rgb(113, 113, 122)">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+        </div>
+
+        <!-- Time & Date -->
+        <div class="flex flex-col mb-6 items-center">
+            <h1 class="leading-none text-5xl font-semibold text-white tracking-tighter font-sans mb-1.5">9:41</h1>
+            <p class="text-[13px] font-normal text-gray-300 tracking-normal font-sans" data-translate="legacy.visual.notificationDate">Tuesday, January 10</p>
+        </div>
+
+        <!-- Notification -->
+        <div class="backdrop-blur-xl bg-white/[0.08] border border-white/10 rounded-2xl p-3.5 shadow-xl relative z-10 mx-1">
+            <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2">
+                    <div class="flex bg-[#000000] w-5 h-5 border-white/10 border rounded-[5px] items-center justify-center">
+                        <span class="text-[12px] leading-none font-bold text-[#CBF300] font-manrope mb-[3px]">g</span>
+                    </div>
+                    <span class="text-[10px] font-semibold text-white/90 uppercase tracking-wide font-sans">Garna</span>
+                </div>
+                <span class="text-[10px] text-white/50 font-sans" data-translate="legacy.visual.justNow">just now</span>
+            </div>
+            <div class="space-y-0.5">
+                <h4 class="text-[13px] font-semibold text-white tracking-tight font-sans text-left">Payout credited</h4>
+                <p class="text-[13px] leading-snug text-white/80 font-sans text-left">Your January payout has been credited to your balance</p>
+            </div>
+        </div>
+
+        <!-- Bottom Gradient -->
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0A0A0A] to-transparent pointer-events-none"></div>
+
+    </div>
+</div>

@@ -4,17 +4,15 @@ import FinalCTASection from '../components/sections/FinalCTASection.astro';
 import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
 import PayrollSolutionInteractions from '../components/sections/payroll/PayrollSolutionInteractions.astro';
-import ContractorPaymentsSection from '../components/sections/payroll/home/ContractorPaymentsSection.astro';
-import DeferredContractorPaymentsSection from '../components/sections/payroll/home/DeferredContractorPaymentsSection.astro';
+import ContractorPaymentsSection from '../components/sections/payroll/home/ContractorPaymentsCarouselSection.astro';
+import DeferredContractorPaymentsSection from '../components/sections/payroll/home/DeferredPaymentsStackSection.astro';
 import EffectivePayrollSection from '../components/sections/payroll/home/EffectivePayrollSection.astro';
-import EmbeddedPayrollInfrastructureSection from '../components/sections/payroll/home/EmbeddedPayrollInfrastructureSection.astro';
+import EmbeddedPayrollInfrastructureSection from '../components/sections/payroll/home/EmbeddedPayrollInfrastructureTabs.astro';
 import HireEmployeesWorldwideSection from '../components/sections/payroll/home/HireEmployeesWorldwideSection.astro';
+import HomeWorkflowsIntroSection from '../components/sections/payroll/home/HomeWorkflowsIntroSection.astro';
 import ManageGlobalPayrollSection from '../components/sections/payroll/home/ManageGlobalPayrollSection.astro';
-import PayrollComparisonSection from '../components/sections/payroll/home/PayrollComparisonSection.astro';
-import PayrollStatsSection from '../components/sections/payroll/home/PayrollStatsSection.astro';
-import StartPayingGloballySection from '../components/sections/payroll/home/StartPayingGloballySection.astro';
+import SpendbaseQuoteSection from '../components/sections/payroll/home/SpendbaseQuoteSection.astro';
 import TrustedByBuildersSection from '../components/sections/payroll/home/TrustedByBuildersSection.astro';
-import WhyCompaniesChooseGarnaSection from '../components/sections/payroll/home/WhyCompaniesChooseGarnaSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
@@ -23,95 +21,141 @@ import type { FAQItem } from '../types/faq-section';
 
 const homeFaqItems = [
 	{
-		question: 'How quickly can I start using Garna Payroll?',
+		question: 'What services does Garna provide?',
 		answer:
-			'Average time from sign up to the first hire or contractor payment is less than 10 minutes. You can create an account, verify it, and start using it immediately after. Our team processes applications quickly and grants access to one of the best online payroll services and contractor management solutions. At this point we work as a payroll provider enabling you with the possibility to work with employees and contractors.',
+			'Global payroll, Employer of Record, Contractor of Record, business banking, and international payments, all in one platform. You can hire, pay, and manage your whole team, employees, and contractors, without switching between tools.',
 		questionTranslateKey: 'faq.items.q1.question',
 		answerTranslateKey: 'faq.items.q1.answer',
 	},
 	{
-		question: 'Can I brand the contractor dashboard under my company?',
+		question: 'What is Employer of Record (EOR)?',
 		answer:
-			'Of course! Our White Label solution allows you to fully customize the interface not only for your in-house contractors but also for your customers.',
+			'An EOR legally employs your team in a country where you have no entity. Garna becomes that legal employer; you manage the day-to-day work.',
 		questionTranslateKey: 'faq.items.q2.question',
 		answerTranslateKey: 'faq.items.q2.answer',
 	},
 	{
-		question: 'What payment methods does Garna support?',
+		question: 'What is a Contractor of Record?',
 		answer:
-			'We support bank transfers (SWIFT, SEPA, bank transfers in local currencies), payments to cards in local currency, PayPal, Payoneer, and payments in cryptocurrency (USDT/USDC).',
+			"Garna manages the contract, compliance, and payments for your freelancers, so you're protected from misclassification risk without having to become their legal employer.",
 		questionTranslateKey: 'faq.items.q3.question',
 		answerTranslateKey: 'faq.items.q3.answer',
 	},
 	{
-		question: 'How does Garna handle taxes and compliance globally?',
+		question: 'What’s the difference between hiring through an EOR and hiring a contractor?',
 		answer:
-			"You won't have to worry about red tape. When working with our Employment of Record solution, we handle all local taxes, social contributions, insurance, and compliance. When working with our Contractor of Record solution, Garna ensures to avoid risk of worker misclassification. As your contractor of record agent, we take full responsibility for hiring so that you can focus on the growth of your company.",
+			'An EOR is designed for full-time employees who need local employment contracts, benefits, and payroll compliance. Contractors work independently and are typically hired for specific projects or services without an employment relationship.',
 		questionTranslateKey: 'faq.items.q4.question',
 		answerTranslateKey: 'faq.items.q4.answer',
 	},
 	{
-		question: 'Can I integrate the Garna API into my platform?',
-		answer: 'Yes. With our API, you can automate payments to contractors within your product.',
+		question: 'Can I hire international talent without an EOR?',
+		answer:
+			"Yes, by opening your own legal entity. It works, but incorporation, local payroll, and ongoing compliance make it slow and expensive at a small headcount. Check at what team size it's cheaper to set up your own company instead of using an EOR.",
 		questionTranslateKey: 'faq.items.q5.question',
 		answerTranslateKey: 'faq.items.q5.answer',
 	},
 	{
-		question: 'What currencies are supported for payouts?',
+		question: 'Why should I choose Garna over other providers?',
 		answer:
-			'We support 80+ local currencies, including USD, EUR, and GBP. At Garna, we believe that businesses should have best exchange rates without markups.',
+			'1. All-in-one service in one place: hire employees via EOR, work with contractors of any type (individuals, sole proprietors, or legal entities), and run your everyday banking¹ from a single platform.\n\n2. Transparent pricing without hidden fees.\n\n3. Truly global payouts: pay to 150+ countries in 80+ local currencies using bank transfers, cards, PayPal, local e-wallets, or crypto.\n\n4. Business banking included: multi-currency IBANs in your company name and transfers to 150+ destinations, provided by a separate licensed entity.\n\n5. Reliable payment infrastructure: one of the largest payment networks in the industry, with 20+ banking partners and payment systems.\n\n6. Virtual cards: issue a card in the app, add it to Apple Pay or Google Pay, and pay directly from your Garna balance².\n\n7. Responsive human support whenever you need help.\n\n¹ Business banking services are provided through a separate licensed payment entity/provider.\n² Card issuance and card payment services are provided through a licensed third-party payment provider and are subject to KYC, eligibility, and applicable terms.',
 		questionTranslateKey: 'faq.items.q6.question',
 		answerTranslateKey: 'faq.items.q6.answer',
 	},
 	{
-		question: 'How does Garna handle contractor management?',
+		question: 'How long does it take to onboard an employee?',
 		answer:
-			'Garna automates the entire process, from onboarding and compliance checks to instant invoice generation. You pay a single consolidated invoice, and we distribute the funds to contractors in their preferred payment method and currency. Garna takes the risk of misclassification and handles local compliance.',
+			'In most countries, we can hire a new employee in no more than one business day. Once we receive the confirmed offer details and the employee completes the required onboarding steps, including uploading documents and signing the contract, we ensure a smooth and fast start while supporting both you and the new hire.',
 		questionTranslateKey: 'faq.items.q7.question',
 		answerTranslateKey: 'faq.items.q7.answer',
 	},
 	{
-		question: 'Is my data secure with Garna?',
+		question: 'How long does it take to start using Garna Contractor of Record?',
 		answer:
-			'Of course. As top global payroll providers, Garna uses bank-level encryption and strictly adheres to GDPR protocols and financial data security standards. Plus, only you have access to your personal account. You can delete your personal account at any time.',
+			'In most cases, you can have your first contractor onboarded in less than 20 minutes. Once you create a business account and pass verification, you can start inviting contractors. Garna also offers real-time payment options, so contractors can receive their remuneration the same day.',
 		questionTranslateKey: 'faq.items.q8.question',
 		answerTranslateKey: 'faq.items.q8.answer',
 	},
 	{
-		question: 'Can I use Garna Payroll if my business already has its own dashboard?',
-		answer: 'Yes, we can integrate any of our tools into your workflows.',
+		question: 'What payment methods does Garna support?',
+		answer:
+			'We support bank transfers (SWIFT, SEPA, and bank transfers in local currencies), card payments in local currency, PayPal, Payoneer, other e-wallets, and cryptocurrency payments¹. With Garna, you can issue a digital card in the app, add it to Apple Pay or Google Pay, and pay directly from your Garna balance².\n\n¹ Cryptocurrency payment services are provided through a licensed third-party provider and are subject to availability, eligibility, and applicable terms.\n² Card issuance and card payment services are provided through a licensed third-party payment provider and are subject to KYC, eligibility, and applicable terms.',
 		questionTranslateKey: 'faq.items.q9.question',
 		answerTranslateKey: 'faq.items.q9.answer',
 	},
 	{
-		question: 'Do you offer support for global payroll issues?',
+		question: 'Can I use my Garna business account as a daily business account?',
 		answer:
-			'Yes, of course. Our support team is always on call 24/7 to answer any questions you may have about the service, payments, etc.',
+			'Yes, it works as a regular business account for everyday banking, not just for payroll and contractor payments. With a Garna Business Account, you can get multi-currency IBANs in your company name, receive payments, and send transfers to 150+ destinations¹.\n\n¹ Business banking services are provided through a separate licensed payment entity/provider.',
 		questionTranslateKey: 'faq.items.q10.question',
 		answerTranslateKey: 'faq.items.q10.answer',
 	},
+	{
+		question: 'What benefits does a business get access to when using Garna?',
+		answer:
+			'Beyond contractor management and payroll, you can access business benefits and receive discounts for Slack, Google Workspace, AWS, and accounts with over 100 other service providers at no extra cost.',
+		questionTranslateKey: 'faq.items.q11.question',
+		answerTranslateKey: 'faq.items.q11.answer',
+	},
 ] satisfies FAQItem[];
+
 ---
 
-<BaseLayout shell={pageShells.home}>
-	<HeroSection {...pageHeroes.home} />
-	<PayrollStatsSection transparent />
+<BaseLayout shell={pageShells.home} showRainbow={false}>
+	<div class="home-hero-proof-stage" data-home-hero-proof-stage>
+		<HeroSection {...pageHeroes.home}>
+			<div slot="before-title" class="home-hero-proof-rotator" aria-label="Garna in numbers" data-translate-aria-label="hero.stats.ariaLabel">
+				<div class="home-hero-proof-rotator__track">
+					<span class="home-hero-proof-rotator__item">
+						<strong>400+</strong>
+						<span data-translate="hero.stats.businesses">businesses trust Garna</span>
+					</span>
+					<span class="home-hero-proof-rotator__item">
+						<strong>$110M+</strong>
+						<span data-translate="hero.stats.paid">paid to specialists</span>
+					</span>
+					<span class="home-hero-proof-rotator__item">
+						<strong>38K+</strong>
+						<span data-translate="hero.stats.professionals">professionals use Garna</span>
+					</span>
+				</div>
+			</div>
+			<div slot="background" class="home-hero-cover">
+				<div class="home-hero-cover__media" aria-hidden="true">
+					<img data-home-hero-image src="/pages/payroll-solution-new/assets/home-hero-editorial-preview-3-optimized.webp" alt="" />
+				</div>
+				<div class="home-hero-focus-frame" data-home-hero-frame aria-hidden="true"></div>
+			</div>
+		</HeroSection>
+		<div class="home-workflows-scroll" data-home-workflows-scroll>
+			<HomeWorkflowsIntroSection />
+		</div>
+		<div class="home-hero-proof-transition" data-home-proof-transition aria-hidden="true">
+			<div class="home-transition-back home-transition-back--hire">
+				<img src="/pages/payroll-solution-new/assets/home-workflows-hire-upscaled.jpg" alt="" />
+			</div>
+			<div class="home-transition-back home-transition-back--contractors">
+				<img src="/pages/payroll-solution-new/assets/home-proof-mountain-man-v1.png" alt="" />
+			</div>
+			<div class="home-transition-front">
+				<img src="/pages/payroll-solution-new/assets/home-hero-editorial-preview-3-optimized.webp" alt="" data-home-transition-image />
+			</div>
+		</div>
+	</div>
 	<ManageGlobalPayrollSection />
-	<HireEmployeesWorldwideSection />
 	<ContractorPaymentsSection />
+	<HireEmployeesWorldwideSection />
 	<EffectivePayrollSection />
+	<SpendbaseQuoteSection />
 	<DeferredContractorPaymentsSection />
 	<EmbeddedPayrollInfrastructureSection />
-	<StartPayingGloballySection />
-	<WhyCompaniesChooseGarnaSection />
-	<PayrollComparisonSection />
 	<TrustedByBuildersSection />
 	<FAQSection
 		title={{ text: 'FAQ on Payroll Solutions', translateKey: 'faq.title' }}
 		items={homeFaqItems}
 		variant="eor"
-		class="pt-16 pr-6 pb-16 pl-6 lg:pt-32 lg:pb-32"
-		containerClass="garna-container"
+		class="home-payroll-faq pt-16 pb-16 lg:pt-32 lg:pb-32"
+		containerClass="garna-container home-payroll-faq-container"
 	/>
 	<FinalCTASection {...pageFinalCtas.home} />
 	<script is:inline>
@@ -126,6 +170,617 @@ const homeFaqItems = [
 			}
 		});
 	</script>
+	<script is:inline>
+		(() => {
+			const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+			const mix = (from, to, progress) => from + (to - from) * progress;
+			const smoothstep = (start, end, value) => {
+				const t = clamp((value - start) / (end - start));
+				return t * t * (3 - 2 * t);
+			};
+			const smootherstep = (start, end, value) => {
+				const t = clamp((value - start) / (end - start));
+				return t * t * t * (t * (t * 6 - 15) + 10);
+			};
+			const getPositionRatio = (token, axis) => {
+				if (!token) return 0.5;
+				if (token.endsWith('%')) return Number.parseFloat(token) / 100;
+				if (token === 'left' || token === 'top') return 0;
+				if (token === 'right' || token === 'bottom') return 1;
+				if (token === 'center') return 0.5;
+				return axis === 'y' && token === 'bottom' ? 1 : 0.5;
+			};
+			const getObjectPosition = (style) => {
+				const tokens = style.objectPosition.trim().split(/\s+/);
+				if (tokens.length === 1) return { x: getPositionRatio(tokens[0], 'x'), y: 0.5 };
+				return { x: getPositionRatio(tokens[0], 'x'), y: getPositionRatio(tokens[1], 'y') };
+			};
+			const getScale = (style) => {
+				const matrix = new DOMMatrixReadOnly(style.transform === 'none' ? undefined : style.transform);
+				return Math.hypot(matrix.a, matrix.b) || 1;
+			};
+			const getPaintedImageRect = (containerRect, image) => {
+				const style = getComputedStyle(image);
+				const naturalRatio = image.naturalWidth && image.naturalHeight ? image.naturalWidth / image.naturalHeight : 1;
+				const containerRatio = containerRect.width / containerRect.height;
+				const base = containerRatio > naturalRatio
+					? { width: containerRect.width, height: containerRect.width / naturalRatio }
+					: { width: containerRect.height * naturalRatio, height: containerRect.height };
+				const position = getObjectPosition(style);
+				const scale = getScale(style);
+				const [originX = '0', originY = '0'] = style.transformOrigin.split(/\s+/);
+				const origin = {
+					x: containerRect.x + Number.parseFloat(originX),
+					y: containerRect.y + Number.parseFloat(originY),
+				};
+				const baseRect = {
+					x: containerRect.x + (containerRect.width - base.width) * position.x,
+					y: containerRect.y + (containerRect.height - base.height) * position.y,
+					width: base.width,
+					height: base.height,
+				};
+
+				return {
+					x: origin.x + (baseRect.x - origin.x) * scale,
+					y: origin.y + (baseRect.y - origin.y) * scale,
+					width: baseRect.width * scale,
+					height: baseRect.height * scale,
+				};
+			};
+			const initHomeHeroProofTransition = () => {
+				const stage = document.querySelector('[data-home-hero-proof-stage]');
+				if (!(stage instanceof HTMLElement) || stage.dataset.transitionReady === 'true') return;
+
+				const heroFrame = stage.querySelector('[data-home-hero-frame]');
+				const heroImage = stage.querySelector('[data-home-hero-image]');
+				const heroSection = heroFrame?.closest('[data-section-kind="hero"]');
+				const heroButton = heroSection?.querySelector('.garna-button');
+				const heroCta = heroSection?.querySelector('.garna-button')?.parentElement;
+				const heroStats = heroSection?.querySelector('.home-hero-proof-rotator');
+				const siteHeader = document.querySelector('.garna-header');
+				const proofSection = stage.querySelector('.home-proof-section');
+				const proofScroll = stage.querySelector('[data-home-workflows-scroll]');
+				const proofContent = proofSection?.querySelector('.home-workflows-intro__container');
+				const targetCard = stage.querySelector('[data-home-proof-card="featured"]');
+				const targetImage = stage.querySelector('[data-home-proof-image="featured"]');
+				const overlay = stage.querySelector('[data-home-proof-transition]');
+				const overlayImage = stage.querySelector('[data-home-transition-image]');
+				if (
+					!(heroFrame instanceof HTMLElement) ||
+					!(heroImage instanceof HTMLImageElement) ||
+					!(proofSection instanceof HTMLElement) ||
+					!(targetCard instanceof HTMLElement) ||
+					!(targetImage instanceof HTMLImageElement) ||
+					!(overlay instanceof HTMLElement) ||
+					!(overlayImage instanceof HTMLImageElement)
+				) return;
+
+				stage.dataset.transitionReady = 'true';
+				const transitionEnabled = true;
+				const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+				const desktop = window.matchMedia('(min-width: 841px)');
+				let frame = 0;
+				let mobileFrameViewportKey = '';
+				let frameClearanceViewportKey = '';
+				let heroTopClearanceViewportKey = '';
+				const deckCards = Array.from(stage.querySelectorAll('[data-workflow-card]'));
+				const deckHeadings = Array.from(stage.querySelectorAll('[data-workflow-heading]'));
+				const deckIndicators = Array.from(stage.querySelectorAll('[data-workflow-progress]'));
+				const stack = targetCard.parentElement;
+				stack.querySelector('.home-workflows-mobile-rail')?.remove();
+				const mobileRail = document.createElement('div');
+				mobileRail.className = 'home-workflows-mobile-rail';
+				const mobileCards = [];
+				// Copies on both ends keep the visible rail continuous at states one and three.
+				for (let sequence = 0; sequence < 9; sequence++) {
+					const card = deckCards[sequence % 3].cloneNode(true);
+					card.removeAttribute('data-workflow-card');
+					card.removeAttribute('data-home-proof-card');
+					card.querySelector('[data-home-proof-image]')?.removeAttribute('data-home-proof-image');
+					card.classList.remove('is-active');
+					card.classList.add('home-workflows-mobile-card');
+					card.removeAttribute('style');
+					mobileRail.append(card);
+					mobileCards.push(card);
+				}
+				stack.append(mobileRail);
+				// Preserve both wider experiments for comparison.
+				const deckVariant = 'quiet-stack'; // Alternatives: 'three-card-selection', 'two-sided-swap'
+				const renderTwoSidedDeck = (progress) => {
+					let current = 0;
+					let turn = 0;
+					if (progress >= 0.60) { current = 1; turn = clamp((progress - 0.60) / 0.27); }
+					else if (progress >= 0.15) { turn = clamp((progress - 0.15) / 0.27); }
+					const next = current + 1;
+					const moving = turn > 0 && turn < 1;
+					const active = turn >= 0.5 ? next : current;
+					const departure = 1 - smoothstep(0, 0.20, turn);
+					const arrival = smoothstep(0.78, 1, turn);
+					const excursion = turn < 0.5 ? smootherstep(0.12, 0.5, turn) : 1 - smootherstep(0.5, 0.92, turn);
+					// Fan both cards out symmetrically, leaving room for their rotated corners.
+					const cardWidth = targetCard.offsetWidth;
+					const sideTravel = Math.max(0, Math.min(cardWidth * 0.72, (proofSection.clientWidth - cardWidth) / 2 - 48));
+					deckHeadings.forEach((heading, index) => {
+						const opacity = index === current ? departure : index === next ? arrival : 0;
+						heading.style.opacity = String(opacity);
+						heading.style.visibility = opacity > 0 ? 'visible' : 'hidden';
+						heading.style.transform = `translateY(${(1 - opacity) * 10}px)`;
+						heading.setAttribute('aria-hidden', String(index !== active));
+					});
+					deckCards.forEach((card, index) => {
+						const visible = moving ? index === current || index === next : index === (turn === 1 ? next : current);
+						card.style.opacity = visible ? '1' : '0';
+						card.style.visibility = visible ? 'visible' : 'hidden';
+						card.style.zIndex = String(index === current ? (turn < 0.5 ? 3 : 1) : 2);
+						card.style.transform = index === current
+							? `translateX(${-sideTravel * excursion}px) translateY(${-10 * excursion}px) rotate(${-8 * excursion}deg) scale(${1 - 0.04 * excursion})`
+							: index === next && moving
+								? `translateX(${sideTravel * excursion}px) translateY(${-10 * excursion}px) rotate(${8 * excursion}deg) scale(${mix(0.94, 1, smoothstep(0.5, 0.92, turn))})`
+								: 'none';
+						card.setAttribute('aria-hidden', String(index !== active));
+						const notice = card.querySelector('.home-workflows-stack__status');
+						if (notice instanceof HTMLElement) {
+							const opacity = index === current ? departure : index === next ? arrival : 0;
+							notice.style.opacity = `calc(${opacity} * var(--home-proof-featured-notice-opacity, 1))`;
+							notice.style.transform = `translateY(${(1 - opacity) * 8}px)`;
+							notice.style.transition = 'none';
+						}
+					});
+				};
+
+				const renderThreeCardDeck = (progress) => {
+					const current = progress >= 0.60 ? 1 : 0;
+					const next = current + 1;
+					const turn = clamp((progress - (current === 0 ? 0.15 : 0.60)) / 0.27);
+					const reveal = smootherstep(0.08, 0.32, turn);
+					const selection = smootherstep(0.38, 0.70, turn);
+					const collapse = smootherstep(0.74, 0.96, turn);
+					const departure = 1 - smoothstep(0, 0.18, turn);
+					const arrival = smoothstep(0.86, 1, turn);
+					const active = selection >= 0.5 ? next : current;
+					const width = targetCard.offsetWidth;
+					const travel = Math.max(0, Math.min(width * 1.03, (proofSection.clientWidth - width * 0.88) / 2 - 36));
+					// Pay -> contractors: choose left. Contractors -> hire: choose right.
+					const before = current === 0 ? [0, -1, 1] : [-1, 0, 1];
+					const after = current === 0 ? [1, 0, -1] : [1, -1, 0];
+					deckHeadings.forEach((heading, index) => {
+						const opacity = index === current ? departure : index === next ? arrival : 0;
+						heading.style.opacity = String(opacity);
+						heading.style.visibility = opacity > 0 ? 'visible' : 'hidden';
+						heading.style.transform = `translateY(${(1 - opacity) * 10}px)`;
+						heading.setAttribute('aria-hidden', String(index !== active));
+					});
+					deckCards.forEach((card, index) => {
+						const position = mix(before[index], after[index], selection);
+						const spread = reveal * (1 - collapse);
+						const startScale = index === current ? 1 : mix(0.96, 0.88, reveal);
+						const selectedScale = index === next ? 1 : 0.88;
+						const scale = mix(mix(startScale, selectedScale, selection), index === next ? 1 : 0.96, collapse);
+						const arc = Math.sin(selection * Math.PI) * (index === next ? -38 : 20);
+						const visible = turn > 0 && turn < 1 ? true : index === (turn === 1 ? next : current);
+						card.style.opacity = visible ? '1' : '0';
+						card.style.visibility = visible ? 'visible' : 'hidden';
+						card.style.zIndex = String(index === next && selection > 0 ? 4 : index === current ? 3 : 1);
+						card.style.transform = `translateX(${position * travel * spread}px) translateY(${arc}px) scale(${scale})`;
+						card.setAttribute('aria-hidden', String(index !== active));
+						const notice = card.querySelector('.home-workflows-stack__status');
+						if (notice instanceof HTMLElement) {
+							const opacity = index === current ? departure : index === next ? arrival : 0;
+							notice.style.opacity = `calc(${opacity} * var(--home-proof-featured-notice-opacity, 1))`;
+							notice.style.transform = `translateY(${(1 - opacity) * 8}px)`;
+							notice.style.transition = 'none';
+						}
+					});
+				};
+				let deckPosition = 0;
+				const renderQuietStack = (progress, landed = true) => {
+					const requested = Math.min(2, Math.floor(progress * 3));
+					if (!desktop.matches) {
+						deckPosition = requested;
+						// Use painted widths: inactive cards are scaled to 94%, so their
+						// layout slots must shrink too to preserve equal visible gaps.
+						const referenceRail = document.querySelector('[data-scroll-visual-carousel-id="home-contractor-payments-carousel"] .contractor-carousel__rail');
+						const gap = referenceRail instanceof HTMLElement ? Number.parseFloat(getComputedStyle(referenceRail).columnGap) : (window.innerWidth <= 767 ? 12.8 : 18.4);
+						const cardWidth = stack.getBoundingClientRect().width;
+						const step = cardWidth * .94 + gap;
+						mobileRail.style.transform = `translateX(${-step * (requested + 3)}px)`;
+						mobileCards.forEach((card, index) => {
+							const selected = index === requested + 3;
+							card.style.left = `${index * step + (index > requested + 3 ? cardWidth * .06 : 0)}px`;
+							card.classList.toggle('is-mobile-active', selected);
+							card.setAttribute('aria-hidden', String(!selected));
+						});
+						deckHeadings.forEach((heading, index) => {
+							heading.style.display = index === requested ? 'block' : 'none';
+							heading.style.opacity = '1';
+							heading.style.visibility = 'visible';
+							heading.style.transform = 'none';
+							heading.setAttribute('aria-hidden', String(index !== requested));
+						});
+						deckIndicators.forEach((indicator, index) => {
+							indicator.classList.toggle('is-active', index === requested);
+							indicator.style.setProperty('--step-fill', String(clamp(progress * 3 - index)));
+						});
+						return;
+					}
+					deckPosition = landed ? requested : 0;
+					const current = Math.min(1, Math.floor(deckPosition));
+					const next = current + 1;
+					const turn = clamp(deckPosition - current);
+					const movement = turn;
+					const active = movement >= 1 / 3 ? next : current;
+					deckIndicators.forEach((indicator, index) => {
+						indicator.classList.toggle('is-active', index === active);
+						indicator.style.setProperty('--step-fill', String(clamp(progress * 3 - index)));
+					});
+					deckHeadings.forEach((heading, index) => {
+						heading.style.display = index === active ? 'block' : 'none';
+						heading.style.opacity = '1';
+						heading.style.visibility = index === active ? 'visible' : 'hidden';
+						heading.style.transform = 'none';
+						heading.setAttribute('aria-hidden', String(index !== active));
+					});
+					deckCards.forEach((card, index) => {
+						// Same cyclic depth order as CreatorPayoutProcessSection, scrubbed by scroll.
+						const fromDepth = (index - current + deckCards.length) % deckCards.length;
+						const toDepth = (index - next + deckCards.length) % deckCards.length;
+						// All three move together. Layers swap at matching depths (2t = 1-t),
+						// so a smaller incoming image never covers the larger outgoing one.
+						const depth = mix(fromDepth, toDepth, movement);
+						const cardScale = 1 - 0.03 * depth;
+						const visible = index === current || landed;
+						card.style.visibility = visible ? 'visible' : 'hidden';
+						card.style.opacity = '1';
+						card.style.zIndex = String(5 - (movement >= 1 / 3 ? toDepth : fromDepth));
+						// Match the travelling stack exactly at the landing handoff.
+						card.style.transformOrigin = 'center top';
+						card.style.transform = `translate3d(0, ${-8 * depth}px, 0) scale(${cardScale})`;
+						if (!desktop.matches) {
+							card.style.transformOrigin = 'center center';
+							card.style.transform = `translate3d(${(index - deckPosition) * (card.offsetWidth + 16)}px, 0, 0) scale(${1 - 0.04 * Math.min(1, Math.abs(index - deckPosition))})`;
+						}
+						card.setAttribute('aria-hidden', String(index !== active));
+						const notice = card.querySelector('.home-workflows-stack__status');
+						if (notice instanceof HTMLElement) {
+							notice.style.opacity = 'var(--home-proof-featured-notice-opacity, 1)';
+							notice.style.transformOrigin = 'bottom left';
+							notice.style.transform = desktop.matches
+								? `translate3d(0, ${8 * depth / cardScale}px, 0) scale(${1 / cardScale})`
+								: 'none';
+							notice.style.transition = 'opacity 320ms cubic-bezier(0.16, 1, 0.3, 1)';
+						}
+					});
+				};
+				const renderDeck = deckVariant === 'quiet-stack' ? renderQuietStack
+					: deckVariant === 'three-card-selection' ? renderThreeCardDeck : renderTwoSidedDeck;
+
+				const setOverlay = (rect, imageRect, opacity, borderOpacity, borderWidth, radius) => {
+					overlay.style.setProperty('--home-transition-x', `${rect.x}px`);
+					overlay.style.setProperty('--home-transition-y', `${rect.y}px`);
+					overlay.style.setProperty('--home-transition-w', `${rect.width}px`);
+					overlay.style.setProperty('--home-transition-h', `${rect.height}px`);
+					overlay.style.setProperty('--home-transition-radius', `${radius}px`);
+					overlay.style.setProperty('--home-transition-opacity-duration', '0ms');
+					overlay.style.setProperty('--home-transition-opacity', String(opacity));
+					overlay.style.setProperty('--home-transition-border-opacity', String(borderOpacity));
+					overlay.style.setProperty('--home-transition-border-width', `${borderWidth}px`);
+					overlay.style.setProperty('--home-transition-img-x', `${imageRect.x}px`);
+					overlay.style.setProperty('--home-transition-img-y', `${imageRect.y}px`);
+					overlay.style.setProperty('--home-transition-img-w', `${imageRect.width}px`);
+					overlay.style.setProperty('--home-transition-img-h', `${imageRect.height}px`);
+				};
+				const getViewportCenter = () => {
+					const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
+					return window.innerHeight / 2 + headerHeight / 2;
+				};
+				const updateHeroTopClearance = () => {
+					if (!(heroStats instanceof HTMLElement) || !(siteHeader instanceof HTMLElement) || !(heroSection instanceof HTMLElement)) return;
+					const headerHeight = siteHeader.getBoundingClientRect().height;
+					const viewportKey = `${window.innerWidth}x${window.innerHeight}x${headerHeight}`;
+					if (viewportKey === heroTopClearanceViewportKey) return;
+					heroTopClearanceViewportKey = viewportKey;
+					stage.style.setProperty('--home-hero-top-adjustment', '0px');
+					const minimumHeaderGap = 12;
+					const statsTopWithinHero = heroStats.getBoundingClientRect().top - heroSection.getBoundingClientRect().top;
+					const topAdjustment = Math.max(0, headerHeight + minimumHeaderGap - statsTopWithinHero);
+					stage.style.setProperty('--home-hero-top-adjustment', `${topAdjustment}px`);
+				};
+				const updateHeroFrameClearance = () => {
+					const viewportKey = `${window.innerWidth}x${window.innerHeight}`;
+					if (viewportKey === frameClearanceViewportKey) return;
+					frameClearanceViewportKey = viewportKey;
+					stage.style.removeProperty('--home-hero-frame-max-height');
+					stage.style.removeProperty('--home-hero-frame-min-height');
+
+					if (!(heroButton instanceof HTMLElement)) return;
+					const frameRect = heroFrame.getBoundingClientRect();
+					const buttonRect = heroCta instanceof HTMLElement ? heroCta.getBoundingClientRect() : heroButton.getBoundingClientRect();
+					const minimumGap = 20.5;
+					const maximumGap = 30;
+					const currentGap = frameRect.top - buttonRect.bottom;
+					if (currentGap < minimumGap) {
+						const safeHeight = Math.max(112, frameRect.height - (minimumGap - currentGap));
+						stage.style.setProperty('--home-hero-frame-max-height', `${safeHeight}px`);
+					} else if (currentGap > maximumGap) {
+						const safeHeight = frameRect.height + (currentGap - maximumGap);
+						stage.style.setProperty('--home-hero-frame-min-height', `${safeHeight}px`);
+					}
+				};
+				const updateMobileHeroFrame = () => {
+					updateHeroTopClearance();
+					if (desktop.matches) {
+						mobileFrameViewportKey = '';
+						stage.style.removeProperty('--home-hero-mobile-frame-width');
+						stage.style.removeProperty('--home-hero-mobile-frame-height');
+						stage.style.removeProperty('--home-hero-mobile-frame-bottom');
+						stage.style.removeProperty('--home-hero-actions-height-scale');
+						updateHeroFrameClearance();
+						return;
+					}
+
+					const viewportKey = `${window.innerWidth}x${window.innerHeight}`;
+					if (viewportKey === mobileFrameViewportKey) {
+						updateHeroFrameClearance();
+						return;
+					}
+					mobileFrameViewportKey = viewportKey;
+
+					const ctaRect = heroCta instanceof HTMLElement ? heroCta.getBoundingClientRect() : null;
+					const heroRect = heroSection instanceof HTMLElement ? heroSection.getBoundingClientRect() : null;
+					const buttonBottom = ctaRect && heroRect ? ctaRect.bottom - heroRect.top : window.innerHeight * 0.38;
+					const bottomGap = clamp(window.innerHeight * 0.022, 12, 18);
+					const buttonGap = clamp(window.innerHeight * 0.03, 18, 28);
+					const maxFrameHeight = Math.max(112, window.innerHeight - buttonBottom - buttonGap - bottomGap);
+					const widthFromViewport = Math.min(window.innerWidth * 0.66, 320);
+					const frameWidth = Math.max(112, widthFromViewport);
+					const frameHeight = Math.max(112, Math.min(frameWidth / 0.66, maxFrameHeight));
+					const naturalFrameHeight = frameWidth / 0.66;
+					const actionsHeightScale = clamp(frameHeight / naturalFrameHeight, 0.82, 1);
+
+					stage.style.setProperty('--home-hero-mobile-frame-width', `${frameWidth}px`);
+					stage.style.setProperty('--home-hero-mobile-frame-height', `${frameHeight}px`);
+					stage.style.setProperty('--home-hero-mobile-frame-bottom', `${bottomGap}px`);
+					stage.style.setProperty('--home-hero-actions-height-scale', String(actionsHeightScale));
+					updateHeroFrameClearance();
+				};
+				const fitMobileDeck = (progress) => {
+					if (desktop.matches) return;
+					const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
+					const grid = proofSection.querySelector('.home-workflows-intro__split');
+					const copy = grid?.firstElementChild;
+					const indicators = proofSection.querySelector('.home-workflows-progress');
+					if (!(grid instanceof HTMLElement) || !(copy instanceof HTMLElement) || !(indicators instanceof HTMLElement)) return;
+					const room = window.innerHeight - headerHeight - 32 - copy.getBoundingClientRect().height
+						- Number.parseFloat(getComputedStyle(grid).rowGap) - indicators.getBoundingClientRect().height - 16;
+					const preferred = window.innerWidth <= 767 ? Math.min(window.innerWidth * .62, window.innerHeight * .30, 328) : Math.min(window.innerWidth * .36, window.innerHeight * .35, 320);
+					const width = Math.max(1, Math.min(preferred, room * .78));
+					const value = `${width.toFixed(2)}px`;
+					if (stage.style.getPropertyValue('--home-workflows-mobile-card-width') !== value) {
+						stage.style.setProperty('--home-workflows-mobile-card-width', value);
+						renderQuietStack(progress);
+						schedule();
+					}
+				};
+
+				const render = () => {
+					frame = 0;
+					const pinEnabled = transitionEnabled;
+					stage.classList.toggle('home-workflows-pinned', pinEnabled);
+					stage.style.setProperty('--home-workflows-header-height', `${siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0}px`);
+					// Match scroll pixels per indicator to the Contractor carousel at this viewport.
+					const reference = document.querySelector('[data-scroll-visual-carousel-id="home-contractor-payments-carousel"]');
+					if (reference instanceof HTMLElement && proofScroll instanceof HTMLElement && reference.parentElement) {
+						const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
+						const referenceHeight = reference.getBoundingClientRect().height;
+						const stickyTop = Math.max(headerHeight, headerHeight + (window.innerHeight - headerHeight - referenceHeight) / 2);
+						const referenceDistance = Math.max(1, reference.parentElement.getBoundingClientRect().height - stickyTop - reference.offsetHeight);
+						const referenceSteps = Math.max(1, reference.querySelectorAll('[data-carousel-dot]').length);
+						proofScroll.style.height = `${proofSection.offsetHeight + referenceDistance * deckCards.length / referenceSteps}px`;
+					}
+
+					if (!transitionEnabled || reduceMotion.matches) {
+						const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
+						const stickyTop = 0;
+						const scrollRect = proofScroll.getBoundingClientRect();
+						const scrollDistance = Math.max(1, proofScroll.offsetHeight - proofSection.offsetHeight - stickyTop);
+						const mobileProgress = clamp((stickyTop - scrollRect.top) / scrollDistance);
+						renderDeck(mobileProgress, true);
+						fitMobileDeck(mobileProgress);
+					updateMobileHeroFrame();
+					stage.style.setProperty('--home-hero-actions-opacity', '1');
+					const reducedHeroProgress = clamp(-stage.getBoundingClientRect().top / Math.max(1, window.innerHeight * .12));
+					stage.style.setProperty('--home-hero-stats-opacity', String(1 - reducedHeroProgress));
+					stage.style.setProperty('--home-hero-frame-opacity', '1');
+						stage.style.setProperty('--home-hero-backdrop-progress', '0');
+						stage.style.setProperty('--home-proof-featured-image-opacity', '1');
+						stage.style.setProperty('--home-proof-featured-card-opacity', '1');
+						stage.style.setProperty('--home-proof-featured-notice-opacity', '1');
+						stage.style.setProperty('--home-proof-header-opacity', '1');
+						overlay.style.setProperty('--home-transition-opacity', '0');
+						return;
+					}
+					updateMobileHeroFrame();
+
+					if (!desktop.matches) {
+						const stageRect = stage.getBoundingClientRect();
+						const stageTop = window.scrollY + stageRect.top;
+						const transitionEndScroll = window.scrollY + proofScroll.getBoundingClientRect().top;
+						const distance = Math.max(1, transitionEndScroll - stageTop);
+						const progress = clamp(-stageRect.top / distance);
+						const transitionStarted = progress > .002;
+						const transitionComplete = progress >= 1;
+						const holdDistance = Math.max(1, proofScroll.offsetHeight - proofSection.offsetHeight);
+						const deckProgress = clamp((window.scrollY - transitionEndScroll) / holdDistance);
+						fitMobileDeck(deckProgress);
+						renderDeck(deckProgress, transitionComplete);
+
+						const landingCard = mobileCards[3];
+						const landingImage = landingCard?.querySelector('img');
+						if (!(landingCard instanceof HTMLElement) || !(landingImage instanceof HTMLImageElement)) return;
+						const measuredTarget = landingCard.getBoundingClientRect();
+						const heroRect = heroFrame.getBoundingClientRect();
+						const heroCoverRect = heroImage.parentElement?.getBoundingClientRect() ?? heroImage.getBoundingClientRect();
+						const sourceScrollOffset = window.scrollY - stageTop;
+						const sourceRect = {
+							x: heroRect.x,
+							y: heroRect.y + sourceScrollOffset,
+							width: heroRect.width,
+							height: heroRect.height,
+						};
+						const sourceCoverRect = {
+							x: heroCoverRect.x,
+							y: heroCoverRect.y + sourceScrollOffset,
+							width: heroCoverRect.width,
+							height: heroCoverRect.height,
+						};
+						const targetRect = {
+							x: measuredTarget.x,
+							y: measuredTarget.y + window.scrollY - transitionEndScroll,
+							width: measuredTarget.width,
+							height: measuredTarget.height,
+						};
+						const heroImgRect = getPaintedImageRect(sourceCoverRect, heroImage);
+						const targetImgRect = getPaintedImageRect(targetRect, landingImage);
+						const sizeProgress = clamp(progress / .94);
+						const rect = {
+							x: mix(sourceRect.x, targetRect.x, progress),
+							y: mix(sourceRect.y, targetRect.y, progress),
+							width: mix(sourceRect.width, targetRect.width, sizeProgress),
+							height: mix(sourceRect.height, targetRect.height, sizeProgress),
+						};
+						const imageRect = {
+							x: mix(heroImgRect.x - sourceRect.x, targetImgRect.x - targetRect.x, sizeProgress),
+							y: mix(heroImgRect.y - sourceRect.y, targetImgRect.y - targetRect.y, sizeProgress),
+							width: mix(heroImgRect.width, targetImgRect.width, sizeProgress),
+							height: mix(heroImgRect.height, targetImgRect.height, sizeProgress),
+						};
+						const heroStyle = getComputedStyle(heroFrame);
+						const targetStyle = getComputedStyle(landingCard);
+						const heroRadius = Number.parseFloat(heroStyle.borderTopLeftRadius) || 24;
+						const targetRadius = Number.parseFloat(targetStyle.borderTopLeftRadius) || 20;
+						const heroBorderWidth = Number.parseFloat(heroStyle.borderTopWidth) || 1;
+						const overlayOpacity = transitionStarted && !transitionComplete ? 1 : 0;
+						setOverlay(rect, imageRect, overlayOpacity, mix(.54, 0, sizeProgress), mix(heroBorderWidth, 0, sizeProgress), mix(heroRadius, targetRadius, sizeProgress));
+						overlay.style.setProperty('--home-transition-stack-reveal', '0');
+						landingCard.style.opacity = '';
+						landingCard.style.visibility = transitionStarted && !transitionComplete ? 'hidden' : '';
+						stage.style.setProperty('--home-hero-frame-opacity', String(transitionStarted ? 0 : 1));
+						stage.style.setProperty('--home-hero-actions-opacity', String(1 - smoothstep(.035, .18, progress)));
+						stage.style.setProperty('--home-hero-stats-opacity', String(1 - smoothstep(.008, .09, progress)));
+						stage.style.setProperty('--home-hero-backdrop-progress', String(smoothstep(.05, .46, progress)));
+						stage.style.setProperty('--home-proof-header-opacity', String(smootherstep(.58, .9, progress)));
+						stage.style.setProperty('--home-proof-featured-image-opacity', '1');
+						stage.style.setProperty('--home-proof-featured-card-opacity', '1');
+						stage.style.setProperty('--home-proof-featured-notice-opacity', '1');
+						return;
+					}
+
+					// Measure the resting card, not its previous deck-turn transform.
+					targetCard.style.transform = 'none';
+					const stageRect = stage.getBoundingClientRect();
+					const stageTop = window.scrollY + stageRect.top;
+					const targetRect = targetCard.getBoundingClientRect();
+					// The runway stays in document flow while its section is sticky.
+					// Arrive exactly as the full-height section locks to the viewport.
+					const proofRect = (proofContent ?? proofSection).getBoundingClientRect();
+					const proofTop = window.scrollY + proofRect.top;
+					const arrivalLead = Math.min(64, window.innerHeight * 0.07);
+					const transitionEndScroll = Math.max(0, proofScroll instanceof HTMLElement
+						? window.scrollY + proofScroll.getBoundingClientRect().top
+						: proofTop + proofRect.height / 2 - getViewportCenter() - arrivalLead);
+					const holdDistance = proofScroll instanceof HTMLElement ? Math.max(1, proofScroll.offsetHeight - proofSection.offsetHeight) : 1;
+					const deckProgress = clamp((window.scrollY - transitionEndScroll) / holdDistance);
+					stage.style.setProperty('--home-workflows-progress', String(deckProgress));
+					const distance = Math.max(1, transitionEndScroll - stageTop);
+					const startOffset = 0;
+					const progress = clamp((-stageRect.top - startOffset) / Math.max(1, distance - startOffset));
+					const positionProgress = progress;
+					const sizeProgress = clamp(progress / 0.94);
+
+					const heroRect = heroFrame.getBoundingClientRect();
+					const heroCoverRect = heroImage.parentElement?.getBoundingClientRect() ?? heroImage.getBoundingClientRect();
+					const heroImgRect = getPaintedImageRect(heroCoverRect, heroImage);
+					// Match the image's inner box, including its CSS zoom, for a seamless handoff.
+					const targetImgRect = getPaintedImageRect({
+						x: targetRect.x + targetCard.clientLeft,
+						y: targetRect.y + targetCard.clientTop,
+						width: targetImage.clientWidth,
+						height: targetImage.clientHeight,
+					}, targetImage);
+					const heroStyle = getComputedStyle(heroFrame);
+					const targetStyle = getComputedStyle(targetCard);
+					const heroRadius = Number.parseFloat(heroStyle.borderTopLeftRadius) || 24;
+					const targetRadius = Number.parseFloat(targetStyle.borderTopLeftRadius) || 22;
+					const heroBorderWidth = Number.parseFloat(heroStyle.borderTopWidth) || 1;
+					const targetBorderWidth = Number.parseFloat(targetStyle.borderTopWidth) || 0;
+
+					const rect = {
+						x: mix(heroRect.x, targetRect.x, positionProgress),
+						y: mix(heroRect.y, targetRect.y, positionProgress),
+						width: mix(heroRect.width, targetRect.width, sizeProgress),
+						height: mix(heroRect.height, targetRect.height, sizeProgress),
+					};
+					const imageRect = {
+						x: mix(heroImgRect.x - heroRect.x, targetImgRect.x - targetRect.x, sizeProgress),
+						y: mix(heroImgRect.y - heroRect.y, targetImgRect.y - targetRect.y, sizeProgress),
+						width: mix(heroImgRect.width, targetImgRect.width, sizeProgress),
+						height: mix(heroImgRect.height, targetImgRect.height, sizeProgress),
+					};
+					const imageBottomGap = rect.height - (imageRect.y + imageRect.height);
+					if (imageBottomGap > 0) imageRect.y += imageBottomGap;
+					const transitionStarted = progress > 0.002;
+					const transitionComplete = progress >= 1;
+					const overlayOpacity = transitionStarted && !transitionComplete ? 1 : 0;
+					// Reveal on departure and retain the stack through landing.
+					const endpointGap = Math.min(0.02, 3 / distance);
+					const stackReveal = smootherstep(endpointGap, endpointGap + 0.12, progress);
+					overlay.style.setProperty('--home-transition-stack-reveal', String(stackReveal));
+					const borderProgress = sizeProgress;
+					const borderOpacity = mix(0.54, 0, borderProgress);
+					const borderWidth = mix(heroBorderWidth, targetBorderWidth, borderProgress);
+					const heroFrameOpacity = transitionStarted ? 0 : 1;
+					const actionsOpacity = 1 - smoothstep(0.035, 0.18, progress);
+					const heroBackdropProgress = smoothstep(0.05, 0.46, progress);
+					const proofImageOpacity = transitionComplete ? 1 : 0;
+					const proofCardOpacity = transitionComplete ? 1 : 0;
+					const proofNoticeOpacity = transitionComplete ? 1 : 0;
+					const proofHeaderOpacity = smootherstep(0.58, 0.9, progress);
+
+					setOverlay(rect, imageRect, overlayOpacity, borderOpacity, borderWidth, mix(heroRadius, targetRadius, sizeProgress));
+					stage.style.setProperty('--home-hero-frame-opacity', String(heroFrameOpacity));
+					stage.style.setProperty('--home-hero-actions-opacity', String(actionsOpacity));
+					stage.style.setProperty('--home-hero-stats-opacity', String(1 - smoothstep(.008, .09, progress)));
+					stage.style.setProperty('--home-hero-backdrop-progress', String(heroBackdropProgress));
+					stage.style.setProperty('--home-proof-featured-image-opacity', String(proofImageOpacity));
+					stage.style.setProperty('--home-proof-featured-card-opacity', String(proofCardOpacity));
+					stage.style.setProperty('--home-proof-featured-notice-opacity', String(proofNoticeOpacity));
+					stage.style.setProperty('--home-proof-header-opacity', String(proofHeaderOpacity));
+					renderDeck(deckProgress, transitionComplete);
+				};
+
+				const schedule = () => {
+					if (!frame) frame = window.requestAnimationFrame(render);
+				};
+
+				if (transitionEnabled) window.addEventListener('scroll', schedule, { passive: true });
+				window.addEventListener('resize', schedule, { passive: true });
+				reduceMotion.addEventListener?.('change', schedule);
+				desktop.addEventListener?.('change', schedule);
+				heroImage.addEventListener('load', schedule, { once: true });
+				targetImage.addEventListener('load', schedule, { once: true });
+				document.fonts?.ready.then(() => {
+					mobileFrameViewportKey = '';
+					frameClearanceViewportKey = '';
+					heroTopClearanceViewportKey = '';
+					schedule();
+				});
+				render();
+			};
+
+			initHomeHeroProofTransition();
+			window.addEventListener('garna:page-content-updated', initHomeHeroProofTransition);
+		})();
+	</script>
 	<Fragment slot="widgets">
 		<PayrollSolutionInteractions />
 		<GarnaBookingWidget
@@ -138,6 +793,513 @@ const homeFaqItems = [
 </BaseLayout>
 
 <style is:global>
+	astro-dev-toolbar {
+		display: none !important;
+	}
+
+	.home-hero-proof-stage {
+		position: relative;
+		--home-hero-actions-opacity: 1;
+		--home-hero-stats-opacity: 1;
+		--home-hero-frame-opacity: 1;
+		--home-hero-backdrop-progress: 0;
+		--home-proof-featured-image-opacity: 1;
+		--home-proof-featured-card-opacity: 1;
+		--home-proof-featured-notice-opacity: 1;
+		--home-proof-header-opacity: 1;
+	}
+
+	.payroll-solution-new-hero {
+		padding-top: calc(6rem + var(--home-hero-top-adjustment, 0px));
+	}
+
+	@media (min-width: 768px) {
+		.payroll-solution-new-hero {
+			padding-top: calc(7rem + var(--home-hero-top-adjustment, 0px));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.payroll-solution-new-hero {
+			padding-top: calc(8rem + var(--home-hero-top-adjustment, 0px));
+		}
+	}
+
+	/* Reading holds surround both scroll-driven deck turns. */
+	.home-workflows-pinned .home-workflows-scroll {
+		height: 400svh;
+	}
+
+	.home-workflows-pinned .home-workflows-scroll > .home-workflows-intro {
+		position: sticky;
+		top: 0;
+		height: 100svh;
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		padding-block: var(--home-workflows-header-height, 64px) 0;
+	}
+	@media (max-width: 840px) {
+		.home-workflows-pinned .home-workflows-scroll > .home-workflows-intro {
+			top: 0;
+			height: 100svh;
+			padding-block: calc(var(--home-workflows-header-height, 64px) + 16px) 16px;
+		}
+	}
+
+	.home-hero-proof-transition {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 6;
+		width: var(--home-transition-w, 0);
+		height: var(--home-transition-h, 0);
+		overflow: visible;
+		border: 0;
+		border-radius: var(--home-transition-radius, 24px);
+		opacity: var(--home-transition-opacity, 0);
+		transform: translate3d(var(--home-transition-x, 0), var(--home-transition-y, 0), 0);
+		transition: opacity var(--home-transition-opacity-duration, 0ms) cubic-bezier(0.16, 1, 0.3, 1);
+		pointer-events: none;
+		backface-visibility: hidden;
+		contain: layout style;
+		will-change: transform, width, height, opacity;
+	}
+
+	.home-transition-front {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		overflow: hidden;
+		border-radius: inherit;
+	}
+
+	.home-transition-back {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		border: 0;
+		border-radius: inherit;
+		transform-origin: center top;
+		opacity: 1;
+		transform: translateY(calc(-8px * var(--stack-depth) * var(--home-transition-stack-reveal, 0))) scale(calc(1 - 0.03 * var(--stack-depth) * var(--home-transition-stack-reveal, 0)));
+	}
+
+	.home-transition-back--hire {
+		z-index: 0;
+		--stack-depth: 2;
+	}
+
+	.home-transition-back--contractors {
+		z-index: 1;
+		--stack-depth: 1;
+	}
+
+	.home-transition-back img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.home-transition-back--hire img { object-position: 5% center; }
+	.home-transition-back--contractors img {
+		object-position: center 64%;
+		transform: scale(1.36);
+		transform-origin: center center;
+	}
+
+	.home-transition-front::before {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		content: "";
+		background: rgb(0 0 0 / 5%);
+		pointer-events: none;
+	}
+
+	.home-transition-front::after {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		box-sizing: border-box;
+		content: "";
+		border: var(--home-transition-border-width, 1px) solid rgba(255, 255, 255, var(--home-transition-border-opacity, 0.54));
+		border-radius: inherit;
+		pointer-events: none;
+	}
+
+	.home-transition-front img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 0;
+		width: var(--home-transition-img-w, 100vw);
+		max-width: none;
+		height: var(--home-transition-img-h, 100vh);
+		max-height: none;
+		transform: translate3d(var(--home-transition-img-x, 0), var(--home-transition-img-y, 0), 0);
+		transform-origin: top left;
+		backface-visibility: hidden;
+		will-change: transform, width, height;
+	}
+
+	.home-hero-proof-stage [data-home-proof-image='featured'] {
+		opacity: var(--home-proof-featured-image-opacity, 1) !important;
+		transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+	}
+
+	.home-hero-proof-stage [data-home-proof-card='featured'] {
+		z-index: 7;
+		border-color: rgba(255, 255, 255, calc(0.12 * var(--home-proof-featured-card-opacity, 1))) !important;
+		background: rgba(10, 10, 10, var(--home-proof-featured-card-opacity, 1)) !important;
+		box-shadow: none !important;
+	}
+
+	.home-hero-proof-stage [data-home-proof-card='featured'] .home-proof-card__notice,
+	.home-hero-proof-stage [data-home-proof-card='featured'] .home-workflows-stack__status {
+		opacity: var(--home-proof-featured-notice-opacity, 1);
+		transform: translateY(calc((1 - var(--home-proof-featured-notice-opacity, 1)) * 0.42rem));
+		transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.home-hero-proof-stage .home-proof-section header {
+		opacity: var(--home-proof-header-opacity, 1);
+		transform: translateY(calc((1 - var(--home-proof-header-opacity, 1)) * 1.1rem));
+	}
+
+	.home-hero-cover {
+		--home-hero-image-scale: 1;
+		--home-hero-media-inset: calc(var(--home-hero-backdrop-progress, 0) * clamp(1rem, 2.4vw, 2.75rem));
+		--home-hero-media-radius: calc(var(--home-hero-backdrop-progress, 0) * 1.65rem);
+		--home-hero-frame-width: min(24rem, 36vh);
+		--home-hero-frame-reference-width: min(24rem, 36vh);
+		--home-hero-frame-radius: clamp(1.2rem, 2.5vh, 1.65rem);
+		--home-hero-action-inset-reference: 1.08rem;
+		--home-hero-actions-reference-width: 14.35rem;
+		--home-hero-actions-fit-scale: calc((100cqw - (var(--home-hero-action-inset-reference) * 2)) / var(--home-hero-actions-reference-width));
+		--home-hero-actions-frame-scale: 1;
+		--home-hero-actions-scale: min(1, var(--home-hero-actions-fit-scale), var(--home-hero-actions-frame-scale));
+		--home-hero-actions-height-scale: 1;
+		--home-hero-frame-content-scale: 1;
+		--home-hero-locale-actions-scale: 1;
+		--home-hero-action-inset: calc(var(--home-hero-action-inset-reference) * var(--home-hero-actions-scale) * var(--home-hero-frame-content-scale));
+		--home-hero-action-gap: 0.5rem;
+		--home-hero-pill-height: 2.38rem;
+		--home-hero-logo-tile-size: 2.18rem;
+		--home-hero-pill-padding-x: 0.9rem;
+		--home-hero-pill-font-size: 0.78rem;
+		--home-hero-logo-width: 0.8rem;
+		--home-hero-logo-height: 1.28rem;
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		overflow: hidden;
+		background: var(--color-garna-page, #101010);
+		pointer-events: none;
+	}
+
+	.home-hero-proof-rotator {
+		position: absolute;
+		top: -1.65rem;
+		left: 50%;
+		z-index: 2;
+		display: grid;
+		width: max-content;
+		max-width: calc(100vw - 3rem);
+		height: 1.62rem;
+		overflow: hidden;
+		place-items: center;
+		border: 1px solid rgb(255 255 255 / 0.17);
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.08);
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 8px 24px rgb(0 0 0 / 0.08);
+		color: #fff;
+		font-family: Manrope, sans-serif;
+		opacity: var(--home-hero-stats-opacity, 1);
+		transform: translate(-50%, calc((1 - var(--home-hero-stats-opacity, 1)) * 0.45rem));
+		backdrop-filter: blur(12px);
+		will-change: opacity, transform;
+	}
+
+	.home-hero-proof-rotator__item {
+		display: flex;
+		grid-area: 1 / 1;
+		width: auto;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+		gap: 0.42rem;
+		box-sizing: border-box;
+		padding: 0.08rem 1rem 0;
+		opacity: 0;
+		transform: translateY(100%);
+		animation: home-hero-proof-drum 9s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+		text-shadow: 0 1px 10px rgb(0 0 0 / 0.3);
+		text-align: center;
+		white-space: nowrap;
+	}
+
+	.home-hero-proof-rotator__track {
+		display: grid;
+		height: 100%;
+		place-items: center;
+	}
+
+	.home-hero-proof-rotator__item:nth-child(2) { animation-delay: -6s; }
+	.home-hero-proof-rotator__item:nth-child(3) { animation-delay: -3s; }
+
+	.home-hero-proof-rotator__item strong {
+		color: #cbf300;
+		font-size: 0.9rem;
+		font-weight: 700;
+		letter-spacing: -0.025em;
+		line-height: 1;
+	}
+
+	.home-hero-proof-rotator__item span {
+		color: rgb(255 255 255 / 0.72);
+		font-size: 0.74rem;
+		font-weight: 520;
+		line-height: 1;
+	}
+
+	@keyframes home-hero-proof-drum {
+		0%, 28% { opacity: 1; transform: translateY(0); }
+		33.333%, 95% { opacity: 0; transform: translateY(-100%); }
+		95.001% { opacity: 0; transform: translateY(100%); }
+		100% { opacity: 1; transform: translateY(0); }
+	}
+
+	@media (max-width: 480px) {
+		.home-hero-proof-rotator {
+			top: -2.1rem;
+			height: 1.58rem;
+		}
+
+		.home-hero-proof-rotator__item {
+			padding: 0.07rem 0.85rem 0;
+		}
+
+		.home-hero-proof-rotator__item strong { font-size: 0.82rem; }
+		.home-hero-proof-rotator__item span { font-size: 0.66rem; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.home-hero-proof-rotator__item { animation: none; }
+		.home-hero-proof-rotator__item:first-child { opacity: 1; transform: none; }
+	}
+
+	.home-hero-cover__media {
+		position: absolute;
+		inset: var(--home-hero-media-inset);
+		z-index: 0;
+		overflow: hidden;
+		border-radius: var(--home-hero-media-radius);
+		background: var(--color-garna-page, #101010);
+	}
+
+	.home-hero-cover__media::before {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		content: "";
+		background: rgba(0, 0, 0, calc(0.05 + var(--home-hero-backdrop-progress, 0) * 0.29));
+		pointer-events: none;
+	}
+
+	.home-hero-cover__media::after {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		content: "";
+		border: 1px solid rgba(255, 255, 255, calc(var(--home-hero-backdrop-progress, 0) * 0.12));
+		border-radius: inherit;
+		box-shadow: 0 30px 90px rgba(0, 0, 0, calc(var(--home-hero-backdrop-progress, 0) * 0.18));
+		opacity: var(--home-hero-backdrop-progress, 0);
+		pointer-events: none;
+	}
+
+	.home-hero-cover__media img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center bottom;
+		transform: scale(var(--home-hero-image-scale));
+		transform-origin: center bottom;
+	}
+
+	.home-hero-focus-frame {
+		position: absolute;
+		left: 50%;
+		bottom: clamp(1rem, 2.4vh, 2rem);
+		z-index: 2;
+		width: var(--home-hero-frame-width);
+		min-height: var(--home-hero-frame-min-height, 0);
+		max-height: var(--home-hero-frame-max-height, none);
+		aspect-ratio: 0.66;
+		border: 1px solid rgba(255, 255, 255, 0.58);
+		border-radius: var(--home-hero-frame-radius);
+		opacity: var(--home-hero-frame-opacity, 1);
+		transform: translateX(-50%);
+		container-type: inline-size;
+	}
+
+	@media (max-width: 900px) {
+		.home-hero-cover {
+			--home-hero-frame-width: min(20rem, 38vh, 58vw);
+			--home-hero-actions-frame-scale: calc(100cqw / var(--home-hero-frame-reference-width));
+		}
+
+		.home-hero-focus-frame {
+			bottom: clamp(1rem, 3vw, 1.75rem);
+		}
+	}
+
+	@media (min-width: 841px) {
+		html[lang='ru'] .home-hero-cover {
+			--home-hero-actions-reference-width: 17.25rem;
+			--home-hero-locale-actions-scale: 0.88;
+		}
+
+		html[lang='pt'] .home-hero-cover {
+			--home-hero-actions-reference-width: 16rem;
+		}
+	}
+
+	@media (min-width: 841px) and (max-width: 1023px) {
+		html[lang='ru'] .home-hero-cover {
+			--home-hero-frame-width: min(19.5rem, 34vh, 54vw);
+			--home-hero-actions-frame-scale: calc(100cqw / var(--home-hero-frame-reference-width));
+		}
+	}
+
+	@media (max-width: 840px) {
+		.home-hero-proof-transition .home-transition-back { display: none; }
+
+		.home-hero-cover {
+			--home-hero-frame-width: var(--home-hero-mobile-frame-width, min(18rem, 58vw));
+		}
+
+		html[lang='ru'] .home-hero-cover {
+			--home-hero-actions-reference-width: 17.25rem;
+			--home-hero-locale-actions-scale: 0.82;
+		}
+
+		html[lang='pt'] .home-hero-cover {
+			--home-hero-actions-reference-width: 16rem;
+		}
+
+		.home-hero-focus-frame {
+			height: var(--home-hero-mobile-frame-height, auto);
+			aspect-ratio: auto;
+			bottom: var(--home-hero-mobile-frame-bottom, clamp(0.75rem, 2.4vh, 1rem));
+		}
+	}
+
+	@media (max-width: 640px) and (max-height: 760px) {
+		.payroll-solution-new-hero {
+			padding-top: calc(clamp(4.75rem, 11vh, 5.75rem) + var(--home-hero-top-adjustment, 0px));
+			padding-bottom: 0;
+		}
+
+		html[lang='pt'] .home-hero-cover {
+			--home-hero-actions-reference-width: 18.5rem;
+		}
+
+		.payroll-solution-new-hero > .relative.z-10 {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+		.payroll-solution-new-hero h1 {
+			margin-bottom: 0.65rem;
+			font-size: clamp(2.35rem, 10.5vw, 2.75rem);
+			line-height: 1.06;
+		}
+
+		.payroll-solution-new-hero [data-garna-subtitle] {
+			margin-bottom: 1rem;
+			line-height: 1.35;
+		}
+	}
+
+	@media (min-width: 641px) and (max-width: 900px) {
+		.home-hero-cover {
+			--home-hero-image-scale: 1.18;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.home-hero-cover {
+			--home-hero-image-scale: 1.18;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.home-hero-cover {
+			--home-hero-image-scale: 1;
+		}
+	}
+
+	@media (min-width: 841px) and (max-width: 900px) and (max-aspect-ratio: 1.2) {
+		.home-hero-focus-frame {
+			height: min(29.75rem, 54.5vh);
+			aspect-ratio: auto;
+		}
+	}
+
+	@media (max-aspect-ratio: 1.65) and (min-width: 901px) {
+		.home-hero-cover {
+			--home-hero-image-scale: 1.04;
+		}
+	}
+
+	@media (max-aspect-ratio: 1.58) and (min-width: 901px) {
+		.home-hero-cover {
+			--home-hero-image-scale: 1.16;
+		}
+	}
+
+	@media (max-aspect-ratio: 1.35) and (min-width: 901px) {
+		.home-hero-cover {
+			--home-hero-image-scale: 1.17;
+		}
+	}
+
+	@media (min-width: 901px) and (max-height: 800px) {
+		.payroll-solution-new-hero {
+			padding-top: calc(clamp(4rem, 8vh, 5rem) + var(--home-hero-top-adjustment, 0px));
+		}
+	}
+
+	@media (min-width: 901px) and (max-width: 1279px) and (max-aspect-ratio: 1.65) {
+		.home-hero-focus-frame {
+			height: min(27.5rem, 50vh);
+			aspect-ratio: auto;
+		}
+	}
+
+	@media (min-width: 1280px) and (max-aspect-ratio: 1.65) {
+		.home-hero-focus-frame {
+			height: min(36.1rem, 54vh);
+			aspect-ratio: auto;
+		}
+	}
+
+	@media (min-aspect-ratio: 1.72) and (min-width: 901px) {
+		.home-hero-cover {
+			--home-hero-frame-width: min(24rem, 35vh, 24vw);
+		}
+	}
+
+	@media (min-aspect-ratio: 1.95) and (min-width: 901px) {
+		.home-hero-cover {
+			--home-hero-frame-width: min(24rem, 34vh, 23vw);
+		}
+	}
+
 	html[lang='ru'] .payroll-solution-new-hero h1,
 	html[lang='es'] .payroll-solution-new-hero h1,
 	html[lang='pt'] .payroll-solution-new-hero h1 {
@@ -161,6 +1323,11 @@ const homeFaqItems = [
 			line-height: 1.06;
 		}
 
+		html[lang='ru'] .payroll-solution-new-hero h1 {
+			font-size: clamp(3rem, 4.55vw, 3.5rem);
+			white-space: nowrap;
+		}
+
 		html[lang='ru'] .payroll-deferred-section .payroll-deferred-grid {
 			grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
 		}
@@ -173,6 +1340,18 @@ const homeFaqItems = [
 		html[lang='ru'] .payroll-deferred-section .payroll-deferred-copy h2 {
 			line-height: 1.08;
 			max-width: 42rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		html[lang='ru'] .payroll-solution-new-hero h1 {
+			font-size: 2.5rem;
+			line-height: 1.05;
+		}
+
+		html[lang='ru'] .payroll-solution-new-hero [data-garna-subtitle] {
+			font-size: 1rem;
+			line-height: 1.35;
 		}
 	}
 </style>

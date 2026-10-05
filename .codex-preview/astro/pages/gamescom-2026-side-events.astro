@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import Button from '../components/ui/Button.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
+import { pageHeroes } from '../content/page-heroes';
+import { pageShells } from '../content/page-shells';
+import '../styles/gamescom-2026-side-events.css';
+---
+
+<BaseLayout shell={pageShells.gamescom2026} rainbowCount={4}>
+	<script slot="head" is:inline>
+		document.documentElement.classList.add('js');
+	</script>
+
+	<div class="gamescom-page">
+		<div class="gamescom-grid" aria-hidden="true"></div>
+
+		<HeroSection {...pageHeroes.gamescom2026}>
+			<div class="gamescom-stats reveal" aria-label="Guide overview">
+				<div class="gamescom-stat"><strong id="statEvents">105</strong><span data-translate="stats.events">side events</span></div>
+				<div class="gamescom-stat"><strong id="statDays">8</strong><span data-translate="stats.days">days covered</span></div>
+				<div class="gamescom-stat"><strong>1</strong><span data-translate="stats.city">city, Cologne</span></div>
+			</div>
+
+			<p class="gamescom-hero-meta reveal" data-translate="stats.advisory">
+				Dates and access rules come from the organisers and change often. Check the event page before you plan around one.
+			</p>
+		</HeroSection>
+
+		<nav class="gamescom-day-nav day-nav" id="schedule" aria-label="Choose a day">
+			<div class="gamescom-container">
+				<div class="day-nav-inner" id="dayNav"></div>
+			</div>
+		</nav>
+
+		<section class="gamescom-events-section" aria-label="Gamescom side events schedule">
+			<div class="gamescom-container">
+				<div id="eventsBody"><div class="loading" data-translate="schedule.loading">Loading the schedule…</div></div>
+				<p class="source-note" id="sourceNote"></p>
+			</div>
+		</section>
+
+		<section class="gamescom-offer-section">
+			<div class="gamescom-container">
+				<div class="gamescom-offer-card reveal">
+					<div>
+						<span class="gamescom-offer-eyebrow" data-translate="offer.eyebrow">While you're here</span>
+						<h2 data-translate="offer.title">Trouble with payroll, or paying too much for it?</h2>
+						<p data-translate="offer.description">
+							Garna runs payroll and contractor payments in 150+ countries: local currencies, cards,
+							wallets and crypto, plus the tax and compliance side. If that's on your list for after
+							Cologne, book a slot and we'll show you the numbers.
+						</p>
+					</div>
+					<div class="gamescom-offer-actions">
+						<Button
+							href="#"
+							onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'gamescom_2026_offer_demo' });"
+							size="hero"
+						>
+							<span data-translate="offer.demoCta">Book a demo</span>
+						</Button>
+						<Button href="/en" data-garna-home variant="secondary" size="hero">
+							<span data-translate="offer.learnCta">What Garna does</span>
+						</Button>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div id="gamescomUiTranslations" hidden aria-hidden="true">
+			<span data-gamescom-i18n="access.free" data-translate="schedule.access.free">Free</span>
+			<span data-gamescom-i18n="access.paid" data-translate="schedule.access.paid">Paid</span>
+			<span data-gamescom-i18n="access.apply" data-translate="schedule.access.apply">Apply</span>
+			<span data-gamescom-i18n="access.invite" data-translate="schedule.access.invite">Invite only</span>
+			<span data-gamescom-i18n="access.badge" data-translate="schedule.access.badge">With gamescom badge</span>
+			<span data-gamescom-i18n="access.open" data-translate="schedule.access.open">Open entry</span>
+			<span data-gamescom-i18n="access.tba" data-translate="schedule.access.tba">TBA</span>
+			<span data-gamescom-i18n="access.closed" data-translate="schedule.access.closed">Closed</span>
+			<span data-gamescom-i18n="cta.register" data-translate="schedule.cta.register">Register</span>
+			<span data-gamescom-i18n="cta.tickets" data-translate="schedule.cta.tickets">Get tickets</span>
+			<span data-gamescom-i18n="cta.apply" data-translate="schedule.cta.apply">Apply</span>
+			<span data-gamescom-i18n="cta.details" data-translate="schedule.cta.details">Details</span>
+			<span data-gamescom-i18n="cta.noLink" data-translate="schedule.cta.noLink">No link yet</span>
+			<span data-gamescom-i18n="weekday.0" data-translate="schedule.weekdays.sun">Sun</span>
+			<span data-gamescom-i18n="weekday.1" data-translate="schedule.weekdays.mon">Mon</span>
+			<span data-gamescom-i18n="weekday.2" data-translate="schedule.weekdays.tue">Tue</span>
+			<span data-gamescom-i18n="weekday.3" data-translate="schedule.weekdays.wed">Wed</span>
+			<span data-gamescom-i18n="weekday.4" data-translate="schedule.weekdays.thu">Thu</span>
+			<span data-gamescom-i18n="weekday.5" data-translate="schedule.weekdays.fri">Fri</span>
+			<span data-gamescom-i18n="weekday.6" data-translate="schedule.weekdays.sat">Sat</span>
+			<span data-gamescom-i18n="month.0" data-translate="schedule.months.january">January</span>
+			<span data-gamescom-i18n="month.1" data-translate="schedule.months.february">February</span>
+			<span data-gamescom-i18n="month.2" data-translate="schedule.months.march">March</span>
+			<span data-gamescom-i18n="month.3" data-translate="schedule.months.april">April</span>
+			<span data-gamescom-i18n="month.4" data-translate="schedule.months.may">May</span>
+			<span data-gamescom-i18n="month.5" data-translate="schedule.months.june">June</span>
+			<span data-gamescom-i18n="month.6" data-translate="schedule.months.july">July</span>
+			<span data-gamescom-i18n="month.7" data-translate="schedule.months.august">August</span>
+			<span data-gamescom-i18n="month.8" data-translate="schedule.months.september">September</span>
+			<span data-gamescom-i18n="month.9" data-translate="schedule.months.october">October</span>
+			<span data-gamescom-i18n="month.10" data-translate="schedule.months.november">November</span>
+			<span data-gamescom-i18n="month.11" data-translate="schedule.months.december">December</span>
+			<span data-gamescom-i18n="event.one" data-translate="schedule.event.one">event</span>
+			<span data-gamescom-i18n="event.few" data-translate="schedule.event.few">events</span>
+			<span data-gamescom-i18n="event.many" data-translate="schedule.event.many">events</span>
+			<span data-gamescom-i18n="date.label" data-translate="schedule.date.label">Date</span>
+			<span data-gamescom-i18n="date.tba" data-translate="schedule.date.tba">TBA</span>
+			<span data-gamescom-i18n="date.announced" data-translate="schedule.date.announced">Date to be announced</span>
+			<span data-gamescom-i18n="date.unannouncedSuffix" data-translate="schedule.date.unannouncedSuffix">organisers haven't announced a date yet</span>
+			<span data-gamescom-i18n="event.multiDay" data-translate="schedule.event.multiDay">Runs across several days</span>
+			<span data-gamescom-i18n="event.featured" data-translate="schedule.event.featured">Worth your time</span>
+			<span data-gamescom-i18n="event.timeTba" data-translate="schedule.event.timeTba">Time TBA</span>
+			<span data-gamescom-i18n="empty.title" data-translate="schedule.empty.title">Nothing scheduled here yet</span>
+			<span data-gamescom-i18n="empty.description" data-translate="schedule.empty.description">Pick another day above. We keep this page updated through the show.</span>
+			<span data-gamescom-i18n="empty.noEventsTitle" data-translate="schedule.empty.noEventsTitle">No events loaded</span>
+			<span data-gamescom-i18n="empty.noEventsDescription" data-translate="schedule.empty.noEventsDescription">The schedule didn't come through. A refresh usually fixes it.</span>
+			<span data-gamescom-i18n="error.title" data-translate="schedule.error.title">The schedule didn't load</span>
+			<span data-gamescom-i18n="error.description" data-translate="schedule.error.description">A refresh usually fixes it. If it doesn't, the browser console has the details.</span>
+			<span data-gamescom-i18n="loading" data-translate="schedule.loading">Loading the schedule…</span>
+			<span data-gamescom-i18n="source.live" data-translate="schedule.source.live">The schedule is read from our events sheet every time this page loads, so it is always the current one.</span>
+			<span data-gamescom-i18n="source.fallback" data-translate="schedule.source.fallback">We couldn't reach the live sheet, so this is the last saved copy of the schedule.</span>
+		</div>
+	</div>
+
+	<script is:inline src="/gamescom-2026-side-events.js"></script>
+	<Fragment slot="widgets">
+		<GarnaBookingWidget
+			trackingSource="gamescom-2026"
+			trackingPage="gamescom-2026-side-events"
+			trackingCta="gamescom_2026_offer_demo"
+			titleFallback="Book a free 30-minute product demo"
+			subtitleFallback="Get all your questions answered by our experts"
+		/>
+	</Fragment>
+</BaseLayout>

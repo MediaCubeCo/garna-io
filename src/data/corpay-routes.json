@@ -1,0 +1,5851 @@
+{
+  "meta": {
+    "legalEntity": "CA",
+    "provider": "Corpay",
+    "generatedFrom": "классификация методов (Bank Transfer Fees) (1).xlsx",
+    "ignoredEligibilityColumn": "Local_payment CA!E:E (Включен в МС Рау)",
+    "routeCount": 365
+  },
+  "routes": [
+    {
+      "id": "afghanistan-afn-57",
+      "region": "Asia",
+      "country": "Afghanistan",
+      "iso": "AF",
+      "currencyName": "Afghani",
+      "currencyCode": "AFN",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 57,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "albania-all-127",
+      "region": "Europe",
+      "country": "Albania",
+      "iso": null,
+      "currencyName": "lek",
+      "currencyCode": "ALL",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 127,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "albania-usd-5",
+      "region": "Europe",
+      "country": "Albania",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 5,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "algeria-dzd-3",
+      "region": "Africa",
+      "country": "Algeria",
+      "iso": null,
+      "currencyName": "Algerian dinar",
+      "currencyCode": "DZD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 3,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "algeria-usd-6",
+      "region": "Africa",
+      "country": "Algeria",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 6,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "andorra-eur-128",
+      "region": "Europe",
+      "country": "Andorra",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 128,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "angola-aoa-4",
+      "region": "Africa",
+      "country": "Angola",
+      "iso": null,
+      "currencyName": "new kwanzaa",
+      "currencyCode": "AOA",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 4,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "angola-usd-8",
+      "region": "Africa",
+      "country": "Angola",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 8,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "anguilla-usd-9",
+      "region": "Europe",
+      "country": "Anguilla",
+      "iso": "AI",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 9,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "antigua-and-barbuda-xcd-106",
+      "region": "Central America",
+      "country": "Antigua and Barbuda",
+      "iso": null,
+      "currencyName": "East Caribbean dollar",
+      "currencyCode": "XCD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 106,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "antigua-and-barbuda-usd-10",
+      "region": "Central America",
+      "country": "Antigua and Barbuda",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 10,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "argentina-ars-188",
+      "region": "South America",
+      "country": "Argentina",
+      "iso": null,
+      "currencyName": "pesos",
+      "currencyCode": "ARS",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 188,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "argentina-usd-11",
+      "region": "South America",
+      "country": "Argentina",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 11,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "armenia-amd-58",
+      "region": "Asia",
+      "country": "Armenia",
+      "iso": null,
+      "currencyName": "dram",
+      "currencyCode": "AMD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 58,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "armenia-usd-12",
+      "region": "Asia",
+      "country": "Armenia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 12,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "aruba-awg-202",
+      "region": "",
+      "country": "Aruba",
+      "iso": "AW",
+      "currencyName": "AWG",
+      "currencyCode": "AWG",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 202,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "aruba-usd-13",
+      "region": "South America",
+      "country": "Aruba",
+      "iso": "AW",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 13,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "australia-aud-104",
+      "region": "Australia",
+      "country": "Australia",
+      "iso": null,
+      "currencyName": "Australian dollar",
+      "currencyCode": "AUD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 104,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "australia-usd-14",
+      "region": "Australia",
+      "country": "Australia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 14,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "austria-eur-129",
+      "region": "Europe",
+      "country": "Austria",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 129,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "austria-usd-15",
+      "region": "Europe",
+      "country": "Austria",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 15,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "azerbaijan-azn-59",
+      "region": "Asia",
+      "country": "Azerbaijan",
+      "iso": null,
+      "currencyName": "manat",
+      "currencyCode": "AZN",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 59,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "azerbaijan-usd-16",
+      "region": "Asia",
+      "country": "Azerbaijan",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 16,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "bahamas-bsd-107",
+      "region": "Central America",
+      "country": "Bahamas",
+      "iso": null,
+      "currencyName": "Bahamian dollar",
+      "currencyCode": "BSD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 107,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "bahamas-usd-17",
+      "region": "Central America",
+      "country": "Bahamas",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 17,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "bahrain-usd-18",
+      "region": "Asia",
+      "country": "Bahrain",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 18,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "bangladesh-bdt-61",
+      "region": "Asia",
+      "country": "Bangladesh",
+      "iso": null,
+      "currencyName": "taka",
+      "currencyCode": "BDT",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 61,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "bangladesh-usd-19",
+      "region": "Asia",
+      "country": "Bangladesh",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 19,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "barbados-bbd-108",
+      "region": "Central America",
+      "country": "Barbados",
+      "iso": null,
+      "currencyName": "Barbadian dollar",
+      "currencyCode": "BBD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 108,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "barbados-usd-20",
+      "region": "Central America",
+      "country": "Barbados",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 20,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "belarus-usd-21",
+      "region": "Europe",
+      "country": "Belarus",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 21,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "belgium-eur-131",
+      "region": "Europe",
+      "country": "Belgium",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 131,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "belgium-usd-22",
+      "region": "Europe",
+      "country": "Belgium",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 22,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "belize-bzd-109",
+      "region": "Central America",
+      "country": "Belize",
+      "iso": null,
+      "currencyName": "Belize dollar",
+      "currencyCode": "BZD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 109,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "belize-usd-23",
+      "region": "Central America",
+      "country": "Belize",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 23,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "benin-xof-5",
+      "region": "Africa",
+      "country": "Benin",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XOF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 5,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "benin-usd-24",
+      "region": "Africa",
+      "country": "Benin",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 24,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "bermuda-bmd-208",
+      "region": "",
+      "country": "Bermuda",
+      "iso": "BM",
+      "currencyName": "BMD",
+      "currencyCode": "BMD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 208,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "bermuda-usd-25",
+      "region": "Europe",
+      "country": "Bermuda",
+      "iso": "BM",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 25,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "bhutan-btn-62",
+      "region": "Asia",
+      "country": "Bhutan",
+      "iso": null,
+      "currencyName": "ngultrum",
+      "currencyCode": "BTN",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 62,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "bhutan-usd-26",
+      "region": "Asia",
+      "country": "Bhutan",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 26,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "bolivia-bob-189",
+      "region": "South America",
+      "country": "Bolivia",
+      "iso": null,
+      "currencyName": "boliviano",
+      "currencyCode": "BOB",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 189,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "bolivia-usd-27",
+      "region": "South America",
+      "country": "Bolivia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 27,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "bosnia-and-herzegovina-bam-132",
+      "region": "Europe",
+      "country": "Bosnia and Herzegovina",
+      "iso": null,
+      "currencyName": "Bosnian stamp",
+      "currencyCode": "BAM",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 132,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "bosnia-and-herzegovina-usd-29",
+      "region": "Europe",
+      "country": "Bosnia and Herzegovina",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 29,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "botswana-bwp-6",
+      "region": "Africa",
+      "country": "Botswana",
+      "iso": null,
+      "currencyName": "pool",
+      "currencyCode": "BWP",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 6,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "botswana-usd-30",
+      "region": "Africa",
+      "country": "Botswana",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 30,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "brazil-brl-190",
+      "region": "South America",
+      "country": "Brazil",
+      "iso": null,
+      "currencyName": "real",
+      "currencyCode": "BRL",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 190,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "brazil-usd-31",
+      "region": "South America",
+      "country": "Brazil",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 31,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "brunei-bnd-63",
+      "region": "Asia",
+      "country": "Brunei",
+      "iso": null,
+      "currencyName": "Brunei dollar",
+      "currencyCode": "BND",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 63,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "brunei-usd-33",
+      "region": "Asia",
+      "country": "Brunei",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 33,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "bulgaria-bgn-133",
+      "region": "Europe",
+      "country": "Bulgaria",
+      "iso": null,
+      "currencyName": "a lion",
+      "currencyCode": "BGN",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 133,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "bulgaria-usd-34",
+      "region": "Europe",
+      "country": "Bulgaria",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 34,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "burkina-faso-xof-7",
+      "region": "Africa",
+      "country": "Burkina Faso",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XOF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 7,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "burkina-faso-usd-35",
+      "region": "Africa",
+      "country": "Burkina Faso",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 35,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "burundi-bif-8",
+      "region": "Africa",
+      "country": "Burundi",
+      "iso": null,
+      "currencyName": "Franc of Burundi",
+      "currencyCode": "BIF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 8,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "burundi-usd-36",
+      "region": "Africa",
+      "country": "Burundi",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 36,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "cambodia-khr-64",
+      "region": "Asia",
+      "country": "Cambodia",
+      "iso": null,
+      "currencyName": "riel",
+      "currencyCode": "KHR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 64,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "cambodia-usd-37",
+      "region": "Asia",
+      "country": "Cambodia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 37,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "cameroon-xaf-9",
+      "region": "Africa",
+      "country": "Cameroon",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XAF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 9,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "cameroon-usd-38",
+      "region": "Africa",
+      "country": "Cameroon",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 38,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "canada-cad-172",
+      "region": "North America",
+      "country": "Canada",
+      "iso": null,
+      "currencyName": "Canadian dollar",
+      "currencyCode": "CAD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 172,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "canada-usd-39",
+      "region": "North America",
+      "country": "Canada",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 39,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "cape-verde-cve-10",
+      "region": "Africa",
+      "country": "Cape Verde",
+      "iso": null,
+      "currencyName": "Cape Verdean escudo",
+      "currencyCode": "CVE",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 10,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "cape-verde-usd-40",
+      "region": "Africa",
+      "country": "Cape Verde",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 40,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "cayman-islands-kyd-174",
+      "region": "North America",
+      "country": "Cayman Islands",
+      "iso": "KY",
+      "currencyName": "KYD",
+      "currencyCode": "KYD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 174,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "cayman-islands-usd-41",
+      "region": "North America",
+      "country": "Cayman Islands",
+      "iso": "KY",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 41,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "central-african-republic-xaf-11",
+      "region": "Africa",
+      "country": "Central African Republic",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XAF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 11,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "central-african-republic-usd-42",
+      "region": "Africa",
+      "country": "Central African Republic",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 42,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "chad-xaf-12",
+      "region": "Africa",
+      "country": "Chad",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XAF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 12,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "chad-usd-43",
+      "region": "Africa",
+      "country": "Chad",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 43,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "chile-clp-191",
+      "region": "South America",
+      "country": "Chile",
+      "iso": null,
+      "currencyName": "Chilean peso",
+      "currencyCode": "CLP",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 191,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "chile-usd-44",
+      "region": "South America",
+      "country": "Chile",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 44,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "china-cny-65",
+      "region": "Asia",
+      "country": "China",
+      "iso": null,
+      "currencyName": "yuan",
+      "currencyCode": "CNY",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 65,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "china-usd-45",
+      "region": "Asia",
+      "country": "China",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 45,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "colombia-cop-192",
+      "region": "South America",
+      "country": "Colombia",
+      "iso": null,
+      "currencyName": "Colombian peso",
+      "currencyCode": "COP",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 192,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "colombia-usd-48",
+      "region": "South America",
+      "country": "Colombia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 48,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "comoros-kmf-13",
+      "region": "Africa",
+      "country": "Comoros",
+      "iso": null,
+      "currencyName": "Comorian franc",
+      "currencyCode": "KMF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 13,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "comoros-usd-49",
+      "region": "Africa",
+      "country": "Comoros",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 49,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "congo-democratic-republic-xaf-14",
+      "region": "Africa",
+      "country": "Congo, Democratic Republic",
+      "iso": null,
+      "currencyName": "Congolese franc",
+      "currencyCode": "XAF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 14,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "congo-democratic-republic-usd-50",
+      "region": "Africa",
+      "country": "Congo, Democratic Republic",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 50,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "costa-rica-crc-110",
+      "region": "Central America",
+      "country": "Costa Rica",
+      "iso": null,
+      "currencyName": "Costa Rican colon",
+      "currencyCode": "CRC",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 110,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "costa-rica-usd-52",
+      "region": "Central America",
+      "country": "Costa Rica",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 52,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "croatia-hrk-134",
+      "region": "Europe",
+      "country": "Croatia",
+      "iso": null,
+      "currencyName": "kuna",
+      "currencyCode": "HRK",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 134,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "croatia-usd-54",
+      "region": "Europe",
+      "country": "Croatia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 54,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "cyprus-eur-135",
+      "region": "Europe",
+      "country": "Cyprus",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 135,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "cyprus-usd-56",
+      "region": "Europe",
+      "country": "Cyprus",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 56,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "czech-czk-136",
+      "region": "Europe",
+      "country": "Czech",
+      "iso": null,
+      "currencyName": "Czech crown",
+      "currencyCode": "CZK",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 136,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "czech-usd-57",
+      "region": "Europe",
+      "country": "Czech",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 57,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "denmark-dkk-137",
+      "region": "Eritrea",
+      "country": "Denmark",
+      "iso": null,
+      "currencyName": "Danish krone",
+      "currencyCode": "DKK",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 137,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "denmark-usd-58",
+      "region": "Europe",
+      "country": "Denmark",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 58,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "djibouti-djf-15",
+      "region": "Africa",
+      "country": "Djibouti",
+      "iso": null,
+      "currencyName": "Djiboutian franc",
+      "currencyCode": "DJF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 15,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "djibouti-usd-59",
+      "region": "Africa",
+      "country": "Djibouti",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 59,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "dominica-xcd-112",
+      "region": "Central America",
+      "country": "Dominica",
+      "iso": null,
+      "currencyName": "East Caribbean dollar",
+      "currencyCode": "XCD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 112,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "dominica-usd-60",
+      "region": "Central America",
+      "country": "Dominica",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 60,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "dominican-republic-dop-113",
+      "region": "Central America",
+      "country": "Dominican Republic",
+      "iso": null,
+      "currencyName": "Dominican peso",
+      "currencyCode": "DOP",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 113,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "dominican-republic-usd-61",
+      "region": "Central America",
+      "country": "Dominican Republic",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 61,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "egypt-egp-16",
+      "region": "Africa",
+      "country": "Egypt",
+      "iso": null,
+      "currencyName": "Egyptian pound",
+      "currencyCode": "EGP",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 16,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "egypt-usd-64",
+      "region": "Africa",
+      "country": "Egypt",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 64,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "equatorial-guinea-xaf-17",
+      "region": "Africa",
+      "country": "Equatorial Guinea",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XAF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 17,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "equatorial-guinea-usd-65",
+      "region": "Africa",
+      "country": "Equatorial Guinea",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 65,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "eritrea-ern-18",
+      "region": "Africa",
+      "country": "Eritrea",
+      "iso": null,
+      "currencyName": "nakfa",
+      "currencyCode": "ERN",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 18,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "eritrea-usd-66",
+      "region": "Africa",
+      "country": "Eritrea",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 66,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "estonia-eur-138",
+      "region": "Europe",
+      "country": "Estonia",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 138,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "estonia-usd-67",
+      "region": "Europe",
+      "country": "Estonia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 67,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "ethiopia-etb-19",
+      "region": "Africa",
+      "country": "Ethiopia",
+      "iso": null,
+      "currencyName": "birr",
+      "currencyCode": "ETB",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 19,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "ethiopia-usd-68",
+      "region": "Africa",
+      "country": "Ethiopia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 68,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "falkland-islands-malvinas-fkr-197",
+      "region": "South America",
+      "country": "Falkland Islands(Malvinas)",
+      "iso": "FK",
+      "currencyName": "FKR",
+      "currencyCode": "FKR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 197,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "falkland-islands-malvinas-usd-69",
+      "region": "South America",
+      "country": "Falkland Islands(Malvinas)",
+      "iso": "FK",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 69,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "faroe-islands-usd-70",
+      "region": "Europe",
+      "country": "Faroe Islands",
+      "iso": "FO",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 70,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "federated-states-of-micronesia-usd-71",
+      "region": "Oceania",
+      "country": "Federated States of Micronesia",
+      "iso": "FM",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 71,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "fiji-fjd-176",
+      "region": "Oceania",
+      "country": "Fiji",
+      "iso": null,
+      "currencyName": "Fijian dollar",
+      "currencyCode": "FJD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 176,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "fiji-usd-72",
+      "region": "Oceania",
+      "country": "Fiji",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 72,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "finland-eur-139",
+      "region": "Europe",
+      "country": "Finland",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 139,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "finland-usd-73",
+      "region": "Europe",
+      "country": "Finland",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 73,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "france-eur-140",
+      "region": "Europe",
+      "country": "France",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 140,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "france-usd-74",
+      "region": "Europe",
+      "country": "France",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 74,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "french-polynesia-usd-75",
+      "region": "Oceania",
+      "country": "French Polynesia",
+      "iso": "PF",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 75,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "gabon-xaf-20",
+      "region": "Africa",
+      "country": "Gabon",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XAF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 20,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "gabon-usd-77",
+      "region": "Africa",
+      "country": "Gabon",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 77,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "gambia-gmd-21",
+      "region": "Africa",
+      "country": "Gambia",
+      "iso": null,
+      "currencyName": "dalasi",
+      "currencyCode": "GMD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 21,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "gambia-usd-78",
+      "region": "Africa",
+      "country": "Gambia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 78,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "georgia-gel-67",
+      "region": "Asia",
+      "country": "Georgia",
+      "iso": null,
+      "currencyName": "lari",
+      "currencyCode": "GEL",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 67,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "georgia-usd-79",
+      "region": "Asia",
+      "country": "Georgia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 79,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "germany-eur-141",
+      "region": "Europe",
+      "country": "Germany",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 141,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "germany-usd-80",
+      "region": "Europe",
+      "country": "Germany",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 80,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "ghana-ghs-22",
+      "region": "Africa",
+      "country": "Ghana",
+      "iso": null,
+      "currencyName": "gray hair",
+      "currencyCode": "GHS",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 22,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "ghana-usd-81",
+      "region": "Africa",
+      "country": "Ghana",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 81,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "gibraltar-gip-105",
+      "region": "Europe",
+      "country": "Gibraltar",
+      "iso": "GI",
+      "currencyName": "GIP",
+      "currencyCode": "GIP",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 105,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "gibraltar-usd-82",
+      "region": "Europe",
+      "country": "Gibraltar",
+      "iso": "GI",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 82,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "greece-eur-142",
+      "region": "Europe",
+      "country": "Greece",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 142,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "greece-usd-83",
+      "region": "Europe",
+      "country": "Greece",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 83,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "greenland-usd-84",
+      "region": "North America",
+      "country": "Greenland",
+      "iso": "GL",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 84,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "grenada-xcd-114",
+      "region": "Central America",
+      "country": "Grenada",
+      "iso": null,
+      "currencyName": "East Caribbean dollar",
+      "currencyCode": "XCD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 114,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "grenada-usd-85",
+      "region": "Central America",
+      "country": "Grenada",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 85,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "guatemala-gtq-115",
+      "region": "Central America",
+      "country": "Guatemala",
+      "iso": null,
+      "currencyName": "quetzal",
+      "currencyCode": "GTQ",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 115,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "guatemala-usd-87",
+      "region": "Central America",
+      "country": "Guatemala",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 87,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "guinea-gnf-23",
+      "region": "Africa",
+      "country": "Guinea",
+      "iso": null,
+      "currencyName": "Guinean franc",
+      "currencyCode": "GNF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 23,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "guinea-usd-89",
+      "region": "Africa",
+      "country": "Guinea",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 89,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "guinea-bissau-xof-24",
+      "region": "Africa",
+      "country": "Guinea-Bissau",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XOF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 24,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "guinea-bissau-usd-90",
+      "region": "Africa",
+      "country": "Guinea-Bissau",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 90,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "guyana-gyd-194",
+      "region": "South America",
+      "country": "Guyana",
+      "iso": null,
+      "currencyName": "Guyanese dollar",
+      "currencyCode": "GYD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 194,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "guyana-usd-91",
+      "region": "South America",
+      "country": "Guyana",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 91,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "haiti-htg-116",
+      "region": "Central America",
+      "country": "Haiti",
+      "iso": null,
+      "currencyName": "gourde",
+      "currencyCode": "HTG",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 116,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "haiti-usd-92",
+      "region": "Central America",
+      "country": "Haiti",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 92,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "honduras-hnl-117",
+      "region": "Central America",
+      "country": "Honduras",
+      "iso": null,
+      "currencyName": "lempira",
+      "currencyCode": "HNL",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 117,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "honduras-usd-93",
+      "region": "Central America",
+      "country": "Honduras",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 93,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "hong-kong-hkd-68",
+      "region": "Asia",
+      "country": "Hong Kong",
+      "iso": null,
+      "currencyName": "Hong Kong dollar",
+      "currencyCode": "HKD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 68,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "hong-kong-usd-94",
+      "region": "Asia",
+      "country": "Hong Kong",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 94,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "hungary-huf-143",
+      "region": "Europe",
+      "country": "Hungary",
+      "iso": null,
+      "currencyName": "forint",
+      "currencyCode": "HUF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 143,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "hungary-usd-95",
+      "region": "Europe",
+      "country": "Hungary",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 95,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "iceland-isk-144",
+      "region": "Europe",
+      "country": "Iceland",
+      "iso": null,
+      "currencyName": "Icelandic krone",
+      "currencyCode": "ISK",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 144,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "iceland-usd-96",
+      "region": "Europe",
+      "country": "Iceland",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 96,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "india-inr-69",
+      "region": "Asia",
+      "country": "India",
+      "iso": null,
+      "currencyName": "Indian rupee",
+      "currencyCode": "INR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 69,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "india-usd-98",
+      "region": "Asia",
+      "country": "India",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 98,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "indonesia-idr-70",
+      "region": "Asia",
+      "country": "Indonesia",
+      "iso": null,
+      "currencyName": "Indonesian rupiah",
+      "currencyCode": "IDR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 70,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "indonesia-usd-99",
+      "region": "Asia",
+      "country": "Indonesia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 99,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "iraq-iqd-72",
+      "region": "Asia",
+      "country": "Iraq",
+      "iso": null,
+      "currencyName": "Iraqi dinar",
+      "currencyCode": "IQD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 72,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "iraq-usd-101",
+      "region": "Asia",
+      "country": "Iraq",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 101,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "ireland-usd-102",
+      "region": "Europe",
+      "country": "Ireland",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 102,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "israel-ils-73",
+      "region": "Asia",
+      "country": "Israel",
+      "iso": null,
+      "currencyName": "shekel",
+      "currencyCode": "ILS",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 73,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "italy-eur-147",
+      "region": "Europe",
+      "country": "Italy",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 147,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "italy-usd-105",
+      "region": "Europe",
+      "country": "Italy",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 105,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "ivory-coast-xof-25",
+      "region": "Africa",
+      "country": "Ivory Coast",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XOF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 25,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "ivory-coast-usd-106",
+      "region": "Africa",
+      "country": "Ivory Coast",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 106,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "jamaica-jmd-118",
+      "region": "Central America",
+      "country": "Jamaica",
+      "iso": null,
+      "currencyName": "Jamaican dollar",
+      "currencyCode": "JMD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 118,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "jamaica-usd-107",
+      "region": "Central America",
+      "country": "Jamaica",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 107,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "japan-jpy-74",
+      "region": "Asia",
+      "country": "Japan",
+      "iso": null,
+      "currencyName": "yen",
+      "currencyCode": "JPY",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 74,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "japan-usd-108",
+      "region": "Asia",
+      "country": "Japan",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 108,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "jordan-jod-75",
+      "region": "Asia",
+      "country": "Jordan",
+      "iso": null,
+      "currencyName": "Jordanian dinar",
+      "currencyCode": "JOD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 75,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "jordan-usd-110",
+      "region": "Asia",
+      "country": "Jordan",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 110,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "kazakhstan-kzt-76",
+      "region": "Asia",
+      "country": "Kazakhstan",
+      "iso": null,
+      "currencyName": "tenge",
+      "currencyCode": "KZT",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 76,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "kazakhstan-usd-111",
+      "region": "Asia",
+      "country": "Kazakhstan",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 111,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "kenya-kes-26",
+      "region": "Africa",
+      "country": "Kenya",
+      "iso": null,
+      "currencyName": "Kenyan shilling",
+      "currencyCode": "KES",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 26,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "kenya-usd-112",
+      "region": "Africa",
+      "country": "Kenya",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 112,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "kuwait-kwd-77",
+      "region": "Asia",
+      "country": "Kuwait",
+      "iso": null,
+      "currencyName": "Kuwaiti dinar",
+      "currencyCode": "KWD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 77,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "kuwait-usd-114",
+      "region": "Asia",
+      "country": "Kuwait",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 114,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "kyrgyzstan-kgs-78",
+      "region": "Asia",
+      "country": "Kyrgyzstan",
+      "iso": null,
+      "currencyName": "catfish",
+      "currencyCode": "KGS",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 78,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "kyrgyzstan-usd-115",
+      "region": "Asia",
+      "country": "Kyrgyzstan",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 115,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "laos-lak-79",
+      "region": "Asia",
+      "country": "Laos",
+      "iso": null,
+      "currencyName": "kip",
+      "currencyCode": "LAK",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 79,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "laos-usd-116",
+      "region": "Asia",
+      "country": "Laos",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 116,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "latvia-eur-148",
+      "region": "Europe",
+      "country": "Latvia",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 148,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "latvia-usd-117",
+      "region": "Europe",
+      "country": "Latvia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 117,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "lebanon-lbp-27",
+      "region": "Africa",
+      "country": "Lebanon",
+      "iso": null,
+      "currencyName": "Lebanese pound",
+      "currencyCode": "LBP",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 27,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "lebanon-usd-118",
+      "region": "Africa",
+      "country": "Lebanon",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 118,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "lesotho-lsl-28",
+      "region": "Africa",
+      "country": "Lesotho",
+      "iso": null,
+      "currencyName": "loti",
+      "currencyCode": "LSL",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 28,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "lesotho-usd-119",
+      "region": "Africa",
+      "country": "Lesotho",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 119,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "liberia-lrd-29",
+      "region": "Africa",
+      "country": "Liberia",
+      "iso": null,
+      "currencyName": "Liberian dollar",
+      "currencyCode": "LRD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 29,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "liberia-usd-120",
+      "region": "Africa",
+      "country": "Liberia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 120,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "libya-lyd-30",
+      "region": "Africa",
+      "country": "Libya",
+      "iso": null,
+      "currencyName": "Libyan dinar",
+      "currencyCode": "LYD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 30,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "libya-usd-121",
+      "region": "Africa",
+      "country": "Libya",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 121,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "liechtenstein-chf-149",
+      "region": "Europe",
+      "country": "Liechtenstein",
+      "iso": null,
+      "currencyName": "Swiss frank",
+      "currencyCode": "CHF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 149,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "liechtenstein-usd-122",
+      "region": "Europe",
+      "country": "Liechtenstein",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 122,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "lithuania-eur-150",
+      "region": "Europe",
+      "country": "Lithuania",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 150,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "lithuania-usd-123",
+      "region": "Europe",
+      "country": "Lithuania",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 123,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "luxembourg-eur-151",
+      "region": "Europe",
+      "country": "Luxembourg",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 151,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "luxembourg-usd-124",
+      "region": "Europe",
+      "country": "Luxembourg",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 124,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "macedonia-mkd-152",
+      "region": "Europe",
+      "country": "Macedonia",
+      "iso": null,
+      "currencyName": "denar",
+      "currencyCode": "MKD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 152,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "macedonia-usd-126",
+      "region": "Europe",
+      "country": "Macedonia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 126,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "madagascar-mga-31",
+      "region": "Africa",
+      "country": "Madagascar",
+      "iso": null,
+      "currencyName": "Malagasy franc",
+      "currencyCode": "MGA",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 31,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "madagascar-usd-127",
+      "region": "Africa",
+      "country": "Madagascar",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 127,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "malawi-usd-128",
+      "region": "Africa",
+      "country": "Malawi",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 128,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "malaysia-myr-80",
+      "region": "Asia",
+      "country": "Malaysia",
+      "iso": null,
+      "currencyName": "rinktit",
+      "currencyCode": "MYR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 80,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "malaysia-usd-129",
+      "region": "Asia",
+      "country": "Malaysia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 129,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "maldives-mvr-81",
+      "region": "Asia",
+      "country": "Maldives",
+      "iso": null,
+      "currencyName": "rufiyaa (maldivian rupee)",
+      "currencyCode": "MVR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 81,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "maldives-usd-130",
+      "region": "Asia",
+      "country": "Maldives",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 130,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "mali-xof-33",
+      "region": "Africa",
+      "country": "Mali",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XOF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 33,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "mali-usd-131",
+      "region": "Africa",
+      "country": "Mali",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 131,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "malta-eur-153",
+      "region": "Europe",
+      "country": "Malta",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 153,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "malta-usd-132",
+      "region": "Europe",
+      "country": "Malta",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 132,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "mauritania-usd-134",
+      "region": "Africa",
+      "country": "Mauritania",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 134,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "mauritius-mur-35",
+      "region": "Africa",
+      "country": "Mauritius",
+      "iso": null,
+      "currencyName": "Mauritian rupee",
+      "currencyCode": "MUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 35,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "mauritius-usd-135",
+      "region": "Africa",
+      "country": "Mauritius",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 135,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "mexico-mxn-119",
+      "region": "Central America",
+      "country": "Mexico",
+      "iso": null,
+      "currencyName": "new peso",
+      "currencyCode": "MXN",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 119,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "mexico-usd-136",
+      "region": "Central America",
+      "country": "Mexico",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 136,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "moldova-mdl-154",
+      "region": "Europe",
+      "country": "Moldova",
+      "iso": null,
+      "currencyName": "Moldovan leu",
+      "currencyCode": "MDL",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 154,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "moldova-usd-137",
+      "region": "Europe",
+      "country": "Moldova",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 137,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "monaco-eur-155",
+      "region": "Europe",
+      "country": "Monaco",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 155,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "monaco-usd-138",
+      "region": "Europe",
+      "country": "Monaco",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 138,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "mongolia-mnt-82",
+      "region": "Asia",
+      "country": "Mongolia",
+      "iso": null,
+      "currencyName": "tugrik",
+      "currencyCode": "MNT",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 82,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "mongolia-usd-139",
+      "region": "Asia",
+      "country": "Mongolia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 139,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "montenegro-eur-156",
+      "region": "Europe",
+      "country": "Montenegro",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 156,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "montenegro-usd-140",
+      "region": "Europe",
+      "country": "Montenegro",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 140,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "montserrat-usd-141",
+      "region": "Europe",
+      "country": "Montserrat",
+      "iso": "MS",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 141,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "morocco-mad-36",
+      "region": "Africa",
+      "country": "Morocco",
+      "iso": null,
+      "currencyName": "Moroccan dirham",
+      "currencyCode": "MAD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 36,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "morocco-usd-142",
+      "region": "Africa",
+      "country": "Morocco",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 142,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "mozambique-mzn-37",
+      "region": "Africa",
+      "country": "Mozambique",
+      "iso": null,
+      "currencyName": "metical",
+      "currencyCode": "MZN",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 37,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "mozambique-usd-143",
+      "region": "Africa",
+      "country": "Mozambique",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 143,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "myanmar-mmk-83",
+      "region": "Asia",
+      "country": "Myanmar",
+      "iso": null,
+      "currencyName": "kyat",
+      "currencyCode": "MMK",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 83,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "myanmar-usd-144",
+      "region": "Asia",
+      "country": "Myanmar",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 144,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "namibia-nad-38",
+      "region": "Africa",
+      "country": "Namibia",
+      "iso": null,
+      "currencyName": "Namibian dollar",
+      "currencyCode": "NAD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 38,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "namibia-usd-145",
+      "region": "Africa",
+      "country": "Namibia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 145,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "nepal-npr-84",
+      "region": "Asia",
+      "country": "Nepal",
+      "iso": null,
+      "currencyName": "Nepalese rupee",
+      "currencyCode": "NPR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 84,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "nepal-usd-147",
+      "region": "Asia",
+      "country": "Nepal",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 147,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "netherlands-eur-157",
+      "region": "Europe",
+      "country": "Netherlands",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 157,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "netherlands-usd-148",
+      "region": "Europe",
+      "country": "Netherlands",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 148,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "new-caledonia-usd-149",
+      "region": "Oceania",
+      "country": "New Caledonia",
+      "iso": "NC",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 149,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "new-zealand-nzd-180",
+      "region": "Oceania",
+      "country": "New Zealand",
+      "iso": null,
+      "currencyName": "new zealand dollar",
+      "currencyCode": "NZD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 180,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "new-zealand-usd-150",
+      "region": "Oceania",
+      "country": "New Zealand",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 150,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "nicaragua-nio-120",
+      "region": "Central America",
+      "country": "Nicaragua",
+      "iso": null,
+      "currencyName": "golden cordoba",
+      "currencyCode": "NIO",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 120,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "nicaragua-usd-151",
+      "region": "Central America",
+      "country": "Nicaragua",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 151,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "niger-xof-39",
+      "region": "Africa",
+      "country": "Niger",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XOF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 39,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "niger-usd-152",
+      "region": "Africa",
+      "country": "Niger",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 152,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "nigeria-ngn-40",
+      "region": "Africa",
+      "country": "Nigeria",
+      "iso": null,
+      "currencyName": "naira",
+      "currencyCode": "NGN",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 40,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "nigeria-usd-153",
+      "region": "Africa",
+      "country": "Nigeria",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 153,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "norway-nok-158",
+      "region": "Europe",
+      "country": "Norway",
+      "iso": null,
+      "currencyName": "Norwegian krone",
+      "currencyCode": "NOK",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 158,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "norway-usd-157",
+      "region": "Europe",
+      "country": "Norway",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 157,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "oman-omr-86",
+      "region": "Asia",
+      "country": "Oman",
+      "iso": null,
+      "currencyName": "omani rial",
+      "currencyCode": "OMR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 86,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "oman-usd-158",
+      "region": "Asia",
+      "country": "Oman",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 158,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "pakistan-usd-159",
+      "region": "Asia",
+      "country": "Pakistan",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 159,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "panama-pab-121",
+      "region": "Central America",
+      "country": "Panama",
+      "iso": null,
+      "currencyName": "balboa",
+      "currencyCode": "PAB",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 121,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "panama-usd-162",
+      "region": "Central America",
+      "country": "Panama",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 162,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "papua-new-guinea-pgk-182",
+      "region": "Oceania",
+      "country": "Papua New Guinea",
+      "iso": null,
+      "currencyName": "kina",
+      "currencyCode": "PGK",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 182,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "papua-new-guinea-usd-163",
+      "region": "Oceania",
+      "country": "Papua New Guinea",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 163,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "paraguay-pyg-195",
+      "region": "South America",
+      "country": "Paraguay",
+      "iso": null,
+      "currencyName": "guarani (guarani)",
+      "currencyCode": "PYG",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 195,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "paraguay-usd-164",
+      "region": "South America",
+      "country": "Paraguay",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 164,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "peru-pen-196",
+      "region": "South America",
+      "country": "Peru",
+      "iso": null,
+      "currencyName": "new salt",
+      "currencyCode": "PEN",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 196,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "peru-usd-165",
+      "region": "South America",
+      "country": "Peru",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 165,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "philippines-php-88",
+      "region": "Asia",
+      "country": "Philippines",
+      "iso": null,
+      "currencyName": "Philippine peso",
+      "currencyCode": "PHP",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 88,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "philippines-usd-166",
+      "region": "Asia",
+      "country": "Philippines",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 166,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "poland-pln-159",
+      "region": "Europe",
+      "country": "Poland",
+      "iso": null,
+      "currencyName": "zloty",
+      "currencyCode": "PLN",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 159,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "poland-usd-168",
+      "region": "Europe",
+      "country": "Poland",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 168,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "portugal-eur-160",
+      "region": "Europe",
+      "country": "Portugal",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 160,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "portugal-usd-169",
+      "region": "Europe",
+      "country": "Portugal",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 169,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "qatar-qar-89",
+      "region": "Asia",
+      "country": "Qatar",
+      "iso": null,
+      "currencyName": "Qatari rial",
+      "currencyCode": "QAR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 89,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "qatar-usd-170",
+      "region": "Asia",
+      "country": "Qatar",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 170,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "republic-of-south-africa-zar-41",
+      "region": "Africa",
+      "country": "Republic of South Africa",
+      "iso": null,
+      "currencyName": "rand",
+      "currencyCode": "ZAR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 41,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "republic-of-south-africa-usd-171",
+      "region": "Africa",
+      "country": "Republic of South Africa",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 171,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "republic-of-the-congo-cdf-42",
+      "region": "Africa",
+      "country": "Republic of the Congo",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "CDF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 42,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "republic-of-the-congo-usd-172",
+      "region": "Africa",
+      "country": "Republic of the Congo",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 172,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "romania-ron-161",
+      "region": "Europe",
+      "country": "Romania",
+      "iso": null,
+      "currencyName": "lei",
+      "currencyCode": "RON",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 161,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "romania-usd-173",
+      "region": "Europe",
+      "country": "Romania",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 173,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "rwanda-rwf-43",
+      "region": "Africa",
+      "country": "Rwanda",
+      "iso": null,
+      "currencyName": "Rwandan franc",
+      "currencyCode": "RWF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 43,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "rwanda-usd-175",
+      "region": "Africa",
+      "country": "Rwanda",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 175,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "saint-kitts-and-nevis-xcd-122",
+      "region": "Central America",
+      "country": "Saint Kitts and Nevis",
+      "iso": null,
+      "currencyName": "East Caribbean dollar",
+      "currencyCode": "XCD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 122,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "saint-kitts-and-nevis-usd-176",
+      "region": "Central America",
+      "country": "Saint Kitts and Nevis",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 176,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "saint-lucia-xcd-123",
+      "region": "Central America",
+      "country": "Saint Lucia",
+      "iso": null,
+      "currencyName": "East Caribbean dollar",
+      "currencyCode": "XCD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 123,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "saint-lucia-usd-177",
+      "region": "Central America",
+      "country": "Saint Lucia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 177,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "saint-vincent-and-the-grenadines-xcd-124",
+      "region": "Central America",
+      "country": "Saint Vincent and the Grenadines",
+      "iso": null,
+      "currencyName": "East Caribbean dollar",
+      "currencyCode": "XCD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 124,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "saint-vincent-and-the-grenadines-usd-179",
+      "region": "Central America",
+      "country": "Saint Vincent and the Grenadines",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 179,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "salvador-usd-125",
+      "region": "Central America",
+      "country": "Salvador",
+      "iso": null,
+      "currencyName": "U.S. dollar",
+      "currencyCode": "USD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 125,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "samoa-wst-183",
+      "region": "Oceania",
+      "country": "Samoa",
+      "iso": null,
+      "currencyName": "tala (Samoan dollar)",
+      "currencyCode": "WST",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 183,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "samoa-usd-181",
+      "region": "Oceania",
+      "country": "Samoa",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 181,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "san-marino-eur-162",
+      "region": "Europe",
+      "country": "San Marino",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 162,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "san-marino-usd-182",
+      "region": "Europe",
+      "country": "San Marino",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 182,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "sao-tome-and-principe-std-44",
+      "region": "Africa",
+      "country": "Sao Tome and Principe",
+      "iso": null,
+      "currencyName": "of good",
+      "currencyCode": "STD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 44,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "sao-tome-and-principe-usd-183",
+      "region": "Africa",
+      "country": "Sao Tome and Principe",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 183,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "saudi-arabia-sar-90",
+      "region": "Asia",
+      "country": "Saudi Arabia",
+      "iso": null,
+      "currencyName": "saudi arabia rial",
+      "currencyCode": "SAR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 90,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "saudi-arabia-usd-184",
+      "region": "Asia",
+      "country": "Saudi Arabia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 184,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "senegal-xof-45",
+      "region": "Africa",
+      "country": "Senegal",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "XOF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 45,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "senegal-usd-185",
+      "region": "Africa",
+      "country": "Senegal",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 185,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "serbia-rsd-163",
+      "region": "Europe",
+      "country": "Serbia",
+      "iso": null,
+      "currencyName": "Serbian dinar",
+      "currencyCode": "RSD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 163,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "serbia-usd-186",
+      "region": "Europe",
+      "country": "Serbia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 186,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "seychelles-scr-46",
+      "region": "Africa",
+      "country": "Seychelles",
+      "iso": null,
+      "currencyName": "Seychellois rupee",
+      "currencyCode": "SCR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 46,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "seychelles-usd-187",
+      "region": "Africa",
+      "country": "Seychelles",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 187,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "sierra-leone-sll-47",
+      "region": "Africa",
+      "country": "Sierra Leone",
+      "iso": null,
+      "currencyName": "leone",
+      "currencyCode": "SLL",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 47,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "sierra-leone-usd-188",
+      "region": "Africa",
+      "country": "Sierra Leone",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 188,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "singapore-sgd-91",
+      "region": "Asia",
+      "country": "Singapore",
+      "iso": null,
+      "currencyName": "Singapore dollar",
+      "currencyCode": "SGD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 91,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "singapore-usd-189",
+      "region": "Asia",
+      "country": "Singapore",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 189,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "slovak-republik-eur-164",
+      "region": "Europe",
+      "country": "Slovak Republik",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 164,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "slovenia-eur-165",
+      "region": "Europe",
+      "country": "Slovenia",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 165,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "slovenia-usd-192",
+      "region": "Europe",
+      "country": "Slovenia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 192,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "solomon-islands-sbd-184",
+      "region": "Oceania",
+      "country": "Solomon islands",
+      "iso": null,
+      "currencyName": "Solomon Islands dollar",
+      "currencyCode": "SBD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 184,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "solomon-islands-usd-193",
+      "region": "Oceania",
+      "country": "Solomon islands",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 193,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "south-korea-krw-92",
+      "region": "Asia",
+      "country": "South Korea",
+      "iso": null,
+      "currencyName": "Korean Won",
+      "currencyCode": "KRW",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 92,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "south-korea-usd-196",
+      "region": "Asia",
+      "country": "South Korea",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 196,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "spain-eur-166",
+      "region": "Europe",
+      "country": "Spain",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 166,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "spain-usd-198",
+      "region": "Europe",
+      "country": "Spain",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 198,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "sri-lanka-lkr-93",
+      "region": "Asia",
+      "country": "Sri Lanka",
+      "iso": null,
+      "currencyName": "sri lankan rupee",
+      "currencyCode": "LKR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 93,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "sri-lanka-usd-199",
+      "region": "Asia",
+      "country": "Sri Lanka",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 199,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "suriname-srd-198",
+      "region": "South America",
+      "country": "Suriname",
+      "iso": null,
+      "currencyName": "Surinamese guilder",
+      "currencyCode": "SRD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 198,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "suriname-usd-201",
+      "region": "South America",
+      "country": "Suriname",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 201,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "swaziland-szl-50",
+      "region": "Africa",
+      "country": "Swaziland",
+      "iso": null,
+      "currencyName": "lilangeni",
+      "currencyCode": "SZL",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 50,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "swaziland-usd-203",
+      "region": "Africa",
+      "country": "Swaziland",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 203,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "sweden-sek-167",
+      "region": "Europe",
+      "country": "Sweden",
+      "iso": null,
+      "currencyName": "Swedish krona",
+      "currencyCode": "SEK",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 167,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "sweden-usd-204",
+      "region": "Europe",
+      "country": "Sweden",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 204,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "switzerland-chf-168",
+      "region": "Europe",
+      "country": "Switzerland",
+      "iso": null,
+      "currencyName": "Swiss frank",
+      "currencyCode": "CHF",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 168,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "switzerland-usd-205",
+      "region": "Europe",
+      "country": "Switzerland",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 205,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "taiwan-twd-207",
+      "region": "",
+      "country": "Taiwan",
+      "iso": "TW",
+      "currencyName": "TWD",
+      "currencyCode": "TWD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 207,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "taiwan-usd-207",
+      "region": "Asia",
+      "country": "Taiwan",
+      "iso": "TW",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 207,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "tajikistan-tjs-95",
+      "region": "Asia",
+      "country": "Tajikistan",
+      "iso": null,
+      "currencyName": "samoni (Tajik ruble)",
+      "currencyCode": "TJS",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 95,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "tajikistan-usd-208",
+      "region": "Asia",
+      "country": "Tajikistan",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 208,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "tanzania-tzs-51",
+      "region": "Africa",
+      "country": "Tanzania",
+      "iso": null,
+      "currencyName": "Tanzanian shilling",
+      "currencyCode": "TZS",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 51,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "tanzania-usd-209",
+      "region": "Africa",
+      "country": "Tanzania",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 209,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "thailand-thb-96",
+      "region": "Asia",
+      "country": "Thailand",
+      "iso": null,
+      "currencyName": "baht",
+      "currencyCode": "THB",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 96,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "thailand-usd-210",
+      "region": "Asia",
+      "country": "Thailand",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 210,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "togo-top-52",
+      "region": "Africa",
+      "country": "Togo",
+      "iso": null,
+      "currencyName": "African franc",
+      "currencyCode": "TOP",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 52,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "togo-usd-211",
+      "region": "Africa",
+      "country": "Togo",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 211,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "tonga-top-185",
+      "region": "Oceania",
+      "country": "Tonga",
+      "iso": null,
+      "currencyName": "paanga (Tongan dollar)",
+      "currencyCode": "TOP",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 185,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "tonga-usd-213",
+      "region": "Oceania",
+      "country": "Tonga",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 213,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "trinidad-and-tobago-ttd-126",
+      "region": "Central America",
+      "country": "Trinidad and Tobago",
+      "iso": null,
+      "currencyName": "Trinidad and Tobago dollar",
+      "currencyCode": "TTD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 126,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "trinidad-and-tobago-usd-214",
+      "region": "Central America",
+      "country": "Trinidad and Tobago",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 214,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "tunisia-tnd-53",
+      "region": "Africa",
+      "country": "Tunisia",
+      "iso": null,
+      "currencyName": "Tunisian dinar",
+      "currencyCode": "TND",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 53,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "tunisia-usd-215",
+      "region": "Africa",
+      "country": "Tunisia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 215,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "turkey-try-97",
+      "region": "Asia",
+      "country": "Turkey",
+      "iso": null,
+      "currencyName": "Turkish lira",
+      "currencyCode": "TRY",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 97,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "turkey-usd-216",
+      "region": "Asia",
+      "country": "Turkey",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 216,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "turkmenistan-tmm-98",
+      "region": "Asia",
+      "country": "Turkmenistan",
+      "iso": null,
+      "currencyName": "manat",
+      "currencyCode": "TMM",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 98,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "turkmenistan-usd-217",
+      "region": "Asia",
+      "country": "Turkmenistan",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 217,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "uganda-ugx-54",
+      "region": "Africa",
+      "country": "Uganda",
+      "iso": null,
+      "currencyName": "New Ugandan Shilling",
+      "currencyCode": "UGX",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 54,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "uganda-usd-220",
+      "region": "Africa",
+      "country": "Uganda",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 220,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "ukraine-uah-169",
+      "region": "Europe",
+      "country": "Ukraine",
+      "iso": null,
+      "currencyName": "hryvnia",
+      "currencyCode": "UAH",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 169,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "ukraine-usd-221",
+      "region": "Europe",
+      "country": "Ukraine",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 221,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "united-arab-emirates-aed-99",
+      "region": "Asia",
+      "country": "United Arab Emirates",
+      "iso": null,
+      "currencyName": "United Arab Emirates dirham",
+      "currencyCode": "AED",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 99,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "united-arab-emirates-usd-222",
+      "region": "Asia",
+      "country": "United Arab Emirates",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 222,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "united-kingdom-gbp-170",
+      "region": "Europe",
+      "country": "United Kingdom",
+      "iso": null,
+      "currencyName": "GBP",
+      "currencyCode": "GBP",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 170,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "united-kingdom-usd-223",
+      "region": "Europe",
+      "country": "United Kingdom",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 223,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "uruguay-uyu-199",
+      "region": "South America",
+      "country": "Uruguay",
+      "iso": null,
+      "currencyName": "Uruguayan peso",
+      "currencyCode": "UYU",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 199,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "uruguay-usd-224",
+      "region": "South America",
+      "country": "Uruguay",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 224,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "usa-usd-173",
+      "region": "North America",
+      "country": "USA",
+      "iso": null,
+      "currencyName": "U.S. dollar",
+      "currencyCode": "USD",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 173,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "usa-usd-225",
+      "region": "North America",
+      "country": "USA",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 225,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "uzbekistan-uzs-100",
+      "region": "Asia",
+      "country": "Uzbekistan",
+      "iso": null,
+      "currencyName": "sum",
+      "currencyCode": "UZS",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 100,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "uzbekistan-usd-226",
+      "region": "Asia",
+      "country": "Uzbekistan",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 226,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "vanuatu-vuv-187",
+      "region": "Oceania",
+      "country": "Vanuatu",
+      "iso": null,
+      "currencyName": "cotton wool",
+      "currencyCode": "VUV",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 187,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "vanuatu-usd-227",
+      "region": "Oceania",
+      "country": "Vanuatu",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 227,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "vatican-eur-171",
+      "region": "Europe",
+      "country": "Vatican",
+      "iso": null,
+      "currencyName": "Euro",
+      "currencyCode": "EUR",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 3,
+      "providerFxReferencePct": 0.2,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 171,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "vatican-usd-228",
+      "region": "Europe",
+      "country": "Vatican",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 228,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "venezuela-veb-200",
+      "region": "South America",
+      "country": "Venezuela",
+      "iso": "VE",
+      "currencyName": "bolivar",
+      "currencyCode": "VEB",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 200,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "venezuela-usd-229",
+      "region": "South America",
+      "country": "Venezuela",
+      "iso": "VE",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 229,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "vietnam-vnd-101",
+      "region": "Asia",
+      "country": "Vietnam",
+      "iso": null,
+      "currencyName": "dong",
+      "currencyCode": "VND",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 101,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "vietnam-usd-230",
+      "region": "Asia",
+      "country": "Vietnam",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 230,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "wallis-and-futuna-islands-usd-233",
+      "region": "Oceania",
+      "country": "Wallis and Futuna Islands",
+      "iso": "WF",
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 233,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "yemen-yer-102",
+      "region": "Asia",
+      "country": "Yemen",
+      "iso": null,
+      "currencyName": "Yemeni rial",
+      "currencyCode": "YER",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 102,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "yemen-usd-234",
+      "region": "Asia",
+      "country": "Yemen",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 234,
+        "columns": "K/L"
+      }
+    },
+    {
+      "id": "zambia-zmk-55",
+      "region": "Africa",
+      "country": "Zambia",
+      "iso": null,
+      "currencyName": "kwacha",
+      "currencyCode": "ZMK",
+      "payoutType": "local",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": 0.5,
+      "source": {
+        "sheet": "Local_payment CA",
+        "row": 55,
+        "columns": "R/S"
+      }
+    },
+    {
+      "id": "zambia-usd-235",
+      "region": "Africa",
+      "country": "Zambia",
+      "iso": null,
+      "currencyName": "US dollar",
+      "currencyCode": "USD",
+      "payoutType": "usd",
+      "providerFixedFeeUsd": 10,
+      "providerFxReferencePct": null,
+      "source": {
+        "sheet": "USD_payment CA",
+        "row": 235,
+        "columns": "K/L"
+      }
+    }
+  ]
+}

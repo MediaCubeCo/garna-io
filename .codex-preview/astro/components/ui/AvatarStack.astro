@@ -1,0 +1,9 @@
+---
+interface Avatar { src: string; alt: string; }
+interface Props { avatars: Avatar[]; class?: string; }
+const { avatars, class: className = '' } = Astro.props;
+---
+
+<div class:list={['flex -space-x-3', className]}>
+	{avatars.map((avatar) => <img src={avatar.src} alt={avatar.alt} class="h-8 w-8 rounded-full border-2 border-[#0c0c0c] object-cover" loading="lazy" />)}
+</div>

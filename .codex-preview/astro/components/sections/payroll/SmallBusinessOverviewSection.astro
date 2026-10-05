@@ -1,0 +1,42 @@
+---
+import Section from '../../layout/Section.astro';
+import PayrollAutomationVisual from '../../visuals/PayrollAutomationVisual.astro';
+---
+
+<Section contained={false} spacing="none" class="relative py-20 lg:py-28">
+            <div class="garna-container">
+                <div class="reveal max-w-5xl text-left font-manrope">
+                        <h2 class="max-w-4xl text-left text-4xl font-normal leading-tight text-white lg:text-5xl font-manrope" data-translate="intro.title" data-title-break-after-words="en:4,ru:5,pt:5,es:6">
+                            Payroll That Actually Works<br>for Small Businesses
+                        </h2>
+                </div>
+
+                <div class="reveal mt-10 w-full border-y border-white/10 py-8" style="--delay: 80ms">
+                    <div class="grid gap-y-6">
+                        <div class="grid gap-4 md:grid-cols-[3.5rem_minmax(0,1fr)]">
+                            <span class="font-manrope text-sm font-semibold text-[#CBF300]">01</span>
+                            <div>
+                                <h3 class="text-base font-semibold text-white font-manrope" data-translate="intro.point1.title">Payroll shouldn’t slow your business down</h3>
+                                <p class="mt-2 text-sm leading-6 text-gray-400" data-translate="intro.point1.description">
+                                    Payroll shouldn’t slow your business down. For small businesses, payroll can turn into chaos: endless tables, manual recalculation of taxes, and the fear of missing a deadline. Every hour spent on accounting and administration is an hour stolen from your growth.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid gap-4 md:grid-cols-[3.5rem_minmax(0,1fr)]">
+                            <span class="font-manrope text-sm font-semibold text-[#CBF300]">02</span>
+                            <div>
+                                <h3 class="text-base font-semibold text-white font-manrope" data-translate="intro.point2.title">With Garna, the calculation takes no time</h3>
+                            </div>
+                        </div>
+                        <div class="grid gap-4 md:grid-cols-[3.5rem_minmax(0,1fr)]">
+                            <span class="font-manrope text-sm font-semibold text-[#CBF300]">03</span>
+                            <div>
+                                <h3 class="text-base font-semibold text-white font-manrope" data-translate="intro.point3.title">Save all essentials in one place</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <PayrollAutomationVisual />
+            </div>
+        </Section>

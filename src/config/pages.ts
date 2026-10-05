@@ -79,12 +79,6 @@ export const basePaths: PageConfig[] = [
 		showHeader: false,
 	},
 	{
-		path: 'ai-hiring',
-		mode: 'static',
-		searchable: true,
-		showHeader: true,
-	},
-	{
 		path: 'white-label-payroll',
 		mode: 'static',
 		searchable: true,
@@ -114,6 +108,20 @@ export const basePaths: PageConfig[] = [
 		path: 'employer-of-record',
 		mode: 'static',
 		searchable: true,
+		showHeader: true,
+		languages: ['en', 'es', 'pt', 'ru'],
+	},
+	{
+		path: 'global-invoicing',
+		mode: 'static',
+		searchable: false,
+		showHeader: false,
+		languages: ['en', 'es', 'pt', 'ru'],
+	},
+	{
+		path: 'business-account',
+		mode: 'static',
+		searchable: false,
 		showHeader: true,
 		languages: ['en', 'es', 'pt', 'ru'],
 	},

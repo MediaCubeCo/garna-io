@@ -8,7 +8,7 @@ export const whiteLabelEn = {
 		"badge": "White Label contractor management & contractor of record platform",
 		"title": "White Label Payroll Solutions for Business",
 		"description": "Scale your business without operational chaos: automate compliance and global contractor payments under your own brand",
-		"cta": "Try Demo Version"
+		"cta": "Book a demo"
 	},
 	"dashboard": {
 		"title": "Global Payouts Overview",
@@ -180,7 +180,7 @@ export const whiteLabelEn = {
 	"finalCta": {
 		"title": "Become a Market Leader with Garna White Label Solution",
 		"description": "Launch a global contractor management service under your own brand today",
-		"button": "Request Demo Version"
+		"button": "Book a demo"
 	},
 	"status": {
 		"globalStatus": "GLOBAL STATUS",

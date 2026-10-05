@@ -1,0 +1,48 @@
+---
+import type { LocalizedText } from '../../types/localized-text';
+
+interface Props {
+	kicker?: LocalizedText;
+	title: LocalizedText;
+	description?: LocalizedText;
+	align?: 'left' | 'center';
+	class?: string;
+	titleClass?: string;
+	descriptionClass?: string;
+}
+
+const {
+	kicker,
+	title,
+	description,
+	align = 'center',
+	class: className = '',
+	titleClass = '',
+	descriptionClass = '',
+} = Astro.props;
+---
+
+<header class:list={[
+	align === 'center' ? 'mx-auto text-center' : 'text-left',
+	className,
+]}>
+	{kicker && <div class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#CBF300]" data-translate={kicker.translateKey}>{kicker.text}</div>}
+	<h2
+		class:list={[
+			'font-manrope text-4xl font-normal leading-tight tracking-tight text-white md:text-5xl',
+			titleClass,
+		]}
+		data-translate={title.translateKey}
+	>
+		{title.text}
+	</h2>
+	{description && (
+		<p
+			data-garna-subtitle
+			class:list={['mt-6 font-manrope text-lg leading-relaxed md:text-xl', descriptionClass]}
+			data-translate={description.translateKey}
+		>
+			{description.text}
+		</p>
+	)}
+</header>

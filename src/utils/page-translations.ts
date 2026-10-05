@@ -5,6 +5,10 @@ import { getHeaderTranslations } from '../i18n/translations/header';
 
 const FOOTER_LANG_SELECT_PLACEHOLDER = '<!-- FOOTER_LANG_SELECT -->';
 const FOOTER_LEGAL_LINKS_PLACEHOLDER = '<!-- FOOTER_LEGAL_LINKS -->';
+const FOOTER_LANG_SELECT_START = '<!-- FOOTER_LANG_SELECT_START -->';
+const FOOTER_LANG_SELECT_END = '<!-- FOOTER_LANG_SELECT_END -->';
+const FOOTER_LEGAL_LINKS_START = '<!-- FOOTER_LEGAL_LINKS_START -->';
+const FOOTER_LEGAL_LINKS_END = '<!-- FOOTER_LEGAL_LINKS_END -->';
 
 /**
  * Builds the same-page URL for a given language (worker-side).
@@ -50,6 +54,12 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'eor' || pageName === 'employer-of-record') {
 		return `/${segment}/employer-of-record`;
 	}
+	if (pageName === 'ads-landing') {
+		return `/${segment}/global-invoicing`;
+	}
+	if (pageName === 'business-account') {
+		return `/${segment}/business-account`;
+	}
 	return `/${segment}`;
 }
 
@@ -58,7 +68,7 @@ function getLanguagePagePath(pageName: string, lang: string): string {
  * Custom dropdown with styles and animation copied entirely from SelectForm (selectForm.module.css).
  * Injected server-side; on option click navigates to the same page in the selected language.
  */
-function buildFooterLangSelectHtml(
+export function buildFooterLangSelectHtml(
 	pageName: string,
 	currentLanguage: string,
 	languageLabel: string,
@@ -147,6 +157,19 @@ function buildFooterLangSelectHtml(
 	);
 }
 
+export function buildFooterLegalLinksHtml(currentLanguage: string): string {
+	const langParam = currentLanguage.toLowerCase();
+	const agreementUrl = `https://app.garna.io/api/documents/agreement?lang=${escapeHtml(langParam)}`;
+	const privacyUrl = `https://app.garna.io/api/documents/privacy?lang=${escapeHtml(langParam)}`;
+
+	return (
+		'<nav class="footer-legal-links flex flex-wrap items-center gap-x-3 gap-y-1 mt-3 md:mt-4 text-sm text-gray-500 font-manrope" aria-label="Legal">' +
+		`<a href="${agreementUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.termsOfService">Terms of Service</a>` +
+		`<a href="${privacyUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.privacyPolicy">Privacy Policy</a>` +
+		'</nav>'
+	);
+}
+
 export function injectPageTranslations(
 	html: string,
 	pageName: string,
@@ -209,19 +232,16 @@ export function injectPageTranslations(
 		);
 		if (html.includes(FOOTER_LANG_SELECT_PLACEHOLDER)) {
 			html = html.replace(FOOTER_LANG_SELECT_PLACEHOLDER, footerLangSelectHtml);
+		} else {
+			html = replaceMarkedBlock(html, FOOTER_LANG_SELECT_START, FOOTER_LANG_SELECT_END, footerLangSelectHtml);
 		}
 
 		// Footer legal links (Privacy Policy, Terms of Service) with current lang in URL
-		const langParam = currentLanguage.toLowerCase();
-		const agreementUrl = `https://app.garna.io/api/documents/agreement?lang=${escapeHtml(langParam)}`;
-		const privacyUrl = `https://app.garna.io/api/documents/privacy?lang=${escapeHtml(langParam)}`;
-		const footerLegalLinksHtml =
-			'<nav class="footer-legal-links flex flex-wrap items-center gap-x-3 gap-y-1 mt-3 md:mt-4 text-sm text-gray-500 font-manrope" aria-label="Legal">' +
-			`<a href="${agreementUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.termsOfService">Terms of Service</a>` +
-			`<a href="${privacyUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.privacyPolicy">Privacy Policy</a>` +
-			'</nav>';
+		const footerLegalLinksHtml = buildFooterLegalLinksHtml(currentLanguage);
 		if (html.includes(FOOTER_LEGAL_LINKS_PLACEHOLDER)) {
 			html = html.replace(FOOTER_LEGAL_LINKS_PLACEHOLDER, footerLegalLinksHtml);
+		} else {
+			html = replaceMarkedBlock(html, FOOTER_LEGAL_LINKS_START, FOOTER_LEGAL_LINKS_END, footerLegalLinksHtml);
 		}
 
 		{
@@ -346,17 +366,25 @@ export function injectPageTranslations(
 			};
 
 			html = html.replace(
-				/<([a-zA-Z][a-zA-Z0-9:-]*)([^>]*\sdata-translate-(alt|placeholder|value)=["']([^"']+)["'][^>]*)>/gi,
-				(match: string, tagName: string, attributes: string, target: string, key: string) => {
-					const translation = getNestedValue(currentTranslations, key);
-					if (translation === undefined || translation === null) return match;
+				/<([a-zA-Z][a-zA-Z0-9:-]*)([^>]*\sdata-translate-(?:alt|aria-label|placeholder|title|value|select-label-text)=["'][^"']+["'][^>]*)>/gi,
+				(match: string, tagName: string, attributes: string) => {
+					let nextAttributes = attributes;
+					const translationAttributePattern = /\sdata-translate-(alt|aria-label|placeholder|title|value|select-label-text)=["']([^"']+)["']/gi;
+					let markerMatch: RegExpExecArray | null;
 
-					const targetAttribute = target === 'alt' ? 'alt' : target;
-					const escapedTranslation = escapeHtml(String(translation));
-					const attributePattern = new RegExp(`\\s${targetAttribute}=["'][^"']*["']`, 'i');
-					const nextAttributes = attributePattern.test(attributes)
-						? attributes.replace(attributePattern, ` ${targetAttribute}="${escapedTranslation}"`)
-						: `${attributes} ${targetAttribute}="${escapedTranslation}"`;
+					while ((markerMatch = translationAttributePattern.exec(attributes)) !== null) {
+						const [, target, key] = markerMatch;
+						const translation = getNestedValue(currentTranslations, key);
+						if (translation === undefined || translation === null) continue;
+
+						const targetAttribute = target === 'select-label-text' ? 'data-select-label-text' : target;
+						const escapedTargetAttribute = targetAttribute.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+						const escapedTranslation = escapeHtml(String(translation));
+						const attributePattern = new RegExp(`\\s${escapedTargetAttribute}=["'][^"']*["']`, 'i');
+						nextAttributes = attributePattern.test(nextAttributes)
+							? nextAttributes.replace(attributePattern, ` ${targetAttribute}="${escapedTranslation}"`)
+							: `${nextAttributes} ${targetAttribute}="${escapedTranslation}"`;
+					}
 
 					return `<${tagName}${nextAttributes}>`;
 				}
@@ -447,11 +475,28 @@ export function injectPageTranslations(
 				const translation = getNestedValue(currentTranslations, key);
 				if (translation !== undefined && translation !== null) {
 					const translationStr = String(translation);
+					const breakAttribute = attributes.match(/\sdata-(?:title|description)-break-after-words=["']([^"']+)["']/i)?.[1];
+					let translatedContent = translationStr;
+					if (breakAttribute) {
+						const language = currentLanguage.toLowerCase();
+						const breakAfterWords = breakAttribute.includes(':')
+							? Number(
+									breakAttribute
+										.split(',')
+										.map((entry) => entry.trim().split(':'))
+										.find(([entryLanguage]) => entryLanguage?.toLowerCase() === language)?.[1]
+								)
+							: Number(breakAttribute);
+						const words = translationStr.trim().split(/\s+/);
+						if (Number.isInteger(breakAfterWords) && breakAfterWords > 0 && words.length > breakAfterWords) {
+							translatedContent = `${words.slice(0, breakAfterWords).join(' ')}<br class="hidden md:block"><span class="md:hidden"> </span>${words.slice(breakAfterWords).join(' ')}`;
+						}
+					}
 					const before = html.substring(0, startIndex);
 					const after = html.substring(endIndex);
 					const openTag = `<${tagName}${attributes}>`;
 					const closeTag = `</${tagName}>`;
-					html = before + openTag + translationStr + closeTag + after;
+					html = before + openTag + translatedContent + closeTag + after;
 				}
 			}
 
@@ -473,6 +518,14 @@ export function injectPageTranslations(
 	} catch {
 		return html; // Return original HTML on error
 	}
+}
+
+function replaceMarkedBlock(html: string, startMarker: string, endMarker: string, replacement: string): string {
+	const startIndex = html.indexOf(startMarker);
+	const endIndex = html.indexOf(endMarker, startIndex + startMarker.length);
+	if (startIndex < 0 || endIndex < 0) return html;
+
+	return `${html.slice(0, startIndex + startMarker.length)}${replacement}${html.slice(endIndex)}`;
 }
 
 /**

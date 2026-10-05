@@ -1,0 +1,272 @@
+---
+import Section from '../../layout/Section.astro';
+
+const products = [
+	{ key: 'eor', title: 'Employer of Record', titleKey: 'moreThanAccount.products.eor.title', description: 'Scale your team faster with EOR solution', descriptionKey: 'moreThanAccount.products.eor.description' },
+	{ key: 'perks', title: 'Business Perks & Discounts', titleKey: 'moreThanAccount.products.perks.title', description: 'Get discounts for 100+ services that eat your budget', descriptionKey: 'moreThanAccount.products.perks.description' },
+	{ key: 'cor', title: 'Contractor of Record', titleKey: 'moreThanAccount.products.cor.title', description: 'Onboard, contract and pay your contractors globally', descriptionKey: 'moreThanAccount.products.cor.description' },
+];
+---
+
+<Section
+	id="more-than-a-business-account"
+	title={{ text: 'More than a Business Account', translateKey: 'moreThanAccount.title' }}
+	description={{ text: 'One platform to run payroll for freelancers, remote employees, and full-time teams.', translateKey: 'moreThanAccount.description' }}
+	spacing="spacious"
+	headerClass="mb-16 max-w-5xl lg:mb-20"
+	titleClass="mx-auto max-w-4xl lg:text-5xl"
+	descriptionClass="mx-auto max-w-2xl"
+	contentClass="business-products-grid"
+>
+	{products.map((product) => (
+		<article class="business-product-card glass-card" data-card-glow="true" data-interactive="true">
+			<h3 data-translate={product.titleKey}>{product.title}</h3>
+			<p data-translate={product.descriptionKey}>{product.description}</p>
+
+			{product.key === 'eor' && (
+				<div class="employee-profile" aria-label="Employee record">
+					<div class="business-product-visual-canvas business-product-visual-canvas--employee">
+						<span class="employee-profile__sheet-back employee-profile__sheet-back--left" aria-hidden="true"></span>
+						<span class="employee-profile__sheet-back employee-profile__sheet-back--right" aria-hidden="true"></span>
+						<div class="employee-profile__sheet">
+							<div class="employee-profile__file-header">
+								<small data-translate="moreThanAccount.products.eor.fileLabel">Personnel file</small>
+								<span class="employee-profile__status"><i aria-hidden="true">✓</i><span data-translate="moreThanAccount.products.eor.status">Hired</span></span>
+							</div>
+							<div class="employee-profile__identity">
+								<img
+									src="/pages/payroll-solution-new/assets/contractor-avatar-maya-v2.webp"
+									alt="Maya Chen"
+									loading="lazy"
+								/>
+								<span>
+									<strong>Maya Chen</strong>
+									<small data-translate="moreThanAccount.products.eor.role">Product Designer</small>
+									<small data-translate="moreThanAccount.products.eor.country">Germany</small>
+								</span>
+							</div>
+							<div class="employee-profile__fields" aria-hidden="true">
+								<span><i></i><i></i></span>
+								<span><i></i><i></i></span>
+								<span><i></i><i></i></span>
+								<span><i></i><i></i></span>
+								<span><i></i><i></i></span>
+							</div>
+							<div class="employee-profile__footer">
+								<small data-translate="moreThanAccount.products.eor.providerLabel">Employer of record</small>
+								<strong>Garna</strong>
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
+
+			{product.key === 'perks' && (
+				<div class="service-offer" aria-label="Partner service discount">
+					<div class="business-product-visual-canvas business-product-visual-canvas--service">
+						<span class="service-offer__ticket-back service-offer__ticket-back--far" aria-hidden="true"><i>M</i><b class="service-offer__ticket-notch"></b><svg class="service-offer__ticket-outline" viewBox="0 0 280 152" preserveAspectRatio="none" aria-hidden="true"><path class="service-offer__ticket-outline-path--lime" d="M 16 0 H 119.2 A 9.6 9.6 0 0 0 128.8 9.6 M 128.8 142.4 A 9.6 9.6 0 0 0 119.2 152 H 16 Q 0 152 0 136 V 16 Q 0 0 16 0" /><path class="service-offer__ticket-outline-path--graphite" d="M 128.8 9.6 A 9.6 9.6 0 0 0 138.4 0 H 264 Q 280 0 280 16 V 136 Q 280 152 264 152 H 138.4 A 9.6 9.6 0 0 0 128.8 142.4" /></svg></span>
+						<span class="service-offer__ticket-back service-offer__ticket-back--middle" aria-hidden="true"><i>N</i><b class="service-offer__ticket-notch"></b><svg class="service-offer__ticket-outline" viewBox="0 0 280 152" preserveAspectRatio="none" aria-hidden="true"><path class="service-offer__ticket-outline-path--lime" d="M 16 0 H 119.2 A 9.6 9.6 0 0 0 128.8 9.6 M 128.8 142.4 A 9.6 9.6 0 0 0 119.2 152 H 16 Q 0 152 0 136 V 16 Q 0 0 16 0" /><path class="service-offer__ticket-outline-path--graphite" d="M 128.8 9.6 A 9.6 9.6 0 0 0 138.4 0 H 264 Q 280 0 280 16 V 136 Q 280 152 264 152 H 138.4 A 9.6 9.6 0 0 0 128.8 142.4" /></svg></span>
+						<span class="service-offer__ticket-back service-offer__ticket-back--near" aria-hidden="true"><i>V</i><b class="service-offer__ticket-notch"></b><svg class="service-offer__ticket-outline" viewBox="0 0 280 152" preserveAspectRatio="none" aria-hidden="true"><path class="service-offer__ticket-outline-path--lime" d="M 16 0 H 119.2 A 9.6 9.6 0 0 0 128.8 9.6 M 128.8 142.4 A 9.6 9.6 0 0 0 119.2 152 H 16 Q 0 152 0 136 V 16 Q 0 0 16 0" /><path class="service-offer__ticket-outline-path--graphite" d="M 128.8 9.6 A 9.6 9.6 0 0 0 138.4 0 H 264 Q 280 0 280 16 V 136 Q 280 152 264 152 H 138.4 A 9.6 9.6 0 0 0 128.8 142.4" /></svg></span>
+						<div class="service-offer__ticket">
+							<div class="service-offer__discount">
+								<small data-translate="moreThanAccount.products.perks.benefitLabel">Discount</small>
+								<strong>20%</strong>
+							</div>
+							<span class="service-offer__perforation" aria-hidden="true"></span>
+							<div class="service-offer__details">
+								<small data-translate="moreThanAccount.products.perks.offerLabel">Partner service</small>
+								<strong>Avento Workspace</strong>
+								<span data-translate="moreThanAccount.products.perks.benefitMeta">Annual team plan</span>
+							</div>
+							<svg class="service-offer__ticket-outline" viewBox="0 0 280 152" preserveAspectRatio="none" aria-hidden="true"><path class="service-offer__ticket-outline-path--lime" d="M 16 0 H 119.2 A 9.6 9.6 0 0 0 128.8 9.6 M 128.8 142.4 A 9.6 9.6 0 0 0 119.2 152 H 16 Q 0 152 0 136 V 16 Q 0 0 16 0" /><path class="service-offer__ticket-outline-path--graphite" d="M 128.8 9.6 A 9.6 9.6 0 0 0 138.4 0 H 264 Q 280 0 280 16 V 136 Q 280 152 264 152 H 138.4 A 9.6 9.6 0 0 0 128.8 142.4" /></svg>
+						</div>
+					</div>
+				</div>
+			)}
+
+			{product.key === 'cor' && (
+				<div class="contract-agreement" aria-label="Contractor records folder">
+					<div class="business-product-visual-canvas business-product-visual-canvas--contract">
+						<div class="contractor-folder">
+							<div class="contractor-folder__insert contractor-folder__insert--back"></div>
+							<div class="contractor-folder__insert contractor-folder__insert--middle"></div>
+							<div class="contractor-folder__insert contractor-folder__insert--front"></div>
+							<div class="contractor-folder__body">
+								<svg class="contractor-folder__shape" viewBox="0 0 280 181" preserveAspectRatio="none" aria-hidden="true">
+									<path d="M 1 16 V 12 C 1 6 6 1 12 1 H 112 C 118 1 121 4 125 9 L 131 16 H 268 C 274 16 279 21 279 27 V 169 C 279 175 274 180 268 180 H 12 C 6 180 1 175 1 169 Z" />
+								</svg>
+								<div class="contractor-folder__label">
+									<small data-translate="moreThanAccount.products.cor.fileLabel">Contractor file</small>
+									<strong>Alex Morgan</strong>
+									<span data-translate="moreThanAccount.products.cor.contractor">Contractor</span>
+									<span class="contractor-folder__contents" data-translate="moreThanAccount.products.cor.contents">Payables · Agreements · Invoices</span>
+								</div>
+								<div class="contractor-folder__provider">
+									<small data-translate="moreThanAccount.products.cor.managedBy">Managed by</small>
+									<strong>Garna</strong>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
+		</article>
+	))}
+</Section>
+
+<style>
+	:global(.business-products-grid) { display: grid; grid-auto-rows: 1fr; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+
+	.business-product-card {
+		--garna-card-glow-x: 50%; --garna-card-glow-y: 50%; --garna-card-glow-radius: 60vw; --business-visual-graphite: #17191b;
+		position: relative; isolation: isolate; display: flex; min-height: 500px; flex-direction: column; align-items: center; overflow: hidden;
+		padding: 2rem; border: 1px solid rgb(255 255 255 / 0.08); border-radius: 1.5rem; background: rgb(12 12 12 / 0.72); text-align: center;
+		transition: border-color 300ms ease;
+	}
+	.business-product-card::before { position: absolute; inset: 0; z-index: 0; border-radius: inherit; background: radial-gradient(circle var(--garna-card-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y), rgb(255 255 255 / 0.12), rgb(255 255 255 / 0.045) 38%, transparent 70%); content: ''; opacity: 0; pointer-events: none; transition: opacity 300ms ease; }
+	.business-product-card > * { position: relative; z-index: 1; }
+	.business-product-card:is(:hover, :focus-within, [data-pointer-active='true']) { border-color: rgb(255 255 255 / 0.15); }
+	@media (hover: hover) and (pointer: fine) { .business-product-card:is(:hover, :focus-within, [data-pointer-active='true'])::before { opacity: 1; } }
+
+	.business-product-card h3 { max-width: 26rem; margin: 0 auto; color: #fff; font: 500 26px/1.2 Manrope, sans-serif; letter-spacing: -0.025em; }
+	.business-product-card > p { max-width: 26rem; margin: 1rem auto 0; color: rgb(255 255 255 / 0.52); font: 600 1rem/1.6 Manrope, sans-serif; }
+
+	.employee-profile,
+	.service-offer,
+	.contract-agreement { container-type: inline-size; }
+
+	.business-product-visual-canvas {
+		--business-product-visual-reference-width: 19rem;
+		position: relative;
+		flex: 0 0 auto;
+		transform-origin: center;
+		scale: min(1.3, calc(100cqw / var(--business-product-visual-reference-width)));
+	}
+
+	.business-product-visual-canvas--employee {
+		--business-product-visual-width: 14.75rem;
+		display: flex;
+		width: var(--business-product-visual-width);
+		height: 15.75rem;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.business-product-visual-canvas--service {
+		--business-product-visual-width: 19rem;
+		display: grid;
+		width: var(--business-product-visual-width);
+		height: 12.5rem;
+		place-items: center;
+		transform: translateX(-0.75rem);
+	}
+
+	.business-product-visual-canvas--contract {
+		--business-product-visual-width: 17.5rem;
+		width: var(--business-product-visual-width);
+		height: 14.25rem;
+	}
+
+	.employee-profile {
+		position: relative;
+		display: flex;
+		flex: 1;
+		width: 100%;
+		min-height: 250px;
+		align-items: center;
+		justify-content: center;
+		margin-top: 1rem;
+		text-align: left;
+	}
+	.employee-profile__sheet-back { position: absolute; top: 50%; left: 50%; width: 11.45rem; height: 14.2rem; border: 1px solid rgb(255 255 255 / .07); border-radius: .55rem; background: #0a0b0c; pointer-events: none; }
+	.employee-profile__sheet-back--left { transform: translate(-64%, -50%); }
+	.employee-profile__sheet-back--right { transform: translate(-36%, -50%); }
+	.employee-profile__sheet { position: relative; z-index: 1; display: flex; width: 12.7rem; height: 15.4rem; flex-direction: column; border: 1px solid rgb(255 255 255 / .1); border-radius: .6rem; background: #08090a; padding: 1rem 1rem .9rem; color: #fff; }
+	.employee-profile__file-header { display: flex; align-items: center; justify-content: space-between; gap: .65rem; border-bottom: 1px solid rgb(255 255 255 / .1); padding-bottom: .65rem; }
+	.employee-profile__file-header > small { color: rgb(255 255 255 / .48); font: 700 .52rem/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+
+	.employee-profile__identity {
+		display: grid;
+		grid-template-columns: 3.6rem minmax(0, 1fr);
+		align-items: center;
+		gap: .72rem;
+		padding: .9rem 0 .8rem;
+	}
+	.employee-profile__identity > img { width: 3.6rem; height: 3.6rem; border: 1px solid rgb(255 255 255 / .12); border-radius: .35rem; object-fit: cover; filter: saturate(.82); }
+	.employee-profile__identity > span { display: flex; min-width: 0; flex-direction: column; gap: .26rem; }
+	.employee-profile__identity strong { color: #fff; font: 650 .86rem/1.15 Manrope, sans-serif; }
+	.employee-profile__identity small { color: rgb(255 255 255 / .52); font: 600 .58rem/1.35 Manrope, sans-serif; }
+
+	.employee-profile__status {
+		display: inline-flex;
+		align-items: center;
+		gap: .3rem;
+		color: #cbf300;
+		font: 700 .52rem/1 Manrope, sans-serif;
+		white-space: nowrap;
+	}
+	.employee-profile__status i { display: grid; width: .9rem; height: .9rem; place-items: center; border-radius: 50%; background: #cbf300; color: #090a0a; font: normal 850 .48rem/1 Manrope, sans-serif; }
+	.employee-profile__fields { display: grid; gap: .5rem; border-top: 1px solid rgb(255 255 255 / .09); padding-top: .78rem; }
+	.employee-profile__fields > span { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); gap: .65rem; }
+	.employee-profile__fields i { display: block; height: .27rem; border-radius: 999px; background: rgb(255 255 255 / .12); }
+	.employee-profile__fields i:last-child { width: 78%; }
+	.employee-profile__footer { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-top: auto; border-top: 1px solid rgb(255 255 255 / .1); padding-top: .72rem; }
+	.employee-profile__footer small { color: rgb(255 255 255 / .42); font: 700 .48rem/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
+	.employee-profile__footer strong { color: rgb(255 255 255 / .82); font: 650 .65rem/1 Manrope, sans-serif; }
+
+	.service-offer {
+		position: relative;
+		display: flex;
+		width: 100%;
+		min-height: 250px;
+		align-items: center;
+		justify-content: center;
+		margin-top: auto;
+		text-align: center;
+	}
+
+	.service-offer__ticket-back { position: absolute; width: 17.5rem; height: 9.5rem; box-sizing: border-box; overflow: hidden; border: 0; border-radius: 1rem; backface-visibility: hidden; background: var(--business-visual-graphite); box-shadow: 0 .8rem 2rem -1.4rem rgb(0 0 0 / .85); clip-path: path("M 16 0 H 119.2 A 9.6 9.6 0 0 0 138.4 0 H 264 Q 280 0 280 16 V 136 Q 280 152 264 152 H 138.4 A 9.6 9.6 0 0 0 119.2 152 H 16 Q 0 152 0 136 V 16 Q 0 0 16 0 Z"); opacity: 1; pointer-events: none; transform-origin: 100% 100%; will-change: transform; }
+	.service-offer__ticket-back::before { position: absolute; inset: 0 54% 0 0; border-radius: 1rem 0 0 1rem; background: #9ab900; box-shadow: inset .5px 0 rgb(8 9 10 / .14), inset 0 .5px rgb(8 9 10 / .14), inset 0 -.5px rgb(8 9 10 / .14); content: ''; }
+	.service-offer__ticket-back::after { position: absolute; inset: 0 0 0 46%; border-radius: 0 1rem 1rem 0; box-shadow: inset -.5px 0 rgb(255 255 255 / .075), inset 0 .5px rgb(255 255 255 / .075), inset 0 -.5px rgb(255 255 255 / .075); content: ''; }
+	.service-offer__ticket-back > i { position: absolute; top: .72rem; left: 1rem; z-index: 1; display: grid; width: 1.25rem; height: 1.25rem; place-items: center; border-radius: .36rem; color: #08090a; font: normal 800 .55rem/1 Manrope, sans-serif; }
+	.service-offer__ticket-notch { display: none; }
+	.service-offer__ticket-outline { position: absolute; inset: 0; z-index: 4; display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+	.service-offer__ticket-outline path { fill: none; vector-effect: non-scaling-stroke; }
+	.service-offer__ticket-outline-path--lime { stroke: rgb(8 9 10 / .18); stroke-width: 1.1; }
+	.service-offer__ticket-outline-path--graphite { stroke: rgb(255 255 255 / .09); stroke-width: 1.5; }
+	.service-offer__ticket-back--far { transform: rotate(10deg); }
+	.service-offer__ticket-back--middle { transform: rotate(6.75deg); }
+	.service-offer__ticket-back--near { transform: rotate(3.5deg); }
+	.service-offer__ticket { position: relative; z-index: 1; display: grid; width: 17.5rem; grid-template-columns: minmax(0, .92fr) 1px minmax(0, 1.08fr); overflow: hidden; border-radius: 1rem; background: var(--business-visual-graphite); box-shadow: 0 1.5rem 3.5rem -2rem rgb(0 0 0 / .8); clip-path: path("M 16 0 H 119.2 A 9.6 9.6 0 0 0 138.4 0 H 264 Q 280 0 280 16 V 136 Q 280 152 264 152 H 138.4 A 9.6 9.6 0 0 0 119.2 152 H 16 Q 0 152 0 136 V 16 Q 0 0 16 0 Z"); color: #fff; text-align: left; }
+	.service-offer__discount { display: flex; min-height: 9.5rem; box-sizing: border-box; flex-direction: column; justify-content: center; padding: 1.25rem 1rem 1.2rem 1.15rem; border-radius: 1rem 0 0 1rem; background: #cbf300; }
+	.service-offer__discount small { color: #08090a; font: 750 .65rem/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+	.service-offer__discount strong { margin-top: .34rem; color: #08090a; font: 550 3.05rem/.92 Manrope, sans-serif; letter-spacing: -.07em; }
+	.service-offer__perforation { position: relative; z-index: 2; border-left: 1px dashed rgb(255 255 255 / .2); }
+	.service-offer__perforation::before, .service-offer__perforation::after { display: none; }
+	.service-offer__details { display: flex; min-width: 0; flex-direction: column; justify-content: center; padding: 1.1rem 1rem 1rem 1.15rem; border: 1px solid rgb(255 255 255 / .09); border-left: 0; border-radius: 0 1rem 1rem 0; }
+	.service-offer__details small { color: rgb(255 255 255 / .44); font: 700 .53rem/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
+	.service-offer__details strong { margin-top: .55rem; color: #fff; font: 650 1.05rem/1.15 Manrope, sans-serif; }
+	.service-offer__details > span { margin-top: .42rem; color: rgb(255 255 255 / .5); font: 600 .66rem/1.3 Manrope, sans-serif; }
+
+	.contract-agreement { display: flex; flex: 1; width: 100%; min-height: 250px; align-items: center; justify-content: center; margin-top: 1rem; text-align: left; }
+	.contractor-folder { position: relative; width: 100%; height: 100%; }
+	.contractor-folder__insert { position: absolute; right: 1.05rem; left: 1.05rem; height: 9.4rem; border: 1px solid rgb(255 255 255 / .08); border-radius: .65rem .65rem .35rem .35rem; background: #0b0c0d; }
+	.contractor-folder__insert::after { position: absolute; top: 2.1rem; right: .9rem; left: .9rem; height: .22rem; border-radius: 999px; background: rgb(255 255 255 / .09); box-shadow: 0 .62rem 0 rgb(255 255 255 / .07); content: ''; }
+	.contractor-folder__insert--back { top: 1.15rem; right: 2rem; left: 2rem; }
+	.contractor-folder__insert--middle { top: 1.77rem; right: 1.5rem; left: 1.5rem; }
+	.contractor-folder__insert--front { top: 2.39rem; }
+	.contractor-folder__body { position: absolute; right: 0; bottom: 0; left: 0; height: 11.3rem; padding: 2.95rem 1.2rem 1rem; }
+	.contractor-folder__shape { position: absolute; inset: 0; z-index: 0; display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+	.contractor-folder__shape path { fill: #070809; stroke: rgb(255 255 255 / .09); stroke-width: .65; vector-effect: non-scaling-stroke; }
+	.contractor-folder__label { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; }
+	.contractor-folder__label small, .contractor-folder__provider small { color: #cbf300; font: 750 .5rem/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+	.contractor-folder__label strong { margin-top: .55rem; color: #fff; font: 620 1.2rem/1.1 Manrope, sans-serif; letter-spacing: -.025em; }
+	.contractor-folder__label span { margin-top: .28rem; color: rgb(255 255 255 / .48); font: 600 .65rem/1.2 Manrope, sans-serif; }
+	.contractor-folder__label .contractor-folder__contents { margin-top: .7rem; color: rgb(255 255 255 / .38); font: 650 .5rem/1.25 "Geist Mono", ui-monospace, monospace; letter-spacing: .035em; }
+	.contractor-folder__provider { position: absolute; right: 1.15rem; bottom: 1rem; left: 1.15rem; display: flex; align-items: end; justify-content: space-between; border-top: 1px solid rgb(255 255 255 / .1); padding-top: .7rem; }
+	.contractor-folder__provider small { color: rgb(255 255 255 / .34); font-size: .46rem; }
+	.contractor-folder__provider strong { color: rgb(255 255 255 / .82); font: 650 .68rem/1 Manrope, sans-serif; }
+
+	@media (min-width: 1024px) { :global(.business-products-grid) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+	@media (prefers-reduced-motion: reduce) { .business-product-card { --garna-card-glow-x: 50% !important; --garna-card-glow-y: 50% !important; } .business-product-card::before { transition: none; } }
+</style>

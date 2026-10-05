@@ -1,0 +1,41 @@
+export const gamescom2026Es = {
+	meta: {
+		title: 'Guía de eventos paralelos de Gamescom 2026 | Colonia, 23–30 de agosto | Garna',
+		description: 'Eventos paralelos de Gamescom 2026 en Colonia, del 23 al 30 de agosto: encuentros, cenas, sesiones de pitch y fiestas, con información de acceso actualizada por Garna.',
+	},
+	hero: {
+		badge: 'Gamescom 2026 · Colonia · 23–30 de agosto',
+		titleLead: 'Tu guía de',
+		titleAccent: 'eventos paralelos',
+		titleTail: 'de Gamescom 2026',
+		description: 'Encuentros, cenas, sesiones de pitch, recepciones en pabellones y fiestas que duran hasta la mañana. Revisamos todos los enlaces y explicamos cómo acceder. La lista se mantiene actualizada durante el evento.',
+		learnCta: 'Qué hace Garna',
+		pdfCta: 'Obtener PDF',
+	},
+	stats: {
+		events: 'eventos paralelos',
+		days: 'días cubiertos',
+		city: 'ciudad: Colonia',
+		advisory: 'Las fechas y condiciones de acceso proceden de los organizadores y cambian con frecuencia. Consulta la página del evento antes de incluirlo en tus planes.',
+	},
+	offer: {
+		eyebrow: 'Ya que estás aquí',
+		title: '¿Problemas con la nómina o estás pagando demasiado?',
+		description: 'Garna gestiona nóminas y pagos a contratistas en más de 150 países: monedas locales, tarjetas, monederos y criptomonedas, además de impuestos y cumplimiento normativo. Si quieres resolverlo después de Colonia, reserva una reunión y te mostraremos los números.',
+		demoCta: 'Reservar una demo',
+		learnCta: 'Qué hace Garna',
+	},
+	schedule: {
+		loading: 'Cargando el programa…',
+		access: { free: 'Gratis', paid: 'De pago', apply: 'Solicitud', invite: 'Solo con invitación', badge: 'Con acreditación de gamescom', open: 'Entrada libre', tba: 'Por confirmar', closed: 'Cerrado' },
+		cta: { register: 'Registrarse', tickets: 'Comprar entradas', apply: 'Solicitar acceso', details: 'Detalles', noLink: 'Enlace aún no disponible' },
+		weekdays: { sun: 'Dom', mon: 'Lun', tue: 'Mar', wed: 'Mié', thu: 'Jue', fri: 'Vie', sat: 'Sáb' },
+		months: { january: 'enero', february: 'febrero', march: 'marzo', april: 'abril', may: 'mayo', june: 'junio', july: 'julio', august: 'agosto', september: 'septiembre', october: 'octubre', november: 'noviembre', december: 'diciembre' },
+		event: { one: 'evento', few: 'eventos', many: 'eventos', multiDay: 'Se celebra durante varios días', featured: 'Recomendado', timeTba: 'Hora por confirmar' },
+		date: { label: 'Fecha', tba: 'Por confirmar', announced: 'Fecha por anunciar', unannouncedSuffix: 'los organizadores aún no han anunciado la fecha' },
+		empty: { title: 'Aún no hay eventos programados', description: 'Elige otro día arriba. Mantendremos esta página actualizada durante Gamescom.', noEventsTitle: 'No se han cargado eventos', noEventsDescription: 'No se ha podido cargar el programa. Normalmente basta con actualizar la página.' },
+		error: { title: 'No se ha podido cargar el programa', description: 'Normalmente basta con actualizar la página. Si el problema continúa, consulta la consola del navegador.' },
+		source: { live: 'El programa se consulta en nuestra hoja de eventos cada vez que se carga la página, por lo que siempre muestra la versión actual.', fallback: 'No se ha podido acceder a la hoja en tiempo real; se muestra la última copia guardada del programa.' },
+	},
+	sourceAttributes: { 'aria-label': { 'Guide overview': 'Resumen de la guía', 'Choose a day': 'Elegir un día', 'Gamescom side events schedule': 'Programa de eventos paralelos de Gamescom' } },
+};

@@ -1,0 +1,139 @@
+<script is:inline>
+        (function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.getAttribute('data-target'));
+                        const suffix = el.getAttribute('data-suffix') || '';
+                        const duration = 2500;
+                        const startTime = performance.now();
+
+                        function update(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            // Ease out quart
+                            const ease = 1 - Math.pow(1 - progress, 4);
+
+                            const current = Math.floor(target * ease);
+                            el.textContent = current + suffix;
+
+                            if (progress < 1) {
+                                requestAnimationFrame(update);
+                            } else {
+                                el.textContent = target + suffix;
+                            }
+                        }
+
+                        requestAnimationFrame(update);
+                        observer.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            document.querySelectorAll('.garna-stat-anim').forEach(el => observer.observe(el));
+        })();
+    </script>
+<script is:inline></script>
+<script is:inline>
+            setTimeout(() => {
+            const canvasEl = document.getElementById('txChartCanvas');
+            if (canvasEl && typeof Chart !== 'undefined') {
+                const ctx = canvasEl.getContext('2d');
+
+                // Ensure chart uses container height perfectly
+                const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+                gradient.addColorStop(0, 'rgba(203, 243, 0, 0.4)');
+                gradient.addColorStop(1, 'rgba(203, 243, 0, 0.0)');
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'],
+                        datasets: [{
+                            data: [3.2, 3.8, 3.5, 4.5, 4.2, 5.8, 5.2, 6.5, 6.1, 7.8, 7.2, 8.5, 8.1, 8.42],
+                            borderColor: '#CBF300',
+                            borderWidth: 2,
+                            backgroundColor: gradient,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0,
+                            pointHoverRadius: 4,
+                            pointHoverBackgroundColor: '#ffffff',
+                            pointHoverBorderColor: '#CBF300'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                enabled: true,
+                                backgroundColor: '#111111',
+                                titleColor: '#ffffff',
+                                bodyColor: '#CBF300',
+                                borderColor: 'rgba(255,255,255,0.1)',
+                                borderWidth: 1,
+                                displayColors: false,
+                                callbacks: {
+                                    label: function(context) {
+                                        return '$' + context.parsed.y + 'M';
+                                    },
+                                    title: function() { return ''; }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false,
+                                grid: { display: false }
+                            },
+                            y: {
+                                display: false,
+                                min: 2,
+                                grid: { display: false }
+                            }
+                        },
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    }
+                });
+            }
+        }, 100);
+        </script>
+<script is:inline>
+    setTimeout(() => {
+                    const canvas = document.getElementById('mobilePendingChartCanvas');
+                    if (canvas && typeof Chart !== 'undefined') {
+                        new Chart(canvas.getContext('2d'), {
+                            type: 'bar',
+                            data: {
+                                labels: ['1', '2', '3', '4', '5'],
+                                datasets: [{
+                                    data: [3, 5, 4, 8, 12],
+                                    backgroundColor: '#ef4444',
+                                    borderRadius: 2
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: { display: false },
+                                    tooltip: { enabled: false }
+                                },
+                                scales: {
+                                    x: { display: false },
+                                    y: { display: false, min: 0 }
+                                },
+                                layout: {
+                                    padding: 0
+                                }
+                            }
+                        });
+                    }
+                }, 300);
+  </script>

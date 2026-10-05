@@ -126,7 +126,7 @@ export const payrollSolutionNewPt = {
 			eorEmployeeGrossSalary: 'Salário bruto do funcionário',
 			eorChecklist: 'Checklist de integração',
 			eorCompanyProfileVerified: 'Perfil da empresa verificado',
-			eorContractSigned: 'Contrato EoR assinado',
+			eorContractSigned: 'Contrato EOR assinado',
 			eorEmployeeOnboarded: 'Funcionário integrado',
 			eorFirstPayrollEstimate: 'Estimativa da primeira folha de pagamento',
 			eorFundWalletRunPayroll: 'Adicionar fundos à carteira e processar folha de pagamento',
@@ -135,9 +135,16 @@ export const payrollSolutionNewPt = {
 	sourceText: {
 		'Book a demo': 'Marcar uma demo',
 		'businesses using Garna': 'empresas usando Garna',
+		'paid to specialists': 'pagos a especialistas',
+		'talents already use Garna': 'talentos já usam a Garna',
 		'global payroll service availability': 'disponibilidade global de folha de pagamento',
 		'countries covered': 'países abrangidos',
 		'Manage Global Payroll Effortlessly': 'Faça a gestão global de payroll sem esforço',
+		'One platform to run payroll for freelancers, remote employees, and full-time teams':
+			'Uma plataforma para gerir pagamentos de freelancers, colaboradores remotos e equipas a tempo inteiro',
+		'Flexible Payout Methods': 'Métodos de pagamento flexíveis',
+		'Pay teams by bank transfer, card, electronic wallet, or crypto':
+			'Pague às equipas por transferência bancária, cartão, carteira eletrónica ou criptomoedas',
 		'We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries':
 			'Simplificamos o processamento de payroll, oferecendo soluções flexíveis e fiáveis para empresas de todos os tamanhos e setores',
 		'Automated Payroll Platform': 'Plataforma de folha de pagamento automatizada',
@@ -302,7 +309,7 @@ export const payrollSolutionNewPt = {
 		'Assign a financial contact person': 'Defina um contacto financeiro responsável',
 		'SSpecify the person who will be responsible for financial matters':
 			'Indique a pessoa responsável pelas questões financeiras',
-		'Create your first EoR contract': 'Crie o seu primeiro contrato EoR',
+		'Create your first EOR contract': 'Crie o seu primeiro contrato EOR',
 		"Enter the employee's details":
 			'Introduza os dados do funcionário',
 		'Invite an employee': 'Convide um funcionário',
@@ -318,7 +325,7 @@ export const payrollSolutionNewPt = {
 		'Employee Gross Salary': 'Salário bruto do funcionário',
 		'Onboarding Checklist': 'Checklist de integração',
 		'Company Profile Verified': 'Perfil da empresa verificado',
-		'EoR Contract Signed': 'Contrato EoR assinado',
+		'EOR Contract Signed': 'Contrato EOR assinado',
 		'Employee Onboarded': 'Funcionário integrado',
 		'First Payroll Estimate': 'Estimativa da primeira folha de pagamento',
 		'Fund Wallet &amp; Run Payroll': 'Adicionar fundos à carteira e processar folha de pagamento',
@@ -405,6 +412,7 @@ export const payrollSolutionNewPt = {
 			'"Tive problemas com as autoridades fiscais locais antes de usar a Garna. Agora tenho todos os documentos fiscais em ordem."',
 		'Marketing Consultant': 'Marketing Consultant',
 	},
+	...homePt,
 	footer: homePt.footer,
 	bookingWidget: homePt.bookingWidget,
 };

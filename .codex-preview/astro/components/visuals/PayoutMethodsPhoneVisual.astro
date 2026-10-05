@@ -1,0 +1,654 @@
+<div class="payout-phone-composition relative mx-auto flex h-[405px] w-full max-w-[450px] items-end justify-center overflow-visible font-sans">
+  <div class="phone-frame relative w-[340px] translate-y-14 overflow-hidden rounded-t-[3rem] border border-white/[0.08] bg-[#050505] px-4 pb-5 pt-5">
+		<div class="phone-status-bar phone-status-bar--fixed grid grid-cols-3 items-center text-white">
+			<span class="justify-self-center text-[13px] font-semibold leading-none">9:41</span>
+			<span aria-hidden="true"></span>
+			<div class="flex items-center justify-center gap-1.5 opacity-100">
+				<svg class="h-3.5 w-4" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+					<path d="M2 4.8C5.4 2.1 10.6 2.1 14 4.8M4.8 7.3C6.7 6 9.3 6 11.2 7.3M7.45 9.7H8.55" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" />
+				</svg>
+				<span class="phone-battery" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<div class="phone-navigation-bar flex h-8 items-center justify-center">
+			<button class="back-button" aria-label="Back">
+				<svg viewBox="0 0 24 24"><path d="M19 12H5m5-5-5 5 5 5" /></svg>
+			</button>
+			<h4 class="text-center text-[1.08rem] font-semibold leading-tight text-white">Withdraw funds</h4>
+		</div>
+
+		<div class="phone-screen phone-screen--methods" aria-hidden="true">
+		<div class="method-list relative space-y-2">
+			<div class="method-tile">
+				<div class="flex min-w-0 items-center gap-3">
+					<span class="phone-icon phone-icon--bank"><svg viewBox="0 0 24 24"><path d="M12 7.221a.124.124 0 0 0-.124.125.125.125 0 1 0 .25 0A.127.127 0 0 0 12 7.221" /><path d="M20.972 10.333H3.028A.527.527 0 0 1 2.5 9.806V7.83a1 1 0 0 1 .684-.948l8.482-2.828a1.06 1.06 0 0 1 .668 0l8.482 2.828a1 1 0 0 1 .684.948v1.976a.527.527 0 0 1-.528.527Z" /><path d="M4 18v-7.667" /><path d="M20 10.333V18" /><path d="M8 10.333V18" /><path d="M12 10.333V18" /><path d="M16 10.333V18" /><path d="M20.382 18H3.618a1 1 0 0 0-.894.553l-.618 1.236A.993.993 0 0 0 2 20.236V21h20v-.764a.993.993 0 0 0-.106-.447l-.618-1.236A1 1 0 0 0 20.382 18Z" /><line x1="23" y1="21" x2="1" y2="21" /></svg></span>
+					<span><strong>Bank transfer</strong><small>USD, EUR</small></span>
+				</div>
+				<svg class="chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></svg>
+			</div>
+			<span class="tap-indicator" aria-hidden="true"></span>
+			<div class="method-tile">
+				<div class="flex min-w-0 items-center gap-3">
+					<span class="phone-icon phone-icon--card"><svg viewBox="0 0 24 24"><path d="M18 19H6c-1.657 0-3-1.343-3-3V8c0-1.657 1.343-3 3-3h12c1.657 0 3 1.343 3 3v8c0 1.657-1.343 3-3 3z" /><path d="M11.143 14H6.857C6.384 14 6 13.616 6 13.143V8.857C6 8.384 6.384 8 6.857 8h4.286C11.616 8 12 8.384 12 8.857v4.286C12 13.616 11.616 14 11.143 14z" /><line x1="6" y1="11" x2="12" y2="11" /><line x1="9" y1="11" x2="9" y2="8" /></svg></span>
+					<span><strong>Transfer to card</strong><small>USD, EUR</small></span>
+				</div>
+				<svg class="chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></svg>
+			</div>
+			<div class="method-tile">
+				<div class="flex min-w-0 items-center gap-3">
+					<span class="phone-icon phone-icon--wallet"><svg viewBox="0 0 24 24"><path d="M13.499 13.48c-.138.001-.249.113-.249.251 0 .138.112.25.25.249.138 0 .25-.112.25-.25 0-.138-.112-.25-.251-.25" /><path d="M3 6.283V6c0-1.657 1.343-3 3-3h12c1.657 0 3 1.343 3 3v9c0 1.657-1.343 3-3 3h-1" /><line x1="21" y1="9" x2="17" y2="9" /><path d="M13.325 20.922C15.205 21.356 17 19.928 17 17.999V9.387c0-1.397-.964-2.609-2.325-2.923L5.45 4.335C4.196 4.045 3 4.997 3 6.283v9.869c0 1.397.964 2.609 2.325 2.923l8 1.847z" /></svg></span>
+					<span><strong>Electronic wallets</strong><small>USD</small></span>
+				</div>
+				<svg class="chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></svg>
+			</div>
+			<div class="method-tile">
+				<div class="flex min-w-0 items-center gap-3">
+					<span class="phone-icon phone-icon--crypto"><svg viewBox="0 0 24 24"><path d="M12 3h-.5A8.5 8.5 0 0 0 3 11.5v0A9.5 9.5 0 0 0 12.5 21h0A8.5 8.5 0 0 0 21 12.5V12" /><path d="M16.556 2A5.444 5.444 0 0 1 22 7.444" /><path d="M16.556 5A2.444 2.444 0 0 1 19 7.444" /><path d="M10 15V9" /><path d="M12.06 8v1" /><path d="M12.06 15v1" /><path d="M10 12h3.5a1.5 1.5 0 0 1 0 3H10v-3Z" /><path d="M10 9h3.15a1.5 1.5 0 0 1 0 3H10V9Z" /></svg></span>
+					<span><strong>Cryptocurrencies</strong><small>BTC, BNB-BSC, ETH, USDT, USDC</small></span>
+				</div>
+				<svg class="chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></svg>
+			</div>
+		</div>
+		</div>
+
+		<div class="phone-screen phone-screen--transfer">
+			<div class="transfer-card">
+				<div class="transfer-account">
+					<span class="recipient-avatar recipient-avatar--garna" aria-hidden="true">
+						<svg viewBox="0 0 24 24"><path d="M12 12.25a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" /><path d="M4.75 20.25c.84-3.15 3.48-5.25 7.25-5.25s6.41 2.1 7.25 5.25" /></svg>
+					</span>
+					<span><strong>USD 12 031</strong><small>Internal Garna account</small></span>
+				</div>
+				<div class="transfer-account">
+					<span class="phone-icon phone-icon--bank"><svg viewBox="0 0 24 24"><path d="M12 7.221a.124.124 0 0 0-.124.125.125.125 0 1 0 .25 0A.127.127 0 0 0 12 7.221" /><path d="M20.972 10.333H3.028A.527.527 0 0 1 2.5 9.806V7.83a1 1 0 0 1 .684-.948l8.482-2.828a1.06 1.06 0 0 1 .668 0l8.482 2.828a1 1 0 0 1 .684.948v1.976a.527.527 0 0 1-.528.527Z" /><path d="M4 18v-7.667" /><path d="M20 10.333V18" /><path d="M8 10.333V18" /><path d="M12 10.333V18" /><path d="M16 10.333V18" /><path d="M20.382 18H3.618a1 1 0 0 0-.894.553l-.618 1.236A.993.993 0 0 0 2 20.236V21h20v-.764a.993.993 0 0 0-.106-.447l-.618-1.236A1 1 0 0 0 20.382 18Z" /><line x1="23" y1="21" x2="1" y2="21" /></svg></span>
+					<span><strong>To EUR account</strong><small>BY20LMP3135000000100000933</small></span>
+				</div>
+			</div>
+
+			<div class="transfer-amount">
+				<strong class="transfer-amount-value" aria-label="1 000 dollars">
+					<span class="amount-entry" aria-hidden="true"></span>
+				</strong>
+				<svg class="transfer-swap-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="M8 4v16M8 4 4.5 7.5M8 4l3.5 3.5" />
+					<path d="M16 20V4M16 20l-3.5-3.5M16 20l3.5-3.5" />
+				</svg>
+				<span class="converted-amount" aria-label="900 euros"></span>
+				<button class="withdraw-all-button" type="button">Withdraw all</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.payout-phone-composition {
+		--payout-cycle-duration: 7.5s;
+	}
+
+	.phone-frame {
+		border-width: 1px;
+		height: 390px;
+		min-height: 390px;
+	}
+
+	.phone-screen {
+		position: absolute;
+		inset: 5.875rem 1rem 1.25rem;
+	}
+
+	.phone-status-bar--fixed {
+		position: absolute;
+		left: 1rem;
+		right: 1rem;
+		top: 1.25rem;
+		z-index: 10;
+	}
+
+	.phone-navigation-bar {
+		position: absolute;
+		left: 1rem;
+		right: 1rem;
+		top: 3rem;
+		z-index: 9;
+	}
+
+	.phone-screen--methods {
+		animation: phone-methods-cycle var(--payout-cycle-duration) ease-in-out infinite;
+		opacity: 1;
+		pointer-events: none;
+		transform: translateX(0);
+		will-change: transform;
+	}
+
+	.phone-screen--transfer {
+		display: block;
+		animation: phone-transfer-cycle var(--payout-cycle-duration) ease-in-out infinite;
+		opacity: 1;
+		pointer-events: none;
+		transform: translateX(110%);
+		will-change: transform;
+		padding-top: 0.625rem;
+	}
+
+	.phone-battery {
+		position: relative;
+		display: block;
+		height: 0.68rem;
+		width: 1.24rem;
+		border: 1.65px solid currentColor;
+		border-radius: 0.24rem;
+	}
+
+	.phone-battery::before {
+		position: absolute;
+		top: 50%;
+		right: -0.3rem;
+		height: 0.34rem;
+		width: 0.15rem;
+		transform: translateY(-50%);
+		border-radius: 0 9999px 9999px 0;
+		background: currentColor;
+		content: "";
+	}
+
+	.phone-battery::after {
+		position: absolute;
+		inset: 0.1rem 0.18rem 0.1rem 0.12rem;
+		border-radius: 0.08rem;
+		background: currentColor;
+		content: "";
+	}
+
+	.back-button {
+		position: absolute;
+		left: 0;
+		top: 50%;
+		display: flex;
+		height: 1.8rem;
+		width: 1.8rem;
+		transform: translateY(-50%);
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgb(255 255 255 / 0.08);
+		border-radius: 9999px;
+		background: rgb(255 255 255 / 0.07);
+		padding: 0;
+		color: white;
+	}
+
+	.back-button svg {
+		height: 1.15rem;
+		width: 1.15rem;
+		transform: none;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 2;
+	}
+
+	.payout-phone-composition::before {
+		position: absolute;
+		inset: auto 8% 0;
+		height: 9rem;
+		background: radial-gradient(circle at 50% 100%, rgb(255 255 255 / 0.045), transparent 62%);
+		content: "";
+		pointer-events: none;
+	}
+
+	.phone-icon {
+		display: flex;
+		height: 1.65rem;
+		width: 1.65rem;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0.6rem;
+		border: 0;
+		background: #171717;
+		color: white;
+	}
+
+	.phone-icon--bank {
+		background: linear-gradient(135deg, #8b5cf6 0%, #6d5dfc 100%);
+	}
+
+	.phone-icon--card {
+		background: linear-gradient(135deg, #49d7d0 0%, #28b7b1 100%);
+	}
+
+	.phone-icon--wallet {
+		background: linear-gradient(135deg, #d946ef 0%, #b83be4 100%);
+	}
+
+	.phone-icon--crypto {
+		background: linear-gradient(135deg, #3b82f6 0%, #1d9bf0 100%);
+	}
+
+	.phone-icon svg {
+		height: 1.05rem;
+		width: 1.05rem;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.5;
+	}
+
+	.phone-icon svg :where(path, polygon, line) {
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.5;
+		vector-effect: non-scaling-stroke;
+	}
+
+	.method-tile {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.62rem;
+		min-height: 3.35rem;
+		border: 1px solid rgb(255 255 255 / 0.08);
+		border-radius: 1rem;
+		background: linear-gradient(180deg, #111111 0%, #0b0b0b 100%);
+		padding: 0.55rem 0.75rem;
+		box-shadow: 0 10px 26px rgb(0 0 0 / 0.32);
+		text-align: left;
+		overflow: hidden;
+	}
+
+	.method-tile::before {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, rgb(203 243 0 / 0.15), rgb(11 11 11 / 0.98));
+		content: "";
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.method-tile > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	.method-tile:nth-of-type(1) {
+		animation: selected-method-cycle var(--payout-cycle-duration) ease-in-out infinite;
+		transform-origin: 50% 50%;
+	}
+
+	.method-tile:nth-of-type(1)::before {
+		animation: none;
+	}
+
+	.tap-indicator {
+		display: none;
+	}
+
+	.tap-indicator::after {
+		content: none;
+	}
+
+	.method-tile strong {
+		display: block;
+		color: white;
+		font-size: 0.88rem;
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	.method-tile small {
+		display: block;
+		margin-top: 0.08rem;
+		overflow: hidden;
+		color: rgb(156 163 175);
+		font-size: 0.68rem;
+		font-weight: 500;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.chevron {
+		height: 0.78rem;
+		width: 0.78rem;
+		flex: 0 0 auto;
+		fill: none;
+		stroke: rgb(75 85 99);
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.7;
+	}
+
+	.transfer-card {
+		display: grid;
+		gap: 0.55rem;
+		border: 1px solid rgb(255 255 255 / 0.08);
+		border-radius: 1.25rem;
+		background: linear-gradient(180deg, #111111 0%, #0b0b0b 100%);
+		padding: 0.8rem;
+		text-align: left;
+	}
+
+	.transfer-account {
+		display: flex;
+		align-items: center;
+		gap: 0.72rem;
+		text-align: left;
+	}
+
+	.transfer-account > span:last-child {
+		min-width: 0;
+		flex: 1;
+	}
+
+	.transfer-account strong {
+		display: block;
+		color: white;
+		font-size: 0.82rem;
+		font-weight: 700;
+		line-height: 1.15;
+	}
+
+	.transfer-account small {
+		display: block;
+		margin-top: 0.1rem;
+		color: rgb(156 163 175);
+		font-size: 0.68rem;
+		line-height: 1.15;
+	}
+
+	.recipient-avatar {
+		display: flex;
+		height: 1.65rem;
+		width: 1.65rem;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		border-radius: 0.6rem;
+		border: 0;
+		background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+		color: white;
+	}
+
+	.recipient-avatar--garna {
+		background: linear-gradient(135deg, #49d7d0 0%, #28b7b1 100%);
+	}
+
+	.recipient-avatar svg {
+		height: 1.05rem;
+		width: 1.05rem;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.65;
+	}
+
+	.recipient-avatar svg :where(path) {
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.65;
+		vector-effect: non-scaling-stroke;
+	}
+
+	.transfer-amount {
+		position: relative;
+		margin-top: 1.65rem;
+		text-align: center;
+	}
+
+	.transfer-amount strong {
+		display: block;
+		color: white;
+		font-size: 2.35rem;
+		font-weight: 700;
+		letter-spacing: -0.04em;
+		line-height: 1;
+	}
+
+	.transfer-amount-value {
+		width: 8rem;
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.amount-entry {
+		display: inline;
+		margin: 0;
+		color: inherit;
+		font: inherit;
+	}
+
+	.amount-entry::after {
+		content: "0 $";
+		animation: amount-entry-cycle var(--payout-cycle-duration) steps(1, end) infinite;
+	}
+
+	.converted-amount::after {
+		content: "0 €";
+		animation: converted-amount-cycle var(--payout-cycle-duration) steps(1, end) infinite;
+	}
+
+	.transfer-swap-icon {
+		display: block;
+		height: 1.35rem;
+		width: 1.35rem;
+		position: absolute;
+		left: calc(50% + 5.25rem);
+		top: 2.05rem;
+		stroke: #cbf300;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.85;
+	}
+
+	.transfer-amount > span {
+		display: block;
+		margin-top: 0.5rem;
+		color: rgb(156 163 175);
+		font-size: 0.78rem;
+	}
+
+	.withdraw-all-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 0.72rem;
+		border-radius: 9999px;
+		background: rgb(203 243 0 / 0.14);
+		padding: 0.46rem 0.82rem;
+		color: #cbf300;
+		font-size: 0.78rem;
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	.phone-navigation-bar .back-button::after {
+		content: none;
+	}
+
+	.phone-navigation-bar .back-button {
+		animation: back-button-click-cycle var(--payout-cycle-duration) ease-in-out infinite;
+	}
+
+	@keyframes phone-methods-cycle {
+		0%,
+		21% {
+			transform: translateX(0);
+		}
+
+		28%,
+		88% {
+			transform: translateX(-110%);
+		}
+
+		95%,
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes phone-transfer-cycle {
+		0%,
+		21%,
+		95%,
+		100% {
+			transform: translateX(110%);
+		}
+
+		28%,
+		88% {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes selected-method-cycle {
+		0%,
+		5%,
+		21%,
+		100% {
+			border-color: rgb(255 255 255 / 0.08);
+			box-shadow: 0 10px 26px rgb(0 0 0 / 0.32);
+			transform: scale(1);
+		}
+
+		11% {
+			border-color: rgb(203 243 0 / 0.34);
+			box-shadow: 0 10px 26px rgb(0 0 0 / 0.32);
+			transform: scale(0.972);
+		}
+
+		16% {
+			border-color: rgb(203 243 0 / 0.16);
+			box-shadow: 0 10px 26px rgb(0 0 0 / 0.32);
+			transform: scale(1.004);
+		}
+	}
+
+	@keyframes selected-method-glow-cycle {
+		0%,
+		25%,
+		39%,
+		100% {
+			opacity: 0;
+		}
+
+		29%,
+		36% {
+			opacity: 1;
+		}
+
+		33% {
+			opacity: 0.86;
+		}
+	}
+
+	@keyframes back-button-click-cycle {
+		0%,
+		74%,
+		88%,
+		100% {
+			border-color: rgb(255 255 255 / 0.08);
+			transform: translateY(-50%) scale(1);
+		}
+
+		79% {
+			border-color: rgb(203 243 0 / 0.34);
+			transform: translateY(-50%) scale(0.9);
+		}
+
+		84% {
+			border-color: rgb(203 243 0 / 0.16);
+			transform: translateY(-50%) scale(1.04);
+		}
+	}
+
+	@keyframes amount-entry-cycle {
+		0%, 38% { content: "0 $"; }
+		40.5% { content: "1 $"; }
+		43% { content: "10 $"; }
+		45.5% { content: "100 $"; }
+		48%, 100% { content: "1 000 $"; }
+	}
+
+	@keyframes converted-amount-cycle {
+		0%, 53.5% { content: "0 €"; }
+		55.5%, 100% { content: "900 €"; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.phone-screen--methods,
+		.method-tile:nth-of-type(1),
+		.phone-navigation-bar .back-button {
+			animation: none;
+		}
+
+		.phone-screen--methods {
+			opacity: 1;
+		}
+
+		.phone-screen--transfer {
+			display: none;
+		}
+
+		.amount-entry::after {
+			animation: none;
+			content: "1 000 $";
+		}
+
+		.converted-amount::after {
+			animation: none;
+			content: "900 €";
+		}
+	}
+
+	.payout-phone-composition:not(.is-animating) .phone-screen--methods,
+	.payout-phone-composition:not(.is-animating) .phone-screen--transfer,
+	.payout-phone-composition:not(.is-animating) .method-tile:nth-of-type(1),
+	.payout-phone-composition:not(.is-animating) .phone-navigation-bar .back-button,
+	.payout-phone-composition:not(.is-animating) .amount-entry::after,
+	.payout-phone-composition:not(.is-animating) .converted-amount::after {
+		animation: none;
+	}
+
+</style>
+
+<script>
+	const payoutPhoneVisuals = document.querySelectorAll<HTMLElement>('.payout-phone-composition');
+
+	for (const visual of payoutPhoneVisuals) {
+		if (visual.dataset.viewportAnimationReady === 'true') continue;
+		visual.dataset.viewportAnimationReady = 'true';
+		let isVisible = false;
+		let restartFrame = 0;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						isVisible = true;
+						cancelAnimationFrame(restartFrame);
+						visual.classList.remove('is-animating');
+						void visual.offsetWidth;
+						restartFrame = requestAnimationFrame(() => {
+							if (isVisible) visual.classList.add('is-animating');
+						});
+					} else {
+						isVisible = false;
+						cancelAnimationFrame(restartFrame);
+						visual.classList.remove('is-animating');
+					}
+				}
+			},
+			{ threshold: 0.35 },
+		);
+
+		observer.observe(visual);
+	}
+</script>

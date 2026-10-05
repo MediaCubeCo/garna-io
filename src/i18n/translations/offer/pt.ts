@@ -1,7 +1,7 @@
 export const offerPt = {
 	meta: {
-		title: 'Garna para contratados - Receba pagamentos globalmente',
-		description: 'Receba pagamentos de clientes no mundo todo com taxas transparentes e saques instantâneos.',
+		title: 'Receba Pagamentos Globalmente como Contratado Independente | Garna',
+		description: 'Trabalhe com clientes internacionais e obtenha acesso a pagamentos seguros, múltiplas opções de levantamento, faturação automatizada e suporte de conformidade.',
 	},
 	images: {},
 	nav: {

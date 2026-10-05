@@ -4,7 +4,7 @@ export const forCreatorsRu = {
 	meta: {
 		title: 'Garna для креаторов',
 		description:
-			'Получайте выплаты с платформ для креаторов, стоковых маркетплейсов, freelance-сервисов и платформ цифровых продуктов через один аккаунт Garna.',
+			'Получайте выплаты с платформ для креаторов, Marketplace, freelance-сервисов и платформ цифровых продуктов через один аккаунт Garna.',
 	},
 	images: {},
 	legacy: {
@@ -18,10 +18,10 @@ export const forCreatorsRu = {
 	},
 	hero: {
 		badge: 'Ранний доступ для выбранных креаторов',
-		titleMain: 'Выплаты креаторам с глобальных платформ под сопровождением Garna',
-		titleAccent: 'под сопровождением Garna',
+		titleMain: 'Получайте выплаты со всех платформ для креаторов в одном месте',
+		titleAccent: 'в одном месте',
 		description:
-			'Получайте выплаты с платформ для креаторов, стоковых маркетплейсов, freelance-сервисов и платформ цифровых продуктов через один аккаунт Garna. Мы проведем вас через первую настройку, поможем понять, какой способ выплат подходит вашей платформе, и поддержим во время первых выводов средств',
+			'Получайте доход с Marketplace, платформ и freelance-сервисов, а затем управляйте балансом и выводом средств с пошаговой настройкой',
 		cta: 'Связаться с payout-менеджером',
 		accountCta: 'Создать аккаунт Garna',
 	},
@@ -58,6 +58,125 @@ export const forCreatorsRu = {
 			},
 		},
 	},
+	payoutDemo: {
+		cursor: 'Креатор',
+		tabs: {
+			platform: {
+				title: 'Выплата с платформы',
+				subtitle: 'Доход креатора отправлен',
+			},
+			balance: {
+				title: 'Баланс Garna',
+				subtitle: 'Средства зачислены',
+			},
+			withdraw: {
+				title: 'Вывод денег',
+				subtitle: 'Выбор метода вывода',
+			},
+		},
+		platform: {
+			brand: 'marketplace',
+			search: 'Поиск',
+			unlimitedAccess: 'Безлимитный доступ',
+			marketplaceHeading: 'Все типы ассетов для любого проекта',
+			filters: {
+				allItems: 'Все ассеты',
+			},
+			categories: {
+				videoTemplates: 'Видеошаблоны',
+				soundEffects: 'Звуковые эффекты',
+				stockPhotos: 'Стоковые фото',
+				royaltyFreeMusic: 'Музыка без роялти',
+				graphicTemplates: 'Графические шаблоны',
+				fonts: 'Шрифты',
+				assets3d: '3D-ассеты',
+				presentationTemplates: 'Шаблоны презентаций',
+			},
+			finance: {
+				creatorStudio: 'Студия креатора',
+				earningsWorkspace: 'Доходы',
+				juneCycle: 'Июньский цикл',
+				readyToTransfer: 'Готово к переводу',
+				fromProducts: 'От 3 продуктов',
+				checked: 'Проверено',
+				sourcesVerified: 'Источники подтверждены',
+				avgRating: 'Средний рейтинг',
+				acrossPaidProducts: 'По платным продуктам',
+			},
+			products: {
+				videoPack: 'Пак видеошаблонов',
+				videoMeta: '42 продажи / рейтинг 4.9',
+				musicBundle: 'Музыкальный бандл',
+				musicMeta: '18 лицензий / в подборке',
+				graphicSet: 'Набор мокапов',
+				graphicMeta: '24 продажи / в тренде',
+			},
+			destination: {
+				title: 'Выберите шаблон выплаты',
+				garnaBank: 'Банковский счет Garna',
+				debitCard: 'Дебетовая карта',
+				noTemplate: 'Шаблон еще не выбран',
+				templateSelected: 'Шаблон выплаты выбран',
+				sendPayout: 'Отправить выплату',
+			},
+		},
+		garna: {
+			nav: {
+				balance: 'Баланс',
+				notifications: 'Уведомления',
+				support: 'Поддержка',
+			},
+			balanceTitle: 'Баланс',
+			internalAccountUsd: 'Внутренний счет USD',
+			accountNumber: 'Номер счета',
+			actions: {
+				send: 'Отправить',
+				withdraw: 'Вывести',
+				addFunds: 'Пополнить',
+			},
+			templates: {
+				title: 'Шаблоны',
+				all: 'Все',
+				usdCard: 'USD карта',
+				eurAccount: 'EUR счет',
+			},
+			transactions: {
+				title: 'Транзакции',
+				marketplaceTitle: 'Выплата дохода с Marketplace',
+				marketplaceSubtitle: 'Зачислено с платформы креаторов',
+				danielTitle: 'Перевод от Daniel Cruz',
+				collaborationPayment: 'Оплата за коллаборацию',
+				usdCardTitle: 'Перевод на USD карту',
+				confirmed: 'Подтверждено',
+			},
+			modal: {
+				date: '12 июня 2026 в 17:21',
+				title: 'Выплата с Marketplace зачислена',
+				transactionDetails: 'Детали транзакции',
+				amountUsd: 'Сумма, USD',
+				creditedAmount: 'Зачисленная сумма',
+				gotIt: 'Понятно',
+			},
+		},
+		withdraw: {
+			modal: {
+				title: 'Вывод денег',
+				garnaInternalAccount: 'Внутренний счет Garna',
+				toUsdCard: 'На USD карту',
+				withdrawAll: 'Вывести все',
+				enterAmount: 'Введите сумму - мы рассчитаем комиссию',
+				debited: 'Спишется',
+				sent: 'отправится',
+				details: 'Детали',
+				withdrawButton: 'Вывести',
+			},
+			success: {
+				title: 'Перевод выполнен',
+				copy: 'Деньги уже на счете получателя',
+				close: 'Закрыть',
+			},
+		},
+	},
 	creatorTypes: {
 		title: 'Для креаторов, которые зарабатывают по всему миру',
 		description:
@@ -73,7 +192,7 @@ export const forCreatorsRu = {
 			},
 			gameAssets: {
 				title: '3D-художники и авторы игровых ассетов',
-				description: 'Для креаторов, которые продают 3D-модели, плагины, текстуры, игровые ассеты и продукты на маркетплейсах',
+				description: 'Для креаторов, которые продают 3D-модели, плагины, текстуры, игровые ассеты и продукты для Marketplace',
 			},
 			freelancers: {
 				title: 'Фрилансеры и digital-продавцы',
@@ -90,16 +209,31 @@ export const forCreatorsRu = {
 			receive: {
 				title: 'Получайте выплаты с платформ',
 				description: 'Используйте реквизиты Garna там, где это поддерживается, чтобы принимать платежи с международных платформ для креаторов',
+				footer: {
+					platformPayout: 'Выплата с платформы',
+					garnaDetails: 'Реквизиты Garna',
+					balanceCredit: 'Зачисление на баланс',
+				},
 			},
 			setup: {
 				title: 'Пройдите настройку с сопровождением',
 				description:
 					'Расскажите, какой платформой пользуетесь. Мы проверим доступный способ выплат и проведем вас через настройку',
+				footer: {
+					platformRules: 'Правила платформы',
+					payoutRoute: 'Маршрут выплаты',
+					setupGuidance: 'Сопровождение настройки',
+				},
 			},
 			withdraw: {
 				title: 'Выводите средства глобально',
 				description:
 					'Выводите деньги банковским переводом, на карту, через PayPal, Payoneer, криптовалюту и другие доступные способы',
+				footer: {
+					chooseMethod: 'Выбрать способ',
+					sendRequest: 'Отправить запрос',
+					receiveFunds: 'Получить средства',
+				},
 			},
 		},
 	},
@@ -152,7 +286,7 @@ export const forCreatorsRu = {
 				title: 'Вывод с Envato',
 				summary: 'Сводка выплаты',
 				availableNow: 'Доступно сейчас',
-				marketplaceFee: 'Комиссия маркетплейса',
+				marketplaceFee: 'Комиссия Marketplace',
 				paid: 'Оплачена',
 				routeDetails: 'Детали маршрута',
 				destination: 'Назначение',
@@ -229,11 +363,21 @@ export const forCreatorsRu = {
 			disclaimer:
 				'Проценты выше относятся только к сервисной комиссии Garna. Комиссии платформ за вывод, комиссии способов оплаты, FX-расходы и другие сторонние комиссии могут отличаться и не включены.',
 		},
+		banner: {
+			title: 'Сниженная комиссия для выплат креаторам',
+			description:
+				'Стандартная сервисная комиссия Garna применяется после раннего доступа или вне выбранной launch-группы',
+			terms: 'Условия запуска',
+			accessCaption:
+				'Выбранные креаторы могут начать со сниженной сервисной комиссией Garna, пока мы помогаем проверить первую настройку выплат.',
+			disclaimer: 'Только сервисная комиссия Garna. Комиссии платформ, способов оплаты и FX могут отличаться.',
+			cta: 'Связаться с payout-менеджером',
+		},
 	},
 	platforms: {
 		title: 'Популярные платформы,\nс которыми мы можем помочь',
 		description:
-			'Мы начинаем с популярных платформ для креаторов, стоковых маркетплейсов и сервисов цифровых продуктов. Некоторые платформы можно настроить напрямую, а для других может понадобиться ручное сопровождение Garna или поддержка самой платформы',
+			'Мы начинаем с популярных платформ для креаторов, Marketplace и сервисов цифровых продуктов. Некоторые платформы можно настроить напрямую, а для других может понадобиться ручное сопровождение Garna или поддержка самой платформы',
 	},
 	globalInfrastructure: {
 		title: 'Глобальная платежная инфраструктура для современных команд и креаторов',
@@ -308,7 +452,7 @@ export const forCreatorsRu = {
 			creatorPlatform: {
 				question: 'Garna — это платформа для креаторов?',
 				answer:
-					'Нет. Garna не является маркетплейсом и не продает ваш контент. Garna помогает креаторам получать выплаты с международных платформ и выводить средства доступными способами',
+					'Нет. Garna не является Marketplace и не продает ваш контент. Garna помогает креаторам получать выплаты с международных платформ и выводить средства доступными способами',
 			},
 			availability: {
 				question: 'Это доступно всем?',
@@ -427,9 +571,16 @@ export const forCreatorsRu = {
 		'The standard Garna service fee is 5.5%. Early Access creators can receive a reduced 1.5% Garna service fee for their first payouts, subject to final confirmation and setup details':
 			'Стандартная сервисная комиссия Garna составляет 5.5%. Креаторы раннего доступа могут получить сниженную сервисную комиссию Garna 1.5% для первых выплат после финального подтверждения и настройки',
 		'businesses using Garna': 'компаний используют Garna',
+		'paid to specialists': 'выплачено специалистам',
+		'talents already use Garna': 'специалистов уже используют Garna',
 		'global payroll service availability': 'круглосуточная доступность выплат',
 		'countries covered': 'стран',
 		'Manage Global Payroll Effortlessly': 'Управляйте расчетом заработной платы по всему миру без лишних усилий',
+		'One platform to run payroll for freelancers, remote employees, and full-time teams':
+			'Единая платформа для выплат фрилансерам, удаленным сотрудникам и штатным командам',
+		'Flexible Payout Methods': 'Гибкие способы выплат',
+		'Pay teams by bank transfer, card, electronic wallet, or crypto':
+			'Выплачивайте командам банковским переводом, на карту, электронный кошелек или в криптовалюте',
 		'We streamline payroll processing, offering flexible, reliable solutions for businesses of all sizes and industries':
 			'Мы оптимизируем процесс оплаты труда, предлагая гибкие и надежные решения для компаний любого размера и из любых отраслей',
 		'Automated Payroll Platform': 'Автоматизированная платформа выплат',
@@ -500,7 +651,7 @@ export const forCreatorsRu = {
 		'$ 1,000,000.00 available for team payouts': '$ 1,000,000.00 доступно для выплат команде',
 		'Pay your contractors now — repay later with flexible terms': 'Платите подрядчикам сейчас, а возвращайте позже на гибких условиях',
 		'Request': 'Запросить',
-		'Pay contractors now, settle later': 'Платите подрядчикам сейчас, рассчитывайтесь позже',
+		'Pay contractors now, settle later': 'Выплаты сейчас, расчет позже',
 		'Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow':
 			'Выполняйте глобальные выплаты сразу и возвращайте средства Garna по графику, который подходит денежному потоку вашего бизнеса',
 		'Immediate payouts, deferred settlement': 'Мгновенные выплаты, отложенный расчет',
@@ -529,7 +680,7 @@ export const forCreatorsRu = {
 		'Assign a financial contact person': 'Назначьте ответственное лицо по финансовым вопросам',
 		'SSpecify the person who will be responsible for financial matters':
 			'Укажите лицо, которое будет отвечать за финансовые вопросы',
-		'Create your first EoR contract': 'Составьте свой первый договор о предоставлении услуг официального работодателя',
+		'Create your first EOR contract': 'Составьте свой первый договор о предоставлении услуг официального работодателя',
 		"Enter the employee's details":
 			'Введите данные сотрудника',
 		'Invite an employee': 'Пригласите сотрудника',
@@ -671,7 +822,7 @@ export const forCreatorsRu = {
 		'Onboarding': 'Онбординг',
 		'Onboarding Checklist': 'Чек-лист онбординга',
 		'Employee Onboarded': 'Сотрудник подключен',
-		'EoR Contract Signed': 'EoR-контракт подписан',
+		'EOR Contract Signed': 'EOR-контракт подписан',
 		'First Payroll Estimate': 'Первый расчет payroll',
 		'Employee Gross Salary': 'Валовая зарплата сотрудника',
 		'Employment Country': 'Страна трудоустройства',

@@ -49,6 +49,7 @@ body[data-garna-page] {
 [data-garna-subtitle] {
 	color: var(--garna-subtitle-color) !important;
 	font-weight: var(--garna-subtitle-weight) !important;
+	text-wrap: pretty;
 }
 
 /* Hero artwork uses gradients and imagery without graph-paper overlays. */
@@ -63,6 +64,11 @@ h4,
 h5,
 h6 {
 	font-family: "Manrope", sans-serif;
+}
+
+h1,
+h2 {
+	text-wrap: balance;
 }
 
 ::-webkit-scrollbar { width: 6px; }
@@ -113,7 +119,7 @@ h6 {
 	50% { transform: translateY(-10px); }
 }
 
-#astro-page-content > section:has([data-translate^="stats."]) {
+#astro-page-content > section:not([data-section-kind="hero"]):has([data-translate^="stats."]) {
 	background: var(--garna-section-stats-bg) !important;
 }
 
@@ -145,6 +151,7 @@ h6 {
 	background: linear-gradient(175deg, #ffffff 0%, rgba(255, 255, 255, 0.86) 42%, rgba(255, 255, 255, 0.38) 100%);
 	background-clip: text;
 	-webkit-background-clip: text;
+	padding-bottom: 0.08em;
 }
 
 .garna-hero-badge {
@@ -341,6 +348,47 @@ h6 {
 
 .garna-button-icon:hover {
 	color: #CBF300;
+}
+
+.garna-button-inline-accent {
+	overflow: visible;
+	border: 0;
+	background: transparent;
+	color: #bfe900;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.2;
+	box-shadow: none;
+}
+
+.garna-button-inline-accent:hover,
+.garna-button-inline-accent:focus-visible {
+	transform: none;
+	filter: none;
+	background: transparent;
+	color: #bfe900;
+	box-shadow: none;
+}
+
+.garna-button-inline-accent:active {
+	transform: none;
+}
+
+.garna-button-inline-accent:focus-visible {
+	outline: 0;
+}
+
+.garna-button-inline-accent .garna-button-inner {
+	gap: 8px;
+}
+
+.garna-button-inline-accent .garna-button-arrow-glyph {
+	transition: transform 0.2s ease;
+}
+
+.garna-button-inline-accent:hover .garna-button-arrow-glyph,
+.garna-button-inline-accent:focus-visible .garna-button-arrow-glyph {
+	transform: translateX(4px);
 }
 
 .garna-button-rotating-flare {

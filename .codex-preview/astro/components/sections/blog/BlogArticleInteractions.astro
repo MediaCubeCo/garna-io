@@ -1,0 +1,86 @@
+<script is:inline>
+        (function() {
+          const initBlogToc = () => {
+            const links = Array.from(document.querySelectorAll('[data-toc-link]'));
+            const headings = links
+              .map((link) => {
+                const href = link.getAttribute('href');
+                if (!href || !href.startsWith('#')) return null;
+                const section = document.getElementById(href.slice(1));
+                return section ? { link, section } : null;
+              })
+              .filter(Boolean);
+
+            if (!headings.length) return;
+
+            const setActive = (activeId) => {
+              links.forEach((link) => {
+                const isActive = link.getAttribute('href') === `#${activeId}`;
+                const indicator = link.querySelector('[data-toc-indicator]');
+
+                link.classList.toggle('text-white', isActive);
+                link.classList.toggle('text-gray-500', !isActive);
+                link.setAttribute('aria-current', isActive ? 'true' : 'false');
+              });
+            };
+
+            const updateActive = () => {
+              const activationLine = 160;
+              let activeId = headings[0].section.id;
+
+              headings.forEach(({ section }) => {
+                if (section.getBoundingClientRect().top <= activationLine) {
+                  activeId = section.id;
+                }
+              });
+
+              setActive(activeId);
+            };
+
+            let ticking = false;
+            const requestUpdate = () => {
+              if (ticking) return;
+              ticking = true;
+              window.requestAnimationFrame(() => {
+                updateActive();
+                ticking = false;
+              });
+            };
+
+            updateActive();
+
+            links.forEach((link) => {
+              if (link.dataset.tocClickInitialized === 'true') return;
+              link.dataset.tocClickInitialized = 'true';
+
+              link.addEventListener('click', (event) => {
+                const href = link.getAttribute('href');
+                if (!href || !href.startsWith('#')) return;
+                const targetId = href.slice(1);
+                const target = document.getElementById(targetId);
+                if (!target) return;
+
+                event.preventDefault();
+                setActive(targetId);
+
+                const headerOffset = 112;
+                const targetTop = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                window.history.pushState(null, '', href);
+                window.scrollTo({
+                  top: Math.max(targetTop, 0),
+                  behavior: 'smooth',
+                });
+              });
+            });
+
+            window.addEventListener('scroll', requestUpdate, { passive: true });
+            window.addEventListener('resize', requestUpdate);
+          };
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initBlogToc);
+          } else {
+            initBlogToc();
+          }
+        })();
+      </script>

@@ -1,6 +1,6 @@
 ---
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'icon' | 'glow';
-type ButtonSize = 'header' | 'mobile' | 'icon' | 'hero';
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'icon' | 'glow' | 'inline-accent';
+type ButtonSize = 'header' | 'mobile' | 'icon' | 'hero' | 'inline';
 type ButtonEffect = 'none' | 'rotating-flare';
 type ButtonIcon = 'none' | 'arrow-up-right' | 'arrow-right';
 
@@ -9,6 +9,7 @@ interface Props {
 	target?: '_blank' | '_self' | '_parent' | '_top';
 	rel?: string;
 	type?: 'button' | 'submit' | 'reset';
+	disabled?: boolean;
 	variant?: ButtonVariant;
 	size?: ButtonSize;
 	effect?: ButtonEffect;
@@ -41,6 +42,7 @@ const variantClasses: Record<Exclude<ButtonVariant, 'glow'>, string> = {
 		'garna-button-secondary text-white',
 	ghost: 'garna-button-ghost text-white',
 	icon: 'garna-button-icon text-white',
+	'inline-accent': 'garna-button-inline-accent',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -48,6 +50,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 	mobile: 'w-full rounded-xl p-4 text-base',
 	icon: 'rounded-lg p-1',
 	hero: 'min-h-12 rounded-xl px-8 py-3',
+	inline: 'p-0',
 };
 
 const effectClass = resolvedEffect === 'none' ? '' : `garna-button-${resolvedEffect}`;

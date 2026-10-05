@@ -1,0 +1,54 @@
+---
+import StackedCardsSection from '../../StackedCardsSection.astro';
+
+const cards = [
+	{
+		key: 'immediate',
+		title: { text: 'Immediate payouts, deferred settlement', translateKey: 'deferredPayments.cards.immediate.title' },
+		description: { text: 'Pay your global team today while preserving working capital', translateKey: 'deferredPayments.cards.immediate.description' },
+		tags: [
+			{ text: 'Global payouts', translateKey: 'deferredPayments.cards.immediate.tags.0' },
+			{ text: 'Pay now', translateKey: 'deferredPayments.cards.immediate.tags.1' },
+			{ text: 'Settle later', translateKey: 'deferredPayments.cards.immediate.tags.2' },
+		],
+	},
+	{
+		key: 'terms',
+		title: { text: 'Flexible terms: 30, 60, or 90 days', translateKey: 'deferredPayments.cards.terms.title' },
+		description: { text: 'Choose a repayment schedule that follows your incoming cash flow', translateKey: 'deferredPayments.cards.terms.description' },
+		tags: [
+			{ text: 'Flexible terms', translateKey: 'deferredPayments.cards.terms.tags.0' },
+			{ text: 'Cash flow', translateKey: 'deferredPayments.cards.terms.tags.1' },
+			{ text: 'Your schedule', translateKey: 'deferredPayments.cards.terms.tags.2' },
+		],
+	},
+	{
+		key: 'limits',
+		title: { text: 'Facility limits from $50K to one million', translateKey: 'deferredPayments.cards.limits.title' },
+		description: { text: 'Scale available funding as your contractor network grows', translateKey: 'deferredPayments.cards.limits.description' },
+		tags: [
+			{ text: 'Scalable limit', translateKey: 'deferredPayments.cards.limits.tags.0' },
+			{ text: 'Team growth', translateKey: 'deferredPayments.cards.limits.tags.1' },
+			{ text: 'More capacity', translateKey: 'deferredPayments.cards.limits.tags.2' },
+		],
+	},
+	{
+		key: 'processing',
+		title: { text: 'Instant allocation & processing', translateKey: 'deferredPayments.cards.processing.title' },
+		description: { text: 'Move from approved allocation to processed payouts in one flow', translateKey: 'deferredPayments.cards.processing.description' },
+		tags: [
+			{ text: 'Allocation', translateKey: 'deferredPayments.cards.processing.tags.0' },
+			{ text: 'Approval', translateKey: 'deferredPayments.cards.processing.tags.1' },
+			{ text: 'Processing', translateKey: 'deferredPayments.cards.processing.tags.2' },
+		],
+	},
+];
+---
+
+<StackedCardsSection
+	id="home-deferred-payments-stack"
+	title={{ text: 'Pay contractors now, settle later', translateKey: 'sectionHeadings.deferredPayments' }}
+	description={{ text: 'Execute global payouts immediately and repay Garna on a schedule that suits your business cash flow', translateKey: 'sectionDescriptions.deferredPayments' }}
+	cards={cards}
+	timings={[[0.06, 0.34], [0.29, 0.62], [0.57, 0.92]]}
+/>

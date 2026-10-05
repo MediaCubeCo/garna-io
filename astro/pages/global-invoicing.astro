@@ -1,0 +1,141 @@
+---
+import FAQSection from '../ads-landing/FAQSection.astro';
+import FinalCTASection from '../ads-landing/FinalCTASection.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
+import AdsLandingLayout from '../layouts/AdsLandingLayout.astro';
+import type { FAQItem } from '../types/faq-section';
+import EorHeroSection from '../ads-landing/EorHeroSection.astro';
+import WhoGlobalInvoicingIsForSection from '../ads-landing/WhoGlobalInvoicingIsForSection.astro';
+import ProblemsWeSolveSection from '../ads-landing/ProblemsWeSolveSection.astro';
+import LookProfessionalSection from '../ads-landing/LookProfessionalSection.astro';
+import GlobalInvoicingStepsSection from '../ads-landing/GlobalInvoicingStepsSection.astro';
+import TwoWaysToGetPaidSection from '../ads-landing/TwoWaysToGetPaidSection.astro';
+import WhatElseYouGetSection from '../ads-landing/WhatElseYouGetSection.astro';
+import EorCostEstimatorSection from '../ads-landing/EorCostEstimatorSection.astro';
+import WhyGarnaComparisonSection from '../ads-landing/WhyGarnaComparisonSection.astro';
+import EmployerOfRecordSectionStyles from '../ads-landing/EmployerOfRecordSectionStyles.astro';
+import EmployerOfRecordInteractions from '../ads-landing/EmployerOfRecordInteractions.astro';
+
+const adsLandingShell = {
+	title: 'Global Invoicing for Contractors | Garna',
+	description: 'Get paid by business clients worldwide without setting up a company. Built for freelancers, remote workers, digital nomads, and small teams.',
+	keywords: 'global invoicing, international client payments, B2B invoices, freelancer payments, contractor invoicing, Garna',
+	ogImage: 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
+	htmlClass: 'scroll-smooth dark',
+	bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300]/40 selection:text-white bg-garna-page',
+	iconLibrary: 'iconify' as const,
+};
+
+const adsLandingFinalCta = {
+	title: [{ text: 'Get Your First Payment With Global Invoicing', translateKey: 'finalCta.title' }],
+	description: {
+		text: 'Create your Garna account for free and pay only when you receive a client payment',
+		translateKey: 'finalCta.description',
+	},
+	button: {
+		label: 'Create account',
+		translateKey: 'finalCta.button',
+		kind: 'signup' as const,
+		effect: 'rotating-flare' as const,
+	},
+	class: 'overflow-hidden lg:pt-40 lg:pb-40 text-center pt-32 pb-32 relative',
+	containerClass: 'z-10 max-w-4xl mr-auto ml-auto pr-6 pl-6 relative',
+	titleClass: 'garna-hero-title-gradient text-[2.75rem] leading-[1.06] tracking-tight md:text-[3.35rem] lg:text-[62px] font-normal text-white font-manrope mb-8',
+	descriptionClass: 'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
+};
+
+const globalInvoicingFaqItems = [
+	{
+		question: 'How do I get paid by a foreign client?',
+		answer:
+			'Sign up for Garna, create an invoice in a supported currency, and send it to your business client. The client provides the required company details and pays using the available method. Once the payment is received and verified, the funds appear in your Garna balance for withdrawal.',
+		questionTranslateKey: 'faq.items.q1.question',
+		answerTranslateKey: 'faq.items.q1.answer',
+	},
+	{
+		question: 'Do I need to register a company?',
+		answer:
+			'No. Garna provides the invoicing and payment workflow you need to work with business clients without opening your own company. Availability and the exact arrangement may depend on your country and the client payment route.',
+		questionTranslateKey: 'faq.items.q2.question',
+		answerTranslateKey: 'faq.items.q2.answer',
+	},
+	{
+		question: 'Where can I withdraw money to?',
+		answer:
+			'Available withdrawal methods can include bank accounts, cards, e-wallets, and cryptocurrency. The exact options depend on your country and account, and are shown in your Garna dashboard. Where supported, you can split funds between different withdrawal destinations.',
+		questionTranslateKey: 'faq.items.q3.question',
+		answerTranslateKey: 'faq.items.q3.answer',
+	},
+	{
+		question: 'What currency will I get paid in?',
+		answer:
+			'Your client pays the invoice in a supported currency such as US dollars or euros. Available withdrawal currencies depend on your country and selected payout method and are shown before you confirm the transaction.',
+		questionTranslateKey: 'faq.items.q4.question',
+		answerTranslateKey: 'faq.items.q4.answer',
+	},
+	{
+		question: 'Can I withdraw funds in cryptocurrency?',
+		answer: 'Cryptocurrency withdrawals may be available for supported accounts and jurisdictions. Check your Garna dashboard for the currencies, networks, limits, and compliance requirements available to you.',
+		questionTranslateKey: 'faq.items.q5.question',
+		answerTranslateKey: 'faq.items.q5.answer',
+	},
+	{
+		question: 'How fast will I get the money?',
+		answer:
+			'Payment time depends on the client payment method, banking route, and any required verification. Many payments arrive quickly, while additional checks or intermediary banks can extend the processing time. You can track the status in your Garna account.',
+		questionTranslateKey: 'faq.items.q6.question',
+		answerTranslateKey: 'faq.items.q6.answer',
+	},
+	{
+		question: 'How do I know the client will pay?',
+		answer: 'An invoice records the amount and payment terms but does not force a client to pay. Before starting work, agree on clear terms and use any payment-protection option available for your account. Garna shows the payment status as soon as funds enter the payment flow.',
+		questionTranslateKey: 'faq.items.q7.question',
+		answerTranslateKey: 'faq.items.q7.answer',
+	},
+	{
+		question: 'What fees does Garna charge?',
+		answer:
+			'Fees depend on the client payment method, currency route, and withdrawal option. Garna shows the applicable rate, fee, and total before you confirm a transaction, so you can see the full cost in advance.',
+		questionTranslateKey: 'faq.items.q8.question',
+		answerTranslateKey: 'faq.items.q8.answer',
+	},
+	{
+		question: 'What documents will I get?',
+		answer: 'Your Garna account keeps the invoice and available payment records together. The exact set of documents depends on the payment flow and your country, and can be viewed or downloaded from the relevant transaction in your dashboard.',
+		questionTranslateKey: 'faq.items.q9.question',
+		answerTranslateKey: 'faq.items.q9.answer',
+	},
+] satisfies FAQItem[];
+---
+
+<AdsLandingLayout shell={adsLandingShell}>
+	<EorHeroSection />
+	<ProblemsWeSolveSection />
+	<WhoGlobalInvoicingIsForSection />
+	<LookProfessionalSection />
+	<GlobalInvoicingStepsSection />
+	<TwoWaysToGetPaidSection />
+	<WhatElseYouGetSection />
+	<!-- Demo platform section is temporarily removed. Restore PlatformIntroSection here if the product demo is requested again. -->
+	<EmployerOfRecordSectionStyles />
+	<EorCostEstimatorSection />
+	<WhyGarnaComparisonSection />
+	<FAQSection
+		id="global-invoicing-faq"
+		title={{ text: 'Global Invoicing FAQ', translateKey: 'faq.title' }}
+		items={globalInvoicingFaqItems}
+		variant="eor"
+		class="py-16 lg:py-32"
+		containerClass="garna-container"
+	/>
+	<FinalCTASection {...adsLandingFinalCta} />
+	<Fragment slot="widgets">
+		<EmployerOfRecordInteractions />
+		<GarnaBookingWidget
+			trackingSource="ads-landing"
+			trackingPage="ads-landing"
+			titleFallback="Book a free 30-minute product demo"
+			subtitleFallback="Get all your questions answered by our experts"
+		/>
+	</Fragment>
+</AdsLandingLayout>

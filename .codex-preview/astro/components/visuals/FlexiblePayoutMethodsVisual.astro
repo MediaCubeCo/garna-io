@@ -1,0 +1,129 @@
+<div class="payout-network relative mx-auto h-[330px] w-full max-w-[430px] overflow-hidden font-sans">
+	<svg class="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 430 330" fill="none" aria-hidden="true">
+		<path class="payout-route payout-route--1" d="M184 150 C148 125 126 101 95 76" />
+		<path class="payout-route payout-route--2" d="M246 150 C282 124 307 102 338 77" />
+		<path class="payout-route payout-route--3" d="M181 191 C145 213 124 239 95 265" />
+		<path class="payout-route payout-route--4" d="M249 191 C285 215 309 240 338 266" />
+	</svg>
+
+	<div class="payout-method payout-method--1 left-2 top-4">
+		<span class="method-icon">
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10h18M5 10v8m4-8v8m6-8v8m4-8v8M3 19h18M12 3l9 5H3l9-5Z" /></svg>
+		</span>
+		<span><strong>Bank</strong><small>Local transfer</small></span>
+	</div>
+
+	<div class="payout-method payout-method--2 right-2 top-4">
+		<span class="method-icon">
+			<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h3" /></svg>
+		</span>
+		<span><strong>Card</strong><small>Instant payout</small></span>
+	</div>
+
+	<div class="payout-hub absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+		<div class="flex items-center justify-between">
+			<span class="text-[10px] uppercase tracking-[0.14em] text-gray-500">Payout</span>
+			<span class="hub-status"><span></span>Routing</span>
+		</div>
+		<div class="mt-3 text-3xl font-medium tracking-tight text-white">$2,450</div>
+		<div class="mt-1 text-xs text-gray-500">24 recipients</div>
+		<div class="mt-4 h-1 overflow-hidden rounded-full bg-white/5"><span class="hub-progress block h-full rounded-full bg-[#CBF300]"></span></div>
+	</div>
+
+	<div class="payout-method payout-method--3 bottom-4 left-2">
+		<span class="method-icon">
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h14a2 2 0 0 1 2 2v9H6a2 2 0 0 1-2-2V7Z"/><path d="M6 7V5h11v2m0 5h3" /></svg>
+		</span>
+		<span><strong>Wallet</strong><small>Digital balance</small></span>
+	</div>
+
+	<div class="payout-method payout-method--4 bottom-4 right-2">
+		<span class="method-icon">
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h4.5a3.5 3.5 0 0 1 0 7H8m1 0h5a3.5 3.5 0 0 1 0 7H9m2-16v20m4-20v3M7 6h8" /></svg>
+		</span>
+		<span><strong>Crypto</strong><small>USDC payout</small></span>
+	</div>
+</div>
+
+<style>
+	.payout-route {
+		fill: none;
+		stroke: rgb(255 255 255 / 0.09);
+		stroke-width: 1.5;
+		stroke-linecap: round;
+		stroke-dasharray: 5 7;
+	}
+
+	.payout-route--1 { animation: route-active 8s ease-in-out infinite; }
+	.payout-route--2 { animation: route-active 8s ease-in-out -6s infinite; }
+	.payout-route--3 { animation: route-active 8s ease-in-out -4s infinite; }
+	.payout-route--4 { animation: route-active 8s ease-in-out -2s infinite; }
+
+	.payout-method {
+		position: absolute;
+		z-index: 20;
+		display: flex;
+		width: 9.75rem;
+		align-items: center;
+		gap: 0.65rem;
+		border: 1px solid rgb(255 255 255 / 0.08);
+		border-radius: 0.85rem;
+		background: #0a0a0a;
+		padding: 0.7rem;
+		box-shadow: 0 14px 30px rgb(0 0 0 / 0.25);
+	}
+
+	.payout-method--1 { animation: method-active 8s ease-in-out infinite; }
+	.payout-method--2 { animation: method-active 8s ease-in-out -6s infinite; }
+	.payout-method--3 { animation: method-active 8s ease-in-out -4s infinite; }
+	.payout-method--4 { animation: method-active 8s ease-in-out -2s infinite; }
+
+	.method-icon {
+		display: flex;
+		height: 2rem;
+		width: 2rem;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0.6rem;
+		background: #151515;
+		color: rgb(156 163 175);
+	}
+
+	.method-icon svg { height: 1rem; width: 1rem; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+	.payout-method strong { display: block; color: white; font-size: 0.75rem; font-weight: 600; }
+	.payout-method small { display: block; margin-top: 0.15rem; color: rgb(107 114 128); font-size: 0.625rem; }
+
+	.payout-hub {
+		width: 10.5rem;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 1rem;
+		background: #0a0a0a;
+		padding: 1rem;
+		box-shadow: 0 18px 40px rgb(0 0 0 / 0.32);
+	}
+
+	.hub-status { display: flex; align-items: center; gap: 0.3rem; color: rgb(156 163 175); font-size: 0.625rem; }
+	.hub-status span { height: 0.35rem; width: 0.35rem; border-radius: 9999px; background: #cbf300; animation: status-blink 1.2s ease-in-out infinite; }
+	.hub-progress { width: 35%; animation: route-progress 2s ease-in-out infinite; }
+
+	@keyframes method-active {
+		0%, 18%, 100% { border-color: rgb(203 243 0 / 0.28); transform: translateY(-2px); }
+		25%, 94% { border-color: rgb(255 255 255 / 0.08); transform: translateY(0); }
+	}
+
+	@keyframes route-active {
+		0%, 18%, 100% { stroke: rgb(203 243 0 / 0.65); stroke-dashoffset: -18; }
+		25%, 94% { stroke: rgb(255 255 255 / 0.09); stroke-dashoffset: 0; }
+	}
+
+	@keyframes route-progress { 0% { transform: translateX(-100%); } 50%, 100% { transform: translateX(280%); } }
+	@keyframes status-blink { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+
+	@media (prefers-reduced-motion: reduce) {
+		.payout-route,
+		.payout-method,
+		.hub-status span,
+		.hub-progress { animation: none; }
+	}
+</style>

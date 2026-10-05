@@ -1,0 +1,256 @@
+---
+interface CardText {
+	text: string;
+	translateKey?: string;
+}
+
+interface Props {
+	title?: string | CardText;
+	description?: string | CardText;
+	eyebrow?: string | CardText;
+	variant?: 'feature' | 'visual' | 'compact' | 'tab' | 'testimonial';
+	id?: string;
+	visualPosition?: 'before' | 'after';
+	class?: string;
+	bodyClass?: string;
+	visualClass?: string;
+	titleClass?: string;
+	descriptionClass?: string;
+	eyebrowClass?: string;
+	interactive?: boolean;
+	ariaBusy?: boolean;
+}
+
+const {
+	title,
+	description,
+	eyebrow,
+	variant = 'feature',
+	id,
+	visualPosition = 'before',
+	class: className = '',
+	bodyClass = '',
+	visualClass = '',
+	titleClass = '',
+	descriptionClass = '',
+	eyebrowClass = '',
+	interactive = true,
+	ariaBusy = false,
+} = Astro.props;
+const titleValue = typeof title === 'string' ? { text: title } : title;
+const descriptionValue = typeof description === 'string' ? { text: description } : description;
+const eyebrowValue = typeof eyebrow === 'string' ? { text: eyebrow } : eyebrow;
+const hasVisual = Astro.slots.has('visual');
+const variantClasses = {
+	feature: 'garna-glass-card rounded-2xl p-8',
+	visual: 'garna-glass-card overflow-hidden rounded-3xl',
+	compact: 'garna-glass-card flex items-start gap-3 rounded-xl p-4',
+	tab: 'rounded-2xl border border-white/5 bg-[#0A0A0A]/80 p-8 backdrop-blur-sm',
+	testimonial: 'garna-glass-card flex h-full flex-col rounded-2xl p-8',
+};
+const defaultTitleClasses = {
+	feature: 'mb-3 text-lg font-semibold tracking-tight text-white',
+	visual: 'mb-3 text-lg font-semibold tracking-tight text-white',
+	compact: 'sr-only',
+	tab: 'mb-4 text-xl font-semibold tracking-tight text-white',
+	testimonial: 'sr-only',
+};
+const defaultDescriptionClasses = {
+	feature: '',
+	visual: '',
+	compact: '',
+	tab: '',
+	testimonial: 'mb-8 flex-grow',
+};
+---
+
+<article id={id} aria-busy={ariaBusy ? 'true' : 'false'} data-card-variant={variant} data-interactive={interactive ? 'true' : 'false'} data-card-glow={interactive ? 'true' : undefined} class:list={[
+	'garna-card group font-manrope',
+	variantClasses[variant],
+	interactive && 'transition duration-300 hover:-translate-y-1 focus-within:-translate-y-1 motion-reduce:translate-none motion-reduce:transition-colors',
+	className,
+]}>
+	{hasVisual && visualPosition === 'before' && <div class={visualClass}><slot name="visual" /></div>}
+	{(eyebrowValue || titleValue || descriptionValue) && (
+		<div class={bodyClass}>
+			{eyebrowValue && <span class:list={['mb-3 block text-sm font-semibold text-[#CBF300]', eyebrowClass]} data-translate={eyebrowValue.translateKey}>{eyebrowValue.text}</span>}
+			{titleValue && <h3 data-card-title class:list={[defaultTitleClasses[variant], titleClass]} data-translate={titleValue.translateKey}>{titleValue.text}</h3>}
+			{descriptionValue && <p data-garna-subtitle data-card-description class:list={['text-base leading-relaxed', defaultDescriptionClasses[variant], descriptionClass]} data-translate={descriptionValue.translateKey}>{descriptionValue.text}</p>}
+		</div>
+	)}
+	<slot />
+	{hasVisual && visualPosition === 'after' && <div class={visualClass}><slot name="visual" /></div>}
+</article>
+
+<style>
+	.garna-card {
+		--garna-card-glow-x: 50%;
+		--garna-card-glow-y: 50%;
+		--garna-card-glow-radius: 60vw;
+		--garna-card-border-glow-radius: 14rem;
+		position: relative;
+		isolation: isolate;
+	}
+
+	.garna-card [data-card-title] {
+		font-weight: 600;
+	}
+
+	.garna-card::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		border-radius: inherit;
+		background: radial-gradient(
+			circle var(--garna-card-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+			rgba(255, 255, 255, 0.12) 0%,
+			rgba(255, 255, 255, 0.075) 18%,
+			rgba(255, 255, 255, 0.035) 40%,
+			transparent 70%
+		);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 300ms ease;
+	}
+
+	.garna-card > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+		.garna-card::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			z-index: 2;
+			padding: 1px;
+			border-radius: inherit;
+			background: radial-gradient(
+				circle var(--garna-card-border-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+				rgba(255, 255, 255, 0.9) 0%,
+				rgba(255, 255, 255, 0.52) 24%,
+				rgba(255, 255, 255, 0.2) 50%,
+				transparent 76%
+			);
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 300ms ease;
+			-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+			-webkit-mask-composite: xor;
+			mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+			mask-composite: exclude;
+		}
+	}
+
+	.garna-card[data-interactive='true']:is(:hover, :focus-within, [data-pointer-active='true']) {
+		border-color: rgba(255, 255, 255, 0.15);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.garna-card[data-card-glow='true']:is(:hover, :focus-within, [data-pointer-active='true'])::before {
+			opacity: 1;
+		}
+
+		@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+			.garna-card[data-card-glow='true']:is(:hover, :focus-within, [data-pointer-active='true'])::after {
+				opacity: 1;
+			}
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.garna-card {
+			--garna-card-glow-x: 50% !important;
+			--garna-card-glow-y: 50% !important;
+		}
+
+		.garna-card::before,
+		.garna-card::after {
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	const cardGlowWindow = window as typeof window & { __garnaCardGlowInitialized?: boolean };
+
+	if (!cardGlowWindow.__garnaCardGlowInitialized) {
+		cardGlowWindow.__garnaCardGlowInitialized = true;
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const lightFieldRadius = 352;
+		const lightFields = new WeakMap<HTMLElement, HTMLElement>();
+		let activeCard: HTMLElement | null = null;
+		let activeLightField: HTMLElement | null = null;
+		let activeLightScope: HTMLElement | null = null;
+		let activeLightScopeBounds: DOMRect | null = null;
+
+		const getLightField = (scope: HTMLElement) => {
+			const existing = lightFields.get(scope);
+			if (existing) return existing;
+
+			const field = document.createElement('span');
+			field.className = 'garna-card-light-field';
+			field.setAttribute('aria-hidden', 'true');
+			scope.classList.add('garna-card-light-scope');
+			scope.prepend(field);
+			lightFields.set(scope, field);
+			return field;
+		};
+
+		const clearActiveCard = () => {
+			activeCard?.removeAttribute('data-pointer-active');
+			activeLightField?.removeAttribute('data-active');
+			activeCard = null;
+			activeLightField = null;
+			activeLightScope = null;
+			activeLightScopeBounds = null;
+		};
+
+		document.addEventListener('pointermove', (event) => {
+			if (reducedMotion.matches || !(event.target instanceof Element)) return;
+
+			const card = event.target.closest('[data-card-glow="true"]');
+			if (!(card instanceof HTMLElement)) {
+				clearActiveCard();
+				return;
+			}
+
+			if (activeCard !== card) {
+				clearActiveCard();
+				activeCard = card;
+				activeCard.setAttribute('data-pointer-active', 'true');
+
+				if (document.documentElement.dataset.theme === 'light' && card.parentElement) {
+					activeLightScope = card.parentElement;
+					activeLightField = getLightField(activeLightScope);
+					activeLightScopeBounds = activeLightScope.getBoundingClientRect();
+					const field = activeLightField;
+					if (field.dataset.ready === 'true') {
+						field.setAttribute('data-active', 'true');
+					} else {
+						window.requestAnimationFrame(() => {
+							field.dataset.ready = 'true';
+							if (activeLightField === field) field.setAttribute('data-active', 'true');
+						});
+					}
+				}
+			}
+
+			const bounds = card.getBoundingClientRect();
+			const localX = event.clientX - bounds.left;
+			const localY = event.clientY - bounds.top;
+			card.style.setProperty('--garna-card-glow-x', `${localX}px`);
+			card.style.setProperty('--garna-card-glow-y', `${localY}px`);
+
+			if (activeLightField && activeLightScopeBounds) {
+				activeLightField.style.setProperty('--garna-card-light-x', `${event.clientX - activeLightScopeBounds.left - lightFieldRadius}px`);
+				activeLightField.style.setProperty('--garna-card-light-y', `${event.clientY - activeLightScopeBounds.top - lightFieldRadius}px`);
+			}
+		}, { passive: true });
+
+		window.addEventListener('blur', clearActiveCard);
+		window.addEventListener('scroll', clearActiveCard, { passive: true });
+	}
+</script>

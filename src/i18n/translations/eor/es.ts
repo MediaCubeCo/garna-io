@@ -1,3 +1,7 @@
+import { getEorCostEstimatorOptions } from './cost-estimator-options';
+
+const costEstimatorOptions = getEorCostEstimatorOptions('es');
+
 export const eorEs = {
 	"images": {},
 	"meta": {
@@ -6,14 +10,128 @@ export const eorEs = {
 	},
 	"hero": {
 		"badge": "Empleador oficial para equipos globales",
-		"title": "Contratación internacional sencilla, rápida y sin complicaciones",
-		"description": "Contratar a los mejores talentos de todo el mundo no tiene por qué implicar un conjunto de complejas normas de cumplimiento ni sistemas de nóminas independientes en los que haya que crear múltiples entidades jurídicas en cada país. En Garna, ofrecemos una solución sencilla y moderna de empleador oficial diseñada para ayudar a las empresas a expandirse a nivel mundial sin verse atrapadas en complicaciones operativas",
-		"cta": "Solicita un demo"
+		"title": "Employer of Record\nContrata en más de 150 países",
+		"description": "Garna se convierte en el empleador legal de tu equipo en el extranjero. Gestionamos los contratos, las nóminas, los impuestos y el cumplimiento normativo; tú diriges el trabajo",
+		"notifications": {
+			"startsToday": "Empieza hoy",
+			"startsMonday": "Empieza el lunes",
+			"productDesigner": "Diseñadora de producto",
+			"softwareEngineer": "Ingeniero de software"
+		},
+		"cta": "Solicita un demo",
+		"slides": {
+			"hire": {
+				"title": "Contrata con Garna EOR",
+				"description": "Garna se convierte en el empleador legal de tu equipo en el extranjero: gestiona contratos, nómina, impuestos y cumplimiento, mientras tú diriges el trabajo"
+			},
+			"entities": {
+				"title": "Contrata sin entidades",
+				"description": "Entra en nuevos mercados mientras Garna gestiona empleo local, contratos, nómina, impuestos y cumplimiento para cada contratación"
+			},
+			"onboarding": {
+				"title": "Incorporación global segura",
+				"description": "Mantén condiciones locales, beneficios, documentos y pagos salariales alineados desde el primer día"
+			}
+		}
 	},
 	"stats": {
 		"businesses": "empresas utilizan Garna",
-		"availability": "disponibilidad global de nómina",
-		"countries": "países cubiertos"
+		"coverage": "países cubiertos",
+		"startingValue": "$200",
+		"startingFrom": "desde"
+	},
+	"transparentPricing": {
+		"title": "Precios transparentes EOR",
+		"description": "Desde $200 al mes por empleado.",
+		"note": "Sin tarifas ocultas. Sin costes de crear una entidad local. Obtén una cotización personalizada según tus necesidades de contratación.",
+		"button": "Calcular tus opciones",
+		"panel": {
+			"from": "Desde",
+			"period": "por empleado / mes"
+		}
+	},
+	"countries": {
+		"title": "Contrata empleados en todo el mundo",
+		"description": "Contrata empleados en más de 150 países con Garna",
+		"listAriaLabel": "Países donde Garna permite contratar",
+		"button": "Solicita una demo",
+		"showAll": "Ver todo",
+		"showLess": "Ver menos",
+		"regions": {
+			"europe": "Europa",
+			"americas": "Américas",
+			"asiaPacific": "Asia Pacífico",
+			"africa": "África"
+		}
+	},
+	"eorProof": {
+		"title": "Precios transparentes de EOR",
+		"description": "Desde $200 al mes por empleado. Sin comisiones ocultas ni costes de constitución de una entidad local. Obtén una oferta personalizada según tus necesidades de contratación",
+		"button": "Calcular tus opciones",
+		"carousel": {
+			"ariaLabel": "Elegir una tarjeta EOR"
+		},
+		"stats": {
+			"countries": {
+				"label": "países cubiertos",
+				"notice": {
+					"title": "Desde $200 al mes",
+					"meta": "Por empleado"
+				}
+			},
+			"platform": {
+				"label": "plataforma para contratación global",
+				"notice": {
+					"title": "Sin costes de constitución",
+					"meta": "Contrata a través de Garna"
+				}
+			},
+			"entities": {
+				"label": "entidades locales que abrir",
+				"notice": {
+					"title": "Coste estimado listo",
+					"meta": "Costes locales incluidos"
+				}
+			}
+		}
+	},
+	"countryNames": {
+		"dk": "Dinamarca",
+		"ie": "Irlanda",
+		"gb": "Reino Unido",
+		"fi": "Finlandia",
+		"is": "Islandia",
+		"lt": "Lituania",
+		"md": "Moldavia",
+		"se": "Suecia",
+		"ua": "Ucrania",
+		"br": "Brasil",
+		"ca": "Canadá",
+		"us": "Estados Unidos",
+		"mx": "México",
+		"cl": "Chile",
+		"co": "Colombia",
+		"ar": "Argentina",
+		"pe": "Perú",
+		"uy": "Uruguay",
+		"au": "Australia",
+		"in": "India",
+		"ph": "Filipinas",
+		"sg": "Singapur",
+		"jp": "Japón",
+		"kr": "Corea del Sur",
+		"th": "Tailandia",
+		"vn": "Vietnam",
+		"my": "Malasia",
+		"eg": "Egipto",
+		"ma": "Marruecos",
+		"za": "Sudáfrica",
+		"ng": "Nigeria",
+		"gh": "Ghana",
+		"ke": "Kenia",
+		"tn": "Túnez",
+		"ci": "Costa de Marfil",
+		"rw": "Ruanda"
 	},
 	"sectionTags": {
 		"growFaster": "Crece más rápido",
@@ -51,21 +169,30 @@ export const eorEs = {
 			"hiringChecksReady": "Verificaciones internacionales listas",
 			"newEmployee": "Nuevo empleado",
 			"inviteSent": "Invitación enviada",
+			"onboardingWorkflow": "Flujo de incorporación",
+			"countryStepsReady": "Pasos del país listos",
 			"growthLead": "Líder de crecimiento",
 			"localContractPrepared": "Contrato local preparado",
-			"payrollProfileReady": "Perfil de nómina listo",
+			"payrollProfileReady": "Perfil salarial listo",
 			"complianceVault": "Archivo de cumplimiento",
 			"documentsStored": "Documentos guardados",
+			"contractHub": "Centro de contratos",
+			"complianceDocsReady": "Docs de cumplimiento listas",
 			"signed": "Firmado",
 			"taxForms": "Formularios fiscales",
 			"stored": "Guardado",
 			"payrollRecords": "Registros de nómina",
 			"synced": "Sincronizado",
+			"globalPayroll": "Proceso de nómina global",
+			"payrollRunReady": "Pagos multidivisa listos",
 			"workforceCosts": "Costes de personal",
 			"liveReport": "Informe en vivo",
+			"workforceAnalytics": "Analítica de plantilla",
+			"costsInView": "Costes visibles",
 			"countries": "Países",
 			"complianceChecks": "Verificaciones de cumplimiento",
 			"offboarding": "Salida",
+			"compliantOffboarding": "Salida conforme",
 			"noticeRulesChecked": "Reglas de aviso verificadas",
 			"finalPayrollCalculated": "Nómina final calculada",
 			"documentsArchived": "Documentos archivados"
@@ -76,7 +203,7 @@ export const eorEs = {
 			"start": "Iniciar",
 			"access": "Acceso",
 			"portugal": "Portugal",
-			"eorContract": "Contrato EoR",
+			"eorContract": "Contrato EOR",
 			"invite": "Invitación",
 			"employeeEmail": "Email del empleado",
 			"account": "Cuenta",
@@ -88,60 +215,60 @@ export const eorEs = {
 	},
 	"globalWorkforce": {
 		"title": "Haz crecer tu plantilla global más rápido",
-		"description": "Un «empleador de referencia» (EoR) ayuda a las empresas a contratar empleados internacionales sin necesidad de abrir entidades locales. El proveedor de EoR contrata legalmente al trabajador en su nombre, mientras usted gestiona su trabajo diario, sus responsabilidades y su rendimiento",
+		"description": "Un «empleador de referencia» (EOR) ayuda a las empresas a contratar empleados internacionales sin necesidad de abrir entidades locales. El proveedor de EOR contrata legalmente al trabajador en su nombre, mientras usted gestiona su trabajo diario, sus responsabilidades y su rendimiento",
 		"intro": "Todo esto significa que puedes:",
 		"benefits": {
 			"hireGlobally": {
 				"title": "Contratar a nivel global más rápido",
-				"description": "Atraer a personas con talento de todo el mundo y hacerlo más rápido que antes"
+				"description": "Atrae talento de cualquier parte del mundo y agiliza su incorporación"
 			},
 			"newMarkets": {
 				"title": "Expandirse a nuevos mercados",
-				"description": "Probar y entrar en nuevas regiones sin gastos operativos"
+				"description": "Crea un equipo local en nuevos países sin constituir de inmediato tu propia entidad empleadora."
 			},
 			"reduceRisks": {
-				"title": "Reducir los riesgos",
-				"description": "Evita cualquier posible error que pueda surgir durante la contratación y el despido de personal en diferentes países"
+				"title": "Reduce los costes de contratación global",
+				"description": "Evita la carga de múltiples proveedores, entidades y soluciones de pago"
 			},
 			"compliance": {
-				"title": "Cumple con la legislación",
-				"description": "Gestiona la nómina global sin tener que preocuparte por un sinfín de normas y regulaciones"
+				"title": "Mantén el cumplimiento legal",
+				"description": "Legislación laboral local, impuestos relacionados con el empleo y contribuciones sociales gestionados por país"
 			}
 		}
 	},
 	"hirePay": {
 		"title": "Todo lo que necesitas para contratar y pagar a nivel global",
-		"description": "Ofrecemos un sistema de contratación muy flexible que ayuda a las empresas a contratar personal internacional sin tener que pasar por trámites burocráticos adicionales",
+		"description": "Garna ofrece un sistema de contratación flexible que ayuda a las empresas a contratar personal internacional sin trámites burocráticos innecesarios",
 		"cards": {
 			"entities": {
-				"title": "Contrata a nivel global sin necesidad de abrir nuevas entidades",
-				"description": "Puedes contratar empleados en todo el mundo en un abrir y cerrar de ojos. No es necesario abrir una oficina local ni lidiar con su infraestructura legal"
+				"title": "Contrata globalmente sin abrir entidades",
+				"description": "Contrata empleados en todo el mundo sin abrir una oficina local ni gestionar su infraestructura legal"
 			},
 			"workforce": {
-				"title": "Contrata cualquier tipo de personal",
-				"description": "Gestiona un equipo de empleados a tiempo completo, contratistas, autónomos y personal distribuido, todo desde un único lugar"
+				"title": "Contrata cualquier tipo de equipo",
+				"description": "Gestiona empleados a tiempo completo, contratistas, autónomos y personal distribuido desde un solo lugar"
 			},
 			"payroll": {
-				"title": "Ofrece una gestión de nóminas fluida",
-				"description": "Paga automáticamente y sin complicaciones a tu personal internacional, a los contratistas, los impuestos y los pagos en varias divisas"
+				"title": "Ejecuta nóminas sin complicaciones",
+				"description": "Paga automáticamente y sin estrés a empleados, contratistas, impuestos y pagos multidivisa"
 			},
 			"compliance": {
-				"title": "Garantiza el cumplimiento de la legislación en todos los mercados",
-				"description": "En lo que respecta a las diferentes normativas y reglas que surgen al contratar a nivel global, nos encargamos de garantizar el cumplimiento de las leyes laborales locales, las normativas fiscales y las reglas específicas de cada país"
+				"title": "Asegura el cumplimiento en cada mercado",
+				"description": "Mantente alineado con las leyes laborales locales, las normas fiscales y las reglas específicas de cada país"
 			},
 			"integrations": {
-				"title": "Integra EoR en tus herramientas y sistemas",
-				"description": "Nuestro sistema se integra a la perfección con tus herramientas actuales de RR. HH., finanzas y gestión de personal, para que no tengas que alterar los procesos existentes"
+				"title": "Integra EOR en tus herramientas",
+				"description": "Conecta tus herramientas actuales de RR. HH., finanzas y gestión de personal sin interrumpir tus procesos"
 			},
 			"fastMoving": {
-				"title": "Diseñado para empresas en rápido crecimiento",
-				"description": "Tanto si eres una startup que se abre camino en un nuevo mercado como una gran empresa que intenta gestionar una plantilla global, Garna está aquí para ayudarte simplificando los procesos de RR. HH"
+				"title": "Diseñado para empresas ágiles",
+				"description": "Apoya a startups que entran en nuevos mercados y a equipos más grandes que gestionan operaciones globales de plantilla"
 			}
 		}
 	},
 	"why": {
-		"title": "La respuesta a por qué las empresas eligen Garna",
-		"description": "Garna facilita a las empresas la gestión de todos los aspectos de su plantilla global, desde la búsqueda de los candidatos adecuados hasta su incorporación, la gestión de sus salarios y la tramitación de la documentación",
+		"title": "Funciones de la plataforma Employer of Record",
+		"description": "Desde la incorporación hasta la salida, el EOR de Garna cubre todo el ciclo laboral en una sola plataforma",
 		"tabs": {
 			"sourcing": {
 				"label": "Búsqueda de talento",
@@ -153,19 +280,19 @@ export const eorEs = {
 				"label": "Incorporación",
 				"title": "Automatización de la incorporación de empleados internacionales",
 				"problem": "La incorporación de un nuevo empleado puede ser un reto cuando se contrata desde diferentes lugares del mundo",
-				"solution": "Garna simplifica la incorporación de empleados internacionales con flujos de trabajo específicos que garantizan que todo se haga correctamente en cada país. En lugar de tener que lidiar con diferentes sistemas y trámites, puedes incorporar a empleados de todo el mundo a través de una sola plataforma y reducir todo el trabajo manual de RR. HH"
+				"solution": "Garna simplifica la incorporación de empleados internacionales con flujos de trabajo que garantizan que todo se haga correctamente en cada país. Incorpora empleados de todo el mundo desde una sola plataforma y reduce el trabajo manual de RR. HH"
 			},
 			"documents": {
-				"label": "Documentos",
+				"label": "Contratos",
 				"title": "Centralización de contratos y documentación de cumplimiento",
 				"problem": "Intentar llevar un control de todos los diferentes contratos, formularios fiscales, registros de nóminas y documentos de cumplimiento normativo puede ser tanto una pesadilla como un riesgo operativo para cualquier equipo internacional",
-				"solution": "Garna facilita mantener todo en un solo lugar gracias a nuestra plataforma segura, para que puedas gestionar el cumplimiento normativo laboral internacional y todos los flujos de trabajo de tus operaciones globales de RR. HH. en tus equipos distribuidos con menos complicaciones"
+				"solution": "Garna mantiene todo en un solo lugar con una plataforma segura, para que puedas gestionar el cumplimiento laboral internacional y los flujos de trabajo de RR. HH. globales de forma eficiente"
 			},
 			"payroll": {
 				"label": "Nóminas",
 				"title": "Gestiona tu nómina global sin estrés",
 				"problem": "Gestionar correctamente las nóminas de los empleados de todo el mundo y lidiar con diferentes divisas y normas fiscales es uno de los aspectos más complicados de la internacionalización de una empresa",
-				"solution": "Garna alivia la carga de gestionar la nómina internacional mediante la configuración de flujos de trabajo automatizados. Con nuestro sistema, tu empresa puede pagar a personas de todo el mundo rápidamente, evitando errores en la nómina y trabajo extra"
+				"solution": "Garna simplifica la nómina internacional con flujos de trabajo automatizados. Paga a personas en todo el mundo rápidamente y sin trabajo adicional."
 			},
 			"timeOff": {
 				"label": "Permisos y gastos",
@@ -176,49 +303,73 @@ export const eorEs = {
 				"label": "Informes",
 				"title": "Obtenga una visión clara de su plantilla global",
 				"problem": "Garna ofrece una visibilidad clara de las nóminas, el cumplimiento normativo, la incorporación de nuevos empleados y los costes de personal si desea gestionar las operaciones de RR. HH. de forma eficiente",
-				"solution": "Nuestra plataforma de análisis y generación de informes te proporciona la información necesaria y mantiene tus costes de personal bajo control. Además, gracias a nuestra infraestructura basada en API, las grandes empresas pueden integrar nuestras herramientas de generación de informes en sus paneles de control existentes"
+				"solution": "Nuestra plataforma de análisis e informes ofrece insights y mantiene los costes de personal bajo control. Con nuestra infraestructura API-first, las empresas pueden integrar herramientas de reporting en sus dashboards existentes"
 			},
 			"termination": {
-				"label": "Rescisión",
+				"label": "Offboarding",
 				"title": "Gestión de bajas conforme a la normativa en un mercado global",
 				"problem": "La salida de empleados no es fácil de por sí, especialmente cuando se trata de diferentes países y normativas. Si se comete un error, podría enfrentarse a graves riesgos legales y de cumplimiento normativo",
-				"solution": "Nuestros flujos de trabajo de rescisión se adaptan a la legislación laboral específica de cada país para que puedas gestionar la salida de empleados con confianza"
+				"solution": "Nuestros flujos de terminación se adaptan a las leyes laborales de cada país para que puedas gestionar la salida de empleados con confianza"
 			}
+		}
+	},
+	"costEstimator": {
+		"kicker": "Estimador de costes",
+		"title": "Descubre el coste real de tu contratación",
+		"description": "Garna empieza desde $200 al mes por empleado, sin tarifas ocultas ni costes de crear una entidad local. Indica el país y el salario para estimar impuestos, beneficios obligatorios y el coste total de contratación",
+		"proof": {
+			"countries": "países cubiertos",
+			"payroll": "disponibilidad de nómina"
+		},
+		...costEstimatorOptions,
+		"form": {
+			"title": "Estimador de costes de contratación global",
+			"hireIn": "Quiero contratar en",
+			"country": "País",
+			"region": "Estado / provincia",
+			"salary": "Salario bruto anual",
+			"currency": "Divisa",
+			"amount": "Importe",
+			"amountPlaceholder": "Salario bruto anual",
+			"clearCountry": "Borrar país",
+			"clearRegion": "Borrar estado o provincia",
+			"clearCurrency": "Borrar divisa",
+			"button": "Calcular coste total"
 		}
 	},
 	"fit": {
 		"title": "¿Es Garna Employer of Record la opción adecuada para tu empresa?",
 		"items": {
-			"1": "Quieres contratar personal internacional sin tener que pasar por la molestia de establecer una oficina en cada país",
-			"2": "Quieres automatizar tu nómina global, los impuestos y el cumplimiento normativo, y no volver nunca más a lidiar con flujos de trabajo manuales en múltiples sistemas",
-			"3": "Ya tienes talento internacional que quieres contratar, pero necesitas ayuda con el papeleo, desde los contratos hasta la incorporación y el cumplimiento normativo",
-			"4": "Quieres ampliar rápidamente tus equipos distribuidos y evitar crear una infraestructura interna de RR. HH. y nóminas",
+			"1": "Quieres contratar personal internacional sin abrir una oficina en cada país",
+			"2": "Quieres automatizar nóminas globales, impuestos y cumplimiento en lugar de gestionar flujos manuales",
+			"3": "Ya tienes talento internacional para contratar y necesitas ayuda con contratos, incorporación y cumplimiento",
+			"4": "Quieres escalar equipos distribuidos rápidamente sin crear infraestructura interna de RR. HH. y nóminas",
 			"5": "Quieres incorporar a contratistas o empleados a tiempo completo y que empiecen a trabajar rápidamente, pero sin tener que lidiar con la legislación laboral local",
-			"6": "Desea un socio de empleo global que pueda gestionar todas sus necesidades de nóminas en varios países, la gestión de contratistas, las transferencias bancarias y los pagos en criptomonedas, todo ello en una única plataforma fácil de usar"
+			"6": "Necesitas gestión de contratistas, transferencias bancarias, pagos en criptomonedas y nómina multi-país en una sola plataforma"
 		}
 	},
 	"steps": {
-		"title": "Pasos a seguir con Garna:",
+		"title": "Pasos con Garna",
 		"items": {
 			"companyAccount": {
 				"title": "Crea tu cuenta de empresa",
-				"description": "Realiza una rápida comprobación y verificación de tu perfil, rellena los campos obligatorios y obtén acceso al servicio. Lo personalizaremos según tus necesidades y deseos en un par de clics"
+				"description": "Completa una rápida revisión del perfil, rellena los campos obligatorios y accede a un flujo de servicio personalizado"
 			},
 			"financialContact": {
-				"title": "Asigna una persona de contacto para asuntos financieros",
-				"description": "Especifica quién será la persona responsable de los asuntos financieros. Puede ser el director financiero, el jefe del departamento financiero o tú mismo"
+				"title": "Asigna un contacto financiero",
+				"description": "Elige a la persona responsable de los asuntos financieros, desde un director financiero hasta tú mismo"
 			},
 			"contract": {
-				"title": "Crea tu primer contrato EoR",
-				"description": "Introduce los datos del empleado: país de trabajo, puesto, salario, fecha de inicio, moneda del salario y requisitos de visado de trabajo"
+				"title": "Crea tu primer contrato EOR",
+				"description": "Añade país, puesto, salario, fecha de inicio, moneda y requisitos de visado de trabajo"
 			},
 			"invite": {
 				"title": "Invita a un empleado",
-				"description": "Tras su solicitud en la cuenta personal, el empleado recibe una invitación personal por correo electrónico y crea una cuenta en Garna para recibir los pagos"
+				"description": "El empleado recibe una invitación por email y crea una cuenta de Garna para recibir pagos"
 			},
 			"fundWallet": {
-				"title": "Recarga tu monedero y procesa la primera nómina",
-				"description": "Puedes hacerlo de la forma que te resulte más cómoda: desde SWIFT y SEPA hasta criptomonedas. Empieza a pagar tu salario hoy mismo"
+				"title": "Añade fondos al monedero y procesa nómina",
+				"description": "Usa financiación por SWIFT, SEPA o cripto y empieza a pagar salarios hoy mismo"
 			}
 		}
 	},
@@ -229,30 +380,57 @@ export const eorEs = {
 		"title": "Preguntas frecuentes sobre el empleador oficial",
 		"items": {
 			"q1": {
-				"question": "¿Qué es un empleador de referencia (EoR)?",
-				"answer": "Un empleador de referencia (EoR) es una empresa externa que contrata legalmente a los trabajadores en nombre de otra empresa. Son los responsables de gestionar aspectos como las nóminas, los impuestos, el cumplimiento normativo, los contratos y de garantizar que se respeten las normas laborales locales."
+				"question": "¿Qué es un Employer of Record (EOR)?",
+				"answer": "Un Employer of Record te permite contratar empleados a tiempo completo en países donde no tienes una entidad legal. Garna se convierte en el empleador legal y gestiona nóminas, contratos, pagos obligatorios y cumplimiento local, mientras tú diriges las actividades del negocio."
 			},
 			"q2": {
-				"question": "¿En qué se diferencia un EoR de una organización profesional de empleadores (PEO)?",
-				"answer": "Una PEO es un tipo de empresa que utiliza el modelo de «coempleo». Trabaja conjuntamente con la empresa cliente para gestionar a los empleados. Por lo general, requiere que la empresa cliente ya cuente con una estructura local. Un EoR, por su parte, actúa como empleador oficial, por lo que no es necesario establecer una empresa en cada país en el que se desee trabajar."
+				"question": "¿Quién gestiona al empleado?",
+				"answer": "Tu empresa sigue gestionando las actividades diarias del empleado relacionadas con el negocio, incluidos los objetivos de su puesto, los proyectos y la evaluación de su desempeño. El EOR gestiona la relación laboral, incluidas las nóminas, los beneficios obligatorios, la administración de personal y el cumplimiento de los requisitos aplicables en materia de empleo según la legislación local."
 			},
 			"q3": {
-				"question": "¿Cuándo conviene recurrir a un EoR?",
-				"answer": "Si quieres empezar a contratar personal en países en los que aún no tienes una estructura para hacer negocios, un EoR es la solución. Te permite expandirte internacionalmente sin tener que pasar por el tedioso proceso de crear una filial en cada lugar y lidiar con todas las normas laborales locales."
+				"question": "¿Cuál es la diferencia entre contratar mediante EOR y contratar a un contratista?",
+				"answer": "Un empleado EOR es un empleado a tiempo completo según la legislación laboral local, con beneficios obligatorios, protecciones legales y pleno cumplimiento, ideal para puestos permanentes y de largo plazo. Un contratista trabaja por cuenta propia, sin esas protecciones, y tratar como contratista a alguien que trabaja a tiempo completo bajo tu dirección puede generar riesgos de cumplimiento y sanciones."
 			},
 			"q4": {
-				"question": "EoR frente a la creación de una entidad internacional propia: ¿qué es mejor?",
-				"answer": "Constituir una entidad local puede resultar caro y agotador, especialmente si acabas de empezar en un nuevo mercado. Un EoR suele ser más rápido de constituir y mucho más flexible para las empresas que necesitan contratar a nivel global. Puedes probar nuevas regiones y ampliar tu equipo sin complicaciones."
+				"question": "EOR o abrir tu propia entidad: ¿qué es mejor?",
+				"answer": "Con una entidad propia, asumes la constitución, las declaraciones fiscales y el cumplimiento local. Esta opción es más adecuada cuando necesitas operar un negocio en un nuevo mercado. Si solo necesitas contratar especialistas que no pueden o no quieren trasladarse, un EOR es una opción más rápida y adecuada."
 			},
 			"q5": {
-				"question": "¿Qué modelo de EoR ofrece Garna?",
-				"answer": "Garna ofrece una solución global de EoR flexible que incluye todas las funciones necesarias, como la gestión de nóminas, el cumplimiento normativo y la incorporación de personal, en una única plataforma. También contamos con integraciones API y opciones de marca blanca, así como soporte para equipos que trabajan en varios países."
+				"question": "¿Con qué rapidez puedo empezar a contratar a través de Garna?",
+				"answer": "En la mayoría de los países, la incorporación de nuevos empleados tarda alrededor de 1–2 semanas, una vez confirmada la oferta y firmados los documentos de incorporación. Sin embargo, los plazos dependen del país, la documentación local y los requisitos de inmigración aplicables."
+			},
+			"q6": {
+				"question": "¿Puedo contratar trabajadores internacionales sin un EOR?",
+				"answer": "Sí, abriendo una entidad legal local o contratando a la persona como contratista. Ambas opciones tienen compromisos: una entidad es lenta y costosa, y una relación de contratista implica riesgo de cumplimiento si se parece a un empleo a tiempo completo. El EOR de Garna es la alternativa más rápida y conforme."
+			},
+			"q7": {
+				"question": "¿Es legalmente conforme contratar mediante un EOR?",
+				"answer": "Sí, el EOR es un modelo de empleo legalmente reconocido en la mayoría de los países."
+			},
+			"q8": {
+				"question": "¿Cuánto cuesta un Employer of Record?",
+				"answer": "Los precios empiezan desde $200, pero pueden variar según el país, el nivel salarial y el tamaño del equipo. No hay tarifas ocultas ni recargos de FX. Solicita una cotización basada en tu equipo."
 			}
 		}
 	},
 	"finalCta": {
-		"title": "El empleador de referencia global es un proceso de contratación moderno y sin estrés",
-		"description": "Garna ofrece un excepcional soporte de expertos 24/7 y todas las funciones necesarias que te permiten gestionar la experiencia de tus empleados en todo el mundo sin que surjan crisis ni problemas inesperados en el camino",
-		"button": "Empieza a expandirte a nivel global"
+		"title": "Contrata empleados globalmente sin abrir entidades locales",
+		"description": "Garna se convierte en el empleador legal de tu equipo internacional y gestiona contratos, nóminas, impuestos, beneficios y cumplimiento local mientras tú diriges el trabajo diario de cada empleado",
+		"button": "Solicita una demo"
+	},
+	"dashboardCta": {
+		"title": "Empieza con Garna",
+		"description": "Contrata empleados en el extranjero sin abrir entidades locales. Garna gestiona contratos, nómina, impuestos y cumplimiento en una sola plataforma",
+		"button": "Solicita una demo"
+	},
+	"productDemo": {
+		"play": "Ver demo del producto",
+		"ariaLabel": "Reproducir la demo del producto Garna",
+		"videoLabel": "Demo del producto Garna"
+	},
+	"advance": {
+		"title": "$ 1,000,000.00 disponible para pagos del equipo",
+		"description": "Paga a tus contratados ahora y devuelve el importe después con condiciones flexibles",
+		"button": "Solicitar"
 	}
 };

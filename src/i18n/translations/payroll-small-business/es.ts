@@ -1,7 +1,7 @@
 export const payrollSmallBusinessEs = {
 	meta: {
-		title: "Payroll for Small Business | Garna",
-		description: "Hire employees, pay contractors, automate taxes, contracts, and bulk payments for small businesses in one Garna payroll platform."
+		title: "Servicios de nómina global para pequeñas empresas | Garna",
+		description: "Gestiona la nómina, contrata talento a nivel internacional y cumple con la normativa en más de 150 países. Garna ayuda a las pequeñas empresas a administrar equipos globales sin necesidad de establecer entidades locales."
 	},
 	images: {},
 	hero: {
@@ -90,7 +90,7 @@ export const payrollSmallBusinessEs = {
 		title: "Todo lo que necesitas para gestionar la nómina de una pequeña empresa",
 		description: "Hemos separado los procesos importantes para que te resulte más fácil gestionar tanto a los empleados a tiempo completo como a los autónomos",
 		eor: {
-			label: "1. Contrata y paga a los empleados (EoR)",
+			label: "1. Contrata y paga a los empleados (EOR)",
 			title: "Contratación a tiempo completo sin necesidad de constituir entidades jurídicas ni contratar asesores legales y contables en el extranjero",
 			feature1: {
 				title: "Empleador de referencia",
@@ -106,7 +106,7 @@ export const payrollSmallBusinessEs = {
 			}
 		},
 		cor: {
-			label: "2. Pago a contratistas y autónomos (CoR)",
+			label: "2. Pago a contratistas y autónomos (COR)",
 			title: "Realiza pagos a los miembros del equipo con un solo clic, estén donde estén",
 			feature1: {
 				title: "Pagos flexibles",
@@ -131,7 +131,7 @@ export const payrollSmallBusinessEs = {
 		},
 		item2: {
 			title: "Añade a tu equipo",
-			description: "Invita a empleados (EoR) o contratistas (CoR) y asígnales funciones"
+			description: "Invita a empleados (EOR) o contratistas (COR) y asígnales funciones"
 		},
 		item3: {
 			title: "Recarga tu saldo",
@@ -199,7 +199,7 @@ export const payrollSmallBusinessEs = {
 			},
 			q4: {
 				question: "¿Qué impuestos tengo que declarar?",
-				answer: "Con Garna, no tienes que preocuparte por los impuestos. Al utilizar la solución EoR de Garna, lo calculamos todo automáticamente."
+				answer: "Con Garna, no tienes que preocuparte por los impuestos. Al utilizar la solución EOR de Garna, lo calculamos todo automáticamente."
 			},
 			q5: {
 				question: "¿Puedo pagar a contratistas y empleados en un mismo sistema?",

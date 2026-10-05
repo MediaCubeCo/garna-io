@@ -55,6 +55,7 @@ export const pageHeroes = {
 		},
 		descriptionClass:
 			'leading-relaxed md:text-xl text-lg font-manrope max-w-3xl mr-auto mb-10 ml-auto',
+		descriptionBreakAfterWords: { en: 11 },
 		title: [{ text: 'Global Payroll Solutions for your business', translateKey: 'hero.title' }],
 		description:
 			'One transfer - countless possibilities. Pay remunerations in over 150 countries with minimal effort',
@@ -78,10 +79,11 @@ export const pageHeroes = {
 		titleClass:
 			'garna-hero-title-gradient leading-[1.1] md:text-6xl lg:text-7xl text-5xl font-normal tracking-tight font-manrope mb-6',
 		titleBreakAfterWords: {
-			en: 5,
+			en: 3,
 		},
 		descriptionClass:
 			'leading-relaxed md:text-xl text-lg font-manrope max-w-4xl mr-auto mb-10 ml-auto',
+		descriptionBreakAfterWords: { en: 11 },
 		badge: {
 			text: 'Enterprise Payroll',
 			translateKey: 'hero.badge',
@@ -204,7 +206,7 @@ export const pageHeroes = {
 			'Scale your business without operational chaos: automate compliance and global contractor payments under your own brand',
 		descriptionTranslateKey: 'hero.description',
 		cta: {
-			label: 'Try Demo Version',
+			label: 'Book a demo',
 			translateKey: 'hero.cta',
 			kind: 'demo',
 			trackingCta: 'hero_demo',
@@ -245,16 +247,16 @@ export const pageHeroes = {
 		align: 'split',
 	},
 	home: {
-		class: 'payroll-solution-new-hero overflow-hidden md:pb-32 lg:pt-48 lg:pb-32 pt-32 pb-32 relative',
+		class: 'payroll-solution-new-hero relative mb-16 h-[100svh] min-h-[100svh] max-h-[100svh] overflow-hidden pt-24 pb-24 md:mb-24 md:pt-28 md:pb-32 lg:mb-32 lg:pt-32 lg:pb-40',
 		containerClass:
-			'overflow-visible md:px-12 md:pt-12 md:pb-0 text-center max-w-7xl z-10 mr-auto ml-auto pt-12 pr-6 pb-12 pl-6 relative',
+			'relative z-10 mx-auto h-full max-w-7xl overflow-visible px-6 pb-8 pt-4 text-center md:px-12 md:pt-5',
+		contentClass: 'relative z-10 pt-2 pb-16 md:pb-24 lg:pb-32',
 		titleClass:
-			'garna-hero-title-gradient leading-[1.1] lg:text-8xl lg:mb-12 md:mb-8 md:text-7xl text-6xl tracking-tight mb-8',
+			'garna-hero-title-gradient mb-3 text-[2.75rem] leading-[1.06] tracking-tight md:mb-4 md:text-[3.35rem] lg:mb-5 lg:text-[70px] lg:whitespace-nowrap',
 		descriptionClass:
-			'leading-relaxed lg:text-2xl md:text-xl lg:mb-16 text-xl font-manrope max-w-4xl mr-auto mb-12 ml-auto',
-		title: [{ text: 'Global Payroll Solution for International Businesses', translateKey: 'hero.titleMain' }],
-		description:
-			'Save time and money while working with contractors and hiring employees in 150+ country. Full legal compliance without the extra costs - this and more, with Garna',
+			'mx-auto mb-5 max-w-6xl text-center font-manrope text-lg leading-relaxed !text-white opacity-70 [text-shadow:0_2px_18px_rgba(0,0,0,0.72)] md:mb-6 md:text-xl lg:mb-7 lg:text-xl lg:whitespace-nowrap',
+		title: [{ text: 'The All in One Payroll Platform', translateKey: 'hero.titleMain' }],
+		description: 'Pay contractors and hire employees in 150+ countries — fully compliant, without extra costs of a local entity',
 		descriptionTranslateKey: 'hero.description',
 		cta: {
 			label: 'Book a demo',
@@ -263,9 +265,9 @@ export const pageHeroes = {
 			trackingCta: 'payroll_solution_new_hero_demo',
 			variant: 'primary',
 			effect: 'rotating-flare',
-			wrapperClass: 'flex justify-center',
+			wrapperClass: 'relative z-20 flex flex-col items-center justify-center',
 		},
-		tone: 'green',
+		tone: 'neutral',
 		align: 'center',
 	},
 	eor: {
@@ -274,12 +276,13 @@ export const pageHeroes = {
 		contentClass: 'mx-auto flex max-w-4xl flex-col items-center text-center',
 		titleClass: 'garna-hero-title-gradient font-manrope text-5xl font-normal leading-[1.05] tracking-tight md:text-[64px]',
 		descriptionClass: 'mx-auto mt-7 max-w-3xl text-lg leading-relaxed md:text-xl',
-		title: [{ text: 'Worldwide Employment Made Simple, Quick & Flawless', translateKey: 'hero.title' }],
+		title: [{ text: 'Employer of Record Hire in 150+ Countries', translateKey: 'hero.title' }],
+		titleBreakAfterWords: 3,
 		description:
-			"Hiring the best talent from around the globe doesn't have to be a set of complex compliance rules, separate payroll systems where you have to create multiple legal entities in each country. At Garna, we provide a simple, modern employer of record solution designed to help businesses expand globally without getting stuck in operational hassles",
+			'Garna becomes the legal employer for your team abroad. We run contracts, payroll, tax, and compliance, you manage the work',
 		descriptionTranslateKey: 'hero.description',
 		cta: {
-			label: 'Book demo',
+			label: 'Book a demo',
 			translateKey: 'hero.cta',
 			kind: 'demo',
 			trackingCta: 'eor_hero_book_demo',

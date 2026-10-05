@@ -1,3 +1,7 @@
+import { getEorCostEstimatorOptions } from './cost-estimator-options';
+
+const costEstimatorOptions = getEorCostEstimatorOptions('en');
+
 export const eorEn = {
 	"images": {},
 	"meta": {
@@ -6,14 +10,128 @@ export const eorEn = {
 	},
 	"hero": {
 		"badge": "Employer of Record for global teams",
-		"title": "Worldwide Employment Made Simple, Quick & Flawless",
-		"description": "Hiring the best talent from around the globe doesn't have to be a set of complex compliance rules, separate payroll systems where you have to create multiple legal entities in each country. At Garna, we provide a simple, modern employer of record solution designed to help businesses expand globally without getting stuck in operational hassles",
-		"cta": "Book demo"
+		"title": "Employer of Record\nHire in 150+ Countries",
+		"description": "Garna becomes the legal employer for your team abroad. We run contracts, payroll, tax, and compliance, you manage the work",
+		"cta": "Book a demo",
+		"notifications": {
+			"startsToday": "Starts today",
+			"startsMonday": "Starts Monday",
+			"productDesigner": "Product Designer",
+			"softwareEngineer": "Software Engineer"
+		},
+		"slides": {
+			"hire": {
+				"title": "Hire Globally With Garna EOR",
+				"description": "Garna becomes the legal employer for your team abroad. We run contracts, payroll, tax, and compliance, you manage the work"
+			},
+			"entities": {
+				"title": "Hire Without Local Entities",
+				"description": "Enter new markets while Garna handles local employment, contracts, payroll, taxes, and compliance for every hire"
+			},
+			"onboarding": {
+				"title": "Onboard Global Teams Safely",
+				"description": "Keep country terms, benefits, documents, and salary payments aligned from the first day of employment"
+			}
+		}
 	},
 	"stats": {
 		"businesses": "businesses using Garna",
-		"availability": "global payroll service availability",
-		"countries": "countries covered"
+		"coverage": "countries covered",
+		"startingValue": "$200",
+		"startingFrom": "starting from"
+	},
+	"transparentPricing": {
+		"title": "Transparent EOR Pricing",
+		"description": "Starting from $200/month per employee.",
+		"note": "No hidden fees. No local entity setup costs. Get a custom quote based on your hiring needs.",
+		"button": "Calculate Your Options",
+		"panel": {
+			"from": "Starting from",
+			"period": "per employee / month"
+		}
+	},
+	"countries": {
+		"title": "Hire Employees Worldwide",
+		"description": "Hire full-time employees in 150+ countries with Garna",
+		"listAriaLabel": "Countries where Garna supports hiring",
+		"button": "Book a demo",
+		"showAll": "Show all",
+		"showLess": "Show less",
+		"regions": {
+			"europe": "Europe",
+			"americas": "Americas",
+			"asiaPacific": "Asia Pacific",
+			"africa": "Africa"
+		}
+	},
+	"eorProof": {
+		"title": "Transparent EOR Pricing",
+		"description": "Starting from $200/month per employee. No hidden fees. No local entity setup costs. Get a custom quote based on your hiring needs",
+		"button": "Calculate your options",
+		"carousel": {
+			"ariaLabel": "Choose an EOR proof card"
+		},
+		"stats": {
+			"countries": {
+				"label": "countries covered",
+				"notice": {
+					"title": "From $200/month",
+					"meta": "Per employee"
+				}
+			},
+			"platform": {
+				"label": "platform for global hiring",
+				"notice": {
+					"title": "No entity setup costs",
+					"meta": "Hire through Garna"
+				}
+			},
+			"entities": {
+				"label": "local entities to open",
+				"notice": {
+					"title": "Cost estimate ready",
+					"meta": "Local costs included"
+				}
+			}
+		}
+	},
+	"countryNames": {
+		"dk": "Denmark",
+		"ie": "Ireland",
+		"gb": "United Kingdom",
+		"fi": "Finland",
+		"is": "Iceland",
+		"lt": "Lithuania",
+		"md": "Moldova",
+		"se": "Sweden",
+		"ua": "Ukraine",
+		"br": "Brazil",
+		"ca": "Canada",
+		"us": "United States",
+		"mx": "Mexico",
+		"cl": "Chile",
+		"co": "Colombia",
+		"ar": "Argentina",
+		"pe": "Peru",
+		"uy": "Uruguay",
+		"au": "Australia",
+		"in": "India",
+		"ph": "Philippines",
+		"sg": "Singapore",
+		"jp": "Japan",
+		"kr": "South Korea",
+		"th": "Thailand",
+		"vn": "Vietnam",
+		"my": "Malaysia",
+		"eg": "Egypt",
+		"ma": "Morocco",
+		"za": "South Africa",
+		"ng": "Nigeria",
+		"gh": "Ghana",
+		"ke": "Kenya",
+		"tn": "Tunisia",
+		"ci": "Cote d Ivoire",
+		"rw": "Rwanda"
 	},
 	"sectionTags": {
 		"growFaster": "Grow faster",
@@ -51,21 +169,30 @@ export const eorEn = {
 			"hiringChecksReady": "Cross-border hiring checks ready",
 			"newEmployee": "New employee",
 			"inviteSent": "Invite sent",
+			"onboardingWorkflow": "Onboarding workflow",
+			"countryStepsReady": "Country steps ready",
 			"growthLead": "Growth lead",
 			"localContractPrepared": "Local contract prepared",
-			"payrollProfileReady": "Payroll profile ready",
+			"payrollProfileReady": "Payroll profile set",
 			"complianceVault": "Compliance vault",
 			"documentsStored": "Documents stored",
+			"contractHub": "Contract hub",
+			"complianceDocsReady": "Compliance docs ready",
 			"signed": "Signed",
 			"taxForms": "Tax forms",
 			"stored": "Stored",
 			"payrollRecords": "Payroll records",
 			"synced": "Synced",
+			"globalPayroll": "Global payroll run",
+			"payrollRunReady": "Multi-currency payouts ready",
 			"workforceCosts": "Workforce costs",
 			"liveReport": "Live report",
+			"workforceAnalytics": "Workforce analytics",
+			"costsInView": "Costs in view",
 			"countries": "Countries",
 			"complianceChecks": "Compliance checks",
 			"offboarding": "Offboarding",
+			"compliantOffboarding": "Compliant offboarding",
 			"noticeRulesChecked": "Notice rules checked",
 			"finalPayrollCalculated": "Final payroll calculated",
 			"documentsArchived": "Documents archived"
@@ -76,7 +203,7 @@ export const eorEn = {
 			"start": "Start",
 			"access": "Access",
 			"portugal": "Portugal",
-			"eorContract": "EoR contract",
+			"eorContract": "EOR contract",
 			"invite": "Invite",
 			"employeeEmail": "Employee email",
 			"account": "Account",
@@ -88,60 +215,60 @@ export const eorEn = {
 	},
 	"globalWorkforce": {
 		"title": "Grow Your Global Workforce Faster",
-		"description": "An Employer of Record (EoR) helps companies hire international employees without opening local entities. The EoR provider legally employs the worker on your behalf, while you manage their day-to-day work, responsibilities, and performance",
+		"description": "As your Employer of Record, Garna manages legal employment, payroll, and compliance while you manage employees' day-to-day activities",
 		"intro": "All of this means that you can:",
 		"benefits": {
 			"hireGlobally": {
 				"title": "Hire Globally Faster",
-				"description": "Bring in talented people from all over the world and make it faster than before"
+				"description": "Bring in talent from anywhere and onboard them faster"
 			},
 			"newMarkets": {
 				"title": "Expand Into New Markets",
-				"description": "Test and enter new regions without operational overhead"
+				"description": "Build a local team in new countries without immediately establishing your own employing entity."
 			},
 			"reduceRisks": {
-				"title": "Reduce the Risks",
-				"description": "Prevent any possible mistake that might arise during hiring and firing staff in different countries"
+				"title": "Reduce Global Hiring Costs",
+				"description": "Avoid the burden of multiple providers, entities, and payment solutions"
 			},
 			"compliance": {
 				"title": "Maintain Law Compliance",
-				"description": "Get global payroll sorted out without having to worry about a million different rules and regulations"
+				"description": "Local labor law, employment related taxes, and social contributions, handled per country"
 			}
 		}
 	},
 	"hirePay": {
 		"title": "Everything You Need to Hire and Pay Globally",
-		"description": "We offer a super flexible hiring system that helps companies to hire international staff without having to walk the bureaucratic extra mile",
+		"description": "Garna offers a flexible hiring system that helps companies hire international staff without walking the bureaucratic extra mile",
 		"cards": {
 			"entities": {
 				"title": "Hire globally without opening new entities",
-				"description": "You can hire employees around the globe in no time. No need to open a local office and navigate its legal infrastructure"
+				"description": "Hire employees around the globe without opening a local office or navigating its legal infrastructure"
 			},
 			"workforce": {
-				"title": "Employ any type of the workforce",
-				"description": "Manage a team of full-timers, contractors, freelancers, and distributed staff all from a single place"
+				"title": "Employ any type of workforce",
+				"description": "Manage full-timers, contractors, freelancers, and distributed staff from a single place"
 			},
 			"payroll": {
 				"title": "Offer payroll that runs smoothly",
-				"description": "Pay international staff, contractors, taxes, and multi-currency payouts automatically and without stress"
+				"description": "Pay staff, contractors, taxes, and multi-currency payouts automatically and without stress"
 			},
 			"compliance": {
-				"title": "Ensure law compliance for every market",
-				"description": "When it comes to the different regulations and rules that arise with hiring globally, we're in control of the correspondence to local labor laws, tax regulations and county-specific rules"
+				"title": "Ensure compliance in every market",
+				"description": "Stay aligned with local labor laws, tax regulations, and country-specific rules"
 			},
 			"integrations": {
-				"title": "Integrate EoR to your tools and systems",
-				"description": "Our system connects seamlessly with your existing HR, finance and workforce management tools, so you don't have to disrupt existing processes"
+				"title": "Integrate EOR into your tools",
+				"description": "Connect with existing HR, finance, and workforce management tools without disrupting your processes"
 			},
 			"fastMoving": {
-				"title": "Built for the fast-moving companies",
-				"description": "Whether you're a startup making its way in a new market or a big company trying to manage a global workforce, Garna's here to help you out by simplifying HR processes"
+				"title": "Built for fast-moving companies",
+				"description": "Support startups entering new markets and larger teams managing global workforce operations"
 			}
 		}
 	},
 	"why": {
-		"title": "The Answer to Why Companies Choose Garna",
-		"description": "Garna makes it easier for companies to manage every single bit of their global employment — from tracking down the right people to bring on board to getting them set up, paid, and the paperwork sorted out",
+		"title": "Employer of Record Platform Features",
+		"description": "From onboarding to offboarding, Garna's EOR covers the full employment lifecycle in one platform",
 		"tabs": {
 			"sourcing": {
 				"label": "Sourcing",
@@ -153,19 +280,19 @@ export const eorEn = {
 				"label": "Onboarding",
 				"title": "Automating International Employee Onboarding",
 				"problem": "Onboarding a new employee can be a challenge when hiring from different places around the world",
-				"solution": "Garna makes international employee onboarding simpler with special workflows that make sure everything is done the right way in each country. Instead of having to deal with different systems and paperwork, you can on-board employees all over the world through one platform and cut down on all the manual HR work"
+				"solution": "Garna makes international employee onboarding simpler with workflows that make sure everything is done the right way in each country. Onboard employees all over the world through one platform and cut down on manual HR work"
 			},
 			"documents": {
-				"label": "Documents",
+				"label": "Contracts",
 				"title": "Centralizing Contracts and Compliance Documentation",
 				"problem": "Trying to keep track of all different contracts, tax forms, payroll records, and compliance documents can be as much of a nightmare as an operational risk for any international team",
-				"solution": "Garna makes it easy to keep everything in one place with our secure platform, so you can manage international employment compliance and all the workflows for your global HR operations on your distributed teams with less hassle"
+				"solution": "Garna keeps everything in one place with a secure platform, so you can manage international employment compliance and workflows for global HR operations efficiently"
 			},
 			"payroll": {
 				"label": "Payroll",
-				"title": "Running Your Global Payroll Without All the Stress",
+				"title": "Running Your Global Payroll Without Stress",
 				"problem": "Getting payroll right for employees all over the world and dealing with different currencies and tax rules is one of the most headache-inducing bits about taking a business global",
-				"solution": "Garna eases the pain of managing international payroll by setting up automated workflows. With our system, your company can pay people all around the world quickly while excluding payroll errors and extra work"
+				"solution": "Garna eases international payroll with automated workflows. Pay people around the world quickly while excluding extra work."
 			},
 			"timeOff": {
 				"label": "Time Off and Expenses",
@@ -176,49 +303,73 @@ export const eorEn = {
 				"label": "Reporting",
 				"title": "Getting A Clear View Of Your Global Workforce",
 				"problem": "Garna offers clear visibility across payroll, compliance, onboarding, and workforce costs if you want to manage HR operations efficiently",
-				"solution": "Our analytics and reporting platform gives you the insights and keeps your workforce costs under control. And with our API-first infrastructure, big businesses can integrate our reporting tools into their existing dashboards"
+				"solution": "Our analytics and reporting platform gives you insights and keeps workforce costs under control. With our API-first infrastructure, businesses can integrate reporting tools into existing dashboards"
 			},
 			"termination": {
-				"label": "Termination",
+				"label": "Offboarding",
 				"title": "Offboarding Compliantly In A Global Market",
 				"problem": "Offboarding employees is not easy per se, especially when you're dealing with different countries and different rules. Get it wrong — and you could be looking at some serious legal and compliance risks",
-				"solution": "Our termination workflows are tailored to the specific employment laws in each country so you can offboard employees with confidence"
+				"solution": "Our termination workflows are tailored to employment laws in each country so you can offboard employees with confidence"
 			}
+		}
+	},
+	"costEstimator": {
+		"kicker": "Cost estimator",
+		"title": "See What Your Hire Will Really Cost",
+		"description": "Garna starts from $200 per employee per month with no hidden fees or local entity setup costs. Enter the country and salary to estimate taxes, benefits, and the full cost of hiring",
+		"proof": {
+			"countries": "countries covered",
+			"payroll": "payroll availability"
+		},
+		...costEstimatorOptions,
+		"form": {
+			"title": "Global Hiring Cost Estimator",
+			"hireIn": "I want to hire in",
+			"country": "Country",
+			"region": "State / province",
+			"salary": "Gross annual salary",
+			"currency": "Currency",
+			"amount": "Amount",
+			"amountPlaceholder": "Gross annual salary",
+			"clearCountry": "Clear country",
+			"clearRegion": "Clear state or province",
+			"clearCurrency": "Clear currency",
+			"button": "Calculate total cost"
 		}
 	},
 	"fit": {
 		"title": "Is Garna Employer of Record the Right Fit for Your Business?",
 		"items": {
-			"1": "You want to bring on international staff without going through the trouble of setting up an office in every country",
-			"2": "You want to automate your global payroll, taxes, and compliance and never return to fiddling with manual work flows across multiple systems",
-			"3": "You already have international talent you want to hire but you need some help with paperwork, from contracts to onboarding to full compliance",
-			"4": "You want to scale up your distributed teams fast and avoid building the internal HR and payroll infrastructure",
+			"1": "You want to bring on international staff without setting up an office in every country",
+			"2": "You want to automate global payroll, taxes, and compliance instead of juggling manual workflows",
+			"3": "You already have international talent to hire and need help with contracts, onboarding, and compliance",
+			"4": "You want to scale distributed teams fast without building internal HR and payroll infrastructure",
 			"5": "You want to get contractors or full-time employees onboard and working quickly but without dealing with local labor laws",
-			"6": "You want a global employment partner that can handle all your multi-country payroll needs, contractor management, bank transfers, and cryptocurrency payouts wrapped up in one easy-to-use platform"
+			"6": "You need contractor management, bank transfers, cryptocurrency payouts, and multi-country payroll in one platform"
 		}
 	},
 	"steps": {
-		"title": "Steps to take with Garna:",
+		"title": "Steps to take with Garna",
 		"items": {
 			"companyAccount": {
 				"title": "Set up your company account",
-				"description": "Make a quick profile check and verification, fill in the required fields and get access to the service. We will customize it to your needs and wishes in a couple of clicks"
+				"description": "Complete a quick profile check, fill in the required fields, and get access to a customized service flow"
 			},
 			"financialContact": {
-				"title": "Assign a financial contact person",
-				"description": "Specify the person who will be responsible for financial matters. This may be the finance director, the head of the finance department, or yourself"
+				"title": "Assign a financial contact",
+				"description": "Choose the person responsible for financial matters, from a finance director to yourself"
 			},
 			"contract": {
-				"title": "Create your first EoR contract",
-				"description": "Enter the employee's details: country of employment, position, salary, start date, salary currency, and work visa requirements"
+				"title": "Create your first EOR contract",
+				"description": "Add country, position, salary, start date, currency, and work visa requirements"
 			},
 			"invite": {
 				"title": "Invite an employee",
-				"description": "After your request in the personal account, the employee receives a personal invitation by e-mail and creates an account in Garna to receive payments"
+				"description": "The employee receives an invitation by email and creates a Garna account to receive payments"
 			},
 			"fundWallet": {
-				"title": "Fund your wallet and run first payroll",
-				"description": "You can do this in any convenient way: from SWIFT and SEPA to crypto. Start paying your salary today"
+				"title": "Fund your wallet and run payroll",
+				"description": "Use SWIFT, SEPA, or crypto funding and start paying salary today"
 			}
 		}
 	},
@@ -229,31 +380,58 @@ export const eorEn = {
 		"title": "FAQ on Employer of Record",
 		"items": {
 			"q1": {
-				"question": "What is an Employer of Record (EoR)?",
-				"answer": "An Employer of Record (EoR) is a third-party company that legally employs workers on behalf of another business. They're the ones responsible for handling things, like payroll, taxes, compliance, contracts, and making sure the local employment rules are followed."
+				"question": "What is an Employer of Record (EOR)?",
+				"answer": "An Employer of Record lets you hire full-time employees in countries where you don't have a legal entity. Garna becomes the legal employer, handling payroll, contracts, mandatory payments and local compliance, while you manage business activities."
 			},
 			"q2": {
-				"question": "How is an EoR different from a professional employer organization (PEO)?",
-				"answer": "A PEO is a type of company that uses the 'co-employment' model. They work together with the client company to manage the employees. They usually need the client company to already have a local setup. An EoR, on the other hand, acts as the official employer so you don't need to set up a business in every country you want to work in."
+				"question": "Who manages the employee?",
+				"answer": "Your company continues to manage the employee's day-to-day business activities, including role-related objectives, projects, and performance feedback. The EOR manages the employment relationship, including payroll, statutory benefits, employment administration, and applicable employment-related compliance requirements under local law."
 			},
 			"q3": {
-				"question": "When should you use an EoR?",
-				"answer": "If you want to start hiring people in countries you aren't already set up to do business in, an EoR is your solution. It lets you expand internationally without having to go through a tiring process of starting a subsidiary in each place and sorting out all the local labour rules."
+				"question": "What's the difference between hiring through an EOR and a contractor?",
+				"answer": "An EOR employee is a full-time employee under local labor law, with statutory benefits, legal protections, and full compliance, ideal for long-term, full-time roles. A contractor is self-employed, without those protections, and treating someone working full-time hours under your direction as a contractor can lead to compliance risk and penalties."
 			},
 			"q4": {
-				"question": "EoR vs own international entity setup: which is better?",
-				"answer": "Setting up a local entity can be expensive and tiring, especially if you're just starting out in a new market. An EoR is usually faster to set up and way more flexible for businesses that need to hire globally. You can try out new regions, scale your team without any complexities."
+				"question": "EOR vs setting up your own entity, which is better?",
+				"answer": "Your own entity means you own incorporation, tax filings, and local compliance, it works better when you need to run a business on a new market. If you only need to hire specialists who can’t or don’t want to relocate, EOR is a faster and more suitable way."
 			},
 			"q5": {
-				"question": "What EoR model does Garna have?",
-				"answer": "Garna has a flexible global EoR solution that includes all the necessary features you need, like payroll, compliance, and onboarding in a single platform. We also have API integrations and white-label options as well as support for teams that work across multiple countries."
+				"question": "How quickly can I start hiring through Garna?",
+				"answer": "In most countries, onboarding new employees takes around 1-2 weeks, once the offer is confirmed and onboarding documents are signed. However, timeframes depend on the country, local documentation, and any applicable immigration requirements."
+			},
+			"q6": {
+				"question": "Can I hire international workers without an EOR?",
+				"answer": "Yes, by setting up a local legal entity or hiring the person as a contractor. Both have trade-offs: an entity is slow and expensive, a contractor role carries compliance risk if it resembles full-time employment. Garna's EOR is the faster, compliant alternative."
+			},
+			"q7": {
+				"question": "Is it legally compliant to hire through an EOR?",
+				"answer": "Yes, EOR is a legally recognized employment model in most countries."
+			},
+			"q8": {
+				"question": "How much does an Employer of Record cost?",
+				"answer": "Pricing starts at $200 but may vary depending on the country, salary level, and team size. There are no hidden fees or FX markups. Get a quote based on your team."
 			}
 		}
 	},
 	"finalCta": {
-		"title": "Global Employer of Record is A Modern Hiring Process Done Stress-Free",
-		"description": "Garna offers exceptional 24/7 expert support and all the necessary features that let you have employee experiences all over the world with no arising crises and unexpected issues on your way",
-		"button": "Start Going Global"
+		"title": "Hire Employees Globally Without Opening Local Entities",
+		"description": "Garna becomes the legal employer for your international team, handling contracts, payroll, taxes, benefits, and local compliance while you manage each employee's day-to-day work",
+		"button": "Book a demo"
+	},
+	"dashboardCta": {
+		"title": "Get started with Garna",
+		"description": "Hire employees abroad without opening local entities. Garna handles contracts, payroll, taxes, and compliance in one platform",
+		"button": "Book a demo"
+	},
+	"productDemo": {
+		"play": "Watch product demo",
+		"ariaLabel": "Play the Garna product demo",
+		"videoLabel": "Garna product demo"
+	},
+	"advance": {
+		"title": "$ 1,000,000.00 available for team payouts",
+		"description": "Pay your contractors now — repay later with flexible terms",
+		"button": "Request"
 	},
 	"footer": {
 		"brand": "garna",

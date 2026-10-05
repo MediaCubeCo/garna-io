@@ -1,0 +1,162 @@
+<script is:inline>
+    (() => {
+        const routineVisualWideMinWidth = 1080;
+
+        const setRoutineStatRows = (rows, layout) => {
+            rows.forEach((row) => {
+                row.dataset.layout = layout;
+            });
+        };
+
+        const getRoutineStatsFitLayout = (group) => {
+            const rows = Array.from(group.querySelectorAll('[data-routine-stat-row]'));
+            if (!rows.length) return 'inline';
+
+            group.dataset.layout = 'inline';
+            setRoutineStatRows(rows, 'inline');
+            if (rows.every((row) => row.scrollWidth <= row.clientWidth + 1)) {
+                return 'inline';
+            }
+
+            group.dataset.layout = 'stacked';
+            setRoutineStatRows(rows, 'stacked');
+            if (group.scrollWidth <= group.clientWidth + 1 && rows.every((row) => row.scrollWidth <= row.clientWidth + 1)) {
+                return 'stacked';
+            }
+
+            return null;
+        };
+
+        const applyRoutineVisualLayout = () => {
+            document.querySelectorAll('.payroll-routine-visual').forEach((visual) => {
+                const group = visual.querySelector('[data-routine-stat-group]');
+                if (!group) return;
+
+                const visualWidth = visual.getBoundingClientRect().width;
+                if (visualWidth < routineVisualWideMinWidth) {
+                    visual.dataset.routineLayout = 'stacked';
+                    return;
+                }
+
+                visual.dataset.routineLayout = 'wide';
+                visual.dataset.routineLayout = getRoutineStatsFitLayout(group) ? 'wide' : 'stacked';
+            });
+        };
+
+        const applyRoutineStatLayout = () => {
+            document.querySelectorAll('[data-routine-stat-group]').forEach((group) => {
+                const rows = Array.from(group.querySelectorAll('[data-routine-stat-row]'));
+                if (!rows.length) return;
+
+                const visual = group.closest('.payroll-routine-visual');
+                if (!visual) return;
+
+                const statLayout = getRoutineStatsFitLayout(group);
+                if (visual.dataset.routineLayout === 'wide' && !statLayout) {
+                    visual.dataset.routineLayout = 'stacked';
+                }
+
+                if (visual.dataset.routineLayout === 'wide') return;
+
+                if (statLayout) return;
+
+                group.dataset.layout = 'stacked';
+                setRoutineStatRows(rows, 'stacked');
+            });
+        };
+
+        const applyRoutineLayout = () => {
+            applyRoutineVisualLayout();
+            applyRoutineStatLayout();
+        };
+
+        const scheduleRoutineLayout = () => window.requestAnimationFrame(applyRoutineLayout);
+
+        const applyPlatformHeadingHeight = () => {
+            const groups = Array.from(document.querySelectorAll('[data-platform-heading-group]'));
+            if (!groups.length) return;
+
+            groups.forEach((group) => {
+                group.style.minHeight = '';
+            });
+
+            const maxHeight = Math.max(...groups.map((group) => group.offsetHeight));
+            groups.forEach((group) => {
+                group.style.minHeight = `${maxHeight}px`;
+            });
+        };
+
+        const applyPlatformFeatureHeights = () => {
+            const rows = Array.from(document.querySelectorAll('[data-platform-feature-row]'));
+            if (!rows.length) return;
+
+            rows.forEach((row) => {
+                row.style.minHeight = '';
+            });
+
+            const rowIds = [...new Set(rows.map((row) => row.dataset.platformFeatureRow))];
+            rowIds.forEach((rowId) => {
+                const pair = rows.filter((row) => row.dataset.platformFeatureRow === rowId);
+                const maxHeight = Math.max(...pair.map((row) => row.offsetHeight));
+                pair.forEach((row) => {
+                    row.style.minHeight = `${maxHeight}px`;
+                });
+            });
+        };
+
+        const schedulePlatformHeadingHeight = () => window.requestAnimationFrame(applyPlatformHeadingHeight);
+        const schedulePlatformFeatureHeights = () => window.requestAnimationFrame(applyPlatformFeatureHeights);
+
+        const schedulePlatformAlignment = () => {
+            schedulePlatformHeadingHeight();
+            schedulePlatformFeatureHeights();
+        };
+
+        window.addEventListener('load', scheduleRoutineLayout);
+        window.addEventListener('resize', scheduleRoutineLayout);
+        window.addEventListener('load', schedulePlatformAlignment);
+        window.addEventListener('resize', schedulePlatformAlignment);
+        document.addEventListener('DOMContentLoaded', () => {
+            scheduleRoutineLayout();
+            schedulePlatformAlignment();
+            window.setTimeout(applyRoutineLayout, 120);
+            window.setTimeout(schedulePlatformAlignment, 120);
+            window.setTimeout(schedulePlatformAlignment, 360);
+            document.fonts?.ready.then(schedulePlatformAlignment).catch(() => {});
+
+            const platformGrid = document.querySelector('.platform-card-grid');
+            if (platformGrid && 'ResizeObserver' in window) {
+                const platformResizeObserver = new ResizeObserver(schedulePlatformAlignment);
+                platformResizeObserver.observe(platformGrid);
+            }
+        });
+    })();
+</script>
+<script is:inline>
+        (function () {
+            var items = document.querySelectorAll('.reveal');
+
+            if (!('IntersectionObserver' in window)) {
+                items.forEach(function (item) {
+                    item.classList.add('is-visible');
+                });
+                return;
+            }
+
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.16,
+                rootMargin: '0px 0px -8% 0px',
+            });
+
+            items.forEach(function (item) {
+                observer.observe(item);
+            });
+        })();
+    </script>

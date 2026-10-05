@@ -1,0 +1,50 @@
+---
+import StackedCardsSection from '../StackedCardsSection.astro';
+
+const cards = [
+	{
+		key: 'safeguarded',
+		title: { text: 'Safeguarded funds', translateKey: 'security.features.safeguarded.title' },
+		description: { text: 'All funds are deposited with reputable banking institutions.', translateKey: 'security.features.safeguarded.description' },
+		tags: [
+			{ text: 'Protected funds', translateKey: 'security.features.safeguarded.tags.0' },
+			{ text: 'Trusted banks', translateKey: 'security.features.safeguarded.tags.1' },
+			{ text: 'Secure holding', translateKey: 'security.features.safeguarded.tags.2' },
+		],
+	},
+	{
+		key: 'aml',
+		title: { text: 'AML screening', translateKey: 'security.features.aml.title' },
+		description: { text: 'We check recipients and transactions as part of our ongoing AML compliance program.', translateKey: 'security.features.aml.description' },
+		tags: [
+			{ text: 'Recipient checks', translateKey: 'security.features.aml.tags.0' },
+			{ text: 'Transaction checks', translateKey: 'security.features.aml.tags.1' },
+			{ text: 'Ongoing monitoring', translateKey: 'security.features.aml.tags.2' },
+		],
+	},
+	{
+		key: 'manager',
+		title: { text: 'Dedicated account manager', translateKey: 'security.features.manager.title' },
+		description: { text: 'Get hands-on support from your specialized account manager.', translateKey: 'security.features.manager.description' },
+		tags: [
+			{ text: 'Personal support', translateKey: 'security.features.manager.tags.0' },
+			{ text: 'Dedicated contact', translateKey: 'security.features.manager.tags.1' },
+			{ text: 'Expert guidance', translateKey: 'security.features.manager.tags.2' },
+		],
+	},
+];
+---
+
+<StackedCardsSection
+	id="business-account-security"
+	title={{ text: 'Built to Keep Your Funds Safe', translateKey: 'security.title' }}
+	description={{
+		text: 'Garna is designed to keep your business funds and payments protected with security controls built into every part of the platform',
+		translateKey: 'security.description',
+	}}
+	cards={cards}
+	splitClass="stacked-cards-grid gap-12 min-[930px]:grid-cols-[0.88fr_1.12fr] min-[930px]:items-start"
+	stackBreakpoint="930px"
+	timings={[[0.08, 0.48], [0.48, 0.92]]}
+	requireSingleLineTitles={false}
+/>

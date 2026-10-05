@@ -73,7 +73,7 @@ html[data-theme="light"] .garna-hero-badge {
 	color: #454a42;
 }
 
-/* The light homepage opens with a dark green campaign mesh before resolving into the light system. */
+/* The homepage hero stays visually clean while a new concept is being explored. */
 html[data-theme="light"] .payroll-solution-new-hero {
 	isolation: isolate;
 	overflow: visible;
@@ -82,30 +82,12 @@ html[data-theme="light"] .payroll-solution-new-hero {
 
 html[data-theme="light"] .payroll-solution-new-hero::before {
 	content: '';
-	position: absolute;
-	top: 41.3%;
-	left: -19.9%;
-	z-index: 1;
-	width: 139.2%;
-	height: 115.3%;
-	pointer-events: none;
-	background: url('/images/home-hero-mesh-lime.svg') center / 100% 100% no-repeat;
-	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 43%, transparent 62%);
-	mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 43%, transparent 62%);
+	display: none;
 }
 
 html[data-theme="light"] .payroll-solution-new-hero::after {
 	content: '';
-	position: absolute;
-	top: 56.5%;
-	left: -29.4%;
-	z-index: 2;
-	width: 158.75%;
-	height: 84.9%;
-	pointer-events: none;
-	background: url('/images/home-hero-mesh-light.svg') center / 100% 100% no-repeat;
-	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 100%);
-	mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 100%);
+	display: none;
 }
 
 html[data-theme="light"] .payroll-solution-new-hero .garna-hero-green-glow {

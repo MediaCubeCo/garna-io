@@ -1,0 +1,559 @@
+---
+import Section from '../../layout/Section.astro';
+import Button from '../../ui/Button.astro';
+
+const slides = [
+	{
+		key: 'hire',
+		title: 'Hire Contractors Worldwide',
+		description: 'Manage contractors, invoices, and approvals from one platform',
+		image: '/pages/payroll-solution-new/assets/contractor-hired-original.jpg',
+		overlay: {
+			type: 'hire',
+			avatarImage: '/pages/payroll-solution-new/assets/contractor-avatar-maya.png',
+			name: 'Maya Chen',
+			status: 'Contractor onboarded',
+			badge: 'Active',
+		},
+	},
+	{
+		key: 'payments',
+		title: 'Flexible Global Payments',
+		description: 'Pay in 80+ currencies across 150+ countries by bank, card, e-wallet, or crypto',
+		image: '/pages/payroll-solution-new/assets/flexible-global-payments.png',
+		overlay: {
+			type: 'payment',
+			appName: 'Garna',
+			time: '2 min ago',
+			title: 'Payment sent',
+			description: '1,000 USD was converted to 900 EUR',
+		},
+	},
+	{
+		key: 'protection',
+		title: 'Get Misclassification Protection',
+		description: 'Garna acts as contractor or agent of record and bears misclassification risks',
+		image: '/pages/payroll-solution-new/assets/misclassification-protection.png',
+		overlay: {
+			type: 'compliance',
+			riskLabel: 'Classification risk',
+			riskValue: 'Low',
+			reviewLabel: 'Contract review',
+			reviewValue: 'Complete',
+			footerTitle: 'Protected by Garna',
+			footerMeta: 'updated now',
+		},
+	},
+] as const;
+---
+
+<Section spacing="default" contentClass="contractor-worldwide-static-content">
+	<div class="contractor-worldwide-static" data-contractor-worldwide-static>
+		<div class="contractor-worldwide-static__copy">
+			<h2>Hire Contractors Worldwide</h2>
+			<p>Manage contractors, invoices, and approvals from one platform</p>
+
+			<div class="contractor-worldwide-static__controls">
+				<Button
+					href="#"
+					size="header"
+					variant="primary"
+					effect="none"
+					icon="none"
+					onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'contractor_worldwide_demo' });"
+				>
+					Book a demo
+				</Button>
+			</div>
+		</div>
+
+		<div class="contractor-worldwide-static__visuals" aria-label="Contractor management features">
+			{slides.map((slide, index) => (
+				<button
+					type="button"
+					class:list={['contractor-worldwide-static__slide', { 'is-active': index === 0 }]}
+					data-contractor-worldwide-slide
+					aria-label={slide.title}
+					aria-current={index === 0 ? 'true' : undefined}
+				>
+					<img src={slide.image} alt="" loading="lazy" />
+					<span class="contractor-worldwide-static__shade"></span>
+					{slide.overlay.type === 'hire' && (
+						<span class="contractor-worldwide-static__hire-notice" aria-hidden="true">
+							<span class="contractor-worldwide-static__hire-avatar">
+								<img src={slide.overlay.avatarImage} alt="" />
+								<span>✓</span>
+							</span>
+							<span class="contractor-worldwide-static__hire-copy">
+								<strong>{slide.overlay.name}</strong>
+								<small>{slide.overlay.status}</small>
+							</span>
+							<span class="contractor-worldwide-static__hire-status">{slide.overlay.badge}</span>
+						</span>
+					)}
+					{slide.overlay.type === 'payment' && (
+						<span class="contractor-worldwide-static__payment-notice" aria-hidden="true">
+							<span class="contractor-worldwide-static__payment-header">
+								<span class="contractor-worldwide-static__payment-icon">
+									<img src="/images/garna-g-mark-dark.svg" alt="" />
+								</span>
+								<span class="contractor-worldwide-static__payment-app">{slide.overlay.appName}</span>
+								<span class="contractor-worldwide-static__payment-time">{slide.overlay.time}</span>
+							</span>
+							<span class="contractor-worldwide-static__payment-copy">
+								<strong>{slide.overlay.title}</strong>
+								<small>{slide.overlay.description}</small>
+							</span>
+						</span>
+					)}
+					{slide.overlay.type === 'compliance' && (
+						<span class="contractor-worldwide-static__compliance-notice" aria-hidden="true">
+							<span class="contractor-worldwide-static__compliance-table">
+								<span class="contractor-worldwide-static__compliance-row">
+									<small>{slide.overlay.riskLabel}</small>
+									<strong>{slide.overlay.riskValue}</strong>
+								</span>
+								<span class="contractor-worldwide-static__compliance-row">
+									<small>{slide.overlay.reviewLabel}</small>
+									<strong>{slide.overlay.reviewValue}</strong>
+								</span>
+							</span>
+							<span class="contractor-worldwide-static__compliance-footer">
+								<strong>{slide.overlay.footerTitle}</strong>
+								<small>{slide.overlay.footerMeta}</small>
+							</span>
+						</span>
+					)}
+				</button>
+			))}
+		</div>
+	</div>
+</Section>
+
+<script>
+	for (const section of document.querySelectorAll('[data-contractor-worldwide-static]')) {
+		if (!(section instanceof HTMLElement) || section.dataset.ready === 'true') continue;
+		section.dataset.ready = 'true';
+
+		const slides = [...section.querySelectorAll('[data-contractor-worldwide-slide]')];
+		slides.forEach((slide) => {
+			slide.addEventListener('click', () => {
+				slides.forEach((item) => {
+					item.classList.toggle('is-active', item === slide);
+					if (item === slide) {
+						item.setAttribute('aria-current', 'true');
+					} else {
+						item.removeAttribute('aria-current');
+					}
+				});
+			});
+		});
+	}
+</script>
+
+<style>
+	:global(.contractor-worldwide-static-content) {
+		display: block;
+	}
+
+	.contractor-worldwide-static {
+		display: grid;
+		grid-template-columns: minmax(17rem, 0.78fr) minmax(0, 1.22fr);
+		align-items: center;
+		gap: clamp(2.5rem, 6vw, 6.5rem);
+		overflow: hidden;
+		margin-right: calc(50% - 50vw);
+	}
+
+	.contractor-worldwide-static__copy {
+		width: min(100%, 34rem);
+		padding-left: clamp(0rem, 2vw, 1.5rem);
+		text-align: left;
+	}
+
+	.contractor-worldwide-static__copy h2 {
+		margin: 0;
+		color: #fff;
+		font-size: clamp(2.35rem, 3.2vw, 3.35rem);
+		font-weight: 400;
+		letter-spacing: 0;
+		line-height: 1.08;
+		text-wrap: balance;
+	}
+
+	.contractor-worldwide-static__copy p {
+		max-width: 29rem;
+		margin: 1.5rem 0 0;
+		color: rgb(229 231 235 / 0.84);
+		font-size: clamp(1rem, 1.3vw, 1.2rem);
+		line-height: 1.6;
+	}
+
+	.contractor-worldwide-static__controls {
+		display: flex;
+		align-items: center;
+		margin-top: 2.5rem;
+	}
+
+	.contractor-worldwide-static__visuals {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(11.5rem, 1fr));
+		gap: 1rem;
+		width: 100%;
+		padding-block: 0.6rem;
+		padding-right: clamp(1rem, 4vw, 4rem);
+	}
+
+	.contractor-worldwide-static__slide {
+		position: relative;
+		container-type: inline-size;
+		min-height: 31.5rem;
+		overflow: hidden;
+		border: 1px solid rgb(255 255 255 / 0.08);
+		border-radius: 1.75rem;
+		background: #0a0a0a;
+		padding: 0;
+		cursor: pointer;
+		opacity: 0.74;
+		transform: scale(0.965);
+		transition: opacity 260ms ease, transform 320ms cubic-bezier(0.22, 1, 0.36, 1), border-color 220ms ease;
+	}
+
+	.contractor-worldwide-static__slide.is-active,
+	.contractor-worldwide-static__slide:hover,
+	.contractor-worldwide-static__slide:focus-visible {
+		border-color: rgb(203 243 0 / 0.28);
+		opacity: 1;
+		transform: none;
+	}
+
+	.contractor-worldwide-static__slide:focus-visible {
+		outline: 2px solid rgb(203 243 0 / 0.45);
+		outline-offset: 3px;
+	}
+
+	.contractor-worldwide-static__slide > img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: brightness(0.88) contrast(1.04) saturate(0.95);
+	}
+
+	.contractor-worldwide-static__slide.is-active > img {
+		filter: none;
+	}
+
+	.contractor-worldwide-static__shade {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, rgb(0 0 0 / 0.03), rgb(0 0 0 / 0.28));
+		pointer-events: none;
+	}
+
+	.contractor-worldwide-static__slide.is-active .contractor-worldwide-static__shade {
+		background: linear-gradient(180deg, rgb(0 0 0 / 0.01), rgb(0 0 0 / 0.12));
+	}
+
+	.contractor-worldwide-static__hire-notice,
+	.contractor-worldwide-static__payment-notice,
+	.contractor-worldwide-static__compliance-notice {
+		position: absolute;
+		left: 1rem;
+		right: 1rem;
+		bottom: 1rem;
+		z-index: 2;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 1.25rem;
+		background: rgb(7 8 10 / 0.72);
+		box-shadow: 0 0.65rem 1.8rem rgb(0 0 0 / 0.2);
+		color: #fff;
+		text-align: left;
+		backdrop-filter: blur(12px);
+		pointer-events: none;
+	}
+
+	.contractor-worldwide-static__hire-notice {
+		display: flex;
+		min-height: 4.6rem;
+		align-items: center;
+		gap: 0.82rem;
+		padding: 0.62rem 0.85rem;
+	}
+
+	.contractor-worldwide-static__hire-avatar {
+		position: relative;
+		flex: 0 0 3rem;
+		width: 3rem;
+		height: 3rem;
+	}
+
+	.contractor-worldwide-static__hire-avatar > img {
+		position: static;
+		width: 100%;
+		height: 100%;
+		border-radius: 9999px;
+		object-fit: cover;
+		filter: none;
+	}
+
+	.contractor-worldwide-static__hire-avatar > span {
+		position: absolute;
+		right: -0.12rem;
+		bottom: -0.08rem;
+		display: grid;
+		width: 1rem;
+		height: 1rem;
+		place-items: center;
+		border-radius: 9999px;
+		background: #cbf300;
+		color: #080808;
+		font-size: 0.58rem;
+		font-weight: 800;
+	}
+
+	.contractor-worldwide-static__hire-copy {
+		display: flex;
+		min-width: 0;
+		flex: 1;
+		flex-direction: column;
+		gap: 0.2rem;
+	}
+
+	.contractor-worldwide-static__hire-copy strong,
+	.contractor-worldwide-static__payment-copy strong {
+		overflow: hidden;
+		color: #fff;
+		font-size: 0.9rem;
+		font-weight: 650;
+		line-height: 1.15;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.contractor-worldwide-static__hire-copy small,
+	.contractor-worldwide-static__payment-copy small {
+		overflow: hidden;
+		color: rgb(255 255 255 / 0.7);
+		font-size: 0.69rem;
+		line-height: 1.28;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.contractor-worldwide-static__hire-status {
+		position: absolute;
+		top: 0.92rem;
+		right: 0.82rem;
+		border-radius: 9999px;
+		background: #cbf300;
+		padding: 0.31rem 0.44rem;
+		color: #080808;
+		font-size: 0.51rem;
+		font-weight: 700;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.contractor-worldwide-static__payment-notice {
+		display: flex;
+		min-height: 5.65rem;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 0.68rem 0.82rem 0.78rem;
+	}
+
+	.contractor-worldwide-static__payment-header {
+		display: flex;
+		align-items: center;
+		gap: 0.48rem;
+	}
+
+	.contractor-worldwide-static__payment-icon {
+		display: grid;
+		flex: 0 0 1.45rem;
+		width: 1.45rem;
+		height: 1.45rem;
+		place-items: center;
+		border-radius: 0.4rem;
+		background: #cbf300;
+	}
+
+	.contractor-worldwide-static__payment-icon img {
+		position: static;
+		width: 0.72rem;
+		height: 0.95rem;
+		object-fit: contain;
+		filter: none;
+	}
+
+	.contractor-worldwide-static__payment-app {
+		min-width: 0;
+		flex: 1;
+		color: rgb(255 255 255 / 0.62);
+		font-size: 0.64rem;
+		font-weight: 600;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.contractor-worldwide-static__payment-time {
+		flex: 0 0 auto;
+		color: rgb(255 255 255 / 0.46);
+		font-size: 0.61rem;
+		line-height: 1;
+		text-transform: lowercase;
+	}
+
+	.contractor-worldwide-static__payment-copy {
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+		gap: 0.22rem;
+	}
+
+	.contractor-worldwide-static__compliance-notice {
+		display: flex;
+		flex-direction: column;
+		gap: 0.52rem;
+		padding: 0.68rem 0.82rem 0.78rem;
+	}
+
+	.contractor-worldwide-static__compliance-table {
+		display: flex;
+		flex-direction: column;
+		gap: 0.52rem;
+	}
+
+	.contractor-worldwide-static__compliance-row,
+	.contractor-worldwide-static__compliance-footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+	}
+
+	.contractor-worldwide-static__compliance-row small {
+		min-width: 0;
+		overflow: hidden;
+		color: #fff;
+		font-size: 0.68rem;
+		line-height: 1.2;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.contractor-worldwide-static__compliance-row strong {
+		flex: 0 0 auto;
+		color: #fff;
+		font-size: 0.76rem;
+		font-weight: 560;
+		line-height: 1.2;
+		white-space: nowrap;
+	}
+
+	.contractor-worldwide-static__compliance-row:first-child strong {
+		color: #cbf300;
+	}
+
+	.contractor-worldwide-static__compliance-footer {
+		border-radius: 0.72rem;
+		background: rgb(203 243 0 / 0.12);
+		padding: 0.5rem 0.58rem;
+	}
+
+	.contractor-worldwide-static__compliance-footer strong,
+	.contractor-worldwide-static__compliance-footer small {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.contractor-worldwide-static__compliance-footer strong {
+		min-width: 0;
+		color: #cbf300;
+		font-size: 0.66rem;
+		font-weight: 650;
+		line-height: 1;
+	}
+
+	.contractor-worldwide-static__compliance-footer small {
+		flex: 0 0 auto;
+		color: #fff;
+		font-size: 0.56rem;
+		line-height: 1;
+	}
+
+	@media (max-width: 1079px) {
+		.contractor-worldwide-static {
+			grid-template-columns: 1fr;
+			gap: 2.25rem;
+			margin-right: 0;
+			overflow: visible;
+		}
+
+		.contractor-worldwide-static__copy {
+			width: 100%;
+			padding-left: 0;
+		}
+
+		.contractor-worldwide-static__copy h2 {
+			font-size: clamp(2rem, 4.45vw, 3rem);
+			line-height: 1.16;
+		}
+
+		.contractor-worldwide-static__visuals {
+			display: flex;
+			gap: 0.9rem;
+			margin-right: calc(50% - 50vw);
+			overflow-x: auto;
+			padding-right: 1.25rem;
+			scroll-snap-type: x mandatory;
+		}
+
+		.contractor-worldwide-static__slide {
+			flex: 0 0 clamp(15rem, min(36%, 35vh), 20rem);
+			min-height: auto;
+			aspect-ratio: 0.78;
+			scroll-snap-align: start;
+		}
+	}
+
+	@media (max-width: 767px) {
+		.contractor-worldwide-static {
+			gap: 2rem;
+		}
+
+		.contractor-worldwide-static__copy h2 {
+			font-size: 2.25rem;
+			line-height: 1.2;
+		}
+
+		.contractor-worldwide-static__copy p {
+			margin-top: 1.25rem;
+			font-size: clamp(1rem, 3.25vw, 1.125rem);
+			line-height: 1.55;
+		}
+
+		.contractor-worldwide-static__controls {
+			margin-top: 2rem;
+		}
+
+		.contractor-worldwide-static__visuals {
+			gap: 0.8rem;
+			margin-right: calc(50% - 50vw);
+		}
+
+		.contractor-worldwide-static__slide {
+			flex-basis: clamp(12.5rem, min(62vw, 30svh), 20.5rem);
+			border-radius: 1.25rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.contractor-worldwide-static__slide {
+			transition: none;
+		}
+	}
+</style>

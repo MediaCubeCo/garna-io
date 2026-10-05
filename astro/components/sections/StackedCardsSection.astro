@@ -1,0 +1,553 @@
+---
+import Section from '../layout/Section.astro';
+import type { LocalizedText } from '../../types/localized-text';
+
+interface StackedCard {
+	key: string;
+	title: LocalizedText;
+	description: LocalizedText;
+	tags: LocalizedText[];
+}
+
+interface Props {
+	id?: string;
+	title: LocalizedText;
+	description: LocalizedText;
+	cards: StackedCard[];
+	class?: string;
+	containerClass?: string;
+	splitClass?: string;
+	copyClass?: string;
+	contentClass?: string;
+	headerClass?: string;
+	titleClass?: string;
+	descriptionClass?: string;
+	stackTop?: number;
+	cardGap?: number;
+	cardPeek?: number;
+	stackBreakpoint?: string;
+	stackBreakpointByLocale?: Record<string, string>;
+	minScrollDistance?: number;
+	distanceMultiplier?: number;
+	timings?: [number, number][];
+	requireSingleLineTitles?: boolean;
+}
+
+const {
+	id,
+	title,
+	description,
+	cards,
+	class: className = 'py-16 lg:py-32',
+	containerClass = 'stacked-cards-container relative z-10',
+	splitClass = 'stacked-cards-grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-start',
+	copyClass = 'stacked-cards-copy max-w-xl text-left',
+	contentClass = '',
+	headerClass = '',
+	titleClass = 'lg:text-5xl',
+	descriptionClass = 'text-lg',
+	stackTop = 112,
+	cardGap = 18,
+	cardPeek = 76,
+	stackBreakpoint = '1024px',
+	stackBreakpointByLocale = {},
+	minScrollDistance = 900,
+	distanceMultiplier = 3.1,
+	timings,
+	requireSingleLineTitles = true,
+} = Astro.props;
+
+const stackId = id || `stacked-cards-${cards.map((card) => card.key).join('-')}`;
+const stackStyle = `--stacked-cards-top:${stackTop}px;--stacked-cards-gap:${cardGap}px;--stacked-cards-peek:${cardPeek}px;`;
+---
+
+<Section
+	spacing="none"
+	layout="split"
+	align="left"
+	title={title}
+	description={description}
+	class={`stacked-cards-section ${className}`}
+	containerClass={containerClass}
+	splitClass={splitClass}
+	copyClass={copyClass}
+	headerClass={headerClass}
+	titleClass={titleClass}
+	descriptionClass={descriptionClass}
+	contentClass={`stacked-cards-stack ${contentClass}`.trim()}
+>
+	<div data-stacked-cards-section={stackId} style={stackStyle}>
+		{cards.map((card) => (
+			<article class="stacked-cards-card" data-stacked-card data-card-glow="true" data-interactive="true">
+				<div class="stacked-cards-card__copy">
+					<h3 data-translate={card.title.translateKey}>{card.title.text}</h3>
+					<div class="stacked-cards-card__bottom">
+						<p data-translate={card.description.translateKey}>{card.description.text}</p>
+						<div class="stacked-cards-card__footer" aria-hidden="true">
+							{card.tags.map((tag) => <span data-translate={tag.translateKey}>{tag.text}</span>)}
+						</div>
+					</div>
+				</div>
+			</article>
+		))}
+	</div>
+</Section>
+
+<style is:global>
+	.stacked-cards-section {
+		--stacked-cards-top: 112px;
+		--stacked-cards-gap: 18px;
+		--stacked-cards-peek: 76px;
+	}
+
+	.stacked-cards-stack {
+		display: grid;
+		gap: var(--stacked-cards-gap);
+	}
+
+	.stacked-cards-stack > [data-stacked-cards-section] {
+		display: contents;
+	}
+
+	.stacked-cards-card {
+		--garna-card-glow-x: 50%;
+		--garna-card-glow-y: 50%;
+		--garna-card-glow-radius: 60vw;
+		--garna-card-border-glow-radius: 14rem;
+		position: relative;
+		display: grid;
+		min-height: clamp(270px, 22vw, 330px);
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: minmax(0, 1fr);
+		align-items: stretch;
+		align-content: stretch;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 18px;
+		background: #0c0c0c;
+		padding: clamp(16px, 1.8vw, 22px);
+		box-shadow:
+			inset 0 1px rgba(255, 255, 255, 0.055),
+			0 28px 72px -62px rgba(0, 0, 0, 0.8);
+		isolation: isolate;
+		transition: border-color 300ms ease;
+	}
+
+	.stacked-cards-card::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		border-radius: inherit;
+		background: radial-gradient(
+			circle var(--garna-card-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+			rgba(255, 255, 255, 0.12) 0%,
+			rgba(255, 255, 255, 0.075) 18%,
+			rgba(255, 255, 255, 0.035) 40%,
+			transparent 70%
+		);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 300ms ease;
+	}
+
+	.stacked-cards-card > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+		.stacked-cards-card::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			z-index: 2;
+			padding: 1px;
+			border-radius: inherit;
+			background: radial-gradient(
+				circle var(--garna-card-border-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
+				rgba(255, 255, 255, 0.9) 0%,
+				rgba(255, 255, 255, 0.52) 24%,
+				rgba(255, 255, 255, 0.2) 50%,
+				transparent 76%
+			);
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 300ms ease;
+			-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+			-webkit-mask-composite: xor;
+			mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+			mask-composite: exclude;
+		}
+	}
+
+	.stacked-cards-card[data-interactive='true']:is(:hover, :focus-within, [data-pointer-active='true']) {
+		border-color: rgba(255, 255, 255, 0.15);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.stacked-cards-card[data-card-glow='true']:is(:hover, :focus-within, [data-pointer-active='true'])::before {
+			opacity: 1;
+		}
+
+		@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+			.stacked-cards-card[data-card-glow='true']:is(:hover, :focus-within, [data-pointer-active='true'])::after {
+				opacity: 1;
+			}
+		}
+	}
+
+	.stacked-cards-card__copy {
+		display: flex;
+		height: 100%;
+		min-width: 0;
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	.stacked-cards-card__copy h3 {
+		max-width: 520px;
+		margin: 0;
+		color: #fff;
+		font: 500 clamp(1.32rem, 1.8vw, 1.72rem)/1.2 Manrope, sans-serif;
+		letter-spacing: -0.01em;
+	}
+
+	.stacked-cards-card__bottom {
+		margin-top: auto;
+	}
+
+	.stacked-cards-card__copy p {
+		max-width: 560px;
+		margin: 0;
+		color: #a1a1aa;
+		font: 400 15px/1.55 Manrope, sans-serif;
+	}
+
+	.stacked-cards-card__footer {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		padding-top: clamp(14px, 1.8vw, 22px);
+	}
+
+	.stacked-cards-card__footer span {
+		border: 1px solid rgba(203, 243, 0, 0.22);
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.075);
+		padding: 9px 12px;
+		color: rgba(225, 250, 112, 0.9);
+		font: 650 13px/1 Manrope, sans-serif;
+		white-space: nowrap;
+	}
+
+	.stacked-cards-section.is-stack-ready .stacked-cards-container {
+		min-height: var(--stacked-cards-height, auto);
+	}
+
+	.stacked-cards-section.is-stack-ready .stacked-cards-grid {
+		position: sticky;
+		top: var(--stacked-cards-top);
+		align-content: start;
+		align-items: start;
+	}
+
+	.stacked-cards-section.is-stack-ready .stacked-cards-copy {
+		position: static;
+	}
+
+	.stacked-cards-section.is-stack-ready .stacked-cards-stack {
+		position: relative;
+		align-self: start;
+		overflow: visible;
+		padding-bottom: var(--stacked-cards-bottom, 0);
+	}
+
+	.stacked-cards-section.is-stack-ready .stacked-cards-card {
+		width: 100%;
+		transition: transform 80ms linear, border-color 300ms ease;
+		will-change: transform;
+	}
+
+	@media (max-width: 1023px) {
+		.stacked-cards-card {
+			min-height: 270px;
+		}
+	}
+
+	@media (max-width: 929px) {
+		[data-stacked-cards-section="business-account-security"] .stacked-cards-card__bottom {
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+			margin-top: 1rem;
+		}
+
+		[data-stacked-cards-section="business-account-security"] .stacked-cards-card__footer {
+			margin-top: auto;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.stacked-cards-card {
+			min-height: 210px;
+		}
+
+		[data-stacked-cards-section="what-else-you-get"] .stacked-cards-card {
+			min-height: 270px;
+		}
+
+		[data-stacked-cards-section="what-else-you-get"] .stacked-cards-card__bottom {
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+			margin-top: 1.25rem;
+		}
+
+		[data-stacked-cards-section="what-else-you-get"] .stacked-cards-card__footer {
+			margin-top: auto;
+		}
+
+		[data-stacked-cards-section="business-account-security"] .stacked-cards-card {
+			min-height: 232px;
+		}
+
+		[data-stacked-cards-section="home-deferred-payments-stack"] .stacked-cards-card {
+			min-height: 295px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.stacked-cards-stack {
+			margin-inline: -12px;
+		}
+
+		.stacked-cards-card {
+			padding: 16px;
+		}
+
+		[data-stacked-cards-section="home-deferred-payments-stack"] .stacked-cards-card {
+			min-height: 300px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.stacked-cards-card {
+			--garna-card-glow-x: 50% !important;
+			--garna-card-glow-y: 50% !important;
+		}
+
+		.stacked-cards-card::before,
+		.stacked-cards-card::after {
+			transition: none;
+		}
+	}
+</style>
+
+<script define:vars={{ stackId, stackTop, cardGap, cardPeek, stackBreakpoint, stackBreakpointByLocale, minScrollDistance, distanceMultiplier, timings, requireSingleLineTitles }}>
+	const cardGlowWindow = window;
+
+	if (!cardGlowWindow.__garnaCardGlowInitialized) {
+		cardGlowWindow.__garnaCardGlowInitialized = true;
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const lightFieldRadius = 352;
+		const lightFields = new WeakMap();
+		let activeCard = null;
+		let activeLightField = null;
+		let activeLightScope = null;
+		let activeLightScopeBounds = null;
+
+		const getLightField = (scope) => {
+			const existing = lightFields.get(scope);
+			if (existing) return existing;
+
+			const field = document.createElement('span');
+			field.className = 'garna-card-light-field';
+			field.setAttribute('aria-hidden', 'true');
+			scope.classList.add('garna-card-light-scope');
+			scope.prepend(field);
+			lightFields.set(scope, field);
+			return field;
+		};
+
+		const clearActiveCard = () => {
+			activeCard?.removeAttribute('data-pointer-active');
+			activeLightField?.removeAttribute('data-active');
+			activeCard = null;
+			activeLightField = null;
+			activeLightScope = null;
+			activeLightScopeBounds = null;
+		};
+
+		document.addEventListener('pointermove', (event) => {
+			if (reducedMotion.matches || !(event.target instanceof Element)) return;
+
+			const card = event.target.closest('[data-card-glow="true"]');
+			if (!(card instanceof HTMLElement)) {
+				clearActiveCard();
+				return;
+			}
+
+			if (activeCard !== card) {
+				clearActiveCard();
+				activeCard = card;
+				activeCard.setAttribute('data-pointer-active', 'true');
+
+				if (document.documentElement.dataset.theme === 'light' && card.parentElement) {
+					activeLightScope = card.parentElement;
+					activeLightField = getLightField(activeLightScope);
+					activeLightScopeBounds = activeLightScope.getBoundingClientRect();
+					const field = activeLightField;
+					if (field.dataset.ready === 'true') {
+						field.setAttribute('data-active', 'true');
+					} else {
+						window.requestAnimationFrame(() => {
+							field.dataset.ready = 'true';
+							if (activeLightField === field) field.setAttribute('data-active', 'true');
+						});
+					}
+				}
+			}
+
+			const bounds = card.getBoundingClientRect();
+			const localX = event.clientX - bounds.left;
+			const localY = event.clientY - bounds.top;
+			card.style.setProperty('--garna-card-glow-x', `${localX}px`);
+			card.style.setProperty('--garna-card-glow-y', `${localY}px`);
+
+			if (activeLightField && activeLightScopeBounds) {
+				activeLightField.style.setProperty('--garna-card-light-x', `${event.clientX - activeLightScopeBounds.left - lightFieldRadius}px`);
+				activeLightField.style.setProperty('--garna-card-light-y', `${event.clientY - activeLightScopeBounds.top - lightFieldRadius}px`);
+			}
+		}, { passive: true });
+
+		window.addEventListener('blur', clearActiveCard);
+		window.addEventListener('scroll', clearActiveCard, { passive: true });
+	}
+
+	for (const stackRoot of document.querySelectorAll(`[data-stacked-cards-section="${stackId}"]`)) {
+		if (!(stackRoot instanceof HTMLElement) || stackRoot.dataset.ready === 'true') continue;
+		stackRoot.dataset.ready = 'true';
+
+		const section = stackRoot.closest('.stacked-cards-section');
+		if (!(section instanceof HTMLElement)) continue;
+		section.style.setProperty('--stacked-cards-top', `${stackTop}px`);
+		section.style.setProperty('--stacked-cards-gap', `${cardGap}px`);
+		section.style.setProperty('--stacked-cards-peek', `${cardPeek}px`);
+
+		const locale = document.documentElement.lang.toLowerCase().split('-')[0];
+		const localizedStackBreakpoint = stackBreakpointByLocale[locale] || stackBreakpoint;
+		const stackMode = matchMedia(`(min-width:${localizedStackBreakpoint})`);
+		const reduced = matchMedia('(prefers-reduced-motion:reduce)');
+		let frame = null;
+
+		const clamp = (value) => Math.min(1, Math.max(0, value));
+		const ease = (value) => {
+			const progress = clamp(value);
+			return progress * progress * (3 - 2 * progress);
+		};
+
+		const clearStack = () => {
+			const container = section.querySelector('.stacked-cards-container');
+			const cards = [...section.querySelectorAll('[data-stacked-card]')];
+			section.classList.remove('is-stack-ready');
+			if (container instanceof HTMLElement) container.style.removeProperty('--stacked-cards-height');
+			section.style.removeProperty('--stacked-cards-bottom');
+			cards.forEach((card) => {
+				if (!(card instanceof HTMLElement)) return;
+				card.style.removeProperty('position');
+				card.style.removeProperty('inset');
+				card.style.removeProperty('transform');
+				card.style.removeProperty('z-index');
+			});
+		};
+
+		const headingsFitOneLine = (cards) => cards.every((card) => {
+			if (!requireSingleLineTitles) return true;
+			const heading = card.querySelector('h3');
+			if (!(heading instanceof HTMLElement)) return false;
+			const range = document.createRange();
+			range.selectNodeContents(heading);
+			const lines = new Set(
+				Array.from(range.getClientRects())
+					.filter((rect) => rect.width > 1 && rect.height > 1)
+					.map((rect) => Math.round(rect.top))
+			);
+			return lines.size <= 1;
+		});
+
+		const update = () => {
+			frame = null;
+			const container = section.querySelector('.stacked-cards-container');
+			const grid = section.querySelector('.stacked-cards-grid');
+			const cards = [...section.querySelectorAll('[data-stacked-card]')];
+			const firstCard = cards[0];
+			if (!(container instanceof HTMLElement) || !(grid instanceof HTMLElement) || !(firstCard instanceof HTMLElement)) return;
+
+			if (!stackMode.matches || !headingsFitOneLine(cards)) {
+				clearStack();
+				return;
+			}
+
+			section.classList.add('is-stack-ready');
+			const styles = getComputedStyle(section);
+			const gap = Number.parseFloat(styles.getPropertyValue('--stacked-cards-gap')) || 18;
+			const peek = Number.parseFloat(styles.getPropertyValue('--stacked-cards-peek')) || 76;
+			const cardHeight = firstCard.offsetHeight;
+			const cardCount = cards.length;
+			const stackedCount = Math.max(0, cardCount - 1);
+			const distance = Math.max(minScrollDistance, Math.round((cardHeight + gap) * distanceMultiplier));
+
+			section.style.setProperty('--stacked-cards-bottom', `${peek * stackedCount}px`);
+			container.style.setProperty('--stacked-cards-height', `${grid.offsetHeight + distance}px`);
+
+			const top = Number.parseFloat(styles.getPropertyValue('--stacked-cards-top')) || 112;
+			const rect = container.getBoundingClientRect();
+			const release = Math.max(1, container.offsetHeight - grid.offsetHeight);
+			const progress = clamp((top - rect.top) / Math.min(distance, release));
+
+			cards.forEach((card, index) => {
+				if (!(card instanceof HTMLElement)) return;
+				card.style.zIndex = String(index + 1);
+				if (index === 0) {
+					card.style.removeProperty('position');
+					card.style.removeProperty('inset');
+					card.style.transform = 'translateY(0)';
+					return;
+				}
+
+				card.style.position = 'absolute';
+				card.style.inset = '0 0 auto';
+				const start = (cardHeight + gap) * index;
+				const end = peek * index;
+				const configuredTiming = Array.isArray(timings) ? timings[index - 1] : null;
+				const startProgress = Array.isArray(configuredTiming)
+					? Number(configuredTiming[0])
+					: cardCount <= 2 ? 0.06 : 0.06 + ((index - 1) / Math.max(1, stackedCount)) * 0.51;
+				const endProgress = Array.isArray(configuredTiming)
+					? Number(configuredTiming[1])
+					: index === stackedCount ? 0.92 : startProgress + 0.28 + index * 0.05;
+				const motion = reduced.matches ? 1 : ease((progress - startProgress) / (endProgress - startProgress));
+				const y = start + (end - start) * motion;
+				card.style.transform = `translateY(${y.toFixed(2)}px)`;
+			});
+		};
+
+		const requestUpdate = () => {
+			if (frame === null) frame = requestAnimationFrame(update);
+		};
+
+		addEventListener('scroll', requestUpdate, { passive: true });
+		addEventListener('resize', requestUpdate);
+		stackMode.addEventListener('change', requestUpdate);
+		reduced.addEventListener('change', requestUpdate);
+		window.addEventListener('garna:page-will-unmount', () => {
+			if (frame !== null) cancelAnimationFrame(frame);
+			removeEventListener('scroll', requestUpdate);
+			removeEventListener('resize', requestUpdate);
+			stackMode.removeEventListener('change', requestUpdate);
+			reduced.removeEventListener('change', requestUpdate);
+		}, { once: true });
+		requestUpdate();
+	}
+</script>

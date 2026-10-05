@@ -2,17 +2,19 @@ import type { FinalCTASectionConfig } from '../types/final-cta-section';
 
 export const pageFinalCtas = {
 	contractorOfRecord: {
-		title: [{ text: 'Ready to get started?', translateKey: 'whyGarna.cta.title' }],
+		title: [{ text: 'Pay Every Contractor Through One Compliant Flow', translateKey: 'contractorFinalCta.title' }],
 		description: {
-			text: 'Join thousands of businesses streamlining their global payroll today',
-			translateKey: 'whyGarna.cta.description',
+			text: 'Garna keeps contractor agreements, invoices, approvals, and cross-border payouts in one place, so your team can scale without local entities or payment chaos',
+			translateKey: 'contractorFinalCta.description',
 		},
 		button: {
 			label: 'Book a demo',
-			translateKey: 'whyGarna.cta.button',
+			translateKey: 'contractorFinalCta.button',
 			kind: 'demo',
 			trackingCta: 'final_demo',
 		},
+		titleClass: 'mb-8 font-manrope text-4xl font-normal leading-tight tracking-tight text-white md:text-[52px]',
+		descriptionClass: 'mx-auto mb-12 max-w-2xl text-lg font-light leading-relaxed text-gray-400 md:text-xl',
 	},
 	enterprisePayroll: {
 		title: [{ text: 'Global Payroll Is Easy When Made By Using Garna', translateKey: 'enterpriseFinalCta.title' }],
@@ -86,7 +88,7 @@ export const pageFinalCtas = {
 			translateKey: 'finalCta.description',
 		},
 		button: {
-			label: 'Request Demo Version',
+			label: 'Book a demo',
 			translateKey: 'finalCta.button',
 			kind: 'demo',
 			trackingCta: 'final_demo',
@@ -124,23 +126,47 @@ export const pageFinalCtas = {
 		class: 'overflow-hidden lg:pt-40 lg:pb-40 text-center pt-32 pb-32 relative',
 		containerClass: 'z-10 max-w-4xl mr-auto ml-auto pr-6 pl-6 relative',
 		titleClass:
-			'garna-hero-title-gradient md:text-7xl lg:text-6xl text-5xl font-normal text-white tracking-tight font-manrope mb-8',
+			'garna-hero-title-gradient text-[2.75rem] leading-[1.06] tracking-tight md:text-[3.35rem] lg:text-[62px] font-normal text-white font-manrope mb-8',
 		descriptionClass:
-			'md:text-xl lg:text-2xl text-lg font-light text-gray-400 font-manrope max-w-2xl mr-auto mb-12 ml-auto',
+			'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
 	},
 	eor: {
-		title: [{ text: 'Global Employer of Record is A Modern Hiring Process Done Stress-Free', translateKey: 'finalCta.title' }],
+		title: [{ text: 'Hire Employees Globally Without Opening Local Entities', translateKey: 'finalCta.title' }],
 		description: {
-			text: 'Garna offers exceptional 24/7 expert support and all the necessary features that let you have employee experiences all over the world with no arising crises and unexpected issues on your way',
+			text: "Garna becomes the legal employer for your international team, handling contracts, payroll, taxes, benefits, and local compliance while you manage each employee's day-to-day work",
 			translateKey: 'finalCta.description',
 		},
 		button: {
-			label: 'Start Going Global',
+			label: 'Book a demo',
 			translateKey: 'finalCta.button',
 			kind: 'demo',
 			trackingCta: 'eor_final_cta',
 		},
-		titleClass: 'mb-8 font-manrope text-4xl font-normal leading-tight tracking-tight text-white md:text-[52px]',
-		descriptionClass: 'mx-auto mb-12 max-w-2xl text-lg font-light leading-relaxed text-gray-400 md:text-xl',
+		class: 'overflow-hidden lg:pt-40 lg:pb-40 text-center pt-32 pb-32 relative',
+		containerClass: 'z-10 max-w-4xl mr-auto ml-auto pr-6 pl-6 relative',
+		titleClass:
+			'garna-hero-title-gradient text-[2.75rem] leading-[1.06] tracking-tight md:text-[3.35rem] lg:text-[62px] font-normal text-white font-manrope mb-8',
+		descriptionClass:
+			'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
+	},
+	businessAccount: {
+		title: [{ text: 'Take Your Business Payments Global', translateKey: 'finalCta.title' }],
+		description: {
+			text: 'Open one account for international transfers, multi-currency balances, and team payouts',
+			translateKey: 'finalCta.description',
+		},
+		button: {
+			label: 'Open an account',
+			translateKey: 'finalCta.button',
+			kind: 'signup',
+			href: 'https://app.garna.io/en/auth/sign-up',
+			effect: 'rotating-flare',
+		},
+		class: 'overflow-hidden lg:pt-40 lg:pb-40 text-center pt-32 pb-32 relative',
+		containerClass: 'z-10 max-w-4xl mr-auto ml-auto pr-6 pl-6 relative',
+		titleClass:
+			'garna-hero-title-gradient text-[2.75rem] leading-[1.06] tracking-tight md:text-[3.35rem] lg:text-[62px] font-normal text-white font-manrope mb-8',
+		descriptionClass:
+			'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
 	},
 } satisfies Record<string, FinalCTASectionConfig>;

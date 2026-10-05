@@ -14,17 +14,403 @@
 	brand: {
 		name: 'Garna',
 	},
+	cta: {
+		bookDemo: 'Agendar demo',
+		learnMore: 'Saiba mais',
+	},
 	hero: {
 		badge: 'Payroll para Grandes Empresas',
-		title: 'Soluções de Folha de Pagamento Global para o seu negócio',
+		titleMain: 'A plataforma de payroll tudo em um',
+		stats: {
+			ariaLabel: 'A Garna em números',
+			businesses: 'empresas confiam na Garna',
+			paid: 'pagos a especialistas',
+			professionals: 'profissionais usam a Garna',
+		},
+		title: 'Soluções de Payroll Global para o seu negócio',
 		tagline: 'para o seu negócio',
-		description:
-			'Uma transferência, infinitas possibilidades. Pague remunerações em mais de 150 países com o mínimo de esforço',
+		description: 'Pague a contratados e contrate colaboradores em mais de 150 países, em conformidade e sem os custos adicionais de uma entidade local',
 		bookDemo: 'Agendar demo',
 		cta: 'Agendar demo',
+		visual: {
+			payroll: 'Payroll',
+			globalPayouts: 'Pagamentos globais',
+		},
+	},
+	sectionHeadings: {
+		homeProof: 'Payroll para trabalhar sem fronteiras',
+		manageGlobalPayroll: 'Contrate, pague e cresça globalmente',
+		hireEmployeesWorldwide: 'Contrate colaboradores em todo o mundo',
+		effectivePayroll: 'O payroll eficiente para a sua equipa começa aqui',
+		deferredPayments: 'Pague a contratados agora, liquide mais tarde',
+		embeddedPayrollInfrastructure: 'Infraestrutura de payroll incorporada',
+		trustedByBuilders: 'A confiança de mais de 400 empresas no mundo todo',
+	},
+	sectionDescriptions: {
+		homeProof: 'Apoie equipas, contratados e especialistas onde quer que o trabalho aconteça',
+		manageGlobalPayroll: 'Trabalhe com contratados, contrate colaboradores, aceda a benefícios empresariais e faça a gestão de pagamentos globais com a Garna',
+		hireEmployeesWorldwide: 'Encontre e contrate talentos que não encontrava localmente sem criar uma entidade legal local',
+		effectivePayroll: 'Pagamentos em massa por CSV ou transferências individuais, sem atrasos nem taxas adicionais. Automatize tudo depois da configuração.',
+		deferredPayments:
+			'Execute pagamentos globais imediatamente e reembolse a Garna em um cronograma adequado ao fluxo de caixa do seu negócio',
+		embeddedPayrollInfrastructure:
+			'Use a Garna como o seu fornecedor backend: integre gestão e pagamentos de contratados no seu produto ou lance serviços completos de payroll com a sua própria marca',
+		trustedByBuilders:
+			'Descubra porque grandes empresas e negócios de média dimensão estão a mudar para a Garna. Definimos o padrão para payroll internacional, com a confiança de profissionais em mais de 150 países',
+	},
+	productDemo: {
+		play: 'Ver demo do produto',
+		ariaLabel: 'Reproduzir a demo do produto Garna',
+		videoLabel: 'Demo do produto Garna',
+	},
+	homeProof: {
+		stats: {
+			businesses: {
+				label: 'empresas usam a Garna',
+				notice: {
+					title: 'Fatura aprovada',
+					meta: 'Brand Studio LLC',
+				},
+			},
+			paid: {
+				label: 'pagos a especialistas',
+				notice: {
+					title: 'Lote enviado',
+					meta: '38 especialistas',
+				},
+			},
+			talents: {
+				label: 'talentos já usam a Garna',
+				notice: {
+					title: 'Transferido',
+					meta: 'Conta EUR',
+				},
+			},
+		},
+		carousel: {
+			ariaLabel: 'Escolher um cartão de prova de payroll',
+		},
+	},
+	homeWorkflows: {
+		ariaLabel: 'Workflows da Garna para equipas globais',
+		pay: {
+			title: 'Movimente dinheiro sem fronteiras',
+			description: 'Execute payroll e pagamentos entre mercados sem combinar várias ferramentas de pagamento',
+			imageAlt: 'Um grupo de jovens profissionais diante de um céu azul brilhante',
+			status: 'Payroll concluído',
+			statusMeta: '38 membros da equipa pagos',
+			statusAmount: '96.400 $',
+		},
+		contractors: {
+			title: 'Faça a gestão de talento global com confiança',
+			description: 'Mantenha pessoas, contratos e operações diárias ligados num espaço de trabalho claro',
+			imageAlt: 'Um contratado remoto a trabalhar a partir de qualquer lugar',
+			status: 'Contrato de prestação',
+			statusMeta: 'Assinado por ambas as partes',
+			statusAmount: 'Concluído',
+		},
+		hire: {
+			title: 'Crie equipas onde surgem oportunidades',
+			description: 'Escolha a forma certa de trabalhar com talento em cada país à medida que o seu negócio cresce',
+			imageAlt: 'Uma nova colaboradora a juntar-se a uma equipa global',
+			status: 'Novo colaborador contratado',
+			statusMeta: 'Data de início confirmada',
+			statusAmount: 'EOR ativo',
+		},
+	},
+	manageGlobalPayroll: {
+		cards: {
+			automation: {
+				title: 'Pague a contratados globalmente',
+				description: 'Integre e pague a contratados em todo o mundo com facilidade',
+			},
+			globalReach: {
+				title: 'Contrate colaboradores em todo o mundo',
+				description: 'Expanda a sua equipa mais rapidamente com uma solução EOR em conformidade',
+			},
+			payoutMethods: {
+				title: 'Benefícios e descontos empresariais',
+				description: 'Obtenha descontos no Slack, Google Workspace e em mais de 100 serviços que consomem o seu orçamento',
+			},
+			fees: {
+				title: 'Obtenha uma conta bancária empresarial',
+				description: 'Faça a gestão de pagamentos globais com contas empresariais dedicadas',
+			},
+		},
+		visual: {
+			automation: {
+				ariaLabel: 'Resumo do pagamento ao contratado',
+				contractVerified: 'Contrato verificado',
+				approved: 'Aprovado',
+				invoiceApproved: 'Fatura aprovada',
+				ready: 'Pronto',
+				contractorName: 'Eva Miller',
+				contractorRole: 'Designer de produto',
+				contractorType: 'Contratada',
+				contractorReceives: 'O contratado recebe',
+				payoutDestination: 'Destino do pagamento',
+				payoutDestinationValue: 'Portugal',
+				payoutCurrency: 'Moeda do pagamento',
+				payoutCurrencyValue: 'USD',
+				payDate: 'Data de pagamento',
+				payDateValue: '28 de junho',
+				managedWith: 'Gerido com a Garna',
+				sendPayment: 'Enviar pagamento',
+			},
+			employees: {
+				germany: 'Alemanha · EOR ativo',
+				canada: 'Canadá · EOR ativo',
+				japan: 'Japão · EOR ativo',
+			},
+			perks: {
+				offerDetails: 'Detalhes da oferta',
+				partnerOffer: 'Oferta de parceiro',
+				available: 'Disponível',
+				serviceCategory: 'Comunicação de equipa',
+				exclusiveDeal: 'Oferta exclusiva',
+				forGarnaCustomers: 'Para clientes Garna',
+				benefit: 'Benefício',
+				partnerPricing: 'Preço de parceiro',
+				eligibility: 'Requisito',
+				businessAccount: 'Conta empresarial',
+				access: 'Acesso',
+				instant: 'Imediato',
+				businessPerk: 'O seu benefício empresarial',
+				unlockOffer: 'Desbloqueie esta oferta',
+				viewOffer: 'Ver oferta',
+				businessPerks: 'Benefícios empresariais',
+				toolsYourTeamUses: 'Poupe nas ferramentas da sua equipa',
+				offersCount: 'Mais de 100 ofertas',
+				partner: 'Parceiro',
+				slackDiscount: 'Desconto exclusivo para clientes Garna',
+				claimPerk: 'Obter',
+				availableWithGarna: 'Disponível com Garna',
+				availableDiscounts: 'Descontos disponíveis',
+				choosePerk: 'Escolha um benefício para ativar',
+				teamCollaboration: 'Colaboração em equipa',
+				productivitySuite: 'Produtividade empresarial',
+				moreServices: 'Mais de 100 serviços',
+				explorePartnerOffers: 'Explore todas as ofertas',
+				projectManagement: 'Gestão de projetos',
+				showMoreOffers: 'Ver mais de 100 ofertas',
+			},
+			methods: {
+				back: 'Voltar',
+				withdrawFunds: 'Levantar fundos',
+				bankTransfer: 'Transferência bancária',
+				transferToCard: 'Transferir para cartão',
+				electronicWallets: 'Carteiras eletrónicas',
+				cryptocurrencies: 'Criptomoedas',
+				internalAccount: 'Conta interna Garna',
+				toEurAccount: 'Para conta EUR',
+				withdrawAll: 'Levantar tudo',
+				charged: 'Será debitado',
+				received: 'Será enviado',
+				details: 'Detalhes',
+				businessAccount: 'Conta empresarial',
+				balance: 'Saldo',
+				send: 'Enviar',
+				withdraw: 'Sacar',
+				addFunds: 'Adicionar fundos',
+				transfer: 'Transferir',
+				widgets: 'Widgets',
+				templates: 'Modelos',
+				templatesSaved: '8 modelos salvos',
+				currencyExchange: 'Câmbio de moedas',
+				betweenAccounts: 'Entre suas contas',
+				accountDetails: 'Dados da conta',
+				savedRecipients: 'Destinatários',
+				quickAccess: 'Acesso rápido',
+			},
+		},
+	},
+	hireEmployees: {
+		cards: {
+			globalEmployment: {
+				title: 'Contratação global rápida',
+				description: 'Contrate colaboradores em mais de 150 países sem abrir entidades legais locais',
+			},
+			immigration: {
+				title: 'Assistência imigratória',
+				description: 'Mais de 70 países onde oferecemos assistência imigratória através de parceiros autorizados',
+			},
+			compliance: {
+				title: 'Mantenha compliance',
+				description:
+					'Ligamos a sua empresa a conhecimento regulatório local em diferentes mercados para que tenha liberdade de crescer onde quiser',
+			},
+		},
+	},
+	contractorCarousel: {
+		features: {
+			hire: {
+				title: 'Contrate profissionais\nem todo o mundo',
+				description: 'Faça a gestão de uma quantidade ilimitada de contratados numa única plataforma',
+			},
+			payments: {
+				title: 'Pagamentos globais\nflexíveis',
+				description: 'Pague a contratados em mais de 80 moedas locais por transferência bancária, cartão, carteira eletrónica ou cripto',
+			},
+			protection: {
+				title: 'Proteção contra\nclassificação incorreta',
+				description: 'Proteja a sua empresa do risco de classificação incorreta com o apoio de Contractor e Agent of Record',
+			},
+		},
+		notifications: {
+			hire: {
+				name: 'Maya Chen',
+				status: 'Integração concluída',
+				badge: 'Ativo',
+			},
+			payment: {
+				time: 'Agora',
+				title: 'Pagamento enviado',
+				description: '1.000 USD · Transferência bancária',
+			},
+			compliance: {
+				riskLabel: 'Risco de classificação',
+				riskValue: 'Baixo',
+				reviewLabel: 'Revisão do acordo',
+				reviewValue: 'Aprovada',
+				footerTitle: 'Protegido pela Garna',
+				footerMeta: 'Ativo',
+			},
+		},
+	},
+	spendbaseQuote: {
+		quote:
+			'A Garna oferece uma solução eficiente para pagamentos internacionais, com transações fluidas em várias regiões. A equipa é ágil, profissional e proativa',
+		author: {
+			name: 'Serge L.',
+			role: 'CFO, Spendbase',
+		},
+	},
+	deferredPayments: {
+		cards: {
+			immediate: {
+				title: 'Pagamentos imediatos, liquidação diferida',
+				description: 'Pague à sua equipa global hoje, preservando capital circulante.',
+				tags: ['Pagamentos globais', 'Pague agora', 'Acerte depois'],
+			},
+			terms: {
+				title: 'Prazos flexíveis: 30, 60 ou 90 dias',
+				description: 'Escolha um calendário de liquidação que acompanhe o seu fluxo de caixa de entrada.',
+				tags: ['Prazos flexíveis', 'Fluxo de caixa', 'O seu calendário'],
+			},
+			limits: {
+				title: 'Limites de $50K até um milhão',
+				description: 'Escale o financiamento disponível à medida que a sua rede de contratados cresce.',
+				tags: ['Limite escalável', 'Crescimento da equipa', 'Mais capacidade'],
+			},
+			processing: {
+				title: 'Alocação e processamento instantâneos',
+				description: 'Passe da alocação aprovada para pagamentos processados em um único fluxo.',
+				tags: ['Alocação', 'Aprovação', 'Processamento'],
+			},
+		},
+	},
+	embeddedPayroll: {
+		panels: {
+			api: {
+				tag: 'Para equipas de produto',
+				title: 'API para gestão e pagamentos de contratados',
+				description: 'Integre pagamentos globais a contratados diretamente na sua plataforma',
+			},
+			brand: {
+				tag: 'Para marcas de payroll',
+				title: 'Dashboard White Label para contratados e pagamentos',
+				description: 'Lance payroll com a sua própria marca, impulsionado pela Garna',
+			},
+		},
+		tabs: {
+			ariaLabel: 'Soluções de payroll incorporado',
+			api: 'Integração API',
+			brand: 'White Label',
+		},
+	},
+	trustedByBuilders: {
+		testimonials: {
+			anna: {
+				quote:
+					'"A Garna combina payroll global flexível, calendários de pagamento fiáveis, suporte ágil e levantamentos simples para contratados em todo o mundo."',
+			},
+			aleksandra: {
+				quote:
+					'"Trabalhamos com a Garna há mais de um ano. Onboarding e documentação são rápidos, os pagamentos são fiáveis entre regiões e a equipa resolve questões de forma proativa."',
+			},
+			serge: {
+				quote:
+					'"A Garna torna pagamentos internacionais eficientes e fluidos. A equipa comunica rapidamente, resolve problemas de forma proativa e tem sido uma parceira sempre fiável."',
+			},
+		},
+	},
+	finalCta: {
+		title: 'Lance software de payroll global no piloto automático hoje',
+		description: 'Pague à sua equipa em mais de 150 países com poucos cliques. Sem burocracia, apenas pagamentos rápidos',
+		button: 'Agendar demo',
+	},
+	faq: {
+		title: 'FAQ sobre soluções de payroll',
+		items: {
+			q1: {
+				question: 'Quais serviços a Garna oferece?',
+				answer:
+					'Payroll global, Employer of Record, Contractor of Record, business banking e pagamentos internacionais, tudo numa única plataforma. Pode contratar, pagar e fazer a gestão de toda a sua equipa, colaboradores e contratados, sem trocar de ferramenta.',
+			},
+			q2: {
+				question: 'O que é Employer of Record (EOR)?',
+				answer:
+					'Um EOR emprega legalmente a sua equipa num país onde não tem entidade. A Garna torna-se esse empregador legal; a sua empresa gere o trabalho do dia a dia.',
+			},
+			q3: {
+				question: 'O que é Contractor of Record?',
+				answer:
+					'A Garna gere o contrato, compliance e pagamentos dos seus freelancers, protegendo a sua empresa contra o risco de classificação incorreta sem que tenha de se tornar o empregador legal deles.',
+			},
+			q4: {
+				question: 'Qual é a diferença entre contratar via EOR e contratar um contratado?',
+				answer:
+					'Um EOR é indicado para colaboradores a tempo inteiro que precisam de contratos locais de trabalho, benefícios e compliance de payroll. Contratados trabalham de forma independente e normalmente são contratados para projetos ou serviços específicos sem relação laboral.',
+			},
+			q5: {
+				question: 'Posso contratar talentos internacionais sem um EOR?',
+				answer:
+					'Sim, abrindo a sua própria entidade legal. Funciona, mas a constituição da empresa, o payroll local e o compliance contínuo tornam o processo lento e caro para equipas pequenas. Verifique a partir de que dimensão de equipa fica mais barato abrir a sua própria empresa em vez de usar um EOR.',
+			},
+			q6: {
+				question: 'Por que escolher a Garna em vez de outros provedores?',
+				answer:
+					'1. Serviço tudo em um: contrate colaboradores via EOR, trabalhe com contratados de qualquer tipo (pessoas singulares, trabalhadores independentes ou entidades legais) e opere o seu business banking diário¹ a partir de uma única plataforma.\n\n2. Preços transparentes sem taxas ocultas.\n\n3. Pagamentos verdadeiramente globais: pague para mais de 150 países em mais de 80 moedas locais usando transferências bancárias, cartões, PayPal, e-wallets locais ou cripto.\n\n4. Business banking incluído: IBANs multimoeda em nome da sua empresa e transferências para mais de 150 destinos, fornecidos por uma entidade licenciada separada.\n\n5. Infraestrutura de pagamentos fiável: uma das maiores redes de pagamento do setor, com mais de 20 parceiros bancários e sistemas de pagamento.\n\n6. Cartões virtuais: emita um cartão na app, adicione-o ao Apple Pay ou Google Pay e pague diretamente do seu saldo Garna².\n\n7. Suporte humano ágil sempre que precisar de ajuda.\n\n¹ Serviços de business banking são fornecidos por uma entidade/provedor de pagamentos licenciado separado.\n² Emissão de cartões e pagamentos com cartão são fornecidos por um provedor de pagamentos terceirizado licenciado e estão sujeitos a KYC, elegibilidade e termos aplicáveis.',
+			},
+			q7: {
+				question: 'Quanto tempo leva para fazer o onboarding de um funcionário?',
+				answer:
+					'Na maioria dos países, conseguimos contratar um novo colaborador em no máximo um dia útil. Depois de recebermos os dados confirmados da oferta e o colaborador concluir as etapas obrigatórias de onboarding, incluindo envio de documentos e assinatura do contrato, garantimos um início rápido e tranquilo, dando suporte à sua empresa e ao novo contratado.',
+			},
+			q8: {
+				question: 'Quanto tempo leva para começar a usar Garna Contractor of Record?',
+				answer:
+					'Na maioria dos casos, pode ter o seu primeiro contratado integrado em menos de 20 minutos. Depois de criar uma conta empresarial e passar pela verificação, pode começar a convidar contratados. A Garna também oferece opções de pagamento em tempo real, para que contratados possam receber a remuneração no mesmo dia.',
+			},
+			q9: {
+				question: 'Quais métodos de pagamento a Garna suporta?',
+				answer:
+					'Suportamos transferências bancárias (SWIFT, SEPA e transferências em moedas locais), pagamentos com cartão em moeda local, PayPal, Payoneer, outros e-wallets e pagamentos em criptomoedas¹. Com a Garna, pode emitir um cartão digital na app, adicioná-lo ao Apple Pay ou Google Pay e pagar diretamente do seu saldo Garna².\n\n¹ Serviços de pagamento em criptomoedas são fornecidos por um provedor terceirizado licenciado e estão sujeitos a disponibilidade, elegibilidade e termos aplicáveis.\n² Emissão de cartões e pagamentos com cartão são fornecidos por um provedor de pagamentos terceirizado licenciado e estão sujeitos a KYC, elegibilidade e termos aplicáveis.',
+			},
+			q10: {
+				question: 'Posso usar minha conta empresarial Garna como conta diária?',
+				answer:
+					'Sim, funciona como uma conta empresarial comum para o dia a dia, não apenas para payroll e pagamentos a contratados. Com uma Conta Empresarial Garna, pode obter IBANs multimoeda em nome da sua empresa, receber pagamentos e enviar transferências para mais de 150 destinos¹.\n\n¹ Serviços de business banking são fornecidos por uma entidade/provedor de pagamentos licenciado separado.',
+			},
+			q11: {
+				question: 'A quais benefícios uma empresa tem acesso ao usar a Garna?',
+				answer:
+					'Além da gestão de contratados e payroll, pode aceder a benefícios empresariais e receber descontos para Slack, Google Workspace, AWS e contas com mais de 100 outros provedores de serviço sem custo adicional.',
+			},
+		},
 	},
 	dashboard: {
-		url: 'garna.io/dashboard',
+		url: 'garna.io/balance',
 		balance: 'Saldo',
 		company: 'Empresa',
 		notifications: 'Notificações',
@@ -77,8 +463,8 @@
 		business: 'Negócio',
 	},
 	advance: {
-		title: '$ 1.000.000,00 disponíveis para pagamentos de equipe',
-		description: 'Pague seus contratados agora, reembolse depois com termos flexíveis',
+		title: '$ 1.000.000,00 disponíveis para pagamentos da equipa',
+		description: 'Pague aos seus contratados agora, liquide mais tarde com termos flexíveis',
 		button: 'Solicitar',
 	},
 	people: {
@@ -140,8 +526,8 @@
 				description: 'Crie o perfil da sua empresa e verifique os dados para acessar a plataforma',
 			},
 			step2: {
-				title: 'Convide sua equipe',
-				description: 'Adicione funcionários e contratados ao painel e atribua papéis e permissões',
+				title: 'Convide a sua equipa',
+				description: 'Adicione colaboradores e contratados ao painel e atribua funções e permissões',
 			},
 			step3: {
 				title: 'Carregue seu saldo',
@@ -169,7 +555,7 @@
 			},
 			invite: {
 				title: 'Convite por e-mail',
-				subtitle: 'Selecione um cargo e insira os e-mails dos funcionários para enviar convites',
+				subtitle: 'Selecione uma função e introduza os e-mails dos colaboradores para enviar convites',
 				positionLabel: 'Cargo',
 				positionValue: 'Serviços de Engenharia QA',
 				emailLabel: 'E-mail',
@@ -195,8 +581,8 @@
 				confirmed: 'Confirmado',
 			},
 			send: {
-				title: 'Transferência para usuário',
-				recipientLabel: 'E-mail ou usuário',
+				title: 'Transferência para utilizador',
+				recipientLabel: 'E-mail ou utilizador',
 				recipientName: 'Maria Ban',
 				recipientEmail: '1mariatestova1@gmail.com',
 				amountLabel: 'Valor da transferência, $',
@@ -244,7 +630,7 @@
 	},
 	contractorBenefits: {
 		title: 'Benefícios para seus contratados',
-		description: 'Dê à sua equipe a flexibilidade e a conveniência que ela merece',
+		description: 'Dê à sua equipa a flexibilidade e a conveniência que ela merece',
 		methods: {
 			title: 'Múltiplos métodos de pagamento',
 			description:
@@ -253,13 +639,13 @@
 				bankTransfer: 'Transferência bancária',
 				cardTransfer: 'Transferência para cartão',
 				newBadge: 'Novo',
-				eWallets: 'Carteiras eletrônicas',
+				eWallets: 'Carteiras eletrónicas',
 				crypto: 'Criptomoedas',
 			},
 		},
 		mobile: {
 			title: 'Experiência mobile first',
-			description: 'Receba notificações quando seu pagamento for creditado e gerencie saldos e pagamentos em um app',
+			description: 'Receba notificações quando o seu pagamento for creditado e faça a gestão de saldos e pagamentos numa app',
 			lte: 'LTE',
 			date: 'Terça-feira, 10 de janeiro',
 			appName: 'Garna',
@@ -289,7 +675,7 @@
 		cta: 'Saiba mais',
 		profile: {
 			name: 'Ethan Brooks',
-			role: 'Especialista em logística',
+			role: 'Logistics Specialist',
 		},
 		tags: {
 			supplyChain: 'Cadeia de suprimentos',
@@ -317,7 +703,7 @@
 			},
 			q4: {
 				question: 'Há limites mínimos de pagamento?',
-				answer: 'Não, você pode processar pagamentos de qualquer valor que atenda ao seu negócio.',
+				answer: 'Não, pode processar pagamentos de qualquer valor que responda às necessidades do seu negócio.',
 			},
 		},
 	},
@@ -350,7 +736,7 @@
 			lastName: 'Sobrenome*',
 			email: 'Email de trabalho*',
 			phone: 'Número de telefone*',
-			employees: 'Número de funcionários*',
+			employees: 'Número de colaboradores*',
 		},
 		companySizeOptions: ['1-20 pessoas', '21-200 pessoas', '201-1000 pessoas', '1001-2000 pessoas', '2001+ pessoas'],
 		errors: {
@@ -366,7 +752,7 @@
 		},
 		disclaimer: {
 			prefix:
-				'Respeitamos seus dados. Ao enviar este formulário, você concorda que entraremos em contato em relação aos nossos produtos e serviços, de acordo com nossa ',
+				'Respeitamos os seus dados. Ao enviar este formulário, concorda que entraremos em contacto consigo relativamente aos nossos produtos e serviços, de acordo com a nossa ',
 			privacyLink: 'política de privacidade',
 			suffix: '.',
 		},

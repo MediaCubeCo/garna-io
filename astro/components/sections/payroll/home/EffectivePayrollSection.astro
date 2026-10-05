@@ -1,14 +1,29 @@
 ---
 import Section from '../../../layout/Section.astro';
-import ContractorDashboardVisual from '../../../visuals/ContractorDashboardVisual.astro';
+import Button from '../../../ui/Button.astro';
+import ProductDemoVideo from '../../../visuals/ProductDemoVideo.astro';
 ---
 
 <Section
-	title={{ text: 'Effective Payroll For Your Team Starts Here' }}
-	description={{ text: 'Make payments to the contractor when you need to (without any hassle, delays, or additional fees) using CSV mass payments or stand alone transfers. Pay international contractors in just a few clicks or set up full automation' }}
-	headerClass="mb-16 max-w-4xl lg:mb-20"
+	class="overflow-visible"
+	spacing="default"
+	title={{ text: 'Effective Payroll For Your Team Starts Here', translateKey: 'sectionHeadings.effectivePayroll' }}
+	description={{ text: "CSV mass payments or single transfers, no delays, no extra fees. Automate it once it's set up", translateKey: 'sectionDescriptions.effectivePayroll' }}
+	headerClass="mb-8 max-w-4xl lg:mb-10"
 	titleClass="lg:text-5xl"
-	contentClass="relative mx-auto max-w-6xl overflow-visible perspective-1000"
+	contentClass="relative mx-auto max-w-6xl overflow-visible"
 >
-	<ContractorDashboardVisual />
+	<div class="mb-12 flex justify-center lg:mb-16">
+		<Button
+			href="#"
+			onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'effective_payroll_demo' });"
+			variant="primary"
+			effect="none"
+			icon="none"
+			size="header"
+		>
+			<span data-translate="cta.bookDemo">Book a demo</span>
+		</Button>
+	</div>
+	<ProductDemoVideo />
 </Section>

@@ -1,0 +1,173 @@
+---
+import Section from '../../layout/Section.astro';
+---
+
+<Section contained={false} spacing="none" class="lg:pt-32 lg:pb-32 pt-16 pb-16 relative">
+        <div class="z-0 -top-px bg-dark-900 absolute"></div>
+        <div class="z-10 font-manrope max-w-7xl mr-auto ml-auto pr-6 pl-6 relative">
+
+
+            <div class="flex flex-col md:items-center lg:mb-16 text-center mb-16 gap-x-y-6 gap-y-6">
+                <h2
+                    class="md:text-4xl lg:text-5xl text-4xl font-normal text-white tracking-tight font-manrope max-w-4xl"
+                    data-translate="howItWorks.title">
+                    How it works</h2>
+                <p data-garna-subtitle class="text-xl font-light text-gray-400 font-manrope max-w-3xl" data-translate="howItWorks.description">The AI conducts any type of
+                    interview, on any topic, and for any seniority level. From general screenings to deep technical
+                    assessments, your team receives only best-in-class candidates ready for the final decision</p>
+            </div>
+
+            <!-- Animated Diagram -->
+            <div
+                class="flex flex-col md:flex-row w-full max-w-5xl mr-auto ml-auto relative gap-x-12 gap-y-4 items-start justify-between">
+
+                <!-- Background connecting lines (visible on md+) -->
+                <div
+                    class="hidden md:block absolute left-[12.5%] right-[12.5%] top-[40px] h-[3px] z-0 pointer-events-none -translate-y-1/2">
+                    <svg class="w-full h-full overflow-visible" preserveAspectRatio="none">
+                        <!-- Base track -->
+                        <line x1="0" y1="1.5" x2="100%" y2="1.5" stroke="rgba(255,255,255,0.05)" stroke-width="3"
+                            stroke-dasharray="0 20" stroke-linecap="round"></line>
+                        <!-- Animated active line -->
+                        <line x1="0" y1="1.5" x2="100%" y2="1.5" stroke="#CBF300" stroke-width="3"
+                            stroke-dasharray="0 20" stroke-linecap="round"
+                            style="animation: flow-line 1s linear infinite;"></line>
+                    </svg>
+                </div>
+
+                <!-- Vertical connecting lines (visible on mobile) -->
+                <div
+                    class="md:hidden absolute left-1/2 top-[40px] bottom-[15%] w-[3px] -translate-x-1/2 z-0 pointer-events-none">
+                    <svg class="w-full h-full overflow-visible" preserveAspectRatio="none">
+                        <line x1="1.5" y1="0" x2="1.5" y2="100%" stroke="rgba(255,255,255,0.05)" stroke-width="3"
+                            stroke-dasharray="0 20" stroke-linecap="round"></line>
+                    </svg>
+                </div>
+
+                <!-- Node 1 -->
+                <div class="flex flex-col flex-1 group cursor-pointer z-10 w-full relative items-center">
+                    <div
+                        class="w-20 h-20 rounded-2xl bg-[#0A0A0A] border border-white/10 group-hover:border-[#CBF300]/50 flex items-center justify-center mb-6 relative transition-all duration-500 shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_30px_rgba(203, 243, 0,0.3)] group-hover:-translate-y-2 backdrop-blur-xl">
+                        <div
+                            class="absolute inset-0 bg-[#CBF300]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            class="text-white group-hover:text-[#CBF300] transition-colors duration-500 relative z-10">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <line x1="19" x2="19" y1="8" y2="14"></line>
+                            <line x1="22" x2="16" y1="11" y2="11"></line>
+                        </svg>
+
+                        <div
+                            class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#111] border border-white/10 flex items-center justify-center text-xs font-semibold text-gray-400 group-hover:text-[#CBF300] group-hover:border-[#CBF300]/30 transition-all shadow-lg">
+                            01</div>
+                    </div>
+                    <h3
+                        class="text-lg font-medium text-white tracking-tight mb-2 text-center group-hover:text-[#CBF300] transition-colors"
+                        data-translate="howItWorks.step1Title">
+                        Candidate Entry</h3>
+                    <p class="leading-relaxed md:px-2 text-sm text-gray-400 text-center pr-4 pl-4" data-translate="howItWorks.step1Description">Candidates enter the
+                        funnel and seamlessly provide initial background</p>
+                </div>
+
+                <!-- Node 2 -->
+                <div class="z-10 flex flex-col flex-1 group cursor-pointer w-full relative items-center">
+                    <div
+                        class="w-20 h-20 rounded-2xl bg-[#0A0A0A] border border-white/10 group-hover:border-[#CBF300]/50 flex items-center justify-center mb-6 relative transition-all duration-500 shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_30px_rgba(203, 243, 0,0.3)] group-hover:-translate-y-2 backdrop-blur-xl">
+                        <div
+                            class="absolute inset-0 bg-[#CBF300]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            class="text-white group-hover:text-[#CBF300] transition-colors duration-500 relative z-10">
+                            <path d="M12 8V4H8"></path>
+                            <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+                            <path d="M2 14h2"></path>
+                            <path d="M20 14h2"></path>
+                            <path d="M15 13v2"></path>
+                            <path d="M9 13v2"></path>
+                        </svg>
+
+                        <div
+                            class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#111] border border-white/10 flex items-center justify-center text-xs font-semibold text-gray-400 group-hover:text-[#CBF300] group-hover:border-[#CBF300]/30 transition-all shadow-lg">
+                            02</div>
+                    </div>
+                    <h3
+                        class="text-lg font-medium text-white tracking-tight mb-2 text-center group-hover:text-[#CBF300] transition-colors"
+                        data-translate="howItWorks.step2Title">
+                        AI Deep Interview</h3>
+                    <p class="leading-relaxed md:px-2 text-sm text-gray-400 text-center pr-4 pl-4" data-translate="howItWorks.step2Description">AI conducts a
+                        comprehensive interview evaluating domain expertise</p>
+                </div>
+
+                <!-- Node 3 -->
+                <div class="flex flex-col flex-1 group cursor-pointer w-full z-10 relative items-center">
+                    <div
+                        class="w-20 h-20 rounded-2xl bg-[#0A0A0A] border border-white/10 group-hover:border-[#CBF300]/50 flex items-center justify-center mb-6 relative transition-all duration-500 shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_30px_rgba(203, 243, 0,0.3)] group-hover:-translate-y-2 backdrop-blur-xl">
+                        <div
+                            class="[&amp;+svg]:hidden flex rounded-2xl absolute top-0 right-0 bottom-0 left-0 items-center justify-center">
+                            <div
+                                class="absolute inset-0 bg-[#CBF300]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none">
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-white group-hover:text-[#CBF300] transition-colors duration-500 w-[32px] h-[32px] z-10 relative"
+                                data-icon-replaced="true" style="width: 32px; height: 32px">
+                                <rect width="8" height="8" x="2" y="2" rx="2"></rect>
+                                <path d="M14 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2"></path>
+                                <path d="M20 2c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2" class=""></path>
+                                <path d="M10 18H5c-1.7 0-3-1.3-3-3v-1"></path>
+                                <polyline points="7 21 10 18 7 15" class=""></polyline>
+                                <rect width="8" height="8" x="14" y="14" rx="2" class=""></rect>
+                            </svg>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            class="text-white group-hover:text-[#CBF300] transition-colors duration-500 relative z-10">
+                            <rect width="8" height="8" x="3" y="3" rx="2" class=""></rect>
+                            <path d="M&gt;&lt;rect width=" 8"="" height="8" x="13" y="13" rx="2"></path>
+                        </svg>
+
+                        <div
+                            class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#111] border border-white/10 flex items-center justify-center text-xs font-semibold text-gray-400 group-hover:text-[#CBF300] group-hover:border-[#CBF300]/30 transition-all shadow-lg">
+                            03</div>
+                    </div>
+                    <h3
+                        class="text-lg font-medium text-white tracking-tight mb-2 text-center group-hover:text-[#CBF300] transition-colors"
+                        data-translate="howItWorks.step3Title">
+                        Automated Matching</h3>
+                    <p class="leading-relaxed md:px-2 text-sm text-gray-400 text-center pr-4 pl-4" data-translate="howItWorks.step3Description">Complex automated
+                        matching based on results and open roles</p>
+                </div>
+
+                <!-- Node 4 -->
+                <div class="relative z-10 flex flex-col items-center w-full flex-1 group cursor-pointer">
+                    <div class="w-20 h-20 rounded-2xl bg-[#0A0A0A] border border-[#CBF300]/40 group-hover:border-[#CBF300] flex items-center justify-center mb-6 relative transition-all duration-500 backdrop-blur-xl"
+                        style="animation: pulse-box 3s ease-in-out infinite;">
+                        <div
+                            class="absolute inset-0 bg-[#CBF300]/10 rounded-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            class="text-[#CBF300] relative z-10">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <polyline points="16 11 18 13 22 9"></polyline>
+                        </svg>
+
+                        <div
+                            class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#111] border border-[#CBF300]/50 flex items-center justify-center text-xs font-semibold text-[#CBF300] transition-all shadow-[0_0_10px_rgba(203, 243, 0,0.3)]">
+                            04</div>
+                    </div>
+                    <h3 class="text-lg font-medium text-[#CBF300] tracking-tight mb-2 text-center transition-colors" data-translate="howItWorks.step4Title">
+                        Perfect Match</h3>
+                    <p class="leading-relaxed md:px-2 text-sm text-gray-400 text-center pr-4 pl-4" data-translate="howItWorks.step4Description">Receive a curated
+                        shortlist to proceed with your ideal hire instantly</p>
+                </div>
+
+            </div>
+        </div>
+    </Section>

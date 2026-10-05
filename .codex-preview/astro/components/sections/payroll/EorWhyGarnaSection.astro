@@ -1,0 +1,216 @@
+---
+import Section from '../../layout/Section.astro';
+import ContentTabs from '../../ui/ContentTabs.astro';
+---
+
+<Section contained={false} spacing="none" id="why-garna" class="py-24">
+            <div class="mx-auto max-w-7xl px-6">
+                <div class="mx-auto max-w-4xl text-center">
+                    <h2 class="font-manrope text-4xl font-normal leading-tight text-white lg:text-5xl" data-translate="why.title">Why Companies Choose Garna</h2>
+                    <p data-garna-subtitle class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-gray-400" data-translate="why.description">Garna makes it easier to manage global employment from finding the right people to setting them up, paying them, and keeping paperwork organized</p>
+                </div>
+
+                <ContentTabs class="why-garna mt-12">
+                    <input id="why-garna-sourcing" type="radio" name="why-garna-tab" checked>
+                    <input id="why-garna-onboarding" type="radio" name="why-garna-tab">
+                    <input id="why-garna-documents" type="radio" name="why-garna-tab">
+                    <input id="why-garna-payroll" type="radio" name="why-garna-tab">
+                    <input id="why-garna-reporting" type="radio" name="why-garna-tab">
+                    <input id="why-garna-termination" type="radio" name="why-garna-tab">
+
+                    <div class="why-garna-tabs overflow-visible border-b border-white/10 md:overflow-x-auto">
+                        <div class="flex flex-wrap justify-center gap-x-6 gap-y-4 md:min-w-max md:flex-nowrap md:gap-8 md:justify-center">
+                            <label for="why-garna-sourcing" class="why-garna-tab" data-translate="why.tabs.sourcing.label">Sourcing</label>
+                            <label for="why-garna-onboarding" class="why-garna-tab" data-translate="why.tabs.onboarding.label">Onboarding</label>
+                            <label for="why-garna-documents" class="why-garna-tab" data-translate="why.tabs.documents.label">Documents</label>
+                            <label for="why-garna-payroll" class="why-garna-tab" data-translate="why.tabs.payroll.label">Payroll</label>
+                            <label for="why-garna-reporting" class="why-garna-tab" data-translate="why.tabs.reporting.label">Reporting</label>
+                            <label for="why-garna-termination" class="why-garna-tab" data-translate="why.tabs.termination.label">Termination</label>
+                        </div>
+                    </div>
+
+                    <div class="why-garna-panels mt-12">
+                    <article data-content-panel="sourcing" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.sourcing.title">Finding the Right Talent, Quickly</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.sourcing.solution">Find and hire global talent faster with tools that make cross-border hiring simple and compliant</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/4064072/pexels-photo-4064072.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professional woman working on a laptop" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 58%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute left-5 top-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#CBF300]/20 text-[#CBF300]"><iconify-icon icon="lucide:sparkles" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white" data-translate="visual.why.talentSearch">Talent search</p>
+                                    <p class="text-xs text-[#CBF300]" data-translate="visual.why.globalMatching">Global matching</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 z-10 w-56 rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50">
+                                <div class="flex items-center justify-between gap-3">
+                                    <span class="text-sm text-gray-400" data-translate="visual.why.talentSearch">Talent search</span>
+                                    <span class="rounded-full bg-[#CBF300]/20 px-3 py-1 text-xs font-semibold text-[#CBF300]" data-translate="visual.why.global">Global</span>
+                                </div>
+                                <div class="hidden">
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/95 p-4">
+                                        <div class="flex items-center justify-between"><span class="text-sm font-semibold text-white">Maya R.</span><span class="text-xs text-[#CBF300]" data-translate="visual.why.match92">92% match</span></div>
+                                        <p class="mt-2 text-xs text-gray-400"><span data-translate="visual.why.productDesigner">Product designer</span> &middot; Portugal</p>
+                                    </div>
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/85 p-4">
+                                        <div class="flex items-center justify-between"><span class="text-sm font-semibold text-white">Alex T.</span><span class="text-xs text-[#CBF300]" data-translate="visual.why.match88">88% match</span></div>
+                                        <p class="mt-2 text-xs text-gray-400"><span data-translate="visual.why.backendEngineer">Backend engineer</span> &middot; Poland</p>
+                                    </div>
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/80 p-4 md:col-span-2">
+                                        <div class="flex items-center gap-3">
+                                            <iconify-icon icon="lucide:sparkles" width="22" class="text-[#CBF300]"></iconify-icon>
+                                            <p class="text-sm font-semibold text-white" data-translate="visual.why.hiringChecksReady">Cross-border hiring checks ready</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article data-content-panel="onboarding" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.onboarding.title">Automating International Employee Onboarding</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.onboarding.solution">Country-aware workflows help new employees get started through one platform, with less manual HR work</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/5717893/pexels-photo-5717893.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professional person holding a laptop in a modern office" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 28%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute bottom-5 left-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#CBF300]/20 text-[#CBF300]"><iconify-icon icon="lucide:user-round-check" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white" data-translate="visual.why.newEmployee">New employee</p>
+                                    <p class="text-xs text-[#CBF300]" data-translate="visual.why.inviteSent">Invite sent</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 w-60 space-y-2">
+                                <div class="rounded-2xl border border-white/10 bg-[#141414]/90 p-5">
+                                    <p class="text-sm font-semibold text-white" data-translate="visual.why.newEmployee">New employee</p>
+                                    <div class="mt-5 flex items-center gap-3">
+                                        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-[#CBF300]/20 text-[#CBF300]"><iconify-icon icon="lucide:user-round-check" width="24"></iconify-icon></span>
+                                        <div><p class="font-semibold text-white">Sara K.</p><p class="text-xs text-gray-400"><span data-translate="visual.why.growthLead">Growth lead</span> &middot; UAE</p></div>
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/95 p-4"><span class="text-xs text-[#CBF300]">01</span><p class="mt-1 text-sm font-semibold text-white" data-translate="visual.why.inviteSent">Invite sent</p></div>
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/90 p-4"><span class="text-xs text-[#CBF300]">02</span><p class="mt-1 text-sm font-semibold text-white" data-translate="visual.why.localContractPrepared">Local contract prepared</p></div>
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/85 p-4"><span class="text-xs text-[#CBF300]">03</span><p class="mt-1 text-sm font-semibold text-white" data-translate="visual.why.payrollProfileReady">Payroll profile ready</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article data-content-panel="documents" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.documents.title">Centralizing Contracts and Compliance Documentation</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.documents.solution">Keep contracts, tax forms, payroll records, and compliance documents together in one secure platform</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/27086215/pexels-photo-27086215.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professional woman reviewing work documents" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 28%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute bottom-5 left-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#CBF300]/20 text-[#CBF300]"><iconify-icon icon="lucide:shield-check" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white" data-translate="visual.why.complianceVault">Compliance vault</p>
+                                    <p class="text-xs text-[#CBF300]" data-translate="visual.why.documentsStored">Documents stored</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 w-64">
+                                <div class="w-full rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50">
+                                    <div class="mb-5 flex items-center justify-between">
+                                        <p class="font-semibold text-white" data-translate="visual.why.complianceVault">Compliance vault</p>
+                                        <iconify-icon icon="lucide:shield-check" width="24" class="text-[#CBF300]"></iconify-icon>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3"><span class="text-sm text-gray-300" data-translate="visual.steps.eorContract">EoR contract</span><span class="text-xs text-[#CBF300]" data-translate="visual.why.signed">Signed</span></div>
+                                        <div class="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3"><span class="text-sm text-gray-300" data-translate="visual.why.taxForms">Tax forms</span><span class="text-xs text-[#CBF300]" data-translate="visual.why.stored">Stored</span></div>
+                                        <div class="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3"><span class="text-sm text-gray-300" data-translate="visual.why.payrollRecords">Payroll records</span><span class="text-xs text-[#CBF300]" data-translate="visual.why.synced">Synced</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article data-content-panel="payroll" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.payroll.title">Running Global Payroll Without All the Stress</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.payroll.solution">Automated workflows help companies pay people around the world while reducing payroll errors and extra work</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/31759726/pexels-photo-31759726.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professional working on payroll from a laptop" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 32%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute bottom-5 right-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#CBF300]/20 text-[#CBF300]"><iconify-icon icon="lucide:wallet-cards" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white" data-translate="visual.cards.payrollRun">Payroll run</p>
+                                    <p class="text-xs text-[#CBF300]" data-translate="visual.steps.readyToPay">Ready to pay</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 w-64 rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50">
+                                <div class="flex items-start justify-between">
+                                    <div><p class="text-sm text-gray-400" data-translate="visual.cards.payrollRun">Payroll run</p><p class="mt-1 text-3xl font-semibold text-white">$84,250</p></div>
+                                    <span class="rounded-full bg-[#CBF300]/20 px-3 py-1 text-xs font-semibold text-[#CBF300]" data-translate="visual.cards.ready">Ready</span>
+                                </div>
+                                <div class="mt-8 grid grid-cols-3 gap-3">
+                                    <div class="rounded-xl bg-white/5 p-4"><p class="text-xs text-gray-500">SWIFT</p><p class="mt-1 font-semibold text-white">42%</p></div>
+                                    <div class="rounded-xl bg-white/5 p-4"><p class="text-xs text-gray-500">SEPA</p><p class="mt-1 font-semibold text-white">36%</p></div>
+                                    <div class="rounded-xl bg-white/5 p-4"><p class="text-xs text-gray-500" data-translate="visual.steps.crypto">Crypto</p><p class="mt-1 font-semibold text-white">22%</p></div>
+                                </div>
+                                <div class="mt-8 h-3 overflow-hidden rounded-full bg-white/10"><div class="h-full w-[82%] rounded-full bg-[#CBF300]"></div></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article data-content-panel="reporting" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.reporting.title">Getting a Clear View of Your Global Workforce</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.reporting.solution">See payroll, compliance, onboarding, and workforce costs in one reporting layer with API-first infrastructure</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professionals reviewing workforce reports" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 30%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute bottom-5 left-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#CBF300]/20 text-[#CBF300]"><iconify-icon icon="lucide:chart-no-axes-column-increasing" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white" data-translate="visual.why.workforceCosts">Workforce costs</p>
+                                    <p class="text-xs text-[#CBF300]" data-translate="visual.why.liveReport">Live report</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 grid w-64 gap-3">
+                                <div class="rounded-2xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50">
+                                    <p class="text-sm text-gray-400" data-translate="visual.why.workforceCosts">Workforce costs</p>
+                                    <p class="mt-2 text-3xl font-semibold text-white">$678,200</p>
+                                    <div class="mt-8 flex h-28 items-end gap-3">
+                                        <span class="h-10 flex-1 rounded bg-[#CBF300]/35"></span><span class="h-16 flex-1 rounded bg-[#CBF300]/50"></span><span class="h-20 flex-1 rounded bg-[#CBF300]/70"></span><span class="h-28 flex-1 rounded bg-[#CBF300]"></span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/90 p-4"><p class="text-xs text-gray-500" data-translate="visual.why.countries">Countries</p><p class="mt-1 text-2xl font-semibold text-white">150+</p></div>
+                                    <div class="rounded-xl border border-white/10 bg-[#141414]/85 p-4"><p class="text-xs text-gray-500" data-translate="visual.why.complianceChecks">Compliance checks</p><p class="mt-1 text-2xl font-semibold text-white">24/7</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article data-content-panel="termination" class="why-garna-panel grid gap-6 md:grid-cols-2">
+                        <div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#191919] p-8 md:p-10">
+                            <h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate="why.tabs.termination.title">Offboarding Compliantly in a Global Market</h3>
+                            <p class="mt-5 text-base leading-relaxed text-gray-300" data-translate="why.tabs.termination.solution">Country-specific termination workflows help teams offboard employees with confidence</p>
+                        </div>
+                        <div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
+                            <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professionals managing global employment workflows" class="absolute inset-0 h-full w-full object-cover" style="object-position: center 30%;" loading="eager">
+                            <div data-eor-photo-badge class="absolute left-5 top-5 z-10 flex max-w-[16rem] items-center gap-3 rounded-2xl border border-white/10 bg-[#111111] px-4 py-3 shadow-2xl shadow-black/50">
+                                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#CBF300]/20 text-[#CBF300]"><iconify-icon icon="lucide:file-check-2" width="19"></iconify-icon></span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white" data-translate="visual.why.offboarding">Offboarding</p>
+                                    <p class="text-xs text-[#CBF300]" data-translate="visual.why.noticeRulesChecked">Notice rules checked</p>
+                                </div>
+                            </div>
+                            <div class="hidden absolute left-5 top-5 flex w-64 flex-col space-y-2">
+                                <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#CBF300]/20 text-xs text-[#CBF300]">1</span><p class="text-sm font-semibold text-[#101010]" data-translate="visual.why.noticeRulesChecked">Notice rules checked</p></div>
+                                <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#CBF300]/20 text-xs text-[#CBF300]">2</span><p class="text-sm font-semibold text-[#101010]" data-translate="visual.why.finalPayrollCalculated">Final payroll calculated</p></div>
+                                <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-[#111111] p-3 shadow-2xl shadow-black/50"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#CBF300]/20 text-xs text-[#CBF300]">3</span><p class="text-sm font-semibold text-[#101010]" data-translate="visual.why.documentsArchived">Documents archived</p></div>
+                            </div>
+                        </div>
+                    </article>
+					</div>
+                </ContentTabs>
+            </div>
+        </Section>

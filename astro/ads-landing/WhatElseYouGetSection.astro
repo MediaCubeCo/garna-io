@@ -1,0 +1,77 @@
+---
+import StackedCardsSection from '../components/sections/StackedCardsSection.astro';
+
+const cards = [
+	{
+		key: 'withdrawals',
+		title: { text: 'Flexible Withdrawals', translateKey: 'whatElseYouGet.benefits.withdrawals.title' },
+		description: { text: 'Split your withdrawals across different cards and accounts.', translateKey: 'whatElseYouGet.benefits.withdrawals.description' },
+		tags: [
+			{ text: 'Cards', translateKey: 'whatElseYouGet.benefits.withdrawals.tags.0' },
+			{ text: 'Bank accounts', translateKey: 'whatElseYouGet.benefits.withdrawals.tags.1' },
+			{ text: 'Split payouts', translateKey: 'whatElseYouGet.benefits.withdrawals.tags.2' },
+		],
+	},
+	{
+		key: 'tax-guidance',
+		title: { text: 'Tax Guidance', translateKey: 'whatElseYouGet.benefits.taxGuidance.title' },
+		description: { text: 'Get free guidance from our tax team on paying taxes correctly in your country.', translateKey: 'whatElseYouGet.benefits.taxGuidance.description' },
+		tags: [
+			{ text: 'Local taxes', translateKey: 'whatElseYouGet.benefits.taxGuidance.tags.0' },
+			{ text: 'Expert guidance', translateKey: 'whatElseYouGet.benefits.taxGuidance.tags.1' },
+			{ text: 'Included', translateKey: 'whatElseYouGet.benefits.taxGuidance.tags.2' },
+		],
+	},
+	{
+		key: 'digital-nomad-visa',
+		title: { text: 'Digital Nomad Visa', translateKey: 'whatElseYouGet.benefits.visa.title' },
+		description: { text: 'Use your Garna payment documents to support your digital nomad visa application.', translateKey: 'whatElseYouGet.benefits.visa.description' },
+		tags: [
+			{ text: 'Payment documents', translateKey: 'whatElseYouGet.benefits.visa.tags.0' },
+			{ text: 'Income proof', translateKey: 'whatElseYouGet.benefits.visa.tags.1' },
+			{ text: 'Visa support', translateKey: 'whatElseYouGet.benefits.visa.tags.2' },
+		],
+	},
+];
+---
+
+<StackedCardsSection
+	id="what-else-you-get"
+	title={{ text: 'What Else You Get', translateKey: 'whatElseYouGet.title' }}
+	description={{ text: 'Practical tools and support for managing international client payments beyond the invoice itself', translateKey: 'whatElseYouGet.description' }}
+	cards={cards}
+	class="what-else-you-get-section pt-20 pb-24 md:pt-24 lg:pt-48 lg:pb-32"
+	splitClass="stacked-cards-grid gap-12 md:grid-cols-[0.88fr_1.12fr] md:items-start"
+	stackBreakpoint="768px"
+	stackBreakpointByLocale={{ ru: '900px' }}
+	timings={[[0.08, 0.5], [0.43, 0.92]]}
+/>
+
+<style is:global>
+	.what-else-you-get-section .stacked-cards-card__footer span,
+	.what-else-you-get-section .stacked-cards-card__footer span:first-child {
+		border-color: rgba(203, 243, 0, 0.22);
+		border-radius: 999px;
+		background: rgba(203, 243, 0, 0.075);
+		color: rgba(225, 250, 112, 0.9);
+	}
+
+	@media (min-width: 1024px) {
+		.what-else-you-get-section .stacked-cards-card__footer {
+			flex-wrap: nowrap;
+			gap: clamp(6px, 0.7vw, 10px);
+		}
+
+		.what-else-you-get-section .stacked-cards-card__footer span {
+			padding-inline: clamp(8px, 0.8vw, 12px);
+			font-size: clamp(11px, 0.9vw, 13px);
+		}
+	}
+
+	@media (min-width: 768px) and (max-width: 899.98px) {
+		html[lang='ru'] .what-else-you-get-section .stacked-cards-grid {
+			grid-template-columns: minmax(0, 1fr);
+			align-items: start;
+		}
+	}
+</style>

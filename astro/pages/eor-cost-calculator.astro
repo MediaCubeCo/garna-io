@@ -5,6 +5,7 @@ import Card from '../components/ui/Card.astro';
 import { pageShells } from '../content/page-shells';
 import { eorCostCountries } from '../../src/data/eor-cost-countries';
 import '../styles/eor-cost-calculator.css';
+import '../styles/eor-cost-calculator-selects.css';
 ---
 
 <BaseLayout shell={pageShells.eorCostCalculator} rainbowCount={6}>
@@ -29,16 +30,25 @@ import '../styles/eor-cost-calculator.css';
 						</span>
 					</label>
 
-					<label class="eor-field" for="eor-provider">
-						<span data-translate="calculator.provider">Current provider</span>
-						<select id="eor-provider">
-							<option value="deel" data-fee="599">Deel</option>
-							<option value="remote" data-fee="599">Remote</option>
-							<option value="multiplier" data-fee="400">Multiplier</option>
-							<option value="other" data-fee="" data-translate="calculator.otherProvider">Other provider</option>
-						</select>
+					<div class="eor-field">
+						<label id="eor-provider-label" for="eor-provider-trigger" data-translate="calculator.provider">Current provider</label>
+						<div class="eor-custom-select" data-eor-provider-picker>
+							<select id="eor-provider" class="eor-native-select" tabindex="-1" aria-hidden="true">
+								<option value="deel" data-fee="599">Deel</option>
+								<option value="remote" data-fee="599">Remote</option>
+								<option value="multiplier" data-fee="400">Multiplier</option>
+								<option value="other" data-fee="" data-translate="calculator.otherProvider">Other provider</option>
+							</select>
+							<button id="eor-provider-trigger" class="eor-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="eor-provider-list" aria-labelledby="eor-provider-label eor-provider-value" data-eor-provider-trigger><span id="eor-provider-value" data-eor-provider-value>Deel</span><svg aria-hidden="true" viewBox="0 0 16 16"><path d="m3.5 6 4.5 4 4.5-4" /></svg></button>
+							<div id="eor-provider-list" class="eor-select-list" role="listbox" aria-labelledby="eor-provider-label" data-eor-provider-list hidden>
+								<button type="button" role="option" aria-selected="true" data-eor-provider-option data-value="deel" data-fee="599">Deel</button>
+								<button type="button" role="option" aria-selected="false" data-eor-provider-option data-value="remote" data-fee="599">Remote</button>
+								<button type="button" role="option" aria-selected="false" data-eor-provider-option data-value="multiplier" data-fee="400">Multiplier</button>
+								<button type="button" role="option" aria-selected="false" data-eor-provider-option data-value="other" data-fee="" data-translate="calculator.otherProvider">Other provider</button>
+							</div>
+						</div>
 						<small data-translate="calculator.providerHint">Choose a provider to use its published list price, or enter the fee you actually pay.</small>
-					</label>
+					</div>
 
 					<label class="eor-field" for="eor-fee">
 						<span data-translate="calculator.fee">Service fee per employee</span>
@@ -57,8 +67,9 @@ import '../styles/eor-cost-calculator.css';
 							<div class="eor-country-picker">
 								<span class="eor-country-flag" id="eor-country-flag" aria-hidden="true">🇵🇹</span>
 								<input id="eor-country" type="text" value="Portugal" autocomplete="off" aria-autocomplete="list" aria-controls="eor-country-list" aria-expanded="false" />
+								<svg class="eor-country-chevron" aria-hidden="true" viewBox="0 0 16 16"><path d="m3.5 6 4.5 4 4.5-4" /></svg>
 								<div class="eor-country-list" id="eor-country-list" role="listbox" hidden>
-									{eorCostCountries.map((country) => <button type="button" role="option" data-country-code={country.code} data-country-name={country.name} data-country-rate={country.rate} data-country-fixed={country.fixed}><span aria-hidden="true">{country.code.replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)))}</span><b>{country.name}</b><small>{Math.round(country.rate * 100)}%</small></button>)}
+									{eorCostCountries.map((country) => <button type="button" role="option" aria-selected={country.code === 'PT'} data-country-code={country.code} data-country-name={country.name} data-country-rate={country.rate} data-country-fixed={country.fixed}><span aria-hidden="true">{country.code.replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)))}</span><b>{country.name}</b><small>{Math.round(country.rate * 100)}%</small></button>)}
 								</div>
 							</div>
 							<small id="eor-country-hint">Employer contributions for the selected country.</small>
@@ -140,6 +151,11 @@ import '../styles/eor-cost-calculator.css';
 	const root = document.querySelector<HTMLElement>('#eor-cost-calculator');
 	const headcount = document.querySelector<HTMLInputElement>('#eor-headcount');
 	const provider = document.querySelector<HTMLSelectElement>('#eor-provider');
+	const providerPicker = document.querySelector<HTMLElement>('[data-eor-provider-picker]');
+	const providerTrigger = document.querySelector<HTMLButtonElement>('[data-eor-provider-trigger]');
+	const providerList = document.querySelector<HTMLElement>('[data-eor-provider-list]');
+	const providerValue = document.querySelector<HTMLElement>('[data-eor-provider-value]');
+	const providerOptions = [...document.querySelectorAll<HTMLButtonElement>('[data-eor-provider-option]')];
 	const fee = document.querySelector<HTMLInputElement>('#eor-fee');
 	const salary = document.querySelector<HTMLInputElement>('#eor-salary');
 	const toggle = document.querySelector<HTMLButtonElement>('.eor-more-toggle');
@@ -159,6 +175,33 @@ import '../styles/eor-cost-calculator.css';
 	const numberValue = (input: HTMLInputElement | null, fallback = 0) => Math.max(0, Number(input?.value) || fallback);
 	const countryName = (code: string, fallback: string) => regionNames?.of(code) || fallback;
 	const flag = (code: string) => code.replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
+	const closeProviderList = (restoreFocus = false) => {
+		if (providerList) providerList.hidden = true;
+		providerPicker?.removeAttribute('data-open');
+		providerTrigger?.setAttribute('aria-expanded', 'false');
+		if (restoreFocus) providerTrigger?.focus();
+	};
+	const openProviderList = (focusSelected = false) => {
+		if (providerList) providerList.hidden = false;
+		providerPicker?.setAttribute('data-open', 'true');
+		providerTrigger?.setAttribute('aria-expanded', 'true');
+		if (countryList) countryList.hidden = true;
+		countryInput?.setAttribute('aria-expanded', 'false');
+		if (focusSelected) window.requestAnimationFrame(() => (providerOptions.find((option) => option.getAttribute('aria-selected') === 'true') || providerOptions[0])?.focus());
+	};
+	const syncProviderUi = () => {
+		const value = provider?.value || 'other';
+		const selected = providerOptions.find((option) => option.dataset.value === value);
+		providerOptions.forEach((option) => option.setAttribute('aria-selected', String(option === selected)));
+		if (providerValue) providerValue.textContent = selected?.textContent?.trim() || provider?.selectedOptions[0]?.textContent?.trim() || '';
+	};
+	const chooseProvider = (option: HTMLButtonElement) => {
+		if (!provider) return;
+		provider.value = option.dataset.value || 'other';
+		syncProviderUi();
+		closeProviderList(true);
+		provider.dispatchEvent(new Event('change', { bubbles: true }));
+	};
 
 	const update = () => {
 		const count = normalizeEorEmployeeCount(headcount?.value);
@@ -199,7 +242,21 @@ import '../styles/eor-cost-calculator.css';
 		update();
 	}));
 	provider?.addEventListener('change', () => { const listedFee = provider.selectedOptions[0]?.dataset.fee; if (fee) { fee.value = listedFee || ''; if (!listedFee) fee.focus(); } update(); });
-	fee?.addEventListener('input', () => { const normalizedFee = normalizeEorServiceFee(fee.value); if (fee.value && Number(fee.value) !== normalizedFee) fee.value = String(normalizedFee); const listedFee = provider?.selectedOptions[0]?.dataset.fee; if (provider && listedFee && fee.value !== listedFee) provider.value = 'other'; update(); });
+	fee?.addEventListener('input', () => { const normalizedFee = normalizeEorServiceFee(fee.value); if (fee.value && Number(fee.value) !== normalizedFee) fee.value = String(normalizedFee); const listedFee = provider?.selectedOptions[0]?.dataset.fee; if (provider && listedFee && fee.value !== listedFee) { provider.value = 'other'; syncProviderUi(); } update(); });
+	providerTrigger?.addEventListener('click', () => providerList?.hidden ? openProviderList() : closeProviderList());
+	providerOptions.forEach((option) => option.addEventListener('click', () => chooseProvider(option)));
+	providerPicker?.addEventListener('keydown', (event) => {
+		const option = event.target instanceof Element ? event.target.closest<HTMLButtonElement>('[data-eor-provider-option]') : null;
+		if (event.target === providerTrigger && ['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(event.key)) { event.preventDefault(); openProviderList(true); return; }
+		if (event.key === 'Escape') { event.preventDefault(); closeProviderList(true); return; }
+		if (!option) return;
+		if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); chooseProvider(option); return; }
+		if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+		event.preventDefault();
+		const index = providerOptions.indexOf(option);
+		const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? providerOptions.length - 1 : event.key === 'ArrowDown' ? (index + 1) % providerOptions.length : (index - 1 + providerOptions.length) % providerOptions.length;
+		providerOptions[nextIndex]?.focus();
+	});
 	const commitHeadcount = () => { if (headcount) headcount.value = String(normalizeEorEmployeeCount(headcount.value)); update(); };
 	headcount?.addEventListener('input', update);
 	headcount?.addEventListener('change', commitHeadcount);
@@ -222,6 +279,7 @@ import '../styles/eor-cost-calculator.css';
 		else empty?.remove();
 	};
 	const openCountryList = (showAll = false) => {
+		closeProviderList();
 		filterCountries(showAll ? '' : countryInput?.value);
 		if (showAll) countryInput?.select();
 		if (countryList) countryList.hidden = false;
@@ -237,9 +295,16 @@ import '../styles/eor-cost-calculator.css';
 		selectedCountry = { code: item.dataset.countryCode || 'PT', name: item.dataset.countryName || 'Portugal', rate: Number(item.dataset.countryRate) || 0, fixed: Number(item.dataset.countryFixed) || 0 };
 		if (countryInput) countryInput.value = countryName(selectedCountry.code, selectedCountry.name);
 		if (countryFlag) countryFlag.textContent = flag(selectedCountry.code);
+		countryList.querySelectorAll<HTMLElement>('[data-country-code]').forEach((option) => option.setAttribute('aria-selected', String(option === item)));
 		countryList.hidden = true; countryInput?.setAttribute('aria-expanded', 'false'); update();
 	});
+	document.addEventListener('pointerdown', (event) => {
+		const target = event.target;
+		if (!(target instanceof Node)) return;
+		if (providerPicker && !providerPicker.contains(target)) closeProviderList();
+	});
+	document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeProviderList(); });
 	document.querySelector('#eor-quote-button')?.addEventListener('click', () => { const widget = (window as any).GarnaWidget; if (widget?.open) widget.open(); else document.querySelector<HTMLElement>('#garna-widget-root')?.scrollIntoView({ behavior: 'smooth' }); });
 	if (countryInput) countryInput.value = countryName(selectedCountry.code, selectedCountry.name);
-	filterCountries(); update();
+	syncProviderUi(); filterCountries(); update();
 </script>
