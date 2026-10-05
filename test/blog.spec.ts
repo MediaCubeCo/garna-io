@@ -1,8 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { isAllowedAdminEmail } from '../src/blog/auth';
-import { articleJsonLd, metaTags } from '../src/blog/seo';
-import type { BlogArticle } from '../src/blog/types';
-import { markdownToHtml, slugify } from '../src/blog/utils';
+import { markdownToHtml, slugify } from '@mediacubeco/blog-engine';
+import { handleLegacyBlogRedirect, isGarnaBlogPath } from '../src/blog/site';
 
 describe('Blog utilities', () => {
 	it('slugifies titles for SEO URLs', () => {
@@ -54,60 +52,24 @@ describe('Blog utilities', () => {
 		expect(html).toContain('class="garna-blog-tldr"');
 		expect(html).toContain('First takeaway');
 	});
-
-	it('checks admin allowlist exactly', () => {
-		expect(isAllowedAdminEmail({ ADMIN_EMAILS: 'editor@garna.io, admin@garna.io' }, 'admin@garna.io')).toBe(true);
-		expect(isAllowedAdminEmail({ ADMIN_EMAILS: 'editor@garna.io' }, 'other@garna.io')).toBe(false);
-		expect(isAllowedAdminEmail({ ADMIN_EMAILS: '' }, 'admin@garna.io')).toBe(false);
-	});
 });
 
-describe('Blog SEO', () => {
-	it('generates canonical and hreflang tags for English-only v1', () => {
-		const html = metaTags({
-			title: 'Blog title',
-			description: 'Blog description',
-			url: 'https://garna.io/en/blog/example',
-		});
-		expect(html).toContain('<link rel="canonical" href="https://garna.io/en/blog/example" />');
-		expect(html).toContain('hreflang="en"');
-		expect(html).toContain('hreflang="x-default"');
+describe('Garna blog routing', () => {
+	it('keeps the public, admin, media, and asset prefixes on the worker', () => {
+		expect(isGarnaBlogPath('/en/blog')).toBe(true);
+		expect(isGarnaBlogPath('/ru/blog/global-payroll-complexity')).toBe(true);
+		expect(isGarnaBlogPath('/admin/blog/login')).toBe(true);
+		expect(isGarnaBlogPath('/blog-media/blog/cover.jpg')).toBe(true);
+		expect(isGarnaBlogPath('/blog-assets/1.4.7/public.css')).toBe(true);
+		expect(isGarnaBlogPath('/en/employer-of-record')).toBe(false);
 	});
 
-	it('generates Article JSON-LD with author and image', () => {
-		const article: BlogArticle = {
-			id: 1,
-			slug: 'global-payroll',
-			title: 'Global payroll',
-			excerpt: 'Payroll guide',
-			body_markdown: 'Body',
-			status: 'published',
-			author_id: 1,
-			cover_url: '/cover.jpg',
-			cover_alt: 'Cover',
-			read_time_minutes: 5,
-			seo_title: null,
-			seo_description: null,
-			og_image_url: null,
-			canonical_path: null,
-			published_at: '2026-06-25T00:00:00.000Z',
-			updated_at: '2026-06-25T00:00:00.000Z',
-			author: {
-				id: 1,
-				slug: 'emily-chen',
-				name: 'Emily Chen',
-				role: null,
-				bio: null,
-				avatar_url: null,
-				avatar_alt: null,
-				email: null,
-				x_url: null,
-				linkedin_url: null,
-			},
-		};
-		const jsonLd = articleJsonLd(article, 'https://garna.io');
-		expect(jsonLd).toContain('"@type":"Article"');
-		expect(jsonLd).toContain('"url":"https://garna.io/en/blog/global-payroll"');
-		expect(jsonLd).toContain('"name":"Emily Chen"');
+	it('redirects the legacy static blog URLs', () => {
+		const article = handleLegacyBlogRedirect(new Request('https://garna.io/en/blog-article'));
+		const author = handleLegacyBlogRedirect(new Request('https://garna.io/blog-author'));
+		expect(article?.status).toBe(301);
+		expect(article?.headers.get('Location')).toBe('https://garna.io/en/blog/global-payroll-complexity');
+		expect(author?.headers.get('Location')).toBe('https://garna.io/en/blog/author/emily-chen');
+		expect(handleLegacyBlogRedirect(new Request('https://garna.io/en/blog'))).toBeNull();
 	});
 });

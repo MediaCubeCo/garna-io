@@ -3,8 +3,7 @@ import { handleRedirect } from './routes/redirects';
 import { show404Page } from './routes/404';
 import { handleStaticFile } from './routes/static';
 import { resolveRoute } from './utils/routes';
-import { handleBlogAdmin } from './blog/admin';
-import { handleBlogMedia, handleBlogPublic, handleLegacyBlogRedirect } from './blog/public';
+import { createGarnaBlog, handleLegacyBlogRedirect, isGarnaBlogPath } from './blog/site';
 import { handleTaxCalculator } from './routes/tax-calculator';
 import { handleTransferRate } from './routes/rates';
 import { handlePrivacyContextRequest } from './utils/privacy';
@@ -34,18 +33,20 @@ export default {
 				return Response.redirect(targetUrl, 301);
 			}
 
-			// 1. Handle protected blog admin before static assets/routing
-			const blogAdminResponse = await handleBlogAdmin(request, env);
-			if (blogAdminResponse) {
-				return blogAdminResponse;
+			const legacyBlogRedirect = handleLegacyBlogRedirect(request);
+			if (legacyBlogRedirect) {
+				return legacyBlogRedirect;
 			}
 
-			const blogMediaResponse = await handleBlogMedia(request, env);
-			if (blogMediaResponse) {
-				return blogMediaResponse;
+			if (isGarnaBlogPath(url.pathname)) {
+				const blogResponse = await createGarnaBlog(request, env).handle(request, env);
+				if (blogResponse) {
+					const isPublicBlog = /^\/(?:en|es|pt|ru)\/blog(?:\/|$)/.test(url.pathname);
+					return isPublicBlog ? injectPrivacyIntoResponse(blogResponse, request) : blogResponse;
+				}
 			}
 
-			// 2. Handle static files first (sitemap, robots.txt, assets)
+			// Handle static files first (sitemap, robots.txt, assets)
 			const staticResponse = await handleStaticFile(request, url.pathname, env);
 			if (staticResponse) {
 				return staticResponse;
@@ -60,17 +61,7 @@ export default {
 				return redirectResponse;
 			}
 
-			const legacyBlogRedirect = handleLegacyBlogRedirect(request);
-			if (legacyBlogRedirect) {
-				return legacyBlogRedirect;
-			}
-
-			const blogPublicResponse = await handleBlogPublic(request, env);
-			if (blogPublicResponse) {
-				return injectPrivacyIntoResponse(blogPublicResponse, request);
-			}
-
-			// 5. Handle static page routes
+			// Handle static page routes
 			const dynamicResponse = await handleDynamic(request, routeInfo, env);
 			if (dynamicResponse) {
 				return injectPrivacyIntoResponse(dynamicResponse, request);

@@ -631,7 +631,8 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 				document.querySelectorAll(selector).forEach((link) => {
 					if (!(link instanceof HTMLElement)) return;
 					const linkPath = link.dataset.localizedPath || '';
-					const isActive = !activeAssigned && linkPath === currentPath;
+					const isBlogSection = linkPath === 'blog' && (currentPath === 'blog' || currentPath.startsWith('blog/'));
+					const isActive = !activeAssigned && (linkPath === currentPath || isBlogSection);
 					link.classList.toggle('is-active', isActive);
 					if (isActive) activeAssigned = true;
 				});

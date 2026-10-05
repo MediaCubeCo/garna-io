@@ -199,9 +199,11 @@ describe('native Astro architecture', () => {
 
 	it('does not reintroduce legacy runtime composition', async () => {
 		expect(await getArchitectureViolations()).toEqual([]);
-		const blogAdmin = await readFile(path.join(root, 'src/blog/admin.ts'), 'utf8');
-		expect(blogAdmin).not.toContain('/admin/blog/design-preview');
-		expect(blogAdmin).not.toContain('Legacy designs');
+		const blogSite = await readFile(path.join(root, 'src/blog/site.ts'), 'utf8');
+		expect(blogSite).toContain("from '@mediacubeco/blog-engine'");
+		expect(blogSite).toContain("cookieName: 'garna_blog_session'");
+		expect(blogSite).not.toContain('/admin/blog/design-preview');
+		expect(blogSite).not.toContain('Legacy designs');
 	});
 
 	it('keeps EN, ES, PT and RU modules complete for every localized page family', async () => {

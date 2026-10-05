@@ -1,8 +1,8 @@
 import { routes } from '../utils/routes';
 import { getSupportedLanguageCodes } from '../config/languages';
 import { basePaths } from '../config/pages';
-import { listAuthors, listPublishedArticles } from '../blog/data';
-import type { BlogEnv } from '../blog/types';
+import type { BlogEnv } from '@mediacubeco/blog-engine';
+import { createGarnaBlog } from '../blog/site';
 
 const BASE_DOMAIN = 'https://garna.io';
 
@@ -58,16 +58,11 @@ export async function generateLocaleSitemap(locale: string, env?: BlogEnv): Prom
 
 	if (env?.DB) {
 		try {
-			const [articles, authors] = await Promise.all([listPublishedArticles(env, 500, locale), listAuthors(env)]);
-			for (const article of articles) {
-				urls.push(`${BASE_DOMAIN}/${locale}/blog/${article.slug}`);
-			}
-			const publishedAuthorSlugs = new Set(articles.map((article) => article.author?.slug).filter(Boolean));
-			for (const author of authors) {
-				if (publishedAuthorSlugs.has(author.slug)) {
-					urls.push(`${BASE_DOMAIN}/${locale}/blog/author/${author.slug}`);
-				}
-			}
+			const blog = createGarnaBlog(new Request(`${BASE_DOMAIN}/${locale}/blog`), {
+				...env,
+				PUBLIC_ORIGIN: BASE_DOMAIN,
+			});
+			urls.push(...(await blog.getSitemapEntries({ ...env, PUBLIC_ORIGIN: BASE_DOMAIN }, locale)));
 		} catch (error) {
 			console.error('[generateLocaleSitemap] Failed to add blog URLs', error);
 		}
