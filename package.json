@@ -26,7 +26,7 @@
 		"wrangler": "^4.59.2"
 	},
 	"dependencies": {
-		"@mediacubeco/blog-engine": "file:vendor/mediacubeco-blog-engine-1.4.7.tgz",
+		"@mediacubeco/blog-engine": "file:vendor/mediacubeco-blog-engine-1.4.8.tgz",
 		"motion": "^13.4.2"
 	}
 }
