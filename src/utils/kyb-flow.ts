@@ -1,4 +1,3 @@
-export type ExperienceMode = 'customer' | 'demo';
 export type YesNo = 'yes' | 'no' | null;
 
 export type Address = {
@@ -94,7 +93,6 @@ export type KybApplication = {
 		privacyNoticeVersion: string;
 	};
 	declaration: {
-		signatureName: string;
 		accepted: boolean;
 		textVersion: string;
 	};
@@ -201,30 +199,28 @@ export const defaultCanadaKybConfig: KybConfig = {
 	],
 	upload: { acceptedMimeTypes: ['application/pdf', 'image/jpeg', 'image/png'], maxBytes: 10 * 1024 * 1024 },
 	verificationNotice: {
-		visibleSummary: 'Mediacube Pay Inc. collects company, ownership, representative and identity information to verify the business and meet Canadian anti-money-laundering and terrorist-financing requirements. The information may be reviewed by authorised verification and compliance providers, and disclosed where required by law.',
-		fullText: 'This questionnaire supports identity and business verification under the PCMLTFA and applicable FINTRAC requirements. It also helps us prevent financial crime and protect the integrity of our services. Please provide complete and accurate answers. If required information is missing, inaccurate or cannot be verified, Mediacube Pay Inc. may be unable to provide services or process transactions.',
+		visibleSummary: 'This preliminary questionnaire collects company, ownership, representative and identity information for an initial assessment. The website does not verify the information and completing this form does not complete KYB.',
+		fullText: 'The compliance team may use these answers to prepare a separate PDF questionnaire for the client to sign electronically and may then review supporting documents. This website form is only a preliminary data collection step and has no independent legal effect.',
 		version: 'ca-verification-notice-2026-08',
 		privacyNoticeUrl: 'https://app.garna.io/api/documents/privacy?lang=en',
 	},
-	declarationText: 'I declare that I am an authorised representative of the company and that the information provided in this questionnaire is true, accurate and complete. I undertake to promptly inform Mediacube Pay Inc. of any changes to this information. I acknowledge that this questionnaire is used to comply with Canadian anti-money-laundering and terrorist-financing requirements under the PCMLTFA and applicable FINTRAC guidance.',
+	declarationText: 'I confirm that the information provided in this preliminary questionnaire is accurate. This confirmation is not a signature and does not complete KYB. The compliance team may prepare a separate PDF for electronic signature and review supporting documents afterwards.',
 	declarationVersion: 'ca-declaration-2026-08',
 };
 
-export const pendingCountryReviewConfigVersion = 'pending-local-review-2026-10';
-
-export const countryConfigVersionFor = (country: string) => country === defaultCanadaKybConfig.country
-	? defaultCanadaKybConfig.version
-	: pendingCountryReviewConfigVersion;
+export const countryConfigVersionFor = (_country: string) => defaultCanadaKybConfig.version;
 
 export const getKybConfigForCountry = (country: string): KybConfig => {
-	if (!country || country === defaultCanadaKybConfig.country) return defaultCanadaKybConfig;
 	return {
 		...defaultCanadaKybConfig,
-		version: pendingCountryReviewConfigVersion,
-		country,
-		supported: false,
-		uboThresholdPercent: 0,
-		volumeBands: defaultCanadaKybConfig.volumeBands.map((band) => ({ ...band, label: `${band.label} equivalent` })),
+		country: country || defaultCanadaKybConfig.country,
+		entityTypes: [...defaultCanadaKybConfig.entityTypes],
+		industries: [...defaultCanadaKybConfig.industries],
+		accountPurposes: [...defaultCanadaKybConfig.accountPurposes],
+		markets: [...defaultCanadaKybConfig.markets],
+		sourcesOfFunds: [...defaultCanadaKybConfig.sourcesOfFunds],
+		volumeBands: defaultCanadaKybConfig.volumeBands.map((band) => ({ ...band })),
+		transactionCountBands: defaultCanadaKybConfig.transactionCountBands.map((band) => ({ ...band })),
 		documentRequirements: defaultCanadaKybConfig.documentRequirements.map((requirement) => ({ ...requirement })),
 	};
 };
@@ -246,7 +242,7 @@ export const createEmptyKybApplication = (now = new Date().toISOString()): KybAp
 	compliance: { pep: emptyRisk(), sanctions: emptyRisk(), thirdParty: emptyRisk(), offshore: emptyRisk(), cash: emptyRisk(), crypto: emptyRisk() },
 	documents: [],
 	disclosures: { verificationNoticeVersion: defaultCanadaKybConfig.verificationNotice.version, privacyNoticeVersion: 'garna-privacy-current' },
-	declaration: { signatureName: '', accepted: false, textVersion: defaultCanadaKybConfig.declarationVersion },
+	declaration: { accepted: false, textVersion: defaultCanadaKybConfig.declarationVersion },
 	currentMicroId: 'contact-email',
 	createdAt: now,
 	updatedAt: now,
@@ -275,7 +271,7 @@ export const demoKybApplication = (): KybApplication => {
 			{ id: 'demo-inc', requirementId: 'incorporation', fileId: 'demo-inc', filename: 'northstar-certificate-demo.pdf', mimeType: 'application/pdf', size: 120000, status: 'uploaded' },
 			{ id: 'demo-id', requirementId: 'representativeId', fileId: 'demo-id', filename: 'alex-passport-demo.jpg', mimeType: 'image/jpeg', size: 95000, status: 'uploaded' },
 		],
-		declaration: { signatureName: 'Alex Morgan', accepted: false, textVersion: defaultCanadaKybConfig.declarationVersion },
+		declaration: { accepted: false, textVersion: defaultCanadaKybConfig.declarationVersion },
 	};
 };
 
@@ -287,8 +283,7 @@ export const KYB_SECTIONS: Array<{ id: KybSectionId; label: string; description:
 	{ id: 'ownership', label: 'Ownership', description: 'Owners and directors', first: 'ownership-you' },
 	{ id: 'activity', label: 'Account use', description: 'Expected payments', first: 'activity-volume' },
 	{ id: 'compliance', label: 'Compliance', description: 'A few risk questions', first: 'compliance-pep' },
-	{ id: 'documents', label: 'Documents', description: 'Evidence for verification', first: 'documents' },
-	{ id: 'review', label: 'Review', description: 'Check and submit', first: 'review' },
+	{ id: 'review', label: 'Review', description: 'Check and save', first: 'review' },
 ];
 
 const BASE_FLOW: MicroId[] = [
@@ -299,7 +294,7 @@ const BASE_FLOW: MicroId[] = [
 	'ownership-you', 'ownership-owners', 'ownership-directors', 'ownership-structure',
 	'activity-volume', 'activity-markets', 'activity-funds',
 	'compliance-pep', 'compliance-sanctions', 'compliance-third-party', 'compliance-offshore', 'compliance-cash', 'compliance-crypto',
-	'documents', 'review',
+	'review',
 ];
 
 export const getComputedKybFlow = (application: KybApplication): MicroId[] => BASE_FLOW.filter((microId) => {
@@ -348,7 +343,7 @@ export type KybValidationErrors = Record<string, string>;
 
 export const activeDocumentRequirements = (application: KybApplication, config: KybConfig): DocumentRequirement[] => config.documentRequirements.filter((requirement) => {
 	if (requirement.when === 'complexStructure') return application.ownership.complexStructure === 'yes';
-	if (requirement.when === 'authorityEvidence') return !application.representative.roles.includes('Director') && !application.representative.roles.includes('Beneficial owner');
+	if (requirement.when === 'authorityEvidence') return !application.representative.roles.includes('Director');
 	if (requirement.when === 'sourceOfFundsEvidence') return false;
 	return true;
 });
@@ -362,9 +357,9 @@ export const validateKybMicrostep = (application: KybApplication, microId: Micro
 	};
 	switch (microId) {
 		case 'contact-email': required('contact.email', application.contact.email); if (application.contact.email && !isEmail(application.contact.email)) errors['contact.email'] = 'Enter a valid work email address.'; break;
-		case 'company-jurisdiction': required('company.country', application.company.country); required('company.entityType', application.company.entityType); if (application.company.country && !config.supported) errors['company.country'] = 'Business verification is not yet available for this registration country.'; break;
+		case 'company-jurisdiction': required('company.country', application.company.country); required('company.entityType', application.company.entityType); break;
 		case 'company-registration': required('company.legalName', application.company.legalName); required('company.registrationNumber', application.company.registrationNumber); break;
-		case 'company-incorporation': required('company.incorporationDate', application.company.incorporationDate); required('company.region', application.company.region); if (application.company.incorporationDate && new Date(application.company.incorporationDate) > new Date()) errors['company.incorporationDate'] = 'The incorporation date cannot be in the future.'; break;
+		case 'company-incorporation': required('company.incorporationDate', application.company.incorporationDate); if (application.company.incorporationDate && new Date(application.company.incorporationDate) > new Date()) errors['company.incorporationDate'] = 'The incorporation date cannot be in the future.'; break;
 		case 'registered-address': address('contact.registeredAddress', application.contact.registeredAddress); break;
 		case 'operating-choice': required('contact.operatingSame', application.contact.operatingSame, 'Choose Yes or No.'); break;
 		case 'operating-address': address('contact.operatingAddress', application.contact.operatingAddress); break;
@@ -380,13 +375,13 @@ export const validateKybMicrostep = (application: KybApplication, microId: Micro
 			if (identity.issueDate && identity.expiryDate && identity.expiryDate <= identity.issueDate) errors['representative.identity.expiryDate'] = 'Expiry must be after the issue date.';
 			break;
 		}
-		case 'representative-roles': required('representative.titlePosition', application.representative.titlePosition); if (!application.representative.roles.length) errors['representative.roles'] = 'Choose at least one role.'; if (!application.representative.roles.includes('Director') && !application.representative.roles.includes('Beneficial owner')) required('representative.authorityBasis', application.representative.authorityBasis, 'Explain the basis of your authority.'); break;
-		case 'ownership-you': { const value = application.ownership.representativeOwnershipPercent; if (value == null || value <= 0 || value > 100) errors['ownership.representativeOwnershipPercent'] = 'Enter a percentage greater than 0 and no more than 100.'; break; }
+		case 'representative-roles': required('representative.titlePosition', application.representative.titlePosition); if (!application.representative.roles.length) errors['representative.roles'] = 'Choose at least one role.'; if (!application.representative.roles.includes('Director')) required('representative.authorityBasis', application.representative.authorityBasis, 'Explain the basis of your authority.'); break;
+		case 'ownership-you': { const value = application.ownership.representativeOwnershipPercent; if (value == null || value < config.uboThresholdPercent || value > 100) errors['ownership.representativeOwnershipPercent'] = `Enter a percentage between ${config.uboThresholdPercent}% and 100%.`; break; }
 		case 'ownership-owners': {
 			if (!application.representative.roles.includes('Beneficial owner') && !application.ownership.beneficialOwners.length) errors['ownership.beneficialOwners'] = config.uboThresholdPercent > 0
 				? `Add at least one person who owns or controls ${config.uboThresholdPercent}% or more.`
 				: 'Add at least one owner or control person.';
-			application.ownership.beneficialOwners.forEach((person, index) => { required(`ownership.beneficialOwners.${index}.fullName`, person.fullName); required(`ownership.beneficialOwners.${index}.dateOfBirth`, person.dateOfBirth); required(`ownership.beneficialOwners.${index}.residenceCountry`, person.residenceCountry); if (!isAdult(person.dateOfBirth)) errors[`ownership.beneficialOwners.${index}.dateOfBirth`] = 'The owner must be at least 18.'; if (!person.ownershipPercent || person.ownershipPercent <= 0 || person.ownershipPercent > 100) errors[`ownership.beneficialOwners.${index}.ownershipPercent`] = 'Enter a percentage between 0 and 100.'; });
+			application.ownership.beneficialOwners.forEach((person, index) => { required(`ownership.beneficialOwners.${index}.fullName`, person.fullName); required(`ownership.beneficialOwners.${index}.dateOfBirth`, person.dateOfBirth); required(`ownership.beneficialOwners.${index}.residenceCountry`, person.residenceCountry); if (!isAdult(person.dateOfBirth)) errors[`ownership.beneficialOwners.${index}.dateOfBirth`] = 'The owner must be at least 18.'; if (!person.ownershipPercent || person.ownershipPercent < config.uboThresholdPercent || person.ownershipPercent > 100) errors[`ownership.beneficialOwners.${index}.ownershipPercent`] = `Enter a percentage between ${config.uboThresholdPercent}% and 100%.`; });
 			const total = (application.ownership.representativeOwnershipPercent || 0) + application.ownership.beneficialOwners.reduce((sum, person) => sum + (person.ownershipPercent || 0), 0); if (total > 100) errors['ownership.beneficialOwners'] = 'Declared ownership cannot exceed 100%.'; break;
 		}
 		case 'ownership-directors': if (!application.representative.roles.includes('Director') && !application.ownership.directors.length) errors['ownership.directors'] = 'Add at least one director.'; application.ownership.directors.forEach((person, index) => { required(`ownership.directors.${index}.fullName`, person.fullName); required(`ownership.directors.${index}.dateOfBirth`, person.dateOfBirth); required(`ownership.directors.${index}.residenceCountry`, person.residenceCountry); if (!isAdult(person.dateOfBirth)) errors[`ownership.directors.${index}.dateOfBirth`] = 'The director must be at least 18.'; }); break;
@@ -395,7 +390,7 @@ export const validateKybMicrostep = (application: KybApplication, microId: Micro
 		case 'activity-markets': if (!application.activity.markets.length) errors['activity.markets'] = 'Choose at least one market.'; if (!application.activity.counterpartyCountries.length) errors['activity.counterpartyCountries'] = 'Add at least one counterparty country.'; if (application.activity.counterpartyCountries.length > 5) errors['activity.counterpartyCountries'] = 'Add no more than five counterparty countries.'; break;
 		case 'activity-funds': required('activity.sourceOfFunds', application.activity.sourceOfFunds); required('activity.sourceOfFundsDetails', application.activity.sourceOfFundsDetails); break;
 		case 'documents': activeDocumentRequirements(application, config).filter((item) => item.required).forEach((item) => { if (!application.documents.some((document) => document.requirementId === item.id && document.status === 'uploaded')) errors[`documents.${item.id}`] = 'Add this document before continuing.'; }); break;
-		case 'review': required('declaration.signatureName', application.declaration.signatureName); if (application.declaration.signatureName.trim().replace(/\s+/g, ' ').toLocaleLowerCase() !== application.representative.fullName.trim().replace(/\s+/g, ' ').toLocaleLowerCase()) errors['declaration.signatureName'] = 'The signature must match the representative’s full legal name.'; if (!application.declaration.accepted) errors['declaration.accepted'] = 'Accept the declaration before submitting.'; break;
+		case 'review': if (!application.declaration.accepted) errors['declaration.accepted'] = 'Accept the declaration before saving.'; break;
 		default: if (microId.startsWith('compliance-')) { const key = riskKeyForMicroId(microId); const answer = application.compliance[key]; required(`compliance.${key}.answer`, answer.answer, 'Choose Yes or No.'); if (answer.answer === 'yes') required(`compliance.${key}.details`, answer.details, 'Provide a short explanation.'); }
 	}
 	return errors;
@@ -458,7 +453,7 @@ export const prepareKybSubmission = (application: KybApplication, config = defau
 	if (clean.business.industry !== 'Other') clean.business.industryOther = '';
 	if (clean.business.noWebsite) clean.business.website = '';
 	if (!clean.representative.roles.includes('Beneficial owner')) delete clean.ownership.representativeOwnershipPercent;
-	if (clean.representative.roles.includes('Director') || clean.representative.roles.includes('Beneficial owner')) clean.representative.authorityBasis = '';
+	if (clean.representative.roles.includes('Director')) clean.representative.authorityBasis = '';
 	if (clean.ownership.complexStructure !== 'yes') clean.ownership.structureDescription = '';
 	for (const answer of Object.values(clean.compliance)) if (answer.answer !== 'yes') answer.details = '';
 	const activeRequirementIds = new Set(activeDocumentRequirements(clean, config).map((requirement) => requirement.id));
