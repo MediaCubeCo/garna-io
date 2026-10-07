@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { markdownToHtml, slugify } from '@mediacubeco/blog-engine';
+import { articleDocumentToMarkdown, markdownToArticleDocument, markdownToHtml, slugify } from '@mediacubeco/blog-engine';
 import { handleLegacyBlogRedirect, isGarnaBlogPath } from '../src/blog/site';
 
 describe('Blog utilities', () => {
@@ -15,6 +15,15 @@ describe('Blog utilities', () => {
 		expect(html).toContain('<a href="https://garna.io/" rel="noopener noreferrer" target="_blank">open Garna</a>');
 		expect(html).toContain('<ul>');
 		expect(html).toContain('<li>One</li>');
+	});
+
+	it('preserves canonical H2, H3 and H4 levels across legacy markdown and public HTML', () => {
+		for (const level of [2, 3, 4] as const) {
+			const document = { version: 1 as const, blocks: [{ id: 'heading', type: 'heading' as const, level, text: 'Section' }] };
+			const markdown = articleDocumentToMarkdown(document);
+			expect(markdownToArticleDocument(markdown).blocks[0]).toMatchObject({ type: 'heading', level });
+			expect(markdownToHtml(markdown)).toBe(`<h${level}>Section</h${level}>`);
+		}
 	});
 
 	it('renders ordered and checklist markdown distinctly', () => {
