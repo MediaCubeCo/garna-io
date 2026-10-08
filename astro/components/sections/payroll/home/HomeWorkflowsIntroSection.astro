@@ -95,7 +95,7 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 		<span data-translate="cta.bookDemo">Book a demo</span>
 	</Button>
 	<div slot="controls" class="home-workflows-headings">
-		{workflows.map((workflow) => <div data-workflow-heading={workflow.key} aria-hidden={workflow.key === activeWorkflowKey ? undefined : 'true'} style={workflow.key === activeWorkflowKey ? undefined : 'opacity:0;visibility:hidden'}>
+		{workflows.map((workflow) => <div data-workflow-heading={workflow.key} aria-hidden={workflow.key === activeWorkflowKey ? undefined : 'true'} style={workflow.key === activeWorkflowKey ? undefined : 'display:none'}>
 			<header class="text-left home-workflows-intro__header">
 				<h2 class="font-manrope text-4xl font-normal leading-tight tracking-tight text-white md:text-5xl" data-translate={workflow.title.translateKey}>
 					{workflow.title.text}
@@ -421,7 +421,7 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 
 	@media (max-width: 520px) {
 		:global(.home-workflows-intro__header h2) {
-			font-size: 2.25rem;
+			font-size: 1.5rem;
 			line-height: 1.25;
 		}
 
@@ -448,7 +448,7 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 		:global(.home-workflows-intro__header h2) { width: 100%; text-wrap: wrap; }
 		.home-workflows-stack > [data-workflow-card] { display: none; }
 		:global(.home-workflows-mobile-rail) { display: block; position: absolute; inset: 0; transition: transform 520ms cubic-bezier(.22, 1, .36, 1); will-change: transform; }
-		:global(.home-workflows-mobile-rail .home-workflows-mobile-card) { width: 100%; right: auto; opacity: .55; visibility: visible; transform: scale(.94); transform-origin: center left; transition: opacity 420ms ease, transform 520ms cubic-bezier(.22, 1, .36, 1), left 520ms cubic-bezier(.22, 1, .36, 1); }
+		:global(.home-workflows-mobile-rail .home-workflows-mobile-card) { width: 100%; right: auto; opacity: .55; visibility: visible; transform: scale(.94); transform-origin: center left; transition: opacity 520ms cubic-bezier(.22, 1, .36, 1), transform 520ms cubic-bezier(.22, 1, .36, 1); }
 		:global(.home-workflows-mobile-rail .home-workflows-mobile-card.is-mobile-active) { opacity: 1; transform: none; }
 		:global(.home-workflows-mobile-card > img) { filter: brightness(.86) contrast(1.04) saturate(.94); }
 		:global(.home-workflows-mobile-card.is-mobile-active > img) { filter: none; }
@@ -498,7 +498,7 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 			gap: .56rem;
 			padding: .45rem .62rem;
 			border-radius: .95rem;
-			transform: scale(var(--home-workflows-status-scale)) !important;
+			scale: var(--home-workflows-status-scale);
 			transform-origin: bottom left;
 		}
 
@@ -555,7 +555,7 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 			gap: .56rem;
 			padding: .45rem .62rem;
 			border-radius: .95rem;
-			transform: scale(var(--home-workflows-status-scale)) !important;
+			scale: var(--home-workflows-status-scale);
 			transform-origin: bottom left;
 		}
 
@@ -591,10 +591,10 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 			font-size: .54rem;
 		}
 	}
-	@media (max-width: 856px) {
+	@media (max-width: 960px) {
 		:global(html[lang^="es"] .home-workflows-stack__card),
 		:global(html[lang^="es"] .home-workflows-mobile-card) {
-			--home-workflows-status-reference-card-width: 18.912rem;
+			--home-workflows-status-reference-card-width: 21.125rem;
 			--home-workflows-status-scale: min(1, calc(100cqw / var(--home-workflows-status-reference-card-width)));
 			--home-workflows-status-inset: calc(.72rem * var(--home-workflows-status-scale));
 			container-type: inline-size;
@@ -612,7 +612,7 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 			gap: .56rem;
 			padding: .45rem .62rem;
 			border-radius: .95rem;
-			transform: scale(var(--home-workflows-status-scale)) !important;
+			scale: var(--home-workflows-status-scale);
 			transform-origin: bottom left;
 		}
 
@@ -648,10 +648,10 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 			font-size: .54rem;
 		}
 	}
-	@media (max-width: 828px) {
+	@media (max-width: 960px) {
 		:global(html[lang^="pt"] .home-workflows-stack__card),
 		:global(html[lang^="pt"] .home-workflows-mobile-card) {
-			--home-workflows-status-reference-card-width: 18.6075rem;
+			--home-workflows-status-reference-card-width: 21.125rem;
 			--home-workflows-status-scale: min(1, calc(100cqw / var(--home-workflows-status-reference-card-width)));
 			--home-workflows-status-inset: calc(.72rem * var(--home-workflows-status-scale));
 			container-type: inline-size;
@@ -669,7 +669,7 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 			gap: .56rem;
 			padding: .45rem .62rem;
 			border-radius: .95rem;
-			transform: scale(var(--home-workflows-status-scale)) !important;
+			scale: var(--home-workflows-status-scale);
 			transform-origin: bottom left;
 		}
 

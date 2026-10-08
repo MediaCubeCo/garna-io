@@ -98,6 +98,7 @@ interface Props {
 	contentClass?: string;
 	spacing?: 'none' | 'compact' | 'default' | 'spacious';
 	copyVariant?: 'carousel' | 'section';
+	clickNavigation?: boolean;
 }
 
 const {
@@ -113,6 +114,7 @@ const {
 	contentClass = 'contractor-carousel-content',
 	spacing = 'default',
 	copyVariant = 'carousel',
+	clickNavigation = true,
 } = Astro.props;
 
 const carouselId = id || `scroll-visual-carousel-${slides.map((slide) => slide.key).join('-')}`;
@@ -126,6 +128,7 @@ const features = slides.map((slide, index) => ({
 }));
 
 const firstFeature = features[0];
+const resolvedContentClass = `${contentClass} contractor-carousel-content--${features.length}-slides`;
 const carouselSlides = features.length > 0
 	? [
 			{ ...features[features.length - 1], sequenceRole: 'clone-before' },
@@ -142,9 +145,9 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 {firstFeature && (
 	<Section
 		spacing={spacing}
-		contentClass={contentClass}
+		contentClass={resolvedContentClass}
 	>
-		<div class="contractor-carousel" data-contractor-carousel data-scroll-visual-carousel-id={carouselId}>
+		<div class="contractor-carousel" data-contractor-carousel data-scroll-visual-carousel-id={carouselId} data-click-navigation={String(clickNavigation)}>
 			<div class="contractor-carousel__copy" aria-live="polite">
 				<HeadingTag data-carousel-title data-translate={firstFeature.title.translateKey}>{firstFeature.title.text}</HeadingTag>
 				<p data-garna-subtitle data-carousel-description data-translate={firstFeature.description.translateKey}>{firstFeature.description.text}</p>
@@ -174,7 +177,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 			<div class="contractor-carousel__viewport">
 				<div class="contractor-carousel__rail" data-carousel-rail>
 					{carouselSlides.map((feature, sequenceIndex) => (
-						<button type="button" class:list={['contractor-carousel__slide', { 'is-active': sequenceIndex === 1 }]} data-carousel-slide data-index={feature.index} data-sequence={sequenceIndex} aria-label={`Show ${feature.title.text}`}>
+						<button type="button" class:list={['contractor-carousel__slide', { 'is-active': sequenceIndex === 1 }]} data-carousel-slide data-index={feature.index} data-sequence={sequenceIndex} aria-label={`Show ${feature.title.text}`} disabled={!clickNavigation}>
 							<img class={feature.imageClass} src={feature.image} alt={feature.imageAlt || ''} loading="lazy" />
 							{feature.overlay?.type === 'hire' && (
 								<span class="contractor-carousel__hire-notification" aria-hidden="true">
@@ -296,7 +299,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 				<div class="contractor-carousel__image-controls">
 					<div class="contractor-carousel__dots">
 						{features.map((feature, index) => (
-							<button type="button" class:list={{ 'is-active': index === 0 }} data-carousel-dot data-index={index} aria-label={feature.title.text} aria-current={index === 0 ? 'true' : undefined}></button>
+							<button type="button" class:list={{ 'is-active': index === 0 }} data-carousel-dot data-index={index} aria-label={feature.title.text} aria-current={index === 0 ? 'true' : undefined} disabled={!clickNavigation}></button>
 						))}
 					</div>
 				</div>
@@ -305,7 +308,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 	</Section>
 )}
 
-<script define:vars={{ carouselId, features }}>
+<script define:vars={{ carouselId, features, clickNavigation }}>
 	for (const carousel of document.querySelectorAll(`[data-scroll-visual-carousel-id="${carouselId}"]`)) {
 		if (!(carousel instanceof HTMLElement) || carousel.dataset.ready === 'true') continue;
 		carousel.dataset.ready = 'true';
@@ -332,18 +335,22 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 		const siteHeader = document.querySelector('.garna-header');
 		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const scrollMode = window.matchMedia('(min-width: 0px)');
+		const verticalLayout = window.matchMedia('(max-width: 1079px)');
 		let activeIndex = 0;
 		let frame = 0;
 		let copyIndex = -1;
 
 		const getStickyTop = () => {
 			const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
+			if (verticalLayout.matches) return 0;
 			const carouselHeight = carousel.getBoundingClientRect().height;
 			const availableHeight = window.innerHeight - headerHeight;
 			return Math.max(headerHeight, headerHeight + ((availableHeight - carouselHeight) / 2));
 		};
 
 		const syncStickyTop = () => {
+			const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
+			carousel.style.setProperty('--contractor-carousel-header-height', `${headerHeight}px`);
 			carousel.style.setProperty('--contractor-carousel-sticky-top', `${getStickyTop()}px`);
 		};
 
@@ -393,7 +400,9 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 
 			dots.forEach((dot, index) => {
 				if (!(dot instanceof HTMLElement)) return;
-				dot.style.setProperty('--carousel-dot-progress', String(index === activeIndex ? stepProgress : 0));
+				const complete = index < activeIndex;
+				dot.classList.toggle('is-complete', complete);
+				dot.style.setProperty('--carousel-dot-progress', String(complete ? 1 : index === activeIndex ? stepProgress : 0));
 			});
 		};
 
@@ -429,11 +438,14 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 			if (rail instanceof HTMLElement) rail.style.transform = `translateX(-${getStep() * (normalizedIndex + 1)}px)`;
 		};
 
-		dots.forEach((dot) => dot.addEventListener('click', () => scrollToIndex(Number(dot.dataset.index ?? 0))));
-		slides.forEach((slide) => slide.addEventListener('click', () => scrollToIndex(Number(slide.dataset.index ?? 0))));
+		if (clickNavigation) {
+			dots.forEach((dot) => dot.addEventListener('click', () => scrollToIndex(Number(dot.dataset.index ?? 0))));
+			slides.forEach((slide) => slide.addEventListener('click', () => scrollToIndex(Number(slide.dataset.index ?? 0))));
+		}
 		window.addEventListener('scroll', schedule, { passive: true });
 		window.addEventListener('resize', schedule, { passive: true });
 		reduceMotion.addEventListener?.('change', schedule);
+		verticalLayout.addEventListener?.('change', schedule);
 		scrollMode.addEventListener?.('change', () => {
 			if (!(rail instanceof HTMLElement)) return;
 			rail.classList.add('is-resetting');
@@ -455,8 +467,9 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 	.contractor-carousel__controls { display: flex; align-items: center; margin-top: 2.5rem; }
 	.contractor-carousel__image-controls { display: flex; width: 39%; justify-content: center; margin-top: 1.35rem; }
 	.contractor-carousel__dots { display: flex; align-items: center; gap: .45rem; }
-	.contractor-carousel__dots button { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 9999px; background: rgb(255 255 255 / .24); padding: 0; cursor: pointer; transition: width 220ms ease, background 220ms ease; }
+	.contractor-carousel__dots button { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 9999px; background: rgb(255 255 255 / .24); padding: 0; cursor: pointer; transition: background-color 180ms ease; }
 	.contractor-carousel__dots button:hover { background: rgb(255 255 255 / .44); }
+	.contractor-carousel[data-click-navigation='false'] :is(.contractor-carousel__slide, .contractor-carousel__dots button) { cursor: default; }
 	.contractor-carousel__dots button.is-active { width: 3.4rem; background: rgb(203 243 0 / .18); box-shadow: inset 0 0 0 1px rgb(203 243 0 / .18); }
 	.contractor-carousel__dots button.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #cbf300; box-shadow: 0 0 14px rgb(203 243 0 / .52); content: ''; transform: scaleX(var(--carousel-dot-progress, 1)); transform-origin: left center; }
 	.contractor-carousel__viewport { width: 100%; overflow: hidden; padding-block: .6rem; }
@@ -548,7 +561,9 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 	:global(.contractor-carousel-content) { min-height: 260vh; }
 	.contractor-carousel { position: sticky; top: var(--contractor-carousel-sticky-top, calc(4rem + ((100svh - 4rem - 34rem) / 2))); }
 	@media (max-width: 1079px) {
-		.contractor-carousel { grid-template-columns: 1fr; gap: 2.25rem; min-height: auto; margin-right: 0; overflow: visible; }
+		:global(.contractor-carousel-content--3-slides) { min-height: 400svh; }
+		:global(.contractor-carousel-content--4-slides) { min-height: 500svh; }
+		.contractor-carousel { box-sizing: border-box; grid-template-columns: 1fr; align-content: center; gap: 2.25rem; height: 100svh; min-height: 0; margin-right: 0; overflow: visible; padding-block: calc(var(--contractor-carousel-header-height, 4rem) + 1rem) 1rem; }
 		.contractor-carousel__copy { width: 100%; max-width: none; padding-left: 0; }
 		.contractor-carousel__copy :is(h2, h3),
 		.contractor-carousel__copy p { height: auto; max-width: none; white-space: normal; }

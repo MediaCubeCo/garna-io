@@ -573,7 +573,7 @@ export const forCreatorsRu = {
 		'businesses using Garna': 'компаний используют Garna',
 		'paid to specialists': 'выплачено специалистам',
 		'talents already use Garna': 'специалистов уже используют Garna',
-		'global payroll service availability': 'круглосуточная доступность выплат',
+		'global payroll service availability': 'доступность сервиса Global Payroll',
 		'countries covered': 'стран',
 		'Manage Global Payroll Effortlessly': 'Управляйте расчетом заработной платы по всему миру без лишних усилий',
 		'One platform to run payroll for freelancers, remote employees, and full-time teams':

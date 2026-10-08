@@ -158,7 +158,7 @@ export const aiHiringPt = {
 		danielLee: 'Daniel Lee',
 		ctoNexusSolutions: 'CTO, Nexus Solutions',
 		quote3:
-			'"Desconfiei da triagem por IA no início, mas eliminou meses de entrevistas perdidas. Ter folha de pagamento global integrada para pagar os novos contratados remotos é a cereja do bolo."',
+			'"Desconfiei da triagem por IA no início, mas eliminou meses de entrevistas perdidas. Ter Global Payroll integrado para pagar os novos contratados remotos é a cereja do bolo."',
 		oliviaParker: 'Olivia Parker',
 		cooGlobalReach: 'COO, GlobalReach App',
 	},
@@ -197,7 +197,7 @@ export const aiHiringPt = {
 		a3a: 'Como os candidatos já são pré-entrevistados e em busca ativa, o ciclo cai muito. A maioria dos nossos parceiros conecta na hora, agenda entrevistas finais em 48 h e faz ofertas em dias, não semanas.',
 		a3b: 'Em média, da entrevista com IA à primeira oferta são 3–5 dias. Alguns recebem oferta em 24 horas.',
 		q4: 'Vocês cuidam de compliance internacional e folha de pagamento?',
-		a4a: 'Sim. Além de sourcing e avaliação com IA, a plataforma inclui folha global. Você pode contratar e pagar contratados em mais de 150 países com cobrança transparente, sem criar entidades locais.',
+		a4a: 'Sim. Além de sourcing e avaliação com IA, a plataforma inclui Global Payroll. Você pode contratar e pagar contratados em mais de 150 países com cobrança transparente, sem criar entidades locais.',
 		a4b: 'Garna é para profissionais de Engenharia, Design, Vendas, Marketing e Administração em busca de funções verificadas e de qualidade no mundo todo.',
 		q5: 'Qual o preço para acessar a plataforma?',
 		a5a: 'O acesso é totalmente gratuito. Você pode navegar e revisar candidatos pré-avaliados sem custos iniciais ou assinatura. Só paga quando decide contratar.',

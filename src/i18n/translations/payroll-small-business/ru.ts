@@ -12,7 +12,7 @@ export const payrollSmallBusinessRu = {
 	},
 	heroVisual: {
 		ariaLabel: "Превью дашборда расчета зарплат",
-		title: "Глобальный расчет зарплат",
+		title: "Global Payroll",
 		subtitle: "Пакет за июнь 2026 по 9 странам, сотрудникам, подрядчикам и местным налоговым правилам",
 		readyToRelease: "Готово к отправке",
 		peopleSummary: "12 сотрудников · 12 подрядчиков",

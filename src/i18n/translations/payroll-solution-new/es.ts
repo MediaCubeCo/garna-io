@@ -16,7 +16,7 @@ export const payrollSolutionNewEs = {
 	},
 	sectionHeadings: {
 		hireEmployeesWorldwide: 'Realice contrataciones oficiales con más ventajas',
-		embeddedPayrollInfrastructure: 'Solución integrada de contratista de referencia para tu negocio',
+		embeddedPayrollInfrastructure: 'Solución integrada de Contratista de Registro para tu negocio',
 	},
 	sectionDescriptions: {
 		hireEmployeesWorldwide:
@@ -195,7 +195,7 @@ export const payrollSolutionNewEs = {
 		'Flexible terms: 30, 60, or 90 days': 'Condiciones flexibles: 30, 60 o 90 días',
 		'Facility limits from $50K to one million': 'Límites de crédito de $50K a un millón',
 		'Instant allocation &amp; processing': 'Asignación y procesamiento instantáneos',
-		'Embedded Payroll Infrastructure': 'Solución integrada de contratista de referencia para tu negocio',
+		'Embedded Payroll Infrastructure': 'Solución integrada de Contratista de Registro para tu negocio',
 		'Use Garna as your backend provider: integrate contractor management and payments into your product or launch full-fledged payroll services under your own brand':
 			'Amplía tus operaciones con contratistas a nivel global. Utiliza Garna como tu proveedor de backend: integra la gestión de contratistas y los pagos en tu producto o lanza servicios de nóminas completos bajo tu propia marca',
 		'API contractor management and payments': 'Gestión de contratistas y pagos mediante API',
@@ -205,7 +205,7 @@ export const payrollSolutionNewEs = {
 		'Launch professional payment software under your own brand':
 			'Lanza un software de pagos profesional bajo tu propia marca',
 		'Learn more': 'Más información',
-		'Start Paying Globally': 'Configura una nómina internacional y añade un servicio de contratista de referencia o empleador de referencia',
+		'Start Paying Globally': 'Configura una nómina internacional y añade un servicio de Contratista de Registro o Empleador de Registro',
 		'From quick registration and talent’s search to your first payout. Everything is clear and completely under your control in a few simple steps':
 			'Desde el registro rápido y la búsqueda de talento hasta tu primer pago. Todo es claro y está completamente bajo tu control en unos pocos y sencillos pasos',
 		'Set up your company profile': 'Configura el perfil de tu empresa',
@@ -344,8 +344,8 @@ export const payrollSolutionNewEs = {
 		'Pending': 'Pendiente',
 		'Approve': 'Aprobar',
 		'Decline': 'Rechazar',
-		'Contractor of Record': 'Para contratistas registrados',
-		'Employer of Record': 'Para el empleador oficial',
+		'Contractor of Record': 'Contratista de Registro',
+		'Employer of Record': 'Empleador de Registro',
 		'Sign up in Garna': 'Regístrate en Garna',
 		'Company name': 'Nombre de la empresa',
 		'Test Company Name': 'Nombre de empresa de prueba',

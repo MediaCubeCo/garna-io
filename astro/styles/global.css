@@ -73,6 +73,26 @@ h2 {
 	text-wrap: balance;
 }
 
+/* Mobile heading hierarchy shared by every native page. */
+@media (max-width: 420px) {
+	#astro-page-content section:not([data-section-kind="hero"]) h2 {
+		font-size: 1.5rem !important;
+		line-height: 1.25 !important;
+	}
+
+	#astro-page-content section:not([data-section-kind="hero"]) h3,
+	#astro-page-content section:not([data-section-kind="hero"]) [data-card-title] {
+		font-size: 1.25rem !important;
+		line-height: 1.3 !important;
+	}
+
+	#astro-page-content section:not([data-section-kind="hero"]) article h2,
+	#astro-page-content section:not([data-section-kind="hero"]) h4 {
+		font-size: 1.125rem !important;
+		line-height: 1.35 !important;
+	}
+}
+
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--garna-page-bg); }
 ::-webkit-scrollbar-thumb { background: #262626; border-radius: 999px; }

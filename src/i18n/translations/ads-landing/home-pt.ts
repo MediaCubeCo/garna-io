@@ -1,6 +1,6 @@
 ﻿export const homePt = {
 	meta: {
-		title: 'Payroll Global e Pagamentos em mais de 150 Países | Garna',
+		title: 'Global Payroll e Pagamentos em mais de 150 Países | Garna',
 		description:
 			'Software de payroll fiável para empresas internacionais. Automatize payroll internacional, impostos e conformidade. Efetue pagamentos rápidos à sua equipa em qualquer moeda ou criptomoeda.',
 	},
@@ -21,7 +21,7 @@
 	hero: {
 		badge: 'Payroll para Grandes Empresas',
 		titleMain: 'A plataforma de payroll tudo em um',
-		title: 'Soluções de Payroll Global para o seu negócio',
+		title: 'Soluções de Global Payroll para o seu negócio',
 		tagline: 'para o seu negócio',
 		description: 'Contrate, pague e faça a gestão de equipas globais sem abrir entidades locais',
 		bookDemo: 'Agendar demo',
@@ -35,7 +35,7 @@
 		homeProof: 'Payroll para trabalhar sem fronteiras',
 		manageGlobalPayroll: 'Faça a gestão global de payroll sem esforço',
 		hireEmployeesWorldwide: 'Contrate colaboradores em todo o mundo',
-		effectivePayroll: 'O seu espaço de trabalho para a folha de pagamento global',
+		effectivePayroll: 'O seu espaço de trabalho para Global Payroll',
 		deferredPayments: 'Pague a contratados agora, liquide mais tarde',
 		embeddedPayrollInfrastructure: 'Infraestrutura de payroll incorporada',
 		trustedByBuilders: 'A confiança de mais de 400 empresas no mundo todo',
@@ -276,7 +276,7 @@
 		testimonials: {
 			anna: {
 				quote:
-					'"A Garna combina payroll global flexível, calendários de pagamento fiáveis, suporte ágil e levantamentos simples para contratados em todo o mundo."',
+					'"A Garna combina Global Payroll flexível, calendários de pagamento fiáveis, suporte ágil e levantamentos simples para contratados em todo o mundo."',
 			},
 			aleksandra: {
 				quote:
@@ -289,7 +289,7 @@
 		},
 	},
 	finalCta: {
-		title: 'Lance software de payroll global no piloto automático hoje',
+		title: 'Lance software de Global Payroll no piloto automático hoje',
 		description: 'Pague à sua equipa em mais de 150 países com poucos cliques. Sem burocracia, apenas pagamentos rápidos',
 		button: 'Agendar demo',
 	},
@@ -299,7 +299,7 @@
 			q1: {
 				question: 'Quais serviços a Garna oferece?',
 				answer:
-					'Payroll global, Employer of Record, Contractor of Record, business banking e pagamentos internacionais, tudo numa única plataforma. Pode contratar, pagar e fazer a gestão de toda a sua equipa, colaboradores e contratados, sem trocar de ferramenta.',
+					'Global Payroll, Employer of Record, Contractor of Record, business banking e pagamentos internacionais, tudo numa única plataforma. Pode contratar, pagar e fazer a gestão de toda a sua equipa, colaboradores e contratados, sem trocar de ferramenta.',
 			},
 			q2: {
 				question: 'O que é Employer of Record (EOR)?',
@@ -397,7 +397,7 @@
 		successRate: 'taxa de sucesso de pagamentos',
 	},
 	features: {
-		title: 'Plataforma moderna para gerenciar folha de pagamento global',
+		title: 'Plataforma moderna para gerir Global Payroll',
 		description:
 			'Simplificamos o processamento de folha de pagamento, oferecendo soluções flexíveis e confiáveis para empresas de todos os tamanhos e setores',
 		automation: {
@@ -432,7 +432,7 @@
 	},
 	whyGarna: {
 		title: 'Por que a Garna se destaca',
-		description: 'Descubra os principais benefícios que tornam a folha simples, global e segura',
+		description: 'Descubra os principais benefícios que tornam o Global Payroll simples e seguro',
 		cards: {
 			adminTime: {
 				title: 'Reduza o tempo administrativo',
@@ -457,7 +457,7 @@
 		},
 		cta: {
 			title: 'Pronto para começar?',
-			description: 'Junte-se a milhares de empresas que simplificam a folha global hoje',
+			description: 'Junte-se a milhares de empresas que simplificam o Global Payroll hoje',
 			button: 'Agendar demo',
 		},
 	},

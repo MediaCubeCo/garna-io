@@ -383,53 +383,48 @@ const homeFaqItems = [
 					});
 				};
 				let deckPosition = 0;
+				const getDeckPosition = (progress) => {
+					// Keep each workflow fully visible while its progress segment fills.
+					// The whole card and its copy switch together only at a completed step.
+					if (progress < 1 / 3) return 0;
+					if (progress < 2 / 3) return 1;
+					return 2;
+				};
 				const renderQuietStack = (progress, landed = true) => {
-					const requested = Math.min(2, Math.floor(progress * 3));
-					if (!desktop.matches) {
-						deckPosition = requested;
-						// Use painted widths: inactive cards are scaled to 94%, so their
-						// layout slots must shrink too to preserve equal visible gaps.
-						const referenceRail = document.querySelector('[data-scroll-visual-carousel-id="home-contractor-payments-carousel"] .contractor-carousel__rail');
-						const gap = referenceRail instanceof HTMLElement ? Number.parseFloat(getComputedStyle(referenceRail).columnGap) : (window.innerWidth <= 767 ? 12.8 : 18.4);
-						const cardWidth = stack.getBoundingClientRect().width;
-						const step = cardWidth * .94 + gap;
-						mobileRail.style.transform = `translateX(${-step * (requested + 3)}px)`;
-						mobileCards.forEach((card, index) => {
-							const selected = index === requested + 3;
-							card.style.left = `${index * step + (index > requested + 3 ? cardWidth * .06 : 0)}px`;
-							card.classList.toggle('is-mobile-active', selected);
-							card.setAttribute('aria-hidden', String(!selected));
-						});
-						deckHeadings.forEach((heading, index) => {
-							heading.style.display = index === requested ? 'block' : 'none';
-							heading.style.opacity = '1';
-							heading.style.visibility = 'visible';
-							heading.style.transform = 'none';
-							heading.setAttribute('aria-hidden', String(index !== requested));
-						});
-						deckIndicators.forEach((indicator, index) => {
-							indicator.classList.toggle('is-active', index === requested);
-							indicator.style.setProperty('--step-fill', String(clamp(progress * 3 - index)));
-						});
-						return;
-					}
-					deckPosition = landed ? requested : 0;
-					const current = Math.min(1, Math.floor(deckPosition));
-					const next = current + 1;
-					const turn = clamp(deckPosition - current);
-					const movement = turn;
-					const active = movement >= 1 / 3 ? next : current;
+					deckPosition = landed ? getDeckPosition(progress) : 0;
+					const active = Math.min(2, Math.round(deckPosition));
 					deckIndicators.forEach((indicator, index) => {
 						indicator.classList.toggle('is-active', index === active);
 						indicator.style.setProperty('--step-fill', String(clamp(progress * 3 - index)));
 					});
 					deckHeadings.forEach((heading, index) => {
 						heading.style.display = index === active ? 'block' : 'none';
-						heading.style.opacity = '1';
+						heading.style.opacity = index === active ? '1' : '0';
 						heading.style.visibility = index === active ? 'visible' : 'hidden';
 						heading.style.transform = 'none';
 						heading.setAttribute('aria-hidden', String(index !== active));
 					});
+					if (!desktop.matches) {
+						const referenceRail = document.querySelector('[data-scroll-visual-carousel-id="home-contractor-payments-carousel"] .contractor-carousel__rail');
+						const gap = referenceRail instanceof HTMLElement ? Number.parseFloat(getComputedStyle(referenceRail).columnGap) : (window.innerWidth <= 767 ? 12.8 : 18.4);
+						const cardWidth = stack.getBoundingClientRect().width;
+						const step = cardWidth + gap;
+						mobileRail.style.transform = `translate3d(${-step * (deckPosition + 3)}px, 0, 0)`;
+						mobileCards.forEach((card, index) => {
+							const distance = Math.min(1, Math.abs(index - (deckPosition + 3)));
+							const selected = index === active + 3;
+							card.style.left = `${index * step}px`;
+							card.style.opacity = String(mix(1, .55, distance));
+							card.style.transform = `scale(${mix(1, .94, distance)})`;
+							card.classList.toggle('is-mobile-active', selected);
+							card.setAttribute('aria-hidden', String(!selected));
+						});
+						return;
+					}
+					const current = Math.min(1, Math.floor(deckPosition));
+					const next = current + 1;
+					const turn = clamp(deckPosition - current);
+					const movement = turn;
 					deckCards.forEach((card, index) => {
 						// Same cyclic depth order as CreatorPayoutProcessSection, scrubbed by scroll.
 						const fromDepth = (index - current + deckCards.length) % deckCards.length;

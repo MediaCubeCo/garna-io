@@ -209,7 +209,7 @@ const enOverrides = {
 
 const esOverrides = {
 	meta: {
-		title: 'Soluciones Contractor of Record para equipos globales | Garna',
+		title: 'Soluciones de Contratista de Registro para equipos globales | Garna',
 		description:
 			'Contrata y gestiona contratistas internacionales con acuerdos conformes, onboarding, facturas y pagos globales seguros a través de Garna.',
 	},
@@ -237,12 +237,12 @@ const esOverrides = {
 		button: 'Reservar demo',
 	},
 	faq: {
-		title: 'Preguntas frecuentes sobre Contractor of Record',
+		title: 'Preguntas frecuentes sobre Contratista de Registro',
 		items: {
 			q1: {
-				question: '¿Qué es un Contractor of Record (COR)?',
+				question: '¿Qué es un Contratista de Registro (COR)?',
 				answer:
-					'Un Contractor of Record ayuda a las empresas a trabajar con contratistas independientes sin crear una entidad local. Gestiona contratos, onboarding, facturación, pagos y documentación, mientras el contratista continúa siendo autónomo.',
+					'Un Contratista de Registro ayuda a las empresas a trabajar con contratistas independientes sin crear una entidad local. Gestiona contratos, onboarding, facturación, pagos y documentación, mientras el contratista continúa siendo autónomo.',
 			},
 			q2: {
 				question: '¿Para quién es adecuado un COR?',
@@ -339,7 +339,7 @@ const esOverrides = {
 		},
 	},
 	howTo: {
-		title: 'Cómo funciona Contractor of Record de Garna',
+		title: 'Cómo funciona el servicio Contratista de Registro de Garna',
 		description:
 			'Desde la aprobación de la factura hasta el pago final, gestiona todo el flujo de pagos a contratistas en un solo lugar.',
 		steps: {

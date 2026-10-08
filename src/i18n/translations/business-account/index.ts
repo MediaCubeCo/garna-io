@@ -390,9 +390,9 @@ const moreThanAccount = {
 		title: 'Más que una cuenta empresarial',
 		description: 'Una plataforma para gestionar pagos a freelancers, empleados remotos y equipos a tiempo completo',
 		products: {
-			eor: { title: 'Employer of Record', description: 'Amplía tu equipo más rápido con la solución EOR', link: 'Conocer EOR', fileLabel: 'Ficha laboral', role: 'Product Designer', country: 'Alemania', status: 'Contratada', providerLabel: 'Empleador legal' },
+			eor: { title: 'Empleador de Registro', description: 'Amplía tu equipo más rápido con la solución EOR', link: 'Conocer EOR', fileLabel: 'Ficha laboral', role: 'Product Designer', country: 'Alemania', status: 'Contratada', providerLabel: 'Empleador legal' },
 			perks: { title: 'Ventajas y descuentos para empresas', description: 'Obtén descuentos en más de 100 servicios que consumen tu presupuesto', offerLabel: 'Servicio asociado', benefitLabel: 'Descuento', discount: '20% de descuento', benefitMeta: 'Plan anual para equipos', serviceCount: '100+ servicios', subscription: 'Suscripción empresarial', available: 'Disponible con Garna' },
-			cor: { title: 'Contractor of Record', description: 'Incorpora, contrata y paga a tus contratistas en todo el mundo', link: 'Conocer COR', agreementLabel: 'Contrato de contratista', status: 'Firmado', client: 'Cliente', contractor: 'Contratista', scope: 'Alcance de servicios', term: 'Plazo', termValue: '12 meses', signature: 'Firma electrónica', fileLabel: 'Expediente del contratista', agreementTab: 'Acuerdo', invoiceTab: 'Factura', payoutTab: 'Pago', contents: 'Pagos · Acuerdos · Facturas', managedBy: 'Gestionado por' },
+			cor: { title: 'Contratista de Registro', description: 'Incorpora, contrata y paga a tus contratistas en todo el mundo', link: 'Conocer COR', agreementLabel: 'Contrato de contratista', status: 'Firmado', client: 'Cliente', contractor: 'Contratista', scope: 'Alcance de servicios', term: 'Plazo', termValue: '12 meses', signature: 'Firma electrónica', fileLabel: 'Expediente del contratista', agreementTab: 'Acuerdo', invoiceTab: 'Factura', payoutTab: 'Pago', contents: 'Pagos · Acuerdos · Facturas', managedBy: 'Gestionado por' },
 		},
 	},
 	pt: {

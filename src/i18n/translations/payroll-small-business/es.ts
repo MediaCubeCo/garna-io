@@ -93,7 +93,7 @@ export const payrollSmallBusinessEs = {
 			label: "1. Contrata y paga a los empleados (EOR)",
 			title: "Contratación a tiempo completo sin necesidad de constituir entidades jurídicas ni contratar asesores legales y contables en el extranjero",
 			feature1: {
-				title: "Empleador de referencia",
+				title: "Empleador de Registro",
 				description: "nos convertimos en el empleador oficial de tus empleados en más de 150 países"
 			},
 			feature2: {
@@ -187,7 +187,7 @@ export const payrollSmallBusinessEs = {
 		items: {
 			q1: {
 				question: "¿Cómo puedo contratar a un empleado en el extranjero sin crear mi propia entidad jurídica local?",
-				answer: "Para ello, utilizamos el modelo de «empleador oficial». Tu nos delegas los aspectos legales de la contratación. Garna es un empleador oficial en más de 150 países, por lo que no tienes que dedicar meses ni gastar miles de dólares para registrar una empresa en otro país."
+				answer: "Para ello, utilizamos el modelo de Empleador de Registro. Tú nos delegas los aspectos legales de la contratación. Garna actúa como empleador legal en más de 150 países, por lo que no tienes que dedicar meses ni gastar miles de dólares para registrar una empresa en otro país."
 			},
 			q2: {
 				question: "¿Cuánto cuesta la gestión de nóminas para una pequeña empresa?",

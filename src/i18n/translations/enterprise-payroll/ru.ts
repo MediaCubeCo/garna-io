@@ -68,7 +68,7 @@ export const enterprisePayrollRu = {
 	},
 	whyGarna: homeRu.whyGarna,
 	enterpriseFinalCta: {
-		title: 'Глобальный payroll становится проще с Garna',
+		title: 'Global Payroll становится проще с Garna',
 		description:
 			'Garna предоставляет глобальную payroll-инфраструктуру под разные задачи: выход на новые рынки, управление распределенными командами или замена устаревших разрозненных payroll-систем. Платформа гибко адаптируется к вашим потребностям',
 		button: 'Попробовать сейчас',
@@ -81,9 +81,9 @@ export const enterprisePayrollRu = {
 		title: 'Вопросы о payroll для глобального бизнеса',
 		items: {
 			q1: {
-				question: 'Как работает глобальный payroll?',
+				question: 'Как работает Global Payroll?',
 				answer:
-					'Глобальный payroll позволяет бизнесу управлять выплатами сотрудникам и подрядчикам в разных странах через централизованную систему, которая закрывает все: от платежей до соблюдения налоговых требований и отчетности.',
+					'Global Payroll позволяет бизнесу управлять выплатами сотрудникам и подрядчикам в разных странах через централизованную систему, которая закрывает все: от платежей до соблюдения налоговых требований и отчетности.',
 			},
 			q2: {
 				question: 'Можно ли назначать разные уровни доступа разным участникам команды?',
@@ -173,7 +173,7 @@ export const enterprisePayrollRu = {
 		'Full payroll access': 'Полный доступ к payroll',
 		'EU contractor run': 'Выплаты подрядчикам в ЕС',
 		'$42,000 needs regional approval': '$42,000 требует регионального согласования',
-		'Global payroll report': 'Глобальный payroll-отчет',
+		'Global payroll report': 'Отчет Global Payroll',
 		'38 countries, 6 entities, 12 exceptions': '38 стран, 6 юрлиц, 12 исключений',
 		'Support desk': 'Служба поддержки',
 		'Payroll and compliance teams online': 'Payroll-команда и специалисты по требованиям онлайн',
@@ -244,7 +244,7 @@ export const enterprisePayrollRu = {
 			'С Garna можно сократить административные расходы и управлять онбордингом подрядчиков, инвойсами и соблюдением требований. Выплачивайте подрядчикам без лишней сложности, где бы они ни находились и сколько бы их ни было. Настройка API-платежей позволяет крупным компаниям автоматизировать выплаты подрядчикам прямо из собственной системы',
 		'Hire Employees Worldwide': 'Нанимайте сотрудников по всему миру',
 		"No need to open up local offices in different countries just to get the right people on board. That's where the employer of record superstructure comes at hand. This lets you hire people across the world while all the usual employer duties get taken care of: payroll, compliance, taxes, and the local employment rules":
-			'Не нужно открывать локальные офисы в разных странах только ради найма нужных людей. В этом помогает модель employer of record: вы нанимаете людей по всему миру, а стандартные обязанности работодателя закрываются за вас — payroll, соблюдение требований, налоги и локальные трудовые правила',
+			'Не нужно открывать локальные офисы в разных странах только ради найма нужных людей. В этом помогает модель Employer of Record: вы нанимаете людей по всему миру, а стандартные обязанности работодателя закрываются за вас — payroll, соблюдение требований, налоги и локальные трудовые правила',
 		'Built for Global Teams and Complex Operations': 'Создано для глобальных команд и сложных операций',
 		"When you're running a global payroll operation, you need infrastructure that can match the complexity and scale of it. We'll explain it in one word - and in more detail":
 			'Когда вы управляете глобальным payroll, нужна инфраструктура, которая соответствует его масштабу и сложности. Объясним это одним словом — и подробнее',
@@ -268,7 +268,7 @@ export const enterprisePayrollRu = {
 			'"Нам была нужна payroll-инфраструктура, которая одновременно поддерживает сотрудников, подрядчиков и локальные требования. Garna дала нашей операционной команде контроль, которого нам не хватало в разных странах"',
 		'"The biggest change was visibility. Our HR, finance, and compliance teams can now track payroll status, exceptions, and payout timing from one workflow instead of chasing regional providers"':
 			'"Главное изменение — прозрачность. Теперь наши HR, финансовая команда и команда по соблюдению требований отслеживают статус payroll, исключения и сроки выплат в одном процессе, вместо того чтобы постоянно обращаться к региональным провайдерам"',
-		'Global Payroll Is Easy When Made By Using Garna': 'Глобальный payroll становится проще с Garna',
+		'Global Payroll Is Easy When Made By Using Garna': 'Global Payroll становится проще с Garna',
 		"Garna provides the global payroll infrastructure independently from the task вЂ” whether you're scaling into new markets, dealing with distributed teams, or replacing old, fragmented payroll systems, itвЂ™ll adjust to your needs seamlessly":
 			'Garna предоставляет глобальную payroll-инфраструктуру под разные задачи: выход на новые рынки, управление распределенными командами или замена устаревших разрозненных payroll-систем. Платформа гибко адаптируется к вашим потребностям',
 		'Try now': 'Попробовать сейчас',

@@ -1,6 +1,6 @@
 export const payrollSmallBusinessPt = {
 	meta: {
-		title: "Serviços de Payroll Global para Pequenas Empresas | Garna",
+		title: "Serviços de Global Payroll para Pequenas Empresas | Garna",
 		description: "Gira payroll, contrate globalmente e mantenha a conformidade em mais de 150 países. A Garna ajuda pequenas empresas a gerir equipas internacionais sem entidades locais."
 	},
 	images: {},

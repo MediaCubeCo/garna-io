@@ -2,6 +2,7 @@
 import { RouteInfo } from './routes';
 import { languages } from '../config/languages';
 import { getHeaderTranslations } from '../i18n/translations/header';
+import { payrollSolutionNewTranslations } from '../i18n/translations/payroll-solution-new';
 
 const FOOTER_LANG_SELECT_PLACEHOLDER = '<!-- FOOTER_LANG_SELECT -->';
 const FOOTER_LEGAL_LINKS_PLACEHOLDER = '<!-- FOOTER_LEGAL_LINKS -->';
@@ -207,7 +208,31 @@ export function injectPageTranslations(
 
 		const currentTranslations =
 			allTranslations[currentLanguage as keyof typeof allTranslations] || allTranslations.en;
-		const bookingWidgetTranslations = (currentTranslations as any).bookingWidget || {};
+		const sharedLocaleTranslations =
+			payrollSolutionNewTranslations[currentLanguage as keyof typeof payrollSolutionNewTranslations]
+			|| payrollSolutionNewTranslations.en;
+		const sharedBookingWidgetTranslations = (sharedLocaleTranslations as any).bookingWidget || {};
+		const pageBookingWidgetTranslations = (currentTranslations as any).bookingWidget || {};
+		const bookingWidgetTranslations = {
+			...sharedBookingWidgetTranslations,
+			...pageBookingWidgetTranslations,
+			form: {
+				...(sharedBookingWidgetTranslations.form || {}),
+				...(pageBookingWidgetTranslations.form || {}),
+			},
+			errors: {
+				...(sharedBookingWidgetTranslations.errors || {}),
+				...(pageBookingWidgetTranslations.errors || {}),
+			},
+			signUp: {
+				...(sharedBookingWidgetTranslations.signUp || {}),
+				...(pageBookingWidgetTranslations.signUp || {}),
+			},
+			disclaimer: {
+				...(sharedBookingWidgetTranslations.disclaimer || {}),
+				...(pageBookingWidgetTranslations.disclaimer || {}),
+			},
+		};
 		html = html
 			.replaceAll('__GARNA_LOCALE__', serializeJsonForScript(currentLanguage))
 			.replaceAll('__GARNA_WIDGET_TRANSLATIONS__', serializeJsonForScript(bookingWidgetTranslations));
