@@ -261,7 +261,7 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 		'compliance-offshore': { kicker: 'COMPLIANCE', title: riskCopy.offshore.title, description: riskCopy.offshore.question },
 		'compliance-cash': { kicker: 'COMPLIANCE', title: riskCopy.cash.title, description: riskCopy.cash.question },
 		'compliance-crypto': { kicker: 'COMPLIANCE', title: riskCopy.crypto.title, description: riskCopy.crypto.question },
-		review: { kicker: 'REVIEW', title: 'Check your answers', description: 'You can change any answer before saving the questionnaire.' },
+		review: { kicker: 'REVIEW', title: 'Check your answers', description: 'You can change any answer before sending the questionnaire.' },
 	};
 
 	const escapeHtml = (value: unknown) => String(value ?? '').replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character] || character);
@@ -448,7 +448,7 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 
 		const renderSuccess = () => {
 			root.dataset.experience = mode;
-			root.innerHTML = `<div class="kyb-flow"><div class="kyb-main"><div class="kyb-success"><div><span class="kyb-success__icon">✓</span><h3 tabindex="-1" data-success-heading>${escapeHtml(t('Questionnaire saved'))}</h3><p>${escapeHtml(t('Your answers are saved in this browser for 24 hours. Sending the questionnaire is not connected yet.'))}</p><div><button type="button" class="kyb-button kyb-button--primary" data-exit-flow>${escapeHtml(t('Finish'))}</button></div></div></div></div></div>`;
+			root.innerHTML = `<div class="kyb-flow"><div class="kyb-main"><div class="kyb-success"><div><span class="kyb-success__icon">✓</span><h3 tabindex="-1" data-success-heading>${escapeHtml(t('Questionnaire sent'))}</h3><p>${escapeHtml(t('We received your questionnaire. We will contact you at {email} if we need anything else.', { email: application.contact.email }))}</p><div><button type="button" class="kyb-button kyb-button--primary" data-exit-flow>${escapeHtml(t('Finish'))}</button></div></div></div></div></div>`;
 			window.requestAnimationFrame(() => {
 				root.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
 				root.querySelector<HTMLElement>('[data-success-heading]')?.focus({ preventScroll: true });
@@ -459,9 +459,9 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 			const flow = getComputedKybFlow(application); if (!flow.includes(current)) current = flow[0]; application.currentMicroId = current;
 			const copy = { ...stepCopy[current] }; const index = flow.indexOf(current);
 			root.dataset.experience = mode;
-			const firstErrorPath = Object.keys(errors)[0];
-			const errorSummary = firstErrorPath ? `<div class="kyb-error-summary" role="alert" tabindex="-1" data-error-summary><h4>${escapeHtml(t('Check this step'))}</h4><a href="#${controlId(firstErrorPath)}">${escapeHtml(t(errors[firstErrorPath]))}</a></div>` : '';
-			const continueLabel = t(current === 'review' ? 'Save questionnaire' : 'Continue');
+			const firstErrorPath = Object.keys(errors).find((path) => path !== 'submission');
+			const errorSummary = errors.submission || firstErrorPath ? `<div class="kyb-error-summary" role="alert" tabindex="-1" data-error-summary><h4>${escapeHtml(t(errors.submission ? 'Submission failed. Please try again.' : 'Check this step'))}</h4>${firstErrorPath ? `<a href="#${controlId(firstErrorPath)}">${escapeHtml(t(errors[firstErrorPath]))}</a>` : ''}</div>` : '';
+			const continueLabel = t(current === 'review' ? 'Send questionnaire' : 'Continue');
 			const progress = `<div class="kyb-customer-progress"><span>${escapeHtml(t(KYB_SECTIONS.find((section) => section.id === sectionForMicroId(current))?.label || ''))}</span><div class="kyb-progress__meta"><span class="kyb-progress__count">${index + 1} / ${flow.length}</span></div></div>`;
 			const saveControls = `<div class="kyb-save-feedback" aria-live="polite"><span data-kyb-save-state></span><button type="button" class="kyb-save-retry" data-retry-save hidden>${escapeHtml(t('Retry save'))}</button></div><button type="button" class="kyb-button kyb-button--secondary" data-save-exit>${escapeHtml(t('Continue later'))}</button>`;
 			root.innerHTML = `<div class="kyb-flow"><div class="kyb-shell" data-customer="true"><main class="kyb-main">${progress}<div class="kyb-progress-track" aria-hidden="true"><span style="width:${Math.max(4, ((index + 1) / flow.length) * 100)}%"></span></div><div class="kyb-scroll" data-kyb-scroll><form class="kyb-step" novalidate data-kyb-form><h3 tabindex="-1" data-step-heading>${escapeHtml(t(copy.title))}</h3><p class="kyb-step__description">${escapeHtml(t(copy.description))}</p>${errorSummary}<div class="kyb-fields">${renderBody(current)}</div></form></div><div class="kyb-actions"><button type="button" class="kyb-button kyb-button--ghost" data-back><span aria-hidden="true">←</span><span>${escapeHtml(t('Back'))}</span></button><div class="kyb-actions__right">${saveControls}<button type="button" class="kyb-button kyb-button--primary" data-continue><span>${escapeHtml(continueLabel)}</span>${current === 'review' ? '' : '<span aria-hidden="true">→</span>'}</button></div></div></main></div></div>`;
@@ -562,9 +562,23 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 		const completeQuestionnaire = async () => {
 			const validation = validateEntireKybApplication(application, activeConfig());
 			if (!validation.valid) { current = validation.microId; errors = validation.errors; track('kyb_validation_failed', { errorCode: Object.keys(errors)[0] }); renderStep(); return; }
-			const button = root.querySelector<HTMLButtonElement>('[data-continue]'); if (button) { button.disabled = true; button.textContent = `${t('Saving')}…`; }
-			if (await saveDraft(true)) { track('kyb_questionnaire_saved'); renderSuccess(); }
-			else renderStep();
+			const button = root.querySelector<HTMLButtonElement>('[data-continue]'); if (button) { button.disabled = true; button.textContent = `${t('Sending')}…`; }
+			try {
+				const response = await fetch('/api/business-account/questionnaire', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+					body: JSON.stringify({ application: sanitizeKybForStorage(application), locale, page: window.location.pathname }),
+				});
+				if (!response.ok) throw new Error('send failed');
+				try { await draftAdapter.discard(); } catch { /* the questionnaire was already emailed */ }
+				cachedDraft = null;
+				track('kyb_questionnaire_sent');
+				renderSuccess();
+			} catch {
+				errors = { submission: 'Submission failed. Please try again.' };
+				track('kyb_questionnaire_send_failed');
+				renderStep();
+			}
 		};
 
 		root.addEventListener('input', (event) => {

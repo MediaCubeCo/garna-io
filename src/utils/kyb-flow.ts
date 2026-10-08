@@ -283,7 +283,7 @@ export const KYB_SECTIONS: Array<{ id: KybSectionId; label: string; description:
 	{ id: 'ownership', label: 'Ownership', description: 'Owners and directors', first: 'ownership-you' },
 	{ id: 'activity', label: 'Account use', description: 'Expected payments', first: 'activity-volume' },
 	{ id: 'compliance', label: 'Compliance', description: 'A few risk questions', first: 'compliance-pep' },
-	{ id: 'review', label: 'Review', description: 'Check and save', first: 'review' },
+	{ id: 'review', label: 'Review', description: 'Check and send', first: 'review' },
 ];
 
 const BASE_FLOW: MicroId[] = [
@@ -390,7 +390,7 @@ export const validateKybMicrostep = (application: KybApplication, microId: Micro
 		case 'activity-markets': if (!application.activity.markets.length) errors['activity.markets'] = 'Choose at least one market.'; if (!application.activity.counterpartyCountries.length) errors['activity.counterpartyCountries'] = 'Add at least one counterparty country.'; if (application.activity.counterpartyCountries.length > 5) errors['activity.counterpartyCountries'] = 'Add no more than five counterparty countries.'; break;
 		case 'activity-funds': required('activity.sourceOfFunds', application.activity.sourceOfFunds); required('activity.sourceOfFundsDetails', application.activity.sourceOfFundsDetails); break;
 		case 'documents': activeDocumentRequirements(application, config).filter((item) => item.required).forEach((item) => { if (!application.documents.some((document) => document.requirementId === item.id && document.status === 'uploaded')) errors[`documents.${item.id}`] = 'Add this document before continuing.'; }); break;
-		case 'review': if (!application.declaration.accepted) errors['declaration.accepted'] = 'Accept the declaration before saving.'; break;
+		case 'review': if (!application.declaration.accepted) errors['declaration.accepted'] = 'Accept the declaration before sending.'; break;
 		default: if (microId.startsWith('compliance-')) { const key = riskKeyForMicroId(microId); const answer = application.compliance[key]; required(`compliance.${key}.answer`, answer.answer, 'Choose Yes or No.'); if (answer.answer === 'yes') required(`compliance.${key}.details`, answer.details, 'Provide a short explanation.'); }
 	}
 	return errors;
