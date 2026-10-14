@@ -51,6 +51,12 @@ function getLanguagePagePath(pageName: string, lang: string): string {
 	if (pageName === 'blog-article') {
 		return `/${segment}/blog-article`;
 	}
+	if (pageName === 'websummit-2026-side-events') {
+		return `/${segment}/event/websummit-2026`;
+	}
+	if (pageName === 'gamescom-2026-side-events') {
+		return `/${segment}/event/gamescom-2026`;
+	}
 	if (pageName === 'eor' || pageName === 'employer-of-record') {
 		return `/${segment}/employer-of-record`;
 	}

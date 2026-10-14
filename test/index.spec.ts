@@ -14,6 +14,45 @@ describe('Route Resolution', () => {
 		expect(response?.headers.get('Location')).toBe('https://garna.io/en?source=legacy');
 	});
 
+	it('serves conference guides under a localized /event/ path', () => {
+		for (const lang of ['en', 'es', 'pt', 'ru']) {
+			const webSummit = resolveRoute(`/${lang}/event/websummit-2026`);
+			const gamescom = resolveRoute(`/${lang}/event/gamescom-2026`);
+			expect(webSummit.isValid).toBe(true);
+			expect(webSummit.language).toBe(lang);
+			expect(webSummit.pathSegments).toEqual(['event', 'websummit-2026']);
+			expect(gamescom.isValid).toBe(true);
+			expect(gamescom.pathSegments).toEqual(['event', 'gamescom-2026']);
+		}
+	});
+
+	it('redirects legacy event URLs to /{language}/event/{slug}', async () => {
+		const localized = await handleRedirect(
+			resolveRoute('/ru/websummit-2026-side-events'),
+			'US',
+			'https://garna.io/ru/websummit-2026-side-events',
+		);
+		expect(localized?.status).toBe(301);
+		expect(localized?.headers.get('Location')).toBe('https://garna.io/ru/event/websummit-2026');
+
+		const bareWebSummit = await handleRedirect(
+			resolveRoute('/websummit-2026-side-events?source=legacy'),
+			'US',
+			'https://garna.io/websummit-2026-side-events?source=legacy',
+			'ru-RU,ru;q=0.9,en;q=0.8',
+		);
+		expect(bareWebSummit?.status).toBe(301);
+		expect(bareWebSummit?.headers.get('Location')).toBe('https://garna.io/ru/event/websummit-2026?source=legacy');
+
+		const unlocalizedCanonical = await handleRedirect(
+			resolveRoute('/event/websummit-2026'),
+			'ES',
+			'https://garna.io/event/websummit-2026',
+		);
+		expect(unlocalizedCanonical?.status).toBe(302);
+		expect(unlocalizedCanonical?.headers.get('Location')).toBe('https://garna.io/es/event/websummit-2026');
+	});
+
 	it('redirects the retired mid-size route without a duplicate Astro page', async () => {
 		const requestUrl = 'https://garna.io/en/mid-size?source=legacy';
 		const response = await handleRedirect(resolveRoute('/en/mid-size?source=legacy'), 'US', requestUrl);
