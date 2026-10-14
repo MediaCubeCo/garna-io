@@ -1,12 +1,53 @@
 import { RouteInfo } from '../utils/routes';
 import { getSupportedLanguageCodes } from '../config/languages';
 import { basePaths } from '../config/pages';
+import { countries } from '../config/countries';
 
 const DEFAULT_LANGUAGE = 'en';
 const pagePaths = new Set(basePaths.map((page) => page.path));
 const legacyPageRedirects: Record<string, string> = {
 	'mid-size': 'mid-size-business-payroll',
 };
+const eventLegacyRedirects: Record<string, string> = {
+	'websummit-2026-side-events': 'event/websummit-2026',
+	'gamescom-2026-side-events': 'event/gamescom-2026',
+};
+
+function languageForCountry(country: string): string {
+	const match = countries.find((item) => item.value === country.toUpperCase());
+	const language = match?.defaultLanguage?.toLowerCase();
+	if (language && getSupportedLanguageCodes().includes(language)) return language;
+	return DEFAULT_LANGUAGE;
+}
+
+function languageFromAcceptLanguage(header: string | null | undefined): string | null {
+	if (!header) return null;
+	const supported = new Set(getSupportedLanguageCodes());
+	const ranked = header
+		.split(',')
+		.map((part) => {
+			const [tag, ...params] = part.trim().split(';');
+			const qualityParam = params.find((param) => param.trim().startsWith('q='));
+			const quality = qualityParam ? Number(qualityParam.trim().slice(2)) : 1;
+			return { tag: tag.toLowerCase(), quality: Number.isFinite(quality) ? quality : 0 };
+		})
+		.filter((part) => part.tag)
+		.sort((left, right) => right.quality - left.quality);
+
+	for (const part of ranked) {
+		const language = part.tag.split('-')[0];
+		if (supported.has(language)) return language;
+	}
+	return null;
+}
+
+function languageForVisitor(country: string, acceptLanguage?: string | null): string {
+	return languageFromAcceptLanguage(acceptLanguage) ?? languageForCountry(country);
+}
+
+function redirectToEvent(url: URL, pagePath: string, language: string, status: 301 | 302 = 301): Response {
+	return Response.redirect(`${url.origin}/${language}/${pagePath}${url.search}`, status);
+}
 
 function buildLocalizedTarget(
 	url: URL,
@@ -32,8 +73,9 @@ function buildLocalizedTarget(
  */
 export async function handleRedirect(
 	routeInfo: RouteInfo,
-	_country: string,
-	requestUrl: string
+	country: string,
+	requestUrl: string,
+	acceptLanguage?: string | null
 ): Promise<Response | null> {
 	const url = new URL(requestUrl);
 
@@ -54,6 +96,10 @@ export async function handleRedirect(
 			.join('/')
 			.replace(/(^|\/)index\.html$/u, '')
 			.replace(/\.html$/u, '');
+		const eventPath = eventLegacyRedirects[normalizedPath];
+		if (eventPath && routeInfo.locale) {
+			return redirectToEvent(url, eventPath, routeInfo.locale, 301);
+		}
 		const redirectPath = legacyPageRedirects[normalizedPath];
 		if (redirectPath) {
 			const queryString = routeInfo.query ? `?${routeInfo.query}` : '';
@@ -108,6 +154,14 @@ export async function handleRedirect(
 			.join('/')
 			.replace(/(^|\/)index\.html$/u, '')
 			.replace(/\.html$/u, '');
+
+		const legacyEventPath = eventLegacyRedirects[normalizedPath];
+		if (legacyEventPath) {
+			return redirectToEvent(url, legacyEventPath, languageForVisitor(country, acceptLanguage), 301);
+		}
+		if (normalizedPath.startsWith('event/') && pagePaths.has(normalizedPath)) {
+			return redirectToEvent(url, normalizedPath, languageForVisitor(country, acceptLanguage), 302);
+		}
 
 		if (pagePaths.has(normalizedPath)) {
 			return buildLocalizedTarget(url, pathSegments, 302);
