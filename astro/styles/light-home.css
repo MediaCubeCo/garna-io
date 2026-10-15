@@ -1,0 +1,1176 @@
+/*
+ * Dashboard-aligned tokens for the light homepage draft.
+ * Keep these route-scoped so the production Home and the shared light theme
+ * remain available as controls while this direction is being explored.
+ */
+html[data-theme='light']:has(.light-home-draft) {
+	--garna-page-bg: #f3f4f1;
+	--garna-section-stats-bg: #eceeea;
+	--garna-surface: #ffffff;
+	--garna-surface-raised: #ffffff;
+	--garna-border: #eceeea;
+	--garna-border-strong: rgba(21, 21, 21, 0.14);
+	--garna-text: #151515;
+	--garna-text-muted: #5f646c;
+	--garna-subtitle-color: #5f646c;
+	--garna-accent: #b8ff3c;
+	--garna-accent-foreground: #151515;
+	--garna-radius-sm: 16px;
+	--garna-radius-md: 22px;
+	--garna-radius-lg: 28px;
+	--garna-shadow-card: 0 10px 30px rgba(20, 24, 18, 0.05);
+	--light-home-lime-soft: #eafcc0;
+	--light-home-lime-ink: #3d5a10;
+	--light-home-blue: #b2c7eb;
+	--light-home-blue-soft: #e4ebf6;
+	--light-home-sky: #a9d8ff;
+	--light-home-sky-soft: #e8f5ff;
+	--light-home-sky-ink: #175d8c;
+	--light-home-stone: #d8d2c8;
+	--light-home-stone-strong: #74716b;
+	--light-home-muted: #8a8f98;
+	color-scheme: light;
+}
+
+html[data-theme='light']:has(.light-home-draft),
+html[data-theme='light']:has(.light-home-draft) body[data-garna-page] {
+	background:
+		radial-gradient(1200px 600px at 10% -10%, #f7ffe8 0%, transparent 55%),
+		radial-gradient(900px 500px at 100% 0%, #eef7ff 0%, transparent 45%),
+		var(--garna-page-bg);
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.light-home-draft) ::selection {
+	background: rgba(184, 255, 60, 0.48);
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.light-home-draft) :is(.light-home-draft, .garna-header) .garna-button {
+	--garna-button-bg: #b8ff3c;
+	--garna-button-shine: #ffffff;
+}
+
+html[data-theme='light']:has(.light-home-draft) :is(.light-home-draft, .garna-header) .garna-button:hover,
+html[data-theme='light']:has(.light-home-draft) :is(.light-home-draft, .garna-header) .garna-button:active {
+	transform: none;
+	filter: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) :is(.light-home-draft, .garna-header) .garna-button,
+html[data-theme='light']:has(.light-home-draft) :is(.light-home-draft, .garna-header) .garna-button:hover,
+html[data-theme='light']:has(.light-home-draft) :is(.light-home-draft, .garna-header) .garna-button:active {
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) :is(.light-home-draft, .garna-header) .garna-button-primary:hover {
+	--garna-button-bg: #aef534;
+}
+
+/* The dark theme's lime halo looks muddy against the pale product canvas. */
+html[data-theme='light']:has(.light-home-draft) :is(.light-home-draft, .garna-header) .garna-button-primary,
+html[data-theme='light']:has(.light-home-draft) :is(.light-home-draft, .garna-header) .garna-button-primary:hover,
+html[data-theme='light']:has(.light-home-draft) :is(.light-home-draft, .garna-header) .garna-button-rotating-flare,
+html[data-theme='light']:has(.light-home-draft) :is(.light-home-draft, .garna-header) .garna-button-rotating-flare:hover {
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft [class~='bg-[#CBF300]'] {
+	background-color: #b8ff3c !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft [class*='bg-[#CBF300]/'] {
+	background-color: rgba(184, 255, 60, 0.14) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft [class*='text-[#CBF300]'] {
+	color: var(--light-home-lime-ink) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .hire-employees-card {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	grid-template-rows: auto 1fr auto;
+	min-height: clamp(17rem, 24vw, 20rem);
+	column-gap: 1.5rem;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .hire-employees-card__visual {
+	grid-column: 2;
+	grid-row: 1;
+	justify-self: end;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .hire-employees-card__body {
+	display: contents;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .hire-employees-card [data-card-title] {
+	grid-column: 1;
+	grid-row: 1;
+	align-self: start;
+	margin: 0;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .hire-employees-card [data-card-description] {
+	grid-column: 1 / -1;
+	grid-row: 3;
+	align-self: end;
+	max-width: 30rem;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .hire-employees-card__icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	color: var(--garna-text) !important;
+	stroke-width: 2;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .home-workflows-stack__status {
+	border-color: rgba(21, 21, 21, 0.08);
+	background: #ffffff;
+	color: var(--garna-text);
+	box-shadow: 0 12px 30px rgba(21, 21, 21, 0.16);
+	backdrop-filter: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .home-workflows-stack__status-icon {
+	background: var(--light-home-sky);
+	color: var(--light-home-sky-ink);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .home-workflows-stack__status small {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .home-workflows-stack__status em.home-workflows-stack__badge {
+	border-color: transparent;
+	background: var(--light-home-lime-soft);
+	color: var(--light-home-lime-ink);
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] :is(
+	.contractor-carousel__hire-notification,
+	.contractor-carousel__payment-notification,
+	.contractor-carousel__compliance-notification
+),
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__slide.is-active > :is(
+	.contractor-carousel__hire-notification,
+	.contractor-carousel__payment-notification,
+	.contractor-carousel__compliance-notification
+) {
+	border-color: rgba(21, 21, 21, 0.08);
+	background: #ffffff;
+	color: var(--garna-text);
+	box-shadow: 0 12px 30px rgba(21, 21, 21, 0.16);
+	backdrop-filter: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] :is(
+	.contractor-carousel__hire-copy strong,
+	.contractor-carousel__payment-copy strong,
+	.contractor-carousel__compliance-row small,
+	.contractor-carousel__compliance-row strong
+) {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] :is(
+	.contractor-carousel__hire-copy small,
+	.contractor-carousel__payment-app,
+	.contractor-carousel__payment-copy small,
+	.contractor-carousel__payment-time
+) {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__hire-avatar > span {
+	background: var(--garna-accent);
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__payment-icon {
+	background: var(--light-home-sky);
+	color: var(--light-home-sky-ink);
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__hire-status {
+	border: 1px solid transparent !important;
+	background: var(--light-home-lime-soft) !important;
+	color: var(--light-home-lime-ink) !important;
+	font-size: 0.64rem;
+	font-weight: 650;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__compliance-row:first-child strong {
+	color: var(--light-home-lime-ink);
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__compliance-footer {
+	background: var(--light-home-lime-soft);
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__compliance-footer strong {
+	color: var(--light-home-lime-ink);
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__compliance-footer small {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft [class*='border-[#CBF300]'] {
+	border-color: rgba(154, 230, 42, 0.38) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft [stroke='#CBF300'] {
+	stroke: #9ae62a;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft [fill='#CBF300'] {
+	fill: #b8ff3c;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__tag {
+	display: block;
+	width: auto;
+	margin-bottom: 20px;
+	border-radius: 0;
+	background: transparent;
+	padding: 0;
+	color: #58b800;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy {
+	border-color: rgba(21, 21, 21, 0.08);
+	background: #ffffff;
+	box-shadow: 0 18px 48px rgba(21, 21, 21, 0.16);
+	backdrop-filter: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy h3 {
+	margin-bottom: 10px;
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy p {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-inline-accent,
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-inline-accent:hover,
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-inline-accent:focus-visible {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-arrow-glyph {
+	position: relative;
+	display: inline-block;
+	width: 1.15em;
+	height: 1.2em;
+	overflow: hidden;
+	flex: 0 0 1.15em;
+	color: transparent;
+	font-size: 1rem;
+	line-height: 1.2;
+	text-indent: -9999px;
+	transform: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-arrow-glyph::before,
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-arrow-glyph::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	color: var(--garna-text);
+	content: '→';
+	line-height: inherit;
+	text-align: center;
+	text-indent: 0;
+	transition: transform 760ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-arrow-glyph::before {
+	transform: translateX(0);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-arrow-glyph::after {
+	transform: translateX(-135%);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-inline-accent:is(:hover, :focus-visible) .garna-button-arrow-glyph {
+	transform: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-inline-accent:is(:hover, :focus-visible) .garna-button-arrow-glyph::before {
+	transform: translateX(135%);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-inline-accent:is(:hover, :focus-visible) .garna-button-arrow-glyph::after {
+	transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-arrow-glyph::before,
+	html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-arrow-glyph::after {
+		transition: none;
+	}
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__tabs {
+	border-color: rgba(21, 21, 21, 0.12);
+	background: rgba(21, 21, 21, 0.045);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__tab {
+	isolation: isolate;
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__tab:hover {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__tab:focus-visible {
+	outline-color: rgba(21, 21, 21, 0.38);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__tab.active {
+	background: var(--light-home-stone-strong) !important;
+	color: #ffffff;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__tab::before {
+	background: var(--garna-text) !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__tab.active span {
+	color: #ffffff;
+	mix-blend-mode: normal;
+}
+
+html[data-theme='light']:has(.light-home-draft) .payroll-solution-new-hero .garna-hero-badge {
+	background: rgba(234, 252, 192, 0.92);
+	border-color: transparent;
+	border-radius: 999px;
+	color: var(--light-home-lime-ink);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(.garna-card, .payroll-feature-card) {
+	--garna-card-surface: #ffffff;
+	--garna-card-hover-surface: #ffffff;
+	background-color: #ffffff;
+	border-color: transparent;
+	border-radius: var(--garna-radius-lg);
+	box-shadow: var(--garna-shadow-card);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+	.garna-product-window,
+	.garna-product-visual,
+	.garna-product-panel
+) {
+	border-radius: var(--garna-radius-md);
+}
+
+/* Large editorial photos rely on crop and radius, without a dark outline. */
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+	.contractor-carousel__slide,
+	.contractor-carousel__slide:hover,
+	.tabbed-image-feature__stage
+) {
+	border: 0 !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__stage {
+	box-shadow: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .contractor-carousel__slide {
+	background: transparent;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+	.contractor-carousel__dots button,
+	.home-workflows-progress span
+) {
+	background: rgba(21, 21, 21, 0.22);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+	.contractor-carousel__dots button:hover,
+	.home-workflows-progress span:hover
+) {
+	background: rgba(21, 21, 21, 0.36);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+	.contractor-carousel__dots button.is-active,
+	.home-workflows-progress span.is-active
+) {
+	background: rgba(21, 21, 21, 0.1) !important;
+	box-shadow: inset 0 0 0 1px rgba(21, 21, 21, 0.12) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .contractor-carousel__dots button.is-active::after,
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .home-workflows-progress span.is-active::after {
+	background: var(--garna-text) !important;
+	box-shadow: none !important;
+}
+
+/* Draft-only interaction overrides. Keep the production Home untouched. */
+html:has(.light-home-draft) .garna-card-light-field {
+	display: none;
+}
+
+html:has(.light-home-draft) .garna-card[data-interactive='false'] {
+	transition: none;
+}
+
+html:has(.light-home-draft) :is(.garna-card, .payroll-feature-card)::before,
+html:has(.light-home-draft) :is(.garna-card, .payroll-feature-card)::after {
+	opacity: 0 !important;
+}
+
+html:has(.light-home-draft) .garna-card[data-interactive='true']:is(:hover, :focus-within, [data-pointer-active='true']) {
+	z-index: 1;
+	translate: 0;
+	transform: none;
+	background-color: var(--garna-card-surface);
+	border-color: transparent;
+	box-shadow: var(--garna-shadow-card);
+}
+
+html:has(.light-home-draft) .payroll-feature-card[data-interactive='true']:is(:hover, :focus-within, [data-pointer-active='true']) {
+	border-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+		.hire-employees-card,
+		.trusted-business-card
+	) {
+		z-index: 1;
+		translate: none !important;
+		transform: translate3d(0, 0, 0) scale(1) !important;
+		transform-origin: center;
+		backface-visibility: hidden;
+		will-change: transform, box-shadow;
+		transition:
+			transform 340ms cubic-bezier(0.22, 1, 0.36, 1),
+			box-shadow 340ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+	}
+
+	html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+		.hire-employees-card,
+		.trusted-business-card
+	):is(:hover, :focus-within, [data-pointer-active='true']) {
+		z-index: 3;
+		translate: none !important;
+		transform: translate3d(0, 0, 0) scale(1.035) !important;
+		box-shadow:
+			0 3px 8px rgba(21, 21, 21, 0.09),
+			0 16px 32px -8px rgba(21, 21, 21, 0.18),
+			0 32px 64px -22px rgba(21, 21, 21, 0.24) !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+		.hire-employees-card,
+		.trusted-business-card
+	) {
+		transform: none !important;
+		transition: none !important;
+	}
+}
+
+html:has(.light-home-draft) .contractor-carousel__copy :is(h2, h3) {
+	color: var(--garna-text) !important;
+}
+
+html:has(.light-home-draft) [data-home-proof-card='featured']::after {
+	opacity: var(--home-proof-featured-image-opacity, 1);
+}
+
+html[data-theme='light']:has(.light-home-draft) :is(
+	.payroll-solution-new-hero,
+	.home-hero-cover,
+	.home-hero-cover__media
+) {
+	background: var(--garna-page-bg) !important;
+}
+
+/* On the light draft, the header goes straight from transparent to light. */
+html[data-theme='light']:has(.light-home-draft) .garna-header.is-scrolled {
+	background: rgba(243, 244, 241, 0.9) !important;
+	border-bottom-color: rgba(21, 21, 21, 0.08) !important;
+	box-shadow: 0 10px 30px rgba(20, 24, 18, 0.05) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .garna-header.is-scrolled .garna-header-logo {
+	filter: invert(1) !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header.is-scrolled :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link,
+	.garna-header-mobile-link,
+	.garna-header-login,
+	.garna-header-dropdown-link,
+	.garna-header-link-main
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header.is-scrolled :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link,
+	.garna-header-mobile-link,
+	.garna-header-dropdown-link,
+	.garna-header-link-main
+) {
+	transition-property: opacity, transform;
+}
+
+/* Dropdowns stay in the light product theme even while the header overlays the hero. */
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-panel {
+	background: var(--garna-surface-raised) !important;
+	border-color: var(--garna-border) !important;
+	box-shadow: var(--garna-shadow-card) !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-title {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header :is(
+	.garna-header-dropdown-link,
+	.garna-header-link-main
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-link-kicker {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-divider {
+	background: rgba(21, 21, 21, 0.08);
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-icon {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: rgba(21, 21, 21, 0.035) !important;
+	color: rgba(21, 21, 21, 0.64) !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-link:hover {
+	border-color: transparent !important;
+	background: rgba(21, 21, 21, 0.06) !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-link:hover .garna-header-dropdown-icon {
+	border-color: var(--garna-text) !important;
+	background: var(--garna-text) !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-link.is-active {
+	border-color: transparent !important;
+	background: rgba(21, 21, 21, 0.06) !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-link.is-active .garna-header-dropdown-icon,
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-mobile-card.is-active .garna-header-mobile-icon {
+	border-color: var(--light-home-sky) !important;
+	background: var(--light-home-sky) !important;
+	color: var(--light-home-sky-ink) !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-mobile-card.is-active {
+	background: rgba(21, 21, 21, 0.06);
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header :is(
+	.garna-header-dropdown-link.is-active .garna-header-link-main,
+	.garna-header-mobile-card.is-active .garna-header-mobile-link-main
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-login.garna-button-secondary {
+	border: 1px solid rgba(255, 255, 255, 0.28) !important;
+	background: rgba(255, 255, 255, 0.04) !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-login.garna-button-secondary:hover {
+	background: rgba(255, 255, 255, 0.12) !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header.is-scrolled .garna-header-login.garna-button-secondary {
+	border-color: rgba(21, 21, 21, 0.14) !important;
+	background: rgba(255, 255, 255, 0.38) !important;
+	box-shadow: none !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header.is-scrolled .garna-header-login.garna-button-secondary:hover {
+	background: rgba(21, 21, 21, 0.06) !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .garna-header.is-scrolled :is(
+	.garna-header-dropdown-panel,
+	.garna-header-mobile-menu
+) {
+	background: var(--garna-surface-raised) !important;
+}
+
+html:has(.light-home-draft) .spendbase-quote__text,
+html:has(.light-home-draft) .spendbase-quote__caption {
+	color: var(--garna-text) !important;
+}
+
+html:has(.light-home-draft) .spendbase-quote__caption span:last-child {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .spendbase-quote__caption span:nth-child(2) {
+	display: none;
+}
+
+/* Deferred contractor payments stack follows the light product palette. */
+html[data-theme='light']:has(.light-home-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card {
+	border-color: rgba(21, 21, 21, 0.11);
+	background: var(--garna-surface-raised);
+	box-shadow: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card::before,
+html[data-theme='light']:has(.light-home-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card::after {
+	display: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card__copy h3 {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card__copy p {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card__footer span {
+	border-color: transparent;
+	background: var(--light-home-lime-soft);
+	color: var(--light-home-lime-ink);
+}
+
+/* The product mockups inside Manage Global Payroll use the same light UI language. */
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .salary-card {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #eceeea !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .salary-card--layer {
+	border-color: rgba(21, 21, 21, 0.09) !important;
+	background: #eceeea !important;
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(.salary-card strong, .salary-breakdown b) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+	.salary-card small,
+	.salary-amount span,
+	.salary-breakdown i,
+	.salary-footer span
+) {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .salary-amount {
+	background: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .salary-breakdown span {
+	background: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .salary-footer button {
+	border-color: #151515 !important;
+	background: #151515 !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .salary-footer button:hover {
+	border-color: #303030 !important;
+	background: #303030 !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .salary-card--layer i {
+	border-color: rgba(88, 184, 0, 0.2) !important;
+	background: rgba(168, 255, 38, 0.16) !important;
+	color: #3f8500 !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .salary-card--front em {
+	border-color: rgba(23, 93, 140, 0.14) !important;
+	background: var(--light-home-sky-soft) !important;
+	color: var(--light-home-sky-ink) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .globe-shell {
+	border: 1px solid rgba(21, 21, 21, 0.08);
+	background: radial-gradient(circle at 34% 26%, #f5f6f3 0%, #daddd8 54%, #bbc1ba 100%) !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .globe-map-fallback {
+	opacity: 0.31 !important;
+	filter: grayscale(1) brightness(0.58) contrast(1.14) !important;
+	mix-blend-mode: multiply !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .globe-light {
+	background:
+		radial-gradient(circle at 36% 24%, rgba(255, 255, 255, 0.82), transparent 34%),
+		linear-gradient(90deg, rgba(21, 21, 21, 0.13) 0%, transparent 27%, transparent 70%, rgba(21, 21, 21, 0.17) 100%),
+		linear-gradient(110deg, transparent 0%, rgba(21, 21, 21, 0.05) 60%, rgba(21, 21, 21, 0.18)) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .employee-pill {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #ffffff !important;
+	box-shadow: none !important;
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .employee-details strong {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .employee-details small {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .employee-avatar__photo {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .employee-avatar__flag {
+	border-color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .phone-frame {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #f3f4f1 !important;
+	box-shadow: none !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .payout-phone-composition::before {
+	background: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+	.phone-status-bar,
+	.phone-navigation-bar h4,
+	.account-dashboard,
+	.transfer-amount strong,
+	.transfer-summary,
+	.transfer-summary b,
+	.transfer-account strong,
+	.method-tile strong
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+	.dashboard-balance span,
+	.dashboard-widget small,
+	.method-tile small,
+	.transfer-account small,
+	.transfer-amount > span,
+	.transfer-summary div
+) {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+	.dashboard-account-name,
+	.dashboard-widget,
+	.method-tile,
+	.transfer-card
+) {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #ffffff !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .dashboard-account-name {
+	border-color: transparent !important;
+	background: transparent !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .dashboard-account-chevron {
+	stroke: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .widget-icons .template-icon--original {
+	display: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .widget-icons .template-icon--light {
+	display: block !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .back-button {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #ffffff !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .widget-icons i {
+	border-color: #f3f4f1 !important;
+	background: #dfe2dc !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .dashboard-actions span {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #e5e7e1 !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .withdraw-all-button {
+	border-color: transparent !important;
+	background: var(--light-home-lime-soft) !important;
+	color: var(--light-home-lime-ink) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
+	.transfer-swap-icon,
+	.account-swap-icon
+) {
+	stroke: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .transfer-summary button {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .business-perks-visual {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #f3f4f1 !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .business-perks-visual [class~='text-gray-500'] {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .business-perks-visual [class~='text-white'] {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .perk-row {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .perk-row strong {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .perk-row small {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(.perk-action, .perk-chevron) {
+	color: var(--garna-text) !important;
+	stroke: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .show-more-offers {
+	border-color: var(--garna-text) !important;
+	background: var(--garna-text) !important;
+	color: #ffffff !important;
+}
+
+/* Product demo cover: Perks-inspired warm canvas, white surfaces, black controls and restrained lime accents. */
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo {
+	border: 1px solid rgba(21, 21, 21, 0.1);
+	background: #ffffff;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 {
+	--dashboard-accent: var(--garna-accent);
+	--dashboard-ink: #151515;
+	--dashboard-surface: #ffffff;
+	--dashboard-surface-raised: #ffffff;
+	--dashboard-line: rgba(21, 21, 21, 0.1);
+	--dashboard-muted: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-window {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #ffffff !important;
+	box-shadow: 0 20px 52px rgba(20, 24, 18, 0.09) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-window__chrome {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-window__address {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #f3f4f1 !important;
+	box-shadow: none !important;
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 :is(
+	.garna-product-window__body,
+	.garna-product-window__canvas
+) {
+	background: #f3f4f1 !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-window__sidebar {
+	border-color: transparent !important;
+	background: #f3f4f1 !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-window__sidebar img[src='/garna_logo.svg'] {
+	filter: invert(1) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-window__sidebar nav > div {
+	border-color: transparent !important;
+	background: transparent !important;
+	color: var(--garna-text-muted) !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-window__sidebar nav > div:first-child {
+	border-color: var(--light-home-lime-ink) !important;
+	background: var(--light-home-lime-ink) !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-window__sidebar nav > div:first-child svg {
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-window__sidebar nav > div:not(:first-child):is(:hover, :focus-within) {
+	border-color: var(--garna-text) !important;
+	background: var(--garna-text) !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-window__sidebar nav > div:not(:first-child):is(:hover, :focus-within) svg {
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-panel {
+	border-color: rgba(21, 21, 21, 0.09) !important;
+	background: #ffffff !important;
+	box-shadow: 0 10px 30px rgba(20, 24, 18, 0.05) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 :is(
+	[class~='text-white'],
+	[class*='text-white/'],
+	[data-translate='dashboard.templates'],
+	[data-translate='dashboard.transactions']
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 [class~='text-gray-500'] {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-window__topbar > div:last-child {
+	border-color: transparent !important;
+	background: var(--light-home-sky) !important;
+	color: var(--light-home-sky-ink) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-panel .grid button {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #e3e6df !important;
+	box-shadow: none !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .garna-product-panel .grid button:is(:hover, :focus-visible) {
+	border-color: var(--garna-text) !important;
+	background: var(--garna-text) !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 :is(
+	.anim-delay-2 .grid > div,
+	.anim-delay-3 .space-y-4 > div
+) {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+	box-shadow: 0 10px 30px rgba(20, 24, 18, 0.05) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 :is(
+	.anim-delay-2 .grid > div:hover,
+	.anim-delay-2 .grid > div:focus-within,
+	.anim-delay-3 .space-y-4 > div:hover,
+	.anim-delay-3 .space-y-4 > div:focus-within
+) {
+	border-color: rgba(21, 21, 21, 0.14) !important;
+	background: #ffffff !important;
+	box-shadow: 0 16px 38px rgba(20, 24, 18, 0.085) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .anim-delay-2 .grid > div > div:first-child {
+	border-color: transparent !important;
+	background: var(--garna-text) !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .anim-delay-2 .grid > div:nth-child(4) > div:first-child {
+	background: var(--garna-accent) !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .anim-delay-2 .grid > div:nth-child(2) > div:first-child {
+	background: var(--light-home-sky) !important;
+	color: var(--light-home-sky-ink) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .anim-delay-2 .grid > div:nth-child(3) > div:first-child {
+	background: var(--light-home-lime-ink) !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .anim-delay-3 .space-y-4 > div > div:first-child > div:first-child {
+	background: #151515 !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo .dashboard-v2 .anim-delay-3 .space-y-4 > div:nth-child(2) > div:first-child > div:first-child {
+	background: var(--garna-accent) !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo__shade {
+	background:
+		linear-gradient(180deg, transparent 42%, rgba(255, 255, 255, 0.14) 62%, rgba(255, 255, 255, 0.94) 100%),
+		radial-gradient(circle at 50% 92%, rgba(255, 255, 255, 0.5), transparent 52%) !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo__action {
+	border-color: var(--garna-text) !important;
+	background: var(--garna-text) !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+	backdrop-filter: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo__play {
+	border-radius: 0.45rem;
+	background: var(--garna-accent);
+	padding: 0.28rem;
+	color: var(--garna-text) !important;
+	filter: none !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo__cover:is(:hover, :focus-within) .product-demo__action {
+	border-color: #2d302b !important;
+	background: #2d302b !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+	transform: translateX(-50%);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo__cover:is(:hover, :focus-within) .product-demo__play {
+	background: var(--garna-accent);
+	filter: none !important;
+	transform: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo__cover:focus-within {
+	outline-color: #5d7800 !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo__video {
+	background: #ffffff !important;
+}
+
+/* Keep the footer as the original dark closing section. */
+html[data-theme='light']:has(.light-home-draft) body {
+	--light-home-footer-radius: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft > [data-final-cta-section] {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	border-radius: 0 0 var(--light-home-footer-radius) var(--light-home-footer-radius);
+	background: var(--garna-page-bg);
+}
+
+html[data-theme='light']:has(.light-home-draft) body .garna-footer {
+	background: #020202 !important;
+	border-top-color: transparent !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft + .garna-footer {
+	margin-top: calc(var(--light-home-footer-radius) * -1);
+	padding-top: calc(4rem + var(--light-home-footer-radius));
+}
+
+html[data-theme='light']:has(.light-home-draft) body .garna-footer img[src='/garna_logo.svg'],
+html[data-theme='light']:has(.light-home-draft) body .garna-footer img[src='/mediacube-logo-white.svg'] {
+	filter: none !important;
+}
+
+html:has(.light-home-draft) .garna-footer [class~='text-white'] {
+	color: #ffffff !important;
+}
+
+html:has(.light-home-draft) .garna-footer [class~='text-gray-500'] {
+	color: #6b7280 !important;
+}
+
+html:has(.light-home-draft) .garna-footer [class~='text-gray-600'] {
+	color: #4b5563 !important;
+}
+
+html:has(.light-home-draft) .garna-footer [class*='bg-[#1A1A1A]'] {
+	background-color: #1a1a1a !important;
+}
+
+html:has(.light-home-draft) .garna-footer [class*='text-[#CBF300]'] {
+	color: #b8ff3c !important;
+}
+
+html:has(.light-home-draft) .garna-footer [class~='border-white/10'] {
+	border-color: rgba(255, 255, 255, 0.1) !important;
+}

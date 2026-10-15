@@ -19,6 +19,16 @@ import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
 
+interface Props {
+	defaultTheme?: 'dark' | 'light';
+	mainClass?: string;
+}
+
+const {
+	defaultTheme = 'dark',
+	mainClass = '',
+} = Astro.props;
+
 const homeFaqItems = [
 	{
 		question: 'What services does Garna provide?',
@@ -101,7 +111,7 @@ const homeFaqItems = [
 
 ---
 
-<BaseLayout shell={pageShells.home} showRainbow={false}>
+<BaseLayout shell={pageShells.home} showRainbow={false} defaultTheme={defaultTheme} mainClass={mainClass}>
 	<div class="home-hero-proof-stage" data-home-hero-proof-stage>
 		<HeroSection {...pageHeroes.home}>
 			<div slot="before-title" class="home-hero-proof-rotator" aria-label="Garna in numbers" data-translate-aria-label="hero.stats.ariaLabel">
@@ -144,7 +154,7 @@ const homeFaqItems = [
 	</div>
 	<ManageGlobalPayrollSection />
 	<ContractorPaymentsSection />
-	<HireEmployeesWorldwideSection />
+	<HireEmployeesWorldwideSection cardInteractive={defaultTheme !== 'light'} />
 	<EffectivePayrollSection />
 	<SpendbaseQuoteSection />
 	<DeferredContractorPaymentsSection />

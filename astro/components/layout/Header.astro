@@ -4,6 +4,7 @@ import Button from '../ui/Button.astro';
 import { getPagePathFromPathname } from '../../utils/page-path';
 
 const currentPath = getPagePathFromPathname(Astro.url.pathname);
+const navCurrentPath = currentPath === 'light-home' ? '' : currentPath;
 
 const base = '/en';
 const homeHref = base;
@@ -30,7 +31,7 @@ const logInUrl = 'https://app.garna.io/en/auth/sign-in';
 const navLinkClass = (path: string) =>
 	[
 		'garna-header-nav-link',
-		currentPath === path ? 'is-active' : '',
+		navCurrentPath === path ? 'is-active' : '',
 	].join(' ');
 
 const mobileLinkClass = (path: string) =>
@@ -38,7 +39,7 @@ const mobileLinkClass = (path: string) =>
 		'garna-header-mobile-link',
 	].join(' ');
 
-const startsTransparent = currentPath === '' || currentPath === contractorOfRecordPath;
+const startsTransparent = currentPath === '' || currentPath === contractorOfRecordPath || currentPath === 'light-home';
 ---
 
 <nav class:list={['garna-header fixed z-50 w-full top-0', { 'is-scrolled': !startsTransparent }]}>
@@ -64,7 +65,7 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 				<div class="garna-header-dropdown garna-header-products-dropdown">
 					<div class="garna-header-dropdown-panel">
 						<div class="garna-header-dropdown-column garna-header-products-column">
-							<a href={homeHref} data-localized-path="" data-nav-link class="garna-header-dropdown-link">
+							<a href={homeHref} data-localized-path="" data-nav-link class:list={['garna-header-dropdown-link', navCurrentPath === '' && 'is-active']} aria-current={navCurrentPath === '' ? 'page' : undefined}>
 								<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 									<circle cx="12" cy="12" r="10"></circle>
 									<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
@@ -298,7 +299,7 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 			<div class="garna-header-mobile-scroll">
 				<div class="garna-header-mobile-group">
 				<div class="garna-header-mobile-section" data-translate="header.products">Products</div>
-				<a href={homeHref} data-localized-path="" data-nav-link data-nav-mobile class={`${mobileLinkClass('')} garna-header-mobile-card`}>
+				<a href={homeHref} data-localized-path="" data-nav-link data-nav-mobile class:list={[mobileLinkClass(''), 'garna-header-mobile-card', navCurrentPath === '' && 'is-active']} aria-current={navCurrentPath === '' ? 'page' : undefined}>
 					<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 						<circle cx="12" cy="12" r="10"></circle>
 						<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
@@ -507,7 +508,7 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 
 		const syncHeaderSurface = () => {
 			if (!(header instanceof HTMLElement)) return;
-			const transparentAtTopPaths = new Set(['', 'contractor-of-record']);
+			const transparentAtTopPaths = new Set(['', 'contractor-of-record', 'light-home']);
 			const startsTransparentAtTop = transparentAtTopPaths.has(getPagePath());
 			header.classList.toggle('is-scrolled', !startsTransparentAtTop || window.scrollY > 1);
 
@@ -625,7 +626,8 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 		};
 
 		const setNavActiveState = () => {
-			const currentPath = getPagePath();
+			const pagePath = getPagePath();
+			const currentPath = pagePath === 'light-home' ? '' : pagePath;
 			const setSingleActiveLink = (selector) => {
 				let activeAssigned = false;
 				document.querySelectorAll(selector).forEach((link) => {
@@ -634,6 +636,8 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 					const isBlogSection = linkPath === 'blog' && (currentPath === 'blog' || currentPath.startsWith('blog/'));
 					const isActive = !activeAssigned && (linkPath === currentPath || isBlogSection);
 					link.classList.toggle('is-active', isActive);
+					if (isActive) link.setAttribute('aria-current', 'page');
+					else link.removeAttribute('aria-current');
 					if (isActive) activeAssigned = true;
 				});
 			};

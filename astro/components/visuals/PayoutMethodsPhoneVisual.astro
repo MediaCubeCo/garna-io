@@ -35,7 +35,7 @@
 
 				<h5 data-translate="manageGlobalPayroll.visual.methods.widgets">Widgets</h5>
 				<div class="dashboard-widgets">
-					<div class="dashboard-widget"><span class="widget-icons"><img src="/images/figma-template-paypal.svg" width="32" height="32" alt="" aria-hidden="true" /><img src="/images/figma-template-tether.svg" width="32" height="32" alt="" aria-hidden="true" /><img src="/images/figma-template-bank.svg" width="32" height="32" alt="" aria-hidden="true" /><i>+5</i></span><strong data-translate="manageGlobalPayroll.visual.methods.templates">Templates</strong><small data-translate="manageGlobalPayroll.visual.methods.templatesSaved">8 templates saved</small></div>
+					<div class="dashboard-widget"><span class="widget-icons"><img src="/images/figma-template-paypal.svg" width="32" height="32" alt="" aria-hidden="true" /><img class="template-icon--original" src="/images/figma-template-tether.svg" width="32" height="32" alt="" aria-hidden="true" /><img class="template-icon--light" src="/images/figma-template-tether-light.svg" width="32" height="32" alt="" aria-hidden="true" /><img class="template-icon--original" src="/images/figma-template-bank.svg" width="32" height="32" alt="" aria-hidden="true" /><img class="template-icon--light" src="/images/figma-template-bank-light.svg" width="32" height="32" alt="" aria-hidden="true" /><i>+5</i></span><strong data-translate="manageGlobalPayroll.visual.methods.templates">Templates</strong><small data-translate="manageGlobalPayroll.visual.methods.templatesSaved">8 templates saved</small></div>
 					<div class="dashboard-widget"><img class="widget-exchange-image" src="/images/figma-currency-exchange.svg" width="32" height="32" alt="" aria-hidden="true" /><strong data-translate="manageGlobalPayroll.visual.methods.currencyExchange">Currency exchange</strong><small data-translate="manageGlobalPayroll.visual.methods.betweenAccounts">Between your accounts</small></div>
 				</div>
 			</div>
@@ -583,6 +583,10 @@
 
 	.widget-icons img:first-child {
 		margin-left: 0;
+	}
+
+	.template-icon--light {
+		display: none !important;
 	}
 
 	.widget-icons i {

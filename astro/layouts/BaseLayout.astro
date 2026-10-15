@@ -16,6 +16,8 @@ interface Props {
 	showFooter?: boolean;
 	showRainbow?: boolean;
 	rainbowCount?: number;
+	defaultTheme?: 'dark' | 'light';
+	mainClass?: string;
 }
 
 const {
@@ -24,6 +26,8 @@ const {
 	showFooter = true,
 	showRainbow = true,
 	rainbowCount = 6,
+	defaultTheme = 'dark',
+	mainClass = '',
 } = Astro.props;
 
 const currentPath = getPagePathFromPathname(Astro.url.pathname);
@@ -43,7 +47,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" class={htmlClass} data-theme="dark">
+<html lang="en" class={htmlClass} data-theme="dark" data-default-theme={defaultTheme}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -51,8 +55,11 @@ const {
 		<script is:inline>
 			(() => {
 				const requestedTheme = new URLSearchParams(window.location.search).get('theme');
-				const theme = requestedTheme === 'light' ? 'light' : 'dark';
 				const root = document.documentElement;
+				let theme = requestedTheme === 'light' ? 'light' : 'dark';
+				if (requestedTheme !== 'light' && requestedTheme !== 'dark') {
+					theme = root.dataset.defaultTheme === 'light' ? 'light' : 'dark';
+				}
 				root.dataset.theme = theme;
 				root.style.colorScheme = theme;
 				root.classList.toggle('garna-light-theme', theme === 'light');
@@ -96,7 +103,7 @@ const {
 	<body class={bodyClass} data-garna-page>
 		{showRainbow && <RainbowBackground count={rainbowCount} />}
 		{showHeader && <Header />}
-		<main id="astro-page-content" data-astro-page-content data-current-path={currentPath}>
+		<main id="astro-page-content" class={mainClass} data-astro-page-content data-current-path={currentPath}>
 			<slot />
 		</main>
 		{showFooter && <Footer />}
