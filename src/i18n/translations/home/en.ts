@@ -159,8 +159,8 @@
 			},
 			employees: {
 				germany: 'Germany · EOR active',
-				canada: 'Canada · EOR active',
-				japan: 'Japan · EOR active',
+				brazil: 'Brazil · EOR active',
+				uk: 'United Kingdom · EOR active',
 			},
 			perks: {
 				offerDetails: 'Offer details',

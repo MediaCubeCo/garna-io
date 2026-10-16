@@ -512,6 +512,17 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 			const startsTransparentAtTop = transparentAtTopPaths.has(getPagePath());
 			header.classList.toggle('is-scrolled', !startsTransparentAtTop || window.scrollY > 1);
 
+			const darkHeaderSurface = document.querySelector('.light-home-draft .spendbase-quote-section');
+			if (darkHeaderSurface instanceof HTMLElement) {
+				const headerHeight = header.getBoundingClientRect().height;
+				const darkSurfaceBounds = darkHeaderSurface.getBoundingClientRect();
+				const headerSampleY = headerHeight * 0.5;
+				const isOverDarkSurface = darkSurfaceBounds.top <= headerSampleY && darkSurfaceBounds.bottom >= headerSampleY;
+				header.classList.toggle('is-over-dark-surface', isOverDarkSurface);
+			} else {
+				header.classList.remove('is-over-dark-surface');
+			}
+
 			const hero = document.querySelector('.payroll-solution-new-hero');
 			const usesLightTheme = document.documentElement.dataset.theme === 'light';
 			if (!usesLightTheme || !(hero instanceof HTMLElement)) {

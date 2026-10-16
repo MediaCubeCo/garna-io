@@ -7,6 +7,7 @@ import Section from '../../../layout/Section.astro';
 	class="spendbase-quote-section overflow-hidden"
 	contentClass="mx-auto flex min-h-[58svh] max-w-6xl items-center justify-center"
 >
+	<canvas class="spendbase-quote__particles" data-spendbase-quote-particles aria-hidden="true"></canvas>
 	<figure class="spendbase-quote">
 		<div class="spendbase-quote__mark">
 			<img
@@ -31,9 +32,19 @@ import Section from '../../../layout/Section.astro';
 
 <style>
 	.spendbase-quote-section {
+		isolation: isolate;
 		background:
 			radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.035), transparent 27rem),
 			#101010;
+	}
+
+	.spendbase-quote__particles {
+		position: absolute;
+		z-index: 0;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
 	}
 
 	.spendbase-quote {
@@ -114,6 +125,10 @@ import Section from '../../../layout/Section.astro';
 	}
 
 	@media (max-width: 520px) {
+		.spendbase-quote__particles {
+			opacity: 0.72;
+		}
+
 		.spendbase-quote-section :global(.garna-container) {
 			padding-inline: 1.25rem;
 		}
@@ -128,3 +143,163 @@ import Section from '../../../layout/Section.astro';
 		}
 	}
 </style>
+
+<script>
+	type QuoteParticle = {
+		x: number;
+		y: number;
+		radius: number;
+		alpha: number;
+		phase: number;
+		speed: number;
+	};
+
+	const initSpendbaseQuoteParticles = () => {
+		for (const canvas of document.querySelectorAll<HTMLCanvasElement>('[data-spendbase-quote-particles]')) {
+			if (canvas.dataset.particlesReady === 'true') continue;
+			canvas.dataset.particlesReady = 'true';
+
+			const section = canvas.closest<HTMLElement>('.spendbase-quote-section');
+			const context = canvas.getContext('2d');
+			if (!section || !context) continue;
+
+			const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+			const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+			let particles: QuoteParticle[] = [];
+			let width = 0;
+			let height = 0;
+			let frame = 0;
+			let visible = true;
+			let lastTime = 0;
+			const pointer = { x: 0, y: 0, targetX: 0, targetY: 0, active: false, strength: 0 };
+
+			const seededRandom = (seed: number) => {
+				const value = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+				return value - Math.floor(value);
+			};
+
+			const createParticles = () => {
+				const area = width * height;
+				const count = Math.max(260, Math.min(650, Math.round(area / 1900)));
+				const centerX = width / 2;
+				const centerY = height / 2;
+				const quietRadiusX = width * 0.34;
+				const quietRadiusY = height * 0.27;
+
+				particles = Array.from({ length: count }, (_, index) => {
+					let x = seededRandom(index + 1) * width;
+					let y = seededRandom(index + 401) * height;
+					const normalizedX = (x - centerX) / quietRadiusX;
+					const normalizedY = (y - centerY) / quietRadiusY;
+					const distanceFromCopy = Math.hypot(normalizedX, normalizedY);
+
+					// Keep a few atmospheric dots behind the copy, but move most of the
+					// field toward the darker perimeter so the effect frames the quote.
+					if (distanceFromCopy < 1 && seededRandom(index + 607) > 0.18) {
+						const angle = Math.atan2(normalizedY, normalizedX);
+						const perimeterDistance = 1.08 + seededRandom(index + 713) * 0.5;
+						x = centerX + Math.cos(angle) * quietRadiusX * perimeterDistance;
+						y = centerY + Math.sin(angle) * quietRadiusY * perimeterDistance;
+					}
+
+					return {
+						x,
+						y,
+						radius: 0.7 + seededRandom(index + 809) * 1.1,
+						alpha: 0.14 + seededRandom(index + 1201) * 0.25,
+						phase: seededRandom(index + 1601) * Math.PI * 2,
+						speed: 0.3 + seededRandom(index + 2003) * 0.55,
+					};
+				});
+			};
+
+			const resize = () => {
+				const bounds = section.getBoundingClientRect();
+				width = Math.max(1, bounds.width);
+				height = Math.max(1, bounds.height);
+				const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+				canvas.width = Math.round(width * pixelRatio);
+				canvas.height = Math.round(height * pixelRatio);
+				canvas.style.width = `${width}px`;
+				canvas.style.height = `${height}px`;
+				context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+				pointer.x = pointer.targetX = width / 2;
+				pointer.y = pointer.targetY = height / 2;
+				createParticles();
+				restart();
+			};
+
+			const draw = (time: number) => {
+				context.clearRect(0, 0, width, height);
+				const canAnimate = !reducedMotion.matches;
+				const interactionRadius = Math.min(190, Math.max(125, width * 0.12));
+				const elapsed = time * 0.001;
+
+				pointer.x += (pointer.targetX - pointer.x) * 0.075;
+				pointer.y += (pointer.targetY - pointer.y) * 0.075;
+				pointer.strength += ((pointer.active ? 1 : 0) - pointer.strength) * 0.07;
+
+				for (const particle of particles) {
+					const driftX = canAnimate ? Math.cos(elapsed * particle.speed + particle.phase) * 2.6 : 0;
+					const driftY = canAnimate ? Math.sin(elapsed * particle.speed * 0.82 + particle.phase) * 2.2 : 0;
+					let x = particle.x + driftX;
+					let y = particle.y + driftY;
+					let proximity = 0;
+
+					if (pointer.strength > 0.002) {
+						const deltaX = x - pointer.x;
+						const deltaY = y - pointer.y;
+						const distance = Math.hypot(deltaX, deltaY) || 1;
+						if (distance < interactionRadius) {
+							proximity = 1 - distance / interactionRadius;
+							const displacement = proximity * proximity * 24 * pointer.strength;
+							x += (deltaX / distance) * displacement;
+							y += (deltaY / distance) * displacement;
+						}
+					}
+
+					const edgeFade = Math.min(1, x / 80, (width - x) / 80, y / 70, (height - y) / 70);
+					const alpha = Math.max(0, particle.alpha * edgeFade + proximity * 0.25 * pointer.strength);
+					context.beginPath();
+					context.arc(x, y, particle.radius + proximity * 0.7, 0, Math.PI * 2);
+					context.fillStyle = `rgba(175, 199, 218, ${alpha})`;
+					context.fill();
+				}
+
+				if (visible && canAnimate) frame = window.requestAnimationFrame(draw);
+			};
+
+			const handlePointerMove = (event: PointerEvent) => {
+				if (!finePointer.matches || reducedMotion.matches) return;
+				const bounds = section.getBoundingClientRect();
+				pointer.targetX = event.clientX - bounds.left;
+				pointer.targetY = event.clientY - bounds.top;
+				pointer.active = true;
+			};
+
+			const handlePointerLeave = () => {
+				pointer.active = false;
+			};
+
+			const restart = () => {
+				window.cancelAnimationFrame(frame);
+				lastTime = performance.now();
+				if (visible && !reducedMotion.matches) frame = window.requestAnimationFrame(draw);
+				else draw(lastTime);
+			};
+
+			section.addEventListener('pointermove', handlePointerMove, { passive: true });
+			section.addEventListener('pointerleave', handlePointerLeave, { passive: true });
+			reducedMotion.addEventListener('change', restart);
+			new ResizeObserver(resize).observe(section);
+			new IntersectionObserver(([entry]) => {
+				visible = entry.isIntersecting;
+				restart();
+			}, { rootMargin: '120px' }).observe(section);
+			resize();
+		}
+	};
+
+	initSpendbaseQuoteParticles();
+	document.addEventListener('astro:page-load', initSpendbaseQuoteParticles);
+</script>
