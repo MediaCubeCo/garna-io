@@ -250,6 +250,8 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 	}
 
 	.home-workflows-stack__card--pay > img {
+		/* Cover the bottom edge at fractional card sizes too. */
+		height: calc(100% + 4px);
 		object-position: center bottom;
 		transform: scale(1.95);
 		transform-origin: center bottom;

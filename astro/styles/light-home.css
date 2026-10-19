@@ -543,6 +543,18 @@ html[data-theme='light']:has(.light-home-draft) :is(
 	background: var(--garna-page-bg) !important;
 }
 
+html[data-theme='light']:has(.light-home-draft) .home-hero-cover__media::after {
+	box-shadow: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) .home-workflows-stack__card--contractors {
+	transform: translateY(-1rem) scale(0.97);
+}
+
+html[data-theme='light']:has(.light-home-draft) .home-workflows-stack__card--hire {
+	transform: translateY(-1.875rem) scale(0.94);
+}
+
 /* A soft glass surface keeps the fixed header legible without turning it into a white bar. */
 html[data-theme='light']:has(.light-home-draft) .garna-header:not(.is-mobile-open),
 html[data-theme='light']:has(.light-home-draft) .garna-header.is-scrolled:not(.is-mobile-open) {

@@ -63,6 +63,7 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 const PAGE_PATH_TO_ASSET: Record<string, string> = {
 	'gamescom-2026-side-events': '/gamescom-2026-side-events.html',
 	'': '/index.html',
+	'light-home': '/light-home.html',
 	'for-contractors': '/for-contractors.html',
 	'for-creators': '/for-creators.html',
 	'contractor-of-record': '/contractor-of-record.html',
@@ -72,6 +73,7 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 	'white-label-payroll': '/white-label.html',
 	'small-business-payroll': '/payroll-small-business.html',
 	'employer-of-record': '/employer-of-record.html',
+	'eor-light': '/eor-light.html',
 	'global-invoicing': '/global-invoicing.html',
 	'business-account': '/business-account.html',
 	'employee-cost-calculator': '/tax-calculator.html',
@@ -84,6 +86,7 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'gamescom-2026-side-events': 'gamescom-2026-side-events',
 	'': 'home',
+	'light-home': 'home',
 	'for-contractors': 'offer',
 	'for-creators': 'for-creators',
 	'contractor-of-record': 'contractor-of-record',
@@ -93,6 +96,7 @@ const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
 	'white-label-payroll': 'white-label',
 	'small-business-payroll': 'payroll-small-business',
 	'employer-of-record': 'eor',
+	'eor-light': 'eor',
 	'global-invoicing': 'ads-landing',
 	'business-account': 'business-account',
 	'employee-cost-calculator': 'tax-calculator',

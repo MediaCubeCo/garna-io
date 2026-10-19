@@ -407,6 +407,12 @@ const homeFaqItems = [
 					if (mark < 2) return 1;
 					return 2;
 				};
+				const compactStack = stage.closest('.light-home-draft') !== null;
+				const firstStackStep = compactStack ? 16 : 28;
+				const nextStackStep = compactStack ? 14 : 24;
+				const stackY = (depth) => depth <= 1
+					? -firstStackStep * depth
+					: -firstStackStep - nextStackStep * (depth - 1);
 				const renderQuietStack = (progress, landed = true) => {
 					const requested = Math.min(2, Math.floor(progress * 3));
 					if (!desktop.matches) {
@@ -439,8 +445,8 @@ const homeFaqItems = [
 					}
 					// 0 = only the people card. 1 = the next card has landed on top.
 					// 2 = the third card has landed and both cards behind it form a taller stack.
-					// The dot and the heading follow the scroll. The cards follow deckShown,
-					// which a trigger eases between those indexes.
+					// The fill follows scroll; the active dot, heading and cards follow
+					// the same eased position so they cannot disagree during a quick scroll.
 					const active = landed ? indicatorIndexFor(progress) : 0;
 					const intro = stage.classList.contains('is-plate-owner')
 						? (landed ? deckShown : 0)
@@ -449,19 +455,24 @@ const homeFaqItems = [
 					const step = Math.min(1, Math.floor(intro));
 					const local = intro - step;
 					const enteringIndex = step + 1;
+					const headingReveal = compactStack ? smootherstep(0.12, 0.88, local) : 0;
+					const visualActive = compactStack ? Math.round(intro) : active;
 					deckIndicators.forEach((indicator, index) => {
-						indicator.classList.toggle('is-active', index === active);
+						indicator.classList.toggle('is-active', index === (compactStack ? visualActive : active));
 						indicator.style.setProperty('--step-fill', String(clamp(progress * 3 - index)));
 					});
 					deckHeadings.forEach((heading, index) => {
-						heading.style.display = index === active ? 'block' : 'none';
-						heading.style.opacity = '1';
-						heading.style.visibility = index === active ? 'visible' : 'hidden';
-						heading.style.transform = 'none';
-						heading.setAttribute('aria-hidden', String(index !== active));
+						const opacity = compactStack
+							? (index === step ? 1 - headingReveal : index === enteringIndex ? headingReveal : 0)
+							: Number(index === active);
+						heading.style.display = compactStack || index === active ? 'block' : 'none';
+						heading.style.opacity = String(opacity);
+						heading.style.visibility = opacity > 0 ? 'visible' : 'hidden';
+						heading.style.transform = compactStack ? `translateY(${((1 - opacity) * 6).toFixed(2)}px)` : 'none';
+						heading.setAttribute('aria-hidden', String(index !== visualActive));
 					});
-					const stackY = (depth) => depth <= 1 ? -28 * depth : -28 - 24 * (depth - 1);
-					const enterTravel = 72;
+					const enterTravel = compactStack ? 30 : 72;
+					const enterScale = compactStack ? 1.035 : 1.12;
 					deckCards.forEach((card, index) => {
 						const notice = card.querySelector('.home-workflows-stack__status');
 						const hidden = index > enteringIndex;
@@ -471,7 +482,7 @@ const homeFaqItems = [
 							card.style.filter = 'none';
 							card.style.zIndex = '0';
 							card.style.transformOrigin = 'center center';
-							card.style.transform = `translate3d(0, ${enterTravel}px, 0) scale(1.12)`;
+							card.style.transform = `translate3d(0, ${enterTravel}px, 0) scale(${enterScale})`;
 							card.dataset.plateOpacity = '0';
 							card.dataset.plateFilter = 'none';
 							card.dataset.plateZ = '0';
@@ -484,10 +495,10 @@ const homeFaqItems = [
 						}
 						const incoming = index === enteringIndex;
 						const depth = incoming ? 0 : (enteringIndex - 1 - index) + local;
-						const appear = incoming ? smoothstep(0, 1, local) : 1;
+						const appear = incoming ? (compactStack ? smootherstep(0.04, 0.96, local) : smoothstep(0, 1, local)) : 1;
 						const photoOpacity = incoming ? appear : 1;
-						const blur = incoming ? mix(16, 0, appear) : 0;
-						const cardScale = incoming ? mix(1.12, 1, appear) : 1 - 0.06 * depth;
+						const blur = incoming && !compactStack ? mix(16, 0, appear) : 0;
+						const cardScale = incoming ? mix(enterScale, 1, appear) : 1 - 0.06 * depth;
 						const y = incoming ? mix(enterTravel, 0, appear) : stackY(depth);
 						const z = incoming ? 8 : Math.round(6 - depth * 2);
 						const filter = blur > 0.2 ? `blur(${blur.toFixed(2)}px)` : 'none';
@@ -501,7 +512,7 @@ const homeFaqItems = [
 						card.dataset.plateOpacity = String(photoOpacity);
 						card.dataset.plateFilter = filter;
 						card.dataset.plateZ = String(z);
-						card.setAttribute('aria-hidden', String(index !== active));
+						card.setAttribute('aria-hidden', String(index !== visualActive));
 						if (notice instanceof HTMLElement) {
 							const shown = incoming
 								? appear
@@ -626,8 +637,6 @@ const homeFaqItems = [
 				// after scrolling back leaves the top tenth of that card on screen.
 				let returnArmed = false;
 				let homeProgress = -1;
-				let flightStartedAt = 0;
-				let copyHold = 0;
 				let latestProgress = 0;
 				let latestDeckProgress = 0;
 				const noticeRevealFor = (depth, reveal) => {
@@ -636,6 +645,8 @@ const homeFaqItems = [
 					return smoothstep(start, Math.min(1, start + 0.34), reveal);
 				};
 				const payImageScale = 1.95;
+				// Keep the cover shrinking until the photo detaches near the top of the viewport.
+				const heroShrinkEnd = 0.72;
 				const heroImageScale = () => {
 					if (!(heroCover instanceof Element)) return 1;
 					const value = Number.parseFloat(getComputedStyle(heroCover).getPropertyValue('--home-hero-image-scale'));
@@ -786,11 +797,13 @@ const homeFaqItems = [
 						return;
 					}
 					const started = performance.now();
-					const duration = 200 * Math.abs(to - from);
+					const duration = compactStack
+						? Math.min(460, Math.max(260, 360 * Math.abs(to - from)))
+						: 200 * Math.abs(to - from);
 					const step = (now) => {
 						if (token !== deckToken) return;
 						const u = Math.min(1, (now - started) / duration);
-						const eased = u * u * (3 - 2 * u);
+						const eased = compactStack ? smootherstep(0, 1, u) : u * u * (3 - 2 * u);
 						deckShown = u >= 1 ? to : from + (to - from) * eased;
 						if (u < 1) deckFrame = requestAnimationFrame(step);
 						schedule();
@@ -822,26 +835,14 @@ const homeFaqItems = [
 				const workflowAction = stage.querySelector('.home-workflows-intro__action');
 				const flightSeconds = 0.4;
 				const syncCopyReveal = () => {
-					let reveal = 0;
-					const elapsed = (performance.now() - flightStartedAt) / 1000;
-					if (flightMode === 'flying' && flightTarget === 1) {
-						reveal = smoothstep(0.23, flightSeconds, elapsed);
-					} else if (flightMode === 'flying' && flightTarget === 0) {
-						reveal = copyHold * (1 - smoothstep(0, 0.17, elapsed));
-					} else if (flightMode === 'locked') reveal = 1;
-					stage.style.setProperty('--home-proof-header-opacity', String(reveal));
-					if (workflowAction instanceof HTMLElement) workflowAction.style.pointerEvents = reveal > 0.98 ? '' : 'none';
+					// The next section and its copy enter naturally with the page scroll.
+					stage.style.setProperty('--home-proof-header-opacity', '1');
+					if (workflowAction instanceof HTMLElement) workflowAction.style.pointerEvents = '';
 				};
 				const springFlight = (to) => {
 					const token = ++flightToken;
 					flightAnim?.stop?.();
 					cancelAnimationFrame(returnFrame);
-					if (to === 0) {
-						copyHold = flightMode === 'locked'
-							? 1
-							: smoothstep(0.23, flightSeconds, (performance.now() - flightStartedAt) / 1000);
-					}
-					flightStartedAt = performance.now();
 					flightFrom = readBox(plate.classList.contains('is-detached') ? plate : heroSlot);
 					sizeT = clamp(flightT);
 					flightMode = 'flying';
@@ -1039,14 +1040,15 @@ const homeFaqItems = [
 						const targetRadius = Number.parseFloat(targetStyle.borderTopLeftRadius) || 20;
 						const heroBorderWidth = Number.parseFloat(heroStyle.borderTopWidth) || 1;
 						const overlayOpacity = transitionStarted && !transitionComplete ? 1 : 0;
-						setOverlay(rect, imageRect, overlayOpacity, mix(.54, 0, sizeProgress), mix(heroBorderWidth, 0, sizeProgress), mix(heroRadius, targetRadius, sizeProgress));
+						setOverlay(rect, imageRect, overlayOpacity, 0, mix(heroBorderWidth, 0, sizeProgress), mix(heroRadius, targetRadius, sizeProgress));
 						overlay.style.setProperty('--home-transition-stack-reveal', '0');
 						landingCard.style.opacity = '';
 						landingCard.style.visibility = transitionStarted && !transitionComplete ? 'hidden' : '';
 						stage.style.setProperty('--home-hero-frame-opacity', String(transitionStarted ? 0 : 1));
 						stage.style.setProperty('--home-hero-actions-opacity', String(1 - smoothstep(.035, .18, progress)));
 						stage.style.setProperty('--home-hero-stats-opacity', String(1 - smoothstep(.008, .09, progress)));
-						stage.style.setProperty('--home-hero-backdrop-progress', String(smoothstep(.05, .46, progress)));
+						stage.style.setProperty('--home-hero-backdrop-progress', String(smoothstep(.05, heroShrinkEnd, progress)));
+						stage.style.setProperty('--home-hero-radius-progress', String(smoothstep(.005, .1, progress)));
 						stage.style.setProperty('--home-proof-header-opacity', String(smootherstep(.58, .9, progress)));
 						stage.style.setProperty('--home-proof-featured-image-opacity', '1');
 						stage.style.setProperty('--home-proof-featured-card-opacity', '1');
@@ -1074,7 +1076,7 @@ const homeFaqItems = [
 					latestProgress = progress;
 					const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
 					const mediaNow = measureMediaRect();
-					const heroBackdropProgress = smoothstep(0.05, 0.46, progress);
+					const heroBackdropProgress = smoothstep(0.05, heroShrinkEnd, progress);
 					const plateNearTop = mediaNow.width > 2
 						&& mediaNow.top <= headerHeight + 20
 						&& mediaNow.bottom <= headerHeight + window.innerHeight * 0.3
@@ -1084,7 +1086,7 @@ const homeFaqItems = [
 					if (flightMode === 'attached' && homeProgress >= 0 && (progress < 0.4 || backDown)) homeProgress = -1;
 					if (!flightBooted) {
 						flightBooted = true;
-						if (progress >= 0.72) {
+						if (plateNearTop || progress >= 0.72) {
 							flightT = 1;
 							flightTarget = 1;
 							flightMode = 'locked';
@@ -1136,6 +1138,7 @@ const homeFaqItems = [
 					stage.style.setProperty('--home-hero-actions-opacity', String(actionsOpacity));
 					stage.style.setProperty('--home-hero-stats-opacity', String(1 - smoothstep(.008, .09, progress)));
 					stage.style.setProperty('--home-hero-backdrop-progress', String(heroBackdropProgress));
+					stage.style.setProperty('--home-hero-radius-progress', String(smoothstep(.005, .1, progress)));
 					stage.style.setProperty('--home-proof-featured-image-opacity', '0');
 					stage.style.setProperty('--home-proof-featured-card-opacity', '0');
 					stage.style.setProperty('--home-proof-featured-notice-opacity', settled && stackReveal > 0.98 ? '1' : '0');
@@ -1196,6 +1199,7 @@ const homeFaqItems = [
 		--home-hero-frame-opacity: 1;
 		--home-hero-media-opacity: 1;
 		--home-hero-backdrop-progress: 0;
+		--home-hero-radius-progress: 0;
 		--home-proof-featured-image-opacity: 1;
 		--home-proof-featured-card-opacity: 1;
 		--home-proof-featured-notice-opacity: 1;
@@ -1306,7 +1310,7 @@ const homeFaqItems = [
 		inset: 0;
 		z-index: 1;
 		content: "";
-		background: rgb(0 0 0 / 5%);
+		background: transparent;
 		pointer-events: none;
 	}
 
@@ -1379,7 +1383,7 @@ const homeFaqItems = [
 	.home-hero-cover {
 		--home-hero-image-scale: 1;
 		--home-hero-media-inset: calc(var(--home-hero-backdrop-progress, 0) * clamp(1rem, 2.4vw, 2.75rem));
-		--home-hero-media-radius: calc(var(--home-hero-backdrop-progress, 0) * 1.65rem);
+		--home-hero-media-radius: calc(var(--home-hero-radius-progress, 0) * 1.65rem);
 		--home-hero-frame-width: min(24rem, 36vh);
 		--home-hero-frame-reference-width: min(24rem, 36vh);
 		--home-hero-frame-radius: clamp(1.2rem, 2.5vh, 1.65rem);
@@ -1532,7 +1536,7 @@ const homeFaqItems = [
 		inset: 0;
 		z-index: 1;
 		content: "";
-		background: rgba(0, 0, 0, calc(0.05 + var(--home-hero-backdrop-progress, 0) * 0.29));
+		background: transparent;
 		pointer-events: none;
 	}
 
@@ -1571,11 +1575,13 @@ const homeFaqItems = [
 	.home-hero-plate__layer--contractors,
 	.home-hero-plate__layer--photo { z-index: 0; }
 
+	.home-hero-plate__layer--photo { background: transparent; }
+
 	.home-hero-plate__layer--photo::after {
 		position: absolute;
 		inset: 0;
 		z-index: 1;
-		background: rgb(0 0 0 / 5%);
+		background: transparent;
 		content: "";
 		opacity: 0;
 		pointer-events: none;
@@ -1597,6 +1603,9 @@ const homeFaqItems = [
 	}
 
 	.home-hero-cover__media .home-hero-plate__layer--photo img {
+		/* Bleed past the rounded crop so subpixel scaling cannot reveal its backing. */
+		top: -2px;
+		height: calc(100% + 4px);
 		object-position: center bottom;
 		transform: scale(var(--home-plate-image-scale, var(--home-hero-image-scale)));
 		transform-origin: center bottom;

@@ -1,12 +1,20 @@
 ---
 import Section from '../../layout/Section.astro';
 
+interface Props {
+	lightFlags?: boolean;
+}
+
+const { lightFlags = false } = Astro.props;
+
 type Country = {
 	code: string;
 	name: string;
 };
 
-const flagSrc = (code: string) => `https://flagcdn.com/${code}.svg`;
+const flagSrc = (code: string) => lightFlags
+	? `https://flagcdn.com/w160/${code}.png`
+	: `https://flagcdn.com/${code}.svg`;
 
 const regions: Array<{
 	name: string;

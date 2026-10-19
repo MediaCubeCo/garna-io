@@ -304,8 +304,51 @@ h2 {
 	transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+.garna-button-icon-window {
+	position: relative;
+	display: inline-flex;
+	flex: 0 0 19px;
+	width: 19px;
+	height: 19px;
+	align-items: center;
+	justify-content: center;
+}
+
+.garna-button-icon-svg--incoming {
+	display: none;
+}
+
 .garna-button:hover .garna-button-icon-svg {
 	transform: translate(3px, -3px);
+}
+
+/* The light-page demo CTAs use a two-frame diagonal arrow reel. */
+:is(html:has(.light-home-draft), html:has(.employee-of-record-light-draft))
+	.garna-button-rotating-flare .garna-button-icon-window {
+	overflow: hidden;
+}
+
+:is(html:has(.light-home-draft), html:has(.employee-of-record-light-draft))
+	.garna-button-rotating-flare .garna-button-icon-window .garna-button-icon-svg {
+	position: absolute;
+	inset: 0;
+	transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:is(html:has(.light-home-draft), html:has(.employee-of-record-light-draft))
+	.garna-button-rotating-flare .garna-button-icon-svg--incoming {
+	display: block;
+	transform: translate(-110%, 110%);
+}
+
+:is(html:has(.light-home-draft), html:has(.employee-of-record-light-draft))
+	.garna-button-rotating-flare:is(:hover, :focus-visible) .garna-button-icon-window .garna-button-icon-svg:not(.garna-button-icon-svg--incoming) {
+	transform: translate(110%, -110%);
+}
+
+:is(html:has(.light-home-draft), html:has(.employee-of-record-light-draft))
+	.garna-button-rotating-flare:is(:hover, :focus-visible) .garna-button-icon-svg--incoming {
+	transform: translate(0, 0);
 }
 
 .garna-button-primary {
@@ -463,5 +506,20 @@ h2 {
 
 	.garna-button-rotating-flare::before {
 		animation: none;
+	}
+
+	:is(html:has(.light-home-draft), html:has(.employee-of-record-light-draft))
+		.garna-button-rotating-flare .garna-button-icon-window .garna-button-icon-svg {
+		transition: none;
+	}
+
+	:is(html:has(.light-home-draft), html:has(.employee-of-record-light-draft))
+		.garna-button-rotating-flare:is(:hover, :focus-visible) .garna-button-icon-window .garna-button-icon-svg:not(.garna-button-icon-svg--incoming) {
+		transform: none;
+	}
+
+	:is(html:has(.light-home-draft), html:has(.employee-of-record-light-draft))
+		.garna-button-rotating-flare .garna-button-icon-svg--incoming {
+		display: none;
 	}
 }

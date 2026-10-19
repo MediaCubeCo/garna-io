@@ -1,6 +1,13 @@
 ---
 import Button from '../../ui/Button.astro';
 import HeroStatsRow from '../../ui/HeroStatsRow.astro';
+import EorHeroParticleField from '../../visuals/EorHeroParticleField.astro';
+
+interface Props {
+	lightImage?: boolean;
+}
+
+const { lightImage = false } = Astro.props;
 
 const stats = [
 	{
@@ -22,7 +29,9 @@ const stats = [
 ];
 
 const hero = {
-	image: '/pages/payroll-solution-new/assets/eor-hero-phone-portrait-upscaled-v1.jpg',
+	image: lightImage
+		? '/pages/payroll-solution-new/assets/eor-hero-young-freelancer-upscaled-v9.jpg'
+		: '/pages/payroll-solution-new/assets/eor-hero-phone-portrait-upscaled-v1.jpg',
 	objectPosition: 'center 24%',
 	narrowObjectPosition: 'center 10%',
 	title: 'Employer of Record\nHire in 150+ Countries',
@@ -63,6 +72,7 @@ const payrollRows = [
 ---
 
 <section class="eor-hero" data-section-kind="hero">
+	{lightImage && <EorHeroParticleField />}
 	<div class="eor-hero__grid mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center lg:gap-20">
 		<div class="eor-hero__copy">
 			<div class="eor-hero__text">

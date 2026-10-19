@@ -2,8 +2,12 @@
 import Section from '../../layout/Section.astro';
 import SectionHeader from '../../layout/SectionHeader.astro';
 import Button from '../../ui/Button.astro';
+import EorEstimatorParticles from '../../visuals/EorEstimatorParticles.astro';
 import { eorCostCountries } from '../../../../src/data/eor-cost-countries';
 import { calculatorCountryNames } from '../../../../src/data/calculator-countries';
+
+interface Props { lightAmbientDots?: boolean }
+const { lightAmbientDots = false } = Astro.props;
 
 const regionGroups = [
 	{
@@ -137,6 +141,7 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 ---
 
 <Section id="eor-cost-estimator" contained={false} spacing="none" class="eor-estimator-section py-20 lg:py-36">
+	{lightAmbientDots && <EorEstimatorParticles />}
 	<div class="eor-estimator-container mx-auto max-w-7xl px-6">
 		<div class="eor-estimator-shell">
 			<SectionHeader

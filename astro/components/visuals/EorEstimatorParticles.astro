@@ -1,0 +1,114 @@
+<canvas class="eor-estimator-particles" data-eor-estimator-particles aria-hidden="true"></canvas>
+
+<script>
+	type Particle = { x: number; y: number; radius: number; alpha: number; phase: number; speed: number };
+
+	const initEorEstimatorParticles = () => {
+		for (const canvas of document.querySelectorAll<HTMLCanvasElement>('[data-eor-estimator-particles]')) {
+			if (canvas.dataset.ready === 'true') continue;
+			canvas.dataset.ready = 'true';
+
+			const section = canvas.closest<HTMLElement>('.eor-estimator-section');
+			const context = canvas.getContext('2d');
+			if (!section || !context) continue;
+
+			const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+			const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+			const pointer = { x: 0, y: 0, targetX: 0, targetY: 0, active: false, strength: 0 };
+			let particles: Particle[] = [];
+			let width = 1;
+			let height = 1;
+			let frame = 0;
+			let visible = true;
+
+			const random = (seed: number) => {
+				const value = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+				return value - Math.floor(value);
+			};
+
+			const draw = (time: number) => {
+				context.clearRect(0, 0, width, height);
+				const canAnimate = !reducedMotion.matches;
+				const elapsed = time * 0.001;
+				const interactionRadius = Math.min(190, Math.max(125, width * 0.12));
+				pointer.x += (pointer.targetX - pointer.x) * 0.075;
+				pointer.y += (pointer.targetY - pointer.y) * 0.075;
+				pointer.strength += ((pointer.active ? 1 : 0) - pointer.strength) * 0.07;
+
+				for (const particle of particles) {
+					let x = particle.x + (canAnimate ? Math.cos(elapsed * particle.speed + particle.phase) * 2.6 : 0);
+					let y = particle.y + (canAnimate ? Math.sin(elapsed * particle.speed * 0.82 + particle.phase) * 2.2 : 0);
+					let proximity = 0;
+					if (pointer.strength > 0.002) {
+						const dx = x - pointer.x;
+						const dy = y - pointer.y;
+						const distance = Math.hypot(dx, dy) || 1;
+						if (distance < interactionRadius) {
+							proximity = 1 - distance / interactionRadius;
+							const displacement = proximity * proximity * 24 * pointer.strength;
+							x += dx / distance * displacement;
+							y += dy / distance * displacement;
+						}
+					}
+					const edgeFade = Math.max(0, Math.min(1, x / 80, (width - x) / 80, y / 70, (height - y) / 70));
+					const alpha = particle.alpha * edgeFade + proximity * 0.2 * pointer.strength;
+					context.beginPath();
+					context.arc(x, y, particle.radius + proximity * 0.7, 0, Math.PI * 2);
+					context.fillStyle = `rgba(175, 199, 218, ${alpha})`;
+					context.fill();
+				}
+				if (visible && canAnimate) frame = window.requestAnimationFrame(draw);
+			};
+
+			const restart = () => {
+				window.cancelAnimationFrame(frame);
+				if (visible && !reducedMotion.matches) frame = window.requestAnimationFrame(draw);
+				else draw(performance.now());
+			};
+
+			const resize = () => {
+				const bounds = section.getBoundingClientRect();
+				width = Math.max(1, bounds.width);
+				height = Math.max(1, bounds.height);
+				const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+				canvas.width = Math.round(width * pixelRatio);
+				canvas.height = Math.round(height * pixelRatio);
+				context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+				pointer.x = pointer.targetX = width / 2;
+				pointer.y = pointer.targetY = height / 2;
+				const count = Math.max(440, Math.min(1000, Math.round(width * height / 1050)));
+				particles = Array.from({ length: count }, (_, index) => {
+					const x = random(index + 1) * width;
+					const y = random(index + 401) * height;
+					return {
+						x, y,
+						radius: 0.7 + random(index + 809) * 1.1,
+						alpha: 0.14 + random(index + 1201) * 0.25,
+						phase: random(index + 1601) * Math.PI * 2,
+						speed: 0.3 + random(index + 2003) * 0.55,
+					};
+				});
+				restart();
+			};
+
+			section.addEventListener('pointermove', (event) => {
+				if (!finePointer.matches || reducedMotion.matches) return;
+				const bounds = section.getBoundingClientRect();
+				pointer.targetX = event.clientX - bounds.left;
+				pointer.targetY = event.clientY - bounds.top;
+				pointer.active = true;
+			}, { passive: true });
+			section.addEventListener('pointerleave', () => { pointer.active = false; }, { passive: true });
+			reducedMotion.addEventListener('change', restart);
+			new ResizeObserver(resize).observe(section);
+			new IntersectionObserver(([entry]) => {
+				visible = entry.isIntersecting;
+				restart();
+			}, { rootMargin: '120px' }).observe(section);
+			resize();
+		}
+	};
+
+	initEorEstimatorParticles();
+	document.addEventListener('astro:page-load', initEorEstimatorParticles);
+</script>

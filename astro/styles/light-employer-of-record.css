@@ -1,0 +1,908 @@
+/*
+ * Isolated light-theme draft for the Employer of Record page.
+ * Every experimental override must remain scoped to this route marker so the
+ * production /employer-of-record page keeps its original dark presentation.
+ */
+html[data-theme='light']:has(.employee-of-record-light-draft) {
+	--garna-page-bg: #f3f4ee;
+	--garna-section-stats-bg: #e9ebe4;
+	--garna-surface: #ffffff;
+	--garna-surface-raised: #ffffff;
+	--garna-surface-soft: #f0f1ec;
+	--garna-border: #e2e5de;
+	--garna-border-strong: rgba(21, 21, 21, 0.14);
+	--garna-text: #151515;
+	--garna-text-muted: #737974;
+	--garna-subtitle-color: #737974;
+	--garna-accent: #a8ff2c;
+	--garna-accent-foreground: #151515;
+	--garna-radius-lg: 28px;
+	--garna-shadow-card: 0 10px 30px rgba(20, 24, 18, 0.05);
+	color-scheme: light;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft),
+html[data-theme='light']:has(.employee-of-record-light-draft) body[data-garna-page] {
+	background: var(--garna-page-bg);
+	color: var(--garna-text-muted);
+}
+
+/* EOR starts with Home Light's settled, softly blurred header, never its transparent hero state. */
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header:not(.is-mobile-open) {
+	background: rgba(246, 247, 243, 0.56) !important;
+	border-bottom-color: rgba(21, 21, 21, 0.08) !important;
+	box-shadow: none !important;
+	backdrop-filter: blur(16px) saturate(118%) !important;
+	-webkit-backdrop-filter: blur(16px) saturate(118%) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-logo {
+	filter: invert(1) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link,
+	.garna-header-mobile-link,
+	.garna-header-login,
+	.garna-header-dropdown-link,
+	.garna-header-link-main
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link
+):is(:hover, :focus-visible) {
+	background: rgba(21, 21, 21, 0.055);
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-panel {
+	background: var(--garna-surface-raised) !important;
+	border-color: var(--garna-border) !important;
+	box-shadow: var(--garna-shadow-card) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-title {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-link-kicker {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-divider {
+	background: rgba(21, 21, 21, 0.08);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-icon {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: rgba(21, 21, 21, 0.035) !important;
+	color: rgba(21, 21, 21, 0.64) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-link:hover,
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-link.is-active {
+	border-color: transparent !important;
+	background: rgba(21, 21, 21, 0.06) !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-link:hover .garna-header-dropdown-icon {
+	border-color: var(--garna-text) !important;
+	background: var(--garna-text) !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header :is(
+	.garna-header-dropdown-link.is-active .garna-header-dropdown-icon,
+	.garna-header-mobile-card.is-active .garna-header-mobile-icon
+) {
+	border-color: var(--garna-accent) !important;
+	background: var(--garna-accent) !important;
+	color: var(--garna-accent-foreground) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-mobile-card.is-active {
+	background: rgba(21, 21, 21, 0.06);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header :is(
+	.garna-header-dropdown-link.is-active .garna-header-link-main,
+	.garna-header-mobile-card.is-active .garna-header-mobile-link-main
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-login.garna-button-secondary {
+	border: 1px solid rgba(21, 21, 21, 0.14) !important;
+	background: rgba(255, 255, 255, 0.38) !important;
+	box-shadow: none !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-login.garna-button-secondary:hover {
+	background: rgba(21, 21, 21, 0.06) !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header :is(
+	.garna-header-dropdown-panel,
+	.garna-header-mobile-menu
+) {
+	background: var(--garna-surface-raised) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero__copy h1 {
+	background: none;
+	color: var(--garna-text);
+	-webkit-text-fill-color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero__copy p {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero__visual,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero__media,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero__image {
+	border: 0;
+	outline: 0;
+	box-shadow: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero__media {
+	background: var(--garna-surface-soft);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero__media::after {
+	display: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification {
+	border-color: var(--garna-border);
+	background: #ffffff;
+	box-shadow: 0 14px 36px rgba(35, 40, 28, 0.12);
+	color: var(--garna-text);
+	backdrop-filter: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__avatar {
+	border-color: #ffffff;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__flag {
+	border-color: #ffffff;
+	box-shadow: 0 0 0 1px var(--garna-border);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__payment-row + .eor-hero-notification__payment-row {
+	border-top-color: var(--garna-border);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__payment-flag {
+	border-color: var(--garna-border);
+	background: var(--garna-surface-soft);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__copy strong,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__payment-copy strong {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__copy small,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__payment-copy small {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__status {
+	padding: 0.3rem 0.55rem;
+	border-radius: 999px;
+	background: #eafcc0;
+	color: #3d5a10 !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .garna-hero-stats-row strong {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .garna-hero-stats-row span {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .garna-hero-stats-row article + article::before {
+	background: var(--garna-border);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) :is(.employee-of-record-light-draft, .garna-header) .garna-button {
+	--garna-button-bg: var(--garna-accent);
+	--garna-button-shine: #ffffff;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) :is(.employee-of-record-light-draft, .garna-header) .garna-button:hover {
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) :is(.employee-of-record-light-draft, .garna-header) .garna-button:is(:hover, :active) {
+	transform: none;
+	filter: none;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) :is(.employee-of-record-light-draft, .garna-header) .garna-button-primary:hover {
+	--garna-button-bg: #aef534;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class~='bg-[#CBF300]'] {
+	background-color: var(--garna-accent) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class*='bg-[#CBF300]/'] {
+	background-color: rgba(168, 255, 44, 0.14) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class*='text-[#CBF300]'] {
+	color: #3d5a10 !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class*='border-[#CBF300]'] {
+	border-color: rgba(154, 230, 42, 0.38) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [stroke='#CBF300'] {
+	stroke: #9ae62a;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [fill='#CBF300'] {
+	fill: var(--garna-accent);
+}
+
+/* Pricing photos have their own rounded crop; dark outlines add no separation. */
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .home-proof-card,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .home-proof-card::after {
+	border: 0 !important;
+	background: transparent;
+	box-shadow: 0 14px 34px rgba(21, 21, 21, 0.08);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .home-proof-card__notice {
+	border-color: rgba(21, 21, 21, 0.08);
+	background: #ffffff;
+	box-shadow: 0 12px 30px rgba(21, 21, 21, 0.14);
+	color: var(--garna-text);
+	backdrop-filter: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .home-proof-card__notice :is(strong, em) {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .home-proof-card__notice small {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .home-proof-card__notice-icon,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .home-proof-card__notice--card .home-proof-card__notice-icon,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .home-proof-card__notice--crypto .home-proof-card__notice-icon {
+	background: #e7effd;
+	color: #2357c6;
+}
+
+/* Country accordion stays part of the light page, including its expanded state. */
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-countries-section {
+	background: linear-gradient(180deg, #f3f4ee 0%, #f5f6f1 50%, #ffffff 77%, #e4e8e0 100%);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-countries-section .garna-container > div:first-child {
+	position: relative;
+	z-index: 2;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-country-playground {
+	z-index: 3;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-countries-region {
+	border-color: var(--garna-border);
+	background: var(--garna-surface);
+	box-shadow: var(--garna-shadow-card);
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-countries-region-title,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-countries-toggle {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-country-item {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-country-orb,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-country-orb span {
+	background: transparent;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft :is(.eor-country-orb, .eor-country-flag) img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft :is(.eor-country-orb, .eor-country-flag) {
+	aspect-ratio: 1;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	border: 1px solid rgba(18, 24, 17, 0.14);
+	background: #ffffff;
+	box-shadow: none;
+}
+
+/* Keep the original icon-title-description stack, with the light palette and soft hover. */
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [data-eor-benefit-cards] .garna-card {
+	--garna-card-surface: #ffffff;
+	border-color: var(--garna-border);
+	border-radius: var(--garna-radius-lg);
+	background: var(--garna-surface);
+	box-shadow: var(--garna-shadow-card);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [data-eor-benefit-cards] .garna-card > div:has(> svg) {
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-bottom: 1.25rem;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [data-eor-benefit-cards] .garna-card > div:has(> svg) svg {
+	width: 1.5rem;
+	height: 1.5rem;
+	margin: 0;
+	color: var(--garna-text) !important;
+	stroke-width: 2;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [data-eor-benefit-cards] [data-card-title] {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [data-eor-benefit-cards] [data-card-description] {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-card-light-field {
+	display: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [data-eor-benefit-cards] .garna-card::before,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [data-eor-benefit-cards] .garna-card::after {
+	opacity: 0 !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [data-eor-benefit-cards] .garna-card {
+		z-index: 1;
+		translate: none !important;
+		transform: translate3d(0, 0, 0) scale(1) !important;
+		transform-origin: center;
+		backface-visibility: hidden;
+		transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 340ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+	}
+
+	html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [data-eor-benefit-cards] .garna-card:is(:hover, :focus-within, [data-pointer-active='true']) {
+		z-index: 3;
+		transform: translate3d(0, 0, 0) scale(1.035) !important;
+		box-shadow: 0 3px 8px rgba(21, 21, 21, 0.09), 0 16px 32px -8px rgba(21, 21, 21, 0.18), 0 32px 64px -22px rgba(21, 21, 21, 0.24) !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [data-eor-benefit-cards] .garna-card {
+		transform: none !important;
+		transition: none !important;
+	}
+}
+
+/* Platform tabs and copy should remain legible on their pale surfaces. */
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .tabbed-feature__tabs {
+	border-color: var(--garna-border);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .tabbed-feature__tab:is(:hover, :focus-visible, .is-active) {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .tabbed-feature__tab.is-active {
+	border-color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .tabbed-feature__tab:focus-visible {
+	outline-color: var(--garna-accent);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .tabbed-feature__panel > div:first-child {
+	background: var(--garna-surface);
+	border: 1px solid var(--garna-border);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .tabbed-feature__panel h3 {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .tabbed-feature__panel p {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .tabbed-feature-badge {
+	border-color: rgba(21, 21, 21, 0.08);
+	background: #ffffff;
+	box-shadow: 0 12px 30px rgba(21, 21, 21, 0.14);
+	color: var(--garna-text);
+	backdrop-filter: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .tabbed-feature-badge__icon {
+	background: #e7effd;
+	color: #2357c6;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .tabbed-feature-badge strong {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .tabbed-feature-badge small {
+	color: var(--garna-text-muted);
+}
+
+/* Try the dark, atmospheric dotted field from Home Light around the light form. */
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-section {
+	background: #151515;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-section::before {
+	z-index: -1;
+	background: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-section::after {
+	display: block;
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.055), transparent 30rem);
+	pointer-events: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-particles {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.85;
+	pointer-events: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-container {
+	z-index: 1;
+}
+
+@media (min-width: 1024px) {
+	html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-shell {
+		grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+		justify-items: stretch;
+		align-items: center;
+		gap: clamp(3rem, 6vw, 6rem);
+		text-align: left;
+	}
+
+	html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-card {
+		grid-column: 2;
+		grid-row: 1;
+		max-width: none;
+	}
+
+	html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-copy {
+		grid-column: 1;
+		grid-row: 1;
+		max-width: 31rem;
+		text-align: left;
+	}
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-copy h2,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-copy__description {
+	color: #ffffff !important;
+	text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-card {
+	border-color: rgba(255, 255, 255, 0.14);
+	background: var(--garna-page-bg);
+	box-shadow: 0 24px 64px rgba(0, 0, 0, 0.24);
+	color: var(--garna-text);
+	backdrop-filter: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-card :is(h3, .eor-estimator-group > p) {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select > button[data-select-trigger],
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-amount {
+	border-color: rgba(21, 21, 21, 0.1);
+	background: rgba(255, 255, 255, 0.7);
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select__menu {
+	border-color: rgba(21, 21, 21, 0.1);
+	background: #f8f9f4;
+	box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select__menu button,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-amount input {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select__menu button:is(:hover, :focus-visible, [aria-selected='true']) {
+	background: rgba(21, 21, 21, 0.055);
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select[data-open='true'] > button[data-select-trigger] svg,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select > button[data-select-trigger]:focus-visible svg {
+	color: #3d5a10;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select :is([data-placeholder], .eor-estimator-select__clear),
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-amount input::placeholder {
+	color: var(--garna-text-muted);
+}
+
+/* Promo cover and final demo button repeat the Home Light treatment. */
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo {
+	border: 1px solid rgba(21, 21, 21, 0.1);
+	background: #f6f7f1;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 {
+	--dashboard-accent: var(--garna-accent);
+	--dashboard-ink: var(--garna-text);
+	--dashboard-surface: #ffffff;
+	--dashboard-surface-raised: #ffffff;
+	--dashboard-canvas: #f1f2ec;
+	--dashboard-soft: #e8eae3;
+	--dashboard-line: rgba(21, 21, 21, 0.09);
+	--dashboard-muted: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .garna-product-window {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #ffffff !important;
+	box-shadow: 0 22px 54px rgba(35, 40, 28, 0.08) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo :is(.garna-product-window__chrome, .garna-product-window__sidebar, .garna-product-window__body, .garna-product-window__canvas, .garna-product-panel) {
+	border-color: var(--dashboard-line) !important;
+	background: var(--dashboard-canvas) !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .garna-product-window__address {
+	border-color: var(--dashboard-line) !important;
+	background: #ffffff !important;
+	box-shadow: none !important;
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .garna-product-window__sidebar nav > div {
+	border-color: transparent !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .garna-product-window__sidebar nav > div:first-child {
+	background: #ffffff !important;
+	box-shadow: 0 8px 22px rgba(35, 40, 28, 0.07) !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .garna-product-window__sidebar nav > div:first-child svg {
+	box-sizing: border-box;
+	width: 1.8rem;
+	height: 1.8rem;
+	border-radius: 0.65rem;
+	background: var(--garna-accent);
+	padding: 0.38rem;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .garna-product-panel {
+	background: #ffffff !important;
+	box-shadow: 0 12px 32px rgba(35, 40, 28, 0.06) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo [class~='text-white'] {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .garna-product-panel .grid button {
+	border-color: rgba(126, 177, 35, 0.42) !important;
+	background: rgba(184, 255, 60, 0.09) !important;
+	box-shadow: none !important;
+	color: #48651b !important;
+	font-weight: 600;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .garna-product-panel .grid button:is(:hover, :focus-visible) {
+	border-color: rgba(111, 158, 27, 0.68) !important;
+	background: rgba(184, 255, 60, 0.18) !important;
+	color: #304510 !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo :is(.anim-delay-2 .grid > div, .anim-delay-3 .space-y-4 > div) {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+	box-shadow: 0 10px 26px rgba(35, 40, 28, 0.055) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo [data-translate='dashboard.currencyUsd'] {
+	background: var(--garna-text) !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo [data-translate='dashboard.currencyEur'] {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__shade {
+	background: linear-gradient(180deg, transparent 42%, rgba(255, 255, 255, 0.14) 62%, rgba(255, 255, 255, 0.94) 100%) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__action,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__cover:is(:hover, :focus-within) .product-demo__action {
+	border-color: var(--garna-text) !important;
+	background: var(--garna-text) !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__play {
+	border-radius: 0.45rem;
+	background: var(--garna-accent);
+	padding: 0.28rem;
+	color: var(--garna-text) !important;
+	filter: none !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__cover:is(:hover, :focus-within) .product-demo__action {
+	transform: translateX(-50%) translateY(-0.18rem);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__cover:is(:hover, :focus-within) .product-demo__play {
+	background: var(--garna-accent);
+	filter: none !important;
+	transform: none;
+}
+
+/* Complete parity with Home Light's Effective Payroll demo cover. */
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .garna-product-window__chrome {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .garna-product-window__address {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #f3f4f1 !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 :is(
+	.garna-product-window__body,
+	.garna-product-window__canvas
+) {
+	background: var(--dashboard-canvas) !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .garna-product-window__sidebar {
+	border-color: transparent !important;
+	background: var(--dashboard-canvas) !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .garna-product-window__sidebar img[src='/garna_logo.svg'] {
+	filter: invert(1) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .garna-product-window__sidebar nav > div:first-child {
+	border-color: transparent !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .garna-product-window__sidebar nav > div:not(:first-child):is(:hover, :focus-within) {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .garna-product-window__sidebar nav > div:not(:first-child):is(:hover, :focus-within) svg {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .garna-product-panel {
+	border-color: rgba(21, 21, 21, 0.09) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 :is(
+	[class~='text-white'],
+	[class*='text-white/'],
+	[data-translate='dashboard.templates'],
+	[data-translate='dashboard.transactions']
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 [class~='text-gray-500'] {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .garna-product-window__topbar > div:last-child {
+	border-color: transparent !important;
+	background: var(--garna-accent) !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 :is(
+	.anim-delay-2 .grid > div:hover,
+	.anim-delay-2 .grid > div:focus-within,
+	.anim-delay-3 .space-y-4 > div:hover,
+	.anim-delay-3 .space-y-4 > div:focus-within
+) {
+	border-color: rgba(21, 21, 21, 0.14) !important;
+	background: #ffffff !important;
+	box-shadow: 0 16px 38px rgba(20, 24, 18, 0.085) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .anim-delay-2 .grid > div > div:first-child {
+	border-color: transparent !important;
+	background: #eee5ff !important;
+	box-shadow: none !important;
+	color: #6c45e8 !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .anim-delay-2 .grid > div:nth-child(4) > div:first-child {
+	background: #ddffaf !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .anim-delay-2 .grid > div:nth-child(2) > div:first-child {
+	background: #222820 !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .anim-delay-2 .grid > div:nth-child(3) > div:first-child {
+	background: #a9d8ff !important;
+	color: #175d8c !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .anim-delay-3 .space-y-4 > div > div:first-child > div:first-child {
+	background: #151515 !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .dashboard-v2 .anim-delay-3 .space-y-4 > div:nth-child(2) > div:first-child > div:first-child {
+	background: var(--garna-accent) !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__shade {
+	background:
+		linear-gradient(180deg, transparent 42%, rgba(255, 255, 255, 0.14) 62%, rgba(255, 255, 255, 0.94) 100%),
+		radial-gradient(circle at 50% 92%, rgba(255, 255, 255, 0.5), transparent 52%) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__action {
+	backdrop-filter: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__cover:focus-within {
+	outline-color: #5d7800 !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__video {
+	background: #ffffff !important;
+}
+
+/* The EOR FAQ follows Home Light's open, rule-separated list. */
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-faq {
+	border-top: 1px solid var(--garna-border-strong);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-faq > :not([hidden]) ~ :not([hidden]) {
+	margin-top: 0 !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-faq-item {
+	border: 0 !important;
+	border-bottom: 1px solid var(--garna-border-strong) !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-faq-item > summary {
+	padding: 1.65rem 0.25rem !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-faq-panel > p {
+	padding: 0 2.75rem 1.65rem 0.25rem !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-faq-item[data-state='open'] > summary .garna-faq-icon {
+	color: var(--garna-text);
+}
+
+/* The rounded light CTA overlaps a dark footer, as on Home Light. */
+html[data-theme='light']:has(.employee-of-record-light-draft) body {
+	--light-eor-footer-radius: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft > [data-final-cta-section] {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	border-radius: 0 0 var(--light-eor-footer-radius) var(--light-eor-footer-radius);
+	background: var(--garna-page-bg);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) body .garna-footer {
+	background: #020202 !important;
+	border-top-color: transparent !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft + .garna-footer {
+	margin-top: calc(var(--light-eor-footer-radius) * -1);
+	padding-top: calc(4rem + var(--light-eor-footer-radius));
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) body .garna-footer img[src='/garna_logo.svg'],
+html[data-theme='light']:has(.employee-of-record-light-draft) body .garna-footer img[src='/mediacube-logo-white.svg'] {
+	filter: none !important;
+}
+
+html:has(.employee-of-record-light-draft) .garna-footer [class~='text-white'] {
+	color: #ffffff !important;
+}
+
+html:has(.employee-of-record-light-draft) .garna-footer [class~='text-gray-500'] {
+	color: #6b7280 !important;
+}
+
+html:has(.employee-of-record-light-draft) .garna-footer [class~='text-gray-600'] {
+	color: #4b5563 !important;
+}
+
+html:has(.employee-of-record-light-draft) .garna-footer [class*='bg-[#1A1A1A]'] {
+	background-color: #1a1a1a !important;
+}
+
+html:has(.employee-of-record-light-draft) .garna-footer [class*='text-[#CBF300]'] {
+	color: var(--garna-accent) !important;
+}
+
+html:has(.employee-of-record-light-draft) .garna-footer [class~='border-white/10'] {
+	border-color: rgba(255, 255, 255, 0.1) !important;
+}

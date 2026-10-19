@@ -16,6 +16,22 @@ import EorDashboardCtaSection from '../components/sections/payroll/EorDashboardC
 import EmployerOfRecordSectionStyles from '../components/sections/payroll/EmployerOfRecordSectionStyles.astro';
 import EmployerOfRecordInteractions from '../components/sections/payroll/EmployerOfRecordInteractions.astro';
 
+interface Props {
+	defaultTheme?: 'dark' | 'light';
+	mainClass?: string;
+	shellTitle?: string;
+}
+
+const {
+	defaultTheme = 'dark',
+	mainClass = '',
+	shellTitle,
+} = Astro.props;
+
+const eorShell = shellTitle
+	? { ...pageShells.eor, title: shellTitle }
+	: pageShells.eor;
+
 const eorProofStats = [
 	{
 		value: '150+',
@@ -131,8 +147,8 @@ const eorFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.eor}>
-	<EorHeroSection />
+<BaseLayout shell={eorShell} defaultTheme={defaultTheme} mainClass={mainClass} showRainbow={defaultTheme !== 'light'}>
+	<EorHeroSection lightImage={defaultTheme === 'light'} />
 	<ProofStatsCardsSection
 		title={{ text: "Transparent EOR Pricing", translateKey: 'eorProof.title' }}
 		description={{ text: "Starting from $200/month per employee. No hidden fees. No local entity setup costs. Get a custom quote based on your hiring needs", translateKey: 'eorProof.description' }}
@@ -141,11 +157,11 @@ const eorFaqItems = [
 		carouselLabel="Choose an EOR proof card"
 		carouselLabelKey="eorProof.carousel.ariaLabel"
 	/>
-	<EorCountriesSection />
+	<EorCountriesSection lightFlags={defaultTheme === 'light'} />
 	<GlobalWorkforceBenefitsSection />
 	<EorWhyGarnaSection />
 	<EmployerOfRecordSectionStyles />
-	<EorCostEstimatorSection />
+	<EorCostEstimatorSection lightAmbientDots={defaultTheme === 'light'} />
 	<EorDashboardCtaSection />
 	<FAQSection
 		title={{ text: 'FAQ on Employer of Record', translateKey: 'faq.title' }}
