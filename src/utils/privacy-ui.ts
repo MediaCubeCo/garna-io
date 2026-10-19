@@ -8,6 +8,7 @@ function safeJson(value: unknown): string {
 
 const PRIVACY_CSS = `<style data-garna-privacy-style>
 :root{--gp-lime:#cbf300;--gp-ink:#f7f8f2;--gp-muted:#a5a79f;--gp-panel:#10110f;--gp-border:rgba(255,255,255,.12)}
+html:has(.light-home-draft),html:has(.employee-of-record-light-draft){--gp-lime:#a8ff2c}
 .garna-privacy{position:fixed;inset:0;z-index:2147483000;pointer-events:none;color:var(--gp-ink);font-family:Manrope,ui-sans-serif,system-ui,sans-serif}
 .garna-privacy[hidden],.garna-privacy [hidden]{display:none!important}.garna-privacy__shade{position:absolute;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(10px);pointer-events:auto}
 .garna-privacy__morph{position:absolute;left:18px;bottom:18px;z-index:1;box-sizing:border-box;overflow:hidden;border:1px solid var(--gp-border);background:rgba(16,17,15,.97);box-shadow:0 28px 90px rgba(0,0,0,.44),0 0 0 1px rgba(203,243,0,.03) inset;pointer-events:auto;transform-origin:left bottom;will-change:width,height,border-radius}

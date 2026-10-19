@@ -292,31 +292,37 @@ html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-
 
 html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-arrow-glyph {
 	position: relative;
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
 	width: 1.15em;
-	height: 1.2em;
+	height: 1em;
 	overflow: hidden;
 	flex: 0 0 1.15em;
 	color: transparent;
 	font-size: 1rem;
-	line-height: 1.2;
+	line-height: 1;
 	text-indent: -9999px;
 	transform: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-inline-accent .garna-button-inner {
+	align-items: center;
 }
 
 html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-arrow-glyph::before,
 html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-arrow-glyph::after {
 	position: absolute;
-	top: 0;
+	top: 50%;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	color: var(--garna-text);
 	content: '→';
-	line-height: inherit;
+	line-height: 1;
 	text-align: center;
 	text-indent: 0;
 	transition: transform 760ms cubic-bezier(0.33, 1, 0.68, 1);
+	translate: 0 -50%;
 }
 
 html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__copy .garna-button-arrow-glyph::before {
@@ -605,6 +611,23 @@ html[data-theme='light']:has(body .light-home-draft) body .garna-header.is-scrol
 	color: var(--garna-text) !important;
 }
 
+html[data-theme='light']:has(body .light-home-draft) body .garna-header :is(.garna-header-menu-trigger, .garna-header-nav-link):is(:hover, :focus-visible) {
+	border-color: transparent !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	outline: none;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-menu-group:hover:not(.is-dropdown-suppressed) .garna-header-chevron,
+html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-menu-group:has(.garna-header-menu-trigger:focus-visible) .garna-header-chevron {
+	color: inherit !important;
+}
+
+html[data-theme='light']:has(.light-home-draft) .garna-header .garna-header-business-account-feature {
+	border: 0 !important;
+	box-shadow: none !important;
+}
+
 /* Dropdowns stay in the light product theme even while the header overlays the hero. */
 html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-panel {
 	background: var(--garna-surface-raised) !important;
@@ -639,30 +662,30 @@ html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-h
 
 html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-link:hover {
 	border-color: transparent !important;
-	background: rgba(21, 21, 21, 0.06) !important;
+	background: rgba(21, 21, 21, 0.04) !important;
 }
 
 html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-link:hover .garna-header-dropdown-icon {
-	border-color: var(--garna-text) !important;
-	background: var(--garna-text) !important;
-	color: #ffffff !important;
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+	color: var(--garna-text) !important;
 }
 
 html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-link.is-active {
 	border-color: transparent !important;
-	background: rgba(21, 21, 21, 0.06) !important;
+	background: rgba(21, 21, 21, 0.11) !important;
 	box-shadow: none !important;
 }
 
 html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-dropdown-link.is-active .garna-header-dropdown-icon,
 html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-mobile-card.is-active .garna-header-mobile-icon {
-	border-color: var(--garna-accent) !important;
-	background: var(--garna-accent) !important;
-	color: var(--garna-accent-foreground) !important;
+	border-color: var(--garna-text) !important;
+	background: var(--garna-text) !important;
+	color: #ffffff !important;
 }
 
 html[data-theme='light']:has(body .light-home-draft) body .garna-header .garna-header-mobile-card.is-active {
-	background: rgba(21, 21, 21, 0.06);
+	background: rgba(21, 21, 21, 0.11);
 }
 
 html[data-theme='light']:has(body .light-home-draft) body .garna-header :is(
@@ -720,6 +743,10 @@ html[data-theme='light']:has(body .light-home-draft) body .garna-header.is-over-
 ):is(:hover, :focus-visible) {
 	background: rgba(255, 255, 255, 0.1) !important;
 	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(body .light-home-draft) body .garna-header.is-over-dark-surface :is(.garna-header-menu-trigger, .garna-header-nav-link):is(:hover, :focus-visible) {
+	background: transparent !important;
 }
 
 html[data-theme='light']:has(body .light-home-draft) body .garna-header.is-over-dark-surface .garna-header-login.garna-button-secondary,
@@ -1266,6 +1293,7 @@ html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo_
 	box-shadow: none !important;
 	color: #ffffff !important;
 	backdrop-filter: none;
+	transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 420ms ease !important;
 }
 
 html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo__play {
@@ -1279,14 +1307,15 @@ html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo_
 html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo__cover:is(:hover, :focus-within) .product-demo__action {
 	border-color: var(--garna-text) !important;
 	background: var(--garna-text) !important;
-	box-shadow: none !important;
+	box-shadow: 0 14px 30px rgba(21, 21, 21, 0.22) !important;
 	color: #ffffff !important;
-	transform: translateX(-50%) translateY(-0.18rem);
+	transform: translateX(-50%) translateY(-0.48rem) scale(1.025);
 }
 
 html[data-theme='light']:has(.light-home-draft) .light-home-draft .product-demo__cover:is(:hover, :focus-within) .product-demo__play {
 	background: var(--garna-accent);
 	filter: none !important;
+	animation: none;
 	transform: none;
 }
 

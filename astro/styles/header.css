@@ -88,6 +88,23 @@
 	opacity: 0.8;
 }
 
+html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-draft)) .garna-header-desktop-nav:has(.garna-header-menu-group:hover:not(.is-dropdown-suppressed)) > :is(.garna-header-menu-group, .garna-header-nav-link):not(:hover) > .garna-header-menu-trigger,
+html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-draft)) .garna-header-desktop-nav:has(.garna-header-menu-group:hover:not(.is-dropdown-suppressed)) > .garna-header-nav-link:not(:hover) {
+	opacity: 0.7;
+}
+
+html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-draft)) .garna-header .garna-header-menu-group:hover:not(.is-dropdown-suppressed) .garna-header-menu-trigger {
+	opacity: 1;
+}
+
+html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-draft)) .garna-header-desktop-nav:has(> .garna-header-nav-link:hover) > .garna-header-menu-group .garna-header-menu-trigger {
+	opacity: 0.7;
+}
+
+html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-draft)) .garna-header .garna-header-nav-link:hover {
+	opacity: 1;
+}
+
 .garna-header-nav-link.is-active,
 .garna-header-dropdown-link.is-active,
 .garna-header-mobile-link.is-active {
@@ -355,9 +372,15 @@
 	object-position: center 10%;
 }
 
+.garna-header-business-account-light-image { display: none; }
+
+html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-draft)) .garna-header-business-account-feature img:not(.garna-header-business-account-light-image) { display: none; }
+html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-draft)) .garna-header-business-account-feature .garna-header-business-account-light-image { display: block; }
+
 .garna-header-business-account-feature::after {
 	background: linear-gradient(to top, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.28) 44%, transparent 76%);
 }
+
 
 .garna-header-feature-copy {
 	position: absolute;
@@ -385,6 +408,10 @@
 	line-height: 1.35;
 }
 
+.garna-header-business-account-feature .garna-header-feature-copy p {
+	color: #e5e7e4;
+}
+
 .garna-header-feature-link {
 	display: inline-flex;
 	align-items: center;
@@ -406,6 +433,33 @@
 .garna-header-feature-link svg {
 	width: 12px;
 	height: 12px;
+}
+
+.garna-header-feature-arrow {
+	position: relative;
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	overflow: hidden;
+	flex: 0 0 12px;
+	align-self: center;
+}
+
+.garna-header-feature-arrow span {
+	position: absolute;
+	inset: 0;
+	line-height: 12px;
+	text-align: center;
+	transition: transform 760ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.garna-header-feature-arrow span + span { transform: translateX(-150%); }
+.garna-header-business-account-feature:is(:hover, :focus-visible) .garna-header-feature-arrow span:first-child { transform: translateX(150%); }
+.garna-header-business-account-feature:is(:hover, :focus-visible) .garna-header-feature-arrow span + span { transform: translateX(0); }
+
+html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-draft)) .garna-header-business-account-feature .garna-header-feature-link,
+html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-draft)) .garna-header-business-account-feature:is(:hover, :focus-visible) .garna-header-feature-link {
+	color: #a8ff2c;
 }
 
 .garna-header-actions {

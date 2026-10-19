@@ -59,6 +59,23 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header :is(
 	color: var(--garna-text) !important;
 }
 
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header :is(.garna-header-menu-trigger, .garna-header-nav-link):is(:hover, :focus-visible) {
+	border-color: transparent !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	outline: none;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-menu-group:hover:not(.is-dropdown-suppressed) .garna-header-chevron,
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-menu-group:has(.garna-header-menu-trigger:focus-visible) .garna-header-chevron {
+	color: inherit !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-business-account-feature {
+	border: 0 !important;
+	box-shadow: none !important;
+}
+
 html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-panel {
 	background: var(--garna-surface-raised) !important;
 	border-color: var(--garna-border) !important;
@@ -83,30 +100,35 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .gar
 	color: rgba(21, 21, 21, 0.64) !important;
 }
 
-html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-link:hover,
-html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-link.is-active {
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-link:hover {
 	border-color: transparent !important;
-	background: rgba(21, 21, 21, 0.06) !important;
+	background: rgba(21, 21, 21, 0.04) !important;
 	box-shadow: none !important;
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-link:hover .garna-header-dropdown-icon {
-	border-color: var(--garna-text) !important;
-	background: var(--garna-text) !important;
-	color: #ffffff !important;
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-dropdown-link.is-active {
+	border-color: transparent !important;
+	background: rgba(21, 21, 21, 0.11) !important;
+	box-shadow: none !important;
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header :is(
 	.garna-header-dropdown-link.is-active .garna-header-dropdown-icon,
 	.garna-header-mobile-card.is-active .garna-header-mobile-icon
 ) {
-	border-color: var(--garna-accent) !important;
-	background: var(--garna-accent) !important;
-	color: var(--garna-accent-foreground) !important;
+	border-color: var(--garna-text) !important;
+	background: var(--garna-text) !important;
+	color: #ffffff !important;
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-mobile-card.is-active {
-	background: rgba(21, 21, 21, 0.06);
+	background: rgba(21, 21, 21, 0.11);
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header :is(
@@ -126,6 +148,46 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .gar
 html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header .garna-header-login.garna-button-secondary:hover {
 	background: rgba(21, 21, 21, 0.06) !important;
 	color: var(--garna-text) !important;
+}
+
+/* The estimator is one dark visual context. A unified dark glass header stays
+ * readable over both its dark copy column and the light calculator surface. */
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header.is-over-dark-surface:not(.is-mobile-open) {
+	background: rgba(15, 15, 15, 0.56) !important;
+	border-bottom-color: rgba(255, 255, 255, 0.09) !important;
+	backdrop-filter: blur(18px) saturate(112%) !important;
+	-webkit-backdrop-filter: blur(18px) saturate(112%) !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header.is-over-dark-surface .garna-header-logo {
+	filter: none !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header.is-over-dark-surface :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link,
+	.garna-header-mobile-link
+) {
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header.is-over-dark-surface :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link
+):is(:hover, :focus-visible) {
+	background: rgba(255, 255, 255, 0.1) !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header.is-over-dark-surface :is(.garna-header-menu-trigger, .garna-header-nav-link):is(:hover, :focus-visible) {
+	background: transparent !important;
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header.is-over-dark-surface .garna-header-login.garna-button-secondary,
+html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header.is-over-dark-surface .garna-header-login.garna-button-secondary:hover {
+	border-color: rgba(255, 255, 255, 0.3) !important;
+	background: rgba(255, 255, 255, 0.08) !important;
+	color: #ffffff !important;
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .garna-header :is(
@@ -679,6 +741,10 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-recor
 	color: #ffffff !important;
 }
 
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__action {
+	transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 420ms ease !important;
+}
+
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__play {
 	border-radius: 0.45rem;
 	background: var(--garna-accent);
@@ -688,12 +754,14 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-recor
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__cover:is(:hover, :focus-within) .product-demo__action {
-	transform: translateX(-50%) translateY(-0.18rem);
+	box-shadow: 0 14px 30px rgba(21, 21, 21, 0.22) !important;
+	transform: translateX(-50%) translateY(-0.48rem) scale(1.025);
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo__cover:is(:hover, :focus-within) .product-demo__play {
 	background: var(--garna-accent);
 	filter: none !important;
+	animation: none;
 	transform: none;
 }
 

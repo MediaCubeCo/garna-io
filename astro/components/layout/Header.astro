@@ -4,7 +4,11 @@ import Button from '../ui/Button.astro';
 import { getPagePathFromPathname } from '../../utils/page-path';
 
 const currentPath = getPagePathFromPathname(Astro.url.pathname);
-const navCurrentPath = currentPath === 'light-home' ? '' : currentPath;
+const navCurrentPath = currentPath === 'light-home'
+	? ''
+	: currentPath === 'eor-light'
+		? 'employer-of-record'
+		: currentPath;
 
 const base = '/en';
 const homeHref = base;
@@ -75,7 +79,7 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 								<span class="garna-header-link-separator">|</span>
 								<span class="garna-header-link-kicker" data-translate="header.globalPayrollKicker">Pay teams worldwide</span>
 							</a>
-							<a href={eorHref} data-localized-path={employerOfRecordPath} data-nav-link class="garna-header-dropdown-link">
+							<a href={eorHref} data-localized-path={employerOfRecordPath} data-nav-link class:list={['garna-header-dropdown-link', navCurrentPath === employerOfRecordPath && 'is-active']} aria-current={navCurrentPath === employerOfRecordPath ? 'page' : undefined}>
 								<svg class="garna-header-dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 									<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
 									<circle cx="9" cy="7" r="4"></circle>
@@ -195,15 +199,13 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 
 						<a href={businessAccountHref} data-localized-path={businessAccountPath} data-nav-link class="garna-header-dropdown-feature garna-header-solutions-feature garna-header-business-account-feature" aria-label="Business Account">
 							<img src="/images/header-business-account-v4.webp" alt="" loading="lazy" />
+							<img class="garna-header-business-account-light-image" src="/images/header-business-account-light.png" alt="" loading="lazy" />
 							<div class="garna-header-feature-copy">
 								<h4 data-translate="header.bankAccount">Business Account</h4>
 								<p data-translate="header.bankAccountKicker">One account for global payments</p>
 								<span class="garna-header-feature-link">
 									<span data-translate="header.learnMore">Learn more</span>
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-										<path d="M5 12h14"></path>
-										<path d="m12 5 7 7-7 7"></path>
-									</svg>
+									<span class="garna-header-feature-arrow" aria-hidden="true"><span>→</span><span>→</span></span>
 								</span>
 							</div>
 						</a>
@@ -313,7 +315,8 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 					data-localized-path={employerOfRecordPath}
 					data-nav-link
 					data-nav-mobile
-					class={`${mobileLinkClass(employerOfRecordPath)} garna-header-mobile-card`}
+					class:list={[mobileLinkClass(employerOfRecordPath), 'garna-header-mobile-card', navCurrentPath === employerOfRecordPath && 'is-active']}
+					aria-current={navCurrentPath === employerOfRecordPath ? 'page' : undefined}
 				>
 					<svg class="garna-header-mobile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 						<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
@@ -512,7 +515,10 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 			const startsTransparentAtTop = transparentAtTopPaths.has(getPagePath());
 			header.classList.toggle('is-scrolled', !startsTransparentAtTop || window.scrollY > 1);
 
-			const darkHeaderSurface = document.querySelector('.light-home-draft .spendbase-quote-section');
+			const darkHeaderSurface = document.querySelector([
+				'.light-home-draft .spendbase-quote-section',
+				'.employee-of-record-light-draft .eor-estimator-section',
+			].join(','));
 			if (darkHeaderSurface instanceof HTMLElement) {
 				const headerHeight = header.getBoundingClientRect().height;
 				const darkSurfaceBounds = darkHeaderSurface.getBoundingClientRect();
@@ -638,7 +644,11 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 
 		const setNavActiveState = () => {
 			const pagePath = getPagePath();
-			const currentPath = pagePath === 'light-home' ? '' : pagePath;
+			const currentPath = pagePath === 'light-home'
+				? ''
+				: pagePath === 'eor-light'
+					? 'employer-of-record'
+					: pagePath;
 			const setSingleActiveLink = (selector) => {
 				let activeAssigned = false;
 				document.querySelectorAll(selector).forEach((link) => {
