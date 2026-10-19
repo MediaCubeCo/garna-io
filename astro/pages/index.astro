@@ -131,8 +131,17 @@ const homeFaqItems = [
 				</div>
 			</div>
 			<div slot="background" class="home-hero-cover">
-				<div class="home-hero-cover__media" aria-hidden="true">
-					<img data-home-hero-image src="/pages/payroll-solution-new/assets/home-hero-editorial-preview-3-optimized.webp" alt="" />
+				<div class="home-hero-cover__slot" data-home-hero-slot aria-hidden="true"></div>
+				<div class="home-hero-cover__media" data-home-hero-plate aria-hidden="true">
+					<div class="home-hero-plate__layer home-hero-plate__layer--hire" data-plate-layer="hire" data-plate-depth="2">
+						<img src="/pages/payroll-solution-new/assets/home-workflows-hire-upscaled.jpg" alt="" />
+					</div>
+					<div class="home-hero-plate__layer home-hero-plate__layer--contractors" data-plate-layer="contractors" data-plate-depth="1">
+						<img src="/pages/payroll-solution-new/assets/home-proof-mountain-man-v1.png" alt="" />
+					</div>
+					<div class="home-hero-plate__layer home-hero-plate__layer--photo" data-plate-layer="pay" data-plate-depth="0">
+						<img data-home-hero-image src="/pages/payroll-solution-new/assets/home-hero-editorial-preview-3-optimized.webp" alt="" />
+					</div>
 				</div>
 				<div class="home-hero-focus-frame" data-home-hero-frame aria-hidden="true"></div>
 			</div>
@@ -180,7 +189,9 @@ const homeFaqItems = [
 			}
 		});
 	</script>
-	<script is:inline>
+	<script>
+		import { animate, spring } from 'motion';
+
 		(() => {
 			const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
 			const mix = (from, to, progress) => from + (to - from) * progress;
@@ -243,6 +254,9 @@ const homeFaqItems = [
 
 				const heroFrame = stage.querySelector('[data-home-hero-frame]');
 				const heroImage = stage.querySelector('[data-home-hero-image]');
+				const plate = stage.querySelector('[data-home-hero-plate]');
+				const heroSlot = stage.querySelector('[data-home-hero-slot]');
+				const heroCover = plate?.parentElement ?? null;
 				const heroSection = heroFrame?.closest('[data-section-kind="hero"]');
 				const heroButton = heroSection?.querySelector('.garna-button');
 				const heroCta = heroSection?.querySelector('.garna-button')?.parentElement;
@@ -258,6 +272,8 @@ const homeFaqItems = [
 				if (
 					!(heroFrame instanceof HTMLElement) ||
 					!(heroImage instanceof HTMLImageElement) ||
+					!(plate instanceof HTMLElement) ||
+					!(heroSlot instanceof HTMLElement) ||
 					!(proofSection instanceof HTMLElement) ||
 					!(targetCard instanceof HTMLElement) ||
 					!(targetImage instanceof HTMLImageElement) ||
@@ -383,6 +399,14 @@ const homeFaqItems = [
 					});
 				};
 				let deckPosition = 0;
+				// The dot switches when its fill reaches the end of that segment.
+				// The card animation starts from this same index.
+				const indicatorIndexFor = (progress) => {
+					const mark = Math.max(0, progress * 3);
+					if (mark < 1) return 0;
+					if (mark < 2) return 1;
+					return 2;
+				};
 				const renderQuietStack = (progress, landed = true) => {
 					const requested = Math.min(2, Math.floor(progress * 3));
 					if (!desktop.matches) {
@@ -413,12 +437,18 @@ const homeFaqItems = [
 						});
 						return;
 					}
-					deckPosition = landed ? requested : 0;
-					const current = Math.min(1, Math.floor(deckPosition));
-					const next = current + 1;
-					const turn = clamp(deckPosition - current);
-					const movement = turn;
-					const active = movement >= 1 / 3 ? next : current;
+					// 0 = only the people card. 1 = the next card has landed on top.
+					// 2 = the third card has landed and both cards behind it form a taller stack.
+					// The dot and the heading follow the scroll. The cards follow deckShown,
+					// which a trigger eases between those indexes.
+					const active = landed ? indicatorIndexFor(progress) : 0;
+					const intro = stage.classList.contains('is-plate-owner')
+						? (landed ? deckShown : 0)
+						: active;
+					deckPosition = intro;
+					const step = Math.min(1, Math.floor(intro));
+					const local = intro - step;
+					const enteringIndex = step + 1;
 					deckIndicators.forEach((indicator, index) => {
 						indicator.classList.toggle('is-active', index === active);
 						indicator.style.setProperty('--step-fill', String(clamp(progress * 3 - index)));
@@ -430,34 +460,56 @@ const homeFaqItems = [
 						heading.style.transform = 'none';
 						heading.setAttribute('aria-hidden', String(index !== active));
 					});
+					const stackY = (depth) => depth <= 1 ? -28 * depth : -28 - 24 * (depth - 1);
+					const enterTravel = 72;
 					deckCards.forEach((card, index) => {
-						// Same cyclic depth order as CreatorPayoutProcessSection, scrubbed by scroll.
-						const fromDepth = (index - current + deckCards.length) % deckCards.length;
-						const toDepth = (index - next + deckCards.length) % deckCards.length;
-						// All three move together. Layers swap at matching depths (2t = 1-t),
-						// so a smaller incoming image never covers the larger outgoing one.
-						const depth = mix(fromDepth, toDepth, movement);
-						const cardScale = 1 - 0.03 * depth;
-						const visible = index === current || landed;
-						card.style.visibility = visible ? 'visible' : 'hidden';
-						card.style.opacity = '1';
-						card.style.zIndex = String(5 - (movement >= 1 / 3 ? toDepth : fromDepth));
-						// Match the travelling stack exactly at the landing handoff.
-						card.style.transformOrigin = 'center top';
-						card.style.transform = `translate3d(0, ${-8 * depth}px, 0) scale(${cardScale})`;
-						if (!desktop.matches) {
-							card.style.transformOrigin = 'center center';
-							card.style.transform = `translate3d(${(index - deckPosition) * (card.offsetWidth + 16)}px, 0, 0) scale(${1 - 0.04 * Math.min(1, Math.abs(index - deckPosition))})`;
-						}
-						card.setAttribute('aria-hidden', String(index !== active));
 						const notice = card.querySelector('.home-workflows-stack__status');
+						const hidden = index > enteringIndex;
+						if (hidden) {
+							card.style.visibility = 'hidden';
+							card.style.opacity = '1';
+							card.style.filter = 'none';
+							card.style.zIndex = '0';
+							card.style.transformOrigin = 'center center';
+							card.style.transform = `translate3d(0, ${enterTravel}px, 0) scale(1.12)`;
+							card.dataset.plateOpacity = '0';
+							card.dataset.plateFilter = 'none';
+							card.dataset.plateZ = '0';
+							card.setAttribute('aria-hidden', 'true');
+							if (notice instanceof HTMLElement) {
+								notice.style.opacity = '0';
+								notice.style.transform = 'none';
+							}
+							return;
+						}
+						const incoming = index === enteringIndex;
+						const depth = incoming ? 0 : (enteringIndex - 1 - index) + local;
+						const appear = incoming ? smoothstep(0, 1, local) : 1;
+						const photoOpacity = incoming ? appear : 1;
+						const blur = incoming ? mix(16, 0, appear) : 0;
+						const cardScale = incoming ? mix(1.12, 1, appear) : 1 - 0.06 * depth;
+						const y = incoming ? mix(enterTravel, 0, appear) : stackY(depth);
+						const z = incoming ? 8 : Math.round(6 - depth * 2);
+						const filter = blur > 0.2 ? `blur(${blur.toFixed(2)}px)` : 'none';
+						const plateOwnsPhotos = stage.classList.contains('is-plate-owner');
+						card.style.visibility = 'visible';
+						card.style.opacity = plateOwnsPhotos ? '1' : String(photoOpacity);
+						card.style.filter = plateOwnsPhotos ? 'none' : filter;
+						card.style.zIndex = String(z);
+						card.style.transformOrigin = incoming ? 'center center' : 'center top';
+						card.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0) scale(${cardScale.toFixed(4)})`;
+						card.dataset.plateOpacity = String(photoOpacity);
+						card.dataset.plateFilter = filter;
+						card.dataset.plateZ = String(z);
+						card.setAttribute('aria-hidden', String(index !== active));
 						if (notice instanceof HTMLElement) {
-							notice.style.opacity = 'var(--home-proof-featured-notice-opacity, 1)';
+							const shown = incoming
+								? appear
+								: noticeRevealFor(0, stackReveal) * (1 - smoothstep(0.08, 0.62, depth));
 							notice.style.transformOrigin = 'bottom left';
-							notice.style.transform = desktop.matches
-								? `translate3d(0, ${8 * depth / cardScale}px, 0) scale(${1 / cardScale})`
-								: 'none';
-							notice.style.transition = 'opacity 320ms cubic-bezier(0.16, 1, 0.3, 1)';
+							notice.style.opacity = String(shown);
+							notice.style.transition = 'none';
+							notice.style.transform = 'none';
 						}
 					});
 				};
@@ -553,6 +605,318 @@ const homeFaqItems = [
 					stage.style.setProperty('--home-hero-actions-height-scale', String(actionsHeightScale));
 					updateHeroFrameClearance();
 				};
+				let flightT = 0;
+				let flightTarget = 0;
+				let flightMode = 'attached';
+				let flightAnim = null;
+				let flightToken = 0;
+				let flightBooted = false;
+				let flightFrom = null;
+				let sizeT = 0;
+				let stackReveal = 0;
+				let stackAnim = null;
+				let arrivalToken = 0;
+				let deckShown = 0;
+				let deckTarget = 0;
+				let deckToken = 0;
+				let deckFrame = 0;
+				let homing = false;
+				let departReady = false;
+				// Armed once the photo has locked into the card. The return starts only
+				// after scrolling back leaves the top tenth of that card on screen.
+				let returnArmed = false;
+				let homeProgress = -1;
+				let flightStartedAt = 0;
+				let copyHold = 0;
+				let latestProgress = 0;
+				let latestDeckProgress = 0;
+				const noticeRevealFor = (depth, reveal) => {
+					if (depth < 0.35) return smoothstep(0.04, 0.42, reveal);
+					const start = 0.3 + Math.max(0, depth - 1) * 0.28;
+					return smoothstep(start, Math.min(1, start + 0.34), reveal);
+				};
+				const payImageScale = 1.95;
+				const heroImageScale = () => {
+					if (!(heroCover instanceof Element)) return 1;
+					const value = Number.parseFloat(getComputedStyle(heroCover).getPropertyValue('--home-hero-image-scale'));
+					return Number.isFinite(value) && value > 0 ? value : 1;
+				};
+
+				const readBox = (element) => {
+					const rect = element.getBoundingClientRect();
+					const radius = Number.parseFloat(getComputedStyle(element).borderTopLeftRadius) || 0;
+					return { x: rect.x, y: rect.y, width: rect.width, height: rect.height, bottom: rect.bottom, top: rect.top, radius };
+				};
+				const measureMediaRect = () => readBox(heroSlot);
+				const readCardBox = () => {
+					const previous = targetCard.style.transform;
+					targetCard.style.transform = 'none';
+					const box = readBox(targetCard);
+					targetCard.style.transform = previous;
+					return box;
+				};
+				// Share of the card still inside the viewport, measured from its top edge.
+				// A card whose top has left upward is treated as fully present.
+				const cardTopRemaining = () => {
+					const box = readCardBox();
+					if (box.height < 2 || box.top < 0) return 1;
+					return Math.min(box.height, Math.max(0, window.innerHeight - box.top)) / box.height;
+				};
+				const placePlate = (rect, radius) => {
+					plate.classList.add('is-detached');
+					plate.style.left = `${rect.x}px`;
+					plate.style.top = `${rect.y}px`;
+					plate.style.width = `${Math.max(0, rect.width)}px`;
+					plate.style.height = `${Math.max(0, rect.height)}px`;
+					plate.style.borderRadius = `${radius}px`;
+				};
+				const collapseLayers = () => {
+					plate.querySelectorAll('[data-plate-layer]').forEach((layer) => {
+						if (!(layer instanceof HTMLElement)) return;
+						const depth = Number(layer.dataset.plateDepth || 0);
+						layer.style.transform = 'translate3d(0, 0px, 0) scale(1)';
+						layer.style.transformOrigin = 'center top';
+						layer.style.zIndex = String(-depth);
+						layer.style.opacity = depth === 0 ? '1' : '0';
+						layer.style.filter = 'none';
+					});
+				};
+				const syncLayersToDeck = () => {
+					deckCards.forEach((card) => {
+						if (!(card instanceof HTMLElement)) return;
+						const layer = plate.querySelector(`[data-plate-layer="${card.dataset.workflowCard}"]`);
+						if (!(layer instanceof HTMLElement)) return;
+						layer.style.transform = card.style.transform;
+						layer.style.transformOrigin = card.style.transformOrigin || 'center top';
+						layer.style.opacity = card.dataset.plateOpacity ?? '1';
+						layer.style.filter = card.dataset.plateFilter || 'none';
+						layer.style.zIndex = card.dataset.plateZ || '0';
+					});
+					deckCards.forEach((card) => {
+						if (!(card instanceof HTMLElement)) return;
+						const current = Number.parseFloat(card.dataset.plateZ || card.style.zIndex) || 0;
+						card.style.zIndex = String(current + 12);
+					});
+				};
+				const pinPlate = () => {
+					plate.classList.add('is-detached');
+					stage.classList.add('is-plate-live');
+					if (heroSection instanceof HTMLElement) heroSection.style.overflow = 'visible';
+					if (heroCover instanceof HTMLElement) heroCover.style.overflow = 'visible';
+				};
+				const releasePlate = () => {
+					plate.classList.remove('is-detached');
+					plate.style.left = '';
+					plate.style.top = '';
+					plate.style.width = '';
+					plate.style.height = '';
+					plate.style.borderRadius = '';
+					plate.style.zIndex = '';
+					plate.style.removeProperty('--home-plate-clear');
+					plate.style.removeProperty('--home-plate-image-scale');
+					plate.querySelectorAll('[data-plate-layer]').forEach((layer) => {
+						if (!(layer instanceof HTMLElement)) return;
+						layer.style.transform = '';
+						layer.style.transformOrigin = '';
+						layer.style.zIndex = '';
+					});
+					stage.classList.remove('is-plate-live', 'is-plate-flying');
+					if (heroSection instanceof HTMLElement) heroSection.style.overflow = '';
+					if (heroCover instanceof HTMLElement) heroCover.style.overflow = '';
+				};
+				// Position uses the raw spring (it may pass 0 and 1). Size, radius, crop, and the
+				// stack unfold stay clamped so the shrink never bounces.
+				const paintPlate = (t) => {
+					const raw = clamp(t);
+					sizeT = flightTarget === 1 ? Math.max(sizeT, raw) : Math.min(sizeT, raw);
+					const morph = sizeT;
+					const slot = readBox(heroSlot);
+					const origin = flightFrom || slot;
+					// Forward flies from the frozen detach pose to the live card.
+					// Return flies from the frozen card pose to the live hero slot.
+					const from = flightTarget === 1 ? origin : slot;
+					const to = flightTarget === 1 ? readCardBox() : origin;
+					if (to.width < 2 || from.width < 2) return;
+					placePlate({
+						x: mix(from.x, to.x, t),
+						y: mix(from.y, to.y, t),
+						width: mix(from.width, to.width, morph),
+						height: mix(from.height, to.height, morph),
+					}, mix(from.radius, to.radius, morph));
+					plate.style.zIndex = '6';
+					plate.style.setProperty('--home-plate-clear', String(morph));
+					plate.style.setProperty('--home-plate-image-scale', String(mix(heroImageScale(), payImageScale, morph)));
+					if (flightTarget === 1 || stackReveal < 0.03) collapseLayers();
+				};
+				const playStack = (to, duration, onDone) => {
+					const token = ++arrivalToken;
+					stackAnim?.stop?.();
+					stackAnim = animate(stackReveal, to, {
+						type: spring,
+						bounce: 0,
+						visualDuration: duration,
+						onUpdate: (value) => {
+							if (token !== arrivalToken) return;
+							stackReveal = value;
+							schedule();
+						},
+						onComplete: () => {
+							if (token !== arrivalToken) return;
+							stackReveal = to;
+							onDone?.();
+						},
+					});
+				};
+				const playArrival = () => {
+					playStack(1, 1.25);
+				};
+				const resetDeck = () => {
+					deckToken += 1;
+					cancelAnimationFrame(deckFrame);
+					deckShown = 0;
+					deckTarget = 0;
+				};
+				const playDeck = (to) => {
+					deckTarget = to;
+					const from = deckShown;
+					const token = ++deckToken;
+					cancelAnimationFrame(deckFrame);
+					if (Math.abs(to - from) < 0.001) {
+						deckShown = to;
+						return;
+					}
+					const started = performance.now();
+					const duration = 200 * Math.abs(to - from);
+					const step = (now) => {
+						if (token !== deckToken) return;
+						const u = Math.min(1, (now - started) / duration);
+						const eased = u * u * (3 - 2 * u);
+						deckShown = u >= 1 ? to : from + (to - from) * eased;
+						if (u < 1) deckFrame = requestAnimationFrame(step);
+						schedule();
+					};
+					deckFrame = requestAnimationFrame(step);
+				};
+				const settleHome = () => {
+					flightT = 0;
+					sizeT = 0;
+					flightTarget = 0;
+					stackReveal = 0;
+					flightMode = 'attached';
+					homeProgress = latestProgress;
+					paintPlate(0);
+					releasePlate();
+					schedule();
+				};
+				const holdPlate = () => {
+					const box = readCardBox();
+					if (box.width < 2) return;
+					pinPlate();
+					placePlate(box, box.radius);
+					plate.style.zIndex = '2';
+					plate.style.setProperty('--home-plate-clear', '1');
+					plate.style.setProperty('--home-plate-image-scale', String(payImageScale));
+					stage.classList.remove('is-plate-flying');
+				};
+				let returnFrame = 0;
+				const workflowAction = stage.querySelector('.home-workflows-intro__action');
+				const flightSeconds = 0.4;
+				const syncCopyReveal = () => {
+					let reveal = 0;
+					const elapsed = (performance.now() - flightStartedAt) / 1000;
+					if (flightMode === 'flying' && flightTarget === 1) {
+						reveal = smoothstep(0.23, flightSeconds, elapsed);
+					} else if (flightMode === 'flying' && flightTarget === 0) {
+						reveal = copyHold * (1 - smoothstep(0, 0.17, elapsed));
+					} else if (flightMode === 'locked') reveal = 1;
+					stage.style.setProperty('--home-proof-header-opacity', String(reveal));
+					if (workflowAction instanceof HTMLElement) workflowAction.style.pointerEvents = reveal > 0.98 ? '' : 'none';
+				};
+				const springFlight = (to) => {
+					const token = ++flightToken;
+					flightAnim?.stop?.();
+					cancelAnimationFrame(returnFrame);
+					if (to === 0) {
+						copyHold = flightMode === 'locked'
+							? 1
+							: smoothstep(0.23, flightSeconds, (performance.now() - flightStartedAt) / 1000);
+					}
+					flightStartedAt = performance.now();
+					flightFrom = readBox(plate.classList.contains('is-detached') ? plate : heroSlot);
+					sizeT = clamp(flightT);
+					flightMode = 'flying';
+					pinPlate();
+					arrivalToken += 1;
+					stackAnim?.stop?.();
+					homing = false;
+					if (to === 1) {
+						stackReveal = 0;
+						stage.classList.add('is-plate-flying');
+					} else stage.classList.remove('is-plate-flying');
+					paintPlate(flightT);
+					if (to === 0) {
+						// Motion's frameloop seeks this return to its end on the first tick.
+						// Step the same overshoot ourselves so the photo flies back.
+						const started = performance.now();
+						const step = (now) => {
+							if (token !== flightToken) return;
+							const u = (now - started) / (flightSeconds * 1000);
+							const value = Math.exp(-2.6 * u) * Math.cos(u * 1.7);
+							flightT = value;
+							stackReveal = Math.min(stackReveal, Math.max(0, 1 - (now - started) / 200));
+							paintPlate(value);
+							syncCopyReveal();
+							schedule();
+							if (u < 1.8 && Math.abs(value) > 0.004) returnFrame = requestAnimationFrame(step);
+							else settleHome();
+						};
+						returnFrame = requestAnimationFrame(step);
+						return;
+					}
+					flightAnim = animate(flightT, to, {
+						type: spring,
+						bounce: 0.34,
+						visualDuration: flightSeconds,
+						onUpdate: (value) => {
+							if (token !== flightToken) return;
+							flightT = value;
+							paintPlate(value);
+							syncCopyReveal();
+						},
+						onComplete: () => {
+							if (token !== flightToken) return;
+							flightT = to;
+							flightMode = 'locked';
+							returnArmed = true;
+							holdPlate();
+							playArrival();
+							schedule();
+						},
+					});
+				};
+				const stopFlight = () => {
+					flightToken += 1;
+					flightAnim?.stop?.();
+					cancelAnimationFrame(returnFrame);
+					flightAnim = null;
+					flightT = 0;
+					flightTarget = 0;
+					flightMode = 'attached';
+					flightFrom = null;
+					sizeT = 0;
+					stackReveal = 0;
+					arrivalToken += 1;
+					stackAnim?.stop?.();
+					stackAnim = null;
+					resetDeck();
+					homing = false;
+					departReady = false;
+					returnArmed = false;
+					homeProgress = -1;
+					releasePlate();
+					stage.classList.remove('is-plate-owner');
+				};
+
 				const fitMobileDeck = (progress) => {
 					if (desktop.matches) return;
 					const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
@@ -589,6 +953,8 @@ const homeFaqItems = [
 					}
 
 					if (!transitionEnabled || reduceMotion.matches) {
+						if (flightMode !== 'attached' || plate.classList.contains('is-detached')) stopFlight();
+						stage.classList.remove('is-plate-owner');
 						const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
 						const stickyTop = 0;
 						const scrollRect = proofScroll.getBoundingClientRect();
@@ -607,11 +973,14 @@ const homeFaqItems = [
 						stage.style.setProperty('--home-proof-featured-notice-opacity', '1');
 						stage.style.setProperty('--home-proof-header-opacity', '1');
 						overlay.style.setProperty('--home-transition-opacity', '0');
+						stage.style.setProperty('--home-hero-media-opacity', '1');
 						return;
 					}
 					updateMobileHeroFrame();
 
 					if (!desktop.matches) {
+						if (flightMode !== 'attached' || plate.classList.contains('is-detached')) stopFlight();
+						stage.classList.remove('is-plate-owner');
 						const stageRect = stage.getBoundingClientRect();
 						const stageTop = window.scrollY + stageRect.top;
 						const transitionEndScroll = window.scrollY + proofScroll.getBoundingClientRect().top;
@@ -629,7 +998,7 @@ const homeFaqItems = [
 						if (!(landingCard instanceof HTMLElement) || !(landingImage instanceof HTMLImageElement)) return;
 						const measuredTarget = landingCard.getBoundingClientRect();
 						const heroRect = heroFrame.getBoundingClientRect();
-						const heroCoverRect = heroImage.parentElement?.getBoundingClientRect() ?? heroImage.getBoundingClientRect();
+						const heroCoverRect = heroSlot.getBoundingClientRect();
 						const sourceScrollOffset = window.scrollY - stageTop;
 						const sourceRect = {
 							x: heroRect.x,
@@ -685,11 +1054,8 @@ const homeFaqItems = [
 						return;
 					}
 
-					// Measure the resting card, not its previous deck-turn transform.
-					targetCard.style.transform = 'none';
 					const stageRect = stage.getBoundingClientRect();
 					const stageTop = window.scrollY + stageRect.top;
-					const targetRect = targetCard.getBoundingClientRect();
 					// The runway stays in document flow while its section is sticky.
 					// Arrive exactly as the full-height section locks to the viewport.
 					const proofRect = (proofContent ?? proofSection).getBoundingClientRect();
@@ -704,68 +1070,84 @@ const homeFaqItems = [
 					const distance = Math.max(1, transitionEndScroll - stageTop);
 					const startOffset = 0;
 					const progress = clamp((-stageRect.top - startOffset) / Math.max(1, distance - startOffset));
-					const positionProgress = progress;
-					const sizeProgress = clamp(progress / 0.94);
-
-					const heroRect = heroFrame.getBoundingClientRect();
-					const heroCoverRect = heroImage.parentElement?.getBoundingClientRect() ?? heroImage.getBoundingClientRect();
-					const heroImgRect = getPaintedImageRect(heroCoverRect, heroImage);
-					// Match the image's inner box, including its CSS zoom, for a seamless handoff.
-					const targetImgRect = getPaintedImageRect({
-						x: targetRect.x + targetCard.clientLeft,
-						y: targetRect.y + targetCard.clientTop,
-						width: targetImage.clientWidth,
-						height: targetImage.clientHeight,
-					}, targetImage);
-					const heroStyle = getComputedStyle(heroFrame);
-					const targetStyle = getComputedStyle(targetCard);
-					const heroRadius = Number.parseFloat(heroStyle.borderTopLeftRadius) || 24;
-					const targetRadius = Number.parseFloat(targetStyle.borderTopLeftRadius) || 22;
-					const heroBorderWidth = Number.parseFloat(heroStyle.borderTopWidth) || 1;
-					const targetBorderWidth = Number.parseFloat(targetStyle.borderTopWidth) || 0;
-
-					const rect = {
-						x: mix(heroRect.x, targetRect.x, positionProgress),
-						y: mix(heroRect.y, targetRect.y, positionProgress),
-						width: mix(heroRect.width, targetRect.width, sizeProgress),
-						height: mix(heroRect.height, targetRect.height, sizeProgress),
-					};
-					const imageRect = {
-						x: mix(heroImgRect.x - heroRect.x, targetImgRect.x - targetRect.x, sizeProgress),
-						y: mix(heroImgRect.y - heroRect.y, targetImgRect.y - targetRect.y, sizeProgress),
-						width: mix(heroImgRect.width, targetImgRect.width, sizeProgress),
-						height: mix(heroImgRect.height, targetImgRect.height, sizeProgress),
-					};
-					const imageBottomGap = rect.height - (imageRect.y + imageRect.height);
-					if (imageBottomGap > 0) imageRect.y += imageBottomGap;
-					const transitionStarted = progress > 0.002;
-					const transitionComplete = progress >= 1;
-					const overlayOpacity = transitionStarted && !transitionComplete ? 1 : 0;
-					// Reveal on departure and retain the stack through landing.
-					const endpointGap = Math.min(0.02, 3 / distance);
-					const stackReveal = smootherstep(endpointGap, endpointGap + 0.12, progress);
-					overlay.style.setProperty('--home-transition-stack-reveal', String(stackReveal));
-					const borderProgress = sizeProgress;
-					const borderOpacity = mix(0.54, 0, borderProgress);
-					const borderWidth = mix(heroBorderWidth, targetBorderWidth, borderProgress);
-					const heroFrameOpacity = transitionStarted ? 0 : 1;
-					const actionsOpacity = 1 - smoothstep(0.035, 0.18, progress);
+					latestDeckProgress = deckProgress;
+					latestProgress = progress;
+					const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.getBoundingClientRect().height : 0;
+					const mediaNow = measureMediaRect();
 					const heroBackdropProgress = smoothstep(0.05, 0.46, progress);
-					const proofImageOpacity = transitionComplete ? 1 : 0;
-					const proofCardOpacity = transitionComplete ? 1 : 0;
-					const proofNoticeOpacity = transitionComplete ? 1 : 0;
-					const proofHeaderOpacity = smootherstep(0.58, 0.9, progress);
+					const plateNearTop = mediaNow.width > 2
+						&& mediaNow.top <= headerHeight + 20
+						&& mediaNow.bottom <= headerHeight + window.innerHeight * 0.3
+						&& mediaNow.bottom > headerHeight;
+					stage.classList.add('is-plate-owner');
+					const backDown = flightMode === 'attached' && homeProgress >= 0 && progress > homeProgress + 0.12;
+					if (flightMode === 'attached' && homeProgress >= 0 && (progress < 0.4 || backDown)) homeProgress = -1;
+					if (!flightBooted) {
+						flightBooted = true;
+						if (progress >= 0.72) {
+							flightT = 1;
+							flightTarget = 1;
+							flightMode = 'locked';
+							returnArmed = true;
+							stackReveal = 1;
+							const index = indicatorIndexFor(deckProgress);
+							deckShown = index;
+							deckTarget = index;
+						}
+					} else if (departReady && flightMode === 'locked') {
+						departReady = false;
+						homing = false;
+						if (progress >= 0.86) playArrival();
+						else {
+							flightTarget = 0;
+							flightT = 1;
+							springFlight(0);
+						}
+					} else if (flightMode === 'locked' && cardTopRemaining() > 0.1) {
+						returnArmed = true;
+					} else if (flightMode === 'locked' && returnArmed && cardTopRemaining() <= 0.1) {
+						returnArmed = false;
+						homing = false;
+						departReady = false;
+						resetDeck();
+						flightTarget = 0;
+						flightT = 1;
+						springFlight(0);
+					} else if (flightMode === 'flying' && flightTarget === 0 && cardTopRemaining() >= 0.2) {
+						flightTarget = 1;
+						springFlight(1);
+					} else if (flightMode === 'attached' && homeProgress < 0 && heroBackdropProgress >= 0.62 && (plateNearTop || progress >= 0.86) && flightTarget !== 1) {
+						flightTarget = 1;
+						flightT = 0;
+						springFlight(1);
+					}
 
-					setOverlay(rect, imageRect, overlayOpacity, borderOpacity, borderWidth, mix(heroRadius, targetRadius, sizeProgress));
+					const settled = flightMode === 'locked';
+					const heroFrameOpacity = flightMode === 'attached' ? 1 - smoothstep(0.08, 0.28, progress) : 0;
+					const actionsOpacity = 1 - smoothstep(0.035, 0.18, progress);
+					syncCopyReveal();
+					overlay.style.setProperty('--home-transition-opacity', '0');
+					overlay.style.setProperty('--home-transition-stack-reveal', '0');
+					overlay.style.setProperty('--home-transition-stack-fan', '0px');
+					stage.style.setProperty('--home-hero-media-opacity', '1');
+					if (settled) holdPlate();
+					else if (flightMode === 'attached') releasePlate();
 					stage.style.setProperty('--home-hero-frame-opacity', String(heroFrameOpacity));
 					stage.style.setProperty('--home-hero-actions-opacity', String(actionsOpacity));
 					stage.style.setProperty('--home-hero-stats-opacity', String(1 - smoothstep(.008, .09, progress)));
 					stage.style.setProperty('--home-hero-backdrop-progress', String(heroBackdropProgress));
-					stage.style.setProperty('--home-proof-featured-image-opacity', String(proofImageOpacity));
-					stage.style.setProperty('--home-proof-featured-card-opacity', String(proofCardOpacity));
-					stage.style.setProperty('--home-proof-featured-notice-opacity', String(proofNoticeOpacity));
-					stage.style.setProperty('--home-proof-header-opacity', String(proofHeaderOpacity));
-					renderDeck(deckProgress, transitionComplete);
+					stage.style.setProperty('--home-proof-featured-image-opacity', '0');
+					stage.style.setProperty('--home-proof-featured-card-opacity', '0');
+					stage.style.setProperty('--home-proof-featured-notice-opacity', settled && stackReveal > 0.98 ? '1' : '0');
+					if (settled) {
+						const indicatorIndex = indicatorIndexFor(deckProgress);
+						if (indicatorIndex !== deckTarget) playDeck(indicatorIndex);
+					} else if (flightMode === 'attached' && (deckTarget !== 0 || deckShown !== 0)) resetDeck();
+					renderDeck(deckProgress, settled);
+					if (plate.classList.contains('is-detached') && !(flightMode === 'flying' && flightTarget === 1)) {
+						if (flightTarget === 0 && stackReveal < 0.03) collapseLayers();
+						else syncLayersToDeck();
+					}
 				};
 
 				const schedule = () => {
@@ -812,6 +1194,7 @@ const homeFaqItems = [
 		--home-hero-actions-opacity: 1;
 		--home-hero-stats-opacity: 1;
 		--home-hero-frame-opacity: 1;
+		--home-hero-media-opacity: 1;
 		--home-hero-backdrop-progress: 0;
 		--home-proof-featured-image-opacity: 1;
 		--home-proof-featured-card-opacity: 1;
@@ -892,7 +1275,7 @@ const homeFaqItems = [
 		border-radius: inherit;
 		transform-origin: center top;
 		opacity: 1;
-		transform: translateY(calc(-8px * var(--stack-depth) * var(--home-transition-stack-reveal, 0))) scale(calc(1 - 0.03 * var(--stack-depth) * var(--home-transition-stack-reveal, 0)));
+		transform: translateY(calc((-8px * var(--home-transition-stack-reveal, 0) - var(--home-transition-stack-fan, 0px)) * var(--stack-depth))) scale(calc(1 - 0.03 * var(--stack-depth) * var(--home-transition-stack-reveal, 0)));
 	}
 
 	.home-transition-back--hire {
@@ -972,7 +1355,23 @@ const homeFaqItems = [
 		transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
-	.home-hero-proof-stage .home-proof-section header {
+	.home-hero-proof-stage.is-plate-owner [data-workflow-card] {
+		background: transparent !important;
+		box-shadow: none !important;
+	}
+
+	.home-hero-proof-stage.is-plate-owner [data-workflow-card] > img,
+	.home-hero-proof-stage.is-plate-owner [data-workflow-card]::after {
+		opacity: 0 !important;
+	}
+
+	.home-hero-proof-stage.is-plate-flying [data-workflow-card] {
+		opacity: 0 !important;
+		visibility: hidden !important;
+	}
+
+	.home-hero-proof-stage .home-proof-section header,
+	.home-hero-proof-stage .home-workflows-intro__action {
 		opacity: var(--home-proof-header-opacity, 1);
 		transform: translateY(calc((1 - var(--home-proof-header-opacity, 1)) * 1.1rem));
 	}
@@ -1099,6 +1498,14 @@ const homeFaqItems = [
 		.home-hero-proof-rotator__item:first-child { opacity: 1; transform: none; }
 	}
 
+	.home-hero-cover__slot {
+		position: absolute;
+		inset: var(--home-hero-media-inset);
+		border-radius: var(--home-hero-media-radius);
+		visibility: hidden;
+		pointer-events: none;
+	}
+
 	.home-hero-cover__media {
 		position: absolute;
 		inset: var(--home-hero-media-inset);
@@ -1106,6 +1513,18 @@ const homeFaqItems = [
 		overflow: hidden;
 		border-radius: var(--home-hero-media-radius);
 		background: var(--color-garna-page, #101010);
+		opacity: var(--home-hero-media-opacity, 1);
+	}
+
+	.home-hero-cover__media.is-detached {
+		position: fixed;
+		inset: auto;
+		z-index: 2;
+		margin: 0;
+		overflow: visible;
+		background: transparent;
+		opacity: 1;
+		pointer-events: none;
 	}
 
 	.home-hero-cover__media::before {
@@ -1115,6 +1534,11 @@ const homeFaqItems = [
 		content: "";
 		background: rgba(0, 0, 0, calc(0.05 + var(--home-hero-backdrop-progress, 0) * 0.29));
 		pointer-events: none;
+	}
+
+	.home-hero-cover__media.is-detached::before,
+	.home-hero-cover__media.is-detached::after {
+		opacity: calc(1 - var(--home-plate-clear, 0));
 	}
 
 	.home-hero-cover__media::after {
@@ -1129,15 +1553,63 @@ const homeFaqItems = [
 		pointer-events: none;
 	}
 
-	.home-hero-cover__media img {
+	.home-hero-plate__layer {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		border-radius: inherit;
+		background: #121212;
+		pointer-events: none;
+		transform-origin: center top;
+	}
+
+	.home-hero-cover__media:not(.is-detached) .home-hero-plate__layer:not(.home-hero-plate__layer--photo) {
+		opacity: 0;
+	}
+
+	.home-hero-plate__layer--hire,
+	.home-hero-plate__layer--contractors,
+	.home-hero-plate__layer--photo { z-index: 0; }
+
+	.home-hero-plate__layer--photo::after {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		background: rgb(0 0 0 / 5%);
+		content: "";
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.home-hero-cover__media.is-detached .home-hero-plate__layer--photo::after {
+		opacity: var(--home-plate-clear, 0);
+	}
+
+	.home-hero-cover__media img,
+	.home-hero-plate__layer img {
 		position: absolute;
 		inset: 0;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		object-position: center bottom;
-		transform: scale(var(--home-hero-image-scale));
+		transform: none;
+	}
+
+	.home-hero-cover__media .home-hero-plate__layer--photo img {
+		object-position: center bottom;
+		transform: scale(var(--home-plate-image-scale, var(--home-hero-image-scale)));
 		transform-origin: center bottom;
+	}
+
+	.home-hero-cover__media .home-hero-plate__layer--hire img {
+		object-position: 5% center;
+	}
+
+	.home-hero-cover__media .home-hero-plate__layer--contractors img {
+		object-position: center 64%;
+		transform: scale(1.36);
+		transform-origin: center center;
 	}
 
 	.home-hero-focus-frame {
@@ -1149,10 +1621,11 @@ const homeFaqItems = [
 		min-height: var(--home-hero-frame-min-height, 0);
 		max-height: var(--home-hero-frame-max-height, none);
 		aspect-ratio: 0.66;
-		border: 1px solid rgba(255, 255, 255, 0.58);
+		border: 0;
 		border-radius: var(--home-hero-frame-radius);
-		opacity: var(--home-hero-frame-opacity, 1);
+		opacity: 0;
 		transform: translateX(-50%);
+		pointer-events: none;
 		container-type: inline-size;
 	}
 
@@ -1187,6 +1660,7 @@ const homeFaqItems = [
 
 	@media (max-width: 840px) {
 		.home-hero-proof-transition .home-transition-back { display: none; }
+		.home-hero-plate__layer:not(.home-hero-plate__layer--photo) { display: none; }
 
 		.home-hero-cover {
 			--home-hero-frame-width: var(--home-hero-mobile-frame-width, min(18rem, 58vw));
