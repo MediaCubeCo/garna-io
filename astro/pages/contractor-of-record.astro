@@ -17,6 +17,22 @@ import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
 
+interface Props {
+	defaultTheme?: 'dark' | 'light';
+	mainClass?: string;
+	shellTitle?: string;
+}
+
+const {
+	defaultTheme = 'dark',
+	mainClass = '',
+	shellTitle,
+} = Astro.props;
+
+const contractorOfRecordShell = shellTitle
+	? { ...pageShells.contractorOfRecord, title: shellTitle }
+	: pageShells.contractorOfRecord;
+
 const contractorFaqItems = [
 	{
 		question: 'What is a Contractor of Record (COR)?',
@@ -63,7 +79,12 @@ const contractorFaqItems = [
 ] satisfies FAQItem[];
 ---
 
-<BaseLayout shell={pageShells.contractorOfRecord} showRainbow={false}>
+<BaseLayout
+	shell={contractorOfRecordShell}
+	showRainbow={false}
+	defaultTheme={defaultTheme}
+	mainClass={mainClass}
+>
 	<ContractorOfRecordHeroSection />
 	<GarnaDifferentiatorsSection />
 	<ContractorWorldwideFeatureSection />

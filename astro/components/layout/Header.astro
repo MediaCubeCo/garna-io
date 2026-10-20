@@ -8,6 +8,8 @@ const navCurrentPath = currentPath === 'light-home'
 	? ''
 	: currentPath === 'eor-light'
 		? 'employer-of-record'
+		: currentPath === 'cor-light'
+			? 'contractor-of-record'
 		: currentPath;
 
 const base = '/en';
@@ -43,7 +45,7 @@ const mobileLinkClass = (path: string) =>
 		'garna-header-mobile-link',
 	].join(' ');
 
-const startsTransparent = currentPath === '' || currentPath === contractorOfRecordPath || currentPath === 'light-home';
+const startsTransparent = currentPath === '' || currentPath === contractorOfRecordPath || currentPath === 'light-home' || currentPath === 'cor-light';
 ---
 
 <nav class:list={['garna-header fixed z-50 w-full top-0', { 'is-scrolled': !startsTransparent }]}>
@@ -511,13 +513,14 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 
 		const syncHeaderSurface = () => {
 			if (!(header instanceof HTMLElement)) return;
-			const transparentAtTopPaths = new Set(['', 'contractor-of-record', 'light-home']);
+			const transparentAtTopPaths = new Set(['', 'contractor-of-record', 'light-home', 'cor-light']);
 			const startsTransparentAtTop = transparentAtTopPaths.has(getPagePath());
 			header.classList.toggle('is-scrolled', !startsTransparentAtTop || window.scrollY > 1);
 
 			const darkHeaderSurface = document.querySelector([
 				'.light-home-draft .spendbase-quote-section',
 				'.employee-of-record-light-draft .eor-estimator-section',
+				'.contractor-of-record-light-draft .contractor-hero',
 			].join(','));
 			if (darkHeaderSurface instanceof HTMLElement) {
 				const headerHeight = header.getBoundingClientRect().height;
@@ -648,6 +651,8 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 				? ''
 				: pagePath === 'eor-light'
 					? 'employer-of-record'
+					: pagePath === 'cor-light'
+						? 'contractor-of-record'
 					: pagePath;
 			const setSingleActiveLink = (selector) => {
 				let activeAssigned = false;

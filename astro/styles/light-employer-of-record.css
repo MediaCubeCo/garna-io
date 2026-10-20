@@ -240,8 +240,20 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-recor
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__flag {
-	border-color: #ffffff;
-	box-shadow: 0 0 0 1px var(--garna-border);
+	box-sizing: border-box;
+	border: 0;
+	background: #ffffff;
+	padding: 2px;
+	box-shadow: 0 8px 18px -10px rgba(21, 21, 21, 0.52);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft :is(
+	.eor-hero-notification__flag,
+	.eor-hero-notification__payment-flag
+) img {
+	border: 0 !important;
+	outline: 0 !important;
+	box-shadow: none !important;
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__payment-row + .eor-hero-notification__payment-row {
@@ -249,8 +261,10 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-recor
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__payment-flag {
-	border-color: var(--garna-border);
-	background: var(--garna-surface-soft);
+	box-sizing: border-box;
+	border: 1px solid rgba(21, 21, 21, 0.14);
+	background: #ffffff;
+	box-shadow: 0 10px 22px -12px rgba(21, 21, 21, 0.52);
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero-notification__copy strong,
@@ -331,13 +345,13 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-recor
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .home-proof-card::after {
 	border: 0 !important;
 	background: transparent;
-	box-shadow: 0 14px 34px rgba(21, 21, 21, 0.08);
+	box-shadow: none !important;
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .home-proof-card__notice {
 	border-color: rgba(21, 21, 21, 0.08);
 	background: #ffffff;
-	box-shadow: 0 12px 30px rgba(21, 21, 21, 0.14);
+	box-shadow: none !important;
 	color: var(--garna-text);
 	backdrop-filter: none;
 }

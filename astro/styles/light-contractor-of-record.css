@@ -1,0 +1,867 @@
+/* Light Contractor of Record draft styles are scoped to this route. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) {
+	--garna-page-bg: #f3f4ee;
+	--garna-section-stats-bg: #e9ebe4;
+	--garna-surface: #ffffff;
+	--garna-surface-raised: #ffffff;
+	--garna-surface-soft: #f0f1ec;
+	--garna-border: #e2e5de;
+	--garna-border-strong: rgba(21, 21, 21, 0.14);
+	--garna-text: #151515;
+	--garna-text-muted: #737974;
+	--garna-subtitle-color: #737974;
+	--garna-accent: #a8ff2c;
+	--garna-accent-foreground: #151515;
+	--garna-radius-sm: 16px;
+	--garna-radius-md: 22px;
+	--garna-radius-lg: 28px;
+	--garna-shadow-card: 0 10px 30px rgba(20, 24, 18, 0.05);
+	--light-home-lime-soft: #eafcc0;
+	--light-home-lime-ink: #3d5a10;
+	color-scheme: light;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft),
+html[data-theme='light']:has(.contractor-of-record-light-draft) body[data-garna-page] {
+	background: var(--garna-page-bg);
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) ::selection {
+	background: rgba(168, 255, 44, 0.48);
+	color: var(--garna-text);
+}
+
+/* Share the full EOR Light CTA pattern across the page and header. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) :is(.contractor-of-record-light-draft, .garna-header) .garna-button {
+	--garna-button-bg: var(--garna-accent);
+	--garna-button-shine: #ffffff;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) :is(.contractor-of-record-light-draft, .garna-header) .garna-button:is(:hover, :active) {
+	transform: none;
+	filter: none;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) :is(.contractor-of-record-light-draft, .garna-header) .garna-button-primary:hover {
+	--garna-button-bg: #aef534;
+}
+
+/* Replace the old yellow-lime accents used by the shared dark COR components. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class~='bg-[#CBF300]'] {
+	background-color: var(--garna-accent) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class*='bg-[#CBF300]/'] {
+	background-color: rgba(168, 255, 44, 0.14) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class*='text-[#CBF300]'] {
+	color: var(--garna-accent) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class*='border-[#CBF300]'] {
+	border-color: rgba(168, 255, 44, 0.4) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [stroke='#CBF300'] {
+	stroke: var(--garna-accent) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [fill='#CBF300'] {
+	fill: var(--garna-accent) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(
+	.contractor-worldwide-feature__avatar > span,
+	.contractor-worldwide-feature__badge,
+	.creator-mini-verification i,
+	.creator-chat-bubble.user
+) {
+	background: var(--garna-accent) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-balance-bar::before {
+	background: var(--garna-accent) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(
+	.ip-document-signatures strong,
+	.contract-folder-label em,
+	.creator-process-fallback-copy > span,
+	.creator-balance-methods span,
+	.creator-doc-corner,
+	.creator-balance-top em
+) {
+	color: var(--garna-accent) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-process-progress span.is-active {
+	background: linear-gradient(90deg, var(--garna-text) 0 var(--creator-process-step-progress), rgba(21, 21, 21, 0.1) var(--creator-process-step-progress) 100%) !important;
+	box-shadow: inset 0 0 0 1px rgba(21, 21, 21, 0.12) !important;
+}
+
+/* Reuse Home Light's Hire Employees Worldwide card composition verbatim. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .hire-employees-card {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	grid-template-rows: auto 1fr auto;
+	min-height: clamp(17rem, 24vw, 20rem);
+	column-gap: 1.5rem;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .hire-employees-card__visual {
+	display: grid;
+	width: 1.5rem;
+	height: 1.5rem;
+	grid-column: 2;
+	grid-row: 1;
+	place-items: center;
+	justify-self: end;
+	border-radius: 0;
+	background: transparent;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .hire-employees-card__body {
+	display: contents;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .hire-employees-card [data-card-title] {
+	grid-column: 1;
+	grid-row: 1;
+	align-self: start;
+	margin: 0;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .hire-employees-card [data-card-description] {
+	grid-column: 1 / -1;
+	grid-row: 3;
+	align-self: end;
+	max-width: 30rem;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .hire-employees-card__icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	color: var(--garna-text) !important;
+	stroke-width: 2;
+}
+
+/* Home Light card surfaces and interaction, shared by both COR card rows. */
+html:has(.contractor-of-record-light-draft) .garna-card-light-field,
+html:has(.contractor-of-record-light-draft) .contractor-benefits-card::before,
+html:has(.contractor-of-record-light-draft) .contractor-benefits-card::after {
+	display: none !important;
+}
+
+html:has(.contractor-of-record-light-draft) .garna-card::before,
+html:has(.contractor-of-record-light-draft) .garna-card::after {
+	opacity: 0 !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(.garna-card, .contractor-benefits-card) {
+	border-color: var(--garna-border) !important;
+	background: var(--garna-surface-raised) !important;
+	box-shadow: var(--garna-shadow-card) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-benefits-card {
+	border-radius: var(--garna-radius-sm) !important;
+	transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 340ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-benefits-card > h3 {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-benefits-card > p {
+	color: var(--garna-text-muted) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(
+		.hire-employees-card,
+		.contractor-benefits-card,
+		.trusted-business-card
+	) {
+		z-index: 1;
+		translate: none !important;
+		transform: translate3d(0, 0, 0) scale(1) !important;
+		transform-origin: center;
+		backface-visibility: hidden;
+		will-change: transform, box-shadow;
+		transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 340ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+	}
+
+	html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(
+		.hire-employees-card,
+		.contractor-benefits-card,
+		.trusted-business-card
+	):is(:hover, :focus-within, [data-pointer-active='true']) {
+		z-index: 3;
+		translate: none !important;
+		transform: translate3d(0, 0, 0) scale(1.035) !important;
+		box-shadow: 0 3px 8px rgba(21, 21, 21, 0.09), 0 16px 32px -8px rgba(21, 21, 21, 0.18), 0 32px 64px -22px rgba(21, 21, 21, 0.24) !important;
+	}
+}
+
+/* Cost image: no frame or shadow; the estimate is the same white product plaque. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-worldwide-feature__visual {
+	border: 0 !important;
+	outline: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-worldwide-feature__visual > img {
+	filter: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-worldwide-feature__shade {
+	display: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-worldwide-feature__notice--quote {
+	border-color: var(--garna-border) !important;
+	background: #ffffff !important;
+	color: var(--garna-text) !important;
+	box-shadow: none !important;
+	backdrop-filter: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-worldwide-feature__quote-top span,
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-worldwide-feature__quote-main span {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-worldwide-feature__quote-top strong {
+	background: #e7effd !important;
+	color: #2357c6 !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-worldwide-feature__quote-main strong {
+	color: var(--garna-text) !important;
+}
+
+/* Product artwork follows the same warm-neutral UI palette as Home Light. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contract-folder-papers span {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #f3f4f1 !important;
+	box-shadow: 0 14px 28px -20px rgba(21, 21, 21, 0.24) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contract-folder-svg path:nth-of-type(1) {
+	fill: #ffffff !important;
+	stroke: rgba(21, 21, 21, 0.1) !important;
+	stroke-width: 1px !important;
+	vector-effect: non-scaling-stroke;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contract-folder-svg path:nth-of-type(2),
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contract-folder-svg path:nth-of-type(3) {
+	fill: transparent !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contract-folder-svg path:nth-of-type(4) {
+	stroke: rgba(21, 21, 21, 0.1) !important;
+	stroke-width: 1px !important;
+	stroke-opacity: 1 !important;
+	vector-effect: non-scaling-stroke;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contract-folder-svg {
+	filter: drop-shadow(0 18px 22px rgba(21, 21, 21, 0.1));
+}
+
+/* Make the complete savings donut and its supporting controls legible on white. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .savings-ring-svg circle:not(.savings-ring-progress) {
+	stroke: #d9ddd7 !important;
+	stroke-width: 10px !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .savings-ring-svg .savings-ring-progress {
+	stroke: var(--garna-accent) !important;
+	stroke-width: 10px !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .savings-ring-svg {
+	filter: drop-shadow(0 10px 16px rgba(21, 21, 21, 0.14));
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-savings-ring {
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-savings-ring > div.absolute {
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .savings-ring-content {
+	background: #ffffff !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .savings-ring-content > span:first-child {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .savings-ring-content > strong {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .savings-ring-content > span:nth-of-type(2) {
+	color: #567a16 !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .savings-ring-content > div span {
+	border: 0 !important;
+	background: #eceeea !important;
+	color: var(--garna-text) !important;
+	box-shadow: none;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contract-folder-label span,
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .ip-document-heading strong {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .ip-document-signatures strong {
+	color: var(--light-home-lime-ink) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contract-folder-label small,
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .ip-document-heading span,
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .ip-document-signatures span {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contract-folder-label em {
+	width: fit-content;
+	border-radius: 999px;
+	background: var(--light-home-lime-soft) !important;
+	color: var(--light-home-lime-ink) !important;
+	padding: 0.22rem 0.48rem;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .ip-document-visual::before {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #f3f4f1 !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .ip-document-visual::after {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #f3f4f1 !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .ip-document-sheet {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #ffffff !important;
+	box-shadow: 0 18px 40px -30px rgba(21, 21, 21, 0.28) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .ip-document-sheet::before {
+	background: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .ip-document-heading span {
+	width: fit-content;
+	margin-left: -0.48rem;
+	border-radius: 999px;
+	background: var(--light-home-sky-soft) !important;
+	color: var(--light-home-sky-ink) !important;
+	padding: 0.22rem 0.48rem;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .ip-document-lines span,
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .ip-document-signatures div::after {
+	background: rgba(21, 21, 21, 0.16) !important;
+}
+
+/* Exact light treatment already used by Home's deferred-payment stack. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card {
+	border-color: var(--garna-border);
+	background: var(--garna-surface-raised);
+	box-shadow: 0 12px 32px rgba(35, 40, 28, 0.05);
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card::before,
+html[data-theme='light']:has(.contractor-of-record-light-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card::after {
+	display: none;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card__copy h3 {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card__copy p {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) [data-stacked-cards-section='home-deferred-payments-stack'] .stacked-cards-card__footer span {
+	border-color: transparent;
+	background: var(--light-home-lime-soft);
+	color: var(--light-home-lime-ink);
+}
+
+/* Contractor workflow text, product UI, and progress use the light-page language. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-process-scroll {
+	--cor-app-text: #151515;
+	--cor-app-muted: #737974;
+	--cor-app-shell: #ffffff;
+	--cor-app-surface: #eceeea;
+	--cor-app-border: rgba(21, 21, 21, 0.1);
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(.creator-process-step h3, .creator-process-fallback-copy h3) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(.creator-process-step p, .creator-process-fallback-copy p) {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(
+	.creator-process-step > span,
+	.creator-process-fallback-copy > span
+) {
+	border-color: transparent !important;
+	background: var(--garna-accent) !important;
+	color: var(--garna-accent-foreground) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-process-progress span {
+	background: rgba(21, 21, 21, 0.22);
+}
+
+/* Keep every card in the stack equally white; depth comes from position and scale. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-process-visual:is(
+	.is-stack-one,
+	.is-stack-two,
+	.is-stack-three,
+	.is-stack-four,
+	.is-stack-five
+) {
+	filter: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(.creator-mini-window, .creator-wallet-panel, .creator-bulk-panel) {
+	border-color: var(--cor-app-border) !important;
+	background: var(--cor-app-shell) !important;
+	color: var(--cor-app-text) !important;
+	box-shadow: 0 18px 42px -28px rgba(21, 21, 21, 0.24);
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(
+	.creator-mini-title,
+	.creator-mini-row strong,
+	.creator-wallet-header strong,
+	.creator-wallet-account > strong,
+	.creator-wallet-number b,
+	.creator-wallet-section-head strong,
+	.creator-wallet-template-list span,
+	.creator-wallet-template-list b,
+	.creator-bulk-header strong,
+	.creator-bulk-file strong,
+	.creator-bulk-stats strong
+) {
+	color: var(--cor-app-text) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(
+	.creator-mini-row span,
+	.creator-mini-field span,
+	.creator-wallet-account-top > span,
+	.creator-wallet-number span,
+	.creator-wallet-section-head span,
+	.creator-bulk-note,
+	.creator-bulk-file span,
+	.creator-bulk-stats span
+) {
+	color: var(--cor-app-muted) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(
+	.creator-mini-field strong,
+	.creator-invite-emails,
+	.creator-wallet-account,
+	.creator-wallet-template-list div,
+	.creator-bulk-file,
+	.creator-bulk-stats div
+) {
+	border-color: var(--cor-app-border) !important;
+	background: var(--cor-app-surface) !important;
+	color: var(--cor-app-text) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-invite-emails span {
+	background: var(--light-home-lime-soft) !important;
+	color: var(--light-home-lime-ink) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-wallet-currency {
+	border-color: var(--cor-app-border) !important;
+	background: var(--cor-app-surface) !important;
+	padding: 2px 3px !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-wallet-currency span {
+	color: var(--cor-app-muted) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-wallet-currency span:first-child,
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-bulk-file b {
+	border-color: transparent !important;
+	background: var(--garna-accent) !important;
+	color: var(--garna-accent-foreground) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-wallet-section-head strong {
+	display: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .creator-wallet-template-list i {
+	background: rgba(21, 21, 21, 0.2) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft :is(
+	.creator-mini-button,
+	.creator-visual-action,
+	.creator-wallet-actions span
+) {
+	border-color: transparent !important;
+	background: #202427 !important;
+	color: #ffffff !important;
+}
+
+/* Home Light testimonial cards and EOR/Home Light FAQ list. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .trusted-business-card img {
+	opacity: 1 !important;
+	filter: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .eor-faq {
+	border-top: 1px solid var(--garna-border-strong);
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .eor-faq > :not([hidden]) ~ :not([hidden]) {
+	margin-top: 0 !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .eor-faq-item {
+	border: 0 !important;
+	border-bottom: 1px solid var(--garna-border-strong) !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .eor-faq-item > summary {
+	padding: 1.65rem 0.25rem !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .eor-faq-panel > p {
+	padding: 0 2.75rem 1.65rem 0.25rem !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .eor-faq-item[data-state='open'] > summary .garna-faq-icon {
+	color: var(--garna-text);
+}
+
+/* The hero remains a dark video surface in the light redesign. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-hero__copy h1 {
+	background: none !important;
+	color: #ffffff !important;
+	-webkit-text-fill-color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-hero__copy p {
+	color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* Match the clean lime hero CTA used on EOR Light. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-hero__cta.garna-button {
+	--garna-button-bg: var(--garna-accent);
+	--garna-button-shine: #ffffff;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-hero__cta.garna-button:is(:hover, :active) {
+	--garna-button-bg: #aef534;
+	transform: none;
+	filter: none;
+	box-shadow: none !important;
+}
+
+/* Home Light header behavior: transparent over the hero, soft light glass after scrolling. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header:not(.is-mobile-open),
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header.is-scrolled:not(.is-mobile-open) {
+	background: rgba(246, 247, 243, 0.56) !important;
+	border-bottom-color: rgba(21, 21, 21, 0.08) !important;
+	box-shadow: none !important;
+	backdrop-filter: blur(16px) saturate(118%) !important;
+	-webkit-backdrop-filter: blur(16px) saturate(118%) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header:not(.is-scrolled):not(.is-mobile-open) {
+	background: transparent !important;
+	border-bottom-color: transparent !important;
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header:not(.is-scrolled) .garna-header-logo {
+	filter: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header:not(.is-scrolled) :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link,
+	.garna-header-mobile-link,
+	.garna-header-login
+) {
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header.is-scrolled .garna-header-logo {
+	filter: invert(1) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header.is-scrolled :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link,
+	.garna-header-mobile-link,
+	.garna-header-login,
+	.garna-header-dropdown-link,
+	.garna-header-link-main
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(body .contractor-of-record-light-draft) body .garna-header.is-scrolled :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link,
+	.garna-header-mobile-link,
+	.garna-header-dropdown-link,
+	.garna-header-link-main
+) {
+	transition-property: opacity, transform;
+}
+
+html[data-theme='light']:has(body .contractor-of-record-light-draft) body .garna-header.is-scrolled :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link
+):is(:hover, :focus-visible) {
+	background: rgba(21, 21, 21, 0.055);
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(body .contractor-of-record-light-draft) body .garna-header :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link
+):is(:hover, :focus-visible) {
+	border-color: transparent !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	outline: none;
+}
+
+html[data-theme='light']:has(body .contractor-of-record-light-draft) body .garna-header .garna-header-menu-group:hover:not(.is-dropdown-suppressed) .garna-header-chevron,
+html[data-theme='light']:has(body .contractor-of-record-light-draft) body .garna-header .garna-header-menu-group:has(.garna-header-menu-trigger:focus-visible) .garna-header-chevron {
+	color: inherit !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header .garna-header-dropdown-panel {
+	background: var(--garna-surface-raised) !important;
+	border-color: var(--garna-border) !important;
+	box-shadow: var(--garna-shadow-card) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header .garna-header-business-account-feature {
+	border: 0 !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header .garna-header-dropdown-title {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header :is(
+	.garna-header-dropdown-link,
+	.garna-header-link-main
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header .garna-header-link-kicker {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header .garna-header-divider {
+	background: rgba(21, 21, 21, 0.08);
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header .garna-header-dropdown-icon {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: rgba(21, 21, 21, 0.035) !important;
+	color: rgba(21, 21, 21, 0.64) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header .garna-header-dropdown-link:hover {
+	border-color: transparent !important;
+	background: rgba(21, 21, 21, 0.04) !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header .garna-header-dropdown-link:hover .garna-header-dropdown-icon {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header .garna-header-dropdown-link.is-active {
+	border-color: transparent !important;
+	background: rgba(21, 21, 21, 0.11) !important;
+	box-shadow: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header :is(
+	.garna-header-dropdown-link.is-active .garna-header-dropdown-icon,
+	.garna-header-mobile-card.is-active .garna-header-mobile-icon
+) {
+	border-color: var(--garna-text) !important;
+	background: var(--garna-text) !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header .garna-header-mobile-card.is-active {
+	background: rgba(21, 21, 21, 0.11);
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header :is(
+	.garna-header-dropdown-link.is-active .garna-header-link-main,
+	.garna-header-mobile-card.is-active .garna-header-mobile-link-main
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header :is(
+	.garna-header-dropdown-panel,
+	.garna-header-mobile-menu
+) {
+	background: var(--garna-surface-raised) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header .garna-header-login.garna-button-secondary {
+	border: 1px solid rgba(255, 255, 255, 0.28) !important;
+	background: rgba(255, 255, 255, 0.04) !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header:not(.is-scrolled) .garna-header-login.garna-button-secondary:hover {
+	background: rgba(255, 255, 255, 0.12) !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header.is-scrolled .garna-header-login.garna-button-secondary {
+	border-color: rgba(21, 21, 21, 0.14) !important;
+	background: rgba(255, 255, 255, 0.38) !important;
+	color: var(--garna-text) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header.is-scrolled:not(.is-over-dark-surface) .garna-header-login.garna-button-secondary:hover {
+	background: rgba(21, 21, 21, 0.06) !important;
+	color: var(--garna-text) !important;
+}
+
+/* While the fixed header still crosses the video, keep it in dark-surface mode. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header.is-scrolled.is-over-dark-surface:not(.is-mobile-open) {
+	background: rgba(15, 15, 15, 0.42) !important;
+	border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+	backdrop-filter: blur(16px) saturate(118%) !important;
+	-webkit-backdrop-filter: blur(16px) saturate(118%) !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header.is-over-dark-surface .garna-header-logo {
+	filter: none !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header.is-over-dark-surface :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link,
+	.garna-header-mobile-link,
+	.garna-header-login
+) {
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header.is-over-dark-surface :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link
+):is(:hover, :focus-visible) {
+	background: transparent !important;
+	color: #ffffff !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header.is-scrolled.is-over-dark-surface .garna-header-login.garna-button-secondary,
+html[data-theme='light']:has(.contractor-of-record-light-draft) .garna-header.is-scrolled.is-over-dark-surface .garna-header-login.garna-button-secondary:hover {
+	border-color: rgba(255, 255, 255, 0.3) !important;
+	background: rgba(255, 255, 255, 0.08) !important;
+	color: #ffffff !important;
+}
+
+/* The rounded light CTA overlaps the same dark footer used by Home Light and EOR Light. */
+html[data-theme='light']:has(.contractor-of-record-light-draft) body {
+	--light-cor-footer-radius: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft > [data-final-cta-section] {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	border-radius: 0 0 var(--light-cor-footer-radius) var(--light-cor-footer-radius);
+	background: var(--garna-page-bg);
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) body .garna-footer {
+	background: #020202 !important;
+	border-top-color: transparent !important;
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft + .garna-footer {
+	margin-top: calc(var(--light-cor-footer-radius) * -1);
+	padding-top: calc(4rem + var(--light-cor-footer-radius));
+}
+
+html[data-theme='light']:has(.contractor-of-record-light-draft) body .garna-footer img[src='/garna_logo.svg'],
+html[data-theme='light']:has(.contractor-of-record-light-draft) body .garna-footer img[src='/mediacube-logo-white.svg'] {
+	filter: none !important;
+}
+
+html:has(.contractor-of-record-light-draft) .garna-footer [class~='text-white'] {
+	color: #ffffff !important;
+}
+
+html:has(.contractor-of-record-light-draft) .garna-footer [class~='text-gray-500'] {
+	color: #6b7280 !important;
+}
+
+html:has(.contractor-of-record-light-draft) .garna-footer [class~='text-gray-600'] {
+	color: #4b5563 !important;
+}
+
+html:has(.contractor-of-record-light-draft) .garna-footer [class*='bg-[#1A1A1A]'] {
+	background-color: #1a1a1a !important;
+}
+
+html:has(.contractor-of-record-light-draft) .garna-footer [class*='text-[#CBF300]'] {
+	color: var(--garna-accent) !important;
+}
+
+html:has(.contractor-of-record-light-draft) .garna-footer [class~='border-white/10'] {
+	border-color: rgba(255, 255, 255, 0.1) !important;
+}

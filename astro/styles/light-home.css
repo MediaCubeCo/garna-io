@@ -207,21 +207,38 @@ html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id=
 	color: var(--garna-text-muted);
 }
 
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__payment-app {
+	color: var(--garna-text) !important;
+}
+
 html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__hire-avatar > span {
 	display: none;
 }
 
 html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__payment-icon {
-	background: var(--light-home-blue-soft);
-	color: var(--light-home-status-blue);
+	background: var(--garna-accent);
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__payment-icon img {
+	display: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__payment-icon::before {
+	width: 0.72rem;
+	height: 0.95rem;
+	background: currentColor;
+	content: '';
+	-webkit-mask: url('/images/garna-g-mark-dark.svg') center / contain no-repeat;
+	mask: url('/images/garna-g-mark-dark.svg') center / contain no-repeat;
 }
 
 html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__hire-status {
 	border: 1px solid transparent !important;
 	background: var(--light-home-status-green-soft) !important;
 	color: var(--light-home-status-green) !important;
-	padding: 0.34rem 0.56rem;
-	font-size: 0.72rem;
+	padding: 0.25rem 0.42rem;
+	font-size: 0.6rem;
 	font-weight: 700;
 	line-height: 1.1;
 	letter-spacing: 0;
@@ -237,11 +254,11 @@ html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id=
 }
 
 html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__compliance-footer strong {
-	color: var(--light-home-lime-ink);
+	color: var(--garna-text);
 }
 
 html[data-theme='light']:has(.light-home-draft) [data-scroll-visual-carousel-id='home-contractor-payments-carousel'] .contractor-carousel__compliance-footer small {
-	color: #2a321c;
+	color: var(--light-home-lime-ink);
 	font-size: 0.66rem;
 	font-weight: 700;
 }
@@ -294,10 +311,10 @@ html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-
 	position: relative;
 	display: inline-flex;
 	align-items: center;
-	width: 1.15em;
+	width: 1em;
 	height: 1em;
 	overflow: hidden;
-	flex: 0 0 1.15em;
+	flex: 0 0 1em;
 	color: transparent;
 	font-size: 1rem;
 	line-height: 1;
@@ -316,11 +333,10 @@ html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-
 	left: 0;
 	width: 100%;
 	height: 100%;
-	color: var(--garna-text);
-	content: '→';
-	line-height: 1;
-	text-align: center;
-	text-indent: 0;
+	background: var(--garna-text);
+	content: '';
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 16'%3E%3Cpath d='M1 8h15M11 3l5 5-5 5' fill='none' stroke='black' stroke-width='1.1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 16'%3E%3Cpath d='M1 8h15M11 3l5 5-5 5' fill='none' stroke='black' stroke-width='1.1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
 	transition: transform 760ms cubic-bezier(0.33, 1, 0.68, 1);
 	translate: 0 -50%;
 }
@@ -424,6 +440,12 @@ html[data-theme='light']:has(.light-home-draft) .light-home-draft :is(
 
 html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__stage {
 	box-shadow: none;
+}
+
+html[data-theme='light']:has(.light-home-draft) .light-home-draft .tabbed-image-feature__shade {
+	background:
+		linear-gradient(90deg, rgba(5, 6, 6, 0.34) 0%, rgba(5, 6, 6, 0.11) 48%, transparent 76%),
+		linear-gradient(0deg, rgba(5, 6, 6, 0.16) 0%, transparent 55%) !important;
 }
 
 html[data-theme='light']:has(.light-home-draft) .light-home-draft .contractor-carousel__slide {

@@ -40,7 +40,9 @@ const hero = {
 	descriptionKey: 'hero.description',
 };
 
-const flagSrc = (code: string) => `https://flagcdn.com/${code}.svg`;
+const flagSrc = (code: string) => lightImage
+	? `https://flagcdn.com/w160/${code}.png`
+	: `https://flagcdn.com/${code}.svg`;
 
 const newHires = [
 	{

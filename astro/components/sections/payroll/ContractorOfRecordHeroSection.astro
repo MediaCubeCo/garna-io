@@ -29,6 +29,7 @@ const heroMedia = {
 	<div class="contractor-hero__media" aria-hidden="true">
 		<video
 			class="contractor-hero__video"
+			data-contractor-hero-video
 			src={heroMedia.video}
 			autoplay
 			muted
@@ -65,6 +66,74 @@ const heroMedia = {
 		<div class="contractor-hero__space" aria-hidden="true"></div>
 	</div>
 </section>
+
+<script is:inline>
+	(() => {
+		const video = document.querySelector('[data-contractor-hero-video]');
+		if (!(video instanceof HTMLVideoElement)) return;
+
+		const previousController = window.__garnaContractorHeroVideoController;
+		if (previousController instanceof AbortController) previousController.abort();
+
+		const controller = new AbortController();
+		const { signal } = controller;
+		window.__garnaContractorHeroVideoController = controller;
+
+		let retryTimer = 0;
+		let watchdogTimer = 0;
+
+		const stop = () => {
+			window.clearTimeout(retryTimer);
+			window.clearInterval(watchdogTimer);
+			controller.abort();
+		};
+
+		const keepPlaying = () => {
+			window.clearTimeout(retryTimer);
+			if (!video.isConnected) {
+				stop();
+				return;
+			}
+			if (document.hidden || (!video.paused && !video.ended)) return;
+
+			video.muted = true;
+			video.defaultMuted = true;
+			const playback = video.play();
+			if (playback) {
+				playback.catch(() => {
+					if (!document.hidden && video.isConnected) {
+						retryTimer = window.setTimeout(keepPlaying, 500);
+					}
+				});
+			}
+		};
+
+		const resumeSoon = () => {
+			window.clearTimeout(retryTimer);
+			if (!document.hidden) retryTimer = window.setTimeout(keepPlaying, 0);
+		};
+
+		video.addEventListener('pause', resumeSoon, { signal });
+		video.addEventListener('ended', resumeSoon, { signal });
+		video.addEventListener('canplay', resumeSoon, { signal });
+		document.addEventListener('visibilitychange', resumeSoon, { signal });
+		window.addEventListener('focus', resumeSoon, { signal });
+		window.addEventListener('pageshow', resumeSoon, { signal });
+		document.addEventListener('garna:page-will-unmount', stop, { once: true, signal });
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (entries.some((entry) => entry.isIntersecting)) resumeSoon();
+			},
+			{ threshold: 0.01 },
+		);
+		observer.observe(video);
+		signal.addEventListener('abort', () => observer.disconnect(), { once: true });
+
+		watchdogTimer = window.setInterval(keepPlaying, 1000);
+		keepPlaying();
+	})();
+</script>
 
 <style>
 	.contractor-hero {

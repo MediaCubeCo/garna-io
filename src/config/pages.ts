@@ -66,6 +66,13 @@ export const basePaths: PageConfig[] = [
 		languages: ['en', 'es', 'pt', 'ru'],
 	},
 	{
+		path: 'cor-light',
+		mode: 'static',
+		searchable: false,
+		showHeader: true,
+		languages: ['en'],
+	},
+	{
 		path: 'mid-size-business-payroll',
 		mode: 'static',
 		searchable: false,
