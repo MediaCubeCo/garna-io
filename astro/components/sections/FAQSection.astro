@@ -9,7 +9,7 @@ const {
 	title,
 	subtitle,
 	items,
-	variant = 'standard',
+	variant = 'eor',
 	class: className = 'pt-16 pb-16 lg:pt-32 lg:pb-32',
 	containerClass = 'garna-container',
 	accordionClass = 'mx-auto w-full space-y-4 lg:max-w-3xl',
@@ -31,7 +31,7 @@ const titleTail = titleHasWidowGuard ? titleWords.slice(-2).join('\u00a0') : '';
 			<div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
 				<div class="max-w-3xl text-left lg:sticky lg:top-28 lg:self-start" data-sticky-column>
 					{kicker && (
-						<p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#CBF300]" data-translate={kicker.translateKey}>
+						<p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#A8FF2C]" data-translate={kicker.translateKey}>
 							{kicker.text}
 						</p>
 					)}

@@ -108,7 +108,7 @@ html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-dr
 .garna-header-nav-link.is-active,
 .garna-header-dropdown-link.is-active,
 .garna-header-mobile-link.is-active {
-	color: #CBF300;
+	color: #A8FF2C;
 }
 
 .garna-header-chevron {
@@ -119,7 +119,7 @@ html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-dr
 
 .garna-header-menu-group:hover:not(.is-dropdown-suppressed) .garna-header-chevron,
 .garna-header-menu-group:has(.garna-header-menu-trigger:focus-visible) .garna-header-chevron {
-	color: #CBF300;
+	color: #A8FF2C;
 	transform: rotate(180deg);
 }
 
@@ -179,7 +179,7 @@ html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-dr
 
 .garna-header-dropdown-title {
 	margin: 0 12px 12px;
-	color: #CBF300;
+	color: #A8FF2C;
 	font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 	font-size: 10px;
 	font-weight: 200;
@@ -211,9 +211,9 @@ html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-dr
 }
 
 .garna-header-dropdown-link.is-active {
-	border-color: rgba(203, 243, 0, 0.3);
-	background-color: rgba(203, 243, 0, 0.08);
-	box-shadow: 0 0 24px -20px rgba(203, 243, 0, 0.95);
+	border-color: rgba(168, 255, 44, 0.3);
+	background-color: rgba(168, 255, 44, 0.08);
+	box-shadow: 0 0 24px -20px rgba(168, 255, 44, 0.95);
 }
 
 .garna-header-dropdown-icon {
@@ -239,9 +239,9 @@ html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-dr
 }
 
 .garna-header-dropdown-link.is-active .garna-header-dropdown-icon {
-	border-color: rgba(203, 243, 0, 0.28);
-	background: rgba(203, 243, 0, 0.13);
-	color: #CBF300;
+	border-color: rgba(168, 255, 44, 0.28);
+	background: rgba(168, 255, 44, 0.13);
+	color: #A8FF2C;
 }
 
 .garna-header-link-main {
@@ -262,7 +262,7 @@ html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-dr
 }
 
 .garna-header-dropdown-link.is-active .garna-header-link-main {
-	color: #CBF300;
+	color: #A8FF2C;
 }
 
 .garna-header-link-separator {
@@ -325,12 +325,12 @@ html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-dr
 }
 
 .garna-header-dropdown-feature.is-active .garna-header-feature-copy h4 {
-	color: #CBF300;
+	color: #A8FF2C;
 }
 
 .garna-header-dropdown-feature.is-active {
-	border-color: rgba(203, 243, 0, 0.3);
-	box-shadow: 0 0 24px -20px rgba(203, 243, 0, 0.95);
+	border-color: rgba(168, 255, 44, 0.3);
+	box-shadow: 0 0 24px -20px rgba(168, 255, 44, 0.95);
 }
 
 .garna-header-products-feature {
@@ -417,7 +417,7 @@ html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-dr
 	align-items: center;
 	gap: 8px;
 	margin-top: 12px;
-	color: #CBF300;
+	color: #A8FF2C;
 	font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 	font-size: 10px;
 	font-weight: 200;
@@ -527,7 +527,7 @@ html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-dr
 }
 
 .garna-header-mobile-section {
-	color: #CBF300;
+	color: #A8FF2C;
 	font-family: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 	font-size: 10px;
 	letter-spacing: 0.14em;
@@ -590,13 +590,13 @@ html[data-theme='light']:has(:is(.light-home-draft, .employee-of-record-light-dr
 }
 
 .garna-header-mobile-card.is-active .garna-header-mobile-icon {
-	border-color: rgba(203, 243, 0, 0.2);
-	background: rgba(203, 243, 0, 0.12);
-	color: #CBF300;
+	border-color: rgba(168, 255, 44, 0.2);
+	background: rgba(168, 255, 44, 0.12);
+	color: #A8FF2C;
 }
 
 .garna-header-mobile-card.is-active .garna-header-mobile-link-main {
-	color: #CBF300;
+	color: #A8FF2C;
 }
 
 .garna-header-mobile-link-main {

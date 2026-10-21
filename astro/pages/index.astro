@@ -18,6 +18,7 @@ import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
+import '../styles/light-home.css';
 
 interface Props {
 	defaultTheme?: 'dark' | 'light';
@@ -25,8 +26,8 @@ interface Props {
 }
 
 const {
-	defaultTheme = 'dark',
-	mainClass = '',
+	defaultTheme = 'light',
+	mainClass = 'light-home-draft',
 } = Astro.props;
 
 const homeFaqItems = [
@@ -1462,7 +1463,7 @@ const homeFaqItems = [
 	.home-hero-proof-rotator__item:nth-child(3) { animation-delay: -3s; }
 
 	.home-hero-proof-rotator__item strong {
-		color: #cbf300;
+		color: #A8FF2C;
 		font-size: 0.9rem;
 		font-weight: 700;
 		letter-spacing: -0.025em;

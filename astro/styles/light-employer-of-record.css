@@ -202,9 +202,11 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-recor
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero__copy h1 {
-	background: none;
-	color: var(--garna-text);
-	-webkit-text-fill-color: var(--garna-text);
+	background: linear-gradient(175deg, #0a0a0a 0%, rgba(16, 16, 16, 0.86) 48%, rgba(16, 16, 16, 0.55) 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	-webkit-text-fill-color: transparent;
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-hero__copy p {
@@ -316,27 +318,27 @@ html[data-theme='light']:has(.employee-of-record-light-draft) :is(.employee-of-r
 	--garna-button-bg: #aef534;
 }
 
-html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class~='bg-[#CBF300]'] {
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class~='bg-[#A8FF2C]'] {
 	background-color: var(--garna-accent) !important;
 }
 
-html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class*='bg-[#CBF300]/'] {
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class*='bg-[#A8FF2C]/'] {
 	background-color: rgba(168, 255, 44, 0.14) !important;
 }
 
-html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class*='text-[#CBF300]'] {
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class*='text-[#A8FF2C]'] {
 	color: #3d5a10 !important;
 }
 
-html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class*='border-[#CBF300]'] {
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [class*='border-[#A8FF2C]'] {
 	border-color: rgba(154, 230, 42, 0.38) !important;
 }
 
-html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [stroke='#CBF300'] {
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [stroke='#A8FF2C'] {
 	stroke: #9ae62a;
 }
 
-html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [fill='#CBF300'] {
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft [fill='#A8FF2C'] {
 	fill: var(--garna-accent);
 }
 
@@ -619,6 +621,13 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-recor
 	color: var(--garna-text);
 }
 
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select[data-open='true'] > button[data-select-trigger],
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select > button[data-select-trigger]:focus-visible,
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-amount:focus-within {
+	border-color: rgba(126, 177, 35, 0.28);
+	box-shadow: none;
+}
+
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select__menu {
 	border-color: rgba(21, 21, 21, 0.1);
 	background: #f8f9f4;
@@ -630,14 +639,28 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-recor
 	color: var(--garna-text);
 }
 
-html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select__menu button:is(:hover, :focus-visible, [aria-selected='true']) {
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-currency-copy strong {
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-currency-copy small {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select__menu button:is(:hover, :focus-visible) {
 	background: rgba(21, 21, 21, 0.055);
+	color: var(--garna-text);
+}
+
+html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select__menu button[aria-selected='true'] {
+	border-color: rgba(126, 177, 35, 0.42);
+	background: rgba(168, 255, 44, 0.12);
 	color: var(--garna-text);
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select[data-open='true'] > button[data-select-trigger] svg,
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select > button[data-select-trigger]:focus-visible svg {
-	color: #3d5a10;
+	color: #4f6f24 !important;
 }
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .eor-estimator-select :is([data-placeholder], .eor-estimator-select__clear),
@@ -715,7 +738,7 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-recor
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .garna-product-panel .grid button {
 	border-color: rgba(126, 177, 35, 0.42) !important;
-	background: rgba(184, 255, 60, 0.09) !important;
+	background: rgba(168, 255, 44, 0.09) !important;
 	box-shadow: none !important;
 	color: #48651b !important;
 	font-weight: 600;
@@ -723,7 +746,7 @@ html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-recor
 
 html[data-theme='light']:has(.employee-of-record-light-draft) .employee-of-record-light-draft .product-demo .garna-product-panel .grid button:is(:hover, :focus-visible) {
 	border-color: rgba(111, 158, 27, 0.68) !important;
-	background: rgba(184, 255, 60, 0.18) !important;
+	background: rgba(168, 255, 44, 0.18) !important;
 	color: #304510 !important;
 }
 
@@ -981,7 +1004,7 @@ html:has(.employee-of-record-light-draft) .garna-footer [class*='bg-[#1A1A1A]'] 
 	background-color: #1a1a1a !important;
 }
 
-html:has(.employee-of-record-light-draft) .garna-footer [class*='text-[#CBF300]'] {
+html:has(.employee-of-record-light-draft) .garna-footer [class*='text-[#A8FF2C]'] {
 	color: var(--garna-accent) !important;
 }
 

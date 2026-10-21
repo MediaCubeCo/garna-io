@@ -35,12 +35,12 @@ const products = [
 							</div>
 							<div class="employee-profile__identity">
 								<img
-									src="/pages/payroll-solution-new/assets/contractor-avatar-maya-v2.webp"
-									alt="Maya Chen"
+									src="/pages/payroll-solution-new/assets/eor-profile-sophie-neutral-v5.png"
+									alt="Sophie Keller"
 									loading="lazy"
 								/>
 								<span>
-									<strong>Maya Chen</strong>
+									<strong>Sophie Keller</strong>
 									<small data-translate="moreThanAccount.products.eor.role">Product Designer</small>
 									<small data-translate="moreThanAccount.products.eor.country">Germany</small>
 								</span>
@@ -128,7 +128,7 @@ const products = [
 	.business-product-card:is(:hover, :focus-within, [data-pointer-active='true']) { border-color: rgb(255 255 255 / 0.15); }
 	@media (hover: hover) and (pointer: fine) { .business-product-card:is(:hover, :focus-within, [data-pointer-active='true'])::before { opacity: 1; } }
 
-	.business-product-card h3 { max-width: 26rem; margin: 0 auto; color: #fff; font: 500 26px/1.2 Manrope, sans-serif; letter-spacing: -0.025em; }
+	.business-product-card h3 { max-width: 26rem; margin: 0 auto; color: var(--garna-text); font: 500 26px/1.2 Manrope, sans-serif; letter-spacing: -0.025em; }
 	.business-product-card > p { max-width: 26rem; margin: 1rem auto 0; color: rgb(255 255 255 / 0.52); font: 600 1rem/1.6 Manrope, sans-serif; }
 
 	.employee-profile,
@@ -201,11 +201,11 @@ const products = [
 		display: inline-flex;
 		align-items: center;
 		gap: .3rem;
-		color: #cbf300;
+		color: #A8FF2C;
 		font: 700 .52rem/1 Manrope, sans-serif;
 		white-space: nowrap;
 	}
-	.employee-profile__status i { display: grid; width: .9rem; height: .9rem; place-items: center; border-radius: 50%; background: #cbf300; color: #090a0a; font: normal 850 .48rem/1 Manrope, sans-serif; }
+	.employee-profile__status i { display: grid; width: .9rem; height: .9rem; place-items: center; border-radius: 50%; background: #A8FF2C; color: #090a0a; font: normal 850 .48rem/1 Manrope, sans-serif; }
 	.employee-profile__fields { display: grid; gap: .5rem; border-top: 1px solid rgb(255 255 255 / .09); padding-top: .78rem; }
 	.employee-profile__fields > span { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); gap: .65rem; }
 	.employee-profile__fields i { display: block; height: .27rem; border-radius: 999px; background: rgb(255 255 255 / .12); }
@@ -238,7 +238,7 @@ const products = [
 	.service-offer__ticket-back--middle { transform: rotate(6.75deg); }
 	.service-offer__ticket-back--near { transform: rotate(3.5deg); }
 	.service-offer__ticket { position: relative; z-index: 1; display: grid; width: 17.5rem; grid-template-columns: minmax(0, .92fr) 1px minmax(0, 1.08fr); overflow: hidden; border-radius: 1rem; background: var(--business-visual-graphite); box-shadow: 0 1.5rem 3.5rem -2rem rgb(0 0 0 / .8); clip-path: path("M 16 0 H 119.2 A 9.6 9.6 0 0 0 138.4 0 H 264 Q 280 0 280 16 V 136 Q 280 152 264 152 H 138.4 A 9.6 9.6 0 0 0 119.2 152 H 16 Q 0 152 0 136 V 16 Q 0 0 16 0 Z"); color: #fff; text-align: left; }
-	.service-offer__discount { display: flex; min-height: 9.5rem; box-sizing: border-box; flex-direction: column; justify-content: center; padding: 1.25rem 1rem 1.2rem 1.15rem; border-radius: 1rem 0 0 1rem; background: #cbf300; }
+	.service-offer__discount { display: flex; min-height: 9.5rem; box-sizing: border-box; flex-direction: column; justify-content: center; padding: 1.25rem 1rem 1.2rem 1.15rem; border-radius: 1rem 0 0 1rem; background: #A8FF2C; }
 	.service-offer__discount small { color: #08090a; font: 750 .65rem/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
 	.service-offer__discount strong { margin-top: .34rem; color: #08090a; font: 550 3.05rem/.92 Manrope, sans-serif; letter-spacing: -.07em; }
 	.service-offer__perforation { position: relative; z-index: 2; border-left: 1px dashed rgb(255 255 255 / .2); }
@@ -259,7 +259,7 @@ const products = [
 	.contractor-folder__shape { position: absolute; inset: 0; z-index: 0; display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 	.contractor-folder__shape path { fill: #070809; stroke: rgb(255 255 255 / .09); stroke-width: .65; vector-effect: non-scaling-stroke; }
 	.contractor-folder__label { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; }
-	.contractor-folder__label small, .contractor-folder__provider small { color: #cbf300; font: 750 .5rem/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+	.contractor-folder__label small, .contractor-folder__provider small { color: #A8FF2C; font: 750 .5rem/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
 	.contractor-folder__label strong { margin-top: .55rem; color: #fff; font: 620 1.2rem/1.1 Manrope, sans-serif; letter-spacing: -.025em; }
 	.contractor-folder__label span { margin-top: .28rem; color: rgb(255 255 255 / .48); font: 600 .65rem/1.2 Manrope, sans-serif; }
 	.contractor-folder__label .contractor-folder__contents { margin-top: .7rem; color: rgb(255 255 255 / .38); font: 650 .5rem/1.25 "Geist Mono", ui-monospace, monospace; letter-spacing: .035em; }

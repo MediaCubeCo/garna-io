@@ -16,6 +16,7 @@ import PayrollLandingEnhancements from '../components/sections/payroll/PayrollLa
 import { pageFinalCtas } from '../content/page-final-ctas';
 import { pageShells } from '../content/page-shells';
 import type { FAQItem } from '../types/faq-section';
+import '../styles/light-contractor-of-record.css';
 
 interface Props {
 	defaultTheme?: 'dark' | 'light';
@@ -24,8 +25,8 @@ interface Props {
 }
 
 const {
-	defaultTheme = 'dark',
-	mainClass = '',
+	defaultTheme = 'light',
+	mainClass = 'contractor-of-record-light-draft',
 	shellTitle,
 } = Astro.props;
 

@@ -119,4 +119,34 @@ const slides = [
 		text-overflow: clip;
 		white-space: normal;
 	}
+
+	html[data-theme='light'] [data-scroll-visual-carousel-id="business-account-financial-admin-carousel"] :is(
+		.contractor-carousel__quote-header strong,
+		.contractor-carousel__quote-main strong,
+		.contractor-carousel__quote-meta strong
+	) {
+		color: var(--garna-text) !important;
+	}
+
+	html[data-theme='light'] [data-scroll-visual-carousel-id="business-account-financial-admin-carousel"] .contractor-carousel__transfer-recipient > img {
+		filter: invert(1) !important;
+	}
+
+	/* Keep this scroll carousel to one motion source. Changing the active slide's
+	   margin and scale while the rail was moving caused the image to settle twice. */
+	[data-scroll-visual-carousel-id="business-account-financial-admin-carousel"] .contractor-carousel__slide,
+	[data-scroll-visual-carousel-id="business-account-financial-admin-carousel"] .contractor-carousel__slide.is-active {
+		margin-right: 0 !important;
+		transform: none !important;
+		transition: border-color 220ms ease !important;
+	}
+
+	[data-scroll-visual-carousel-id="business-account-financial-admin-carousel"] .contractor-carousel__slide > img {
+		backface-visibility: hidden;
+		transform: translateZ(0);
+	}
+
+	[data-scroll-visual-carousel-id="business-account-financial-admin-carousel"] .contractor-carousel__slide > img.contractor-carousel__image--documents {
+		transform: translateZ(0) scale(1.21);
+	}
 </style>

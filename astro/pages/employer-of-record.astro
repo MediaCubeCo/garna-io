@@ -15,6 +15,7 @@ import EorCostEstimatorSection from '../components/sections/payroll/EorCostEstim
 import EorDashboardCtaSection from '../components/sections/payroll/EorDashboardCtaSection.astro';
 import EmployerOfRecordSectionStyles from '../components/sections/payroll/EmployerOfRecordSectionStyles.astro';
 import EmployerOfRecordInteractions from '../components/sections/payroll/EmployerOfRecordInteractions.astro';
+import '../styles/light-employer-of-record.css';
 
 interface Props {
 	defaultTheme?: 'dark' | 'light';
@@ -23,8 +24,8 @@ interface Props {
 }
 
 const {
-	defaultTheme = 'dark',
-	mainClass = '',
+	defaultTheme = 'light',
+	mainClass = 'employee-of-record-light-draft',
 	shellTitle,
 } = Astro.props;
 

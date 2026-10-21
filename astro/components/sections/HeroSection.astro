@@ -35,7 +35,7 @@ const ctaOnclick =
 		: undefined;
 const ctaClass = cta?.class || '';
 const ctaVariant = cta?.variant || 'primary';
-const ctaEffect = cta?.effect || (cta?.kind === 'demo' ? 'rotating-flare' : 'none');
+const ctaEffect = cta?.effect || (ctaVariant === 'primary' ? 'rotating-flare' : 'none');
 const ctaIcon = cta?.icon || (cta?.kind === 'signup' || cta?.kind === 'external' ? 'arrow-up-right' : 'arrow-up-right');
 const ctaSecondaryHref = ctaSecondary?.href || '#';
 const ctaSecondaryTarget = ctaSecondary?.target;
@@ -102,7 +102,7 @@ const descriptionSecondLine = shouldBreakDescription
 
 <section class={className} data-section-kind="hero">
 	{tone === 'green' && align === 'center' && (
-		<div class="garna-hero-green-glow absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#CBF300] opacity-[0.08] blur-[120px] rounded-full pointer-events-none" />
+		<div class="garna-hero-green-glow absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#A8FF2C] opacity-[0.08] blur-[120px] rounded-full pointer-events-none" />
 	)}
 	<slot name="background" />
 	<div class={containerClass}>

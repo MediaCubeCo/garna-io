@@ -8,10 +8,10 @@
 	--gc-text: #fff;
 	--gc-muted: #a1a1aa;
 	--gc-faint: #71717a;
-	--gc-accent: #cbf300;
+	--gc-accent: #A8FF2C;
 	--gc-accent-hover: #6ab901;
-	--gc-accent-soft: rgba(203, 243, 0, 0.08);
-	--gc-accent-line: rgba(203, 243, 0, 0.32);
+	--gc-accent-soft: rgba(168, 255, 44, 0.08);
+	--gc-accent-line: rgba(168, 255, 44, 0.32);
 	--gc-container: 1152px;
 	--gc-nav-height: 68px;
 	position: relative;
@@ -30,8 +30,8 @@
 	z-index: -2;
 	pointer-events: none;
 	background:
-		radial-gradient(circle at 12% 1%, rgba(203, 243, 0, 0.1), transparent 27rem),
-		radial-gradient(circle at 87% 8%, rgba(203, 243, 0, 0.055), transparent 24rem),
+		radial-gradient(circle at 12% 1%, rgba(168, 255, 44, 0.1), transparent 27rem),
+		radial-gradient(circle at 87% 8%, rgba(168, 255, 44, 0.055), transparent 24rem),
 		linear-gradient(180deg, rgba(5, 5, 5, 0.1), #050505 72%);
 }
 

@@ -110,7 +110,7 @@ export default function Modal({
 	title = 'Title insert here',
 	subtitle = 'Subtitle insert here',
 	bgColorCal = '#0a0a0a',
-	colorBrandBg = '#CBF300',
+	colorBrandBg = '#A8FF2C',
 	colorBrandText = '#ffffffff',
 	colorBorder = 'rgb(34, 34, 34)',
 	thicknessBorder = '1px',
@@ -335,7 +335,7 @@ export default function Modal({
 			cal('ui', {
 				theme: 'dark',
 				cssVarsPerTheme: {
-					light: { 'cal-brand': '#CBF300' },
+					light: { 'cal-brand': '#A8FF2C' },
 					dark: {
 						'cal-brand': colorBrandBg,
 						'cal-brand-text': colorBrandText,

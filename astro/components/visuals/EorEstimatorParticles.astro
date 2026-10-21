@@ -8,7 +8,7 @@
 			if (canvas.dataset.ready === 'true') continue;
 			canvas.dataset.ready = 'true';
 
-			const section = canvas.closest<HTMLElement>('.eor-estimator-section');
+			const section = canvas.closest<HTMLElement>('.eor-estimator-section, .transfer-section');
 			const context = canvas.getContext('2d');
 			if (!section || !context) continue;
 

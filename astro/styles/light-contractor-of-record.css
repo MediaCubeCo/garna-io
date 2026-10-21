@@ -50,27 +50,27 @@ html[data-theme='light']:has(.contractor-of-record-light-draft) :is(.contractor-
 }
 
 /* Replace the old yellow-lime accents used by the shared dark COR components. */
-html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class~='bg-[#CBF300]'] {
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class~='bg-[#A8FF2C]'] {
 	background-color: var(--garna-accent) !important;
 }
 
-html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class*='bg-[#CBF300]/'] {
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class*='bg-[#A8FF2C]/'] {
 	background-color: rgba(168, 255, 44, 0.14) !important;
 }
 
-html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class*='text-[#CBF300]'] {
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class*='text-[#A8FF2C]'] {
 	color: var(--garna-accent) !important;
 }
 
-html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class*='border-[#CBF300]'] {
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [class*='border-[#A8FF2C]'] {
 	border-color: rgba(168, 255, 44, 0.4) !important;
 }
 
-html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [stroke='#CBF300'] {
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [stroke='#A8FF2C'] {
 	stroke: var(--garna-accent) !important;
 }
 
-html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [fill='#CBF300'] {
+html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft [fill='#A8FF2C'] {
 	fill: var(--garna-accent) !important;
 }
 
@@ -573,9 +573,11 @@ html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-r
 
 /* The hero remains a dark video surface in the light redesign. */
 html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-hero__copy h1 {
-	background: none !important;
-	color: #ffffff !important;
-	-webkit-text-fill-color: #ffffff !important;
+	background: linear-gradient(175deg, #ffffff 0%, rgba(255, 255, 255, 0.86) 48%, rgba(255, 255, 255, 0.55) 100%) !important;
+	background-clip: text !important;
+	-webkit-background-clip: text !important;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent !important;
 }
 
 html[data-theme='light']:has(.contractor-of-record-light-draft) .contractor-of-record-light-draft .contractor-hero__copy p {
@@ -858,7 +860,7 @@ html:has(.contractor-of-record-light-draft) .garna-footer [class*='bg-[#1A1A1A]'
 	background-color: #1a1a1a !important;
 }
 
-html:has(.contractor-of-record-light-draft) .garna-footer [class*='text-[#CBF300]'] {
+html:has(.contractor-of-record-light-draft) .garna-footer [class*='text-[#A8FF2C]'] {
 	color: var(--garna-accent) !important;
 }
 

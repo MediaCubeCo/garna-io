@@ -8,24 +8,24 @@
                     if (circle) {
                         circle.classList.remove('text-gray-500', 'border-white/10', 'bg-[#050505]');
                         circle.classList.add(
-                            'text-[#CBF300]',
-                            'border-[#CBF300]',
+                            'text-[#A8FF2C]',
+                            'border-[#A8FF2C]',
                             'bg-[#050505]',
-                            'shadow-[0_0_15px_rgba(203, 243, 0,0.3)]'
+                            'shadow-[0_0_15px_rgba(168, 255, 44,0.3)]'
                         );
                     }
                     const title = el.querySelector('h3');
-                    if (title) title.classList.add('text-[#CBF300]');
+                    if (title) title.classList.add('text-[#A8FF2C]');
                 } else {
                     el.classList.add('opacity-50', 'hover:opacity-80');
                     el.classList.remove('opacity-100');
                     const circle = el.querySelector('.step-circle');
                     if (circle) {
                         circle.classList.add('text-gray-500', 'border-white/10', 'bg-[#050505]');
-                        circle.classList.remove('text-[#CBF300]', 'border-[#CBF300]', 'shadow-[0_0_15px_rgba(203, 243, 0,0.3)]');
+                        circle.classList.remove('text-[#A8FF2C]', 'border-[#A8FF2C]', 'shadow-[0_0_15px_rgba(168, 255, 44,0.3)]');
                     }
                     const title = el.querySelector('h3');
-                    if (title) title.classList.remove('text-[#CBF300]');
+                    if (title) title.classList.remove('text-[#A8FF2C]');
                 }
             });
             document.querySelectorAll('.step-content').forEach((el) => {

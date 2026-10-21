@@ -148,8 +148,8 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 	.home-workflows-progress { display: flex; justify-content: center; align-items: center; gap: .45rem; margin-top: 24px; }
 	.home-workflows-progress span { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 9999px; background: rgb(255 255 255 / .24); padding: 0; transition: width 220ms ease, background 220ms ease; }
 	.home-workflows-progress span:hover { background: rgb(255 255 255 / .44); }
-	.home-workflows-progress span.is-active { width: 3.4rem; background: rgb(203 243 0 / .18); box-shadow: inset 0 0 0 1px rgb(203 243 0 / .18); }
-	.home-workflows-progress span.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #cbf300; box-shadow: 0 0 14px rgb(203 243 0 / .52); content: ''; transform: scaleX(var(--step-fill, 0)); transform-origin: left center; }
+	.home-workflows-progress span.is-active { width: 3.4rem; background: rgb(168 255 44 / .18); box-shadow: inset 0 0 0 1px rgb(168 255 44 / .18); }
+	.home-workflows-progress span.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #A8FF2C; box-shadow: 0 0 14px rgb(168 255 44 / .52); content: ''; transform: scaleX(var(--step-fill, 0)); transform-origin: left center; }
 	.home-workflows-headings { display: grid; overflow: visible; }
 	.home-workflows-headings > div { grid-area: 1 / 1; }
 	@media (min-width: 841px) {
@@ -286,7 +286,7 @@ const activeWorkflow = workflows.find((workflow) => workflow.key === activeWorkf
 		height: 3rem;
 		place-items: center;
 		border-radius: .78rem;
-		background: #cbf300;
+		background: #A8FF2C;
 		color: #0a0a0a;
 	}
 

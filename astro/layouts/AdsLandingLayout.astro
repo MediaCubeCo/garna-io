@@ -2,8 +2,8 @@
 import '../styles/global.css';
 import '../styles/faq.css';
 import '../styles/themes.css';
-import AdsLandingHeader from '../components/layout/AdsLandingHeader.astro';
-import AdsLandingFooter from '../components/layout/AdsLandingFooter.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
 import RainbowBackground from '../components/visuals/RainbowBackground.astro';
 import type { PageShellConfig } from '../types/page-shell';
 import { getPagePathFromPathname } from '../utils/page-path';
@@ -20,7 +20,7 @@ const {
 	shell,
 	showHeader = true,
 	showFooter = true,
-	showRainbow = true,
+	showRainbow = false,
 	rainbowCount = 6,
 } = Astro.props;
 
@@ -38,7 +38,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" class={htmlClass} data-theme="dark">
+<html lang="en" class={htmlClass} data-theme="dark" data-default-theme="light">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,7 +47,7 @@ const {
 		<script is:inline>
 			(() => {
 				const requestedTheme = new URLSearchParams(window.location.search).get('theme');
-				const theme = requestedTheme === 'light' ? 'light' : 'dark';
+				const theme = requestedTheme === 'dark' ? 'dark' : 'light';
 				const root = document.documentElement;
 				root.dataset.theme = theme;
 				root.style.colorScheme = theme;
@@ -90,11 +90,11 @@ const {
 	</head>
 	<body id="top" class={bodyClass} data-garna-page data-ads-landing>
 		{showRainbow && <RainbowBackground count={rainbowCount} />}
-		{showHeader && <AdsLandingHeader />}
+		{showHeader && <Header />}
 		<main id="astro-page-content" data-astro-page-content data-current-path={currentPath}>
 			<slot />
 		</main>
-		{showFooter && <AdsLandingFooter />}
+		{showFooter && <Footer />}
 		<div id="astro-page-scripts" data-astro-page-scripts>
 			<slot name="widgets" />
 		</div>

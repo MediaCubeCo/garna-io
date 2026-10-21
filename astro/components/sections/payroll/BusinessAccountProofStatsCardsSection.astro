@@ -216,13 +216,18 @@ const stat = stats[0] ?? defaultStat;
 
 	.api-payments-notice__top strong {
 		border-radius: 9999px;
-		background: #cbf300;
+		background: #A8FF2C;
 		padding: min(0.34rem, 1.1699cqw) min(0.58rem, 1.9957cqw);
 		color: #080808;
 		font-size: min(0.61rem, 2.0989cqw);
 		font-weight: 800;
 		line-height: 1;
 		text-transform: uppercase;
+	}
+
+	:global(html[data-theme='light']) .api-payments-notice__top strong {
+		background: #e7effd !important;
+		color: #2357c6 !important;
 	}
 
 	.api-payments-notice__main {

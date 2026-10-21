@@ -1620,7 +1620,7 @@ window.GC_EVENTS_SNAPSHOT = [
   function renderEventButton(label, url) {
     var base = "garna-button inline-flex items-center justify-center font-manrope " +
       "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 " +
-      "focus-visible:outline-[#CBF300] h-11 rounded-xl px-7 gamescom-event-button";
+      "focus-visible:outline-[#A8FF2C] h-11 rounded-xl px-7 gamescom-event-button";
     var inner = '<span class="garna-button-inner">' + esc(label) + "</span>";
 
     if (url) {

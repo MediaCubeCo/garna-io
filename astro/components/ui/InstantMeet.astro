@@ -468,11 +468,11 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 <style>
 	:global(body.instant-meet-open) { overflow: hidden; }
 	.instant-meet { position: fixed; right: 0; bottom: clamp(16px, 2.2vw, 32px); left: 0; z-index: 70; display: flex; justify-content: center; font-family: Manrope, sans-serif; pointer-events: none; }
-	.instant-meet__surface { position: relative; z-index: 90; width: min(250px, calc(100vw - 24px)); height: 54px; overflow: hidden; border: 1px solid rgba(203,243,0,.62); border-radius: 18px; background-color: #cbf300; color: #101010; box-shadow: 0 18px 50px rgba(0,0,0,.32), 0 0 0 1px rgba(203,243,0,.12), 0 0 34px rgba(203,243,0,.12); pointer-events: auto; isolation: isolate; transition: transform .22s ease, box-shadow .22s ease; }
-	.instant-meet__surface::after { content: ''; position: absolute; right: -60px; bottom: -80px; z-index: -1; width: 220px; height: 220px; border: 1px solid rgba(203,243,0,.12); border-radius: 50%; opacity: 0; box-shadow: 0 0 0 34px rgba(203,243,0,.025), 0 0 0 68px rgba(203,243,0,.018); pointer-events: none; transition: opacity .1s ease; }
+	.instant-meet__surface { position: relative; z-index: 90; width: min(250px, calc(100vw - 24px)); height: 54px; overflow: hidden; border: 1px solid rgba(168, 255, 44,.62); border-radius: 18px; background-color: #A8FF2C; color: #101010; box-shadow: 0 18px 50px rgba(0,0,0,.32), 0 0 0 1px rgba(168, 255, 44,.12), 0 0 34px rgba(168, 255, 44,.12); pointer-events: auto; isolation: isolate; transition: transform .22s ease, box-shadow .22s ease; }
+	.instant-meet__surface::after { content: ''; position: absolute; right: -60px; bottom: -80px; z-index: -1; width: 220px; height: 220px; border: 1px solid rgba(168, 255, 44,.12); border-radius: 50%; opacity: 0; box-shadow: 0 0 0 34px rgba(168, 255, 44,.025), 0 0 0 68px rgba(168, 255, 44,.018); pointer-events: none; transition: opacity .1s ease; }
 	.is-dialog-open .instant-meet__surface { width: min(510px, calc(100vw - 48px)); height: var(--instant-meet-open-height); border-color: rgba(255,255,255,.1); border-radius: 28px; background-color: #101010; color: #fff; box-shadow: 0 30px 100px rgba(0,0,0,.6); }
 	.is-dialog-open .instant-meet__surface::after { opacity: 1; }
-	.instant-meet:not(.is-dialog-open) .instant-meet__surface:hover { transform: translateY(-2px); box-shadow: 0 22px 56px rgba(0,0,0,.4), 0 0 40px rgba(203,243,0,.2); }
+	.instant-meet:not(.is-dialog-open) .instant-meet__surface:hover { transform: translateY(-2px); box-shadow: 0 22px 56px rgba(0,0,0,.4), 0 0 40px rgba(168, 255, 44,.2); }
 	.instant-meet__surface:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 	.instant-meet__surface[aria-disabled='true'] { cursor: wait; opacity: .82; }
 	.instant-meet__launcher { position: absolute; inset: 0; display: flex; width: 100%; height: 100%; align-items: center; gap: 12px; padding: 10px 12px 10px 14px; color: inherit; cursor: pointer; pointer-events: none; text-align: left; }
@@ -485,14 +485,14 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 	.instant-meet__signal span { position: absolute; inset: -5px; border: 1px solid currentColor; border-radius: inherit; opacity: .35; animation: instant-meet-pulse 1.8s ease-out infinite; }
 	.instant-meet__backdrop { position: fixed; inset: 0; z-index: 80; background: rgba(0,0,0,.6); pointer-events: auto; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 	.instant-meet__backdrop[hidden] { display: none; }
-	.instant-meet__dialog { position: absolute; inset: 0; box-sizing: border-box; overflow: hidden; padding: clamp(28px, 5vw, 48px); background: radial-gradient(circle at 92% 6%, rgba(203,243,0,.12), transparent 34%); color: #fff; }
+	.instant-meet__dialog { position: absolute; inset: 0; box-sizing: border-box; overflow: hidden; padding: clamp(28px, 5vw, 48px); background: radial-gradient(circle at 92% 6%, rgba(168, 255, 44,.12), transparent 34%); color: #fff; }
 	.is-dialog-scrollable .instant-meet__dialog { overflow-y: auto; }
 	.instant-meet__dialog[hidden] { display: none; }
 	.instant-meet__dialog:focus { outline: none; }
 	.instant-meet__close { position: absolute; top: 18px; right: 18px; z-index: 2; display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid rgba(255,255,255,.1); border-radius: 12px; background: rgba(255,255,255,.04); color: #fff; cursor: pointer; }
 	.instant-meet__close svg { width: 18px; height: 18px; }
-	.instant-meet__eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; color: #cbf300; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; }
-	.instant-meet__eyebrow .instant-meet__signal { border-color: rgba(203,243,0,.2); background: #cbf300; }
+	.instant-meet__eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; color: #A8FF2C; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; }
+	.instant-meet__eyebrow .instant-meet__signal { border-color: rgba(168, 255, 44,.2); background: #A8FF2C; }
 	.instant-meet__dialog h2 { max-width: 420px; margin: 0 0 16px; font-size: clamp(30px, 6vw, 48px); font-weight: 500; line-height: 1.03; letter-spacing: -.045em; }
 	.instant-meet__dialog > p { position: relative; z-index: 1; max-width: 430px; margin: 0; color: #a1a1aa; font-size: 15px; line-height: 1.65; }
 	.instant-meet__email { position: relative; z-index: 1; display: grid; gap: 12px; margin-top: 22px; }
@@ -500,9 +500,9 @@ const webhookUrl = 'https://mediacube.app.n8n.cloud/webhook/bc4ab0d5-22b5-4a6c-a
 	.instant-meet__email-label { display: grid; gap: 8px; color: #fff; font-size: 12px; font-weight: 700; }
 	.instant-meet__email input { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; background: rgba(255,255,255,.04); color: #fff; font: inherit; font-size: 15px; }
 	.instant-meet__email input::placeholder { color: rgba(255,255,255,.38); }
-	.instant-meet__email input:focus-visible { outline: 2px solid #cbf300; outline-offset: 2px; }
+	.instant-meet__email input:focus-visible { outline: 2px solid #A8FF2C; outline-offset: 2px; }
 	.instant-meet__email-error { margin: 0; color: #ff8fa3; font-size: 12px; line-height: 1.4; }
-	.instant-meet__start { display: inline-flex; width: fit-content; min-height: 48px; align-items: center; justify-content: center; padding: 12px 18px; border: 0; border-radius: 12px; background: #cbf300; color: #101010; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
+	.instant-meet__start { display: inline-flex; width: fit-content; min-height: 48px; align-items: center; justify-content: center; padding: 12px 18px; border: 0; border-radius: 12px; background: #A8FF2C; color: #101010; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
 	.instant-meet__start:disabled { cursor: wait; opacity: .72; }
 	.instant-meet__local-time { margin-top: 16px !important; color: #fff !important; font-size: 12px !important; font-weight: 700; }
 	.instant-meet__actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 28px; }

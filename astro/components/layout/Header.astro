@@ -4,13 +4,7 @@ import Button from '../ui/Button.astro';
 import { getPagePathFromPathname } from '../../utils/page-path';
 
 const currentPath = getPagePathFromPathname(Astro.url.pathname);
-const navCurrentPath = currentPath === 'light-home'
-	? ''
-	: currentPath === 'eor-light'
-		? 'employer-of-record'
-		: currentPath === 'cor-light'
-			? 'contractor-of-record'
-		: currentPath;
+const navCurrentPath = currentPath;
 
 const base = '/en';
 const homeHref = base;
@@ -45,7 +39,7 @@ const mobileLinkClass = (path: string) =>
 		'garna-header-mobile-link',
 	].join(' ');
 
-const startsTransparent = currentPath === '' || currentPath === contractorOfRecordPath || currentPath === 'light-home' || currentPath === 'cor-light';
+const startsTransparent = currentPath === '' || currentPath === contractorOfRecordPath;
 ---
 
 <nav class:list={['garna-header fixed z-50 w-full top-0', { 'is-scrolled': !startsTransparent }]}>
@@ -513,7 +507,7 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 
 		const syncHeaderSurface = () => {
 			if (!(header instanceof HTMLElement)) return;
-			const transparentAtTopPaths = new Set(['', 'contractor-of-record', 'light-home', 'cor-light']);
+			const transparentAtTopPaths = new Set(['', 'contractor-of-record']);
 			const startsTransparentAtTop = transparentAtTopPaths.has(getPagePath());
 			header.classList.toggle('is-scrolled', !startsTransparentAtTop || window.scrollY > 1);
 
@@ -647,13 +641,7 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 
 		const setNavActiveState = () => {
 			const pagePath = getPagePath();
-			const currentPath = pagePath === 'light-home'
-				? ''
-				: pagePath === 'eor-light'
-					? 'employer-of-record'
-					: pagePath === 'cor-light'
-						? 'contractor-of-record'
-					: pagePath;
+			const currentPath = pagePath;
 			const setSingleActiveLink = (selector) => {
 				let activeAssigned = false;
 				document.querySelectorAll(selector).forEach((link) => {

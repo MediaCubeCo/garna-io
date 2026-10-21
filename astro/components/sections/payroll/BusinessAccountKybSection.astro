@@ -21,9 +21,11 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 
 <style>
 	:global(.kyb-section) { overflow: hidden; background: #101010; }
+	:global(html[data-theme='light'] .kyb-section) { background: var(--garna-page-bg); }
 	.kyb-section-shell { display: grid; justify-items: center; gap: clamp(1.5rem, 2.5vw, 2rem); }
 	:global(.kyb-section-copy) { max-width: 44rem; text-align: center; }
 	:global(.kyb-section-description) { color: rgb(255 255 255 / .78) !important; }
+	:global(html[data-theme='light'] .kyb-section-description) { color: var(--garna-text-muted) !important; }
 	.kyb-app { width: min(100%, 46rem); overflow: hidden; border: 1px solid rgb(255 255 255 / .1); border-radius: 20px; background: #0b0b0b; color: #f7f7f7; font-family: Manrope, sans-serif; transition: width 240ms ease; }
 	.kyb-app[data-experience='demo'] { width: min(100%, 72rem); }
 	.kyb-loading { display: grid; padding: 5rem 1.5rem; place-items: center; color: #a1a1aa; }
@@ -34,7 +36,7 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 	:global(.kyb-start__actions) { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.5rem; }
 	:global(.kyb-start__discard) { margin-top: .9rem; border: 0; background: transparent; padding: .25rem; color: #a1a1aa; cursor: pointer; font: 500 .875rem/1.4 Manrope, sans-serif; transition: color 160ms ease; }
 	:global(.kyb-start__discard:hover) { color: #fff; }
-	:global(.kyb-start__discard:focus-visible) { border-radius: .25rem; outline: 2px solid #cbf300; outline-offset: 2px; }
+	:global(.kyb-start__discard:focus-visible) { border-radius: .25rem; outline: 2px solid #A8FF2C; outline-offset: 2px; }
 	:global(.kyb-shell) { display: grid; grid-template-columns: 13.5rem minmax(0, 1fr); }
 	:global(.kyb-shell[data-customer='true']) { grid-template-columns: minmax(0, 1fr); }
 	:global(.kyb-map) { padding: 1.25rem 1rem; border-right: 1px solid rgb(255 255 255 / .07); background: #080808; }
@@ -44,7 +46,7 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 	:global(.kyb-map button:not(:disabled):hover), :global(.kyb-map button[aria-current='step']), :global(.kyb-map-mobile button:not(:disabled):hover), :global(.kyb-map-mobile button[aria-current='step']) { background: rgb(255 255 255 / .045); color: #fff; }
 	:global(.kyb-map button:disabled), :global(.kyb-map-mobile button:disabled) { cursor: default; opacity: .55; }
 	:global(.kyb-map__number) { display: grid; width: 1.75rem; height: 1.75rem; place-items: center; border: 1px solid rgb(255 255 255 / .12); border-radius: .5rem; font-size: .75rem; }
-	:global(.kyb-map button[aria-current='step'] .kyb-map__number), :global(.kyb-map-mobile button[aria-current='step'] .kyb-map__number) { border-color: #cbf300; color: #cbf300; }
+	:global(.kyb-map button[aria-current='step'] .kyb-map__number), :global(.kyb-map-mobile button[aria-current='step'] .kyb-map__number) { border-color: #A8FF2C; color: #A8FF2C; }
 	:global(.kyb-map__copy strong) { display: block; color: inherit; font-size: .875rem; font-weight: 600; line-height: 1.35; }
 	:global(.kyb-main) { min-width: 0; padding: clamp(1.25rem, 3vw, 2rem); }
 	:global(.kyb-customer-progress), :global(.kyb-progress-track), :global(.kyb-scroll), :global(.kyb-actions) { width: 100%; max-width: 46rem; margin-inline: auto; }
@@ -61,36 +63,36 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 	:global(.kyb-progress__meta) { display: flex; align-items: center; gap: .85rem; }
 	:global(.kyb-progress__count) { color: #b7b7bb; }
 	:global(.kyb-progress-track) { height: 2px; margin-top: -.35rem; margin-bottom: 2.25rem; overflow: hidden; border-radius: 999px; background: rgb(255 255 255 / .08); }
-	:global(.kyb-progress-track span) { display: block; height: 100%; border-radius: inherit; background: #cbf300; transition: width 220ms ease; }
+	:global(.kyb-progress-track span) { display: block; height: 100%; border-radius: inherit; background: #A8FF2C; transition: width 220ms ease; }
 	:global(.kyb-scroll) { overflow: visible; }
 	:global(.kyb-step) { width: 100%; }
 	:global(.kyb-step h3) { margin: 0; color: #fff; font-size: clamp(1.35rem, 1.8vw, 1.75rem); font-weight: 500; line-height: 1.1; letter-spacing: 0; }
 	:global(.kyb-step__description) { margin: .75rem 0 1.4rem; color: rgb(255 255 255 / .62); font-size: 1rem; line-height: 1.6; }
 	:global(.kyb-fields) { display: grid; gap: 1rem; }
 	:global(.kyb-grid-2) { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-	:global(.kyb-field) { display: grid; gap: .45rem; }
+	:global(.kyb-field) { display: grid; align-content: start; align-self: start; gap: .45rem; }
 	:global(.kyb-fieldset) { min-width: 0; margin: 0; padding: 0; border: 0; }
 	:global(.kyb-field > label), :global(.kyb-fieldset > legend) { color: #fff; font-size: .875rem; font-weight: 600; }
 	:global(.kyb-fieldset > legend) { margin-bottom: .45rem; padding: 0; }
 	:global(.kyb-field input:not([type='hidden'])), :global(.kyb-field textarea) { width: 100%; min-height: 3.25rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 12px; background: #101010; padding: .76rem .95rem; color: #fff; font: 500 .9rem/1.4 Manrope, sans-serif; transition: border-color 160ms ease, box-shadow 160ms ease; }
 	:global(.kyb-field textarea) { min-height: 6.6rem; resize: vertical; }
-	:global(.kyb-field input:not([type='hidden']):focus), :global(.kyb-field textarea:focus) { border-color: #cbf300; box-shadow: 0 0 0 2px rgb(203 243 0 / .16); outline: none; }
+	:global(.kyb-field input:not([type='hidden']):focus), :global(.kyb-field textarea:focus) { border-color: #A8FF2C; box-shadow: 0 0 0 2px rgb(168 255 44 / .16); outline: none; }
 	:global(.kyb-field input:not([type='hidden'])[aria-invalid='true']), :global(.kyb-field textarea[aria-invalid='true']) { border-color: #ff8f8f; }
 	:global(.kyb-select) { position: relative; min-width: 0; }
 	:global(.kyb-select__trigger) { display: flex; width: 100%; min-height: 3.25rem; align-items: center; gap: .75rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 12px; background: #101010; padding: .76rem .95rem; color: #fff; cursor: pointer; font: 500 .9rem/1.4 Manrope, sans-serif; text-align: left; transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease; }
 	:global(.kyb-select__trigger:hover) { border-color: rgb(255 255 255 / .22); background: #121212; }
-	:global(.kyb-select__trigger:focus-visible), :global(.kyb-select[data-open='true'] .kyb-select__trigger) { border-color: #cbf300; box-shadow: 0 0 0 2px rgb(203 243 0 / .16); outline: none; }
+	:global(.kyb-select__trigger:focus-visible), :global(.kyb-select[data-open='true'] .kyb-select__trigger) { border-color: #A8FF2C; box-shadow: 0 0 0 2px rgb(168 255 44 / .16); outline: none; }
 	:global(.kyb-select__trigger[aria-invalid='true']) { border-color: #ff8f8f; }
 	:global(.kyb-select__value) { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 	:global(.kyb-select__value[data-placeholder='true']) { color: #85858b; }
 	:global(.kyb-select__chevron) { width: 1rem; height: 1rem; flex: 0 0 auto; color: #8b8b91; transition: color 160ms ease, transform 160ms ease; }
-	:global(.kyb-select[data-open='true'] .kyb-select__chevron) { color: #cbf300; transform: rotate(180deg); }
+	:global(.kyb-select[data-open='true'] .kyb-select__chevron) { color: #A8FF2C; transform: rotate(180deg); }
 	:global(.kyb-select__menu) { position: absolute; z-index: 40; top: calc(100% + .5rem); right: 0; left: 0; box-sizing: border-box; max-height: var(--kyb-select-menu-max-height, 15rem); overflow-y: auto; overscroll-behavior: contain; border: 1px solid rgb(255 255 255 / .12); border-radius: 12px; background: #101010; padding: .35rem; box-shadow: 0 18px 42px rgb(0 0 0 / .42); scrollbar-color: rgb(255 255 255 / .24) transparent; scrollbar-width: thin; }
 	:global(.kyb-select[data-placement='top'] .kyb-select__menu) { top: auto; bottom: calc(100% + .5rem); box-shadow: 0 -18px 42px rgb(0 0 0 / .42); }
 	:global(.kyb-select__menu[hidden]) { display: none; }
 	:global(.kyb-select__option) { display: flex; width: 100%; min-height: 2.65rem; align-items: center; border: 1px solid transparent; border-radius: 9px; background: transparent; padding: .6rem .7rem; color: #d5d5d8; cursor: pointer; font: 500 .875rem/1.4 Manrope, sans-serif; text-align: left; }
 	:global(.kyb-select__option:hover), :global(.kyb-select__option:focus-visible) { background: rgb(255 255 255 / .055); color: #fff; outline: none; }
-	:global(.kyb-select__option[aria-selected='true']) { border-color: rgb(203 243 0 / .35); background: rgb(203 243 0 / .055); color: #fff; }
+	:global(.kyb-select__option[aria-selected='true']) { border-color: rgb(168 255 44 / .35); background: rgb(168 255 44 / .055); color: #fff; }
 	:global(.kyb-hint) { margin: 0; color: #85858b; font-size: .8125rem; line-height: 1.55; }
 	:global(.kyb-error) { margin: 0; color: #ff9d9d; font-size: .8125rem; line-height: 1.45; }
 	:global(.kyb-error-summary) { margin-bottom: 1rem; padding: .85rem 1rem; border: 1px solid rgb(255 143 143 / .35); border-radius: .75rem; background: rgb(255 86 86 / .07); color: #ffd2d2; font-size: .875rem; line-height: 1.5; }
@@ -99,22 +101,36 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 	:global(.kyb-options) { display: grid; gap: .6rem; }
 	:global(.kyb-options--grid) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	:global(.kyb-option) { display: flex; min-height: 3.1rem; align-items: center; gap: .7rem; padding: .7rem .85rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 12px; background: #101010; color: #d5d5d8; cursor: pointer; font-size: .875rem; }
-	:global(.kyb-option:has(input:checked)) { border-color: rgb(203 243 0 / .55); background: #101010; color: #fff; }
+	:global(.kyb-option:has(input:checked)) { border-color: rgb(168 255 44 / .55); background: #101010; color: #fff; }
 	:global(.kyb-option:has(input[type='checkbox'])) { min-height: auto; padding: .25rem 0; border: 0; border-radius: 0; background: transparent; }
 	:global(.kyb-option:has(input[type='checkbox']:checked)) { border-color: transparent; background: transparent; }
 	:global(.kyb-option:has(input[type='checkbox']):hover) { color: #fff; }
-	:global(.kyb-option input) { width: 1rem; height: 1rem; accent-color: #cbf300; }
+	:global(.kyb-option input) { width: 1rem; height: 1rem; accent-color: #151515; }
+	:global(.kyb-option input[type='radio']) {
+		appearance: none;
+		flex: 0 0 1rem;
+		border: 1.5px solid #151515;
+		border-radius: 50%;
+		background: transparent;
+	}
+	:global(.kyb-option input[type='radio']:checked) {
+		background: radial-gradient(circle at center, #151515 0 4px, transparent 4.5px);
+	}
+	:global(.kyb-option input[type='radio']:focus-visible) {
+		outline: 2px solid rgba(21, 21, 21, .22);
+		outline-offset: 2px;
+	}
 	:global(.kyb-notice) { margin-bottom: 1.25rem; padding: 1rem; border: 1px solid rgb(255 255 255 / .1); border-radius: .85rem; background: rgb(255 255 255 / .025); }
 	:global(.kyb-notice__label) { display: block; margin-bottom: .35rem; color: #929298; font-size: .63rem; font-weight: 700; letter-spacing: .14em; }
 	:global(.kyb-notice h4) { margin: 0 0 .65rem; color: #fff; font-size: 1.05rem; }
 	:global(.kyb-notice p), :global(.kyb-notice summary) { font-size: .875rem; line-height: 1.65; }
 	:global(.kyb-notice p) { margin: 0; color: #babac0; }
 	:global(.kyb-notice details) { margin-top: .8rem; border-top: 1px solid rgb(255 255 255 / .08); padding-top: .65rem; }
-	:global(.kyb-notice summary) { color: #cbf300; cursor: pointer; font-weight: 650; }
+	:global(.kyb-notice summary) { color: #A8FF2C; cursor: pointer; font-weight: 650; }
 	:global(.kyb-notice details p) { margin-top: .65rem; }
 	:global(.kyb-jurisdiction-note) { display: grid; gap: .25rem; padding-top: .15rem; color: #a9a9af; font-size: .875rem; line-height: 1.55; }
 	:global(.kyb-jurisdiction-note strong) { color: #fff; font-size: .9rem; font-weight: 650; }
-	:global(.kyb-jurisdiction-note[data-configured='true'] strong) { color: #cbf300; }
+	:global(.kyb-jurisdiction-note[data-configured='true'] strong) { color: #A8FF2C; }
 	:global(.kyb-person) { display: grid; gap: .8rem; padding: 1rem; border: 1px solid rgb(255 255 255 / .09); border-radius: .85rem; background: rgb(255 255 255 / .018); }
 	:global(.kyb-person__head) { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 	:global(.kyb-person__head strong) { font-size: .875rem; }
@@ -124,38 +140,41 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 	:global(.kyb-document__head small) { display: block; margin-top: .25rem; color: #85858b; font-size: .8125rem; }
 	:global(.kyb-upload) { position: relative; display: inline-flex; width: max-content; min-height: 2.5rem; align-items: center; justify-content: center; border: 1px solid rgb(255 255 255 / .14); border-radius: 10px; padding: .6rem .9rem; background: rgb(255 255 255 / .035); color: #fff; cursor: pointer; font-size: .8125rem; font-weight: 600; transition: border-color 160ms ease, background 160ms ease; }
 	:global(.kyb-upload:hover) { border-color: rgb(255 255 255 / .25); background: rgb(255 255 255 / .065); }
-	:global(.kyb-upload:focus-within) { outline: 2px solid #cbf300; outline-offset: 2px; }
+	:global(.kyb-upload:focus-within) { outline: 2px solid #A8FF2C; outline-offset: 2px; }
 	:global(.kyb-upload input) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
-	:global(.kyb-document-status) { color: #cbf300; font-size: .8125rem; }
+	:global(.kyb-document-status) { color: #A8FF2C; font-size: .8125rem; }
 	:global(.kyb-document-status[data-status='failed']) { color: #ff9d9d; }
 	:global(.kyb-document__controls) { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem; }
 	:global(.kyb-document__controls .kyb-upload) { min-height: 2.25rem; padding: .5rem .75rem; }
+	:global(.kyb-document__controls .kyb-button--danger) { border-radius: 10px; }
 	:global(.kyb-review-grid) { display: grid; gap: .75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	:global(.kyb-review-card) { padding: 1rem; border: 1px solid rgb(255 255 255 / .09); border-radius: .85rem; background: rgb(255 255 255 / .02); }
 	:global(.kyb-review-card__head) { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: .65rem; }
 	:global(.kyb-review-card h4) { margin: 0; font-size: .95rem; }
 	:global(.kyb-review-card p) { margin: 0; color: #a5a5aa; font-size: .875rem; line-height: 1.65; white-space: pre-line; }
-	:global(.kyb-declaration) { display: grid; gap: .85rem; margin-top: 1rem; padding: 1rem; border: 1px solid rgb(203 243 0 / .2); border-radius: .9rem; background: rgb(203 243 0 / .035); }
+	:global(.kyb-declaration) { display: grid; gap: .85rem; margin-top: 1rem; padding: 1rem; border: 1px solid rgb(168 255 44 / .2); border-radius: .9rem; background: rgb(168 255 44 / .035); }
 	:global(.kyb-declaration h4) { margin: 0; font-size: 1rem; }
 	:global(.kyb-declaration__text) { color: #b6b6bb; font-size: .875rem; line-height: 1.65; }
 	:global(.kyb-actions) { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-top: 1.15rem; }
 	:global(.kyb-actions__right) { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: .75rem; }
-	:global(.kyb-actions [data-back]) { padding-left: 0; }
+	:global(.kyb-actions [data-back]) { align-items: center; justify-content: flex-start; padding-right: .75rem; padding-left: 0; }
+	:global(.kyb-back-arrow) { display: block; line-height: 1; transform: scaleX(-1); }
+	:global(.kyb-back-label) { display: block; line-height: 1rem; transform: translateY(1px); }
 	:global(.kyb-button) { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; gap: .55rem; border: 1px solid transparent; border-radius: 12px; padding: .65rem 1.75rem; cursor: pointer; font: 600 .9rem/1 Manrope, sans-serif; transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease; }
-	:global(.kyb-button:focus-visible) { outline: 2px solid #cbf300; outline-offset: 2px; }
-	:global(.kyb-button--primary) { background: #cbf300; color: #101010; }
+	:global(.kyb-button:focus-visible) { outline: 2px solid #A8FF2C; outline-offset: 2px; }
+	:global(.kyb-button--primary) { background: #A8FF2C; color: #101010; }
 	:global(.kyb-button--primary:hover) { background: #d8ff24; }
 	:global(.kyb-button--secondary) { border-color: rgb(255 255 255 / .12); background: rgb(255 255 255 / .035); color: #fff; }
 	:global(.kyb-button--secondary:hover) { border-color: rgb(255 255 255 / .24); background: rgb(255 255 255 / .075); }
 	:global(.kyb-button--ghost) { background: transparent; color: #a1a1aa; }
 	:global(.kyb-button--ghost:hover) { color: #fff; }
 	:global(.kyb-actions__right [data-save-exit]) { min-height: 2.75rem; padding-inline: 1.25rem; }
-	:global(.kyb-demo-banner) { width: 100%; max-width: 46rem; margin: 0 auto .75rem; color: #cbf300; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+	:global(.kyb-demo-banner) { width: 100%; max-width: 46rem; margin: 0 auto .75rem; color: #A8FF2C; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 	:global(.kyb-button--danger) { border-color: rgb(255 143 143 / .22); background: transparent; color: #ffaaaa; }
 	:global(.kyb-button--danger:hover) { border-color: rgb(255 143 143 / .5); background: rgb(255 143 143 / .09); color: #ffc1c1; }
 	:global(.kyb-button--small) { min-height: 2.25rem; padding: .5rem .75rem; font-size: .75rem; }
 	:global(.kyb-success) { display: grid; padding: clamp(4rem, 9vw, 7rem) 1.5rem; place-items: center; text-align: center; }
-	:global(.kyb-success__icon) { display: grid; width: 4rem; height: 4rem; margin: 0 auto 1rem; place-items: center; border-radius: 50%; background: #cbf300; color: #101010; font-size: 1.7rem; }
+	:global(.kyb-success__icon) { display: grid; width: 4rem; height: 4rem; margin: 0 auto 1rem; place-items: center; border-radius: 50%; background: #A8FF2C; color: #101010; font-size: 1.7rem; }
 	:global(.kyb-success h3) { margin: 0; font-size: clamp(2rem, 4vw, 3.6rem); font-weight: 450; letter-spacing: -.04em; }
 	:global(.kyb-success p) { max-width: 36rem; margin: 1rem auto; color: #a1a1aa; line-height: 1.65; }
 	:global(.kyb-success__reference) { display: inline-flex; margin: .25rem 0 1rem; padding: .5rem .75rem; border-radius: .6rem; background: rgb(255 255 255 / .05); color: #fff; font: 650 .78rem/1 Geist Mono, monospace; }
@@ -166,7 +185,188 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 	:global(.kyb-confirm h3) { margin: 0; color: #fff; font: 600 1.25rem/1.3 Manrope, sans-serif; }
 	:global(.kyb-confirm p) { margin: .75rem 0 0; color: #a1a1aa; font: 400 .95rem/1.6 Manrope, sans-serif; }
 	:global(.kyb-confirm__actions) { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.5rem; }
-	:global(.kyb-confirm__success-icon) { display: grid; width: 2.5rem; height: 2.5rem; margin: 0 auto 1rem; place-items: center; border-radius: 50%; background: #cbf300; color: #101010; font-size: 1rem; font-weight: 800; }
+	:global(.kyb-confirm__success-icon) { display: grid; width: 2.5rem; height: 2.5rem; margin: 0 auto 1rem; place-items: center; border-radius: 50%; background: #A8FF2C; color: #101010; font-size: 1rem; font-weight: 800; }
+
+	/* Complete light treatment for the start screen and every KYB form state. */
+	:global(html[data-theme='light'] .kyb-app) {
+		border-color: #e2e5de;
+		background: #ffffff;
+		color: #151515;
+		box-shadow: 0 18px 48px rgba(20, 24, 18, .06);
+	}
+	:global(html[data-theme='light'] .kyb-loading) { color: #737974; }
+	:global(html[data-theme='light'] .kyb-start h3),
+	:global(html[data-theme='light'] .kyb-step h3),
+	:global(html[data-theme='light'] .kyb-field > label),
+	:global(html[data-theme='light'] .kyb-fieldset > legend),
+	:global(html[data-theme='light'] .kyb-notice h4),
+	:global(html[data-theme='light'] .kyb-jurisdiction-note strong),
+	:global(html[data-theme='light'] .kyb-review-card h4),
+	:global(html[data-theme='light'] .kyb-declaration h4),
+	:global(html[data-theme='light'] .kyb-success h3),
+	:global(html[data-theme='light'] .kyb-confirm h3) { color: #151515; }
+	:global(html[data-theme='light'] .kyb-start__lead),
+	:global(html[data-theme='light'] .kyb-step__description),
+	:global(html[data-theme='light'] .kyb-hint),
+	:global(html[data-theme='light'] .kyb-notice p),
+	:global(html[data-theme='light'] .kyb-jurisdiction-note),
+	:global(html[data-theme='light'] .kyb-document__head small),
+	:global(html[data-theme='light'] .kyb-review-card p),
+	:global(html[data-theme='light'] .kyb-declaration__text),
+	:global(html[data-theme='light'] .kyb-success p),
+	:global(html[data-theme='light'] .kyb-success__next),
+	:global(html[data-theme='light'] .kyb-confirm p),
+	:global(html[data-theme='light'] .kyb-save-feedback),
+	:global(html[data-theme='light'] .kyb-customer-progress),
+	:global(html[data-theme='light'] .kyb-progress__count) { color: #737974; }
+	:global(html[data-theme='light'] .kyb-start__discard),
+	:global(html[data-theme='light'] .kyb-button--ghost) { color: #737974; }
+	:global(html[data-theme='light'] .kyb-start__discard:hover),
+	:global(html[data-theme='light'] .kyb-button--ghost:hover) { color: #151515; }
+
+	:global(html[data-theme='light'] .kyb-map),
+	:global(html[data-theme='light'] .kyb-map-mobile) {
+		border-color: rgba(21, 21, 21, .1);
+		background: #f3f4f1;
+	}
+	:global(html[data-theme='light'] .kyb-map-mobile summary) { color: #151515; }
+	:global(html[data-theme='light'] .kyb-map button),
+	:global(html[data-theme='light'] .kyb-map-mobile button) { color: #737974; }
+	:global(html[data-theme='light'] .kyb-map button:not(:disabled):hover),
+	:global(html[data-theme='light'] .kyb-map button[aria-current='step']),
+	:global(html[data-theme='light'] .kyb-map-mobile button:not(:disabled):hover),
+	:global(html[data-theme='light'] .kyb-map-mobile button[aria-current='step']) {
+		background: #ffffff;
+		color: #151515;
+	}
+	:global(html[data-theme='light'] .kyb-map__number) { border-color: rgba(21, 21, 21, .14); }
+	:global(html[data-theme='light'] .kyb-map button[aria-current='step'] .kyb-map__number),
+	:global(html[data-theme='light'] .kyb-map-mobile button[aria-current='step'] .kyb-map__number) {
+		border-color: #151515;
+		background: #151515;
+		color: #ffffff;
+	}
+	:global(html[data-theme='light'] .kyb-progress-track) { background: rgba(21, 21, 21, .1); }
+	:global(html[data-theme='light'] .kyb-progress-track span) { background: #151515; }
+
+	:global(html[data-theme='light'] .kyb-field input:not([type='hidden'])),
+	:global(html[data-theme='light'] .kyb-field textarea),
+	:global(html[data-theme='light'] .kyb-select__trigger),
+	:global(html[data-theme='light'] .kyb-option) {
+		border-color: rgba(21, 21, 21, .12);
+		background: #f8f9f4;
+		color: #151515;
+	}
+	:global(html[data-theme='light'] .kyb-field input:not([type='hidden']):focus),
+	:global(html[data-theme='light'] .kyb-field textarea:focus),
+	:global(html[data-theme='light'] .kyb-select__trigger:focus-visible),
+	:global(html[data-theme='light'] .kyb-select[data-open='true'] .kyb-select__trigger) {
+		border-color: rgba(21, 21, 21, .28);
+		box-shadow: 0 0 0 2px rgba(21, 21, 21, .06);
+	}
+	:global(html[data-theme='light'] .kyb-select__trigger:hover) {
+		border-color: rgba(21, 21, 21, .22);
+		background: #ffffff;
+	}
+	:global(html[data-theme='light'] .kyb-select__value[data-placeholder='true']),
+	:global(html[data-theme='light'] .kyb-select__chevron) { color: #737974; }
+	:global(html[data-theme='light'] .kyb-select[data-open='true'] .kyb-select__chevron) { color: #151515; }
+	:global(html[data-theme='light'] .kyb-select__menu) {
+		border-color: rgba(21, 21, 21, .12);
+		background: #ffffff;
+		box-shadow: 0 18px 42px rgba(21, 21, 21, .16);
+		scrollbar-color: rgba(21, 21, 21, .24) transparent;
+	}
+	:global(html[data-theme='light'] .kyb-select[data-placement='top'] .kyb-select__menu) { box-shadow: 0 -18px 42px rgba(21, 21, 21, .16); }
+	:global(html[data-theme='light'] .kyb-select__option) { color: #151515; }
+	:global(html[data-theme='light'] .kyb-select__option:hover),
+	:global(html[data-theme='light'] .kyb-select__option:focus-visible) {
+		background: #f3f4f1;
+		color: #151515;
+	}
+	:global(html[data-theme='light'] .kyb-select__option[aria-selected='true']) {
+		border-color: rgba(21, 21, 21, .28);
+		background: #f5f6f2;
+		color: #151515;
+	}
+	:global(html[data-theme='light'] .kyb-option:has(input:checked)) {
+		border-color: #151515;
+		background: #f8f9f4;
+		color: #151515;
+	}
+	:global(html[data-theme='light'] .kyb-option:has(input[type='checkbox'])),
+	:global(html[data-theme='light'] .kyb-option:has(input[type='checkbox']:checked)) { background: transparent; }
+	:global(html[data-theme='light'] .kyb-option:has(input[type='checkbox']):hover) { color: #151515; }
+
+	:global(html[data-theme='light'] .kyb-notice),
+	:global(html[data-theme='light'] .kyb-person),
+	:global(html[data-theme='light'] .kyb-document),
+	:global(html[data-theme='light'] .kyb-review-card) {
+		border-color: rgba(21, 21, 21, .1);
+		background: #f8f9f4;
+	}
+	:global(html[data-theme='light'] .kyb-notice__label) { color: #737974; }
+	:global(html[data-theme='light'] .kyb-notice details) { border-color: rgba(21, 21, 21, .1); }
+	:global(html[data-theme='light'] .kyb-notice summary),
+	:global(html[data-theme='light'] .kyb-jurisdiction-note[data-configured='true'] strong),
+	:global(html[data-theme='light'] .kyb-document-status),
+	:global(html[data-theme='light'] .kyb-demo-banner) { color: #567a16; }
+	:global(html[data-theme='light'] .kyb-upload) {
+		border-color: rgba(21, 21, 21, .14);
+		background: var(--garna-page-bg);
+		color: #151515;
+	}
+	:global(html[data-theme='light'] .kyb-upload:hover) {
+		border-color: rgba(21, 21, 21, .14);
+		background: #ffffff;
+		color: #151515;
+	}
+	:global(html[data-theme='light'] .kyb-declaration) {
+		border-color: rgba(86, 122, 22, .24);
+		background: #f3f9e5;
+	}
+	:global(html[data-theme='light'] .kyb-declaration .kyb-field input:not([type='hidden'])) {
+		background: #ffffff;
+	}
+
+	:global(html[data-theme='light'] .kyb-button--primary) {
+		background: #a8ff2c;
+		color: #151515;
+		box-shadow: none;
+		transform: none;
+	}
+	:global(html[data-theme='light'] .kyb-button--primary:hover) {
+		background: #aef534;
+		box-shadow: none;
+		transform: none;
+	}
+	:global(html[data-theme='light'] .kyb-button--secondary) {
+		border-color: rgba(21, 21, 21, .14);
+		background: #ffffff;
+		color: #151515;
+	}
+	:global(html[data-theme='light'] .kyb-button--secondary:hover) {
+		border-color: rgba(21, 21, 21, .14);
+		background: var(--garna-page-bg);
+		color: #151515;
+	}
+	:global(html[data-theme='light'] .kyb-save-retry) { color: #151515; }
+	:global(html[data-theme='light'] .kyb-success__reference) { background: #f3f4f1; color: #151515; }
+	:global(html[data-theme='light'] .kyb-button--danger) { border-color: rgba(181, 65, 65, .22); color: #a43f3f; }
+	:global(html[data-theme='light'] .kyb-button--danger:hover) { border-color: rgba(181, 65, 65, .45); background: rgba(181, 65, 65, .07); color: #8f3030; }
+	:global(html[data-theme='light'] .kyb-error) { color: #a43f3f; }
+	:global(html[data-theme='light'] .kyb-error-summary) { border-color: rgba(181, 65, 65, .28); background: rgba(181, 65, 65, .06); color: #8f3030; }
+	:global(html[data-theme='light'] .kyb-error-summary h4),
+	:global(html[data-theme='light'] .kyb-error-summary a) { color: #8f3030; }
+	:global(html[data-theme='light'] .kyb-confirm) {
+		border-color: rgba(21, 21, 21, .12);
+		background: #ffffff;
+		color: #151515;
+		box-shadow: 0 28px 90px rgba(21, 21, 21, .24);
+	}
+	:global(html[data-theme='light'] .kyb-confirm [data-confirm-delete]) { background: #fbeaea; }
+	:global(html[data-theme='light'] .kyb-confirm [data-confirm-delete]:hover) { background: #f6dcdc; }
+	:global(html[data-theme='light'] .kyb-confirm::backdrop) { background: rgba(21, 21, 21, .34); }
 	@media (max-width: 900px) {
 		:global(.kyb-grid-2), :global(.kyb-review-grid) { grid-template-columns: 1fr; }
 		:global(.kyb-shell) { grid-template-columns: 1fr; }
@@ -485,7 +685,9 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 				: t('Thank you. We’ll contact you at {email} if we need any additional information.', { email: application.contact.email });
 			const next = mode === 'demo' ? '' : `<div class="kyb-success__next">${escapeHtml(t('Next: automated checks, specialist review when needed, then a decision or a request for more information.'))}</div>`;
 			const reference = mode === 'demo' || !submittedReference ? '' : `<span class="kyb-success__reference">${escapeHtml(submittedReference)}</span>`;
-			root.innerHTML = `<div class="kyb-flow"><div class="kyb-main"><div class="kyb-success"><div><span class="kyb-success__icon">✓</span><h3 tabindex="-1" data-success-heading>${escapeHtml(title)}</h3><p>${escapeHtml(message)}</p>${reference}${next}<div><button type="button" class="kyb-button kyb-button--primary" data-exit-flow>${escapeHtml(t(mode === 'demo' ? 'Exit example' : 'Finish'))}</button></div></div></div></div></div>`;
+			const previewNotice = new URLSearchParams(location.search).get('kyb-preview') === 'success' && ['127.0.0.1', 'localhost'].includes(location.hostname)
+				? '<p class="kyb-demo-banner">Local preview · no application sent</p>' : '';
+			root.innerHTML = `<div class="kyb-flow"><div class="kyb-main">${previewNotice}<div class="kyb-success"><div><span class="kyb-success__icon">✓</span><h3 tabindex="-1" data-success-heading>${escapeHtml(title)}</h3><p>${escapeHtml(message)}</p>${reference}${next}<div><button type="button" class="kyb-button kyb-button--primary" data-exit-flow>${escapeHtml(t(mode === 'demo' ? 'Exit example' : 'Finish'))}</button></div></div></div></div></div>`;
 			window.requestAnimationFrame(() => {
 				root.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
 				root.querySelector<HTMLElement>('[data-success-heading]')?.focus({ preventScroll: true });
@@ -502,7 +704,7 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 			const continueLabel = t(current === 'review' ? (mode === 'demo' ? 'Complete demo' : 'Confirm and submit') : 'Continue');
 			const progress = `<div class="kyb-customer-progress"><span>${escapeHtml(t(KYB_SECTIONS.find((section) => section.id === sectionForMicroId(current))?.label || ''))}</span>${customer ? '' : `<div class="kyb-progress__meta"><span class="kyb-progress__count">${index + 1} / ${flow.length}</span></div>`}</div>`;
 			const saveControls = customer ? `<div class="kyb-save-feedback" aria-live="polite"><span data-kyb-save-state></span><button type="button" class="kyb-save-retry" data-retry-save hidden>${escapeHtml(t('Retry save'))}</button></div><button type="button" class="kyb-button kyb-button--secondary" data-save-exit>${escapeHtml(t('Continue later'))}</button>` : '';
-			root.innerHTML = `<div class="kyb-flow"><div class="kyb-shell" data-customer="${customer}">${mode === 'demo' ? mapHtml() : ''}<main class="kyb-main">${mode === 'demo' ? `<div class="kyb-demo-banner">${escapeHtml(t('Demo · fictional data'))}</div>` : ''}${progress}<div class="kyb-progress-track" aria-hidden="true"><span style="width:${Math.max(4, ((index + 1) / flow.length) * 100)}%"></span></div><div class="kyb-scroll" data-kyb-scroll><form class="kyb-step" novalidate data-kyb-form><h3 tabindex="-1" data-step-heading>${escapeHtml(t(copy.title))}</h3><p class="kyb-step__description">${escapeHtml(t(copy.description))}</p>${errorSummary}<div class="kyb-fields">${renderBody(current)}</div></form></div><div class="kyb-actions"><button type="button" class="kyb-button kyb-button--ghost" data-back><span aria-hidden="true">←</span><span>${escapeHtml(t('Back'))}</span></button><div class="kyb-actions__right">${saveControls}<button type="button" class="kyb-button kyb-button--primary" data-continue><span>${escapeHtml(continueLabel)}</span>${current === 'review' ? '' : '<span aria-hidden="true">→</span>'}</button></div></div></main></div></div>`;
+			root.innerHTML = `<div class="kyb-flow"><div class="kyb-shell" data-customer="${customer}">${mode === 'demo' ? mapHtml() : ''}<main class="kyb-main">${mode === 'demo' ? `<div class="kyb-demo-banner">${escapeHtml(t('Demo · fictional data'))}</div>` : ''}${progress}<div class="kyb-progress-track" aria-hidden="true"><span style="width:${Math.max(4, ((index + 1) / flow.length) * 100)}%"></span></div><div class="kyb-scroll" data-kyb-scroll><form class="kyb-step" novalidate data-kyb-form><h3 tabindex="-1" data-step-heading>${escapeHtml(t(copy.title))}</h3><p class="kyb-step__description">${escapeHtml(t(copy.description))}</p>${errorSummary}<div class="kyb-fields">${renderBody(current)}</div></form></div><div class="kyb-actions"><button type="button" class="kyb-button kyb-button--ghost" data-back><span class="kyb-back-arrow" aria-hidden="true">→</span><span class="kyb-back-label">${escapeHtml(t('Back'))}</span></button><div class="kyb-actions__right">${saveControls}<button type="button" class="kyb-button kyb-button--primary" data-continue><span>${escapeHtml(continueLabel)}</span>${current === 'review' ? '' : '<span aria-hidden="true">→</span>'}</button></div></div></main></div></div>`;
 			track('kyb_step_viewed');
 			if (current === 'documents') track('kyb_document_requested');
 			window.requestAnimationFrame(() => { const error = root.querySelector<HTMLElement>('[data-error-summary]'); if (error) error.focus(); else root.querySelector<HTMLElement>('[data-step-heading]')?.focus(); });
@@ -632,7 +834,11 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 				}
 				renderStep();
 			}
-			if (target instanceof HTMLInputElement && (target.type === 'radio' || target.type === 'checkbox') && !target.dataset.documentRequirement) { updateFromControl(target); if (target.dataset.path || target.dataset.booleanPath) { errors = {}; renderStep(); } }
+			if (target instanceof HTMLInputElement && (target.type === 'radio' || target.type === 'checkbox') && !target.dataset.documentRequirement) {
+				updateFromControl(target);
+				const changesVisibleFields = (target.type === 'radio' && Boolean(target.dataset.path)) || target.dataset.booleanPath === 'business.noWebsite';
+				if (changesVisibleFields) { errors = {}; renderStep(); }
+			}
 		});
 		root.addEventListener('click', async (event) => {
 			const target = event.target instanceof Element ? event.target.closest<HTMLElement>('button, [data-edit-section]') : null; if (!target) return;
@@ -721,7 +927,11 @@ import SectionHeader from '../../layout/SectionHeader.astro';
 		window.addEventListener('resize', repositionOpenCustomSelects, { passive: true });
 		window.addEventListener('scroll', repositionOpenCustomSelects, { passive: true });
 
-		void renderStart();
+		if (['127.0.0.1', 'localhost'].includes(location.hostname) && new URLSearchParams(location.search).get('kyb-preview') === 'success') {
+			application.contact.email = 'hello@example.com';
+			submittedReference = 'PREVIEW-EXAMPLE';
+			renderSuccess();
+		} else void renderStart();
 	});
 
 	initializeKybFlows();

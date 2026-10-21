@@ -52,13 +52,13 @@
 
 .eor-select-trigger:focus-visible,
 .eor-custom-select[data-open] .eor-select-trigger {
-	border-color: #cbf300;
-	box-shadow: 0 0 0 2px rgb(203 243 0 / .16);
+	border-color: #A8FF2C;
+	box-shadow: 0 0 0 2px rgb(168 255 44 / .16);
 	outline: 0;
 }
 
 .eor-custom-select[data-open] .eor-select-trigger svg {
-	stroke: #cbf300;
+	stroke: #A8FF2C;
 	transform: rotate(180deg);
 }
 
@@ -104,8 +104,8 @@
 }
 
 .eor-select-list button[aria-selected='true'] {
-	border-color: rgb(203 243 0 / .35);
-	background: rgb(203 243 0 / .055);
+	border-color: rgb(168 255 44 / .35);
+	background: rgb(168 255 44 / .055);
 	color: #fff;
 }
 
@@ -122,7 +122,7 @@
 }
 
 .eor-country-picker:has(input[aria-expanded='true']) .eor-country-chevron {
-	stroke: #cbf300;
+	stroke: #A8FF2C;
 	transform: rotate(180deg);
 }
 
@@ -150,7 +150,7 @@
 }
 
 .eor-country-list button[aria-selected='true'] {
-	border-color: rgb(203 243 0 / .35);
-	background: rgb(203 243 0 / .055);
+	border-color: rgb(168 255 44 / .35);
+	background: rgb(168 255 44 / .055);
 	color: #fff;
 }

@@ -1,4 +1,4 @@
-﻿import { getPageTranslations } from '../i18n';
+import { getPageTranslations } from '../i18n';
 import { RouteInfo } from './routes';
 import { languages } from '../config/languages';
 import { getHeaderTranslations } from '../i18n/translations/header';
@@ -103,8 +103,8 @@ export function buildFooterLangSelectHtml(
 	cursor: pointer; font: inherit; transition: border-color 0.18s ease; outline: none;
 }
 .footer-lang-trigger:hover { border-bottom-color: rgba(255, 255, 255, 0.2); }
-.footer-lang-trigger:focus-visible { border-bottom-color: rgb(203, 243, 0); outline: none; }
-.footer-lang-label:hover .footer-lang-trigger { border-bottom-color: rgb(203, 243, 0); }
+.footer-lang-trigger:focus-visible { border-bottom-color: rgb(168, 255, 44); outline: none; }
+.footer-lang-label:hover .footer-lang-trigger { border-bottom-color: rgb(168, 255, 44); }
 .footer-lang-triggerText {
 	flex: 1; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
@@ -136,9 +136,9 @@ export function buildFooterLangSelectHtml(
 .footer-lang-option:hover, .footer-lang-optionHighlighted {
 	background-color: rgba(255, 255, 255, 0.06); color: #fff;
 }
-.footer-lang-optionSelected { color: rgb(203, 243, 0); font-weight: 500; }
+.footer-lang-optionSelected { color: rgb(168, 255, 44); font-weight: 500; }
 .footer-lang-optionSelected.footer-lang-optionHighlighted,
-.footer-lang-optionSelected:hover { background-color: rgba(255, 255, 255, 0.08); color: rgb(203, 243, 0); }
+.footer-lang-optionSelected:hover { background-color: rgba(255, 255, 255, 0.08); color: rgb(168, 255, 44); }
 @media (min-width: 768px) { .footer-lang-label { max-width: 160px; } }
 @media (max-width: 767px) { .footer-lang-label { max-width: 100%; } }`;
 
@@ -164,8 +164,8 @@ export function buildFooterLegalLinksHtml(currentLanguage: string): string {
 
 	return (
 		'<nav class="footer-legal-links flex flex-wrap items-center gap-x-3 gap-y-1 mt-3 md:mt-4 text-sm text-gray-500 font-manrope" aria-label="Legal">' +
-		`<a href="${agreementUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.termsOfService">Terms of Service</a>` +
-		`<a href="${privacyUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#CBF300] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300]" data-translate="footer.privacyPolicy">Privacy Policy</a>` +
+		`<a href="${agreementUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#A8FF2C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A8FF2C]" data-translate="footer.termsOfService">Terms of Service</a>` +
+		`<a href="${privacyUrl}" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-[#A8FF2C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A8FF2C]" data-translate="footer.privacyPolicy">Privacy Policy</a>` +
 		'</nav>'
 	);
 }

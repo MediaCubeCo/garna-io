@@ -1,6 +1,7 @@
 ---
 import Button from '../../ui/Button.astro';
 import BusinessHeroBackdrop from '../../visuals/BusinessHeroBackdrop.astro';
+import EorHeroParticleField from '../../visuals/EorHeroParticleField.astro';
 
 const hero = {
 	title: 'Business Account\nfor Going Global',
@@ -12,6 +13,7 @@ const hero = {
 
 <section class="eor-hero" data-section-kind="hero">
 	<BusinessHeroBackdrop />
+	<EorHeroParticleField quietZone="center" />
 	<div class="eor-hero__grid mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center lg:gap-20">
 		<div class="eor-hero__copy">
 			<div class="eor-hero__text">
@@ -36,7 +38,7 @@ const hero = {
 					href="#"
 					variant="secondary"
 					size="hero"
-					class="eor-hero__cta w-fit"
+					class="business-account-hero-demo eor-hero__cta w-fit"
 					onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'business_account_hero_book_demo' });"
 				>
 					<span data-translate="hero.ctaSecondary">Book a demo</span>
@@ -527,7 +529,7 @@ const hero = {
 	}
 
 	.eor-hero-notification__status {
-		color: #cbf300 !important;
+		color: #A8FF2C !important;
 		font-size: 0.62rem !important;
 		font-weight: 700 !important;
 		text-transform: uppercase;

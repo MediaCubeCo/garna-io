@@ -50,7 +50,7 @@ export function createGarnaBlog(request: Request, env: BlogEnv) {
 		defaultCategoryLabel: 'Insight',
 		cookieName: 'garna_blog_session',
 		theme: {
-			'--blog-accent': '#CBF300',
+			'--blog-accent': '#A8FF2C',
 			'--blog-background': '#101010',
 			'--blog-foreground': '#f7f7f7',
 			'--blog-muted': '#a1a1aa',
@@ -189,9 +189,9 @@ function applyLanguageAlternates(html: string, engineHead: string): string {
 function listCta(): string {
 	return `<section class="overflow-hidden pt-4 pb-8 relative">
 		<div class="font-manrope max-w-7xl mx-auto pr-6 pl-6">
-			<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_demo' });" class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-between rounded-3xl border border-white/10 bg-[#0a0a0a]/55 px-6 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.22)] transition-colors hover:border-[#CBF300]/30">
+			<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_demo' });" class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-between rounded-3xl border border-white/10 bg-[#0a0a0a]/55 px-6 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.22)] transition-colors hover:border-[#A8FF2C]/30">
 				<h2 class="md:text-3xl text-2xl leading-tight font-thin text-white tracking-tight" data-translate="blog.cta.title">Your Global Growth Starts Here</h2>
-				<span class="inline-flex min-h-12 shrink-0 items-center justify-center rounded-xl bg-[#CBF300] px-7 text-base font-normal text-[#101010] shadow-[0_0_24px_rgba(203,243,0,0.32)] transition-transform duration-300 hover:scale-[1.03] hover:bg-[#D8FF33]">
+				<span class="inline-flex min-h-12 shrink-0 items-center justify-center rounded-xl bg-[#A8FF2C] px-7 text-base font-normal text-[#101010] shadow-[0_0_24px_rgba(168, 255, 44,0.32)] transition-transform duration-300 hover:scale-[1.03] hover:bg-[#AEF534]">
 					<span data-translate="blog.cta.button">Book a Demo</span>
 				</span>
 			</a>
@@ -200,26 +200,26 @@ function listCta(): string {
 }
 
 function payrollSideBanner(): string {
-	return `<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_article_side_banner_demo' });" class="block overflow-hidden group transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:border-[#CBF300]/30 bg-gradient-to-b from-[#1a1a1e] via-[#151518] to-[#0a0a0c] w-full h-[320px] border-white/5 border rounded-xl mb-6 relative shadow-lg">
+	return `<a href="#" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'blog_article_side_banner_demo' });" class="block overflow-hidden group transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:border-[#A8FF2C]/30 bg-gradient-to-b from-[#1a1a1e] via-[#151518] to-[#0a0a0c] w-full h-[320px] border-white/5 border rounded-xl mb-6 relative shadow-lg">
 		<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-			<div class="absolute top-[5%] left-[-30%] w-[160%] h-20 bg-[#CBF300]/20 rotate-[35deg] blur-2xl transform-gpu transition-transform duration-1000 group-hover:translate-x-4"></div>
-			<div class="absolute top-[30%] left-[-30%] w-[160%] h-24 bg-[#CBF300]/10 rotate-[35deg] blur-3xl transform-gpu transition-transform duration-1000 group-hover:translate-x-8"></div>
+			<div class="absolute top-[5%] left-[-30%] w-[160%] h-20 bg-[#A8FF2C]/20 rotate-[35deg] blur-2xl transform-gpu transition-transform duration-1000 group-hover:translate-x-4"></div>
+			<div class="absolute top-[30%] left-[-30%] w-[160%] h-24 bg-[#A8FF2C]/10 rotate-[35deg] blur-3xl transform-gpu transition-transform duration-1000 group-hover:translate-x-8"></div>
 		</div>
 		<div class="flex flex-col w-full h-full z-10 pt-6 pr-6 pb-6 pl-6 relative items-center justify-start">
 			<div class="text-center mb-auto pb-4">
-				<h2 class="leading-[1.15] text-2xl lg:text-xl text-white tracking-tight font-thin xl:text-xl">See Global Payroll<br><span class="font-normal text-[#CBF300]">in Action</span></h2>
+				<h2 class="leading-[1.15] text-2xl lg:text-xl text-white tracking-tight font-thin xl:text-xl">See Global Payroll<br><span class="font-normal text-[#A8FF2C]">in Action</span></h2>
 			</div>
 			<div class="flex group-hover:-translate-y-1 transition-transform duration-500 w-full h-full max-w-[190px] z-20 mb-6 relative items-center justify-center">
-				<div class="absolute inset-0 bg-[#CBF300] blur-[16px] opacity-15 rounded-full group-hover:opacity-25 transition-all duration-700 mix-blend-screen"></div>
-				<div class="flex flex-col transition-all duration-500 group-hover:border-[#CBF300]/30 group-hover:shadow-[0_8px_25px_rgba(203,243,0,0.1)] overflow-hidden bg-center w-full h-full bg-[url(/pages/blog/assets/21-f0f31e7a-67b4-4cbd-918d-d607080ee39f_3840w.png)] bg-cover z-20 border-white/10 border rounded-xl relative shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md">
-					<div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#CBF300]/50 to-transparent opacity-40"></div>
+				<div class="absolute inset-0 bg-[#A8FF2C] blur-[16px] opacity-15 rounded-full group-hover:opacity-25 transition-all duration-700 mix-blend-screen"></div>
+				<div class="flex flex-col transition-all duration-500 group-hover:border-[#A8FF2C]/30 group-hover:shadow-[0_8px_25px_rgba(168, 255, 44,0.1)] overflow-hidden bg-center w-full h-full bg-[url(/pages/blog/assets/21-f0f31e7a-67b4-4cbd-918d-d607080ee39f_3840w.png)] bg-cover z-20 border-white/10 border rounded-xl relative shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md">
+					<div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#A8FF2C]/50 to-transparent opacity-40"></div>
 				</div>
 			</div>
 			<div class="group/btn z-20 mt-auto relative">
-				<div class="absolute -inset-0.5 bg-gradient-to-r from-[#CBF300] to-[#829A00] rounded-full blur opacity-30 group-hover/btn:opacity-70 transition duration-500"></div>
-				<span class="flex transition-all duration-300 hover:scale-105 text-sm font-normal text-[#101010] tracking-wide bg-[#CBF300] rounded-xl pt-2.5 pr-6 pb-2.5 pl-6 relative shadow-sm gap-x-2 gap-y-2 items-center justify-center">Book a Demo</span>
+				<div class="absolute -inset-0.5 bg-gradient-to-r from-[#A8FF2C] to-[#829A00] rounded-full blur opacity-30 group-hover/btn:opacity-70 transition duration-500"></div>
+				<span class="flex transition-all duration-300 hover:scale-105 text-sm font-normal text-[#101010] tracking-wide bg-[#A8FF2C] rounded-xl pt-2.5 pr-6 pb-2.5 pl-6 relative shadow-sm gap-x-2 gap-y-2 items-center justify-center">Book a Demo</span>
 			</div>
-			<div class="absolute top-0 right-0 w-40 h-40 bg-[#CBF300]/5 rounded-full blur-3xl z-0 pointer-events-none transition-opacity duration-700 group-hover:bg-[#CBF300]/10"></div>
+			<div class="absolute top-0 right-0 w-40 h-40 bg-[#A8FF2C]/5 rounded-full blur-3xl z-0 pointer-events-none transition-opacity duration-700 group-hover:bg-[#A8FF2C]/10"></div>
 		</div>
 	</a>`;
 }

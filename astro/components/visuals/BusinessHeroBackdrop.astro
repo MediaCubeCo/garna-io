@@ -14,6 +14,12 @@
 	}
 
 	business-hero-backdrop[data-painted] { background: none; }
+
+	:global(html[data-theme='light']) business-hero-backdrop {
+		background: linear-gradient(to bottom, rgb(224 232 235 / 0), #e0e8eb);
+	}
+
+	:global(html[data-theme='light']) business-hero-backdrop[data-painted] { background: none; }
 	canvas { display: block; width: 100%; height: 100%; }
 </style>
 
@@ -60,8 +66,12 @@
 			canvas.width = width;
 			canvas.height = height;
 			const pixels = context.createImageData(width, height);
+			const isLightTheme = document.documentElement.dataset.theme === 'light';
+			const targetColor = isLightTheme ? [224, 232, 235] : [10, 10, 10];
+			const targetAlpha = isLightTheme ? 238 : 255;
 			// Stable, non-repeating per-pixel noise; redraw only on resize,
 			// never on animation frames, so the backdrop does not shimmer.
+			// The light palette uses a cool grey-blue instead of the legacy black.
 			let seed = 0x71a93f25;
 			const random = () => {
 				seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5;
@@ -73,13 +83,14 @@
 				for (let x = 0; x < width; x++) {
 					const offset = (y * width + x) * 4;
 					const alpha = Math.max(0, Math.min(255,
-						Math.round(t * 255 + (random() - 0.5) * 8 * envelope)));
-					const premultiplied = 10 * alpha / 255;
-					const rounded = Math.floor(premultiplied + random());
-					const color = alpha ? Math.round(rounded * 255 / alpha) : 10;
-					pixels.data[offset] = color;
-					pixels.data[offset + 1] = color;
-					pixels.data[offset + 2] = color;
+						Math.round(t * targetAlpha + (random() - 0.5) * 8 * envelope)));
+					for (let channel = 0; channel < 3; channel++) {
+						const premultiplied = targetColor[channel] * alpha / 255;
+						const rounded = Math.floor(premultiplied + random());
+						pixels.data[offset + channel] = alpha
+							? Math.round(rounded * 255 / alpha)
+							: targetColor[channel];
+					}
 					pixels.data[offset + 3] = alpha;
 				}
 			}

@@ -285,7 +285,7 @@ const carouselSlides = [
 	:global(.problems-carousel-content) { min-height: 300vh; }
 	.problems-carousel { position: sticky; top: var(--problems-carousel-sticky-top, 5rem); display: grid; grid-template-columns: minmax(17rem, .82fr) minmax(0, 1.18fr); min-height: 34rem; align-items: center; gap: clamp(2.5rem, 6vw, 6.5rem); margin-right: calc(50% - 50vw); overflow: hidden; }
 	.problems-carousel__copy { width: min(100%, 32rem); padding-left: clamp(0rem, 2vw, 1.5rem); text-align: left; }
-	.problems-carousel__copy h2 { margin: 0; color: #fff; font: 400 3rem / 1.25 Manrope, sans-serif; text-wrap: balance; }
+	.problems-carousel__copy h2 { margin: 0; color: var(--garna-text); font: 400 3rem / 1.25 Manrope, sans-serif; text-wrap: balance; }
 	.problems-carousel__copy p { max-width: 31rem; margin: 1.5rem 0 2.5rem; color: var(--garna-subtitle-color); font-size: 1.25rem; font-weight: var(--garna-subtitle-weight); line-height: 1.625; }
 	.problems-carousel__viewport { width: 100%; overflow: hidden; padding-block: .65rem; }
 	.problems-carousel__rail { display: flex; gap: 1.15rem; width: 100%; transition: transform 520ms cubic-bezier(.22, 1, .36, 1); will-change: transform; }
@@ -297,7 +297,7 @@ const carouselSlides = [
 	.problem-carousel-card.is-active { transform: none; }
 	.problem-carousel-card:not(.is-active) { opacity: .68; }
 	.problem-carousel-card__header { display: flex; flex-direction: column; gap: .75rem; }
-	.problem-carousel-card__header small { color: #cbf300; font: 700 .72rem / 1 Manrope, sans-serif; letter-spacing: .12em; }
+	.problem-carousel-card__header small { color: #A8FF2C; font: 700 .72rem / 1 Manrope, sans-serif; letter-spacing: .12em; }
 	.problem-carousel-card__header strong { max-width: 15rem; font: 500 clamp(1.25rem, 1.75vw, 1.55rem) / 1.2 Manrope, sans-serif; letter-spacing: -.02em; }
 	.problem-carousel-card[data-index='4'] .problem-carousel-card__header strong { max-width: 18rem; text-wrap: balance; }
 	.problem-carousel-card__conversation { display: flex; flex-direction: column; gap: 1.35rem; }
@@ -305,16 +305,16 @@ const carouselSlides = [
 	.problem-chat > span:not(.problem-avatar, .problem-garna-mark) { padding: .9rem 1rem; border-radius: 1rem; font: 500 .8rem / 1.48 Manrope, sans-serif; }
 	.problem-chat--customer > span:last-child { border-bottom-left-radius: .3rem; background: rgb(255 255 255 / .075); color: #f4f4f5; }
 	.problem-chat--garna { justify-content: flex-end; }
-	.problem-chat--garna > span:first-child { border: 1px solid rgb(203 243 0 / .16); border-bottom-right-radius: .3rem; background: rgb(203 243 0 / .075); color: #e4e4e7; }
+	.problem-chat--garna > span:first-child { border: 1px solid rgb(168 255 44 / .16); border-bottom-right-radius: .3rem; background: rgb(168 255 44 / .075); color: #e4e4e7; }
 	.problem-avatar, .problem-garna-mark { display: grid; width: 2.5rem; height: 2.5rem; flex: 0 0 2.5rem; place-items: center; border-radius: 50%; }
 	.problem-avatar { overflow: hidden; border: 1px solid rgb(255 255 255 / .09); background: #202020; }
 	.problem-avatar img { width: 100%; height: 100%; object-fit: cover; }
-	.problem-garna-mark { background: #cbf300; }
+	.problem-garna-mark { background: #A8FF2C; }
 	.problem-garna-mark img { width: .8rem; height: 1.3rem; }
 	.problems-carousel__controls { display: flex; width: 43%; justify-content: center; align-items: center; gap: .45rem; margin-top: 1.35rem; }
 	.problems-carousel__controls button { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 999px; background: rgb(255 255 255 / .24); padding: 0; cursor: pointer; transition: width 220ms ease, background 220ms ease; }
-	.problems-carousel__controls button.is-active { width: 3.4rem; background: rgb(203 243 0 / .18); box-shadow: inset 0 0 0 1px rgb(203 243 0 / .18); }
-	.problems-carousel__controls button.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #cbf300; box-shadow: 0 0 14px rgb(203 243 0 / .52); content: ''; transform: scaleX(var(--problem-dot-progress, 1)); transform-origin: left center; }
+	.problems-carousel__controls button.is-active { width: 3.4rem; background: rgb(168 255 44 / .18); box-shadow: inset 0 0 0 1px rgb(168 255 44 / .18); }
+	.problems-carousel__controls button.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #A8FF2C; box-shadow: 0 0 14px rgb(168 255 44 / .52); content: ''; transform: scaleX(var(--problem-dot-progress, 1)); transform-origin: left center; }
 	@media (min-width: 700px) and (max-width: 1079.98px) {
 		.problems-carousel { grid-template-columns: minmax(15rem, .9fr) minmax(0, 1.1fr); gap: clamp(1.5rem, 3vw, 2.5rem); }
 		.problems-carousel__copy { width: 100%; padding-left: 0; }

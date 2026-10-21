@@ -6,6 +6,8 @@
  */
 
 html[data-theme="light"] {
+	--garna-accent: #a8ff2c;
+	--garna-accent-foreground: #151515;
 	--garna-page-bg: #f4f5ef;
 	--garna-section-stats-bg: #eaede4;
 	--garna-surface: #ffffff;
@@ -19,6 +21,88 @@ html[data-theme="light"] {
 	color-scheme: light;
 }
 
+/* Use the same clean lime button treatment as the approved light pages. */
+html[data-theme="light"] .garna-button {
+	--garna-button-bg: var(--garna-accent);
+	--garna-button-shine: #ffffff;
+	box-shadow: none !important;
+}
+
+html[data-theme="light"] .garna-button:is(:hover, :active) {
+	transform: none;
+	filter: none;
+	box-shadow: none !important;
+}
+
+html[data-theme="light"] .garna-button-primary:hover {
+	--garna-button-bg: #aef534;
+}
+
+/* Keep every product FAQ aligned with the approved Home, EOR and COR pattern. */
+html[data-theme="light"] [data-faq-section][data-faq-variant="eor"] .eor-faq {
+	border-top: 1px solid rgba(21, 21, 21, 0.14);
+}
+
+html[data-theme="light"] [data-faq-section][data-faq-variant="eor"] .eor-faq > :not([hidden]) ~ :not([hidden]) {
+	margin-top: 0 !important;
+}
+
+html[data-theme="light"] [data-faq-section][data-faq-variant="eor"] .eor-faq-item {
+	border: 0 !important;
+	border-bottom: 1px solid rgba(21, 21, 21, 0.14) !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+html[data-theme="light"] [data-faq-section][data-faq-variant="eor"] .eor-faq-item > summary {
+	padding: 1.65rem 0.25rem !important;
+}
+
+html[data-theme="light"] [data-faq-section][data-faq-variant="eor"] .eor-faq-panel > p {
+	padding: 0 2.75rem 1.65rem 0.25rem !important;
+}
+
+html[data-theme="light"] [data-faq-section][data-faq-variant="eor"] .eor-faq-item[data-state="open"] > summary .garna-faq-icon {
+	color: var(--garna-text) !important;
+}
+
+/*
+ * Blog records can contain saved Tailwind class names from before the light
+ * redesign. Keep those database-authored fragments on the current accent too.
+ */
+html[data-theme="light"] [class~="bg-[#CBF300]"] {
+	background-color: var(--garna-accent) !important;
+}
+
+html[data-theme="light"] [class~="bg-[#CBF300]/5"] { background-color: rgb(168 255 44 / 0.05) !important; }
+html[data-theme="light"] [class~="bg-[#CBF300]/10"] { background-color: rgb(168 255 44 / 0.1) !important; }
+html[data-theme="light"] [class~="bg-[#CBF300]/15"] { background-color: rgb(168 255 44 / 0.15) !important; }
+html[data-theme="light"] [class~="bg-[#CBF300]/20"] { background-color: rgb(168 255 44 / 0.2) !important; }
+html[data-theme="light"] [class~="bg-[#CBF300]/25"] { background-color: rgb(168 255 44 / 0.25) !important; }
+html[data-theme="light"] [class~="bg-[#CBF300]/30"] { background-color: rgb(168 255 44 / 0.3) !important; }
+html[data-theme="light"] [class~="bg-[#CBF300]/40"] { background-color: rgb(168 255 44 / 0.4) !important; }
+html[data-theme="light"] [class~="bg-[#CBF300]/50"] { background-color: rgb(168 255 44 / 0.5) !important; }
+
+html[data-theme="light"] [class~="text-[#CBF300]"] {
+	color: var(--garna-accent) !important;
+}
+
+html[data-theme="light"] [class~="border-[#CBF300]"] {
+	border-color: var(--garna-accent) !important;
+}
+
+html[data-theme="light"] [class~="border-[#CBF300]/10"] { border-color: rgb(168 255 44 / 0.1) !important; }
+html[data-theme="light"] [class~="border-[#CBF300]/20"] { border-color: rgb(168 255 44 / 0.2) !important; }
+html[data-theme="light"] [class~="border-[#CBF300]/30"] { border-color: rgb(168 255 44 / 0.3) !important; }
+html[data-theme="light"] [class~="border-[#CBF300]/40"] { border-color: rgb(168 255 44 / 0.4) !important; }
+html[data-theme="light"] [class~="border-[#CBF300]/50"] { border-color: rgb(168 255 44 / 0.5) !important; }
+
+html[data-theme="light"] [class~="hover:bg-[#A9CA00]"]:hover,
+html[data-theme="light"] [class~="hover:bg-[#D8FF33]"]:hover {
+	background-color: #aef534 !important;
+}
+
 html[data-theme="light"],
 html[data-theme="light"] body[data-garna-page] {
 	background: var(--garna-page-bg);
@@ -26,7 +110,7 @@ html[data-theme="light"] body[data-garna-page] {
 }
 
 html[data-theme="light"] ::selection {
-	background: rgba(203, 243, 0, 0.48);
+	background: rgba(168, 255, 44, 0.48);
 	color: #101010;
 }
 
@@ -65,6 +149,14 @@ html[data-theme="light"] .garna-hero-title-gradient {
 	background: linear-gradient(175deg, #0a0a0a 0%, rgba(16, 16, 16, 0.86) 48%, rgba(16, 16, 16, 0.55) 100%);
 	background-clip: text;
 	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+html[data-theme="light"] [data-section-kind="hero"] h1,
+html[data-theme="light"] .tax-copy h1,
+html[data-theme="light"] .eor-cost-hero__copy h1 {
+	font-family: Manrope, sans-serif;
+	font-weight: 400 !important;
 }
 
 html[data-theme="light"] .garna-hero-badge {
@@ -106,9 +198,11 @@ html[data-theme="light"] .payroll-solution-new-hero .garna-hero-green-glow {
 }
 
 html[data-theme="light"] .payroll-solution-new-hero .garna-hero-title-gradient {
-	background: none;
-	color: #ffffff;
-	-webkit-text-fill-color: #ffffff;
+	background: linear-gradient(175deg, #ffffff 0%, rgba(255, 255, 255, 0.86) 48%, rgba(255, 255, 255, 0.55) 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent;
 	text-shadow: 0 2px 30px rgba(0, 0, 0, 0.22);
 }
 
@@ -205,7 +299,7 @@ html[data-theme="light"] .garna-product-window img[src="/garna_logo.svg"] {
 	filter: invert(1);
 }
 
-html[data-theme="light"] .garna-product-window [class*="text-[#CBF300]"] {
+html[data-theme="light"] .garna-product-window [class*="text-[#A8FF2C]"] {
 	color: #607700 !important;
 }
 
@@ -265,9 +359,9 @@ html[data-theme="light"] .garna-card-light-field {
 	pointer-events: none;
 	background: radial-gradient(
 		circle at center,
-		rgba(203, 243, 0, 0.34) 0%,
-		rgba(203, 243, 0, 0.19) 24%,
-		rgba(203, 243, 0, 0.075) 48%,
+		rgba(168, 255, 44, 0.34) 0%,
+		rgba(168, 255, 44, 0.19) 24%,
+		rgba(168, 255, 44, 0.075) 48%,
 		transparent 72%
 	);
 	opacity: 0;
@@ -287,9 +381,9 @@ html[data-theme="light"] .garna-card::before {
 html[data-theme="light"] .garna-card::after {
 	background: radial-gradient(
 		circle var(--garna-card-border-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y),
-		rgba(203, 243, 0, 0.98) 0%,
-		rgba(203, 243, 0, 0.68) 26%,
-		rgba(203, 243, 0, 0.28) 54%,
+		rgba(168, 255, 44, 0.98) 0%,
+		rgba(168, 255, 44, 0.68) 26%,
+		rgba(168, 255, 44, 0.28) 54%,
 		transparent 76%
 	);
 	transition: opacity 300ms ease;
@@ -301,6 +395,302 @@ html[data-theme="light"] .garna-card[data-interactive="true"]:is(:hover, :focus-
 	background-color: rgba(255, 255, 255, 0.94);
 	border-color: rgba(16, 16, 16, 0.1);
 	box-shadow: none;
+}
+
+/* Canonical compact icon cards shared by EOR and equivalent feature grids. */
+html[data-theme="light"] .garna-icon-feature-grid .garna-card {
+	--garna-card-surface: #ffffff;
+	--garna-card-hover-surface: #ffffff;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	grid-template-rows: minmax(0, 1fr);
+	min-height: 17rem;
+	z-index: 1;
+	translate: none !important;
+	transform: translate3d(0, 0, 0) scale(1) !important;
+	transform-origin: center;
+	border-color: #e2e5de !important;
+	border-radius: var(--garna-radius-lg) !important;
+	background: #ffffff !important;
+	box-shadow: 0 10px 30px rgba(20, 24, 18, 0.05) !important;
+	backface-visibility: hidden;
+}
+
+html[data-theme="light"] .garna-icon-feature-grid .garna-card > div:has(> svg) {
+	grid-column: 2;
+	grid-row: 1;
+	align-self: start;
+	justify-self: end;
+	width: 1.5rem;
+	height: 1.5rem;
+	margin: 0 0 0 1rem;
+}
+
+html[data-theme="light"] .garna-icon-feature-grid .garna-card > div:has([data-card-title]) {
+	display: flex;
+	grid-column: 1 / -1;
+	grid-row: 1;
+	min-width: 0;
+	min-height: 100%;
+	flex-direction: column;
+}
+
+html[data-theme="light"] .garna-icon-feature-grid .garna-card > div:has(> svg) svg {
+	width: 1.5rem;
+	height: 1.5rem;
+	margin: 0;
+	color: #151515 !important;
+	stroke-width: 2;
+}
+
+html[data-theme="light"] .garna-icon-feature-grid [data-card-title] {
+	max-width: calc(100% - 3rem);
+	margin-bottom: 0;
+	color: #151515 !important;
+}
+
+html[data-theme="light"] .garna-icon-feature-grid [data-card-description] {
+	margin-top: auto;
+	padding-top: clamp(3rem, 4vw, 4.5rem);
+	color: #737974 !important;
+}
+
+html[data-theme="light"] .garna-icon-feature-grid .garna-card::before,
+html[data-theme="light"] .garna-icon-feature-grid .garna-card::after,
+html[data-theme="light"] .garna-icon-feature-grid > .garna-card-light-field {
+	display: none !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	html[data-theme="light"] .garna-icon-feature-grid .garna-card {
+		will-change: transform, box-shadow;
+		transition:
+			transform 340ms cubic-bezier(0.22, 1, 0.36, 1),
+			box-shadow 340ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+	}
+
+	html[data-theme="light"] .garna-icon-feature-grid .garna-card:is(:hover, :focus-within, [data-pointer-active="true"]) {
+		z-index: 3;
+		translate: none !important;
+		transform: translate3d(0, 0, 0) scale(1.035) !important;
+		box-shadow:
+			0 3px 8px rgba(21, 21, 21, 0.09),
+			0 16px 32px -8px rgba(21, 21, 21, 0.18),
+			0 32px 64px -22px rgba(21, 21, 21, 0.24) !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-theme="light"] .garna-icon-feature-grid .garna-card {
+		transform: none !important;
+		transition: none !important;
+	}
+}
+
+/* Give the larger Business Account product cards the same light-theme hover as the compact method cards. */
+html[data-theme="light"] .business-products-grid .business-product-card {
+	z-index: 1;
+	translate: none !important;
+	transform: translate3d(0, 0, 0) scale(1) !important;
+	transform-origin: center;
+	border-color: #e2e5de !important;
+	background: #ffffff !important;
+	box-shadow: 0 10px 30px rgba(20, 24, 18, 0.05) !important;
+	backface-visibility: hidden;
+}
+
+html[data-theme="light"] .business-products-grid .business-product-card > h3 {
+	color: #151515 !important;
+}
+
+html[data-theme="light"] .business-products-grid .business-product-card > p {
+	color: #737974 !important;
+}
+
+html[data-theme="light"] .business-products-grid .business-product-card::before,
+html[data-theme="light"] .business-products-grid > .garna-card-light-field {
+	display: none !important;
+}
+
+/* Contractor of Record's warm-neutral product-art palette for Business Account mockups. */
+html[data-theme="light"] .business-products-grid .business-product-card {
+	--business-visual-graphite: #ffffff;
+	--business-visual-paper: #ffffff;
+	--business-visual-paper-soft: #f3f4f1;
+	--business-visual-border: rgba(21, 21, 21, 0.1);
+	--business-visual-text: #151515;
+	--business-visual-muted: #737974;
+	--business-visual-lime-soft: #eafcc0;
+	--business-visual-lime-ink: #3d5a10;
+}
+
+html[data-theme="light"] .business-products-grid .employee-profile__sheet-back {
+	border-color: var(--business-visual-border) !important;
+	background: var(--business-visual-paper-soft) !important;
+	box-shadow: 0 14px 28px -20px rgba(21, 21, 21, 0.24) !important;
+}
+
+html[data-theme="light"] .business-products-grid .employee-profile__sheet {
+	border-color: var(--business-visual-border) !important;
+	background: var(--business-visual-paper) !important;
+	color: var(--business-visual-text) !important;
+	box-shadow: 0 18px 40px -30px rgba(21, 21, 21, 0.28) !important;
+}
+
+html[data-theme="light"] .business-products-grid .employee-profile__file-header,
+html[data-theme="light"] .business-products-grid .employee-profile__fields,
+html[data-theme="light"] .business-products-grid .employee-profile__footer {
+	border-color: var(--business-visual-border) !important;
+}
+
+html[data-theme="light"] .business-products-grid .employee-profile__file-header > small,
+html[data-theme="light"] .business-products-grid .employee-profile__identity small,
+html[data-theme="light"] .business-products-grid .employee-profile__footer small {
+	color: var(--business-visual-muted) !important;
+}
+
+html[data-theme="light"] .business-products-grid .employee-profile__identity > img {
+	border-color: var(--business-visual-border) !important;
+	filter: none !important;
+}
+
+html[data-theme="light"] .business-products-grid .employee-profile__identity strong,
+html[data-theme="light"] .business-products-grid .employee-profile__footer strong {
+	color: var(--business-visual-text) !important;
+}
+
+html[data-theme="light"] .business-products-grid .employee-profile__status {
+	color: #567a16 !important;
+}
+
+html[data-theme="light"] .business-products-grid .employee-profile__status i {
+	background: var(--business-visual-lime-soft) !important;
+	color: var(--business-visual-lime-ink) !important;
+}
+
+html[data-theme="light"] .business-products-grid .employee-profile__fields i {
+	background: rgba(21, 21, 21, 0.11) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__ticket-back {
+	background: var(--business-visual-paper-soft) !important;
+	box-shadow: 0 14px 28px -20px rgba(21, 21, 21, 0.24) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__ticket-back::before {
+	background: var(--business-visual-lime-soft) !important;
+	box-shadow: inset 0.5px 0 var(--business-visual-border), inset 0 0.5px var(--business-visual-border), inset 0 -0.5px var(--business-visual-border) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__ticket-back::after {
+	box-shadow: inset -0.5px 0 var(--business-visual-border), inset 0 0.5px var(--business-visual-border), inset 0 -0.5px var(--business-visual-border) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__ticket-back > i {
+	color: var(--business-visual-lime-ink) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__ticket {
+	background: var(--business-visual-paper) !important;
+	color: var(--business-visual-text) !important;
+	box-shadow: 0 18px 40px -30px rgba(21, 21, 21, 0.28) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__discount {
+	background: var(--business-visual-lime-soft) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__discount small,
+html[data-theme="light"] .business-products-grid .service-offer__discount strong {
+	color: var(--business-visual-lime-ink) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__perforation {
+	border-color: rgba(21, 21, 21, 0.16) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__details {
+	border-color: var(--business-visual-border) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__details strong {
+	color: var(--business-visual-text) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__details small,
+html[data-theme="light"] .business-products-grid .service-offer__details > span {
+	color: var(--business-visual-muted) !important;
+}
+
+html[data-theme="light"] .business-products-grid .service-offer__ticket-outline-path--lime,
+html[data-theme="light"] .business-products-grid .service-offer__ticket-outline-path--graphite {
+	stroke: var(--business-visual-border) !important;
+}
+
+html[data-theme="light"] .business-products-grid .contractor-folder__insert {
+	border-color: var(--business-visual-border) !important;
+	background: var(--business-visual-paper-soft) !important;
+	box-shadow: 0 14px 28px -20px rgba(21, 21, 21, 0.24) !important;
+}
+
+html[data-theme="light"] .business-products-grid .contractor-folder__insert::after {
+	background: rgba(21, 21, 21, 0.1) !important;
+	box-shadow: 0 0.62rem 0 rgba(21, 21, 21, 0.07) !important;
+}
+
+html[data-theme="light"] .business-products-grid .contractor-folder__shape {
+	filter: drop-shadow(0 18px 22px rgba(21, 21, 21, 0.1));
+}
+
+html[data-theme="light"] .business-products-grid .contractor-folder__shape path {
+	fill: var(--business-visual-paper) !important;
+	stroke: var(--business-visual-border) !important;
+	stroke-width: 1px !important;
+}
+
+html[data-theme="light"] .business-products-grid .contractor-folder__label small {
+	color: #567a16 !important;
+}
+
+html[data-theme="light"] .business-products-grid .contractor-folder__label strong,
+html[data-theme="light"] .business-products-grid .contractor-folder__provider strong {
+	color: var(--business-visual-text) !important;
+}
+
+html[data-theme="light"] .business-products-grid .contractor-folder__label span,
+html[data-theme="light"] .business-products-grid .contractor-folder__label .contractor-folder__contents,
+html[data-theme="light"] .business-products-grid .contractor-folder__provider small {
+	color: var(--business-visual-muted) !important;
+}
+
+html[data-theme="light"] .business-products-grid .contractor-folder__provider {
+	border-color: var(--business-visual-border) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	html[data-theme="light"] .business-products-grid .business-product-card {
+		will-change: transform, box-shadow;
+		transition:
+			transform 340ms cubic-bezier(0.22, 1, 0.36, 1),
+			box-shadow 340ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+	}
+
+	html[data-theme="light"] .business-products-grid .business-product-card:is(:hover, :focus-within, [data-pointer-active="true"]) {
+		z-index: 3;
+		translate: none !important;
+		transform: translate3d(0, 0, 0) scale(1.035) !important;
+		box-shadow:
+			0 3px 8px rgba(21, 21, 21, 0.09),
+			0 16px 32px -8px rgba(21, 21, 21, 0.18),
+			0 32px 64px -22px rgba(21, 21, 21, 0.24) !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-theme="light"] .business-products-grid .business-product-card {
+		transform: none !important;
+		transition: none !important;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -401,9 +791,479 @@ html[data-theme="light"] .garna-header-dropdown-icon {
 	color: rgba(16, 16, 16, 0.64);
 }
 
+/*
+ * Canonical light header. This is the settled Employer of Record treatment
+ * shared by every light page. Home and Contractor of Record add their own
+ * higher-specificity transparent/dark-hero states in their route styles.
+ */
+html[data-theme="light"] .garna-header:not(.is-mobile-open) {
+	background: rgba(246, 247, 243, 0.56) !important;
+	border-bottom-color: rgba(21, 21, 21, 0.08) !important;
+	box-shadow: none !important;
+	backdrop-filter: blur(16px) saturate(118%) !important;
+	-webkit-backdrop-filter: blur(16px) saturate(118%) !important;
+}
+
+html[data-theme="light"] .garna-header .garna-header-logo {
+	filter: invert(1) !important;
+}
+
+html[data-theme="light"] .garna-header :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link,
+	.garna-header-mobile-link,
+	.garna-header-login,
+	.garna-header-dropdown-link,
+	.garna-header-link-main
+) {
+	color: #151515 !important;
+}
+
+html[data-theme="light"] .garna-header :is(.garna-header-menu-trigger, .garna-header-nav-link):is(:hover, :focus-visible) {
+	border-color: transparent !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: #151515 !important;
+	outline: none;
+}
+
+html[data-theme="light"] .garna-header .garna-header-menu-group:hover:not(.is-dropdown-suppressed) .garna-header-chevron,
+html[data-theme="light"] .garna-header .garna-header-menu-group:has(.garna-header-menu-trigger:focus-visible) .garna-header-chevron {
+	color: inherit !important;
+}
+
+html[data-theme="light"] .garna-header :is(.garna-header-dropdown-panel, .garna-header-mobile-menu) {
+	background: #ffffff !important;
+}
+
+html[data-theme="light"] .garna-header .garna-header-dropdown-panel {
+	border-color: #e2e5de !important;
+	box-shadow: 0 10px 30px rgba(20, 24, 18, 0.05) !important;
+}
+
+html[data-theme="light"] .garna-header .garna-header-dropdown-title {
+	color: #151515 !important;
+}
+
+html[data-theme="light"] .garna-header .garna-header-link-kicker {
+	color: #737974 !important;
+}
+
+html[data-theme="light"] .garna-header .garna-header-divider {
+	background: rgba(21, 21, 21, 0.08);
+}
+
+html[data-theme="light"] .garna-header .garna-header-dropdown-icon {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: rgba(21, 21, 21, 0.035) !important;
+	color: rgba(21, 21, 21, 0.64) !important;
+}
+
+html[data-theme="light"] .garna-header .garna-header-dropdown-link:hover {
+	border-color: transparent !important;
+	background: rgba(21, 21, 21, 0.04) !important;
+	box-shadow: none !important;
+}
+
+html[data-theme="light"] .garna-header .garna-header-dropdown-link:hover .garna-header-dropdown-icon {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+	color: #151515 !important;
+}
+
+html[data-theme="light"] .garna-header .garna-header-dropdown-link.is-active {
+	border-color: transparent !important;
+	background: rgba(21, 21, 21, 0.11) !important;
+	box-shadow: none !important;
+	color: #151515 !important;
+}
+
+html[data-theme="light"] .garna-header :is(
+	.garna-header-dropdown-link.is-active .garna-header-dropdown-icon,
+	.garna-header-mobile-card.is-active .garna-header-mobile-icon
+) {
+	border-color: #151515 !important;
+	background: #151515 !important;
+	color: #ffffff !important;
+}
+
+html[data-theme="light"] .garna-header .garna-header-mobile-card.is-active {
+	background: rgba(21, 21, 21, 0.11);
+}
+
+html[data-theme="light"] .garna-header :is(
+	.garna-header-dropdown-link.is-active .garna-header-link-main,
+	.garna-header-mobile-card.is-active .garna-header-mobile-link-main
+) {
+	color: #151515 !important;
+}
+
+html[data-theme="light"] .garna-header .garna-header-business-account-feature {
+	border: 0 !important;
+	box-shadow: none !important;
+}
+
+html[data-theme="light"] .garna-header-business-account-feature img:not(.garna-header-business-account-light-image) {
+	display: none;
+}
+
+html[data-theme="light"] .garna-header-business-account-feature .garna-header-business-account-light-image {
+	display: block;
+}
+
+html[data-theme="light"] .garna-header .garna-header-login.garna-button-secondary {
+	border: 1px solid rgba(21, 21, 21, 0.14) !important;
+	background: rgba(255, 255, 255, 0.38) !important;
+	box-shadow: none !important;
+	color: #151515 !important;
+}
+
+html[data-theme="light"] .garna-header .garna-header-login.garna-button-secondary:hover {
+    background: #ffffff !important;
+	color: #151515 !important;
+}
+
+/* Match the Business Account hero's secondary CTA to the header Log In button. */
+html[data-theme="light"] .business-account-hero-demo.garna-button-secondary {
+	border: 1px solid rgba(21, 21, 21, 0.14) !important;
+	background: var(--garna-page-bg) !important;
+	box-shadow: none !important;
+	color: #151515 !important;
+}
+
+html[data-theme="light"] .business-account-hero-demo.garna-button-secondary:hover {
+    background: #ffffff !important;
+	color: #151515 !important;
+}
+
 html[data-theme="light"] .garna-footer {
-	background: #ecefe7;
-	border-top-color: rgba(16, 16, 16, 0.08);
+	background: #020202 !important;
+	border-top-color: transparent !important;
+}
+
+/* Canonical dark footer used by Home, EOR and COR light pages. */
+html[data-theme="light"] body {
+	--garna-light-footer-radius: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+html[data-theme="light"] main > [data-final-cta-section] {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	border-radius: 0 0 var(--garna-light-footer-radius) var(--garna-light-footer-radius);
+	background: var(--garna-page-bg);
+}
+
+html[data-theme="light"] main:has(> [data-final-cta-section]) + .garna-footer {
+	margin-top: calc(var(--garna-light-footer-radius) * -1);
+	padding-top: calc(4rem + var(--garna-light-footer-radius));
+}
+
+html[data-theme="light"] body .garna-footer img[src="/garna_logo.svg"],
+html[data-theme="light"] body .garna-footer img[src="/mediacube-logo-white.svg"] {
+	filter: none !important;
+}
+
+html[data-theme="light"] .garna-footer [class~="text-white"] {
+	color: #ffffff !important;
+}
+
+html[data-theme="light"] .garna-footer [class~="text-gray-500"] {
+	color: #6b7280 !important;
+}
+
+html[data-theme="light"] .garna-footer [class~="text-gray-600"] {
+	color: #4b5563 !important;
+}
+
+html[data-theme="light"] .garna-footer [class*="bg-[#1A1A1A]"] {
+	background-color: #1a1a1a !important;
+}
+
+html[data-theme="light"] .garna-footer [class*="text-[#A8FF2C]"] {
+	color: #A8FF2C !important;
+}
+
+html[data-theme="light"] .garna-footer [class~="border-white/10"] {
+	border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Keep editorial imagery as clean, borderless photography across light pages. */
+html[data-theme="light"] :is(
+	.contractor-carousel__slide,
+	.contractor-carousel__slide:hover,
+	.tabbed-image-feature__stage,
+	.home-proof-card,
+	.contractor-worldwide-feature__visual,
+	.look-professional__visual,
+	.api-payments-visual
+) {
+	border: 0 !important;
+	outline: 0 !important;
+	background-color: transparent !important;
+	box-shadow: none !important;
+}
+
+html[data-theme="light"] .contractor-carousel__slide {
+	background: transparent !important;
+}
+
+/* Reuse the approved Home treatment for every information plaque over carousel imagery. */
+html[data-theme="light"] .contractor-carousel__slide > :is(
+	.contractor-carousel__hire-notification,
+	.contractor-carousel__payment-notification,
+	.contractor-carousel__compliance-notification,
+	.contractor-carousel__balances-panel,
+	.contractor-carousel__quote-panel,
+	.contractor-carousel__route-panel,
+	.contractor-carousel__transfer-panel
+) {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+	color: #151515 !important;
+	box-shadow: 0 12px 30px rgba(21, 21, 21, 0.16) !important;
+	backdrop-filter: none !important;
+}
+
+html[data-theme="light"] .contractor-carousel__slide > :is(
+	.contractor-carousel__hire-notification,
+	.contractor-carousel__payment-notification,
+	.contractor-carousel__compliance-notification,
+	.contractor-carousel__balances-panel,
+	.contractor-carousel__quote-panel,
+	.contractor-carousel__route-panel,
+	.contractor-carousel__transfer-panel
+) strong {
+	color: #151515;
+}
+
+html[data-theme="light"] .contractor-carousel__slide > :is(
+	.contractor-carousel__hire-notification,
+	.contractor-carousel__payment-notification,
+	.contractor-carousel__compliance-notification,
+	.contractor-carousel__balances-panel,
+	.contractor-carousel__quote-panel,
+	.contractor-carousel__route-panel,
+	.contractor-carousel__transfer-panel
+) small,
+html[data-theme="light"] .contractor-carousel__payment-app,
+html[data-theme="light"] .contractor-carousel__payment-time,
+html[data-theme="light"] .contractor-carousel__route-method {
+	color: #737974;
+}
+
+html[data-theme="light"] .contractor-carousel__payment-app {
+	color: #151515 !important;
+}
+
+html[data-theme="light"] .contractor-carousel__payment-icon {
+	background: var(--garna-accent) !important;
+	color: #151515;
+}
+
+html[data-theme="light"] .contractor-carousel__payment-icon img {
+	display: none;
+}
+
+html[data-theme="light"] .contractor-carousel__payment-icon::before {
+	width: 0.72rem;
+	height: 0.95rem;
+	background: currentColor;
+	content: '';
+	-webkit-mask: url('/images/garna-g-mark-dark.svg') center / contain no-repeat;
+	mask: url('/images/garna-g-mark-dark.svg') center / contain no-repeat;
+}
+
+html[data-theme="light"] .contractor-carousel__hire-avatar > span {
+	display: none;
+}
+
+html[data-theme="light"] .contractor-carousel__hire-status {
+	border: 1px solid transparent !important;
+	background: #eafcc0 !important;
+	color: #3d5a10 !important;
+	text-transform: none;
+}
+
+html[data-theme="light"] .contractor-carousel__compliance-row:first-child strong,
+html[data-theme="light"] .contractor-carousel__balances-header small,
+html[data-theme="light"] .contractor-carousel__quote-main strong,
+html[data-theme="light"] .contractor-carousel__route-header small,
+html[data-theme="light"] .contractor-carousel__transfer-header strong {
+	color: #3d5a10 !important;
+}
+
+html[data-theme="light"] .contractor-carousel__compliance-footer {
+	background: #eafcc0 !important;
+}
+
+html[data-theme="light"] .contractor-carousel__compliance-footer small {
+	color: #3d5a10 !important;
+	font-weight: 700;
+}
+
+html[data-theme="light"] :is(
+	.contractor-carousel__balance-row + .contractor-carousel__balance-row,
+	.contractor-carousel__quote-main
+) {
+	border-color: rgba(21, 21, 21, 0.09) !important;
+}
+
+html[data-theme="light"] .contractor-carousel__balance-row strong,
+html[data-theme="light"] .contractor-carousel__quote-header strong {
+	color: #737974 !important;
+}
+
+html[data-theme="light"] .contractor-carousel__route-map > strong {
+	border-color: rgba(21, 21, 21, 0.1) !important;
+	background: #f4f5ef !important;
+}
+
+html[data-theme="light"] .contractor-carousel__route-map > strong:last-child {
+	border-color: rgba(168, 255, 44, 0.5) !important;
+}
+
+html[data-theme="light"] .contractor-carousel__route-line {
+	background: rgba(21, 21, 21, 0.2) !important;
+}
+
+html[data-theme="light"] .contractor-carousel__route-line::before {
+	background: #151515 !important;
+}
+
+html[data-theme="light"] .contractor-carousel__route-line::after {
+	background: var(--garna-accent) !important;
+	box-shadow: none !important;
+}
+
+/* Canonical light carousel breadcrumbs from the approved Home page. */
+html[data-theme="light"] :is(
+	.contractor-carousel__dots button,
+	.home-workflows-progress span,
+	.problems-carousel__controls button
+) {
+	background: rgba(21, 21, 21, 0.22) !important;
+}
+
+html[data-theme="light"] :is(
+	.contractor-carousel__dots button:hover,
+	.home-workflows-progress span:hover,
+	.problems-carousel__controls button:hover
+) {
+	background: rgba(21, 21, 21, 0.36) !important;
+}
+
+html[data-theme="light"] :is(
+	.contractor-carousel__dots button.is-active,
+	.home-workflows-progress span.is-active,
+	.problems-carousel__controls button.is-active
+) {
+	background: rgba(21, 21, 21, 0.1) !important;
+	box-shadow: inset 0 0 0 1px rgba(21, 21, 21, 0.12) !important;
+}
+
+html[data-theme="light"] .contractor-carousel__dots button.is-active::after,
+html[data-theme="light"] .home-workflows-progress span.is-active::after,
+html[data-theme="light"] .problems-carousel__controls button.is-active::after {
+	background: var(--garna-text) !important;
+	box-shadow: none !important;
+}
+
+/* Carry the same light information-card language to image overlays outside carousels. */
+html[data-theme="light"] .eor-hero-notification,
+html[data-theme="light"] .home-proof-card__notice,
+html[data-theme="light"] :is(
+	.contractor-worldwide-feature__notice--quote,
+	.look-professional__notice--quote,
+	.api-payments-notice
+) {
+	border-color: rgba(21, 21, 21, 0.08) !important;
+	background: #ffffff !important;
+	color: var(--garna-text) !important;
+	box-shadow: 0 12px 30px rgba(21, 21, 21, 0.16) !important;
+	backdrop-filter: none !important;
+}
+
+html[data-theme="light"] .eor-hero-notification__avatar {
+	border-color: #ffffff !important;
+}
+
+html[data-theme="light"] .eor-hero-notification__flag {
+	box-sizing: border-box;
+	border: 0 !important;
+	background: #ffffff !important;
+	padding: 2px;
+	box-shadow: 0 8px 18px -10px rgba(21, 21, 21, 0.52) !important;
+}
+
+html[data-theme="light"] :is(
+	.eor-hero-notification__flag,
+	.eor-hero-notification__payment-flag
+) img {
+	border: 0 !important;
+	outline: 0 !important;
+	box-shadow: none !important;
+}
+
+html[data-theme="light"] .eor-hero-notification__payment-row + .eor-hero-notification__payment-row {
+	border-top-color: var(--garna-border) !important;
+}
+
+html[data-theme="light"] .eor-hero-notification__payment-flag {
+	box-sizing: border-box;
+	border: 1px solid rgba(21, 21, 21, 0.14) !important;
+	background: #ffffff !important;
+	box-shadow: 0 10px 22px -12px rgba(21, 21, 21, 0.52) !important;
+}
+
+html[data-theme="light"] :is(
+	.eor-hero-notification__copy strong,
+	.eor-hero-notification__payment-copy strong,
+	.home-proof-card__notice strong,
+	.home-proof-card__notice em,
+	.contractor-worldwide-feature__quote-main strong,
+	.look-professional__quote-main strong,
+	.api-payments-notice__main strong
+) {
+	color: var(--garna-text) !important;
+}
+
+html[data-theme="light"] :is(
+	.eor-hero-notification__copy small,
+	.eor-hero-notification__payment-copy small,
+	.home-proof-card__notice small,
+	.contractor-worldwide-feature__quote-top span,
+	.contractor-worldwide-feature__quote-main > span,
+	.look-professional__quote-top span,
+	.look-professional__quote-main > span,
+	.api-payments-notice__top span,
+	.api-payments-notice__main span
+) {
+	color: var(--garna-text-muted) !important;
+}
+
+html[data-theme="light"] .eor-hero-notification__status {
+	border-radius: 999px;
+	background: #eafcc0 !important;
+	color: #3d5a10 !important;
+}
+
+html[data-theme="light"] :is(
+	.home-proof-card__notice-icon,
+	.home-proof-card__notice--card .home-proof-card__notice-icon,
+	.home-proof-card__notice--crypto .home-proof-card__notice-icon
+) {
+	background: #e7effd !important;
+	color: #2357c6 !important;
+}
+
+html[data-theme="light"] :is(
+	.contractor-worldwide-feature__quote-top strong,
+	.look-professional__quote-top strong,
+	.api-payments-notice__top strong
+) {
+	background: #eafcc0 !important;
+	color: #3d5a10 !important;
 }
 
 /* The calculator is authored in older, explicit dark CSS rather than tokens. */

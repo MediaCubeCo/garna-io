@@ -1,7 +1,16 @@
-<div class="eor-particle-field" data-eor-particle-field aria-hidden="true"><canvas></canvas></div>
+---
+interface Props {
+	quietZone?: 'left' | 'center';
+}
+
+const { quietZone = 'left' } = Astro.props;
+---
+
+<div class="eor-particle-field" data-eor-particle-field data-particle-quiet-zone={quietZone} aria-hidden="true"><canvas></canvas></div>
 
 <style>
 	.eor-particle-field { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 76%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 76%, transparent 100%); }
+	.eor-particle-field[data-particle-quiet-zone='center'] { -webkit-mask-image: none; mask-image: none; }
 	.eor-particle-field canvas { display: block; width: 100%; height: 100%; opacity: .82; }
 	@media (max-width: 767px) { .eor-particle-field canvas { opacity: .62; } }
 	@media (prefers-reduced-motion: reduce) { .eor-particle-field canvas { opacity: .54; } }
@@ -17,6 +26,7 @@
 			if (!canvas || !context) return;
 
 			const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			const quietZone = root.dataset.particleQuietZone === 'center' ? 'center' : 'left';
 			let width = 0, height = 0, frame = 0;
 			let pointerX = .5, pointerY = .5, pointerTargetX = .5, pointerTargetY = .5;
 			let pointerStrength = 0, pointerTargetStrength = 0;
@@ -94,10 +104,17 @@
 					const body = smoothstep(.09, .56, field);
 					if (body < .012) return;
 					const shimmer = reduced ? 1 : .9 + Math.sin(seconds * 1.25 + point.phase) * .1;
-					// Keep the animated texture quiet beneath the left-aligned copy while
-					// preserving the cloud's geometry and motion closer to the visual.
-					const leftQuietZone = .22 + smoothstep(.10, .42, point.x / width) * .78;
-					const alpha = Math.min(.29, body * .27 * shimmer) * leftQuietZone;
+					// EOR keeps its left-side copy attenuation. The centered Business Account
+					// hero only softens the texture immediately behind its copy and CTAs.
+					const normalizedX = point.x / width;
+					const normalizedY = point.y / height;
+					const attenuation = quietZone === 'center'
+						? 1 - Math.exp(-(
+							Math.pow((normalizedX - .5) / .34, 2)
+							+ Math.pow((normalizedY - .31) / .22, 2)
+						) * 2.4) * .65
+						: .22 + smoothstep(.10, .42, normalizedX) * .78;
+					const alpha = Math.min(.29, body * .27 * shimmer) * attenuation;
 					const px = point.x;
 					const py = point.y;
 					const radius = point.size * (.82 + body * .34);

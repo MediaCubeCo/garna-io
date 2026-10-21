@@ -39,13 +39,6 @@ export const basePaths: PageConfig[] = [
 		showHeader: true,
 	},
 	{
-		path: 'light-home',
-		mode: 'static',
-		searchable: false,
-		showHeader: true,
-		languages: ['en'],
-	},
-	{
 		path: 'for-contractors',
 		mode: 'static',
 		searchable: true,
@@ -64,13 +57,6 @@ export const basePaths: PageConfig[] = [
 		searchable: true,
 		showHeader: true,
 		languages: ['en', 'es', 'pt', 'ru'],
-	},
-	{
-		path: 'cor-light',
-		mode: 'static',
-		searchable: false,
-		showHeader: true,
-		languages: ['en'],
 	},
 	{
 		path: 'mid-size-business-payroll',
@@ -124,13 +110,6 @@ export const basePaths: PageConfig[] = [
 		searchable: true,
 		showHeader: true,
 		languages: ['en', 'es', 'pt', 'ru'],
-	},
-	{
-		path: 'eor-light',
-		mode: 'static',
-		searchable: false,
-		showHeader: true,
-		languages: ['en'],
 	},
 	{
 		path: 'global-invoicing',

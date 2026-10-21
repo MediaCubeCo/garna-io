@@ -7,7 +7,7 @@ export const pageShells = {
 		keywords: 'Gamescom 2026, Gamescom side events, Cologne events, gaming events, Garna',
 		ogImage: '/pages/payroll-solution-new/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png',
 		htmlClass: 'scroll-smooth',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300] selection:text-black bg-garna-page',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#A8FF2C] selection:text-black bg-garna-page',
 		iconLibrary: 'lucide',
 	},
 	eorCostCalculator: {
@@ -15,7 +15,7 @@ export const pageShells = {
 		description: 'Compare your current Employer of Record service fee with Garna and estimate annual EOR savings, salary and employer contributions.',
 		keywords: 'EOR cost calculator, employer of record cost, EOR fees, EOR comparison, Garna',
 		htmlClass: 'scroll-smooth dark',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300]/40 selection:text-white bg-garna-page',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#A8FF2C]/40 selection:text-white bg-garna-page',
 		iconLibrary: 'lucide',
 	},
 	taxCalculator: {
@@ -23,7 +23,7 @@ export const pageShells = {
 		description: 'Know the true cost of hiring with Garna’s free Global Employee Cost Calculator. Estimate total employment expenses for global teams.',
 		keywords: 'employee cost calculator, employment cost calculator, global hiring cost, salary tax calculator, Garna',
 		htmlClass: 'scroll-smooth dark',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300]/40 selection:text-white bg-garna-page',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#A8FF2C]/40 selection:text-white bg-garna-page',
 		iconLibrary: 'lucide',
 	},
 	contractorOfRecord: {
@@ -32,7 +32,7 @@ export const pageShells = {
 		"keywords": "contractor of record, contractor management, global contractors, contractor payments, compliant contractor agreements, Garna",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth",
-		"bodyClass": "antialiased selection:bg-[#CBF300] selection:text-black overflow-x-hidden z-10 text-gray-300 bg-garna-page",
+		"bodyClass": "antialiased selection:bg-[#A8FF2C] selection:text-black overflow-x-hidden z-10 text-gray-300 bg-garna-page",
 		"iconLibrary": "lucide",
 	},
 	enterprisePayroll: {
@@ -43,7 +43,7 @@ export const pageShells = {
 			'enterprise payroll, international payroll, global payroll system, payroll for large companies, Garna',
 		ogImage: 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
 		htmlClass: 'scroll-smooth',
-		bodyClass: 'antialiased selection:bg-[#CBF300] selection:text-black overflow-x-hidden z-10 text-gray-300 bg-garna-page',
+		bodyClass: 'antialiased selection:bg-[#A8FF2C] selection:text-black overflow-x-hidden z-10 text-gray-300 bg-garna-page',
 		iconLibrary: 'lucide',
 	},
 	midSize: {
@@ -54,7 +54,7 @@ export const pageShells = {
 			'mid size business payroll, growing business payroll, flexible payroll solutions, global payroll, Garna',
 		ogImage: 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
 		htmlClass: 'scroll-smooth',
-		bodyClass: 'antialiased selection:bg-[#CBF300] selection:text-black overflow-x-hidden z-10 text-gray-300 bg-garna-page',
+		bodyClass: 'antialiased selection:bg-[#A8FF2C] selection:text-black overflow-x-hidden z-10 text-gray-300 bg-garna-page',
 		iconLibrary: 'lucide',
 	},
 	home: {
@@ -75,7 +75,7 @@ export const pageShells = {
 		"keywords": "contractor payments, get paid globally, freelancer payouts, Garna, international payments, contractor payouts",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth",
-		"bodyClass": "antialiased selection:bg-[#CBF300] selection:text-black overflow-x-hidden text-gray-300 bg-garna-page z-10",
+		"bodyClass": "antialiased selection:bg-[#A8FF2C] selection:text-black overflow-x-hidden text-gray-300 bg-garna-page z-10",
 		"iconLibrary": "iconify",
 	},
 	aiHiring: {
@@ -84,7 +84,7 @@ export const pageShells = {
 		"keywords": "AI recruitment, hire talent, AI hiring, candidate screening, Garna, recruitment platform",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth",
-		"bodyClass": "antialiased selection:bg-[#CBF300] selection:text-black overflow-x-hidden text-gray-300 bg-garna-page z-10 relative",
+		"bodyClass": "antialiased selection:bg-[#A8FF2C] selection:text-black overflow-x-hidden text-gray-300 bg-garna-page z-10 relative",
 		"iconLibrary": "iconify",
 	},
 	whiteLabel: {
@@ -104,7 +104,7 @@ export const pageShells = {
 			'small business payroll, global payroll, payroll for small business, employer of record, contractor payments, Garna',
 		ogImage: 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
 		htmlClass: 'scroll-smooth',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300]/30 selection:text-white bg-garna-page',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#A8FF2C]/30 selection:text-white bg-garna-page',
 		iconLibrary: 'iconify',
 	},
 	eor: {
@@ -113,7 +113,7 @@ export const pageShells = {
 		"keywords": "employer of record, EOR, global employment, international hiring, global payroll, compliance, Garna",
 		"ogImage": "https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png",
 		"htmlClass": "scroll-smooth dark",
-		"bodyClass": "antialiased overflow-x-hidden selection:bg-[#CBF300]/40 selection:text-white bg-garna-page",
+		"bodyClass": "antialiased overflow-x-hidden selection:bg-[#A8FF2C]/40 selection:text-white bg-garna-page",
 		"iconLibrary": "iconify",
 	},
 	businessAccount: {
@@ -124,7 +124,7 @@ export const pageShells = {
 			'business account, global business account, multi-currency account, international payments, Garna',
 		ogImage: 'https://cdn.prod.website-files.com/690b359fa4596a165b817850/691c82150090fae9b2280e93_Frame%201618873305.png',
 		htmlClass: 'scroll-smooth dark',
-		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300]/40 selection:text-white bg-garna-page',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#A8FF2C]/40 selection:text-white bg-garna-page',
 		iconLibrary: 'iconify',
 	},
 	blog: {
