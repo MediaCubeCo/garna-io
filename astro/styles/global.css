@@ -180,6 +180,10 @@ h2 {
 	padding-bottom: 0.08em;
 }
 
+h1[data-translate="blog.hero.title"] {
+	line-height: 1.1;
+}
+
 .garna-hero-badge {
 	display: inline-flex;
 	width: fit-content;
