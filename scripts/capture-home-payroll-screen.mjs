@@ -6,7 +6,7 @@ import sharp from 'sharp';
 const root = process.cwd();
 const chromePath = process.env.CHROME_PATH || path.join(process.env.ProgramFiles || 'C:/Program Files', 'Google/Chrome/Application/chrome.exe');
 const url = process.env.HOME_CAPTURE_URL || 'http://127.0.0.1:8788/en';
-const outPath = path.join(root, 'static/pages/payroll-solution-new/assets/home-payroll-screen-real-browser-capture.png');
+const outPath = path.join(root, 'static/pages/home/assets/home-payroll-screen-real-browser-capture.png');
 const viewport = { width: 1440, height: 964, deviceScaleFactor: 2 };
 const crop = { width: 1440, height: 900 };
 const port = 9339;

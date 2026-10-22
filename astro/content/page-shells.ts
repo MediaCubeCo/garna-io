@@ -5,7 +5,7 @@ export const pageShells = {
 		title: 'Gamescom 2026 Side Events Guide | Cologne, 23–30 August | Garna',
 		description: 'Gamescom 2026 side events in Cologne, 23–30 August: mixers, dinners, pitch sessions and parties, with how to get into each one. Kept up to date by Garna.',
 		keywords: 'Gamescom 2026, Gamescom side events, Cologne events, gaming events, Garna',
-		ogImage: '/pages/payroll-solution-new/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png',
+		ogImage: '/pages/home/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png',
 		htmlClass: 'scroll-smooth',
 		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300] selection:text-black bg-garna-page',
 		iconLibrary: 'lucide',
@@ -63,7 +63,7 @@ export const pageShells = {
 			'Reliable payroll software for international businesses. Automate international payroll, taxes, and compliance. Make fast payments to your team in any currency or cryptocurrency.',
 		keywords:
 			'global payroll solution, international payroll, contractor payments, employer of record, Garna',
-		ogImage: '/pages/payroll-solution-new/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png',
+		ogImage: '/pages/home/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png',
 		htmlClass: 'scroll-smooth dark',
 		bodyClass:
 			'antialiased overflow-x-hidden selection:bg-indigo-500/30 selection:text-indigo-200 relative bg-garna-page',

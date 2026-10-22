@@ -8,7 +8,7 @@ import { eorTranslations } from './translations/eor';
 import { adsLandingTranslations } from './translations/ads-landing';
 import { payrollSmallBusinessTranslations } from './translations/payroll-small-business';
 import { midSizeTranslations } from './translations/mid-size';
-import { payrollSolutionNewTranslations as homeTranslations } from './translations/payroll-solution-new';
+import { homeTranslations } from './translations/home';
 import { forCreatorsTranslations } from './translations/for-creators';
 import { blogArticleTranslations, blogAuthorTranslations, blogTranslations } from './translations/blog';
 import { enterprisePayrollTranslations } from './translations/enterprise-payroll';

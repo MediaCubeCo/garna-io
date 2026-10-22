@@ -34,10 +34,10 @@ describe('native Astro architecture', () => {
 		expect(themes).toContain('--garna-page-bg: #f4f5ef');
 		expect(themes).toContain('.garna-header');
 		expect(themes).toContain('.garna-card');
-		expect(themes).toContain('html[data-theme="light"] .payroll-solution-new-hero');
+		expect(themes).toContain('html[data-theme="light"] .home-hero');
 		expect(themes).toContain("url('/images/home-hero-mesh-lime.svg')");
 		expect(themes).toContain("url('/images/home-hero-mesh-light.svg')");
-		expect(themes).toContain('.payroll-solution-new-hero::after');
+		expect(themes).toContain('.home-hero::after');
 		expect(themes).toContain('-webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 43%, transparent 62%)');
 		expect(themes).toContain('mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 100%)');
 		expect(themes).toContain('background: #004a00');
@@ -45,12 +45,12 @@ describe('native Astro architecture', () => {
 		expect(themes).toContain('opacity: 0.64');
 		expect(themes).toContain('translate: -50% 0');
 		expect(themes).toContain('transform: none');
-		expect(themes).toMatch(/\.payroll-solution-new-hero::before \{[\s\S]*?z-index: 1/);
-		expect(themes).toMatch(/\.payroll-solution-new-hero::after \{[\s\S]*?z-index: 2/);
-		expect(themes).toMatch(/\.payroll-solution-new-hero \.garna-hero-green-glow \{[\s\S]*?z-index: 0/);
+		expect(themes).toMatch(/\.home-hero::before \{[\s\S]*?z-index: 1/);
+		expect(themes).toMatch(/\.home-hero::after \{[\s\S]*?z-index: 2/);
+		expect(themes).toMatch(/\.home-hero \.garna-hero-green-glow \{[\s\S]*?z-index: 0/);
 		await expect(access(path.join(root, 'static/images/home-hero-mesh-lime.svg'))).resolves.toBeUndefined();
 		await expect(access(path.join(root, 'static/images/home-hero-mesh-light.svg'))).resolves.toBeUndefined();
-		expect(themes).toContain('.payroll-solution-new-hero [data-garna-subtitle]');
+		expect(themes).toContain('.home-hero [data-garna-subtitle]');
 		expect(themes).toContain('.garna-header:not(.is-over-light-surface)');
 		expect(header).toContain("const lightSurfaceBoundary = heroBounds.top + (heroBounds.height * 0.86)");
 		expect(header).toContain("window.addEventListener('scroll', queueHeaderSurfaceSync");
@@ -171,7 +171,6 @@ describe('native Astro architecture', () => {
 		const pages = (await walk(path.join(root, 'astro/pages'))).filter((file) => file.endsWith('.astro'));
 		expect(pages).toHaveLength(21);
 		expect(pages.some((file) => file.includes(`${path.sep}pages${path.sep}en${path.sep}`))).toBe(false);
-		expect(pages.some((file) => file.endsWith(`${path.sep}payroll-solution-new.astro`))).toBe(false);
 		expect(pages.some((file) => file.endsWith(`${path.sep}mid-size.astro`))).toBe(false);
 	});
 

@@ -74,23 +74,23 @@ html[data-theme="light"] .garna-hero-badge {
 }
 
 /* The homepage hero stays visually clean while a new concept is being explored. */
-html[data-theme="light"] .payroll-solution-new-hero {
+html[data-theme="light"] .home-hero {
 	isolation: isolate;
 	overflow: visible;
 	background: #101010;
 }
 
-html[data-theme="light"] .payroll-solution-new-hero::before {
+html[data-theme="light"] .home-hero::before {
 	content: '';
 	display: none;
 }
 
-html[data-theme="light"] .payroll-solution-new-hero::after {
+html[data-theme="light"] .home-hero::after {
 	content: '';
 	display: none;
 }
 
-html[data-theme="light"] .payroll-solution-new-hero .garna-hero-green-glow {
+html[data-theme="light"] .home-hero .garna-hero-green-glow {
 	display: block;
 	top: 33.15%;
 	left: 50%;
@@ -105,14 +105,14 @@ html[data-theme="light"] .payroll-solution-new-hero .garna-hero-green-glow {
 	transform: none;
 }
 
-html[data-theme="light"] .payroll-solution-new-hero .garna-hero-title-gradient {
+html[data-theme="light"] .home-hero .garna-hero-title-gradient {
 	background: none;
 	color: #ffffff;
 	-webkit-text-fill-color: #ffffff;
 	text-shadow: 0 2px 30px rgba(0, 0, 0, 0.22);
 }
 
-html[data-theme="light"] .payroll-solution-new-hero [data-garna-subtitle] {
+html[data-theme="light"] .home-hero [data-garna-subtitle] {
 	color: #ffffff !important;
 	text-shadow: 0 1px 22px rgba(0, 0, 0, 0.5);
 }
@@ -318,17 +318,17 @@ html[data-theme="light"] .garna-header {
 	box-shadow: 0 10px 36px -30px rgba(16, 16, 16, 0.35);
 }
 
-html[data-theme="light"]:has(.payroll-solution-new-hero) .garna-header:not(.is-over-light-surface) {
+html[data-theme="light"]:has(.home-hero) .garna-header:not(.is-over-light-surface) {
 	background: rgba(7, 12, 8, 0.78);
 	border-bottom-color: rgba(255, 255, 255, 0.1);
 	box-shadow: 0 12px 38px -28px rgba(0, 0, 0, 0.85);
 }
 
-html[data-theme="light"]:has(.payroll-solution-new-hero) .garna-header:not(.is-over-light-surface) .garna-header-logo {
+html[data-theme="light"]:has(.home-hero) .garna-header:not(.is-over-light-surface) .garna-header-logo {
 	filter: none;
 }
 
-html[data-theme="light"]:has(.payroll-solution-new-hero) .garna-header:not(.is-over-light-surface) :is(
+html[data-theme="light"]:has(.home-hero) .garna-header:not(.is-over-light-surface) :is(
 	.garna-header-menu-trigger,
 	.garna-header-nav-link,
 	.garna-header-mobile-link,
@@ -337,20 +337,20 @@ html[data-theme="light"]:has(.payroll-solution-new-hero) .garna-header:not(.is-o
 	color: #ffffff !important;
 }
 
-html[data-theme="light"]:has(.payroll-solution-new-hero) .garna-header:not(.is-over-light-surface) .garna-header-login {
+html[data-theme="light"]:has(.home-hero) .garna-header:not(.is-over-light-surface) .garna-header-login {
 	border-color: rgba(255, 255, 255, 0.16);
 	background: rgba(255, 255, 255, 0.045);
 }
 
-html[data-theme="light"]:has(.payroll-solution-new-hero) .garna-header:not(.is-over-light-surface) :is(
+html[data-theme="light"]:has(.home-hero) .garna-header:not(.is-over-light-surface) :is(
 	.garna-header-dropdown-panel,
 	.garna-header-mobile-menu
 ) {
 	background: #080b08;
 }
 
-html[data-theme="light"]:has(.payroll-solution-new-hero) .garna-header:not(.is-over-light-surface) .garna-header-dropdown-link,
-html[data-theme="light"]:has(.payroll-solution-new-hero) .garna-header:not(.is-over-light-surface) .garna-header-link-main {
+html[data-theme="light"]:has(.home-hero) .garna-header:not(.is-over-light-surface) .garna-header-dropdown-link,
+html[data-theme="light"]:has(.home-hero) .garna-header:not(.is-over-light-surface) .garna-header-link-main {
 	color: #ffffff;
 }
 

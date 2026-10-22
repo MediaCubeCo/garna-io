@@ -2,7 +2,7 @@
 import { RouteInfo } from './routes';
 import { languages } from '../config/languages';
 import { getHeaderTranslations } from '../i18n/translations/header';
-import { payrollSolutionNewTranslations } from '../i18n/translations/payroll-solution-new';
+import { homeTranslations } from '../i18n/translations/home';
 
 const FOOTER_LANG_SELECT_PLACEHOLDER = '<!-- FOOTER_LANG_SELECT -->';
 const FOOTER_LEGAL_LINKS_PLACEHOLDER = '<!-- FOOTER_LEGAL_LINKS -->';
@@ -209,8 +209,8 @@ export function injectPageTranslations(
 		const currentTranslations =
 			allTranslations[currentLanguage as keyof typeof allTranslations] || allTranslations.en;
 		const sharedLocaleTranslations =
-			payrollSolutionNewTranslations[currentLanguage as keyof typeof payrollSolutionNewTranslations]
-			|| payrollSolutionNewTranslations.en;
+			homeTranslations[currentLanguage as keyof typeof homeTranslations]
+			|| homeTranslations.en;
 		const sharedBookingWidgetTranslations = (sharedLocaleTranslations as any).bookingWidget || {};
 		const pageBookingWidgetTranslations = (currentTranslations as any).bookingWidget || {};
 		const bookingWidgetTranslations = {

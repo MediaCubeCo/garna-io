@@ -1,6 +1,6 @@
 # RU Shortened Translation Mapping
 
-Source page: current homepage translations in `src/i18n/translations/payroll-solution-new/ru.ts`
+Source page: current homepage translations in `src/i18n/translations/home/ru.ts`
 
 Reference: Google Doc `TA for Landing Garna - Payroll`, tab `Сокращенная версия`
 
