@@ -1700,9 +1700,24 @@ window.GC_EVENTS_SNAPSHOT = [
       sub = eventCountLabel(day.items.length);
     }
 
+    var single = day.items.filter(function (it) { return !it.multi; });
+    var multi = day.items.filter(function (it) { return it.multi; });
+    var lists = "";
+    if (single.length) lists += '<div class="event-list">' + single.map(renderEvent).join("") + "</div>";
+    if (multi.length) {
+      lists += '<h3 class="gc-group-title">' + esc(t("group.multi", "Running across several days")) + "</h3>" +
+               '<div class="event-list">' + multi.map(renderEvent).join("") + "</div>";
+    }
+
     return '<div class="day-heading"><h2 id="' + esc(dayId(day.iso)) + '">' + esc(title) + "</h2>" +
-           '<span class="day-sub">' + esc(sub) + "</span></div>" +
-           '<div class="event-list">' + day.items.map(renderEvent).join("") + "</div>";
+           '<span class="day-sub">' + esc(sub) + "</span></div>" + lists;
+  }
+
+  function renderSchedule(days) {
+    return days.map(function (day) {
+      return '<section class="gc-day-section" data-day-section="' + esc(day.iso) + '"' +
+        ' aria-labelledby="' + esc(dayId(day.iso)) + '">' + renderDay(day) + "</section>";
+    }).join("");
   }
 
   /* ------------------------------------------------------------- reveal obs */
@@ -1745,6 +1760,8 @@ window.GC_EVENTS_SNAPSHOT = [
     var days = buildDays(events);
 
     var navEl = $("#dayNav");
+    var prevDayButton = $(".gamescom-day-scroll-prev");
+    var nextDayButton = $(".gamescom-day-scroll-next");
     var listEl = $("#eventsBody");
     var noteEl = $("#sourceNote");
     var statEvents = $("#statEvents");
@@ -1763,38 +1780,207 @@ window.GC_EVENTS_SNAPSHOT = [
 
     var activeIso = pickInitialDay(days);
 
-    function paint(iso, shouldScroll) {
-      activeIso = iso;
-      var day = days.filter(function (d) { return d.iso === iso; })[0];
-      if (navEl) navEl.innerHTML = renderDayNav(days, iso);
-      if (listEl) {
-        listEl.innerHTML = renderDay(day);
-        observeReveals(listEl);
+    function updateDayScrollControls() {
+      if (!navEl) return;
+      var maxScroll = Math.max(0, navEl.scrollWidth - navEl.clientWidth);
+      var atStart = maxScroll < 2 || navEl.scrollLeft <= 2;
+      var atEnd = maxScroll < 2 || navEl.scrollLeft >= maxScroll - 2;
+      if (prevDayButton) {
+        prevDayButton.classList.toggle("is-disabled", atStart);
+        prevDayButton.setAttribute("aria-hidden", atStart ? "true" : "false");
+        prevDayButton.tabIndex = atStart ? -1 : 0;
       }
-      // Chrome throws a SecurityError for replaceState on file:// URLs, and the
-      // deep link is a nicety — never let it take the page down with it.
-      try {
-        if (history.replaceState) history.replaceState(null, "", "#" + dayId(iso));
-      } catch (e) { /* deep links unavailable here; the page works regardless */ }
+      if (nextDayButton) {
+        nextDayButton.classList.toggle("is-disabled", atEnd);
+        nextDayButton.setAttribute("aria-hidden", atEnd ? "true" : "false");
+        nextDayButton.tabIndex = atEnd ? -1 : 0;
+      }
+    }
 
-      if (shouldScroll && listEl) {
-        try {
-          var top = listEl.getBoundingClientRect().top + window.pageYOffset;
-          var offset = (document.querySelector(".day-nav") || { offsetHeight: 0 }).offsetHeight + 90;
-          window.scrollTo({ top: Math.max(0, top - offset), behavior: "smooth" });
-        } catch (e2) { /* older browsers without smooth scrolling options */ }
+    function setActiveDay(iso, updateHash, centerInNav) {
+      if (!iso || !days.some(function (day) { return day.iso === iso; })) return;
+      var changed = activeIso !== iso;
+      activeIso = iso;
+      if (navEl) {
+        Array.prototype.forEach.call(navEl.querySelectorAll(".day-btn"), function (button) {
+          var active = button.getAttribute("data-day") === iso;
+          button.classList.toggle("is-active", active);
+          button.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+        if (centerInNav && changed) {
+          var activeBtn = navEl.querySelector('.day-btn[data-day="' + iso + '"]');
+          if (activeBtn && navEl.scrollWidth > navEl.clientWidth) {
+            var targetLeft = Math.max(0, activeBtn.offsetLeft - (navEl.clientWidth - activeBtn.offsetWidth) / 2);
+            if (navEl.scrollTo) navEl.scrollTo({ left: targetLeft, behavior: "smooth" });
+            else navEl.scrollLeft = targetLeft;
+          }
+        }
+        window.requestAnimationFrame(updateDayScrollControls);
       }
+      if (updateHash) {
+        try {
+          if (history.replaceState) history.replaceState(null, "", "#" + dayId(iso));
+        } catch (e) { /* deep links unavailable here; the page works regardless */ }
+      }
+    }
+
+    var programmaticScrollTarget = null;
+    var programmaticScrollDeadline = 0;
+
+    function cancelProgrammaticScroll() {
+      programmaticScrollTarget = null;
+      programmaticScrollDeadline = 0;
+    }
+
+    function scrollToDay(iso, behavior) {
+      if (!listEl) return;
+      var section = listEl.querySelector('[data-day-section="' + iso + '"]');
+      if (!section) return;
+      programmaticScrollTarget = iso;
+      programmaticScrollDeadline = Date.now() + 5000;
+      setActiveDay(iso, true, true);
+      try {
+        var navHeight = (document.querySelector(".day-nav") || { offsetHeight: 0 }).offsetHeight;
+        var top = section.getBoundingClientRect().top + window.pageYOffset - navHeight - 24;
+        window.scrollTo({ top: Math.max(0, top), behavior: behavior || "smooth" });
+      } catch (e) {
+        section.scrollIntoView();
+      }
+    }
+
+    var scrollTicking = false;
+    function syncActiveDayFromScroll() {
+      scrollTicking = false;
+      if (!listEl) return;
+      var sections = listEl.querySelectorAll("[data-day-section]");
+      if (!sections.length) return;
+      var navHeight = (document.querySelector(".day-nav") || { offsetHeight: 0 }).offsetHeight;
+      var marker = navHeight + 36;
+      if (programmaticScrollTarget) {
+        var targetSection = listEl.querySelector('[data-day-section="' + programmaticScrollTarget + '"]');
+        var targetTop = targetSection ? targetSection.getBoundingClientRect().top : marker;
+        var targetMarker = navHeight + 24;
+        if (Math.abs(targetTop - targetMarker) <= 4 || Date.now() >= programmaticScrollDeadline) {
+          cancelProgrammaticScroll();
+        } else {
+          setActiveDay(programmaticScrollTarget, false, true);
+          return;
+        }
+      }
+      if (sections[0].getBoundingClientRect().top > marker) return;
+      var nextIso = sections[0].getAttribute("data-day-section");
+
+      Array.prototype.forEach.call(sections, function (section) {
+        if (section.getBoundingClientRect().top <= marker) {
+          nextIso = section.getAttribute("data-day-section");
+        }
+      });
+
+      if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4) {
+        nextIso = sections[sections.length - 1].getAttribute("data-day-section");
+      }
+      setActiveDay(nextIso, true, true);
+    }
+
+    function requestScrollSync() {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      window.requestAnimationFrame(syncActiveDayFromScroll);
     }
 
     if (navEl) {
+      var dragStartX = 0;
+      var dragStartScroll = 0;
+      var isDraggingDays = false;
+      var didDragDays = false;
+      var suppressDayClick = false;
+
+      navEl.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0 || navEl.scrollWidth <= navEl.clientWidth) return;
+        dragStartX = e.clientX;
+        dragStartScroll = navEl.scrollLeft;
+        isDraggingDays = true;
+        didDragDays = false;
+        navEl.classList.add("is-dragging");
+        if (navEl.setPointerCapture) navEl.setPointerCapture(e.pointerId);
+      });
+
+      navEl.addEventListener("pointermove", function (e) {
+        if (!isDraggingDays) return;
+        var delta = e.clientX - dragStartX;
+        if (Math.abs(delta) > 4) didDragDays = true;
+        if (!didDragDays) return;
+        navEl.scrollLeft = dragStartScroll - delta;
+        e.preventDefault();
+      });
+
+      function finishDayDrag(e) {
+        if (!isDraggingDays) return;
+        isDraggingDays = false;
+        suppressDayClick = didDragDays;
+        navEl.classList.remove("is-dragging");
+        if (navEl.releasePointerCapture && navEl.hasPointerCapture && navEl.hasPointerCapture(e.pointerId)) {
+          navEl.releasePointerCapture(e.pointerId);
+        }
+        window.setTimeout(function () { suppressDayClick = false; }, 0);
+      }
+
+      navEl.addEventListener("pointerup", finishDayDrag);
+      navEl.addEventListener("pointercancel", finishDayDrag);
+      navEl.addEventListener("scroll", updateDayScrollControls, { passive: true });
+      navEl.addEventListener("click", function (e) {
+        if (!suppressDayClick) return;
+        e.preventDefault();
+        e.stopPropagation();
+      }, true);
+
       navEl.addEventListener("click", function (e) {
         var btn = e.target.closest ? e.target.closest(".day-btn") : null;
         if (!btn) return;
-        paint(btn.getAttribute("data-day"), true);
+        scrollToDay(btn.getAttribute("data-day"), "smooth");
+      });
+
+      [prevDayButton, nextDayButton].forEach(function (button) {
+        if (!button) return;
+        button.addEventListener("click", function () {
+          var direction = Number(button.getAttribute("data-day-scroll")) || 1;
+          var distance = Math.max(220, navEl.clientWidth * 0.72) * direction;
+          if (navEl.scrollBy) navEl.scrollBy({ left: distance, behavior: "smooth" });
+          else navEl.scrollLeft += distance;
+        });
+      });
+      window.addEventListener("resize", function () {
+        updateDayScrollControls();
+        requestScrollSync();
       });
     }
 
-    paint(activeIso, false);
+    window.addEventListener("scroll", requestScrollSync, { passive: true });
+    window.addEventListener("wheel", cancelProgrammaticScroll, { passive: true });
+    window.addEventListener("touchstart", cancelProgrammaticScroll, { passive: true });
+    window.addEventListener("pointerdown", cancelProgrammaticScroll, { passive: true });
+    window.addEventListener("keydown", function (event) {
+      if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].indexOf(event.key) >= 0) {
+        cancelProgrammaticScroll();
+      }
+    });
+
+    if (navEl) navEl.innerHTML = renderDayNav(days, activeIso);
+    if (listEl) {
+      listEl.innerHTML = renderSchedule(days);
+      observeReveals(listEl);
+    }
+    window.requestAnimationFrame(function () {
+      updateDayScrollControls();
+      syncActiveDayFromScroll();
+    });
+
+    var requestedIso = (location.hash || "").replace(/^#day-/, "");
+    if (requestedIso && days.some(function (day) { return day.iso === requestedIso; })) {
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () { scrollToDay(requestedIso, "auto"); });
+      });
+    }
 
     if (noteEl) {
       noteEl.textContent = data.live

@@ -13,7 +13,7 @@
 	--gc-accent-soft: rgba(168, 255, 44, 0.08);
 	--gc-accent-line: rgba(168, 255, 44, 0.32);
 	--gc-container: 1152px;
-	--gc-nav-height: 68px;
+	--gc-nav-height: 80px;
 	position: relative;
 	isolation: isolate;
 	min-height: 100vh;
@@ -58,7 +58,12 @@
 	margin-inline: auto;
 }
 
-.gamescom-hero { padding: clamp(8.5rem, 15vw, 12.5rem) 0 3.2rem; }
+body[data-garna-page]:has(.gamescom-page) > .garna-header {
+	position: relative !important;
+	inset: auto !important;
+}
+
+.gamescom-hero { padding: clamp(3rem, 6vh, 5rem) 0 3.2rem; }
 
 .gamescom-hero-title {
 	max-width: 14ch;
@@ -109,12 +114,16 @@
 
 .gamescom-day-nav {
 	position: sticky;
-	top: 4.25rem;
+	top: 0;
 	z-index: 30;
-	border-block: 1px solid var(--gc-line);
-	background: rgba(5, 5, 5, 0.86);
-	backdrop-filter: blur(18px);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	background: rgba(5, 5, 5, 0.72);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
 }
+
+.gamescom-day-nav-viewport { position: relative; }
+.gamescom-day-scroll { display: none; }
 
 .gamescom-page .day-nav-inner {
 	display: flex;
@@ -128,8 +137,9 @@
 
 .gamescom-page .day-btn {
 	display: flex;
-	min-width: 5rem;
-	flex: 0 0 auto;
+	min-width: 4.75rem;
+	min-height: 2.75rem;
+	flex: 1 1 0;
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 0.06rem;
@@ -150,6 +160,9 @@
 .gamescom-page .day-btn.is-active .d-count { color: rgba(16, 16, 16, 0.68); }
 
 .gamescom-events-section { padding: 3.5rem 0 2.5rem; }
+.gamescom-page .gc-day-section { scroll-margin-top: calc(var(--gc-nav-height) + 1.5rem); }
+.gamescom-page .gc-day-section + .gc-day-section { margin-top: 4rem; padding-top: 3.5rem; border-top: 1px solid var(--gc-line); }
+.gamescom-page .gc-group-title { margin: 2.6rem 0 1rem; color: var(--gc-faint); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
 .gamescom-page .day-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.9rem; margin-bottom: 1.8rem; }
 .gamescom-page .day-heading h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 400; letter-spacing: -0.035em; }
 .gamescom-page .day-sub { color: var(--gc-faint); font-size: 0.86rem; font-weight: 500; }
@@ -223,11 +236,22 @@ html.js .gamescom-page .reveal.is-visible { opacity: 1; transform: none; }
 
 @media (max-width: 760px) {
 	.gamescom-container { width: min(calc(100% - 2rem), var(--gc-container)); }
-	.gamescom-hero { padding-top: 8.2rem; }
+	.gamescom-page { --gc-nav-height: 92px; }
+	.gamescom-hero { min-height: auto; padding-top: 4.2rem; padding-bottom: 3.5rem; }
 	.gamescom-hero-title { max-width: none; font-size: clamp(2.7rem, 13vw, 4rem); }
 	.gamescom-stats { gap: 1rem 2rem; }
-	.gamescom-day-nav { top: 4.1rem; }
-	.gamescom-page .day-btn { min-width: 4.4rem; padding-inline: 0.72rem; }
+	.gamescom-day-nav { top: 0; }
+	.gamescom-day-scroll { position: absolute; top: 0; bottom: 0; z-index: 2; display: grid; width: 2.5rem; padding: 0; border: 0; color: #fff; place-items: center; cursor: pointer; opacity: 1; transition: opacity 0.16s ease; }
+	.gamescom-day-scroll svg { width: 1.2rem; height: 1.2rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 3px #000); }
+	.gamescom-day-scroll-prev { left: 0; justify-items: start; background: linear-gradient(90deg, rgba(5, 5, 5, 0.98) 18%, rgba(5, 5, 5, 0.78) 52%, transparent); }
+	.gamescom-day-scroll-next { right: 0; justify-items: end; background: linear-gradient(270deg, rgba(5, 5, 5, 0.98) 18%, rgba(5, 5, 5, 0.78) 52%, transparent); }
+	.gamescom-day-scroll:focus-visible { color: var(--gc-accent); outline: 2px solid var(--gc-accent); outline-offset: -3px; }
+	.gamescom-day-scroll.is-disabled { pointer-events: none; opacity: 0; }
+	.gamescom-page .day-nav-inner { cursor: grab; overscroll-behavior-inline: contain; scroll-snap-type: x proximity; touch-action: pan-x pan-y; }
+	.gamescom-page .day-nav-inner.is-dragging { cursor: grabbing; scroll-behavior: auto; scroll-snap-type: none; user-select: none; }
+	.gamescom-page .day-nav-inner .day-btn { scroll-snap-align: start; cursor: inherit; }
+	.gamescom-page .day-btn { min-width: 4.4rem; flex: 0 0 auto; padding-inline: 0.72rem; }
+	.gamescom-page .gc-day-section + .gc-day-section { margin-top: 3rem; padding-top: 2.5rem; }
 	.gamescom-page .event-row { grid-template-columns: 1fr; gap: 0; }
 	.gamescom-page .event-time { padding: 0 0 0.5rem 0.15rem; color: var(--gc-accent); font-weight: 700; }
 	.gamescom-page .event-card { grid-template-columns: 1fr; padding: 1.2rem; }
