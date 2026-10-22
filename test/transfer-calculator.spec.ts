@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import routeData from '../src/data/corpay-routes.json';
+import { createTransferRateHandler } from '../src/routes/rates';
 import { calculateTransfer, getClientFxMarginRate } from '../src/utils/transfer-calculator';
 import { extractRevolutRate, RevolutRateProvider } from '../src/utils/revolut-rate-provider';
 
@@ -73,5 +74,71 @@ describe('Revolut rate provider', () => {
 		const quote = await new RevolutRateProvider(fetcher).getRate('EUR', 'PLN');
 		expect(quote.rate).toBe(5);
 		expect(quote.provider).toContain('cross via USD');
+	});
+});
+
+describe('Transfer rate endpoint cache', () => {
+	it('caches a successful quote for one hour and serves it as the fallback after an outage', async () => {
+		let currentTime = 0;
+		let calls = 0;
+		const provider = {
+			getRate: async () => {
+				calls += 1;
+				if (calls > 1) throw new Error('Revolut quote service returned 502');
+				return { from: 'USD', to: 'PLN', rate: 3.7, asOf: '2026-10-22T10:00:00.000Z', provider: 'Revolut public quote' };
+			},
+		};
+		const handler = createTransferRateHandler({ provider, now: () => currentTime, edgeCache: null });
+		const request = () => new Request('https://garna.io/api/rates?from=USD&to=PLN');
+
+		const initial = await handler(request());
+		expect(initial?.status).toBe(200);
+		expect(initial?.headers.get('X-Rate-Cache')).toBe('miss');
+		expect(calls).toBe(1);
+
+		currentTime = 59 * 60 * 1000;
+		const fresh = await handler(request());
+		expect(fresh?.headers.get('X-Rate-Cache')).toBe('hit');
+		expect(calls).toBe(1);
+
+		currentTime = 61 * 60 * 1000;
+		const fallback = await handler(request());
+		expect(fallback?.status).toBe(200);
+		expect(fallback?.headers.get('X-Rate-Cache')).toBe('stale');
+		expect(await fallback?.json()).toMatchObject({ rate: 3.7, isFallback: true });
+		expect(calls).toBe(2);
+	});
+
+	it('still returns 502 when Revolut fails before any rate has been cached', async () => {
+		const handler = createTransferRateHandler({
+			provider: { getRate: async () => { throw new Error('Revolut quote service returned 502'); } },
+			edgeCache: null,
+		});
+		const response = await handler(new Request('https://garna.io/api/rates?from=USD&to=PLN'));
+		expect(response?.status).toBe(502);
+	});
+
+	it('keeps the last successful quote in the shared edge cache for a new Worker isolate', async () => {
+		const responses = new Map<string, Response>();
+		const edgeCache = {
+			match: async (request: Request) => responses.get(request.url)?.clone(),
+			put: async (request: Request, response: Response) => { responses.set(request.url, response.clone()); },
+		} as unknown as Cache;
+		const request = () => new Request('https://garna.io/api/rates?from=USD&to=PLN');
+		const successfulHandler = createTransferRateHandler({
+			provider: { getRate: async () => ({ from: 'USD', to: 'PLN', rate: 3.7, asOf: '2026-10-22T10:00:00.000Z', provider: 'Revolut public quote' }) },
+			edgeCache,
+		});
+		await successfulHandler(request());
+		for (const key of responses.keys()) if (key.includes('/fresh/')) responses.delete(key);
+
+		const restartedHandler = createTransferRateHandler({
+			provider: { getRate: async () => { throw new Error('Revolut quote service returned 502'); } },
+			edgeCache,
+		});
+		const fallback = await restartedHandler(request());
+		expect(fallback?.status).toBe(200);
+		expect(fallback?.headers.get('X-Rate-Cache')).toBe('stale');
+		expect(await fallback?.json()).toMatchObject({ rate: 3.7, isFallback: true });
 	});
 });
