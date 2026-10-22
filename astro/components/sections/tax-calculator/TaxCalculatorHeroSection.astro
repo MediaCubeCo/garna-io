@@ -2,21 +2,22 @@
 import Section from '../../layout/Section.astro';
 import Button from '../../ui/Button.astro';
 import Card from '../../ui/Card.astro';
+import EorHeroParticleField from '../../visuals/EorHeroParticleField.astro';
 import { calculatorCountries, calculatorCurrencies } from '../../../../src/data/calculator-countries';
 ---
 
 <Section contained={false} spacing="none" class="tax-hero">
+		<EorHeroParticleField quietZone="center" fadeBottom />
 		<div class="garna-container tax-hero__inner">
 			<div class="tax-copy">
-				<div class="garna-hero-badge"><span class="garna-hero-badge-dot-shell"><span class="garna-hero-badge-dot-ping"></span><span class="garna-hero-badge-dot"></span></span><span data-translate="hero.badge">Global hiring intelligence</span></div>
 				<h1 class="garna-hero-title-gradient" data-translate="hero.title">Employee Cost Calculator</h1>
-				<p data-garna-subtitle data-translate="hero.description">Compare the true annual cost of hiring across countries, including gross salary and local employer contributions.</p>
-				<div class="tax-trust"><span>150+</span><span data-translate="hero.countries">supported countries</span><i></i><span data-translate="hero.updated">Current employment cost data</span></div>
+				<p data-garna-subtitle data-translate="hero.description">Compare the true annual cost of hiring across countries, including gross salary and local employer contributions</p>
+				<div class="tax-trust"><span class="tax-trust__item"><strong>150+</strong><span data-translate="hero.countries">supported countries</span></span><i aria-hidden="true"></i><span class="tax-trust__item"><strong data-translate="hero.updatedLead">Current</strong><span data-translate="hero.updated">employment cost data</span></span></div>
 			</div>
 			<div class="tax-card-shell" id="calculator" data-calculator-state="idle">
-				<Card variant="feature" class="tax-card" ariaBusy={false}>
+				<Card variant="feature" class="tax-card" interactive={false} ariaBusy={false}>
 				<div class="tax-form-view">
-				<div class="tax-card__header"><div class="tax-card__meta"><span data-translate="calculator.eyebrow">Employer cost comparison</span><span class="tax-live"><i></i><span data-translate="calculator.live">Live estimate</span></span></div><h2 data-translate="calculator.title">Compare the cost of hiring across countries</h2></div>
+				<div class="tax-card__header"><div class="tax-card__meta"><span data-translate="calculator.eyebrow">Employer cost comparison</span><span class="tax-live"><span data-translate="calculator.live">Live estimate</span></span></div><h2 data-translate="calculator.title">Compare the cost of hiring across countries</h2></div>
 				<form id="tax-form">
 					<div class="tax-country-builder" id="tax-country-rows">
 						<div class="tax-country-row" data-country-row="0">

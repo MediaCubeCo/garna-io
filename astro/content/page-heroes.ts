@@ -302,7 +302,7 @@ export const pageHeroes = {
 		title: [{ text: 'Book a free 30-minute product demo', translateKey: 'form.heading' }],
 		description: 'Get all your questions answered by our experts',
 		descriptionTranslateKey: 'form.subtitle',
-		tone: 'green',
+		tone: 'neutral',
 		align: 'center',
 	},
 } satisfies Record<string, HeroSectionConfig>;

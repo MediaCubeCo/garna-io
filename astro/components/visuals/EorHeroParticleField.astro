@@ -1,16 +1,18 @@
 ---
 interface Props {
 	quietZone?: 'left' | 'center';
+	fadeBottom?: boolean;
 }
 
-const { quietZone = 'left' } = Astro.props;
+const { quietZone = 'left', fadeBottom = false } = Astro.props;
 ---
 
-<div class="eor-particle-field" data-eor-particle-field data-particle-quiet-zone={quietZone} aria-hidden="true"><canvas></canvas></div>
+<div class="eor-particle-field" data-eor-particle-field data-particle-quiet-zone={quietZone} data-particle-fade-bottom={fadeBottom ? 'true' : undefined} aria-hidden="true"><canvas></canvas></div>
 
 <style>
 	.eor-particle-field { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 76%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 76%, transparent 100%); }
 	.eor-particle-field[data-particle-quiet-zone='center'] { -webkit-mask-image: none; mask-image: none; }
+	.eor-particle-field[data-particle-fade-bottom='true'] { -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, .72) 72%, rgba(0, 0, 0, .24) 90%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, .72) 72%, rgba(0, 0, 0, .24) 90%, transparent 100%); }
 	.eor-particle-field canvas { display: block; width: 100%; height: 100%; opacity: .82; }
 	@media (max-width: 767px) { .eor-particle-field canvas { opacity: .62; } }
 	@media (prefers-reduced-motion: reduce) { .eor-particle-field canvas { opacity: .54; } }

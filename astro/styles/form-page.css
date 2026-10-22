@@ -1,7 +1,18 @@
+html[data-theme='light'] body:has(.garna-form-page) {
+	--garna-form-footer-radius: clamp(1.5rem, 3vw, 2.5rem);
+}
+
 .garna-form-page {
 	position: relative;
 	z-index: 10;
 	isolation: isolate;
+	overflow: hidden;
+	border-radius: 0 0 var(--garna-form-footer-radius) var(--garna-form-footer-radius);
+}
+
+html[data-theme='light'] main:has(> .garna-form-page) + .garna-footer {
+	margin-top: calc(var(--garna-form-footer-radius) * -1);
+	padding-top: calc(4rem + var(--garna-form-footer-radius));
 }
 
 .garna-form-page > .garna-container {
@@ -31,4 +42,128 @@ html[data-theme='light'] .garna-form-page .garna-hero-title-gradient {
 .garna-form-page #garna-widget-root {
 	position: relative;
 	z-index: 2;
+}
+
+html[data-theme='light'] .garna-form-page {
+	background: var(--garna-page-bg, #f3f4ee);
+}
+
+html[data-theme='light'] .garna-form-page .garna-form-logo {
+	filter: brightness(0);
+}
+
+html[data-theme='light'] .garna-form-page [data-translate="form.subtitle"] {
+	color: var(--garna-text-muted, #737974);
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='modal_garna_demo_embedded_wrapper'] {
+	color: var(--garna-text, #151515);
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='modal_embedded_form_card'] {
+	border: 1px solid var(--garna-border, #e2e5de);
+	background: #ffffff;
+	box-shadow: 0 24px 64px -42px rgba(20, 24, 18, 0.26);
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root input,
+html[data-theme='light'] .garna-form-page #garna-widget-root div[class*='selectForm_trigger__'] {
+	box-sizing: border-box;
+	min-height: 44px;
+	margin: 0;
+	padding: 10px 0;
+	border: 0;
+	border-bottom: 1px solid rgba(21, 21, 21, 0.18);
+	border-radius: 0;
+	background: transparent;
+	color: var(--garna-text, #151515);
+	box-shadow: none;
+	font: 500 14px Manrope, sans-serif;
+	transition: border-color 0.2s ease;
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root input:hover,
+html[data-theme='light'] .garna-form-page #garna-widget-root div[class*='selectForm_trigger__']:hover {
+	border-bottom-color: rgba(21, 21, 21, 0.42);
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root input:focus,
+html[data-theme='light'] .garna-form-page #garna-widget-root input:focus-visible,
+html[data-theme='light'] .garna-form-page #garna-widget-root div[class*='selectForm_trigger__']:focus-visible,
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='selectForm_triggerOpen'] {
+	border: 0;
+	border-bottom: 1px solid #7eb123;
+	background: transparent;
+	outline: none;
+	box-shadow: none;
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root input::placeholder,
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='selectForm_triggerPlaceholder'] {
+	color: #7d8379;
+	opacity: 1;
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='selectForm_arrow'] {
+	color: #7d8379;
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='selectForm_triggerOpen'] [class*='selectForm_arrow'] {
+	color: #4f6f24;
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root div[class*='selectForm_trigger__'][class*='selectForm_triggerOpen'] {
+	border-bottom-color: #7eb123;
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='selectForm_list'] {
+	max-height: 210px;
+	padding: 6px 8px;
+	overscroll-behavior: contain;
+	border-color: rgba(21, 21, 21, 0.1);
+	background: #ffffff;
+	box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='selectForm_option'] {
+	border-radius: 8px;
+	color: #3f453d;
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='selectForm_option']:hover,
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='selectForm_optionHighlighted'] {
+	background: rgba(21, 21, 21, 0.055);
+	color: var(--garna-text, #151515);
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='selectForm_optionSelected'] {
+	background: rgba(168, 255, 44, 0.12);
+	color: var(--garna-text, #151515);
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='modal_signUpPrompt'] {
+	color: var(--garna-text-muted, #737974);
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='modal_link'] {
+	color: var(--garna-text, #151515);
+	font-weight: 600;
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='modal_link']:hover {
+	color: #4d514b;
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='modal_disclaimer'] {
+	color: var(--garna-text-muted, #737974);
+}
+
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='modal_garna_demo_embedded_wrapper'] input:-webkit-autofill,
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='modal_garna_demo_embedded_wrapper'] input:-webkit-autofill:hover,
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='modal_garna_demo_embedded_wrapper'] input:-webkit-autofill:focus,
+html[data-theme='light'] .garna-form-page #garna-widget-root [class*='modal_garna_demo_embedded_wrapper'] input:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0 100vmax #ffffff inset !important;
+	box-shadow: 0 0 0 100vmax #ffffff inset !important;
+	-webkit-text-fill-color: #151515 !important;
+	caret-color: #151515;
 }

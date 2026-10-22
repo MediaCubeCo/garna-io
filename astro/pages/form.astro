@@ -1,6 +1,7 @@
 ---
 import HeroSection from '../components/sections/HeroSection.astro';
 import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
+import EorHeroParticleField from '../components/visuals/EorHeroParticleField.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pageHeroes } from '../content/page-heroes';
 import { pageShells } from '../content/page-shells';
@@ -9,7 +10,8 @@ import '../styles/form-page.css';
 
 <BaseLayout shell={pageShells.form} showHeader={false}>
 	<HeroSection {...pageHeroes.form}>
-		<img src="/garna_logo.svg" alt="Garna" class="block h-10 w-auto object-contain mx-auto mb-8" data-translate-alt="footer.brand" slot="before-title" />
+		<EorHeroParticleField quietZone="center" slot="background" />
+		<img src="/garna_logo.svg" alt="Garna" class="garna-form-logo block h-10 w-auto object-contain mx-auto mb-8" data-translate-alt="footer.brand" slot="before-title" />
 		<div id="garna-widget-root" class="max-w-[900px] mr-auto ml-auto pr-6 pl-6"></div>
 		<GarnaBookingWidget
 			renderRoot={false}
@@ -17,11 +19,19 @@ import '../styles/form-page.css';
 			trackingSource="payroll-solution"
 			trackingPage="payroll-solution"
 			trackingCta="embedded_form"
+			calTheme="light"
 			titleFallback="Book a free 30-minute product demo"
 			subtitleFallback="Get all your questions answered by our experts"
-			bgColorCal="#000"
-			colorBorder="transparent"
-			thicknessBorder="0px"
+			bgColorCal="#ffffff"
+			colorBorder="#e2e5de"
+			thicknessBorder="1px"
+			radiusBorder="32px"
+			colorBrandText="#151515"
+			colorTextMain="#151515"
+			colorTextCalendar="#737974"
+			colorBorderTimeCalendar="#dfe3da"
+			colorBorderVerticalLine="#e2e5de"
+			colorTextLogo="#151515"
 		/>
 		<script is:inline>
 (function () {

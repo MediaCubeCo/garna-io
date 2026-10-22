@@ -48,6 +48,7 @@ export interface IModalTranslations {
 
 export interface IModalProps {
 	calComLink: string;
+	calTheme?: 'light' | 'dark';
 	titleButton: string;
 	titleButtonForm: string;
 	title: string;
@@ -105,6 +106,7 @@ const DEFAULT_TRANSLATIONS: Required<IModalTranslations> = {
 
 export default function Modal({
 	calComLink = 'garna/demo',
+	calTheme = 'dark',
 	titleButton = 'Book a Demo',
 	titleButtonForm = 'Continue',
 	title = 'Title insert here',
@@ -323,7 +325,7 @@ export default function Modal({
 				calLink: calComLink,
 				config: {
 					layout: 'month_view',
-					theme: 'dark',
+					theme: calTheme,
 					name: fullName,
 					email,
 					...(trackingSource ? { 'metadata[source]': trackingSource } : {}),
@@ -333,9 +335,30 @@ export default function Modal({
 			});
 			// 🔽 UI и стилизация под garna.io
 			cal('ui', {
-				theme: 'dark',
+				theme: calTheme,
 				cssVarsPerTheme: {
-					light: { 'cal-brand': '#A8FF2C' },
+					light: {
+						'cal-brand': colorBrandBg,
+						'cal-brand-emphasis': '#AEF534',
+						'cal-brand-text': colorBrandText,
+						'shadow-button-solid-brand-default': 'none',
+						'shadow-button-solid-brand-hover': 'none',
+						'shadow-button-solid-brand-active': 'none',
+						'shadow-button-solid-brand-focused': 'none',
+						'shadow-outline-gray-rested': 'none',
+						'shadow-outline-gray-hover': 'none',
+						'shadow-outline-gray-active': 'none',
+						'shadow-outline-gray-focused': 'none',
+						'cal-bg-muted': bgColorCal,
+						'cal-border-booker': colorBorder,
+						'cal-border-booker-width': thicknessBorder,
+						'cal-radius': radiusBorder,
+						'cal-text': colorTextMain,
+						'muted-foreground': colorTextCalendar,
+						'cal-text-error': colorTextError,
+						'cal-border': colorBorderTimeCalendar,
+						'cal-border-subtle': colorBorderVerticalLine,
+					},
 					dark: {
 						'cal-brand': colorBrandBg,
 						'cal-brand-text': colorBrandText,
@@ -429,6 +452,7 @@ export default function Modal({
 		lastName,
 		email,
 		calComLink,
+		calTheme,
 		colorBrandBg,
 		colorBrandText,
 		bgColorCal,

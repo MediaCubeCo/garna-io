@@ -1,0 +1,730 @@
+/* Light Employee Cost Calculator, aligned with the approved Home, EOR, COR and Business Account pages. */
+html[data-theme='light']:has(.employee-cost-calculator-light-draft) {
+	--garna-page-bg: #f3f4ee;
+	--garna-section-stats-bg: #e9ebe4;
+	--garna-surface: #ffffff;
+	--garna-surface-raised: #ffffff;
+	--garna-surface-soft: #f0f1ec;
+	--garna-border: #e2e5de;
+	--garna-border-strong: rgba(21, 21, 21, 0.14);
+	--garna-text: #151515;
+	--garna-text-muted: #737974;
+	--garna-subtitle-color: #737974;
+	--garna-accent: #a8ff2c;
+	--garna-accent-foreground: #151515;
+	--garna-radius-sm: 16px;
+	--garna-radius-md: 22px;
+	--garna-radius-lg: 28px;
+	--garna-shadow-card: 0 10px 30px rgba(20, 24, 18, 0.05);
+	--tax-lime-soft: #eafcc0;
+	--tax-lime-ink: #3d5a10;
+	color-scheme: light;
+}
+
+html[data-theme='light']:has(.employee-cost-calculator-light-draft),
+html[data-theme='light']:has(.employee-cost-calculator-light-draft) body[data-garna-page] {
+	background:
+		radial-gradient(1100px 620px at 12% -10%, #f7ffe8 0%, transparent 56%),
+		radial-gradient(900px 520px at 100% 0%, #edf6e5 0%, transparent 48%),
+		var(--garna-page-bg);
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light']:has(.employee-cost-calculator-light-draft) .employee-cost-calculator-light-draft {
+	position: relative;
+	z-index: 1;
+}
+
+/* Use the settled translucent light navigation from the approved product pages. */
+html[data-theme='light']:has(.employee-cost-calculator-light-draft) .garna-header:not(.is-mobile-open) {
+	border-bottom-color: rgba(21, 21, 21, 0.08) !important;
+	background: rgba(246, 247, 243, 0.56) !important;
+	box-shadow: none !important;
+	backdrop-filter: blur(16px) saturate(118%) !important;
+	-webkit-backdrop-filter: blur(16px) saturate(118%) !important;
+}
+
+/* Hero and calculator surface. */
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-hero {
+	isolation: isolate;
+	padding-top: clamp(8.5rem, 13vw, 12rem);
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-hero::before {
+	display: none;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-hero__inner {
+	z-index: 1;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-copy {
+	max-width: 72rem;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-copy h1 {
+	max-width: 72rem;
+	color: var(--garna-text);
+	font-size: clamp(2.75rem, 5.25vw, 4.375rem);
+	font-weight: 400;
+	letter-spacing: -0.025em;
+	line-height: 1.06;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-copy > p,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-trust,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-card label,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-country-hint,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-loading-view p,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-results-actions > b {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-copy > p {
+	max-width: 72rem;
+	margin-top: 1.25rem;
+	font-size: 1.25rem;
+	font-weight: 600;
+	line-height: 1.625;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-trust {
+	gap: 1rem;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-trust__item {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.4rem;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-trust__item > strong {
+	color: var(--garna-text);
+	font-size: 0.875rem;
+	font-weight: 600;
+	line-height: 1.35;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-trust__item > span {
+	color: var(--garna-text-muted);
+	font-size: 0.74rem;
+	font-weight: 500;
+	line-height: 1.35;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-trust > i {
+	width: 1px;
+	height: 1.125rem;
+	margin: 0 0.2rem;
+	flex: 0 0 auto;
+	border-radius: 0;
+	background: rgba(21, 21, 21, 0.2);
+	box-shadow: none;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-live {
+	padding: 0.34rem 0.58rem;
+	border: 0;
+	border-radius: 9999px;
+	background: #e7effd;
+	color: #2357c6;
+	font-size: 0.62rem;
+	font-weight: 800;
+	letter-spacing: -0.02em;
+	line-height: 1;
+	text-transform: uppercase;
+	box-shadow: none;
+}
+
+@media (max-width: 767px) {
+	html[data-theme='light'] .employee-cost-calculator-light-draft .tax-copy > p {
+		font-size: 1.125rem;
+	}
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-card__header .tax-live > span {
+	color: #2357c6;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-card-shell::before {
+	display: none;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-card-shell {
+	margin-top: 3rem;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-card {
+	scroll-margin-top: 6rem;
+	border: 1px solid var(--garna-border) !important;
+	background: #ffffff !important;
+	box-shadow: 0 24px 64px -42px rgba(20, 24, 18, 0.26) !important;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-card__header span,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-result-head,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-result-head strong,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-disclaimer {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-card__header h2,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-loading-view strong,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-results h3,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-comparison-header strong {
+	color: var(--garna-text);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(
+	.tax-card input,
+	.tax-card select,
+	.tax-select-trigger,
+	.tax-remove-comparison
+) {
+	border-color: var(--garna-border) !important;
+	background: #f8f9f5 !important;
+	color: var(--garna-text) !important;
+	box-shadow: none;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(
+	.tax-card input,
+	.tax-card select,
+	.tax-select-trigger
+):hover {
+	border-color: rgba(21, 21, 21, 0.18) !important;
+	background: #ffffff !important;
+	box-shadow: none !important;
+	outline: none;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(
+	.tax-card input,
+	.tax-card select,
+	.tax-select-trigger
+):is(:focus, :focus-visible),
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-custom-select[data-open='true'] .tax-select-trigger {
+	border-color: rgba(126, 177, 35, 0.28) !important;
+	background: #ffffff !important;
+	box-shadow: none !important;
+	outline: none;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-custom-select[data-open='true'] {
+	z-index: 100;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-country-row.is-comparison > label:first-child .tax-select-trigger {
+	position: relative;
+	padding-right: 4.75rem;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-country-row.is-comparison > label:first-child .tax-select-trigger > svg {
+	position: absolute;
+	right: 1rem;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-custom-select > .tax-remove-comparison {
+	position: absolute;
+	z-index: 3;
+	top: 50%;
+	right: 2.65rem;
+	display: inline-flex;
+	width: 1.75rem;
+	height: 1.75rem;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border: 0 !important;
+	border-radius: 0;
+	background: transparent !important;
+	color: var(--garna-text-muted) !important;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(-50%);
+	transition: color 140ms ease, opacity 140ms ease;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-custom-select:hover > .tax-remove-comparison,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-custom-select:focus-within > .tax-remove-comparison {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-custom-select > .tax-remove-comparison:hover,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-custom-select > .tax-remove-comparison:focus-visible {
+	color: var(--garna-text) !important;
+	outline: none;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-custom-select > .tax-remove-comparison svg {
+	width: 0.95rem;
+	height: 0.95rem;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-custom-select > .tax-remove-comparison path {
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+}
+
+@media (hover: none) {
+	html[data-theme='light'] .employee-cost-calculator-light-draft .tax-custom-select > .tax-remove-comparison {
+		opacity: 1;
+		pointer-events: auto;
+	}
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft label:has(.tax-custom-select[data-open='true']) {
+	position: relative;
+	z-index: 100;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-country-row:has(.tax-custom-select[data-open='true']) {
+	z-index: 100;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-card-shell[data-calculator-state='idle'] .tax-card {
+	overflow: visible;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-select-value[data-placeholder='true'],
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-currency-chevron,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-input-wrap b {
+	color: #7d8379;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-currency-value {
+	color: var(--garna-text);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-input-wrap > .tax-custom-select .tax-select-trigger,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-currency-select {
+	border-left-color: var(--garna-border) !important;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-select-menu {
+	z-index: 200;
+	border-color: rgba(21, 21, 21, 0.1);
+	background: #ffffff;
+	box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+	scrollbar-color: rgba(21, 21, 21, 0.2) transparent;
+	scrollbar-width: thin;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-select-menu button {
+	color: #3f453d;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-select-menu button:is(:hover, :focus-visible) {
+	background: rgba(21, 21, 21, 0.055);
+	color: var(--garna-text);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-select-menu button[aria-selected='true'] {
+	border-color: rgba(126, 177, 35, 0.42);
+	background: rgba(168, 255, 44, 0.12);
+	color: var(--garna-text);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-custom-select[data-open='true'] .tax-select-trigger svg,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-select-trigger:focus-visible svg {
+	stroke: #4f6f24;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(
+	.tax-add-comparison,
+	.tax-results-actions button,
+	.tax-garna-result > span,
+	.tax-garna-result a,
+	.tax-comparison-header span
+) {
+	color: var(--tax-lime-ink);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-add-comparison:hover,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-results-actions button:hover {
+	color: #263b08;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-add-comparison {
+	transform: none !important;
+	transition: color 0.2s ease !important;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-add-comparison:hover {
+	transform: none !important;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-country-row.is-comparison,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-results {
+	border-color: var(--garna-border);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-loader > i {
+	border-color: rgba(61, 90, 16, 0.24);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-loader > span {
+	background: var(--garna-accent);
+	box-shadow: 0 0 34px rgba(168, 255, 44, 0.38);
+}
+
+/* Results use the same white-card and soft-lime status language as Home and EOR. */
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(.tax-result-total, .tax-garna-result) {
+	border-color: rgba(61, 90, 16, 0.16);
+	background: linear-gradient(135deg, #f2ffd8, #f8fbef);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(.tax-result-total span, .tax-result-total small, .tax-garna-result p) {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(.tax-result-total b, .tax-garna-result strong) {
+	color: var(--garna-text);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-comparison > div,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-market-card,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-market-metrics > div {
+	border-color: var(--garna-border);
+	background: #f8f9f5;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-market-card:hover {
+	border-color: var(--garna-border-strong);
+	background: #ffffff;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-market-card.is-best {
+	border-color: rgba(61, 90, 16, 0.22);
+	background: linear-gradient(145deg, #f1ffd4, #ffffff 52%);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-market-card.is-best::before {
+	background: rgba(168, 255, 44, 0.22);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(
+	.tax-comparison strong,
+	.tax-market-card__top strong,
+	.tax-market-total > strong,
+	.tax-market-metrics strong,
+	.tax-table-country strong,
+	.tax-compare-table tbody td strong,
+	.tax-compare-table tr.is-total td strong
+) {
+	color: var(--garna-text);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(
+	.tax-comparison span,
+	.tax-market-card__top small,
+	.tax-market-total > span,
+	.tax-market-total > small,
+	.tax-market-metrics span,
+	.tax-market-card summary,
+	.tax-table-country small,
+	.tax-compare-table tbody th,
+	.tax-compare-table tbody td small
+) {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-market-card__top > div > span {
+	background: #eef1e8;
+	color: var(--tax-lime-ink);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(.tax-market-card__top > b, .tax-table-country > b) {
+	background: var(--garna-accent);
+	color: var(--garna-accent-foreground);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-market-card details {
+	border-color: var(--garna-border);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-compare-table-wrap {
+	border-color: var(--garna-border);
+	background: #ffffff;
+	box-shadow: var(--garna-shadow-card);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-comparison-header {
+	align-items: flex-end;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-comparison-header > div {
+	gap: 0.35rem;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-comparison-header > b {
+	margin-left: auto;
+	color: var(--garna-text-muted);
+	font-size: 0.875rem;
+	font-weight: 600;
+	line-height: 1.4;
+	text-align: right;
+	white-space: nowrap;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-results-footer {
+	display: flex;
+	justify-content: flex-start;
+	margin-top: 1rem;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-results-footer button {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--garna-text-muted);
+	font: 600 0.75rem/1.5 Manrope, sans-serif;
+	cursor: pointer;
+	transition: color 0.2s ease;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-results-footer button > span {
+	display: inline-block;
+	transform: translateY(-0.08em);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-results-footer button:hover {
+	color: var(--garna-text);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-compare-table thead th,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-breakdown-heading th {
+	background: #eef0ea !important;
+	color: #656b61 !important;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-compare-table th,
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-compare-table td {
+	border-color: var(--garna-border);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-table-country__flag {
+	display: block;
+	width: 1.5rem;
+	height: 1rem;
+	flex: 0 0 auto;
+	overflow: hidden;
+	border-radius: 0.2rem;
+	background: #eef0ea;
+	box-shadow: 0 0 0 1px rgba(21, 21, 21, 0.08);
+	line-height: 0;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-table-country__flag img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-table-country > div {
+	display: flex;
+	min-width: 0;
+	align-items: baseline;
+	gap: 0;
+	white-space: nowrap;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-table-country > div > small {
+	margin-left: 0;
+	color: var(--garna-text-muted);
+	font-size: 0.625rem;
+	font-weight: 500;
+	line-height: 1;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-compare-table tr.is-total > * {
+	border-bottom-color: rgba(61, 90, 16, 0.18);
+	background: linear-gradient(90deg, rgba(168, 255, 44, 0.16), rgba(168, 255, 44, 0.035));
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-compare-table tr.is-total th {
+	color: var(--tax-lime-ink);
+}
+
+/* Supporting sections: pale canvas, quiet dividers and one consistent accent. */
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-explainer {
+	background: var(--garna-page-bg);
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(
+	.tax-explainer > .garna-container > span,
+	.tax-steps b,
+	.tax-expert span,
+	.tax-trusted__line > span:first-child
+) {
+	color: var(--tax-lime-ink);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(.tax-explainer h2, .tax-steps h3, .tax-expert h2) {
+	color: var(--garna-text);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(.tax-explainer h2, .tax-expert h2, .tax-faq h2) {
+	font-family: Manrope, sans-serif;
+	font-size: clamp(2.25rem, 3.6vw, 3rem);
+	font-weight: 400;
+	letter-spacing: -0.025em;
+	line-height: 1.25;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(.tax-explainer h2, .tax-faq h2) {
+	max-width: 56rem;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft :is(.tax-steps, .tax-steps article + article) {
+	border-color: var(--garna-border);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-trusted {
+	border-color: var(--garna-border);
+	background: var(--garna-section-stats-bg);
+	color: #4f554d;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-trusted p {
+	color: var(--garna-text-muted);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert {
+	background: var(--garna-page-bg);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert__inner {
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(0, 0.92fr) minmax(20rem, 1.08fr);
+	align-items: center;
+	gap: clamp(2.5rem, 7vw, 7rem);
+	overflow: visible;
+	box-sizing: border-box;
+	height: auto;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert__visual {
+	position: relative;
+	height: clamp(30rem, 45vw, 35rem);
+	overflow: hidden;
+	border-radius: var(--garna-radius-lg);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert__visual img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 88%;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert__copy {
+	display: flex;
+	max-width: 40rem;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 0;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert p {
+	max-width: 42rem;
+	color: var(--garna-text-muted);
+	font-size: 1.25rem;
+	font-weight: 600;
+	line-height: 1.625;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert span {
+	color: var(--tax-lime-ink);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert h2 {
+	color: var(--garna-text);
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-primary-link {
+	display: inline-flex;
+	margin-top: 2rem;
+	background: var(--garna-accent);
+	color: var(--garna-accent-foreground);
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.2;
+	box-shadow: none;
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-primary-link:hover {
+	background: #aef534;
+	box-shadow: none;
+}
+
+@media (max-width: 900px) {
+	html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert__inner {
+		grid-template-columns: 1fr;
+		height: auto;
+	}
+
+	html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert__visual {
+		order: 2;
+		height: auto;
+		min-height: 0;
+		aspect-ratio: 1.18;
+	}
+
+	html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert__copy {
+		order: 1;
+	}
+}
+
+@media (max-width: 640px) {
+	html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert__visual {
+		aspect-ratio: 1.08;
+		border-radius: var(--garna-radius-md);
+	}
+
+	html[data-theme='light'] .employee-cost-calculator-light-draft .tax-expert__copy {
+		padding: 0;
+	}
+}
+
+html[data-theme='light'] .employee-cost-calculator-light-draft .tax-faq {
+	position: relative;
+	z-index: 1;
+	border-radius: 0 0 var(--garna-light-footer-radius) var(--garna-light-footer-radius);
+	background: var(--garna-page-bg);
+}
+
+html[data-theme='light']:has(.employee-cost-calculator-light-draft) main.employee-cost-calculator-light-draft + .garna-footer {
+	margin-top: calc(var(--garna-light-footer-radius) * -1);
+	padding-top: calc(4rem + var(--garna-light-footer-radius));
+}
+
+@media (max-width: 640px) {
+	html[data-theme='light'] .employee-cost-calculator-light-draft .tax-card {
+		border-radius: var(--garna-radius-sm);
+	}
+
+	html[data-theme='light'] .employee-cost-calculator-light-draft .tax-hero {
+		padding-bottom: 80px;
+	}
+}

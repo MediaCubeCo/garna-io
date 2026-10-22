@@ -1,6 +1,7 @@
 ---
 interface Props {
 	containerId?: string;
+	calTheme?: 'light' | 'dark';
 	renderRoot?: boolean;
 	embedInline?: boolean;
 	trackingSource: string;
@@ -11,10 +12,18 @@ interface Props {
 	bgColorCal?: string;
 	colorBorder?: string;
 	thicknessBorder?: string;
+	radiusBorder?: string;
+	colorBrandText?: string;
+	colorTextMain?: string;
+	colorTextCalendar?: string;
+	colorBorderTimeCalendar?: string;
+	colorBorderVerticalLine?: string;
+	colorTextLogo?: string;
 }
 
 const {
 	containerId = 'garna-widget-root',
+	calTheme = 'dark',
 	renderRoot = true,
 	embedInline = false,
 	trackingSource,
@@ -25,10 +34,18 @@ const {
 	bgColorCal = '#0a0a0a',
 	colorBorder = 'rgb(34, 34, 34)',
 	thicknessBorder = '1px',
+	radiusBorder = '32px',
+	colorBrandText = '#ffffff',
+	colorTextMain = '#ffffff',
+	colorTextCalendar = '#a4a4a4',
+	colorBorderTimeCalendar = '#ffffff9a',
+	colorBorderVerticalLine = 'rgb(34, 34, 34)',
+	colorTextLogo = '#5d5d5d',
 } = Astro.props;
 
 const widgetConfig = {
 	containerId,
+	calTheme,
 	embedInline,
 	calComLink: 'garna/demo',
 	trackingSource,
@@ -37,17 +54,17 @@ const widgetConfig = {
 	titleFallback,
 	subtitleFallback,
 	colorBrandBg: '#A8FF2C',
-	colorBrandText: '#ffffff',
+	colorBrandText,
 	bgColorCal,
 	colorBorder,
 	thicknessBorder,
-	radiusBorder: '32px',
-	colorTextMain: '#ffffff',
-	colorTextCalendar: '#a4a4a4',
+	radiusBorder,
+	colorTextMain,
+	colorTextCalendar,
 	colorTextError: '#ff6b9d',
-	colorBorderTimeCalendar: '#ffffff9a',
-	colorBorderVerticalLine: 'rgb(34, 34, 34)',
-	colorTextLogo: '#5d5d5d',
+	colorBorderTimeCalendar,
+	colorBorderVerticalLine,
+	colorTextLogo,
 };
 ---
 
@@ -120,6 +137,7 @@ const widgetConfig = {
 			containerId: widgetConfig.containerId,
 			embedInline: widgetConfig.embedInline,
 			calComLink: widgetConfig.calComLink,
+			calTheme: widgetConfig.calTheme,
 			locale: language,
 			trackingSource: widgetConfig.trackingSource,
 			trackingPage: widgetConfig.trackingPage,
