@@ -1,0 +1,25 @@
+export const webSummit2026Pt = {
+	meta: { title: 'Guia de eventos paralelos do Web Summit 2026 | Lisboa, 6–14 de novembro | Garna', description: 'Descubra os eventos paralelos do Web Summit 2026 em Lisboa: jantares para investidores, pitch nights, encontros de fundadores e festas de 6 a 14 de novembro.' },
+	hero: {
+		badge: 'Web Summit 2026 · Lisboa · 9–12 de novembro', titleLead: 'O seu guia de', titleAccent: 'eventos paralelos', titleTail: 'do Web Summit 2026',
+		description: 'Jantares para investidores, pitch nights, pequenos-almoços para fundadores e as festas depois do evento. Tudo o que acontece à volta do Web Summit de 6 a 14 de novembro, com informação sobre como participar. Verificamos os links e mantemos a lista atualizada durante toda a semana.',
+		scheduleCta: 'Ver a programação', learnCta: 'O que a Garna faz',
+	},
+	stats: { events: 'eventos paralelos', free: 'com entrada gratuita', days: 'dias abrangidos', city: 'cidade: Lisboa', advisory: 'As horas correspondem ao fuso horário de Lisboa. As datas e regras de acesso são definidas pelos organizadores e mudam com frequência, por isso consulte a página do evento antes de fazer planos.' },
+	meet: { kicker: 'A Garna no Web Summit', title: 'Encontre-nos no stand da Garna', description: 'Fale connosco sobre processamento salarial, pagamentos a prestadores de serviços e contratações em mais de 150 países.', booth: 'Stand E307.', cta: 'Marcar uma reunião' },
+	offer: { eyebrow: 'Já que está aqui', title: 'Problemas com os salários ou a pagar demasiado?', description: 'A Garna gere salários e pagamentos a prestadores de serviços em mais de 150 países, em moedas locais e através de cartões, carteiras ou criptomoedas, e trata também dos impostos e da conformidade. Visite o nosso stand em Lisboa ou marque uma reunião e mostramos-lhe os números.', demoCta: 'Marcar uma demonstração', learnCta: 'O que a Garna faz' },
+	schedule: {
+		loading: 'A carregar a programação…', nav: { earlier: 'Mostrar datas anteriores', later: 'Mostrar datas posteriores' },
+		access: { free: 'Grátis', paid: 'Pago', apply: 'Candidatura', invite: 'Apenas por convite', included: 'Com bilhete do Web Summit', open: 'Entrada livre', tba: 'A confirmar', closed: 'Encerrado' },
+		cta: { register: 'Inscrever-se', tickets: 'Comprar bilhetes', apply: 'Candidatar-se', details: 'Detalhes', noLink: 'Ligação ainda indisponível' },
+		topic: { all: 'Todos os temas', investors: 'Investidores e VC', pitch: 'Pitch nights', founders: 'Encontros de fundadores', ai: 'IA', food: 'Pequenos-almoços e jantares', party: 'Festas', talks: 'Palestras e workshops' },
+		filter: { free: 'Apenas eventos gratuitos', reset: 'Mostrar todos os eventos' },
+		weekdays: { 0: 'Dom', 1: 'Seg', 2: 'Ter', 3: 'Qua', 4: 'Qui', 5: 'Sex', 6: 'Sáb' },
+		months: { 0: 'janeiro', 1: 'fevereiro', 2: 'março', 3: 'abril', 4: 'maio', 5: 'junho', 6: 'julho', 7: 'agosto', 8: 'setembro', 9: 'outubro', 10: 'novembro', 11: 'dezembro' },
+		event: { one: 'evento', few: 'eventos', many: 'eventos', by: 'por', multiDay: 'Decorre durante vários dias', featured: 'Vale a pena', timeTba: 'Hora a confirmar' },
+		date: { label: 'Data', tba: 'A confirmar', announced: 'Data a anunciar', unannouncedSuffix: 'os organizadores ainda não anunciaram a data' }, group: { multi: 'Eventos de vários dias' },
+		empty: { title: 'Ainda não há eventos programados', description: 'Escolha outro dia acima. Mantemos esta página atualizada durante toda a semana.', filteredTitle: 'Nenhum evento deste dia corresponde aos filtros', filteredDescription: 'Experimente outro tema, desative «Apenas eventos gratuitos» ou escolha outro dia.', noEventsTitle: 'Não foram carregados eventos', noEventsDescription: 'Não foi possível carregar a programação. Atualizar a página costuma resolver.' },
+		error: { title: 'Não foi possível carregar a programação', description: 'Atualizar a página costuma resolver. Se o problema continuar, consulte a consola do navegador.' }, source: { live: 'A programação é consultada na nossa folha de eventos sempre que a página é carregada, por isso apresenta sempre a versão atual.', fallback: 'Não foi possível aceder à folha online; esta é a última cópia guardada da programação.' },
+	},
+	sourceAttributes: { 'aria-label': { 'Guide overview': 'Resumo do guia', 'Choose a day': 'Escolher um dia', 'Web Summit side events schedule': 'Programação de eventos paralelos do Web Summit', 'Filter events': 'Filtrar eventos' } },
+};

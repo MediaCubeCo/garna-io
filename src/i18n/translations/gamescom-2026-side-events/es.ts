@@ -27,6 +27,8 @@ export const gamescom2026Es = {
 	},
 	schedule: {
 		loading: 'Cargando el programa…',
+		nav: { earlier: 'Mostrar fechas anteriores', later: 'Mostrar fechas posteriores' },
+		group: { multi: 'Eventos de varios días' },
 		access: { free: 'Gratis', paid: 'De pago', apply: 'Solicitud', invite: 'Solo con invitación', badge: 'Con acreditación de gamescom', open: 'Entrada libre', tba: 'Por confirmar', closed: 'Cerrado' },
 		cta: { register: 'Registrarse', tickets: 'Comprar entradas', apply: 'Solicitar acceso', details: 'Detalles', noLink: 'Enlace aún no disponible' },
 		weekdays: { sun: 'Dom', mon: 'Lun', tue: 'Mar', wed: 'Mié', thu: 'Jue', fri: 'Vie', sat: 'Sáb' },

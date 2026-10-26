@@ -26,7 +26,14 @@ export interface PageConfig {
 
 export const basePaths: PageConfig[] = [
 	{
-		path: 'gamescom-2026-side-events',
+		path: 'event/websummit-2026',
+		mode: 'static',
+		searchable: true,
+		showHeader: true,
+		languages: ['en', 'es', 'pt', 'ru'],
+	},
+	{
+		path: 'event/gamescom-2026',
 		mode: 'static',
 		searchable: true,
 		showHeader: true,

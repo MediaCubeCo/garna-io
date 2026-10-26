@@ -30,7 +30,15 @@ import '../styles/gamescom-2026-side-events.css';
 
 		<nav class="gamescom-day-nav day-nav" id="schedule" aria-label="Choose a day">
 			<div class="gamescom-container">
-				<div class="day-nav-inner" id="dayNav"></div>
+				<div class="gamescom-day-nav-viewport">
+					<button class="gamescom-day-scroll gamescom-day-scroll-prev" type="button" data-day-scroll="-1" aria-label="Show earlier dates" data-translate-aria-label="schedule.nav.earlier">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+					</button>
+					<div class="day-nav-inner" id="dayNav"></div>
+					<button class="gamescom-day-scroll gamescom-day-scroll-next" type="button" data-day-scroll="1" aria-label="Show later dates" data-translate-aria-label="schedule.nav.later">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+					</button>
+				</div>
 			</div>
 		</nav>
 
@@ -118,6 +126,9 @@ import '../styles/gamescom-2026-side-events.css';
 			<span data-gamescom-i18n="empty.noEventsDescription" data-translate="schedule.empty.noEventsDescription">The schedule didn't come through. A refresh usually fixes it.</span>
 			<span data-gamescom-i18n="error.title" data-translate="schedule.error.title">The schedule didn't load</span>
 			<span data-gamescom-i18n="error.description" data-translate="schedule.error.description">A refresh usually fixes it. If it doesn't, the browser console has the details.</span>
+			<span data-gamescom-i18n="nav.earlier" data-translate="schedule.nav.earlier">Show earlier dates</span>
+			<span data-gamescom-i18n="nav.later" data-translate="schedule.nav.later">Show later dates</span>
+			<span data-gamescom-i18n="group.multi" data-translate="schedule.group.multi">Running across several days</span>
 			<span data-gamescom-i18n="loading" data-translate="schedule.loading">Loading the schedule…</span>
 			<span data-gamescom-i18n="source.live" data-translate="schedule.source.live">The schedule is read from our events sheet every time this page loads, so it is always the current one.</span>
 			<span data-gamescom-i18n="source.fallback" data-translate="schedule.source.fallback">We couldn't reach the live sheet, so this is the last saved copy of the schedule.</span>
