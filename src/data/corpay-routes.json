@@ -1720,12 +1720,12 @@
       }
     },
     {
-      "id": "falkland-islands-malvinas-fkr-197",
+      "id": "falkland-islands-malvinas-fkp-197",
       "region": "South America",
       "country": "Falkland Islands(Malvinas)",
       "iso": "FK",
       "currencyName": "FKR",
-      "currencyCode": "FKR",
+      "currencyCode": "FKP",
       "payoutType": "local",
       "providerFixedFeeUsd": 10,
       "providerFxReferencePct": 0.5,
@@ -4568,12 +4568,12 @@
       }
     },
     {
-      "id": "sao-tome-and-principe-std-44",
+      "id": "sao-tome-and-principe-stn-44",
       "region": "Africa",
       "country": "Sao Tome and Principe",
       "iso": null,
       "currencyName": "of good",
-      "currencyCode": "STD",
+      "currencyCode": "STN",
       "payoutType": "local",
       "providerFixedFeeUsd": 10,
       "providerFxReferencePct": 0.5,
@@ -5384,12 +5384,12 @@
       }
     },
     {
-      "id": "turkmenistan-tmm-98",
+      "id": "turkmenistan-tmt-98",
       "region": "Asia",
       "country": "Turkmenistan",
       "iso": null,
       "currencyName": "manat",
-      "currencyCode": "TMM",
+      "currencyCode": "TMT",
       "payoutType": "local",
       "providerFixedFeeUsd": 10,
       "providerFxReferencePct": 0.5,
@@ -5704,12 +5704,12 @@
       }
     },
     {
-      "id": "venezuela-veb-200",
+      "id": "venezuela-ves-200",
       "region": "South America",
       "country": "Venezuela",
       "iso": "VE",
       "currencyName": "bolivar",
-      "currencyCode": "VEB",
+      "currencyCode": "VES",
       "payoutType": "local",
       "providerFixedFeeUsd": 10,
       "providerFxReferencePct": 0.5,
@@ -5816,12 +5816,12 @@
       }
     },
     {
-      "id": "zambia-zmk-55",
+      "id": "zambia-zmw-55",
       "region": "Africa",
       "country": "Zambia",
       "iso": null,
       "currencyName": "kwacha",
-      "currencyCode": "ZMK",
+      "currencyCode": "ZMW",
       "payoutType": "local",
       "providerFixedFeeUsd": 10,
       "providerFxReferencePct": 0.5,

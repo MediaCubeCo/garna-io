@@ -219,7 +219,7 @@ const costEstimator = {
 			enterAmount: 'Enter an amount greater than zero.', amountTooLow: 'The send amount must be greater than the transfer fee.',
 			availableFor: 'Available currencies',
 			disclaimerOne: 'This is an indicative estimate, not a final quote or guarantee. Pricing and route availability depend on the currency pair, destination, payment volume, account profile, compliance review and provider availability.',
-			disclaimerTwo: 'The estimated exchange rate may include a currency conversion margin. Rates are not locked and delivery times are estimates. Contact our sales team to confirm availability and receive your exact individual offer before making a payment.',
+			disclaimerTwo: 'Exchange rates follow the market and are not locked, and delivery times are estimates. Your final rate and fees may differ depending on your payment volume, currency pair and destination. Talk to our sales team to get your individual offer before you pay.',
 		},
 	},
 	es: {
@@ -237,7 +237,7 @@ const costEstimator = {
 			enterAmount: 'Introduce un importe superior a cero.', amountTooLow: 'El importe debe superar la comisión de transferencia.',
 			availableFor: 'Divisas disponibles',
 			disclaimerOne: 'Esta es una estimación indicativa, no una cotización final ni una garantía. El precio y la disponibilidad de la ruta dependen del par de divisas, el destino, el volumen, el perfil de la cuenta, la revisión de cumplimiento y la disponibilidad del proveedor.',
-			disclaimerTwo: 'El tipo de cambio estimado puede incluir un margen de conversión. Los tipos no están bloqueados y los plazos de entrega son estimaciones. Contacta con nuestro equipo comercial para confirmar la disponibilidad y recibir tu oferta individual exacta antes de realizar un pago.',
+			disclaimerTwo: 'Los tipos de cambio siguen el mercado y no están fijados, y los plazos de entrega son estimaciones. El tipo final y las comisiones pueden variar según el volumen de pago, el par de divisas y el destino. Habla con nuestro equipo comercial para obtener una oferta individual antes de pagar.',
 		},
 	},
 	pt: {
@@ -255,7 +255,7 @@ const costEstimator = {
 			enterAmount: 'Insira um valor maior que zero.', amountTooLow: 'O valor enviado deve ser maior que a tarifa de transferência.',
 			availableFor: 'Moedas disponíveis',
 			disclaimerOne: 'Esta é uma estimativa indicativa, não uma cotação final nem uma garantia. O preço e a disponibilidade da rota dependem do par de moedas, destino, volume, perfil da conta, análise de conformidade e disponibilidade do provedor.',
-			disclaimerTwo: 'A taxa de câmbio estimada pode incluir uma margem de conversão. As taxas não são bloqueadas e os prazos de entrega são estimativas. Entre em contato com nossa equipe de vendas para confirmar a disponibilidade e receber sua oferta individual exata antes de realizar um pagamento.',
+			disclaimerTwo: 'As taxas de câmbio acompanham o mercado e não são fixas, e os prazos de entrega são estimativas. A taxa final e as tarifas podem variar dependendo do volume do pagamento, do par de moedas e do destino. Fale com nossa equipe de vendas para receber uma oferta individual antes de pagar.',
 		},
 	},
 	ru: {
@@ -273,7 +273,7 @@ const costEstimator = {
 			enterAmount: 'Введите сумму больше нуля.', amountTooLow: 'Сумма отправки должна быть больше комиссии за перевод.',
 			availableFor: 'Доступные валюты',
 			disclaimerOne: 'Это ориентировочный расчет, а не окончательное предложение или гарантия. Цена и доступность маршрута зависят от валютной пары, страны назначения, объема платежа, профиля аккаунта, проверки соответствия и доступности провайдера.',
-			disclaimerTwo: 'Ориентировочный курс может включать валютную маржу. Курс не фиксируется, а сроки доставки являются приблизительными. Перед переводом свяжитесь с нашей командой продаж, чтобы подтвердить доступность и получить точное индивидуальное предложение.',
+			disclaimerTwo: 'Обменные курсы следуют за рынком и не фиксируются, а сроки доставки являются ориентировочными. Итоговый курс и комиссии могут отличаться в зависимости от объёма платежа, валютной пары и страны назначения. Свяжитесь с нашей командой продаж, чтобы получить индивидуальное предложение до совершения платежа.',
 		},
 	},
 };

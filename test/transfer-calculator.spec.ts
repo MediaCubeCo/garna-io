@@ -1,29 +1,30 @@
 import { describe, expect, it } from 'vitest';
 import routeData from '../src/data/corpay-routes.json';
+import { businessAccountTranslations } from '../src/i18n/translations/business-account';
 import { createTransferRateHandler } from '../src/routes/rates';
 import { calculateTransfer, getClientFxMarginRate } from '../src/utils/transfer-calculator';
 import { extractRevolutRate, RevolutRateProvider } from '../src/utils/revolut-rate-provider';
 
 describe('Business Account transfer calculator', () => {
-	it('applies the approved Poland USD to PLN pricing formula', () => {
+	it('uses the market rate without an FX margin and keeps the approved transfer fee', () => {
 		const result = calculateTransfer({
 			amount: 1000,
 			sourceCurrency: 'USD',
 			destinationCurrency: 'PLN',
 			providerFixedFeeUsd: 3,
 			usdToSourceRate: 1,
-			sourceToDestinationRate: 3.7275,
+			sourceToDestinationRate: 3.9257,
 		});
 
 		expect(result.transferFee).toBe(3.9);
-		expect(result.clientRate).toBeCloseTo(3.65295, 10);
-		expect(result.recipientGets).toBe(3638.7);
+		expect(result.clientRate).toBeCloseTo(3.9257, 10);
+		expect(result.recipientGets).toBe(3910.39);
 	});
 
-	it('uses no margin for the same currency and 1.5% only for EUR destinations', () => {
+	it('uses no FX margin for any currency pair', () => {
 		expect(getClientFxMarginRate('USD', 'USD')).toBe(0);
-		expect(getClientFxMarginRate('USD', 'EUR')).toBe(0.015);
-		expect(getClientFxMarginRate('EUR', 'GBP')).toBe(0.02);
+		expect(getClientFxMarginRate('USD', 'EUR')).toBe(0);
+		expect(getClientFxMarginRate('EUR', 'GBP')).toBe(0);
 	});
 
 	it('never produces a negative recipient amount when the fee is too high', () => {
@@ -47,6 +48,27 @@ describe('Business Account transfer calculator', () => {
 		expect(routeData.routes.every((route) => !route.source.sheet.includes('Adult'))).toBe(true);
 		const poland = routeData.routes.find((route) => route.country === 'Poland' && route.currencyCode === 'PLN');
 		expect(poland?.providerFixedFeeUsd).toBe(3);
+	});
+
+	it('uses current ISO currency codes for the five corrected destinations', () => {
+		const correctedCodes = new Map([
+			['Falkland Islands(Malvinas)', 'FKP'],
+			['Sao Tome and Principe', 'STN'],
+			['Turkmenistan', 'TMT'],
+			['Venezuela', 'VES'],
+			['Zambia', 'ZMW'],
+		]);
+		for (const [country, currencyCode] of correctedCodes) {
+			expect(routeData.routes.find((route) => route.country === country && route.payoutType === 'local')?.currencyCode).toBe(currencyCode);
+		}
+		expect(routeData.routes.some((route) => ['FKR', 'STD', 'TMM', 'VEB', 'ZMK'].includes(route.currencyCode))).toBe(false);
+	});
+
+	it('has the updated market-rate disclaimer in every supported locale', () => {
+		const disclaimers = Object.values(businessAccountTranslations).map((locale) => locale.costEstimator.form.disclaimerTwo);
+		expect(disclaimers).toHaveLength(4);
+		expect(disclaimers.every((disclaimer) => !/margin|margen|margem|марж/i.test(disclaimer))).toBe(true);
+		expect(disclaimers.every((disclaimer) => disclaimer.length > 150)).toBe(true);
 	});
 });
 
