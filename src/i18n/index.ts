@@ -16,6 +16,7 @@ import { businessAccountTranslations } from './translations/business-account';
 import { taxCalculatorTranslations } from './translations/tax-calculator';
 import { eorCostCalculatorTranslations } from './translations/eor-cost-calculator';
 import { gamescom2026Translations } from './translations/gamescom-2026-side-events';
+import { hrPodcastTranslations } from './translations/hr-podcast';
 
 export type PageTranslations = typeof homeTranslations.en;
 
@@ -40,7 +41,8 @@ type AnyPageTranslations =
 	| typeof blogArticleTranslations.en
 	| typeof taxCalculatorTranslations.en
 	| typeof eorCostCalculatorTranslations.en
-	| typeof gamescom2026Translations.en;
+	| typeof gamescom2026Translations.en
+	| typeof hrPodcastTranslations.en;
 
 const translations = {
 	home: homeTranslations,
@@ -65,6 +67,7 @@ const translations = {
 	'tax-calculator': taxCalculatorTranslations,
 	'eor-cost-calculator': eorCostCalculatorTranslations,
 	'gamescom-2026-side-events': gamescom2026Translations,
+	'hr-podcast': hrPodcastTranslations,
 } as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
 export function getPageTranslations(pageName: string, locale: string): AnyPageTranslations {

@@ -26,6 +26,13 @@ export interface PageConfig {
 
 export const basePaths: PageConfig[] = [
 	{
+		path: 'hr-podcast',
+		mode: 'static',
+		searchable: false,
+		showHeader: true,
+		languages: ['en', 'es', 'pt', 'ru'],
+	},
+	{
 		path: 'gamescom-2026-side-events',
 		mode: 'static',
 		searchable: true,
