@@ -26,7 +26,7 @@ export interface PageConfig {
 
 export const basePaths: PageConfig[] = [
 	{
-		path: 'hr-podcast',
+		path: 'podcast-offer',
 		mode: 'static',
 		searchable: false,
 		showHeader: true,

@@ -21,6 +21,7 @@ const LEGACY_ROUTE_REDIRECTS: Record<string, string> = {
 	'payroll-small-business': 'small-business-payroll',
 	'white-label': 'white-label-payroll',
 	'tax-calculator': 'employee-cost-calculator',
+	'hr-podcast': 'podcast-offer',
 };
 
 function findPageConfig(segments: string[]): PageConfig | null {
@@ -61,7 +62,7 @@ export async function handleDynamic(request: Request, routeInfo: RouteInfo, env?
 
 // Mapping of public route paths to Astro-generated asset files in dist/.
 const PAGE_PATH_TO_ASSET: Record<string, string> = {
-	'hr-podcast': '/hr-podcast.html',
+	'podcast-offer': '/hr-podcast.html',
 	'gamescom-2026-side-events': '/gamescom-2026-side-events.html',
 	'': '/index.html',
 	'for-contractors': '/for-contractors.html',
@@ -83,7 +84,7 @@ const PAGE_PATH_TO_ASSET: Record<string, string> = {
 };
 
 const PAGE_PATH_TO_TRANSLATION_KEY: Record<string, string> = {
-	'hr-podcast': 'hr-podcast',
+	'podcast-offer': 'hr-podcast',
 	'gamescom-2026-side-events': 'gamescom-2026-side-events',
 	'': 'home',
 	'for-contractors': 'offer',
