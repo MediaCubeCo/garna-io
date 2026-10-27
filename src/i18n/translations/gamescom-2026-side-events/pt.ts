@@ -27,6 +27,8 @@ export const gamescom2026Pt = {
 	},
 	schedule: {
 		loading: 'Carregando a programação…',
+		nav: { earlier: 'Mostrar datas anteriores', later: 'Mostrar datas posteriores' },
+		group: { multi: 'Eventos de vários dias' },
 		access: { free: 'Grátis', paid: 'Pago', apply: 'Inscrição', invite: 'Somente por convite', badge: 'Com credencial da gamescom', open: 'Entrada livre', tba: 'A confirmar', closed: 'Encerrado' },
 		cta: { register: 'Inscrever-se', tickets: 'Comprar ingressos', apply: 'Solicitar acesso', details: 'Detalhes', noLink: 'Link ainda não disponível' },
 		weekdays: { sun: 'Dom', mon: 'Seg', tue: 'Ter', wed: 'Qua', thu: 'Qui', fri: 'Sex', sat: 'Sáb' },

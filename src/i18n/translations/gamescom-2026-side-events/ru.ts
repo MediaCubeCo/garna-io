@@ -27,6 +27,8 @@ export const gamescom2026Ru = {
 	},
 	schedule: {
 		loading: 'Загружаем расписание…',
+		nav: { earlier: 'Показать более ранние даты', later: 'Показать более поздние даты' },
+		group: { multi: 'События на несколько дней' },
 		access: { free: 'Бесплатно', paid: 'Платно', apply: 'По заявке', invite: 'Только по приглашению', badge: 'По бейджу gamescom', open: 'Свободный вход', tba: 'Уточняется', closed: 'Закрыто' },
 		cta: { register: 'Регистрация', tickets: 'Купить билет', apply: 'Подать заявку', details: 'Подробнее', noLink: 'Ссылки пока нет' },
 		weekdays: { sun: 'Вс', mon: 'Пн', tue: 'Вт', wed: 'Ср', thu: 'Чт', fri: 'Пт', sat: 'Сб' },

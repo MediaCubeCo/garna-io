@@ -27,6 +27,8 @@ export const gamescom2026En = {
 	},
 	schedule: {
 		loading: 'Loading the schedule…',
+		nav: { earlier: 'Show earlier dates', later: 'Show later dates' },
+		group: { multi: 'Running across several days' },
 		access: { free: 'Free', paid: 'Paid', apply: 'Apply', invite: 'Invite only', badge: 'With gamescom badge', open: 'Open entry', tba: 'TBA', closed: 'Closed' },
 		cta: { register: 'Register', tickets: 'Get tickets', apply: 'Apply', details: 'Details', noLink: 'No link yet' },
 		weekdays: { sun: 'Sun', mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat' },

@@ -56,7 +56,12 @@ export default {
 			const routeInfo = resolveRoute(url.pathname + url.search);
 
 			// 4. Handle redirects
-			const redirectResponse = await handleRedirect(routeInfo, country, request.url);
+			const redirectResponse = await handleRedirect(
+				routeInfo,
+				country,
+				request.url,
+				request.headers.get('Accept-Language')
+			);
 			if (redirectResponse) {
 				return redirectResponse;
 			}

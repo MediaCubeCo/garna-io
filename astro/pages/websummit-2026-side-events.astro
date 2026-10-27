@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
+import { pageShells } from '../content/page-shells';
+import '../styles/websummit-2026-side-events.css';
+---
+
+<BaseLayout shell={pageShells.webSummit2026} rainbowCount={4}>
+	<script slot="head" is:inline>
+		document.documentElement.classList.add('js');
+	</script>
+<!-- Web Summit 2026 side events · page body (goes between the site Header and Footer).
+     Same structure as the live side-events page from August; buttons follow the Button.astro DOM contract. -->
+<div class="ws-page">
+  <section class="ws-hero relative overflow-hidden" data-section-kind="hero">
+    <div class="ws-container relative z-10">
+      <div class="ws-hero-content reveal">
+        <p class="ws-hero-kicker" data-translate="hero.badge">Web Summit 2026 · Lisbon · 9–12 November</p>
+        <h1 class="garna-hero-title-gradient ws-hero-title font-manrope font-normal tracking-tight">
+          <span data-translate="hero.titleLead">Your Web Summit 2026</span>
+          <span data-translate="hero.titleAccent">side events</span>
+          <span data-translate="hero.titleTail">guide</span>
+        </h1>
+        <p data-garna-subtitle class="ws-hero-lead font-manrope" data-translate="hero.description">Investor dinners, pitch nights, founder breakfasts and the parties after. Everything happening around Web Summit from 6 to 14 November, with how to get in. We check the links and keep the list current through the week.</p>
+        <div class="ws-hero-actions flex flex-wrap gap-3">
+          <a href="#schedule" class="garna-button inline-flex items-center justify-center font-manrope focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300] garna-button-primary text-garna-accent-foreground min-h-12 rounded-xl px-8 py-3 garna-button-rotating-flare"><span class="garna-button-inner"><span data-translate="hero.scheduleCta">See the schedule</span></span></a>
+          <a href="/en" class="garna-button inline-flex items-center justify-center font-manrope focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300] garna-button-secondary text-white min-h-12 rounded-xl px-8 py-3 garna-button-has-icon" data-garna-home="true"><span class="garna-button-inner gap-2"><span data-translate="hero.learnCta">What Garna does</span><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="garna-button-icon-svg" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span></a>
+        </div>
+      </div>
+
+      <div class="ws-stats reveal" aria-label="Guide overview">
+        <div class="ws-stat"><strong id="statEvents">150+</strong><span data-translate="stats.events">side events</span></div>
+        <div class="ws-stat"><strong id="statFree">60+</strong><span data-translate="stats.free">free to attend</span></div>
+        <div class="ws-stat"><strong id="statDays">9</strong><span data-translate="stats.days">days covered</span></div>
+        <div class="ws-stat"><strong>1</strong><span data-translate="stats.city">city, Lisbon</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ws-intro" aria-label="Garna at Web Summit">
+    <div class="ws-container">
+      <div class="ws-meet reveal" id="meet-garna">
+        <div>
+          <span class="ws-meet-kicker" data-translate="meet.kicker">Garna at Web Summit</span>
+          <strong data-translate="meet.title">Find us at the Garna booth</strong>
+          <p><span data-translate="meet.description">Talk to us about payroll, contractor payments and hiring in 150+ countries.</span> <span class="ws-booth" id="garnaBooth" data-translate="meet.booth">Booth E307.</span></p>
+        </div>
+        <a href="#" class="garna-button garna-button-inline-accent ws-meet-button inline-flex items-center justify-center font-manrope p-0" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'websummit_2026_meet' });"><span class="garna-button-inner"><span data-translate="meet.cta">Book a meeting</span></span></a>
+      </div>
+
+      <p class="ws-hero-meta reveal" data-translate="stats.advisory">Times are Lisbon time. Dates and access rules come from the organisers and change often, so check the event page before you plan around one.</p>
+    </div>
+  </section>
+
+  <nav class="ws-day-nav day-nav" id="schedule" aria-label="Choose a day">
+    <div class="ws-container">
+      <div class="ws-day-nav-viewport">
+        <button class="ws-day-scroll ws-day-scroll-prev" type="button" data-day-scroll="-1" aria-label="Show earlier dates" data-translate-aria-label="schedule.nav.earlier">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+        </button>
+        <div class="day-nav-inner" id="dayNav"></div>
+        <button class="ws-day-scroll ws-day-scroll-next" type="button" data-day-scroll="1" aria-label="Show later dates" data-translate-aria-label="schedule.nav.later">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="ws-events-section" aria-label="Web Summit side events schedule">
+    <div class="ws-container">
+      <div class="ws-filters" id="topicFilters" role="group" aria-label="Filter events"></div>
+      <div id="eventsBody" aria-live="polite"></div>
+      <p class="source-note" id="sourceNote"></p>
+    </div>
+  </section>
+
+  <section class="ws-offer-section">
+    <div class="ws-container">
+      <div class="ws-offer-card reveal">
+        <div>
+          <span class="ws-offer-eyebrow" data-translate="offer.eyebrow">While you're here</span>
+          <h2 data-translate="offer.title">Trouble with payroll, or paying too much for it?</h2>
+          <p data-translate="offer.description">Garna runs payroll and contractor payments in 150+ countries, in local currencies, to cards, wallets or crypto, and takes care of the tax and compliance side. Come by the booth in Lisbon or book a slot, and we'll show you the numbers.</p>
+        </div>
+        <div class="ws-offer-actions">
+          <a href="#" class="garna-button inline-flex items-center justify-center font-manrope focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300] garna-button-primary text-garna-accent-foreground min-h-12 rounded-xl px-8 py-3" onclick="event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: 'websummit_2026_offer_demo' });"><span class="garna-button-inner"><span data-translate="offer.demoCta">Book a demo</span></span></a>
+          <a href="/en" class="garna-button inline-flex items-center justify-center font-manrope focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300] garna-button-secondary text-white min-h-12 rounded-xl px-8 py-3" data-garna-home="true"><span class="garna-button-inner"><span data-translate="offer.learnCta">What Garna does</span></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="websummitUiTranslations" hidden aria-hidden="true">
+    <span data-websummit-i18n="access.free" data-translate="schedule.access.free">Free</span>
+    <span data-websummit-i18n="access.paid" data-translate="schedule.access.paid">Paid</span>
+    <span data-websummit-i18n="access.apply" data-translate="schedule.access.apply">Apply</span>
+    <span data-websummit-i18n="access.invite" data-translate="schedule.access.invite">Invite only</span>
+    <span data-websummit-i18n="access.included" data-translate="schedule.access.included">With Web Summit ticket</span>
+    <span data-websummit-i18n="access.open" data-translate="schedule.access.open">Open entry</span>
+    <span data-websummit-i18n="access.tba" data-translate="schedule.access.tba">TBA</span>
+    <span data-websummit-i18n="access.closed" data-translate="schedule.access.closed">Closed</span>
+    <span data-websummit-i18n="cta.register" data-translate="schedule.cta.register">Register</span>
+    <span data-websummit-i18n="cta.tickets" data-translate="schedule.cta.tickets">Get tickets</span>
+    <span data-websummit-i18n="cta.apply" data-translate="schedule.cta.apply">Apply</span>
+    <span data-websummit-i18n="cta.details" data-translate="schedule.cta.details">Details</span>
+    <span data-websummit-i18n="cta.noLink" data-translate="schedule.cta.noLink">No link yet</span>
+    <span data-websummit-i18n="topic.all" data-translate="schedule.topic.all">All topics</span>
+    <span data-websummit-i18n="topic.investors" data-translate="schedule.topic.investors">Investors &amp; VC</span>
+    <span data-websummit-i18n="topic.pitch" data-translate="schedule.topic.pitch">Pitch nights</span>
+    <span data-websummit-i18n="topic.founders" data-translate="schedule.topic.founders">Founder meetups</span>
+    <span data-websummit-i18n="topic.ai" data-translate="schedule.topic.ai">AI</span>
+    <span data-websummit-i18n="topic.food" data-translate="schedule.topic.food">Breakfasts &amp; dinners</span>
+    <span data-websummit-i18n="topic.party" data-translate="schedule.topic.party">Parties</span>
+    <span data-websummit-i18n="topic.talks" data-translate="schedule.topic.talks">Talks &amp; workshops</span>
+    <span data-websummit-i18n="filter.free" data-translate="schedule.filter.free">Free events only</span>
+    <span data-websummit-i18n="filter.reset" data-translate="schedule.filter.reset">Show all events</span>
+    <span data-websummit-i18n="weekday.0" data-translate="schedule.weekdays.0">Sun</span>
+    <span data-websummit-i18n="weekday.1" data-translate="schedule.weekdays.1">Mon</span>
+    <span data-websummit-i18n="weekday.2" data-translate="schedule.weekdays.2">Tue</span>
+    <span data-websummit-i18n="weekday.3" data-translate="schedule.weekdays.3">Wed</span>
+    <span data-websummit-i18n="weekday.4" data-translate="schedule.weekdays.4">Thu</span>
+    <span data-websummit-i18n="weekday.5" data-translate="schedule.weekdays.5">Fri</span>
+    <span data-websummit-i18n="weekday.6" data-translate="schedule.weekdays.6">Sat</span>
+    <span data-websummit-i18n="month.0" data-translate="schedule.months.0">January</span>
+    <span data-websummit-i18n="month.1" data-translate="schedule.months.1">February</span>
+    <span data-websummit-i18n="month.2" data-translate="schedule.months.2">March</span>
+    <span data-websummit-i18n="month.3" data-translate="schedule.months.3">April</span>
+    <span data-websummit-i18n="month.4" data-translate="schedule.months.4">May</span>
+    <span data-websummit-i18n="month.5" data-translate="schedule.months.5">June</span>
+    <span data-websummit-i18n="month.6" data-translate="schedule.months.6">July</span>
+    <span data-websummit-i18n="month.7" data-translate="schedule.months.7">August</span>
+    <span data-websummit-i18n="month.8" data-translate="schedule.months.8">September</span>
+    <span data-websummit-i18n="month.9" data-translate="schedule.months.9">October</span>
+    <span data-websummit-i18n="month.10" data-translate="schedule.months.10">November</span>
+    <span data-websummit-i18n="month.11" data-translate="schedule.months.11">December</span>
+    <span data-websummit-i18n="event.one" data-translate="schedule.event.one">event</span>
+    <span data-websummit-i18n="event.few" data-translate="schedule.event.few">events</span>
+    <span data-websummit-i18n="event.many" data-translate="schedule.event.many">events</span>
+    <span data-websummit-i18n="event.by" data-translate="schedule.event.by">by</span>
+    <span data-websummit-i18n="date.label" data-translate="schedule.date.label">Date</span>
+    <span data-websummit-i18n="date.tba" data-translate="schedule.date.tba">TBA</span>
+    <span data-websummit-i18n="date.announced" data-translate="schedule.date.announced">Date to be announced</span>
+    <span data-websummit-i18n="date.unannouncedSuffix" data-translate="schedule.date.unannouncedSuffix">organisers haven't announced a date yet</span>
+    <span data-websummit-i18n="group.multi" data-translate="schedule.group.multi">Running across several days</span>
+    <span data-websummit-i18n="event.multiDay" data-translate="schedule.event.multiDay">Runs across several days</span>
+    <span data-websummit-i18n="event.featured" data-translate="schedule.event.featured">Worth your time</span>
+    <span data-websummit-i18n="event.timeTba" data-translate="schedule.event.timeTba">Time TBA</span>
+    <span data-websummit-i18n="empty.title" data-translate="schedule.empty.title">Nothing scheduled here yet</span>
+    <span data-websummit-i18n="empty.description" data-translate="schedule.empty.description">Pick another day above. We keep this page updated through the week.</span>
+    <span data-websummit-i18n="empty.filteredTitle" data-translate="schedule.empty.filteredTitle">Nothing matches these filters on this day</span>
+    <span data-websummit-i18n="empty.filteredDescription" data-translate="schedule.empty.filteredDescription">Try another topic, switch off "Free to attend", or pick another day.</span>
+    <span data-websummit-i18n="empty.noEventsTitle" data-translate="schedule.empty.noEventsTitle">No events loaded</span>
+    <span data-websummit-i18n="empty.noEventsDescription" data-translate="schedule.empty.noEventsDescription">The schedule didn't come through. A refresh usually fixes it.</span>
+    <span data-websummit-i18n="error.title" data-translate="schedule.error.title">The schedule didn't load</span>
+    <span data-websummit-i18n="error.description" data-translate="schedule.error.description">A refresh usually fixes it. If it doesn't, the browser console has the details.</span>
+    <span data-websummit-i18n="loading" data-translate="schedule.loading">Loading the schedule…</span>
+    <span data-websummit-i18n="source.live" data-translate="schedule.source.live">The schedule is read from our events sheet every time this page loads, so it is always the current one.</span>
+    <span data-websummit-i18n="source.fallback" data-translate="schedule.source.fallback">We couldn't reach the live sheet, so this is the last saved copy of the schedule.</span>
+  </div>
+</div>
+	<script is:inline src="/websummit-2026-events-data.js"></script>
+	<script is:inline src="/websummit-2026-side-events.js"></script>
+	<Fragment slot="widgets">
+		<GarnaBookingWidget
+			trackingSource="websummit-2026"
+			trackingPage="websummit-2026-side-events"
+			trackingCta="websummit_2026_offer_demo"
+			titleFallback="Book a free 30-minute product demo"
+			subtitleFallback="Get all your questions answered by our experts"
+		/>
+	</Fragment>
+</BaseLayout>
