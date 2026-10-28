@@ -5,9 +5,9 @@ export const hrPodcastEn = {
 			'Hire employees abroad or pay global contractors with a special Garna offer for viewers of The Big Career Game podcast.',
 	},
 	hero: {
-		eyebrow: 'For "Большая карьерная игра" viewers',
+		eyebrow: 'For "The Big Career Game" viewers',
 		title: 'Start commission-free',
-		description: 'Garna hires and pays people in 150+ countries. For "Большая карьерная игра" viewers, pick one of two offers',
+		description: 'Garna hires and pays people in 150+ countries. For "The Big Career Game" viewers, pick one of two offers',
 		primaryCta: 'Claim the offer',
 		secondaryCta: 'How it works',
 	},
@@ -240,13 +240,13 @@ export const hrPodcastEs = {
 	meta: {
 		title: 'Garna para equipos de RR. HH. | Oferta del pódcast',
 		description:
-			'Contrata empleados en el extranjero o paga a contratistas internacionales con una oferta especial de Garna para quienes ven el pódcast Большая карьерная игра.',
+			'Contrata empleados en el extranjero o paga a contratistas internacionales con una oferta especial de Garna para quienes ven el pódcast "El gran juego de la carrera".',
 	},
 	hero: {
-		eyebrow: 'Para quienes ven "Большая карьерная игра"',
+		eyebrow: 'Para quienes ven "El gran juego de la carrera"',
 		title: 'Empieza sin comisiones',
 		description:
-			'Garna contrata y paga a personas en más de 150 países. Si ves "Большая карьерная игра", elige una de las dos ofertas',
+			'Garna contrata y paga a personas en más de 150 países. Si ves "El gran juego de la carrera", elige una de las dos ofertas',
 		primaryCta: 'Obtener la oferta',
 		secondaryCta: 'Cómo funciona',
 	},
@@ -354,13 +354,13 @@ export const hrPodcastPt = {
 	meta: {
 		title: 'Garna para equipas de RH | Oferta do podcast',
 		description:
-			'Contrate colaboradores no estrangeiro ou pague a prestadores internacionais com uma oferta especial da Garna para quem assiste ao podcast Большая карьерная игра.',
+			'Contrate colaboradores no estrangeiro ou pague a prestadores internacionais com uma oferta especial da Garna para quem assiste ao podcast "O grande jogo da carreira".',
 	},
 	hero: {
-		eyebrow: 'Para quem assiste a "Большая карьерная игра"',
+		eyebrow: 'Para quem assiste a "O grande jogo da carreira"',
 		title: 'Comece sem comissões',
 		description:
-			'A Garna contrata e paga a profissionais em mais de 150 países. Para quem assiste a "Большая карьерная игра", escolha uma de duas ofertas',
+			'A Garna contrata e paga a profissionais em mais de 150 países. Para quem assiste a "O grande jogo da carreira", escolha uma de duas ofertas',
 		primaryCta: 'Obter a oferta',
 		secondaryCta: 'Como funciona',
 	},
