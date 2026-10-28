@@ -5,6 +5,16 @@ import { shortLinks } from '../src/config/short-links';
 import { readFileSync } from 'node:fs';
 
 describe('Short links', () => {
+	it.each(['//s/career-game-1', '/s//career-game-1', '///s///career-game-1//'])(
+		'handles repeated slashes in %s through the Worker', async (path) => {
+			const response = await worker.fetch(new Request(`http://localhost:8788${path}`), {}, {} as ExecutionContext);
+			expect(response.status).toBe(302);
+			expect(response.headers.get('Location')).toBe(
+				'http://localhost:8788/ru/podcast-offer?utm_source=bolshaya_karernaya_igra&utm_medium=podcast&utm_campaign=lopatina_ep1',
+			);
+		},
+	);
+
 	it.each([1, 2, 3, 4])('routes episode %i through the Worker with exact attribution', async (episode) => {
 		const response = await worker.fetch(
 			new Request(`https://garna.io/s/career-game-${episode}`, { headers: { 'Accept-Language': 'es' } }),

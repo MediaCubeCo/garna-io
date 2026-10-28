@@ -3,9 +3,10 @@ import { shortLinks } from '../config/short-links';
 /** Own the /s namespace before assets and locale routing. */
 export function handleShortLink(request: Request): Response | null {
 	const url = new URL(request.url);
-	if (url.pathname !== '/s' && !url.pathname.startsWith('/s/')) return null;
+	const pathname = url.pathname.replace(/\/{2,}/g, '/');
+	if (pathname !== '/s' && !pathname.startsWith('/s/')) return null;
 
-	const slug = /^\/s\/([a-z0-9]+(?:-[a-z0-9]+)*)\/?$/.exec(url.pathname)?.[1];
+	const slug = /^\/s\/([a-z0-9]+(?:-[a-z0-9]+)*)\/?$/.exec(pathname)?.[1];
 	if (!slug || !Object.prototype.hasOwnProperty.call(shortLinks, slug)) {
 		return new Response(request.method === 'HEAD' ? null : 'Short link not found', {
 			status: 404,
