@@ -119,7 +119,7 @@ export function collectUtmParams(): Record<string, string> {
 }
 
 export interface FormAttribution {
-	/** Campaign tags: stored first-touch, then utm_* still on the page URL (URL wins). */
+	/** Campaign tags. Saved landing values in localStorage win over the current URL. */
 	utm: Record<string, string>;
 	/** Full address of the page the form is submitted from. Not written to storage. */
 	pageUrl: string;
@@ -134,14 +134,27 @@ function nonEmpty(record: Record<string, string>): Record<string, string> {
 }
 
 /**
+ * Merges UTM bags for a form submit.
+ * Current URL fills gaps. Cookies override the URL. localStorage overrides both,
+ * because landing tags are written there and that copy is what forms should send.
+ */
+export function mergeFormUtm(
+	fromUrl: Record<string, string>,
+	fromCookies: Record<string, string>,
+	fromStorage: Record<string, string>,
+): Record<string, string> {
+	return nonEmpty({ ...fromUrl, ...fromCookies, ...fromStorage });
+}
+
+/**
  * Attribution captured at form submit.
  * Stored UTM exists only after marketing consent. UTM still present on the
- * current URL is always included, and that URL wins when the same key exists in both.
+ * current URL fills any key that was not saved. localStorage wins on duplicates.
  */
 export function collectFormAttribution(): FormAttribution {
 	const pageUrl = typeof window === 'undefined' ? '' : window.location.href;
 	return {
-		utm: nonEmpty({ ...collectUtmParams(), ...getUtmFromUrl() }),
+		utm: mergeFormUtm(getUtmFromUrl(), parseCookies(), parseLocalStorage()),
 		pageUrl,
 	};
 }

@@ -29,6 +29,8 @@ name = "EMAIL"
 directory = "./dist"
 binding = "ASSETS"
 run_worker_first = [
+	"/s",
+	"/s/*",
 	"/api/rates",
 	"/",
 	"/index.html",
@@ -125,6 +127,8 @@ name = "EMAIL"
 directory = "./dist"
 binding = "ASSETS"
 run_worker_first = [
+	"/s",
+	"/s/*",
 	"/api/rates",
 	"/",
 	"/index.html",
