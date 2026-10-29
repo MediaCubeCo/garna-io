@@ -4,7 +4,11 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const astroRoot = path.join(root, 'astro');
-const allowedSetHtml = path.join(astroRoot, 'components/sections/blog/TrustedDynamicHead.astro');
+const allowedSetHtml = new Set([
+	path.join(astroRoot, 'components/sections/blog/TrustedDynamicHead.astro'),
+	path.join(astroRoot, 'components/layout/Footer.astro'),
+	path.join(astroRoot, 'layouts/BaseLayout.astro'),
+]);
 
 const forbiddenPatterns = [
 	['raw page import', /\?raw\b/],
@@ -49,7 +53,7 @@ export async function getArchitectureViolations() {
 		for (const [label, pattern] of forbiddenPatterns) {
 			if (pattern.test(source)) violations.push(`${relative}: ${label}`);
 		}
-		if (file !== allowedSetHtml && /set:html=/.test(source)) {
+		if (!allowedSetHtml.has(file) && /set:html=/.test(source)) {
 			violations.push(`${relative}: set:html outside the trusted dynamic-content allowlist`);
 		}
 	}

@@ -1,0 +1,504 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import FinalCTASection from '../components/sections/FinalCTASection.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import HeroStatsRow from '../components/ui/HeroStatsRow.astro';
+import StackedCardsSection from '../components/sections/StackedCardsSection.astro';
+import ContractorStatusVisual from '../components/visuals/ContractorStatusVisual.astro';
+import GlobalReachVisual from '../components/visuals/GlobalReachVisual.astro';
+import ScrollVisualCarouselSection from '../components/sections/ScrollVisualCarouselSection.astro';
+import { pageFinalCtas } from '../content/page-final-ctas';
+import type { FAQItem } from '../types/faq-section';
+import '../styles/one-contract.css';
+
+const shell = {
+	title: 'One Contract with Garna Instead of Hundreds with Contractors',
+	description: 'One contract with Garna, one consolidated invoice, and documents for every contractor in one dashboard.',
+	keywords: 'contractor of record, contractor agreements, international contractors, Garna',
+	htmlClass: 'scroll-smooth dark',
+	bodyClass: 'one-contract-body antialiased overflow-x-hidden bg-garna-page',
+	iconLibrary: 'iconify' as const,
+};
+
+const heroStats = [
+	{ value: '400+', label: 'companies', labelKey: 'hero.stats.companies' },
+	{ value: '150+', label: 'countries', labelKey: 'hero.stats.countries' },
+	{ value: '38,000+', label: 'professionals', labelKey: 'hero.stats.professionals' },
+	{ value: '24/7', label: 'support', labelKey: 'hero.stats.support' },
+];
+
+const comparisonRows = [
+	{ label: 'Agreements', before: '50 contracts under different templates and laws', after: '1 contract with Garna', labelKey: 'comparison.rows.r1.label', beforeKey: 'comparison.rows.r1.before', afterKey: 'comparison.rows.r1.after' },
+	{ label: 'Invoices', before: '50 invoices in different formats', after: '1 consolidated invoice', labelKey: 'comparison.rows.r2.label', beforeKey: 'comparison.rows.r2.before', afterKey: 'comparison.rows.r2.after' },
+	{ label: 'Documents', before: 'Documents collected manually', after: 'Documents for every contractor in one dashboard', labelKey: 'comparison.rows.r3.label', beforeKey: 'comparison.rows.r3.before', afterKey: 'comparison.rows.r3.after' },
+	{ label: 'Compliance', before: 'Compliance reviewed in-house', after: 'Compliance managed by Garna', labelKey: 'comparison.rows.r4.label', beforeKey: 'comparison.rows.r4.before', afterKey: 'comparison.rows.r4.after' },
+];
+
+const processSlides = [
+	{
+		key: 'agreement',
+		title: { text: 'Sign one contract', translateKey: 'process.steps.s1.title' },
+		description: { text: 'Your company enters into one agreement with Garna', translateKey: 'process.steps.s1.description' },
+		image: '/pages/payroll-solution-new/assets/one-contract-sign-agreement-v2.png',
+		imageAlt: 'A business professional signing an agreement at his desk',
+		overlay: {
+			type: 'compliance' as const,
+			riskLabel: { text: 'Agreement', translateKey: 'process.carousel.agreement.label' },
+			riskValue: { text: 'One contract', translateKey: 'process.carousel.agreement.value' },
+			reviewLabel: { text: 'Review', translateKey: 'process.carousel.agreement.reviewLabel' },
+			reviewValue: { text: 'Complete', translateKey: 'process.carousel.agreement.reviewValue' },
+			footerTitle: { text: 'Ready to sign', translateKey: 'process.carousel.agreement.footerTitle' },
+			footerMeta: { text: 'Garna', translateKey: 'brand.name' },
+		},
+	},
+	{
+		key: 'invite',
+		title: { text: 'Invite your team', translateKey: 'process.steps.s2.title' },
+		description: { text: 'Add contractors to the dashboard while Garna handles onboarding and agreements', translateKey: 'process.steps.s2.description' },
+		image: '/pages/payroll-solution-new/assets/one-contract-invite-team-v5.jpg',
+		imageAlt: 'Three young colleagues collaborating around a laptop',
+		overlay: {
+			type: 'hire' as const,
+			avatarImage: '/pages/payroll-solution-new/assets/one-contract-avatar-elena-v1.webp',
+			name: { text: 'Elena Rossi', translateKey: 'process.carousel.invite.name' },
+			status: { text: 'Joined your team', translateKey: 'process.carousel.invite.status' },
+			badge: { text: 'Active', translateKey: 'process.carousel.invite.badge' },
+		},
+	},
+	{
+		key: 'approve',
+		title: { text: 'Approve the work', translateKey: 'process.steps.s3.title' },
+		description: { text: 'Review invoices and approve the results in one interface', translateKey: 'process.steps.s3.description' },
+		image: '/pages/payroll-solution-new/assets/one-contract-approve-work-v4.png',
+		imageAlt: 'Two young professionals reviewing finished work at a studio monitor',
+		overlay: {
+			type: 'approval' as const,
+			period: { text: 'May 2026', translateKey: 'process.carousel.approve.period' },
+			title: { text: 'Approval in progress', translateKey: 'process.carousel.approve.title' },
+			meta: { text: '8 of 12 contractors reviewed', translateKey: 'process.carousel.approve.meta' },
+			progress: 67,
+		},
+	},
+	{
+		key: 'documents',
+		title: { text: 'Receive your documents', translateKey: 'process.steps.s4.title' },
+		description: { text: 'Get one invoice and a complete document package for the period', translateKey: 'process.steps.s4.description' },
+		image: '/pages/payroll-solution-new/assets/one-contract-documents-package-v5.webp',
+		imageAlt: 'A complete document portfolio being handed over across a desk',
+		overlay: {
+			type: 'payment' as const,
+			appName: { text: 'Garna', translateKey: 'brand.name' },
+			time: { text: 'Just now', translateKey: 'process.carousel.documents.time' },
+			title: { text: 'Document package ready', translateKey: 'process.carousel.documents.title' },
+			description: { text: 'Invoice and completion records', translateKey: 'process.carousel.documents.description' },
+		},
+	},
+] as const;
+
+const documents = [
+	{
+		key: 'agreement',
+		title: { text: 'Garna service agreement', translateKey: 'documents.items.i1.title' },
+		description: { text: 'One point of contact for your company.', translateKey: 'documents.items.i1.description' },
+		tags: [
+			{ text: 'One agreement', translateKey: 'documents.items.i1.tags.0' },
+			{ text: 'One partner', translateKey: 'documents.items.i1.tags.1' },
+			{ text: 'Easy to review', translateKey: 'documents.items.i1.tags.2' },
+		],
+	},
+	{
+		key: 'invoice',
+		title: { text: 'One consolidated invoice', translateKey: 'documents.items.i2.title' },
+		description: { text: 'Every contractor included in one document for the period.', translateKey: 'documents.items.i2.description' },
+		tags: [
+			{ text: 'One invoice', translateKey: 'documents.items.i2.tags.0' },
+			{ text: 'One period', translateKey: 'documents.items.i2.tags.1' },
+			{ text: 'All contractors', translateKey: 'documents.items.i2.tags.2' },
+		],
+	},
+	{
+		key: 'register',
+		title: { text: 'Team register', translateKey: 'documents.items.i3.title' },
+		description: { text: 'A clear breakdown of your team and completed work.', translateKey: 'documents.items.i3.description' },
+		tags: [
+			{ text: 'Team overview', translateKey: 'documents.items.i3.tags.0' },
+			{ text: 'Clear breakdown', translateKey: 'documents.items.i3.tags.1' },
+			{ text: 'One dashboard', translateKey: 'documents.items.i3.tags.2' },
+		],
+	},
+	{
+		key: 'completion-records',
+		title: { text: 'Work completion records', translateKey: 'documents.items.i4.title' },
+		description: { text: 'Documents for every contractor are available in the dashboard.', translateKey: 'documents.items.i4.description' },
+		tags: [
+			{ text: 'By contractor', translateKey: 'documents.items.i4.tags.0' },
+			{ text: 'Organized files', translateKey: 'documents.items.i4.tags.1' },
+			{ text: 'Ready to review', translateKey: 'documents.items.i4.tags.2' },
+		],
+	},
+];
+
+const risks = [
+	{ title: 'Contractor status', description: 'Engagements follow local requirements to help reduce misclassification risk', titleKey: 'risk.items.i1.title', descriptionKey: 'risk.items.i1.description' },
+	{ title: 'Rights to deliverables', description: 'Intellectual property transfer terms are documented clearly', titleKey: 'risk.items.i2.title', descriptionKey: 'risk.items.i2.description' },
+	{ title: 'No new entities', description: 'Work with a distributed team without opening a company in every country', titleKey: 'risk.items.i3.title', descriptionKey: 'risk.items.i3.description' },
+];
+
+const audiences = [
+	{ title: 'SaaS and IT products', description: 'Distributed development, design, and marketing teams', titleKey: 'audience.items.i1.title', descriptionKey: 'audience.items.i1.description' },
+	{ title: 'Agencies', description: 'Many project-based specialists and recurring paperwork', titleKey: 'audience.items.i2.title', descriptionKey: 'audience.items.i2.description' },
+	{ title: 'Marketplaces', description: 'A large network of independent contractors across countries', titleKey: 'audience.items.i3.title', descriptionKey: 'audience.items.i3.description' },
+	{ title: 'Startups', description: 'An international team without opening local entities', titleKey: 'audience.items.i4.title', descriptionKey: 'audience.items.i4.description' },
+];
+
+const faqs = [
+	{
+		question: 'What is Contractor of Record in simple terms?',
+		answer: 'It is a model in which Garna contracts with independent professionals while your company works through one agreement and one dashboard.',
+		questionTranslateKey: 'faq.items.q1.question',
+		answerTranslateKey: 'faq.items.q1.answer',
+	},
+	{
+		question: 'How do we move our current contractors to Garna?',
+		answer: 'The Garna team helps collect the required information, invite contractors, and complete onboarding without interrupting ongoing work.',
+		questionTranslateKey: 'faq.items.q2.question',
+		answerTranslateKey: 'faq.items.q2.answer',
+	},
+	{
+		question: 'How much does it cost?',
+		answer: 'Pricing depends on the number of contractors and your team structure. During the demo, we prepare an estimate for your scenario.',
+		questionTranslateKey: 'faq.items.q3.question',
+		answerTranslateKey: 'faq.items.q3.answer',
+	},
+	{
+		question: 'Which documents does our finance team receive?',
+		answer: 'The dashboard includes your Garna agreement, a consolidated invoice, a contractor register, and completion records. The exact package depends on your setup.',
+		questionTranslateKey: 'faq.items.q4.question',
+		answerTranslateKey: 'faq.items.q4.answer',
+	},
+	{
+		question: 'How long does onboarding take?',
+		answer: 'Timing depends on the number of contractors and countries involved. During the demo, we assess your team and suggest a transition plan.',
+		questionTranslateKey: 'faq.items.q5.question',
+		answerTranslateKey: 'faq.items.q5.answer',
+	},
+	{
+		question: 'Where can our contractors be located?',
+		answer: 'Garna supports contractors in more than 150 countries. We confirm availability for your specific setup during the demo.',
+		questionTranslateKey: 'faq.items.q6.question',
+		answerTranslateKey: 'faq.items.q6.answer',
+	},
+] satisfies FAQItem[];
+---
+
+<BaseLayout shell={shell} showRainbow={true}>
+	<section class="one-contract-hero">
+		<div class="garna-container one-contract-hero__grid">
+			<div class="one-contract-hero__copy">
+				<div class="one-contract-hero__text">
+					<h1 class="garna-hero-title-gradient" data-translate="hero.title">One contract with Garna<br />instead of hundreds with contractors</h1>
+					<p class="one-contract-hero__lead" data-translate="hero.description">Garna contracts with each professional in 150+ countries. You sign one agreement and receive one consolidated invoice with all supporting documents</p>
+				</div>
+				<div class="one-contract-hero__action">
+					<Button
+						href="#demo"
+						variant="primary"
+						size="hero"
+						effect="rotating-flare"
+						icon="arrow-up-right"
+						class="one-contract-hero__cta w-fit"
+						data-one-contract-cta
+						data-cta="hero"
+					>
+						<span data-translate="hero.cta">Book a demo</span>
+					</Button>
+					<p data-translate="hero.note">See the dashboard and get a tailored estimate for your team</p>
+				</div>
+				<div class="one-contract-hero__stats">
+					<HeroStatsRow stats={heroStats} ariaLabel="Garna in numbers" ariaLabelKey="hero.stats.ariaLabel" />
+				</div>
+			</div>
+
+			<div class="one-contract-hero__visual" aria-label="Contract management with Garna">
+				<div class="one-contract-hero__media">
+					<img
+						class="one-contract-hero__image"
+						src="/pages/payroll-solution-new/assets/one-contract-hero-office-woman-v5.png"
+						alt="A professional reviewing and signing contract documents in a modern office"
+						loading="eager"
+					/>
+				</div>
+				<div class="one-contract-hero__badges" aria-hidden="true">
+					<div class="one-contract-hero-badge one-contract-hero-badge--compliance">
+						<div class="one-contract-hero-badge__event-header">
+							<strong class="one-contract-hero-badge__event-title" data-translate="hero.cards.compliance.note">Agreement</strong>
+							<span class="one-contract-hero-badge__event-status" data-translate="hero.cards.compliance.value">Signed</span>
+						</div>
+						<div class="one-contract-hero-badge__person">
+							<span class="one-contract-hero-badge__portrait">
+								<img src="/pages/payroll-solution-new/assets/eor-hero-avatar-samantha-v3.png" alt="" loading="eager" />
+								<img class="one-contract-hero-badge__country" src="/images/flags/pt.png" alt="" loading="eager" />
+							</span>
+							<span class="one-contract-hero-badge__person-copy">
+								<strong>Samantha R.</strong>
+								<small data-translate="hero.cards.compliance.role">Contractor, Portugal</small>
+							</span>
+						</div>
+					</div>
+
+					<div class="one-contract-hero-badge one-contract-hero-badge--agreement">
+						<div class="one-contract-hero-badge__agreement-status">
+							<i aria-hidden="true"></i>
+							<small data-translate="hero.cards.agreement.label">One active agreement</small>
+						</div>
+						<strong data-translate="hero.cards.agreement.value">50 contractors covered</strong>
+						<div class="one-contract-hero-badge__footer">
+							<div class="one-contract-hero-badge__avatars" aria-hidden="true">
+								<span><img src="/pages/payroll-solution-new/assets/contractor-avatar-sarah-v1.webp" alt="" loading="eager" /></span>
+								<span><img src="/pages/payroll-solution-new/assets/contractor-avatar-maya-v2.webp" alt="" loading="eager" /></span>
+								<span><img src="/pages/payroll-solution-new/assets/contractor-avatar-alex-v2.webp" alt="" loading="eager" /></span>
+								<span>+47</span>
+							</div>
+							<small data-translate="hero.cards.agreement.note">Your entire contractor team</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="one-contract-section one-contract-comparison" id="comparison">
+		<div class="garna-container">
+			<div class="one-contract-section__heading one-contract-section__heading--center">
+				<h2 data-translate="comparison.title">What changes when you work with more than 10 contractors</h2>
+				<p data-garna-subtitle data-translate="comparison.description">See the difference for an international team of 50 contractors</p>
+			</div>
+			<div class="one-contract-comparison__scroller" tabindex="0" aria-label="Current contractor management compared with Garna" data-translate-aria-label="comparison.ariaLabel">
+				<table class="comparison-table">
+					<caption class="sr-only" data-translate="comparison.ariaLabel">Current contractor management compared with Garna</caption>
+					<colgroup><col class="comparison-table__feature-column" /><col class="comparison-table__option-column" /><col class="comparison-table__option-column" /></colgroup>
+					<thead>
+						<tr>
+							<th class="comparison-table__corner" scope="col"></th>
+							<th class="comparison-table__header" scope="col" data-translate="comparison.before">Now</th>
+							<th class="comparison-table__header comparison-table__header--garna" scope="col">
+								<div class="comparison-table__garna-header"><img src="/garna_logo.svg" alt="Garna" /></div>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{comparisonRows.map((row, index) => (
+							<tr>
+								<th scope="row" data-translate={row.labelKey}>{row.label}</th>
+								<td class="comparison-table__cell comparison-table__cell--before">
+									<span class="comparison-table__value"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 8 8M16 8l-8 8"></path></svg><span data-translate={row.beforeKey}>{row.before}</span></span>
+								</td>
+								<td class:list={['comparison-table__cell', 'comparison-table__cell--garna', index === comparisonRows.length - 1 && 'comparison-table__cell--garna-last']}>
+									<span class="comparison-table__value"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 12.5 3.5 3.5 7.5-8"></path></svg><span data-translate={row.afterKey}>{row.after}</span></span>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<div id="how-it-works" class="one-contract-process-carousel">
+		<ScrollVisualCarouselSection
+			id="one-contract-process-carousel"
+			slides={processSlides}
+			cta={{
+				text: 'Book a demo',
+				translateKey: 'hero.cta',
+				trackingCta: 'one_contract_process_demo',
+			}}
+			copyVariant="section"
+			scrollOnly={true}
+		/>
+	</div>
+
+	<StackedCardsSection
+		id="documents"
+		title={{ text: 'Documents that are easy to review', translateKey: 'documents.title' }}
+		description={{ text: 'No email archives or inconsistently named files. Every document is organized by period and contractor', translateKey: 'documents.description' }}
+		cards={documents}
+		timings={[[0.06, 0.34], [0.29, 0.62], [0.57, 0.92]]}
+	/>
+
+	<section class="one-contract-section one-contract-risk">
+		<div class="garna-container">
+			<div class="one-contract-section__heading one-contract-section__heading--center">
+				<h2 data-translate="risk.title">An international team without the legal maze</h2>
+				<p data-translate="risk.description">Keep contractor classification, intellectual property, and international expansion organized in one compliant setup</p>
+			</div>
+			<div class="risk-grid">
+				{risks.map((risk, index) => (
+					<Card
+						variant="visual"
+						visualPosition="after"
+						title={{ text: risk.title, translateKey: risk.titleKey }}
+						description={{ text: risk.description, translateKey: risk.descriptionKey }}
+						class="risk-card"
+						bodyClass="risk-card__copy"
+						visualClass="risk-card__visual-shell"
+						titleClass="risk-card__title"
+						descriptionClass="risk-card__description"
+					>
+						{index === 0 && (
+							<div slot="visual" class="risk-visual risk-status-visual" aria-hidden="true">
+								<ContractorStatusVisual />
+							</div>
+						)}
+						{index === 1 && (
+							<div slot="visual" class="risk-visual risk-rights-visual" aria-hidden="true">
+								<div class="risk-rights-visual__sheet risk-rights-visual__sheet--back"></div>
+								<div class="risk-rights-visual__sheet risk-rights-visual__sheet--middle"></div>
+								<div class="risk-rights-visual__sheet risk-rights-visual__sheet--front">
+									<div class="risk-rights-visual__heading"><span data-translate="risk.visuals.rights.eyebrow">IP assignment agreement</span><strong data-translate="risk.items.i2.title">Rights to deliverables</strong></div>
+									<div class="risk-rights-visual__lines"><i></i><i></i><i></i><i></i><i></i></div>
+									<div class="risk-rights-visual__signatures">
+										<span><small data-translate="risk.visuals.rights.contractor">Contractor</small><b>S. Lewis</b><i></i><em data-translate="risk.visuals.rights.signature">Signature</em></span>
+										<span><small data-translate="risk.visuals.rights.client">Client</small><b>N. Labs</b><i></i><em data-translate="risk.visuals.rights.signature">Signature</em></span>
+									</div>
+								</div>
+							</div>
+						)}
+						{index === 2 && (
+							<div slot="visual" class="risk-visual risk-global-visual" aria-hidden="true">
+								<div class="risk-global-visual__globe">
+									<GlobalReachVisual staticGlobe={true} showGrid={false} showEmployees={false} compact={true} />
+									<span class="risk-global-visual__point risk-global-visual__point--ghana"></span>
+									<span class="risk-global-visual__point risk-global-visual__point--india"></span>
+									<span class="risk-global-visual__point risk-global-visual__point--russia"></span>
+									<span class="risk-global-visual__point risk-global-visual__point--kenya"></span>
+								</div>
+								<div class="risk-global-visual__badge risk-global-visual__badge--spain">
+									<span><img src="/images/flags/es.png" alt="" /></span>
+									<strong data-translate="risk.visuals.globe.spain">Spain team connected</strong>
+								</div>
+								<div class="risk-global-visual__badge risk-global-visual__badge--kenya">
+									<span><img src="/images/flags/ke.png" alt="" /></span>
+									<strong data-translate="risk.visuals.globe.kenya">Kenya team active</strong>
+								</div>
+							</div>
+						)}
+					</Card>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="one-contract-section one-contract-audience">
+		<div class="garna-container">
+			<div class="one-contract-section__heading one-contract-section__heading--center">
+				<h2 data-translate="audience.title">Built for teams with 10+ contractors across countries</h2>
+			</div>
+			<div class="audience-grid">
+				{audiences.map((audience, index) => (
+					<Card
+						title={{ text: audience.title, translateKey: audience.titleKey }}
+						description={{ text: audience.description, translateKey: audience.descriptionKey }}
+						class="audience-card"
+					>
+						{index === 0 && (
+							<svg slot="visual" class="audience-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4M8 9l2 2-2 2M13 13h3"></path>
+							</svg>
+						)}
+						{index === 1 && (
+							<svg slot="visual" class="audience-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<circle cx="9" cy="7" r="4"></circle><path d="M2 21v-2a6 6 0 0 1 12 0v2M16 3.5a4 4 0 0 1 0 7M22 21v-2a6 6 0 0 0-4-5.65"></path>
+							</svg>
+						)}
+						{index === 2 && (
+							<svg slot="visual" class="audience-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M3 9h18l-2-5H5L3 9ZM5 9v10h14V9M9 19v-6h6v6"></path><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"></path>
+							</svg>
+						)}
+						{index === 3 && (
+							<svg slot="visual" class="audience-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M4.5 16.5c-1.5 1.2-2 3.2-2 5 1.8 0 3.8-.5 5-2M15 5l4-2 2 2-2 4-8.5 8.5-4-4L15 5Z"></path><circle cx="16" cy="8" r="1.5"></circle><path d="m9 19-4-4"></path>
+							</svg>
+						)}
+					</Card>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="one-contract-demo" id="demo">
+		<div class="one-contract-demo__glow" aria-hidden="true"></div>
+		<div class="garna-container one-contract-demo__grid">
+			<div class="one-contract-demo__copy">
+				<h2 data-translate="demo.title">See how to move your contractors to one agreement</h2>
+				<p data-garna-subtitle data-translate="demo.description">Complete the short form to view available times in our calendar</p>
+			</div>
+			<div class="one-contract-demo__form" id="one-contract-widget">
+				<GarnaBookingWidget
+					embedInline={true}
+					trackingSource="openai"
+					trackingPage="one-contract"
+					trackingCta="one_contract_form"
+					titleFallback="Book a demo"
+					subtitleFallback="Enter your details to choose a time"
+					bgColorCal="#101010"
+					colorBorder="rgba(255,255,255,.1)"
+				/>
+			</div>
+		</div>
+	</section>
+
+	<FAQSection
+		id="faq"
+		title={{ text: 'The essentials, answered', translateKey: 'faq.title' }}
+		subtitle={{ text: 'If your question is not listed, we will cover it during the demo', translateKey: 'faq.subtitle' }}
+		items={faqs}
+		variant="eor"
+		class="one-contract-faq py-16 lg:py-32"
+		containerClass="garna-container"
+	/>
+
+	<FinalCTASection {...pageFinalCtas.oneContract} />
+
+	<Fragment slot="widgets">
+		<script is:inline>
+			(() => {
+				const analyticsAllowed = () => window.garnaPrivacy?.hasConsent?.('analytics') === true;
+				const track = (event, params = {}) => {
+					if (!analyticsAllowed()) return;
+					window.dataLayer = Array.isArray(window.dataLayer) ? window.dataLayer : [];
+					window.dataLayer.push({ event, page: 'one-contract', ...params });
+				};
+
+				document.querySelectorAll('[data-one-contract-cta]').forEach((cta) => {
+					cta.addEventListener('click', () => track('cta_click', { cta: cta.dataset.cta || 'unknown' }));
+				});
+
+				let formStarted = false;
+				document.addEventListener('focusin', (event) => {
+					if (formStarted || !(event.target instanceof Element) || !event.target.closest('#one-contract-widget')) return;
+					if (!event.target.matches('input, select, textarea')) return;
+					formStarted = true;
+					track('form_start', { cta: 'one_contract_form' });
+				});
+
+				const reached = new Set();
+				const onScroll = () => {
+					const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+					if (scrollable <= 0) return;
+					const progress = Math.round((window.scrollY / scrollable) * 100);
+					[50, 90].forEach((threshold) => {
+						if (progress < threshold || reached.has(threshold)) return;
+						reached.add(threshold);
+						track('scroll', { percent_scrolled: threshold });
+					});
+				};
+				window.addEventListener('scroll', onScroll, { passive: true });
+			})();
+		</script>
+	</Fragment>
+</BaseLayout>
