@@ -67,7 +67,7 @@
 .one-contract-hero-badge__agreement-status { display: flex; align-items: center; gap: .45rem; }
 .one-contract-hero-badge__agreement-status i { width: .45rem; height: .45rem; flex: 0 0 auto; border-radius: 50%; background: var(--oc-accent); transform: translateY(-.5px); }
 .one-contract-hero-badge__agreement-status small { display: block; color: rgb(255 255 255 / .5); font-size: .58rem; font-weight: 700; letter-spacing: .06em; line-height: 1; text-transform: uppercase; }
-.one-contract-hero-badge--agreement > strong { display: block; margin-top: .72rem; font-size: 1.28rem; font-weight: 550; letter-spacing: -.035em; line-height: 1.1; white-space: nowrap; }
+.one-contract-hero-badge--agreement > strong { display: block; margin-top: .72rem; font-size: 1.18rem; font-weight: 550; letter-spacing: -.035em; line-height: 1.1; white-space: nowrap; }
 .one-contract-hero-badge__footer { display: flex; align-items: center; gap: .7rem; margin-top: .85rem; padding-top: .72rem; border-top: 1px solid rgb(255 255 255 / .09); }
 .one-contract-hero-badge__avatars { display: flex; align-items: center; }
 .one-contract-hero-badge__avatars span { display: grid; width: 1.7rem; height: 1.7rem; overflow: hidden; place-items: center; border: 2px solid #0b0c0d; border-radius: 50%; background: #25272a; color: rgb(255 255 255 / .82); font-size: .46rem; font-weight: 700; }
@@ -296,7 +296,7 @@ html[lang="es"] .risk-global-visual__point--russia { display: none; }
 	.one-contract-hero-badge__agreement-status small,
 	.one-contract-hero-badge__footer small { font-size: .54rem; }
 	.one-contract-hero-badge--agreement { bottom: .65rem; left: -.65rem; width: max-content; min-width: 14.1rem; padding: .8rem; border-radius: 13px; }
-	.one-contract-hero-badge--agreement > strong { margin-top: .58rem; font-size: 1.08rem; }
+	.one-contract-hero-badge--agreement > strong { margin-top: .58rem; font-size: 1rem; }
 	.one-contract-hero-badge__footer { margin-top: .65rem; padding-top: .58rem; }
 	.one-contract-hero-badge__avatars span { width: 1.48rem; height: 1.48rem; }
 	.one-contract-section__heading { margin-bottom: 38px; }
