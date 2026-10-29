@@ -9,6 +9,7 @@ import RainbowBackground from '../components/visuals/RainbowBackground.astro';
 import type { PageShellConfig } from '../types/page-shell';
 import { getPagePathFromPathname } from '../utils/page-path';
 import { buildPrivacyManagerSnippet } from '../../src/utils/privacy-ui';
+import { buildUtmPersistenceSnippet } from '../../src/utils/utm-persistence';
 
 interface Props {
 	shell: PageShellConfig;
@@ -30,6 +31,7 @@ const currentPath = getPagePathFromPathname(Astro.url.pathname);
 const showInstantMeet = false;
 const privacyLanguage = Astro.url.pathname.split('/').filter(Boolean)[0]?.toLowerCase() || 'en';
 const privacySnippet = buildPrivacyManagerSnippet(privacyLanguage);
+const utmSnippet = buildUtmPersistenceSnippet();
 
 const {
 	title,
@@ -91,6 +93,7 @@ const {
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
 			rel="stylesheet"
 		/>
+		<Fragment set:html={utmSnippet} />
 		<Fragment set:html={privacySnippet} />
 	</head>
 	<body class={bodyClass} data-garna-page>
