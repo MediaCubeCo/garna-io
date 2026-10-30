@@ -56,15 +56,41 @@ const cards = [
 		color: rgba(225, 250, 112, 0.9);
 	}
 
+	html[data-theme='light'] .what-else-you-get-section .stacked-cards-card {
+		border-color: #e2e5de;
+		background: #ffffff;
+		box-shadow: 0 12px 32px rgba(35, 40, 28, 0.05);
+	}
+
+	html[data-theme='light'] .what-else-you-get-section .stacked-cards-card::before,
+	html[data-theme='light'] .what-else-you-get-section .stacked-cards-card::after {
+		display: none;
+	}
+
+	html[data-theme='light'] .what-else-you-get-section .stacked-cards-card__copy h3 {
+		color: #151515;
+	}
+
+	html[data-theme='light'] .what-else-you-get-section .stacked-cards-card__copy p {
+		max-width: 560px;
+		color: #737974;
+		font: 400 15px/1.55 Manrope, sans-serif;
+	}
+
+	html[data-theme='light'] .what-else-you-get-section .stacked-cards-card__footer span,
+	html[data-theme='light'] .what-else-you-get-section .stacked-cards-card__footer span:first-child {
+		border-color: transparent;
+		background: #eafcc0;
+		padding: 9px 12px;
+		color: #3d5a10;
+		font: 650 13px/1 Manrope, sans-serif;
+		white-space: nowrap;
+	}
+
 	@media (min-width: 1024px) {
 		.what-else-you-get-section .stacked-cards-card__footer {
 			flex-wrap: nowrap;
-			gap: clamp(6px, 0.7vw, 10px);
-		}
-
-		.what-else-you-get-section .stacked-cards-card__footer span {
-			padding-inline: clamp(8px, 0.8vw, 12px);
-			font-size: clamp(11px, 0.9vw, 13px);
+			gap: 10px;
 		}
 	}
 

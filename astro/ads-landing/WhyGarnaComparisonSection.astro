@@ -267,6 +267,7 @@ const statusLabel: Record<Status, string> = {
 		align-items: center;
 		justify-content: center;
 		border-right: 1px solid rgba(255, 255, 255, 0.08);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 		border-left: 1px solid rgba(255, 255, 255, 0.08);
 		border-radius: 18px 18px 0 0;
 		background: #050505;
@@ -317,6 +318,73 @@ const statusLabel: Record<Status, string> = {
 
 	.comparison-status--depends {
 		color: #f2c94c;
+	}
+
+	:global(html[data-theme='light']) .comparison-table th,
+	:global(html[data-theme='light']) .comparison-table td {
+		border-bottom-color: rgba(21, 21, 21, 0.12);
+	}
+
+	:global(html[data-theme='light']) .comparison-table thead th {
+		background: #f3f4ee;
+		color: #151515;
+	}
+
+	:global(html[data-theme='light']) .comparison-table__corner {
+		color: #737974 !important;
+	}
+
+	:global(html[data-theme='light']) .comparison-table tbody th {
+		color: #151515;
+	}
+
+	:global(html[data-theme='light']) .comparison-table tbody td {
+		color: #737974;
+	}
+
+	:global(html[data-theme='light']) .comparison-table tbody td.comparison-table__primary-cell {
+		border-right-color: rgba(255, 255, 255, 0.1);
+		border-bottom-color: rgba(255, 255, 255, 0.1);
+		border-left-color: rgba(255, 255, 255, 0.1);
+		background: #050505 !important;
+	}
+
+	:global(html[data-theme='light']) .comparison-table thead th.comparison-table__header--primary {
+		border-bottom: 0;
+		background: #f3f4ee !important;
+	}
+
+	:global(html[data-theme='light']) .comparison-table__primary-header-surface {
+		border-right-color: rgba(255, 255, 255, 0.1);
+		border-left-color: rgba(255, 255, 255, 0.1);
+		background: #050505;
+	}
+
+	:global(html[data-theme='light']) .comparison-table__primary-header-surface img {
+		filter: none;
+	}
+
+	:global(html[data-theme='light']) .comparison-table tbody td:not(.comparison-table__primary-cell) .comparison-status--yes {
+		color: #3f6b13;
+	}
+
+	:global(html[data-theme='light']) .comparison-table tbody td:not(.comparison-table__primary-cell) .comparison-status--no {
+		color: #c43d49;
+	}
+
+	:global(html[data-theme='light']) .comparison-table tbody td:not(.comparison-table__primary-cell) .comparison-status--depends {
+		color: #a66a00;
+	}
+
+	:global(html[data-theme='light']) .comparison-table__primary-cell .comparison-status--yes {
+		color: #A8FF2C;
+	}
+
+	:global(html[data-theme='light']) .comparison-table__footer-primary {
+		border-right-color: rgba(255, 255, 255, 0.1);
+		border-bottom-color: rgba(255, 255, 255, 0.1);
+		border-left-color: rgba(255, 255, 255, 0.1);
+		background: #050505;
 	}
 
 	.comparison-table__footer {

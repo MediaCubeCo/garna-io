@@ -923,6 +923,41 @@ html[data-theme="light"] .garna-header .garna-header-login.garna-button-secondar
 	color: #151515 !important;
 }
 
+/* Global Invoicing crosses a dark calculator section inside an otherwise light page. */
+html[data-theme="light"] body[data-ads-landing] .garna-header.is-over-dark-surface:not(.is-mobile-open) {
+	background: rgba(15, 15, 15, 0.56) !important;
+	border-bottom-color: rgba(255, 255, 255, 0.09) !important;
+	backdrop-filter: blur(18px) saturate(112%) !important;
+	-webkit-backdrop-filter: blur(18px) saturate(112%) !important;
+}
+
+html[data-theme="light"] body[data-ads-landing] .garna-header.is-over-dark-surface .garna-header-logo {
+	filter: none !important;
+}
+
+html[data-theme="light"] body[data-ads-landing] .garna-header.is-over-dark-surface :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link,
+	.garna-header-mobile-link
+) {
+	color: #ffffff !important;
+}
+
+html[data-theme="light"] body[data-ads-landing] .garna-header.is-over-dark-surface :is(
+	.garna-header-menu-trigger,
+	.garna-header-nav-link
+):is(:hover, :focus-visible) {
+	background: transparent !important;
+	color: #ffffff !important;
+}
+
+html[data-theme="light"] body[data-ads-landing] .garna-header.is-over-dark-surface .garna-header-login.garna-button-secondary,
+html[data-theme="light"] body[data-ads-landing] .garna-header.is-over-dark-surface .garna-header-login.garna-button-secondary:hover {
+	border-color: rgba(255, 255, 255, 0.3) !important;
+	background: rgba(255, 255, 255, 0.08) !important;
+	color: #ffffff !important;
+}
+
 /* Match the Business Account hero's secondary CTA to the header Log In button. */
 html[data-theme="light"] .business-account-hero-demo.garna-button-secondary {
 	border: 1px solid rgba(21, 21, 21, 0.14) !important;
@@ -1264,6 +1299,12 @@ html[data-theme="light"] :is(
 ) {
 	background: #eafcc0 !important;
 	color: #3d5a10 !important;
+}
+
+html[data-theme="light"] .look-professional__quote-top strong {
+	border: 0 !important;
+	background: #e7effd !important;
+	color: #2357c6 !important;
 }
 
 /* The calculator is authored in older, explicit dark CSS rather than tokens. */

@@ -1166,7 +1166,7 @@ import Section from '../components/layout/Section.astro';
 	.creator-wallet-template-list span {
 		display: block;
 		overflow: hidden;
-		line-height: 1.15;
+		line-height: 1.3;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
@@ -1659,5 +1659,149 @@ import Section from '../components/layout/Section.astro';
 		.creator-process-fallback-visual.is-content-active .creator-visual-action {
 			animation: none;
 		}
+	}
+
+	/* Match the approved light Contractor of Record workflow treatment. */
+	:global(html[data-theme='light'] .creator-process-section .creator-process-scroll) {
+		--cor-app-text: #151515;
+		--cor-app-muted: #737974;
+		--cor-app-shell: #ffffff;
+		--cor-app-surface: #eceeea;
+		--cor-app-border: rgba(21, 21, 21, 0.1);
+	}
+
+	:global(html[data-theme='light'] .creator-process-section :is(.creator-process-step h3, .creator-process-fallback-copy h3)) {
+		color: var(--cor-app-text) !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section :is(.creator-process-step p, .creator-process-fallback-copy p)) {
+		color: var(--cor-app-muted) !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section :is(.creator-process-step > span, .creator-process-fallback-copy > span)) {
+		border-color: transparent !important;
+		background: #A8FF2C !important;
+		color: #101010 !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-process-progress span) {
+		background: rgba(21, 21, 21, 0.22);
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-process-progress span.is-active) {
+		background: linear-gradient(90deg, #151515 0 var(--creator-process-step-progress), rgba(21, 21, 21, 0.1) var(--creator-process-step-progress) 100%) !important;
+		box-shadow: inset 0 0 0 1px rgba(21, 21, 21, 0.12) !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-process-visual:is(.is-stack-one, .is-stack-two, .is-stack-three, .is-stack-four, .is-stack-five)) {
+		filter: none !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section :is(.creator-mini-window, .creator-wallet-panel, .creator-withdraw-panel)) {
+		border-color: var(--cor-app-border) !important;
+		background: var(--cor-app-shell) !important;
+		color: var(--cor-app-text) !important;
+		box-shadow: 0 18px 42px -28px rgba(21, 21, 21, 0.24);
+	}
+
+	:global(html[data-theme='light'] .creator-process-section :is(
+		.creator-mini-title,
+		.creator-mini-field strong,
+		.creator-invoice-head strong,
+		.creator-invoice-client strong,
+		.creator-invoice-dates strong,
+		.creator-invoice-row strong,
+		.creator-wallet-account > strong,
+		.creator-wallet-number b,
+		.creator-wallet-template-list span,
+		.creator-withdraw-balance > strong,
+		.creator-withdraw-method strong
+	)) {
+		color: var(--cor-app-text) !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section :is(
+		.creator-mini-field span,
+		.creator-invoice-head span,
+		.creator-invoice-client span,
+		.creator-invoice-dates span,
+		.creator-invoice-row--head span,
+		.creator-invoice-total span,
+		.creator-wallet-account-top > span,
+		.creator-wallet-number span,
+		.creator-wallet-section-head span,
+		.creator-withdraw-balance > span,
+		.creator-withdraw-method small
+	)) {
+		color: var(--cor-app-muted) !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section :is(
+		.creator-mini-field strong,
+		.creator-invoice-sheet,
+		.creator-invoice-client,
+		.creator-invoice-dates > div,
+		.creator-wallet-account,
+		.creator-wallet-template-list div,
+		.creator-withdraw-method
+	)) {
+		border-color: var(--cor-app-border) !important;
+		background: var(--cor-app-surface) !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section :is(.creator-invoice-items, .creator-invoice-row)) {
+		border-color: var(--cor-app-border) !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-wallet-currency span:first-child) {
+		background: #A8FF2C !important;
+		box-shadow: 0 0 0 1px rgba(121, 188, 25, 0.28);
+		color: #151515 !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-invoice-head em) {
+		background: #A8FF2C !important;
+		color: #151515 !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section :is(.creator-invoice-client, .creator-invoice-dates > div)) {
+		background: #ffffff !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-withdraw-icon) {
+		border-color: transparent !important;
+		background: #A8FF2C !important;
+		color: #151515 !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-invoice-total > strong) {
+		color: #3d5a10 !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-wallet-currency) {
+		border-color: var(--cor-app-border) !important;
+		background: var(--cor-app-surface) !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-wallet-currency span) {
+		color: var(--cor-app-muted) !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section :is(.creator-mini-button, .creator-wallet-actions span)) {
+		border-color: transparent !important;
+		background: #202427 !important;
+		color: #ffffff !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-wallet-section-head strong) {
+		display: none !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-wallet-template-list i) {
+		background: rgba(21, 21, 21, 0.2) !important;
+	}
+
+	:global(html[data-theme='light'] .creator-process-section .creator-withdraw-chevron) {
+		color: rgba(21, 21, 21, 0.38) !important;
 	}
 </style>

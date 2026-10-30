@@ -29,7 +29,7 @@ const carouselSlides = [
 		<div class="problems-carousel__viewport">
 			<div class="problems-carousel__rail" data-problems-rail>
 				{carouselSlides.map((item, sequenceIndex) => (
-					<button type="button" class:list={['problem-carousel-card', 'garna-glass-card', sequenceIndex === 1 && 'is-active']} data-problem-slide data-card-glow="true" data-index={item.index} data-sequence={sequenceIndex} aria-label={item.title} data-translate-aria-label={item.titleKey}>
+					<button type="button" class:list={['problem-carousel-card', 'garna-glass-card', sequenceIndex === 1 && 'is-active']} data-problem-slide data-index={item.index} data-sequence={sequenceIndex} aria-label={item.title} data-translate-aria-label={item.titleKey}>
 						<span class="problem-carousel-card__header">
 							<small>{String(item.index + 1).padStart(2, '0')}</small>
 							<strong data-translate={item.titleKey}>{item.title}</strong>
@@ -289,28 +289,28 @@ const carouselSlides = [
 	.problems-carousel__copy p { max-width: 31rem; margin: 1.5rem 0 2.5rem; color: var(--garna-subtitle-color); font-size: 1.25rem; font-weight: var(--garna-subtitle-weight); line-height: 1.625; }
 	.problems-carousel__viewport { width: 100%; overflow: hidden; padding-block: .65rem; }
 	.problems-carousel__rail { display: flex; gap: 1.15rem; width: 100%; transition: transform 520ms cubic-bezier(.22, 1, .36, 1); will-change: transform; }
-	.problem-carousel-card { --garna-card-glow-x: 50%; --garna-card-glow-y: 50%; --garna-card-glow-radius: 32rem; --problem-card-content-gap: 2.5rem; position: relative; isolation: isolate; display: flex; flex: 0 0 43%; height: var(--problem-card-height, 28rem); flex-direction: column; justify-content: space-between; gap: var(--problem-card-content-gap); overflow: hidden; border-radius: 1.75rem; padding: clamp(1.35rem, 2.4vw, 2rem); color: #fff; cursor: pointer; text-align: left; transform: scale(.94); transform-origin: center left; transition: transform 520ms cubic-bezier(.22, 1,.36, 1), border-color 220ms ease, box-shadow 220ms ease, opacity 220ms ease; }
-	.problem-carousel-card::before { position: absolute; inset: 0; z-index: 0; border-radius: inherit; background: radial-gradient(circle var(--garna-card-glow-radius) at var(--garna-card-glow-x) var(--garna-card-glow-y), rgb(255 255 255 / .12) 0%, rgb(255 255 255 / .075) 18%, rgb(255 255 255 / .035) 40%, transparent 70%); content: ''; opacity: 0; pointer-events: none; transition: opacity 300ms ease; }
+	.problem-carousel-card { --problem-card-content-gap: 2.5rem; position: relative; isolation: isolate; display: flex; flex: 0 0 43%; height: var(--problem-card-height, 28rem); flex-direction: column; justify-content: space-between; gap: var(--problem-card-content-gap); overflow: hidden; border: 1px solid rgb(16 16 16 / .08); border-radius: 1.75rem; padding: clamp(1.35rem, 2.4vw, 2rem); box-shadow: none; color: #101010; cursor: pointer; text-align: left; transform: scale(.94); transform-origin: center left; transition: transform 520ms cubic-bezier(.22, 1,.36, 1), opacity 220ms ease; }
+	.problem-carousel-card::before { display: none; }
 	.problem-carousel-card > * { position: relative; z-index: 1; }
-	.problem-carousel-card:is(:hover, :focus-visible, [data-pointer-active='true']) { border-color: rgb(255 255 255 / .15); box-shadow: 0 18px 45px rgb(0 0 0 / .28); }
-	.problem-carousel-card:is(:hover, :focus-visible, [data-pointer-active='true'])::before { opacity: 1; }
+	.problem-carousel-card:is(:hover, [data-pointer-active='true']) { border-color: rgb(16 16 16 / .08); box-shadow: none; }
+	.problem-carousel-card:focus-visible { outline: 2px solid rgb(16 16 16 / .24); outline-offset: 3px; }
 	.problem-carousel-card.is-active { transform: none; }
-	.problem-carousel-card:not(.is-active) { opacity: .68; }
+	.problem-carousel-card:not(.is-active) { opacity: .82; }
 	.problem-carousel-card__header { display: flex; flex-direction: column; gap: .75rem; }
-	.problem-carousel-card__header small { color: #A8FF2C; font: 700 .72rem / 1 Manrope, sans-serif; letter-spacing: .12em; }
-	.problem-carousel-card__header strong { max-width: 15rem; font: 500 clamp(1.25rem, 1.75vw, 1.55rem) / 1.2 Manrope, sans-serif; letter-spacing: -.02em; }
+	.problem-carousel-card__header small { color: #2357c6; font: 700 .72rem / 1 Manrope, sans-serif; letter-spacing: .12em; }
+	.problem-carousel-card__header strong { max-width: 15rem; color: #101010; font: 500 clamp(1.25rem, 1.75vw, 1.55rem) / 1.2 Manrope, sans-serif; letter-spacing: -.02em; }
 	.problem-carousel-card[data-index='4'] .problem-carousel-card__header strong { max-width: 18rem; text-wrap: balance; }
 	.problem-carousel-card__conversation { display: flex; flex-direction: column; gap: 1.35rem; }
 	.problem-chat { display: flex; align-items: flex-end; gap: .7rem; }
 	.problem-chat > span:not(.problem-avatar, .problem-garna-mark) { padding: .9rem 1rem; border-radius: 1rem; font: 500 .8rem / 1.48 Manrope, sans-serif; }
-	.problem-chat--customer > span:last-child { border-bottom-left-radius: .3rem; background: rgb(255 255 255 / .075); color: #f4f4f5; }
+	.problem-chat--customer > span:last-child { border: 0; border-bottom-left-radius: .3rem; background: #eceeea; color: rgb(16 16 16 / .82); }
 	.problem-chat--garna { justify-content: flex-end; }
-	.problem-chat--garna > span:first-child { border: 1px solid rgb(168 255 44 / .16); border-bottom-right-radius: .3rem; background: rgb(168 255 44 / .075); color: #e4e4e7; }
+	.problem-chat--garna > span:first-child { border: 0; border-bottom-right-radius: .3rem; background: #e8f5ff; color: #0f527d; }
 	.problem-avatar, .problem-garna-mark { display: grid; width: 2.5rem; height: 2.5rem; flex: 0 0 2.5rem; place-items: center; border-radius: 50%; }
-	.problem-avatar { overflow: hidden; border: 1px solid rgb(255 255 255 / .09); background: #202020; }
-	.problem-avatar img { width: 100%; height: 100%; object-fit: cover; }
-	.problem-garna-mark { background: #A8FF2C; }
-	.problem-garna-mark img { width: .8rem; height: 1.3rem; }
+	.problem-avatar { overflow: hidden; border: 0; background: transparent; box-shadow: none; }
+	.problem-avatar img { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; }
+	.problem-garna-mark { background: #151515; }
+	.problem-garna-mark img { width: .8rem; height: 1.3rem; filter: brightness(0) invert(1); }
 	.problems-carousel__controls { display: flex; width: 43%; justify-content: center; align-items: center; gap: .45rem; margin-top: 1.35rem; }
 	.problems-carousel__controls button { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 999px; background: rgb(255 255 255 / .24); padding: 0; cursor: pointer; transition: width 220ms ease, background 220ms ease; }
 	.problems-carousel__controls button.is-active { width: 3.4rem; background: rgb(168 255 44 / .18); box-shadow: inset 0 0 0 1px rgb(168 255 44 / .18); }

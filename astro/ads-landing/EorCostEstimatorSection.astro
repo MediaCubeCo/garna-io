@@ -2,9 +2,11 @@
 import Section from '../components/layout/Section.astro';
 import SectionHeader from '../components/layout/SectionHeader.astro';
 import Button from '../components/ui/Button.astro';
+import EorEstimatorParticles from '../components/visuals/EorEstimatorParticles.astro';
 ---
 
 <Section id="payout-calculator" contained={false} spacing="none" class="eor-estimator-section py-20 lg:py-36">
+	<EorEstimatorParticles />
 	<div class="eor-estimator-container mx-auto max-w-7xl px-6">
 		<div class="eor-estimator-shell">
 			<div class="eor-estimator-content">
@@ -82,15 +84,15 @@ import Button from '../components/ui/Button.astro';
 		position: relative;
 		isolation: isolate;
 		overflow: hidden;
-		background: #101010;
+		background: #151515;
 	}
 
 	:global(.eor-estimator-section)::before {
 		content: "";
 		position: absolute;
 		inset: 0;
-		z-index: -2;
-		background: url("/pages/payroll-solution-new/assets/global-invoicing-payout-desk-v10.png") center center / cover no-repeat;
+		z-index: -1;
+		background: none;
 	}
 
 	:global(.eor-estimator-section)::after {
@@ -98,21 +100,37 @@ import Button from '../components/ui/Button.astro';
 		position: absolute;
 		inset: 0;
 		z-index: -1;
-		background: rgb(0 0 0 / 0.55);
+		background: radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.055), transparent 30rem);
+		pointer-events: none;
 	}
 
-	.eor-estimator-container { position: relative; }
+	:global(.eor-estimator-section .eor-estimator-particles) {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0.85;
+		pointer-events: none;
+	}
+
+	.eor-estimator-container { position: relative; z-index: 1; }
 
 	.eor-estimator-shell {
 		display: grid;
-		grid-template-columns: minmax(0, 1.05fr) minmax(27rem, 0.95fr);
+		grid-template-columns: minmax(0, 0.9fr) minmax(27rem, 1.1fr);
 		gap: clamp(3rem, 6vw, 6rem);
 		align-items: center;
 	}
 
-	.eor-estimator-content { max-width: 39rem; }
+	.eor-estimator-content { max-width: 31rem; }
 
-	:global(.eor-estimator-copy) { max-width: 34rem; }
+	:global(.eor-estimator-copy) { max-width: 31rem; }
+
+	:global(html[data-theme='light'] .eor-estimator-section .eor-estimator-copy h2) {
+		color: #ffffff !important;
+		text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+	}
 
 	.eor-estimator-details {
 		--detail-font-size: clamp(1.125rem, 1.6vw, 1.25rem);
@@ -140,8 +158,8 @@ import Button from '../components/ui/Button.astro';
 		align-items: center;
 		justify-content: center;
 		border-radius: 999px;
-		background: #A8FF2C;
-		color: #080808;
+		background: #ffffff;
+		color: #101010;
 		font: 800 0.72rem/1 Manrope, sans-serif;
 	}
 
@@ -160,13 +178,13 @@ import Button from '../components/ui/Button.astro';
 		width: 100%;
 		max-width: 36rem;
 		justify-self: end;
-		border: 1px solid rgb(255 255 255 / 0.1);
+		border: 1px solid rgb(255 255 255 / 0.14);
 		border-radius: 18px;
-		background: rgb(26 26 26 / 0.9);
-		backdrop-filter: blur(18px);
+		background: var(--garna-page-bg, #f3f4ee);
+		backdrop-filter: none;
 		padding: clamp(1.15rem, 2vw, 1.55rem);
-		box-shadow: 0 28px 70px -58px rgb(0 0 0 / 0.9);
-		color: #fff;
+		box-shadow: 0 24px 64px rgba(0, 0, 0, 0.24);
+		color: #151515;
 		text-align: left;
 	}
 
@@ -178,7 +196,7 @@ import Button from '../components/ui/Button.astro';
 	}
 
 	.eor-estimator-card h3 {
-		color: #fff;
+		color: #151515;
 		font-family: Manrope, sans-serif;
 		font-size: clamp(1.35rem, 1.8vw, 1.75rem);
 		font-weight: 500;
@@ -197,7 +215,7 @@ import Button from '../components/ui/Button.astro';
 	.eor-estimator-group > p,
 	.eor-estimator-amount-field > span {
 		width: 100%;
-		color: #fff;
+		color: #151515;
 		font-family: Manrope, sans-serif;
 		font-size: 0.82rem;
 		font-weight: 600;
@@ -211,9 +229,9 @@ import Button from '../components/ui/Button.astro';
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		isolation: isolate;
 		overflow: hidden;
-		border: 1px solid rgb(255 255 255 / 0.1);
+		border: 1px solid rgba(21, 21, 21, 0.1);
 		border-radius: 10px;
-		background: #101010;
+		background: rgba(255, 255, 255, 0.7);
 	}
 
 	.eor-estimator-segments::before {
@@ -253,7 +271,7 @@ import Button from '../components/ui/Button.astro';
 		align-items: center;
 		border: 0;
 		background: transparent;
-		color: rgb(255 255 255 / 0.64);
+		color: #737974;
 		font-family: Manrope, sans-serif;
 		font-size: 0.95rem;
 		font-weight: 600;
@@ -297,9 +315,9 @@ import Button from '../components/ui/Button.astro';
 
 	.eor-estimator-amount {
 		min-height: calc(2.75rem + 2px);
-		border: 1px solid rgb(255 255 255 / 0.1);
+		border: 1px solid rgba(21, 21, 21, 0.1);
 		border-radius: 10px;
-		background: #101010;
+		background: rgba(255, 255, 255, 0.7);
 		gap: 0.75rem;
 		padding: 0 1rem;
 	}
@@ -310,7 +328,7 @@ import Button from '../components/ui/Button.astro';
 	}
 
 	.eor-estimator-amount b {
-		color: #A8FF2C;
+		color: #151515;
 		font-size: 1.05rem;
 		font-weight: 600;
 	}
@@ -320,7 +338,7 @@ import Button from '../components/ui/Button.astro';
 		border: 0;
 		outline: 0;
 		background: transparent;
-		color: #fff;
+		color: #151515;
 		font: 600 1rem/1 Manrope, sans-serif;
 	}
 
@@ -335,30 +353,30 @@ import Button from '../components/ui/Button.astro';
 	.eor-estimator-results > div {
 		display: grid;
 		gap: 0.45rem;
-		border: 1px solid rgb(255 255 255 / 0.08);
+		border: 1px solid rgba(21, 21, 21, 0.1);
 		border-radius: 10px;
-		background: #101010;
+		background: rgba(255, 255, 255, 0.7);
 		padding: 0.95rem 0.9rem;
 	}
 
 	.eor-estimator-results span {
-		color: rgb(255 255 255 / 0.52);
+		color: #737974;
 		font: 500 0.78rem/1.2 Manrope, sans-serif;
 	}
 
 	.eor-estimator-results strong {
 		min-width: 0;
 		overflow: hidden;
-		color: #fff;
+		color: #151515;
 		font: 500 clamp(1.3rem, 2.4vw, 1.75rem)/1 Manrope, sans-serif;
 		letter-spacing: -0.03em;
 		text-overflow: ellipsis;
 	}
 
-	.eor-estimator-results > div:first-child strong { color: #A8FF2C; }
+	.eor-estimator-results > div:first-child strong { color: #3d5a10; }
 
 	.eor-estimator-note {
-		color: rgb(255 255 255 / 0.45);
+		color: #737974;
 		font: 400 0.75rem/1.5 Manrope, sans-serif;
 	}
 

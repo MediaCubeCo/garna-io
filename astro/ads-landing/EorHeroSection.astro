@@ -1,5 +1,6 @@
 ---
 import Button from '../components/ui/Button.astro';
+import EorHeroParticleField from '../components/visuals/EorHeroParticleField.astro';
 
 const hero = {
 	image: '/pages/payroll-solution-new/assets/ads-landing-hero-invoicing-woman-upscaled.jpg',
@@ -14,6 +15,7 @@ const hero = {
 ---
 
 <section class="eor-hero" data-section-kind="hero">
+	<EorHeroParticleField />
 	<div class="eor-hero__grid mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center lg:gap-20">
 		<div class="eor-hero__copy">
 			<div class="eor-hero__text">
@@ -192,24 +194,24 @@ const hero = {
 		gap: clamp(0.4rem, 1.2vw, 0.8rem);
 		margin-top: auto;
 		padding-top: 1.3rem;
-		border-top: 1px solid rgb(255 255 255 / 0.16);
+		border-top: 1px solid rgb(16 16 16 / 0.18);
 	}
 
 	.eor-hero__note svg {
-		width: 1.45rem;
-		height: 1.45rem;
+		width: 1.55rem;
+		height: 1.55rem;
 		flex: 0 0 auto;
 		fill: none;
-		stroke: #c7ff00;
+		stroke: #2357c6;
 		stroke-linecap: round;
 		stroke-linejoin: round;
-		stroke-width: 1.7;
+		stroke-width: 1.65;
 	}
 
 	.eor-hero__note p {
 		max-width: none;
 		margin: 0;
-		color: rgb(255 255 255 / 0.82);
+		color: rgb(16 16 16 / 0.78);
 		font-size: 0.92rem;
 		font-weight: 600;
 		line-height: 1.4;
@@ -734,11 +736,11 @@ const hero = {
 	.hero-finance-card {
 		position: absolute;
 		box-sizing: border-box;
-		border: 1px solid rgb(255 255 255 / 0.13);
+		border: 1px solid rgb(16 16 16 / 0.09);
 		border-radius: 16px;
-		background: rgb(8 9 11 / 0.9);
-		box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 0.34);
-		color: #fff;
+		background: rgb(255 255 255 / 0.92);
+		box-shadow: 0 1rem 2.5rem rgb(16 16 16 / 0.2);
+		color: #101010;
 		font-family: Manrope, sans-serif;
 		backdrop-filter: blur(14px);
 		opacity: 1;
@@ -758,7 +760,7 @@ const hero = {
 
 	.hero-finance-card--income > small {
 		display: block;
-		color: rgb(255 255 255 / 0.58);
+		color: rgb(16 16 16 / 0.56);
 		font-size: 0.68rem;
 	}
 
@@ -774,7 +776,7 @@ const hero = {
 	.hero-finance-card--income > span {
 		display: block;
 		margin-top: 0.25rem;
-		color: #A8FF2C;
+		color: #4f7800;
 		font-size: 0.64rem;
 		font-weight: 650;
 	}
@@ -786,7 +788,7 @@ const hero = {
 		align-items: end;
 		gap: 0.28rem;
 		margin-top: 0.62rem;
-		border-bottom: 1px solid rgb(255 255 255 / 0.14);
+		border-bottom: 1px solid rgb(16 16 16 / 0.12);
 	}
 
 	.hero-income-chart i {
@@ -801,7 +803,7 @@ const hero = {
 		grid-template-columns: repeat(6, 1fr);
 		gap: 0.28rem;
 		padding-top: 0.26rem;
-		color: rgb(255 255 255 / 0.38);
+		color: rgb(16 16 16 / 0.42);
 		font-size: 0.43rem;
 		text-align: center;
 	}
@@ -827,7 +829,7 @@ const hero = {
 	}
 
 	.hero-balance-head span {
-		color: #A8FF2C;
+		color: #5f9000;
 		font-size: 1.5rem;
 		font-weight: 300;
 		line-height: 1;
@@ -842,9 +844,9 @@ const hero = {
 
 	.hero-balance-accounts div {
 		padding: 0.68rem 0.72rem;
-		border: 1px solid rgb(255 255 255 / 0.08);
+		border: 1px solid rgb(16 16 16 / 0.07);
 		border-radius: 9px;
-		background: rgb(255 255 255 / 0.055);
+		background: rgb(16 16 16 / 0.045);
 	}
 
 	.hero-balance-accounts small,
@@ -853,7 +855,7 @@ const hero = {
 	}
 
 	.hero-balance-accounts small {
-		color: rgb(255 255 255 / 0.5);
+		color: rgb(16 16 16 / 0.5);
 		font-size: 0.58rem;
 	}
 
@@ -866,12 +868,15 @@ const hero = {
 	.hero-balance-action {
 		margin-top: 0.55rem;
 		padding: 0.55rem;
-		border: 1px solid #A8FF2C;
+		border: 0;
 		border-radius: 8px;
-		background: #A8FF2C;
+		background-color: #bce320;
+		background-image: none;
+		box-shadow: none;
 		color: #0b0c0b;
 		font-size: 0.7rem;
 		font-weight: 650;
+		text-shadow: none;
 		text-align: center;
 	}
 

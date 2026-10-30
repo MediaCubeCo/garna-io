@@ -8,7 +8,6 @@ import Button from '../components/ui/Button.astro';
 	<div class="look-professional">
 		<div class="look-professional__visual" data-professional-invoice-visual aria-hidden="true">
 			<img src="/pages/payroll-solution-new/assets/contractor-cost-human-upscaled.jpg" alt="" loading="lazy" />
-			<div class="look-professional__shade"></div>
 			<div class="look-professional__notice look-professional__notice--quote">
 				<div class="look-professional__quote-top">
 					<span><span data-translate="professional.visual.invoice">Invoice</span> #0148</span>
@@ -139,14 +138,6 @@ import Button from '../components/ui/Button.astro';
 		filter: brightness(0.94) contrast(1.04) saturate(0.98);
 	}
 
-	.look-professional__shade {
-		position: absolute;
-		inset: 0;
-		background:
-			linear-gradient(180deg, rgb(0 0 0 / 0.02), rgb(0 0 0 / 0.2)),
-			linear-gradient(90deg, rgb(0 0 0 / 0.02), rgb(0 0 0 / 0.16));
-	}
-
 	.look-professional__notice {
 		position: absolute;
 		right: clamp(1rem, 3vw, 2rem);
@@ -199,10 +190,11 @@ import Button from '../components/ui/Button.astro';
 	}
 
 	.look-professional__quote-top strong {
+		border: 0;
 		border-radius: 9999px;
-		background: #A8FF2C;
+		background: #e7effd;
 		padding: 0.34rem 0.58rem;
-		color: #080808;
+		color: #2357c6;
 		font-size: 0.62rem;
 		font-weight: 800;
 		line-height: 1;
