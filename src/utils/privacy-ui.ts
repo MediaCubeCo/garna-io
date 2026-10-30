@@ -1,4 +1,5 @@
 import { PRIVACY_COOKIE_NAME, PRIVACY_POLICY_VERSION, deferConsentManagedEmbeds } from './privacy';
+import { injectUtmPersistence } from './utm-persistence';
 
 const PRIVACY_MARKER = 'data-garna-privacy';
 
@@ -69,11 +70,15 @@ const PRIVACY_SNIPPET = /<style data-garna-privacy-style>[\s\S]*?<\/style>\s*<sc
 export function injectPrivacyManager(html: string, language = 'en'): string {
 	if (!html) return html;
 	const snippet = buildPrivacyManagerSnippet(language);
-	if (html.includes(`<script ${PRIVACY_MARKER}>`)) return html.replace(PRIVACY_SNIPPET, snippet);
-	const preparedHtml = deferConsentManagedEmbeds(html);
-	if (/<\/head>/i.test(preparedHtml)) return preparedHtml.replace(/<\/head>/i, `${snippet}\n</head>`);
-	if (/<\/body>/i.test(preparedHtml)) return preparedHtml.replace(/<\/body>/i, `${snippet}\n</body>`);
-	return `${snippet}\n${preparedHtml}`;
+	let withPrivacy = html;
+	if (html.includes(`<script ${PRIVACY_MARKER}>`)) withPrivacy = html.replace(PRIVACY_SNIPPET, snippet);
+	else {
+		const preparedHtml = deferConsentManagedEmbeds(html);
+		if (/<\/head>/i.test(preparedHtml)) withPrivacy = preparedHtml.replace(/<\/head>/i, `${snippet}\n</head>`);
+		else if (/<\/body>/i.test(preparedHtml)) withPrivacy = preparedHtml.replace(/<\/body>/i, `${snippet}\n</body>`);
+		else withPrivacy = `${snippet}\n${preparedHtml}`;
+	}
+	return injectUtmPersistence(withPrivacy);
 }
 
 export async function injectPrivacyIntoResponse(response: Response, request: Request): Promise<Response> {

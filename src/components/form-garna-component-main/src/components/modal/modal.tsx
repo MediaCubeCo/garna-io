@@ -8,6 +8,7 @@ import { getCalApi } from '@calcom/embed-react';
 import { sendGtagEvent } from '../../utils/gtag';
 import { hashEmail } from '../../utils/hashEmail';
 import { sendFormCompletedWebhook } from '../../utils/webhook';
+import { collectFormAttribution, toCalMetadataConfig } from '../../utils/collectUtm';
 
 export interface IForm {
 	firstName: string;
@@ -320,6 +321,7 @@ export default function Modal({
 
 			// Inline embed + prefill. Steps 2 & 3 (calendar, booking) stay in Cal.com default language.
 			const fullName = [firstName, lastName].filter(Boolean).join(' ').trim();
+			const { utm } = collectFormAttribution();
 			cal('inline', {
 				elementOrSelector: container,
 				calLink: calComLink,
@@ -328,9 +330,12 @@ export default function Modal({
 					theme: calTheme,
 					name: fullName,
 					email,
-					...(trackingSource ? { 'metadata[source]': trackingSource } : {}),
-					...(trackingPage ? { 'metadata[page]': trackingPage } : {}),
-					...(trackingCta ? { 'metadata[cta]': trackingCta } : {}),
+					...toCalMetadataConfig({
+						...(trackingSource ? { source: trackingSource } : {}),
+						...(trackingPage ? { page: trackingPage } : {}),
+						...(trackingCta ? { cta: trackingCta } : {}),
+						...utm,
+					}),
 				},
 			});
 			// 🔽 UI и стилизация под garna.io

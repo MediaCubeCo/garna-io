@@ -117,3 +117,63 @@ export function collectUtmParams(): Record<string, string> {
 	const fromStorage = parseLocalStorage();
 	return { ...fromCookies, ...fromStorage };
 }
+
+export interface FormAttribution {
+	/** Campaign tags. Saved landing values in localStorage win over the current URL. */
+	utm: Record<string, string>;
+	/** Full address of the page the form is submitted from. Not written to storage. */
+	pageUrl: string;
+}
+
+function nonEmpty(record: Record<string, string>): Record<string, string> {
+	const out: Record<string, string> = {};
+	for (const [key, value] of Object.entries(record)) {
+		if (value != null && value !== '') out[key] = value;
+	}
+	return out;
+}
+
+/**
+ * Merges UTM bags for a form submit.
+ * Current URL fills gaps. Cookies override the URL. localStorage overrides both,
+ * because landing tags are written there and that copy is what forms should send.
+ */
+export function mergeFormUtm(
+	fromUrl: Record<string, string>,
+	fromCookies: Record<string, string>,
+	fromStorage: Record<string, string>,
+): Record<string, string> {
+	return nonEmpty({ ...fromUrl, ...fromCookies, ...fromStorage });
+}
+
+/**
+ * Attribution captured at form submit.
+ * Stored UTM exists only after marketing consent. UTM still present on the
+ * current URL fills any key that was not saved. localStorage wins on duplicates.
+ */
+export function collectFormAttribution(): FormAttribution {
+	const pageUrl = typeof window === 'undefined' ? '' : window.location.href;
+	return {
+		utm: mergeFormUtm(getUtmFromUrl(), parseCookies(), parseLocalStorage()),
+		pageUrl,
+	};
+}
+
+/** Cal.com rejects a booking when a metadata value is longer than this. */
+const CAL_METADATA_VALUE_MAX = 500;
+const CAL_METADATA_KEY_MAX = 40;
+
+/**
+ * Turns attribution fields into Cal.com embed config (`metadata[key]=value`).
+ * Values are truncated to Cal.com's metadata limit.
+ */
+export function toCalMetadataConfig(fields: Record<string, string>): Record<string, string> {
+	const config: Record<string, string> = {};
+	for (const [key, value] of Object.entries(fields)) {
+		if (!value) continue;
+		const safeKey = key.replace(/[^\w]/g, '').slice(0, CAL_METADATA_KEY_MAX);
+		if (!safeKey) continue;
+		config[`metadata[${safeKey}]`] = value.slice(0, CAL_METADATA_VALUE_MAX);
+	}
+	return config;
+}

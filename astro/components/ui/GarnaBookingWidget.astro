@@ -82,10 +82,15 @@ const widgetConfig = {
 
 	function getCurrentCampaign() {
 		var value = '';
-		var params = new URLSearchParams(window.location.search);
-		params.forEach(function (paramValue, key) {
-			if (key.toLowerCase() === 'utm_campaign') value = paramValue;
-		});
+		try {
+			value = localStorage.getItem('utm_campaign') || '';
+		} catch (e) {}
+		if (!value.trim()) {
+			var params = new URLSearchParams(window.location.search);
+			params.forEach(function (paramValue, key) {
+				if (key.toLowerCase() === 'utm_campaign') value = paramValue;
+			});
+		}
 		return value.trim().toLowerCase();
 	}
 

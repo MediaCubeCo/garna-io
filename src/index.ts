@@ -1,5 +1,6 @@
 import { handleDynamic } from './routes/dynamic';
 import { handleRedirect } from './routes/redirects';
+import { handleShortLink } from './routes/short-links';
 import { show404Page } from './routes/404';
 import { handleStaticFile } from './routes/static';
 import { resolveRoute } from './utils/routes';
@@ -32,6 +33,9 @@ export default {
 				const targetUrl = `${CANONICAL_ORIGIN}${pathname}${url.search}`;
 				return Response.redirect(targetUrl, 301);
 			}
+
+			const shortLinkResponse = handleShortLink(request);
+			if (shortLinkResponse) return shortLinkResponse;
 
 			const legacyBlogRedirect = handleLegacyBlogRedirect(request);
 			if (legacyBlogRedirect) {

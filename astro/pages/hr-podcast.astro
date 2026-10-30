@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import GarnaBookingWidget from '../components/ui/GarnaBookingWidget.astro';
+import HeroStatsRow from '../components/ui/HeroStatsRow.astro';
+import { pageShells } from '../content/page-shells';
+import type { FAQItem } from '../types/faq-section';
+import { hrPodcastEn as copy } from '../../src/i18n/translations/hr-podcast';
+import '../styles/hr-podcast.css';
+
+const openWidget = (trackingCta: string) =>
+	`event.preventDefault(); if (window.GarnaWidget) window.GarnaWidget.open({ trackingCta: '${trackingCta}' });`;
+
+const scrollToHow =
+	`event.preventDefault(); const target = document.getElementById('hrp-how'); if (target) { const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' }); history.replaceState(null, '', '#hrp-how'); }`;
+
+const heroStats = [
+	{ value: copy.stats.companiesValue, valueKey: 'stats.companiesValue', label: copy.stats.companiesLabel, labelKey: 'stats.companiesLabel' },
+	{ value: copy.stats.countriesValue, valueKey: 'stats.countriesValue', label: copy.stats.countriesLabel, labelKey: 'stats.countriesLabel' },
+	{ value: copy.stats.currenciesValue, valueKey: 'stats.currenciesValue', label: copy.stats.currenciesLabel, labelKey: 'stats.currenciesLabel' },
+	{ value: copy.stats.volumeValue, valueKey: 'stats.volumeValue', label: copy.stats.volumeLabel, labelKey: 'stats.volumeLabel' },
+];
+
+const clientLogos = [
+	{ name: 'Playkot', src: '/images/hr-podcast/playkot.svg', className: 'is-playkot' },
+	{ name: 'Muse Group', src: '/images/hr-podcast/musegroup.svg', className: 'is-musegroup' },
+	{ name: 'Gismart', src: '/images/hr-podcast/gismart.svg', className: 'is-gismart' },
+	{ name: 'Appsulove', src: '/images/hr-podcast/ayl-logo.webp', className: 'is-appsu' },
+	{ name: 'SayGames', src: '/images/hr-podcast/saygames.svg', className: 'is-saygames' },
+	{ name: 'MadOut Games', src: '/images/hr-podcast/madout-logo-vector.svg', className: 'is-madout' },
+	{ name: 'TapClap', src: '/images/hr-podcast/tapclap-logo-vector.svg', className: 'is-tapclap' },
+];
+
+const faqItems = copy.faq.items.map((item, index) => ({
+	question: item.question,
+	answer: item.answer,
+	questionTranslateKey: `faq.items.${index}.question`,
+	answerTranslateKey: `faq.items.${index}.answer`,
+})) satisfies FAQItem[];
+---
+
+<BaseLayout shell={pageShells.hrPodcast} rainbowCount={6}>
+	<div class="hrp-page">
+		<section class="hrp-hero">
+			<div class="garna-container hrp-hero-grid">
+				<div class="hrp-hero-copy">
+					<p class="hrp-hero-kicker" data-translate="hero.eyebrow">{copy.hero.eyebrow}</p>
+					<h1 class="garna-hero-title-gradient" data-translate="hero.title">{copy.hero.title}</h1>
+					<p class="hrp-lead" data-translate="hero.description">{copy.hero.description}</p>
+					<div class="hrp-actions">
+						<Button href="#" size="hero" effect="rotating-flare" onclick={openWidget('hr_podcast_offer')}>
+							<span data-translate="hero.primaryCta">{copy.hero.primaryCta}</span>
+						</Button>
+						<Button href="#hrp-how" size="hero" variant="secondary" icon="arrow-up-right" onclick={scrollToHow}>
+							<span data-translate="hero.secondaryCta">{copy.hero.secondaryCta}</span>
+						</Button>
+					</div>
+				</div>
+
+				<div class="hrp-ticket" aria-label="Podcast offers">
+					<div class="hrp-ticket-title-row">
+						<h2 data-translate="offer.eyebrow">{copy.offer.eyebrow}</h2>
+						<span class="hrp-ticket-choice" data-translate="offer.title">{copy.offer.title}</span>
+					</div>
+					<div class="hrp-ticket-offers">
+						<div class="hrp-ticket-offer">
+							<div class="hrp-ticket-offer-label"><span data-translate="offer.eorLabel">{copy.offer.eorLabel}</span></div>
+							<strong data-translate="offer.eorTitle">{copy.offer.eorTitle}</strong>
+							<small data-translate="offer.eorDescription">{copy.offer.eorDescription}</small>
+							<div class="hrp-ticket-offer-footer">
+								<p data-translate="offer.eorContext">{copy.offer.eorContext}</p>
+								<a href="#hrp-how" class="hrp-ticket-details">
+									<span data-translate="offer.detailsCta">{copy.offer.detailsCta}</span>
+									<span class="hrp-ticket-details-icon" aria-hidden="true">
+										<svg viewBox="0 0 12 12"><path d="M6 1.5v8M2.75 6.5 6 9.75 9.25 6.5"></path></svg>
+									</span>
+								</a>
+							</div>
+						</div>
+						<span class="hrp-ticket-or"><span data-translate="offer.orLabel">{copy.offer.orLabel}</span></span>
+						<div class="hrp-ticket-offer">
+							<div class="hrp-ticket-offer-label"><span data-translate="offer.corLabel">{copy.offer.corLabel}</span></div>
+							<strong data-translate="offer.corTitle">{copy.offer.corTitle}</strong>
+							<small data-translate="offer.corDescription">{copy.offer.corDescription}</small>
+							<div class="hrp-ticket-offer-footer">
+								<p data-translate="offer.corContext">{copy.offer.corContext}</p>
+								<a href="#hrp-how" class="hrp-ticket-details">
+									<span data-translate="offer.detailsCta">{copy.offer.detailsCta}</span>
+									<span class="hrp-ticket-details-icon" aria-hidden="true">
+										<svg viewBox="0 0 12 12"><path d="M6 1.5v8M2.75 6.5 6 9.75 9.25 6.5"></path></svg>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<p class="hrp-ticket-note" data-translate="offer.description">{copy.offer.description}</p>
+				</div>
+
+				<HeroStatsRow stats={heroStats} ariaLabel="Garna in numbers" class="hrp-hero-stats" />
+			</div>
+		</section>
+
+		<section class="hrp-section" id="hrp-how">
+			<div class="garna-container">
+				<header class="hrp-section-head hrp-model-section-head">
+					<p class="hrp-eyebrow" data-translate="models.eyebrow">{copy.models.eyebrow}</p>
+					<h2 data-translate="models.title">{copy.models.title}</h2>
+				</header>
+				<div class="hrp-model-grid">
+					<Card class="hrp-model-card" id="hrp-eor">
+						<p class="hrp-card-label" data-translate="offer.eorLabel">{copy.offer.eorLabel}</p>
+						<h3 data-translate="models.eorTitle">{copy.models.eorTitle}</h3>
+						<div class="hrp-offer-highlight">
+							<strong data-translate="offer.eorTitle">{copy.offer.eorTitle}</strong>
+							<span data-translate="models.eorOfferLabel">{copy.models.eorOfferLabel}</span>
+						</div>
+						<ul>
+							{copy.models.eorPoints.map((point, index) => <li data-translate={`models.eorPoints.${index}`}>{point}</li>)}
+						</ul>
+						<div class="hrp-model-action">
+							<Button href="#" size="hero" onclick={openWidget('hr_podcast_eor')}><span data-translate="models.eorCta">{copy.models.eorCta}</span></Button>
+						</div>
+					</Card>
+
+					<Card class="hrp-model-card" id="hrp-cor">
+						<p class="hrp-card-label" data-translate="offer.corLabel">{copy.offer.corLabel}</p>
+						<h3 data-translate="models.corTitle">{copy.models.corTitle}</h3>
+						<div class="hrp-offer-highlight">
+							<strong data-translate="offer.corTitle">{copy.offer.corTitle}</strong>
+							<span data-translate="models.corOfferLabel">{copy.models.corOfferLabel}</span>
+						</div>
+						<ul>
+							{copy.models.corPoints.map((point, index) => <li data-translate={`models.corPoints.${index}`}>{point}</li>)}
+						</ul>
+						<div class="hrp-model-action">
+							<Button href="#" size="hero" onclick={openWidget('hr_podcast_cor')}><span data-translate="models.corCta">{copy.models.corCta}</span></Button>
+						</div>
+					</Card>
+				</div>
+			</div>
+		</section>
+
+		<section class="hrp-section hrp-section-muted">
+			<div class="garna-container hrp-ownership-layout">
+				<header class="hrp-section-head hrp-section-head-left">
+					<p class="hrp-eyebrow" data-translate="ownership.eyebrow">{copy.ownership.eyebrow}</p>
+					<h2 data-translate="ownership.title">{copy.ownership.title}</h2>
+				</header>
+				<div class="hrp-ownership-grid">
+					<Card
+						class="hrp-ownership-card"
+						title={{ text: copy.ownership.youTitle, translateKey: 'ownership.youTitle' }}
+					>
+						<ul>{copy.ownership.youPoints.map((point, index) => <li data-translate={`ownership.youPoints.${index}`}>{point}</li>)}</ul>
+					</Card>
+					<Card
+						class="hrp-ownership-card hrp-ownership-card-highlighted"
+						title={{ text: copy.ownership.garnaTitle, translateKey: 'ownership.garnaTitle' }}
+					>
+						<ul>{copy.ownership.garnaPoints.map((point, index) => <li data-translate={`ownership.garnaPoints.${index}`}>{point}</li>)}</ul>
+					</Card>
+				</div>
+			</div>
+		</section>
+
+		<section class="hrp-section hrp-logo-section" id="hrp-logos">
+			<div class="garna-container">
+				<header class="hrp-section-head">
+					<p class="hrp-eyebrow" data-translate="logos.eyebrow">{copy.logos.eyebrow}</p>
+					<h2 data-translate="logos.title">{copy.logos.title}</h2>
+				</header>
+				<ul class="hrp-logo-grid" aria-label="Garna game development clients">
+					{clientLogos.map((logo) => (
+						<li>
+							<img src={logo.src} alt={logo.name} class={logo.className} loading="lazy" />
+						</li>
+					))}
+				</ul>
+				<p class="hrp-logo-note">
+					<strong data-translate="logos.noteValue">{copy.logos.noteValue}</strong>
+					<span data-translate="logos.noteText">{copy.logos.noteText}</span>
+				</p>
+			</div>
+		</section>
+
+		<section class="hrp-section hrp-steps-section" id="hrp-steps">
+			<div class="garna-container">
+				<header class="hrp-section-head">
+					<p class="hrp-eyebrow" data-translate="steps.eyebrow">{copy.steps.eyebrow}</p>
+					<h2 data-translate="steps.title">{copy.steps.title}</h2>
+				</header>
+				<div class="hrp-steps">
+					{copy.steps.items.map((item, index) => (
+						<Card
+							class="hrp-step-card"
+							bodyClass="hrp-step-body"
+							visualClass="hrp-step-number-wrap"
+							title={{ text: item.title, translateKey: `steps.items.${index}.title` }}
+							description={{ text: item.description, translateKey: `steps.items.${index}.description` }}
+						>
+							<span slot="visual" class="hrp-step-number">{String(index + 1).padStart(2, '0')}</span>
+						</Card>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<FAQSection
+			id="hrp-faq"
+			kicker={{ text: copy.faq.eyebrow, translateKey: 'faq.eyebrow' }}
+			title={{ text: copy.faq.title, translateKey: 'faq.title' }}
+			items={faqItems}
+			variant="eor"
+			class="hrp-section"
+			containerClass="garna-container"
+		/>
+
+		<section class="hrp-final-section">
+			<div class="garna-container">
+				<div class="hrp-final-card">
+					<div>
+						<p class="hrp-eyebrow" data-translate="finalCta.eyebrow">{copy.finalCta.eyebrow}</p>
+						<h2 class="garna-hero-title-gradient" data-translate="finalCta.title">{copy.finalCta.title}</h2>
+						<p class="hrp-final-description" data-garna-subtitle data-translate="finalCta.description">{copy.finalCta.description}</p>
+					</div>
+					<div class="hrp-final-actions">
+						<Button href="#" size="hero" effect="rotating-flare" onclick={openWidget('hr_podcast_final_demo')}>
+							<span data-translate="finalCta.button">{copy.finalCta.button}</span>
+						</Button>
+					</div>
+				</div>
+				<p class="hrp-legal-note" data-translate="finalCta.note">{copy.finalCta.note}</p>
+			</div>
+		</section>
+	</div>
+
+	<Fragment slot="widgets">
+		<GarnaBookingWidget
+			trackingSource="hr-podcast"
+			trackingPage="podcast-offer"
+			trackingCta="hr_podcast_offer"
+			titleFallback="Claim your Garna podcast offer"
+			subtitleFallback="Tell us about your team and choose a time to talk"
+		/>
+	</Fragment>
+</BaseLayout>
+
+<script>
+	if (!document.documentElement.hasAttribute('data-hrp-details-scroll')) {
+		document.documentElement.setAttribute('data-hrp-details-scroll', '');
+		document.addEventListener('click', (event) => {
+			const trigger = (event.target as Element | null)?.closest<HTMLAnchorElement>('.hrp-ticket-details');
+			if (!trigger?.hash) return;
+
+			const target = document.querySelector<HTMLElement>(trigger.hash);
+			if (!target) return;
+
+			event.preventDefault();
+			history.replaceState(null, '', trigger.hash);
+			target.scrollIntoView({ block: 'start' });
+		});
+	}
+</script>
