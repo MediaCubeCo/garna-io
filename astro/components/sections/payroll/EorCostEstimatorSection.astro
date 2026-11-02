@@ -98,7 +98,7 @@ const flatRegions = regionGroups.flatMap(({ country, regions }) => regions.map((
 const countryCurrencyRows = [
 	['AL', 'ALL', 'Albania', 'al'], ['AR', 'ARS', 'Argentina', 'ar'], ['AM', 'AMD', 'Armenia', 'am'], ['AU', 'AUD', 'Australia', 'au'],
 	['AT', 'EUR', 'European Union', 'eu'], ['AZ', 'AZN', 'Azerbaijan', 'az'], ['BH', 'BHD', 'Bahrain', 'bh'], ['BD', 'BDT', 'Bangladesh', 'bd'],
-	['BY', 'BYN', 'Belarus', 'by'], ['BE', 'EUR', 'European Union', 'eu'], ['BZ', 'BZD', 'Belize', 'bz'], ['BO', 'BOB', 'Bolivia', 'bo'],
+	['BE', 'EUR', 'European Union', 'eu'], ['BZ', 'BZD', 'Belize', 'bz'], ['BO', 'BOB', 'Bolivia', 'bo'],
 	['BA', 'BAM', 'Bosnia and Herzegovina', 'ba'], ['BR', 'BRL', 'Brazil', 'br'], ['BG', 'BGN', 'Bulgaria', 'bg'], ['KH', 'KHR', 'Cambodia', 'kh'],
 	['CM', 'XAF', 'Cameroon', 'cm'], ['CA', 'CAD', 'Canada', 'ca'], ['CL', 'CLP', 'Chile', 'cl'], ['CN', 'CNY', 'China', 'cn'],
 	['CO', 'COP', 'Colombia', 'co'], ['CR', 'CRC', 'Costa Rica', 'cr'], ['CI', 'XOF', "Cote D'Ivoire", 'ci'], ['HR', 'EUR', 'European Union', 'eu'],
@@ -163,7 +163,7 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 							<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg>
 						</button>
 						<div class="eor-estimator-select__menu" role="listbox" hidden data-select-menu>
-							{eorCostCountries.filter((country) => calculatorCountryNames.has(country.code)).map((country) => (
+							{eorCostCountries.filter((country) => country.code !== 'BY' && country.code !== 'RU' && calculatorCountryNames.has(country.code)).map((country) => (
 								<button type="button" role="option" data-select-option value={country.name} data-country-code={country.code} data-select-label-text={country.name} data-translate-select-label-text={countryTranslationKey(country.code)} data-country-currency={defaultCurrencyForCountry(country.code)}>
 									<span class="eor-estimator-country-flag" aria-hidden="true">
 										<img src={flagSrc(country.code)} alt="" loading="lazy" />
@@ -707,7 +707,8 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 				form.querySelector<HTMLButtonElement>('[data-region-select] [data-select-trigger]')?.click();
 				return;
 			}
-			const target = new URL('/en/employee-cost-calculator', window.location.origin);
+			const activeLocale = document.documentElement.lang || 'en';
+			const target = new URL(`/${activeLocale}/employee-cost-calculator`, window.location.origin);
 			target.search = new URLSearchParams({ country: option.dataset.countryCode!, state: String(values.get('region') || ''), currency: String(values.get('currency')), salary, calculate: '1' }).toString();
 			window.location.assign(target.href);
 		});

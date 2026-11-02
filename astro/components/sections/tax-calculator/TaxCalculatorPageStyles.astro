@@ -88,7 +88,7 @@
 	}
 
 	.tax-input-wrap input {
-		padding-right: 106px;
+		padding-right: 86px;
 	}
 
 	.tax-currency-select:focus {
@@ -168,6 +168,10 @@
 		stroke-linecap: round;
 		stroke-linejoin: round;
 		transition: stroke 0.16s, transform 0.16s;
+	}
+
+	.tax-select-value[data-placeholder='true'] + svg {
+		stroke: #777780;
 	}
 
 	.tax-custom-select:has(.tax-select-clear) .tax-select-value {
@@ -283,7 +287,7 @@
 		position: absolute;
 		top: 1px;
 		right: 1px;
-		width: 104px;
+		width: 84px;
 	}
 
 	.tax-input-wrap > .tax-custom-select .tax-select-trigger {
@@ -291,7 +295,8 @@
 		border: 0;
 		border-left: 1px solid rgba(255, 255, 255, 0.09);
 		border-radius: 0 10px 10px 0;
-		padding: 0 11px;
+		gap: 5px;
+		padding: 0 15px;
 		font-size: 12px;
 		font-weight: 600;
 	}
