@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TaxCalculatorHeroSection from '../components/sections/tax-calculator/TaxCalculatorHeroSection.astro';
 import TaxCalculatorExplainerSection from '../components/sections/tax-calculator/TaxCalculatorExplainerSection.astro';
-import TaxCalculatorTrustStripSection from '../components/sections/tax-calculator/TaxCalculatorTrustStripSection.astro';
 import TaxCalculatorExpertSection from '../components/sections/tax-calculator/TaxCalculatorExpertSection.astro';
 import TaxCalculatorPageStyles from '../components/sections/tax-calculator/TaxCalculatorPageStyles.astro';
 import FAQSection from '../components/sections/FAQSection.astro';
@@ -22,12 +21,11 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 <BaseLayout shell={pageShells.taxCalculator}>
 		<TaxCalculatorHeroSection />
 		<TaxCalculatorExplainerSection />
-		<TaxCalculatorTrustStripSection />
 		<TaxCalculatorExpertSection />
 	<FAQSection title={{ text: 'Employee Cost Calculator FAQs', translateKey: 'faq.title' }} items={faqItems} variant="eor" class="tax-faq" containerClass="garna-container" />
 	<div id="tax-i18n" hidden>
 		<span data-key="loading" data-translate="messages.loading">Comparing hiring markets…</span><span data-key="configError" data-translate="messages.configError">Could not load country details. Please try again.</span><span data-key="calcError" data-translate="messages.calcError">Could not calculate right now. Please try again.</span><span data-key="selectCountryError" data-translate="messages.selectCountryError">Select at least one country to compare.</span><span data-key="duplicateCountry" data-translate="messages.duplicateCountry">Choose a different country for comparison.</span><span data-key="editInputs" data-translate="calculator.editInputs">Change inputs</span>
-		<span data-key="state" data-translate="calculator.state">State or region</span><span data-key="secondCountry" data-translate="calculator.secondCountry">Second country</span>
+		<span data-key="state" data-translate="calculator.state">State or region</span><span data-key="secondCountry" data-translate="calculator.secondCountry">Second country</span><span data-key="addCountry" data-translate="calculator.addCountry">Add a second country for comparison</span><span data-key="removeCountry" data-translate="calculator.removeCountry">Remove second country</span>
 		<span data-key="comparison" data-translate="results.comparison">Hiring cost comparison</span><span data-key="marketsCompared" data-translate="results.marketsCompared">markets compared</span><span data-key="gross" data-translate="results.gross">Gross annual salary</span><span data-key="net" data-translate="results.net">Estimated net annual</span><span data-key="employerCosts" data-translate="results.employerCosts">Annual employer costs</span><span data-key="totalAnnual" data-translate="results.totalAnnual">Total annual cost</span><span data-key="breakdown" data-translate="results.breakdown">Cost breakdown</span><span data-key="item" data-translate="results.item">Item</span><span data-key="bestValue" data-translate="results.bestValue">Lowest total cost</span><span data-key="moreThanLowest" data-translate="results.moreThanLowest">above lowest</span><span data-key="estimatedNote" data-translate="results.estimatedNote">This result is an estimate based on local taxation and standard employment requirements. Final amounts may vary.</span><span data-key="remove" data-translate="results.remove">Remove</span><span data-key="incomplete" data-translate="results.incomplete">Some countries could not be calculated.</span>
 	</div>
 	<Fragment slot="widgets"><GarnaBookingWidget trackingSource="employee-cost-calculator" trackingPage="employee-cost-calculator" trackingCta="employee_cost_calculator_hero_demo" titleFallback="Book a free 30-minute product demo" subtitleFallback="Get all your questions answered by our experts" /></Fragment>
@@ -54,7 +52,7 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 	const t = (key: string) => document.querySelector(`#tax-i18n [data-key="${key}"]`)?.textContent || key;
 	const esc = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#039;' })[char] || char);
 	const money = (value: unknown, code: string) => new Intl.NumberFormat(locale, { style: 'currency', currency: code, maximumFractionDigits: 0 }).format(Number(value) || 0);
-	const flag = (countryCode: string) => countryCode.replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
+	const flagSrc = (countryCode: string) => `https://flagcdn.com/w80/${countryCode.toLowerCase()}.png`;
 	const formatSalary = (digits: string) => digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	const firstCountrySelect = countryRows?.querySelector<HTMLSelectElement>('.tax-country-select');
 	let countryOptions = firstCountrySelect?.innerHTML || '';
@@ -69,18 +67,33 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 		if (restoreFocus) widget.trigger.focus();
 	};
 	const closeTaxSelects = (except?: TaxSelectWidget) => selectWidgets.forEach((widget) => { if (widget !== except) closeTaxSelect(widget); });
+	const fitTaxSelectMenuInsideCard = (select: HTMLSelectElement, widget: TaxSelectWidget) => {
+		const card = widget.root.closest<HTMLElement>('.tax-card');
+		if (!card) return;
+		const cardBounds = card.getBoundingClientRect();
+		const triggerBounds = widget.trigger.getBoundingClientRect();
+		const availableBelow = Math.max(0, cardBounds.bottom - triggerBounds.bottom - 24);
+		const availableAbove = Math.max(0, triggerBounds.top - cardBounds.top - 24);
+		const placeAbove = availableAbove > availableBelow;
+		const availableHeight = placeAbove ? availableAbove : availableBelow;
+		widget.menu.dataset.placement = placeAbove ? 'top' : 'bottom';
+		widget.menu.style.maxHeight = `${Math.min(240, availableHeight)}px`;
+	};
 	const syncTaxSelect = (select: HTMLSelectElement) => {
 		const widget = selectWidgets.get(select); if (!widget) return;
 		const selected = select.selectedOptions[0];
 		widget.value.textContent = selected?.textContent?.trim() || select.getAttribute('aria-label') || '';
 		widget.value.dataset.placeholder = String(!select.value);
+		widget.root.dataset.hasValue = String(Boolean(select.value));
 		widget.trigger.disabled = select.disabled;
 		widget.trigger.setAttribute('aria-disabled', String(select.disabled));
 		widget.menu.querySelectorAll<HTMLButtonElement>('[data-tax-select-option]').forEach((option) => option.setAttribute('aria-selected', String(option.dataset.value === select.value)));
 	};
 	const rebuildTaxSelect = (select: HTMLSelectElement) => {
 		const widget = selectWidgets.get(select); if (!widget) return;
-		widget.menu.replaceChildren(...[...select.options].map((option) => {
+		const hidesEmptyOption = select.matches('.tax-country-select, .tax-region-select');
+		const visibleOptions = [...select.options].filter((option) => !hidesEmptyOption || Boolean(option.value));
+		widget.menu.replaceChildren(...visibleOptions.map((option) => {
 			const button = document.createElement('button');
 			button.type = 'button';
 			button.dataset.taxSelectOption = '';
@@ -100,6 +113,7 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 		widget.root.dataset.open = 'true';
 		widget.trigger.setAttribute('aria-expanded', 'true');
 		widget.menu.hidden = false;
+		fitTaxSelectMenuInsideCard(select, widget);
 		if (focusSelected) window.requestAnimationFrame(() => (widget.menu.querySelector<HTMLButtonElement>('[aria-selected="true"]') || widget.menu.querySelector<HTMLButtonElement>('[data-tax-select-option]'))?.focus());
 	};
 	const enhanceTaxSelect = (select: HTMLSelectElement) => {
@@ -110,10 +124,31 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 		const value = document.createElement('span'); value.className = 'tax-select-value';
 		trigger.append(value); trigger.insertAdjacentHTML('beforeend', '<svg aria-hidden="true" viewBox="0 0 16 16"><path d="m3.5 6 4.5 4 4.5-4"/></svg>');
 		const menu = document.createElement('div'); menu.id = id; menu.className = 'tax-select-menu'; menu.setAttribute('role', 'listbox'); menu.setAttribute('aria-label', select.getAttribute('aria-label') || select.title || 'Select an option'); menu.dataset.taxSelectMenu = ''; menu.hidden = true;
-		root.append(trigger, menu); select.insertAdjacentElement('afterend', root); select.classList.add('tax-native-select');
+		const isLocationSelect = select.matches('.tax-country-select, .tax-region-select');
+		const clearButton = isLocationSelect ? document.createElement('button') : null;
+		if (clearButton) {
+			clearButton.type = 'button';
+			clearButton.className = 'tax-select-clear';
+			clearButton.setAttribute('aria-label', `${t('remove')} ${select.getAttribute('aria-label') || t('secondCountry')}`);
+			clearButton.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg>';
+		}
+		root.append(trigger, ...(clearButton ? [clearButton] : []), menu); select.insertAdjacentElement('afterend', root); select.classList.add('tax-native-select');
 		const observer = new MutationObserver(() => rebuildTaxSelect(select));
 		const widget = { root, trigger, value, menu, observer }; selectWidgets.set(select, widget); observer.observe(select, { childList: true, subtree: true, characterData: true }); rebuildTaxSelect(select);
 		trigger.addEventListener('click', () => widget.menu.hidden ? openTaxSelect(select) : closeTaxSelect(widget));
+		clearButton?.addEventListener('click', (event) => {
+			event.preventDefault();
+			event.stopPropagation();
+			const previousValue = select.value;
+			select.value = '';
+			if (select.classList.contains('tax-country-select') && previousValue) countryConfigs.delete(previousValue);
+			syncTaxSelect(select);
+			closeTaxSelect(widget);
+			select.dispatchEvent(new Event('change', { bubbles: true }));
+			if (select.classList.contains('tax-country-select')) refreshCurrencies();
+			if (results) results.hidden = true;
+			trigger.focus();
+		});
 		select.addEventListener('change', () => queueMicrotask(() => syncTaxSelect(select)));
 		select.addEventListener('invalid', (event) => { event.preventDefault(); trigger.focus(); });
 		root.addEventListener('click', (event) => {
@@ -149,6 +184,24 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 		if (currencyValue) currencyValue.textContent = currency?.value || 'USD';
 		if (currencyChevron) currencyChevron.hidden = false;
 	};
+	const renderComparisonToggle = (hasComparison: boolean) => {
+		if (!addCountryButton) return;
+		addCountryButton.hidden = hasComparison;
+		addCountryButton.dataset.mode = 'add';
+		addCountryButton.innerHTML = `<span aria-hidden="true">＋</span><span>${esc(t('addCountry'))}</span>`;
+	};
+	const removeComparisonRow = (row: HTMLElement) => {
+		const code = row.querySelector<HTMLSelectElement>('.tax-country-select')?.value;
+		if (code) countryConfigs.delete(code);
+		row.querySelectorAll<HTMLSelectElement>('select').forEach((select) => {
+			selectWidgets.get(select)?.observer.disconnect();
+			selectWidgets.delete(select);
+		});
+		row.remove();
+		renderComparisonToggle(false);
+		refreshCurrencies();
+		if (results) results.hidden = true;
+	};
 
 	const loadCountryConfig = async (countryCode: string) => {
 		const response = await fetch(`/api/tax-calculator/config?country=${countryCode}`);
@@ -169,7 +222,11 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 	const configureCountryRow = async (row: HTMLElement, countryCode: string) => {
 		const regionField = row.querySelector<HTMLElement>('.tax-region-field');
 		const regionSelect = row.querySelector<HTMLSelectElement>('.tax-region-select');
-		if (!countryCode) { if (regionField) regionField.hidden = true; return; }
+		if (!countryCode) {
+			if (regionField) regionField.hidden = true;
+			if (regionSelect) { regionSelect.value = ''; regionSelect.required = false; syncTaxSelect(regionSelect); }
+			return;
+		}
 		if (status) { status.textContent = ''; status.classList.add('is-loading'); }
 		try {
 			const config = await loadCountryConfig(countryCode);
@@ -195,22 +252,19 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 	});
 
 	addCountryButton?.addEventListener('click', () => {
-		if (!countryRows || countryRows.querySelectorAll('.tax-country-row').length > 1) return;
-		countryRows.insertAdjacentHTML('beforeend', `<div class="tax-country-row is-comparison" data-country-row="1"><label><span>${esc(t('secondCountry'))}</span><select class="tax-country-select" aria-label="Country 2" required>${countryOptions}</select></label><label class="tax-region-field" hidden><span>${esc(t('state'))}</span><select class="tax-region-select" aria-label="${esc(t('state'))}"></select></label><button type="button" class="tax-remove-comparison" aria-label="${esc(t('remove'))}">×</button></div>`);
+		if (!countryRows) return;
+		const existingRow = countryRows.querySelector<HTMLElement>('.tax-country-row.is-comparison');
+		if (existingRow) return;
+		countryRows.insertAdjacentHTML('beforeend', `<div class="tax-country-row is-comparison" data-country-row="1"><div class="tax-field"><span>${esc(t('secondCountry'))}</span><select class="tax-country-select" aria-label="Country 2" required>${countryOptions}</select></div><label class="tax-region-field" hidden><span>${esc(t('state'))}</span><select class="tax-region-select" aria-label="${esc(t('state'))}"></select></label><button type="button" class="tax-remove-country-row" aria-label="${esc(t('removeCountry'))}" title="${esc(t('removeCountry'))}"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg></button></div>`);
 		enhanceTaxSelects(countryRows.lastElementChild || countryRows);
-		addCountryButton.hidden = true;
+		renderComparisonToggle(true);
 	});
 
 	countryRows?.addEventListener('click', (event) => {
-		const removeButton = (event.target as HTMLElement).closest<HTMLButtonElement>('.tax-remove-comparison');
+		const removeButton = (event.target as Element).closest<HTMLButtonElement>('.tax-remove-country-row');
 		if (!removeButton) return;
-		const row = removeButton.closest<HTMLElement>('.tax-country-row');
-		const code = row?.querySelector<HTMLSelectElement>('.tax-country-select')?.value;
-		if (code) countryConfigs.delete(code);
-		row?.remove();
-		if (addCountryButton) addCountryButton.hidden = false;
-		refreshCurrencies();
-		if (results) results.hidden = true;
+		const row = removeButton.closest<HTMLElement>('.tax-country-row.is-comparison');
+		if (row) removeComparisonRow(row);
 	});
 
 	currency?.addEventListener('change', syncCurrencyCode);
@@ -251,12 +305,12 @@ const faqItems = Array.from({ length: 9 }, (_, index) => ({
 			if (!response.ok || data.error) throw new Error(data.error || t('calcError'));
 			const compared = [...data.results].sort((a, b) => a.totalAnnual - b.totalAnnual);
 			const lowest = compared[0]?.totalAnnual || 0;
-			const headings = compared.map((item, index) => `<th><div class="tax-table-country"><span aria-hidden="true">${flag(item.countryCode)}</span><div><strong>${esc(item.country)}</strong>${item.state ? `<small>${esc(item.state)}</small>` : ''}</div>${index === 0 && compared.length > 1 ? `<b>${esc(t('bestValue'))}</b>` : ''}</div></th>`).join('');
+			const headings = compared.map((item, index) => `<th><div class="tax-table-country"><span class="tax-table-flag" aria-hidden="true"><img src="${esc(flagSrc(item.countryCode))}" alt="" loading="lazy"></span><div><strong>${esc(item.country)}${item.state ? `, ${esc(item.state)}` : ''}</strong></div>${index === 0 && compared.length > 1 ? `<b>${esc(t('bestValue'))}</b>` : ''}</div></th>`).join('');
 			const metricRow = (label, key, highlight = false) => `<tr${highlight ? ' class="is-total"' : ''}><th>${esc(label)}</th>${compared.map((item) => { const delta = key === 'totalAnnual' ? item.totalAnnual - lowest : 0; return `<td><strong>${money(item[key], item.currency)}</strong>${delta > 0 ? `<small>+${money(delta, item.currency)} ${esc(t('moreThanLowest'))}</small>` : ''}</td>`; }).join('')}</tr>`;
 			const costNames = [...new Set(compared.flatMap((item) => item.costs.map((cost) => cost.name)))];
 			const costRows = costNames.map((name) => `<tr><th>${esc(name)}</th>${compared.map((item) => { const cost = item.costs.find((entry) => entry.name === name); return `<td>${cost ? `<strong>${money(cost.annual, item.currency)}</strong>${cost.rate ? `<small>${esc(cost.rate)}</small>` : ''}` : '<span>—</span>'}</td>`; }).join('')}</tr>`).join('');
 			if (results) {
-				results.innerHTML = `<div class="tax-comparison-header"><div><span>${esc(t('comparison'))}</span><strong>${compared.length} ${esc(t('marketsCompared'))}</strong></div><div class="tax-results-actions"><b>${money(data.grossAnnual, data.currency)} · ${esc(data.currency)}</b><button type="button" data-edit-calculator><span aria-hidden="true">←</span>${esc(t('editInputs'))}</button></div></div><div class="tax-compare-table-wrap"><table class="tax-compare-table"><thead><tr><th>${esc(t('item'))}</th>${headings}</tr></thead><tbody>${metricRow(t('totalAnnual'), 'totalAnnual', true)}${metricRow(t('gross'), 'grossAnnual')}${metricRow(t('employerCosts'), 'employerCostAnnual')}${metricRow(t('net'), 'netAnnual')}<tr class="tax-breakdown-heading"><th colspan="${compared.length + 1}">${esc(t('breakdown'))}</th></tr>${costRows}</tbody></table></div>${data.errors?.length ? `<p class="tax-partial-error">${esc(t('incomplete'))}</p>` : ''}<p class="tax-disclaimer">* ${esc(t('estimatedNote'))}</p>`;
+				results.innerHTML = `<div class="tax-comparison-header"><div><span>${esc(t('comparison'))}</span><strong>${compared.length} ${esc(t('marketsCompared'))}</strong><small class="tax-results-salary">${money(data.grossAnnual, data.currency)} · ${esc(data.currency)}</small></div><button type="button" data-edit-calculator><span class="garna-button-arrow-glyph" aria-hidden="true">←</span><span>${esc(t('editInputs'))}</span></button></div><div class="tax-compare-table-wrap"><table class="tax-compare-table"><thead><tr><th>${esc(t('item'))}</th>${headings}</tr></thead><tbody>${metricRow(t('totalAnnual'), 'totalAnnual', true)}${metricRow(t('gross'), 'grossAnnual')}${metricRow(t('employerCosts'), 'employerCostAnnual')}${metricRow(t('net'), 'netAnnual')}<tr class="tax-breakdown-heading"><th colspan="${compared.length + 1}">${esc(t('breakdown'))}</th></tr>${costRows}</tbody></table></div>${data.errors?.length ? `<p class="tax-partial-error">${esc(t('incomplete'))}</p>` : ''}<p class="tax-disclaimer">* ${esc(t('estimatedNote'))}</p>`;
 				results.hidden = false;
 			}
 			if (status) status.textContent = '';

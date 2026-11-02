@@ -170,6 +170,54 @@
 		transition: stroke 0.16s, transform 0.16s;
 	}
 
+	.tax-custom-select:has(.tax-select-clear) .tax-select-value {
+		padding-right: 34px;
+	}
+
+	.tax-select-clear {
+		position: absolute;
+		z-index: 2;
+		top: 50%;
+		right: 2.65rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.75rem;
+		height: 1.75rem;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		color: rgb(255 255 255 / 0.48);
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(-50%);
+		transition: color 140ms ease, opacity 140ms ease;
+	}
+
+	.tax-custom-select[data-has-value='true']:hover > .tax-select-clear,
+	.tax-custom-select[data-has-value='true']:focus-within > .tax-select-clear {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.tax-select-clear:hover,
+	.tax-select-clear:focus-visible {
+		color: #fff;
+		outline: none;
+	}
+
+	.tax-select-clear svg {
+		width: 0.95rem;
+		height: 0.95rem;
+	}
+
+	.tax-select-clear svg path {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+	}
+
 	.tax-custom-select[data-open='true'] .tax-select-trigger svg {
 		stroke: #cbf300;
 		transform: rotate(180deg);
@@ -192,6 +240,15 @@
 
 	.tax-select-menu[hidden] {
 		display: none;
+	}
+
+	.tax-select-menu[data-placement='top'] {
+		top: auto;
+		bottom: calc(100% + 8px);
+	}
+
+	.tax-country-row:has(.tax-custom-select[data-open='true']) {
+		z-index: 50;
 	}
 
 	.tax-select-menu button {
