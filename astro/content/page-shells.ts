@@ -1,6 +1,16 @@
 import type { PageShellConfig } from '../types/page-shell';
 
 export const pageShells = {
+	hrPodcast: {
+		title: 'Garna for HR Teams | Podcast Offer',
+		description:
+			'Hire employees abroad or pay global contractors with a special Garna offer for viewers of The Big Career Game podcast.',
+		keywords: 'Garna podcast offer, employer of record, contractor of record, global hiring, game development HR',
+		ogImage: '/pages/payroll-solution-new/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png',
+		htmlClass: 'scroll-smooth',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300] selection:text-black bg-garna-page',
+		iconLibrary: 'lucide',
+	},
 	webSummit2026: {
 		title: 'Web Summit 2026 Side Events Guide | Lisbon, 6–14 November | Garna',
 		description: 'Explore Web Summit 2026 side events in Lisbon: investor dinners, pitch nights, founder meetups and parties taking place from 6 to 14 November.',

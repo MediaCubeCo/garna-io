@@ -29,9 +29,14 @@ import '../styles/form-page.css';
 
 	var params = new URLSearchParams(window.location.search);
 	var campaign = '';
-	params.forEach(function (value, key) {
-		if (key.toLowerCase() === 'utm_campaign') campaign = value;
-	});
+	try {
+		campaign = localStorage.getItem('utm_campaign') || '';
+	} catch (e) {}
+	if (!campaign.trim()) {
+		params.forEach(function (value, key) {
+			if (key.toLowerCase() === 'utm_campaign') campaign = value;
+		});
+	}
 
 	if (campaign.trim().toLowerCase() !== 'linkedin_inmail') return;
 

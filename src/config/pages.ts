@@ -26,6 +26,13 @@ export interface PageConfig {
 
 export const basePaths: PageConfig[] = [
 	{
+		path: 'podcast-offer',
+		mode: 'static',
+		searchable: false,
+		showHeader: true,
+		languages: ['en', 'es', 'pt', 'ru'],
+	},
+	{
 		path: 'event/websummit-2026',
 		mode: 'static',
 		searchable: true,

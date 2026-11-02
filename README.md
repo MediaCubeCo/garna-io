@@ -99,6 +99,10 @@ Build Astro pages and deploy to Cloudflare Workers:
 npm run deploy
 ```
 
+## Short links
+
+All short links use `/s/<slug>`. Add destinations in `src/config/short-links.ts`; see [short-link instructions](docs/short-links.md) for rules, examples, testing, and deployment. Agent entry point: [AGENTS.md](AGENTS.md).
+
 ## Routing
 
 The worker handles the following routes:

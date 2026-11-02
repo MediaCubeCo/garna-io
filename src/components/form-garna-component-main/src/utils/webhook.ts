@@ -1,5 +1,5 @@
 import type { IForm } from '../components/modal/modal';
-import { collectUtmParams } from './collectUtm';
+import { collectFormAttribution } from './collectUtm';
 
 const N8N_WEBHOOK_URL = 'https://mediacube.app.n8n.cloud/webhook/24740331-652c-4731-a656-baf8d8f5cf38';
 
@@ -18,6 +18,8 @@ export interface IWebhookPayload {
 	utm_campaign?: string;
 	utm_term?: string;
 	utm_content?: string;
+	/** Full URL of the page the form was submitted from. */
+	pageUrl?: string;
 	source?: string;
 	page?: string;
 	cta?: string;
@@ -46,11 +48,7 @@ export type IFormWithGarnaClientID = IForm & {
 const LOG_PREFIX = '[garna widget] webhook';
 
 export async function sendFormCompletedWebhook(form: IFormWithGarnaClientID): Promise<void> {
-	const utm = collectUtmParams();
-	const utmFields: Record<string, string> = {};
-	for (const [key, value] of Object.entries(utm)) {
-		if (value != null && value !== '') utmFields[key] = value;
-	}
+	const { utm, pageUrl } = collectFormAttribution();
 
 	const language: WebhookLanguage =
 		form.language && ['en', 'es', 'pt', 'ru'].includes(form.language.toLowerCase())
@@ -67,7 +65,8 @@ export async function sendFormCompletedWebhook(form: IFormWithGarnaClientID): Pr
 		...(form.source != null && form.source !== '' ? { source: form.source } : {}),
 		...(form.page != null && form.page !== '' ? { page: form.page } : {}),
 		...(form.cta != null && form.cta !== '' ? { cta: form.cta } : {}),
-		...utmFields,
+		...(pageUrl ? { pageUrl } : {}),
+		...utm,
 	};
 
 	console.log(`${LOG_PREFIX} sending form_completed:`, {
@@ -81,6 +80,8 @@ export async function sendFormCompletedWebhook(form: IFormWithGarnaClientID): Pr
 			source: payload.source,
 			page: payload.page,
 			cta: payload.cta,
+			pageUrl: payload.pageUrl,
+			utm,
 			hasGarnaClientID: Boolean(payload.garnaClientID),
 		},
 		timestamp: new Date().toISOString(),
