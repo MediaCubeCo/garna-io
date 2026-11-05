@@ -494,7 +494,7 @@ export const eorPt = {
 			},
 			"payroll": {
 				"label": "Folha de pagamento",
-				"title": "Gerir folha de pagamento global sem stress",
+				"title": "Gerir Global Payroll sem stress",
 				"problem": "Garantir pagamentos corretos para funcionários em todo o mundo e lidar com diferentes moedas e regras fiscais é uma das partes mais complicadas da expansão internacional de um negócio",
 				"solution": "A Garna simplifica a folha de pagamento internacional com fluxos automatizados. Pague pessoas em todo o mundo rapidamente, reduzindo erros salariais e trabalho adicional"
 			},
@@ -546,7 +546,7 @@ export const eorPt = {
 		"title": "A solução Employer of Record da Garna é adequada para o seu negócio?",
 		"items": {
 			"1": "Pretende contratar colaboradores internacionais sem abrir escritórios em cada país",
-			"2": "Pretende automatizar folha de pagamento global, impostos e conformidade em vez de gerir fluxos manuais",
+			"2": "Pretende automatizar Global Payroll, impostos e conformidade em vez de gerir fluxos manuais",
 			"3": "Já tem talento internacional para contratar e precisa de apoio com contratos, integração e conformidade",
 			"4": "Pretende escalar equipas distribuídas rapidamente sem criar infraestrutura interna de RH e folha de pagamento",
 			"5": "Pretende integrar rapidamente contratados ou funcionários full-time sem lidar diretamente com leis laborais locais",

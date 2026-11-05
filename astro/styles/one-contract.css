@@ -183,7 +183,7 @@ html[lang="es"] .risk-global-visual__point--russia { display: none; }
 .audience-card__icon { display: block; width: 24px; height: 24px; margin-bottom: 20px; color: var(--oc-accent); }
 
 .one-contract-demo { position: relative; display: flex; min-height: calc(100svh - 64px); align-items: center; overflow: hidden; isolation: isolate; padding: clamp(80px, 7vw, 112px) 0; background: #101010; scroll-margin-top: 64px; }
-.one-contract-demo::before { position: absolute; inset: 0; z-index: -2; background: url("/pages/payroll-solution-new/assets/one-contract-demo-desk-v2.png") center center / cover no-repeat; content: ''; }
+.one-contract-demo::before { position: absolute; inset: 0; z-index: -2; background: url("/pages/home/assets/one-contract-demo-desk-v2.png") center center / cover no-repeat; content: ''; }
 .one-contract-demo::after { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(4 5 6 / .4), rgb(4 5 6 / .52)); content: ''; pointer-events: none; }
 .one-contract-demo__glow { right: -300px; bottom: -480px; }
 .one-contract-demo__grid { position: relative; display: grid; width: 100%; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: clamp(28px, 4vh, 38px); }

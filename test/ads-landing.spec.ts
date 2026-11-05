@@ -237,7 +237,7 @@ describe('isolated advertising landing', () => {
 		expect(calculator).toContain('data-payout-calculator');
 		expect(calculator).toContain("method === 'card' ? 0.08 : 0.05");
 		expect(calculator).toContain("feePayer === 'freelancer'");
-		expect(calculator).toContain('/pages/payroll-solution-new/assets/global-invoicing-payout-desk-v10.png');
+		expect(calculator).toContain('/pages/home/assets/global-invoicing-payout-desk-v10.png');
 		expect(calculator).toContain('data-garna-signup');
 		expect(calculator).toContain("import SectionHeader from '../components/layout/SectionHeader.astro'");
 		expect(calculator).toContain('max-width: 36rem');

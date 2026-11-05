@@ -3,10 +3,10 @@ import { createServer } from 'node:http';
 import { extname, join, normalize } from 'node:path';
 
 const root = 'D:\\dev\\garna-io\\dist';
-const distantHero = 'D:\\dev\\garna-io\\static\\pages\\payroll-solution-new\\assets\\home-hero-laptop-distant-v3.png';
+const distantHero = 'D:\\dev\\garna-io\\static\\pages\\home\\assets\\home-hero-laptop-distant-v3.png';
 const heroAliases = new Set([
-	'/pages/payroll-solution-new/assets/home-hero-laptop-nature-v2.png',
-	'/pages/payroll-solution-new/assets/home-hero-laptop-scroll-v1.png',
+	'/pages/home/assets/home-hero-laptop-nature-v2.png',
+	'/pages/home/assets/home-hero-laptop-scroll-v1.png',
 ]);
 const contentTypes = {
 	'.css': 'text/css; charset=utf-8',

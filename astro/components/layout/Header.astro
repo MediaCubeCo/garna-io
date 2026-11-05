@@ -1,4 +1,4 @@
-﻿---
+---
 import '../../styles/header.css';
 import Button from '../ui/Button.astro';
 import { getPagePathFromPathname } from '../../utils/page-path';
@@ -511,7 +511,7 @@ const startsTransparent = currentPath === '' || currentPath === contractorOfReco
 			const startsTransparentAtTop = transparentAtTopPaths.has(getPagePath());
 			header.classList.toggle('is-scrolled', !startsTransparentAtTop || window.scrollY > 1);
 
-			const hero = document.querySelector('.payroll-solution-new-hero');
+			const hero = document.querySelector('.home-hero');
 			const usesLightTheme = document.documentElement.dataset.theme === 'light';
 			if (!usesLightTheme || !(hero instanceof HTMLElement)) {
 				header.classList.remove('is-over-light-surface');

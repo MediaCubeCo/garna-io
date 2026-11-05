@@ -9,9 +9,9 @@ interface Props {
 const { copyVariant = 'carousel' } = Astro.props;
 
 const features = [
-	{ title: 'Hire\nContractors\nWorldwide', description: 'Manage contractors, invoices, and approvals\nfrom one platform', image: '/pages/payroll-solution-new/assets/contractor-hired-original.jpg' },
-	{ title: 'Flexible\nGlobal\nPayments', description: 'Pay in 80+ currencies across 150+ countries\nby bank, card, e-wallet, or crypto', image: '/pages/payroll-solution-new/assets/flexible-global-payments.png' },
-	{ title: 'Get\nMisclassification\nProtection', description: 'Garna acts as contractor or agent of record\nand bears misclassification risks', image: '/pages/payroll-solution-new/assets/misclassification-protection.png' },
+	{ title: 'Hire\nContractors\nWorldwide', description: 'Manage contractors, invoices, and approvals\nfrom one platform', image: '/pages/home/assets/contractor-hired-original.jpg' },
+	{ title: 'Flexible\nGlobal\nPayments', description: 'Pay in 80+ currencies across 150+ countries\nby bank, card, e-wallet, or crypto', image: '/pages/home/assets/flexible-global-payments.png' },
+	{ title: 'Get\nMisclassification\nProtection', description: 'Garna acts as contractor or agent of record\nand bears misclassification risks', image: '/pages/home/assets/misclassification-protection.png' },
 ];
 ---
 
@@ -51,7 +51,7 @@ const features = [
 						{index === 0 && (
 							<span class="contractor-carousel__hire-notification" aria-hidden="true">
 								<span class="contractor-carousel__hire-avatar">
-									<img src="/pages/payroll-solution-new/assets/contractor-avatar-maya.png" alt="" />
+									<img src="/pages/home/assets/contractor-avatar-maya.png" alt="" />
 									<span>✓</span>
 								</span>
 								<span class="contractor-carousel__hire-copy">

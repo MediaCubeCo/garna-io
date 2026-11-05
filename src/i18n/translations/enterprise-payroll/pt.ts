@@ -8,14 +8,14 @@ export const enterprisePayrollPt = {
 	meta: {
 		title: 'Sistema internacional de payroll para grandes empresas | Garna',
 		description:
-			'Explore as oportunidades de parceria com a Garna, o sistema que oferece uma solução eficiente de payroll global.',
+			'Explore as oportunidades de parceria com a Garna, o sistema que oferece uma solução eficiente de Global Payroll.',
 	},
 	hero: {
 		...homePt.hero,
 		badge: 'Payroll para Grandes Empresas',
 		title: 'Infraestrutura de payroll criada para escalar negócios globais',
 		description:
-			'Um sistema centralizado de payroll global criado para gerir operações em diferentes países, entidades, contratados e colaboradores sem perder flexibilidade',
+			'Um sistema centralizado de Global Payroll criado para gerir operações em diferentes países, entidades, contratados e colaboradores sem perder flexibilidade',
 		cta: 'Experimentar Garna',
 	},
 	howTo: {
@@ -68,7 +68,7 @@ export const enterprisePayrollPt = {
 	},
 	whyGarna: homePt.whyGarna,
 	enterpriseFinalCta: {
-		title: 'O payroll global fica mais simples com a Garna',
+		title: 'O Global Payroll fica mais simples com a Garna',
 		description:
 			'A Garna fornece infraestrutura global de payroll para diferentes necessidades: expansão para novos mercados, gestão de equipas distribuídas ou substituição de sistemas de payroll antigos e fragmentados. A plataforma adapta-se às suas necessidades com flexibilidade',
 		button: 'Experimentar agora',
@@ -81,9 +81,9 @@ export const enterprisePayrollPt = {
 		title: 'Perguntas frequentes sobre payroll para negócios globais',
 		items: {
 			q1: {
-				question: 'Como funciona o payroll global?',
+				question: 'Como funciona o Global Payroll?',
 				answer:
-					'O payroll global permite que empresas controlem pagamentos a colaboradores e contratados em vários países através de um sistema centralizado que gere tudo: de pagamentos a compliance fiscal e relatórios.',
+					'O Global Payroll permite que empresas controlem pagamentos a colaboradores e contratados em vários países através de um sistema centralizado que gere tudo: de pagamentos a compliance fiscal e relatórios.',
 			},
 			q2: {
 				question: 'Posso atribuir diferentes níveis de acesso a diferentes membros da equipa?',
@@ -244,7 +244,7 @@ export const enterprisePayrollPt = {
 			'Com a Garna, pode reduzir custos administrativos e gerir onboarding de contratados, faturas e requisitos de compliance. Pague aos contratados com facilidade, independentemente de onde estejam ou de quantos sejam. A configuração de pagamentos via API permite que grandes empresas automatizem pagamentos a contratados diretamente a partir do seu próprio sistema',
 		'Hire Employees Worldwide': 'Contrate colaboradores em todo o mundo',
 		"No need to open up local offices in different countries just to get the right people on board. That's where the employer of record superstructure comes at hand. This lets you hire people across the world while all the usual employer duties get taken care of: payroll, compliance, taxes, and the local employment rules":
-			'Não é necessário abrir escritórios locais em diferentes países apenas para contratar as pessoas certas. É aqui que o modelo employer of record ajuda: pode contratar pessoas em todo o mundo enquanto as responsabilidades habituais do empregador são tratadas, incluindo payroll, compliance, impostos e regras laborais locais',
+			'Não é necessário abrir escritórios locais em diferentes países apenas para contratar as pessoas certas. É aqui que o modelo Employer of Record ajuda: pode contratar pessoas em todo o mundo enquanto as responsabilidades habituais do empregador são tratadas, incluindo payroll, compliance, impostos e regras laborais locais',
 		'Built for Global Teams and Complex Operations': 'Criado para equipas globais e operações complexas',
 		"When you're running a global payroll operation, you need infrastructure that can match the complexity and scale of it. We'll explain it in one word - and in more detail":
 			'Ao gerir uma operação global de payroll, precisa de infraestrutura capaz de acompanhar a sua complexidade e escala. Explicamos numa palavra — e em detalhe',
@@ -268,7 +268,7 @@ export const enterprisePayrollPt = {
 			'"Precisávamos de uma infraestrutura de payroll que pudesse suportar colaboradores, contratados e requisitos locais ao mesmo tempo. A Garna deu à nossa equipa de operações o controlo que nos faltava em diferentes países"',
 		'"The biggest change was visibility. Our HR, finance, and compliance teams can now track payroll status, exceptions, and payout timing from one workflow instead of chasing regional providers"':
 			'"A maior mudança foi a visibilidade. Agora as nossas equipas de RH, finanças e compliance conseguem acompanhar o estado do payroll, exceções e prazos de pagamento a partir de um único workflow, em vez de perseguirem fornecedores regionais"',
-		'Global Payroll Is Easy When Made By Using Garna': 'O payroll global fica mais simples com a Garna',
+		'Global Payroll Is Easy When Made By Using Garna': 'O Global Payroll fica mais simples com a Garna',
 		"Garna provides the global payroll infrastructure independently from the task вЂ” whether you're scaling into new markets, dealing with distributed teams, or replacing old, fragmented payroll systems, itвЂ™ll adjust to your needs seamlessly":
 			'A Garna fornece infraestrutura global de payroll para diferentes necessidades: expansão para novos mercados, gestão de equipas distribuídas ou substituição de sistemas de payroll antigos e fragmentados. A plataforma adapta-se às suas necessidades com flexibilidade',
 		'Try now': 'Experimentar agora',

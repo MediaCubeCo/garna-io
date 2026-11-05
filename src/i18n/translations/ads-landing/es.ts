@@ -471,7 +471,7 @@ export const eorEs = {
 		}
 	},
 	"why": {
-		"title": "Funciones de la plataforma Employer of Record",
+		"title": "Funciones de la plataforma Empleador de Registro",
 		"description": "Desde la incorporación hasta la salida, el EOR de Garna cubre todo el ciclo laboral en una sola plataforma",
 		"tabs": {
 			"sourcing": {
@@ -543,7 +543,7 @@ export const eorEs = {
 		}
 	},
 	"fit": {
-		"title": "¿Es Garna Employer of Record la opción adecuada para tu empresa?",
+		"title": "¿Es Empleador de Registro de Garna la opción adecuada para tu empresa?",
 		"items": {
 			"1": "Quieres contratar personal internacional sin abrir una oficina en cada país",
 			"2": "Quieres automatizar nóminas globales, impuestos y cumplimiento en lugar de gestionar flujos manuales",

@@ -6,7 +6,9 @@ import { handleStaticFile } from './routes/static';
 import { resolveRoute } from './utils/routes';
 import { createGarnaBlog, handleLegacyBlogRedirect, isGarnaBlogPath } from './blog/site';
 import { handleTaxCalculator } from './routes/tax-calculator';
+import { handleEorCalculator } from './routes/eor-calculator';
 import { handleTransferRate } from './routes/rates';
+import { handleKybQuestionnaire } from './routes/kyb-questionnaire';
 import { handlePrivacyContextRequest } from './utils/privacy';
 import { injectPrivacyIntoResponse } from './utils/privacy-ui';
 
@@ -21,11 +23,17 @@ export default {
 			const privacyContextResponse = handlePrivacyContextRequest(request);
 			if (privacyContextResponse) return privacyContextResponse;
 
+			const eorCalculatorResponse = await handleEorCalculator(request, env);
+			if (eorCalculatorResponse) return eorCalculatorResponse;
+
 			const taxCalculatorResponse = await handleTaxCalculator(request);
 			if (taxCalculatorResponse) return taxCalculatorResponse;
 
 			const transferRateResponse = await handleTransferRate(request);
 			if (transferRateResponse) return transferRateResponse;
+
+			const questionnaireResponse = await handleKybQuestionnaire(request, env);
+			if (questionnaireResponse) return questionnaireResponse;
 
 			// 0. Redirect www (http/https) to canonical https://garna.io/en
 			if (url.hostname === 'www.garna.io') {
