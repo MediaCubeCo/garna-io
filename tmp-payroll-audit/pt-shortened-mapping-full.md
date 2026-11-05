@@ -1,6 +1,6 @@
 # PT Shortened Translation Mapping - Full Draft
 
-Source page: current homepage translations in `src/i18n/translations/payroll-solution-new/pt.ts`
+Source page: current homepage translations in `src/i18n/translations/home/pt.ts`
 
 Reference: Google Doc `TA for Landing Garna - Payroll`, tab `Сокращенная версия`
 

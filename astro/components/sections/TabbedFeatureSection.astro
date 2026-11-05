@@ -93,8 +93,8 @@ const badgePositionClasses: Record<BadgePosition, string> = {
 						data-tabbed-feature-panel={panel.id}
 						hidden={index !== 0}
 					>
-						<div class="flex min-h-[24rem] flex-col justify-center rounded-2xl bg-[#1A1A1A] p-8 md:p-10">
-							<h3 class="font-manrope text-3xl font-semibold leading-tight text-white" data-translate={panel.title.translateKey}>{panel.title.text}</h3>
+						<div class="tabbed-feature__copy-card flex min-h-0 flex-col justify-center rounded-2xl bg-[#1A1A1A] p-8 md:min-h-[24rem] md:p-10">
+							<h3 class="font-manrope text-xl font-semibold leading-tight text-white md:text-2xl lg:text-3xl" data-translate={panel.title.translateKey}>{panel.title.text}</h3>
 							<p class="mt-5 text-base leading-relaxed text-gray-300" data-translate={panel.description.translateKey}>{panel.description.text}</p>
 						</div>
 						<div class="relative min-h-[24rem] overflow-hidden rounded-2xl bg-[#0b0b0b] p-6">
@@ -241,6 +241,10 @@ const badgePositionClasses: Record<BadgePosition, string> = {
 	@media (min-width: 768px) {
 		:global(html[lang='ru']) :global(#why-garna) .tabbed-feature[data-tabs-wrapped='true'] .tabbed-feature__panel {
 			grid-template-columns: minmax(0, 1fr);
+		}
+
+		:global(html[lang='ru']) :global(#why-garna) .tabbed-feature[data-tabs-wrapped='true'] .tabbed-feature__copy-card {
+			min-height: 0;
 		}
 	}
 </style>

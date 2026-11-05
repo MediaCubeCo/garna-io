@@ -247,7 +247,7 @@ export const pageHeroes = {
 		align: 'split',
 	},
 	home: {
-		class: 'payroll-solution-new-hero relative mb-16 h-[100svh] min-h-[100svh] max-h-[100svh] overflow-hidden pt-24 pb-24 md:mb-24 md:pt-28 md:pb-32 lg:mb-32 lg:pt-32 lg:pb-40',
+		class: 'home-hero relative mb-16 h-[100svh] min-h-[100svh] max-h-[100svh] overflow-hidden pt-24 pb-24 md:mb-24 md:pt-28 md:pb-32 lg:mb-32 lg:pt-32 lg:pb-40',
 		containerClass:
 			'relative z-10 mx-auto h-full max-w-7xl overflow-visible px-6 pb-8 pt-4 text-center md:px-12 md:pt-5',
 		contentClass: 'relative z-10 pt-2 pb-16 md:pb-24 lg:pb-32',

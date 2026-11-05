@@ -1,6 +1,6 @@
 # ES Shortened Translation Mapping - Full Draft
 
-Source page: current homepage translations in `src/i18n/translations/payroll-solution-new/es.ts`
+Source page: current homepage translations in `src/i18n/translations/home/es.ts`
 
 Reference: Google Doc `TA for Landing Garna - Payroll`, tab `Сокращенная версия`
 

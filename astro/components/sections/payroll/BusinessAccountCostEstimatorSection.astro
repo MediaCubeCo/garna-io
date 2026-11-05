@@ -82,11 +82,11 @@ const routeFlagSrc = (route: CorpayRoute) => `https://flagcdn.com/w80/${currency
 				</div>
 
 				<div data-transfer-results>
-					<div class="transfer-rate-line" aria-live="polite"><span data-translate="costEstimator.form.rate">Rate</span><strong data-rate-value data-translate="costEstimator.form.fetchingRate">Fetching estimated rate…</strong></div>
+					<div class="transfer-rate-line" aria-live="polite"><span data-translate="costEstimator.form.estimatedRate">Estimated rate</span><strong data-rate-value data-translate="costEstimator.form.fetchingRate">Fetching estimated rate…</strong></div>
 					<div class="transfer-breakdown"><div><span data-translate="costEstimator.form.transferFee">Transfer fee</span><strong data-transfer-fee>—</strong></div><div><span data-translate="costEstimator.form.delivery">Estimated delivery</span><strong data-translate="costEstimator.form.deliveryTime">1–2 business days</strong></div></div>
 				</div>
 				<button class="transfer-cta" type="button" data-transfer-cta><span data-translate="costEstimator.form.cta">Talk to sales for an individual offer</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></button>
-				<div class="transfer-disclaimers"><p data-translate="costEstimator.form.disclaimerOne">This is an indicative estimate, not a final quote or guarantee. Pricing and route availability depend on the currency pair, destination, payment volume, account profile, compliance review and provider availability.</p><p data-translate="costEstimator.form.disclaimerTwo">The estimated exchange rate may include a currency conversion margin. Rates are not locked and delivery times are estimates. Contact our sales team to confirm availability and receive your exact individual offer before making a payment.</p></div>
+				<div class="transfer-disclaimers"><p data-translate="costEstimator.form.disclaimerOne">This is an indicative estimate, not a final quote or guarantee. Pricing and route availability depend on the currency pair, destination, payment volume, account profile, compliance review and provider availability.</p><p data-translate="costEstimator.form.disclaimerTwo">Exchange rates follow the market and are not locked, and delivery times are estimates. Your final rate and fees may differ depending on your payment volume, currency pair and destination. Talk to our sales team to get your individual offer before you pay.</p></div>
 				<div class="transfer-copy-bank" hidden aria-hidden="true"><span data-copy="unavailable" data-translate="costEstimator.form.rateUnavailable">Rate unavailable</span><span data-copy="fetching" data-translate="costEstimator.form.fetchingRate">Fetching estimated rate…</span><span data-copy="enterAmount" data-translate="costEstimator.form.enterAmount">Enter an amount greater than zero.</span><span data-copy="tooLow" data-translate="costEstimator.form.amountTooLow">The send amount must be greater than the transfer fee.</span><span data-copy="feesDeducted" data-translate="costEstimator.form.feesDeducted">Fees are deducted from this amount.</span><span data-copy="availableFor" data-translate="costEstimator.form.availableFor">Available for</span></div>
 			</div>
 		</div>
@@ -151,8 +151,6 @@ const routeFlagSrc = (route: CorpayRoute) => `https://flagcdn.com/w80/${currency
 	@media (max-width: 640px) {
 		.transfer-entry-row { grid-template-columns: 1fr; }
 		.transfer-currency-popover { width: min(22rem, calc(100vw - 5rem)); }
-		.transfer-cta { font-size: .9rem; }
-		:global(html[lang="ru"]) .transfer-cta { font-size: .82rem; }
 	}
 </style>
 
@@ -173,7 +171,7 @@ const routeFlagSrc = (route: CorpayRoute) => `https://flagcdn.com/w80/${currency
 	const names: Record<string, string> = { AED: 'UAE dirham', AUD: 'Australian dollar', BHD: 'Bahraini dinar', CAD: 'Canadian dollar', CHF: 'Swiss franc', CNY: 'Chinese yuan', DKK: 'Danish krone', EUR: 'Euro', GBP: 'British pound', HKD: 'Hong Kong dollar', HUF: 'Hungarian forint', JPY: 'Japanese yen', KWD: 'Kuwaiti dinar', MUR: 'Mauritian rupee', MXN: 'Mexican peso', NOK: 'Norwegian krone', NZD: 'New Zealand dollar', PLN: 'Polish zloty', RON: 'Romanian leu', SAR: 'Saudi riyal', SEK: 'Swedish krona', SGD: 'Singapore dollar', USD: 'US dollar', ZAR: 'South African rand' };
 	const formatMoney = (amount: number, currency: string) => { try { return new Intl.NumberFormat(document.documentElement.lang || 'en', { style: 'currency', currency, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(amount); } catch { return `${amount.toFixed(2)} ${currency}`; } };
 	const formatPlain = (amount: number) => amount.toLocaleString(document.documentElement.lang || 'en', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-	const formatRate = (rate: number) => rate.toLocaleString(document.documentElement.lang || 'en', { minimumFractionDigits: Math.min(2, rate >= 100 ? 2 : rate >= 1 ? 4 : 6), maximumFractionDigits: rate >= 100 ? 2 : rate >= 1 ? 4 : 6 });
+	const formatRate = (rate: number) => rate.toLocaleString(document.documentElement.lang || 'en', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
 	const currencySymbol = (currency: string) => { try { return new Intl.NumberFormat(document.documentElement.lang || 'en', { style: 'currency', currency, currencyDisplay: 'narrowSymbol' }).formatToParts(0).find((part) => part.type === 'currency')?.value || currency; } catch { return currency; } };
 	const parseAmount = (value: string) => Number(value.replace(/\s/g, '').replace(',', '.'));
 	const requestRate = async (from: string, to: string, signal: AbortSignal): Promise<RateQuote> => { const response = await fetch(`/api/rates?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`, { signal }); const data = await response.json() as RateQuote & { error?: string }; if (!response.ok) throw new Error(data.error || 'Rate unavailable'); return data; };

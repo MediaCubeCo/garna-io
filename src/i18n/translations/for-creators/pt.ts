@@ -488,7 +488,7 @@ export const forCreatorsPt = {
 		account: 'Criar conta Garna',
 	},
 	sectionHeadings: {
-		hireEmployeesWorldwide: 'Realize Employment of Record com mais vantagens',
+		hireEmployeesWorldwide: 'Realize Employer of Record com mais vantagens',
 		embeddedPayrollInfrastructure: 'Solução Embedded Contractor of Record para o seu negócio',
 	},
 	sectionDescriptions: {
@@ -518,7 +518,7 @@ export const forCreatorsPt = {
 			q4: {
 				question: 'Como a Garna gere impostos e conformidade a nível global?',
 				answer:
-					'Não terá de se preocupar com burocracia. Ao utilizar a nossa solução Employment of Record, tratamos de todos os impostos locais, contribuições sociais, seguros e conformidade. Ao trabalhar com a nossa solução Contractor of Record, a Garna ajuda a evitar riscos de classificação incorreta de trabalhadores. Como seu agente Contractor of Record, assumimos total responsabilidade pela contratação para que possa concentrar-se no crescimento da sua empresa.',
+					'Não terá de se preocupar com burocracia. Ao utilizar a nossa solução Employer of Record, tratamos de todos os impostos locais, contribuições sociais, seguros e conformidade. Ao trabalhar com a nossa solução Contractor of Record, a Garna ajuda a evitar riscos de classificação incorreta de trabalhadores. Como seu agente Contractor of Record, assumimos total responsabilidade pela contratação para que possa concentrar-se no crescimento da sua empresa.',
 			},
 			q5: {
 				question: 'Posso integrar a API da Garna na minha plataforma?',
@@ -610,7 +610,7 @@ export const forCreatorsPt = {
 		'businesses using Garna': 'empresas usando Garna',
 		'paid to specialists': 'pagos a especialistas',
 		'talents already use Garna': 'talentos já usam a Garna',
-		'global payroll service availability': 'disponibilidade global de folha de pagamento',
+		'global payroll service availability': 'disponibilidade do serviço Global Payroll',
 		'countries covered': 'países abrangidos',
 		'Manage Global Payroll Effortlessly': 'Faça a gestão global de payroll sem esforço',
 		'One platform to run payroll for freelancers, remote employees, and full-time teams':
@@ -635,7 +635,7 @@ export const forCreatorsPt = {
 		'Recipient receives': 'O destinatário recebe',
 		'Exchange rate': 'Taxa de câmbio',
 		'Fees': 'Taxas',
-		'Hire Employees Worldwide': 'Realize Employment of Record com mais vantagens',
+		'Hire Employees Worldwide': 'Realize Employer of Record com mais vantagens',
 		'Simplify the hiring process for employees and freelancers with Garna. Unlike other companies, we will resolve not only the financial, but also legal side while you are looking for the right specialists':
 			'Simplifique o processo de contratação de funcionários e freelancers com a Garna. Ao contrário de outras empresas, resolvemos não apenas a parte financeira, mas também a jurídica, enquanto procura os especialistas certos',
 		'Quick Global Employment': 'Contratação global rápida',

@@ -9,5 +9,6 @@ interface Env {
 	MAGIC_LINK_SECRET?: string;
 	PUBLIC_ORIGIN?: string;
 	EMAIL_FROM?: string;
+	KYB_NOTIFY_EMAILS?: string;
 	DEV_SHOW_MAGIC_LINK?: string;
 }

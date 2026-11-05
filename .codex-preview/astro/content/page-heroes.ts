@@ -247,7 +247,7 @@ export const pageHeroes = {
 		align: 'split',
 	},
 	home: {
-		class: 'payroll-solution-new-hero relative h-[100svh] min-h-[100svh] overflow-hidden pt-28 lg:pt-36',
+		class: 'home-hero relative h-[100svh] min-h-[100svh] overflow-hidden pt-28 lg:pt-36',
 		containerClass:
 			'relative z-10 mx-auto h-full max-w-7xl overflow-visible px-6 pb-8 pt-8 text-center md:px-12 md:pt-10',
 		contentClass: 'relative z-10',

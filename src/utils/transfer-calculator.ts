@@ -1,7 +1,6 @@
 export const TRANSFER_PRICING_POLICY = {
 	providerMarkupRate: 0.3,
-	eurFxMarginRate: 0.015,
-	otherFxMarginRate: 0.02,
+	fxMarginRate: 0,
 	eta: '1–2 business days',
 } as const;
 
@@ -42,11 +41,8 @@ export function roundTransferMoney(value: number): number {
 	return Math.round((value + Number.EPSILON) * 100) / 100;
 }
 
-export function getClientFxMarginRate(sourceCurrency: string, destinationCurrency: string): number {
-	if (sourceCurrency === destinationCurrency) return 0;
-	return destinationCurrency === 'EUR'
-		? TRANSFER_PRICING_POLICY.eurFxMarginRate
-		: TRANSFER_PRICING_POLICY.otherFxMarginRate;
+export function getClientFxMarginRate(_sourceCurrency: string, _destinationCurrency: string): number {
+	return TRANSFER_PRICING_POLICY.fxMarginRate;
 }
 
 export function calculateTransfer(input: TransferCalculationInput): TransferCalculationResult {

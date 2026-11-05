@@ -5,12 +5,12 @@ const costEstimatorOptions = getEorCostEstimatorOptions('es');
 export const eorEs = {
 	"images": {},
 	"meta": {
-		"title": "Empleador oficial: a distancia, sin complicaciones y eficaz | Garna",
+		"title": "Empleador de Registro: contratación internacional sin complicaciones | Garna",
 		"description": "Únete a Garna y descubre cómo una solución de empleo a distancia perfeccionada puede optimizar y simplificar la contratación de talentos a nivel mundial."
 	},
 	"hero": {
-		"badge": "Empleador oficial para equipos globales",
-		"title": "Employer of Record\nContrata en más de 150 países",
+		"badge": "Empleador de Registro para equipos globales",
+		"title": "Empleador de Registro\nContrata en más de 150 países",
 		"description": "Garna se convierte en el empleador legal de tu equipo en el extranjero. Gestionamos los contratos, las nóminas, los impuestos y el cumplimiento normativo; tú diriges el trabajo",
 		"notifications": {
 			"startsToday": "Empieza hoy",
@@ -215,7 +215,7 @@ export const eorEs = {
 	},
 	"globalWorkforce": {
 		"title": "Haz crecer tu plantilla global más rápido",
-		"description": "Un «empleador de referencia» (EOR) ayuda a las empresas a contratar empleados internacionales sin necesidad de abrir entidades locales. El proveedor de EOR contrata legalmente al trabajador en su nombre, mientras usted gestiona su trabajo diario, sus responsabilidades y su rendimiento",
+		"description": "Un Empleador de Registro (EOR) ayuda a las empresas a contratar empleados internacionales sin necesidad de abrir entidades locales. El proveedor de EOR contrata legalmente al trabajador en su nombre, mientras usted gestiona su trabajo diario, sus responsabilidades y su rendimiento",
 		"intro": "Todo esto significa que puedes:",
 		"benefits": {
 			"hireGlobally": {
@@ -267,7 +267,7 @@ export const eorEs = {
 		}
 	},
 	"why": {
-		"title": "Funciones de la plataforma Employer of Record",
+		"title": "Funciones de la plataforma Empleador de Registro",
 		"description": "Desde la incorporación hasta la salida, el EOR de Garna cubre todo el ciclo laboral en una sola plataforma",
 		"tabs": {
 			"sourcing": {
@@ -338,7 +338,7 @@ export const eorEs = {
 		}
 	},
 	"fit": {
-		"title": "¿Es Garna Employer of Record la opción adecuada para tu empresa?",
+		"title": "¿Es Empleador de Registro de Garna la opción adecuada para tu empresa?",
 		"items": {
 			"1": "Quieres contratar personal internacional sin abrir una oficina en cada país",
 			"2": "Quieres automatizar nóminas globales, impuestos y cumplimiento en lugar de gestionar flujos manuales",
@@ -377,11 +377,11 @@ export const eorEs = {
 		"title": "Orgullosos de contribuir a sus excelentes y fluidos flujos de trabajo"
 	},
 	"faq": {
-		"title": "Preguntas frecuentes sobre el empleador oficial",
+		"title": "Preguntas frecuentes sobre Empleador de Registro",
 		"items": {
 			"q1": {
-				"question": "¿Qué es un Employer of Record (EOR)?",
-				"answer": "Un Employer of Record te permite contratar empleados a tiempo completo en países donde no tienes una entidad legal. Garna se convierte en el empleador legal y gestiona nóminas, contratos, pagos obligatorios y cumplimiento local, mientras tú diriges las actividades del negocio."
+				"question": "¿Qué es un Empleador de Registro (EOR)?",
+				"answer": "Un Empleador de Registro te permite contratar empleados a tiempo completo en países donde no tienes una entidad legal. Garna se convierte en el empleador legal y gestiona nóminas, contratos, pagos obligatorios y cumplimiento local, mientras tú diriges las actividades del negocio."
 			},
 			"q2": {
 				"question": "¿Quién gestiona al empleado?",
@@ -408,7 +408,7 @@ export const eorEs = {
 				"answer": "Sí, el EOR es un modelo de empleo legalmente reconocido en la mayoría de los países."
 			},
 			"q8": {
-				"question": "¿Cuánto cuesta un Employer of Record?",
+				"question": "¿Cuánto cuesta un Empleador de Registro?",
 				"answer": "Los precios empiezan desde $200, pero pueden variar según el país, el nivel salarial y el tamaño del equipo. No hay tarifas ocultas ni recargos de FX. Solicita una cotización basada en tu equipo."
 			}
 		}

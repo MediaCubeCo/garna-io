@@ -5,7 +5,7 @@ export const whiteLabelEs = {
 	},
 	"images": {},
 	"hero": {
-		"badge": "Plataforma White Label para gestión de contratistas y Contractor of Record",
+		"badge": "Plataforma White Label para gestión de contratistas y Contratista de Registro",
 		"title": "Soluciones White Label de nómina para empresas",
 		"description": "Escala tu negocio sin caos operativo: automatiza compliance y pagos globales a contratistas bajo tu propia marca",
 		"cta": "Probar la demo"
@@ -42,7 +42,7 @@ export const whiteLabelEs = {
 			"description": "Un ecosistema completo para trabajar con freelancers: incorpora, gestiona y paga a contratistas internacionales"
 		},
 		"contractorOfRecord": {
-			"title": "Contractor of Record",
+			"title": "Contratista de Registro",
 			"description": "Asumimos la responsabilidad legal y protegemos tu negocio del riesgo de clasificación incorrecta mientras gestionas a tus contratistas"
 		}
 	},
@@ -165,7 +165,7 @@ export const whiteLabelEs = {
 		"q1": "¿Quién puede usar Garna White Label?",
 		"a1": "Cualquier empresa, SaaS, agencia o plataforma que necesite una solución White Label fiable para escalar pagos a contratistas internacionales.",
 		"q2": "¿Qué productos se pueden lanzar como White Label?",
-		"a2": "Puedes personalizar Contractor Management para incorporar y pagar freelancers, además de Contractor of Record para proteger tu negocio del riesgo de clasificación incorrecta. Estas soluciones White Label te permiten gestionar clientes internacionales y pagos completamente bajo tu marca.",
+		"a2": "Puedes personalizar Contractor Management para incorporar y pagar freelancers, además de Contratista de Registro para proteger tu negocio del riesgo de clasificación incorrecta. Estas soluciones White Label te permiten gestionar clientes internacionales y pagos completamente bajo tu marca.",
 		"q3": "¿Necesitamos construir APIs?",
 		"a3": "No necesitas construir APIs para usar Garna White Label. Puedes integrarlo en tus dashboards actuales usando nuestras APIs existentes.",
 		"q4": "¿Cuánto tarda la configuración?",
