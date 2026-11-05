@@ -190,9 +190,19 @@ const faqItems = questions.map((question, index) => ({ question, answer: answers
 			const params = new URLSearchParams(window.location.search), requestedCountry = params.get('country')?.toUpperCase();
 			if (requestedCountry && countrySelect && countries.some((country) => country.code === requestedCountry)) {
 				countrySelect.value = requestedCountry;
+				syncTaxSelect(countrySelect);
 				await selectCountry(requestedCountry);
-				if (params.get('state') && stateSelect) stateSelect.value = params.get('state') || '';
-				if (params.get('currency') && currencySelect && [...currencySelect.options].some((option) => option.value === params.get('currency'))) currencySelect.value = params.get('currency') || '';
+				const requestedState = params.get('state');
+				if (requestedState && stateSelect) {
+					const stateOption = [...stateSelect.options].find((option) => option.value === requestedState || option.textContent?.trim() === requestedState);
+					if (stateOption) stateSelect.value = stateOption.value;
+					syncTaxSelect(stateSelect);
+				}
+				const requestedCurrency = params.get('currency');
+				if (requestedCurrency && currencySelect && [...currencySelect.options].some((option) => option.value === requestedCurrency)) {
+					currencySelect.value = requestedCurrency;
+					syncTaxSelect(currencySelect);
+				}
 				const salary = params.get('salary');
 				if (salary && salaryDisplay && salaryValue) { salaryDisplay.value = formatAmount(salary); salaryValue.value = salary.replace(/,/g, ''); }
 				updateCurrencyLabel();

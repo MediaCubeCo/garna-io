@@ -898,8 +898,9 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 
 				event.preventDefault();
 				openSelect();
-				const selected = options.find((option) => option.getAttribute('aria-selected') === 'true');
-				const target = selected instanceof HTMLElement ? selected : options[0];
+				const availableOptions = options.filter((option) => !option.hidden && !option.disabled);
+				const selected = availableOptions.find((option) => option.getAttribute('aria-selected') === 'true');
+				const target = selected instanceof HTMLElement ? selected : availableOptions[0];
 				target?.focus();
 			});
 
@@ -908,16 +909,17 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 				option.addEventListener('keydown', (event) => {
 					if (!(option instanceof HTMLButtonElement)) return;
 
-					const currentIndex = options.indexOf(option);
+					const availableOptions = options.filter((item) => !item.hidden && !item.disabled);
+					const currentIndex = availableOptions.indexOf(option);
 
 					if (event.key === 'ArrowDown') {
 						event.preventDefault();
-						options[(currentIndex + 1) % options.length]?.focus();
+						availableOptions[(currentIndex + 1) % availableOptions.length]?.focus();
 					}
 
 					if (event.key === 'ArrowUp') {
 						event.preventDefault();
-						options[(currentIndex - 1 + options.length) % options.length]?.focus();
+						availableOptions[(currentIndex - 1 + availableOptions.length) % availableOptions.length]?.focus();
 					}
 
 					if (event.key === 'Enter' || event.key === ' ') {
@@ -997,9 +999,12 @@ const currencyCountryTranslationKey = (flagCode: string) => flagCode === 'eu' ? 
 			const selectedCountry = countryValue ?? countryInput.value;
 			const countryOption = form.querySelector(`[data-country-select] [data-select-option][value="${CSS.escape(selectedCountry)}"]`);
 			const currency = countryOption instanceof HTMLElement ? countryOption.dataset.countryCurrency || '' : '';
+			const allowedCurrencies = new Set([currency, 'USD', 'EUR'].filter(Boolean));
+
+			currencyApi.filterOptions((option) => allowedCurrencies.has(option.getAttribute('value') || option.value));
 
 			if (currency) currencyApi.chooseValue(currency);
-			else currencyApi.clearValue(false);
+			else currencyApi.chooseValue('USD');
 		};
 
 		syncRegionSelect();
