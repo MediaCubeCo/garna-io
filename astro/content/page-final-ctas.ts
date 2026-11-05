@@ -149,6 +149,26 @@ export const pageFinalCtas = {
 		descriptionClass:
 			'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
 	},
+	oneContract: {
+		title: [{ text: 'One Contract for Your Entire Global Contractor Team', translateKey: 'finalCta.title' }],
+		description: {
+			text: 'Bring contracts, invoices, approvals, and contractor documents together in one clear workflow',
+			translateKey: 'finalCta.description',
+		},
+		button: {
+			label: 'Book a demo',
+			translateKey: 'finalCta.button',
+			href: '#demo',
+			kind: 'external',
+			effect: 'rotating-flare',
+		},
+		class: 'overflow-hidden lg:pt-40 lg:pb-40 text-center pt-32 pb-32 relative',
+		containerClass: 'z-10 max-w-4xl mr-auto ml-auto pr-6 pl-6 relative',
+		titleClass:
+			'garna-hero-title-gradient text-[3rem] leading-[1.06] tracking-tight md:text-[3.35rem] lg:text-[62px] font-normal text-white font-manrope mb-8',
+		descriptionClass:
+			'text-lg leading-relaxed md:text-lg lg:text-xl font-light text-gray-400 font-manrope max-w-3xl mr-auto mb-12 ml-auto',
+	},
 	businessAccount: {
 		title: [{ text: 'Take Your Business Payments Global', translateKey: 'finalCta.title' }],
 		description: {

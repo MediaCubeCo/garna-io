@@ -18,6 +18,7 @@ import { eorCostCalculatorTranslations } from './translations/eor-cost-calculato
 import { gamescom2026Translations } from './translations/gamescom-2026-side-events';
 import { hrPodcastTranslations } from './translations/hr-podcast';
 import { webSummit2026Translations } from './translations/websummit-2026-side-events';
+import { oneContractTranslations } from './translations/one-contract';
 
 export type PageTranslations = typeof homeTranslations.en;
 
@@ -44,7 +45,8 @@ type AnyPageTranslations =
 	| typeof eorCostCalculatorTranslations.en
 	| typeof gamescom2026Translations.en
 	| typeof hrPodcastTranslations.en
-	| typeof webSummit2026Translations.en;
+	| typeof webSummit2026Translations.en
+	| typeof oneContractTranslations.en;
 
 const translations = {
 	home: homeTranslations,
@@ -71,6 +73,7 @@ const translations = {
 	'gamescom-2026-side-events': gamescom2026Translations,
 	'hr-podcast': hrPodcastTranslations,
 	'websummit-2026-side-events': webSummit2026Translations,
+	'one-contract': oneContractTranslations,
 } as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
 export function getPageTranslations(pageName: string, locale: string): AnyPageTranslations {

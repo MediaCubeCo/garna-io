@@ -34,6 +34,14 @@ interface ComplianceOverlay {
 	footerMeta: CarouselText;
 }
 
+interface ApprovalOverlay {
+	type: 'approval';
+	period: CarouselText;
+	title: CarouselText;
+	meta: CarouselText;
+	progress: number;
+}
+
 interface BalancesOverlay {
 	type: 'balances';
 	title: CarouselText;
@@ -75,7 +83,7 @@ interface TransferOverlay {
 	targetAmount: string;
 }
 
-type SlideOverlay = HireOverlay | PaymentOverlay | ComplianceOverlay | BalancesOverlay | QuoteOverlay | RouteOverlay | TransferOverlay;
+type SlideOverlay = HireOverlay | PaymentOverlay | ComplianceOverlay | ApprovalOverlay | BalancesOverlay | QuoteOverlay | RouteOverlay | TransferOverlay;
 
 interface CarouselSlide {
 	key: string;
@@ -98,6 +106,7 @@ interface Props {
 	contentClass?: string;
 	spacing?: 'none' | 'compact' | 'default' | 'spacious';
 	copyVariant?: 'carousel' | 'section';
+	scrollOnly?: boolean;
 	clickNavigation?: boolean;
 }
 
@@ -114,6 +123,7 @@ const {
 	contentClass = 'contractor-carousel-content',
 	spacing = 'default',
 	copyVariant = 'carousel',
+	scrollOnly = false,
 	clickNavigation = true,
 } = Astro.props;
 
@@ -147,7 +157,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 		spacing={spacing}
 		contentClass={resolvedContentClass}
 	>
-		<div class="contractor-carousel" data-contractor-carousel data-scroll-visual-carousel-id={carouselId} data-click-navigation={String(clickNavigation)}>
+		<div class="contractor-carousel" data-contractor-carousel data-scroll-visual-carousel-id={carouselId} data-carousel-scroll-only={scrollOnly ? 'true' : 'false'} data-click-navigation={String(clickNavigation)}>
 			<div class="contractor-carousel__copy" aria-live="polite">
 				<HeadingTag data-carousel-title data-translate={firstFeature.title.translateKey}>{firstFeature.title.text}</HeadingTag>
 				<p data-garna-subtitle data-carousel-description data-translate={firstFeature.description.translateKey}>{firstFeature.description.text}</p>
@@ -177,8 +187,8 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 			<div class="contractor-carousel__viewport">
 				<div class="contractor-carousel__rail" data-carousel-rail>
 					{carouselSlides.map((feature, sequenceIndex) => (
-						<button type="button" class:list={['contractor-carousel__slide', { 'is-active': sequenceIndex === 1 }]} data-carousel-slide data-index={feature.index} data-sequence={sequenceIndex} aria-label={`Show ${feature.title.text}`} disabled={!clickNavigation}>
-							<img class={feature.imageClass} src={feature.image} alt={feature.imageAlt || ''} loading="lazy" />
+						<button type="button" disabled={scrollOnly || !clickNavigation} class:list={['contractor-carousel__slide', { 'is-active': sequenceIndex === 1 }]} data-carousel-slide data-index={feature.index} data-sequence={sequenceIndex} aria-label={`Show ${feature.title.text}`} data-translate-aria-label={feature.title.translateKey}>
+							<img class={feature.imageClass} src={feature.image} alt={feature.imageAlt || ''} data-translate-alt={feature.title.translateKey} loading="lazy" />
 							{feature.overlay?.type === 'hire' && (
 								<span class="contractor-carousel__hire-notification" aria-hidden="true">
 									<span class="contractor-carousel__hire-avatar">
@@ -227,6 +237,27 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 										<strong data-translate={feature.overlay.footerTitle.translateKey}>{feature.overlay.footerTitle.text}</strong>
 										<small data-translate={feature.overlay.footerMeta.translateKey}>{feature.overlay.footerMeta.text}</small>
 									</span>
+								</span>
+							)}
+							{feature.overlay?.type === 'approval' && (
+								<span class="contractor-carousel__approval-card" aria-hidden="true" style={`--approval-progress: ${feature.overlay.progress}%`}>
+									<span class="contractor-carousel__approval-main">
+										<span class="contractor-carousel__approval-icon">
+											<svg viewBox="0 0 24 24" fill="none">
+												<circle class="contractor-carousel__approval-ring-track" cx="12" cy="12" r="8.5" pathLength="100"></circle>
+												<circle class="contractor-carousel__approval-ring-value" cx="12" cy="12" r="8.5" pathLength="100" stroke-dasharray={`${feature.overlay.progress} 100`}></circle>
+											</svg>
+										</span>
+										<span class="contractor-carousel__approval-copy">
+											<strong data-translate={feature.overlay.title.translateKey}>{feature.overlay.title.text}</strong>
+											<small data-translate={feature.overlay.period.translateKey}>{feature.overlay.period.text}</small>
+										</span>
+									</span>
+									<span class="contractor-carousel__approval-meta">
+										<span data-translate={feature.overlay.meta.translateKey}>{feature.overlay.meta.text}</span>
+										<strong>{feature.overlay.progress}%</strong>
+									</span>
+									<span class="contractor-carousel__approval-progress"><i></i></span>
 								</span>
 							)}
 							{feature.overlay?.type === 'balances' && (
@@ -299,7 +330,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 				<div class="contractor-carousel__image-controls">
 					<div class="contractor-carousel__dots">
 						{features.map((feature, index) => (
-							<button type="button" class:list={{ 'is-active': index === 0 }} data-carousel-dot data-index={index} aria-label={feature.title.text} aria-current={index === 0 ? 'true' : undefined} disabled={!clickNavigation}></button>
+							<button type="button" disabled={scrollOnly || !clickNavigation} class:list={{ 'is-active': index === 0 }} data-carousel-dot data-index={index} aria-label={feature.title.text} data-translate-aria-label={feature.title.translateKey} aria-current={index === 0 ? 'true' : undefined}></button>
 						))}
 					</div>
 				</div>
@@ -335,6 +366,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 		const siteHeader = document.querySelector('.garna-header');
 		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const scrollMode = window.matchMedia('(min-width: 0px)');
+		const scrollOnly = carousel.dataset.carouselScrollOnly === 'true';
 		const verticalLayout = window.matchMedia('(max-width: 1079px)');
 		let activeIndex = 0;
 		let frame = 0;
@@ -438,7 +470,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 			if (rail instanceof HTMLElement) rail.style.transform = `translateX(-${getStep() * (normalizedIndex + 1)}px)`;
 		};
 
-		if (clickNavigation) {
+		if (!scrollOnly && clickNavigation) {
 			dots.forEach((dot) => dot.addEventListener('click', () => scrollToIndex(Number(dot.dataset.index ?? 0))));
 			slides.forEach((slide) => slide.addEventListener('click', () => scrollToIndex(Number(slide.dataset.index ?? 0))));
 		}
@@ -469,7 +501,10 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 	.contractor-carousel__dots { display: flex; align-items: center; gap: .45rem; }
 	.contractor-carousel__dots button { position: relative; width: .58rem; height: .58rem; overflow: hidden; border: 0; border-radius: 9999px; background: rgb(255 255 255 / .24); padding: 0; cursor: pointer; transition: background-color 180ms ease; }
 	.contractor-carousel__dots button:hover { background: rgb(255 255 255 / .44); }
+	.contractor-carousel[data-carousel-scroll-only="true"] .contractor-carousel__slide,
+	.contractor-carousel[data-carousel-scroll-only="true"] .contractor-carousel__dots button,
 	.contractor-carousel[data-click-navigation='false'] :is(.contractor-carousel__slide, .contractor-carousel__dots button) { cursor: default; }
+	.contractor-carousel[data-carousel-scroll-only="true"] .contractor-carousel__dots button:hover { background: rgb(255 255 255 / .24); }
 	.contractor-carousel__dots button.is-active { width: 3.4rem; background: rgb(203 243 0 / .18); box-shadow: inset 0 0 0 1px rgb(203 243 0 / .18); }
 	.contractor-carousel__dots button.is-active::after { position: absolute; inset: 0; border-radius: inherit; background: #cbf300; box-shadow: 0 0 14px rgb(203 243 0 / .52); content: ''; transform: scaleX(var(--carousel-dot-progress, 1)); transform-origin: left center; }
 	.contractor-carousel__viewport { width: 100%; overflow: hidden; padding-block: .6rem; }
@@ -512,6 +547,20 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 	.contractor-carousel__compliance-footer { display: flex; align-items: center; justify-content: space-between; gap: .75rem; border-radius: .72rem; background: rgb(203 243 0 / .12); padding: .5rem .58rem; }
 	.contractor-carousel__compliance-footer strong { min-width: 0; overflow: hidden; color: #cbf300; font-size: .66rem; font-weight: 650; line-height: 1; text-overflow: ellipsis; white-space: nowrap; }
 	.contractor-carousel__compliance-footer small { flex: 0 0 auto; overflow: hidden; color: #fff; font-size: .56rem; line-height: 1; text-overflow: ellipsis; white-space: nowrap; }
+	.contractor-carousel__slide > .contractor-carousel__approval-card { position: absolute; z-index: 2; right: auto; bottom: var(--notice-inset); left: var(--notice-inset); display: flex; width: calc(var(--notice-reference-card-width) - 2rem); flex-direction: column; gap: .72rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(7 8 10 / .76); padding: .78rem .86rem .82rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(14px); pointer-events: none; transform: scale(var(--notice-scale)); transform-origin: bottom left; }
+	.contractor-carousel__approval-main { display: flex; align-items: center; gap: .7rem; }
+	.contractor-carousel__approval-icon { display: grid; width: 1.85rem; height: 1.85rem; flex: 0 0 1.85rem; place-items: center; border: 1px solid rgb(255 255 255 / .1); border-radius: 50%; background: rgb(255 255 255 / .045); }
+	.contractor-carousel__approval-icon svg { width: 1.55rem; height: 1.55rem; overflow: visible; transform: rotate(-90deg); }
+	.contractor-carousel__approval-icon circle { fill: none; stroke-width: 2.2; }
+	.contractor-carousel__approval-ring-track { stroke: rgb(255 255 255 / .13); }
+	.contractor-carousel__approval-ring-value { stroke: #cbf300; stroke-linecap: round; }
+	.contractor-carousel__approval-copy { display: grid; min-width: 0; gap: .2rem; }
+	.contractor-carousel__approval-copy strong { color: #fff; font-size: .92rem; font-weight: 650; line-height: 1.15; }
+	.contractor-carousel__approval-copy small { color: rgb(255 255 255 / .52); font-size: .67rem; line-height: 1.2; }
+	.contractor-carousel__approval-meta { display: flex; align-items: center; justify-content: space-between; gap: .75rem; color: rgb(255 255 255 / .58); font-size: .66rem; }
+	.contractor-carousel__approval-meta strong { color: #cbf300; font-size: .67rem; font-weight: 700; }
+	.contractor-carousel__approval-progress { display: block; height: .24rem; overflow: hidden; border-radius: 999px; background: rgb(255 255 255 / .12); }
+	.contractor-carousel__approval-progress i { display: block; width: var(--approval-progress); height: 100%; border-radius: inherit; background: #cbf300; }
 	.contractor-carousel__slide > .contractor-carousel__balances-panel { position: absolute; z-index: 2; top: auto; right: auto; bottom: var(--notice-inset); left: var(--notice-inset); display: flex; width: calc(var(--notice-reference-card-width) - 2rem); flex-direction: column; gap: .34rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.25rem; background: rgb(22 23 26 / .72); padding: .58rem .82rem .62rem; box-shadow: 0 .65rem 1.8rem rgb(0 0 0 / .2); color: #fff; text-align: left; backdrop-filter: blur(18px) saturate(1.18); pointer-events: none; transform: scale(var(--notice-scale)); transform-origin: bottom left; }
 	.contractor-carousel__slide.is-active > .contractor-carousel__balances-panel { background: rgb(7 8 10 / .72); }
 	.contractor-carousel__balances-header { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
@@ -589,6 +638,7 @@ const ctaTracking = cta.trackingCta || 'scroll_visual_carousel_demo';
 		.contractor-carousel__slide > .contractor-carousel__hire-notification,
 		.contractor-carousel__slide > .contractor-carousel__payment-notification,
 		.contractor-carousel__slide > .contractor-carousel__compliance-notification,
+		.contractor-carousel__slide > .contractor-carousel__approval-card,
 		.contractor-carousel__slide > .contractor-carousel__balances-panel,
 		.contractor-carousel__slide > .contractor-carousel__quote-panel,
 		.contractor-carousel__slide > .contractor-carousel__route-panel,
