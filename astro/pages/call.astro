@@ -1,0 +1,55 @@
+---
+// Страница записи на короткий звонок: garna.io/en/call и garna.io/ru/call (идея Руслана, задача c78, вариант F - глобус).
+// Только по прямой ссылке из переписки с лидом: в меню и sitemap её нет, noindex.
+// Запись настоящая: бэкенд - Google Apps Script под rbl@mediacube.io, встреча в календаре «Garna». Адрес бэкенда не менять без Руслана.
+// Обе языковые версии в одном HTML: воркер ставит <html lang>, скрипт ниже оставляет нужное тело и ставит переключатель EN / RU в шапку.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageShells } from '../content/page-shells';
+import CallBodyEN from '../components/sections/call/CallBodyEN.astro';
+import CallBodyRU from '../components/sections/call/CallBodyRU.astro';
+import '../styles/call.css';
+---
+
+<BaseLayout shell={pageShells.call} rainbowCount={4}>
+	<meta slot="head" name="robots" content="noindex, nofollow" />
+	<script slot="head" is:inline>
+		document.documentElement.classList.add('js');
+	</script>
+
+	<div data-call-lang="en"><CallBodyEN /></div>
+	<div data-call-lang="ru"><CallBodyRU /></div>
+
+	<script is:inline>
+		(() => {
+			const lang = (document.documentElement.lang || 'en').toLowerCase().startsWith('ru') ? 'ru' : 'en';
+			document.querySelectorAll('[data-call-lang]').forEach((el) => {
+				if (el.getAttribute('data-call-lang') !== lang) el.remove();
+			});
+			const actions = document.querySelector('.garna-header-actions');
+			if (actions && !actions.querySelector('.bk-hlang')) {
+				const nav = document.createElement('nav');
+				nav.className = 'bk-hlang';
+				nav.setAttribute('aria-label', lang === 'ru' ? 'Язык страницы' : 'Page language');
+				[['en', 'EN'], ['ru', 'RU']].forEach(([code, label]) => {
+					const a = document.createElement('a');
+					a.href = `/${code}/call`;
+					a.hreflang = code;
+					a.lang = code;
+					a.dataset.bkLang = code;
+					a.textContent = label;
+					if (code === lang) a.setAttribute('aria-current', 'page');
+					nav.appendChild(a);
+				});
+				actions.prepend(nav);
+			}
+		})();
+	</script>
+	<script is:inline>
+		window.BK_CONFIG = {
+			bookUrl:
+				'https://script.google.com/macros/s/AKfycbyyAa20vxpEi0idKBeTVTlg-9nLX7sp-hO5k7RPCPYHl3t1XgS5w5iSuS7eMa3iV7F9/exec',
+		};
+	</script>
+	<script is:inline src="/call/globe.js"></script>
+	<script is:inline src="/call/call.js"></script>
+</BaseLayout>

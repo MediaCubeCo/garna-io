@@ -1,0 +1,53 @@
+---
+// Тело страницы /ru/call (вариант F, глобус). Перенесено 06.11.2026 из garna-book-call/final-f/garna-call.html.
+---
+<div class="bk-page bk-v-f" data-bk-variant="f" data-lang="ru" lang="ru">
+  <div class="bk-grid" aria-hidden="true"></div>
+  <section class="bk-f" data-section-kind="hero">
+    <div class="bk-f-globe" aria-hidden="true">
+      <canvas class="bk-gl" data-bk-globe></canvas>
+      <span class="bk-pin bk-pin-you" data-bk-pin-you>Вы <b data-bk-tz></b> <span data-bk-clock></span></span>
+      <span class="bk-pin bk-pin-us" data-bk-pin-us>Garna</span>
+    </div>
+    <div class="bk-container bk-f-grid">
+      <div class="bk-f-text bk-rv">
+        <div class="bk-top"><div class="garna-hero-badge"><span class="garna-hero-badge-dot-shell" aria-hidden="true"><span class="garna-hero-badge-dot-ping"></span><span class="garna-hero-badge-dot"></span></span><span>Звонок с Garna</span></div></div>
+        <h1 class="garna-hero-title-gradient bk-title font-manrope font-normal tracking-tight bk-f-title"><span data-bk-named hidden><span data-bk-n></span>, ваша команда по всему миру.</span><span data-bk-plain>Ваша команда по всему миру.</span> <span class="bk-accent">Найдём пару минут?</span></h1>
+        <p class="bk-lead font-manrope"><span data-bk-p="any">Короткий звонок о том, как Garna платит вашей команде за рубежом.</span><span data-bk-p="eor" hidden>Короткий звонок о найме людей в других странах без своего юрлица.</span><span data-bk-p="cor" hidden>Короткий звонок о выплатах подрядчикам по всему миру.</span><span data-bk-p="pay" hidden>Короткий звонок о международных платежах вашей компании.</span></p>
+        <div class="bk-card bk-f-card">
+          <div class="bk-card-head"><ul class="bk-meta"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="m16 10.5 5-3v9l-5-3"/></svg><span>Google Meet</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Короткий звонок</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span>Время в вашем поясе</span></li></ul></div>
+          <div class="bk-pick" data-bk-pick><div class="bk-step bk-step-slot" data-bk-step="slot">
+      <div class="bk-pick-head"><span class="bk-label">Выберите день</span><span class="bk-tz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span>Ваш пояс <b data-bk-tz></b></span></span></div>
+      <div class="bk-days" data-bk-days role="group" aria-label="Выберите день"></div>
+      <div class="bk-label bk-label-time">Время</div>
+      <div class="bk-times" data-bk-times role="group" aria-label="Время" aria-live="polite"><span class="bk-skel"></span><span class="bk-skel"></span><span class="bk-skel"></span><span class="bk-skel"></span></div>
+      <button type="button" class="bk-link bk-own-toggle" data-bk-own-toggle aria-expanded="false">Предложить своё время</button>
+      <div class="bk-own" data-bk-own hidden>
+        <input class="bk-input" type="date" data-bk-own-date aria-label="Дата">
+        <input class="bk-input" type="time" step="900" data-bk-own-time aria-label="Время">
+        <button type="button" class="bk-chip bk-own-go" data-bk-own-go>Выбрать</button>
+        <p class="bk-err" data-bk-own-err hidden>Выберите дату и время не раньше чем через час</p>
+      </div>
+    </div><form class="bk-step bk-step-mail" data-bk-step="mail" data-bk-mail hidden novalidate>
+      <div class="bk-picked"><span class="bk-picked-when" data-bk-when></span><button type="button" class="bk-link" data-bk-back>Другое время</button></div>
+      <label class="bk-label" for="bk-mail-f-ru">Почта для приглашения</label>
+      <div class="bk-mail-row">
+        <input id="bk-mail-f-ru" class="bk-input" type="email" name="email" inputmode="email" autocomplete="email" required placeholder="name@company.com" aria-describedby="bk-err-f-ru">
+        <button type="submit" class="garna-button inline-flex items-center justify-center font-manrope focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300] garna-button-primary text-garna-accent-foreground min-h-12 rounded-xl px-6 py-3 garna-button-has-icon "><span class="garna-button-inner gap-2"><span>Записаться</span><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="garna-button-icon-svg" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span></button>
+      </div>
+      <p class="bk-err" id="bk-err-f-ru" data-bk-err hidden>Проверьте почту, в адресе ошибка</p>
+      <p class="bk-err" data-bk-fail hidden></p>
+      <p class="bk-priv"><a href="https://app.garna.io/api/documents/privacy?lang=ru" target="_blank" rel="noopener">Политика конфиденциальности</a></p>
+    </form><div class="bk-step bk-step-busy" data-bk-step="busy" hidden tabindex="-1" role="status" aria-live="polite"><div class="bk-spin" aria-hidden="true"><span></span></div><h3 class="bk-busy-title">Записываем вас</h3><ol class="bk-busy-steps"><li data-bk-busy-step><i aria-hidden="true"></i><span>Бронируем слот</span></li><li data-bk-busy-step><i aria-hidden="true"></i><span>Создаём ссылку на Google Meet</span></li><li data-bk-busy-step><i aria-hidden="true"></i><span>Отправляем приглашение на <b data-bk-email></b></span></li></ol></div><div class="bk-step bk-step-done" data-bk-step="done" hidden tabindex="-1">
+      <div class="bk-check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="m15 27 7.5 7.5L38 19"/></svg></div>
+      <h3 class="bk-done-title"><span data-bk-named hidden>Готово, <span data-bk-n></span>.</span><span data-bk-plain>Готово.</span></h3>
+      <p class="bk-done-when" data-bk-when></p>
+      <p class="bk-done-line">Приглашение со ссылкой на Meet придёт на почту <b data-bk-email></b>.</p>
+      <div class="bk-add"><a href="#" class="bk-chip bk-chip-meet" data-bk-meet target="_blank" rel="noopener" hidden>Открыть Meet</a><a href="#" class="bk-chip" data-bk-gcal target="_blank" rel="noopener">Google Календарь</a><a href="#" class="bk-chip" data-bk-ics>Файл .ics</a></div>
+    </div></div>
+          <p class="bk-fallback">Ничего не подходит? Напишите удобное время в нашей переписке.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
