@@ -1,6 +1,16 @@
 import type { PageShellConfig } from '../types/page-shell';
 
 export const pageShells = {
+	call: {
+		title: 'Call with Garna | Pick a time',
+		description:
+			'Pick a time for a short call with Garna. Slots in your time zone, the invite with a Google Meet link goes to your email.',
+		keywords: '',
+		ogImage: '/pages/payroll-solution-new/assets/04-d53eeb9d-92c5-4820-9733-4fe2e036e76e_800w.png',
+		htmlClass: 'scroll-smooth',
+		bodyClass: 'antialiased overflow-x-hidden selection:bg-[#CBF300] selection:text-black bg-garna-page',
+		iconLibrary: 'lucide',
+	},
 	hrPodcast: {
 		title: 'Garna for HR Teams | Podcast Offer',
 		description:

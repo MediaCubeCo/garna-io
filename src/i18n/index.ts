@@ -19,6 +19,7 @@ import { gamescom2026Translations } from './translations/gamescom-2026-side-even
 import { hrPodcastTranslations } from './translations/hr-podcast';
 import { webSummit2026Translations } from './translations/websummit-2026-side-events';
 import { oneContractTranslations } from './translations/one-contract';
+import { callTranslations } from './translations/call';
 
 export type PageTranslations = typeof homeTranslations.en;
 
@@ -46,7 +47,8 @@ type AnyPageTranslations =
 	| typeof gamescom2026Translations.en
 	| typeof hrPodcastTranslations.en
 	| typeof webSummit2026Translations.en
-	| typeof oneContractTranslations.en;
+	| typeof oneContractTranslations.en
+	| typeof callTranslations.en;
 
 const translations = {
 	home: homeTranslations,
@@ -74,6 +76,7 @@ const translations = {
 	'hr-podcast': hrPodcastTranslations,
 	'websummit-2026-side-events': webSummit2026Translations,
 	'one-contract': oneContractTranslations,
+	call: callTranslations,
 } as unknown as Record<string, Record<string, AnyPageTranslations>>;
 
 export function getPageTranslations(pageName: string, locale: string): AnyPageTranslations {

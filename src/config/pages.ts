@@ -26,6 +26,13 @@ export interface PageConfig {
 
 export const basePaths: PageConfig[] = [
 	{
+		path: 'call',
+		mode: 'static',
+		searchable: false,
+		showHeader: true,
+		languages: ['en', 'ru'],
+	},
+	{
 		path: 'podcast-offer',
 		mode: 'static',
 		searchable: false,

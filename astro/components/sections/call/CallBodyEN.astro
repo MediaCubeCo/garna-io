@@ -1,0 +1,53 @@
+---
+// Тело страницы /en/call (вариант F, глобус). Перенесено 06.11.2026 из garna-book-call/final-f/garna-call.html.
+---
+<div class="bk-page bk-v-f" data-bk-variant="f" data-lang="en" lang="en">
+  <div class="bk-grid" aria-hidden="true"></div>
+  <section class="bk-f" data-section-kind="hero">
+    <div class="bk-f-globe" aria-hidden="true">
+      <canvas class="bk-gl" data-bk-globe></canvas>
+      <span class="bk-pin bk-pin-you" data-bk-pin-you>You <b data-bk-tz></b> <span data-bk-clock></span></span>
+      <span class="bk-pin bk-pin-us" data-bk-pin-us>Garna</span>
+    </div>
+    <div class="bk-container bk-f-grid">
+      <div class="bk-f-text bk-rv">
+        <div class="bk-top"><div class="garna-hero-badge"><span class="garna-hero-badge-dot-shell" aria-hidden="true"><span class="garna-hero-badge-dot-ping"></span><span class="garna-hero-badge-dot"></span></span><span>Call with Garna</span></div></div>
+        <h1 class="garna-hero-title-gradient bk-title font-manrope font-normal tracking-tight bk-f-title"><span data-bk-named hidden><span data-bk-n></span>, your team is everywhere.</span><span data-bk-plain>Your team is everywhere.</span> <span class="bk-accent">Got a few minutes?</span></h1>
+        <p class="bk-lead font-manrope"><span data-bk-p="any">A short call about how Garna pays your team abroad.</span><span data-bk-p="eor" hidden>A short call about hiring people in other countries without your own entity.</span><span data-bk-p="cor" hidden>A short call about paying contractors around the world.</span><span data-bk-p="pay" hidden>A short call about international payments for your company.</span></p>
+        <div class="bk-card bk-f-card">
+          <div class="bk-card-head"><ul class="bk-meta"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="m16 10.5 5-3v9l-5-3"/></svg><span>Google Meet</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Short call</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span>Your time zone</span></li></ul></div>
+          <div class="bk-pick" data-bk-pick><div class="bk-step bk-step-slot" data-bk-step="slot">
+      <div class="bk-pick-head"><span class="bk-label">Pick a day</span><span class="bk-tz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span>Your zone <b data-bk-tz></b></span></span></div>
+      <div class="bk-days" data-bk-days role="group" aria-label="Pick a day"></div>
+      <div class="bk-label bk-label-time">Time</div>
+      <div class="bk-times" data-bk-times role="group" aria-label="Time" aria-live="polite"><span class="bk-skel"></span><span class="bk-skel"></span><span class="bk-skel"></span><span class="bk-skel"></span></div>
+      <button type="button" class="bk-link bk-own-toggle" data-bk-own-toggle aria-expanded="false">Suggest my own time</button>
+      <div class="bk-own" data-bk-own hidden>
+        <input class="bk-input" type="date" data-bk-own-date aria-label="Date">
+        <input class="bk-input" type="time" step="900" data-bk-own-time aria-label="Time">
+        <button type="button" class="bk-chip bk-own-go" data-bk-own-go>Use this time</button>
+        <p class="bk-err" data-bk-own-err hidden>Pick a date and time at least an hour from now</p>
+      </div>
+    </div><form class="bk-step bk-step-mail" data-bk-step="mail" data-bk-mail hidden novalidate>
+      <div class="bk-picked"><span class="bk-picked-when" data-bk-when></span><button type="button" class="bk-link" data-bk-back>Another time</button></div>
+      <label class="bk-label" for="bk-mail-f-en">Email for the invite</label>
+      <div class="bk-mail-row">
+        <input id="bk-mail-f-en" class="bk-input" type="email" name="email" inputmode="email" autocomplete="email" required placeholder="name@company.com" aria-describedby="bk-err-f-en">
+        <button type="submit" class="garna-button inline-flex items-center justify-center font-manrope focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#CBF300] garna-button-primary text-garna-accent-foreground min-h-12 rounded-xl px-6 py-3 garna-button-has-icon "><span class="garna-button-inner gap-2"><span>Book</span><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="garna-button-icon-svg" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span></button>
+      </div>
+      <p class="bk-err" id="bk-err-f-en" data-bk-err hidden>Check the email, something is off</p>
+      <p class="bk-err" data-bk-fail hidden></p>
+      <p class="bk-priv"><a href="https://app.garna.io/api/documents/privacy?lang=en" target="_blank" rel="noopener">Privacy Policy</a></p>
+    </form><div class="bk-step bk-step-busy" data-bk-step="busy" hidden tabindex="-1" role="status" aria-live="polite"><div class="bk-spin" aria-hidden="true"><span></span></div><h3 class="bk-busy-title">Booking your call</h3><ol class="bk-busy-steps"><li data-bk-busy-step><i aria-hidden="true"></i><span>Holding the slot</span></li><li data-bk-busy-step><i aria-hidden="true"></i><span>Creating the Google Meet link</span></li><li data-bk-busy-step><i aria-hidden="true"></i><span>Sending the invite to <b data-bk-email></b></span></li></ol></div><div class="bk-step bk-step-done" data-bk-step="done" hidden tabindex="-1">
+      <div class="bk-check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="m15 27 7.5 7.5L38 19"/></svg></div>
+      <h3 class="bk-done-title"><span data-bk-named hidden>You're booked, <span data-bk-n></span>.</span><span data-bk-plain>You're booked.</span></h3>
+      <p class="bk-done-when" data-bk-when></p>
+      <p class="bk-done-line">The invite with a Meet link goes to <b data-bk-email></b>.</p>
+      <div class="bk-add"><a href="#" class="bk-chip bk-chip-meet" data-bk-meet target="_blank" rel="noopener" hidden>Open Meet</a><a href="#" class="bk-chip" data-bk-gcal target="_blank" rel="noopener">Google Calendar</a><a href="#" class="bk-chip" data-bk-ics>.ics file</a></div>
+    </div></div>
+          <p class="bk-fallback">Nothing fits? Reply in our chat with a time that works.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
