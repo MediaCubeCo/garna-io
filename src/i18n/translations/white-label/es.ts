@@ -211,8 +211,8 @@ export const whiteLabelEs = {
 			"firstName": "Nombre*",
 			"lastName": "Apellido*",
 			"email": "Correo de trabajo*",
-			"phone": "N?mero de tel?fono*",
-			"employees": "N?mero de empleados*"
+			"phone": "Número de teléfono*",
+			"employees": "Número de empleados*"
 		},
 		"companySizeOptions": [
 			"1-20 personas",
@@ -223,18 +223,18 @@ export const whiteLabelEs = {
 		],
 		"errors": {
 			"required": "Este campo es obligatorio",
-			"invalidEmail": "Por favor introduce una direcci?n de correo v?lida",
+			"invalidEmail": "Por favor introduce una dirección de correo válida",
 			"workEmail": "Por favor usa tu correo de trabajo (no proveedores gratuitos como Gmail, Yahoo, etc.)",
-			"invalidPhone": "Por favor introduce un n?mero de tel?fono v?lido"
+			"invalidPhone": "Por favor introduce un número de teléfono válido"
 		},
 		"signUp": {
-			"promptPrefix": "?Contratista o empleado? ",
-			"linkText": "Reg?strate",
-			"promptSuffix": " aqu?"
+			"promptPrefix": "¿Contratista o empleado? ",
+			"linkText": "Regístrate",
+			"promptSuffix": " aquí"
 		},
 		"disclaimer": {
-			"prefix": "Respetamos tus datos. Al enviar este formulario, aceptas que nos pondremos en contacto contigo en relaci?n con nuestros productos y servicios, de acuerdo con nuestra ",
-			"privacyLink": "pol?tica de privacidad",
+			"prefix": "Respetamos tus datos. Al enviar este formulario, aceptas que nos pondremos en contacto contigo en relación con nuestros productos y servicios, de acuerdo con nuestra ",
+			"privacyLink": "política de privacidad",
 			"suffix": "."
 		}
 	},
